@@ -250,11 +250,11 @@ public partial struct CandidateMap :
 			return;
 		}
 
-		var target = Offsets;
-		fixed (Candidate* pTarget = target)
-		{
-			Unsafe.CopyBlock(arr, pTarget, (uint)(sizeof(Candidate) * length));
-		}
+		Unsafe.CopyBlock(
+			ref Unsafe.As<Candidate, byte>(ref arr[0]),
+			in Unsafe.As<Candidate, byte>(ref Offsets[0]),
+			(uint)(sizeof(Candidate) * length)
+		);
 	}
 
 	/// <inheritdoc/>

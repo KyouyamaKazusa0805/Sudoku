@@ -6,7 +6,7 @@ namespace System;
 /// Provides extension methods on <see cref="Enum"/>.
 /// </summary>
 /// <seealso cref="Enum"/>
-public static unsafe class EnumExtensions
+public static class EnumExtensions
 {
 	/// <summary>
 	/// Checks whether the current enumeration field is a flag.
@@ -15,7 +15,7 @@ public static unsafe class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsFlag<T>(this T @this) where T : unmanaged, Enum
+	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
 			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,
@@ -31,10 +31,10 @@ public static unsafe class EnumExtensions
 	/// <returns>
 	/// All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
 	/// </returns>
-	public static T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
+	public static unsafe T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
 	{
 		// Create a buffer to gather all possible flags.
-		var buffer = stackalloc T[Enum.GetValues<T>().Length];
+		scoped var buffer = (stackalloc T[Enum.GetValues<T>().Length]);
 		var i = 0;
 		foreach (var flag in @this)
 		{
@@ -48,10 +48,7 @@ public static unsafe class EnumExtensions
 
 		// Returns the instance and copy the values.
 		var result = new T[i];
-		fixed (T* ptr = result)
-		{
-			Unsafe.CopyBlock(ptr, buffer, (uint)(sizeof(T) * i));
-		}
+		Unsafe.CopyBlock(ref Unsafe.As<T, byte>(ref result[0]), in Unsafe.As<T, byte>(ref buffer[0]), (uint)(sizeof(T) * i));
 
 		// Returns the value.
 		return [.. result.Distinct()];

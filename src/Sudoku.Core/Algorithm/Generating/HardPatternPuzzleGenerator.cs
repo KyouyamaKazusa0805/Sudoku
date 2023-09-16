@@ -42,11 +42,16 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		var progressTimes = 0;
 		while (true)
 		{
-			fixed (char* pEmptyString = Grid.EmptyString)
-			{
-				Unsafe.CopyBlock(puzzle, pEmptyString, sizeof(char) * 81);
-				Unsafe.CopyBlock(solution, pEmptyString, sizeof(char) * 81);
-			}
+			Unsafe.CopyBlock(
+				ref Unsafe.As<char, byte>(ref puzzle[0]),
+				in Unsafe.As<char, byte>(ref Unsafe.AsRef(in Grid.EmptyString.GetPinnableReference())),
+				sizeof(char) * 81
+			);
+			Unsafe.CopyBlock(
+				ref Unsafe.As<char, byte>(ref solution[0]),
+				in Unsafe.As<char, byte>(ref Unsafe.AsRef(in Grid.EmptyString.GetPinnableReference())),
+				sizeof(char) * 81
+			);
 
 			GenerateAnswerGrid(puzzle, solution);
 

@@ -57,10 +57,11 @@ public readonly unsafe partial struct Utf8String :
 	{
 		var length = StringLengthOf(value);
 		_value = new Utf8Char[length];
-		fixed (Utf8Char* ptrValue = _value)
-		{
-			Unsafe.CopyBlock(ptrValue, value, (uint)(sizeof(Utf8Char) * length));
-		}
+		Unsafe.CopyBlock(
+			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
+			in Unsafe.As<Utf8Char, byte>(ref value[0]),
+			(uint)(sizeof(Utf8Char) * length)
+		);
 	}
 
 	/// <summary>
@@ -349,18 +350,16 @@ public readonly unsafe partial struct Utf8String :
 		{
 			var totalLength = left._value.Length + right._value.Length;
 			targetBuffer = ArrayPool<Utf8Char>.Shared.Rent(totalLength);
-			fixed (Utf8Char* destination = targetBuffer)
-			{
-				fixed (Utf8Char* src = left._value)
-				{
-					Unsafe.CopyBlock(destination, src, (uint)(sizeof(byte) * left._value.Length));
-				}
-
-				fixed (Utf8Char* src = right._value)
-				{
-					Unsafe.CopyBlock(destination + left._value.Length, src, (uint)(sizeof(byte) * right._value.Length));
-				}
-			}
+			Unsafe.CopyBlock(
+				ref Unsafe.As<Utf8Char, byte>(ref targetBuffer[0]),
+				in Unsafe.As<Utf8Char, byte>(ref left._value[0]),
+				(uint)(sizeof(byte) * left._value.Length)
+			);
+			Unsafe.CopyBlock(
+				ref Unsafe.As<Utf8Char, byte>(ref targetBuffer[left._value.Length]),
+				in Unsafe.As<Utf8Char, byte>(ref right._value[0]),
+				(uint)(sizeof(byte) * right._value.Length)
+			);
 
 			return targetBuffer[..totalLength];
 		}

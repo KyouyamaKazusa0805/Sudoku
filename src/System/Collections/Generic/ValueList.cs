@@ -192,11 +192,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	public readonly T?[] ToArray()
 	{
 		var result = new T?[_length];
-		fixed (T?* pResult = result)
-		{
-			Unsafe.CopyBlock(pResult, _startPtr, (uint)(sizeof(T) * _length));
-		}
-
+		Unsafe.CopyBlock(ref Unsafe.As<T?, byte>(ref result[0]), in Unsafe.As<T?, byte>(ref _startPtr[0]), (uint)(sizeof(T) * _length));
 		return result;
 	}
 }
