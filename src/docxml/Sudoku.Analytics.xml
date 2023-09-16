@@ -256,7 +256,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
@@ -409,7 +409,7 @@ if (student is (name: var name, age: >= 18))
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.UserDefinedOptions"/> with the specified value.
             </summary>
@@ -3042,6 +3042,23 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The abbreviation.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
+            <summary>
+            Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
+            that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
+            For example, setting notation to the coordinates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
+            <summary>
+            Represents a default option-provider instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter">
+            <inheritdoc cref="T:Sudoku.Text.ICoordinateConverter"/>
+            <remarks>By default, the value is an instance of type <see cref="T:Sudoku.Text.RxCyConverter"/>.</remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Eliminations.ExocetEliminatedReason">
             <summary>
             Encapsulates a type that represents the reason why the exocet eliminations can be removed.
@@ -4228,19 +4245,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherOptions">
-            <summary>
-            Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
-            Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
-            that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
-            For example, setting notation to the coordinates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcherOptions.Default">
-            <summary>
-            Represents a default option-provider instance.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
@@ -18589,110 +18593,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.CrosshatchingInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Intersection">
-            <summary>
-            Defines a type that stores some fields as shared one.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Intersection.IntersectionMaps">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Intersection.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Concepts.IntersectionBaseComparer">
-            <summary>
-            Represents a comparer instance that compares two tuples.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionBaseComparer.Equals(Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionBaseComparer.GetHashCode(Sudoku.Concepts.IntersectionBase)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.IntersectionBase">
-            <summary>
-            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
-            </summary>
-            <param name="Line">The index of the line.</param>
-            <param name="Block">The index of the block.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionBase.#ctor(System.Byte,System.Byte)">
-            <summary>
-            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
-            </summary>
-            <param name="Line">The index of the line.</param>
-            <param name="Block">The index of the block.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionBase.Line">
-            <summary>The index of the line.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionBase.Block">
-            <summary>The index of the block.</summary>
-        </member>
-        <member name="T:Sudoku.Concepts.IntersectionResult">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.LineMap">
-            <summary>The map of the line.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.BlockMap">
-            <summary>The map of the block.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.IntersectionMap">
-            <summary>The map of the intersection.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.OtherBlocks">
-            <summary>
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>

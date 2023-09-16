@@ -1,4 +1,6 @@
-namespace Sudoku.Analytics;
+using Sudoku.Text;
+
+namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
 /// Represents a type that encapsulates a list of options adjusted by users and used by <see cref="StepSearcher"/> instances.
@@ -14,5 +16,7 @@ public sealed class StepSearcherOptions
 	public static StepSearcherOptions Default => new();
 
 
-
+	/// <inheritdoc cref="ICoordinateConverter"/>
+	/// <remarks>By default, the value is an instance of type <see cref="RxCyConverter"/>.</remarks>
+	public ICoordinateConverter CoordinateConverter { get; set; } = new RxCyConverter();
 }

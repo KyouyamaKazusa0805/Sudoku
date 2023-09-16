@@ -1,4 +1,5 @@
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 
 namespace Sudoku.Analytics;
 

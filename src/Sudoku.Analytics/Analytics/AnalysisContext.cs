@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 
 namespace Sudoku.Analytics;

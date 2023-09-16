@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.SourceGeneration;
 using System.Timers;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
