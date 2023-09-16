@@ -235,6 +235,7 @@ public static class SolutionWideReadOnlyFields
 	/// </summary>
 	public static readonly HouseType[] HouseTypes = [HouseType.Block, HouseType.Row, HouseType.Column];
 
+#pragma warning disable format
 	/// <summary>
 	/// Indicates a block list that each cell belongs to.
 	/// </summary>
@@ -279,6 +280,7 @@ public static class SolutionWideReadOnlyFields
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26
 	];
+#pragma warning restore format
 
 	/// <summary>
 	/// Indicates the Pascal Triangle (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
