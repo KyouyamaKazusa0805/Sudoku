@@ -250,8 +250,13 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
+            <param name="predefinedOptions">
+            Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            The value can be <see langword="null"/> if the target step searcher doesn't use this property.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.StepSearcherOptions)">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
@@ -266,6 +271,11 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
+            <param name="predefinedOptions">
+            Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            The value can be <see langword="null"/> if the target step searcher doesn't use this property.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
@@ -290,6 +300,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
             <summary>
             The generated property declaration for parameter <c>onlyFindOne</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.PredefinedOptions">
+            <summary>
+            The generated property declaration for parameter <c>predefinedOptions</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
@@ -343,6 +358,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Analyzer.ResultStepSearchers">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.UserDefinedOptions">
+            <summary>
+            Indicates the extra options to be set.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
@@ -388,6 +408,17 @@ if (student is (name: var name, age: >= 18))
             <param name="applyAll">The value to be set. The value will be assigned to property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>.</param>
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcherOptions)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.UserDefinedOptions"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="options">
+            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.UserDefinedOptions"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
@@ -4197,6 +4228,19 @@ if (student is (name: var name, age: >= 18))
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherOptions">
+            <summary>
+            Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
+            that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
+            For example, setting notation to the coordinates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherOptions.Default">
+            <summary>
+            Represents a default option-provider instance.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>

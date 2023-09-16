@@ -129,7 +129,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 						// Searching.
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false);
+						scoped var context = new AnalysisContext(accumulator, puzzle, false, null);
 						searcher.Collect(ref context);
 
 						if (accumulator.Count is not (var count and not 0))

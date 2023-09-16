@@ -18,11 +18,17 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
 /// <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
+/// <param name="predefinedOptions">
+/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
+/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
+/// </param>
+/// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
 	[DataMember] List<Step>? accumulator,
 	[DataMember(MemberKinds.Field)] in Grid grid,
-	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne
+	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
+	[DataMember] StepSearcherOptions? predefinedOptions
 )
 {
 	/// <summary>

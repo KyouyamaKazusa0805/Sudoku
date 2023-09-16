@@ -107,7 +107,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private BowmanBingoStep? Collect(List<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
 	{
-		scoped var context = new AnalysisContext(null, grid, true);
+		scoped var context = new AnalysisContext(null, grid, true, null);
 		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.

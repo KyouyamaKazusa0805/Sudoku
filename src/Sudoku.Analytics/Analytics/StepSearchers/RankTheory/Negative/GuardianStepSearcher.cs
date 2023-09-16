@@ -37,7 +37,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		eliminationMaps.Fill(CellMap.Empty);
 
 		var pomSteps = new List<Step>();
-		scoped var pomContext = new AnalysisContext(pomSteps, grid, false);
+		scoped var pomContext = new AnalysisContext(pomSteps, grid, false, null);
 		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())

@@ -71,6 +71,11 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 		select searcher;
 
+	/// <summary>
+	/// Indicates the extra options to be set.
+	/// </summary>
+	public StepSearcherOptions UserDefinedOptions { get; internal set; } = StepSearcherOptions.Default;
+
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
@@ -144,7 +149,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, playground, false);
+						scoped var context = new AnalysisContext(accumulator, playground, false, UserDefinedOptions);
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -156,7 +161,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							if (verifyConclusionValidity(in solution, foundStep))
 							{
 								if (recordingStep(
-									recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
+									recordedSteps, foundStep, ref playground, in stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -174,7 +179,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					default:
 					{
-						scoped var context = new AnalysisContext(null, playground, true);
+						scoped var context = new AnalysisContext(null, playground, true, UserDefinedOptions);
 						switch (searcher.Collect(ref context))
 						{
 							case null:
@@ -186,7 +191,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 								if (verifyConclusionValidity(in solution, foundStep))
 								{
 									if (recordingStep(
-										recordedSteps, foundStep, ref playground, ref stopwatch, stepGrids,
+										recordedSteps, foundStep, ref playground, in stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
 										return result;
@@ -242,7 +247,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				List<Step> steps,
 				Step step,
 				scoped ref Grid playground,
-				scoped ref ValueStopwatch stopwatch,
+				scoped ref readonly ValueStopwatch stopwatch,
 				List<Grid> stepGrids,
 				AnalyzerResult resultBase,
 				CancellationToken cancellationToken,
@@ -338,7 +343,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false);
+						scoped var context = new AnalysisContext(accumulator, puzzle, false, UserDefinedOptions);
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -355,7 +360,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					default:
 					{
-						scoped var context = new AnalysisContext(null, puzzle, true);
+						scoped var context = new AnalysisContext(null, puzzle, true, UserDefinedOptions);
 						if (searcher.Collect(ref context) is not { } step)
 						{
 							continue;
