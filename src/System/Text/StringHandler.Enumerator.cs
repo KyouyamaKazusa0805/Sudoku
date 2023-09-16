@@ -47,7 +47,7 @@ partial struct StringHandler
 			_index = -1;
 
 			ref var z = ref chars._chars.GetPinnableReference();
-			ArgumentNullRefException.ThrowIfNullRef(ref z);
+			ArgumentNullRefException.ThrowIfNullRef(in z);
 
 			_ptr = ref Unsafe.SubtractByteOffset(ref z, 1);
 		}

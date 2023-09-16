@@ -28,9 +28,12 @@ public sealed class ArgumentNullRefException(string? paramName) : ArgumentNullEx
 	/// <exception cref="ArgumentNullRefException">Throws when <paramref name="argument"/> is <see langword="null"/>.</exception>
 	/// <seealso cref="Unsafe.IsNullRef{T}(ref readonly T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(scoped ref T argument, [ConstantExpected, CallerArgumentExpression(nameof(argument))] string? paramName = null)
+	public static void ThrowIfNullRef<T>(
+		scoped ref readonly T argument,
+		[ConstantExpected, CallerArgumentExpression(nameof(argument))] string? paramName = null
+	)
 	{
-		if (Unsafe.IsNullRef(ref argument))
+		if (Unsafe.IsNullRef(in argument))
 		{
 			throw new ArgumentNullRefException(paramName);
 		}

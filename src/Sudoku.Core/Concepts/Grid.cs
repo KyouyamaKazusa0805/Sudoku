@@ -156,7 +156,7 @@ public unsafe partial struct Grid : GridImpl
 	/// </exception>
 	private Grid(scoped ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(ref Unsafe.AsRef(in firstElement));
+		ArgumentNullRefException.ThrowIfNullRef(in firstElement);
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
