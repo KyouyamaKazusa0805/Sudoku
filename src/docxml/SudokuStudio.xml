@@ -10094,6 +10094,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the maximum possible supported number of puzzles.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SyncRootOnChangingPuzzles">
+            <summary>
+            The internal sync root.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage._stopwatch">
             <summary>
             Defines a timer instance.

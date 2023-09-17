@@ -28,6 +28,12 @@ public sealed partial class SingleCountingPracticingPage : Page
 
 
 	/// <summary>
+	/// The internal sync root.
+	/// </summary>
+	private static readonly object SyncRootOnChangingPuzzles = new();
+
+
+	/// <summary>
 	/// Defines a timer instance.
 	/// </summary>
 	private readonly Stopwatch _stopwatch = new();
@@ -35,7 +41,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// <summary>
 	/// Indicates the puzzles last.
 	/// </summary>
-	private int _currentPuzzleIndex = -1;
+	private volatile int _currentPuzzleIndex = -1;
 
 	/// <summary>
 	/// Indicates the target result data.
@@ -95,53 +101,66 @@ public sealed partial class SingleCountingPracticingPage : Page
 			return;
 		}
 
-		if (value)
+		lock (SyncRootOnChangingPuzzles)
 		{
-			page._stopwatch.Start();
-			page._currentPuzzleIndex = 0;
-			page.ResultDataDisplayer.Text = string.Empty;
-		}
-		else
-		{
-			page._stopwatch.Stop();
-			page._currentPuzzleIndex = -1;
+			if (value)
+			{
+				page._stopwatch.Start();
+				page._currentPuzzleIndex = 0;
+				page.ResultDataDisplayer.Text = string.Empty;
+			}
+			else
+			{
+				page._stopwatch.Stop();
+				page._currentPuzzleIndex = -1;
 
-			var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, (a, b) => a.Candidate == b, testedCount);
-			var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
-			page.ResultDataDisplayer.Text = string.Format(
-				GetString("SingleCountingPracticingPage_ResultDisplayLabel"),
-				totalTimeSpan,
-				testedCount,
-				totalTimeSpan / testedCount,
-				(double)correctCount / testedCount,
-				correctCount,
-				testedCount
-			);
-		}
+				var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, (a, b) => a.Candidate == b, testedCount);
+				var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
+				page.ResultDataDisplayer.Text = string.Format(
+					GetString("SingleCountingPracticingPage_ResultDisplayLabel"),
+					totalTimeSpan,
+					testedCount,
+					totalTimeSpan / testedCount,
+					(double)correctCount / testedCount,
+					correctCount,
+					testedCount
+				);
+			}
 
-		page._targetResultData.Refresh(MaxPuzzlesCountSupported);
-		page._answeredData.Refresh(MaxPuzzlesCountSupported);
+			page._targetResultData.Refresh(MaxPuzzlesCountSupported);
+			page._answeredData.Refresh(MaxPuzzlesCountSupported);
+		}
 	}
 
 
 	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e)
 	{
-		if (e is not { Candidate: var candidate and not -1 })
+		lock (SyncRootOnChangingPuzzles)
 		{
-			return;
-		}
+			if (!IsRunning || _currentPuzzleIndex >= TestedPuzzlesCount)
+			{
+				return;
+			}
 
-		var elapsed = _stopwatch.Elapsed;
-		_answeredData[_currentPuzzleIndex] =
-			(candidate, _currentPuzzleIndex == 0 ? elapsed : elapsed - _answeredData[_currentPuzzleIndex - 1].TimeSpan);
+			if (e is not { Candidate: var candidate and not -1 })
+			{
+				return;
+			}
 
-		if (++_currentPuzzleIndex >= TestedPuzzlesCount)
-		{
-			IsRunning = false;
-		}
-		else
-		{
-			GeneratePuzzle();
+			var elapsed = _stopwatch.Elapsed;
+			_answeredData[_currentPuzzleIndex] = (
+				candidate,
+				_currentPuzzleIndex == 0 ? elapsed : elapsed - _answeredData[_currentPuzzleIndex - 1].TimeSpan
+			);
+
+			if (++_currentPuzzleIndex >= TestedPuzzlesCount)
+			{
+				IsRunning = false;
+			}
+			else
+			{
+				GeneratePuzzle();
+			}
 		}
 	}
 
