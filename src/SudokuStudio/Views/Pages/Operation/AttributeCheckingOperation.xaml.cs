@@ -4,6 +4,7 @@ using Sudoku.Algorithm.Backdoors;
 using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Algorithm.TrueCandidates;
 using Sudoku.Analytics;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using SudokuStudio.ComponentModel;
@@ -96,17 +97,9 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var ittoryuFinder = new IttoryuPathFinder { SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques] };
-		var digitPath = ittoryuFinder.FindPath(in puzzle);
-		if (!digitPath.IsComplete)
-		{
-			InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = GetString("AnalyzePage_DisorderedIttoryuDoesNotExist");
-			InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
-			return;
-		}
-
-		InfoDialog_DisorderedIttoryuDigitSequence.Subtitle = string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), digitPath.ToString());
-		InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
+		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) = puzzle.IsIttoryu([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques], out var digitPath)
+			? (string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), digitPath.ToString()), true)
+			: (GetString("AnalyzePage_DisorderedIttoryuDoesNotExist"), true);
 	}
 }
 

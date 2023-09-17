@@ -18911,6 +18911,37 @@ result ^= expression;
             <param name="ittoryuPath">The path to be used.</param>
             <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
         </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.Technique[],System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
+            with checking using the specified techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">
+            <para>The techniques supported.</para>
+            <para>
+            The value is an array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields. You can only chose one or more fields in the following list:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
+            </list>
+            </para>
+            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
+            </param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.DataModel.Exocet">
             <summary>
             <para>
