@@ -83,6 +83,22 @@
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString(System.String)">
             <inheritdoc cref="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString"/>
         </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/> instance via collection expression.
+            </summary>
+            <param name="digits">A list of digits to be initialized.</param>
+            <returns>A <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_Implicit(System.Int32[])~Sudoku.Algorithm.Ittoryu.DigitPath">
             <summary>
             Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/>.

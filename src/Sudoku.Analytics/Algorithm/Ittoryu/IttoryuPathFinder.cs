@@ -60,7 +60,7 @@ public sealed class IttoryuPathFinder
 		}
 		catch (InvalidOperationException)
 		{
-			return digitsStack.Reverse().ToArray();
+			return [.. digitsStack.Reverse()];
 		}
 
 		return null;
