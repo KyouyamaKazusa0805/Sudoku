@@ -3058,6 +3058,195 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The abbreviation.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.
+            </summary>
+            <param name="this">The group to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueSet">
+            <summary>
+            Represents a set of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields.
+            </summary>
+            <remarks>
+            This type uses a <see cref="T:System.Collections.BitArray"/> to construct the data structure. Because <see cref="T:System.Collections.BitArray"/> is a reference type,
+            we cannot directly copy a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> value. If you want to clone a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>,
+            please use copy constructor <see cref="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:System.Collections.BitArray"/>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueRelationGroups">
+            <summary>
+            Indicates the information for the techniques, can lookup the relation via its belonging technique group.
+            This field will be used in extension method <see cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet._techniqueBits">
+            <summary>
+            The internal bits to store techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Copies a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance, and adds it to the current collection.
+            </summary>
+            <param name="other">The other collection to be added.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Count">
+            <summary>
+            Indicates the length of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Item(System.Int32)">
+            <summary>
+            Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> at the specified index.
+            </summary>
+            <param name="index">The index to be checked.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Contains(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determines whether the specified technique is in the collection.
+            </summary>
+            <param name="technique">The technique.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
+            <summary>
+            Converts the current collection into an array.
+            </summary>
+            <returns>The final array converted.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Add(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to add a new technique.
+            </summary>
+            <param name="technique">A technique to be added.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully added.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Remove(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to remove a technique from the collection.
+            </summary>
+            <param name="technique">A technique to be removed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully removed.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Categorization#Technique}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_OnesComplement(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_BitwiseAnd(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_BitwiseOr(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_ExclusiveOr(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator">
+            <summary>
+            The enumerator that can iterate with <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields for a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
+            </summary>
+            <param name="bits">The internal bits.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.#ctor(System.Collections.BitArray)">
+            <summary>
+            The enumerator that can iterate with <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields for a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
+            </summary>
+            <param name="bits">The internal bits.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._bits">
+            <summary>
+            The internal fields.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._length">
+            <summary>
+            The total length.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._currentIndex">
+            <summary>
+            The current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Equality(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Inequality(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.Converter">
+            <summary>
+            Defines a JSON converter for the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Categorization.TechniqueSet,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.

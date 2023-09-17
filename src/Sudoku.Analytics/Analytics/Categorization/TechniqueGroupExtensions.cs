@@ -17,4 +17,12 @@ public static class TechniqueGroupExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this TechniqueGroup @this)
 		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation;
+
+	/// <summary>
+	/// Try to get all possible <see cref="Technique"/> fields belonging to the current group.
+	/// </summary>
+	/// <param name="this">The group to be checked.</param>
+	/// <returns>A <see cref="TechniqueSet"/> instance that contains all <see cref="Technique"/> fields belonging to the current group.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueSet GetTechniques(this TechniqueGroup @this) => TechniqueSet.TechniqueRelationGroups[@this];
 }
