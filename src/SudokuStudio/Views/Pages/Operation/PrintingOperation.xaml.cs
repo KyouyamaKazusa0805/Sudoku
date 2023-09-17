@@ -10,6 +10,8 @@ using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Storage;
 using Windows.Storage.Pickers;
 using static SudokuStudio.Strings.StringsAccessor;
+using PdfColors = QuestPDF.Helpers.Colors;
+using PdfContainer = QuestPDF.Infrastructure.IContainer;
 
 namespace SudokuStudio.Views.Pages.Operation;
 
