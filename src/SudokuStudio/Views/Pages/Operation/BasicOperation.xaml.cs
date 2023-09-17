@@ -76,10 +76,9 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 
 	private void ResetButton_Click(object sender, RoutedEventArgs e)
 	{
-		var puzzle = BasePage.SudokuPane.Puzzle;
-		puzzle.Reset();
-
-		BasePage.SudokuPane.Puzzle = puzzle;
+		BasePage.SudokuPane.Puzzle = BasePage.SudokuPane.Puzzle.ResetGrid;
+		BasePage.ClearAnalyzeTabsData();
+		BasePage.VisualUnit = null;
 	}
 
 	private void ClearButton_Click(object sender, RoutedEventArgs e) => Dialog_AreYouSureToReturnToEmpty.IsOpen = true;
@@ -116,6 +115,9 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 	private void Dialog_AreYouSureToReturnToEmpty_ActionButtonClick(TeachingTip sender, object args)
 	{
 		BasePage.SudokuPane.Puzzle = Grid.Empty;
+		BasePage.ClearAnalyzeTabsData();
+		BasePage.VisualUnit = null;
+
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
 
