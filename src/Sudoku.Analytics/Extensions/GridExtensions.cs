@@ -18,18 +18,33 @@ public static class GridExtensions
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(ittoryuPath.IsComplete, true);
 
-		if (ittoryuPath == (Digit[])[0, 1, 2, 3, 4, 5, 6, 7, 8])
+		if (ittoryuPath == [0, 1, 2, 3, 4, 5, 6, 7, 8])
 		{
 			// The puzzle won't be changed.
 			return;
 		}
 
-		var result = @this;
-		for (var i = 0; i < 9; i++)
+		// Try to replace digits.
+		var result = Grid.Empty;
+		var valuesMap = @this.ValuesMap;
+		for (var digit = 0; digit < 9; digit++)
 		{
-			result.SwapTwoDigits(ittoryuPath.Digits[i], Array.IndexOf(ittoryuPath.Digits, i));
+			scoped ref readonly var valueMap = ref valuesMap[ittoryuPath.Digits[digit]];
+			foreach (var cell in valueMap)
+			{
+				result.SetDigit(cell, digit);
+			}
 		}
 
-		@this = result;
+		// Fix the grid for the initial state.
+		for (var cell = 0; cell < 81; cell++)
+		{
+			if (@this.GetState(cell) == CellState.Given)
+			{
+				result.SetState(cell, CellState.Given);
+			}
+		}
+
+		@this = result.ResetGrid;
 	}
 }
