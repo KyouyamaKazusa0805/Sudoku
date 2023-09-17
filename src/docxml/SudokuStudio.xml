@@ -7019,6 +7019,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>LogicalSolverIgnoresHighAllocationAlgorithms</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniquesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>IttoryuSupportedTechniques</c>.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetEnableFullHouse(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouseProperty"/> to get or set value.
@@ -7318,6 +7323,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.LogicalSolverIgnoresHighAllocationAlgorithmsProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.LogicalSolverIgnoresHighAllocationAlgorithmsProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetIttoryuSupportedTechniques(Microsoft.UI.Xaml.DependencyObject,System.Collections.Generic.List{Sudoku.Analytics.Categorization.Technique})">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniquesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniquesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetIttoryuSupportedTechniques(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniquesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniquesProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Attached.GathererProperties">
             <summary>

@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.UI.Xaml;
 using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.StepSearchers;
 using SudokuStudio.ComponentModel;
@@ -42,12 +43,23 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms)]
+[AttachedProperty<List<Technique>>(RuntimeIdentifier.IttoryuSupportedTechniques)]
 public static partial class AnalyzerProperties
 {
 	/// <summary>
 	/// Indicates the anonymous name for getters.
 	/// </summary>
 	private const string GetSetterName = "Get";
+
+
+	[Default]
+	private static readonly List<Technique> IttoryuSupportedTechniquesDefaultValue = [
+		Technique.FullHouse,
+		Technique.HiddenSingleBlock,
+		Technique.HiddenSingleRow,
+		Technique.HiddenSingleColumn,
+		Technique.NakedSingle
+	];
 
 
 	/// <summary>
