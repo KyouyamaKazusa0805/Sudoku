@@ -30,9 +30,13 @@ public partial struct TechniqueSet :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
+	ICollection<Technique>,
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
+	IReadOnlyCollection<Technique>,
+	ISet<Technique>,
+	IReadOnlySet<Technique>,
 	ISubtractionOperators<TechniqueSet, Technique, TechniqueSet>,
 	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>
 {
@@ -123,6 +127,8 @@ public partial struct TechniqueSet :
 		}
 	}
 
+	bool ICollection<Technique>.IsReadOnly { get; }
+
 
 	/// <summary>
 	/// Try to get the <see cref="Technique"/> at the specified index.
@@ -194,10 +200,10 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Determines whether the specified technique is in the collection.
 	/// </summary>
-	/// <param name="technique">The technique.</param>
+	/// <param name="item">The technique.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(Technique technique) => _techniqueBits[(int)technique];
+	public readonly bool Contains(Technique item) => _techniqueBits[(int)item];
 
 	/// <inheritdoc/>
 	public override readonly int GetHashCode()
@@ -275,38 +281,103 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Try to add a new technique.
 	/// </summary>
-	/// <param name="technique">A technique to be added.</param>
+	/// <param name="item">A technique to be added.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully added.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public bool Add(Technique technique)
+	public bool Add(Technique item)
 	{
-		if (_techniqueBits[(int)technique])
+		if (_techniqueBits[(int)item])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((int)technique, true);
+		_techniqueBits.Set((int)item, true);
 		return true;
 	}
 
 	/// <summary>
 	/// Try to remove a technique from the collection.
 	/// </summary>
-	/// <param name="technique">A technique to be removed.</param>
+	/// <param name="item">A technique to be removed.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully removed.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public bool Remove(Technique technique)
+	public bool Remove(Technique item)
 	{
-		if (!_techniqueBits[(int)technique])
+		if (!_techniqueBits[(int)item])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((int)technique, false);
+		_techniqueBits.Set((int)item, false);
 		return true;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
+		=> Array.Copy(this[arrayIndex..].ToArray(), array, Count - arrayIndex);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSubsetOf(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSupersetOf(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSubsetOf(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.IsSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSupersetOf(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.Overlaps(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).Overlaps(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool ISet<Technique>.SetEquals(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).SetEquals(other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (otherSet & this) == this && this != otherSet;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (this & otherSet) == otherSet && this != otherSet;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ([.. other] & this) == this;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.IsSupersetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (this & otherSet) == otherSet;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.Overlaps(IEnumerable<Technique> other) => (this & [.. other]).Count != 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly bool IReadOnlySet<Technique>.SetEquals(IEnumerable<Technique> other) => this == [.. other];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -321,6 +392,35 @@ public partial struct TechniqueSet :
 			yield return technique;
 		}
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<Technique>.ExceptWith(IEnumerable<Technique> other) => this -= [.. other];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<Technique>.IntersectWith(IEnumerable<Technique> other) => this &= [.. other];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<Technique>.SymmetricExceptWith(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		this = (this - otherSet) | (otherSet - this);
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<Technique>.UnionWith(IEnumerable<Technique> other) => this |= [.. other];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ICollection<Technique>.Add(Technique item) => Add(item);
+
+	/// <inheritdoc/>
+	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ICollection<Technique>.Clear() => _techniqueBits.SetAll(false);
 
 
 	/// <inheritdoc/>
