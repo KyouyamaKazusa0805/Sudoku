@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="Technique"/>
 /// <seealso cref="BitArray"/>
 /// <seealso cref="TechniqueSet(TechniqueSet)"/>
+/// <completionlist cref="TechniqueSets"/>
 [SuppressMessage("Style", "IDE0250:Make struct 'readonly'", Justification = "<Pending>")]
 [JsonConverter(typeof(Converter))]
 [Equals]
@@ -42,19 +43,35 @@ public partial struct TechniqueSet :
 	/// <seealso cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup)"/>
 	internal static readonly Dictionary<TechniqueGroup, TechniqueSet> TechniqueRelationGroups;
 
+	/// <summary>
+	/// Indicates the number of techniques included in this solution.
+	/// </summary>
+	private static readonly int TechniquesCount = Enum.GetValues<Technique>().Length;
+
 
 	/// <summary>
 	/// The internal bits to store techniques.
 	/// </summary>
-	private readonly BitArray _techniqueBits = new(Enum.GetNames<Technique>().Length);
+	private readonly BitArray _techniqueBits;
 
+
+	/// <summary>
+	/// Initializes a <see cref="TechniqueSet"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public TechniqueSet() => _techniqueBits = new(TechniquesCount);
 
 	/// <summary>
 	/// Copies a <see cref="TechniqueSet"/> instance, and adds it to the current collection.
 	/// </summary>
 	/// <param name="other">The other collection to be added.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TechniqueSet(TechniqueSet other) => this = [.. other];
+	public TechniqueSet(TechniqueSet other) : this()
+	{
+		foreach (var technique in other)
+		{
+			Add(technique);
+		}
+	}
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -63,7 +80,7 @@ public partial struct TechniqueSet :
 		var dic = new Dictionary<TechniqueGroup, TechniqueSet>();
 		foreach (var technique in Enum.GetValues<Technique>())
 		{
-			if (technique != Technique.None && technique.GetGroup() is var group && !dic.TryAdd(group, [technique]))
+			if (technique != Technique.None && technique.TryGetGroup() is { } group && !dic.TryAdd(group, [technique]))
 			{
 				dic[group].Add(technique);
 			}

@@ -123,21 +123,6 @@
             This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.AllTechniquesIncluded">
-            <summary>
-            Indicates the technique set that all single techniques are included.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.NoNakedSingle">
-            <summary>
-            Indicates the technique set that excludes naked singles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.BlockHiddenSingle">
-            <summary>
-            Indicates the technique set that only contains full houses and hidden singles in block.
-            </summary>
-        </member>
         <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
             <summary>
             Indicates the supported techniques. By default, all singles are included.
@@ -2729,6 +2714,14 @@ if (student is (name: var name, age: >= 18))
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to. If a technique doesn't contain a corresponding group,
+            this method will return <see langword="null"/>. No exception will be thrown.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetGroup(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.
@@ -3077,6 +3070,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:System.Collections.BitArray"/>
             <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)"/>
+            <completionlist cref="T:Sudoku.Analytics.Categorization.TechniqueSets"/>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueRelationGroups">
             <summary>
@@ -3085,9 +3079,19 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)"/>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniquesCount">
+            <summary>
+            Indicates the number of techniques included in this solution.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet._techniqueBits">
             <summary>
             The internal bits to store techniques.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
@@ -3272,6 +3276,38 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Categorization.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Categorization.TechniqueSet,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueSets">
+            <summary>
+            Predefined <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.All">
+            <summary>
+            Indicates all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuTechniques">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuNakedSingleNotIncluded">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuBlockHiddenSingle">
+            <summary>
+            Indicates the techniques that ittroyu path finder will use,
+            only containing <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
@@ -19134,7 +19170,7 @@ result ^= expression;
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.Technique[],System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
+        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
             <summary>
             Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
             with checking using the specified techniques.
@@ -19143,7 +19179,7 @@ result ^= expression;
             <param name="techniques">
             <para>The techniques supported.</para>
             <para>
-            The value is an array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields. You can only chose one or more fields in the following list:
+            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
             <list type="bullet">
             <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
             <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>

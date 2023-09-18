@@ -77,6 +77,16 @@ public static class TechniqueExtensions
 	public static string[]? GetAliases(this Technique @this) => GetString($"TechniqueAlias_{@this}")?.SplitBy([';']);
 
 	/// <summary>
+	/// Try to get the group that the current <see cref="Technique"/> belongs to. If a technique doesn't contain a corresponding group,
+	/// this method will return <see langword="null"/>. No exception will be thrown.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>The <see cref="TechniqueGroup"/> value that the current <see cref="Technique"/> belongs to.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueGroup? TryGetGroup(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group;
+
+	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
@@ -85,9 +95,7 @@ public static class TechniqueExtensions
 	/// Throws when the specified <see cref="Technique"/> does not belong to any <see cref="TechniqueGroup"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueGroup GetGroup(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group
-		?? throw new ArgumentOutOfRangeException(nameof(@this));
+	public static TechniqueGroup GetGroup(this Technique @this) => @this.TryGetGroup() ?? throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
 	/// Try to get its static difficulty level for the specified technique.

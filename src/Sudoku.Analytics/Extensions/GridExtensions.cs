@@ -59,7 +59,7 @@ public static class GridExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIttoryu(this scoped ref readonly Grid @this, [NotNullWhen(true)] out DigitPath? path)
-		=> @this.IsIttoryu(IttoryuPathFinder.AllTechniquesIncluded, out path);
+		=> @this.IsIttoryu(TechniqueSets.IttoryuTechniques, out path);
 
 	/// <summary>
 	/// Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
@@ -69,7 +69,7 @@ public static class GridExtensions
 	/// <param name="techniques">
 	/// <para>The techniques supported.</para>
 	/// <para>
-	/// The value is an array of <see cref="Technique"/> fields. You can only chose one or more fields in the following list:
+	/// The value is a <see cref="TechniqueSet"/> instance. You can only chose one or more fields in the following list:
 	/// <list type="bullet">
 	/// <item><see cref="Technique.FullHouse"/> (Full House)</item>
 	/// <item><see cref="Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
@@ -83,7 +83,7 @@ public static class GridExtensions
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, Technique[] techniques, [NotNullWhen(true)] out DigitPath? path)
+	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DigitPath? path)
 	{
 		var pathFinder = new IttoryuPathFinder { SupportedTechniques = techniques };
 		var foundPath = pathFinder.FindPath(in @this);
