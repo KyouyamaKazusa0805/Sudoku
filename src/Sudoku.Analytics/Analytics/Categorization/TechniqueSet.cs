@@ -50,7 +50,7 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Indicates the number of techniques included in this solution.
 	/// </summary>
-	private static readonly int TechniquesCount;
+	private static readonly int TechniquesCount = Enum.GetValues<Technique>().Length;
 
 
 	/// <summary>
@@ -82,18 +82,15 @@ public partial struct TechniqueSet :
 	static TechniqueSet()
 	{
 		var dic = new Dictionary<TechniqueGroup, TechniqueSet>();
-		var count = 0;
 		foreach (var technique in Enum.GetValues<Technique>())
 		{
 			if (technique != Technique.None && technique.TryGetGroup() is { } group && !dic.TryAdd(group, [technique]))
 			{
 				dic[group].Add(technique);
-				count++;
 			}
 		}
 
 		TechniqueRelationGroups = dic;
-		TechniquesCount = count;
 	}
 
 
