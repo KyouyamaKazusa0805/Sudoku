@@ -20,9 +20,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
-using unsafe CandidatesRefreshingCallbackFunc = delegate*<ref Grid, void>;
 using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
-using unsafe ValueChangedCallbackFunc = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -79,12 +77,12 @@ public unsafe partial struct Grid : GridImpl
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	public static readonly void* ValueChanged = (ValueChangedCallbackFunc)(&OnValueChanged);
+	public static readonly void* ValueChanged = (delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)&OnValueChanged;
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	public static readonly void* RefreshingCandidates = (CandidatesRefreshingCallbackFunc)(&OnRefreshingCandidates);
+	public static readonly void* RefreshingCandidates = (delegate*<ref Grid, void>)&OnRefreshingCandidates;
 
 	/// <inheritdoc cref="GridImpl.Empty"/>
 	public static readonly Grid Empty = [DefaultMask];
@@ -892,7 +890,7 @@ public unsafe partial struct Grid : GridImpl
 		var copied = mask;
 		mask = (Mask)((int)state << 9 | mask & MaxCandidatesMask);
 
-		((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, mask, -1);
+		((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <inheritdoc/>
@@ -903,7 +901,7 @@ public unsafe partial struct Grid : GridImpl
 		var originalMask = newMask;
 		newMask = mask;
 
-		((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, originalMask, newMask, -1);
+		((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <inheritdoc/>
@@ -918,7 +916,7 @@ public unsafe partial struct Grid : GridImpl
 				// Note that reset candidates may not trigger the event.
 				this[cell] = DefaultMask;
 
-				((CandidatesRefreshingCallbackFunc)RefreshingCandidates)(ref this);
+				((delegate*<ref Grid, void>)RefreshingCandidates)(ref this);
 
 				break;
 			}
@@ -931,7 +929,7 @@ public unsafe partial struct Grid : GridImpl
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, result, digit);
+				((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, result, digit);
 
 				break;
 			}
@@ -955,7 +953,7 @@ public unsafe partial struct Grid : GridImpl
 			}
 
 			// To trigger the event.
-			((ValueChangedCallbackFunc)ValueChanged)(ref this, cell, copied, this[cell], -1);
+			((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
