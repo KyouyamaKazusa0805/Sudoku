@@ -199,7 +199,7 @@ public partial struct TechniqueSet :
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString()
 	{
 		var currentCountryOrRegionName = CultureInfo.CurrentCulture.Parent.Name;
