@@ -3163,7 +3163,15 @@ if (student is (name: var name, age: >= 18))
             <returns>The final array converted.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+            <summary>
+            Forms a slice out of the current collection starting at a specified index for a specified length.
+            </summary>
+            <param name="start"><inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32)" path="/param[@name='start']"/></param>
+            <param name="count"><inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)" path="/param[@name='length']"/></param>
+            <returns>
+            A new <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> that consists of all elements of the current collection
+            from <paramref name="start"/> to the end of the slicing, given by <paramref name="count"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>

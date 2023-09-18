@@ -227,7 +227,15 @@ public partial struct TechniqueSet :
 		return result;
 	}
 
-	/// <inheritdoc cref="List{T}.Slice(int, int)"/>
+	/// <summary>
+	/// Forms a slice out of the current collection starting at a specified index for a specified length.
+	/// </summary>
+	/// <param name="start"><inheritdoc cref="ReadOnlySpan{T}.Slice(int)" path="/param[@name='start']"/></param>
+	/// <param name="count"><inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)" path="/param[@name='length']"/></param>
+	/// <returns>
+	/// A new <see cref="TechniqueSet"/> that consists of all elements of the current collection
+	/// from <paramref name="start"/> to the end of the slicing, given by <paramref name="count"/>.
+	/// </returns>
 	public readonly TechniqueSet Slice(int start, int count)
 	{
 		var result = new TechniqueSet();
