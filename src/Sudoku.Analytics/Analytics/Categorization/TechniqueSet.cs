@@ -78,6 +78,34 @@ public partial struct TechniqueSet :
 	/// </summary>
 	public readonly int Count => _techniqueBits.GetCardinality();
 
+	/// <summary>
+	/// Indicates the range of difficulty that the current collection containss.
+	/// </summary>
+	/// <remarks>
+	/// This property returns a list of <see cref="DifficultyLevel"/> flags, merged into one instance.
+	/// If you want to get the internal fields of flags the return value contains, use <see langword="foreach"/> loop to iterate them,
+	/// or use method <see cref="EnumExtensions.GetAllFlags{T}(T)"/>.
+	/// </remarks>
+	/// <seealso cref="EnumExtensions.GetAllFlags{T}(T)"/>
+	public readonly DifficultyLevel DifficultyRange
+	{
+		get
+		{
+			var result = DifficultyLevel.Unknown;
+			if (Count == 0)
+			{
+				return result;
+			}
+
+			foreach (var technique in this)
+			{
+				result |= technique.GetDifficultyLevel();
+			}
+
+			return result;
+		}
+	}
+
 
 	/// <summary>
 	/// Try to get the <see cref="Technique"/> at the specified index.
@@ -99,6 +127,30 @@ public partial struct TechniqueSet :
 			}
 
 			throw new IndexOutOfRangeException();
+		}
+	}
+
+	/// <summary>
+	/// Checks the index of the specified technique.
+	/// </summary>
+	/// <param name="technique">The technique to be checked.</param>
+	/// <returns>The index that the technique is at. If none found, -1.</returns>
+	public readonly int this[Technique technique]
+	{
+		get
+		{
+			var result = 0;
+			foreach (var currentTechnique in this)
+			{
+				if (currentTechnique == technique)
+				{
+					return result;
+				}
+
+				result++;
+			}
+
+			return -1;
 		}
 	}
 

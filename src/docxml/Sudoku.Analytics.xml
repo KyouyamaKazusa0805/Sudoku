@@ -3114,6 +3114,17 @@ if (student is (name: var name, age: >= 18))
             Indicates the length of the technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.DifficultyRange">
+            <summary>
+            Indicates the range of difficulty that the current collection containss.
+            </summary>
+            <remarks>
+            This property returns a list of <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/> flags, merged into one instance.
+            If you want to get the internal fields of flags the return value contains, use <see langword="foreach"/> loop to iterate them,
+            or use method <see cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>.
+            </remarks>
+            <seealso cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>
+        </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Item(System.Int32)">
             <summary>
             Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> at the specified index.
@@ -3121,6 +3132,13 @@ if (student is (name: var name, age: >= 18))
             <param name="index">The index to be checked.</param>
             <returns>The found <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Item(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Checks the index of the specified technique.
+            </summary>
+            <param name="technique">The technique to be checked.</param>
+            <returns>The index that the technique is at. If none found, -1.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
