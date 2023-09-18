@@ -7340,7 +7340,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckCrossLineCells(Sudoku.DataModel.Exocet@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckCrossLineCells(Sudoku.Concepts.Exocet@,System.Int16)">
             <summary>
             Checks for the validity of the cross-line cells, guaranteeing the target cells is valid
             in the full exocet map.
@@ -12243,7 +12243,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.DataModel.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Concepts.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -12286,7 +12286,7 @@ if (student is (name: var name, age: >= 18))
             <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
             <param name="eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.DataModel.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Concepts.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Junior Exocet</b> technique.
             </summary>
@@ -12319,7 +12319,7 @@ if (student is (name: var name, age: >= 18))
             <param name="extraHouses">Indicates the extra houses used.</param>
             <param name="eliminations"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.DataModel.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Concepts.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
             <summary>
             Provides with a step that is a <b>Senior Exocet</b> technique.
             </summary>
@@ -18861,6 +18861,160 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CrosshatchingInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
         </member>
+        <member name="T:Sudoku.Concepts.Exocet">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data pattern, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Exocet.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>
+            Indicates an exocet pattern. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | B B E | E . . | E . . |
+            | . . E | Q . . | R . . |
+            | . . E | Q . . | R . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            :-------+-------+-------:
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            | . . S | S . . | S . . |
+            '-------'-------'-------'
+            ]]></code>
+            Where:
+            <list type="table">
+            <item><term>B</term><description>Base Cells.</description></item>
+            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
+            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
+            <item><term>S</term><description>Cross-line Cells.</description></item>
+            <item><term>E</term><description>Escape Cells.</description></item>
+            </list>
+            </para>
+            <para>
+            In the data pattern, all letters will be used as the same one in this exemplar.
+            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
+            and the lines of two target cells lying on can't contain any base digits.
+            </para>
+            </summary>
+            <param name="Base1">Indicates the first base cell.</param>
+            <param name="Base2">Indicates the second base cell.</param>
+            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
+            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
+            <param name="TargetR1">Indicates the first target cell in the R part.</param>
+            <param name="TargetR2">Indicates the second target cell in the R part.</param>
+            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
+            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
+            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
+            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
+            <param name="CrossLine">Indicates the cross-line cells.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.Base1">
+            <summary>Indicates the first base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.Base2">
+            <summary>Indicates the second base cell.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.TargetQ1">
+            <summary>Indicates the first target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.TargetQ2">
+            <summary>Indicates the second target cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.TargetR1">
+            <summary>Indicates the first target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.TargetR2">
+            <summary>Indicates the second target cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.CrossLine">
+            <summary>Indicates the cross-line cells.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MirrorQ1">
+            <summary>Indicates the first mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MirrorQ2">
+            <summary>Indicates the second mirror cell in the Q part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MirrorR1">
+            <summary>Indicates the first mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MirrorR2">
+            <summary>Indicates the second mirror cell in the R part.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.Map">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MirrorCellsMap">
+            <summary>
+            Indicates the mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.MapWithMirrors">
+            <summary>
+            Indicates the full map, with mirror cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.BaseCellsMap">
+            <summary>
+            Indicates the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Exocet.TargetCellsMap">
+            <summary>
+            Indicates the target cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Exocet.Equals(Sudoku.Concepts.Exocet@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Exocet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
             Defines a multiple forcing chains.
@@ -19192,160 +19346,6 @@ result ^= expression;
             </param>
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.DataModel.Exocet">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data pattern, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="M:Sudoku.DataModel.Exocet.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            <para>
-            Indicates an exocet pattern. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | B B E | E . . | E . . |
-            | . . E | Q . . | R . . |
-            | . . E | Q . . | R . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            :-------+-------+-------:
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            | . . S | S . . | S . . |
-            '-------'-------'-------'
-            ]]></code>
-            Where:
-            <list type="table">
-            <item><term>B</term><description>Base Cells.</description></item>
-            <item><term>Q</term><description>1st Object Pair (Target cells pair 1).</description></item>
-            <item><term>R</term><description>2nd Object Pair (Target cells pair 2).</description></item>
-            <item><term>S</term><description>Cross-line Cells.</description></item>
-            <item><term>E</term><description>Escape Cells.</description></item>
-            </list>
-            </para>
-            <para>
-            In the data pattern, all letters will be used as the same one in this exemplar.
-            In addition, if senior exocet, one of two target cells will lie in cross-line cells,
-            and the lines of two target cells lying on can't contain any base digits.
-            </para>
-            </summary>
-            <param name="Base1">Indicates the first base cell.</param>
-            <param name="Base2">Indicates the second base cell.</param>
-            <param name="TargetQ1">Indicates the first target cell in the Q part.</param>
-            <param name="TargetQ2">Indicates the second target cell in the Q part.</param>
-            <param name="TargetR1">Indicates the first target cell in the R part.</param>
-            <param name="TargetR2">Indicates the second target cell in the R part.</param>
-            <param name="MirrorQ1">Indicates the first mirror cell in the Q part.</param>
-            <param name="MirrorQ2">Indicates the second mirror cell in the Q part.</param>
-            <param name="MirrorR1">Indicates the first mirror cell in the R part.</param>
-            <param name="MirrorR2">Indicates the second mirror cell in the R part.</param>
-            <param name="CrossLine">Indicates the cross-line cells.</param>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.Base1">
-            <summary>Indicates the first base cell.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.Base2">
-            <summary>Indicates the second base cell.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.TargetQ1">
-            <summary>Indicates the first target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.TargetQ2">
-            <summary>Indicates the second target cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.TargetR1">
-            <summary>Indicates the first target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.TargetR2">
-            <summary>Indicates the second target cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.CrossLine">
-            <summary>Indicates the cross-line cells.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MirrorQ1">
-            <summary>Indicates the first mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MirrorQ2">
-            <summary>Indicates the second mirror cell in the Q part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MirrorR1">
-            <summary>Indicates the first mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MirrorR2">
-            <summary>Indicates the second mirror cell in the R part.</summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.Map">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MirrorCellsMap">
-            <summary>
-            Indicates the mirror cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.MapWithMirrors">
-            <summary>
-            Indicates the full map, with mirror cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.BaseCellsMap">
-            <summary>
-            Indicates the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DataModel.Exocet.TargetCellsMap">
-            <summary>
-            Indicates the target cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DataModel.Exocet.Equals(Sudoku.DataModel.Exocet@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.DataModel.Exocet.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

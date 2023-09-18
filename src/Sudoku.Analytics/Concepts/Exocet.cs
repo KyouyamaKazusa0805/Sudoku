@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Concepts;
 
-namespace Sudoku.DataModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// <para>

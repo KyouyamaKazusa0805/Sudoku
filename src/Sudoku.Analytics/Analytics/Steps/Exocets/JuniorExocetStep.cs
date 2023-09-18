@@ -2,7 +2,7 @@ using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Analytics.Rating;
-using Sudoku.DataModel;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;

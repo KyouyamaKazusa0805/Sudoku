@@ -2,7 +2,6 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Concepts;
-using Sudoku.DataModel;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
 

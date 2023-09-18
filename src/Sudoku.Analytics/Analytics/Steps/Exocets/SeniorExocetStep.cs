@@ -4,7 +4,7 @@ using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Analytics.Rating;
-using Sudoku.DataModel;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
