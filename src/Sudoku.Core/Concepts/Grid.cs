@@ -91,6 +91,12 @@ public unsafe partial struct Grid : GridImpl
 	public static readonly Grid Undefined;
 
 	/// <summary>
+	/// The internal sync root to sync threads while using <see cref="BackingSolver"/>.
+	/// </summary>
+	/// <seealso cref="BackingSolver"/>
+	private static readonly object SyncRoot = new();
+
+	/// <summary>
 	/// Indicates the backing solver.
 	/// </summary>
 	private static readonly BitwiseSolver BackingSolver = new();
@@ -236,7 +242,16 @@ public unsafe partial struct Grid : GridImpl
 	}
 
 	/// <inheritdoc/>
-	public readonly bool IsValid => BackingSolver.CheckValidity(ToString());
+	public readonly bool IsValid
+	{
+		get
+		{
+			lock (SyncRoot)
+			{
+				return BackingSolver.CheckValidity(ToString());
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	public readonly bool IsMinimal => CheckMinimal(out _);
@@ -404,7 +419,10 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
+			lock (SyncRoot)
+			{
+				return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
+			}
 
 
 			static Grid unfix(scoped ref readonly Grid solution, scoped ref readonly CellMap pattern)
@@ -569,19 +587,23 @@ public unsafe partial struct Grid : GridImpl
 	{
 		Unsafe.SkipInit(out solutionIfValid);
 
-		if (BackingSolver.CheckValidity(ToString(), out var solution))
+		lock (SyncRoot)
 		{
-			solutionIfValid = Parse(solution);
-			sukaku = false;
-			return true;
+			if (BackingSolver.CheckValidity(ToString(), out var solution))
+			{
+				solutionIfValid = Parse(solution);
+				sukaku = false;
+				return true;
+			}
+
+			if (BackingSolver.CheckValidity(ToString("~"), out solution))
+			{
+				solutionIfValid = Parse(solution);
+				sukaku = true;
+				return true;
+			}
 		}
 
-		if (BackingSolver.CheckValidity(ToString("~"), out solution))
-		{
-			solutionIfValid = Parse(solution);
-			sukaku = true;
-			return true;
-		}
 		sukaku = null;
 		return false;
 	}

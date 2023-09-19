@@ -19367,10 +19367,13 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.GridExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
             <summary>
-            Try to recover the specified grid to an ittoryu grid via the specified path calculated by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
             </summary>
             <param name="this">The grid to be adjusted.</param>
-            <param name="ittoryuPath">The path to be used.</param>
+            <param name="ittoryuPath">
+            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
             <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
         </member>
         <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">

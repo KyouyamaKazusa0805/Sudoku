@@ -36,7 +36,7 @@ public readonly partial record struct DigitPath(Digit[] Digits) :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(DigitPath other) => GetHashCode() == other.GetHashCode();
+	public bool Equals(DigitPath other) => Digits.Length == other.Digits.Length && GetHashCode() == other.GetHashCode();
 
 	/// <inheritdoc/>
 	public override int GetHashCode()

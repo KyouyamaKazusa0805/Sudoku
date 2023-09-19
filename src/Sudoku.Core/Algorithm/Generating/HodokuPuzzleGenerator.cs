@@ -38,20 +38,19 @@ public ref struct HodokuPuzzleGenerator
 
 
 	/// <summary>
+	/// The order in which cells are set when generating a full grid.
+	/// </summary>
+	private readonly int[] _generateIndices;
+
+	/// <summary>
 	/// A random generator for creating new puzzles.
 	/// </summary>
-	private static readonly Random Rng = new();
+	private readonly Random _rng = new();
 
 	/// <summary>
 	/// Indicates the internal fast solver.
 	/// </summary>
-	private static readonly BitwiseSolver FastSolver = new();
-
-
-	/// <summary>
-	/// The order in which cells are set when generating a full grid.
-	/// </summary>
-	private readonly int[] _generateIndices;
+	private readonly BitwiseSolver _solver = new();
 
 	/// <summary>
 	/// The recursion stack.
@@ -153,7 +152,7 @@ public ref struct HodokuPuzzleGenerator
 		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)
 		{
 			// Get the next position to try.
-			var cell = Rng.Next(81);
+			var cell = _rng.Next(81);
 			do
 			{
 				if (cell < 80)
@@ -202,7 +201,7 @@ public ref struct HodokuPuzzleGenerator
 				}
 			}
 
-			if (!FastSolver.CheckValidity(_newValidSudoku.ToString("!0")))
+			if (!_solver.CheckValidity(_newValidSudoku.ToString("!0")))
 			{
 				// If not unique, revert deletion.
 				foreach (var candidateCell in candidateCells)
@@ -237,7 +236,7 @@ public ref struct HodokuPuzzleGenerator
 			}
 		}
 
-		return cancellationToken.IsCancellationRequested ? null : FastSolver.CheckValidity(_newValidSudoku.ToString("!0"));
+		return cancellationToken.IsCancellationRequested ? null : _solver.CheckValidity(_newValidSudoku.ToString("!0"));
 	}
 
 	/// <summary>
@@ -257,10 +256,10 @@ public ref struct HodokuPuzzleGenerator
 
 		for (var i = 0; i < 81; i++)
 		{
-			var (index1, index2) = (Rng.Next(81), Rng.Next(81));
+			var (index1, index2) = (_rng.Next(81), _rng.Next(81));
 			while (index1 == index2)
 			{
-				index2 = Rng.Next(81);
+				index2 = _rng.Next(81);
 			}
 
 			unsafe

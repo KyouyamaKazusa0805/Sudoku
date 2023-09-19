@@ -95,19 +95,19 @@
             Maximum number of tries when generating a puzzle using a pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Rng">
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._generateIndices">
+            <summary>
+            The order in which cells are set when generating a full grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._rng">
             <summary>
             A random generator for creating new puzzles.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.FastSolver">
+        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._solver">
             <summary>
             Indicates the internal fast solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._generateIndices">
-            <summary>
-            The order in which cells are set when generating a full grid.
             </summary>
         </member>
         <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._stack">
@@ -2570,6 +2570,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Concepts.Grid.Undefined">
             <inheritdoc cref="P:Sudoku.Concepts.Primitive.IGrid`11.Undefined"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.SyncRoot">
+            <summary>
+            The internal sync root to sync threads while using <see cref="F:Sudoku.Concepts.Grid.BackingSolver"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.BackingSolver"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.BackingSolver">
             <summary>
