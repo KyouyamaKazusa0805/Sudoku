@@ -17,6 +17,7 @@
 src/SudokuTutorial/教程.docx
 
 # Build results
+src/ConsoleTest/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

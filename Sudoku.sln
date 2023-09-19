@@ -55,6 +55,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellaneous", "Miscellane
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "src\ConsoleTest\ConsoleTest.csproj", "{8870D44F-0973-4315-AFAE-B4220F3D6DB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Build|Any CPU = Build|Any CPU
@@ -359,6 +361,36 @@ Global
 		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x64.Build.0 = Release|Any CPU
 		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x86.ActiveCfg = Release|Any CPU
 		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x86.Build.0 = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|ARM.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|ARM.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|ARM64.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|ARM64.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|x64.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|x64.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|x86.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|x86.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|x64.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Debug|x86.Build.0 = Debug|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|ARM.Build.0 = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|ARM64.Build.0 = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|x64.ActiveCfg = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|x64.Build.0 = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|x86.ActiveCfg = Release|Any CPU
+		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -370,9 +402,9 @@ Global
 		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
