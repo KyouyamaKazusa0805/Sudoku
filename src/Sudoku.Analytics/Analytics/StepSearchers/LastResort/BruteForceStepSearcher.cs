@@ -19,6 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(Technique.BruteForce, IsPure = true, IsFixed = true)]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
+#pragma warning disable format
 	/// <summary>
 	/// The order of cell offsets to get values.
 	/// </summary>
@@ -26,8 +27,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 	/// For example, the first value is 40, which means the first cell to be tried to be filled
 	/// is the 40th cell in the grid (i.e. the cell <c>r5c5</c>).
 	/// </remarks>
-	private static readonly Cell[] BruteForceTryAndErrorOrder =
-	[
+	private static readonly Cell[] BruteForceTryAndErrorOrder = [
 		40, 41, 32, 31, 30, 39, 48, 49, 50,
 		51, 42, 33, 24, 23, 22, 21, 20, 29,
 		38, 47, 56, 57, 58, 59, 60, 61, 52,
@@ -38,6 +38,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 		1, 0, 9, 18, 27, 36, 45, 54, 63,
 		72, 73, 74, 75, 76, 77, 78, 79, 80
 	];
+#pragma warning restore format
 
 
 	/// <inheritdoc/>
