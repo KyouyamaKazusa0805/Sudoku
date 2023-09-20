@@ -182,14 +182,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					var grid = HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken);
 
 					// Optimize: transform the grid if worth.
-					if (ittoryuLength >= 5)
+					var foundIttoryu = finder.FindPath(in grid);
+					if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
 					{
-						if (finder.FindPath(in grid) is not { Digits.Length: var foundIttoryuLength and >= 5 } path || foundIttoryuLength < ittoryuLength)
-						{
-							continue;
-						}
-
-						grid.MakeIttoryu(path);
+						grid.MakeIttoryu(foundIttoryu);
 					}
 
 					if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
@@ -197,7 +193,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
 						&& (pearl && isPearl is true || !pearl)
-						&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0))
+						&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0)
+						&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
 					{
 						return grid;
 					}

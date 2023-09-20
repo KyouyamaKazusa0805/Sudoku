@@ -4,7 +4,7 @@ using Sudoku.Algorithm.Backdoors;
 using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Algorithm.TrueCandidates;
 using Sudoku.Analytics;
-using Sudoku.Concepts;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using SudokuStudio.ComponentModel;
@@ -97,9 +97,12 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) = puzzle.IsIttoryu([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques], out var digitPath)
-			? (string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), digitPath.ToString()), true)
-			: (GetString("AnalyzePage_DisorderedIttoryuDoesNotExist"), true);
+		var techniqueSet = (TechniqueSet)([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
+		var finder = new IttoryuPathFinder { SupportedTechniques = techniqueSet };
+		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) =
+			finder.FindPath(in puzzle) is { Digits.Length: not 0 } path
+				? (string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), path.ToString()), true)
+				: (GetString("AnalyzePage_DisorderedIttoryuDoesNotExist"), true);
 	}
 }
 
