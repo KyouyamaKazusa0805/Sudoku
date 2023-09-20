@@ -109,7 +109,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Adds a new offset into the current collection.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	public new abstract void Add(TElement offset);
+	public new abstract bool Add(TElement offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="true"/> value.
@@ -121,7 +121,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	public new abstract void Remove(TElement offset);
+	public new abstract bool Remove(TElement offset);
 
 	/// <summary>
 	/// Set the specified offsets as <see langword="false"/> value.
@@ -454,19 +454,15 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.Add(TElement item)
-	{
-		Add(item);
-		return true;
-	}
+	void ICollection<TElement>.Add(TElement item) => Add(item);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ICollection<TElement>.Remove(TElement item)
-	{
-		Remove(item);
-		return true;
-	}
+	bool ISet<TElement>.Add(TElement item) => Add(item);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool ICollection<TElement>.Remove(TElement item) => Remove(item);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

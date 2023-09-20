@@ -21,16 +21,17 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// </summary>
 	private static readonly int[][] SwappingFactor = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
+
 	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
 	/// of a puzzle being generated.
 	/// </summary>
-	private static readonly BitwiseSolver Solver = new();
+	private readonly BitwiseSolver _solver = new();
 
 	/// <summary>
 	/// Indicates the random number generator.
 	/// </summary>
-	private static readonly Random Rng = new();
+	private readonly Random _rng = new();
 
 
 	/// <inheritdoc/>
@@ -65,14 +66,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 					var temp = solution[p];
 					solution[p] = '0';
 
-					if (!Solver.CheckValidity(solution))
+					if (!_solver.CheckValidity(solution))
 					{
 						// Reset the value.
 						solution[p] = temp;
 					}
 				}
 
-				if (Solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
+				if (_solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
 				{
 					return grid;
 				}
@@ -108,10 +109,8 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				while (true)
 				{
-					var cell = Rng.Next(81);
-					if (!map.Contains(cell))
+					if (map.Add(_rng.Next(81)))
 					{
-						map.Add(cell);
 						break;
 					}
 				}
@@ -121,10 +120,10 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Rng.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(_rng.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (Solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (_solver.Solve(pPuzzle, pSolution, 2) == 0);
 	}
 
 	/// <summary>
@@ -135,7 +134,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	{
 		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
-			var n = (int)(Rng.NextDouble() * 6);
+			var n = (int)(_rng.NextDouble() * 6);
 			for (var j = 0; j < 3; j++)
 			{
 				for (var k = 0; k < 3; k++)
@@ -161,7 +160,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble()));
+				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble()));
 			}
 		}
 #else

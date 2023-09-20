@@ -752,7 +752,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(Cell offset)
+	public bool Add(Cell offset)
 	{
 		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(offset);
@@ -760,7 +760,10 @@ public partial struct CellMap :
 		if (!older)
 		{
 			_count++;
+			return true;
 		}
+
+		return false;
 	}
 
 	/// <inheritdoc/>
@@ -774,7 +777,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(Cell offset)
+	public bool Remove(Cell offset)
 	{
 		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(offset);
@@ -782,7 +785,10 @@ public partial struct CellMap :
 		if (older)
 		{
 			_count--;
+			return true;
 		}
+
+		return false;
 	}
 
 	/// <inheritdoc/>

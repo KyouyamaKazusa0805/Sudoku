@@ -91,15 +91,19 @@ public unsafe partial struct Grid : GridImpl
 	public static readonly Grid Undefined;
 
 	/// <summary>
-	/// The internal sync root to sync threads while using <see cref="BackingSolver"/>.
+	/// The internal sync root to sync threads while using <see cref="Solver"/>.
 	/// </summary>
-	/// <seealso cref="BackingSolver"/>
-	private static readonly object SyncRoot = new();
+	/// <seealso cref="Solver"/>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	private static readonly object PuzzleSolvingSynchronizer = new();
 
 	/// <summary>
 	/// Indicates the backing solver.
 	/// </summary>
-	private static readonly BitwiseSolver BackingSolver = new();
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	private static readonly BitwiseSolver Solver = new();
 
 
 	/// <summary>
@@ -246,9 +250,9 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			lock (SyncRoot)
+			lock (PuzzleSolvingSynchronizer)
 			{
-				return BackingSolver.CheckValidity(ToString());
+				return Solver.CheckValidity(ToString());
 			}
 		}
 	}
@@ -419,9 +423,9 @@ public unsafe partial struct Grid : GridImpl
 	{
 		get
 		{
-			lock (SyncRoot)
+			lock (PuzzleSolvingSynchronizer)
 			{
-				return BackingSolver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
+				return Solver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
 			}
 
 
@@ -587,16 +591,16 @@ public unsafe partial struct Grid : GridImpl
 	{
 		Unsafe.SkipInit(out solutionIfValid);
 
-		lock (SyncRoot)
+		lock (PuzzleSolvingSynchronizer)
 		{
-			if (BackingSolver.CheckValidity(ToString(), out var solution))
+			if (Solver.CheckValidity(ToString(), out var solution))
 			{
 				solutionIfValid = Parse(solution);
 				sukaku = false;
 				return true;
 			}
 
-			if (BackingSolver.CheckValidity(ToString("~"), out solution))
+			if (Solver.CheckValidity(ToString("~"), out solution))
 			{
 				solutionIfValid = Parse(solution);
 				sukaku = true;

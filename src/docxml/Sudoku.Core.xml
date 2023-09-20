@@ -37,13 +37,13 @@
             Indicates the swapping factor.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Solver">
+        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._solver">
             <summary>
             Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
             of a puzzle being generated.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Rng">
+        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._rng">
             <summary>
             Indicates the random number generator.
             </summary>
@@ -2571,13 +2571,13 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.Grid.Undefined">
             <inheritdoc cref="P:Sudoku.Concepts.Primitive.IGrid`11.Undefined"/>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.SyncRoot">
+        <member name="F:Sudoku.Concepts.Grid.PuzzleSolvingSynchronizer">
             <summary>
-            The internal sync root to sync threads while using <see cref="F:Sudoku.Concepts.Grid.BackingSolver"/>.
+            The internal sync root to sync threads while using <see cref="F:Sudoku.Concepts.Grid.Solver"/>.
             </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.BackingSolver"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Solver"/>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.BackingSolver">
+        <member name="F:Sudoku.Concepts.Grid.Solver">
             <summary>
             Indicates the backing solver.
             </summary>
@@ -4407,6 +4407,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.SetEquals(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#Add(`1)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.System#Collections#Generic#ISet{TElement}#Add(`1)">
             <inheritdoc/>

@@ -466,7 +466,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(Candidate offset)
+	public bool Add(Candidate offset)
 	{
 		scoped ref var v = ref _bits[offset >> 6];
 		var older = Contains(offset);
@@ -474,7 +474,10 @@ public partial struct CandidateMap :
 		if (!older)
 		{
 			_count++;
+			return true;
 		}
+
+		return false;
 	}
 
 	/// <inheritdoc/>
@@ -501,7 +504,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(Candidate offset)
+	public bool Remove(Candidate offset)
 	{
 		scoped ref var v = ref _bits[offset >> 6];
 		var older = Contains(offset);
@@ -509,7 +512,10 @@ public partial struct CandidateMap :
 		if (older)
 		{
 			_count--;
+			return true;
 		}
+
+		return false;
 	}
 
 	/// <inheritdoc/>
