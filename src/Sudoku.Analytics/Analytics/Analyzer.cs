@@ -73,7 +73,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		select searcher;
 
 	/// <inheritdoc/>
-	public override StepSearcherOptions UserDefinedOptions { get; protected internal set; } = StepSearcherOptions.Default;
+	public override StepSearcherOptions Options { get; protected internal set; } = StepSearcherOptions.Default;
 
 
 	/// <inheritdoc/>
@@ -148,7 +148,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, playground, false, UserDefinedOptions);
+						scoped var context = new AnalysisContext(accumulator, playground, false, Options);
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -178,7 +178,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					default:
 					{
-						scoped var context = new AnalysisContext(null, playground, true, UserDefinedOptions);
+						scoped var context = new AnalysisContext(null, playground, true, Options);
 						switch (searcher.Collect(ref context))
 						{
 							case null:
@@ -342,7 +342,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false, UserDefinedOptions);
+						scoped var context = new AnalysisContext(accumulator, puzzle, false, Options);
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -359,7 +359,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					default:
 					{
-						scoped var context = new AnalysisContext(null, puzzle, true, UserDefinedOptions);
+						scoped var context = new AnalysisContext(null, puzzle, true, Options);
 						if (searcher.Collect(ref context) is not { } step)
 						{
 							continue;

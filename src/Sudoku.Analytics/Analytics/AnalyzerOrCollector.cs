@@ -35,7 +35,7 @@ public abstract class AnalyzerOrCollector
 	/// in internal method called <c>Collect</c>, and create <see cref="Step"/> instances and pass into constructor.
 	/// </summary>
 	/// <seealso cref="Step"/>
-	public abstract StepSearcherOptions UserDefinedOptions { get; protected internal set; }
+	public abstract StepSearcherOptions Options { get; protected internal set; }
 
 
 	/// <summary>

@@ -37,17 +37,17 @@ public static class AnalyzerFactory
 	}
 
 	/// <summary>
-	/// Try to set property <see cref="Analyzer.UserDefinedOptions"/> with the specified value.
+	/// Try to set property <see cref="Analyzer.Options"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="options">
 	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
 	/// </param>
 	/// <returns>The result.</returns>
-	/// <seealso cref="Analyzer.UserDefinedOptions"/>
+	/// <seealso cref="Analyzer.Options"/>
 	public static Analyzer WithUserDefinedOptions(this Analyzer @this, StepSearcherOptions? options)
 	{
-		@this.UserDefinedOptions = options ?? StepSearcherOptions.Default;
+		@this.Options = options ?? StepSearcherOptions.Default;
 		return @this;
 	}
 

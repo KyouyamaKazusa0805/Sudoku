@@ -51,7 +51,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 		select searcher;
 
 	/// <inheritdoc/>
-	public override StepSearcherOptions UserDefinedOptions { get; protected internal set; } = StepSearcherOptions.Default;
+	public override StepSearcherOptions Options { get; protected internal set; } = StepSearcherOptions.Default;
 
 
 	/// <summary>
@@ -137,7 +137,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 						// Searching.
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false, UserDefinedOptions);
+						scoped var context = new AnalysisContext(accumulator, puzzle, false, Options);
 						searcher.Collect(ref context);
 
 						if (accumulator.Count is not (var count and not 0))

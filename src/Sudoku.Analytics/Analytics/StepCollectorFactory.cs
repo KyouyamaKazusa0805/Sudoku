@@ -21,17 +21,17 @@ public static class StepCollectorFactory
 	}
 
 	/// <summary>
-	/// Try to set property <see cref="StepCollector.UserDefinedOptions"/> with the specified value.
+	/// Try to set property <see cref="StepCollector.Options"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="StepCollector"/> instance.</param>
 	/// <param name="options">
 	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
 	/// </param>
 	/// <returns>The result.</returns>
-	/// <seealso cref="StepCollector.UserDefinedOptions"/>
+	/// <seealso cref="StepCollector.Options"/>
 	public static StepCollector WithUserDefinedOptions(this StepCollector @this, StepSearcherOptions? options)
 	{
-		@this.UserDefinedOptions = options ?? StepSearcherOptions.Default;
+		@this.Options = options ?? StepSearcherOptions.Default;
 		return @this;
 	}
 
