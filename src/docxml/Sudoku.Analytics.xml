@@ -360,9 +360,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.UserDefinedOptions">
-            <summary>
-            Indicates the extra options to be set.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -470,6 +468,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the result step searchers used in the current analyzer or collector.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerOrCollector.UserDefinedOptions">
+            <summary>
+            Indicates the extra options to be set. The options will be passed into <see cref="T:Sudoku.Analytics.Step"/> instances collected
+            in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerOrCollector.FilterStepSearchers(Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
@@ -4308,6 +4313,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepCollector.ResultStepSearchers">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.StepCollector.UserDefinedOptions">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
@@ -4360,6 +4368,17 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The collector instance.</param>
             <param name="count">The number of maximum value.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithUserDefinedOptions(Sudoku.Analytics.StepCollector,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.StepCollector.UserDefinedOptions"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.StepCollector"/> instance.</param>
+            <param name="options">
+            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.StepCollector.UserDefinedOptions"/>
         </member>
         <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])">
             <summary>

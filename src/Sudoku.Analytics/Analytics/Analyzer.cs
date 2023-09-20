@@ -72,10 +72,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 		select searcher;
 
-	/// <summary>
-	/// Indicates the extra options to be set.
-	/// </summary>
-	public StepSearcherOptions UserDefinedOptions { get; internal set; } = StepSearcherOptions.Default;
+	/// <inheritdoc/>
+	public override StepSearcherOptions UserDefinedOptions { get; protected internal set; } = StepSearcherOptions.Default;
 
 
 	/// <inheritdoc/>

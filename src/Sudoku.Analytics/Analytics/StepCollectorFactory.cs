@@ -1,3 +1,5 @@
+using Sudoku.Analytics.Configuration;
+
 namespace Sudoku.Analytics;
 
 /// <summary>
@@ -15,6 +17,21 @@ public static class StepCollectorFactory
 	public static StepCollector WithMaxSteps(this StepCollector @this, int count)
 	{
 		@this.MaxStepsGathered = count;
+		return @this;
+	}
+
+	/// <summary>
+	/// Try to set property <see cref="StepCollector.UserDefinedOptions"/> with the specified value.
+	/// </summary>
+	/// <param name="this">The current <see cref="StepCollector"/> instance.</param>
+	/// <param name="options">
+	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
+	/// </param>
+	/// <returns>The result.</returns>
+	/// <seealso cref="StepCollector.UserDefinedOptions"/>
+	public static StepCollector WithUserDefinedOptions(this StepCollector @this, StepSearcherOptions? options)
+	{
+		@this.UserDefinedOptions = options ?? StepSearcherOptions.Default;
 		return @this;
 	}
 

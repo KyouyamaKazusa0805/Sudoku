@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Metadata;
 
 namespace Sudoku.Analytics;
@@ -28,6 +29,13 @@ public abstract class AnalyzerOrCollector
 	/// Indicates the result step searchers used in the current analyzer or collector.
 	/// </summary>
 	public abstract StepSearcher[] ResultStepSearchers { get; protected internal set; }
+
+	/// <summary>
+	/// Indicates the extra options to be set. The options will be passed into <see cref="Step"/> instances collected
+	/// in internal method called <c>Collect</c>, and create <see cref="Step"/> instances and pass into constructor.
+	/// </summary>
+	/// <seealso cref="Step"/>
+	public abstract StepSearcherOptions UserDefinedOptions { get; protected internal set; }
 
 
 	/// <summary>
