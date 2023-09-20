@@ -210,7 +210,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new MultisectorLockedSetsStep([.. conclusions], [[.. candidateOffsets]], in map);
+				var step = new MultisectorLockedSetsStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map);
 				if (context.OnlyFindOne)
 				{
 					return step;

@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -12,16 +13,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 public sealed partial class BorescoperDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit extraDigit
-) : BorescoperDeadlyPatternStep(conclusions, views, in cells, digitsMask)
+) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;

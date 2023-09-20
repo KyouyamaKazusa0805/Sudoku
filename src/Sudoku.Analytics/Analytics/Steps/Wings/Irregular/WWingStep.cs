@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,16 +14,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="startCell">Indicates the start cell.</param>
 /// <param name="endCell">Indicates the end cell.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair connecting with cells <see cref="StartCell"/> and <see cref="EndCell"/>.</param>
 public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Cell startCell,
 	[DataMember] Cell endCell,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : IrregularWingStep(conclusions, views)
+) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.4M;

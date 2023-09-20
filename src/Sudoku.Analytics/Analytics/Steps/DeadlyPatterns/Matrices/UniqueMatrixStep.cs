@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
@@ -11,14 +12,16 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells used in this pattern.</param>
 /// <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
 public abstract partial class UniqueMatrixStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views)
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 5.3M;

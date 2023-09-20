@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
 
@@ -9,16 +10,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit">Indicates the digit used.</param>
 /// <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
 /// <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
 public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Digit digit,
 	[DataMember] HouseMask baseSetsMask,
 	[DataMember] HouseMask coverSetsMask
-) : Step(conclusions, views)
+) : Step(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	/// <remarks>

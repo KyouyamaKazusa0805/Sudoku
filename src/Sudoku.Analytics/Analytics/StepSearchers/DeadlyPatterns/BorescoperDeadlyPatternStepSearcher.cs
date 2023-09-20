@@ -241,19 +241,19 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				centerMask |= grid.GetCandidates(c4);
 			}
 
-			if (CheckType1(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type1Step)
+			if (CheckType1(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type2Step)
+			if (CheckType2(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type3Step)
+			if (CheckType3(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, in grid, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type4Step)
+			if (CheckType4(accumulator, in grid, ref context, pattern, onlyFindOne, cornerMask1, cornerMask2, centerMask, in map) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -268,6 +268,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -319,7 +320,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], in map, tempMask);
+			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map, tempMask);
 			if (findOnlyOne)
 			{
 				return step;
@@ -338,6 +339,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -379,7 +381,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], in map, tempMask, otherDigit);
+			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map, tempMask, otherDigit);
 			if (findOnlyOne)
 			{
 				return step;
@@ -398,6 +400,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -484,6 +487,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						var step = new BorescoperDeadlyPatternType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
+							context.PredefinedOptions,
 							in map,
 							tempMask,
 							in combination,
@@ -509,6 +513,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -612,6 +617,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					var step = new BorescoperDeadlyPatternType4Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
+						context.PredefinedOptions,
 						in map,
 						otherMask,
 						in currentMap,

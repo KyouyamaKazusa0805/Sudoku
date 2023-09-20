@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,16 +15,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="leaves">The leaves of the pattern.</param>
 /// <param name="root">The root cells that corresponds to each leaf.</param>
 /// <param name="house">Indicates the house that all cells in <see cref="Root"/> lie in.</param>
 public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CellMap leaves,
 	[DataMember] scoped ref readonly CellMap root,
 	[DataMember] House house
-) : IrregularWingStep(conclusions, views)
+) : IrregularWingStep(conclusions, views, options)
 {
 	/// <summary>
 	/// Indicates the number of branches of the technique.

@@ -259,7 +259,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				}
 
 				// Gather the result.
-				var step = new DominoLoopStep([.. conclusions], [[.. candidateOffsets]], [.. cells]);
+				var step = new DominoLoopStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, [.. cells]);
 				if (context.OnlyFindOne)
 				{
 					return step;

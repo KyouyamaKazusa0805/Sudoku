@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Facts;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="loop"><inheritdoc/></param>
@@ -22,12 +24,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueLoopType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap loop,
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask
-) : UniqueLoopStep(conclusions, views, digit1, digit2, in loop)
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

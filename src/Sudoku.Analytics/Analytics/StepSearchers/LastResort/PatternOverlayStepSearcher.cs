@@ -34,7 +34,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 				continue;
 			}
 
-			var step = new PatternOverlayStep([.. from cell in template select new Conclusion(Elimination, cell, digit)]);
+			var step = new PatternOverlayStep([.. from cell in template select new Conclusion(Elimination, cell, digit)], context.PredefinedOptions);
 			if (context.OnlyFindOne)
 			{
 				return step;

@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
@@ -10,16 +11,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="house">The house that pattern lies in.</param>
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the mask that contains all digits used.</param>
 public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] House house,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask
-) : Step(conclusions, views)
+) : Step(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.0M;

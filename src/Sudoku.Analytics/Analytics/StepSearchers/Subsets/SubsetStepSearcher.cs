@@ -91,6 +91,7 @@ public abstract class SubsetStepSearcher(
 						var step = new NakedSubsetStep(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+							context.PredefinedOptions,
 							house,
 							in cells,
 							digitsMask,
@@ -191,6 +192,7 @@ public abstract class SubsetStepSearcher(
 						var step = new HiddenSubsetStep(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
+							context.PredefinedOptions,
 							house,
 							in map,
 							digitsMask,

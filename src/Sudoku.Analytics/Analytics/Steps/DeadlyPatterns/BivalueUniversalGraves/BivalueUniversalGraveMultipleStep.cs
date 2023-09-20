@@ -1,6 +1,7 @@
 using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,12 +15,14 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="trueCandidates">Indicates the true candidates.</param>
 public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CandidateMap trueCandidates
-) : BivalueUniversalGraveStep(conclusions, views)
+) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <summary>
 	/// <inheritdoc cref="Step.Name" path="/summary"/>

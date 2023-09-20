@@ -75,17 +75,15 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				{
 					// Type 2, 3.
 					// Here use default label to ensure the order of the handling will be 1->2->3.
-					if (CheckType2(resultAccumulator, in grid, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step2)
+					if (CheckType2(resultAccumulator, in grid, ref context, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step2)
 					{
 						return step2;
 					}
 
-					if (extraCells.Count == 2)
+					if (extraCells.Count == 2
+						&& CheckType3(resultAccumulator, in grid, ref context, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step3)
 					{
-						if (CheckType3(resultAccumulator, in grid, d1, d2, in currentLoop, in extraCells, comparer, onlyFindOne) is { } step3)
-						{
-							return step3;
-						}
+						return step3;
 					}
 
 					break;
@@ -238,6 +236,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private BivalueOddagonType2Step? CheckType2(
 		List<BivalueOddagonStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -270,6 +269,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		var step = new BivalueOddagonType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
+			context.PredefinedOptions,
 			in loop,
 			d1,
 			d2,
@@ -293,6 +293,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private BivalueOddagonType3Step? CheckType3(
 		List<BivalueOddagonStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -384,6 +385,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					var step = new BivalueOddagonType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						context.PredefinedOptions,
 						in loop,
 						d1,
 						d2,

@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
@@ -22,11 +24,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
 	[DataMember] House house,
 	[DataMember] bool enableAndIsLastDigit
-) : SingleStep(conclusions, views, cell, digit)
+) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };

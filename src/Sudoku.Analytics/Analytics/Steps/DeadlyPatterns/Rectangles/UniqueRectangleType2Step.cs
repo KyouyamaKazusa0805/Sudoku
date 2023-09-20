@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="code"><inheritdoc/></param>
@@ -23,6 +25,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	Technique code,
@@ -33,6 +36,7 @@ public sealed partial class UniqueRectangleType2Step(
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
+	options,
 	code,
 	digit1,
 	digit2,

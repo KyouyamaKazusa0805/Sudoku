@@ -120,6 +120,7 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse)
 								]
 							],
+							context.PredefinedOptions,
 							digit,
 							h1,
 							h2,

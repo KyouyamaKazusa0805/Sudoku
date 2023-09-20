@@ -2,6 +2,7 @@ using System.Algorithm;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -15,16 +16,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit">Indicates the digit used.</param>
 /// <param name="loopCells">Indicates the cells of the loop used.</param>
 /// <param name="guardians">Indicates the guardian cells.</param>
 public sealed partial class GuardianStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Digit digit,
 	[DataMember] scoped ref readonly CellMap loopCells,
 	[DataMember] scoped ref readonly CellMap guardians
-) : NegativeRankStep(conclusions, views), IEquatableStep<GuardianStep>
+) : NegativeRankStep(conclusions, views, options), IEquatableStep<GuardianStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;

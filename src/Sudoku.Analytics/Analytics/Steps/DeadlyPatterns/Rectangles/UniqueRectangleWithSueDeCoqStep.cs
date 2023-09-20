@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
@@ -34,6 +36,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
@@ -52,6 +55,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
+	options,
 	isAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
 	digit1,
 	digit2,

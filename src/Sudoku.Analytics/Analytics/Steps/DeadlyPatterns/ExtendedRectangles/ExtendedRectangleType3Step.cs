@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
@@ -22,12 +24,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ExtendedRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap subsetCells,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] House house
-) : ExtendedRectangleStep(conclusions, views, in cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

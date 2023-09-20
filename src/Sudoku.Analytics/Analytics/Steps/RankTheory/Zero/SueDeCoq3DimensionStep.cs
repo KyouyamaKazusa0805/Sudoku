@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
 /// <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
 /// <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
@@ -22,13 +24,14 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Mask rowDigitsMask,
 	[DataMember] Mask columnDigitsMask,
 	[DataMember] Mask blockDigitsMask,
 	[DataMember] scoped ref readonly CellMap rowCells,
 	[DataMember] scoped ref readonly CellMap columnCells,
 	[DataMember] scoped ref readonly CellMap blockCells
-) : ZeroRankStep(conclusions, views)
+) : ZeroRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;

@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="startCell">Indicates the start cell to be calculated.</param>
 /// <param name="endCell">Indicates the end cell to be calculated.</param>
 /// <param name="house">Indicates the house index that the empty rectangle forms.</param>
@@ -20,12 +22,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class EmptyRectangleIntersectionPairStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Cell startCell,
 	[DataMember] Cell endCell,
 	[DataMember] House house,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2
-) : AlmostLockedSetsStep(conclusions, views)
+) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.0M;

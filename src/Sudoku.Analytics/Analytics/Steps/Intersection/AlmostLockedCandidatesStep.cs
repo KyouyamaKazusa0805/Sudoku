@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -15,6 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digitsMask">Indicates the mask that contains the digits used.</param>
 /// <param name="baseCells">Indicates the base cells.</param>
 /// <param name="targetCells">Indicates the target cells.</param>
@@ -22,11 +24,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap baseCells,
 	[DataMember] scoped ref readonly CellMap targetCells,
 	[DataMember] bool hasValueCell
-) : IntersectionStep(conclusions, views)
+) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;

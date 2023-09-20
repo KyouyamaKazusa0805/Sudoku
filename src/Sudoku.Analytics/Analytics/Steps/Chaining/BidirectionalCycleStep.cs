@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -13,24 +14,26 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="destinationOn">Indicates the destination node that is "on" state.</param>
 /// <param name="isX"><inheritdoc/></param>
 /// <param name="isY"><inheritdoc/></param>
 public sealed partial class BidirectionalCycleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] ChainNode destinationOn,
 	bool isX,
 	bool isY
-) : ChainingStep(conclusions, views, isX, isY)
+) : ChainingStep(conclusions, views, options, isX, isY)
 {
-	internal BidirectionalCycleStep(Conclusion[] conclusions, ChainNode destinationOn, bool isX, bool isY) :
-		this(conclusions, null!, destinationOn, isX, isY)
+	internal BidirectionalCycleStep(Conclusion[] conclusions, StepSearcherOptions options, ChainNode destinationOn, bool isX, bool isY) :
+		this(conclusions, null!, options, destinationOn, isX, isY)
 	{
 	}
 
 	internal BidirectionalCycleStep(BidirectionalCycleStep @base, View[]? views) :
-		this(@base.Conclusions, views, @base.DestinationOn, @base.IsX, @base.IsY)
+		this(@base.Conclusions, views, @base.Options, @base.DestinationOn, @base.IsX, @base.IsY)
 	{
 	}
 

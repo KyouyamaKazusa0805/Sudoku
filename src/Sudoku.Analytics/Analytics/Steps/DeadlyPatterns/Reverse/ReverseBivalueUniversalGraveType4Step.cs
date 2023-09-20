@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="pattern"><inheritdoc/></param>
@@ -20,12 +22,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ReverseBivalueUniversalGraveType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap pattern,
 	scoped ref readonly CellMap emptyCells,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : ReverseBivalueUniversalGraveStep(conclusions, views, digit1, digit2, in pattern, in emptyCells)
+) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

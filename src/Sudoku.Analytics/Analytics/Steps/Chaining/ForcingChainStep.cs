@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -14,23 +15,26 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
 /// <param name="isX"><inheritdoc/></param>
 /// <param name="isY"><inheritdoc/></param>
 public sealed partial class ForcingChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] ChainNode target,
 	bool isX,
 	bool isY
-) : ChainingStep(conclusions, views, isX, isY)
+) : ChainingStep(conclusions, views, options, isX, isY)
 {
-	internal ForcingChainStep(Conclusion[] conclusions, ChainNode target, bool isX, bool isY) :
-		this(conclusions, null!, target, isX, isY)
+	internal ForcingChainStep(Conclusion[] conclusions, StepSearcherOptions options, ChainNode target, bool isX, bool isY) :
+		this(conclusions, null!, options, target, isX, isY)
 	{
 	}
 
-	internal ForcingChainStep(ForcingChainStep @base, View[]? views) : this(@base.Conclusions, views, @base.Target, @base.IsX, @base.IsY)
+	internal ForcingChainStep(ForcingChainStep @base, View[]? views) :
+		this(@base.Conclusions, views, @base.Options, @base.Target, @base.IsX, @base.IsY)
 	{
 	}
 

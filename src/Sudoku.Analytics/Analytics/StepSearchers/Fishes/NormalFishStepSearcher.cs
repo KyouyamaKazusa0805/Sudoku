@@ -125,19 +125,19 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 
 		for (var size = 2; size <= 4; size++)
 		{
-			if (Collect(accumulator, in grid, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
+			if (Collect(accumulator, in grid, ref context, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
 			{
 				return finlessRowFish;
 			}
-			if (Collect(accumulator, in grid, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
+			if (Collect(accumulator, in grid, ref context, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
 			{
 				return finlessColumnFish;
 			}
-			if (Collect(accumulator, in grid, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
+			if (Collect(accumulator, in grid, ref context, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
 			{
 				return finnedRowFish;
 			}
-			if (Collect(accumulator, in grid, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
+			if (Collect(accumulator, in grid, ref context, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
 			{
 				return finnedColumnFish;
 			}
@@ -151,6 +151,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	/// </summary>
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="size">The size.</param>
 	/// <param name="r">The possible row table to iterate.</param>
 	/// <param name="c">The possible column table to iterate.</param>
@@ -163,6 +164,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	private unsafe NormalFishStep? Collect(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		int size,
 		int** r,
 		int** c,
@@ -292,6 +294,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 					var step = new NormalFishStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 						[[.. candidateOffsets, .. houseOffsets], GetDirectView(digit, bs, cs, in fins, searchRow)],
+						context.PredefinedOptions,
 						digit,
 						baseSetsMask,
 						coverSetsMask,

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.Strings;
@@ -20,8 +21,16 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
+/// <param name="options">
+/// Indicates an optional instance that provides with extra information for a step searcher.
+/// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
+/// </param>
 [GetHashCode(OtherModifiers = "sealed")]
-public abstract partial class Step([DataMember] Conclusion[] conclusions, [DataMember] View[]? views) : IRenderable
+public abstract partial class Step(
+	[DataMember] Conclusion[] conclusions,
+	[DataMember] View[]? views,
+	[DataMember] StepSearcherOptions options
+) : IRenderable
 {
 	/// <summary>
 	/// The placeholder of the hash code.

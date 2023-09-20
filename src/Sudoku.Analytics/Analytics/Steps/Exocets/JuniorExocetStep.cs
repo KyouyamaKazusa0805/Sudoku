@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// Provides with a step that is a <b>Junior Exocet</b> technique.
 /// </summary>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="exocet"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
@@ -20,6 +22,7 @@ namespace Sudoku.Analytics.Steps;
 #pragma warning restore CS1572
 public sealed partial class JuniorExocetStep(
 	View[]? views,
+	StepSearcherOptions options,
 	Exocet exocet,
 	Mask digitsMask,
 #if false
@@ -27,7 +30,7 @@ public sealed partial class JuniorExocetStep(
 	[DataMember] Mask lockedMemberR,
 #endif
 	[DataMember] ExocetElimination[] eliminations
-) : ExocetStep(views, exocet, digitsMask, eliminations)
+) : ExocetStep(views, options, exocet, digitsMask, eliminations)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocet;

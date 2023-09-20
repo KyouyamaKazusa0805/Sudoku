@@ -183,8 +183,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
-		Collect(list, in grid, false);
-		Collect(list, in grid, true);
+		Collect(list, in grid, ref context, false);
+		Collect(list, in grid, ref context, true);
 
 		if (list.Count == 0)
 		{
@@ -209,8 +209,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="gathered"><inheritdoc cref="AnalysisContext.Accumulator" path="/summary"/></param>
 	/// <param name="grid"><inheritdoc cref="AnalysisContext.Grid" path="/summary"/></param>
+	/// <param name="context">
+	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/>
+	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, bool arMode)
+	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(in grid);
@@ -256,17 +259,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckBabaGroupingUnique(gathered, in grid, urCells, comparer, d1, d2, index);
-						CheckExternalType1Or2(gathered, in grid, urCells, d1, d2, index, arMode);
-						CheckExternalType3(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalType4(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalXyWing(gathered, in grid, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalAlmostLockedSetsXz(gathered, in grid, urCells, alses, comparer, d1, d2, index, arMode);
+						CheckBabaGroupingUnique(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
+						CheckExternalType1Or2(gathered, in grid, ref context, urCells, d1, d2, index, arMode);
+						CheckExternalType3(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalType4(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalXyWing(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalAlmostLockedSetsXz(gathered, in grid, ref context, urCells, alses, comparer, d1, d2, index, arMode);
 
 						if (!arMode)
 						{
-							CheckExternalTurbotFish(gathered, in grid, urCells, comparer, d1, d2, index);
-							CheckExternalWWing(gathered, in grid, urCells, comparer, d1, d2, index);
+							CheckExternalTurbotFish(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
+							CheckExternalWWing(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
 						}
 					}
 
@@ -276,17 +279,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var corner1 = urCells[c1];
 						var otherCellsMap = (CellMap)urCells - corner1;
 
-						CheckType1(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckType5(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckHidden(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType1(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType5(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckHidden(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3X2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3N2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3U2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3E2SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3N2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3U2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3E2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
@@ -304,12 +307,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var tempOtherCellsMap = otherCellsMap - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+							CheckType2(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 							if (SearchForExtendedUniqueRectangles)
 							{
-								CheckRegularWing(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
-								//CheckWWing(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+								CheckRegularWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
+								//CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 							}
 
 							switch (c1, c2)
@@ -321,17 +324,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(gathered, in grid, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											CheckHiddenSingleAvoidable(gathered, in grid, ref context, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 									else
 									{
-										CheckType6(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType6(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check2D1SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D1SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
@@ -341,23 +344,23 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+									CheckType3(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 									if (!arMode)
 									{
-										CheckType4(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType4(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4X3SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4C3SL(gathered, in grid, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2B1SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4X3SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4C3SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(gathered, in grid, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckSueDeCoq(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 									}
 
 									break;
@@ -376,6 +379,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -395,6 +399,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType1(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -452,6 +457,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			new UniqueRectangleType1Step(
 				[.. conclusions],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
+				context.PredefinedOptions,
 				d1,
 				d2,
 				[.. urCells],
@@ -466,6 +472,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -486,6 +493,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType2(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -547,6 +555,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			new UniqueRectangleType2Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
+				context.PredefinedOptions,
 				d1,
 				d2,
 				(arMode, isType5) switch
@@ -569,6 +578,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -591,6 +601,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType3(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -699,6 +710,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						new UniqueRectangleType3Step(
 							[.. conclusions],
 							[[.. arMode ? cellOffsets : [], .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
+							context.PredefinedOptions,
 							d1,
 							d2,
 							[.. urCells],
@@ -719,6 +731,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -741,6 +754,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType4(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -825,6 +839,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
 							]
 						],
+						context.PredefinedOptions,
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
@@ -843,6 +858,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -862,6 +878,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType5(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -924,6 +941,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			new UniqueRectangleType2Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
+				context.PredefinedOptions,
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -940,6 +958,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -961,6 +980,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckType6(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -987,12 +1007,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
 			{
-				gather(in grid, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
+				gather(in grid, ref context, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
 
 
-		void gather(scoped ref readonly Grid grid, scoped ref readonly CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
+		void gather(scoped ref readonly Grid grid, scoped ref AnalysisContext context, scoped ref readonly CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
 		{
 			var precheck = isRow && IsConjugatePair(digit, [corner1, o1], house1) && IsConjugatePair(digit, [corner2, o2], house2)
 				|| !isRow && IsConjugatePair(digit, [corner1, o2], house1) && IsConjugatePair(digit, [corner2, o1], house2);
@@ -1047,6 +1067,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							new HouseViewNode(WellKnownColorIdentifier.Normal, house2)
 						]
 					],
+					context.PredefinedOptions,
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
@@ -1064,6 +1085,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1083,6 +1105,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckHidden(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1178,6 +1201,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							new HouseViewNode(WellKnownColorIdentifier.Normal, c)
 						]
 					],
+					context.PredefinedOptions,
 					d1,
 					d2,
 					[.. urCells],
@@ -1194,6 +1218,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1215,6 +1240,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check2D(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1304,6 +1330,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				new UniqueRectangle2DOr3XStep(
 					[.. conclusions],
 					[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
+					context.PredefinedOptions,
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1323,6 +1350,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1346,6 +1374,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check2B1SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1478,6 +1507,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										new HouseViewNode(WellKnownColorIdentifier.Normal, house)
 									]
 								],
+								context.PredefinedOptions,
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
@@ -1498,6 +1528,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1522,6 +1553,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check2D1SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1654,6 +1686,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										new HouseViewNode(WellKnownColorIdentifier.Normal, house)
 									]
 								],
+								context.PredefinedOptions,
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
@@ -1674,6 +1707,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1694,6 +1728,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check3X(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1791,6 +1826,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				new UniqueRectangle2DOr3XStep(
 					[.. conclusions],
 					[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
+					context.PredefinedOptions,
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1810,6 +1846,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1832,6 +1869,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check3X2SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -1916,6 +1954,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, map2.CoveredLine)
 						]
 					],
+					context.PredefinedOptions,
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
@@ -1933,6 +1972,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -1955,6 +1995,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check3N2SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2044,6 +2085,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
+						context.PredefinedOptions,
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
@@ -2062,6 +2104,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2084,6 +2127,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check3U2SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2167,6 +2211,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
+						context.PredefinedOptions,
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
@@ -2185,6 +2230,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2207,6 +2253,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check3E2SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2290,6 +2337,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
+						context.PredefinedOptions,
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
@@ -2308,6 +2356,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2331,6 +2380,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check4X3SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2427,6 +2477,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Normal, conjugatePairs[2].Line)
 							]
 						],
+						context.PredefinedOptions,
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
@@ -2445,6 +2496,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2482,6 +2534,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Check4C3SL(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2581,6 +2634,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
 								]
 							],
+							context.PredefinedOptions,
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
@@ -2600,6 +2654,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2635,6 +2690,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckRegularWing(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2795,6 +2851,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					new UniqueRectangleWithWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)],
 						[[.. candidateOffsets, .. cellOffsets]],
+						context.PredefinedOptions,
 						(arMode, pivotDigit, combination.Count) switch
 						{
 							(false, -1, 2) => Technique.UniqueRectangleXyWing,
@@ -2827,6 +2884,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -2864,6 +2922,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckWWing(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -2968,6 +3027,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					new UniqueRectangleWithWWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
 						[[.. candidateOffsets]],
+						context.PredefinedOptions,
 						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
 						d1,
 						d2,
@@ -2988,6 +3048,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
@@ -3011,6 +3072,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckSueDeCoq(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		bool arMode,
 		Mask comparer,
@@ -3143,7 +3205,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							elimMapLine &= lineMap - currentInterMap;
 
 							checkGeneralizedSdc(
-								accumulator, in grid, arMode, cannibalMode, d1, d2, urCells,
+								accumulator, in grid, ref context, arMode, cannibalMode, d1, d2, urCells,
 								line, otherBlock, otherDigitsMask, blockMask, selectedInterMask,
 								otherDigitsMask, in elimMapLine, in elimMapBlock, in otherCellsMap, in currentBlockMap,
 								in currentInterMap, i, 0, index
@@ -3158,6 +3220,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		static void checkGeneralizedSdc(
 			List<UniqueRectangleStep> accumulator,
 			scoped ref readonly Grid grid,
+			scoped ref AnalysisContext context,
 			bool arMode,
 			bool cannibalMode,
 			Digit digit1,
@@ -3282,6 +3345,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, line)
 							]
 						],
+						context.PredefinedOptions,
 						digit1,
 						digit2,
 						[.. urCells],
@@ -3308,6 +3372,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The comparer.</param>
 	/// <param name="d1">The digit 1.</param>
@@ -3341,6 +3406,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckBabaGroupingUnique(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -3348,13 +3414,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		checkType1(in grid);
+		checkType1(in grid, ref context);
 #if IMPLEMENTED
-		checkType2(in grid);
+		checkType2(in grid, ref context);
 #endif
 
 
-		void checkType1(scoped ref readonly Grid grid)
+		void checkType1(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 		{
 			var cells = (CellMap)urCells;
 
@@ -3497,6 +3563,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
 									]
 								],
+								context.PredefinedOptions,
 								d1,
 								d2,
 								[.. urCells],
@@ -3606,6 +3673,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
 									]
 								],
+								context.PredefinedOptions,
 								d1,
 								d2,
 								[.. urCells],
@@ -3635,6 +3703,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
@@ -3643,6 +3712,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalType1Or2(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Digit d1,
 		Digit d2,
@@ -3736,6 +3806,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[1])
 							]
 						],
+						context.PredefinedOptions,
 						d1,
 						d2,
 						[.. urCells],
@@ -3755,6 +3826,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The mask comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
@@ -3764,6 +3836,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalType3(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -3911,6 +3984,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
 										]
 									],
+									context.PredefinedOptions,
 									d1,
 									d2,
 									in cells,
@@ -3934,6 +4008,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The mask comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
@@ -3943,6 +4018,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalType4(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4085,6 +4161,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, houseCombination[1])
 									]
 								],
+								context.PredefinedOptions,
 								d1,
 								d2,
 								in cells,
@@ -4106,6 +4183,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
@@ -4114,6 +4192,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalTurbotFish(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4266,6 +4345,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, strongLinkHouse)
 										]
 									],
+									context.PredefinedOptions,
 									d1,
 									d2,
 									in cells,
@@ -4309,6 +4389,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
@@ -4317,6 +4398,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalWWing(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4483,6 +4565,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 											new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouses[1])
 										]
 									],
+									context.PredefinedOptions,
 									d1,
 									d2,
 									in cells,
@@ -4528,6 +4611,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="comparer">The comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
@@ -4537,6 +4621,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalXyWing(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Mask comparer,
 		Digit d1,
@@ -4580,13 +4665,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
-			//forOneEndoLeaf(in grid, in cellsToEnumerate, in guardianCells, houseCombination);
-			forBothExoLeaves(in grid, in cellsToEnumerate, in guardianCells, houseCombination);
+			//forOneEndoLeaf(in grid, ref context, in cellsToEnumerate, in guardianCells, houseCombination);
+			forBothExoLeaves(in grid, ref context, in cellsToEnumerate, in guardianCells, houseCombination);
 		}
 
 
 #pragma warning disable CS8321
-		void forOneEndoLeaf(scoped ref readonly Grid grid, scoped ref readonly CellMap cellsToEnumerate, scoped ref readonly CellMap guardianCells, House[] houseCombination)
+		void forOneEndoLeaf(
+			scoped ref readonly Grid grid,
+			scoped ref AnalysisContext context,
+			scoped ref readonly CellMap cellsToEnumerate,
+			scoped ref readonly CellMap guardianCells,
+			House[] houseCombination
+		)
 		{
 			foreach (var cell1 in guardianCells)
 			{
@@ -4685,6 +4776,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						new UniqueRectangleExternalXyWingStep(
 							[new(Elimination, cell1, elimDigit)],
 							[[.. cellOffsets, .. candidateOffsets]],
+							context.PredefinedOptions,
 							d1,
 							d2,
 							in cells,
@@ -4700,7 +4792,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 #pragma warning restore CS8321
 
-		void forBothExoLeaves(scoped ref readonly Grid grid, scoped ref readonly CellMap cellsToEnumerate, scoped ref readonly CellMap guardianCells, House[] houseCombination)
+		void forBothExoLeaves(
+			scoped ref readonly Grid grid,
+			scoped ref AnalysisContext context,
+			scoped ref readonly CellMap cellsToEnumerate,
+			scoped ref readonly CellMap guardianCells,
+			House[] houseCombination
+		)
 		{
 			foreach (var cellPair in cellsToEnumerate.GetSubsets(2))
 			{
@@ -4806,6 +4904,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								new HouseViewNode(WellKnownColorIdentifier.Normal, houseCombination[1])
 							]
 						],
+						context.PredefinedOptions,
 						d1,
 						d2,
 						in cells,
@@ -4825,6 +4924,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="alses">The ALS structures.</param>
 	/// <param name="comparer">The comparer.</param>
@@ -4835,6 +4935,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckExternalAlmostLockedSetsXz(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		AlmostLockedSet[] alses,
 		Mask comparer,
@@ -4975,6 +5076,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)]],
+							context.PredefinedOptions,
 							d1,
 							d2,
 							in cells,
@@ -4995,6 +5097,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
@@ -5020,6 +5123,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void CheckHiddenSingleAvoidable(
 		List<UniqueRectangleStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Cell[] urCells,
 		Digit d1,
 		Digit d2,
@@ -5092,6 +5196,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						new AvoidableRectangleWithHiddenSingleStep(
 							[new(Elimination, baseCell, otherDigit)],
 							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, sameHouse)]],
+							context.PredefinedOptions,
 							d1,
 							d2,
 							[.. urCells],

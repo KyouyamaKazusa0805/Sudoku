@@ -311,7 +311,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					}
 
 					// Create hint.
-					var step = new AlignedExclusionStep([.. conclusions], [[.. candidateOffsets]], [.. cells], [.. lockedCombinations]);
+					var step = new AlignedExclusionStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, [.. cells], [.. lockedCombinations]);
 					if (context.OnlyFindOne)
 					{
 						return step;

@@ -1,6 +1,7 @@
 using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -13,14 +14,16 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells used in this pattern.</param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 public abstract partial class ExtendedRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views)
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty => 4.5M;

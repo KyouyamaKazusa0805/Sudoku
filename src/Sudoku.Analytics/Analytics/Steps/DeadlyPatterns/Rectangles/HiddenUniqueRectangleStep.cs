@@ -1,4 +1,5 @@
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 
@@ -9,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
@@ -18,6 +20,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class HiddenUniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
@@ -27,6 +30,7 @@ public sealed class HiddenUniqueRectangleStep(
 ) : UniqueRectangleWithConjugatePairStep(
 	conclusions,
 	views,
+	options,
 	isAvoidable ? Technique.HiddenAvoidableRectangle : Technique.HiddenUniqueRectangle,
 	digit1,
 	digit2,

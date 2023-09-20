@@ -93,19 +93,19 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var mask = grid[in pattern];
-			if (CheckType1(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type1Step)
+			if (CheckType1(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, onlyFindOne, in pattern, mask) is { } type2Step)
+			if (CheckType2(accumulator, onlyFindOne, ref context, in pattern, mask) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type3Step)
+			if (CheckType3(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, in grid, onlyFindOne, in pattern, mask) is { } type4Step)
+			if (CheckType4(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type4Step)
 			{
 				return type4Step;
 			}
@@ -120,6 +120,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		scoped ref readonly CellMap pattern,
 		Mask mask
@@ -162,7 +163,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new UniqueMatrixType1Step([.. conclusions], [[.. candidateOffsets]], in pattern, digitsMask, elimCell * 9 + extraDigit);
+			var step = new UniqueMatrixType1Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in pattern, digitsMask, elimCell * 9 + extraDigit);
 			if (onlyFindOne)
 			{
 				return step;
@@ -178,7 +179,13 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 2.
 	/// </summary>
-	private UniqueMatrixType2Step? CheckType2(List<Step> accumulator, bool onlyFindOne, scoped ref readonly CellMap pattern, Mask mask)
+	private UniqueMatrixType2Step? CheckType2(
+		List<Step> accumulator,
+		bool onlyFindOne,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CellMap pattern,
+		Mask mask
+	)
 	{
 		if (PopCount((uint)mask) != 5)
 		{
@@ -213,7 +220,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
 			}
 
-			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], in pattern, digitsMask, extraDigit);
+			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in pattern, digitsMask, extraDigit);
 			if (onlyFindOne)
 			{
 				return step;
@@ -232,6 +239,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType3Step? CheckType3(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		scoped ref readonly CellMap pattern,
 		Mask mask
@@ -301,6 +309,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 						var step = new UniqueMatrixType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+							context.PredefinedOptions,
 							in pattern,
 							digitsMask,
 							in cells,
@@ -326,6 +335,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType4Step? CheckType4(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		scoped ref readonly CellMap pattern,
 		Mask mask
@@ -407,6 +417,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var step = new UniqueMatrixType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					context.PredefinedOptions,
 					in pattern,
 					digitsMask,
 					d1,

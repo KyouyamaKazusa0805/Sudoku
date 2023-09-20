@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="als1">Indicates the first ALS used.</param>
 /// <param name="als2">Indicates the second ALS used.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used as a bridge.</param>
@@ -21,12 +23,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
 	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[DataMember] Conjugate conjugatePair,
 	[DataMember] Mask wDigitsMask,
 	[DataMember] Digit xDigit
-) : AlmostLockedSetsStep(conclusions, views)
+) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.2M;

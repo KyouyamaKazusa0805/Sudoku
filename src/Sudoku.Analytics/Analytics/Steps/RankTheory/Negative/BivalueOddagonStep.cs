@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -12,16 +13,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="loopCells">Indicates the loop of cells used.</param>
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 public abstract partial class BivalueOddagonStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CellMap loopCells,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2
-) : NegativeRankStep(conclusions, views), IEquatableStep<BivalueOddagonStep>
+) : NegativeRankStep(conclusions, views, options), IEquatableStep<BivalueOddagonStep>
 {
 	/// <summary>
 	/// Indicates the type of the technique.

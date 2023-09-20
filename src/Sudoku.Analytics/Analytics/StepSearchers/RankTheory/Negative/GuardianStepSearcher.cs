@@ -37,7 +37,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		eliminationMaps.Fill(CellMap.Empty);
 
 		var pomSteps = new List<Step>();
-		scoped var pomContext = new AnalysisContext(pomSteps, grid, false, null);
+		scoped var pomContext = new AnalysisContext(pomSteps, grid, false, context.PredefinedOptions);
 		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
@@ -90,6 +90,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 					new GuardianStep(
 						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
 						[[.. candidateOffsets]],
+						context.PredefinedOptions,
 						digit,
 						in loop,
 						in guardians

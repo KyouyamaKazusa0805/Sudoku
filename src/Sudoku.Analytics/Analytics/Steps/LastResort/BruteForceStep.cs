@@ -1,4 +1,5 @@
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
@@ -11,7 +12,9 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views) : LastResortStep(conclusions, views)
+/// <param name="options"><inheritdoc/></param>
+public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) :
+	LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 20.0M;

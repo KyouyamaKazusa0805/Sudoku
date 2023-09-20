@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
@@ -9,11 +10,16 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cell">Indicates the cell used.</param>
 /// <param name="digit">Indicates the digit used.</param>
-public abstract partial class SingleStep(Conclusion[] conclusions, View[]? views, [DataMember] Cell cell, [DataMember] Digit digit) :
-	Step(conclusions, views),
-	IEquatableStep<SingleStep>
+public abstract partial class SingleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	[DataMember] Cell cell,
+	[DataMember] Digit digit
+) : Step(conclusions, views, options), IEquatableStep<SingleStep>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

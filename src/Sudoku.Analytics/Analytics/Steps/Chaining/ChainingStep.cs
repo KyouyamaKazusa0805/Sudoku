@@ -1,8 +1,8 @@
 using System.Globalization;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -17,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="isX">Indicates whether the chain supports for X chaining rule. "X chaining rule" aims to same-digit strong inferences.</param>
 /// <param name="isY">Indicates whether the chain supports for Y chaining rule. "Y chaining rule" aims to same-cell inferences.</param>
 /// <param name="isMultiple">Indicates whether the chain is a multiple forcing chains.</param>
@@ -26,13 +27,14 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ChainingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] bool isX = true,
 	[DataMember] bool isY = true,
 	[DataMember] bool isMultiple = false,
 	[DataMember] bool isDynamic = false,
 	[DataMember] bool isNishio = false,
 	[DataMember] int dynamicNestingLevel = 0
-) : Step(conclusions, views), IComparableStep<ChainingStep>
+) : Step(conclusions, views, options), IComparableStep<ChainingStep>
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty

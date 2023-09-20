@@ -1,3 +1,4 @@
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
@@ -7,7 +8,8 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-public abstract class FireworkStep(Conclusion[] conclusions, View[]? views) : IntersectionStep(conclusions, views)
+/// <param name="options"><inheritdoc/></param>
+public abstract class FireworkStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.9M;

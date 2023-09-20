@@ -1,6 +1,7 @@
 using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="is2LinesWith2Cells">
 /// Indicates whether the pattern contains 2 lines and 2 cells. If not, the pattern should be 2 rows and 2 columns intersected.
 /// </param>
@@ -25,11 +27,12 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] bool is2LinesWith2Cells,
 	[DataMember] HouseMask houses,
 	[DataMember] Cell? corner1,
 	[DataMember] Cell? corner2
-) : DeadlyPatternStep(conclusions, views)
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.8M;

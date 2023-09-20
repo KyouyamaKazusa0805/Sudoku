@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,16 +15,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class BivalueUniversalGraveType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : BivalueUniversalGraveStep(conclusions, views)
+) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType4;

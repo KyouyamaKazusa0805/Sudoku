@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -12,16 +13,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="candidate">Indicates the true candidate.</param>
 public sealed partial class UniqueMatrixType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Candidate candidate
-) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

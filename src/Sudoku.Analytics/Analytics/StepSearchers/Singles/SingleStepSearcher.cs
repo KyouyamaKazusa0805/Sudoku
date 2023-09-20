@@ -94,6 +94,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
 					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					context.PredefinedOptions,
 					house,
 					resultCell,
 					digit
@@ -111,7 +112,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		CheckForHiddenSingle:
 			for (var house = 0; house < 27; house++)
 			{
-				if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
+				if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
 				{
 					continue;
 				}
@@ -144,7 +145,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(in grid, cell, digit)]], cell, digit);
+				var step = new NakedSingleStep(
+					[new(Assignment, cell, digit)],
+					[[.. GetNakedSingleExcluders(in grid, cell, digit)]],
+					context.PredefinedOptions,
+					cell,
+					digit
+				);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -196,6 +203,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
 				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+				context.PredefinedOptions,
 				house,
 				resultCell,
 				digit
@@ -216,7 +224,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -235,7 +243,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -258,7 +266,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var house = 0; house < 27; house++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -287,7 +295,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. GetNakedSingleExcluders(in grid, cell, digit)]], cell, digit);
+			var step = new NakedSingleStep(
+				[new(Assignment, cell, digit)],
+				[[.. GetNakedSingleExcluders(in grid, cell, digit)]],
+				context.PredefinedOptions,
+				cell,
+				digit
+			);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -303,6 +317,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// Checks for existence of hidden single and last digit conclusion in the specified house.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="digit">The digit used.</param>
 	/// <param name="house">The house used.</param>
 	/// <returns>Not <see langword="null"/> if conclusion can be found.</returns>
@@ -314,7 +329,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(scoped ref readonly Grid grid, Digit digit, House house)
+	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(scoped ref readonly Grid grid, scoped ref AnalysisContext context, Digit digit, House house)
 	{
 		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
@@ -364,6 +379,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 				]
 			],
+			context.PredefinedOptions,
 			resultCell,
 			digit,
 			house,

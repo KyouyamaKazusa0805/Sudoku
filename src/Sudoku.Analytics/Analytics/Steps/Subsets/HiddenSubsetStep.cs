@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="house"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
@@ -33,11 +35,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class HiddenSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	House house,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] bool isLocked
-) : SubsetStep(conclusions, views, house, in cells, digitsMask)
+) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;

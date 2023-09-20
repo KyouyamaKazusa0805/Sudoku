@@ -37,6 +37,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 	private static readonly Exocet[] Patterns = new Exocet[ExocetTemplatesCount];
 
 
+#pragma warning disable format
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static JuniorExocetStepSearcher()
 	{
@@ -115,6 +116,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			}
 		}
 	}
+#pragma warning restore format
 
 
 	/// <summary>
@@ -203,7 +205,7 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var step = new JuniorExocetStep([[.. cellOffsets, .. candidateOffsets]], currentJe, baseCellsDigitsMask, [.. eliminations]);
+			var step = new JuniorExocetStep([[.. cellOffsets, .. candidateOffsets]], context.PredefinedOptions, currentJe, baseCellsDigitsMask, [.. eliminations]);
 			if (context.OnlyFindOne)
 			{
 				return step;

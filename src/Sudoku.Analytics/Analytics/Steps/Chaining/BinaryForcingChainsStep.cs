@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -19,6 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="sourcePotential">Indicates the source potential of the chain.</param>
 /// <param name="fromOnPotential">Indicates the "on" branch.</param>
 /// <param name="fromOffPotential">Indicates the "off" branch.</param>
@@ -28,23 +30,25 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] ChainNode sourcePotential,
 	[DataMember] ChainNode fromOnPotential,
 	[DataMember] ChainNode fromOffPotential,
 	[DataMember] bool isAbsurd,
 	bool isNishio,
 	int dynamicNestingLevel = 0
-) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)
+) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)
 {
 	internal BinaryForcingChainsStep(
 		Conclusion[] conclusions,
+		StepSearcherOptions options,
 		ChainNode sourcePotential,
 		ChainNode fromOnPotential,
 		ChainNode fromOffPotential,
 		bool isAbsurd,
 		bool isNishio,
 		int dynamicNestingLevel = 0
-	) : this(conclusions, null!, sourcePotential, fromOnPotential, fromOffPotential, isAbsurd, isNishio, dynamicNestingLevel)
+	) : this(conclusions, null!, options, sourcePotential, fromOnPotential, fromOffPotential, isAbsurd, isNishio, dynamicNestingLevel)
 	{
 	}
 
@@ -52,6 +56,7 @@ public sealed partial class BinaryForcingChainsStep(
 		this(
 			@base.Conclusions,
 			views,
+			@base.Options,
 			@base.SourcePotential,
 			@base.FromOnPotential,
 			@base.FromOffPotential,

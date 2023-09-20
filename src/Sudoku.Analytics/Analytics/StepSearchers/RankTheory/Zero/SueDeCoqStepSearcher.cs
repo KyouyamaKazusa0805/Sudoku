@@ -225,6 +225,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 													new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, baseSet)
 												]
 											],
+											context.PredefinedOptions,
 											coverSet,
 											baseSet,
 											blockMask,

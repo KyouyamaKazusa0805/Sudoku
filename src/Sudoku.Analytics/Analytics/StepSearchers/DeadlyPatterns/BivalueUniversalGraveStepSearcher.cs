@@ -86,7 +86,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
 					[new(Assignment, trueCandidate)],
-					[[new CandidateViewNode(WellKnownColorIdentifier.Normal, trueCandidate)]]
+					[[new CandidateViewNode(WellKnownColorIdentifier.Normal, trueCandidate)]],
+					context.PredefinedOptions
 				);
 				if (context.OnlyFindOne)
 				{
@@ -101,7 +102,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var (onlyFindOne, accumulator) = (context.OnlyFindOne, context.Accumulator!);
 				if (checkForSingleDigit(in trueCandidates))
 				{
-					if (CheckType2(accumulator, in trueCandidates, onlyFindOne) is { } type2Step)
+					if (CheckType2(accumulator, ref context, in trueCandidates, onlyFindOne) is { } type2Step)
 					{
 						return type2Step;
 					}
@@ -110,21 +111,21 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				{
 					if (SearchExtendedTypes)
 					{
-						if (CheckMultiple(accumulator, trueCandidates, onlyFindOne) is { } typeMultipleStep)
+						if (CheckMultiple(accumulator, ref context, in trueCandidates, onlyFindOne) is { } typeMultipleStep)
 						{
 							return typeMultipleStep;
 						}
-						if (CheckXz(accumulator, in grid, in trueCandidates, onlyFindOne) is { } typeXzStep)
+						if (CheckXz(accumulator, in grid, ref context, in trueCandidates, onlyFindOne) is { } typeXzStep)
 						{
 							return typeXzStep;
 						}
 					}
 
-					if (CheckType3Naked(accumulator, in grid, in trueCandidates, onlyFindOne) is { } type3Step)
+					if (CheckType3Naked(accumulator, in grid, ref context, in trueCandidates, onlyFindOne) is { } type3Step)
 					{
 						return type3Step;
 					}
-					if (CheckType4(accumulator, in trueCandidates, onlyFindOne) is { } type4Step)
+					if (CheckType4(accumulator, ref context, in trueCandidates, onlyFindOne) is { } type4Step)
 					{
 						return type4Step;
 					}
@@ -194,7 +195,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, multiValueCell));
 				}
 
-				var step = new BivalueUniversalGraveFalseCandidateTypeStep([new(Elimination, cell, digit)], [[.. cellOffsets]], cell * 9 + digit);
+				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
+					[new(Elimination, cell, digit)],
+					[[.. cellOffsets]],
+					context.PredefinedOptions,
+					cell * 9 + digit
+				);
 				if (context.OnlyFindOne)
 				{
 					return step;
@@ -240,7 +246,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 2.
 	/// </summary>
-	private BivalueUniversalGraveType2Step? CheckType2(List<Step> accumulator, scoped ref readonly CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType2Step? CheckType2(
+		List<Step> accumulator,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CandidateMap trueCandidates,
+		bool onlyFindOne
+	)
 	{
 		scoped var cells = (stackalloc Cell[trueCandidates.Count]);
 		var i = 0;
@@ -274,7 +285,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG type 2.
-		var step = new BivalueUniversalGraveType2Step([.. conclusions], [[.. candidateOffsets]], digit, in cellsMap);
+		var step = new BivalueUniversalGraveType2Step(
+			[.. conclusions],
+			[[.. candidateOffsets]],
+			context.PredefinedOptions,
+			digit,
+			in cellsMap
+		);
 		if (onlyFindOne)
 		{
 			return step;
@@ -288,7 +305,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 3 with naked subsets.
 	/// </summary>
-	private BivalueUniversalGraveType3Step? CheckType3Naked(List<Step> accumulator, scoped ref readonly Grid grid, scoped ref readonly CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType3Step? CheckType3Naked(
+		List<Step> accumulator,
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CandidateMap trueCandidates,
+		bool onlyFindOne
+	)
 	{
 		// Check whether all true candidates lie in a same house.
 		var map = (CellMap)(from c in trueCandidates group c by c / 9 into z select z.Key);
@@ -361,6 +384,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					var step = new BivalueUniversalGraveType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						context.PredefinedOptions,
 						in trueCandidates,
 						digitsMask,
 						in cells,
@@ -382,7 +406,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for type 4.
 	/// </summary>
-	private BivalueUniversalGraveType4Step? CheckType4(List<Step> accumulator, scoped ref readonly CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveType4Step? CheckType4(
+		List<Step> accumulator,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CandidateMap trueCandidates,
+		bool onlyFindOne
+	)
 	{
 		// Conjugate pairs should lie in two cells.
 		scoped var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
@@ -487,6 +516,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var step = new BivalueUniversalGraveType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					context.PredefinedOptions,
 					digitsMask,
 					[.. cells],
 					new(c1, c2, conjugatePairDigit)
@@ -506,7 +536,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG + n.
 	/// </summary>
-	private BivalueUniversalGraveMultipleStep? CheckMultiple(List<Step> accumulator, CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveMultipleStep? CheckMultiple(
+		List<Step> accumulator,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CandidateMap trueCandidates,
+		bool onlyFindOne
+	)
 	{
 		if (trueCandidates.Count > 18)
 		{
@@ -541,7 +576,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// BUG + n.
-		var step = new BivalueUniversalGraveMultipleStep([.. conclusions], [[.. candidateOffsets]], in trueCandidates);
+		var step = new BivalueUniversalGraveMultipleStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in trueCandidates);
 		if (onlyFindOne)
 		{
 			return step;
@@ -555,7 +590,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for BUG-XZ.
 	/// </summary>
-	private BivalueUniversalGraveXzStep? CheckXz(List<Step> accumulator, scoped ref readonly Grid grid, scoped ref readonly CandidateMap trueCandidates, bool onlyFindOne)
+	private BivalueUniversalGraveXzStep? CheckXz(
+		List<Step> accumulator,
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		scoped ref readonly CandidateMap trueCandidates,
+		bool onlyFindOne
+	)
 	{
 		if (trueCandidates is not [var cand1, var cand2])
 		{
@@ -600,6 +641,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			var step = new BivalueUniversalGraveXzStep(
 				[.. conclusions],
 				[[new CellViewNode(WellKnownColorIdentifier.Normal, cell), .. candidateOffsets]],
+				context.PredefinedOptions,
 				mask,
 				[c1, c2],
 				cell

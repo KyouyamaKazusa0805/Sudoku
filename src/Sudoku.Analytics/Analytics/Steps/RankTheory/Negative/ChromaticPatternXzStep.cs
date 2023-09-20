@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="blocks"><inheritdoc/></param>
 /// <param name="pattern"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells that contains extra digit.</param>
@@ -23,13 +25,14 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ChromaticPatternXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	House[] blocks,
 	scoped ref readonly CellMap pattern,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Cell extraCell,
 	Mask digitsMask,
 	[DataMember] Mask extraDigitsMask
-) : ChromaticPatternStep(conclusions, views, blocks, in pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ChromaticPatternXzRule;

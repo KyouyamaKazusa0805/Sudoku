@@ -55,6 +55,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
+#pragma warning disable format
 		var houses = (int[][])[
 			[9, 10], [9, 11], [10, 11],
 			[12, 13], [12, 14], [13, 14],
@@ -79,6 +80,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[36, 54], [36, 63], [36, 72],
 			[45, 54], [45, 63], [45, 72]
 		];
+#pragma warning restore format
 
 		RawPatternData = [];
 
@@ -219,13 +221,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				if (extraCellsMap.Count == 1)
 				{
-					if (CheckType1(accumulator, in grid, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
+					if (CheckType1(accumulator, in grid, ref context, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
 					{
 						return step1;
 					}
 				}
 
-				if (CheckType2(accumulator, in grid, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
+				if (CheckType2(accumulator, in grid, ref context, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
 				{
 					return step2;
 				}
@@ -250,12 +252,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (CheckType3Naked(accumulator, in grid, in allCellsMap, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
+				if (CheckType3Naked(accumulator, in grid, ref context, in allCellsMap, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
 				{
 					return step3;
 				}
 
-				if (CheckType14(accumulator, in grid, in allCellsMap, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
+				if (CheckType14(accumulator, in grid, ref context, in allCellsMap, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
 				{
 					return step14;
 				}
@@ -270,6 +272,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="allCellsMap">The map of all cells used.</param>
 	/// <param name="extraCells">The extra cells map.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
@@ -279,6 +282,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		scoped ref readonly CellMap allCellsMap,
 		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
@@ -313,7 +317,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]], in allCellsMap, normalDigits);
+		var step = new ExtendedRectangleType1Step(
+			[.. conclusions],
+			[[.. candidateOffsets]],
+			context.PredefinedOptions,
+			in allCellsMap,
+			normalDigits
+		);
 		if (onlyFindOne)
 		{
 			return step;
@@ -330,6 +340,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="allCellsMap">The map of all cells used.</param>
 	/// <param name="extraCells">The extra cells map.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
@@ -339,6 +350,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		scoped ref readonly CellMap allCellsMap,
 		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
@@ -365,6 +377,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		var step = new ExtendedRectangleType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
+			context.PredefinedOptions,
 			in allCellsMap,
 			normalDigits,
 			extraDigit
@@ -385,6 +398,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="allCellsMap">The map of all cells used.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigits">The extra digits mask.</param>
@@ -394,6 +408,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		scoped ref readonly CellMap allCellsMap,
 		Mask normalDigits,
 		Mask extraDigits,
@@ -464,6 +479,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					var step = new ExtendedRectangleType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
+						context.PredefinedOptions,
 						in allCellsMap,
 						normalDigits,
 						in cells,
@@ -486,11 +502,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 	/// <summary>
 	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(List{Step}, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, Mask, Digit, bool)"/>
+	/// <see cref="CheckType1(List{Step}, ref readonly Grid, ref AnalysisContext, ref readonly CellMap, ref readonly CellMap, Mask, Digit, bool)"/>
 	/// cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="allCellsMap">The map of all cells used.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraCellsMap">The map of extra cells.</param>
@@ -499,6 +516,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private Step? CheckType14(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		scoped ref readonly CellMap allCellsMap,
 		Mask normalDigits,
 		scoped ref readonly CellMap extraCellsMap,
@@ -540,7 +558,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new ExtendedRectangleType1Step([.. conclusions], [[.. candidateOffsets]],in allCellsMap, normalDigits);
+				var step = new ExtendedRectangleType1Step(
+					[.. conclusions],
+					[[.. candidateOffsets]],
+					context.PredefinedOptions,
+					in allCellsMap,
+					normalDigits
+				);
 				if (onlyFindOne)
 				{
 					return step;
@@ -601,6 +625,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						var step = new ExtendedRectangleType4Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
+							context.PredefinedOptions,
 							in allCellsMap,
 							normalDigits,
 							new(in extraCellsMap, conjugateDigit)

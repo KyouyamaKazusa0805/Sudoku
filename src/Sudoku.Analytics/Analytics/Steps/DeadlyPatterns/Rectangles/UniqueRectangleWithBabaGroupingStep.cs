@@ -1,6 +1,7 @@
 using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
@@ -23,6 +25,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
@@ -32,6 +35,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
+	options,
 	Technique.UniqueRectangleBabaGrouping,
 	digit1,
 	digit2,

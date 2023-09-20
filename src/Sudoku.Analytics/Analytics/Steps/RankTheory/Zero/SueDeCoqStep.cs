@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="block">Indicates the block index that the current pattern used.</param>
 /// <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
 /// <param name="blockMask">Indicates the block mask.</param>
@@ -29,6 +31,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] House block,
 	[DataMember] House line,
 	[DataMember] Mask blockMask,
@@ -39,7 +42,7 @@ public sealed partial class SueDeCoqStep(
 	[DataMember] scoped ref readonly CellMap blockCells,
 	[DataMember] scoped ref readonly CellMap lineCells,
 	[DataMember] scoped ref readonly CellMap intersectionCells
-) : ZeroRankStep(conclusions, views)
+) : ZeroRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.0M;

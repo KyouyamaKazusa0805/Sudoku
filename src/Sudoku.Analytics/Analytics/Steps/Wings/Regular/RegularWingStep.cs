@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Facts;
@@ -16,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="pivot">Indicates the cell that blossomed its petals.</param>
 /// <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="digitsMask">Indicates a mask that contains all digits used.</param>
@@ -23,11 +25,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Cell pivot,
 	[DataMember] int pivotCandidatesCount,
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap petals
-) : WingStep(conclusions, views)
+) : WingStep(conclusions, views, options)
 {
 	/// <summary>
 	/// Indicates whether the pattern is incomplete.

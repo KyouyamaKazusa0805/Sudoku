@@ -61,7 +61,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 				if (IsValidGrid(in grid, cell))
 				{
-					Collect(tempAccumulator, ref tempGrid, onlyFindOne, startCandidate, MaxLength - 1);
+					Collect(tempAccumulator, ref tempGrid, ref context, onlyFindOne, startCandidate, MaxLength - 1);
 				}
 				else
 				{
@@ -76,6 +76,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 						new BowmanBingoStep(
 							[new(Elimination, startCandidate)],
 							[[.. candidateOffsets, .. GetLinks()]],
+							context.PredefinedOptions,
 							[.. _tempConclusions]
 						)
 					);
@@ -101,14 +102,22 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="result">The accumulator instance to gather the result.</param>
 	/// <param name="grid">The sudoku grid to be checked.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="onlyFindOne"><inheritdoc cref="AnalysisContext.OnlyFindOne"/></param>
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private BowmanBingoStep? Collect(List<BowmanBingoStep> result, scoped ref Grid grid, bool onlyFindOne, Candidate startCand, int length)
+	private BowmanBingoStep? Collect(
+		List<BowmanBingoStep> result,
+		scoped ref Grid grid,
+		scoped ref AnalysisContext context,
+		bool onlyFindOne,
+		Candidate startCand,
+		int length
+	)
 	{
-		scoped var context = new AnalysisContext(null, grid, true, null);
-		if (length == 0 || SinglesSearcher.Collect(ref context) is not SingleStep singleInfo)
+		scoped var context2 = new AnalysisContext(null, grid, true, context.PredefinedOptions);
+		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep singleInfo)
 		{
 			// Two cases we don't need to go on.
 			// Case 1: The variable 'length' is 0.
@@ -126,7 +135,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		if (IsValidGrid(in grid, c))
 		{
 			// Sounds good.
-			if (Collect(result, ref grid, onlyFindOne, startCand, length - 1) is { } nestedStep)
+			if (Collect(result, ref grid, ref context2, onlyFindOne, startCand, length - 1) is { } nestedStep)
 			{
 				return nestedStep;
 			}
@@ -140,7 +149,12 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
 			}
 
-			var step = new BowmanBingoStep([new(Elimination, startCand)], [[.. candidateOffsets, .. GetLinks()]], [.. _tempConclusions]);
+			var step = new BowmanBingoStep(
+				[new(Elimination, startCand)],
+				[[.. candidateOffsets, .. GetLinks()]],
+				context.PredefinedOptions,
+				[.. _tempConclusions]
+			);
 			if (onlyFindOne)
 			{
 				return step;

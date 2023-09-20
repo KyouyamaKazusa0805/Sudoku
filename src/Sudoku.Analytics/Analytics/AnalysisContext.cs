@@ -29,7 +29,7 @@ public ref partial struct AnalysisContext(
 	[DataMember] List<Step>? accumulator,
 	[DataMember(MemberKinds.Field)] in Grid grid,
 	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
-	[DataMember] StepSearcherOptions? predefinedOptions
+	[DataMember] StepSearcherOptions predefinedOptions
 )
 {
 	/// <summary>

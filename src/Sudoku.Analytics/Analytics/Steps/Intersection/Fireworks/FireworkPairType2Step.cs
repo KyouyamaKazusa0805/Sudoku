@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 /// <param name="pattern1Map">Indicates the map for pattern 1.</param>
 /// <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
@@ -22,13 +24,14 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap pattern1Map,
 	[DataMember] Cell? pattern1Pivot,
 	[DataMember] scoped ref readonly CellMap pattern2Map,
 	[DataMember] Cell? pattern2Pivot,
 	[DataMember] Cell extraCell
-) : FireworkStep(conclusions, views)
+) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;

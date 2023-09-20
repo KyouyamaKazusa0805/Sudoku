@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="blocks"><inheritdoc/></param>
 /// <param name="pattern"><inheritdoc/></param>
 /// <param name="extraCell">Indicates the extra cell used.</param>
@@ -19,11 +21,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ChromaticPatternType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	House[] blocks,
 	scoped ref readonly CellMap pattern,
 	[DataMember] Cell extraCell,
 	Mask digitsMask
-) : ChromaticPatternStep(conclusions, views, blocks, in pattern, digitsMask)
+) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

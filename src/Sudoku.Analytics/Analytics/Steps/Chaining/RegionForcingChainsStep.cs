@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="houseIndex">Indicates the index of the house represented.</param>
 /// <param name="digit">Indicates the digit of the chain bound with.</param>
 /// <param name="chains">Indicates all possible branches in this technique.</param>
@@ -22,26 +24,28 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegionForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] House houseIndex,
 	[DataMember] byte digit,
 	[DataMember] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
-) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
+) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
 {
 	internal RegionForcingChainsStep(
 		Conclusion[] conclusions,
+		StepSearcherOptions options,
 		House houseIndex,
 		byte digit,
 		MultipleForcingChains chains,
 		bool isDynamic,
 		int dynamicNestingLevel = 0
-	) : this(conclusions, null!, houseIndex, digit, chains, isDynamic, dynamicNestingLevel)
+	) : this(conclusions, null!, options, houseIndex, digit, chains, isDynamic, dynamicNestingLevel)
 	{
 	}
 
 	internal RegionForcingChainsStep(RegionForcingChainsStep @base, View[]? views) :
-		this(@base.Conclusions, views, @base.HouseIndex, @base.Digit, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
+		this(@base.Conclusions, views, @base.Options, @base.HouseIndex, @base.Digit, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
 	{
 	}
 

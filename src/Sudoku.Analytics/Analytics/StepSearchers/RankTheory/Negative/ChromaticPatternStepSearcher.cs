@@ -254,6 +254,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			var step = new ChromaticPatternType1Step(
 				[.. conclusions],
 				[[.. candidateOffsets, .. from house in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+				context.PredefinedOptions,
 				blocks,
 				in pattern,
 				extraCell,
@@ -354,6 +355,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 							.. from block in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, block)
 						]
 					],
+					context.PredefinedOptions,
 					blocks,
 					in pattern,
 					in otherDigitsCells,

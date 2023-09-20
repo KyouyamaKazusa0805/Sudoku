@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="loopCells"><inheritdoc/></param>
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
@@ -21,12 +23,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueOddagonType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	scoped ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
 	[DataMember] scoped ref readonly CellMap extraCells,
 	[DataMember] Mask extraDigitsMask
-) : BivalueOddagonStep(conclusions, views, in loopCells, digit1, digit2)
+) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>
 	public override int Type => 3;

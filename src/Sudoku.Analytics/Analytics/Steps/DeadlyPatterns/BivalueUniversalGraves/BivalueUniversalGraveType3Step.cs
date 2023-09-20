@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Facts;
@@ -16,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="trueCandidates">Indicates the true candidates used.</param>
 /// <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
 /// <param name="cells">Indicates the subset cells used.</param>
@@ -23,11 +25,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CandidateMap trueCandidates,
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] bool isNaked
-) : BivalueUniversalGraveStep(conclusions, views)
+) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;

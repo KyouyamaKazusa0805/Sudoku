@@ -210,6 +210,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSet
 									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet3, cHouse)
 								]
 							],
+							context.PredefinedOptions,
 							a,
 							b,
 							c,

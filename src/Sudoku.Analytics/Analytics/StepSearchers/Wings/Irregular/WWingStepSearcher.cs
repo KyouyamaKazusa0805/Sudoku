@@ -142,6 +142,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
 									]
 								],
+								context.PredefinedOptions,
 								c1,
 								c2,
 								new(a, b, digit)
@@ -158,6 +159,7 @@ public sealed partial class WWingStepSearcher : StepSearcher
 										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
 									]
 								],
+								context.PredefinedOptions,
 								c1,
 								c2,
 								in bridge

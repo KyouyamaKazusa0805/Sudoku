@@ -33,7 +33,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var result = getNonMultipleChains(in grid);
+		var result = getNonMultipleChains(in grid, ref context);
 		if (result.Count == 0)
 		{
 			return null;
@@ -51,11 +51,11 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		List<ChainingStep> getNonMultipleChains(scoped ref readonly Grid grid)
+		List<ChainingStep> getNonMultipleChains(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 		{
-			var result = Collect(in grid, true, false);
-			result.AddRange(Collect(in grid, false, true));
-			result.AddRange(Collect(in grid, true, true));
+			var result = Collect(in grid, ref context, true, false);
+			result.AddRange(Collect(in grid, ref context, false, true));
+			result.AddRange(Collect(in grid, ref context, true, true));
 
 			return result;
 		}
@@ -85,10 +85,11 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// Try to search for all AICs and continuous nice loops.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
 	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
-	private List<ChainingStep> Collect(scoped ref readonly Grid grid, bool isX, bool isY)
+	private List<ChainingStep> Collect(scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool isX, bool isY)
 	{
 		var result = new List<ChainingStep>();
 
@@ -99,7 +100,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 				if (CandidatesMap[digit].Contains(cell))
 				{
 					var pOn = new ChainNode(cell, digit, true);
-					DoUnaryChaining(in grid, pOn, result, isX, isY);
+					DoUnaryChaining(in grid, ref context, pOn, result, isX, isY);
 				}
 			}
 		}
@@ -110,12 +111,20 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// <summary>
 	/// Look for, and add single forcing chains, and bidirectional cycles.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="context">The context.</param>
 	/// <param name="pOn">The start potential.</param>
 	/// <param name="result">The result steps found.</param>
-	/// <param name="isX"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/></param>
-	private void DoUnaryChaining(scoped ref readonly Grid grid, ChainNode pOn, List<ChainingStep> result, bool isX, bool isY)
+	/// <param name="isX"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/></param>
+	private void DoUnaryChaining(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		ChainNode pOn,
+		List<ChainingStep> result,
+		bool isX,
+		bool isY
+	)
 	{
 		if (BivalueCells.Contains(pOn.Cell) && !isX)
 		{
@@ -147,7 +156,7 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 		foreach (var dstOn in cycles)
 		{
 			// Cycle found.
-			if (CreateCycleStep(in grid, dstOn, isX, isY) is { } step)
+			if (CreateCycleStep(in grid, ref context, dstOn, isX, isY) is { } step)
 			{
 				result.Add(step);
 			}
@@ -155,18 +164,18 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 
 		foreach (var target in chains)
 		{
-			result.Add(CreateAicStep(in grid, target, isX, isY));
+			result.Add(CreateAicStep(in grid, ref context, target, isX, isY));
 		}
 	}
 
 	/// <summary>
 	/// Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
-	/// <param name="isX"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='isX']"/></param>
-	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isX"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isX']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="cycles">
 	/// <para>All found cycles, represented as their final <see cref="ChainNode"/> node.</para>
 	/// <para>By using <see cref="ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
@@ -229,14 +238,14 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
 	/// In other words, this method does find for AICs.
 	/// </summary>
-	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/></param>
 	/// <param name="toOn">
 	/// <inheritdoc cref="DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOn']"/>
 	/// </param>
 	/// <param name="toOff">
 	/// <inheritdoc cref="DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='toOff']"/>
 	/// </param>
-	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/></param>
+	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/></param>
 	/// <param name="chains">
 	/// <para>All found chains, represented as their final <see cref="ChainNode"/> node.</para>
 	/// <para>
@@ -315,8 +324,9 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// the method will return a <see cref="BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
+	/// <param name="context">The context.</param>
 	/// <param name="dstOn">Indicates the destination node that is at the state "on".</param>
 	/// <param name="isX">
 	/// <inheritdoc cref="DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='isX']"/>
@@ -327,7 +337,13 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 	/// <returns>
 	/// A valid <see cref="BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
 	/// </returns>
-	private BidirectionalCycleStep? CreateCycleStep(scoped ref readonly Grid grid, ChainNode dstOn, bool isX, bool isY)
+	private BidirectionalCycleStep? CreateCycleStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		ChainNode dstOn,
+		bool isX,
+		bool isY
+	)
 	{
 		var nodes = dstOn.ChainPotentials;
 
@@ -362,17 +378,23 @@ public sealed partial class NonMultipleChainingStepSearcher : ChainingStepSearch
 			return null;
 		}
 
-		var result = new BidirectionalCycleStep([.. conclusions], dstOn, isX, isY);
+		var result = new BidirectionalCycleStep([.. conclusions], context.PredefinedOptions, dstOn, isX, isY);
 		return new(result, result.CreateViews(in grid));
 	}
 
 	/// <summary>
 	/// Try to create an AIC hint.
 	/// </summary>
-	private ForcingChainStep CreateAicStep(scoped ref readonly Grid grid, ChainNode target, bool isX, bool isY)
+	private ForcingChainStep CreateAicStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		ChainNode target,
+		bool isX,
+		bool isY
+	)
 	{
 		var (candidate, isOn) = target;
-		var result = new ForcingChainStep([new(isOn ? Assignment : Elimination, candidate)], target, isX, isY);
+		var result = new ForcingChainStep([new(isOn ? Assignment : Elimination, candidate)], context.PredefinedOptions, target, isX, isY);
 		return new(result, result.CreateViews(in grid));
 	}
 }

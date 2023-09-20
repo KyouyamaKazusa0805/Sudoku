@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="sourceCell">Indicates the source cell that all branches start.</param>
 /// <param name="chains">Indicates all possible branches in this technique.</param>
 /// <param name="isDynamic"><inheritdoc/></param>
@@ -21,24 +23,26 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class CellForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] byte sourceCell,
 	[DataMember] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
-) : ChainingStep(conclusions, views, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
+) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)
 {
 	internal CellForcingChainsStep(
 		Conclusion[] conclusions,
+		StepSearcherOptions options,
 		byte sourceCell,
 		MultipleForcingChains chains,
 		bool isDynamic,
 		int dynamicNestingLevel = 0
-	) : this(conclusions, null!, sourceCell, chains, isDynamic, dynamicNestingLevel)
+	) : this(conclusions, null!, options, sourceCell, chains, isDynamic, dynamicNestingLevel)
 	{
 	}
 
 	internal CellForcingChainsStep(CellForcingChainsStep @base, View[]? views) :
-		this(@base.Conclusions, views, @base.SourceCell, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
+		this(@base.Conclusions, views, @base.Options, @base.SourceCell, @base.Chains, @base.IsDynamic, @base.DynamicNestingLevel)
 	{
 	}
 

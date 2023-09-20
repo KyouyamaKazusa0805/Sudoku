@@ -2,6 +2,7 @@ using System.Algorithm;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,16 +15,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 /// <param name="loop">Indicates the whole loop of cells used.</param>
 public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
 	[DataMember] scoped ref readonly CellMap loop
-) : DeadlyPatternStep(conclusions, views), IEquatableStep<UniqueLoopStep>
+) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;

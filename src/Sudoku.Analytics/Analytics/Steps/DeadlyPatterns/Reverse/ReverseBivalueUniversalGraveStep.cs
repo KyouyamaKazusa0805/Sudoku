@@ -2,6 +2,7 @@ using System.Algorithm;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 /// <param name="pattern">Indicates the pattern, all possible cells included.</param>
@@ -21,11 +23,12 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ReverseBivalueUniversalGraveStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
 	[DataMember(GeneratedMemberName = "CompletePattern")] scoped ref readonly CellMap pattern,
 	[DataMember] scoped ref readonly CellMap emptyCells
-) : DeadlyPatternStep(conclusions, views), IEquatableStep<ReverseBivalueUniversalGraveStep>
+) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<ReverseBivalueUniversalGraveStep>
 {
 	/// <summary>
 	/// Indicates whether the pattern is a reverse UR.

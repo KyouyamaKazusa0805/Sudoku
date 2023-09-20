@@ -1,3 +1,4 @@
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
@@ -7,4 +8,5 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
-public abstract class LastResortStep(Conclusion[] conclusions, View[]? views) : Step(conclusions, views);
+/// <param name="options"><inheritdoc/></param>
+public abstract class LastResortStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) : Step(conclusions, views, options);

@@ -146,13 +146,13 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				case { } pivot when PopCount((uint)digitsMask) >= 3:
 				{
 #if false
-					if (CheckPairType1(accumulator, grid, onlyFindOne, pattern, pivot) is { } stepPairType1)
+					if (CheckPairType1(accumulator, in grid, ref context, onlyFindOne, pattern, pivot) is { } stepPairType1)
 					{
 						return stepPairType1;
 					}
 #endif
 
-					if (CheckTriple(accumulator, in grid, onlyFindOne, in pattern, digitsMask, pivot) is { } stepTriple)
+					if (CheckTriple(accumulator, in grid, ref context, onlyFindOne, in pattern, digitsMask, pivot) is { } stepTriple)
 					{
 						return stepTriple;
 					}
@@ -161,7 +161,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				}
 				case null when PopCount((uint)digitsMask) >= 4:
 				{
-					if (CheckQuadruple(accumulator, in grid, onlyFindOne, in pattern) is { } step)
+					if (CheckQuadruple(accumulator, in grid, ref context, onlyFindOne, in pattern) is { } step)
 					{
 						return step;
 					}
@@ -180,6 +180,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	private FireworkPairType1Step? CheckPairType1(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		scoped ref readonly Pattern pattern,
 		Cell pivot
@@ -265,6 +266,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var step = new FireworkPairType1Step(
 						[.. conclusions],
 						[[.. candidateOffsets], [.. candidateOffsets, .. cellOffsets]],
+						context.PredefinedOptions,
 						in map,
 						currentDigitsMask,
 						extraCell1,
@@ -289,6 +291,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		scoped ref readonly Pattern pattern,
 		Mask digitsMask,
@@ -394,6 +397,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 					]
 				],
+				context.PredefinedOptions,
 				pattern.Map,
 				currentDigitsMask
 			);
@@ -411,7 +415,13 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for firework quadruple steps.
 	/// </summary>
-	private FireworkQuadrupleStep? CheckQuadruple(List<Step> accumulator, scoped ref readonly Grid grid, bool onlyFindOne, scoped ref readonly Pattern pattern)
+	private FireworkQuadrupleStep? CheckQuadruple(
+		List<Step> accumulator,
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		bool onlyFindOne,
+		scoped ref readonly Pattern pattern
+	)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
 		{
@@ -555,6 +565,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var step = new FireworkQuadrupleStep(
 						[.. conclusions],
 						[[.. candidateOffsets], [.. cellOffsets1, .. candidateOffsetsView2], [.. cellOffsets2, .. candidateOffsetsView3]],
+						context.PredefinedOptions,
 						in map,
 						fourDigitsMask
 					);

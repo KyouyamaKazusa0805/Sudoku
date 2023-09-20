@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="baseHouse">Indicates the base house used.</param>
 /// <param name="targetHouse">Indicates the target house used.</param>
@@ -19,11 +21,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class TwoStrongLinksStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit,
 	[DataMember] House baseHouse,
 	[DataMember] House targetHouse,
 	[DataMember] bool isGrouped
-) : SingleDigitPatternStep(conclusions, views, digit)
+) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty

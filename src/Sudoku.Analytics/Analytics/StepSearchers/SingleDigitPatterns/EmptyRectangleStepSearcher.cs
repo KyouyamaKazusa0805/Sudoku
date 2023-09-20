@@ -95,6 +95,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 					var step = new EmptyRectangleStep(
 						[new(Elimination, elimCell, digit)],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, block)]],
+						context.PredefinedOptions,
 						digit,
 						block,
 						new(cpCells[0], cpCells[1], digit)

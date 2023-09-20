@@ -268,6 +268,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
 					]
 				],
+				context.PredefinedOptions,
 				mask,
 				in alsCells,
 				in ahsCells,

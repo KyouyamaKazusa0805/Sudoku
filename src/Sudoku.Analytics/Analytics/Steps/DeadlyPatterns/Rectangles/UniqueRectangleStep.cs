@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="code"><inheritdoc cref="Step.Code" path="/summary"/></param>
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used. This value is always greater than <see cref="Digit1"/>.</param>
@@ -31,13 +33,14 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Technique code,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] bool isAvoidable,
 	[DataMember] int absoluteOffset
-) : DeadlyPatternStep(conclusions, views), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
+) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;

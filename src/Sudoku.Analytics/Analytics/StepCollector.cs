@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.CachedFields;
@@ -60,7 +61,11 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public IEnumerable<Step>? Collect(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public IEnumerable<Step>? Collect(
+		scoped ref readonly Grid puzzle,
+		IProgress<AnalyzerProgress>? progress = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
@@ -129,7 +134,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 						// Searching.
 						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false, null);
+						scoped var context = new AnalysisContext(accumulator, puzzle, false, StepSearcherOptions.Default);
 						searcher.Collect(ref context);
 
 						if (accumulator.Count is not (var count and not 0))

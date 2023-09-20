@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -14,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="als1">Indicates the first ALS used.</param>
 /// <param name="als2">Indicates the second ALS used.</param>
 /// <param name="xDigitsMask">Indicates the mask of X digits used.</param>
@@ -29,12 +31,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
 	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[DataMember] Mask xDigitsMask,
 	[DataMember] Mask zDigitsMask,
 	[DataMember] bool? isDoublyLinked
-) : AlmostLockedSetsStep(conclusions, views)
+) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;

@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -12,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="digit1">Indicates the first digit used in the conjugate.</param>
@@ -20,12 +22,13 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueMatrixType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
 	[DataMember] Digit digit1,
 	[DataMember] Digit digit2,
 	[DataMember] scoped ref readonly CellMap conjugateHouse
-) : UniqueMatrixStep(conclusions, views, in cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int Type => 4;

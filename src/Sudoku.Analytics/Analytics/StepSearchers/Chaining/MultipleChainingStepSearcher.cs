@@ -94,7 +94,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		// TODO: Implement an implications cache.
 
 		scoped ref readonly var grid = ref context.Grid;
-		var result = Collect(in grid);
+		var result = Collect(in grid, ref context);
 		if (result.Count == 0)
 		{
 			return null;
@@ -115,8 +115,9 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// Search for hints on the given grid.
 	/// </summary>
 	/// <param name="grid">The grid on which to search for hints.</param>
+	/// <param name="context">The context.</param>
 	/// <returns>The hints found.</returns>
-	private List<ChainingStep> Collect(scoped ref readonly Grid grid)
+	private List<ChainingStep> Collect(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var result = new List<ChainingStep>();
 
@@ -144,12 +145,12 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 					var onToOff = new NodeSet();
 					var doDouble = count >= 3 && !AllowNishio && AllowDynamic;
 					var doContradiction = AllowDynamic || AllowNishio;
-					DoBinaryChaining(in grid, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
+					DoBinaryChaining(in grid, ref context, pOn, pOff, result, onToOn, onToOff, doDouble, doContradiction);
 
 					if (!AllowNishio)
 					{
 						// Do house chaining.
-						DoHouseChaining(in grid, result, cell, digit, onToOn, onToOff);
+						DoHouseChaining(in grid, ref context, result, cell, digit, onToOn, onToOff);
 					}
 
 					// Collect results for cell chaining.
@@ -174,14 +175,14 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 					{
 						foreach (var p in cellToOn)
 						{
-							result.Add(CreateCellForcingStep(in grid, cell, p, digitToOn));
+							result.Add(CreateCellForcingStep(in grid, ref context, cell, p, digitToOn));
 						}
 					}
 					if (cellToOff is not null)
 					{
 						foreach (var p in cellToOff)
 						{
-							result.Add(CreateCellForcingStep(in grid, cell, p, digitToOff));
+							result.Add(CreateCellForcingStep(in grid, ref context, cell, p, digitToOff));
 						}
 					}
 				}
@@ -244,13 +245,14 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </para>
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
+	/// <param name="context">The context.</param>
 	/// <param name="pOn"></param>
 	/// <param name="pOff"></param>
 	/// <param name="result">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ChainNode, List{ChainingStep}, bool, bool)"
+	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, List{ChainingStep}, bool, bool)"
 	///     path="/param[@name='result']"/>
 	/// </param>
 	/// <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
@@ -259,6 +261,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// <param name="doContradiction"></param>
 	private void DoBinaryChaining(
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		ChainNode pOn,
 		ChainNode pOff,
 		List<ChainingStep> result,
@@ -280,7 +283,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		if (doContradiction && pair is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
-			result.Add(CreateChainingOffStep(in grid, absurdOn1, absurdOff1, pOn, pOn, true));
+			result.Add(CreateChainingOffStep(in grid, ref context, absurdOn1, absurdOff1, pOn, pOn, true));
 		}
 
 		// Test p = "off".
@@ -289,7 +292,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 		if (doContradiction && pair is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
-			result.Add(CreateChainingOnStep(in grid, absurdOn2, absurdOff2, pOff, pOff, true));
+			result.Add(CreateChainingOnStep(in grid, ref context, absurdOn2, absurdOff2, pOff, pOff, true));
 		}
 
 		if (doReduction)
@@ -299,7 +302,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 			{
 				if (offToOn.GetNullable(pFromOn) is { } pFromOff)
 				{
-					result.Add(CreateChainingOnStep(in grid, pFromOn, pFromOff, pOn, pFromOn, false));
+					result.Add(CreateChainingOnStep(in grid, ref context, pFromOn, pFromOff, pOn, pFromOn, false));
 				}
 			}
 
@@ -308,7 +311,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 			{
 				if (offToOff.GetNullable(pFromOn) is { } pFromOff)
 				{
-					result.Add(CreateChainingOffStep(in grid, pFromOn, pFromOff, pOff, pFromOff, false));
+					result.Add(CreateChainingOffStep(in grid, ref context, pFromOn, pFromOff, pOff, pFromOff, false));
 				}
 			}
 		}
@@ -318,27 +321,29 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// Search for region (house) forcing chains.
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
+	/// <param name="context">The context.</param>
 	/// <param name="result">
 	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ChainNode, List{ChainingStep}, bool, bool)"
+	///     cref="NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, List{ChainingStep}, bool, bool)"
 	///     path="/param[@name='result']"/>
 	/// </param>
 	/// <param name="cell"></param>
 	/// <param name="digit"></param>
 	/// <param name="onToOn">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(ref readonly Grid, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
+	///     cref="DoBinaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
 	///     path="/param[@name='onToOn']"/>
 	/// </param>
 	/// <param name="onToOff">
 	/// <inheritdoc
-	///     cref="DoBinaryChaining(ref readonly Grid, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
+	///     cref="DoBinaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, ChainNode, List{ChainingStep}, NodeSet, NodeSet, bool, bool)"
 	///     path="/param[@name='onToOff']"/>
 	/// </param>
 	private void DoHouseChaining(
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		List<ChainingStep> result,
 		byte cell,
 		byte digit,
@@ -387,11 +392,11 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 					// Gather results.
 					foreach (var p in houseToOn)
 					{
-						result.Add(CreateHouseForcingStep(in grid, houseIndex, digit, p, posToOn));
+						result.Add(CreateHouseForcingStep(in grid, ref context, houseIndex, digit, p, posToOn));
 					}
 					foreach (var p in houseToOff)
 					{
-						result.Add(CreateHouseForcingStep(in grid, houseIndex, digit, p, posToOff));
+						result.Add(CreateHouseForcingStep(in grid, ref context, houseIndex, digit, p, posToOff));
 					}
 				}
 			}
@@ -403,6 +408,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOnStep(
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -411,7 +417,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	)
 	{
 		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
+		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -420,6 +426,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOffStep(
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -428,14 +435,20 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	)
 	{
 		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio);
+		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(in grid));
 	}
 
 	/// <summary>
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
-	private CellForcingChainsStep CreateCellForcingStep(scoped ref readonly Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
+	private CellForcingChainsStep CreateCellForcingStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		byte srcCell,
+		ChainNode target,
+		ChainBranch outcomes
+	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
@@ -451,7 +464,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 			}
 		}
 
-		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic);
+		var result = new CellForcingChainsStep(conclusion, context.PredefinedOptions, srcCell, chains, AllowDynamic);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -460,6 +473,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 	/// </summary>
 	private RegionForcingChainsStep CreateHouseForcingStep(
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		House houseIndex,
 		byte digit,
 		ChainNode target,
@@ -477,7 +491,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 			chains.Add(tempCell, outcomes[tempCell][target]);
 		}
 
-		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic);
+		var result = new RegionForcingChainsStep(conclusions, context.PredefinedOptions, houseIndex, digit, chains, AllowDynamic);
 		return new(result, result.CreateViews(in grid));
 	}
 }

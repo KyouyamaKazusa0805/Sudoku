@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Facts;
@@ -16,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="baseSetsMask"><inheritdoc/></param>
 /// <param name="coverSetsMask"><inheritdoc/></param>
@@ -52,6 +54,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
@@ -59,7 +62,7 @@ public sealed partial class ComplexFishStep(
 	[DataMember] scoped ref readonly CellMap endofins,
 	[DataMember] bool isFranken,
 	[DataMember] bool? isSashimi
-) : FishStep(conclusions, views, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
+) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;

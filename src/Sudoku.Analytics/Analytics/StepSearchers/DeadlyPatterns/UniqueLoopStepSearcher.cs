@@ -70,7 +70,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, d1, d2, in loop, in extraCellsMap, onlyFindOne, path) is { } step1)
+						if (CheckType1(resultAccumulator, ref context, d1, d2, in loop, in extraCellsMap, onlyFindOne, path) is { } step1)
 						{
 							return step1;
 						}
@@ -80,15 +80,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					default:
 					{
 						// Type 2, 3, 4.
-						if (CheckType2(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step2)
+						if (CheckType2(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step2)
 						{
 							return step2;
 						}
-						if (CheckType3(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step3)
+						if (CheckType3(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step3)
 						{
 							return step3;
 						}
-						if (CheckType4(resultAccumulator, in grid, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step4)
+						if (CheckType4(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step4)
 						{
 							return step4;
 						}
@@ -119,6 +119,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// Check type 1.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
@@ -128,6 +129,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType1Step? CheckType1(
 		List<UniqueLoopStep> accumulator,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -158,7 +160,14 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
 		}
 
-		var step = new UniqueLoopType1Step([.. conclusions], [[.. candidateOffsets, .. GetLoopLinks(path)]], d1, d2, in loop);
+		var step = new UniqueLoopType1Step(
+			[.. conclusions],
+			[[.. candidateOffsets, .. GetLoopLinks(path)]],
+			context.PredefinedOptions,
+			d1,
+			d2,
+			in loop
+		);
 		if (onlyFindOne)
 		{
 			return step;
@@ -175,6 +184,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
@@ -186,6 +196,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private UniqueLoopType2Step? CheckType2(
 		List<UniqueLoopStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -220,6 +231,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		var step = new UniqueLoopType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
+			context.PredefinedOptions,
 			d1,
 			d2,
 			in loop,
@@ -242,6 +254,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
@@ -253,6 +266,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private UniqueLoopType3Step? CheckType3(
 		List<UniqueLoopStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -356,6 +370,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						var step = new UniqueLoopType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
+							context.PredefinedOptions,
 							d1,
 							d2,
 							in loop,
@@ -436,6 +451,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					var step = new UniqueLoopType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, .. GetLoopLinks(path)]],
+						context.PredefinedOptions,
 						d1,
 						d2,
 						in loop,
@@ -460,6 +476,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="d1">The digit 1.</param>
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="loop">The loop.</param>
@@ -471,6 +488,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private UniqueLoopType4Step? CheckType4(
 		List<UniqueLoopStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		scoped ref readonly CellMap loop,
@@ -527,6 +545,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
+					context.PredefinedOptions,
 					d1,
 					d2,
 					in loop,

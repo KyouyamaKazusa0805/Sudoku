@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,16 +14,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class EmptyRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	Digit digit,
 	[DataMember] House block,
 	[DataMember] scoped ref readonly Conjugate conjugatePair
-) : SingleDigitPatternStep(conclusions, views, digit)
+) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.6M;

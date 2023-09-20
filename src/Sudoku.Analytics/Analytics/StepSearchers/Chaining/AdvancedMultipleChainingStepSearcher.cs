@@ -146,10 +146,18 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOnStep(scoped ref readonly Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOnStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		ChainNode dstOn,
+		ChainNode dstOff,
+		ChainNode src,
+		ChainNode target,
+		bool isAbsurd
+	)
 	{
 		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -157,10 +165,18 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private BinaryForcingChainsStep CreateChainingOffStep(scoped ref readonly Grid grid, ChainNode dstOn, ChainNode dstOff, ChainNode src, ChainNode target, bool isAbsurd)
+	private BinaryForcingChainsStep CreateChainingOffStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		ChainNode dstOn,
+		ChainNode dstOff,
+		ChainNode src,
+		ChainNode target,
+		bool isAbsurd
+	)
 	{
 		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -168,7 +184,13 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private CellForcingChainsStep CreateCellForcingStep(scoped ref readonly Grid grid, byte srcCell, ChainNode target, ChainBranch outcomes)
+	private CellForcingChainsStep CreateCellForcingStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		byte srcCell,
+		ChainNode target,
+		ChainBranch outcomes
+	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusion = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
@@ -184,7 +206,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 			}
 		}
 
-		var result = new CellForcingChainsStep(conclusion, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new CellForcingChainsStep(conclusion, context.PredefinedOptions, srcCell, chains, AllowDynamic, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -192,7 +214,14 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private RegionForcingChainsStep CreateHouseForcingStep(scoped ref readonly Grid grid, House houseIndex, byte digit, ChainNode target, ChainBranch outcomes)
+	private RegionForcingChainsStep CreateHouseForcingStep(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		House houseIndex,
+		byte digit,
+		ChainNode target,
+		ChainBranch outcomes
+	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
 		var conclusions = (Conclusion[])[new(targetIsOn ? Assignment : Elimination, targetCell, targetDigit)];
@@ -205,7 +234,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 			chains.Add(tempCell, outcomes[tempCell][target]);
 		}
 
-		var result = new RegionForcingChainsStep(conclusions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new RegionForcingChainsStep(conclusions, context.PredefinedOptions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 }

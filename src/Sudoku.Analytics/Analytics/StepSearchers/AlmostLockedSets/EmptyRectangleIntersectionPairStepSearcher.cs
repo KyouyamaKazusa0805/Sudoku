@@ -122,6 +122,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					var step = new EmptyRectangleIntersectionPairStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, block)]],
+						context.PredefinedOptions,
 						c1,
 						c2,
 						block,

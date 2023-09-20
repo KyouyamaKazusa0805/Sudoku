@@ -1,4 +1,5 @@
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Text;
 using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -9,7 +10,8 @@ namespace Sudoku.Analytics.Steps;
 /// Provides with a step that is a <b>Pattern Overlay</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
-public sealed class PatternOverlayStep(Conclusion[] conclusions) : LastResortStep(conclusions, null)
+/// <param name="options"><inheritdoc/></param>
+public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOptions options) : LastResortStep(conclusions, null, options)
 {
 	/// <summary>
 	/// Indicates the digit.

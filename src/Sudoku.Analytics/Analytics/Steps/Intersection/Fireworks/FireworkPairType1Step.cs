@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="extraCell1">Indicates the first extra digit used.</param>
@@ -20,11 +22,12 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkPairType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] Mask digitsMask,
 	[DataMember] Cell extraCell1,
 	[DataMember] Cell extraCell2
-) : FireworkStep(conclusions, views)
+) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkPairType1;

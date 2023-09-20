@@ -35,11 +35,11 @@ public abstract class ChainingStepSearcher(
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="p">The potential that is assumed to be "on"</param>
 	/// <param name="isY">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/>
 	/// </param>
 	/// <returns>The set of potentials that must be "off".</returns>
 	protected NodeSet GetOnToOff(scoped ref readonly Grid grid, ChainNode p, bool isY)
@@ -83,7 +83,7 @@ public abstract class ChainingStepSearcher(
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="p">The potential that is assumed to be "off"</param>
 	/// <param name="source">
@@ -93,10 +93,10 @@ public abstract class ChainingStepSearcher(
 	/// </param>
 	/// <param name="offPotentials">Indicates the <see cref="ChainNode"/> instances that are already set "off".</param>
 	/// <param name="isX">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isX']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isX']"/>
 	/// </param>
 	/// <param name="isY">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='isY']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/>
 	/// </param>
 	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
 	/// <returns>The set of potentials that must be "off".</returns>
@@ -216,7 +216,7 @@ public abstract class ChainingStepSearcher(
 	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
 	/// </summary>
 	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/>
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
 	/// </param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
@@ -288,7 +288,9 @@ public abstract class ChainingStepSearcher(
 	/// <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
 	/// <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
 	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
-	/// <param name="grid"><inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, bool, bool)" path="/param[@name='grid']"/></param>
+	/// <param name="grid">
+	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
+	/// </param>
 	/// <param name="original">Indicates the original grid.</param>
 	protected virtual void OnAdvanced(
 		NodeList pendingOn,

@@ -1,4 +1,5 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text.Notation;
@@ -10,16 +11,18 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="blocks">Indicates the blocks that the current pattern lies in.</param>
 /// <param name="pattern">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the mask of digits.</param>
 public abstract partial class ChromaticPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] House[] blocks,
 	[DataMember] scoped ref readonly CellMap pattern,
 	[DataMember] Mask digitsMask
-) : NegativeRankStep(conclusions, views)
+) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.5M;

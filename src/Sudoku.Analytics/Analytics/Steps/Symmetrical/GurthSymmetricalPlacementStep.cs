@@ -1,6 +1,7 @@
 using System.SourceGeneration;
 using System.Text;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
@@ -13,6 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="symmetricType">
 /// Indicates the symmetric type used. The supported value can only be:
 /// <list type="bullet">
@@ -27,9 +29,10 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
+	StepSearcherOptions options,
 	[DataMember] SymmetricType symmetricType,
 	[DataMember] Digit?[]? mapping
-) : SymmetryStep(conclusions, views)
+) : SymmetryStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty

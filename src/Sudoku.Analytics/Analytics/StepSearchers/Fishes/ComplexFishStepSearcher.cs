@@ -77,7 +77,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Gather the POM eliminations to get all possible fish eliminations.
-		var pomElims = GetPomEliminationsFirstly(in grid);
+		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
 		if (!Array.Exists(pomElims, CommonMethods.LogicalConversion))
 		{
 			return null;
@@ -93,7 +93,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
 
 			// Create a background thread to work on searching for fishes of this digit.
-			if (!!pomElimsOfThisDigit && Collect(tempList, in tempGrid, in pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
+			if (!!pomElimsOfThisDigit && Collect(tempList, in tempGrid, ref context, in pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
 			{
 				return step;
 			}
@@ -114,12 +114,14 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	/// </summary>
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private unsafe ComplexFishStep? Collect(
 		List<ComplexFishStep> accumulator,
 		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
 		scoped ref readonly CellMap pomElimsOfThisDigit,
 		Digit digit,
 		bool onlyFindOne
@@ -427,6 +429,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 								var step = new ComplexFishStep(
 									[.. conclusions],
 									[[.. candidateOffsets, .. houseOffsets]],
+									context.PredefinedOptions,
 									digit,
 									baseSetsMask,
 									coverSetsMask,
@@ -460,12 +463,13 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	/// Get POM technique eliminations at first.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static CellMap[] GetPomEliminationsFirstly(scoped ref readonly Grid grid)
+	private static CellMap[] GetPomEliminationsFirstly(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var tempList = new List<Step>();
-		scoped var context = new AnalysisContext(tempList, grid, false, null);
-		ElimsSearcher.Collect(ref context);
+		scoped var context2 = new AnalysisContext(tempList, grid, false, context.PredefinedOptions);
+		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)

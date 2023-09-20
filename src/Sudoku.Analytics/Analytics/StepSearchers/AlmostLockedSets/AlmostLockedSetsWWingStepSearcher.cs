@@ -179,6 +179,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 										new HouseViewNode(WellKnownColorIdentifier.Normal, TrailingZeroCount(conjugatePair.Houses))
 									]
 								],
+								context.PredefinedOptions,
 								als1,
 								als2,
 								conjugatePair,

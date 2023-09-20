@@ -260,6 +260,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 							.. isEsp ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house2)]
 						]
 					],
+					context.PredefinedOptions,
 					als1,
 					als2,
 					rccMask,

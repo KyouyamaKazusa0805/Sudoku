@@ -23,7 +23,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// <summary>
 	/// The methods.
 	/// </summary>
-	private static readonly delegate*<ref readonly Grid, GurthSymmetricalPlacementStep?>[] Methods = [
+	private static readonly delegate*<ref readonly Grid, ref AnalysisContext, GurthSymmetricalPlacementStep?>[] Methods = [
 		&CheckDiagonal,
 		&CheckAntiDiagonal,
 		&CheckCentral
@@ -36,7 +36,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		scoped ref readonly var grid = ref context.Grid;
 		for (var i = 0; i < 3; i++)
 		{
-			if (Methods[i](in grid) is not { } step)
+			if (Methods[i](in grid, ref context) is not { } step)
 			{
 				continue;
 			}
@@ -92,8 +92,9 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 	/// Checks for diagonal symmetry steps.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(scoped ref readonly Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckDiagonal(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -206,15 +207,22 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new GurthSymmetricalPlacementStep([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], SymmetricType.Diagonal, mapping);
+			: new GurthSymmetricalPlacementStep(
+				[.. conclusions],
+				[[.. cellOffsets, .. candidateOffsets]],
+				context.PredefinedOptions,
+				SymmetricType.Diagonal,
+				mapping
+			);
 	}
 
 	/// <summary>
 	/// Checks for anti-diagonal symmetry steps.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(scoped ref readonly Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -327,15 +335,16 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], SymmetricType.AntiDiagonal, mapping);
+			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], context.PredefinedOptions, SymmetricType.AntiDiagonal, mapping);
 	}
 
 	/// <summary>
 	/// Checks for central symmetry steps.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid)
+	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		if (grid.GetState(40) != CellState.Empty)
 		{
@@ -412,6 +421,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 			return new(
 				[new(Assignment, 40, digit)],
 				[[.. cellOffsets, new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit)]],
+				context.PredefinedOptions,
 				SymmetricType.Central,
 				mapping
 			);

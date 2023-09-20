@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using System.Text;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
@@ -15,6 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// Provides with a step that is a <b>Senior Exocet</b> technique.
 /// </summary>
 /// <param name="views"><inheritdoc/></param>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="exocet"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
@@ -22,12 +24,13 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="eliminations"><inheritdoc/></param>
 public sealed partial class SeniorExocetStep(
 	View[]? views,
+	StepSearcherOptions options,
 	Exocet exocet,
 	Mask digitsMask,
 	[DataMember] Cell endoTargetCell,
 	[DataMember] House[]? extraHouses,
 	ExocetElimination[] eliminations
-) : ExocetStep(views, exocet, digitsMask, eliminations)
+) : ExocetStep(views, options, exocet, digitsMask, eliminations)
 {
 	/// <summary>
 	/// Indicates whether the specified instance contains any extra houses.
