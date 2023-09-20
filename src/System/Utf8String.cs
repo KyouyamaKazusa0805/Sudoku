@@ -51,7 +51,11 @@ public readonly unsafe partial struct Utf8String :
 		Array.Fill(_value, c);
 	}
 
-	/// <inheritdoc cref="string(char*)"/>
+	/// <summary>
+	/// Initializes a new instance of the <see cref="Utf8String"/> struct to the value
+	/// indicated by a specified pointer to an array of UTF-8 characters.
+	/// </summary>
+	/// <param name="value">A pointer to a <see langword="null"/>-terminated array of UTF-8 characters.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Utf8String(Utf8Char* value)
 	{
