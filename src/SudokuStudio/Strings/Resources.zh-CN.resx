@@ -717,6 +717,9 @@
   <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
     <value>修改</value>
   </data>
+  <data name="GeneratingStrategyPage_Error" xml:space="preserve">
+    <value>错误数据</value>
+  </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>首步出数特性：</value>
   </data>
@@ -732,6 +735,9 @@
   <data name="GeneratingStrategyPage_IsMinimalPuzzle" xml:space="preserve">
     <value>必须为最小题：</value>
   </data>
+  <data name="GeneratingStrategyPage_IttoryuLength" xml:space="preserve">
+    <value>一刀流长度：</value>
+  </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>主策略</value>
   </data>
@@ -741,6 +747,9 @@
   <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
     <value>珍珠题</value>
   </data>
+  <data name="GeneratingStrategyPage_RealIttoryu" xml:space="preserve">
+    <value>9（一刀流）</value>
+  </data>
   <data name="GeneratingStrategyPage_Submit" xml:space="preserve">
     <value>确定</value>
   </data>
@@ -749,6 +758,9 @@
   </data>
   <data name="GeneratingStrategyPage_TechniquesMustIncluded" xml:space="preserve">
     <value>必须含有的技巧：</value>
+  </data>
+  <data name="GeneratingStrategyPage_ZeroIttoryu" xml:space="preserve">
+    <value>0（完全不是一刀流）</value>
   </data>
   <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
     <value>清除单元格填数</value>

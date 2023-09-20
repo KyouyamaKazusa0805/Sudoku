@@ -1396,6 +1396,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLengthProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName"/>.
@@ -1751,6 +1757,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount">
             <summary>
             Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength">
+            <summary>
+            Indicates the ittoryu length for the generated puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
@@ -5396,6 +5407,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Edit.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Error">
+            <summary>
+              Looks up a localized string similar to Error.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_FirstAssignmentAttribute">
             <summary>
               Looks up a localized string similar to Attribute on first assignment: .
@@ -5421,6 +5437,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Minimal: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_IttoryuLength">
+            <summary>
+              Looks up a localized string similar to Ittoryu length: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Main">
             <summary>
               Looks up a localized string similar to Main.
@@ -5436,6 +5457,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Pearl.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_RealIttoryu">
+            <summary>
+              Looks up a localized string similar to 9 (Full Ittoryu).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Submit">
             <summary>
               Looks up a localized string similar to Submit.
@@ -5449,6 +5475,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_TechniquesMustIncluded">
             <summary>
               Looks up a localized string similar to Techniques must be included: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_ZeroIttoryu">
+            <summary>
+              Looks up a localized string similar to 0 (Completely not Ittoryu).
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCell">
@@ -9824,8 +9855,9 @@ if (student is (name: var name, age: >= 18))
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
+            <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique,System.Int32)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
@@ -9835,6 +9867,7 @@ if (student is (name: var name, age: >= 18))
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
             <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
+            <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
             <summary>Indicates the difficulty level selected.</summary>
@@ -9853,6 +9886,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.CountOfGivens">
             <summary>Indicates the limit of givens count.</summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.IttoryuLength">
+            <summary>Indicates the ittoryu length.</summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

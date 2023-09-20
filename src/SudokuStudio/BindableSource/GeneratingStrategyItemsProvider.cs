@@ -80,6 +80,15 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 					GeneratedPuzzleGivensCountInitializedValueDisplayer,
 					GeneratedPuzzleGivensCountValueRouter
 				)
+			),
+			new(
+				"GeneratingStrategyPage_IttoryuLength",
+				new(
+					"GeneratingStrategyPage_IttoryuLength",
+					IttoryuLengthControlCreater,
+					IttoryuLengthInitializedValueDisplayer,
+					IttoryuLengthValueRouter
+				)
 			)
 		];
 
@@ -142,7 +151,28 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> new() { IsOn = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount };
 
 	private static IntegerBox GeneratedPuzzleGivensCountControlCreator()
-		=> new() { Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 4 };
+		=> new()
+		{
+			Minimum = 17,
+			Maximum = 80,
+			SmallChange = 1,
+			LargeChange = 4,
+			Value = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
+				? ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount
+				: 0
+		};
+
+	private static IntegerBox IttoryuLengthControlCreater()
+		=> new()
+		{
+			Minimum = 0,
+			Maximum = 9,
+			SmallChange = 1,
+			LargeChange = 3,
+			Value = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy
+				? ((App)Application.Current).Preference.UIPreferences.IttoryuLength
+				: 0
+		};
 
 	private static string DifficultyLevelInitializedValueDisplayer()
 		=> DifficultyLevelConversion.GetNameWithDefault(
@@ -182,6 +212,16 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			)
 			: "/";
 
+	private static string IttoryuLengthInitializedValueDisplayer()
+		=> ((App)Application.Current).Preference.UIPreferences.IttoryuLength switch
+		{
+			-1 => "/",
+			0 => GetString("GeneratingStrategyPage_ZeroIttoryu"),
+			9 => GetString("GeneratingStrategyPage_RealIttoryu"),
+			var i and > 0 and < 9 => i.ToString(),
+			_ => GetString("GeneratingStrategyPage_Error")
+		};
+
 	private static void DifficultyLevelValueRouter(FrameworkElement c)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!;
 
@@ -210,6 +250,11 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 
 	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
+			? ((IntegerBox)c).Value
+			: -1;
+
+	private static void IttoryuLengthValueRouter(FrameworkElement c)
+		=> ((App)Application.Current).Preference.UIPreferences.IttoryuLength = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy
 			? ((IntegerBox)c).Value
 			: -1;
 }

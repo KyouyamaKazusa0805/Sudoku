@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using Sudoku.Algorithm.Generating;
+using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
@@ -107,15 +108,20 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{ CanRestrictGeneratingGivensCount: true, GeneratedPuzzleGivensCount: var count and not -1 } => count,
 			_ => HodokuPuzzleGenerator.AutoClues
 		};
+		var ittoryuLength = preferences.IttoryuLength;
 		var analyzer = ((App)Application.Current).Analyzer
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
+		var ittoryuPathFinder = new IttoryuPathFinder
+		{
+			SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]
+		};
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
 		try
 		{
-			var grid = await Task.Run(() => gridCreator(analyzer, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount)));
+			var grid = await Task.Run(() => gridCreator(analyzer, ittoryuPathFinder, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)));
 			if (grid.IsUndefined)
 			{
 				return;
@@ -138,7 +144,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		Grid gridCreator(Analyzer analyzer, GeneratingDetails details)
+		Grid gridCreator(Analyzer analyzer, IttoryuPathFinder finder, GeneratingDetails details)
 		{
 			try
 			{
@@ -147,7 +153,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					var count = progress.Count;
 					BasePage.AnalyzeProgressLabel.Text = processingText;
 					BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
-				}), details, cts.Token, analyzer) ?? Grid.Undefined;
+				}), details, cts.Token, analyzer, finder) ?? Grid.Undefined;
 			}
 			catch (TaskCanceledException)
 			{
@@ -159,21 +165,34 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			Action<GeneratorProgress> reportingAction,
 			GeneratingDetails details,
 			CancellationToken cancellationToken,
-			Analyzer analyzer
+			Analyzer analyzer,
+			IttoryuPathFinder finder
 		)
 		{
 			try
 			{
 				for (
-					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount)) = (
+					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)) = (
 						0,
 						new SelfReportingProgress<GeneratorProgress>(reportingAction),
 						details
 					); ; count++, progress.Report(new(count)), cancellationToken.ThrowIfCancellationRequested()
 				)
 				{
-					if (HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken) is var grid
-						&& (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
+					var grid = HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken);
+
+					// Optimize: transform the grid if worth.
+					if (ittoryuLength >= 5)
+					{
+						if (finder.FindPath(in grid) is not { Digits.Length: var foundIttoryuLength and >= 5 } path || foundIttoryuLength < ittoryuLength)
+						{
+							continue;
+						}
+
+						grid.MakeIttoryu(path);
+					}
+
+					if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
 						&& analyzer.Analyze(in grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
@@ -212,11 +231,13 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
 /// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
 /// <param name="CountOfGivens">Indicates the limit of givens count.</param>
+/// <param name="IttoryuLength">Indicates the ittoryu length.</param>
 file readonly record struct GeneratingDetails(
 	DifficultyLevel DifficultyLevel,
 	SymmetricType SymmetricPattern,
 	bool ShouldBeMinimal,
 	bool ShouldBePearl,
 	Technique SelectedTechnique,
-	int CountOfGivens
+	int CountOfGivens,
+	int IttoryuLength
 );

@@ -714,6 +714,9 @@
   <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="GeneratingStrategyPage_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="GeneratingStrategyPage_FirstAssignmentAttribute" xml:space="preserve">
     <value>Attribute on first assignment: </value>
   </data>
@@ -729,6 +732,9 @@
   <data name="GeneratingStrategyPage_IsMinimalPuzzle" xml:space="preserve">
     <value>Minimal: </value>
   </data>
+  <data name="GeneratingStrategyPage_IttoryuLength" xml:space="preserve">
+    <value>Ittoryu length: </value>
+  </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>Main</value>
   </data>
@@ -738,6 +744,9 @@
   <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
     <value>Pearl</value>
   </data>
+  <data name="GeneratingStrategyPage_RealIttoryu" xml:space="preserve">
+    <value>9 (Full Ittoryu)</value>
+  </data>
   <data name="GeneratingStrategyPage_Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
@@ -746,6 +755,9 @@
   </data>
   <data name="GeneratingStrategyPage_TechniquesMustIncluded" xml:space="preserve">
     <value>Techniques must be included: </value>
+  </data>
+  <data name="GeneratingStrategyPage_ZeroIttoryu" xml:space="preserve">
+    <value>0 (Completely not Ittoryu)</value>
   </data>
   <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
     <value>Clear a cell</value>

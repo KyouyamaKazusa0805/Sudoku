@@ -2068,6 +2068,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string GeneratingStrategyPage_Error {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attribute on first assignment: .
         /// </summary>
         internal static string GeneratingStrategyPage_FirstAssignmentAttribute {
@@ -2113,6 +2122,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu length: .
+        /// </summary>
+        internal static string GeneratingStrategyPage_IttoryuLength {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_IttoryuLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main.
         /// </summary>
         internal static string GeneratingStrategyPage_Main {
@@ -2140,6 +2158,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 9 (Full Ittoryu).
+        /// </summary>
+        internal static string GeneratingStrategyPage_RealIttoryu {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_RealIttoryu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         internal static string GeneratingStrategyPage_Submit {
@@ -2163,6 +2190,15 @@ namespace SudokuStudio.Strings {
         internal static string GeneratingStrategyPage_TechniquesMustIncluded {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_TechniquesMustIncluded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0 (Completely not Ittoryu).
+        /// </summary>
+        internal static string GeneratingStrategyPage_ZeroIttoryu {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_ZeroIttoryu", resourceCulture);
             }
         }
         
