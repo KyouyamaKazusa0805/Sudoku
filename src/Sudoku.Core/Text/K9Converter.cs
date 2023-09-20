@@ -3,13 +3,15 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using static System.Numerics.BitOperations;
+using static Sudoku.Strings.InternalStringAccessor;
 
 namespace Sudoku.Text;
 
 /// <summary>
 /// Represents a coordinate converter using K9 notation.
 /// </summary>
-public sealed class K9Converter : ICoordinateConverter
+public sealed class K9Converter : CoordinateConverter
 {
 	/// <summary>
 	/// Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.
@@ -47,7 +49,7 @@ public sealed class K9Converter : ICoordinateConverter
 
 
 	/// <inheritdoc/>
-	public CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellNotationConverter
 		=> (scoped ref readonly CellMap cells) =>
 		{
 			switch (cells)
@@ -129,7 +131,7 @@ public sealed class K9Converter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateNotationConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			scoped var sb = new StringHandler(50);
@@ -157,7 +159,60 @@ public sealed class K9Converter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ConclusionNotationConverter ConclusionNotationConverter
+	public override HouseNotationConverter HouseNotationConverter
+		=> housesMask =>
+		{
+			if (housesMask == 0)
+			{
+				return string.Empty;
+			}
+
+			if (IsPow2((uint)housesMask))
+			{
+				var house = Log2((uint)housesMask);
+				var houseType = house.ToHouseType();
+				return string.Format(GetString(houseType switch
+				{
+					HouseType.Row => "RowLabel",
+					HouseType.Column => "ColumnLabel",
+					HouseType.Block => "BlockLabel",
+					_ => throw new InvalidOperationException($"The specified house value '{nameof(house)}' is invalid.")
+				}), house);
+			}
+
+			var dic = new Dictionary<HouseType, List<int>>(3);
+			foreach (var house in housesMask)
+			{
+				var houseType = house.ToHouseType();
+				if (!dic.TryAdd(houseType, [house]))
+				{
+					dic[houseType].Add(house);
+				}
+			}
+
+			scoped var sb = new StringHandler(30);
+			foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
+			{
+				sb.Append(
+					string.Format(
+						GetString(
+							houseType switch
+							{
+								HouseType.Row => "RowLabel",
+								HouseType.Column => "ColumnLabel",
+								HouseType.Block => "BlockLabel",
+								_ => throw new InvalidOperationException($"The specified house value '{nameof(houseType)}' is invalid.")
+							}
+						), string.Concat([.. from house in h select (house % 9 + 1).ToString()])
+					)
+				);
+			}
+
+			return sb.ToStringAndClear();
+		};
+
+	/// <inheritdoc/>
+	public override ConclusionNotationConverter ConclusionNotationConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
@@ -212,10 +267,10 @@ public sealed class K9Converter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public DigitNotationConverter DigitNotationConverter => new RxCyConverter { DigitsSeprarator = DigitsSeprarator }.DigitNotationConverter;
+	public override DigitNotationConverter DigitNotationConverter => new RxCyConverter { DigitsSeprarator = DigitsSeprarator }.DigitNotationConverter;
 
 	/// <inheritdoc/>
-	public IntersectionNotationConverter IntersectionNotationConverter
+	public override IntersectionNotationConverter IntersectionNotationConverter
 		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) => DefaultSeparator switch
 		{
 			null or [] => string.Concat([
@@ -238,7 +293,7 @@ public sealed class K9Converter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ChuteNotationConverter ChuteNotationConverter
+	public override ChuteNotationConverter ChuteNotationConverter
 		=> (scoped ReadOnlySpan<Chute> chutes) =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
@@ -274,7 +329,7 @@ public sealed class K9Converter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateNotationConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)

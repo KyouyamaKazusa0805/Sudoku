@@ -1,4 +1,4 @@
-using Sudoku.Analytics;
+using System.Runtime.CompilerServices;
 
 namespace Sudoku.Text;
 
@@ -10,7 +10,7 @@ namespace Sudoku.Text;
 /// </remarks>
 /// <seealso cref="RxCyConverter"/>
 /// <seealso cref="K9Converter"/>
-public interface ICoordinateConverter
+public abstract class CoordinateConverter
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
@@ -21,6 +21,11 @@ public interface ICoordinateConverter
 	/// The converter method that creates a <see cref="string"/> via the specified list of candidates.
 	/// </summary>
 	public abstract CandidateNotationConverter CandidateNotationConverter { get; }
+
+	/// <summary>
+	/// The converter method that creates a <see cref="string"/> via the specified list of houses.
+	/// </summary>
+	public abstract HouseNotationConverter HouseNotationConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of conclusions.
@@ -46,4 +51,20 @@ public interface ICoordinateConverter
 	/// The converter method that creates a <see cref="string"/> via the specified conjugate.
 	/// </summary>
 	public abstract ConjugateNotationConverter ConjugateNotationConverter { get; }
+
+
+	/// <summary>
+	/// Creates a <see cref="CoordinateConverter"/> instance via the specified concept notation.
+	/// </summary>
+	/// <param name="conceptNotation">The field to represent with a kind of concept notation.</param>
+	/// <returns>A <see cref="CoordinateConverter"/> instance.</returns>
+	/// <exception cref="NotSupportedException">Throws when the argument <paramref name="conceptNotation"/> is out of range.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CoordinateConverter Create(ConceptNotationBased conceptNotation)
+		=> conceptNotation switch
+		{
+			ConceptNotationBased.RxCyBased => new RxCyConverter(),
+			ConceptNotationBased.K9Based => new K9Converter(),
+			_ => throw new NotSupportedException("The current value is not supported.")
+		};
 }

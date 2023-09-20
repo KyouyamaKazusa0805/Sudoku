@@ -4,8 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
-using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -75,15 +73,16 @@ public sealed partial class AlmostLockedSetsXzStep(
 			)
 		];
 
-	private string CellsStr => (FirstAls.Cells | SecondAls.Cells).ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(FirstAls.Cells | SecondAls.Cells);
 
-	private string EspDigitStr => (TrailingZeroCount(ZDigitsMask) + 1).ToString();
+	private string EspDigitStr => Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask);
 
-	private string Als1Str => FirstAls.ToString();
+	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
 
-	private string Als2Str => SecondAls.ToString();
+	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string XStr => DigitNotation.ToString(XDigitsMask);
+	private string XStr => Options.CoordinateConverter.DigitNotationConverter(XDigitsMask);
 
-	private string ZResultStr => ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {DigitNotation.ToString(ZDigitsMask)}";
+	private string ZResultStr
+		=> ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask)}";
 }

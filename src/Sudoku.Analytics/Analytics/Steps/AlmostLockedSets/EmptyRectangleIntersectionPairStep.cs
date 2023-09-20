@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -43,13 +42,13 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr])
 		];
 
-	private string Digit1Str => DigitNotation.ToString(Digit1);
+	private string Digit1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => DigitNotation.ToString(Digit2);
+	private string Digit2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
 
-	private string StartCellStr => CellNotation.ToString(StartCell);
+	private string StartCellStr => Options.CoordinateConverter.CellNotationConverter([StartCell]);
 
-	private string EndCellStr => CellNotation.ToString(EndCell);
+	private string EndCellStr => Options.CoordinateConverter.CellNotationConverter([EndCell]);
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

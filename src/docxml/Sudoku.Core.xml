@@ -7126,6 +7126,37 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.Strings.InternalResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.BlockLabel">
+            <summary>
+              Looks up a localized string similar to Block {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.ColumnLabel">
+            <summary>
+              Looks up a localized string similar to Column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.RowLabel">
+            <summary>
+              Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
         <member name="T:Sudoku.Strings.ResourceNotFoundException">
             <summary>
             Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
@@ -7174,6 +7205,21 @@ if (student is (name: var name, age: >= 18))
             <param name="chutes">A list of chutes.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="chutes"/>.</returns>
         </member>
+        <member name="T:Sudoku.Text.ConceptNotationBased">
+            <summary>
+            Represents a kind of notation to describe a concept in sudoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ConceptNotationBased.RxCyBased">
+            <summary>
+            Indicates the notation is based on <b>RxCy</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ConceptNotationBased.K9Based">
+            <summary>
+            Indicates the notation is based on <b>K9</b> notation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.ConclusionNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
@@ -7187,6 +7233,64 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="conjugatePairs">A list of conjugate pairs.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.CoordinateConverter">
+            <summary>
+            Represents an option provider for coordinates.
+            </summary>
+            <remarks>
+            You can use types <see cref="T:Sudoku.Text.RxCyConverter"/> and <seealso cref="T:Sudoku.Text.K9Converter"/>. They are the derived types of the current type.
+            </remarks>
+            <seealso cref="T:Sudoku.Text.RxCyConverter"/>
+            <seealso cref="T:Sudoku.Text.K9Converter"/>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.CellNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.CandidateNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.HouseNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.ConclusionNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.DigitNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.IntersectionNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.ChuteNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.CoordinateConverter.ConjugateNotationConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.CoordinateConverter.Create(Sudoku.Text.ConceptNotationBased)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Text.CoordinateConverter"/> instance via the specified concept notation.
+            </summary>
+            <param name="conceptNotation">The field to represent with a kind of concept notation.</param>
+            <returns>A <see cref="T:Sudoku.Text.CoordinateConverter"/> instance.</returns>
+            <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="conceptNotation"/> is out of range.</exception>
         </member>
         <member name="T:Sudoku.Text.DigitNotationConverter">
             <summary>
@@ -7980,50 +8084,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.ICoordinateConverter">
+        <member name="T:Sudoku.Text.HouseNotationConverter">
             <summary>
-            Represents an option provider for coordinates.
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
             </summary>
-            <remarks>
-            You can use types <see cref="T:Sudoku.Text.RxCyConverter"/> and <seealso cref="T:Sudoku.Text.K9Converter"/>. They are the derived types of the current type.
-            </remarks>
-            <seealso cref="T:Sudoku.Text.RxCyConverter"/>
-            <seealso cref="T:Sudoku.Text.K9Converter"/>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.CellNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.CandidateNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.ConclusionNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.DigitNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.IntersectionNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.ChuteNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.ICoordinateConverter.ConjugateNotationConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
-            </summary>
+            <param name="housesMask">A list of houses.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
         </member>
         <member name="T:Sudoku.Text.IntersectionNotationConverter">
             <summary>
@@ -8076,6 +8142,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Text.K9Converter.CandidateNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.K9Converter.HouseNotationConverter">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Text.K9Converter.ConclusionNotationConverter">
@@ -9225,6 +9294,14 @@ if (student is (name: var name, age: >= 18))
             The value is <see langword="false"/> by default.
             </remarks>
         </member>
+        <member name="P:Sudoku.Text.RxCyConverter.HouseNotationOnlyDisplayCapitals">
+            <summary>
+            Indicates whether the houses will be displayed its capitals only.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
         <member name="P:Sudoku.Text.RxCyConverter.DefaultSeparator">
             <summary>
             Indicates the default separator. The value will be inserted into two non-digit-kind instances.
@@ -9245,6 +9322,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.CandidateNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.RxCyConverter.HouseNotationConverter">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.ConclusionNotationConverter">

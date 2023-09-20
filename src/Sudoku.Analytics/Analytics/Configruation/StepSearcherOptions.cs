@@ -16,7 +16,7 @@ public sealed class StepSearcherOptions
 	public static StepSearcherOptions Default => new();
 
 
-	/// <inheritdoc cref="ICoordinateConverter"/>
+	/// <inheritdoc cref="Text.CoordinateConverter"/>
 	/// <remarks>By default, the value is an instance of type <see cref="RxCyConverter"/>.</remarks>
-	public ICoordinateConverter CoordinateConverter { get; set; } = new RxCyConverter();
+	public CoordinateConverter CoordinateConverter { get; set; } = new RxCyConverter();
 }

@@ -3,13 +3,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Text;
 
 /// <summary>
 /// Represents a coordinate converter using RxCy notation.
 /// </summary>
-public sealed class RxCyConverter : ICoordinateConverter
+public sealed class RxCyConverter : CoordinateConverter
 {
 	/// <summary>
 	/// Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.
@@ -26,6 +27,14 @@ public sealed class RxCyConverter : ICoordinateConverter
 	/// The value is <see langword="false"/> by default.
 	/// </remarks>
 	public bool MakeDigitBeforeCell { get; set; }
+
+	/// <summary>
+	/// Indicates whether the houses will be displayed its capitals only.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see langword="false"/> by default.
+	/// </remarks>
+	public bool HouseNotationOnlyDisplayCapitals { get; set; }
 
 	/// <summary>
 	/// Indicates the default separator. The value will be inserted into two non-digit-kind instances.
@@ -45,7 +54,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 
 
 	/// <inheritdoc/>
-	public CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellNotationConverter
 		=> (scoped ref readonly CellMap cells) =>
 		{
 			return cells switch
@@ -111,7 +120,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateNotationConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			scoped var sb = new StringHandler(50);
@@ -148,7 +157,69 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ConclusionNotationConverter ConclusionNotationConverter
+	public override HouseNotationConverter HouseNotationConverter
+		=> housesMask =>
+		{
+			if (housesMask == 0)
+			{
+				return string.Empty;
+			}
+
+			if (HouseNotationOnlyDisplayCapitals)
+			{
+				scoped var sb = new StringHandler(27);
+				for (var (houseIndex, i) = (9, 0); i < 27; i++, houseIndex = (houseIndex + 1) % 27)
+				{
+					if ((housesMask >> houseIndex & 1) != 0)
+					{
+						sb.Append(getChar(houseIndex / 9));
+					}
+				}
+
+				return sb.ToStringAndClear();
+			}
+
+			if (IsPow2((uint)housesMask))
+			{
+				var house = Log2((uint)housesMask);
+				return $"{getChar(house)}{house % 9 + 1}";
+			}
+
+			{
+				var dic = new Dictionary<HouseType, List<int>>(3);
+				foreach (var house in housesMask)
+				{
+					var houseType = house.ToHouseType();
+					if (!dic.TryAdd(houseType, [house]))
+					{
+						dic[houseType].Add(house);
+					}
+				}
+
+				scoped var sb = new StringHandler(30);
+				foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
+				{
+					sb.Append(houseType.GetLabel());
+					sb.AppendRange(from house in h select house % 9 + 1);
+				}
+
+				return sb.ToStringAndClear();
+			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static char getChar(House house)
+				=> house switch
+				{
+					>= 0 and < 9 => 'b',
+					>= 9 and < 18 => 'r',
+					>= 18 and < 27 => 'c',
+					_ => throw new ArgumentOutOfRangeException(nameof(house))
+				};
+		};
+
+	/// <inheritdoc/>
+	public override ConclusionNotationConverter ConclusionNotationConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
@@ -203,7 +274,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public DigitNotationConverter DigitNotationConverter
+	public override DigitNotationConverter DigitNotationConverter
 		=> mask => DigitsSeprarator switch
 		{
 			null or [] => string.Concat([.. from digit in mask select (digit + 1).ToString()]),
@@ -211,7 +282,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public IntersectionNotationConverter IntersectionNotationConverter
+	public override IntersectionNotationConverter IntersectionNotationConverter
 		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) => DefaultSeparator switch
 		{
 			null or [] => string.Concat([
@@ -234,7 +305,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ChuteNotationConverter ChuteNotationConverter
+	public override ChuteNotationConverter ChuteNotationConverter
 		=> (scoped ReadOnlySpan<Chute> chutes) =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
@@ -270,7 +341,7 @@ public sealed class RxCyConverter : ICoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateNotationConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)

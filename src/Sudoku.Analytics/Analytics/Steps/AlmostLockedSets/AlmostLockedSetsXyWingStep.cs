@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -46,15 +45,15 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 			new(ChineseLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr])
 		];
 
-	private string Als1Str => FirstAls.ToString();
+	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
 
-	private string BridgeStr => BridgeAls.ToString();
+	private string BridgeStr => BridgeAls.ToString(Options.CoordinateConverter);
 
-	private string Als2Str => SecondAls.ToString();
+	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string XStr => DigitNotation.ToString(XDigitsMask);
+	private string XStr => Options.CoordinateConverter.DigitNotationConverter(XDigitsMask);
 
-	private string YStr => DigitNotation.ToString(YDigitsMask);
+	private string YStr => Options.CoordinateConverter.DigitNotationConverter(YDigitsMask);
 
-	private string ZStr => DigitNotation.ToString(ZDigitsMask);
+	private string ZStr => Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask);
 }

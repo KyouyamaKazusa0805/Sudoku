@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -41,13 +40,13 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 
-	private string Als1Str => FirstAls.ToString();
+	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
 
-	private string Als2Str => SecondAls.ToString();
+	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string ConjStr => ConjugatePair.ToString();
+	private string ConjStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
 
-	private string WStr => DigitNotation.ToString(WDigitsMask);
+	private string WStr => Options.CoordinateConverter.DigitNotationConverter(WDigitsMask);
 
-	private string XStr => DigitNotation.ToString(XDigit);
+	private string XStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << XDigit));
 }
