@@ -91,7 +91,8 @@ public unsafe partial struct Grid : GridImpl
 	public static readonly Grid Undefined;
 
 	/// <summary>
-	/// The internal sync root to sync threads while using <see cref="Solver"/>.
+	/// The internal field that can be used for making threads run in order while using <see cref="Solver"/>,
+	/// keeping the type being thread-safe.
 	/// </summary>
 	/// <seealso cref="Solver"/>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
