@@ -411,6 +411,12 @@
   <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
     <value>不限制最简题</value>
   </data>
+  <data name="AnalyzePage_IttoryuLength" xml:space="preserve">
+    <value>一刀流路径长度：{0}</value>
+  </data>
+  <data name="AnalyzePage_IttoryuPathIsNotLimited" xml:space="preserve">
+    <value>一刀流长度不限制</value>
+  </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>左右镜面翻转</value>
   </data>

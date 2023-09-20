@@ -85,6 +85,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
 					}
 				}.SingletonSpan<Bold>(),
+				new Run { Text = comma },
+				new Run
+				{
+					Text = uiPref.GeneratorDifficultyLevel switch
+					{
+						DifficultyLevel.Easy => string.Format(GetString("AnalyzePage_IttoryuLength"), uiPref.IttoryuLength),
+						_ => GetString("AnalyzePage_IttoryuPathIsNotLimited")
+					}
+				}.SingletonSpan<Bold>(),
 				new Run { Text = closedBrace }
 			]
 		);

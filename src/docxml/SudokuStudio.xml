@@ -4897,6 +4897,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Not a minimal.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_IttoryuLength">
+            <summary>
+              Looks up a localized string similar to Ittoryu path length: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_IttoryuPathIsNotLimited">
+            <summary>
+              Looks up a localized string similar to No limit for ittoryu path length.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_LeftRightSwapButton">
             <summary>
               Looks up a localized string similar to Left-Right swap.

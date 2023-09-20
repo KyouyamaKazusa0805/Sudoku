@@ -1150,6 +1150,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu path length: {0}.
+        /// </summary>
+        internal static string AnalyzePage_IttoryuLength {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IttoryuLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No limit for ittoryu path length.
+        /// </summary>
+        internal static string AnalyzePage_IttoryuPathIsNotLimited {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IttoryuPathIsNotLimited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Left-Right swap.
         /// </summary>
         internal static string AnalyzePage_LeftRightSwapButton {

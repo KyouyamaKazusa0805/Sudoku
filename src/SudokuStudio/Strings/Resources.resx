@@ -408,6 +408,12 @@
   <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
     <value>Not a minimal</value>
   </data>
+  <data name="AnalyzePage_IttoryuLength" xml:space="preserve">
+    <value>Ittoryu path length: {0}</value>
+  </data>
+  <data name="AnalyzePage_IttoryuPathIsNotLimited" xml:space="preserve">
+    <value>No limit for ittoryu path length</value>
+  </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>Left-Right swap</value>
   </data>
