@@ -92,7 +92,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Unique Rectangle
     * Unique Loop
     * Extended Rectangle (Including fit types and fat types)
-    * Unique Polygon (i.e. Borescoper's Deadly Pattern)
+    * Borescoper's Deadly Pattern
     * Qiu's Deadly Pattern
     * Unique Square
     * Bivalue Universal Grave
