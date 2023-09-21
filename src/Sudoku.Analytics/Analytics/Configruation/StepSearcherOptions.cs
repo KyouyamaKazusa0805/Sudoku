@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Sudoku.Text;
 
 namespace Sudoku.Analytics.Configuration;
@@ -8,8 +9,18 @@ namespace Sudoku.Analytics.Configuration;
 /// that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
 /// </summary>
-public sealed class StepSearcherOptions
+/// <param name="CoordinateConverter"><inheritdoc cref="Text.CoordinateConverter" path="/summary"/></param>
+public sealed record StepSearcherOptions(CoordinateConverter CoordinateConverter)
 {
+	/// <summary>
+	/// Initializes a <see cref="StepSearcherOptions"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public StepSearcherOptions() : this(new RxCyConverter())
+	{
+	}
+
+
 	/// <summary>
 	/// Represents a default option-provider instance.
 	/// </summary>
@@ -20,9 +31,4 @@ public sealed class StepSearcherOptions
 	/// </list>
 	/// </remarks>
 	public static StepSearcherOptions Default => new();
-
-
-	/// <inheritdoc cref="Text.CoordinateConverter"/>
-	/// <remarks>By default, the value is an instance of type <see cref="RxCyConverter"/>.</remarks>
-	public CoordinateConverter CoordinateConverter { get; set; } = new RxCyConverter();
 }

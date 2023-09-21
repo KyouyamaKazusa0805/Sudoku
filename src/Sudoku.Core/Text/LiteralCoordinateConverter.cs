@@ -12,25 +12,16 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a converter that outputs coordinates as literally-speaking representation.
 /// </summary>
-public sealed class LiteralCoordinateConverter : CoordinateConverter
+/// <param name="DefaultSeparator">
+/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+/// <para>The value is <c>", "</c> by default.</para>
+/// </param>
+/// <param name="DigitsSeprarator">
+/// <para>Indicates the digits separator.</para>
+/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+/// </param>
+public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeprarator = null) : CoordinateConverter
 {
-	/// <summary>
-	/// Indicates the default separator. The value will be inserted into two non-digit-kind instances.
-	/// </summary>
-	/// <remarks>
-	/// The value is <c>", "</c> by default.
-	/// </remarks>
-	public string DefaultSeparator { get; set; } = ", ";
-
-	/// <summary>
-	/// Indicates the digits separator.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-	/// </remarks>
-	public string? DigitsSeprarator { get; set; }
-
-
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter
 		=> (scoped ref readonly CellMap cells) => cells switch

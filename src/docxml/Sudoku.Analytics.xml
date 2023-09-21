@@ -3378,6 +3378,24 @@ if (student is (name: var name, age: >= 18))
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
             </summary>
+            <param name="CoordinateConverter"><inheritdoc cref="T:Sudoku.Text.CoordinateConverter" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor(Sudoku.Text.CoordinateConverter)">
+            <summary>
+            Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
+            that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
+            For example, setting notation to the coordinates.
+            </summary>
+            <param name="CoordinateConverter"><inheritdoc cref="T:Sudoku.Text.CoordinateConverter" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter">
+            <summary><inheritdoc cref="T:Sudoku.Text.CoordinateConverter" path="/summary"/></summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Configuration.StepSearcherOptions"/> instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <summary>
@@ -3389,10 +3407,6 @@ if (student is (name: var name, age: >= 18))
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter"/>: <see cref="T:Sudoku.Text.RxCyConverter"/></item>
             </list>
             </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter">
-            <inheritdoc cref="T:Sudoku.Text.CoordinateConverter"/>
-            <remarks>By default, the value is an instance of type <see cref="T:Sudoku.Text.RxCyConverter"/>.</remarks>
         </member>
         <member name="T:Sudoku.Analytics.Eliminations.ExocetEliminatedReason">
             <summary>

@@ -13,7 +13,7 @@ namespace Sudoku.Text;
 /// <seealso cref="RxCyConverter"/>
 /// <seealso cref="K9Converter"/>
 /// <seealso cref="LiteralCoordinateConverter"/>
-public abstract class CoordinateConverter
+public abstract record CoordinateConverter
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.

@@ -8155,40 +8155,79 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a coordinate converter using K9 notation.
             </summary>
-        </member>
-        <member name="P:Sudoku.Text.K9Converter.MakeLettersUpperCase">
-            <summary>
-            Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.
-            </summary>
-            <remarks>
-            The value is <see langword="false"/> by default.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Text.K9Converter.FinalRowLetter">
-            <summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="FinalRowLetter">
+            <para>
             Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
             but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
             This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String)">
+            <summary>
+            Represents a coordinate converter using K9 notation.
             </summary>
-            <remarks>
-            The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.
-            </remarks>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="FinalRowLetter">
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.K9Converter.MakeLettersUpperCase">
+            <summary>
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.K9Converter.FinalRowLetter">
+            <summary>
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Text.K9Converter.DefaultSeparator">
             <summary>
-            Indicates the default separator. The value will be inserted into two non-digit-kind instances.
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
             </summary>
-            <remarks>
-            The value is <c>", "</c> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.K9Converter.DigitsSeprarator">
             <summary>
-            Indicates the digits separator.
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </summary>
-            <remarks>
-            The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.K9Converter.CellNotationConverter">
             <inheritdoc/>
@@ -8225,22 +8264,39 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a converter that outputs coordinates as literally-speaking representation.
             </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.LiteralCoordinateConverter.#ctor(System.String,System.String)">
+            <summary>
+            Represents a converter that outputs coordinates as literally-speaking representation.
+            </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
         </member>
         <member name="P:Sudoku.Text.LiteralCoordinateConverter.DefaultSeparator">
             <summary>
-            Indicates the default separator. The value will be inserted into two non-digit-kind instances.
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
             </summary>
-            <remarks>
-            The value is <c>", "</c> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.LiteralCoordinateConverter.DigitsSeprarator">
             <summary>
-            Indicates the digits separator.
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </summary>
-            <remarks>
-            The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.LiteralCoordinateConverter.CellNotationConverter">
             <inheritdoc/>
@@ -9374,46 +9430,81 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a coordinate converter using RxCy notation.
             </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="HouseNotationOnlyDisplayCapitals">
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>DigitsSeprarator</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            Represents a coordinate converter using RxCy notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="HouseNotationOnlyDisplayCapitals">
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeprarator">
+            <para>DigitsSeprarator</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.MakeLettersUpperCase">
             <summary>
-            Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
             </summary>
-            <remarks>
-            The value is <see langword="false"/> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.MakeDigitBeforeCell">
             <summary>
-            Indicates whether digits will be displayed before the cell coordinates.
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
             </summary>
-            <remarks>
-            The value is <see langword="false"/> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.HouseNotationOnlyDisplayCapitals">
             <summary>
-            Indicates whether the houses will be displayed its capitals only.
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
             </summary>
-            <remarks>
-            The value is <see langword="false"/> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.DefaultSeparator">
             <summary>
-            Indicates the default separator. The value will be inserted into two non-digit-kind instances.
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
             </summary>
-            <remarks>
-            The value is <c>", "</c> by default.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.DigitsSeprarator">
             <summary>
-            Indicates the digits separator.
+            <para>DigitsSeprarator</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </summary>
-            <remarks>
-            The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-            </remarks>
         </member>
         <member name="P:Sudoku.Text.RxCyConverter.CellNotationConverter">
             <inheritdoc/>

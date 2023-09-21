@@ -12,43 +12,33 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a coordinate converter using K9 notation.
 /// </summary>
-public sealed class K9Converter : CoordinateConverter
+/// <param name="MakeLettersUpperCase">
+/// <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="FinalRowLetter">
+/// <para>
+/// Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+/// but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+/// This option will change the last row letter if you want to change it.
+/// </para>
+/// <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+/// </param>
+/// <param name="DefaultSeparator">
+/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+/// <para>The value is <c>", "</c> by default.</para>
+/// </param>
+/// <param name="DigitsSeprarator">
+/// <para>Indicates the digits separator.</para>
+/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+/// </param>
+public sealed record K9Converter(
+	bool MakeLettersUpperCase = false,
+	char FinalRowLetter = 'I',
+	string DefaultSeparator = ", ",
+	string? DigitsSeprarator = null
+) : CoordinateConverter
 {
-	/// <summary>
-	/// Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="false"/> by default.
-	/// </remarks>
-	public bool MakeLettersUpperCase { get; set; }
-
-	/// <summary>
-	/// Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-	/// but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
-	/// This option will change the last row letter if you want to change it.
-	/// </summary>
-	/// <remarks>
-	/// The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.
-	/// </remarks>
-	public char FinalRowLetter { get; set; } = 'I';
-
-	/// <summary>
-	/// Indicates the default separator. The value will be inserted into two non-digit-kind instances.
-	/// </summary>
-	/// <remarks>
-	/// The value is <c>", "</c> by default.
-	/// </remarks>
-	public string DefaultSeparator { get; set; } = ", ";
-
-	/// <summary>
-	/// Indicates the digits separator.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-	/// </remarks>
-	public string? DigitsSeprarator { get; set; }
-
-
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter
 		=> (scoped ref readonly CellMap cells) =>

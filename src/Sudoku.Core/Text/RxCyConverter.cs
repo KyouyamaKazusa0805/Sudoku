@@ -11,49 +11,34 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a coordinate converter using RxCy notation.
 /// </summary>
-public sealed class RxCyConverter : CoordinateConverter
+/// <param name="MakeLettersUpperCase">
+/// <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="MakeDigitBeforeCell">
+/// <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="HouseNotationOnlyDisplayCapitals">
+/// <para>Indicates whether the houses will be displayed its capitals only.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="DefaultSeparator">
+/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+/// <para>The value is <c>", "</c> by default.</para>
+/// </param>
+/// <param name="DigitsSeprarator">
+/// <para>DigitsSeprarator</para>
+/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+/// </param>
+public sealed record RxCyConverter(
+	bool MakeLettersUpperCase = false,
+	bool MakeDigitBeforeCell = false,
+	bool HouseNotationOnlyDisplayCapitals = false,
+	string DefaultSeparator = ", ",
+	string? DigitsSeprarator = null
+) : CoordinateConverter
 {
-	/// <summary>
-	/// Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="false"/> by default.
-	/// </remarks>
-	public bool MakeLettersUpperCase { get; set; }
-
-	/// <summary>
-	/// Indicates whether digits will be displayed before the cell coordinates.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="false"/> by default.
-	/// </remarks>
-	public bool MakeDigitBeforeCell { get; set; }
-
-	/// <summary>
-	/// Indicates whether the houses will be displayed its capitals only.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="false"/> by default.
-	/// </remarks>
-	public bool HouseNotationOnlyDisplayCapitals { get; set; }
-
-	/// <summary>
-	/// Indicates the default separator. The value will be inserted into two non-digit-kind instances.
-	/// </summary>
-	/// <remarks>
-	/// The value is <c>", "</c> by default.
-	/// </remarks>
-	public string DefaultSeparator { get; set; } = ", ";
-
-	/// <summary>
-	/// Indicates the digits separator.
-	/// </summary>
-	/// <remarks>
-	/// The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
-	/// </remarks>
-	public string? DigitsSeprarator { get; set; }
-
-
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter
 		=> (scoped ref readonly CellMap cells) =>
