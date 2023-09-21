@@ -7229,30 +7229,71 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.CandidateNotationConverter">
+        <member name="T:Sudoku.Text.Coordinate.CandidateNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
             </summary>
             <param name="candidates">A list of candidates.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
         </member>
-        <member name="T:Sudoku.Text.CellNotationConverter">
+        <member name="T:Sudoku.Text.Coordinate.CellNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <param name="cells">A list of cells.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
         </member>
-        <member name="T:Sudoku.Text.ChuteNotationConverter">
+        <member name="T:Sudoku.Text.Coordinate.ChuteNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Chute"/> instance.
             </summary>
             <param name="chutes">A list of chutes.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="chutes"/>.</returns>
         </member>
+        <member name="T:Sudoku.Text.Coordinate.ConclusionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
+            </summary>
+            <param name="conclusions">A list of conjugate pairs.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Coordinate.ConjugateNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conjugate"/> instance.
+            </summary>
+            <param name="conjugatePairs">A list of conjugate pairs.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Coordinate.DigitNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
+            </summary>
+            <param name="digitsMask">A list of digits.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Coordinate.HouseNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
+            </summary>
+            <param name="housesMask">A list of houses.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Coordinate.IntersectionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value
+            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instance.
+            </summary>
+            <param name="intersections">A list of intersections.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="intersections"/>.</returns>
+        </member>
         <member name="T:Sudoku.Text.ConceptNotationBased">
             <summary>
             Represents a kind of notation to describe a concept in sudoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.ConceptNotationBased.LiteralBased">
+            <summary>
+            Idnicates the notation is based on literally notation.
             </summary>
         </member>
         <member name="F:Sudoku.Text.ConceptNotationBased.RxCyBased">
@@ -7265,29 +7306,17 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation is based on <b>K9</b> notation.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.ConclusionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
-            </summary>
-            <param name="conclusions">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Text.ConjugateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conjugate"/> instance.
-            </summary>
-            <param name="conjugatePairs">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
-        </member>
         <member name="T:Sudoku.Text.CoordinateConverter">
             <summary>
             Represents an option provider for coordinates.
             </summary>
             <remarks>
-            You can use types <see cref="T:Sudoku.Text.RxCyConverter"/> and <seealso cref="T:Sudoku.Text.K9Converter"/>. They are the derived types of the current type.
+            You can use types <see cref="T:Sudoku.Text.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.K9Converter"/> and <see cref="T:Sudoku.Text.LiteralCoordinateConverter"/>.
+            They are the derived types of the current type.
             </remarks>
             <seealso cref="T:Sudoku.Text.RxCyConverter"/>
             <seealso cref="T:Sudoku.Text.K9Converter"/>
+            <seealso cref="T:Sudoku.Text.LiteralCoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Text.CoordinateConverter.CellNotationConverter">
             <summary>
@@ -7336,13 +7365,6 @@ if (student is (name: var name, age: >= 18))
             <param name="conceptNotation">The field to represent with a kind of concept notation.</param>
             <returns>A <see cref="T:Sudoku.Text.CoordinateConverter"/> instance.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="conceptNotation"/> is out of range.</exception>
-        </member>
-        <member name="T:Sudoku.Text.DigitNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
-            </summary>
-            <param name="digitsMask">A list of digits.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
         </member>
         <member name="T:Sudoku.Text.Formatting.ExcelFormat">
             <summary>
@@ -8128,21 +8150,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.HouseNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
-            </summary>
-            <param name="housesMask">A list of houses.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Text.IntersectionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value
-            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instance.
-            </summary>
-            <param name="intersections">A list of intersections.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="intersections"/>.</returns>
         </member>
         <member name="T:Sudoku.Text.K9Converter">
             <summary>

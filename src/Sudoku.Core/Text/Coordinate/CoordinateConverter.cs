@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Text;
 
@@ -6,10 +7,12 @@ namespace Sudoku.Text;
 /// Represents an option provider for coordinates.
 /// </summary>
 /// <remarks>
-/// You can use types <see cref="RxCyConverter"/> and <seealso cref="K9Converter"/>. They are the derived types of the current type.
+/// You can use types <see cref="RxCyConverter"/>, <seealso cref="K9Converter"/> and <see cref="LiteralCoordinateConverter"/>.
+/// They are the derived types of the current type.
 /// </remarks>
 /// <seealso cref="RxCyConverter"/>
 /// <seealso cref="K9Converter"/>
+/// <seealso cref="LiteralCoordinateConverter"/>
 public abstract class CoordinateConverter
 {
 	/// <summary>
@@ -63,6 +66,7 @@ public abstract class CoordinateConverter
 	public static CoordinateConverter Create(ConceptNotationBased conceptNotation)
 		=> conceptNotation switch
 		{
+			ConceptNotationBased.LiteralBased => new LiteralCoordinateConverter(),
 			ConceptNotationBased.RxCyBased => new RxCyConverter(),
 			ConceptNotationBased.K9Based => new K9Converter(),
 			_ => throw new NotSupportedException("The current value is not supported.")

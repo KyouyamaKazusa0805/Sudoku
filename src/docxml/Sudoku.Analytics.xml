@@ -3383,6 +3383,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a default option-provider instance.
             </summary>
+            <remarks>
+            This default option makes the internal members be:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter"/>: <see cref="T:Sudoku.Text.RxCyConverter"/></item>
+            </list>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter">
             <inheritdoc cref="T:Sudoku.Text.CoordinateConverter"/>

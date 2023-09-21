@@ -6,6 +6,11 @@ namespace Sudoku.Text;
 public enum ConceptNotationBased
 {
 	/// <summary>
+	/// Idnicates the notation is based on literally notation.
+	/// </summary>
+	LiteralBased,
+
+	/// <summary>
 	/// Indicates the notation is based on <b>RxCy</b> notation.
 	/// </summary>
 	RxCyBased,

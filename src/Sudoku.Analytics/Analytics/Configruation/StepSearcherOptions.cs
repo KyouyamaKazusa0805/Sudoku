@@ -13,6 +13,12 @@ public sealed class StepSearcherOptions
 	/// <summary>
 	/// Represents a default option-provider instance.
 	/// </summary>
+	/// <remarks>
+	/// This default option makes the internal members be:
+	/// <list type="bullet">
+	/// <item><see cref="CoordinateConverter"/>: <see cref="RxCyConverter"/></item>
+	/// </list>
+	/// </remarks>
 	public static StepSearcherOptions Default => new();
 
 

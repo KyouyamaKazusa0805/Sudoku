@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Text;

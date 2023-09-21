@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents a delegate type that creates a <see cref="string"/> value via the specified <see cref="HouseMask"/> instance.
