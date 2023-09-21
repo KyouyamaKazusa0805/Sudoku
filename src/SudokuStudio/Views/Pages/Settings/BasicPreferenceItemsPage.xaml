@@ -65,6 +65,84 @@
 					<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
 				</w:SettingsCard>
 			</w:SettingsGroup>
+			<w:SettingsGroup Header="{m:R Key=SettingsPage_Notation}">
+				<w:SettingsCard
+					Header="{m:R Key=SettingsPage_ConceptNotationBasedKind}"
+					Description="{m:R Key=SettingsPage_ConceptNotationBasedKindDescription}">
+					<ComboBox
+						x:Name="ConceptNotationModeSelector"
+						SelectedIndex="{x:Bind cvt:ConceptNotationConversion.GetSelectedIndex(ConceptNotationModeSelector)}"
+						SelectionChanged="ConceptNotationModeSelector_SelectionChanged">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_RxCyNotation}" Tag="{m:Int32 Value=1}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_K9Notation}" Tag="{m:Int32 Value=2}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_LiteralNotation}" Tag="{m:Int32 Value=0}" />
+					</ComboBox>
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDefaultSeparator}">
+					<ComboBox
+						x:Name="NotationDefaultSeparatorSelector"
+						SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDefaultSeparatorSelector)}"
+						SelectionChanged="NotationDefaultSeparatorSelector_SelectionChanged">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}">
+							<ComboBoxItem.Tag>
+								<x:String></x:String>
+							</ComboBoxItem.Tag>
+						</ComboBoxItem>
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+						<ComboBoxItem
+							x:Name="Comma2ComboBoxItem_DefaultSeparator"
+							Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
+					</ComboBox>
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDigitSeparator}">
+					<ComboBox
+						x:Name="NotationDigitSeparatorSelector"
+						SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDigitSeparatorSelector)}"
+						SelectionChanged="NotationDigitSeparatorSelector_SelectionChanged">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}" Tag="{m:EmptyString}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+						<ComboBoxItem
+							x:Name="Comma2ComboBoxItem_DigitSeparator"
+							Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
+					</ComboBox>
+				</w:SettingsCard>
+				<w:SettingsCard
+					x:Name="SettingsCard_MakeLettersUpperCaseInRxCyNotation"
+					Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInRxCyNotation}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInRxCyNotation,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					x:Name="SettingsCard_MakeDigitBeforeCellInRxCyNotation"
+					Header="{m:R Key=SettingsPage_MakeDigitBeforeCellInRxCyNotation}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeDigitBeforeCellInRxCyNotation,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					x:Name="SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation"
+					Header="{m:R Key=SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseNotationOnlyDisplayCapitalsInRxCyNotation,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					x:Name="SettingsCard_MakeLettersUpperCaseInK9Notation"
+					Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInK9Notation}">
+					<ToggleSwitch
+						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInK9Notation,Mode=TwoWay}" />
+				</w:SettingsCard>
+				<w:SettingsCard
+					x:Name="SettingsCard_FinalRowLetterInK9Notation"
+					Header="{m:R Key=SettingsPage_FinalRowLetterInK9Notation}">
+					<ComboBox
+						x:Name="FinalRowLetterInK9NotationSelector"
+						SelectedIndex="{x:Bind cvt:ConceptNotationConversion.FinalRowLetterInK9NotationSelectedIndex(FinalRowLetterInK9NotationSelector)}"
+						SelectionChanged="FinalRowLetterInK9NotationSelector_SelectionChanged">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_I}" Tag="I" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_J}" Tag="J" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_K}" Tag="K" />
+					</ComboBox>
+				</w:SettingsCard>
+			</w:SettingsGroup>
 			<w:SettingsGroup Header="{m:R Key=SettingsPage_AnimationFeedback}">
 				<w:SettingsCard
 					Header="{m:R Key=SettingsPage_EnableAnimationFeedback}"

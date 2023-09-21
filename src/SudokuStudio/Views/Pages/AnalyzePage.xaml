@@ -192,7 +192,7 @@
 							DifficultyLevelForegrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds,Mode=OneWay}"
 							DifficultyLevelBackgrounds="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds,Mode=OneWay}"
 							UserDefinedColorPalette="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.UserDefinedColorPalette,Mode=OneWay}"
-							CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+							CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 							CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
 							CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
 							EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"

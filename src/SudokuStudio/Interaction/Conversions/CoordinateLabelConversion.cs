@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using Sudoku.Text.Coordinate;
 using SudokuStudio.Rendering;
 using Windows.UI;
 
@@ -12,13 +13,37 @@ internal static class CoordinateLabelConversion
 {
 	public static double GetFontSize(double globalFontSize, decimal scale) => globalFontSize * (double)scale;
 
-	public static string ToCoordinateLabelText(CoordinateLabelDisplayKind coordinateKind, int index, bool isRow)
-		=> coordinateKind switch
+	public static string ToCoordinateLabelText(ConceptNotationBased based, int index, bool isRow)
+	{
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		switch (based)
 		{
-			CoordinateLabelDisplayKind.None => "/",
-			CoordinateLabelDisplayKind.RxCy => $"{(isRow ? 'c' : 'r')}{index + 1}",
-			CoordinateLabelDisplayKind.K9 => $"{(isRow ? (char)(index + '1') : (char)(index + 'A'))}"
-		};
+			case ConceptNotationBased.LiteralBased:
+			{
+				return (index + 1).ToString();
+			}
+			case ConceptNotationBased.RxCyBased:
+			{
+				var upperRxCy = uiPref.MakeLettersUpperCaseInRxCyNotation;
+				var label = (isRow, upperRxCy) switch { (true, true) => 'R', (true, _) => 'r', (false, true) => 'C', _ => 'c' };
+				var digit = (index + 1).ToString();
+				return $"{label}{digit}";
+			}
+			case ConceptNotationBased.K9Based:
+			{
+				var upperK9 = uiPref.MakeLettersUpperCaseInK9Notation;
+				var finalChar = uiPref.FinalRowLetterInK9Notation;
+				var label = index == 8 ? finalChar : (char)(index + 'A');
+				label = upperK9 ? char.ToUpper(label) : char.ToLower(label);
+				var digit = (index + 1).ToString();
+				return $"{label}{digit}";
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(based));
+			}
+		}
+	}
 
 	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplayMode mode)
 		=> mode == CoordinateLabelDisplayMode.None ? Visibility.Collapsed : Visibility.Visible;

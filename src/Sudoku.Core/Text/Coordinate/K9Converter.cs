@@ -23,20 +23,14 @@ namespace Sudoku.Text.Coordinate;
 /// </para>
 /// <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
 /// </param>
-/// <param name="DefaultSeparator">
-/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-/// <para>The value is <c>", "</c> by default.</para>
-/// </param>
-/// <param name="DigitsSeprarator">
-/// <para>Indicates the digits separator.</para>
-/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-/// </param>
+/// <param name="DefaultSeparator"><inheritdoc/></param>
+/// <param name="DigitsSeparator"><inheritdoc/></param>
 public sealed record K9Converter(
 	bool MakeLettersUpperCase = false,
 	char FinalRowLetter = 'I',
 	string DefaultSeparator = ", ",
-	string? DigitsSeprarator = null
-) : CoordinateConverter
+	string? DigitsSeparator = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter

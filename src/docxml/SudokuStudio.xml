@@ -40,6 +40,11 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepCollector"/>
         </member>
+        <member name="P:SudokuStudio.App.CoordinateConverter">
+            <summary>
+            Indicates the coordinate converter object.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AppStartingGridInfo">
             <summary>
             Indicates a <see cref="T:SudokuStudio.Configuration.GridInfo"/> instance that will be initialized when opening the application via extension-binding files.
@@ -1300,17 +1305,47 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCountProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9NotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacterProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCountProperty">
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9NotationProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
@@ -1359,12 +1394,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKindProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayModeProperty">
             <summary>
@@ -1432,6 +1461,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotation"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>.
@@ -1461,6 +1502,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKindProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
             <summary>
@@ -1687,14 +1734,39 @@
             Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount">
+            <summary>
+            Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation">
+            <summary>
+            Indicates whether UI makes digits displaying before cells.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation">
+            <summary>
+            Indicates whether UI makes houses display its capital letters.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
             <summary>
             Indicates the default empty character you want to use. The value can be '0' or '.'.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount">
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation">
             <summary>
-            Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.
+            Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
@@ -1735,9 +1807,6 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayKind">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
@@ -1794,6 +1863,16 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty" />
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotation">
+            <summary>
+            Indicates the default separators for separating with coordinates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation">
+            <summary>
+            Indicates the default digit separators for displaying digits.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty"/> to get or set value.
@@ -1818,6 +1897,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique">
             <summary>
             Indicates the selected technique, which will be appeared in generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
+            <summary>
+            Indicates the based type for displaying a concept notation.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
@@ -2356,6 +2440,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Interaction.Conversions.CompilationConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about compilation information.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.ConceptNotationConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about concept notation.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.CoordinateLabelConversion">
@@ -3355,7 +3444,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplayKind"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Text.Coordinate.ConceptNotationBased"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -3454,6 +3543,14 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Markup.EmptyStringExtension">
+            <summary>
+            A markup extension for empty strings.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.EmptyStringExtension.ProvideValue">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Markup.GridExtension">
@@ -3624,28 +3721,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the display mode is to draw a solid rounded rectangle.
             </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplayKind">
-            <summary>
-            Defines a kind of coordinate label to be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayKind.None">
-            <summary>
-            Indicates the coordinate labels will not be displayed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayKind.RxCy">
-            <summary>
-            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy">RxCy Notation</see>.
-            </summary>
-            <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.RxCy"/>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayKind.K9">
-            <summary>
-            Indicates the coordinate labels will be displayed as <see cref="F:Sudoku.Text.Notation.CellNotation.Kind.K9">K9 Notation</see>.
-            </summary>
-            <seealso cref="F:Sudoku.Text.Notation.CellNotation.Kind.K9"/>
         </member>
         <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplayMode">
             <summary>
@@ -5972,6 +6047,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Colors.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ConceptNotationBasedKind">
+            <summary>
+              Looks up a localized string similar to Notation mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ConceptNotationBasedKindDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the desired mode for describing a cell, candidate, house and so on using text. &quot;RxCy&quot; is suggested mode..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_CoordinateLabelFontData">
             <summary>
               Looks up a localized string similar to Coordinate label font.
@@ -6179,6 +6264,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Exo-fins.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_FinalRowLetter_I">
+            <summary>
+              Looks up a localized string similar to I (i).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_FinalRowLetter_J">
+            <summary>
+              Looks up a localized string similar to J (j).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_FinalRowLetter_K">
+            <summary>
+              Looks up a localized string similar to K (k).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_FinalRowLetterInK9Notation">
+            <summary>
+              Looks up a localized string similar to K9 Notation - Final row identifier.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_FishesGroup">
             <summary>
               Looks up a localized string similar to Fishes.
@@ -6227,6 +6332,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HouseCompletedFeedbackColorDescription">
             <summary>
               Looks up a localized string similar to When you fill with a digit into a cell, making the containing house be completed, animation feedback will be triggered with a color specified here..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation">
+            <summary>
+              Looks up a localized string similar to RxCy Notation - Only output capitals &apos;r&apos;, &apos;c&apos; and &apos;b&apos; for houses.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Intro">
@@ -6279,6 +6389,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Naked Single.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_K9Notation">
+            <summary>
+              Looks up a localized string similar to K9 Notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LiteralNotation">
+            <summary>
+              Looks up a localized string similar to Literal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeDigitBeforeCellInRxCyNotation">
+            <summary>
+              Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeLettersUpperCaseInK9Notation">
+            <summary>
+              Looks up a localized string similar to K9 Notation - Make upper-casing for coordinate letters.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeLettersUpperCaseInRxCyNotation">
+            <summary>
+              Looks up a localized string similar to RxCy Notation - Make upper-casing for coordinate letters.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MaxSizeOfComplexFish">
             <summary>
               Looks up a localized string similar to Maximum size of Hobiwan Fish to be searched for.
@@ -6307,6 +6442,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_NormalColor">
             <summary>
               Looks up a localized string similar to Normal highlighted candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Notation">
+            <summary>
+              Looks up a localized string similar to Sudoku Notations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_NotationDefaultSeparator">
+            <summary>
+              Looks up a localized string similar to Notation default separator.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_NotationDigitSeparator">
+            <summary>
+              Looks up a localized string similar to Notation digit separator.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_OffContent">
@@ -6404,6 +6554,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solid rounded rectangle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_RxCyNotation">
+            <summary>
+              Looks up a localized string similar to RxCy Notation.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SameLevel">
             <summary>
               Looks up a localized string similar to Same level only.
@@ -6437,6 +6592,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription">
             <summary>
               Looks up a localized string similar to Reverse BUG techniques may not rely on ALL value cells in a grid. If this option is true, the corresponding step searcher will check for non-fully-used cells, but it will cause a slow searching experience..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SeparatorIsComma">
+            <summary>
+              Looks up a localized string similar to Comma (&apos;, &apos;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SeparatorIsComma2">
+            <summary>
+              Looks up a localized string similar to Comma (&apos;、&apos;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SeparatorIsEmpty">
+            <summary>
+              Looks up a localized string similar to Empty (No separator).
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SinglesGroup">
@@ -8563,9 +8733,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the displaying kind of coordinate labels.
             </summary>
-            <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplayKind"/>.
-            </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">
             <summary>
@@ -10075,6 +10242,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.InitializeControls">
+            <summary>
+            Initializes for control properties.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.InitializeComponent">

@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
+using Sudoku.Text.Coordinate;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
@@ -10,7 +11,6 @@ using Windows.UI;
 namespace SudokuStudio.Configuration;
 
 using E = EliminationDisplayMode;
-using K = CoordinateLabelDisplayKind;
 using M = CoordinateLabelDisplayMode;
 using N = CandidateViewNodeDisplayNode;
 
@@ -31,8 +31,13 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<bool>("GeneratedPuzzleShouldBeMinimal", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be minimal.")]
 [DependencyProperty<bool>("GeneratedPuzzleShouldBePearl", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be pearl.")]
 [DependencyProperty<bool>("AutoCachePuzzleAndView", DefaultValue = false, DocSummary = "Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.")]
-[DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
 [DependencyProperty<bool>("CanRestrictGeneratingGivensCount", DocSummary = "Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.")]
+[DependencyProperty<bool>("MakeLettersUpperCaseInRxCyNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates if worth.")]
+[DependencyProperty<bool>("MakeLettersUpperCaseInK9Notation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.")]
+[DependencyProperty<bool>("MakeDigitBeforeCellInRxCyNotation", DocSummary = "Indicates whether UI makes digits displaying before cells.")]
+[DependencyProperty<bool>("HouseNotationOnlyDisplayCapitalsInRxCyNotation", DocSummary = "Indicates whether UI makes houses display its capital letters.")]
+[DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
+[DependencyProperty<char>("FinalRowLetterInK9Notation", DefaultValue = 'I', DocSummary = "Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.")]
 [DependencyProperty<decimal>("HighlightedPencilmarkBackgroundEllipseScale", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<decimal>("HighlightedBackgroundOpacity", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<decimal>("ChainStrokeThickness", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
@@ -41,7 +46,6 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<decimal>("PencilmarkFontScale")]
 [DependencyProperty<decimal>("BabaGroupingFontScale")]
 [DependencyProperty<decimal>("CoordinateLabelFontScale")]
-[DependencyProperty<int>("CoordinateLabelDisplayKind", DefaultValue = (int)K.RxCy, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind")]
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
 [DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)N.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
 [DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)E.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
@@ -53,11 +57,14 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<string>("PencilmarkFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<string>("BabaGroupingFontName", DefaultValue = "Times New Roman")]
 [DependencyProperty<string>("CoordinateLabelFontName", DefaultValue = "Cascadia Code")]
+[DependencyProperty<string>("DefaultSeparatorInNotation", DefaultValue = ", ", DocSummary = "Indicates the default separators for separating with coordinates.")]
+[DependencyProperty<string>("DigitsSeparatorInNotation", IsNullable = true, DocSummary = "Indicates the default digit separators for displaying digits.")]
 [DependencyProperty<BackdropKind>("Backdrop", DefaultValue = BackdropKind.Acrylic)]
 [DependencyProperty<StepTooltipDisplayItems>("StepDisplayItems", DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating | StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display items.")]
 [DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
 [DependencyProperty<Technique>("SelectedTechnique", DefaultValue = 0, DocSummary = "Indicates the selected technique, which will be appeared in generated puzzles.")]
+[DependencyProperty<ConceptNotationBased>("ConceptNotationBasedKind", DefaultValue = ConceptNotationBased.RxCyBased, DocSummary = "Indicates the based type for displaying a concept notation.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("ModifiableFontColor")]
 [DependencyProperty<Color>("PencilmarkFontColor")]
@@ -250,5 +257,16 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 		{
 			window.SystemBackdrop = value.GetBackdrop();
 		}
+	}
+
+	[Callback]
+	private static void ConceptNotationBasedKindPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (e.NewValue is not ConceptNotationBased value)
+		{
+			return;
+		}
+
+		((App)Application.Current).CoordinateConverter = CoordinateConverter.Create(value);
 	}
 }

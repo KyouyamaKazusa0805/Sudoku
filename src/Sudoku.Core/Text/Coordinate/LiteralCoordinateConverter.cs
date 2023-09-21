@@ -11,15 +11,10 @@ namespace Sudoku.Text.Coordinate;
 /// <summary>
 /// Represents a converter that outputs coordinates as literally-speaking representation.
 /// </summary>
-/// <param name="DefaultSeparator">
-/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-/// <para>The value is <c>", "</c> by default.</para>
-/// </param>
-/// <param name="DigitsSeparator">
-/// <para>Indicates the digits separator.</para>
-/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-/// </param>
-public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) : CoordinateConverter
+/// <param name="DefaultSeparator"><inheritdoc/></param>
+/// <param name="DigitsSeparator"><inheritdoc/></param>
+public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) :
+	CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter

@@ -53,7 +53,7 @@
 			CannibalismColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor,Mode=OneWay}"
 			AuxiliaryColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors,Mode=OneWay}"
 			AlmostLockedSetsColors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,Mode=OneWay}"
-			CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+			CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 			CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
 			CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
 		/>

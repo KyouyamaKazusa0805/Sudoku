@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Sudoku.Analytics;
+using Sudoku.Text.Coordinate;
 using SudokuStudio.Configuration;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Windows;
@@ -49,6 +50,11 @@ public partial class App : Application
 	/// </summary>
 	/// <seealso cref="Sudoku.Analytics.StepCollector"/>
 	public StepCollector StepCollector { get; } = new();
+
+	/// <summary>
+	/// Indicates the coordinate converter object.
+	/// </summary>
+	internal CoordinateConverter CoordinateConverter { get; set; } = null!;
 
 	/// <summary>
 	/// Indicates a <see cref="GridInfo"/> instance that will be initialized when opening the application via extension-binding files.

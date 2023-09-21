@@ -22,21 +22,15 @@ namespace Sudoku.Text.Coordinate;
 /// <para>Indicates whether the houses will be displayed its capitals only.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
-/// <param name="DefaultSeparator">
-/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-/// <para>The value is <c>", "</c> by default.</para>
-/// </param>
-/// <param name="DigitsSeprarator">
-/// <para>DigitsSeprarator</para>
-/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-/// </param>
+/// <param name="DefaultSeparator"><inheritdoc/></param>
+/// <param name="DigitsSeparator"><inheritdoc/></param>
 public sealed record RxCyConverter(
 	bool MakeLettersUpperCase = false,
 	bool MakeDigitBeforeCell = false,
 	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
-	string? DigitsSeprarator = null
-) : CoordinateConverter
+	string? DigitsSeparator = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter

@@ -8,11 +8,13 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using Sudoku.Text.Coordinate;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Input;
 using SudokuStudio.Interaction;
+using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Rendering;
 using SudokuStudio.Storage;
 using Windows.ApplicationModel.DataTransfer;
@@ -50,7 +52,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<decimal>("CoordinateLabelFontScale", DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
 [DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
-[DependencyProperty<CoordinateLabelDisplayKind>("CoordinateLabelDisplayKind", DefaultValue = CoordinateLabelDisplayKind.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayKind\"/>.")]
+[DependencyProperty<ConceptNotationBased>("CoordinateLabelDisplayKind", DefaultValue = ConceptNotationBased.RxCyBased, DocSummary = "Indicates the displaying kind of coordinate labels.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayMode\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplayNode>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplayNode.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
 [DependencyProperty<EliminationDisplayMode>("EliminationDisplayMode", DefaultValue = EliminationDisplayMode.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
@@ -754,6 +756,27 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		foreach (var element in ((SudokuPane)d)._children)
 		{
 			element.HouseCompletedFeedbackDuration = (int)e.NewValue;
+		}
+	}
+
+	[Callback]
+	private static void CoordinateLabelDisplayKindPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (e.NewValue is not ConceptNotationBased value)
+		{
+			return;
+		}
+
+		var i = 0;
+		foreach (var element in ((SudokuPane)d).MainGrid.Children)
+		{
+			if (element is not TextBlock t)
+			{
+				continue;
+			}
+
+			t.Text = CoordinateLabelConversion.ToCoordinateLabelText(value, i % 9, i < 18);
+			i++;
 		}
 	}
 

@@ -1038,6 +1038,12 @@
   <data name="SettingsPage_Colors" xml:space="preserve">
     <value>Colors</value>
   </data>
+  <data name="SettingsPage_ConceptNotationBasedKind" xml:space="preserve">
+    <value>Notation mode</value>
+  </data>
+  <data name="SettingsPage_ConceptNotationBasedKindDescription" xml:space="preserve">
+    <value>This option controls the desired mode for describing a cell, candidate, house and so on using text. "RxCy" is suggested mode.</value>
+  </data>
   <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
     <value>Coordinate label font</value>
   </data>
@@ -1163,6 +1169,18 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>Exo-fins</value>
   </data>
+  <data name="SettingsPage_FinalRowLetterInK9Notation" xml:space="preserve">
+    <value>K9 Notation - Final row identifier</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_I" xml:space="preserve">
+    <value>I (i)</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_J" xml:space="preserve">
+    <value>J (j)</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_K" xml:space="preserve">
+    <value>K (k)</value>
+  </data>
   <data name="SettingsPage_FishesGroup" xml:space="preserve">
     <value>Fishes</value>
   </data>
@@ -1192,6 +1210,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_HouseCompletedFeedbackColorDescription" xml:space="preserve">
     <value>When you fill with a digit into a cell, making the containing house be completed, animation feedback will be triggered with a color specified here.</value>
+  </data>
+  <data name="SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation" xml:space="preserve">
+    <value>RxCy Notation - Only output capitals 'r', 'c' and 'b' for houses</value>
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
@@ -1223,6 +1244,21 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_IttoryuTechnique_NakedSingle" xml:space="preserve">
     <value>Naked Single</value>
   </data>
+  <data name="SettingsPage_K9Notation" xml:space="preserve">
+    <value>K9 Notation</value>
+  </data>
+  <data name="SettingsPage_LiteralNotation" xml:space="preserve">
+    <value>Literal</value>
+  </data>
+  <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
+    <value>RxCy Notation - Make digits output left-side cell coordinates</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInK9Notation" xml:space="preserve">
+    <value>K9 Notation - Make upper-casing for coordinate letters</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInRxCyNotation" xml:space="preserve">
+    <value>RxCy Notation - Make upper-casing for coordinate letters</value>
+  </data>
   <data name="SettingsPage_MaxSizeOfComplexFish" xml:space="preserve">
     <value>Maximum size of Hobiwan Fish to be searched for</value>
   </data>
@@ -1240,6 +1276,15 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_NormalColor" xml:space="preserve">
     <value>Normal highlighted candidates</value>
+  </data>
+  <data name="SettingsPage_Notation" xml:space="preserve">
+    <value>Sudoku Notations</value>
+  </data>
+  <data name="SettingsPage_NotationDefaultSeparator" xml:space="preserve">
+    <value>Notation default separator</value>
+  </data>
+  <data name="SettingsPage_NotationDigitSeparator" xml:space="preserve">
+    <value>Notation digit separator</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>No</value>
@@ -1298,6 +1343,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_RoundedRectangleSolid" xml:space="preserve">
     <value>Solid rounded rectangle</value>
   </data>
+  <data name="SettingsPage_RxCyNotation" xml:space="preserve">
+    <value>RxCy Notation</value>
+  </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>Same level only</value>
   </data>
@@ -1318,6 +1366,15 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription" xml:space="preserve">
     <value>Reverse BUG techniques may not rely on ALL value cells in a grid. If this option is true, the corresponding step searcher will check for non-fully-used cells, but it will cause a slow searching experience.</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsComma" xml:space="preserve">
+    <value>Comma (', ')</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsComma2" xml:space="preserve">
+    <value>Comma ('、')</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsEmpty" xml:space="preserve">
+    <value>Empty (No separator)</value>
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>Singles</value>

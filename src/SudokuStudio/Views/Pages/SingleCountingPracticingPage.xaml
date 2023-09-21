@@ -36,7 +36,7 @@
 					CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor,Mode=OneWay}"
 					CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
 					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
-					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
 					CandidateViewNodeDisplayMode="CircleSolid" EliminationDisplayMode="CircleSolid"
 				/>

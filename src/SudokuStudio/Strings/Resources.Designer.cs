@@ -3085,6 +3085,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notation mode.
+        /// </summary>
+        internal static string SettingsPage_ConceptNotationBasedKind {
+            get {
+                return ResourceManager.GetString("SettingsPage_ConceptNotationBasedKind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the desired mode for describing a cell, candidate, house and so on using text. &quot;RxCy&quot; is suggested mode..
+        /// </summary>
+        internal static string SettingsPage_ConceptNotationBasedKindDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_ConceptNotationBasedKindDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Coordinate label font.
         /// </summary>
         internal static string SettingsPage_CoordinateLabelFontData {
@@ -3456,6 +3474,42 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I (i).
+        /// </summary>
+        internal static string SettingsPage_FinalRowLetter_I {
+            get {
+                return ResourceManager.GetString("SettingsPage_FinalRowLetter_I", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to J (j).
+        /// </summary>
+        internal static string SettingsPage_FinalRowLetter_J {
+            get {
+                return ResourceManager.GetString("SettingsPage_FinalRowLetter_J", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to K (k).
+        /// </summary>
+        internal static string SettingsPage_FinalRowLetter_K {
+            get {
+                return ResourceManager.GetString("SettingsPage_FinalRowLetter_K", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to K9 Notation - Final row identifier.
+        /// </summary>
+        internal static string SettingsPage_FinalRowLetterInK9Notation {
+            get {
+                return ResourceManager.GetString("SettingsPage_FinalRowLetterInK9Notation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fishes.
         /// </summary>
         internal static string SettingsPage_FishesGroup {
@@ -3542,6 +3596,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_HouseCompletedFeedbackColorDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_HouseCompletedFeedbackColorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RxCy Notation - Only output capitals &apos;r&apos;, &apos;c&apos; and &apos;b&apos; for houses.
+        /// </summary>
+        internal static string SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation", resourceCulture);
             }
         }
         
@@ -3636,6 +3699,51 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to K9 Notation.
+        /// </summary>
+        internal static string SettingsPage_K9Notation {
+            get {
+                return ResourceManager.GetString("SettingsPage_K9Notation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Literal.
+        /// </summary>
+        internal static string SettingsPage_LiteralNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_LiteralNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
+        /// </summary>
+        internal static string SettingsPage_MakeDigitBeforeCellInRxCyNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeDigitBeforeCellInRxCyNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to K9 Notation - Make upper-casing for coordinate letters.
+        /// </summary>
+        internal static string SettingsPage_MakeLettersUpperCaseInK9Notation {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeLettersUpperCaseInK9Notation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RxCy Notation - Make upper-casing for coordinate letters.
+        /// </summary>
+        internal static string SettingsPage_MakeLettersUpperCaseInRxCyNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeLettersUpperCaseInRxCyNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum size of Hobiwan Fish to be searched for.
         /// </summary>
         internal static string SettingsPage_MaxSizeOfComplexFish {
@@ -3686,6 +3794,33 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_NormalColor {
             get {
                 return ResourceManager.GetString("SettingsPage_NormalColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sudoku Notations.
+        /// </summary>
+        internal static string SettingsPage_Notation {
+            get {
+                return ResourceManager.GetString("SettingsPage_Notation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notation default separator.
+        /// </summary>
+        internal static string SettingsPage_NotationDefaultSeparator {
+            get {
+                return ResourceManager.GetString("SettingsPage_NotationDefaultSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notation digit separator.
+        /// </summary>
+        internal static string SettingsPage_NotationDigitSeparator {
+            get {
+                return ResourceManager.GetString("SettingsPage_NotationDigitSeparator", resourceCulture);
             }
         }
         
@@ -3861,6 +3996,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RxCy Notation.
+        /// </summary>
+        internal static string SettingsPage_RxCyNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_RxCyNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Same level only.
         /// </summary>
         internal static string SettingsPage_SameLevel {
@@ -3920,6 +4064,33 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comma (&apos;, &apos;).
+        /// </summary>
+        internal static string SettingsPage_SeparatorIsComma {
+            get {
+                return ResourceManager.GetString("SettingsPage_SeparatorIsComma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comma (&apos;、&apos;).
+        /// </summary>
+        internal static string SettingsPage_SeparatorIsComma2 {
+            get {
+                return ResourceManager.GetString("SettingsPage_SeparatorIsComma2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty (No separator).
+        /// </summary>
+        internal static string SettingsPage_SeparatorIsEmpty {
+            get {
+                return ResourceManager.GetString("SettingsPage_SeparatorIsEmpty", resourceCulture);
             }
         }
         

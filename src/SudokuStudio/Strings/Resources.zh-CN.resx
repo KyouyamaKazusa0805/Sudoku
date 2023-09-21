@@ -1041,6 +1041,12 @@
   <data name="SettingsPage_Colors" xml:space="preserve">
     <value>配色</value>
   </data>
+  <data name="SettingsPage_ConceptNotationBasedKind" xml:space="preserve">
+    <value>记号模式</value>
+  </data>
+  <data name="SettingsPage_ConceptNotationBasedKindDescription" xml:space="preserve">
+    <value>该选项控制的是整个程序在显示一个单元格、候选数、区域等一系列坐标形式的数据的文本形式的时候，使用的模式。推荐使用“RxCy”模式。</value>
+  </data>
   <data name="SettingsPage_CoordinateLabelFontData" xml:space="preserve">
     <value>坐标字体</value>
   </data>
@@ -1166,6 +1172,18 @@
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>外鱼鳍</value>
   </data>
+  <data name="SettingsPage_FinalRowLetterInK9Notation" xml:space="preserve">
+    <value>K9 记号 - 坐标最后一行使用的字母</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_I" xml:space="preserve">
+    <value>I（i）</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_J" xml:space="preserve">
+    <value>J（j）</value>
+  </data>
+  <data name="SettingsPage_FinalRowLetter_K" xml:space="preserve">
+    <value>K（k）</value>
+  </data>
   <data name="SettingsPage_FishesGroup" xml:space="preserve">
     <value>鱼</value>
   </data>
@@ -1195,6 +1213,9 @@
   </data>
   <data name="SettingsPage_HouseCompletedFeedbackColorDescription" xml:space="preserve">
     <value>当一个区域的数字全被用户完成，则会触发动画反馈，使用此配色来提示该区域完成。</value>
+  </data>
+  <data name="SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation" xml:space="preserve">
+    <value>RxCy 记号 - 区域记号用“r”、“c”和“b”字母进行代替</value>
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
@@ -1226,6 +1247,21 @@
   <data name="SettingsPage_IttoryuTechnique_NakedSingle" xml:space="preserve">
     <value>唯一余数</value>
   </data>
+  <data name="SettingsPage_K9Notation" xml:space="preserve">
+    <value>K9 坐标模式</value>
+  </data>
+  <data name="SettingsPage_LiteralNotation" xml:space="preserve">
+    <value>字面书写</value>
+  </data>
+  <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
+    <value>RxCy 记号 - 数字放到单元格左边</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInK9Notation" xml:space="preserve">
+    <value>K9 记号 - 坐标字母大写</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInRxCyNotation" xml:space="preserve">
+    <value>RxCy 记号 - 坐标字母大写</value>
+  </data>
   <data name="SettingsPage_MaxSizeOfComplexFish" xml:space="preserve">
     <value>复杂鱼结构的最大搜索规格</value>
   </data>
@@ -1243,6 +1279,15 @@
   </data>
   <data name="SettingsPage_NormalColor" xml:space="preserve">
     <value>普通的高亮候选数</value>
+  </data>
+  <data name="SettingsPage_Notation" xml:space="preserve">
+    <value>数独记号</value>
+  </data>
+  <data name="SettingsPage_NotationDefaultSeparator" xml:space="preserve">
+    <value>记号分隔符</value>
+  </data>
+  <data name="SettingsPage_NotationDigitSeparator" xml:space="preserve">
+    <value>数字分隔符</value>
   </data>
   <data name="SettingsPage_OffContent" xml:space="preserve">
     <value>否</value>
@@ -1301,6 +1346,9 @@
   <data name="SettingsPage_RoundedRectangleSolid" xml:space="preserve">
     <value>实心圆角矩形</value>
   </data>
+  <data name="SettingsPage_RxCyNotation" xml:space="preserve">
+    <value>RxCy 坐标模式</value>
+  </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>只搜索同一技巧级别的技巧</value>
   </data>
@@ -1321,6 +1369,15 @@
   </data>
   <data name="SettingsPage_SearchForReverseBugPartiallyUsedTypesDescription" xml:space="preserve">
     <value>反双数致命结构不一定非要依赖于全局的单元格。如果该设置项为“是”，则会搜索这些非全局的类型，但会导致搜索速度减慢。</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsComma" xml:space="preserve">
+    <value>逗号（“，”）</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsComma2" xml:space="preserve">
+    <value>顿号（“、”）</value>
+  </data>
+  <data name="SettingsPage_SeparatorIsEmpty" xml:space="preserve">
+    <value>无分隔符</value>
   </data>
   <data name="SettingsPage_SinglesGroup" xml:space="preserve">
     <value>出数类技巧</value>
