@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Sudoku.Analytics;
+using Sudoku.Analytics.Configuration;
 using Sudoku.Text.Coordinate;
 using SudokuStudio.Configuration;
 using SudokuStudio.Storage;
@@ -141,5 +142,38 @@ public partial class App : Application
 		{
 			Preference.CoverBy(loadedConfig);
 		}
+	}
+
+
+	/// <summary>
+	/// Creates a <see cref="StepSearcherOptions"/> instance via the currently-configured preferences.
+	/// </summary>
+	/// <returns>A <see cref="StepSearcherOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
+	internal static StepSearcherOptions CreateStepSearcherOptions()
+	{
+		var uiPref = ((App)Current).Preference.UIPreferences;
+		return StepSearcherOptions.Default with
+		{
+			CoordinateConverter = uiPref.ConceptNotationBasedKind switch
+			{
+				ConceptNotationBased.LiteralBased => new LiteralCoordinateConverter(
+					uiPref.DefaultSeparatorInNotation,
+					uiPref.DigitsSeparatorInNotation
+				),
+				ConceptNotationBased.RxCyBased => new RxCyConverter(
+					uiPref.MakeLettersUpperCaseInRxCyNotation,
+					uiPref.MakeDigitBeforeCellInRxCyNotation,
+					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
+					uiPref.DefaultSeparatorInNotation,
+					uiPref.DigitsSeparatorInNotation
+				),
+				ConceptNotationBased.K9Based => new K9Converter(
+					uiPref.MakeLettersUpperCaseInK9Notation,
+					uiPref.FinalRowLetterInK9Notation,
+					uiPref.DefaultSeparatorInNotation,
+					uiPref.DigitsSeparatorInNotation
+				)
+			}
+		};
 	}
 }

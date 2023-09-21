@@ -120,7 +120,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var ittoryuLength = preferences.IttoryuLength;
 		var analyzer = ((App)Application.Current).Analyzer
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers(), difficultyLevel)
-			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
+			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
+			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
 		var ittoryuPathFinder = new IttoryuPathFinder
 		{
 			SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]

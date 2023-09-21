@@ -3,7 +3,6 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.Text.Coordinate;
 using SudokuStudio.Configuration;
-using SudokuStudio.Rendering;
 using Windows.UI;
 
 namespace SudokuStudio.Views.Pages.Settings;

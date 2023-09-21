@@ -110,12 +110,15 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 		using var cts = new CancellationTokenSource();
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;
 		var collector = ((App)Application.Current)
 			.StepCollector
-			.WithMaxSteps(((App)Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered)
-			.WithSameLevelConfigruation((StepCollectorDifficultyLevelMode)((App)Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode)
+			.WithMaxSteps(analysisPref.StepGathererMaxStepsGathered)
+			.WithSameLevelConfigruation((StepCollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
-			.WithRuntimeIdentifierSetters(BasePage.SudokuPane);
+			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
+			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
 		try

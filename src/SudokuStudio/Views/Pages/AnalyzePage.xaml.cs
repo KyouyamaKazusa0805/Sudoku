@@ -1113,7 +1113,8 @@ public sealed partial class AnalyzePage : Page
 			.Analyzer
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(SudokuPane)
-			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity);
+			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
+			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
 		_ctsForAnalyzingRelatedOperations = cts;
 
 		try

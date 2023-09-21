@@ -1,5 +1,4 @@
 using System.SourceGeneration;
-using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
@@ -53,17 +52,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr])
 		];
 
-	private string ConjPairsStr
-	{
-		get
-		{
-			const string separator = ", ";
-
-			scoped var sb = new StringHandler(100);
-			sb.AppendRangeWithSeparator(ConjugatePairs, separator);
-			return sb.ToStringAndClear();
-		}
-	}
+	private string ConjPairsStr => Options.CoordinateConverter.ConjugateNotationConverter(ConjugatePairs);
 
 	private string Prefix => ConjugatePairs.Length == 1 ? "a " : string.Empty;
 

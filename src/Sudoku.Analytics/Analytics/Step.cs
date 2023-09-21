@@ -11,7 +11,6 @@ using Sudoku.Analytics.Strings;
 using Sudoku.Rendering;
 using Sudoku.Strings;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics;
@@ -169,7 +168,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	private protected string ConclusionText => ConclusionNotation.ToCollectionString(Conclusions);
+	private protected string ConclusionText => Options.CoordinateConverter.ConclusionNotationConverter(Conclusions);
 
 
 	/// <inheritdoc/>

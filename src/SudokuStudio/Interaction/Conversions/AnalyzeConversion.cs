@@ -8,7 +8,6 @@ using Sudoku.Analytics.Strings;
 using Sudoku.Compatibility.Hodoku;
 using Sudoku.Compatibility.SudokuExplainer;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using static SudokuStudio.Strings.StringsAccessor;
@@ -38,7 +37,7 @@ internal static class AnalyzeConversion
 
 	public static double GetWidth_SudokuExplainerText(bool showing) => showing ? 60 : 0;
 
-	public static string GetEliminationString(Step step) => ConclusionNotation.ToCollectionString(step.Conclusions);
+	public static string GetEliminationString(Step step) => step.Options.CoordinateConverter.ConclusionNotationConverter(step.Conclusions);
 
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
 
@@ -55,7 +54,7 @@ internal static class AnalyzeConversion
 			_ => string.Empty
 		};
 
-	public static string GetIndexText(SolvingPathStepBindableSource step) => DigitNotation.ToString(step.Index);
+	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
 
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
@@ -97,7 +96,8 @@ internal static class AnalyzeConversion
 					Code: var technique,
 					BaseDifficulty: var baseDifficulty,
 					Difficulty: var difficulty,
-					ExtraDifficultyCases: var cases
+					ExtraDifficultyCases: var cases,
+					Options: var options
 				} step
 			})
 		{
@@ -119,7 +119,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = DigitNotation.ToString(index) });
+			result.Add(new Run { Text = (index + 1).ToString() });
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayItems.Abbreviation))

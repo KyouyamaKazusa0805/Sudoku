@@ -228,7 +228,7 @@ public sealed record K9Converter(
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellMap.Empty + from conclusion in digitGroup select conclusion.Cell);
+						sb.Append(CellNotationConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
