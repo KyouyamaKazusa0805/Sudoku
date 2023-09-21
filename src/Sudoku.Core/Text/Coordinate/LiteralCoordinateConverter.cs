@@ -3,11 +3,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 using static Sudoku.Strings.InternalStringAccessor;
 
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents a converter that outputs coordinates as literally-speaking representation.
@@ -16,11 +15,11 @@ namespace Sudoku.Text;
 /// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
 /// <para>The value is <c>", "</c> by default.</para>
 /// </param>
-/// <param name="DigitsSeprarator">
+/// <param name="DigitsSeparator">
 /// <para>Indicates the digits separator.</para>
 /// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
 /// </param>
-public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeprarator = null) : CoordinateConverter
+public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) : CoordinateConverter
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellNotationConverter
@@ -144,10 +143,10 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override DigitNotationConverter DigitNotationConverter
-		=> mask => DigitsSeprarator switch
+		=> mask => DigitsSeparator switch
 		{
 			null or [] => string.Concat([.. from digit in mask select (digit + 1).ToString()]),
-			_ => string.Join(DigitsSeprarator, [.. from digit in mask select (digit + 1).ToString()])
+			_ => string.Join(DigitsSeparator, [.. from digit in mask select (digit + 1).ToString()])
 		};
 
 	/// <inheritdoc/>

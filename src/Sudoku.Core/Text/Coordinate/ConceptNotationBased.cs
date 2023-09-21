@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents a kind of notation to describe a concept in sudoku.

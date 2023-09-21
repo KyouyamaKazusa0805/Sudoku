@@ -3,10 +3,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents a coordinate converter using RxCy notation.

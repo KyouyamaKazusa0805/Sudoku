@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Text;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Analytics.Configuration;
 
@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Configuration;
 /// that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
 /// </summary>
-/// <param name="CoordinateConverter"><inheritdoc cref="Text.CoordinateConverter" path="/summary"/></param>
+/// <param name="CoordinateConverter"><inheritdoc cref="Text.Coordinate.CoordinateConverter" path="/summary"/></param>
 public sealed record StepSearcherOptions(CoordinateConverter CoordinateConverter)
 {
 	/// <summary>

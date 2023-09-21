@@ -3,11 +3,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 using static Sudoku.Strings.InternalStringAccessor;
 
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents a coordinate converter using K9 notation.
@@ -259,7 +258,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter { DigitsSeprarator = DigitsSeprarator }.DigitNotationConverter;
+		=> new LiteralCoordinateConverter { DigitsSeparator = DigitsSeprarator }.DigitNotationConverter;
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionNotationConverter

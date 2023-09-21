@@ -1,7 +1,7 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
-using Sudoku.Text;
+using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 

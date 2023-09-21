@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Text.Coordinate;
 
-namespace Sudoku.Text;
+namespace Sudoku.Text.Coordinate;
 
 /// <summary>
 /// Represents an option provider for coordinates.
