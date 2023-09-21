@@ -2331,4 +2331,10 @@
     <value>欠一四数组・明数类型</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="EndofinsAre" xml:space="preserve">
+    <value>内鱼鳍有：{0}</value>
+  </data>
+  <data name="ExofinsAre" xml:space="preserve">
+    <value>外鱼鳍有：{0}</value>
+  </data>
 </root>

@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -35,7 +34,7 @@ public sealed partial class FireworkTripleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CellsStr, DigitsStr]), new(ChineseLanguage, [CellsStr, DigitsStr])];
 
-	private string CellsStr => Cells.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 
-	private string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 }

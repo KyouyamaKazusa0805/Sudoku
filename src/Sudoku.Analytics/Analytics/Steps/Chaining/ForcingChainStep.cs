@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -43,7 +42,7 @@ public sealed partial class ForcingChainStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CandStr, OnOffStr]), new(ChineseLanguage, [CandStr, OnOffStrZhCn])];
 
-	private string CandStr => CandidateNotation.ToString(Target.Candidate);
+	private string CandStr => Options.CoordinateConverter.CandidateNotationConverter([Target.Candidate]);
 
 	private string OnOffStr => Target.IsOn.ToString().ToLower();
 

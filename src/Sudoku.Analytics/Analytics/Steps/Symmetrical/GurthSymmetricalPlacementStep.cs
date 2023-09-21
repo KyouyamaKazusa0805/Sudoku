@@ -51,7 +51,7 @@ public sealed partial class GurthSymmetricalPlacementStep(
 	{
 		get
 		{
-			var separator = GetString("Comma")!;
+			var comma = GetString("Comma")!;
 			if (Mapping is not null)
 			{
 				scoped var sb = new StringHandler(10);
@@ -61,10 +61,10 @@ public sealed partial class GurthSymmetricalPlacementStep(
 
 					sb.Append(i + 1);
 					sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
-					sb.Append(separator);
+					sb.Append(comma);
 				}
 
-				sb.RemoveFromEnd(separator.Length);
+				sb.RemoveFromEnd(comma.Length);
 				return sb.ToStringAndClear();
 			}
 

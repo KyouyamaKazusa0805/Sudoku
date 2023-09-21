@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -67,7 +66,7 @@ public sealed partial class HiddenSubsetStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [DigitStr, HouseStr])];
 
-	private string DigitStr => DigitNotation.ToString(DigitsMask);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

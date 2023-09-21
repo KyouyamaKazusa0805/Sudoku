@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -55,9 +54,9 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr])
 		];
 
-	private string BaseCellStr => CellNotation.ToString(BaseCell);
+	private string BaseCellStr => Options.CoordinateConverter.CellNotationConverter([BaseCell]);
 
-	private string TargetCellStr => CellNotation.ToString(TargetCell);
+	private string TargetCellStr => Options.CoordinateConverter.CellNotationConverter([TargetCell]);
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

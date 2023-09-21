@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -38,9 +37,9 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(ChineseLanguage, [CellsStr, DigitsStr, ConjStr])];
 
-	private string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private string CellsStr => Cells.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 
-	private string ConjStr => ConjugatePair.ToString();
+	private string ConjStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
 }

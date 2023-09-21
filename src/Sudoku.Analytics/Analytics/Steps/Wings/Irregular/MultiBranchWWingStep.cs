@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -47,9 +46,9 @@ public sealed partial class MultiBranchWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
-	private string LeavesStr => CellNotation.ToCollectionString(Leaves);
+	private string LeavesStr => Options.CoordinateConverter.CellNotationConverter(Leaves);
 
-	private string RootStr => CellNotation.ToCollectionString(Root);
+	private string RootStr => Options.CoordinateConverter.CellNotationConverter(Root);
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

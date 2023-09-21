@@ -42,5 +42,5 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 		=> [new(EnglishLanguage, [ConjugatePairStr]), new(ChineseLanguage, [ConjugatePairStr])];
 
 	/// <inheritdoc/>
-	private string ConjugatePairStr => ConjugatePair.ToString();
+	private string ConjugatePairStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
 }

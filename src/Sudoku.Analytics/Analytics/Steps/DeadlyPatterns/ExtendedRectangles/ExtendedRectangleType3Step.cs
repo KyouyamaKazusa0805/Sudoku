@@ -4,7 +4,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -46,9 +45,9 @@ public sealed partial class ExtendedRectangleType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
-	private string ExtraCellsStr => SubsetCells.ToString();
+	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

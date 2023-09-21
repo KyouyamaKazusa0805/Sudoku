@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -47,5 +46,5 @@ public sealed partial class ChromaticPatternXzStep(
 			new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
 		];
 
-	private string ExtraCellStr => CellNotation.ToString(ExtraCell);
+	private string ExtraCellStr => Options.CoordinateConverter.CellNotationConverter([ExtraCell]);
 }

@@ -1,7 +1,6 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -27,5 +26,5 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOpt
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
-	private string DigitStr => DigitNotation.ToString(Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 }

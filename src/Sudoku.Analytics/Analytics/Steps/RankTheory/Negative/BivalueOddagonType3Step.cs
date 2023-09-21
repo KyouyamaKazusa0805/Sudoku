@@ -4,7 +4,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -44,11 +43,11 @@ public sealed partial class BivalueOddagonType3Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr])
 		];
 
-	private string Digit1Str => DigitNotation.ToString(Digit1);
+	private string Digit1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => DigitNotation.ToString(Digit2);
+	private string Digit2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
 
-	private string DigitsStr => DigitNotation.ToString(ExtraDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
 
-	private string ExtraCellsStr => ExtraCells.ToString();
+	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(ExtraCells);
 }

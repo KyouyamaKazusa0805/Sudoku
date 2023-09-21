@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -41,5 +40,5 @@ public sealed partial class UniqueLoopType2Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr])
 		];
 
-	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
 }

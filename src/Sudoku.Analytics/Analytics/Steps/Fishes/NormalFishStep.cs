@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -79,7 +78,7 @@ public sealed partial class NormalFishStep(
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
+		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
 
 	/// <summary>
 	/// Indicates the internal name.
@@ -93,6 +92,4 @@ public sealed partial class NormalFishStep(
 			return $"{finModifier}{fishName}";
 		}
 	}
-
-	private string NotationString => HobiwanFishNotation.ToString(this);
 }

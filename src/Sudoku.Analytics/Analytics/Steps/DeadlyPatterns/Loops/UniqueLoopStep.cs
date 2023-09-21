@@ -6,7 +6,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -42,11 +41,11 @@ public abstract partial class UniqueLoopStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Length, (Sequences.A004526(Loop.Count) - 3) * .1M)];
 
-	private protected string LoopStr => Loop.ToString();
+	private protected string LoopStr => Options.CoordinateConverter.CellNotationConverter(Loop);
 
-	private protected string Digit1Str => DigitNotation.ToString(Digit1);
+	private protected string Digit1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
 
-	private protected string Digit2Str => DigitNotation.ToString(Digit2);
+	private protected string Digit2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
 
 
 	/// <inheritdoc/>

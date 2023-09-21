@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -32,5 +31,5 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [FalseCandidateStr]), new(ChineseLanguage, [FalseCandidateStr])];
 
-	private string FalseCandidateStr => CandidateNotation.ToString(FalseCandidate);
+	private string FalseCandidateStr => Options.CoordinateConverter.CandidateNotationConverter([FalseCandidate]);
 }

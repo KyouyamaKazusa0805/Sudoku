@@ -5,7 +5,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -54,9 +53,9 @@ public sealed partial class AlignedExclusionStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(ChineseLanguage, [CellsStr, ConclusionNegatedStr]), new(EnglishLanguage, [CellsStr, ConclusionNegatedStr])];
 
-	private string CellsStr => Cells.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 
-	private string ConclusionNegatedStr => ConclusionNotation.ToCollectionString(from c in Conclusions select ~c);
+	private string ConclusionNegatedStr => Options.CoordinateConverter.ConclusionNotationConverter(from c in Conclusions select ~c);
 
 
 	/// <inheritdoc/>

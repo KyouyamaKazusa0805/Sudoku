@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -33,5 +32,5 @@ public sealed partial class UniqueMatrixType1Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, CellsStr, DigitsStr])];
 
-	private string CandidateStr => CandidateNotation.ToString(Candidate);
+	private string CandidateStr => Options.CoordinateConverter.CandidateNotationConverter([Candidate]);
 }

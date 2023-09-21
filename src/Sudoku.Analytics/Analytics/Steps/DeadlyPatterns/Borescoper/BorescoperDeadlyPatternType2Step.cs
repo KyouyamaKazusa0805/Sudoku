@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -36,5 +35,5 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
 }

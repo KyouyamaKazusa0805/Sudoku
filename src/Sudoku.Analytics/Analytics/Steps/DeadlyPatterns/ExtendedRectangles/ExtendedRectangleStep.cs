@@ -5,7 +5,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -39,7 +38,7 @@ public abstract partial class ExtendedRectangleStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, (Sequences.A004526(Cells.Count) - 2) * .1M)];
 
-	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private protected string CellsStr => Cells.ToString();
+	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 }

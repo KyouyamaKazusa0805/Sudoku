@@ -1051,6 +1051,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to endofins are: {0}.
+        /// </summary>
+        public static string EndofinsAre {
+            get {
+                return ResourceManager.GetString("EndofinsAre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to endo target: .
         /// </summary>
         public static string EndoTaraget {
@@ -1137,6 +1146,15 @@ namespace Sudoku.Analytics.Strings {
         public static string ExocetTrueBaseEliminationName {
             get {
                 return ResourceManager.GetString("ExocetTrueBaseEliminationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to exofins are: {0}.
+        /// </summary>
+        public static string ExofinsAre {
+            get {
+                return ResourceManager.GetString("ExofinsAre", resourceCulture);
             }
         }
         

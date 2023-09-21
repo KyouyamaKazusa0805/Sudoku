@@ -2,7 +2,6 @@ using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -27,9 +26,10 @@ public abstract partial class ChromaticPatternStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.5M;
 
-	private protected string BlocksStr => string.Join(", ", from block in Blocks select $"{block + 1}");
+	private protected string BlocksStr
+		=> Options.CoordinateConverter.HouseNotationConverter(Blocks.Aggregate(CommonMethods.BitMerger));
 
-	private protected string CellsStr => Pattern.ToString();
+	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Pattern);
 
-	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 }

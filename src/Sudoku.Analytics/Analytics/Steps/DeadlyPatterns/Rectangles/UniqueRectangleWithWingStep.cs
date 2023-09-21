@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -72,7 +71,7 @@ public sealed partial class UniqueRectangleWithWingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr])
 		];
 
-	private string BranchesStr => Branches.ToString();
+	private string BranchesStr => Options.CoordinateConverter.CellNotationConverter(Branches);
 
-	private string DigitsStr => DigitNotation.ToString(ExtraDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
 }

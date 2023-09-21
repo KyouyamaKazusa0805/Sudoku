@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -85,13 +84,13 @@ public sealed partial class BinaryForcingChainsStep(
 			)
 		];
 
-	private string StartCandStr => CandidateNotation.ToString(SourcePotential.Candidate);
+	private string StartCandStr => Options.CoordinateConverter.CandidateNotationConverter([SourcePotential.Candidate]);
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
 	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
 
-	private string EndCandStr => CandidateNotation.ToString(FromOnPotential.Candidate);
+	private string EndCandStr => Options.CoordinateConverter.CandidateNotationConverter([FromOnPotential.Candidate]);
 
 
 	/// <inheritdoc/>

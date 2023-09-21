@@ -6,7 +6,6 @@ using Sudoku.Concepts;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -98,9 +97,9 @@ public sealed partial class RegularWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
-	private string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private string PivotCellStr => CellNotation.ToString(Pivot);
+	private string PivotCellStr => Options.CoordinateConverter.CellNotationConverter([Pivot]);
 
-	private string CellsStr => Petals.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Petals);
 }

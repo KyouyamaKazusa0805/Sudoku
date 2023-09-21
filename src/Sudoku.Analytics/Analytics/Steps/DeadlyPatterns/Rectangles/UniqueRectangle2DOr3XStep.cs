@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -49,9 +48,9 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr])
 		];
 
-	private string XDigitStr => DigitNotation.ToString(XDigit);
+	private string XDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << XDigit));
 
-	private string YDigitStr => DigitNotation.ToString(YDigit);
+	private string YDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << YDigit));
 
-	private string XYCellsStr => CellNotation.ToString(XyCell);
+	private string XYCellsStr => Options.CoordinateConverter.CellNotationConverter([XyCell]);
 }

@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -46,15 +45,15 @@ public sealed partial class SueDeCoq3DimensionStep(
 			new(ChineseLanguage, [Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str])
 		];
 
-	private string Cells1Str => RowCells.ToString();
+	private string Cells1Str => Options.CoordinateConverter.CellNotationConverter(RowCells);
 
-	private string Digits1Str => DigitNotation.ToString(RowDigitsMask);
+	private string Digits1Str => Options.CoordinateConverter.DigitNotationConverter(RowDigitsMask);
 
-	private string Cells2Str => ColumnCells.ToString();
+	private string Cells2Str => Options.CoordinateConverter.CellNotationConverter(ColumnCells);
 
-	private string Digits2Str => DigitNotation.ToString(ColumnDigitsMask);
+	private string Digits2Str => Options.CoordinateConverter.DigitNotationConverter(ColumnDigitsMask);
 
-	private string Cells3Str => BlockCells.ToString();
+	private string Cells3Str => Options.CoordinateConverter.CellNotationConverter(BlockCells);
 
-	private string Digits3Str => DigitNotation.ToString(BlockDigitsMask);
+	private string Digits3Str => Options.CoordinateConverter.DigitNotationConverter(BlockDigitsMask);
 }

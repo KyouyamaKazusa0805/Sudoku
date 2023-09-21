@@ -37,5 +37,5 @@ public sealed partial class UniqueLoopType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjStr])];
 
-	private string ConjStr => ConjugatePair.ToString();
+	private string ConjStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
 }

@@ -4,7 +4,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -48,11 +47,11 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => code;
 
-	private protected string D1Str => DigitNotation.ToString(Digit1);
+	private protected string D1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
 
-	private protected string D2Str => DigitNotation.ToString(Digit2);
+	private protected string D2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
 
-	private protected string CellsStr => Cells.ToString();
+	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 
 
 	/// <inheritdoc/>

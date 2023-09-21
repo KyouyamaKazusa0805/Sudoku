@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -40,9 +39,9 @@ public sealed partial class UniqueMatrixType4Step(
 			new(ChineseLanguage, [ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr])
 		];
 
-	private string ConjStr => ConjugateHouse.ToString();
+	private string ConjStr => Options.CoordinateConverter.CellNotationConverter(ConjugateHouse);
 
-	private string Digit1Str => DigitNotation.ToString(Digit1);
+	private string Digit1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => DigitNotation.ToString(Digit2);
+	private string Digit2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
 }

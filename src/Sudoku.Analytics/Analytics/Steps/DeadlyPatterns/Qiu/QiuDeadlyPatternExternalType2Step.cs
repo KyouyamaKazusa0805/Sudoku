@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -39,7 +38,7 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
 
-	private string CellsStr => CellNotation.ToCollectionString(MirrorCells);
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(MirrorCells);
 
-	private string DigitStr => DigitNotation.ToString(TargetDigit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << TargetDigit));
 }

@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -58,9 +57,9 @@ public sealed partial class AlmostLockedCandidatesStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
-	private string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private string BaseCellsStr => BaseCells.ToString();
+	private string BaseCellsStr => Options.CoordinateConverter.CellNotationConverter(BaseCells);
 
-	private string TargetCellsStr => TargetCells.ToString();
+	private string TargetCellsStr => Options.CoordinateConverter.CellNotationConverter(TargetCells);
 }

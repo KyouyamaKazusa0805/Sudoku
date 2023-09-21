@@ -1,7 +1,9 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
+using Sudoku.Text;
 using static System.Numerics.BitOperations;
+using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -37,4 +39,57 @@ public abstract partial class FishStep(
 	/// Other fishes of sizes not appearing in above don't have well-known names.
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
+
+	/// <summary>
+	/// The internal notation.
+	/// </summary>
+	private protected string InternalNotation
+	{
+		get
+		{
+			switch (Options.CoordinateConverter)
+			{
+				case RxCyConverter converter:
+				{
+					// Special optimization.
+					var baseSets = converter.HouseNotationConverter(BaseSetsMask);
+					var coverSets = converter.HouseNotationConverter(CoverSetsMask);
+					var exofins = this switch
+					{
+						NormalFishStep { Fins: var f and not [] } => $" f{converter.CellNotationConverter(in f)} ",
+						ComplexFishStep { Exofins: var f and not [] } => $" f{converter.CellNotationConverter(in f)} ",
+						_ => string.Empty
+					};
+					var endofins = this switch
+					{
+						ComplexFishStep { Endofins: var e and not [] } => $"ef{converter.CellNotationConverter(in e)}",
+						_ => string.Empty
+					};
+					return $@"{converter.DigitNotationConverter((Mask)(1 << Digit))} {baseSets}\{coverSets}{exofins}{endofins}";
+				}
+				case var converter:
+				{
+					var comma = GetString("Comma");
+					var digitString = converter.DigitNotationConverter((Mask)(1 << Digit));
+					var baseSets = converter.HouseNotationConverter(BaseSetsMask);
+					var coverSets = converter.HouseNotationConverter(CoverSetsMask);
+					var exofins = this switch
+					{
+						NormalFishStep { Fins: var f and not [] }
+							=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellNotationConverter(in f))}",
+						ComplexFishStep { Exofins: var f and not [] }
+							=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellNotationConverter(in f))}",
+						_ => string.Empty
+					};
+					var endofins = this switch
+					{
+						ComplexFishStep { Endofins: var e and not [] }
+							=> $"{comma}{string.Format(GetString("EndofinsAre")!, converter.CellNotationConverter(in e))}",
+						_ => string.Empty
+					};
+					return $@"{converter.DigitNotationConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";
+				}
+			}
+		}
+	}
 }

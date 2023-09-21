@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Eliminations;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -27,11 +26,11 @@ public abstract partial class ExocetStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
 
-	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private protected string BaseCellsStr => BaseMap.ToString();
+	private protected string BaseCellsStr => Options.CoordinateConverter.CellNotationConverter(BaseMap);
 
-	private protected string TargetCellsStr => TargetMap.ToString();
+	private protected string TargetCellsStr => Options.CoordinateConverter.CellNotationConverter(TargetMap);
 
 	/// <summary>
 	/// Indicates the map of the base cells.

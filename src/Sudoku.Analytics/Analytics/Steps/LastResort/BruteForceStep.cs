@@ -2,7 +2,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -26,5 +25,5 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [AssignmentStr]), new(ChineseLanguage, [AssignmentStr])];
 
-	private string AssignmentStr => ConclusionNotation.ToCollectionString(Conclusions);
+	private string AssignmentStr => Options.CoordinateConverter.ConclusionNotationConverter(Conclusions);
 }

@@ -66,7 +66,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr])
 		];
 
-	private string GuardianCellsStr => GuardianCells.ToString();
+	private string GuardianCellsStr => Options.CoordinateConverter.CellNotationConverter(GuardianCells);
 
-	private string CellPairStr => CellPair.ToString();
+	private string CellPairStr => Options.CoordinateConverter.CellNotationConverter(CellPair);
 }

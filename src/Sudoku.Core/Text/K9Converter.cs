@@ -177,7 +177,7 @@ public sealed class K9Converter : CoordinateConverter
 					HouseType.Column => "ColumnLabel",
 					HouseType.Block => "BlockLabel",
 					_ => throw new InvalidOperationException($"The specified house value '{nameof(house)}' is invalid.")
-				}), house);
+				}), house % 9 + 1);
 			}
 
 			var dic = new Dictionary<HouseType, List<int>>(3);
@@ -267,7 +267,8 @@ public sealed class K9Converter : CoordinateConverter
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitNotationConverter => new RxCyConverter { DigitsSeprarator = DigitsSeprarator }.DigitNotationConverter;
+	public override DigitNotationConverter DigitNotationConverter
+		=> new LiteralCoordinateConverter { DigitsSeprarator = DigitsSeprarator }.DigitNotationConverter;
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionNotationConverter

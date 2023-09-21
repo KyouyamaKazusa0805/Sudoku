@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -46,9 +45,9 @@ public sealed partial class UniqueLoopType3Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr])
 		];
 
-	private string SubsetCellsStr => SubsetCells.ToString();
+	private string SubsetCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
 
-	private string DigitsStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -53,9 +52,9 @@ public sealed partial class TwoStrongLinksStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr]), new(ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr])];
 
-	private string DigitStr => DigitNotation.ToString(Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 
-	private string BaseHouseStr => HouseNotation.ToString(BaseHouse);
+	private string BaseHouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << BaseHouse);
 
-	private string TargetHouseStr => HouseNotation.ToString(TargetHouse);
+	private string TargetHouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << TargetHouse);
 }

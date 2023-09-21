@@ -275,11 +275,7 @@ public sealed class RxCyConverter : CoordinateConverter
 
 	/// <inheritdoc/>
 	public override DigitNotationConverter DigitNotationConverter
-		=> mask => DigitsSeprarator switch
-		{
-			null or [] => string.Concat([.. from digit in mask select (digit + 1).ToString()]),
-			_ => string.Join(DigitsSeprarator, [.. from digit in mask select (digit + 1).ToString()])
-		};
+		=> new LiteralCoordinateConverter { DefaultSeparator = DefaultSeparator }.DigitNotationConverter;
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionNotationConverter

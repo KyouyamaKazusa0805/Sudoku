@@ -2196,4 +2196,10 @@
   <data name="AlmostLockedQuadrupleValueType" xml:space="preserve">
     <value>Extended Almost Locked Quadruple</value>
   </data>
+  <data name="EndofinsAre" xml:space="preserve">
+    <value>endofins are: {0}</value>
+  </data>
+  <data name="ExofinsAre" xml:space="preserve">
+    <value>exofins are: {0}</value>
+  </data>
 </root>

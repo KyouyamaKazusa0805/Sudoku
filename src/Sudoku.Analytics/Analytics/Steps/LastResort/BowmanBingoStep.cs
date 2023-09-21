@@ -1,5 +1,4 @@
 using System.SourceGeneration;
-using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
@@ -41,11 +40,13 @@ public sealed partial class BowmanBingoStep(
 	{
 		get
 		{
-			static string elementToString(Conclusion conclusion) => conclusion.ToString();
-			scoped var sb = new StringHandler();
-			sb.AppendRangeWithSeparator(ContradictionLinks, &elementToString, " -> ");
+			var snippets = new List<string>();
+			foreach (var conclusion in ContradictionLinks)
+			{
+				snippets.Add(Options.CoordinateConverter.ConclusionNotationConverter([conclusion]));
+			}
 
-			return sb.ToString();
+			return string.Join(" -> ", snippets);
 		}
 	}
 }

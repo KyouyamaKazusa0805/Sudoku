@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -70,15 +69,16 @@ public sealed partial class SueDeCoqStep(
 			new(ChineseLanguage, [IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr])
 		];
 
-	private string IntersectionCellsStr => IntersectionCells.ToString();
+	private string IntersectionCellsStr => Options.CoordinateConverter.CellNotationConverter(IntersectionCells);
 
-	private string IntersectionDigitsStr => DigitNotation.ToString(IntersectionMask, DigitNotation.Kind.Compact);
+	private string IntersectionDigitsStr
+		=> new LiteralCoordinateConverter { DigitsSeprarator = string.Empty }.DigitNotationConverter(IntersectionMask);
 
-	private string BlockCellsStr => BlockCells.ToString();
+	private string BlockCellsStr => Options.CoordinateConverter.CellNotationConverter(BlockCells);
 
-	private string BlockDigitsStr => DigitNotation.ToString(BlockMask, DigitNotation.Kind.Compact);
+	private string BlockDigitsStr => new LiteralCoordinateConverter { DigitsSeprarator = string.Empty }.DigitNotationConverter(BlockMask);
 
-	private string LineCellsStr => LineCells.ToString();
+	private string LineCellsStr => Options.CoordinateConverter.CellNotationConverter(LineCells);
 
-	private string LineDigitsStr => DigitNotation.ToString(LineMask, DigitNotation.Kind.Compact);
+	private string LineDigitsStr => new LiteralCoordinateConverter { DigitsSeprarator = string.Empty }.DigitNotationConverter(LineMask);
 }

@@ -7,7 +7,6 @@ using Sudoku.Analytics.Eliminations;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -67,7 +66,7 @@ public sealed partial class SeniorExocetStep(
 					}
 
 					sb.Append(digit + 1);
-					sb.Append(HouseNotation.ToMaskString(mask));
+					sb.Append(Options.CoordinateConverter.HouseNotationConverter(mask));
 					sb.Append(separator);
 
 					count++;
@@ -86,5 +85,5 @@ public sealed partial class SeniorExocetStep(
 		}
 	}
 
-	private string EndoTargetCellStr => CellNotation.ToString(EndoTargetCell);
+	private string EndoTargetCellStr => Options.CoordinateConverter.CellNotationConverter([EndoTargetCell]);
 }

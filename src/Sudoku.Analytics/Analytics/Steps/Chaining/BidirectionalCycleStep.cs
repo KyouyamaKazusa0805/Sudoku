@@ -4,7 +4,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -41,7 +40,7 @@ public sealed partial class BidirectionalCycleStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [CandsStr]), new(ChineseLanguage, [CandsStr])];
 
-	private string CandsStr => CandidateNotation.ToCollectionString([.. from element in Conclusions select element.Candidate]);
+	private string CandsStr => Options.CoordinateConverter.CandidateNotationConverter([.. from element in Conclusions select element.Candidate]);
 
 
 	/// <inheritdoc/>

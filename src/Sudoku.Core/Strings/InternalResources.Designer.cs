@@ -70,11 +70,92 @@ namespace Sudoku.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}, digit {1}.
+        /// </summary>
+        internal static string CandidateLabel {
+            get {
+                return ResourceManager.GetString("CandidateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to row {0} column {1}.
+        /// </summary>
+        internal static string CellLabel {
+            get {
+                return ResourceManager.GetString("CellLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cells: {0}.
+        /// </summary>
+        internal static string CellsLabel {
+            get {
+                return ResourceManager.GetString("CellsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Column {0}.
         /// </summary>
         internal static string ColumnLabel {
             get {
                 return ResourceManager.GetString("ColumnLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+        /// </summary>
+        internal static string ConjugatePairWith {
+            get {
+                return ResourceManager.GetString("ConjugatePairWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to houses: {0}.
+        /// </summary>
+        internal static string HousesLabel {
+            get {
+                return ResourceManager.GetString("HousesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string LockedCandidatesLabel {
+            get {
+                return ResourceManager.GetString("LockedCandidatesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mega column {0}.
+        /// </summary>
+        internal static string MegaColumnLabel {
+            get {
+                return ResourceManager.GetString("MegaColumnLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mega lines: {0}.
+        /// </summary>
+        internal static string MegaLinesLabel {
+            get {
+                return ResourceManager.GetString("MegaLinesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mega row {0}.
+        /// </summary>
+        internal static string MegaRowLabel {
+            get {
+                return ResourceManager.GetString("MegaRowLabel", resourceCulture);
             }
         }
         

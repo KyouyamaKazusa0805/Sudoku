@@ -4,7 +4,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -42,7 +41,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
-	private string ExtraCellsStr => SubsetCells.ToString();
+	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
 }

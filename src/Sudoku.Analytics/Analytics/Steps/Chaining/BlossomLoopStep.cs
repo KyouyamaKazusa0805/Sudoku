@@ -7,7 +7,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -59,9 +58,9 @@ public sealed partial class BlossomLoopStep(
 	/// </summary>
 	private decimal LengthDifficulty => ChainDifficultyRating.GetExtraDifficultyByLength(Chains.Potentials.Sum(ChainingStep.AncestorsCountOf));
 
-	private string DigitStr => DigitNotation.ToString((Digit)Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 
-	private string HouseStr => $"{char.ToLower(HouseIndex.ToHouseType().ToString()[0])}{HouseIndex % 9 + 1}";
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << HouseIndex);
 
 
 	/// <summary>

@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -48,7 +47,7 @@ public sealed partial class HiddenSingleStep(
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
 		];
 
-	private string DigitStr => DigitNotation.ToString(Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 
-	private string HouseStr => HouseNotation.ToString(House);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
 }

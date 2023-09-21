@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -45,9 +44,9 @@ public sealed partial class UniqueMatrixType3Step(
 			new(ChineseLanguage, [ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr])
 		];
 
-	private string ExtraCellsStr => SubsetCells.ToString();
+	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
 
-	private string ExtraDigitStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

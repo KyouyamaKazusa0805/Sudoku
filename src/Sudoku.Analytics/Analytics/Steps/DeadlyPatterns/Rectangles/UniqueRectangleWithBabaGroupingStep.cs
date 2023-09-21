@@ -1,11 +1,9 @@
-using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -54,10 +52,9 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr])
 		];
 
-	private string TargetCellStr => CellNotation.ToString(TargetCell);
+	private string TargetCellStr => Options.CoordinateConverter.CellNotationConverter([TargetCell]);
 
-	private string DigitsStr
-		=> string.Join(GetString("OrKeywordWithSpaces")!, (from digit in ((Mask)(1 << Digit1 | 1 << Digit2)).GetAllSets() select DigitNotation.ToString(digit)).ToArray());
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1 | 1 << Digit2));
 
-	private string ExtraDigitStr => DigitNotation.ToString(ExtraDigit);
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
 }

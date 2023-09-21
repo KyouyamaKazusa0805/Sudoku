@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -69,7 +68,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr])
 		];
 
-	private string DigitsStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
-	private string SubsetCellsStr => SubsetCells.ToString();
+	private string SubsetCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
 }

@@ -7,7 +7,6 @@ using Sudoku.Concepts;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -130,9 +129,7 @@ public sealed partial class ComplexFishStep(
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [new(EnglishLanguage, [NotationString]), new(ChineseLanguage, [NotationString])];
-
-	private string NotationString => HobiwanFishNotation.ToString(this);
+		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
 
 
 	/// <inheritdoc/>

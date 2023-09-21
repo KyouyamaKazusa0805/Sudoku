@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -60,9 +59,9 @@ public sealed partial class UniqueRectangleWithWWingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConnectorsString, EndCellsString, WDigitsString])
 		];
 
-	private string ConnectorsString => CellNotation.ToCollectionString(Connectors);
+	private string ConnectorsString => Options.CoordinateConverter.CellNotationConverter(Connectors);
 
-	private string EndCellsString => CellNotation.ToCollectionString(EndCells);
+	private string EndCellsString => Options.CoordinateConverter.CellNotationConverter(EndCells);
 
-	private string WDigitsString => DigitNotation.ToString(WDigit);
+	private string WDigitsString => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << WDigit));
 }

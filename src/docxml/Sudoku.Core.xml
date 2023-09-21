@@ -7147,9 +7147,54 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Block {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Strings.InternalResources.CandidateLabel">
+            <summary>
+              Looks up a localized string similar to {0}, digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.CellLabel">
+            <summary>
+              Looks up a localized string similar to row {0} column {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.CellsLabel">
+            <summary>
+              Looks up a localized string similar to cells: {0}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Strings.InternalResources.ColumnLabel">
             <summary>
               Looks up a localized string similar to Column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.ConjugatePairWith">
+            <summary>
+              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.HousesLabel">
+            <summary>
+              Looks up a localized string similar to houses: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.LockedCandidatesLabel">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.MegaColumnLabel">
+            <summary>
+              Looks up a localized string similar to Mega column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.MegaLinesLabel">
+            <summary>
+              Looks up a localized string similar to Mega lines: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strings.InternalResources.MegaRowLabel">
+            <summary>
+              Looks up a localized string similar to Mega row {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Strings.InternalResources.RowLabel">
@@ -8168,6 +8213,51 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
+        </member>
+        <member name="T:Sudoku.Text.LiteralCoordinateConverter">
+            <summary>
+            Represents a converter that outputs coordinates as literally-speaking representation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.DefaultSeparator">
+            <summary>
+            Indicates the default separator. The value will be inserted into two non-digit-kind instances.
+            </summary>
+            <remarks>
+            The value is <c>", "</c> by default.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.DigitsSeprarator">
+            <summary>
+            Indicates the digits separator.
+            </summary>
+            <remarks>
+            The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.CellNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.CandidateNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.HouseNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.ConclusionNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.DigitNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.IntersectionNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.ChuteNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.LiteralCoordinateConverter.ConjugateNotationConverter">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Notation.CandidateMapNotation">
             <summary>

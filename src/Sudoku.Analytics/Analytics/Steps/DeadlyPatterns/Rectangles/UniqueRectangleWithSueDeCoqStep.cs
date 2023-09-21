@@ -5,7 +5,6 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -83,7 +82,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr])
 		];
 
-	private string MergedCellsStr => (LineCells | BlockCells).ToString();
+	private string MergedCellsStr => Options.CoordinateConverter.CellNotationConverter(LineCells | BlockCells);
 
-	private string DigitsStr => DigitNotation.ToString((Mask)(LineMask | BlockMask));
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(LineMask | BlockMask));
 }

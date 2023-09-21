@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -39,11 +38,11 @@ public sealed partial class FireworkPairType1Step(
 			new(ChineseLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str])
 		];
 
-	private string CellsStr => Cells.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 
-	private string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private string ExtraCell1Str => CellNotation.ToString(ExtraCell1);
+	private string ExtraCell1Str => Options.CoordinateConverter.CellNotationConverter([ExtraCell1]);
 
-	private string ExtraCell2Str => CellNotation.ToString(ExtraCell2);
+	private string ExtraCell2Str => Options.CoordinateConverter.CellNotationConverter([ExtraCell2]);
 }

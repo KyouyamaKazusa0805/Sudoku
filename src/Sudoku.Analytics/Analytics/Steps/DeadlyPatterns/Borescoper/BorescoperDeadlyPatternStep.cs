@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -38,7 +37,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BorescoperDeadlyPatternType{Type}");
 
-	private protected string DigitsStr => DigitNotation.ToString(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
 
-	private protected string CellsStr => Cells.ToString();
+	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 }

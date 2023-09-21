@@ -3,7 +3,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -39,7 +38,7 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ExtraHouseStr, ExtraDigitsStr]), new(ChineseLanguage, [ExtraHouseStr, ExtraDigitsStr])];
 
-	private string ExtraHouseStr => HouseNotation.ToString(SubsetHouse);
+	private string ExtraHouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << SubsetHouse);
 
-	private string ExtraDigitsStr => DigitNotation.ToString(SubsetMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetMask);
 }

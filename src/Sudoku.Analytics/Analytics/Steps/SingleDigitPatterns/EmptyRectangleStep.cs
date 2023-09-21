@@ -4,7 +4,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -37,9 +36,9 @@ public sealed partial class EmptyRectangleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
-	private string DigitStr => DigitNotation.ToString(Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 
-	private string HouseStr => HouseNotation.ToString(Block);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << Block);
 
-	private string ConjStr => ConjugatePair.ToString();
+	private string ConjStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
 }

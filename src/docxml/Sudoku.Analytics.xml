@@ -12858,6 +12858,11 @@ if (student is (name: var name, age: >= 18))
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.InternalNotation">
+            <summary>
+            The internal notation.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
@@ -15547,6 +15552,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Empty Rectangle Intersection Pair.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.EndofinsAre">
+            <summary>
+              Looks up a localized string similar to endofins are: {0}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.EndoTaraget">
             <summary>
               Looks up a localized string similar to endo target: .
@@ -15595,6 +15605,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.ExocetTrueBaseEliminationName">
             <summary>
               Looks up a localized string similar to True Base.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExofinsAre">
+            <summary>
+              Looks up a localized string similar to exofins are: {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtendedGurthSymmetricalPlacement">

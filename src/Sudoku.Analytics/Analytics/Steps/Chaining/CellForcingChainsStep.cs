@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -51,7 +50,7 @@ public sealed partial class CellForcingChainsStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [SourceCellStr]), new(ChineseLanguage, [SourceCellStr])];
 
-	private string SourceCellStr => CellNotation.ToString(SourceCell);
+	private string SourceCellStr => Options.CoordinateConverter.CellNotationConverter([SourceCell]);
 
 
 	/// <inheritdoc/>

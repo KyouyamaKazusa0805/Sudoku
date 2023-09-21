@@ -6,7 +6,6 @@ using Sudoku.Concepts;
 using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -51,13 +50,13 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// </summary>
 	private int Size => PopCount((uint)SubsetDigitsMask);
 
-	private string TrueCandidatesStr => TrueCandidates.ToString();
+	private string TrueCandidatesStr => Options.CoordinateConverter.CandidateNotationConverter(TrueCandidates);
 
 	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
 
 	private string SizeStr => TechniqueFact.GetSubsetName(Size);
 
-	private string ExtraDigitsStr => DigitNotation.ToString(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
 
-	private string CellsStr => Cells.ToString();
+	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
 }

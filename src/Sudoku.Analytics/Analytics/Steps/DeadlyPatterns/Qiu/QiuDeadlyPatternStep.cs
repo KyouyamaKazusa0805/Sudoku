@@ -45,7 +45,7 @@ public abstract partial class QiuDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
-	private protected string PatternStr => Pattern.ToString();
+	private protected string PatternStr => Options.CoordinateConverter.CellNotationConverter(Pattern);
 
 	/// <summary>
 	/// Indicates the internal pattern.

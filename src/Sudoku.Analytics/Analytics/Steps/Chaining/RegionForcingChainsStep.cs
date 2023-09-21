@@ -5,7 +5,6 @@ using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -54,9 +53,9 @@ public sealed partial class RegionForcingChainsStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
-	private string DigitStr => DigitNotation.ToString((Digit)Digit);
+	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
 
-	private string HouseStr => HouseNotation.ToString(HouseIndex);
+	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << HouseIndex);
 
 
 	/// <inheritdoc/>
