@@ -73,13 +73,13 @@ public sealed partial class SueDeCoqStep(
 	private string IntersectionCellsStr => Options.CoordinateConverter.CellNotationConverter(IntersectionCells);
 
 	private string IntersectionDigitsStr
-		=> new LiteralCoordinateConverter { DigitsSeparator = string.Empty }.DigitNotationConverter(IntersectionMask);
+		=> new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitNotationConverter(IntersectionMask);
 
 	private string BlockCellsStr => Options.CoordinateConverter.CellNotationConverter(BlockCells);
 
-	private string BlockDigitsStr => new LiteralCoordinateConverter { DigitsSeparator = string.Empty }.DigitNotationConverter(BlockMask);
+	private string BlockDigitsStr => new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitNotationConverter(BlockMask);
 
 	private string LineCellsStr => Options.CoordinateConverter.CellNotationConverter(LineCells);
 
-	private string LineDigitsStr => new LiteralCoordinateConverter { DigitsSeparator = string.Empty }.DigitNotationConverter(LineMask);
+	private string LineDigitsStr => new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitNotationConverter(LineMask);
 }

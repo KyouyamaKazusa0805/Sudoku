@@ -254,7 +254,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter { DefaultSeparator = DefaultSeparator }.DigitNotationConverter;
+		=> new LiteralCoordinateConverter(DefaultSeparator: DefaultSeparator).DigitNotationConverter;
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionNotationConverter

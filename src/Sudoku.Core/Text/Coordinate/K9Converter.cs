@@ -12,7 +12,7 @@ namespace Sudoku.Text.Coordinate;
 /// Represents a coordinate converter using K9 notation.
 /// </summary>
 /// <param name="MakeLettersUpperCase">
-/// <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+/// <para>Indicates whether we make the letters be upper-casing.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
 /// <param name="FinalRowLetter">
@@ -252,7 +252,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter { DigitsSeparator = DigitsSeprarator }.DigitNotationConverter;
+		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitNotationConverter;
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionNotationConverter
@@ -263,7 +263,21 @@ public sealed record K9Converter(
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
-				select $"{GetLabel((byte)(baseSet / 9))} {baseSet % 9 + 1} {GetLabel((byte)(coverSet / 9))} {coverSet % 9 + 1}"
+				select string.Format(
+					GetString("LockedCandidatesLabel"),
+					((int)baseSet).ToHouseType() switch
+					{
+						HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
+					},
+					((int)coverSet).ToHouseType() switch
+					{
+						HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(GetString("ColumnLabel"), (coverSet % 9 + 1).ToString())
+					}
+				)
 			]),
 			_ => string.Join(
 				DefaultSeparator,
@@ -272,7 +286,21 @@ public sealed record K9Converter(
 					from intersection in intersections
 					let baseSet = intersection.Base.Line
 					let coverSet = intersection.Base.Block
-					select $"{GetLabel((byte)(baseSet / 9))} {baseSet % 9 + 1} {GetLabel((byte)(coverSet / 9))} {coverSet % 9 + 1}"
+					select string.Format(
+						GetString("LockedCandidatesLabel"),
+						((int)baseSet).ToHouseType() switch
+						{
+							HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
+						},
+						((int)coverSet).ToHouseType() switch
+						{
+							HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(GetString("ColumnLabel"), (coverSet % 9 + 1).ToString())
+						}
+					)
 				]
 			)
 		};
@@ -333,23 +361,5 @@ public sealed record K9Converter(
 			sb.RemoveFromEnd(DefaultSeparator.Length);
 
 			return sb.ToStringAndClear();
-		};
-
-
-	/// <summary>
-	/// Get the label of each house.
-	/// </summary>
-	/// <param name="houseIndex">The house index.</param>
-	/// <returns>The label.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private string GetLabel(byte houseIndex)
-		=> (houseIndex, MakeLettersUpperCase) switch
-		{
-			(0, true) => "Block",
-			(0, _) => "block",
-			(1, true) => "Row",
-			(1, _) => "row",
-			(2, true) => "Column",
-			_ => "column"
 		};
 }

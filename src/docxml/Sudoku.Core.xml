@@ -7292,17 +7292,19 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
             <para>The value is <c>", "</c> by default.</para>
             </param>
-            <param name="DigitsSeprarator">
+            <param name="DigitsSeparator">
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </param>
             <remarks>
-            You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/> and <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>.
+            You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>, <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>.
             They are the derived types of the current type.
             </remarks>
             <seealso cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>
         </member>
         <member name="M:Sudoku.Text.Coordinate.CoordinateConverter.#ctor(System.String,System.String)">
             <summary>
@@ -7312,17 +7314,19 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
             <para>The value is <c>", "</c> by default.</para>
             </param>
-            <param name="DigitsSeprarator">
+            <param name="DigitsSeparator">
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </param>
             <remarks>
-            You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/> and <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>.
+            You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>, <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>.
             They are the derived types of the current type.
             </remarks>
             <seealso cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DefaultSeparator">
             <summary>
@@ -7330,7 +7334,7 @@ if (student is (name: var name, age: >= 18))
             <para>The value is <c>", "</c> by default.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DigitsSeprarator">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DigitsSeparator">
             <summary>
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
@@ -7390,6 +7394,58 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">A list of digits.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
         </member>
+        <member name="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter">
+            <summary>
+            Represents for Excel coordinate-based converter.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Text.Coordinate.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String)">
+            <summary>
+            Represents for Excel coordinate-based converter.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.MakeLettersUpperCase">
+            <summary>
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CellNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CandidateNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.HouseNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConclusionNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.DigitNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.IntersectionNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ChuteNotationConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConjugateNotationConverter">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Coordinate.HouseNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
@@ -7410,7 +7466,7 @@ if (student is (name: var name, age: >= 18))
             Represents a coordinate converter using K9 notation.
             </summary>
             <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>Indicates whether we make the letters be upper-casing.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="FinalRowLetter">
@@ -7429,7 +7485,7 @@ if (student is (name: var name, age: >= 18))
             Represents a coordinate converter using K9 notation.
             </summary>
             <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>Indicates whether we make the letters be upper-casing.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="FinalRowLetter">
@@ -7445,7 +7501,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Text.Coordinate.K9Converter.MakeLettersUpperCase">
             <summary>
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> be upper-casing.</para>
+            <para>Indicates whether we make the letters be upper-casing.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>
@@ -7458,9 +7514,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
             </summary>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.DigitsSeparator">
-            <summary><inheritdoc/></summary>
         </member>
         <member name="P:Sudoku.Text.Coordinate.K9Converter.CellNotationConverter">
             <inheritdoc/>
@@ -7486,13 +7539,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.Coordinate.K9Converter.ConjugateNotationConverter">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Coordinate.K9Converter.GetLabel(System.Byte)">
-            <summary>
-            Get the label of each house.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>The label.</returns>
-        </member>
         <member name="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter">
             <summary>
             Represents a converter that outputs coordinates as literally-speaking representation.
@@ -7506,9 +7552,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.DigitsSeparator">
-            <summary><inheritdoc/></summary>
         </member>
         <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.CellNotationConverter">
             <inheritdoc/>
@@ -7589,9 +7632,6 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates whether the houses will be displayed its capitals only.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.DigitsSeparator">
-            <summary><inheritdoc/></summary>
         </member>
         <member name="P:Sudoku.Text.Coordinate.RxCyConverter.CellNotationConverter">
             <inheritdoc/>
