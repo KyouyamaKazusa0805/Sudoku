@@ -27,9 +27,9 @@ public abstract partial class ChromaticPatternStep(
 	public override decimal BaseDifficulty => 6.5M;
 
 	private protected string BlocksStr
-		=> Options.CoordinateConverter.HouseNotationConverter(Blocks.Aggregate(CommonMethods.BitMerger));
+		=> Options.CoordinateConverter.HouseConverter(Blocks.Aggregate(CommonMethods.BitMerger));
 
-	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Pattern);
+	private protected string CellsStr => Options.CoordinateConverter.CellConverter(Pattern);
 
-	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 }

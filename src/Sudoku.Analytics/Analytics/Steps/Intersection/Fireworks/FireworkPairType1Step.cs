@@ -38,11 +38,11 @@ public sealed partial class FireworkPairType1Step(
 			new(ChineseLanguage, [CellsStr, DigitsStr, ExtraCell1Str, ExtraCell2Str])
 		];
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string ExtraCell1Str => Options.CoordinateConverter.CellNotationConverter([ExtraCell1]);
+	private string ExtraCell1Str => Options.CoordinateConverter.CellConverter([ExtraCell1]);
 
-	private string ExtraCell2Str => Options.CoordinateConverter.CellNotationConverter([ExtraCell2]);
+	private string ExtraCell2Str => Options.CoordinateConverter.CellConverter([ExtraCell2]);
 }

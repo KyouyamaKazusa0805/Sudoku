@@ -54,42 +54,42 @@ public abstract partial class FishStep(
 			case RxCyConverter converter:
 			{
 				// Special optimization.
-				var baseSets = converter.HouseNotationConverter(BaseSetsMask);
-				var coverSets = converter.HouseNotationConverter(CoverSetsMask);
+				var baseSets = converter.HouseConverter(BaseSetsMask);
+				var coverSets = converter.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] } => $" f{converter.CellNotationConverter(in f)} ",
-					ComplexFishStep { Exofins: var f and not [] } => $" f{converter.CellNotationConverter(in f)} ",
+					NormalFishStep { Fins: var f and not [] } => $" f{converter.CellConverter(in f)} ",
+					ComplexFishStep { Exofins: var f and not [] } => $" f{converter.CellConverter(in f)} ",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					ComplexFishStep { Endofins: var e and not [] } => $"ef{converter.CellNotationConverter(in e)}",
+					ComplexFishStep { Endofins: var e and not [] } => $"ef{converter.CellConverter(in e)}",
 					_ => string.Empty
 				};
-				return $@"{converter.DigitNotationConverter((Mask)(1 << Digit))} {baseSets}\{coverSets}{exofins}{endofins}";
+				return $@"{converter.DigitConverter((Mask)(1 << Digit))} {baseSets}\{coverSets}{exofins}{endofins}";
 			}
 			case var converter:
 			{
 				var comma = GetString("Comma");
-				var digitString = converter.DigitNotationConverter((Mask)(1 << Digit));
-				var baseSets = converter.HouseNotationConverter(BaseSetsMask);
-				var coverSets = converter.HouseNotationConverter(CoverSetsMask);
+				var digitString = converter.DigitConverter((Mask)(1 << Digit));
+				var baseSets = converter.HouseConverter(BaseSetsMask);
+				var coverSets = converter.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
 					NormalFishStep { Fins: var f and not [] }
-						=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellNotationConverter(in f))}",
+						=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellConverter(in f))}",
 					ComplexFishStep { Exofins: var f and not [] }
-						=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellNotationConverter(in f))}",
+						=> $"{comma}{string.Format(GetString("ExofinsAre")!, converter.CellConverter(in f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
 					ComplexFishStep { Endofins: var e and not [] }
-						=> $"{comma}{string.Format(GetString("EndofinsAre")!, converter.CellNotationConverter(in e))}",
+						=> $"{comma}{string.Format(GetString("EndofinsAre")!, converter.CellConverter(in e))}",
 					_ => string.Empty
 				};
-				return $@"{converter.DigitNotationConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";
+				return $@"{converter.DigitConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";
 			}
 		}
 	}

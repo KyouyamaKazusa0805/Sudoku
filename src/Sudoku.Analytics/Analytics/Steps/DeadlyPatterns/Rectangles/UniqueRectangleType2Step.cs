@@ -54,5 +54,5 @@ public sealed partial class UniqueRectangleType2Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
 		];
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
 }

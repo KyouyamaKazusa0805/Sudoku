@@ -66,13 +66,13 @@ public sealed partial class UniqueRectangleType3Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
 		];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(ExtraDigitsMask);
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
 	private string OnlyKeywordZhCn => GetString("Only")!;
 
-	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
+	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
 
 	private string AppearLimitKeyword => GetString("Appear")!;
 }

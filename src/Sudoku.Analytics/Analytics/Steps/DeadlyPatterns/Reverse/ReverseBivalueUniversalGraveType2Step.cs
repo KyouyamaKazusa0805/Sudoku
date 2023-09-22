@@ -41,5 +41,5 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 		=> [new(EnglishLanguage, [ExtraDigitStr]), new(ChineseLanguage, [ExtraDigitStr])];
 
 	/// <inheritdoc/>
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
 }

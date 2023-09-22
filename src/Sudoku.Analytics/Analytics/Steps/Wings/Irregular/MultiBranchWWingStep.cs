@@ -46,9 +46,9 @@ public sealed partial class MultiBranchWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
-	private string LeavesStr => Options.CoordinateConverter.CellNotationConverter(Leaves);
+	private string LeavesStr => Options.CoordinateConverter.CellConverter(Leaves);
 
-	private string RootStr => Options.CoordinateConverter.CellNotationConverter(Root);
+	private string RootStr => Options.CoordinateConverter.CellConverter(Root);
 
-	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
+	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
 }

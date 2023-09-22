@@ -97,9 +97,9 @@ public sealed partial class RegularWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string PivotCellStr => Options.CoordinateConverter.CellNotationConverter([Pivot]);
+	private string PivotCellStr => Options.CoordinateConverter.CellConverter([Pivot]);
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Petals);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Petals);
 }

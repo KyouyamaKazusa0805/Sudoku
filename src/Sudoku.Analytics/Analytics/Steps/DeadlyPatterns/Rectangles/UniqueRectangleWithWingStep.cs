@@ -71,7 +71,7 @@ public sealed partial class UniqueRectangleWithWingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr])
 		];
 
-	private string BranchesStr => Options.CoordinateConverter.CellNotationConverter(Branches);
+	private string BranchesStr => Options.CoordinateConverter.CellConverter(Branches);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(ExtraDigitsMask);
 }

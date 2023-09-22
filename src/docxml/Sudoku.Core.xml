@@ -7360,42 +7360,42 @@ if (student is (name: var name, age: >= 18))
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.CellNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.CellConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.CandidateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.CandidateConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.HouseNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.HouseConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ConclusionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ConclusionConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DigitNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DigitConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.IntersectionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.IntersectionConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ChuteNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ChuteConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ConjugateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.ConjugateConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
             </summary>
@@ -7435,28 +7435,28 @@ if (student is (name: var name, age: >= 18))
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CellNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CellConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CandidateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.CandidateConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.HouseNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.HouseConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConclusionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConclusionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.DigitNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.DigitConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.IntersectionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.IntersectionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ChuteNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ChuteConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConjugateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Coordinate.HouseNotationConverter">
@@ -7541,28 +7541,28 @@ if (student is (name: var name, age: >= 18))
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.CellNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.CellConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.CandidateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.CandidateConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.HouseNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.HouseConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.ConclusionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.ConclusionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.DigitNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.DigitConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.IntersectionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.IntersectionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.ChuteNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.ChuteConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Converter.ConjugateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.K9Converter.ConjugateConverter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter">
@@ -7579,28 +7579,28 @@ if (student is (name: var name, age: >= 18))
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.CellNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.CellConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.CandidateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.CandidateConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.HouseNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.HouseConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ConclusionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ConclusionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.DigitNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.DigitConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.IntersectionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.IntersectionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ChuteNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ChuteConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ConjugateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.LiteralCoordinateConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Coordinate.RxCyConverter">
@@ -7659,28 +7659,28 @@ if (student is (name: var name, age: >= 18))
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.CellNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.CellConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.CandidateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.CandidateConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.HouseNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.HouseConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ConclusionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ConclusionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.DigitNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.DigitConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.IntersectionNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.IntersectionConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ChuteNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ChuteConverter">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ConjugateNotationConverter">
+        <member name="P:Sudoku.Text.Coordinate.RxCyConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.Coordinate.RxCyConverter.GetLabel(System.Byte)">

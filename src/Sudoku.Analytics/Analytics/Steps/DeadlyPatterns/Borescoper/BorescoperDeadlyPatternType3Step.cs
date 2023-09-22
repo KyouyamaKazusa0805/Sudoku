@@ -41,7 +41,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
 
-	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
+	private string ExtraCellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
 }

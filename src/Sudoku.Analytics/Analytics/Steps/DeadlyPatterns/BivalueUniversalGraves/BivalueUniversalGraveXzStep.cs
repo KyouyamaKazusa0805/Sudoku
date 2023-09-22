@@ -37,9 +37,9 @@ public sealed partial class BivalueUniversalGraveXzStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr]), new(ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
-	private string ExtraCellStr => Options.CoordinateConverter.CellNotationConverter([XzCell]);
+	private string ExtraCellStr => Options.CoordinateConverter.CellConverter([XzCell]);
 }

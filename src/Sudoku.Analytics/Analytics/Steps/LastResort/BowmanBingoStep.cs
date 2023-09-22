@@ -43,7 +43,7 @@ public sealed partial class BowmanBingoStep(
 			var snippets = new List<string>();
 			foreach (var conclusion in ContradictionLinks)
 			{
-				snippets.Add(Options.CoordinateConverter.ConclusionNotationConverter([conclusion]));
+				snippets.Add(Options.CoordinateConverter.ConclusionConverter([conclusion]));
 			}
 
 			return string.Join(" -> ", snippets);

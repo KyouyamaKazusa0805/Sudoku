@@ -25,5 +25,5 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [AssignmentStr]), new(ChineseLanguage, [AssignmentStr])];
 
-	private string AssignmentStr => Options.CoordinateConverter.ConclusionNotationConverter(Conclusions);
+	private string AssignmentStr => Options.CoordinateConverter.ConclusionConverter(Conclusions);
 }

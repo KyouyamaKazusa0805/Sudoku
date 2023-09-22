@@ -40,5 +40,5 @@ public sealed partial class UniqueLoopType2Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr])
 		];
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
 }

@@ -45,15 +45,15 @@ public sealed partial class SueDeCoq3DimensionStep(
 			new(ChineseLanguage, [Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str])
 		];
 
-	private string Cells1Str => Options.CoordinateConverter.CellNotationConverter(RowCells);
+	private string Cells1Str => Options.CoordinateConverter.CellConverter(RowCells);
 
-	private string Digits1Str => Options.CoordinateConverter.DigitNotationConverter(RowDigitsMask);
+	private string Digits1Str => Options.CoordinateConverter.DigitConverter(RowDigitsMask);
 
-	private string Cells2Str => Options.CoordinateConverter.CellNotationConverter(ColumnCells);
+	private string Cells2Str => Options.CoordinateConverter.CellConverter(ColumnCells);
 
-	private string Digits2Str => Options.CoordinateConverter.DigitNotationConverter(ColumnDigitsMask);
+	private string Digits2Str => Options.CoordinateConverter.DigitConverter(ColumnDigitsMask);
 
-	private string Cells3Str => Options.CoordinateConverter.CellNotationConverter(BlockCells);
+	private string Cells3Str => Options.CoordinateConverter.CellConverter(BlockCells);
 
-	private string Digits3Str => Options.CoordinateConverter.DigitNotationConverter(BlockDigitsMask);
+	private string Digits3Str => Options.CoordinateConverter.DigitConverter(BlockDigitsMask);
 }

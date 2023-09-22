@@ -34,7 +34,7 @@ public sealed partial class FireworkTripleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CellsStr, DigitsStr]), new(ChineseLanguage, [CellsStr, DigitsStr])];
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 }

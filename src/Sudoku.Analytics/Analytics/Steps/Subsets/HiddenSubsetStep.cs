@@ -66,7 +66,7 @@ public sealed partial class HiddenSubsetStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [DigitStr, HouseStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
+	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
 }

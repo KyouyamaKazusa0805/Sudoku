@@ -50,13 +50,13 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// </summary>
 	private int Size => PopCount((uint)SubsetDigitsMask);
 
-	private string TrueCandidatesStr => Options.CoordinateConverter.CandidateNotationConverter(TrueCandidates);
+	private string TrueCandidatesStr => Options.CoordinateConverter.CandidateConverter(TrueCandidates);
 
 	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
 
 	private string SizeStr => TechniqueFact.GetSubsetName(Size);
 
-	private string ExtraDigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 }

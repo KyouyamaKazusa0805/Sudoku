@@ -44,9 +44,9 @@ public sealed partial class AlmostLockedSetsWWingStep(
 
 	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string ConjStr => Options.CoordinateConverter.ConjugateNotationConverter([ConjugatePair]);
+	private string ConjStr => Options.CoordinateConverter.ConjugateConverter([ConjugatePair]);
 
-	private string WStr => Options.CoordinateConverter.DigitNotationConverter(WDigitsMask);
+	private string WStr => Options.CoordinateConverter.DigitConverter(WDigitsMask);
 
-	private string XStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << XDigit));
+	private string XStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << XDigit));
 }

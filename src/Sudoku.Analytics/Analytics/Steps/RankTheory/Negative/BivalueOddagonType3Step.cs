@@ -43,11 +43,11 @@ public sealed partial class BivalueOddagonType3Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr])
 		];
 
-	private string Digit1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
+	private string Digit1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
+	private string Digit2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(ExtraDigitsMask);
 
-	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(ExtraCells);
+	private string ExtraCellsStr => Options.CoordinateConverter.CellConverter(ExtraCells);
 }

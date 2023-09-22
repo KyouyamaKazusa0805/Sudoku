@@ -53,9 +53,9 @@ public sealed partial class RegionForcingChainsStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
 
-	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << HouseIndex);
+	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << HouseIndex);
 
 
 	/// <inheritdoc/>

@@ -17,7 +17,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) => cells switch
 		{
 			[] => string.Empty,
@@ -29,14 +29,14 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)
 			{
-				var cellString = CellNotationConverter([candidate / 9]);
-				var digitString = DigitNotationConverter((Mask)(1 << candidate % 9));
+				var cellString = CellConverter([candidate / 9]);
+				var digitString = DigitConverter((Mask)(1 << candidate % 9));
 				snippets.Add(string.Format(GetString("CandidateLabel"), cellString, digitString));
 			}
 
@@ -44,7 +44,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseNotationConverter
+	public override HouseNotationConverter HouseConverter
 		=> housesMask =>
 		{
 			if (housesMask == 0)
@@ -82,13 +82,13 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionNotationConverter
+	public override ConclusionNotationConverter ConclusionConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellNotationConverter([c])}{t.Notation()}{DigitNotationConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -114,7 +114,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellNotationConverter([.. from conclusion in digitGroup select conclusion.Cell]));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
@@ -137,7 +137,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitNotationConverter
+	public override DigitNotationConverter DigitConverter
 		=> mask => DigitsSeparator switch
 		{
 			null or [] => string.Concat([.. from digit in mask select (digit + 1).ToString()]),
@@ -145,7 +145,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionNotationConverter
+	public override IntersectionNotationConverter IntersectionConverter
 		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) =>
 		{
 			return string.Join(
@@ -172,7 +172,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteNotationConverter
+	public override ChuteNotationConverter ChuteConverter
 		=> (scoped ReadOnlySpan<Chute> chutes) =>
 		{
 			var snippets = new List<string>(6);
@@ -185,7 +185,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)
@@ -196,9 +196,9 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>();
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellNotationConverter([conjugatePair.From]);
-				var toCellString = CellNotationConverter([conjugatePair.To]);
-				var digitString = DigitNotationConverter((Mask)(1 << conjugatePair.Digit));
+				var fromCellString = CellConverter([conjugatePair.From]);
+				var toCellString = CellConverter([conjugatePair.To]);
+				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
 				snippets.Add(string.Format(GetString("ConjugatePairWith"), fromCellString, toCellString, digitString));
 			}
 

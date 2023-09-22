@@ -73,16 +73,16 @@ public sealed partial class AlmostLockedSetsXzStep(
 			)
 		];
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(FirstAls.Cells | SecondAls.Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(FirstAls.Cells | SecondAls.Cells);
 
-	private string EspDigitStr => Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask);
+	private string EspDigitStr => Options.CoordinateConverter.DigitConverter(ZDigitsMask);
 
 	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
 
 	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string XStr => Options.CoordinateConverter.DigitNotationConverter(XDigitsMask);
+	private string XStr => Options.CoordinateConverter.DigitConverter(XDigitsMask);
 
 	private string ZResultStr
-		=> ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask)}";
+		=> ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {Options.CoordinateConverter.DigitConverter(ZDigitsMask)}";
 }

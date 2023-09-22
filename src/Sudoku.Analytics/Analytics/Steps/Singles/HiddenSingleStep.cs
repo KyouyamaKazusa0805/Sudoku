@@ -47,7 +47,7 @@ public sealed partial class HiddenSingleStep(
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
 		];
 
-	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
 
-	private string HouseStr => Options.CoordinateConverter.HouseNotationConverter(1 << House);
+	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
 }

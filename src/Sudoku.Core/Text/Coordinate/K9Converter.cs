@@ -33,7 +33,7 @@ public sealed record K9Converter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) =>
 		{
 			switch (cells)
@@ -46,7 +46,7 @@ public sealed record K9Converter(
 					var rowCharacter = row == 8
 						? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
 						: (char)((MakeLettersUpperCase ? 'A' : 'a') + row);
-					return $"{rowCharacter}{DigitNotationConverter((Mask)(1 << column))}";
+					return $"{rowCharacter}{DigitConverter((Mask)(1 << column))}";
 				}
 				default: { return r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b; }
 			}
@@ -72,7 +72,7 @@ public sealed record K9Converter(
 							? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
 							: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
 					);
-					sbRow.AppendRange(dic[row], d => DigitNotationConverter((Mask)(1 << d)));
+					sbRow.AppendRange(dic[row], d => DigitConverter((Mask)(1 << d)));
 					sbRow.Append(DefaultSeparator);
 				}
 				sbRow.RemoveFromEnd(DefaultSeparator.Length);
@@ -115,7 +115,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			scoped var sb = new StringHandler(50);
@@ -131,7 +131,7 @@ public sealed record K9Converter(
 					cells.Add(candidate / 9);
 				}
 
-				sb.Append(CellNotationConverter(in cells));
+				sb.Append(CellConverter(in cells));
 				sb.Append('.');
 				sb.Append(digitGroup.Key + 1);
 
@@ -143,7 +143,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseNotationConverter
+	public override HouseNotationConverter HouseConverter
 		=> housesMask =>
 		{
 			if (housesMask == 0)
@@ -196,13 +196,13 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionNotationConverter
+	public override ConclusionNotationConverter ConclusionConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellNotationConverter([c])}{t.Notation()}{DigitNotationConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -228,7 +228,7 @@ public sealed record K9Converter(
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellNotationConverter([.. from conclusion in digitGroup select conclusion.Cell]));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
@@ -251,11 +251,11 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitNotationConverter;
+	public override DigitNotationConverter DigitConverter
+		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitConverter;
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionNotationConverter
+	public override IntersectionNotationConverter IntersectionConverter
 		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) => DefaultSeparator switch
 		{
 			null or [] => string.Concat([
@@ -306,7 +306,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteNotationConverter
+	public override ChuteNotationConverter ChuteConverter
 		=> (scoped ReadOnlySpan<Chute> chutes) =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
@@ -342,7 +342,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)
@@ -353,9 +353,9 @@ public sealed record K9Converter(
 			var sb = new StringHandler(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellNotationConverter([conjugatePair.From]);
-				var toCellString = CellNotationConverter([conjugatePair.To]);
-				sb.Append($"{fromCellString} == {toCellString}.{DigitNotationConverter((Mask)(1 << conjugatePair.Digit))}");
+				var fromCellString = CellConverter([conjugatePair.From]);
+				var toCellString = CellConverter([conjugatePair.To]);
+				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}
 			sb.RemoveFromEnd(DefaultSeparator.Length);

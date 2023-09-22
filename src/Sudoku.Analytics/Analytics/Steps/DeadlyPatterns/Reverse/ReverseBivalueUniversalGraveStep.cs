@@ -54,11 +54,11 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	/// </summary>
 	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
 
-	private protected string Cell1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
+	private protected string Cell1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
 
-	private protected string Cell2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
+	private protected string Cell2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
 
-	private protected string PatternStr => Options.CoordinateConverter.CellNotationConverter(CompletePattern);
+	private protected string PatternStr => Options.CoordinateConverter.CellConverter(CompletePattern);
 
 
 	/// <inheritdoc/>

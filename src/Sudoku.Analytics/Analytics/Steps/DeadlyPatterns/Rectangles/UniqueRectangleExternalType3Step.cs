@@ -68,7 +68,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr])
 		];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
+	private string SubsetCellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
 }

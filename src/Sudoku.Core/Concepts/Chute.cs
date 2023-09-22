@@ -14,5 +14,5 @@ public readonly record struct Chute(int Index, scoped ref readonly CellMap Cells
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ChuteNotationConverter([this]);
+	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ChuteConverter([this]);
 }

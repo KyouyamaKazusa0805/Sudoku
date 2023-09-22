@@ -43,7 +43,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 			new(ChineseLanguage, [Number, PatternStr])
 		];
 
-	private string CandidateStr => Options.CoordinateConverter.CandidateNotationConverter(CandidatesLocked);
+	private string CandidateStr => Options.CoordinateConverter.CandidateConverter(CandidatesLocked);
 
 	private string Quantifier => CandidatesLocked.Count switch { 1 => string.Empty, 2 => " both", _ => " all" };
 

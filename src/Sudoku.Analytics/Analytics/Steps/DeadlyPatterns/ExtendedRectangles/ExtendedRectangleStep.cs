@@ -38,7 +38,7 @@ public abstract partial class ExtendedRectangleStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, (Sequences.A004526(Cells.Count) - 2) * .1M)];
 
-	private protected string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private protected string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private protected string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 }

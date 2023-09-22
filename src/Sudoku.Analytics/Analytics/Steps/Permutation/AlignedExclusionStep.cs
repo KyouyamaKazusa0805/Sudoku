@@ -53,9 +53,9 @@ public sealed partial class AlignedExclusionStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(ChineseLanguage, [CellsStr, ConclusionNegatedStr]), new(EnglishLanguage, [CellsStr, ConclusionNegatedStr])];
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
-	private string ConclusionNegatedStr => Options.CoordinateConverter.ConclusionNotationConverter(from c in Conclusions select ~c);
+	private string ConclusionNegatedStr => Options.CoordinateConverter.ConclusionConverter(from c in Conclusions select ~c);
 
 
 	/// <inheritdoc/>

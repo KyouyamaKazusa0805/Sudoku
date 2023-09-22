@@ -36,9 +36,9 @@ public sealed partial class FireworkPairType3Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CellsStr, DigitsStr, EmptyRectangleStr]), new(ChineseLanguage, [CellsStr, DigitsStr, EmptyRectangleStr])];
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string EmptyRectangleStr => Options.CoordinateConverter.HouseNotationConverter(1 << EmptyRectangleBlock);
+	private string EmptyRectangleStr => Options.CoordinateConverter.HouseConverter(1 << EmptyRectangleBlock);
 }

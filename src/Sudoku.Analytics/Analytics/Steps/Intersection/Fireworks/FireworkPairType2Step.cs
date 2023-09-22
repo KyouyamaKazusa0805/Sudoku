@@ -45,11 +45,11 @@ public sealed partial class FireworkPairType2Step(
 			new(ChineseLanguage, [Firework1Str, Firework2Str, DigitsStr, ExtraCellStr])
 		];
 
-	private string ExtraCellStr => Options.CoordinateConverter.CellNotationConverter([ExtraCell]);
+	private string ExtraCellStr => Options.CoordinateConverter.CellConverter([ExtraCell]);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(DigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
 
-	private string Firework1Str => $"{Options.CoordinateConverter.CellNotationConverter(Pattern1Map)}({DigitsStr})";
+	private string Firework1Str => $"{Options.CoordinateConverter.CellConverter(Pattern1Map)}({DigitsStr})";
 
-	private string Firework2Str => $"{Options.CoordinateConverter.CellNotationConverter(Pattern2Map)}({DigitsStr})";
+	private string Firework2Str => $"{Options.CoordinateConverter.CellConverter(Pattern2Map)}({DigitsStr})";
 }

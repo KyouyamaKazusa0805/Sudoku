@@ -33,7 +33,7 @@ public sealed record RxCyConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) =>
 		{
 			return cells switch
@@ -62,7 +62,7 @@ public sealed record RxCyConverter(
 					sbRow.Append(MakeLettersUpperCase ? 'R' : 'r');
 					sbRow.Append(row + 1);
 					sbRow.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sbRow.AppendRange(dic[row], d => DigitNotationConverter((Mask)(1 << d)));
+					sbRow.AppendRange(dic[row], d => DigitConverter((Mask)(1 << d)));
 					sbRow.Append(DefaultSeparator);
 				}
 				sbRow.RemoveFromEnd(DefaultSeparator.Length);
@@ -87,7 +87,7 @@ public sealed record RxCyConverter(
 				foreach (var column in dic.Keys)
 				{
 					sbColumn.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sbColumn.AppendRange(dic[column], d => DigitNotationConverter((Mask)(1 << d)));
+					sbColumn.AppendRange(dic[column], d => DigitConverter((Mask)(1 << d)));
 					sbColumn.Append(MakeLettersUpperCase ? 'C' : 'c');
 					sbColumn.Append(column + 1);
 					sbColumn.Append(DefaultSeparator);
@@ -99,7 +99,7 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			scoped var sb = new StringHandler(50);
@@ -118,11 +118,11 @@ public sealed record RxCyConverter(
 				if (MakeDigitBeforeCell)
 				{
 					sb.Append(digitGroup.Key + 1);
-					sb.Append(CellNotationConverter(in cells));
+					sb.Append(CellConverter(in cells));
 				}
 				else
 				{
-					sb.Append(CellNotationConverter(in cells));
+					sb.Append(CellConverter(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -136,7 +136,7 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseNotationConverter
+	public override HouseNotationConverter HouseConverter
 		=> housesMask =>
 		{
 			if (housesMask == 0)
@@ -198,13 +198,13 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionNotationConverter
+	public override ConclusionNotationConverter ConclusionConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellNotationConverter([c])}{t.Notation()}{DigitNotationConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -253,11 +253,11 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter(DefaultSeparator: DefaultSeparator).DigitNotationConverter;
+	public override DigitNotationConverter DigitConverter
+		=> new LiteralCoordinateConverter(DefaultSeparator: DefaultSeparator).DigitConverter;
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionNotationConverter
+	public override IntersectionNotationConverter IntersectionConverter
 		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) => DefaultSeparator switch
 		{
 			null or [] => string.Concat([
@@ -280,7 +280,7 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteNotationConverter
+	public override ChuteNotationConverter ChuteConverter
 		=> (scoped ReadOnlySpan<Chute> chutes) =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
@@ -316,7 +316,7 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)
@@ -327,12 +327,12 @@ public sealed record RxCyConverter(
 			var sb = new StringHandler(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellNotationConverter([conjugatePair.From]);
-				var toCellString = CellNotationConverter([conjugatePair.To]);
+				var fromCellString = CellConverter([conjugatePair.From]);
+				var toCellString = CellConverter([conjugatePair.To]);
 				sb.Append(
 					MakeDigitBeforeCell
-						? $"{DigitNotationConverter((Mask)(1 << conjugatePair.Digit))}{fromCellString} == {toCellString}"
-						: $"{fromCellString} == {toCellString}({DigitNotationConverter((Mask)(1 << conjugatePair.Digit))})"
+						? $"{DigitConverter((Mask)(1 << conjugatePair.Digit))}{fromCellString} == {toCellString}"
+						: $"{fromCellString} == {toCellString}({DigitConverter((Mask)(1 << conjugatePair.Digit))})"
 				);
 
 				sb.Append(DefaultSeparator);

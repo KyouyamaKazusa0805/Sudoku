@@ -36,9 +36,9 @@ public sealed partial class GroupedWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
-	private string StartCellStr => Options.CoordinateConverter.CellNotationConverter([StartCell]);
+	private string StartCellStr => Options.CoordinateConverter.CellConverter([StartCell]);
 
-	private string EndCellStr => Options.CoordinateConverter.CellNotationConverter([EndCell]);
+	private string EndCellStr => Options.CoordinateConverter.CellConverter([EndCell]);
 
-	private string BridgeStr => Options.CoordinateConverter.CellNotationConverter(Bridge);
+	private string BridgeStr => Options.CoordinateConverter.CellConverter(Bridge);
 }

@@ -39,5 +39,5 @@ public sealed partial class MultisectorLockedSetsStep(
 
 	private string CellsCountStr => Cells.Count.ToString();
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 }

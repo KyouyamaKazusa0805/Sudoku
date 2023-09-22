@@ -21,7 +21,7 @@ public sealed record ExcelCoordinateConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellNotationConverter
+	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) =>
 		{
 			switch (cells)
@@ -32,7 +32,7 @@ public sealed record ExcelCoordinateConverter(
 					var row = p / 9;
 					var column = p % 9;
 					var columnCharacter = (char)((MakeLettersUpperCase ? 'A' : 'a') + column);
-					return $"{DigitNotationConverter((Mask)(1 << row))}{columnCharacter}";
+					return $"{DigitConverter((Mask)(1 << row))}{columnCharacter}";
 				}
 				default: { return r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b; }
 			}
@@ -89,7 +89,7 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateNotationConverter
+	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
 			scoped var sb = new StringHandler(50);
@@ -105,7 +105,7 @@ public sealed record ExcelCoordinateConverter(
 					cells.Add(candidate / 9);
 				}
 
-				sb.Append(CellNotationConverter(in cells));
+				sb.Append(CellConverter(in cells));
 				sb.Append('.');
 				sb.Append(digitGroup.Key + 1);
 
@@ -117,17 +117,17 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseNotationConverter
-		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).HouseNotationConverter;
+	public override HouseNotationConverter HouseConverter
+		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).HouseConverter;
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionNotationConverter
+	public override ConclusionNotationConverter ConclusionConverter
 		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellNotationConverter([c])}{t.Notation()}{DigitNotationConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -153,7 +153,7 @@ public sealed record ExcelCoordinateConverter(
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellNotationConverter([.. from conclusion in digitGroup select conclusion.Cell]));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
@@ -176,19 +176,19 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitNotationConverter
-		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitNotationConverter;
+	public override DigitNotationConverter DigitConverter
+		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitConverter;
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionNotationConverter
-		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).IntersectionNotationConverter;
+	public override IntersectionNotationConverter IntersectionConverter
+		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).IntersectionConverter;
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteNotationConverter
-		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).ChuteNotationConverter;
+	public override ChuteNotationConverter ChuteConverter
+		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).ChuteConverter;
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateNotationConverter
+	public override ConjugateNotationConverter ConjugateConverter
 		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
 		{
 			if (conjugatePairs.Length == 0)
@@ -199,9 +199,9 @@ public sealed record ExcelCoordinateConverter(
 			var sb = new StringHandler(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellNotationConverter([conjugatePair.From]);
-				var toCellString = CellNotationConverter([conjugatePair.To]);
-				sb.Append($"{fromCellString} == {toCellString}.{DigitNotationConverter((Mask)(1 << conjugatePair.Digit))}");
+				var fromCellString = CellConverter([conjugatePair.From]);
+				var toCellString = CellConverter([conjugatePair.To]);
+				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}
 			sb.RemoveFromEnd(DefaultSeparator.Length);

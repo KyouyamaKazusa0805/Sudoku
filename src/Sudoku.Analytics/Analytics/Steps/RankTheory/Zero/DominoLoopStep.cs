@@ -34,5 +34,5 @@ public sealed partial class DominoLoopStep(
 
 	private string CellsCountStr => Cells.Count.ToString();
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 }

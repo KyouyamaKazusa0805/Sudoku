@@ -51,9 +51,9 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 
 	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
 
-	private string XStr => Options.CoordinateConverter.DigitNotationConverter(XDigitsMask);
+	private string XStr => Options.CoordinateConverter.DigitConverter(XDigitsMask);
 
-	private string YStr => Options.CoordinateConverter.DigitNotationConverter(YDigitsMask);
+	private string YStr => Options.CoordinateConverter.DigitConverter(YDigitsMask);
 
-	private string ZStr => Options.CoordinateConverter.DigitNotationConverter(ZDigitsMask);
+	private string ZStr => Options.CoordinateConverter.DigitConverter(ZDigitsMask);
 }

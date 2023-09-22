@@ -50,9 +50,9 @@ public sealed partial class QiuDeadlyPatternType3Step(
 			new(ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
 		];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
 
-	private string CellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
+	private string CellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count + 1);
 }

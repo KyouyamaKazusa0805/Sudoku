@@ -44,9 +44,9 @@ public sealed partial class UniqueMatrixType3Step(
 			new(ChineseLanguage, [ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr])
 		];
 
-	private string ExtraCellsStr => Options.CoordinateConverter.CellNotationConverter(SubsetCells);
+	private string ExtraCellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter(SubsetDigitsMask);
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

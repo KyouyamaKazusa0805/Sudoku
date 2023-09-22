@@ -52,9 +52,9 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr])
 		];
 
-	private string TargetCellStr => Options.CoordinateConverter.CellNotationConverter([TargetCell]);
+	private string TargetCellStr => Options.CoordinateConverter.CellConverter([TargetCell]);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1 | 1 << Digit2));
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1 | 1 << Digit2));
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
 }

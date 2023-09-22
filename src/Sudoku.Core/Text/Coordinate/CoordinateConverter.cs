@@ -25,40 +25,40 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
 	/// </summary>
-	public abstract CellNotationConverter CellNotationConverter { get; }
+	public abstract CellNotationConverter CellConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of candidates.
 	/// </summary>
-	public abstract CandidateNotationConverter CandidateNotationConverter { get; }
+	public abstract CandidateNotationConverter CandidateConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of houses.
 	/// </summary>
-	public abstract HouseNotationConverter HouseNotationConverter { get; }
+	public abstract HouseNotationConverter HouseConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of conclusions.
 	/// </summary>
-	public abstract ConclusionNotationConverter ConclusionNotationConverter { get; }
+	public abstract ConclusionNotationConverter ConclusionConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of digits.
 	/// </summary>
-	public abstract DigitNotationConverter DigitNotationConverter { get; }
+	public abstract DigitNotationConverter DigitConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified information for an intersection.
 	/// </summary>
-	public abstract IntersectionNotationConverter IntersectionNotationConverter { get; }
+	public abstract IntersectionNotationConverter IntersectionConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of chute.
 	/// </summary>
-	public abstract ChuteNotationConverter ChuteNotationConverter { get; }
+	public abstract ChuteNotationConverter ChuteConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified conjugate.
 	/// </summary>
-	public abstract ConjugateNotationConverter ConjugateNotationConverter { get; }
+	public abstract ConjugateNotationConverter ConjugateConverter { get; }
 }

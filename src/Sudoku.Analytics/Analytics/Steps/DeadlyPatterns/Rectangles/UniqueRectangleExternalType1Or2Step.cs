@@ -69,7 +69,7 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr])
 		];
 
-	private string GuardianDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << GuardianDigit));
+	private string GuardianDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << GuardianDigit));
 
-	private string GuardianCellsStr => Options.CoordinateConverter.CellNotationConverter(GuardianCells);
+	private string GuardianCellsStr => Options.CoordinateConverter.CellConverter(GuardianCells);
 }

@@ -40,7 +40,7 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCombStr, ConjHouseStr])
 		];
 
-	private string ExtraCombStr => Options.CoordinateConverter.DigitNotationConverter(ExtraDigitsMask);
+	private string ExtraCombStr => Options.CoordinateConverter.DigitConverter(ExtraDigitsMask);
 
-	private string ConjHouseStr => Options.CoordinateConverter.CellNotationConverter(ConjugateHouse);
+	private string ConjHouseStr => Options.CoordinateConverter.CellConverter(ConjugateHouse);
 }

@@ -47,11 +47,11 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => code;
 
-	private protected string D1Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit1));
+	private protected string D1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
 
-	private protected string D2Str => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit2));
+	private protected string D2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
 
-	private protected string CellsStr => Options.CoordinateConverter.CellNotationConverter(Cells);
+	private protected string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
 
 
 	/// <inheritdoc/>

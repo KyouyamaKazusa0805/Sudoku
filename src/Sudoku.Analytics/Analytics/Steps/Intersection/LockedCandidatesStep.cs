@@ -35,9 +35,9 @@ public sealed partial class LockedCandidatesStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
 
-	private string BaseSetStr => Options.CoordinateConverter.HouseNotationConverter(1 << BaseSet);
+	private string BaseSetStr => Options.CoordinateConverter.HouseConverter(1 << BaseSet);
 
-	private string CoverSetStr => Options.CoordinateConverter.HouseNotationConverter(1 << CoverSet);
+	private string CoverSetStr => Options.CoordinateConverter.HouseConverter(1 << CoverSet);
 }

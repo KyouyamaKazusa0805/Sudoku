@@ -48,9 +48,9 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, XDigitStr, YDigitStr, XYCellsStr])
 		];
 
-	private string XDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << XDigit));
+	private string XDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << XDigit));
 
-	private string YDigitStr => Options.CoordinateConverter.DigitNotationConverter((Mask)(1 << YDigit));
+	private string YDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << YDigit));
 
-	private string XYCellsStr => Options.CoordinateConverter.CellNotationConverter([XyCell]);
+	private string XYCellsStr => Options.CoordinateConverter.CellConverter([XyCell]);
 }

@@ -37,7 +37,7 @@ public sealed partial class QiuDeadlyPatternExternalType1Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, DigitsStr, CellStr]), new(ChineseLanguage, [PatternStr, CellStr, DigitsStr])];
 
-	private string CellStr => Options.CoordinateConverter.CellNotationConverter([TargetCell]);
+	private string CellStr => Options.CoordinateConverter.CellConverter([TargetCell]);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitNotationConverter(TargetDigits);
+	private string DigitsStr => Options.CoordinateConverter.DigitConverter(TargetDigits);
 }
