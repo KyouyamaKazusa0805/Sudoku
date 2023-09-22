@@ -25,7 +25,7 @@ internal static class CoordinateLabelConversion
 			case ConceptNotationBased.RxCyBased:
 			{
 				var upperRxCy = uiPref.MakeLettersUpperCaseInRxCyNotation;
-				var label = (isRow, upperRxCy) switch { (true, true) => 'R', (true, _) => 'r', (false, true) => 'C', _ => 'c' };
+				var label = (isRow, upperRxCy) switch { (true, true) => 'C', (true, _) => 'c', (false, true) => 'R', _ => 'r' };
 				var digit = (index + 1).ToString();
 				return $"{label}{digit}";
 			}
