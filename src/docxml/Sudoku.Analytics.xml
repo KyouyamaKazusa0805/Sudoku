@@ -12883,6 +12883,9 @@ if (student is (name: var name, age: >= 18))
             The internal notation.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
@@ -19012,7 +19015,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
-            <inheritdoc cref="M:Sudoku.Concepts.AlmostLockedSet.ToString"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">
             <summary>

@@ -24,7 +24,7 @@ public sealed partial class AlmostLockedSet(
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] scoped ref readonly CellMap possibleEliminationMap
-)
+) : ICoordinateObject
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -109,13 +109,13 @@ public sealed partial class AlmostLockedSet(
 		return IsBivalueCell ? $"{digitsStr}/{Cells}" : $"{digitsStr}/{Cells} {GetString("KeywordIn")} {houseStr}";
 	}
 
-	/// <inheritdoc cref="ToString()"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter)
+	public string ToString(CoordinateConverter coordinateConverter)
 	{
-		var digitsStr = converter.DigitNotationConverter(DigitsMask);
-		var houseStr = converter.HouseNotationConverter(1 << House);
-		var cellsStr = converter.CellNotationConverter(Cells);
+		var digitsStr = coordinateConverter.DigitNotationConverter(DigitsMask);
+		var houseStr = coordinateConverter.HouseNotationConverter(1 << House);
+		var cellsStr = coordinateConverter.CellNotationConverter(Cells);
 		return IsBivalueCell ? $"{digitsStr}/{cellsStr}" : $"{digitsStr}/{cellsStr} {GetString("KeywordIn")} {houseStr}";
 	}
 

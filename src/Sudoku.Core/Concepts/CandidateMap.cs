@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
+using Sudoku.Text.Coordinate;
 using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -284,6 +285,10 @@ public partial struct CandidateMap :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => CandidateNotation.ToCollectionString(in this);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.CandidateNotationConverter(in this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

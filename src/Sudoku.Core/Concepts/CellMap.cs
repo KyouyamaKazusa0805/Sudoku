@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
+using Sudoku.Text.Coordinate;
 using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -277,7 +278,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString().SplitBy([',', ' ']) : [];
+	public readonly string[] StringChunks => this ? ToString(new RxCyConverter()).SplitBy([',', ' ']) : [];
 
 	/// <summary>
 	/// Gets the expanded peers of the current map.
@@ -569,6 +570,9 @@ public partial struct CellMap :
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => CellNotation.ToCollectionString(in this);
+
+	/// <inheritdoc/>
+	public readonly string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.CellNotationConverter(in this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

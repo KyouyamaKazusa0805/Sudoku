@@ -1283,6 +1283,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
@@ -1586,6 +1589,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>
@@ -2046,6 +2052,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <inheritdoc/>
         </member>
@@ -2377,6 +2386,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
         </member>
+        <member name="M:Sudoku.Concepts.Chute.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -2486,6 +2498,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.Conjugate._mask">
             <summary>
@@ -7457,6 +7472,19 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="housesMask">A list of houses.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Coordinate.ICoordinateObject">
+            <summary>
+            Defines a type that supports for coordinate output rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.Coordinate.ICoordinateObject.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+            <summary>
+            Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
+            The conversion rule is specified as parameter <paramref name="coordinateConverter"/>.
+            </summary>
+            <param name="coordinateConverter">The coordinate converter object.</param>
+            <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
         </member>
         <member name="T:Sudoku.Text.Coordinate.IntersectionNotationConverter">
             <summary>

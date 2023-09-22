@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Linq;
+using Sudoku.Text.Coordinate;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts.Primitive;
@@ -18,6 +19,7 @@ namespace Sudoku.Concepts.Primitive;
 public partial interface IBitStatusMap<TSelf, TElement> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
+	ICoordinateObject,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	ILogicalOperators<TSelf>,

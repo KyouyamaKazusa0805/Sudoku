@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Primitive;
+using Sudoku.Text.Coordinate;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
@@ -106,4 +107,8 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => $"{CellsMap[From]} == {CellsMap[To]}({Digit + 1})";
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ConjugateNotationConverter([this]);
 }

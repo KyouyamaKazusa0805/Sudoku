@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using Sudoku.Text.Coordinate;
+
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -7,4 +10,9 @@ namespace Sudoku.Concepts;
 /// <param name="Cells">The cells used.</param>
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
 /// <param name="HousesMask">Indicates the houses used.</param>
-public readonly record struct Chute(int Index, scoped ref readonly CellMap Cells, bool IsRow, Mask HousesMask);
+public readonly record struct Chute(int Index, scoped ref readonly CellMap Cells, bool IsRow, Mask HousesMask) : ICoordinateObject
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ChuteNotationConverter([this]);
+}

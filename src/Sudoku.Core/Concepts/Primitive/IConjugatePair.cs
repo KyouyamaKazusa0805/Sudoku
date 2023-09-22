@@ -1,4 +1,5 @@
 using System.Numerics;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Concepts.Primitive;
 
@@ -13,6 +14,7 @@ namespace Sudoku.Concepts.Primitive;
 /// <typeparam name="THouse">The type of the house.</typeparam>
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
 public interface IConjugatePair<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap> :
+	ICoordinateObject,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>
 	where TSelf : IConjugatePair<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap>
