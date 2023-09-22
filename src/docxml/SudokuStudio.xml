@@ -1314,6 +1314,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotation"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotation"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotationProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation"/>.
@@ -1738,6 +1744,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation">
             <summary>
             Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation">
@@ -6250,6 +6261,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Endo-fins.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ExcelNotation">
+            <summary>
+              Looks up a localized string similar to Excel Notation.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_ExofinColor">
             <summary>
               Looks up a localized string similar to Exo-fins.
@@ -6393,6 +6409,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeDigitBeforeCellInRxCyNotation">
             <summary>
               Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeLettersUpperCaseInExcelNotation">
+            <summary>
+              Looks up a localized string similar to Excel Notation - Make upper-casing for coordinate letters.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_MakeLettersUpperCaseInK9Notation">

@@ -7270,6 +7270,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation is based on <b>K9</b> notation.
             </summary>
         </member>
+        <member name="F:Sudoku.Text.Coordinate.ConceptNotationBased.ExcelBased">
+            <summary>
+            Indicates the notation is based on <b>Excel</b> notation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.Coordinate.ConclusionNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.

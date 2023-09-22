@@ -31,12 +31,16 @@ internal static class CoordinateLabelConversion
 			}
 			case ConceptNotationBased.K9Based:
 			{
-				var upperK9 = uiPref.MakeLettersUpperCaseInK9Notation;
-				var finalChar = uiPref.FinalRowLetterInK9Notation;
-				var label = index == 8 ? finalChar : (char)(index + 'A');
-				label = upperK9 ? char.ToUpper(label) : char.ToLower(label);
+				var label = index == 8 ? uiPref.FinalRowLetterInK9Notation : (char)(index + 'A');
+				label = uiPref.MakeLettersUpperCaseInK9Notation ? char.ToUpper(label) : char.ToLower(label);
 				var digit = (index + 1).ToString();
-				return $"{label}{digit}";
+				return isRow ? digit : label.ToString();
+			}
+			case ConceptNotationBased.ExcelBased:
+			{
+				var label = (char)(index + (uiPref.MakeLettersUpperCaseInExcelNotation ? 'A' : 'a'));
+				var digit = (index + 1).ToString();
+				return isRow ? label.ToString() : digit;
 			}
 			default:
 			{

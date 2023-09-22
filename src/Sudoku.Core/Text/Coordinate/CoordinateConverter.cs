@@ -76,6 +76,7 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 		{
 			ConceptNotationBased.RxCyBased => new RxCyConverter(),
 			ConceptNotationBased.K9Based => new K9Converter(),
+			ConceptNotationBased.ExcelBased => new ExcelCoordinateConverter(),
 			_ => new LiteralCoordinateConverter()
 		};
 }

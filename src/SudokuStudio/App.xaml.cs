@@ -172,6 +172,11 @@ public partial class App : Application
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation
+				),
+				ConceptNotationBased.ExcelBased => new ExcelCoordinateConverter(
+					uiPref.MakeLettersUpperCaseInExcelNotation,
+					uiPref.DefaultSeparatorInNotation,
+					uiPref.DigitsSeparatorInNotation
 				)
 			}
 		};

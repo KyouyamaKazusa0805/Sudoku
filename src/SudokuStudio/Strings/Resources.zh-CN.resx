@@ -1169,6 +1169,9 @@
   <data name="SettingsPage_EndofinColor" xml:space="preserve">
     <value>内鱼鳍</value>
   </data>
+  <data name="SettingsPage_ExcelNotation" xml:space="preserve">
+    <value>Excel 坐标模式</value>
+  </data>
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>外鱼鳍</value>
   </data>
@@ -1255,6 +1258,9 @@
   </data>
   <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
     <value>RxCy 记号 - 数字放到单元格左边</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInExcelNotation" xml:space="preserve">
+    <value>Excel 记号 - 坐标字母大写</value>
   </data>
   <data name="SettingsPage_MakeLettersUpperCaseInK9Notation" xml:space="preserve">
     <value>K9 记号 - 坐标字母大写</value>

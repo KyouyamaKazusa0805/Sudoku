@@ -1166,6 +1166,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_EndofinColor" xml:space="preserve">
     <value>Endo-fins</value>
   </data>
+  <data name="SettingsPage_ExcelNotation" xml:space="preserve">
+    <value>Excel Notation</value>
+  </data>
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>Exo-fins</value>
   </data>
@@ -1252,6 +1255,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
     <value>RxCy Notation - Make digits output left-side cell coordinates</value>
+  </data>
+  <data name="SettingsPage_MakeLettersUpperCaseInExcelNotation" xml:space="preserve">
+    <value>Excel Notation - Make upper-casing for coordinate letters</value>
   </data>
   <data name="SettingsPage_MakeLettersUpperCaseInK9Notation" xml:space="preserve">
     <value>K9 Notation - Make upper-casing for coordinate letters</value>

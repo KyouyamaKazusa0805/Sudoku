@@ -59,29 +59,42 @@ public sealed partial class BasicPreferenceItemsPage : Page
 			{
 				case ConceptNotationBased.LiteralBased:
 				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.Visibility = Visibility.Collapsed;
-					SettingsCard_FinalRowLetterInK9Notation.Visibility = Visibility.Collapsed;
+					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
+					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
+					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
 					break;
 				}
 				case ConceptNotationBased.RxCyBased:
 				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.Visibility = Visibility.Visible;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.Visibility = Visibility.Visible;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.Visibility = Visibility.Visible;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.Visibility = Visibility.Collapsed;
-					SettingsCard_FinalRowLetterInK9Notation.Visibility = Visibility.Collapsed;
+					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = true;
+					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = true;
+					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = true;
+					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
+					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
 					break;
 				}
 				case ConceptNotationBased.K9Based:
 				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.Visibility = Visibility.Collapsed;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.Visibility = Visibility.Visible;
-					SettingsCard_FinalRowLetterInK9Notation.Visibility = Visibility.Visible;
+					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
+					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = true;
+					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = true;
+					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
+					break;
+				}
+				case ConceptNotationBased.ExcelBased:
+				{
+					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
+					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
+					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
+					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = true;
 					break;
 				}
 			}

@@ -3465,6 +3465,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Excel Notation.
+        /// </summary>
+        internal static string SettingsPage_ExcelNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_ExcelNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exo-fins.
         /// </summary>
         internal static string SettingsPage_ExofinColor {
@@ -3722,6 +3731,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_MakeDigitBeforeCellInRxCyNotation {
             get {
                 return ResourceManager.GetString("SettingsPage_MakeDigitBeforeCellInRxCyNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excel Notation - Make upper-casing for coordinate letters.
+        /// </summary>
+        internal static string SettingsPage_MakeLettersUpperCaseInExcelNotation {
+            get {
+                return ResourceManager.GetString("SettingsPage_MakeLettersUpperCaseInExcelNotation", resourceCulture);
             }
         }
         

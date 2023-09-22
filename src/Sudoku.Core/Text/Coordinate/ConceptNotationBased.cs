@@ -19,4 +19,9 @@ public enum ConceptNotationBased
 	/// Indicates the notation is based on <b>K9</b> notation.
 	/// </summary>
 	K9Based,
+
+	/// <summary>
+	/// Indicates the notation is based on <b>Excel</b> notation.
+	/// </summary>
+	ExcelBased
 }

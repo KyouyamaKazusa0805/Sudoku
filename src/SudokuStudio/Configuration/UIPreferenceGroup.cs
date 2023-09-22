@@ -34,6 +34,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<bool>("CanRestrictGeneratingGivensCount", DocSummary = "Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.")]
 [DependencyProperty<bool>("MakeLettersUpperCaseInRxCyNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates if worth.")]
 [DependencyProperty<bool>("MakeLettersUpperCaseInK9Notation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.")]
+[DependencyProperty<bool>("MakeLettersUpperCaseInExcelNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.")]
 [DependencyProperty<bool>("MakeDigitBeforeCellInRxCyNotation", DocSummary = "Indicates whether UI makes digits displaying before cells.")]
 [DependencyProperty<bool>("HouseNotationOnlyDisplayCapitalsInRxCyNotation", DocSummary = "Indicates whether UI makes houses display its capital letters.")]
 [DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
