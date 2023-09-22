@@ -52,52 +52,9 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void ConceptNotationModeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int s } })
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int rawValue } })
 		{
-			var converted = (ConceptNotationBased)s;
-			switch (((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = converted)
-			{
-				case ConceptNotationBased.LiteralBased:
-				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
-					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
-					break;
-				}
-				case ConceptNotationBased.RxCyBased:
-				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = true;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = true;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = true;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
-					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
-					break;
-				}
-				case ConceptNotationBased.K9Based:
-				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = true;
-					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = true;
-					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = false;
-					break;
-				}
-				case ConceptNotationBased.ExcelBased:
-				{
-					SettingsCard_MakeLettersUpperCaseInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeDigitBeforeCellInRxCyNotation.IsEnabled = false;
-					SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInK9Notation.IsEnabled = false;
-					SettingsCard_FinalRowLetterInK9Notation.IsEnabled = false;
-					SettingsCard_MakeLettersUpperCaseInExcelNotation.IsEnabled = true;
-					break;
-				}
-			}
+			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (ConceptNotationBased)rawValue;
 		}
 	}
 

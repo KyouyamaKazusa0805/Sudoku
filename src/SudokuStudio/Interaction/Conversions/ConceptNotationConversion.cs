@@ -59,4 +59,22 @@ internal static class ConceptNotationConversion
 
 		return -1;
 	}
+
+	public static bool IsEnabled_SettingsCard_MakeLettersUpperCaseInRxCyNotation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.RxCyBased;
+
+	public static bool IsEnabled_SettingsCard_MakeDigitBeforeCellInRxCyNotation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.RxCyBased;
+
+	public static bool IsEnabled_SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.RxCyBased;
+
+	public static bool IsEnabled_SettingsCard_MakeLettersUpperCaseInK9Notation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.K9Based;
+
+	public static bool IsEnabled_SettingsCard_FinalRowLetterInK9Notation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.K9Based;
+
+	public static bool IsEnabled_SettingsCard_MakeLettersUpperCaseInExcelNotation(object mode)
+		=> (ConceptNotationBased)((ComboBoxItem)mode).Tag! == ConceptNotationBased.ExcelBased;
 }

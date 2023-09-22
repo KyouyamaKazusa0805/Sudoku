@@ -108,31 +108,31 @@
 					</ComboBox>
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_MakeLettersUpperCaseInRxCyNotation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInRxCyNotation}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInRxCyNotation,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_MakeDigitBeforeCellInRxCyNotation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeDigitBeforeCellInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_MakeDigitBeforeCellInRxCyNotation}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeDigitBeforeCellInRxCyNotation,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseNotationOnlyDisplayCapitalsInRxCyNotation,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_MakeLettersUpperCaseInK9Notation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInK9Notation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInK9Notation}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInK9Notation,Mode=TwoWay}" />
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_FinalRowLetterInK9Notation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_FinalRowLetterInK9Notation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_FinalRowLetterInK9Notation}">
 					<ComboBox
 						x:Name="FinalRowLetterInK9NotationSelector"
@@ -144,7 +144,7 @@
 					</ComboBox>
 				</w:SettingsCard>
 				<w:SettingsCard
-					x:Name="SettingsCard_MakeLettersUpperCaseInExcelNotation"
+					IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInExcelNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 					Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInExcelNotation}">
 					<ToggleSwitch
 						IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInExcelNotation,Mode=TwoWay}" />
