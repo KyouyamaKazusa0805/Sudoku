@@ -7474,9 +7474,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Coordinate.ICoordinateObject.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
             <summary>
             Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
-            The conversion rule is specified as parameter <paramref name="coordinateConverter"/>.
+            The conversion rule is specified as parameter <paramref name="converter"/>.
             </summary>
-            <param name="coordinateConverter">The coordinate converter object.</param>
+            <param name="converter">The coordinate converter object.</param>
             <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
         </member>
         <member name="T:Sudoku.Text.Coordinate.IntersectionNotationConverter">

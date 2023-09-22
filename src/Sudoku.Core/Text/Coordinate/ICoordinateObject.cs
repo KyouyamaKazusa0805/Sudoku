@@ -7,9 +7,9 @@ public interface ICoordinateObject
 {
 	/// <summary>
 	/// Formats the current instance, converting it into a <see cref="string"/> result that can describe for this object.
-	/// The conversion rule is specified as parameter <paramref name="coordinateConverter"/>.
+	/// The conversion rule is specified as parameter <paramref name="converter"/>.
 	/// </summary>
-	/// <param name="coordinateConverter">The coordinate converter object.</param>
+	/// <param name="converter">The coordinate converter object.</param>
 	/// <returns>A <see cref="string"/> representation of the current object.</returns>
-	public abstract string ToString(CoordinateConverter coordinateConverter);
+	public abstract string ToString(CoordinateConverter converter);
 }

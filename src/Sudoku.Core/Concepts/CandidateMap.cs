@@ -288,7 +288,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.CandidateConverter(in this);
+	public readonly string ToString(CoordinateConverter converter) => converter.CandidateConverter(in this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

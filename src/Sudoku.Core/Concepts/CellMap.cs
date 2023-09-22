@@ -572,7 +572,7 @@ public partial struct CellMap :
 	public override readonly string ToString() => CellNotation.ToCollectionString(in this);
 
 	/// <inheritdoc/>
-	public readonly string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.CellConverter(in this);
+	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(in this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

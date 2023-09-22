@@ -110,5 +110,5 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ConjugateConverter([this]);
+	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter([this]);
 }

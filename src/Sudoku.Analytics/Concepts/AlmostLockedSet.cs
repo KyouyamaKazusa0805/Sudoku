@@ -111,11 +111,11 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter coordinateConverter)
+	public string ToString(CoordinateConverter converter)
 	{
-		var digitsStr = coordinateConverter.DigitConverter(DigitsMask);
-		var houseStr = coordinateConverter.HouseConverter(1 << House);
-		var cellsStr = coordinateConverter.CellConverter(Cells);
+		var digitsStr = converter.DigitConverter(DigitsMask);
+		var houseStr = converter.HouseConverter(1 << House);
+		var cellsStr = converter.CellConverter(Cells);
 		return IsBivalueCell ? $"{digitsStr}/{cellsStr}" : $"{digitsStr}/{cellsStr} {GetString("KeywordIn")} {houseStr}";
 	}
 

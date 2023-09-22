@@ -102,7 +102,7 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter coordinateConverter) => coordinateConverter.ConclusionConverter([this]);
+	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter([this]);
 
 
 	/// <inheritdoc/>
