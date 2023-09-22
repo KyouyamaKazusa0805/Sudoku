@@ -53,11 +53,6 @@ public partial class App : Application
 	public StepCollector StepCollector { get; } = new();
 
 	/// <summary>
-	/// Indicates the coordinate converter object.
-	/// </summary>
-	internal CoordinateConverter CoordinateConverter { get; set; } = null!;
-
-	/// <summary>
 	/// Indicates a <see cref="GridInfo"/> instance that will be initialized when opening the application via extension-binding files.
 	/// </summary>
 	internal GridInfo? AppStartingGridInfo { get; set; }

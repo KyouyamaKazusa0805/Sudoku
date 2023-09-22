@@ -259,15 +259,4 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 			window.SystemBackdrop = value.GetBackdrop();
 		}
 	}
-
-	[Callback]
-	private static void ConceptNotationBasedKindPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	{
-		if (e.NewValue is not ConceptNotationBased value)
-		{
-			return;
-		}
-
-		((App)Application.Current).CoordinateConverter = CoordinateConverter.Create(value);
-	}
 }

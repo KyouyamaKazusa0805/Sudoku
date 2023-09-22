@@ -40,11 +40,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepCollector"/>
         </member>
-        <member name="P:SudokuStudio.App.CoordinateConverter">
-            <summary>
-            Indicates the coordinate converter object.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.App.AppStartingGridInfo">
             <summary>
             Indicates a <see cref="T:SudokuStudio.Configuration.GridInfo"/> instance that will be initialized when opening the application via extension-binding files.

@@ -7400,13 +7400,6 @@ if (student is (name: var name, age: >= 18))
             The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.Coordinate.CoordinateConverter.Create(Sudoku.Text.Coordinate.ConceptNotationBased)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Text.Coordinate.CoordinateConverter"/> instance via the specified concept notation.
-            </summary>
-            <param name="conceptNotation">The field to represent with a kind of concept notation.</param>
-            <returns>A <see cref="T:Sudoku.Text.Coordinate.CoordinateConverter"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Text.Coordinate.DigitNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
