@@ -262,13 +262,7 @@ public ref struct HodokuPuzzleGenerator
 				index2 = _rng.Next(81);
 			}
 
-			unsafe
-			{
-				fixed (int* p = _generateIndices)
-				{
-					PointerOperations.Swap(p + index1, p + index2);
-				}
-			}
+			(_generateIndices[index1], _generateIndices[index2]) = (_generateIndices[index2], _generateIndices[index1]);
 		}
 
 		// First set a new empty Sudoku.
