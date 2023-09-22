@@ -52,7 +52,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<decimal>("CoordinateLabelFontScale", DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
 [DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
-[DependencyProperty<ConceptNotationBased>("CoordinateLabelDisplayKind", DefaultValue = ConceptNotationBased.RxCyBased, DocSummary = "Indicates the displaying kind of coordinate labels.")]
+[DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayMode\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplayNode>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplayNode.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
 [DependencyProperty<EliminationDisplayMode>("EliminationDisplayMode", DefaultValue = EliminationDisplayMode.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
@@ -762,7 +762,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void CoordinateLabelDisplayKindPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (e.NewValue is not ConceptNotationBased value)
+		if (e.NewValue is not CoordinateType value)
 		{
 			return;
 		}

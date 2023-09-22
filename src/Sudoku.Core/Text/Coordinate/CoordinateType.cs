@@ -1,27 +1,27 @@
 namespace Sudoku.Text.Coordinate;
 
 /// <summary>
-/// Represents a kind of notation to describe a concept in sudoku.
+/// Represents a type of notation to describe a coordinate in sudoku.
 /// </summary>
-public enum ConceptNotationBased
+public enum CoordinateType
 {
 	/// <summary>
 	/// Idnicates the notation is based on literally notation.
 	/// </summary>
-	LiteralBased,
+	Literal,
 
 	/// <summary>
 	/// Indicates the notation is based on <b>RxCy</b> notation.
 	/// </summary>
-	RxCyBased,
+	RxCy,
 
 	/// <summary>
 	/// Indicates the notation is based on <b>K9</b> notation.
 	/// </summary>
-	K9Based,
+	K9,
 
 	/// <summary>
 	/// Indicates the notation is based on <b>Excel</b> notation.
 	/// </summary>
-	ExcelBased
+	Excel
 }

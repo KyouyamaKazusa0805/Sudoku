@@ -13,29 +13,29 @@ internal static class CoordinateLabelConversion
 {
 	public static double GetFontSize(double globalFontSize, decimal scale) => globalFontSize * (double)scale;
 
-	public static string ToCoordinateLabelText(ConceptNotationBased based, int index, bool isRow)
+	public static string ToCoordinateLabelText(CoordinateType based, int index, bool isRow)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		switch (based)
 		{
-			case ConceptNotationBased.LiteralBased:
+			case CoordinateType.Literal:
 			{
 				return (index + 1).ToString();
 			}
-			case ConceptNotationBased.RxCyBased:
+			case CoordinateType.RxCy:
 			{
 				var upperRxCy = uiPref.MakeLettersUpperCaseInRxCyNotation;
 				var label = (isRow, upperRxCy) switch { (true, true) => 'C', (true, _) => 'c', (false, true) => 'R', _ => 'r' };
 				var digit = (index + 1).ToString();
 				return $"{label}{digit}";
 			}
-			case ConceptNotationBased.K9Based:
+			case CoordinateType.K9:
 			{
 				var label = (index == 8 ? uiPref.FinalRowLetterInK9Notation : (char)(index + 'A')) is var l
 					&& uiPref.MakeLettersUpperCaseInK9Notation ? char.ToUpper(l) : char.ToLower(l);
 				return isRow ? (index + 1).ToString() : label.ToString();
 			}
-			case ConceptNotationBased.ExcelBased:
+			case CoordinateType.Excel:
 			{
 				var label = (char)(index + (uiPref.MakeLettersUpperCaseInExcelNotation ? 'A' : 'a'));
 				return isRow ? label.ToString() : (index + 1).ToString();

@@ -151,24 +151,24 @@ public partial class App : Application
 		{
 			CoordinateConverter = uiPref.ConceptNotationBasedKind switch
 			{
-				ConceptNotationBased.LiteralBased => new LiteralCoordinateConverter(
+				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation
 				),
-				ConceptNotationBased.RxCyBased => new RxCyConverter(
+				CoordinateType.RxCy => new RxCyConverter(
 					uiPref.MakeLettersUpperCaseInRxCyNotation,
 					uiPref.MakeDigitBeforeCellInRxCyNotation,
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation
 				),
-				ConceptNotationBased.K9Based => new K9Converter(
+				CoordinateType.K9 => new K9Converter(
 					uiPref.MakeLettersUpperCaseInK9Notation,
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation
 				),
-				ConceptNotationBased.ExcelBased => new ExcelCoordinateConverter(
+				CoordinateType.Excel => new ExcelCoordinateConverter(
 					uiPref.MakeLettersUpperCaseInExcelNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation

@@ -65,7 +65,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
 [DependencyProperty<Technique>("SelectedTechnique", DefaultValue = 0, DocSummary = "Indicates the selected technique, which will be appeared in generated puzzles.")]
-[DependencyProperty<ConceptNotationBased>("ConceptNotationBasedKind", DefaultValue = ConceptNotationBased.RxCyBased, DocSummary = "Indicates the based type for displaying a concept notation.")]
+[DependencyProperty<CoordinateType>("ConceptNotationBasedKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the based type for displaying a concept notation.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("ModifiableFontColor")]
 [DependencyProperty<Color>("PencilmarkFontColor")]

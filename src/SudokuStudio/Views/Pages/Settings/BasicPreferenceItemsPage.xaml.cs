@@ -54,7 +54,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 	{
 		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int rawValue } })
 		{
-			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (ConceptNotationBased)rawValue;
+			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
 		}
 	}
 
