@@ -105,7 +105,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 			var result = new ArrayList();
 			foreach (var flag in flags.GetAllFlags())
 			{
-				result.Add(flag.GetFormatter());
+				result.Add(flag.GetConverter());
 			}
 
 			return result;

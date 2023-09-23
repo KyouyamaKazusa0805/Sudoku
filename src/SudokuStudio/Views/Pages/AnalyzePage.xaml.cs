@@ -13,7 +13,7 @@ using Sudoku.Analytics.Metadata;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Text.Formatting;
+using Sudoku.Text.SudokuGrid;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
@@ -293,7 +293,7 @@ public sealed partial class AnalyzePage : Page
 	/// we cannot use this type as a type argument, because APIs may not contain any implementation from this type,
 	/// so C# compiler cannot determine which method can be called.
 	/// Therefore, here we cannot use generic type to pass arguments
-	/// because here the type <see cref="IGridFormatter"/> contains <see langword="static abstract"/> members.
+	/// because here the type <see cref="GridConverter"/> contains <see langword="static abstract"/> members.
 	/// </para>
 	/// <para>
 	/// This topic relates to the content in the following links:
@@ -313,7 +313,7 @@ public sealed partial class AnalyzePage : Page
 	/// of the argument <paramref name="gridFormatters"/>.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="IGridFormatter"/>
+	/// <seealso cref="GridConverter"/>
 	internal async Task<bool> SaveFileInternalAsync(ArrayList? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
@@ -351,7 +351,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((IGridFormatter)formatter).ToString(in grid)])
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((GridConverter)formatter).TargetConverter(in grid)])
 					);
 				}
 				break;
@@ -375,7 +375,7 @@ public sealed partial class AnalyzePage : Page
 						_ => [
 							..
 							from formatter in gridFormatters
-							select ((IGridFormatter)formatter).ToString(in grid) into gridString
+							select ((GridConverter)formatter).TargetConverter(in grid) into gridString
 							select new GridInfo
 							{
 								BaseGrid = grid,
@@ -1303,7 +1303,7 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(puzzle.ToString(flag.GetFormatter()));
+		dataPackage.SetText(puzzle.ToString(flag.GetConverter()));
 
 		Clipboard.SetContent(dataPackage);
 	}

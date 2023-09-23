@@ -13,7 +13,7 @@ using Sudoku.Analytics;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
-using Sudoku.Text.Formatting;
+using Sudoku.Text.SudokuGrid;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -722,60 +722,22 @@ public unsafe partial struct Grid : GridImpl
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.GetBuiltInFormatter(format)?.ToString(in this) ?? throw new FormatException("The specified format is invalid.")
+			_ => GridFormatterFactory.GetBuiltInConverter(format)?.TargetConverter(in this) ?? throw new FormatException("The specified format is invalid.")
 		};
 
 	/// <summary>
-	/// Gets <see cref="string"/> representation of the current grid, using pre-defined grid formatters.
+	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
+	/// using the specified formatting rule defined in argument <paramref name="converter"/>.
 	/// </summary>
-	/// <param name="gridFormatter">
-	/// The grid formatter instance to format the current grid.
-	/// </param>
-	/// <returns>The <see cref="string"/> result.</returns>
-	/// <remarks>
-	/// <para>
-	/// The target and supported types are stored in namespace <see cref="Text.Formatting"/>.
-	/// If you don't remember the full format strings, you can try this method instead by passing
-	/// actual <see cref="IGridFormatter"/> instances.
-	/// </para>
-	/// <para>
-	/// For example, by using Susser formatter <see cref="SusserFormat"/> instances:
-	/// <code><![CDATA[
-	/// // Suppose the variable is of type 'Grid'.
-	/// var grid = ...;
-	/// 
-	/// // Creates a Susser-based formatter, with placeholder text as '0',
-	/// // missing candidates output and modifiable distinction.
-	/// var formatter = SusserFormat.Default with
-	/// {
-	///     Placeholder = '0',
-	///     WithCandidates = true,
-	///     WithModifiables = true
-	/// };
-	/// 
-	/// // Using this method to get the target string representation.
-	/// string targetStr = grid.ToString(formatter);
-	/// 
-	/// // Output the result.
-	/// Console.WriteLine(targetStr);
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// In some cases we suggest you use this method instead of calling <see cref="ToString(string?)"/>
-	/// because you may not remember all possible string formats.
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="Text.Formatting"/>
-	/// <seealso cref="IGridFormatter"/>
-	/// <seealso cref="SusserFormat"/>
-	/// <seealso cref="ToString(string?)"/>
+	/// <param name="converter">A converter instance that defines the conversion rule.</param>
+	/// <returns>The target <see cref="string"/> representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(IGridFormatter gridFormatter)
+	public readonly string ToString(GridConverter converter)
 		=> this switch
 		{
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
-			_ => gridFormatter.ToString(in this)
+			_ => converter.TargetConverter(in this)
 		};
 
 	/// <inheritdoc/>
@@ -1543,7 +1505,7 @@ file sealed class Converter : JsonConverter<Grid>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(SusserFormat.Full));
+		=> writer.WriteStringValue(value.ToString(SusserConverter.Full));
 }
 
 /// <summary>

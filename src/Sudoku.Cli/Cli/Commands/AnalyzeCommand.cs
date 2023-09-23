@@ -4,7 +4,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Cli.Converters;
 using Sudoku.Cli.Options;
 using Sudoku.Concepts;
-using Sudoku.Text.Formatting;
+using Sudoku.Text.SudokuGrid;
 
 namespace Sudoku.Cli.Commands;
 
@@ -41,7 +41,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 					}
 					else
 					{
-						Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilMarkFormat()));
+						Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilmarkingConverter()));
 						Console.WriteLine(firstFoundStep.Step.ToString());
 					}
 					break;

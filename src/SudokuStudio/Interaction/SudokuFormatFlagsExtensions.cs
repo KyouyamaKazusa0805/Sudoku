@@ -1,4 +1,4 @@
-using Sudoku.Text.Formatting;
+using Sudoku.Text.SudokuGrid;
 
 namespace SudokuStudio.Interaction;
 
@@ -9,23 +9,23 @@ namespace SudokuStudio.Interaction;
 internal static class SudokuFormatFlagsExtensions
 {
 	/// <summary>
-	/// Try to get target <see cref="IGridFormatter"/> instance.
+	/// Try to get target <see cref="GridConverter"/> instance.
 	/// </summary>
 	/// <param name="this">The flag instance.</param>
-	/// <returns><see cref="IGridFormatter"/> instance.</returns>
+	/// <returns><see cref="GridConverter"/> instance.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-	public static IGridFormatter GetFormatter(this SudokuFormatFlags @this)
+	public static GridConverter GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
-			SudokuFormatFlags.InitialFormat => SusserFormat.Default,
-			SudokuFormatFlags.CurrentFormat => SusserFormat.Full,
-			SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserFormatTreatingValuesAsGivens.Default,
-			SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryFormat.Default,
-			SudokuFormatFlags.MultipleGridFormat => MultipleLineFormat.Default,
-			SudokuFormatFlags.PencilMarkFormat => PencilMarkFormat.Default,
-			SudokuFormatFlags.SukakuFormat => SukakuFormat.Default,
-			SudokuFormatFlags.ExcelFormat => ExcelFormat.Default,
-			SudokuFormatFlags.OpenSudokuFormat => OpenSudokuFormat.Default,
+			SudokuFormatFlags.InitialFormat => SusserConverter.Default,
+			SudokuFormatFlags.CurrentFormat => SusserConverter.Full,
+			SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserConverterTreatingValuesAsGivens.Default,
+			SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryConverter.Default,
+			SudokuFormatFlags.MultipleGridFormat => MultipleLineConverter.Default,
+			SudokuFormatFlags.PencilMarkFormat => new PencilmarkingConverter(),
+			SudokuFormatFlags.SukakuFormat => SukakuConverter.Default,
+			SudokuFormatFlags.ExcelFormat => new ExcelConverter(),
+			SudokuFormatFlags.OpenSudokuFormat => new OpenSudokuConverter(),
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }

@@ -2,10 +2,10 @@ using System.Diagnostics;
 using System.Text;
 using Sudoku.Concepts;
 
-namespace Sudoku.Text.Formatting;
+namespace Sudoku.Text.SudokuGrid;
 
 /// <summary>
-/// Represents with a grid mask formatter.
+/// Represents a type that converts the grid into an equivalent <see cref="string"/> representation using mask displaying rule.
 /// </summary>
 /// <param name="Separator">
 /// <para>Indicates the mask separator.</para>
@@ -18,26 +18,14 @@ namespace Sudoku.Text.Formatting;
 /// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
 /// can be output correctly, and other values will be incorrect: they're always 0.
 /// </remarks>
-public sealed record GridMaskFormat(string Separator = ", ") : IGridFormatter
+public sealed record MaskConverter(string Separator = ", ") : GridConverter
 {
-	/// <summary>
-	/// Indicates the default instance. The properties set are:
-	/// <list type="bullet">
-	/// <item><see cref="Separator"/>: <c>", "</c></item>
-	/// </list>
-	/// </summary>
-	public static readonly GridMaskFormat Default = new();
-
-
 	/// <inheritdoc/>
-	static IGridFormatter IGridFormatter.Instance => Default;
-
-
-	/// <inheritdoc/>
-	public unsafe string ToString(scoped ref readonly Grid grid)
-	{
-		scoped var sb = new StringHandler(400);
-		sb.AppendRangeWithSeparatorRef(in grid[0], 81, &StringHandler.ElementToStringConverter, Separator);
-		return sb.ToStringAndClear();
-	}
+	public override unsafe GridNotationConverter TargetConverter
+		=> (scoped ref readonly Grid grid) =>
+		{
+			scoped var sb = new StringHandler(400);
+			sb.AppendRangeWithSeparatorRef(in grid[0], 81, &StringHandler.ElementToStringConverter, Separator);
+			return sb.ToStringAndClear();
+		};
 }
