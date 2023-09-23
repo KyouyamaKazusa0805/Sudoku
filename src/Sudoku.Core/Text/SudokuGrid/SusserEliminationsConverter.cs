@@ -26,8 +26,8 @@ public sealed partial record SusserEliminationsConverter : SusserConverter
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
-		=> (scoped ref readonly Grid grid) => EliminationPattern().Match(base.TargetConverter(in grid)) is { Success: true, Value: var value } ? value : string.Empty;
+	public override GridNotationConverter Converter
+		=> (scoped ref readonly Grid grid) => EliminationPattern().Match(base.Converter(in grid)) is { Success: true, Value: var value } ? value : string.Empty;
 
 
 	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]

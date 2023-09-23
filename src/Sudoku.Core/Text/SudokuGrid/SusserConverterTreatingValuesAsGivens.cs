@@ -24,6 +24,6 @@ public sealed record SusserConverterTreatingValuesAsGivens : SusserConverter
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
-		=> (scoped ref readonly Grid grid) => base.TargetConverter(in grid).RemoveAll(ModifiablePrefix);
+	public override GridNotationConverter Converter
+		=> (scoped ref readonly Grid grid) => base.Converter(in grid).RemoveAll(ModifiablePrefix);
 }

@@ -20,7 +20,7 @@ public sealed record ExcelConverter : GridConverter
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
+	public override GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var span = grid.ToString(SusserConverter.Default with { Placeholder = Zero }).AsSpan();

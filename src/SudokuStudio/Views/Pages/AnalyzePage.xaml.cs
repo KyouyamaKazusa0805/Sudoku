@@ -351,7 +351,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((GridConverter)formatter).TargetConverter(in grid)])
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((GridConverter)formatter).Converter(in grid)])
 					);
 				}
 				break;
@@ -375,7 +375,7 @@ public sealed partial class AnalyzePage : Page
 						_ => [
 							..
 							from formatter in gridFormatters
-							select ((GridConverter)formatter).TargetConverter(in grid) into gridString
+							select ((GridConverter)formatter).Converter(in grid) into gridString
 							select new GridInfo
 							{
 								BaseGrid = grid,

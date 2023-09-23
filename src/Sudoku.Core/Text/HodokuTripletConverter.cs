@@ -6,10 +6,10 @@ namespace Sudoku.Text;
 /// <summary>
 /// Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
 /// </summary>
-public sealed record HodokuTripletConverter : SpecifiedConceptConverter<CandidateMap>
+public sealed record HodokuTripletConverter : ISpecifiedConceptConverter<CandidateMap>
 {
 	/// <inheritdoc/>
-	public override Func<CandidateMap, string> Converter
+	public Func<CandidateMap, string> Converter
 		=> static candidates =>
 		{
 			return candidates switch

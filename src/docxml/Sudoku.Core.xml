@@ -2884,7 +2884,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Text#IConceptObject{Sudoku#Concepts#Grid}#ToString(Sudoku.Text.SpecifiedConceptConverter{Sudoku.Concepts.Grid})">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Text#IConceptObject{Sudoku#Concepts#Grid}#ToString(Sudoku.Text.ISpecifiedConceptConverter{Sudoku.Concepts.Grid})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
@@ -7332,21 +7332,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.ConceptConverter">
-            <summary>
-            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.ConceptParser">
-            <summary>
-            Represents a parser that parses the specified text into a concept object.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.ConceptTextHandler">
-            <summary>
-            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
-            </summary>
-        </member>
         <member name="T:Sudoku.Text.Coordinate.CandidateNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
@@ -8171,13 +8156,18 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.HodokuTripletParser.Parser">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.IConceptConverter">
+            <summary>
+            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.IConceptObject`1">
             <summary>
             Represents an object type that describes for an object that is defined in sudoku concepts.
             </summary>
             <typeparam name="TSelf">The type of implementation.</typeparam>
         </member>
-        <member name="M:Sudoku.Text.IConceptObject`1.ToString(Sudoku.Text.SpecifiedConceptConverter{`0})">
+        <member name="M:Sudoku.Text.IConceptObject`1.ToString(Sudoku.Text.ISpecifiedConceptConverter{`0})">
             <summary>
             Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
             The conversion rule is specified as parameter <paramref name="converter"/>.
@@ -8185,24 +8175,34 @@ if (student is (name: var name, age: >= 18))
             <param name="converter">The coordinate converter object.</param>
             <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
         </member>
-        <member name="T:Sudoku.Text.SpecifiedConceptConverter`1">
+        <member name="T:Sudoku.Text.IConceptParser">
+            <summary>
+            Represents a parser that parses the specified text into a concept object.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.IConceptTextHandler">
+            <summary>
+            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.ISpecifiedConceptConverter`1">
             <summary>
             Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.
             </summary>
             <typeparam name="T">The type of the instance to be converted.</typeparam>
         </member>
-        <member name="P:Sudoku.Text.SpecifiedConceptConverter`1.Converter">
+        <member name="P:Sudoku.Text.ISpecifiedConceptConverter`1.Converter">
             <summary>
             Indicates the converter that can convert a <typeparamref name="T"/> instance into an equivalent <see cref="T:System.String"/> representation.
             </summary>
         </member>
-        <member name="T:Sudoku.Text.SpecifiedConceptParser`1">
+        <member name="T:Sudoku.Text.ISpecifiedConceptParser`1">
             <summary>
             Represents a parser that only parses into a specified concept object from a specified <see cref="T:System.String"/> text.
             </summary>
             <typeparam name="T">The type of return value.</typeparam>
         </member>
-        <member name="P:Sudoku.Text.SpecifiedConceptParser`1.Parser">
+        <member name="P:Sudoku.Text.ISpecifiedConceptParser`1.Parser">
             <summary>
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
@@ -8222,7 +8222,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the zero character.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.ExcelConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.ExcelConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.GridConverter">
@@ -8231,10 +8231,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.GridConverter.TargetConverter">
-            <inheritdoc cref="P:Sudoku.Text.SpecifiedConceptConverter`1.Converter"/>
-        </member>
         <member name="P:Sudoku.Text.SudokuGrid.GridConverter.Converter">
+            <inheritdoc cref="P:Sudoku.Text.ISpecifiedConceptConverter`1.Converter"/>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.GridConverter.Sudoku#Text#ISpecifiedConceptConverter{Sudoku#Concepts#Grid}#Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.GridFormatterFactory">
@@ -8278,7 +8278,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the format suffix.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.MaskConverter">
@@ -8319,7 +8319,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is a comma followed by a space: <c>", "</c>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MaskConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.MaskConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.MultipleLineConverter">
@@ -8371,7 +8371,7 @@ if (student is (name: var name, age: >= 18))
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Text.SudokuGrid.MultipleLineConverter._placeholder">
@@ -8405,7 +8405,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the one character.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.OpenSudokuConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.OpenSudokuConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.PencilmarkingConverter">
@@ -8529,7 +8529,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.SukakuConverter">
@@ -8584,7 +8584,7 @@ if (student is (name: var name, age: >= 18))
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Text.SudokuGrid.SukakuConverter._placeholder">
@@ -8729,7 +8729,7 @@ if (student is (name: var name, age: >= 18))
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Text.SudokuGrid.SusserConverter._placeholder">
@@ -8771,7 +8771,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverterTreatingValuesAsGivens.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserConverterTreatingValuesAsGivens.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsConverter">
@@ -8790,7 +8790,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.TargetConverter">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.EliminationPattern">

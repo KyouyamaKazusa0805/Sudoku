@@ -58,7 +58,7 @@ public sealed partial record SukakuConverter(bool Multiline = false) : GridConve
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
+	public override GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			if (Multiline)

@@ -50,7 +50,7 @@ namespace Sudoku.Text.SudokuGrid;
 public sealed record PencilmarkingConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : GridConverter
 {
 	/// <inheritdoc/>
-	public override unsafe GridNotationConverter TargetConverter
+	public override unsafe GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Step 1: gets the candidates information grouped by columns.

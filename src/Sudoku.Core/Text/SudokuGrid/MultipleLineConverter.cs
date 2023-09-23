@@ -56,7 +56,7 @@ public sealed partial record MultipleLineConverter(bool SubtleGridLines = true, 
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
+	public override GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());

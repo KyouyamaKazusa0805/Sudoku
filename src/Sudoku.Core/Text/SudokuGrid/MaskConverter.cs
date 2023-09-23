@@ -21,7 +21,7 @@ namespace Sudoku.Text.SudokuGrid;
 public sealed record MaskConverter(string Separator = ", ") : GridConverter
 {
 	/// <inheritdoc/>
-	public override unsafe GridNotationConverter TargetConverter
+	public override unsafe GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var sb = new StringHandler(400);

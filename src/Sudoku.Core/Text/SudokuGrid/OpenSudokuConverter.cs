@@ -29,7 +29,7 @@ public sealed record OpenSudokuConverter : GridConverter
 
 
 	/// <inheritdoc/>
-	public override unsafe GridNotationConverter TargetConverter
+	public override unsafe GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Calculates the length of the result string.

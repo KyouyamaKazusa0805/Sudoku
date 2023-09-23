@@ -1,6 +1,6 @@
-﻿namespace Sudoku.Text;
+namespace Sudoku.Text;
 
 /// <summary>
 /// Represents a parser that parses the specified text into a concept object.
 /// </summary>
-public abstract record ConceptParser : ConceptTextHandler;
+public interface IConceptParser : IConceptTextHandler;

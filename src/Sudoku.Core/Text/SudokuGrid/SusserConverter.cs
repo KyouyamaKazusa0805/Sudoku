@@ -117,13 +117,13 @@ public partial record SusserConverter(bool WithCandidates = false, bool WithModi
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter TargetConverter
+	public override GridNotationConverter Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var sb = new StringHandler(162);
 			var originalGrid = this switch
 			{
-				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse((this with { WithCandidates = false }).TargetConverter(in grid)),
+				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse((this with { WithCandidates = false }).Converter(in grid)),
 				_ => Grid.Undefined
 			};
 

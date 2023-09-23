@@ -12,5 +12,5 @@ public interface IConceptObject<TSelf> where TSelf : IConceptObject<TSelf>
 	/// </summary>
 	/// <param name="converter">The coordinate converter object.</param>
 	/// <returns>A <see cref="string"/> representation of the current object.</returns>
-	public abstract string ToString(SpecifiedConceptConverter<TSelf> converter);
+	public abstract string ToString(ISpecifiedConceptConverter<TSelf> converter);
 }

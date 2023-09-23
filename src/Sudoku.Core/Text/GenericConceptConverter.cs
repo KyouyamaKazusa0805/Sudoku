@@ -11,4 +11,4 @@
 /// <para>Indicates the digits separator.</para>
 /// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
 /// </param>
-public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) : ConceptConverter;
+public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) : IConceptConverter;

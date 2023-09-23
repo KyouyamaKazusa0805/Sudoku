@@ -723,7 +723,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.GetBuiltInConverter(format)?.TargetConverter(in this) ?? throw new FormatException("The specified format is invalid.")
+			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this) ?? throw new FormatException("The specified format is invalid.")
 		};
 
 	/// <summary>
@@ -738,7 +738,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
 		{
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
-			_ => converter.TargetConverter(in this)
+			_ => converter.Converter(in this)
 		};
 
 	/// <inheritdoc/>
@@ -949,8 +949,8 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly string IConceptObject<Grid>.ToString(SpecifiedConceptConverter<Grid> converter)
-		=> converter switch { GridConverter g => g.TargetConverter(in this), _ => converter.Converter(this) };
+	readonly string IConceptObject<Grid>.ToString(ISpecifiedConceptConverter<Grid> converter)
+		=> converter switch { GridConverter g => g.Converter(in this), _ => converter.Converter(this) };
 
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="GridImpl.GetMap(delegate*{ref readonly TSelf, int, bool})"/>

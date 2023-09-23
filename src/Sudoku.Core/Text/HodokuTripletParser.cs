@@ -8,10 +8,10 @@ namespace Sudoku.Text;
 /// converting into a valid <see cref="ICoordinateObject"/> instance.
 /// </summary>
 /// <seealso cref="ICoordinateObject"/>
-public sealed record HodokuTripletParser : SpecifiedConceptParser<CandidateMap>
+public sealed record HodokuTripletParser : ISpecifiedConceptParser<CandidateMap>
 {
 	/// <inheritdoc/>
-	public override Func<string, CandidateMap> Parser
+	public Func<string, CandidateMap> Parser
 		=> static str =>
 		{
 			var segments = str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
