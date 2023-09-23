@@ -7367,6 +7367,21 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.ConceptConverter">
+            <summary>
+            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.ConceptParser">
+            <summary>
+            Represents a parser that parses the specified text into a concept object.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.ConceptTextHandler">
+            <summary>
+            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.Coordinate.CandidateNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
@@ -7406,14 +7421,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an option provider for coordinates.
             </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
             <remarks>
             You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>, <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>.
@@ -7428,14 +7437,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an option provider for coordinates.
             </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
             <remarks>
             You can use types <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>, <see cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>.
@@ -7445,18 +7448,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Text.Coordinate.K9Converter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.LiteralCoordinateConverter"/>
             <seealso cref="T:Sudoku.Text.Coordinate.ExcelCoordinateConverter"/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DefaultSeparator">
-            <summary>
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.DigitsSeparator">
-            <summary>
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </summary>
         </member>
         <member name="P:Sudoku.Text.Coordinate.CoordinateConverter.CellConverter">
             <summary>
@@ -7637,66 +7628,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Text.Coordinate.ExcelCoordinateConverter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Coordinate.HodokuTripletConverter">
-            <summary>
-            Represents a coordinate converter using K9 notation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.CellConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.CandidateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.HouseConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.ConclusionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.DigitConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.IntersectionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.ChuteConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletConverter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Coordinate.HodokuTripletParser">
-            <summary>
-            Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Text.Coordinate.ICoordinateObject"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Text.Coordinate.ICoordinateObject"/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.HodokuTripletParser.ConjuagteParser">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Coordinate.HouseNotationConverter">
@@ -8998,6 +8929,89 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Formatting.SusserFormatTreatingValuesAsGivens.ToString(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.GenericConceptConverter">
+            <summary>
+            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
+            </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.GenericConceptConverter.#ctor(System.String,System.String)">
+            <summary>
+            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
+            </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.GenericConceptConverter.DefaultSeparator">
+            <summary>
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.GenericConceptConverter.DigitsSeparator">
+            <summary>
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.GenericConceptParser">
+            <summary>
+            Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.HodokuTripletConverter">
+            <summary>
+            Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.HodokuTripletConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.HodokuTripletParser">
+            <summary>
+            Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Text.Coordinate.ICoordinateObject"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Coordinate.ICoordinateObject"/>
+        </member>
+        <member name="P:Sudoku.Text.HodokuTripletParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.SpecifiedConceptConverter`1">
+            <summary>
+            Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T">The type of the instance to be converted.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.SpecifiedConceptConverter`1.Converter">
+            <summary>
+            Indicates the converter that can convert a <typeparamref name="T"/> instance into an equivalent <see cref="T:System.String"/> representation.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.SpecifiedConceptParser`1">
+            <summary>
+            Represents a parser that only parses into a specified concept object from a specified <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T">The type of return value.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.SpecifiedConceptParser`1.Parser">
+            <summary>
+            A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
+            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.GridSusserDigitPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GridSusserDigitPattern method.</summary>

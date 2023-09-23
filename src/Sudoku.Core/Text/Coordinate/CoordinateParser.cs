@@ -8,7 +8,7 @@ namespace Sudoku.Text.Coordinate;
 /// converting it into a valid <see cref="ICoordinateObject"/> instance.
 /// </summary>
 /// <seealso cref="ICoordinateObject"/>
-public abstract record CoordinateParser
+public abstract record CoordinateParser : GenericConceptParser
 {
 	/// <summary>
 	/// The parser method that can creates a <see cref="CellMap"/> via the specified text to be parsed.

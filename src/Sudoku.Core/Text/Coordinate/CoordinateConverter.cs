@@ -3,14 +3,8 @@ namespace Sudoku.Text.Coordinate;
 /// <summary>
 /// Represents an option provider for coordinates.
 /// </summary>
-/// <param name="DefaultSeparator">
-/// <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-/// <para>The value is <c>", "</c> by default.</para>
-/// </param>
-/// <param name="DigitsSeparator">
-/// <para>Indicates the digits separator.</para>
-/// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-/// </param>
+/// <param name="DefaultSeparator"><inheritdoc/></param>
+/// <param name="DigitsSeparator"><inheritdoc/></param>
 /// <remarks>
 /// You can use types <see cref="RxCyConverter"/>, <seealso cref="K9Converter"/>, <see cref="LiteralCoordinateConverter"/>
 /// and <see cref="ExcelCoordinateConverter"/>.
@@ -20,7 +14,8 @@ namespace Sudoku.Text.Coordinate;
 /// <seealso cref="K9Converter"/>
 /// <seealso cref="LiteralCoordinateConverter"/>
 /// <seealso cref="ExcelCoordinateConverter"/>
-public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null)
+public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) :
+	GenericConceptConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.

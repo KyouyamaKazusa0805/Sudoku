@@ -5,7 +5,6 @@ using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Text.Formatting;
 
@@ -185,7 +184,7 @@ public partial record SusserFormat(bool WithCandidates = false, bool WithModifia
 			}
 		}
 
-		var elimsStr = new HodokuTripletConverter().CandidateConverter(in eliminatedCandidates);
+		var elimsStr = new HodokuTripletConverter().Converter(eliminatedCandidates);
 		var @base = sb.ToStringAndClear();
 		return ShortenSusser
 			? shorten(@base, Placeholder)

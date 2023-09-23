@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sudoku.Text.Coordinate;
+using Sudoku.Text;
 using Sudoku.Text.Formatting;
 using static System.Numerics.BitOperations;
 
@@ -508,7 +508,7 @@ public unsafe ref partial struct GridParser(
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (SusserFormatEliminationsOnly.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
-			foreach (var candidate in new HodokuTripletParser().CandidateParser(elimMatch))
+			foreach (var candidate in new HodokuTripletParser().Parser(elimMatch))
 			{
 				// Set the candidate with false to eliminate the candidate.
 				result.SetCandidateIsOn(candidate / 9, candidate % 9, false);
