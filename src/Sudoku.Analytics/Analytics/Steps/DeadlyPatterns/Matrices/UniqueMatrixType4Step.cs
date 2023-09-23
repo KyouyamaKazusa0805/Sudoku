@@ -39,9 +39,9 @@ public sealed partial class UniqueMatrixType4Step(
 			new(ChineseLanguage, [ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr])
 		];
 
-	private string ConjStr => Options.CoordinateConverter.CellConverter(ConjugateHouse);
+	private string ConjStr => Options.Converter.CellConverter(ConjugateHouse);
 
-	private string Digit1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
+	private string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
+	private string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
 }

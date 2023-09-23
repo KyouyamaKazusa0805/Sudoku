@@ -40,13 +40,13 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 
-	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
+	private string Als1Str => FirstAls.ToString(Options.Converter);
 
-	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
+	private string Als2Str => SecondAls.ToString(Options.Converter);
 
-	private string ConjStr => Options.CoordinateConverter.ConjugateConverter([ConjugatePair]);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 
-	private string WStr => Options.CoordinateConverter.DigitConverter(WDigitsMask);
+	private string WStr => Options.Converter.DigitConverter(WDigitsMask);
 
-	private string XStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << XDigit));
+	private string XStr => Options.Converter.DigitConverter((Mask)(1 << XDigit));
 }

@@ -61,5 +61,5 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr])
 		];
 
-	private string GuardianCellsStr => Options.CoordinateConverter.CellConverter(GuardianCells);
+	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);
 }

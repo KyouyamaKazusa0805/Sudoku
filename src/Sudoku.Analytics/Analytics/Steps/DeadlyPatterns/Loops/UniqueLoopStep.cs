@@ -41,11 +41,11 @@ public abstract partial class UniqueLoopStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Length, (Sequences.A004526(Loop.Count) - 3) * .1M)];
 
-	private protected string LoopStr => Options.CoordinateConverter.CellConverter(Loop);
+	private protected string LoopStr => Options.Converter.CellConverter(Loop);
 
-	private protected string Digit1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
+	private protected string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
-	private protected string Digit2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
+	private protected string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
 
 
 	/// <inheritdoc/>

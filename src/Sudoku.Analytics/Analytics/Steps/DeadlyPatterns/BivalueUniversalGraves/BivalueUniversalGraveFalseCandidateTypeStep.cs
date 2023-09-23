@@ -31,5 +31,5 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [FalseCandidateStr]), new(ChineseLanguage, [FalseCandidateStr])];
 
-	private string FalseCandidateStr => Options.CoordinateConverter.CandidateConverter([FalseCandidate]);
+	private string FalseCandidateStr => Options.Converter.CandidateConverter([FalseCandidate]);
 }

@@ -84,13 +84,13 @@ public sealed partial class BinaryForcingChainsStep(
 			)
 		];
 
-	private string StartCandStr => Options.CoordinateConverter.CandidateConverter([SourcePotential.Candidate]);
+	private string StartCandStr => Options.Converter.CandidateConverter([SourcePotential.Candidate]);
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
 	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
 
-	private string EndCandStr => Options.CoordinateConverter.CandidateConverter([FromOnPotential.Candidate]);
+	private string EndCandStr => Options.Converter.CandidateConverter([FromOnPotential.Candidate]);
 
 
 	/// <inheritdoc/>

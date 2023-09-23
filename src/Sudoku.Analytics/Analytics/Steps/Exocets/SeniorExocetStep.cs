@@ -66,7 +66,7 @@ public sealed partial class SeniorExocetStep(
 					}
 
 					sb.Append(digit + 1);
-					sb.Append(Options.CoordinateConverter.HouseConverter(mask));
+					sb.Append(Options.Converter.HouseConverter(mask));
 					sb.Append(separator);
 
 					count++;
@@ -85,5 +85,5 @@ public sealed partial class SeniorExocetStep(
 		}
 	}
 
-	private string EndoTargetCellStr => Options.CoordinateConverter.CellConverter([EndoTargetCell]);
+	private string EndoTargetCellStr => Options.Converter.CellConverter([EndoTargetCell]);
 }

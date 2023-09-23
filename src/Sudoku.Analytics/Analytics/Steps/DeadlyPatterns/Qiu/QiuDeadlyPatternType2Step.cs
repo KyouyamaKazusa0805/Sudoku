@@ -39,5 +39,5 @@ public sealed partial class QiuDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, ExtraDigitStr]), new(ChineseLanguage, [PatternStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << TargetDigit));
+	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << TargetDigit));
 }

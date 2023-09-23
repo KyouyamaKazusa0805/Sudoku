@@ -63,7 +63,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, AnotherAlsStr])
 		];
 
-	private string GuardianCellsStr => Options.CoordinateConverter.CellConverter(GuardianCells);
+	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);
 
-	private string AnotherAlsStr => AlmostLockedSet.ToString(Options.CoordinateConverter);
+	private string AnotherAlsStr => AlmostLockedSet.ToString(Options.Converter);
 }

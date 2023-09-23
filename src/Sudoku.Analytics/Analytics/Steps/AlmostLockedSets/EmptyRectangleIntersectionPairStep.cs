@@ -42,13 +42,13 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr])
 		];
 
-	private string Digit1Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit1));
+	private string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
-	private string Digit2Str => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit2));
+	private string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
 
-	private string StartCellStr => Options.CoordinateConverter.CellConverter([StartCell]);
+	private string StartCellStr => Options.Converter.CellConverter([StartCell]);
 
-	private string EndCellStr => Options.CoordinateConverter.CellConverter([EndCell]);
+	private string EndCellStr => Options.Converter.CellConverter([EndCell]);
 
-	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
+	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 }

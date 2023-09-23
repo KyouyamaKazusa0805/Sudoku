@@ -64,5 +64,5 @@ public sealed partial class UniqueRectangleExternalType4Step(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr])
 		];
 
-	private string ConjugatePairStr => Options.CoordinateConverter.ConjugateConverter([ConjugatePair]);
+	private string ConjugatePairStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

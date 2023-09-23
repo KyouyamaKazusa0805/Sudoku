@@ -38,7 +38,7 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ExtraHouseStr, ExtraDigitsStr]), new(ChineseLanguage, [ExtraHouseStr, ExtraDigitsStr])];
 
-	private string ExtraHouseStr => Options.CoordinateConverter.HouseConverter(1 << SubsetHouse);
+	private string ExtraHouseStr => Options.Converter.HouseConverter(1 << SubsetHouse);
 
-	private string ExtraDigitsStr => Options.CoordinateConverter.DigitConverter(SubsetMask);
+	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetMask);
 }

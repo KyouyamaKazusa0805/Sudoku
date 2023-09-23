@@ -149,7 +149,7 @@ public partial class App : Application
 		var uiPref = ((App)Current).Preference.UIPreferences;
 		return StepSearcherOptions.Default with
 		{
-			CoordinateConverter = uiPref.ConceptNotationBasedKind switch
+			Converter = uiPref.ConceptNotationBasedKind switch
 			{
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,

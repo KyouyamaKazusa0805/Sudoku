@@ -40,7 +40,7 @@ public abstract partial class BivalueOddagonStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, (LoopCells.Count >> 1) * .1M)];
 
-	private protected string LoopStr => Options.CoordinateConverter.CellConverter(LoopCells);
+	private protected string LoopStr => Options.Converter.CellConverter(LoopCells);
 
 
 	/// <inheritdoc/>

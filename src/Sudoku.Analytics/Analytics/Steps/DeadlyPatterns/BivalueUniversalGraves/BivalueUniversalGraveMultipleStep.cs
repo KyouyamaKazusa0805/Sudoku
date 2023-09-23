@@ -59,5 +59,5 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
 
-	private string CandidatesStr => Options.CoordinateConverter.CandidateConverter(TrueCandidates);
+	private string CandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 }

@@ -35,5 +35,5 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

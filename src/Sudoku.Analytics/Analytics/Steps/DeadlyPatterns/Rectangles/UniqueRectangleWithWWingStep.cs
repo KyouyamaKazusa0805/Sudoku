@@ -59,9 +59,9 @@ public sealed partial class UniqueRectangleWithWWingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConnectorsString, EndCellsString, WDigitsString])
 		];
 
-	private string ConnectorsString => Options.CoordinateConverter.CellConverter(Connectors);
+	private string ConnectorsString => Options.Converter.CellConverter(Connectors);
 
-	private string EndCellsString => Options.CoordinateConverter.CellConverter(EndCells);
+	private string EndCellsString => Options.Converter.CellConverter(EndCells);
 
-	private string WDigitsString => Options.CoordinateConverter.DigitConverter((Mask)(1 << WDigit));
+	private string WDigitsString => Options.Converter.DigitConverter((Mask)(1 << WDigit));
 }

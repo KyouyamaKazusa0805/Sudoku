@@ -3378,7 +3378,10 @@ if (student is (name: var name, age: >= 18))
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
             </summary>
-            <param name="CoordinateConverter"><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></param>
+            <param name="Converter">
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor(Sudoku.Text.Coordinate.CoordinateConverter)">
             <summary>
@@ -3387,10 +3390,16 @@ if (student is (name: var name, age: >= 18))
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
             </summary>
-            <param name="CoordinateConverter"><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></param>
+            <param name="Converter">
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            </param>
         </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter">
-            <summary><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></summary>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
+            <summary>
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor">
             <summary>
@@ -3404,7 +3413,7 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.CoordinateConverter"/>: <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/></item>
             </list>
             </remarks>
         </member>

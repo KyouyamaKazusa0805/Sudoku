@@ -45,9 +45,9 @@ public sealed partial class ExtendedRectangleType3Step(
 			new(ChineseLanguage, [DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr])
 		];
 
-	private string ExtraDigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
+	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string ExtraCellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
+	private string ExtraCellsStr => Options.Converter.CellConverter(SubsetCells);
 
-	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << House);
+	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 }

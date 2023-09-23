@@ -26,11 +26,11 @@ public abstract partial class ExocetStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
 
-	private protected string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
+	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private protected string BaseCellsStr => Options.CoordinateConverter.CellConverter(BaseMap);
+	private protected string BaseCellsStr => Options.Converter.CellConverter(BaseMap);
 
-	private protected string TargetCellsStr => Options.CoordinateConverter.CellConverter(TargetMap);
+	private protected string TargetCellsStr => Options.Converter.CellConverter(TargetMap);
 
 	/// <summary>
 	/// Indicates the map of the base cells.

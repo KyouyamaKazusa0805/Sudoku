@@ -45,9 +45,9 @@ public sealed partial class UniqueLoopType3Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr])
 		];
 
-	private string SubsetCellsStr => Options.CoordinateConverter.CellConverter(SubsetCells);
+	private string SubsetCellsStr => Options.Converter.CellConverter(SubsetCells);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitConverter(SubsetDigitsMask);
+	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
 }

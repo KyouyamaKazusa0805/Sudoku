@@ -37,9 +37,9 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(ChineseLanguage, [CellsStr, DigitsStr, ConjStr])];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
+	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
+	private string CellsStr => Options.Converter.CellConverter(Cells);
 
-	private string ConjStr => Options.CoordinateConverter.ConjugateConverter([ConjugatePair]);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

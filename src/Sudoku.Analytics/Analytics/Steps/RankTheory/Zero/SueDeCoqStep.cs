@@ -70,16 +70,16 @@ public sealed partial class SueDeCoqStep(
 			new(ChineseLanguage, [IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr])
 		];
 
-	private string IntersectionCellsStr => Options.CoordinateConverter.CellConverter(IntersectionCells);
+	private string IntersectionCellsStr => Options.Converter.CellConverter(IntersectionCells);
 
 	private string IntersectionDigitsStr
 		=> new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitConverter(IntersectionMask);
 
-	private string BlockCellsStr => Options.CoordinateConverter.CellConverter(BlockCells);
+	private string BlockCellsStr => Options.Converter.CellConverter(BlockCells);
 
 	private string BlockDigitsStr => new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitConverter(BlockMask);
 
-	private string LineCellsStr => Options.CoordinateConverter.CellConverter(LineCells);
+	private string LineCellsStr => Options.Converter.CellConverter(LineCells);
 
 	private string LineDigitsStr => new LiteralCoordinateConverter(DigitsSeparator: string.Empty).DigitConverter(LineMask);
 }

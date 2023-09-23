@@ -36,9 +36,9 @@ public sealed partial class EmptyRectangleStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 
-	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << Block);
+	private string HouseStr => Options.Converter.HouseConverter(1 << Block);
 
-	private string ConjStr => Options.CoordinateConverter.ConjugateConverter([ConjugatePair]);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

@@ -52,7 +52,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr])
 		];
 
-	private string ConjPairsStr => Options.CoordinateConverter.ConjugateConverter(ConjugatePairs);
+	private string ConjPairsStr => Options.Converter.ConjugateConverter(ConjugatePairs);
 
 	private string Prefix => ConjugatePairs.Length == 1 ? "a " : string.Empty;
 

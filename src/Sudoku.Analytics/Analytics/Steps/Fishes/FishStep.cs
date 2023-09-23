@@ -43,7 +43,7 @@ public abstract partial class FishStep(
 	/// <summary>
 	/// The internal notation.
 	/// </summary>
-	private protected string InternalNotation => ToString(Options.CoordinateConverter);
+	private protected string InternalNotation => ToString(Options.Converter);
 
 
 	/// <inheritdoc/>

@@ -38,7 +38,7 @@ public sealed partial class QiuDeadlyPatternType1Step(
 		=> [new(EnglishLanguage, [PatternStr, TargetDigitsStr, CandidatesStr]), new(ChineseLanguage, [PatternStr, CandidatesStr, TargetDigitsStr])];
 
 	private string CandidatesStr
-		=> Options.CoordinateConverter.CandidateConverter([.. from digit in TargetDigits select TargetCell * 9 + digit]);
+		=> Options.Converter.CandidateConverter([.. from digit in TargetDigits select TargetCell * 9 + digit]);
 
-	private string TargetDigitsStr => Options.CoordinateConverter.DigitConverter(TargetDigits);
+	private string TargetDigitsStr => Options.Converter.DigitConverter(TargetDigits);
 }

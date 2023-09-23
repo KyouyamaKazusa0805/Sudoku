@@ -26,5 +26,5 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOpt
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
-	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 }

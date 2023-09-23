@@ -9,8 +9,11 @@ namespace Sudoku.Analytics.Configuration;
 /// that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
 /// </summary>
-/// <param name="CoordinateConverter"><inheritdoc cref="Text.Coordinate.CoordinateConverter" path="/summary"/></param>
-public sealed record StepSearcherOptions(CoordinateConverter CoordinateConverter)
+/// <param name="Converter">
+/// <para><inheritdoc cref="CoordinateConverter" path="/summary"/></para>
+/// <para><inheritdoc cref="CoordinateConverter" path="/remarks"/></para>
+/// </param>
+public sealed record StepSearcherOptions(CoordinateConverter Converter)
 {
 	/// <summary>
 	/// Initializes a <see cref="StepSearcherOptions"/> instance.
@@ -27,7 +30,7 @@ public sealed record StepSearcherOptions(CoordinateConverter CoordinateConverter
 	/// <remarks>
 	/// This default option makes the internal members be:
 	/// <list type="bullet">
-	/// <item><see cref="CoordinateConverter"/>: <see cref="RxCyConverter"/></item>
+	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
 	/// </list>
 	/// </remarks>
 	public static StepSearcherOptions Default => new();

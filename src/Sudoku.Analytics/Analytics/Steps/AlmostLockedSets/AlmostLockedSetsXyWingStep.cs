@@ -45,15 +45,15 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 			new(ChineseLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr])
 		];
 
-	private string Als1Str => FirstAls.ToString(Options.CoordinateConverter);
+	private string Als1Str => FirstAls.ToString(Options.Converter);
 
-	private string BridgeStr => BridgeAls.ToString(Options.CoordinateConverter);
+	private string BridgeStr => BridgeAls.ToString(Options.Converter);
 
-	private string Als2Str => SecondAls.ToString(Options.CoordinateConverter);
+	private string Als2Str => SecondAls.ToString(Options.Converter);
 
-	private string XStr => Options.CoordinateConverter.DigitConverter(XDigitsMask);
+	private string XStr => Options.Converter.DigitConverter(XDigitsMask);
 
-	private string YStr => Options.CoordinateConverter.DigitConverter(YDigitsMask);
+	private string YStr => Options.Converter.DigitConverter(YDigitsMask);
 
-	private string ZStr => Options.CoordinateConverter.DigitConverter(ZDigitsMask);
+	private string ZStr => Options.Converter.DigitConverter(ZDigitsMask);
 }

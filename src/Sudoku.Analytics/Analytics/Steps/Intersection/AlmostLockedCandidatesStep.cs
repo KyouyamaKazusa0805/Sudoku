@@ -57,9 +57,9 @@ public sealed partial class AlmostLockedCandidatesStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
-	private string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
+	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private string BaseCellsStr => Options.CoordinateConverter.CellConverter(BaseCells);
+	private string BaseCellsStr => Options.Converter.CellConverter(BaseCells);
 
-	private string TargetCellsStr => Options.CoordinateConverter.CellConverter(TargetCells);
+	private string TargetCellsStr => Options.Converter.CellConverter(TargetCells);
 }

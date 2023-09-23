@@ -46,11 +46,11 @@ public sealed partial class GuardianStep(
 			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr])
 		];
 
-	private string CellsStr => Options.CoordinateConverter.CellConverter(LoopCells);
+	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 
 	private string GuardianSingularOrPlural => GetString(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural")!;
 
-	private string GuardianStr => Options.CoordinateConverter.CellConverter(Guardians);
+	private string GuardianStr => Options.Converter.CellConverter(Guardians);
 
 
 	/// <inheritdoc/>

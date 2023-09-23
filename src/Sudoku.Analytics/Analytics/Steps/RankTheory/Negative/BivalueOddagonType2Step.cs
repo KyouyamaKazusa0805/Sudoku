@@ -38,5 +38,5 @@ public sealed partial class BivalueOddagonType2Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ExtraDigitStr, LoopStr]), new(ChineseLanguage, [LoopStr, ExtraDigitStr])];
 
-	private string ExtraDigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << ExtraDigit));
+	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

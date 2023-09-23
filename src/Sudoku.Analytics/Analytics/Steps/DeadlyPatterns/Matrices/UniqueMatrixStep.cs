@@ -33,7 +33,7 @@ public abstract partial class UniqueMatrixStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueMatrixType{Type}");
 
-	private protected string DigitsStr => Options.CoordinateConverter.DigitConverter(DigitsMask);
+	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private protected string CellsStr => Options.CoordinateConverter.CellConverter(Cells);
+	private protected string CellsStr => Options.Converter.CellConverter(Cells);
 }

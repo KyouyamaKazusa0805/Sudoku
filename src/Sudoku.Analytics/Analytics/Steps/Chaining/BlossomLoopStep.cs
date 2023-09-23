@@ -58,9 +58,9 @@ public sealed partial class BlossomLoopStep(
 	/// </summary>
 	private decimal LengthDifficulty => ChainDifficultyRating.GetExtraDifficultyByLength(Chains.Potentials.Sum(ChainingStep.AncestorsCountOf));
 
-	private string DigitStr => Options.CoordinateConverter.DigitConverter((Mask)(1 << Digit));
+	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 
-	private string HouseStr => Options.CoordinateConverter.HouseConverter(1 << HouseIndex);
+	private string HouseStr => Options.Converter.HouseConverter(1 << HouseIndex);
 
 
 	/// <summary>

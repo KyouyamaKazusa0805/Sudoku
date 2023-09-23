@@ -82,7 +82,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr])
 		];
 
-	private string MergedCellsStr => Options.CoordinateConverter.CellConverter(LineCells | BlockCells);
+	private string MergedCellsStr => Options.Converter.CellConverter(LineCells | BlockCells);
 
-	private string DigitsStr => Options.CoordinateConverter.DigitConverter((Mask)(LineMask | BlockMask));
+	private string DigitsStr => Options.Converter.DigitConverter((Mask)(LineMask | BlockMask));
 }
