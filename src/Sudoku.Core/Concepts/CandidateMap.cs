@@ -10,7 +10,6 @@ using System.Text.Json.Serialization;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Text.Coordinate;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -67,18 +66,16 @@ public partial struct CandidateMap :
 
 
 	/// <summary>
-	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets
-	/// represented as a RxCy notation defined by <see cref="CellNotation.Kind.RxCy"/>.
+	/// Initializes a <see cref="CandidateMap"/> instance via a list of candidate offsets represented as a RxCy notation.
 	/// </summary>
 	/// <param name="segments">The candidate offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="CellNotation.Kind.RxCy"/>
 	[JsonConstructor]
 	public CandidateMap(string[] segments)
 	{
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= CandidateNotation.ParseCollection(segment);
+			this |= new RxCyParser().CandidateParser(segment);
 		}
 	}
 
@@ -120,7 +117,7 @@ public partial struct CandidateMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch { { _count: 0 } => [], [var a] => [CandidateNotation.ToString(a)], _ => f(Offsets) };
+			return this switch { { _count: 0 } => [], [var a] => [new RxCyConverter().CandidateConverter([a])], _ => f(Offsets) };
 
 
 			static string[] f(Candidate[] offsets)
@@ -139,7 +136,7 @@ public partial struct CandidateMap :
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(CellNotation.ToCollectionString(in cells));
+					sb.Append(new RxCyConverter().CellConverter(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -284,7 +281,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => CandidateNotation.ToCollectionString(in this);
+	public override readonly string ToString() => ToString(new RxCyConverter());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -573,7 +570,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap Parse(string str) => CandidateNotation.ParseCollection(str);
+	public static CandidateMap Parse(string str) => new RxCyParser().CandidateParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
@@ -844,7 +841,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= CandidateNotation.ParseCollection(part);
+			result |= new RxCyParser().CandidateParser(part);
 		}
 
 		return result;

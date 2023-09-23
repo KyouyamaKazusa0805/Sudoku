@@ -2,7 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Concepts;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;
@@ -82,7 +82,7 @@ internal static class SudokuGridConversion
 		{
 			return string.Format(
 				GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"),
-				CandidateNotation.ToString(firstCandidateMakePuzzleNotMinimal)
+				new RxCyConverter().CandidateConverter([firstCandidateMakePuzzleNotMinimal])
 			);
 		}
 

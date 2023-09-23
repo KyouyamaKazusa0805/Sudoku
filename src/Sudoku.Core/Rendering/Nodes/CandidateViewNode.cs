@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json.Serialization;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Rendering.Nodes;
 
@@ -21,7 +21,7 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [DataM
 	/// Indicates the candidate string.
 	/// </summary>
 	[StringMember(nameof(Candidate))]
-	private string CandidateString => CandidateNotation.ToString(Candidate);
+	private string CandidateString => new RxCyConverter().CandidateConverter([Candidate]);
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

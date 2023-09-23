@@ -3,7 +3,6 @@ using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Text.Coordinate;
-using Sudoku.Text.Notation;
 using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
@@ -98,7 +97,7 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ConclusionNotation.ToString(this);
+	public override string ToString() => ToString(new RxCyConverter());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

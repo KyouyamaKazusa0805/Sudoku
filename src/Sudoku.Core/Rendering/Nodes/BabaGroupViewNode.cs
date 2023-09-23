@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json.Serialization;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Rendering.Nodes;
 
@@ -27,7 +27,7 @@ public sealed partial class BabaGroupViewNode(
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => CellNotation.ToString(Cell);
+	private string CellString => new RxCyConverter().CellConverter([Cell]);
 
 	/// <summary>
 	/// Indicates the digits mask string.

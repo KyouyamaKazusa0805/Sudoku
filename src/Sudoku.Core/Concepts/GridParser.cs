@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sudoku.Text.Coordinate;
 using Sudoku.Text.Formatting;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Concepts;
@@ -166,7 +166,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSimpleMultilineGrid(scoped ref GridParser parser)
 	{
-		var matches = from match in NotationPatterns.GridSusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
+		var matches = from match in GridSusserDigitPattern().Matches(parser.ParsingValue) select match.Value;
 		if (matches.Length is not (var length and (81 or 85)))
 		{
 			// Subtle grid outline will bring 2 '.'s on first line of the grid.
@@ -251,7 +251,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingOpenSudoku(scoped ref GridParser parser)
 	{
-		if (NotationPatterns.GridOpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
+		if (GridOpenSudokuPattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -296,7 +296,7 @@ public unsafe ref partial struct GridParser(
 	private static Grid OnParsingPencilMarked(scoped ref GridParser parser)
 	{
 		// Older regular expression pattern:
-		if ((from m in NotationPatterns.GridPencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
+		if ((from m in GridPencilmarkedPattern().Matches(parser.ParsingValue) select m.Value) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -401,7 +401,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The grid.</returns>
 	private static Grid OnParsingSimpleTable(scoped ref GridParser parser)
 	{
-		if (NotationPatterns.GridSimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
+		if (GridSimpleMultilinePattern().Match(parser.ParsingValue) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -421,7 +421,7 @@ public unsafe ref partial struct GridParser(
 	/// <returns>The result.</returns>
 	private static Grid OnParsingSusser(scoped ref GridParser parser, bool shortenSusser)
 	{
-		var match = (shortenSusser ? NotationPatterns.GridShortenedSusserPattern() : NotationPatterns.GridSusserPattern()).Match(parser.ParsingValue).Value;
+		var match = (shortenSusser ? GridShortenedSusserPattern() : GridSusserPattern()).Match(parser.ParsingValue).Value;
 
 		if (!shortenSusser && match is not { Length: <= 405 }
 			|| shortenSusser && (match is not { Length: <= 81 } || !expandCode(match, out match)))
@@ -508,7 +508,7 @@ public unsafe ref partial struct GridParser(
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (SusserFormatEliminationsOnly.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
-			foreach (var candidate in CandidateNotation.ParseCollection(elimMatch, CandidateNotation.Kind.HodokuTriplet))
+			foreach (var candidate in new HodokuTripletParser().CandidateParser(elimMatch))
 			{
 				// Set the candidate with false to eliminate the candidate.
 				result.SetCandidateIsOn(candidate / 9, candidate % 9, false);
@@ -633,7 +633,7 @@ public unsafe ref partial struct GridParser(
 		}
 		else
 		{
-			var matches = from m in NotationPatterns.GridSukakuSegmentPattern().Matches(parser.ParsingValue) select m.Value;
+			var matches = from m in GridSukakuSegmentPattern().Matches(parser.ParsingValue) select m.Value;
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
@@ -693,4 +693,25 @@ public unsafe ref partial struct GridParser(
 	/// </summary>
 	/// <seealso cref="OnParsingSukaku(ref GridParser, bool)"/>
 	private static Grid OnParsingSukakuPhase2(scoped ref GridParser @this) => OnParsingSukaku(ref @this, !@this.CompatibleFirst);
+
+	[GeneratedRegex("""(\+?\d|\.)""", RegexOptions.Compiled, 5000)]
+	private static partial Regex GridSusserDigitPattern();
+
+	[GeneratedRegex("""\d(\|\d){242}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridOpenSudokuPattern();
+
+	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridPencilmarkedPattern();
+
+	[GeneratedRegex("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSimpleMultilinePattern();
+
+	[GeneratedRegex("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSusserPattern();
+
+	[GeneratedRegex("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridShortenedSusserPattern();
+
+	[GeneratedRegex("""\d*[\-\+]?\d+""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSukakuSegmentPattern();
 }

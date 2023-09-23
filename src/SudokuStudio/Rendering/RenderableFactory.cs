@@ -10,7 +10,7 @@ using Sudoku.Analytics;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Input;
 using SudokuStudio.Interaction.Conversions;
@@ -231,7 +231,7 @@ internal static class RenderableFactory
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = $"{nameof(RenderableFactory)}: cell {CellNotation.ToString(cell)}",
+					Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
 				};
@@ -277,7 +277,7 @@ internal static class RenderableFactory
 					=> new T
 					{
 						BorderThickness = new(0),
-						Tag = $"{nameof(RenderableFactory)}: cell {CellNotation.ToString(cell)}",
+						Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 						Opacity = 0,
 						Margin = new(6)
@@ -367,6 +367,7 @@ internal static class RenderableFactory
 			return;
 		}
 
+		var converter = new RxCyConverter();
 		var (width, height) = size / 3F * (float)highlightScale;
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
@@ -377,7 +378,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross
@@ -388,7 +389,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
 					? Visibility.Visible
@@ -404,7 +405,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse
@@ -415,7 +416,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle
@@ -426,7 +427,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle
@@ -436,7 +437,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleHollow, _) => new Rectangle
@@ -446,7 +447,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -458,7 +459,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {CandidateNotation.ToString(candidate)}",
+				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -514,7 +515,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: house {HouseNotation.ToString(house)}",
+			Tag = $"{nameof(RenderableFactory)}: house {new RxCyConverter().HouseConverter(1 << house)}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -621,7 +622,7 @@ internal static class RenderableFactory
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
-			Tag = $"{nameof(RenderableFactory)}: baba group {CellNotation.ToString(cell)}, {@char}",
+			Tag = $"{nameof(RenderableFactory)}: baba group {new RxCyConverter().CellConverter([cell])}, {@char}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{

@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Eliminations;
@@ -18,7 +18,7 @@ public readonly record struct ExocetElimination(Conclusion[] Conclusions, Exocet
 	{
 		var header = GetString($"Exocet{Reason}EliminationName")!;
 		var snippet = GetString("ExocetElimination")!;
-		var elim = ConclusionNotation.ToCollectionString(Conclusions);
+		var elim = new RxCyConverter().ConclusionConverter(Conclusions);
 		return $"* {header}{snippet}{elim}";
 	}
 }

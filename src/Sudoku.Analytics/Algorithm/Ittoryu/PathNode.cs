@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Algorithm.Ittoryu;
 
@@ -31,7 +31,7 @@ public sealed record PathNode(scoped ref readonly Grid Grid, House House, Candid
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
-		=> House != -1
-			? $"Full House / Hidden Single: {CandidateNotation.ToString(Candidate)} in house {HouseNotation.ToString(House)}"
-			: $"Naked Single: {CandidateNotation.ToString(Candidate)}";
+		=> new RxCyConverter() is var converter && House != -1
+			? $"Full House / Hidden Single: {converter.CandidateConverter([Candidate])} in house {converter.HouseConverter(1 << House)}"
+			: $"Naked Single: {converter.CandidateConverter([Candidate])}";
 }

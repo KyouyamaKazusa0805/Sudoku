@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text.Json.Serialization;
-using Sudoku.Text.Notation;
+using Sudoku.Text.Coordinate;
 
 namespace Sudoku.Concepts;
 
@@ -39,7 +39,7 @@ public readonly partial struct LockedTarget(
 	/// The digit string value.
 	/// </summary>
 	[StringMember(nameof(Digit))]
-	private string DigitString => DigitNotation.ToString(Digit);
+	private string DigitString => new RxCyConverter().DigitConverter((Mask)(1 << Digit));
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

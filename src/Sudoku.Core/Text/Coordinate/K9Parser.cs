@@ -6,7 +6,7 @@ using Sudoku.Concepts;
 namespace Sudoku.Text.Coordinate;
 
 /// <summary>
-/// Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
+/// Represents a parser type that uses <b>K9</b> notation rule to parse text,
 /// converting into a valid <see cref="ICoordinateObject"/> instance.
 /// </summary>
 /// <seealso cref="ICoordinateObject"/>

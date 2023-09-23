@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Text.Coordinate;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -102,12 +101,7 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-	{
-		var digitsStr = DigitNotation.ToString(DigitsMask, DigitNotation.Kind.Compact);
-		var houseStr = HouseNotation.ToString(House);
-		return IsBivalueCell ? $"{digitsStr}/{Cells}" : $"{digitsStr}/{Cells} {GetString("KeywordIn")} {houseStr}";
-	}
+	public override string ToString() => ToString(new RxCyConverter());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

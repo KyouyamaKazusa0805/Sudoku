@@ -3,7 +3,6 @@ using Expressive;
 using Expressive.Exceptions;
 using Sudoku.Analytics;
 using Sudoku.Filtering.Operators;
-using Sudoku.Text.Notation;
 
 namespace Sudoku.Filtering;
 
@@ -66,7 +65,7 @@ public static partial class TechniqueFiltering
 					{
 						RatingKeyword => $"{step.Difficulty}",
 						NameKeyword => $"'{step.Name}'",
-						ConclusionKeyword => $"'{ConclusionNotation.ToCollectionString(step.Conclusions)}'",
+						ConclusionKeyword => $"'{step.Options.Converter.ConclusionConverter(step.Conclusions)}'",
 						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
 					}
 				),

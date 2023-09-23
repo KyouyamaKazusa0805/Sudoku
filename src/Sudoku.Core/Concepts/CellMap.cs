@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Text.Coordinate;
-using Sudoku.Text.Notation;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -84,18 +83,16 @@ public partial struct CellMap :
 
 
 	/// <summary>
-	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as a RxCy notation
-	/// defined by <see cref="CellNotation.Kind.RxCy"/>.
+	/// Initializes a <see cref="CellMap"/> instance via a list of offsets represented as a RxCy notation.
 	/// </summary>
 	/// <param name="segments">The cell offsets, represented as a RxCy notation.</param>
-	/// <seealso cref="CellNotation.Kind.RxCy"/>
 	[JsonConstructor]
 	public CellMap(string[] segments)
 	{
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= CellNotation.ParseCollection(segment);
+			this |= new RxCyParser().CellParser(segment);
 		}
 	}
 
@@ -569,7 +566,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => CellNotation.ToCollectionString(in this);
+	public override readonly string ToString() => ToString(new RxCyConverter());
 
 	/// <inheritdoc/>
 	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(in this);
@@ -902,7 +899,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string str) => CellNotation.ParseCollection(str);
+	public static CellMap Parse(string str) => new RxCyParser().CellParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
@@ -1141,7 +1138,7 @@ file sealed class Converter : JsonConverter<CellMap>
 		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
 		foreach (var part in parts)
 		{
-			result |= CellNotation.ParseCollection(part);
+			result |= new RxCyParser().CellParser(part);
 		}
 
 		return result;
