@@ -49,6 +49,7 @@ public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell>,
 	IComparable,
 	IComparable<CellMap>,
+	ICoordinateObject,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,

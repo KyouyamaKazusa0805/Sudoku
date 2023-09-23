@@ -8991,6 +8991,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.HodokuTripletParser.Parser">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.IConceptObject">
+            <summary>
+            Represents an object type that describes for an object that is defined in sudoku concepts.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.SpecifiedConceptConverter`1">
             <summary>
             Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.

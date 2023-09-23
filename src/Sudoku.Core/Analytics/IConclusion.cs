@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using Sudoku.Text.Coordinate;
 using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
@@ -11,7 +10,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <typeparam name="TSelf">Indicates the type of the implementation.</typeparam>
 /// <typeparam name="TMask">Indicates the type of the mask.</typeparam>
-public interface IConclusion<TSelf, TMask> : IComparable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, IEquatable<TSelf>, ICoordinateObject
+public interface IConclusion<TSelf, TMask> : IComparable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, IEquatable<TSelf>
 	where TSelf : IConclusion<TSelf, TMask>
 	where TMask : unmanaged, IBinaryInteger<TMask>
 {

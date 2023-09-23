@@ -3,7 +3,7 @@ namespace Sudoku.Text.Coordinate;
 /// <summary>
 /// Defines a type that supports for coordinate output rule.
 /// </summary>
-public interface ICoordinateObject
+public interface ICoordinateObject : IConceptObject
 {
 	/// <summary>
 	/// Formats the current instance, converting it into a <see cref="string"/> result that can describe for this object.

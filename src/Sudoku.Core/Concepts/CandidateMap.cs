@@ -47,6 +47,7 @@ namespace Sudoku.Concepts;
 public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
+	ICoordinateObject,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,

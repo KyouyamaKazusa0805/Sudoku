@@ -19,7 +19,7 @@ using ConjugateImpl = IConjugatePair<Conjugate, HouseMask, int, Cell, Digit, Hou
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) : ConjugateImpl
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) : ConjugateImpl, ICoordinateObject
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
