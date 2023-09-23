@@ -74,6 +74,15 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private Step? CheckForTrueCandidateTypes(scoped ref AnalysisContext context)
 	{
+		var emptyCellsCount = EmptyCells.Count;
+		var limit = (emptyCellsCount << 1) + 28; // 20 peer cells + 8 digits in the same cell
+		var candidatesCount = EmptyCells.ToArray().Sum(CommonMethods.ReturnSelf);
+		if (candidatesCount > limit)
+		{
+			// No possible eliminations can be found, regardless of types.
+			return null;
+		}
+
 		scoped ref readonly var grid = ref context.Grid;
 		switch (TrueCandidatesSearcher.GetAllTrueCandidates(in grid))
 		{

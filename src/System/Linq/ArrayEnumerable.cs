@@ -147,6 +147,33 @@ public static class ArrayEnumerable
 	}
 
 	/// <summary>
+	/// Computes the sum of the sequence of <typeparamref name="TInterim"/> values that are obtained by invoking a transform function
+	/// on each element of the input sequence.
+	/// </summary>
+	/// <typeparam name="T">The type of element of <paramref name="this"/>.</typeparam>
+	/// <typeparam name="TInterim">The type of interim variables.</typeparam>
+	/// <param name="this">
+	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, int})" path="/param[@name='source']"/>
+	/// </param>
+	/// <param name="selector">
+	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, int})" path="/param[@name='selector']"/>
+	/// </param>
+	/// <returns>
+	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, int})" path="/returns"/>
+	/// </returns>
+	public static TInterim Sum<T, TInterim>(this T[] @this, Func<T, TInterim> selector)
+		where TInterim : IAdditionOperators<TInterim, TInterim, TInterim>, IAdditiveIdentity<TInterim, TInterim>
+	{
+		var result = TInterim.AdditiveIdentity;
+		foreach (var element in @this)
+		{
+			result += selector(element);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/summary"/>
 	/// </summary>
 	/// <typeparam name="TSource">
