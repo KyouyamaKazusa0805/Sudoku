@@ -2884,6 +2884,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Text#IConceptObject{Sudoku#Concepts#Grid}#ToString(Sudoku.Text.SpecifiedConceptConverter{Sudoku.Concepts.Grid})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
             <inheritdoc cref="!:GridImpl.GetMap(delegate*&lt;ref readonly TSelf, int, bool&gt;)"/>
         </member>
@@ -8168,10 +8171,19 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.HodokuTripletParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.IConceptObject">
+        <member name="T:Sudoku.Text.IConceptObject`1">
             <summary>
             Represents an object type that describes for an object that is defined in sudoku concepts.
             </summary>
+            <typeparam name="TSelf">The type of implementation.</typeparam>
+        </member>
+        <member name="M:Sudoku.Text.IConceptObject`1.ToString(Sudoku.Text.SpecifiedConceptConverter{`0})">
+            <summary>
+            Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
+            The conversion rule is specified as parameter <paramref name="converter"/>.
+            </summary>
+            <param name="converter">The coordinate converter object.</param>
+            <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
         </member>
         <member name="T:Sudoku.Text.SpecifiedConceptConverter`1">
             <summary>

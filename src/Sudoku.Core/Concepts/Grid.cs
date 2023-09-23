@@ -13,6 +13,7 @@ using Sudoku.Analytics;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
+using Sudoku.Text;
 using Sudoku.Text.SudokuGrid;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.ConclusionType;
@@ -41,7 +42,7 @@ using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : GridImpl
+public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -946,6 +947,10 @@ public unsafe partial struct Grid : GridImpl
 		}
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly string IConceptObject<Grid>.ToString(SpecifiedConceptConverter<Grid> converter)
+		=> converter switch { GridConverter g => g.TargetConverter(in this), _ => converter.Converter(this) };
 
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="GridImpl.GetMap(delegate*{ref readonly TSelf, int, bool})"/>
