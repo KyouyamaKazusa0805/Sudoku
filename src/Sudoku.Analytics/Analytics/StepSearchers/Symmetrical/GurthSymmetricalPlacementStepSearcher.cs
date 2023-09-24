@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
@@ -39,6 +40,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	private static readonly unsafe delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>[] AntiTypeCheckers = [
 		&CheckDiagonal_Anti,
 		&CheckAntiDiagonal_Anti,
+		&CheckXAxis_Anti,
+		&CheckYAxis_Anti,
 		&CheckCentral_Anti
 	];
 
@@ -732,6 +735,214 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	}
 
 	/// <summary>
+	/// Checks for X-axis symmetry steps, anti-GSP type.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	{
+		var mapping = new Digit?[9];
+		var cellsNotSymmetrical = CellMap.Empty;
+		for (var i = 0; i < 4; i++)
+		{
+			for (var j = 0; j < 9; j++)
+			{
+				var c1 = i * 9 + j;
+				var c2 = (SymmetricType.XAxis.GetCells(c1) - c1)[0];
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
+				{
+					// One of two cells is empty. Not this symmetry.
+					if (cellsNotSymmetrical)
+					{
+						return null;
+					}
+
+					cellsNotSymmetrical.Add(c1);
+					cellsNotSymmetrical.Add(c2);
+					continue;
+				}
+
+				if (condition)
+				{
+					continue;
+				}
+
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
+				if (d1 == d2)
+				{
+					var o1 = mapping[d1];
+					if (o1 is null)
+					{
+						mapping[d1] = d1;
+						continue;
+					}
+
+					if (o1 != d1)
+					{
+						return null;
+					}
+				}
+				else
+				{
+					var o1 = mapping[d1];
+					var o2 = mapping[d2];
+					if (o1.HasValue ^ o2.HasValue)
+					{
+						return null;
+					}
+
+					if (o1 is null || o2 is null)
+					{
+						mapping[d1] = d2;
+						mapping[d2] = d1;
+						continue;
+					}
+
+					// 'o1' and 'o2' are both not null.
+					if (o1 != d2 || o2 != d1)
+					{
+						return null;
+					}
+				}
+			}
+		}
+
+		if (!cellsNotSymmetrical)
+		{
+			// All cells are symmetrical placements. This will have been checked in normal types.
+			return null;
+		}
+
+		var gridCopied = grid;
+		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
+		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
+		{
+			// No elimination.
+			return null;
+		}
+
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = new List<CandidateViewNode>();
+		RecordHighlightCells(in grid, cellOffsets, mapping);
+
+		return new(
+			[new(Elimination, elimCell, elimDigit)],
+			[[.. cellOffsets, .. candidateOffsets]],
+			context.PredefinedOptions,
+			SymmetricType.XAxis,
+			mapping
+		);
+	}
+
+	/// <summary>
+	/// Checks for Y-axis symmetry steps, anti-GSP type.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	{
+		var mapping = new Digit?[9];
+		var cellsNotSymmetrical = CellMap.Empty;
+		for (var i = 0; i < 9; i++)
+		{
+			for (var j = 0; j < 4; j++)
+			{
+				var c1 = i * 9 + j;
+				var c2 = (SymmetricType.YAxis.GetCells(c1) - c1)[0];
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
+				{
+					// One of two cells is empty. Not this symmetry.
+					if (cellsNotSymmetrical)
+					{
+						return null;
+					}
+
+					cellsNotSymmetrical.Add(c1);
+					cellsNotSymmetrical.Add(c2);
+					continue;
+				}
+
+				if (condition)
+				{
+					continue;
+				}
+
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
+				if (d1 == d2)
+				{
+					var o1 = mapping[d1];
+					if (o1 is null)
+					{
+						mapping[d1] = d1;
+						continue;
+					}
+
+					if (o1 != d1)
+					{
+						return null;
+					}
+				}
+				else
+				{
+					var o1 = mapping[d1];
+					var o2 = mapping[d2];
+					if (o1.HasValue ^ o2.HasValue)
+					{
+						return null;
+					}
+
+					if (o1 is null || o2 is null)
+					{
+						mapping[d1] = d2;
+						mapping[d2] = d1;
+						continue;
+					}
+
+					// 'o1' and 'o2' are both not null.
+					if (o1 != d2 || o2 != d1)
+					{
+						return null;
+					}
+				}
+			}
+		}
+
+		if (!cellsNotSymmetrical)
+		{
+			// All cells are symmetrical placements. This will have been checked in normal types.
+			return null;
+		}
+
+		var gridCopied = grid;
+		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
+		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
+		{
+			// No elimination.
+			return null;
+		}
+
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = new List<CandidateViewNode>();
+		RecordHighlightCells(in grid, cellOffsets, mapping);
+
+		return new(
+			[new(Elimination, elimCell, elimDigit)],
+			[[.. cellOffsets, .. candidateOffsets]],
+			context.PredefinedOptions,
+			SymmetricType.YAxis,
+			mapping
+		);
+	}
+
+	/// <summary>
 	/// Checks for central symmetry steps, anti-GSP type.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -846,7 +1057,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
-			SymmetricType.AntiDiagonal,
+			SymmetricType.Central,
 			mapping
 		);
 	}

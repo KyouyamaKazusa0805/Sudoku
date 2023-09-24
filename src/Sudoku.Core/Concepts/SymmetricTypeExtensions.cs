@@ -28,8 +28,15 @@ public static class SymmetricTypeExtensions
 			SymmetricType.AxisBoth => SymmetricType.XAxis.GetCellsInSymmetryAxis() | SymmetricType.YAxis.GetCellsInSymmetryAxis(),
 			SymmetricType.DiagonalBoth => SymmetricType.Diagonal.GetCellsInSymmetryAxis() | SymmetricType.AntiDiagonal.GetCellsInSymmetryAxis(),
 			SymmetricType.All => SymmetricType.AxisBoth.GetCellsInSymmetryAxis() | SymmetricType.DiagonalBoth.GetCellsInSymmetryAxis(),
+			SymmetricType.None => [],
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
+
+	/// <inheritdoc cref="GetCells(SymmetricType, int, int)"/>
+	/// <param name="this"><inheritdoc cref="GetCells(SymmetricType, int, int)"/></param>
+	/// <param name="cell">Indicates the target cell to be checked.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap GetCells(this SymmetricType @this, Cell cell) => @this.GetCells(cell / 9, cell % 9);
 
 	/// <summary>
 	/// Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
@@ -39,7 +46,7 @@ public static class SymmetricTypeExtensions
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<Cell> GetCells(this SymmetricType @this, int row, int column)
+	public static CellMap GetCells(this SymmetricType @this, int row, int column)
 		=> @this switch
 		{
 			SymmetricType.Central => [row * 9 + column, (8 - row) * 9 + 8 - column],
@@ -61,6 +68,6 @@ public static class SymmetricTypeExtensions
 					(8 - column) * 9 + (8 - row)
 				],
 			SymmetricType.None => [row * 9 + column],
-			_ => (Cell[])[]
+			_ => []
 		};
 }

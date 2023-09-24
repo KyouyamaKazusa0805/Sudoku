@@ -6262,6 +6262,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to X-Axis.
+        /// </summary>
+        public static string XAxisSymmetry {
+            get {
+                return ResourceManager.GetString("XAxisSymmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to X-Chain.
         /// </summary>
         public static string XChain {
@@ -6321,6 +6330,15 @@ namespace Sudoku.Analytics.Strings {
         public static string XyzWing {
             get {
                 return ResourceManager.GetString("XyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y-Axis.
+        /// </summary>
+        public static string YAxisSymmetry {
+            get {
+                return ResourceManager.GetString("YAxisSymmetry", resourceCulture);
             }
         }
         

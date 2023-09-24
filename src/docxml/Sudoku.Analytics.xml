@@ -8760,6 +8760,22 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckXAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Checks for X-axis symmetry steps, anti-GSP type.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckYAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Checks for Y-axis symmetry steps, anti-GSP type.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckCentral_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for central symmetry steps, anti-GSP type.
@@ -14710,7 +14726,16 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="symmetricType"><inheritdoc/></param>
+            <param name="symmetricType">
+            Indicates the symmetric type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.XAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.YAxis"/></item>
+            </list>
+            </param>
             <param name="mapping"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.SymmetricType,System.Nullable{System.Int32}[])">
@@ -14720,7 +14745,16 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="symmetricType"><inheritdoc/></param>
+            <param name="symmetricType">
+            Indicates the symmetric type used. The supported value can only be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.XAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.SymmetricType.YAxis"/></item>
+            </list>
+            </param>
             <param name="mapping"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.BaseDifficulty">
@@ -18543,6 +18577,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to WXYZ-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.XAxisSymmetry">
+            <summary>
+              Looks up a localized string similar to X-Axis.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.XChain">
             <summary>
               Looks up a localized string similar to X-Chain.
@@ -18576,6 +18615,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.XyzWing">
             <summary>
               Looks up a localized string similar to XYZ-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.YAxisSymmetry">
+            <summary>
+              Looks up a localized string similar to Y-Axis.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.YChain">

@@ -2344,4 +2344,10 @@
   <data name="TechniqueFormat_AntiGurthSymmetricalPlacementStep" xml:space="preserve">
     <value>该盘面终盘一定不对称，所以初盘也一定不对称。对称规则：{0}，对称映射关系：{1}</value>
   </data>
+  <data name="XAxisSymmetry" xml:space="preserve">
+    <value>横轴对称</value>
+  </data>
+  <data name="YAxisSymmetry" xml:space="preserve">
+    <value>纵轴对称</value>
+  </data>
 </root>

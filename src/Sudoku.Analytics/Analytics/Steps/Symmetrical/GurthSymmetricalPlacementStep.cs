@@ -36,7 +36,12 @@ public partial class GurthSymmetricalPlacementStep(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> SymmetricType switch { SymmetricType.Diagonal or SymmetricType.AntiDiagonal => 7.1M, SymmetricType.Central => 7.0M };
+		=> SymmetricType switch
+		{
+			SymmetricType.Central => 7.0M,
+			SymmetricType.Diagonal or SymmetricType.AntiDiagonal => 7.1M,
+			SymmetricType.XAxis or SymmetricType.YAxis => 7.2M // This pattern will only be used by anti-GSP cases.
+		};
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.GurthSymmetricalPlacement;

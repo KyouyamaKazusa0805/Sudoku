@@ -5583,6 +5583,11 @@ if (student is (name: var name, age: >= 18))
             Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.Concepts.SymmetricType.None"/>.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)"/>
+            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)"/></param>
+            <param name="cell">Indicates the target cell to be checked.</param>
+        </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
