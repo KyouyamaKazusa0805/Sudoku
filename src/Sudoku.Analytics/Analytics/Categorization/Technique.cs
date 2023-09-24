@@ -2816,6 +2816,13 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	ExtendedGurthSymmetricalPlacement,
+
+	/// <summary>
+	/// Indicates Anti-GSP (Anti- Gurth's Symmetrical Placement).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Symmetry)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	AntiGurthSymmetricalPlacement,
 	#endregion
 
 	//

@@ -2202,4 +2202,10 @@
   <data name="ExofinsAre" xml:space="preserve">
     <value>exofins are: {0}</value>
   </data>
+  <data name="AntiGurthSymmetricalPlacement" xml:space="preserve">
+    <value>Anti Gurth's Symmetrical Placement</value>
+  </data>
+  <data name="TechniqueFormat_AntiGurthSymmetricalPlacementStep" xml:space="preserve">
+    <value>Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}</value>
+  </data>
 </root>

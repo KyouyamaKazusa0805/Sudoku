@@ -5,6 +5,7 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics.StepSearchers;
@@ -15,38 +16,65 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Gurth's Symmetrical Placement</item>
 /// <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
+/// <item>Anti- Gurth's Symmetrical Placement</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.GurthSymmetricalPlacement, Technique.ExtendedGurthSymmetricalPlacement, IsPure = true)]
-public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
+[StepSearcher(
+	Technique.GurthSymmetricalPlacement, Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement,
+	IsPure = true)]
+public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// The methods.
+	/// Normal types.
 	/// </summary>
-	private static readonly delegate*<ref readonly Grid, ref AnalysisContext, GurthSymmetricalPlacementStep?>[] Methods = [
+	private static readonly unsafe delegate*<ref readonly Grid, ref AnalysisContext, GurthSymmetricalPlacementStep?>[] NormalTypeCheckers = [
 		&CheckDiagonal,
 		&CheckAntiDiagonal,
 		&CheckCentral
 	];
 
+	/// <summary>
+	/// Anti types.
+	/// </summary>
+	private static readonly unsafe delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>[] AntiTypeCheckers = [
+		&CheckDiagonal_Anti,
+		&CheckAntiDiagonal_Anti
+	];
+
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		// Normal types.
 		for (var i = 0; i < 3; i++)
 		{
-			if (Methods[i](in grid, ref context) is not { } step)
+			if (NormalTypeCheckers[i](in context.Grid, ref context) is not { } normalTypeStep)
 			{
 				continue;
 			}
 
 			if (context.OnlyFindOne)
 			{
-				return step;
+				return normalTypeStep;
 			}
 
-			context.Accumulator.Add(step);
+			context.Accumulator.Add(normalTypeStep);
+		}
+
+		// Anti types.
+		for (var i = 0; i < 2; i++)
+		{
+			if (AntiTypeCheckers[i](in context.Grid, ref context) is not { } antiTypeStep)
+			{
+				continue;
+			}
+
+			if (context.OnlyFindOne)
+			{
+				return antiTypeStep;
+			}
+
+			context.Accumulator.Add(antiTypeStep);
 		}
 
 		return null;
@@ -207,7 +235,7 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 
 		return conclusions.Count == 0
 			? null
-			: new GurthSymmetricalPlacementStep(
+			: new(
 				[.. conclusions],
 				[[.. cellOffsets, .. candidateOffsets]],
 				context.PredefinedOptions,
@@ -428,5 +456,277 @@ public sealed unsafe partial class GurthSymmetricalPlacementStepSearcher : StepS
 		}
 
 		return null;
+	}
+
+	/// <summary>
+	/// Checks for diagonal symmetry steps, anti-GSP type.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	{
+		var mapping = new Digit?[9];
+		var cellsNotSymmetrical = CellMap.Empty;
+		for (var i = 0; i < 9; i++)
+		{
+			for (var j = 0; j < i; j++)
+			{
+				var c1 = i * 9 + j;
+				var c2 = j * 9 + i;
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
+				{
+					// One of two cells is empty. Not this symmetry.
+					if (cellsNotSymmetrical)
+					{
+						return null;
+					}
+
+					cellsNotSymmetrical.Add(c1);
+					cellsNotSymmetrical.Add(c2);
+					continue;
+				}
+
+				if (condition)
+				{
+					continue;
+				}
+
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
+				if (d1 == d2)
+				{
+					var o1 = mapping[d1];
+					if (o1 is null)
+					{
+						mapping[d1] = d1;
+						continue;
+					}
+
+					if (o1 != d1)
+					{
+						return null;
+					}
+				}
+				else
+				{
+					var o1 = mapping[d1];
+					var o2 = mapping[d2];
+					if (o1.HasValue ^ o2.HasValue)
+					{
+						return null;
+					}
+
+					if (o1 is null && o2 is null)
+					{
+						mapping[d1] = d2;
+						mapping[d2] = d1;
+						continue;
+					}
+
+					// 'o1' and 'o2' are both not null.
+					if (o1 != d2 || o2 != d1)
+					{
+						return null;
+					}
+				}
+			}
+		}
+
+		if (!cellsNotSymmetrical)
+		{
+			// All cells are symmetrical placements. This will have been checked in normal types.
+			return null;
+		}
+
+		var singleDigitList = new List<Digit>();
+		for (var digit = 0; digit < 9; digit++)
+		{
+			var mappingDigit = mapping[digit];
+			if (!mappingDigit.HasValue || mappingDigit == digit)
+			{
+				singleDigitList.Add(digit);
+			}
+		}
+
+		var singleDigitsMask = MaskOperations.Create([.. singleDigitList]);
+
+		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
+		var isSolutionAsymmetry = singleDigitList.Count > 3;
+		foreach (var cell in SymmetricType.Diagonal.GetCellsInSymmetryAxis())
+		{
+			if ((Mask)(grid.GetCandidates(cell) & singleDigitsMask) == 0)
+			{
+				// We can conclude that the solution should be an asymmetrical placement if one of two following conditions is true:
+				// 1) If the cell is empty, and no possible candidates in the single-digit set can be filled into the cell.
+				// 2) If the cell is not empty, and it is filled with other digits not appearing in the single-digit set.
+				// Two conditions can be expressed with one boolean expression.
+				isSolutionAsymmetry = true;
+				break;
+			}
+		}
+		if (!isSolutionAsymmetry)
+		{
+			// We cannot determine whether the solution is an asymmetrical placement.
+			return null;
+		}
+
+		var gridCopied = grid;
+		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
+		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
+		{
+			// No elimination.
+			return null;
+		}
+
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = new List<CandidateViewNode>();
+		RecordHighlightCells(in grid, cellOffsets, mapping);
+
+		return new(
+			[new(Elimination, elimCell, elimDigit)],
+			[[.. cellOffsets, .. candidateOffsets]],
+			context.PredefinedOptions,
+			SymmetricType.Diagonal,
+			mapping
+		);
+	}
+
+	/// <summary>
+	/// Checks for diagonal symmetry steps, anti-GSP type.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	{
+		var mapping = new Digit?[9];
+		var cellsNotSymmetrical = CellMap.Empty;
+		for (var i = 0; i < 9; i++)
+		{
+			for (var j = 0; j < 8 - i; j++)
+			{
+				var c1 = i * 9 + j;
+				var c2 = (8 - j) * 9 + (8 - i);
+				var condition = grid.GetState(c1) == CellState.Empty;
+				if (condition ^ grid.GetState(c2) == CellState.Empty)
+				{
+					// One of two cells is empty. Not this symmetry.
+					if (cellsNotSymmetrical)
+					{
+						return null;
+					}
+
+					cellsNotSymmetrical.Add(c1);
+					cellsNotSymmetrical.Add(c2);
+					continue;
+				}
+
+				if (condition)
+				{
+					continue;
+				}
+
+				var d1 = grid.GetDigit(c1);
+				var d2 = grid.GetDigit(c2);
+				if (d1 == d2)
+				{
+					var o1 = mapping[d1];
+					if (o1 is null)
+					{
+						mapping[d1] = d1;
+						continue;
+					}
+
+					if (o1 != d1)
+					{
+						return null;
+					}
+				}
+				else
+				{
+					var o1 = mapping[d1];
+					var o2 = mapping[d2];
+					if (o1.HasValue ^ o2.HasValue)
+					{
+						return null;
+					}
+
+					if (o1 is null || o2 is null)
+					{
+						mapping[d1] = d2;
+						mapping[d2] = d1;
+						continue;
+					}
+
+					// 'o1' and 'o2' are both not null.
+					if (o1 != d2 || o2 != d1)
+					{
+						return null;
+					}
+				}
+			}
+		}
+
+		if (!cellsNotSymmetrical)
+		{
+			// All cells are symmetrical placements. This will have been checked in normal types.
+			return null;
+		}
+
+		var singleDigitList = new List<Digit>();
+		for (var digit = 0; digit < 9; digit++)
+		{
+			var mappingDigit = mapping[digit];
+			if (!mappingDigit.HasValue || mappingDigit == digit)
+			{
+				singleDigitList.Add(digit);
+			}
+		}
+
+		var singleDigitsMask = MaskOperations.Create([.. singleDigitList]);
+
+		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
+		var isSolutionAsymmetry = singleDigitList.Count > 3;
+		foreach (var cell in SymmetricType.AntiDiagonal.GetCellsInSymmetryAxis())
+		{
+			if ((Mask)(grid.GetCandidates(cell) & singleDigitsMask) == 0)
+			{
+				// We can conclude that the solution should be an asymmetrical placement if one of two following conditions is true:
+				// 1) If the cell is empty, and no possible candidates in the single-digit set can be filled into the cell.
+				// 2) If the cell is not empty, and it is filled with other digits not appearing in the single-digit set.
+				// Two conditions can be expressed with one boolean expression.
+				isSolutionAsymmetry = true;
+				break;
+			}
+		}
+		if (!isSolutionAsymmetry)
+		{
+			// We cannot determine whether the solution is an asymmetrical placement.
+			return null;
+		}
+
+		var gridCopied = grid;
+		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
+		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
+		{
+			// No elimination.
+			return null;
+		}
+
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = new List<CandidateViewNode>();
+		RecordHighlightCells(in grid, cellOffsets, mapping);
+
+		return new(
+			[new(Elimination, elimCell, elimDigit)],
+			[[.. cellOffsets, .. candidateOffsets]],
+			context.PredefinedOptions,
+			SymmetricType.AntiDiagonal,
+			mapping
+		);
 	}
 }

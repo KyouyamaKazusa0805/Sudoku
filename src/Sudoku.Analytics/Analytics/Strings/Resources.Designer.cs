@@ -349,6 +349,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anti Gurth&apos;s Symmetrical Placement.
+        /// </summary>
+        public static string AntiGurthSymmetricalPlacement {
+            get {
+                return ResourceManager.GetString("AntiGurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle + 2D.
         /// </summary>
         public static string AvoidableRectangle2D {
@@ -4809,6 +4818,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueFormat_AlternatingInferenceChainStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlternatingInferenceChainStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}.
+        /// </summary>
+        public static string TechniqueFormat_AntiGurthSymmetricalPlacementStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AntiGurthSymmetricalPlacementStep", resourceCulture);
             }
         }
         

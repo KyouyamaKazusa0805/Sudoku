@@ -2051,6 +2051,21 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.First(System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found cell.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.FirstOrNull(System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found cell.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <inheritdoc/>
         </member>
@@ -5557,6 +5572,16 @@ if (student is (name: var name, age: >= 18))
             Provides with extension methods on <see cref="T:Sudoku.Concepts.SymmetricType"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Concepts.SymmetricType)">
+            <summary>
+            Try to get all possible cells in symmetry axis (or point).
+            </summary>
+            <param name="this">The symmetry.</param>
+            <returns>Returns cells in the symmetry axis (or point).</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.Concepts.SymmetricType.None"/>.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
             <summary>

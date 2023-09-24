@@ -1,4 +1,3 @@
-using System.SourceGeneration;
 using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -10,36 +9,26 @@ using static Sudoku.Analytics.Strings.StringsAccessor;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
+/// Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="symmetricType">
-/// Indicates the symmetric type used. The supported value can only be:
-/// <list type="bullet">
-/// <item><see cref="SymmetricType.Central"/></item>
-/// <item><see cref="SymmetricType.Diagonal"/></item>
-/// <item><see cref="SymmetricType.AntiDiagonal"/></item>
-/// </list>
-/// </param>
-/// <param name="mapping">
-/// Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
-/// </param>
-public partial class GurthSymmetricalPlacementStep(
+/// <param name="symmetricType"><inheritdoc/></param>
+/// <param name="mapping"><inheritdoc/></param>
+public sealed class AntiGurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] SymmetricType symmetricType,
-	[DataMember] Digit?[]? mapping
-) : SymmetryStep(conclusions, views, options)
+	SymmetricType symmetricType,
+	Digit?[]? mapping
+) : GurthSymmetricalPlacementStep(conclusions, views, options, symmetricType, mapping)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
-		=> SymmetricType switch { SymmetricType.Diagonal or SymmetricType.AntiDiagonal => 7.1M, SymmetricType.Central => 7.0M };
+	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.GurthSymmetricalPlacement;
+	public override Technique Code => Technique.AntiGurthSymmetricalPlacement;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

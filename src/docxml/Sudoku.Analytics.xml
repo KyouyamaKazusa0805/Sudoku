@@ -2601,6 +2601,11 @@ if (student is (name: var name, age: >= 18))
             Indicates extended Gurth's symmetrical placement.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AntiGurthSymmetricalPlacement">
+            <summary>
+            Indicates Anti-GSP (Anti- Gurth's Symmetrical Placement).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocet">
             <summary>
             Indicates junior exocet.
@@ -8690,12 +8695,18 @@ if (student is (name: var name, age: >= 18))
             <list type="bullet">
             <item>Gurth's Symmetrical Placement</item>
             <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
+            <item>Anti- Gurth's Symmetrical Placement</item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Methods">
+        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.NormalTypeCheckers">
             <summary>
-            The methods.
+            Normal types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.AntiTypeCheckers">
+            <summary>
+            Anti types.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
@@ -8728,6 +8739,22 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckCentral(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for central symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Checks for diagonal symmetry steps, anti-GSP type.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Checks for diagonal symmetry steps, anti-GSP type.
             </summary>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
@@ -14668,6 +14695,35 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep">
+            <summary>
+            Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="symmetricType"><inheritdoc/></param>
+            <param name="mapping"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.SymmetricType,System.Nullable{System.Int32}[])">
+            <summary>
+            Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="symmetricType"><inheritdoc/></param>
+            <param name="mapping"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
@@ -15192,6 +15248,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.AntiDiagonalSymmetry">
             <summary>
               Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AntiGurthSymmetricalPlacement">
+            <summary>
+              Looks up a localized string similar to Anti Gurth&apos;s Symmetrical Placement.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AvoidableRectangle2D">
@@ -17672,6 +17733,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_AlternatingInferenceChainStep">
             <summary>
               Looks up a localized string similar to {Name}: Chain {ChainStr} =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_AntiGurthSymmetricalPlacementStep">
+            <summary>
+              Looks up a localized string similar to Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_AvoidableRectangleWithHiddenSingleStep">
