@@ -243,14 +243,11 @@ public sealed partial class AnalyzePage : Page
 	/// </returns>
 	internal async Task PasteCodeToSudokuGridAsync()
 	{
-		if (!IsSudokuPaneFocused())
-		{
-			return;
-		}
-
-		var dataPackageView = Clipboard.GetContent();
-		var targetText = await dataPackageView.GetTextAsync();
-		if (dataPackageView.Contains(StandardDataFormats.Text) && Grid.TryParse(targetText, out var grid))
+		if (IsSudokuPaneFocused()
+			&& Clipboard.GetContent() is var dataPackageView
+			&& dataPackageView.Contains(StandardDataFormats.Text)
+			&& await dataPackageView.GetTextAsync() is var targetText
+			&& Grid.TryParse(targetText, out var grid))
 		{
 			SudokuPane.Puzzle = grid;
 		}
