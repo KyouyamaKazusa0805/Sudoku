@@ -921,7 +921,8 @@ public sealed partial class AnalyzePage : Page
 							=> c1 == cell1 && c2 == cell2 || c2 == cell1 && c1 == cell2,
 						LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 } }
 							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
-							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2
+							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2,
+						_ => false
 					};
 			}
 		}
