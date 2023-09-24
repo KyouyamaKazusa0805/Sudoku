@@ -8712,7 +8712,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.RecordHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
             <summary>
             Records all possible highlight cells.
             </summary>

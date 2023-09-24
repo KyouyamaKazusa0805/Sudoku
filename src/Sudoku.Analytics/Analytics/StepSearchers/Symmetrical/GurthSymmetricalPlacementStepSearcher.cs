@@ -91,7 +91,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void RecordHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, Digit?[] mapping)
+	private static void RecordHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped Span<Digit?> mapping)
 	{
 		scoped var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -143,7 +143,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < i; j++)
@@ -244,7 +244,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				[[.. cellOffsets, .. candidateOffsets]],
 				context.PredefinedOptions,
 				SymmetricType.Diagonal,
-				mapping
+				[.. mapping]
 			);
 	}
 
@@ -271,7 +271,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 8 - i; j++)
@@ -367,7 +367,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		return conclusions.Count == 0
 			? null
-			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], context.PredefinedOptions, SymmetricType.AntiDiagonal, mapping);
+			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], context.PredefinedOptions, SymmetricType.AntiDiagonal, [.. mapping]);
 	}
 
 	/// <summary>
@@ -384,7 +384,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;
@@ -455,7 +455,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				[[.. cellOffsets, new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit)]],
 				context.PredefinedOptions,
 				SymmetricType.Central,
-				mapping
+				[.. mapping]
 			);
 		}
 
@@ -470,7 +470,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -594,7 +594,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
 			SymmetricType.Diagonal,
-			mapping
+			[.. mapping]
 		);
 	}
 
@@ -606,7 +606,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -730,7 +730,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
 			SymmetricType.AntiDiagonal,
-			mapping
+			[.. mapping]
 		);
 	}
 
@@ -742,7 +742,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 4; i++)
 		{
@@ -834,7 +834,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
 			SymmetricType.XAxis,
-			mapping
+			[.. mapping]
 		);
 	}
 
@@ -846,7 +846,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -938,7 +938,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
 			SymmetricType.YAxis,
-			mapping
+			[.. mapping]
 		);
 	}
 
@@ -950,7 +950,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var cell = 0; cell < 40; cell++)
 		{
@@ -1058,7 +1058,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.PredefinedOptions,
 			SymmetricType.Central,
-			mapping
+			[.. mapping]
 		);
 	}
 }
