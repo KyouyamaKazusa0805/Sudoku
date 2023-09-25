@@ -91,7 +91,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void RecordHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped Span<Digit?> mapping)
+	private static void GetHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped Span<Digit?> mapping)
 	{
 		scoped var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -204,14 +204,33 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
-		var singleDigitList = new List<Digit>();
+		var selfPairedDigits = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			var mappingDigit = mapping[digit];
 			if (!mappingDigit.HasValue || mappingDigit == digit)
 			{
-				singleDigitList.Add(digit);
+				selfPairedDigits.Add(digit);
 			}
+		}
+
+		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
+
+		// Check whether the diagonal line contains non-self-paired digit.
+		var containsNonselfPairedDigit = false;
+		foreach (var cell in SymmetricType.Diagonal.GetCellsInSymmetryAxis())
+		{
+			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+			{
+				containsNonselfPairedDigit = true;
+				break;
+			}
+		}
+		if (containsNonselfPairedDigit)
+		{
+			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
+			return null;
 		}
 
 		var cellOffsets = new List<CellViewNode>();
@@ -227,7 +246,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				if (singleDigitList.Contains(digit))
+				if (selfPairedDigits.Contains(digit))
 				{
 					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 					continue;
@@ -236,7 +255,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -333,14 +352,33 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
-		var singleDigitList = new List<Digit>();
+		var selfPairedDigits = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			var mappingDigit = mapping[digit];
 			if (!mappingDigit.HasValue || mappingDigit == digit)
 			{
-				singleDigitList.Add(digit);
+				selfPairedDigits.Add(digit);
 			}
+		}
+
+		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
+
+		// Check whether the diagonal line contains non-self-paired digit.
+		var containsNonselfPairedDigit = false;
+		foreach (var cell in SymmetricType.AntiDiagonal.GetCellsInSymmetryAxis())
+		{
+			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+			{
+				containsNonselfPairedDigit = true;
+				break;
+			}
+		}
+		if (containsNonselfPairedDigit)
+		{
+			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
+			return null;
 		}
 
 		var cellOffsets = new List<CellViewNode>();
@@ -356,7 +394,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				if (singleDigitList.Contains(digit))
+				if (selfPairedDigits.Contains(digit))
 				{
 					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 					continue;
@@ -365,7 +403,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return conclusions.Count == 0
 			? null
@@ -443,6 +481,26 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
+		var selfPairedDigits = new List<Digit>();
+		for (var digit = 0; digit < 9; digit++)
+		{
+			var mappingDigit = mapping[digit];
+			if (!mappingDigit.HasValue || mappingDigit == digit)
+			{
+				selfPairedDigits.Add(digit);
+			}
+		}
+
+		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
+
+		// Check whether the diagonal line contains non-self-paired digit.
+		if (grid.GetDigit(40) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+		{
+			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
+			return null;
+		}
+
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (mapping[digit] is not null && mapping[digit] != digit)
@@ -451,7 +509,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 
 			var cellOffsets = new List<CellViewNode>();
-			RecordHighlightCells(in grid, cellOffsets, mapping);
+			GetHighlightCells(in grid, cellOffsets, mapping);
 
 			return new(
 				[new(Assignment, 40, digit)],
@@ -591,7 +649,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
@@ -728,7 +786,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
@@ -833,7 +891,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
@@ -938,7 +996,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
@@ -1059,7 +1117,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
-		RecordHighlightCells(in grid, cellOffsets, mapping);
+		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
