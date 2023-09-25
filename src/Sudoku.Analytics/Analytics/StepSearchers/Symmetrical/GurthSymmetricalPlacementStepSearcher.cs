@@ -143,7 +143,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < i; j++)
@@ -271,7 +272,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 8 - i; j++)
@@ -384,7 +386,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;
@@ -470,7 +473,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -606,7 +610,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -742,7 +747,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 4; i++)
 		{
@@ -846,7 +852,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var i = 0; i < 9; i++)
 		{
@@ -950,7 +957,8 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		var mapping = new Digit?[9];
+		scoped var mapping = (stackalloc Digit?[9]);
+		mapping.Clear();
 		var cellsNotSymmetrical = CellMap.Empty;
 		for (var cell = 0; cell < 40; cell++)
 		{
