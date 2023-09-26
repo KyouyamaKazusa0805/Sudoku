@@ -396,26 +396,19 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	private CellViewNode[] GetHiddenSingleExcluders(scoped ref readonly Grid grid, Digit digit, House house, Cell cell)
-	{
-		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]);
-		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
+		=> Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) switch
 		{
-			return [];
-		}
-
-		var result = new List<CellViewNode>();
-		foreach (var c in combination)
-		{
-			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly });
-		}
-		foreach (var c in emptyCellsShouldBeCovered)
-		{
-			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
-			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
-		}
-
-		return [.. result];
-	}
+			var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered) => [
+				..
+				from c in combination
+				select new CellViewNode(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly },
+				..
+				from c in emptyCellsShouldBeCovered
+				let p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1
+				select new CellViewNode(p, c) { RenderingMode = RenderingMode.DirectModeOnly }
+			],
+			_ => []
+		};
 
 	/// <summary>
 	/// Get all <see cref="CellViewNode"/>s that represents as excluders.
