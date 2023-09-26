@@ -11,7 +11,6 @@ using Sudoku.Concepts;
 using Sudoku.Concepts.Converters;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Text.Coordinate;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Input;
 using SudokuStudio.Interaction.Conversions;

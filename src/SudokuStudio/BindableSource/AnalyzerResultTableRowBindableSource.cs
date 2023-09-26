@@ -1,6 +1,5 @@
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
-using WinRT;
 
 namespace SudokuStudio.BindableSource;
 
