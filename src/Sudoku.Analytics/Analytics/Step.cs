@@ -8,9 +8,9 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.Strings;
+using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Strings;
-using Sudoku.Text;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics;

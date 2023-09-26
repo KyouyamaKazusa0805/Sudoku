@@ -4265,7 +4265,7 @@ if (student is (name: var name, age: >= 18))
             The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.Format"/> result.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.Format"/>
-            <seealso cref="T:Sudoku.Text.FormatInterpolation"/>
+            <seealso cref="T:Sudoku.Concepts.FormatInterpolation"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
             <summary>
@@ -19602,6 +19602,35 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Exocet.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Concepts.FormatInterpolation">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.FormatInterpolation.#ctor(System.String,System.String[])">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.FormatInterpolation.LanguageNameOrIdentifier">
+            <summary>
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.FormatInterpolation.ResourcePlaceholderValues">
+            <summary>The values of the interpolation.</summary>
+        </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
             Defines a multiple forcing chains.
@@ -20243,35 +20272,6 @@ result ^= expression;
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Text.FormatInterpolation">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="M:Sudoku.Text.FormatInterpolation.#ctor(System.String,System.String[])">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="P:Sudoku.Text.FormatInterpolation.LanguageNameOrIdentifier">
-            <summary>
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.FormatInterpolation.ResourcePlaceholderValues">
-            <summary>The values of the interpolation.</summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>
