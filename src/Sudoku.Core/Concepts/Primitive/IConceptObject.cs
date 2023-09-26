@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents an object type that describes for an object that is defined in sudoku concepts.

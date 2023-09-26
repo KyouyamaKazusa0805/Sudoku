@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
-using Sudoku.Text;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Text.SudokuGrid;
 using static System.Numerics.BitOperations;
 

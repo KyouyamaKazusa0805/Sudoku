@@ -1,4 +1,6 @@
-namespace Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
+
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Defines a type that supports for coordinate output rule.

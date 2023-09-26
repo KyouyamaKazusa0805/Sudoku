@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a text handler that operates with <see cref="string"/>, converting values between <see cref="string"/> and concept objects.

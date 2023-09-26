@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Eliminations;

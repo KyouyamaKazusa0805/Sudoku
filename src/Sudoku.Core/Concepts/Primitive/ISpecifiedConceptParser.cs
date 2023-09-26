@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a parser that only parses into a specified concept object from a specified <see cref="string"/> text.

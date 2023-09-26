@@ -1,7 +1,7 @@
 using System.Text;
-using Sudoku.Concepts;
+using Sudoku.Concepts.Primitive;
 
-namespace Sudoku.Text;
+namespace Sudoku.Concepts.Converters;
 
 /// <summary>
 /// Represents a coordinate converter using <b>Hodoku Triplet</b> notation.

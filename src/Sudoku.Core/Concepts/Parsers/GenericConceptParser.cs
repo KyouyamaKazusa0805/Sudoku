@@ -1,4 +1,6 @@
-﻿namespace Sudoku.Text;
+﻿using Sudoku.Concepts.Primitive;
+
+namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents a converter that parses into variant concept objects from correspoding specified <see cref="string"/> values.

@@ -3384,11 +3384,11 @@ if (student is (name: var name, age: >= 18))
             For example, setting notation to the coordinates.
             </summary>
             <param name="Converter">
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor(Sudoku.Text.Coordinate.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor(Sudoku.Concepts.Converters.CoordinateConverter)">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
@@ -3396,14 +3396,14 @@ if (student is (name: var name, age: >= 18))
             For example, setting notation to the coordinates.
             </summary>
             <param name="Converter">
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
             <summary>
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Text.Coordinate.CoordinateConverter" path="/remarks"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor">
@@ -3418,7 +3418,7 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Coordinate.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Concepts.Converters.RxCyConverter"/></item>
             </list>
             </remarks>
         </member>
@@ -12943,7 +12943,7 @@ if (student is (name: var name, age: >= 18))
             The internal notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
@@ -19141,7 +19141,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Text.Coordinate.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">

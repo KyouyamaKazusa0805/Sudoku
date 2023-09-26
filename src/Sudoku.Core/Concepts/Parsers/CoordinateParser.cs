@@ -1,7 +1,7 @@
 using Sudoku.Analytics;
-using Sudoku.Concepts;
+using Sudoku.Concepts.Primitive;
 
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents for a parser instance that parses a <see cref="string"/> text,

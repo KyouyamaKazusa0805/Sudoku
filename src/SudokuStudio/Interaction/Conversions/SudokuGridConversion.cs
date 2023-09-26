@@ -2,7 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;

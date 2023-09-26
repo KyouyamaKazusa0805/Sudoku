@@ -13,7 +13,6 @@ using Sudoku.Analytics;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
-using Sudoku.Text;
 using Sudoku.Text.SudokuGrid;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.ConclusionType;

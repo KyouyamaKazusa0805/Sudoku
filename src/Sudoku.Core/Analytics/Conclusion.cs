@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
 using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;

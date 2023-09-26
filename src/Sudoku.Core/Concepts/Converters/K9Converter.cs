@@ -2,11 +2,10 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
-using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
 using static Sudoku.Strings.InternalStringAccessor;
 
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Converters;
 
 /// <summary>
 /// Represents a coordinate converter using K9 notation.

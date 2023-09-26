@@ -1,7 +1,6 @@
-using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Primitive;
 
-namespace Sudoku.Text;
+namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,

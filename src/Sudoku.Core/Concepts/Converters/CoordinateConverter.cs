@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Converters;
 
 /// <summary>
 /// Represents an option provider for coordinates.

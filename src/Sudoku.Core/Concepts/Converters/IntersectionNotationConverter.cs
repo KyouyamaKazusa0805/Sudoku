@@ -1,6 +1,4 @@
-using Sudoku.Concepts;
-
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Converters;
 
 /// <summary>
 /// Represents a delegate type that creates a <see cref="string"/> value

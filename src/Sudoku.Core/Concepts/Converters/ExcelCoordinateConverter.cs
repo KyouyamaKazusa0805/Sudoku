@@ -1,9 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
-using Sudoku.Concepts;
 
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Converters;
 
 /// <summary>
 /// Represents for Excel coordinate-based converter.

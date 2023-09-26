@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
 
 namespace Sudoku.Algorithm.Ittoryu;
 

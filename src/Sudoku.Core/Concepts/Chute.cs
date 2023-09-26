@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Primitive;
 
 namespace Sudoku.Concepts;
 

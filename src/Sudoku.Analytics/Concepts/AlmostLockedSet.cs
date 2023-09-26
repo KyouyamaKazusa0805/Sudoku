@@ -1,7 +1,8 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Primitive;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 using static Sudoku.SolutionWideReadOnlyFields;

@@ -1,4 +1,5 @@
 using Sudoku.Concepts;
+using Sudoku.Concepts.Primitive;
 
 namespace Sudoku.Text.SudokuGrid;
 

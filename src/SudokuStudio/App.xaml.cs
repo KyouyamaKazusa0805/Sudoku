@@ -2,6 +2,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Concepts.Converters;
 using Sudoku.Text.Coordinate;
 using SudokuStudio.Configuration;
 using SudokuStudio.Storage;
