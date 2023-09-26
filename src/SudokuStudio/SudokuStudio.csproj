@@ -102,6 +102,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\DefaultableSettingsExpander.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Controls\DefaultableSettingsCard.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\GeneratingStrategyPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

@@ -7777,6 +7777,208 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty" />
         </member>
+        <member name="T:SudokuStudio.Views.Controls.DefaultableSettingsCard">
+            <summary>
+            Represents a <see cref="T:WinUICommunity.SettingsCard"/> control that can revert the value to default.
+            </summary>
+            <seealso cref="T:WinUICommunity.SettingsCard"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsCard.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.DefaultableSettingsCard"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.DefaultableSettingsCard.UndoButtonClick">
+            <inheritdoc cref="E:Microsoft.UI.Xaml.Controls.Primitives.ButtonBase.Click"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsCard.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsCard.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsCard.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Header"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Header"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Description"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignmentProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignment"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignment"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIconProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIcon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIcon"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIconProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIcon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIcon"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Header">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Description">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DescriptionProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DescriptionProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignment">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignmentProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignmentProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIcon">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIconProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ActionIconProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIcon">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIconProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.HeaderIconProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.DefaultableSettingsExpander">
+            <summary>
+            Represents a <see cref="T:WinUICommunity.SettingsExpander"/> control that can revert the value to default.
+            </summary>
+            <seealso cref="T:WinUICommunity.SettingsExpander"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsExpander.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.DefaultableSettingsExpander"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.DefaultableSettingsExpander.UndoButtonClick">
+            <inheritdoc cref="E:Microsoft.UI.Xaml.Controls.Primitives.ButtonBase.Click"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsExpander.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsExpander.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Header"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Header"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Description"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSourceProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSource"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSource"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeaderProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeader"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeader"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooterProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooter"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooter"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIconProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIcon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIcon"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Items"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Items"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Header">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Description">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.DescriptionProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.DescriptionProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSource">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSourceProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsSourceProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeader">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeaderProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsHeaderProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooter">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooterProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsFooterProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIcon">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIconProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.HeaderIconProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsExpander.Items">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsExpander.ItemsProperty" />
+        </member>
         <member name="T:SudokuStudio.Views.Controls.FontPicker">
             <summary>
             Represents a font picker.
