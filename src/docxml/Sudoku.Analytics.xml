@@ -3190,6 +3190,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Select``1(System.Func{Sudoku.Analytics.Categorization.Technique,``0})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Add(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to add a new technique.
@@ -3855,7 +3858,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques">
             <summary>
-            The generated property declaration for parameter <c>supportedTechniques</c>.
+            <inheritdoc cref="T:Sudoku.Analytics.Metadata.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">

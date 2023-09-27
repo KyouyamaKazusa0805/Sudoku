@@ -95,6 +95,30 @@ public static class SpanEnumerable
 		return default;
 	}
 
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
+	public static TSource Aggregate<TSource>(this scoped ReadOnlySpan<TSource> @this, Func<TSource, TSource, TSource> func)
+	{
+		var result = default(TSource)!;
+		foreach (var element in @this)
+		{
+			result = func(result, element);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
+	public static TAccumulate Aggregate<TSource, TAccumulate>(this scoped ReadOnlySpan<TSource> @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+	{
+		var result = seed;
+		foreach (var element in @this)
+		{
+			result = func(result, element);
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Get all subsets from the specified number of the values to take.
 	/// </summary>

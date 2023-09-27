@@ -1,4 +1,3 @@
-using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 
 namespace Sudoku.Analytics.Metadata;
@@ -9,7 +8,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="supportedTechniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([DataMember] params Technique[] supportedTechniques) : Attribute
+public sealed class StepSearcherAttribute(params Technique[] supportedTechniques) : Attribute
 {
 	/// <summary>
 	/// Indicates the searching logic only uses cached fields in type <see cref="CachedFields"/>,
@@ -67,4 +66,9 @@ public sealed partial class StepSearcherAttribute([DataMember] params Technique[
 	/// </summary>
 	public DifficultyLevel DifficultyLevels
 		=> (from technique in SupportedTechniques select technique.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);
+
+	/// <summary>
+	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+	/// </summary>
+	public TechniqueSet SupportedTechniques { get; } = [.. supportedTechniques];
 }

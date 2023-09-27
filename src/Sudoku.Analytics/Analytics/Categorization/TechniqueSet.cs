@@ -278,6 +278,19 @@ public partial struct TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Enumerator GetEnumerator() => new(_techniqueBits);
 
+	/// <inheritdoc cref="ArrayEnumerable.Select{T, TResult}(T[], Func{T, TResult})"/>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Technique, TResult> selector)
+	{
+		var result = new TResult[Count];
+		var i = 0;
+		foreach (var technique in this)
+		{
+			result[i++] = selector(technique);
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Try to add a new technique.
 	/// </summary>
