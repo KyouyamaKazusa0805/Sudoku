@@ -5,11 +5,10 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:w="using:WinUICommunity"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:DefaultableSettingsCard}">
 	<w:SettingsCard
-		Header="{x:Bind Header}" Description="{x:Bind Description}"
-		ActionIcon="{x:Bind ActionIcon}" HeaderIcon="{x:Bind HeaderIcon}"
+		Header="{x:Bind Header}" Description="{x:Bind Description}" ActionIcon="{x:Bind ActionIcon}" HeaderIcon="{x:Bind HeaderIcon}"
 		IsActionIconVisible="True" ContentAlignment="{x:Bind ContentAlignment}">
 		<w:SettingsCard.Content>
 			<StackPanel Orientation="Horizontal" Spacing="6">

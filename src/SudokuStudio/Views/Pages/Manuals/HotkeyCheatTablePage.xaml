@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages.Manuals"
-	xmlns:w="using:WinUICommunity"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance Type=p:HotkeyCheatTablePage}">
 

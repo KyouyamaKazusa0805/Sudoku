@@ -7793,9 +7793,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Controls.DefaultableSettingsCard">
             <summary>
-            Represents a <see cref="T:WinUICommunity.SettingsCard"/> control that can revert the value to default.
+            Represents a <see cref="T:CommunityToolkit.WinUI.Controls.SettingsCard"/> control that can revert the value to default.
             </summary>
-            <seealso cref="T:WinUICommunity.SettingsCard"/>
+            <seealso cref="T:CommunityToolkit.WinUI.Controls.SettingsCard"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsCard.#ctor">
             <summary>
@@ -7893,9 +7893,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Controls.DefaultableSettingsExpander">
             <summary>
-            Represents a <see cref="T:WinUICommunity.SettingsExpander"/> control that can revert the value to default.
+            Represents a <see cref="T:CommunityToolkit.WinUI.Controls.SettingsExpander"/> control that can revert the value to default.
             </summary>
-            <seealso cref="T:WinUICommunity.SettingsExpander"/>
+            <seealso cref="T:CommunityToolkit.WinUI.Controls.SettingsExpander"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.DefaultableSettingsExpander.#ctor">
             <summary>

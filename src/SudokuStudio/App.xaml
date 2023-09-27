@@ -10,7 +10,6 @@
 			<!--Theme or style dictionary-->
 			<ResourceDictionary.MergedDictionaries>
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-				<ResourceDictionary Source="ms-appx:///SettingsUI/Themes/Generic.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 
 			<!--Other values-->
@@ -20,6 +19,17 @@
 			<Style TargetType="c:IntegerBox">
 				<Setter Property="Width" Value="200" />
 				<Setter Property="SpinButtonPlacementMode" Value="Inline" />
+			</Style>
+			<Style x:Key="SettingGroupTitleTextStyle" TargetType="TextBlock">
+				<Setter Property="FontSize" Value="16" />
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="Margin" Value="0,12" />
+			</Style>
+			<Style x:Key="SettingGroupDescriptionTextStyle" TargetType="TextBlock">
+				<Setter Property="FontSize" Value="14" />
+				<Setter Property="FontWeight" Value="Normal" />
+				<Setter Property="Foreground" Value="DimGray" />
+				<Setter Property="Margin" Value="0,0,0,12" />
 			</Style>
 			<vcvt:StringToFontFamilyConverter x:Key="String2FontConverter" />
 			<vcvt:Int32ToCoordinateLabelKindConverter x:Key="IntToCoordinateKindConverter" />

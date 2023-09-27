@@ -29,6 +29,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.230907" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
 		<PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Primitives" Version="7.1.2" />
@@ -39,8 +40,6 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
 		<PackageReference Include="QuestPDF" Version="2023.9.0" />
-		<PackageReference Include="WinUICommunity.SettingsUI" Version="4.0.5" />
-		<PackageReference Include="WinUICommunity.ShellContextMenu" Version="4.0.1" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -200,6 +199,9 @@
 		<Page Update="Views\Controls\RunningStrategy.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--
@@ -209,11 +211,6 @@
 	-->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
-	</ItemGroup>
-	<ItemGroup>
-		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 	</ItemGroup>
 
 	<!--

@@ -5,13 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:w="using:WinUICommunity"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:DefaultableSettingsExpander}">
 	<w:SettingsExpander
-		Header="{x:Bind Header}" Description="{x:Bind Description}"
-		ItemsHeader="{x:Bind ItemsHeader}" ItemsFooter="{x:Bind ItemsFooter}"
-		Items="{x:Bind Items}" ItemsSource="{x:Bind ItemsSource}"
-		HeaderIcon="{x:Bind HeaderIcon}">
+		Header="{x:Bind Header}" Description="{x:Bind Description}" ItemsHeader="{x:Bind ItemsHeader}" ItemsFooter="{x:Bind ItemsFooter}"
+		Items="{x:Bind Items}" ItemsSource="{x:Bind ItemsSource}" HeaderIcon="{x:Bind HeaderIcon}">
 		<w:SettingsExpander.Content>
 			<StackPanel Orientation="Horizontal" Spacing="6">
 				<ContentPresenter Content="{x:Bind Content}" />

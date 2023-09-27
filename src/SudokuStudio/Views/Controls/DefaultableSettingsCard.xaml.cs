@@ -1,8 +1,8 @@
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using SudokuStudio.ComponentModel;
-using WinUICommunity;
 
 namespace SudokuStudio.Views.Controls;
 
