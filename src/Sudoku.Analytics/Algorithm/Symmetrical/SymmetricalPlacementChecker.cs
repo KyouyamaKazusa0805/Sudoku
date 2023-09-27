@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
 
 namespace Sudoku.Algorithm.Symmetrical;
@@ -17,6 +18,37 @@ public static class SymmetricalPlacementChecker
 		&Central
 	];
 
+
+	/// <summary>
+	/// Try to get the its mapping rule for the specified grid via the specified symmetric type.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="symmetricType">The symmetric type to be checked.</param>
+	/// <param name="mappingDigits">The mapping digits returned.</param>
+	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="symmetricType"/> is not <see cref="SymmetricType.Central"/>,
+	/// <see cref="SymmetricType.Diagonal"/> or	<see cref="SymmetricType.AntiDiagonal"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe bool IsSymmetry(
+		this scoped ref readonly Grid grid,
+		SymmetricType symmetricType,
+		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out Mask selfPairedDigitsMask
+	)
+	{
+		if (symmetricType is not (SymmetricType.Central or SymmetricType.Diagonal or SymmetricType.AntiDiagonal))
+		{
+			throw new ArgumentOutOfRangeException(nameof(symmetricType));
+		}
+
+#nullable disable
+		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
+		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
+#nullable restore
+	}
 
 	/// <summary>
 	/// Try to get the symmetric type and its mapping rule for the specified grid.

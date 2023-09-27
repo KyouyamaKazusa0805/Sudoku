@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Sudoku.Algorithm.Symmetrical;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
@@ -143,67 +144,12 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
-		for (var i = 0; i < 9; i++)
+		if (!grid.IsSymmetry(SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
 		{
-			for (var j = 0; j < i; j++)
-			{
-				var c1 = i * 9 + j;
-				var c2 = j * 9 + i;
-				var condition = grid.GetState(c1) == CellState.Empty;
-				if (condition ^ grid.GetState(c2) == CellState.Empty)
-				{
-					// One of two cells is empty. Not this symmetry.
-					return null;
-				}
-
-				if (condition)
-				{
-					continue;
-				}
-
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
-				if (d1 == d2)
-				{
-					var o1 = mapping[d1];
-					if (o1 is null)
-					{
-						mapping[d1] = d1;
-						continue;
-					}
-
-					if (o1 != d1)
-					{
-						return null;
-					}
-				}
-				else
-				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
-					if (o1.HasValue ^ o2.HasValue)
-					{
-						return null;
-					}
-
-					if (o1 is null && o2 is null)
-					{
-						mapping[d1] = d2;
-						mapping[d2] = d1;
-						continue;
-					}
-
-					// 'o1' and 'o2' are both not null.
-					if (o1 != d2 || o2 != d1)
-					{
-						return null;
-					}
-				}
-			}
+			return null;
 		}
 
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 		var selfPairedDigits = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -213,9 +159,6 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				selfPairedDigits.Add(digit);
 			}
 		}
-
-		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 
 		// Check whether the diagonal line contains non-self-paired digit.
 		var containsNonselfPairedDigit = false;
@@ -295,67 +238,12 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
-		for (var i = 0; i < 9; i++)
+		if (!grid.IsSymmetry(SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
 		{
-			for (var j = 0; j < 8 - i; j++)
-			{
-				var c1 = i * 9 + j;
-				var c2 = (8 - j) * 9 + (8 - i);
-				var condition = grid.GetState(c1) == CellState.Empty;
-				if (condition ^ grid.GetState(c2) == CellState.Empty)
-				{
-					// One of two cells is empty. Not this symmetry.
-					return null;
-				}
-
-				if (condition)
-				{
-					continue;
-				}
-
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
-				if (d1 == d2)
-				{
-					var o1 = mapping[d1];
-					if (o1 is null)
-					{
-						mapping[d1] = d1;
-						continue;
-					}
-
-					if (o1 != d1)
-					{
-						return null;
-					}
-				}
-				else
-				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
-					if (o1.HasValue ^ o2.HasValue)
-					{
-						return null;
-					}
-
-					if (o1 is null || o2 is null)
-					{
-						mapping[d1] = d2;
-						mapping[d2] = d1;
-						continue;
-					}
-
-					// 'o1' and 'o2' are both not null.
-					if (o1 != d2 || o2 != d1)
-					{
-						return null;
-					}
-				}
-			}
+			return null;
 		}
 
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 		var selfPairedDigits = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -365,9 +253,6 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				selfPairedDigits.Add(digit);
 			}
 		}
-
-		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 
 		// Check whether the diagonal line contains non-self-paired digit.
 		var containsNonselfPairedDigit = false;
@@ -432,63 +317,12 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
-		for (var cell = 0; cell < 40; cell++)
+		if (!grid.IsSymmetry(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{
-			var anotherCell = 80 - cell;
-			var condition = grid.GetState(cell) == CellState.Empty;
-			if (condition ^ grid.GetState(anotherCell) == CellState.Empty)
-			{
-				// One of two cell is empty, not central symmetry type.
-				return null;
-			}
-
-			if (condition)
-			{
-				continue;
-			}
-
-			var d1 = grid.GetDigit(cell);
-			var d2 = grid.GetDigit(anotherCell);
-			if (d1 == d2)
-			{
-				var o1 = mapping[d1];
-				if (o1 is null)
-				{
-					mapping[d1] = d1;
-					continue;
-				}
-
-				if (o1 != d1)
-				{
-					return null;
-				}
-			}
-			else
-			{
-				var o1 = mapping[d1];
-				var o2 = mapping[d2];
-				if (o1 is not null ^ o2 is not null)
-				{
-					return null;
-				}
-
-				if (o1 is null || o2 is null)
-				{
-					mapping[d1] = d2;
-					mapping[d2] = d1;
-					continue;
-				}
-
-				// 'o1' and 'o2' are both not null.
-				if (o1 != d2 || o2 != d1)
-				{
-					return null;
-				}
-			}
+			return null;
 		}
 
+		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 		var selfPairedDigits = new List<Digit>();
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -498,9 +332,6 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 				selfPairedDigits.Add(digit);
 			}
 		}
-
-		var selfPairedDigitsMask = MaskOperations.Create([.. selfPairedDigits]);
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
 
 		// Check whether the diagonal line contains non-self-paired digit.
 		if (grid.GetDigit(40) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
