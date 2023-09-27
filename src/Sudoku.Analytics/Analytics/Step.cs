@@ -26,7 +26,7 @@ namespace Sudoku.Analytics;
 /// </param>
 [GetHashCode(OtherModifiers = "sealed")]
 public abstract partial class Step(
-	[DataMember] Conclusion[] conclusions,
+	[DataMember(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[DataMember] View[]? views,
 	[DataMember] StepSearcherOptions options
 ) : IRenderable

@@ -102,8 +102,11 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 			var possibleStepSearchers = ResultStepSearchers;
 			var totalSearchersCount = possibleStepSearchers.Length;
 
-			Initialize(in puzzle, puzzle.SolutionGrid);
+			var playground = puzzle;
+			Initialize(in playground, playground.SolutionGrid);
 
+			var accumulator = new List<Step>();
+			scoped var context = new AnalysisContext(accumulator, ref playground, false, Options);
 			var (lastLevel, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{
@@ -136,8 +139,8 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 						cancellationToken.ThrowIfCancellationRequested();
 
 						// Searching.
-						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false, Options);
+						accumulator.Clear();
+
 						searcher.Collect(ref context);
 
 						if (accumulator.Count is not (var count and not 0))

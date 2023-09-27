@@ -126,6 +126,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
 			string progressedStepSearcherName;
 			scoped var stopwatch = ValueStopwatch.NewInstance;
+			var accumulator = IsFullApplying ? new List<Step>() : null;
+			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
 
 		Again:
 			Initialize(in playground, in solution);
@@ -147,8 +149,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
-						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, playground, false, Options);
+						accumulator!.Clear();
+						
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -160,7 +162,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							if (verifyConclusionValidity(in solution, foundStep))
 							{
 								if (recordingStep(
-									recordedSteps, foundStep, ref playground, in stopwatch, stepGrids,
+									recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -178,7 +180,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					}
 					default:
 					{
-						scoped var context = new AnalysisContext(null, playground, true, Options);
 						switch (searcher.Collect(ref context))
 						{
 							case null:
@@ -190,7 +191,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 								if (verifyConclusionValidity(in solution, foundStep))
 								{
 									if (recordingStep(
-										recordedSteps, foundStep, ref playground, in stopwatch, stepGrids,
+										recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
 										return result;
@@ -245,6 +246,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			static bool recordingStep(
 				List<Step> steps,
 				Step step,
+				scoped ref readonly AnalysisContext context,
 				scoped ref Grid playground,
 				scoped ref readonly ValueStopwatch stopwatch,
 				List<Grid> stepGrids,
@@ -253,6 +255,23 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				[NotNullWhen(true)] out AnalyzerResult? result
 			)
 			{
+				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.
+				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType, MappingRelations: { } mappingRelations })
+				{
+					var copied = playground;
+					var originalConclusions = step.Conclusions;
+					step.Conclusions = [
+						.. originalConclusions,
+						..
+						from conclusion in originalConclusions
+						let newConclusion = conclusion.GetSymmetricConclusion(symmetricType, mappingRelations[conclusion.Digit] ?? -1)
+						where newConclusion != conclusion
+							&& copied.GetState(newConclusion.Cell) == CellState.Empty
+							&& (copied.GetCandidates(newConclusion.Cell) >> newConclusion.Digit & 1) != 0
+						select newConclusion
+					];
+				}
+
 				var atLeastOneConclusionIsWorth = false;
 				foreach (var (t, c, d) in step.Conclusions)
 				{
@@ -300,92 +319,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				result = null;
 				return false;
 			}
-		}
-	}
-
-	/// <summary>
-	/// Only analyze for one step if <see cref="IsFullApplying"/> is <see langword="false"/>,
-	/// or a list of <see cref="Step"/>s if <see cref="IsFullApplying"/> is <see langword="true"/>.
-	/// </summary>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <returns>The first steps found.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// <inheritdoc cref="Analyze(ref readonly Grid, IProgress{AnalyzerProgress}?, CancellationToken)" path="/exception[@cref='InvalidOperationException']"/>
-	/// </exception>
-	/// <seealso cref="IsFullApplying"/>
-	public Step[]? AnalyzeOneStep(scoped ref readonly Grid puzzle)
-	{
-		if (puzzle.IsSolved)
-		{
-			throw new InvalidOperationException("This puzzle has already been solved.");
-		}
-
-		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
-		{
-			Initialize(in puzzle, puzzle.SolutionGrid);
-			foreach (var searcher in ResultStepSearchers)
-			{
-				switch (isSukaku, searcher, this)
-				{
-					case (true, { IsNotSupportedForSukaku: true }, _):
-					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
-					case (_, { IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
-					case (_, { IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
-					{
-						// Skips on those two cases:
-						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
-						// 2. If the searcher is currently disabled.
-						// 3. If the searcher is configured as slow.
-						// 4. If the searcher is configured as high-allocation.
-						continue;
-					}
-					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
-					{
-						var accumulator = new List<Step>();
-						scoped var context = new AnalysisContext(accumulator, puzzle, false, Options);
-						searcher.Collect(ref context);
-						if (accumulator.Count == 0)
-						{
-							continue;
-						}
-
-						var steps = new List<Step>();
-						foreach (var step in accumulator)
-						{
-							steps.Add(verifyConclusionValidity(in solution, step) ? step : throw new WrongStepException(in puzzle, step));
-						}
-
-						return [.. steps];
-					}
-					default:
-					{
-						scoped var context = new AnalysisContext(null, puzzle, true, Options);
-						if (searcher.Collect(ref context) is not { } step)
-						{
-							continue;
-						}
-
-						return verifyConclusionValidity(in solution, step) ? [step] : throw new WrongStepException(in puzzle, step);
-					}
-				}
-			}
-		}
-
-		return null;
-
-
-		static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
-		{
-			foreach (var (t, c, d) in step.Conclusions)
-			{
-				var digit = solution.GetDigit(c);
-				if (t == Assignment && digit != d || t == Elimination && digit == d)
-				{
-					return false;
-				}
-			}
-
-			return true;
 		}
 	}
 }

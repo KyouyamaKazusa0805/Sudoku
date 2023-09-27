@@ -233,6 +233,10 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Set the properties with special value in order to add optimization on searching steps later.
+		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.Diagonal;
+		context.MappingRelations ??= [.. mapping];
+
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
 		var conclusions = new List<Conclusion>();
@@ -381,6 +385,10 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Set the properties with special value in order to add optimization on searching steps later.
+		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.AntiDiagonal;
+		context.MappingRelations ??= [.. mapping];
+
 		var cellOffsets = new List<CellViewNode>();
 		var candidateOffsets = new List<CandidateViewNode>();
 		var conclusions = new List<Conclusion>();
@@ -407,7 +415,13 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 
 		return conclusions.Count == 0
 			? null
-			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], context.PredefinedOptions, SymmetricType.AntiDiagonal, [.. mapping]);
+			: new(
+				[.. conclusions],
+				[[.. cellOffsets, .. candidateOffsets]],
+				context.PredefinedOptions,
+				SymmetricType.AntiDiagonal,
+				[.. mapping]
+			);
 	}
 
 	/// <summary>
@@ -418,12 +432,6 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
-		if (grid.GetState(40) != CellState.Empty)
-		{
-			// Has no conclusion even though the grid may be symmetrical.
-			return null;
-		}
-
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
 		for (var cell = 0; cell < 40; cell++)
@@ -498,6 +506,16 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 		if (grid.GetDigit(40) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
 		{
 			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
+			return null;
+		}
+
+		// Set the properties with special value in order to add optimization on searching steps later.
+		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.Central;
+		context.MappingRelations ??= [.. mapping];
+
+		if (grid.GetDigit(40) != -1)
+		{
+			// No eliminations will be found.
 			return null;
 		}
 

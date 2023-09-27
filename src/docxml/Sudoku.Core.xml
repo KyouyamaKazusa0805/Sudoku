@@ -1286,6 +1286,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Conclusion.GetSymmetricConclusion(Sudoku.Concepts.SymmetricType,System.Int32)">
+            <summary>
+            Try to get a new <see cref="T:Sudoku.Analytics.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
+            </summary>
+            <param name="symmetricType">The symmetric type to be checked.</param>
+            <param name="mappingDigit">The other mapping digit.</param>
+            <returns>The other symmetric <see cref="T:Sudoku.Analytics.Conclusion"/> value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> contains multiple (greater than 2) cells
+            symmetric with the current cell and digit.
+            </exception>
+        </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
             <inheritdoc/>
         </member>
@@ -6138,6 +6150,17 @@ if (student is (name: var name, age: >= 18))
             Provides with extension methods on <see cref="T:Sudoku.Concepts.SymmetricType"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.Concepts.SymmetricType)">
+            <summary>
+            Try to get the number of axes of the specified symmetric type.
+            </summary>
+            <param name="this">The symmetry.</param>
+            <returns>
+            The number of axes the current symmetric type contains.
+            If <paramref name="this"/> is <see cref="F:Sudoku.Concepts.SymmetricType.None"/>, -1 will be returned.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Concepts.SymmetricType)">
             <summary>

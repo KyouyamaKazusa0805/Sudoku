@@ -468,7 +468,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	private static CellMap[] GetPomEliminationsFirstly(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var tempList = new List<Step>();
-		scoped var context2 = new AnalysisContext(tempList, grid, false, context.PredefinedOptions);
+		var playground = grid;
+		scoped var context2 = new AnalysisContext(tempList, ref playground, false, context.PredefinedOptions);
 		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];

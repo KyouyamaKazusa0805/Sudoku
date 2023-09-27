@@ -1,7 +1,9 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Sudoku.Concepts;
 using Sudoku.Concepts.Converters;
 using static Sudoku.Analytics.ConclusionType;
 
@@ -102,6 +104,26 @@ public readonly partial struct Conclusion([DataMember(MemberKinds.Field), HashCo
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter([this]);
+
+	/// <summary>
+	/// Try to get a new <see cref="Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
+	/// </summary>
+	/// <param name="symmetricType">The symmetric type to be checked.</param>
+	/// <param name="mappingDigit">The other mapping digit.</param>
+	/// <returns>The other symmetric <see cref="Conclusion"/> value.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="symmetricType"/> contains multiple (greater than 2) cells
+	/// symmetric with the current cell and digit.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Conclusion GetSymmetricConclusion(SymmetricType symmetricType, Digit mappingDigit)
+		=> symmetricType.GetAxisDimension() switch
+		{
+			0 or 1 => symmetricType.GetCellsInSymmetryAxis().Contains(Cell)
+				? new(ConclusionType, Cell, mappingDigit == -1 ? Digit : mappingDigit)
+				: new(ConclusionType, (symmetricType.GetCells(Cell) - Cell)[0], mappingDigit == -1 ? Digit : mappingDigit),
+			_ => throw new ArgumentOutOfRangeException(nameof(symmetricType))
+		};
 
 
 	/// <inheritdoc/>

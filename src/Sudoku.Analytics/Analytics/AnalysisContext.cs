@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 
 namespace Sudoku.Analytics;
@@ -26,19 +28,55 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
-	[DataMember] List<Step>? accumulator,
-	[DataMember(MemberKinds.Field)] in Grid grid,
+	[DataMember(SetterExpression = "internal set")] List<Step>? accumulator,
+	[DataMember(MemberKinds.Field)] ref Grid grid,
 	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
 	[DataMember] StepSearcherOptions predefinedOptions
 )
 {
 	/// <summary>
+	/// Indicates whether a puzzle satisfies a Gurth's Symmetrical Placement (GSP) pattern.
+	/// If satisfying, what kind of symmetry the pattern will be.
+	/// </summary>
+	/// <remarks>
+	/// This value will only be set in <see cref="GurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
+	/// </remarks>
+	/// <seealso cref="GurthSymmetricalPlacementStepSearcher"/>
+	[DisallowNull]
+	[NotNullIfNotNull(nameof(MappingRelations))]
+	public SymmetricType? InferredGurthSymmetricalPlacementPattern { get; internal set; }
+
+	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
 	/// </summary>
-	public readonly ref readonly Grid Grid => ref _grid;
+	public readonly ref Grid Grid => ref _grid;
 
 	/// <summary>
 	/// Indicates the previously set digit.
 	/// </summary>
+	/// <remarks>
+	/// This value will only be set in <see cref="SingleStepSearcher"/>.
+	/// </remarks>
+	/// <seealso cref="SingleStepSearcher"/>
 	public Digit PreviousSetDigit { get; internal set; }
+
+	/// <summary>
+	/// Indicates the mapping relations. The index of the array means the base digit,
+	/// and the target value at the specified index means the other mapping digit. If a value does not contain a mapping digit,
+	/// the indexed value (target value) will be <see langword="null"/>.
+	/// </summary>
+	/// <remarks><b>
+	/// <para>
+	/// By default, the value is an empty array or trash memory value (stack-only structures can be used as locals, uninitialized).
+	/// Due to being uninitialized, we should use this property very carefully.
+	/// </para>
+	/// <para>
+	/// Please firstly check for property <see cref="InferredGurthSymmetricalPlacementPattern"/>.
+	/// If that property returns a not-<see langword="null"/> value, you can use this property with safety.
+	/// </para>
+	/// </b></remarks>
+	/// <seealso cref="InferredGurthSymmetricalPlacementPattern"/>
+	[DisallowNull]
+	[NotNullIfNotNull(nameof(InferredGurthSymmetricalPlacementPattern))]
+	public Digit?[]? MappingRelations { get; internal set; }
 }

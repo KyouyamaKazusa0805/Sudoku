@@ -9,6 +9,31 @@ namespace Sudoku.Concepts;
 public static class SymmetricTypeExtensions
 {
 	/// <summary>
+	/// Try to get the number of axes of the specified symmetric type.
+	/// </summary>
+	/// <param name="this">The symmetry.</param>
+	/// <returns>
+	/// The number of axes the current symmetric type contains.
+	/// If <paramref name="this"/> is <see cref="SymmetricType.None"/>, -1 will be returned.
+	/// </returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetAxisDimension(this SymmetricType @this)
+		=> @this switch
+		{
+			SymmetricType.None => -1,
+			SymmetricType.Central => 0,
+			SymmetricType.Diagonal => 1,
+			SymmetricType.AntiDiagonal => 1,
+			SymmetricType.XAxis => 1,
+			SymmetricType.YAxis => 1,
+			SymmetricType.AxisBoth => 2,
+			SymmetricType.DiagonalBoth => 2,
+			SymmetricType.All => 4,
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
+
+	/// <summary>
 	/// Try to get all possible cells in symmetry axis (or point).
 	/// </summary>
 	/// <param name="this">The symmetry.</param>
