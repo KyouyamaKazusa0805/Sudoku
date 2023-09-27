@@ -91,7 +91,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
 			// Firstly, we should check whether the puzzle is a GSP.
-			puzzle.GetSymmetricType(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
+			puzzle.GetSymmetricalPlacementType(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
 
 			try
 			{

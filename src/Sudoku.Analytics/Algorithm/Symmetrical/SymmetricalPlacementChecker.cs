@@ -39,7 +39,7 @@ public static class SymmetricalPlacementChecker
 	/// <see cref="SymmetricType.Diagonal"/> or	<see cref="SymmetricType.AntiDiagonal"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsSymmetry(
+	public static unsafe bool IsSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		SymmetricType symmetricType,
 		[NotNullWhen(true)] out Digit?[]? mappingDigits,
@@ -65,7 +65,7 @@ public static class SymmetricalPlacementChecker
 	/// <param name="mappingDigits">The mapping digits returned.</param>
 	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
-	public static unsafe bool GetSymmetricType(
+	public static unsafe bool GetSymmetricalPlacementType(
 		this scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		[NotNullWhen(true)] out Digit?[]? mappingDigits,
@@ -147,6 +147,16 @@ public static class SymmetricalPlacementChecker
 		}
 	}
 
+	/// <summary>
+	/// The internal method to check for diagonal symmetrical placement kind.
+	/// </summary>
+	/// <param name="grid">The grid to be check.</param>
+	/// <param name="symmetricType">
+	/// The symmetrical placement type if so. The value can only be <see cref="SymmetricType.Diagonal"/> or <see cref="SymmetricType.None"/>.
+	/// </param>
+	/// <param name="mappingDigits">The mapping digits.</param>
+	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the grid is diagonal symmetrical placement.</returns>
 	private static bool Diagonal(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
@@ -235,6 +245,16 @@ public static class SymmetricalPlacementChecker
 		return false;
 	}
 
+	/// <summary>
+	/// The internal method to check for anti-diagonal symmetrical placement kind.
+	/// </summary>
+	/// <param name="grid">The grid to be check.</param>
+	/// <param name="symmetricType">
+	/// The symmetrical placement type if so. The value can only be <see cref="SymmetricType.AntiDiagonal"/> or <see cref="SymmetricType.None"/>.
+	/// </param>
+	/// <param name="mappingDigits">The mapping digits.</param>
+	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the grid is anti-diagonal symmetrical placement.</returns>
 	private static bool AntiDiagonal(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
@@ -323,6 +343,16 @@ public static class SymmetricalPlacementChecker
 		return false;
 	}
 
+	/// <summary>
+	/// The internal method to check for central symmetrical placement kind.
+	/// </summary>
+	/// <param name="grid">The grid to be check.</param>
+	/// <param name="symmetricType">
+	/// The symmetrical placement type if so. The value can only be <see cref="SymmetricType.Central"/> or <see cref="SymmetricType.None"/>.
+	/// </param>
+	/// <param name="mappingDigits">The mapping digits.</param>
+	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the grid is central symmetrical placement.</returns>
 	private static bool Central(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
@@ -430,7 +460,7 @@ public static class SymmetricalPlacementChecker
 			return null;
 		}
 
-		if (!grid.IsSymmetry(SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!grid.IsSymmetricalPlacement(SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -520,7 +550,7 @@ public static class SymmetricalPlacementChecker
 			return null;
 		}
 
-		if (!grid.IsSymmetry(SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!grid.IsSymmetricalPlacement(SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -595,7 +625,7 @@ public static class SymmetricalPlacementChecker
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, StepSearcherOptions options)
 	{
-		if (!grid.IsSymmetry(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
+		if (!grid.IsSymmetricalPlacement(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
