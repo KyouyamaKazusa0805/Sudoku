@@ -46,6 +46,32 @@ public static class MemberInfoExtensions
 	}
 
 	/// <summary>
+	/// <inheritdoc cref="Attribute.GetCustomAttributes(MemberInfo, Type)" path="/summary"/>
+	/// </summary>
+	/// <typeparam name="T">The type of the member information.</typeparam>
+	/// <param name="this">The <see cref="MemberInfo"/> instance.</param>
+	/// <param name="genericAttributeType">The generic attribute type.</param>
+	/// <returns>
+	/// <inheritdoc cref="Attribute.GetCustomAttributes(MemberInfo, Type)" path="/returns"/>
+	/// </returns>
+	public static Attribute[] GetCustomGenericAttributes<T>(this T @this, Type genericAttributeType) where T : MemberInfo
+	{
+		return genericAttributeType switch
+		{
+			{ IsGenericType: true, FullName: { } genericTypeName }
+				=>
+				from a in (Attribute[])@this.GetCustomAttributes()
+				where a.GetType() is { IsGenericType: var g, FullName: { } f } && g && p(genericTypeName) == p(f)
+				select a,
+			_ => []
+		};
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static int p(string s) => s.IndexOf('`');
+	}
+
+	/// <summary>
 	/// When overridden in a derived class, returns the <see langword="init"/> accessor for this property.
 	/// </summary>
 	/// <param name="this">The property.</param>

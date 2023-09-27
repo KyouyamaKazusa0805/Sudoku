@@ -777,6 +777,11 @@
             Indicates the default value.
             </summary>
         </member>
+        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.PropertyName">
+            <summary>
+            The generated property declaration for parameter <c>propertyName</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.StepCollector"/>.
@@ -1124,6 +1129,15 @@
             Try to cover the preference from the specified instance <paramref name="other"/>.
             </summary>
             <param name="other">The newer instance that is used for covering the current instance.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.PreferenceGroup.GetDefaultValueOfProperty``2(System.String)">
+            <summary>
+            Try to fetch the default value of the specified property.
+            </summary>
+            <typeparam name="TGroup">The group of the property.</typeparam>
+            <typeparam name="TProperty">The target type of the property will return.</typeparam>
+            <param name="propertyName">The name of the property.</param>
+            <returns>The default value of the property type.</returns>
         </member>
         <member name="T:SudokuStudio.Configuration.ProgramPreference">
             <summary>
@@ -7818,6 +7832,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.Description"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DefaultValueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.DefaultValue"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.DefaultValue"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignmentProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignment"/>.
@@ -7847,6 +7867,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DescriptionProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.DefaultableSettingsCard.DescriptionProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.DefaultValue">
+            <summary>
+            Indicates the default value of the control that can be set. This value infects the control enability of undo button.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.DefaultableSettingsCard.ContentAlignment">
             <summary>

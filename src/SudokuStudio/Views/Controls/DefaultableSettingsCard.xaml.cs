@@ -12,6 +12,7 @@ namespace SudokuStudio.Views.Controls;
 /// <seealso cref="SettingsCard"/>
 [DependencyProperty<object>("Header", IsNullable = true)]
 [DependencyProperty<object>("Description", IsNullable = true)]
+[DependencyProperty<object>("DefaultValue", IsNullable = true, DocSummary = "Indicates the default value of the control that can be set. This value infects the control enability of undo button.")]
 [DependencyProperty<ContentAlignment>("ContentAlignment")]
 [DependencyProperty<IconElement>("ActionIcon", IsNullable = true)]
 [DependencyProperty<IconElement>("HeaderIcon", IsNullable = true)]

@@ -8,13 +8,13 @@
 	xmlns:w="using:WinUICommunity"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:DefaultableSettingsExpander}">
 	<w:SettingsExpander
-		Header="{x:Bind Header,Mode=OneWay}" Description="{x:Bind Description,Mode=OneWay}"
-		ItemsHeader="{x:Bind ItemsHeader,Mode=OneWay}" ItemsFooter="{x:Bind ItemsFooter,Mode=OneWay}"
-		Items="{x:Bind Items,Mode=OneWay}" ItemsSource="{x:Bind ItemsSource,Mode=OneWay}"
-		HeaderIcon="{x:Bind HeaderIcon,Mode=OneWay}">
+		Header="{x:Bind Header}" Description="{x:Bind Description}"
+		ItemsHeader="{x:Bind ItemsHeader}" ItemsFooter="{x:Bind ItemsFooter}"
+		Items="{x:Bind Items}" ItemsSource="{x:Bind ItemsSource}"
+		HeaderIcon="{x:Bind HeaderIcon}">
 		<w:SettingsExpander.Content>
 			<StackPanel Orientation="Horizontal" Spacing="6">
-				<ContentPresenter Content="{x:Bind Content,Mode=OneWay}" />
+				<ContentPresenter Content="{x:Bind Content}" />
 				<Button Click="Button_Click">
 					<Button.Content>
 						<SymbolIcon Symbol="Undo" />

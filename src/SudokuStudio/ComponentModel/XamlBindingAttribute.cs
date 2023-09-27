@@ -1,4 +1,5 @@
-#pragma warning disable CS9113
+using System.SourceGeneration;
+
 namespace SudokuStudio.ComponentModel;
 
 /// <summary>
@@ -6,7 +7,7 @@ namespace SudokuStudio.ComponentModel;
 /// </summary>
 /// <typeparam name="T">The type of the property.</typeparam>
 /// <param name="propertyName">The property name.</param>
-public abstract class XamlBindingAttribute<T>(string propertyName) : Attribute
+public abstract partial class XamlBindingAttribute<T>([DataMember] string propertyName) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.

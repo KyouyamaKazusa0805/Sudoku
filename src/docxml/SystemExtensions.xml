@@ -833,6 +833,17 @@
             <inheritdoc cref="M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)" path="/returns"/>
             </returns>
         </member>
+        <member name="M:System.Reflection.MemberInfoExtensions.GetCustomGenericAttributes``1(``0,System.Type)">
+            <summary>
+            <inheritdoc cref="M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)" path="/summary"/>
+            </summary>
+            <typeparam name="T">The type of the member information.</typeparam>
+            <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
+            <param name="genericAttributeType">The generic attribute type.</param>
+            <returns>
+            <inheritdoc cref="M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)" path="/returns"/>
+            </returns>
+        </member>
         <member name="M:System.Reflection.MemberInfoExtensions.GetInitMethod(System.Reflection.PropertyInfo,System.Boolean)">
             <summary>
             When overridden in a derived class, returns the <see langword="init"/> accessor for this property.
