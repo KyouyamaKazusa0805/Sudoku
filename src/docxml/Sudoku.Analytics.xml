@@ -256,6 +256,46 @@ if (student is (name: var name, age: >= 18))
             <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
         </member>
+        <member name="M:Sudoku.Algorithm.Symmetrical.SymmetricalPlacementChecker.GetStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Find GSP step if worth.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="options">The options to set.</param>
+            <returns>The found step.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Symmetrical.SymmetricalPlacementChecker.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
+            <summary>
+            Records all possible highlight cells.
+            </summary>
+            <param name="grid">The grid as reference.</param>
+            <param name="cellOffsets">The target collection.</param>
+            <param name="mapping">The mapping relation.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Symmetrical.SymmetricalPlacementChecker.CheckDiagonal(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Checks for diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="options">The options to set.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Symmetrical.SymmetricalPlacementChecker.CheckAntiDiagonal(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Checks for anti-diagonal symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="options">The options to set.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Symmetrical.SymmetricalPlacementChecker.CheckCentral(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Checks for central symmetry steps.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="options">The options to set.</param>
+            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
         <member name="T:Sudoku.Algorithm.TrueCandidates.TrueCandidatesSearcher">
             <summary>
             Defines a searcher that searches for the true candidates of the current sudoku grid.
@@ -8750,15 +8790,9 @@ if (student is (name: var name, age: >= 18))
             Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Gurth's Symmetrical Placement</item>
             <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
             <item>Anti- Gurth's Symmetrical Placement</item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.NormalTypeCheckers">
-            <summary>
-            Normal types.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.AntiTypeCheckers">
@@ -8776,30 +8810,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid as reference.</param>
             <param name="cellOffsets">The target collection.</param>
             <param name="mapping">The mapping relation.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
-            <summary>
-            Checks for diagonal symmetry steps.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
-            <summary>
-            Checks for anti-diagonal symmetry steps.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckCentral(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
-            <summary>
-            Checks for central symmetry steps.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>

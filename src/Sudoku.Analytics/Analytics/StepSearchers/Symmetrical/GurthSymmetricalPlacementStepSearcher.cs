@@ -1,11 +1,7 @@
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Algorithm.Symmetrical;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
-using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.ConclusionType;
@@ -16,25 +12,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Gurth's Symmetrical Placement</item>
 /// <!--<item>Gurth's Symmetrical Placement (Shuffling Type)</item>-->
 /// <item>Anti- Gurth's Symmetrical Placement</item>
 /// </list>
 /// </summary>
-[StepSearcher(
-	Technique.GurthSymmetricalPlacement, Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement,
-	IsPure = true)]
+[StepSearcher(Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement, IsPure = true)]
 public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Normal types.
-	/// </summary>
-	private static readonly unsafe delegate*<ref readonly Grid, ref AnalysisContext, GurthSymmetricalPlacementStep?>[] NormalTypeCheckers = [
-		&CheckDiagonal,
-		&CheckAntiDiagonal,
-		&CheckCentral
-	];
-
 	/// <summary>
 	/// Anti types.
 	/// </summary>
@@ -50,21 +34,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
-		// Normal types.
-		foreach (var checker in NormalTypeCheckers)
-		{
-			if (checker(in context.Grid, ref context) is not { } normalTypeStep)
-			{
-				continue;
-			}
-
-			if (context.OnlyFindOne)
-			{
-				return normalTypeStep;
-			}
-
-			context.Accumulator.Add(normalTypeStep);
-		}
+		// Normal types are cleared in type 'Analyzer'.
 
 		// Anti types.
 		foreach (var checker in AntiTypeCheckers)
@@ -119,257 +89,6 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 		{
 			cellOffsets.Add(new(colorIndices[grid.GetDigit(cell)], cell));
 		}
-	}
-
-	/// <summary>
-	/// Checks for diagonal symmetry steps.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
-	{
-		var diagonalHasEmptyCell = false;
-		for (var i = 0; i < 9; i++)
-		{
-			if (grid.GetState(i * 9 + i) == CellState.Empty)
-			{
-				diagonalHasEmptyCell = true;
-				break;
-			}
-		}
-		if (!diagonalHasEmptyCell)
-		{
-			// No conclusion.
-			return null;
-		}
-
-		if (!grid.IsSymmetry(SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
-		{
-			return null;
-		}
-
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
-		var selfPairedDigits = new List<Digit>();
-		for (var digit = 0; digit < 9; digit++)
-		{
-			var mappingDigit = mapping[digit];
-			if (!mappingDigit.HasValue || mappingDigit == digit)
-			{
-				selfPairedDigits.Add(digit);
-			}
-		}
-
-		// Check whether the diagonal line contains non-self-paired digit.
-		var containsNonselfPairedDigit = false;
-		foreach (var cell in SymmetricType.Diagonal.GetCellsInSymmetryAxis())
-		{
-			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
-			{
-				containsNonselfPairedDigit = true;
-				break;
-			}
-		}
-		if (containsNonselfPairedDigit)
-		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
-			return null;
-		}
-
-		// Set the properties with special value in order to add optimization on searching steps later.
-		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.Diagonal;
-		context.MappingRelations ??= [.. mapping];
-
-		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = new List<CandidateViewNode>();
-		var conclusions = new List<Conclusion>();
-		for (var i = 0; i < 9; i++)
-		{
-			var cell = i * 9 + i;
-			if (grid.GetState(cell) != CellState.Empty)
-			{
-				continue;
-			}
-
-			foreach (var digit in grid.GetCandidates(cell))
-			{
-				if (selfPairedDigits.Contains(digit))
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-					continue;
-				}
-
-				conclusions.Add(new(Elimination, cell, digit));
-			}
-		}
-		GetHighlightCells(in grid, cellOffsets, mapping);
-
-		return conclusions.Count == 0
-			? null
-			: new(
-				[.. conclusions],
-				[[.. cellOffsets, .. candidateOffsets]],
-				context.PredefinedOptions,
-				SymmetricType.Diagonal,
-				[.. mapping]
-			);
-	}
-
-	/// <summary>
-	/// Checks for anti-diagonal symmetry steps.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
-	{
-		var antiDiagonalHasEmptyCell = false;
-		for (var i = 0; i < 9; i++)
-		{
-			if (grid.GetState(i * 9 + (8 - i)) == CellState.Empty)
-			{
-				antiDiagonalHasEmptyCell = true;
-				break;
-			}
-		}
-		if (!antiDiagonalHasEmptyCell)
-		{
-			// No conclusion.
-			return null;
-		}
-
-		if (!grid.IsSymmetry(SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
-		{
-			return null;
-		}
-
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
-		var selfPairedDigits = new List<Digit>();
-		for (var digit = 0; digit < 9; digit++)
-		{
-			var mappingDigit = mapping[digit];
-			if (!mappingDigit.HasValue || mappingDigit == digit)
-			{
-				selfPairedDigits.Add(digit);
-			}
-		}
-
-		// Check whether the diagonal line contains non-self-paired digit.
-		var containsNonselfPairedDigit = false;
-		foreach (var cell in SymmetricType.AntiDiagonal.GetCellsInSymmetryAxis())
-		{
-			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
-			{
-				containsNonselfPairedDigit = true;
-				break;
-			}
-		}
-		if (containsNonselfPairedDigit)
-		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
-			return null;
-		}
-
-		// Set the properties with special value in order to add optimization on searching steps later.
-		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.AntiDiagonal;
-		context.MappingRelations ??= [.. mapping];
-
-		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = new List<CandidateViewNode>();
-		var conclusions = new List<Conclusion>();
-		for (var i = 0; i < 9; i++)
-		{
-			var cell = i * 9 + (8 - i);
-			if (grid.GetState(cell) != CellState.Empty)
-			{
-				continue;
-			}
-
-			foreach (var digit in grid.GetCandidates(cell))
-			{
-				if (selfPairedDigits.Contains(digit))
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-					continue;
-				}
-
-				conclusions.Add(new(Elimination, cell, digit));
-			}
-		}
-		GetHighlightCells(in grid, cellOffsets, mapping);
-
-		return conclusions.Count == 0
-			? null
-			: new(
-				[.. conclusions],
-				[[.. cellOffsets, .. candidateOffsets]],
-				context.PredefinedOptions,
-				SymmetricType.AntiDiagonal,
-				[.. mapping]
-			);
-	}
-
-	/// <summary>
-	/// Checks for central symmetry steps.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
-	{
-		if (!grid.IsSymmetry(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
-		{
-			return null;
-		}
-
-		var nonselfPairedDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask);
-		var selfPairedDigits = new List<Digit>();
-		for (var digit = 0; digit < 9; digit++)
-		{
-			var mappingDigit = mapping[digit];
-			if (!mappingDigit.HasValue || mappingDigit == digit)
-			{
-				selfPairedDigits.Add(digit);
-			}
-		}
-
-		// Check whether the diagonal line contains non-self-paired digit.
-		if (grid.GetDigit(40) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
-		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
-			return null;
-		}
-
-		// Set the properties with special value in order to add optimization on searching steps later.
-		context.InferredGurthSymmetricalPlacementPattern ??= SymmetricType.Central;
-		context.MappingRelations ??= [.. mapping];
-
-		if (grid.GetDigit(40) != -1)
-		{
-			// No eliminations will be found.
-			return null;
-		}
-
-		for (var digit = 0; digit < 9; digit++)
-		{
-			if (mapping[digit] is not null && mapping[digit] != digit)
-			{
-				continue;
-			}
-
-			var cellOffsets = new List<CellViewNode>();
-			GetHighlightCells(in grid, cellOffsets, mapping);
-
-			return new(
-				[new(Assignment, 40, digit)],
-				[[.. cellOffsets, new CandidateViewNode(WellKnownColorIdentifier.Normal, 360 + digit)]],
-				context.PredefinedOptions,
-				SymmetricType.Central,
-				[.. mapping]
-			);
-		}
-
-		return null;
 	}
 
 	/// <summary>

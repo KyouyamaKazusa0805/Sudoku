@@ -2,8 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.SourceGeneration;
 using System.Timers;
+using Sudoku.Algorithm.Symmetrical;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.CachedFields;
@@ -88,9 +90,22 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		var result = new AnalyzerResult(in puzzle) { IsSolved = false };
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
+			// Firstly, we should check whether the puzzle is a GSP.
+			puzzle.GetSymmetricType(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
+
 			try
 			{
-				return analyzeInternal(in puzzle, in solution, isSukaku, result, progress, cancellationToken);
+				return analyzeInternal(
+					in puzzle,
+					in solution,
+					isSukaku,
+					result,
+					symmetricType,
+					mappingDigits,
+					selfPairedDigitsMask,
+					progress,
+					cancellationToken
+				);
 			}
 			catch (Exception ex)
 			{
@@ -117,6 +132,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			scoped ref readonly Grid solution,
 			bool isSukaku,
 			AnalyzerResult resultBase,
+			SymmetricType symmetricType,
+			Digit?[]? mappingDigits,
+			Mask selfPairedDigitsMask,
 			IProgress<AnalyzerProgress>? progress = null,
 			CancellationToken cancellationToken = default
 		)
@@ -128,6 +146,28 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator = IsFullApplying ? new List<Step>() : null;
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
+
+			// Determine whether the grid is a GSP pattern. If so, check eliminations.
+			if ((symmetricType, mappingDigits, selfPairedDigitsMask) is (not SymmetricType.None, not null, not 0))
+			{
+				context.InferredGurthSymmetricalPlacementPattern = symmetricType;
+				context.MappingRelations = mappingDigits;
+
+				if (SymmetricalPlacementChecker.GetStep(in playground, Options) is { } step)
+				{
+					if (verifyConclusionValidity(in solution, step))
+					{
+						if (recordingStep(recordedSteps, step, in context, ref playground, in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+						{
+							return result;
+						}
+					}
+					else
+					{
+						throw new WrongStepException(in playground, step);
+					}
+				}
+			}
 
 		Again:
 			Initialize(in playground, in solution);
@@ -150,7 +190,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
 					{
 						accumulator!.Clear();
-						
+
 						searcher.Collect(ref context);
 						if (accumulator.Count == 0)
 						{
@@ -256,7 +296,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			)
 			{
 				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.
-				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType, MappingRelations: { } mappingRelations })
+				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType, MappingRelations: { } mappingRelations }
+					&& step is not GurthSymmetricalPlacementStep)
 				{
 					var copied = playground;
 					var originalConclusions = step.Conclusions;
