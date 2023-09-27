@@ -84,7 +84,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 		{
 			return searchInternal(sukaku, progress, in puzzle, cancellationToken);
 		}
-		catch (OperationCanceledException ex) when (ex is { CancellationToken: var c } && c == cancellationToken)
+		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
 		{
 			return null;
 		}
