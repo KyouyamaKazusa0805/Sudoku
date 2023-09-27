@@ -1,11 +1,11 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.UI.Xaml.Media.Imaging;
-using PInvoke;
 using SudokuStudio;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.Win32;
 using WinRT.Interop;
 
 namespace Microsoft.UI.Xaml;
@@ -48,9 +48,12 @@ public static class UIElementExtensions
 
 		// Gets the DPI value.
 #if true
+		// using Windows.Win32;
 		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).WindowManager.GetWindowForElement(@this));
-		var dpi = User32.GetDpiForWindow(hWnd) / 96F;
+		var dpi = PInvoke.GetDpiForWindow(new(hWnd)) / 96F;
 #else
+		// using System.Runtime.InteropServices;
+		// using Windows.Graphics.Display;
 		float dpi;
 		try
 		{
