@@ -1,9 +1,5 @@
 global using Colors = Microsoft.UI.Colors;
-global using DispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
-global using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
-global using Path = Microsoft.UI.Xaml.Shapes.Path;
-global using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
 global using Grid = Sudoku.Concepts.Grid;
 global using SystemPath = System.IO.Path;
 global using Size = Windows.Foundation.Size;

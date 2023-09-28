@@ -22,8 +22,11 @@ using Windows.UI.Text;
 using WinRT;
 using static Sudoku.Analytics.ConclusionType;
 using Geometry = Microsoft.UI.Xaml.Media.Geometry;
+using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using LineGeometry = Microsoft.UI.Xaml.Media.LineGeometry;
+using Path = Microsoft.UI.Xaml.Shapes.Path;
 using PathGeometry = Microsoft.UI.Xaml.Media.PathGeometry;
+using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
 
 namespace SudokuStudio.Rendering;
 
