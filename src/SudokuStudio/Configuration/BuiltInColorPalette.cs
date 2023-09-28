@@ -1,3 +1,4 @@
+using Microsoft.UI;
 using Windows.UI;
 
 namespace SudokuStudio.Configuration;

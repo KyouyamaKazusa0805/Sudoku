@@ -2,6 +2,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.SourceGeneration;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -336,7 +337,7 @@ public sealed partial class AnalyzePage : Page
 			return false;
 		}
 
-		switch (SystemPath.GetExtension(filePath))
+		switch (Path.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText:
 			{
@@ -429,7 +430,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			default:
 			{
-				switch (SystemPath.GetExtension(filePath))
+				switch (Path.GetExtension(filePath))
 				{
 					case FileExtensions.PlainText:
 					{

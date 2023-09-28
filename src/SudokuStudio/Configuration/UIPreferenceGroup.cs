@@ -1,3 +1,4 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;

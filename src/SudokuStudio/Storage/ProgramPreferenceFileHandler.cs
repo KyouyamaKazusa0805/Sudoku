@@ -29,7 +29,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	/// <inheritdoc/>
 	public static void Write(string filePath, ProgramPreference instance)
 	{
-		var directory = SystemPath.GetDirectoryName(filePath)!;
+		var directory = Path.GetDirectoryName(filePath)!;
 		if (!Directory.Exists(directory))
 		{
 			Directory.CreateDirectory(directory);

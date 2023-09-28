@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.SourceGeneration;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -844,7 +845,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 				default:
 				{
-					switch (SystemPath.GetExtension(filePath))
+					switch (Path.GetExtension(filePath))
 					{
 						case FileExtensions.PlainText:
 						{
