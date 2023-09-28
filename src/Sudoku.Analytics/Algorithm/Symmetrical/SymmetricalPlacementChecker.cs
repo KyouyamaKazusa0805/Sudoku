@@ -94,7 +94,7 @@ public static class SymmetricalPlacementChecker
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>The found step.</returns>
-	public static GurthSymmetricalPlacementStep? GetStep(scoped ref readonly Grid grid, StepSearcherOptions options)
+	internal static GurthSymmetricalPlacementStep? GetStep(scoped ref readonly Grid grid, StepSearcherOptions options)
 	{
 		if (CheckDiagonal(in grid, options) is { } diagonalTypeStep)
 		{
