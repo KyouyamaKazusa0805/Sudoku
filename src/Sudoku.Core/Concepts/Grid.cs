@@ -41,7 +41,7 @@ using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
+public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -948,8 +948,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly string IConceptObject<Grid>.ToString(ISpecifiedConceptConverter<Grid> converter)
-		=> converter switch { GridConverter g => g.Converter(in this), _ => converter.Converter(this) };
+	readonly string IConceptObject<Grid, GridConverter>.ToString(GridConverter converter) => converter.Converter(in this);
 
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="GridImpl.GetMap(delegate*{ref readonly TSelf, int, bool})"/>

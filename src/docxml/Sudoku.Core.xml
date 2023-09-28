@@ -3341,7 +3341,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitive#IConceptObject{Sudoku#Concepts#Grid}#ToString(Sudoku.Concepts.Primitive.ISpecifiedConceptConverter{Sudoku.Concepts.Grid})">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitive#IConceptObject{Sudoku#Concepts#Grid,Sudoku#Text#SudokuGrid#GridConverter}#ToString(Sudoku.Text.SudokuGrid.GridConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
@@ -5311,13 +5311,14 @@ if (student is (name: var name, age: >= 18))
             Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConceptObject`1">
+        <member name="T:Sudoku.Concepts.Primitive.IConceptObject`2">
             <summary>
             Represents an object type that describes for an object that is defined in sudoku concepts.
             </summary>
             <typeparam name="TSelf">The type of implementation.</typeparam>
+            <typeparam name="TConverter">The type of the converter.</typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`1.ToString(Sudoku.Concepts.Primitive.ISpecifiedConceptConverter{`0})">
+        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`2.ToString(`1)">
             <summary>
             Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
             The conversion rule is specified as parameter <paramref name="converter"/>.
