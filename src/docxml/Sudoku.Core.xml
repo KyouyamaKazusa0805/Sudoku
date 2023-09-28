@@ -4713,10 +4713,26 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conjugate"/>
         </member>
+        <member name="T:Sudoku.Concepts.Parsers.ExcelGridParser">
+            <summary>
+            Represents an Excel grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.ExcelGridParser.Parser">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Parsers.GenericConceptParser">
             <summary>
             Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.GridParser">
+            <summary>
+            Represents a parser instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.GridParser.Parser">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Parsers.HodokuTripletParser">
             <summary>
@@ -4727,6 +4743,234 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.Parsers.HodokuTripletParser.Parser">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.MultipleLineParser">
+            <summary>
+            Represents a table parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.MultipleLineParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.MultipleLineParser.GridSusserDigitPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\+?\\d|\\.)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a Unicode digit.<br/>
+                    ○ Match '.'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuParser">
+            <summary>
+            Represents an Open-Sudoku format parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuParser.GridOpenSudokuPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d(\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match '|'.<br/>
+                    ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingParser">
+            <summary>
+            Represents for a pencilmarking grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingParser.GridPencilmarkingPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '&lt;'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '&gt;'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '*'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '*'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a Unicode digit greedily any number of times.<br/>
+                        ○ Match a character in the set [+-] atomically, optionally.<br/>
+                        ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineParser">
+            <summary>
+            Represents a simple multiple-line grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineParser.GridSimpleMultilinePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a character in the set [\n\r].<br/>
+                            ○ Match the string "\r\n".<br/>
+            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SukakuParser">
+            <summary>
+            Represents a Sukaku grid parser.
+            </summary>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SukakuParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Sukaku grid parser.
+            </summary>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SukakuParser.SingleLine">
+            <summary>
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            
+            Indicates whether the parser will change the execution order of PM grid.
+            If the value is <see langword="true"/>, the parser will check compatible one
+            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SukakuParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SukakuParser.GridSukakuSegmentPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SusserParser">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SusserParser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SusserParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserParser.GridSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ':'.<br/>
+                    ○ Loop greedily any number of times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match a Unicode digit exactly 3 times.<br/>
+                            ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserParser.GridShortenedSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.Primitive.BitStatusMapCreator">
             <summary>
