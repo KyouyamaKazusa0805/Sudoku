@@ -13,7 +13,7 @@ namespace Sudoku.Concepts.Parsers;
 /// If the value is <see langword="true"/>, the parser will check compatible one
 /// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 /// </param>
-public sealed partial record SukakuParser(bool SingleLine) : GridParser
+public sealed partial record SukakuParser(bool SingleLine = false) : GridParser
 {
 	/// <inheritdoc/>
 	public override Func<string, Grid> Parser

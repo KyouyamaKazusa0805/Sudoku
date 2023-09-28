@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Analytics;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
@@ -105,6 +106,21 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly BitwiseSolver Solver = new();
+
+	/// <summary>
+	/// Indicates the internal grid parsers.
+	/// </summary>
+	private static readonly GridParser[] Parsers = [
+		new MultipleLineParser(),
+		new SimpleMultipleLineParser(),
+		new PencilmarkingParser(),
+		new SusserParser(),
+		new SusserParser(true),
+		new ExcelGridParser(),
+		new OpenSudokuParser(),
+		new SukakuParser(),
+		new SukakuParser(true)
+	];
 
 
 	/// <summary>
@@ -1065,35 +1081,73 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str) => new GridParser(str).Parse();
+	public static Grid Parse(string str)
+	{
+		var containsMultilineLimits = str.Contains("-+-");
+		var containsTab = str.Contains('\t');
+		switch (str.Length, containsMultilineLimits, containsTab)
+		{
+			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } grid:
+			{
+				return grid;
+			}
+			case (_, true, _):
+			{
+				foreach (var parser in Parsers[..2])
+				{
+					if (parser.Parser(str) is { IsUndefined: false } grid)
+					{
+						return grid;
+					}
+				}
 
-	/// <summary>
-	/// <para>
-	/// Parses a string value and converts to this type.
-	/// </para>
-	/// <para>
-	/// If you want to parse a PM grid, you should decide the mode to parse.
-	/// If you use compatible mode to parse, all single values will be treated as
-	/// given values; otherwise, recommended mode, which uses '<c><![CDATA[<d>]]></c>'
-	/// or '<c>*d*</c>' to represent a value be a given or modifiable one. The decision
-	/// will be indicated and passed by the second parameter <paramref name="compatibleFirst"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <param name="compatibleFirst">
-	/// Indicates whether the parsing operation should use compatible mode to check PM grid.
-	/// </param>
-	/// <returns>The result instance had converted.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, bool compatibleFirst) => new GridParser(str, compatibleFirst).Parse();
+				break;
+			}
+			case (_, _, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } grid:
+			{
+				return grid;
+			}
+			default:
+			{
+				for (var trial = 0; trial < Parsers.Length; trial++)
+				{
+					if (Parsers[trial].Parser(str) is { IsUndefined: false } grid)
+					{
+						return grid;
+					}
+				}
+
+				break;
+			}
+		}
+
+		return Undefined;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(string str, GridParsingOption gridParsingOption) => new GridParser(str).Parse(gridParsingOption);
+	public static Grid Parse(scoped ReadOnlySpan<char> str) => Parse(str.ToString());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(scoped ReadOnlySpan<char> str) => new GridParser(str.ToString()).Parse();
+	public static Grid ParseExact(string str, GridParsingOption gridParsingOption)
+		=> gridParsingOption switch
+		{
+			GridParsingOption.Susser => ParseExact(str, new SusserParser()),
+			GridParsingOption.ShortenSusser => ParseExact(str, new SusserParser(true)),
+			GridParsingOption.Table => ParseExact(str, new MultipleLineParser()),
+			GridParsingOption.PencilMarked => ParseExact(str, new PencilmarkingParser()),
+			GridParsingOption.SimpleTable => ParseExact(str, new SimpleMultipleLineParser()),
+			GridParsingOption.Sukaku => ParseExact(str, new SukakuParser()),
+			GridParsingOption.SukakuSingleLine => ParseExact(str, new SukakuParser(true)),
+			GridParsingOption.Excel => ParseExact(str, new ExcelGridParser()),
+			GridParsingOption.OpenSudoku => ParseExact(str, new OpenSudokuParser()),
+			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
+		} is { IsUndefined: false } result ? result : throw new InvalidOperationException("Parsing failed.");
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid ParseExact(string str, GridParser parser) => parser.Parser(str);
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)
@@ -1115,7 +1169,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 	{
 		try
 		{
-			result = Parse(str, option);
+			result = ParseExact(str, option);
 			return true;
 		}
 		catch (FormatException)
@@ -1145,7 +1199,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 	{
 		try
 		{
-			result = Parse(str, option);
+			result = ParseExact(str, option);
 			return true;
 		}
 		catch (FormatException)

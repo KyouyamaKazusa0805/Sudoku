@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics;
+using Sudoku.Concepts.Parsers;
 
 namespace Sudoku.Concepts.Primitive;
 
@@ -687,24 +688,35 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	public static new abstract TSelf Parse(string str);
 
 	/// <summary>
+	/// <para>Parses a string value and converts to this type.</para>
+	/// <para>
+	/// If you want to parse a PM grid, we recommend you use the method
+	/// <see cref="ParseExact(string, GridParsingOption)"/> instead of this method.
+	/// </para>
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The result instance had converted.</returns>
+	/// <seealso cref="ParseExact(string, GridParsingOption)"/>
+	public static abstract TSelf Parse(scoped ReadOnlySpan<char> str);
+
+	/// <summary>
 	/// Parses a string value and converts to this type, using a specified grid parsing type.
 	/// </summary>
 	/// <param name="str">The string.</param>
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
-	public static abstract TSelf Parse(string str, GridParsingOption gridParsingOption);
+	/// <exception cref="InvalidOperationException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
+	public static abstract TSelf ParseExact(string str, GridParsingOption gridParsingOption);
 
 	/// <summary>
-	/// <para>Parses a string value and converts to this type.</para>
-	/// <para>
-	/// If you want to parse a PM grid, we recommend you use the method
-	/// <see cref="Parse(string, GridParsingOption)"/> instead of this method.
-	/// </para>
+	/// Parses the specified <see cref="string"/> text and convert into a <see cref="Grid"/> instance,
+	/// using the specified parsing rule.
 	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="Parse(string, GridParsingOption)"/>
-	public static abstract TSelf Parse(scoped ReadOnlySpan<char> str);
+	/// <param name="str">The string text to be parsed.</param>
+	/// <param name="parser">The parser instance to be used.</param>
+	/// <returns>A valid <see cref="Grid"/> instance parsed.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
+	public static abstract Grid ParseExact(string str, GridParser parser);
 
 	/// <inheritdoc cref="ISimpleParsable{TSelf}.TryParse(string, out TSelf)"/>
 	public static new virtual bool TryParse(string str, [NotNullWhen(true)] out TSelf? result)
