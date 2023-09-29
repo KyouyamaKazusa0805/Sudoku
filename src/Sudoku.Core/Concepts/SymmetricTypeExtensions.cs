@@ -81,17 +81,16 @@ public static class SymmetricTypeExtensions
 			SymmetricType.YAxis => [row * 9 + column, row * 9 + 8 - column],
 			SymmetricType.DiagonalBoth => [row * 9 + column, column * 9 + row, (8 - column) * 9 + 8 - row, (8 - row) * 9 + 8 - column],
 			SymmetricType.AxisBoth => [row * 9 + column, (8 - row) * 9 + column, row * 9 + 8 - column, (8 - row) * 9 + 8 - column],
-			SymmetricType.All
-				=> [
-					row * 9 + column,
-					row * 9 + (8 - column),
-					(8 - row) * 9 + column,
-					(8 - row) * 9 + (8 - column),
-					column * 9 + row,
-					column * 9 + (8 - row),
-					(8 - column) * 9 + row,
-					(8 - column) * 9 + (8 - row)
-				],
+			SymmetricType.All => [
+				row * 9 + column,
+				row * 9 + (8 - column),
+				(8 - row) * 9 + column,
+				(8 - row) * 9 + (8 - column),
+				column * 9 + row,
+				column * 9 + (8 - row),
+				(8 - column) * 9 + row,
+				(8 - column) * 9 + (8 - row)
+			],
 			SymmetricType.None => [row * 9 + column],
 			_ => []
 		};
