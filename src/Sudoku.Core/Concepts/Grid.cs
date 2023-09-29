@@ -42,7 +42,7 @@ using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter>
+public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter, GridParser>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -741,12 +741,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this) ?? throw new FormatException("The specified format is invalid.")
 		};
 
-	/// <summary>
-	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
-	/// using the specified formatting rule defined in argument <paramref name="converter"/>.
-	/// </summary>
-	/// <param name="converter">A converter instance that defines the conversion rule.</param>
-	/// <returns>The target <see cref="string"/> representation.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(GridConverter converter)
 		=> this switch
@@ -962,10 +957,6 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 		}
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly string IConceptObject<Grid, GridConverter>.ToString(GridConverter converter) => converter.Converter(in this);
-
 #pragma warning disable CS1584, CS1658
 	/// <inheritdoc cref="GridImpl.GetMap(delegate*{ref readonly TSelf, int, bool})"/>
 #pragma warning restore CS1584, CS1658
@@ -1143,11 +1134,12 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 			GridParsingOption.Excel => ParseExact(str, new ExcelGridParser()),
 			GridParsingOption.OpenSudoku => ParseExact(str, new OpenSudokuParser()),
 			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
-		} is { IsUndefined: false } result ? result : throw new InvalidOperationException("Parsing failed.");
+		} is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid ParseExact(string str, GridParser parser) => parser.Parser(str);
+	public static Grid ParseExact(string str, GridParser parser)
+		=> parser.Parser(str) is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)

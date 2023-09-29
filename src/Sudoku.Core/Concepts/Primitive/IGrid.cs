@@ -705,18 +705,8 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	/// <param name="str">The string.</param>
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
+	/// <exception cref="FormatException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
 	public static abstract TSelf ParseExact(string str, GridParsingOption gridParsingOption);
-
-	/// <summary>
-	/// Parses the specified <see cref="string"/> text and convert into a <see cref="Grid"/> instance,
-	/// using the specified parsing rule.
-	/// </summary>
-	/// <param name="str">The string text to be parsed.</param>
-	/// <param name="parser">The parser instance to be used.</param>
-	/// <returns>A valid <see cref="Grid"/> instance parsed.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
-	public static abstract Grid ParseExact(string str, GridParser parser);
 
 	/// <inheritdoc cref="ISimpleParsable{TSelf}.TryParse(string, out TSelf)"/>
 	public static new virtual bool TryParse(string str, [NotNullWhen(true)] out TSelf? result)

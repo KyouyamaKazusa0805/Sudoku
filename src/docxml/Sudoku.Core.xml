@@ -3288,12 +3288,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.SudokuGrid.GridConverter)">
-            <summary>
-            Try to convert the current instance into an equivalent <see cref="T:System.String"/> representation,
-            using the specified formatting rule defined in argument <paramref name="converter"/>.
-            </summary>
-            <param name="converter">A converter instance that defines the conversion rule.</param>
-            <returns>The target <see cref="T:System.String"/> representation.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetState(System.Int32)">
             <inheritdoc/>
@@ -3344,9 +3339,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitive#IConceptObject{Sudoku#Concepts#Grid,Sudoku#Text#SudokuGrid#GridConverter}#ToString(Sudoku.Text.SudokuGrid.GridConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
@@ -5230,20 +5222,42 @@ if (student is (name: var name, age: >= 18))
             Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConceptObject`2">
+        <member name="T:Sudoku.Concepts.Primitive.IConceptObject`3">
             <summary>
             Represents an object type that describes for an object that is defined in sudoku concepts.
             </summary>
             <typeparam name="TSelf">The type of implementation.</typeparam>
             <typeparam name="TConverter">The type of the converter.</typeparam>
+            <typeparam name="TParser">The type of the parser.</typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`2.ToString(`1)">
+        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`3.ToString(`1)">
             <summary>
-            Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
-            The conversion rule is specified as parameter <paramref name="converter"/>.
+            Try to convert the current instance into an equivalent <see cref="T:System.String"/> representation,
+            using the specified formatting rule defined in argument <paramref name="converter"/>.
             </summary>
-            <param name="converter">The coordinate converter object.</param>
-            <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
+            <param name="converter">A converter instance that defines the conversion rule.</param>
+            <returns>The target <see cref="T:System.String"/> representation.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`3.ParseExact(System.String,`2)">
+            <summary>
+            Parses the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
+            using the specified parsing rule.
+            </summary>
+            <param name="str">The string text to be parsed.</param>
+            <param name="parser">The parser instance to be used.</param>
+            <returns>A valid <typeparamref name="TSelf"/> instance parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when the target <typeparamref name="TParser"/> instance cannot parse it.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.IConceptObject`3.TryParseExact(System.String,`2,`0@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
+            using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
+            No exceptions will be thrown.
+            </summary>
+            <param name="str">The string text to be parsed.</param>
+            <param name="parser">The parser instance to be used.</param>
+            <param name="result">A parsed value of type <typeparamref name="TSelf"/>.</param>
+            <returns>Indicates whether the parsing operation is successful.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Primitive.IConceptParser">
             <summary>
@@ -5930,17 +5944,7 @@ if (student is (name: var name, age: >= 18))
             <param name="str">The string.</param>
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the target <see cref="T:Sudoku.Concepts.Parsers.GridParser"/> instance cannot parse it.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IGrid`11.ParseExact(System.String,Sudoku.Concepts.Parsers.GridParser)">
-            <summary>
-            Parses the specified <see cref="T:System.String"/> text and convert into a <see cref="T:Sudoku.Concepts.Grid"/> instance,
-            using the specified parsing rule.
-            </summary>
-            <param name="str">The string text to be parsed.</param>
-            <param name="parser">The parser instance to be used.</param>
-            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> instance parsed.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the target <see cref="T:Sudoku.Concepts.Parsers.GridParser"/> instance cannot parse it.</exception>
+            <exception cref="T:System.FormatException">Throws when the target <see cref="T:Sudoku.Concepts.Parsers.GridParser"/> instance cannot parse it.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IGrid`11.TryParse(System.String,`0@)">
             <inheritdoc cref="M:System.ISimpleParsable`1.TryParse(System.String,`0@)"/>
