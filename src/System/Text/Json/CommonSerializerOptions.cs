@@ -1,4 +1,5 @@
 using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
 
 namespace System.Text.Json;
 
@@ -16,6 +17,7 @@ public static class CommonSerializerOptions
 	/// <see cref="JsonSerializerOptions.Encoder"/> is <see cref="JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
 	/// </item>
 	/// <item><see cref="JsonSerializerOptions.ReadCommentHandling"/> is <see cref="JsonCommentHandling.Skip"/></item>
+	/// <item><see cref="JsonSerializerOptions.UnmappedMemberHandling"/> is <see cref="JsonUnmappedMemberHandling.Disallow"/></item>
 	/// </list>
 	/// </summary>
 	public static readonly JsonSerializerOptions PascalCasing =
@@ -24,6 +26,7 @@ public static class CommonSerializerOptions
 			WriteIndented = true,
 			IgnoreReadOnlyProperties = true,
 			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-			ReadCommentHandling = JsonCommentHandling.Skip
+			ReadCommentHandling = JsonCommentHandling.Skip,
+			UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow
 		};
 }

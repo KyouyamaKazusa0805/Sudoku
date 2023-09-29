@@ -1064,6 +1064,7 @@
             <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
             </item>
             <item><see cref="P:System.Text.Json.JsonSerializerOptions.ReadCommentHandling"/> is <see cref="F:System.Text.Json.JsonCommentHandling.Skip"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.UnmappedMemberHandling"/> is <see cref="F:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow"/></item>
             </list>
             </summary>
         </member>
