@@ -168,15 +168,14 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 			}
 
 			var eliminations = new List<ExocetElimination>();
-			var cellOffsets = new List<CellViewNode>
-			{
+			var cellOffsets = (List<CellViewNode>)[
 				new(WellKnownColorIdentifier.Normal, currentJe.Base1),
 				new(WellKnownColorIdentifier.Normal, currentJe.Base2),
 				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetQ1),
 				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetQ2),
 				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetR1),
 				new(WellKnownColorIdentifier.Auxiliary1, currentJe.TargetR2)
-			};
+			];
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var digit in grid.GetCandidates(currentJe.Base1))
 			{
