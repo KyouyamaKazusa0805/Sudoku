@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
@@ -34,6 +35,7 @@ public partial struct TechniqueSet :
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
+	INotifyCollectionChanged,
 	IReadOnlyCollection<Technique>,
 	ISet<Technique>,
 	IReadOnlySet<Technique>,
@@ -45,7 +47,7 @@ public partial struct TechniqueSet :
 	/// This field will be used in extension method <see cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup)"/>.
 	/// </summary>
 	/// <seealso cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup)"/>
-	internal static readonly Dictionary<TechniqueGroup, TechniqueSet> TechniqueRelationGroups;
+	public static readonly IReadOnlyDictionary<TechniqueGroup, TechniqueSet> TechniqueRelationGroups;
 
 	/// <summary>
 	/// Indicates the number of techniques included in this solution.
@@ -179,6 +181,10 @@ public partial struct TechniqueSet :
 
 
 	/// <inheritdoc/>
+	public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+
+	/// <inheritdoc/>
 	public readonly bool Equals(TechniqueSet other)
 	{
 		if (Count != other.Count)
@@ -306,6 +312,7 @@ public partial struct TechniqueSet :
 		}
 
 		_techniqueBits.Set((int)item, true);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Add));
 		return true;
 	}
 
@@ -324,6 +331,7 @@ public partial struct TechniqueSet :
 		}
 
 		_techniqueBits.Set((int)item, false);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Remove));
 		return true;
 	}
 

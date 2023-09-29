@@ -388,6 +388,27 @@
             Indicates the internal data collection.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource">
+            <summary>
+            Represents a bindable source for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.TechniqueName">
+            <summary>
+            Indicates the name of the technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.TechniqueField">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the technique.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for a view unit.
@@ -9133,6 +9154,95 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.TechniqueSelector.SelectedIndex">
             <summary>
             Indicates the selected index.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueSetSelector">
+            <summary>
+            Represents a selector that can select a list of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
+            </summary>
+            <remarks>
+            Partially referenced the code from those links:
+            <list type="bullet">
+            <item>
+            <see href="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/ControlPages/AnnotatedScrollBarPage.xaml">XAML</see>
+            </item>
+            <item>
+            <see href="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/ControlPages/AnnotatedScrollBarPage.xaml.cs">C#</see>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemWidth">
+            <summary>
+            Indicates the width of each item. The value should be strictly equal to the target value assigned in XAML
+            (i.e. base width + uniformed margin).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemHeight">
+            <summary>
+            Indicates the height of each item. The value should be strictly equal to the target value assigned in XAML
+            (i.e. base height + uniformed margin)L.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemsSource">
+            <summary>
+            The items source.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueSetSelector"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.InitializeLabels">
+            <summary>
+            Initalizes for labels.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetItemsPerRow">
+            <summary>
+            Calculates the number of items in a same row via each item width.
+            </summary>
+            <returns>The number of items.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetOffsetOfItem(System.Int32)">
+            <summary>
+            Calculates the offset value of the item at the specified index.
+            </summary>
+            <param name="itemIndex">The index of the desired item.</param>
+            <returns>The offset value.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetOffsetLabel(System.Double)">
+            <summary>
+            Gets the label name via the specified offset.
+            </summary>
+            <param name="offset">The offset.</param>
+            <returns>The name of the label.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniquesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques">
+            <summary>
+            Indicates the selected techniques.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">

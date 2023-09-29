@@ -2350,4 +2350,133 @@
   <data name="YAxisSymmetry" xml:space="preserve">
     <value>纵轴对称</value>
   </data>
+  <data name="TechniqueGroup_AlignedExclusion" xml:space="preserve">
+    <value>均衡数组</value>
+  </data>
+  <data name="TechniqueGroup_AlmostLockedCandidates" xml:space="preserve">
+    <value>欠一数组</value>
+  </data>
+  <data name="TechniqueGroup_AlmostLockedSetsChainingLike" xml:space="preserve">
+    <value>待定数组</value>
+  </data>
+  <data name="TechniqueGroup_AlternatingInferenceChain" xml:space="preserve">
+    <value>普通链</value>
+  </data>
+  <data name="TechniqueGroup_AvoidableRectangle" xml:space="preserve">
+    <value>可规避矩形</value>
+  </data>
+  <data name="TechniqueGroup_BivalueOddagon" xml:space="preserve">
+    <value>死环</value>
+  </data>
+  <data name="TechniqueGroup_BivalueUniversalGrave" xml:space="preserve">
+    <value>全双值格致死解法</value>
+  </data>
+  <data name="TechniqueGroup_BlossomLoop" xml:space="preserve">
+    <value>绽放环</value>
+  </data>
+  <data name="TechniqueGroup_BorescoperDeadlyPattern" xml:space="preserve">
+    <value>探长致命结构</value>
+  </data>
+  <data name="TechniqueGroup_BowmanBingo" xml:space="preserve">
+    <value>试数</value>
+  </data>
+  <data name="TechniqueGroup_BrokenWing" xml:space="preserve">
+    <value>守护者</value>
+  </data>
+  <data name="TechniqueGroup_BruteForce" xml:space="preserve">
+    <value>计算机试数</value>
+  </data>
+  <data name="TechniqueGroup_ChromaticPattern" xml:space="preserve">
+    <value>三值死环</value>
+  </data>
+  <data name="TechniqueGroup_ComplexFish" xml:space="preserve">
+    <value>复杂鱼</value>
+  </data>
+  <data name="TechniqueGroup_DeathBlossom" xml:space="preserve">
+    <value>死亡绽放</value>
+  </data>
+  <data name="TechniqueGroup_DominoLoop" xml:space="preserve">
+    <value>多米诺环</value>
+  </data>
+  <data name="TechniqueGroup_EmptyRectangle" xml:space="preserve">
+    <value>空矩形</value>
+  </data>
+  <data name="TechniqueGroup_EmptyRectangleIntersectionPair" xml:space="preserve">
+    <value>对交空矩形</value>
+  </data>
+  <data name="TechniqueGroup_Exocet" xml:space="preserve">
+    <value>飞鱼导弹</value>
+  </data>
+  <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
+    <value>扩展矩形</value>
+  </data>
+  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>伪数组</value>
+  </data>
+  <data name="TechniqueGroup_Firework" xml:space="preserve">
+    <value>烟花数组</value>
+  </data>
+  <data name="TechniqueGroup_ForcingChains" xml:space="preserve">
+    <value>强制链</value>
+  </data>
+  <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
+    <value>区块</value>
+  </data>
+  <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
+    <value>网</value>
+  </data>
+  <data name="TechniqueGroup_NormalFish" xml:space="preserve">
+    <value>普通鱼</value>
+  </data>
+  <data name="TechniqueGroup_PatternOverlay" xml:space="preserve">
+    <value>图案叠加删数</value>
+  </data>
+  <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
+    <value>淑芬致命结构</value>
+  </data>
+  <data name="TechniqueGroup_RankTheory" xml:space="preserve">
+    <value>秩理论技巧</value>
+  </data>
+  <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
+    <value>反双数致命结构</value>
+  </data>
+  <data name="TechniqueGroup_RwDeadlyPattern" xml:space="preserve">
+    <value>RW 致命结构</value>
+  </data>
+  <data name="TechniqueGroup_Single" xml:space="preserve">
+    <value>出数类技巧</value>
+  </data>
+  <data name="TechniqueGroup_SingleDigitPattern" xml:space="preserve">
+    <value>同数类技巧</value>
+  </data>
+  <data name="TechniqueGroup_Subset" xml:space="preserve">
+    <value>数组</value>
+  </data>
+  <data name="TechniqueGroup_SueDeCoq" xml:space="preserve">
+    <value>融合待定数组</value>
+  </data>
+  <data name="TechniqueGroup_Symmetry" xml:space="preserve">
+    <value>对称类技巧</value>
+  </data>
+  <data name="TechniqueGroup_Templating" xml:space="preserve">
+    <value>模板</value>
+  </data>
+  <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
+    <value>唯一环</value>
+  </data>
+  <data name="TechniqueGroup_UniqueMatrix" xml:space="preserve">
+    <value>唯一矩阵</value>
+  </data>
+  <data name="TechniqueGroup_UniquenessClueCover" xml:space="preserve">
+    <value>唯一性提示信息覆盖</value>
+  </data>
+  <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
+    <value>唯一矩形</value>
+  </data>
+  <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
+    <value>唯一矩形拓展</value>
+  </data>
+  <data name="TechniqueGroup_Wing" xml:space="preserve">
+    <value>Wing</value>
+  </data>
 </root>

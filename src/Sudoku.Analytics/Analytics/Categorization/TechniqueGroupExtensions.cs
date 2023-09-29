@@ -1,5 +1,7 @@
 using System.Reflection;
+using static Sudoku.Analytics.Strings.StringsAccessor;
 using System.Runtime.CompilerServices;
+using Sudoku.Strings;
 
 namespace Sudoku.Analytics.Categorization;
 
@@ -9,6 +11,26 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="TechniqueGroup"/>
 public static class TechniqueGroupExtensions
 {
+	/// <summary>
+	/// Try to get shortened name of the current <see cref="TechniqueGroup"/> instance. If the group has an abbreviation,
+	/// return its abbreviation; otherwise, its full name.
+	/// </summary>
+	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
+	/// <returns>The shortened name.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetShortenedName(this TechniqueGroup @this) => @this.GetAbbreviation() is { } abbr ? abbr : @this.GetName();
+
+	/// <summary>
+	/// Try to get name of the current <see cref="TechniqueGroup"/> instance.
+	/// </summary>
+	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
+	/// <returns>The name.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetName(this TechniqueGroup @this)
+		=> GetString($"{nameof(TechniqueGroup)}_{@this}")
+		?? throw new ResourceNotFoundException($"{nameof(TechniqueGroup)}_{@this}", typeof(TechniqueGroup).Assembly);
+
 	/// <summary>
 	/// Try to get abbreviation of the current <see cref="TechniqueGroup"/> instance.
 	/// </summary>

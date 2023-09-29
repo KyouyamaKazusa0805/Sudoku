@@ -2214,4 +2214,133 @@
   <data name="YAxisSymmetry" xml:space="preserve">
     <value>Y-Axis</value>
   </data>
+  <data name="TechniqueGroup_AlignedExclusion" xml:space="preserve">
+    <value>Aligned Exclusion</value>
+  </data>
+  <data name="TechniqueGroup_AlmostLockedCandidates" xml:space="preserve">
+    <value>Almost Locked Candidates</value>
+  </data>
+  <data name="TechniqueGroup_AlmostLockedSetsChainingLike" xml:space="preserve">
+    <value>Almost Locked Set</value>
+  </data>
+  <data name="TechniqueGroup_AlternatingInferenceChain" xml:space="preserve">
+    <value>Alternating Inference Chain</value>
+  </data>
+  <data name="TechniqueGroup_AvoidableRectangle" xml:space="preserve">
+    <value>Avoidable Rectangle</value>
+  </data>
+  <data name="TechniqueGroup_BivalueOddagon" xml:space="preserve">
+    <value>Bi-value Oddagon</value>
+  </data>
+  <data name="TechniqueGroup_BivalueUniversalGrave" xml:space="preserve">
+    <value>Bi-value Universal Grave</value>
+  </data>
+  <data name="TechniqueGroup_BlossomLoop" xml:space="preserve">
+    <value>Blossom Loop</value>
+  </data>
+  <data name="TechniqueGroup_BorescoperDeadlyPattern" xml:space="preserve">
+    <value>Borescoper's Deadly Pattern</value>
+  </data>
+  <data name="TechniqueGroup_BowmanBingo" xml:space="preserve">
+    <value>Bowman's Bingo</value>
+  </data>
+  <data name="TechniqueGroup_BrokenWing" xml:space="preserve">
+    <value>Guardian</value>
+  </data>
+  <data name="TechniqueGroup_BruteForce" xml:space="preserve">
+    <value>Brute Force</value>
+  </data>
+  <data name="TechniqueGroup_ChromaticPattern" xml:space="preserve">
+    <value>Chromatic Pattern</value>
+  </data>
+  <data name="TechniqueGroup_ComplexFish" xml:space="preserve">
+    <value>Complex Fish</value>
+  </data>
+  <data name="TechniqueGroup_DeathBlossom" xml:space="preserve">
+    <value>Death Blossom</value>
+  </data>
+  <data name="TechniqueGroup_DominoLoop" xml:space="preserve">
+    <value>Domino Loop</value>
+  </data>
+  <data name="TechniqueGroup_EmptyRectangle" xml:space="preserve">
+    <value>Empty Rectangle</value>
+  </data>
+  <data name="TechniqueGroup_EmptyRectangleIntersectionPair" xml:space="preserve">
+    <value>Empty Rectangle Intersection Pair</value>
+  </data>
+  <data name="TechniqueGroup_Exocet" xml:space="preserve">
+    <value>Exocet</value>
+  </data>
+  <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
+    <value>Extended Rectangle</value>
+  </data>
+  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>Extended Subset Principle</value>
+  </data>
+  <data name="TechniqueGroup_Firework" xml:space="preserve">
+    <value>Firework</value>
+  </data>
+  <data name="TechniqueGroup_ForcingChains" xml:space="preserve">
+    <value>Forcing Chains</value>
+  </data>
+  <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
+    <value>Locked Candidates</value>
+  </data>
+  <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
+    <value>Multi-sector Locked Set</value>
+  </data>
+  <data name="TechniqueGroup_NormalFish" xml:space="preserve">
+    <value>Normal Fish</value>
+  </data>
+  <data name="TechniqueGroup_PatternOverlay" xml:space="preserve">
+    <value>Pattern Overlay</value>
+  </data>
+  <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
+    <value>Qiu's Deadly Pattern</value>
+  </data>
+  <data name="TechniqueGroup_RankTheory" xml:space="preserve">
+    <value>Rank Theory</value>
+  </data>
+  <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
+    <value>Reverse Bi-value Universal Grave</value>
+  </data>
+  <data name="TechniqueGroup_RwDeadlyPattern" xml:space="preserve">
+    <value>RW's Deadly Pattern</value>
+  </data>
+  <data name="TechniqueGroup_Single" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="TechniqueGroup_SingleDigitPattern" xml:space="preserve">
+    <value>Single-Digit Pattern</value>
+  </data>
+  <data name="TechniqueGroup_Subset" xml:space="preserve">
+    <value>Subset</value>
+  </data>
+  <data name="TechniqueGroup_SueDeCoq" xml:space="preserve">
+    <value>Sue de Coq</value>
+  </data>
+  <data name="TechniqueGroup_Symmetry" xml:space="preserve">
+    <value>Symmetry</value>
+  </data>
+  <data name="TechniqueGroup_Templating" xml:space="preserve">
+    <value>Templating</value>
+  </data>
+  <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
+    <value>Unique Loop</value>
+  </data>
+  <data name="TechniqueGroup_UniqueMatrix" xml:space="preserve">
+    <value>Unique Matrix</value>
+  </data>
+  <data name="TechniqueGroup_UniquenessClueCover" xml:space="preserve">
+    <value>Uniqueness Clue Cover</value>
+  </data>
+  <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
+    <value>Unique Rectangle</value>
+  </data>
+  <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
+    <value>Unique Rectangle (+)</value>
+  </data>
+  <data name="TechniqueGroup_Wing" xml:space="preserve">
+    <value>Wing</value>
+  </data>
 </root>

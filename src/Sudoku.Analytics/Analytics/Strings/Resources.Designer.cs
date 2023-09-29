@@ -5758,6 +5758,393 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aligned Exclusion.
+        /// </summary>
+        public static string TechniqueGroup_AlignedExclusion {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_AlignedExclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Candidates.
+        /// </summary>
+        public static string TechniqueGroup_AlmostLockedCandidates {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_AlmostLockedCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Set.
+        /// </summary>
+        public static string TechniqueGroup_AlmostLockedSetsChainingLike {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_AlmostLockedSetsChainingLike", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternating Inference Chain.
+        /// </summary>
+        public static string TechniqueGroup_AlternatingInferenceChain {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_AlternatingInferenceChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle.
+        /// </summary>
+        public static string TechniqueGroup_AvoidableRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_AvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon.
+        /// </summary>
+        public static string TechniqueGroup_BivalueOddagon {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BivalueOddagon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-value Universal Grave.
+        /// </summary>
+        public static string TechniqueGroup_BivalueUniversalGrave {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BivalueUniversalGrave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blossom Loop.
+        /// </summary>
+        public static string TechniqueGroup_BlossomLoop {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BlossomLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borescoper&apos;s Deadly Pattern.
+        /// </summary>
+        public static string TechniqueGroup_BorescoperDeadlyPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BorescoperDeadlyPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bowman&apos;s Bingo.
+        /// </summary>
+        public static string TechniqueGroup_BowmanBingo {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BowmanBingo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian.
+        /// </summary>
+        public static string TechniqueGroup_BrokenWing {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BrokenWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brute Force.
+        /// </summary>
+        public static string TechniqueGroup_BruteForce {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BruteForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromatic Pattern.
+        /// </summary>
+        public static string TechniqueGroup_ChromaticPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ChromaticPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Fish.
+        /// </summary>
+        public static string TechniqueGroup_ComplexFish {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ComplexFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death Blossom.
+        /// </summary>
+        public static string TechniqueGroup_DeathBlossom {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_DeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domino Loop.
+        /// </summary>
+        public static string TechniqueGroup_DominoLoop {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_DominoLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle.
+        /// </summary>
+        public static string TechniqueGroup_EmptyRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_EmptyRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Rectangle Intersection Pair.
+        /// </summary>
+        public static string TechniqueGroup_EmptyRectangleIntersectionPair {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_EmptyRectangleIntersectionPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exocet.
+        /// </summary>
+        public static string TechniqueGroup_Exocet {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Exocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle.
+        /// </summary>
+        public static string TechniqueGroup_ExtendedRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ExtendedRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        public static string TechniqueGroup_ExtendedSubsetPrinciple {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ExtendedSubsetPrinciple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firework.
+        /// </summary>
+        public static string TechniqueGroup_Firework {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Firework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forcing Chains.
+        /// </summary>
+        public static string TechniqueGroup_ForcingChains {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates.
+        /// </summary>
+        public static string TechniqueGroup_LockedCandidates {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_LockedCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-sector Locked Set.
+        /// </summary>
+        public static string TechniqueGroup_MultisectorLockedSets {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_MultisectorLockedSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Fish.
+        /// </summary>
+        public static string TechniqueGroup_NormalFish {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_NormalFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern Overlay.
+        /// </summary>
+        public static string TechniqueGroup_PatternOverlay {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_PatternOverlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
+        /// </summary>
+        public static string TechniqueGroup_QiuDeadlyPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_QiuDeadlyPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rank Theory.
+        /// </summary>
+        public static string TechniqueGroup_RankTheory {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_RankTheory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Bi-value Universal Grave.
+        /// </summary>
+        public static string TechniqueGroup_ReverseBivalueUniversalGrave {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ReverseBivalueUniversalGrave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
+        /// </summary>
+        public static string TechniqueGroup_RwDeadlyPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_RwDeadlyPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        public static string TechniqueGroup_Single {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single-Digit Pattern.
+        /// </summary>
+        public static string TechniqueGroup_SingleDigitPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_SingleDigitPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset.
+        /// </summary>
+        public static string TechniqueGroup_Subset {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Subset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq.
+        /// </summary>
+        public static string TechniqueGroup_SueDeCoq {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_SueDeCoq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetry.
+        /// </summary>
+        public static string TechniqueGroup_Symmetry {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Symmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templating.
+        /// </summary>
+        public static string TechniqueGroup_Templating {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Templating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop.
+        /// </summary>
+        public static string TechniqueGroup_UniqueLoop {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_UniqueLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Matrix.
+        /// </summary>
+        public static string TechniqueGroup_UniqueMatrix {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_UniqueMatrix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uniqueness Clue Cover.
+        /// </summary>
+        public static string TechniqueGroup_UniquenessClueCover {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_UniquenessClueCover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle.
+        /// </summary>
+        public static string TechniqueGroup_UniqueRectangle {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_UniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle (+).
+        /// </summary>
+        public static string TechniqueGroup_UniqueRectanglePlus {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_UniqueRectanglePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wing.
+        /// </summary>
+        public static string TechniqueGroup_Wing {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_Wing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template Delete.
         /// </summary>
         public static string TemplateDelete {
