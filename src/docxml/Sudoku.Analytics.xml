@@ -3356,6 +3356,20 @@ if (student is (name: var name, age: >= 18))
             <param name="item">A technique to be removed.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully removed.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Replace(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Clears the collection, and add a new technique into it.
+            </summary>
+            <param name="item">A technique to be added.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully added, and all other techniques are removed.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Clear">
+            <summary>
+            Clears the collection, making all techniques to be removed.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#CopyTo(Sudoku.Analytics.Categorization.Technique[],System.Int32)">
             <inheritdoc/>
         </member>

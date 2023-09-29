@@ -335,6 +335,34 @@ public partial struct TechniqueSet :
 		return true;
 	}
 
+	/// <summary>
+	/// Clears the collection, and add a new technique into it.
+	/// </summary>
+	/// <param name="item">A technique to be added.</param>
+	/// <returns>
+	/// A <see cref="bool"/> result indicating whether the current technique is successfully added, and all other techniques are removed.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
+	public bool Replace(Technique item)
+	{
+		_techniqueBits.SetAll(false);
+		_techniqueBits.Set((int)item, true);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Replace));
+		return true;
+	}
+
+	/// <summary>
+	/// Clears the collection, making all techniques to be removed.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
+	public void Clear()
+	{
+		_techniqueBits.SetAll(false);
+		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Reset));
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
