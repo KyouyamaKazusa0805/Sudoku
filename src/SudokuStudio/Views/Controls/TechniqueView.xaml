@@ -26,9 +26,8 @@
 				<ItemsRepeater.ItemTemplate>
 					<DataTemplate x:DataType="bs:TechniqueSetTechniqueBindableSource">
 						<c:TechniqueToggleButton
-							Height="40" CornerRadius="20" BorderThickness="3" Content="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}"
-							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-							ParentView="{Binding .,ElementName=ThisObject}" Source="{x:Bind}"
+							Height="40" CornerRadius="20" BorderThickness="3" Content="{x:Bind TechniqueName}" Source="{x:Bind}"
+							HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ParentView="{Binding .,ElementName=ThisObject}"
 							IsChecked="{Binding SelectedTechniques,
 								ElementName=ThisObject,
 								Converter={StaticResource TechniqueExistenceConverter},

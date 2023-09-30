@@ -1,6 +1,5 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 using Sudoku.Analytics.Categorization;
 using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
@@ -45,7 +44,7 @@ public sealed partial class TechniqueView : UserControl
 		}
 
 		Func<Technique, bool> f = SelectionMode == TechniqueViewSelectionMode.Single ? SelectedTechniques.Replace : SelectedTechniques.Add;
-		f((Technique)((ToggleButton)sender).Tag!);
+		f(((TechniqueToggleButton)sender).Source.TechniqueField);
 	}
 
 	private void TokenButton_Unchecked(object sender, RoutedEventArgs e)
@@ -55,6 +54,6 @@ public sealed partial class TechniqueView : UserControl
 			return;
 		}
 
-		SelectedTechniques.Remove((Technique)((ToggleButton)sender).Tag!);
+		SelectedTechniques.Remove(((TechniqueToggleButton)sender).Source.TechniqueField);
 	}
 }
