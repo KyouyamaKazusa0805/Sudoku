@@ -26,9 +26,6 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Views\Pages\TechniqueDebuggerPage.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -42,6 +39,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 		<PackageReference Include="QuestPDF" Version="2023.9.0" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
@@ -106,12 +104,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\TechniqueDebuggerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
+		<Page Update="Views\Controls\TechniqueToggleButton.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\TechniqueDebuggerPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\TechniqueView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

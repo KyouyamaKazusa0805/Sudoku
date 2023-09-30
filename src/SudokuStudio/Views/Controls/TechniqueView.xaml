@@ -26,16 +26,17 @@
 				<ItemsRepeater.ItemTemplate>
 					<DataTemplate x:DataType="bs:TechniqueSetTechniqueBindableSource">
 						<c:TechniqueToggleButton
-							Height="40" CornerRadius="20" Content="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}"
+							Height="40" CornerRadius="20" BorderThickness="3" Content="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}"
 							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-							ParentView="{Binding .,ElementName=ThisObject}"
+							ParentView="{Binding .,ElementName=ThisObject}" Source="{x:Bind}"
 							IsChecked="{Binding SelectedTechniques,
 								ElementName=ThisObject,
 								Converter={StaticResource TechniqueExistenceConverter},
 								ConverterParameter={Binding Tag,RelativeSource={RelativeSource Mode=Self}},
 								Mode=OneWay}"
 							Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}"
-							Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
+							BorderBrush="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
+							Background="{x:Null}"
 							Checked="TokenButton_Checked" Unchecked="TokenButton_Unchecked" />
 					</DataTemplate>
 				</ItemsRepeater.ItemTemplate>
