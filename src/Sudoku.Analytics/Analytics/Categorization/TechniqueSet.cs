@@ -23,7 +23,6 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="BitArray"/>
 /// <seealso cref="TechniqueSet(TechniqueSet)"/>
 /// <completionlist cref="TechniqueSets"/>
-[SuppressMessage("Style", "IDE0250:Make struct 'readonly'", Justification = "<Pending>")]
 [JsonConverter(typeof(Converter))]
 [Equals]
 [EqualityOperators]
@@ -58,7 +57,7 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// The internal bits to store techniques.
 	/// </summary>
-	private readonly BitArray _techniqueBits;
+	private BitArray _techniqueBits;
 
 
 	/// <summary>
