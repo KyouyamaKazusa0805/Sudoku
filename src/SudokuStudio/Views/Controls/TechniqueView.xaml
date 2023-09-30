@@ -25,8 +25,9 @@
 				</ItemsRepeater.Layout>
 				<ItemsRepeater.ItemTemplate>
 					<DataTemplate x:DataType="bs:TechniqueSetTechniqueBindableSource">
-						<c:TokenButton
-							Content="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}"
+						<ToggleButton
+							Height="40" CornerRadius="20" Content="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}"
+							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
 							IsChecked="{Binding SelectedTechniques,
 								ElementName=ThisObject,
 								Converter={StaticResource TechniqueExistenceConverter},

@@ -9272,16 +9272,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the final selected techniques.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Controls.TokenButton">
-            <summary>
-            Represents for a button used in a token view.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TokenButton.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Controls.TokenButton"/> instance.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">
             <summary>
             Defines a new page that stores a set of controls to analyze a sudoku grid.
