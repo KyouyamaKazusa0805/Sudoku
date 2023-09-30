@@ -7,7 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueDebuggerPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 		<c:TechniqueView
 			HorizontalAlignment="Left" SelectionMode="None" HorizontalSpacing="6" VerticalSpacing="6"
 			MaxWidth="800" MaxHeight="500" />

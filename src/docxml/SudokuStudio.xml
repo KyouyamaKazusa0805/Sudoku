@@ -9198,6 +9198,30 @@ if (student is (name: var name, age: >= 18))
             Indicates the selected index.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueToggleButton">
+            <summary>
+            Represents for a technique toggle button.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueToggleButton"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.OnToggle">
+            <inheritdoc/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentViewProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView">
+            <summary>
+            Indicates the parent view.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueView">
             <summary>
             Represents for a technique view.
