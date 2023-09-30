@@ -9,7 +9,7 @@ namespace SudokuStudio.Views.Controls;
 /// Represents for a technique toggle button.
 /// </summary>
 [DependencyProperty<TechniqueView>("ParentView", IsNullable = true, DocSummary = "Indicates the parent view.")]
-[DependencyProperty<TechniqueSetTechniqueBindableSource>("Source", DocSummary = "Indicates the source.")]
+[DependencyProperty<TechniqueViewBindableSource>("Source", DocSummary = "Indicates the source.")]
 public sealed partial class TechniqueToggleButton : ToggleButton
 {
 	/// <summary>

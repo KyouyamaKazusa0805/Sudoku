@@ -388,25 +388,79 @@
             Indicates the internal data collection.
             </summary>
         </member>
-        <member name="T:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource">
+        <member name="T:SudokuStudio.BindableSource.TechniqueViewBindableSource">
             <summary>
             Represents a bindable source for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
+            <param name="techniqueField">Indicates the technique field.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.TechniqueName">
+        <member name="M:SudokuStudio.BindableSource.TechniqueViewBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Represents a bindable source for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="techniqueField">Indicates the technique field.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.TechniqueName">
             <summary>
             Indicates the name of the technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.TechniqueField">
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.ContainingGroup">
             <summary>
-            Indicates the technique used.
+            Indicates the containing group for the current technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.TechniqueSetTechniqueBindableSource.DifficultyLevel">
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.TechniqueField">
+            <summary>
+            The generated property declaration for parameter <c>techniqueField</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource">
+            <summary>
+            Represents a bindable source for a group of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
+            </summary>
+            <param name="group">Indicates the group of the techniques.</param>
+            <param name="items">Indicates the items belonging to the group.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup,SudokuStudio.BindableSource.TechniqueViewBindableSource[])">
+            <summary>
+            Represents a bindable source for a group of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
+            </summary>
+            <param name="group">Indicates the group of the techniques.</param>
+            <param name="items">Indicates the items belonging to the group.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupFullName">
+            <summary>
+            Indicates the full name of the group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupName">
+            <summary>
+            Indicates the group name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShortenedName">
+            <summary>
+            Indicates the shortened name of the group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group">
+            <summary>
+            The generated property declaration for parameter <c>group</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items">
+            <summary>
+            The generated property declaration for parameter <c>items</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSource">

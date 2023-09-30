@@ -15,31 +15,37 @@
 		<vcvt:TechniqueSetToBooleanConverter x:Key="TechniqueExistenceConverter" />
 	</UserControl.Resources>
 
-	<Grid>
-		<ScrollViewer>
-			<ItemsRepeater ItemsSource="{x:Bind ItemsSource}">
-				<ItemsRepeater.Layout>
-					<wc:WrapLayout
-						HorizontalSpacing="{x:Bind HorizontalSpacing,Mode=OneWay}"
-						VerticalSpacing="{x:Bind VerticalSpacing,Mode=OneWay}" />
-				</ItemsRepeater.Layout>
-				<ItemsRepeater.ItemTemplate>
-					<DataTemplate x:DataType="bs:TechniqueSetTechniqueBindableSource">
-						<c:TechniqueToggleButton
-							Height="40" CornerRadius="20" BorderThickness="3" Content="{x:Bind TechniqueName}" Source="{x:Bind}"
-							HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ParentView="{Binding .,ElementName=ThisObject}"
-							IsChecked="{Binding SelectedTechniques,
-								ElementName=ThisObject,
-								Converter={StaticResource TechniqueExistenceConverter},
-								ConverterParameter={Binding Tag,RelativeSource={RelativeSource Mode=Self}},
-								Mode=OneWay}"
-							Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}"
-							BorderBrush="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
-							Background="{x:Null}"
-							Checked="TokenButton_Checked" Unchecked="TokenButton_Unchecked" />
-					</DataTemplate>
-				</ItemsRepeater.ItemTemplate>
-			</ItemsRepeater>
-		</ScrollViewer>
-	</Grid>
+	<ListView ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
+		<ListView.ItemTemplate>
+			<DataTemplate x:DataType="bs:TechniqueViewGroupBindableSource">
+				<Grid RowDefinitions="Auto,*" Margin="0,20">
+					<TextBlock Text="{x:Bind GroupFullName}" FontSize="20" FontWeight="Bold" Margin="0,0,0,8" />
+					<ItemsRepeater Grid.Row="1" ItemsSource="{x:Bind Items}">
+						<ItemsRepeater.Layout>
+							<wc:WrapLayout
+								HorizontalSpacing="{Binding HorizontalSpacing,ElementName=ThisObject,Mode=OneWay}"
+								VerticalSpacing="{Binding VerticalSpacing,ElementName=ThisObject,Mode=OneWay}" />
+						</ItemsRepeater.Layout>
+						<ItemsRepeater.ItemTemplate>
+							<DataTemplate x:DataType="bs:TechniqueViewBindableSource">
+								<c:TechniqueToggleButton
+									Height="40" CornerRadius="20" BorderThickness="3" Content="{x:Bind TechniqueName}" Source="{x:Bind}"
+									HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+									ParentView="{Binding .,ElementName=ThisObject}"
+									IsChecked="{Binding SelectedTechniques,
+										ElementName=ThisObject,
+										Converter={StaticResource TechniqueExistenceConverter},
+										ConverterParameter={Binding Tag,RelativeSource={RelativeSource Mode=Self}},
+										Mode=OneWay}"
+									Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}"
+									BorderBrush="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
+									Background="{x:Null}"
+									Checked="TokenButton_Checked" Unchecked="TokenButton_Unchecked" />
+							</DataTemplate>
+						</ItemsRepeater.ItemTemplate>
+					</ItemsRepeater>
+				</Grid>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
 </UserControl>

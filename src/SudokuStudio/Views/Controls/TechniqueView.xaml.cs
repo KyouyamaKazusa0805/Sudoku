@@ -29,11 +29,16 @@ public sealed partial class TechniqueView : UserControl
 	/// <summary>
 	/// The items source.
 	/// </summary>
-	private TechniqueSetTechniqueBindableSource[] ItemsSource
-		=>
-		from technique in Enum.GetValues<Technique>()[1..]
-		where !technique.GetFeature().Flags(TechniqueFeature.NotImplemented)
-		select new TechniqueSetTechniqueBindableSource { TechniqueField = technique };
+	private TechniqueViewGroupBindableSource[] ItemsSource
+		=> [
+			..
+			from technique in Enum.GetValues<Technique>()[1..]
+			where !technique.GetFeature().Flags(TechniqueFeature.NotImplemented)
+			select new TechniqueViewBindableSource(technique) into item
+			group item by item.ContainingGroup into itemGroup
+			orderby itemGroup.Key
+			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup])
+		];
 
 
 	private void TokenButton_Checked(object sender, RoutedEventArgs e)

@@ -1,3 +1,4 @@
+using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 
 namespace SudokuStudio.BindableSource;
@@ -5,8 +6,9 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a bindable source for a <see cref="Technique"/>.
 /// </summary>
+/// <param name="techniqueField">Indicates the technique field.</param>
 /// <seealso cref="Technique"/>
-public sealed class TechniqueSetTechniqueBindableSource
+public sealed partial class TechniqueViewBindableSource([DataMember(SetterExpression = "init")] Technique techniqueField)
 {
 	/// <summary>
 	/// Indicates the name of the technique.
@@ -14,9 +16,9 @@ public sealed class TechniqueSetTechniqueBindableSource
 	public string TechniqueName => TechniqueField.GetName();
 
 	/// <summary>
-	/// Indicates the technique used.
+	/// Indicates the containing group for the current technique.
 	/// </summary>
-	public Technique TechniqueField { get; init; }
+	public TechniqueGroup ContainingGroup => TechniqueField.GetGroup();
 
 	/// <summary>
 	/// Indicates the difficulty level of the technique.
