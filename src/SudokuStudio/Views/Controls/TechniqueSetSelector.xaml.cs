@@ -38,16 +38,6 @@ public sealed partial class TechniqueSetSelector : UserControl
 
 
 	/// <summary>
-	/// The items source.
-	/// </summary>
-	internal TechniqueSetTechniqueBindableSource[] ItemsSource
-		=>
-		from technique in Enum.GetValues<Technique>()
-		where !technique.GetFeature().Flags(TechniqueFeature.NotImplemented)
-		select new TechniqueSetTechniqueBindableSource { TechniqueField = technique };
-
-
-	/// <summary>
 	/// Initializes a <see cref="TechniqueSetSelector"/> instance.
 	/// </summary>
 	public TechniqueSetSelector()
@@ -56,6 +46,16 @@ public sealed partial class TechniqueSetSelector : UserControl
 
 		InitializeLabels();
 	}
+
+
+	/// <summary>
+	/// The items source.
+	/// </summary>
+	internal TechniqueSetTechniqueBindableSource[] ItemsSource
+		=>
+		from technique in Enum.GetValues<Technique>()
+		where !technique.GetFeature().Flags(TechniqueFeature.NotImplemented)
+		select new TechniqueSetTechniqueBindableSource { TechniqueField = technique };
 
 
 	/// <summary>
