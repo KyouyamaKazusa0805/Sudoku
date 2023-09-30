@@ -3300,9 +3300,6 @@ if (student is (name: var name, age: >= 18))
             <param name="technique">The technique to be checked.</param>
             <returns>The index that the technique is at. If none found, -1.</returns>
         </member>
-        <member name="E:Sudoku.Analytics.Categorization.TechniqueSet.CollectionChanged">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>

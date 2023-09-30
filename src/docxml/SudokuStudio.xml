@@ -3460,6 +3460,21 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueViewSelectionMode">
+            <summary>
+            The technique view selection mode.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewSelectionMode.Single">
+            <summary>
+            Indicates the mode is single-selection.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewSelectionMode.Multiple">
+            <summary>
+            Indicates the mode is multiple-selection.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.DoubleToDecimalConverter">
             <summary>
             Represents a type that can convert values from <see cref="T:System.Double"/> to <see cref="T:System.Decimal"/>, or vice versa.
@@ -3590,6 +3605,18 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter">
+            <summary>
+            Defines a value converter that converts the value from <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> to a <see cref="T:System.Boolean"/> value, or vice versa.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Markup.EmptyStringExtension">
@@ -9156,93 +9183,88 @@ if (student is (name: var name, age: >= 18))
             Indicates the selected index.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Controls.TechniqueSetSelector">
+        <member name="T:SudokuStudio.Views.Controls.TechniqueView">
             <summary>
-            Represents a selector that can select a list of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
-            </summary>
-            <remarks>
-            Partially referenced the code from those links:
-            <list type="bullet">
-            <item>
-            <see href="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/ControlPages/AnnotatedScrollBarPage.xaml">XAML</see>
-            </item>
-            <item>
-            <see href="https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/ControlPages/AnnotatedScrollBarPage.xaml.cs">C#</see>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemWidth">
-            <summary>
-            Indicates the width of each item. The value should be strictly equal to the target value assigned in XAML
-            (i.e. base width + uniformed margin).
+            Represents for a technique view.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemHeight">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.#ctor">
             <summary>
-            Indicates the height of each item. The value should be strictly equal to the target value assigned in XAML
-            (i.e. base height + uniformed margin)L.
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueView"/> instance.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueSetSelector.ItemsSource">
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.ItemsSource">
             <summary>
             The items source.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueSetSelector"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.InitializeLabels">
-            <summary>
-            Initalizes for labels.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetItemsPerRow">
-            <summary>
-            Calculates the number of items in a same row via each item width.
-            </summary>
-            <returns>The number of items.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetOffsetOfItem(System.Int32)">
-            <summary>
-            Calculates the offset value of the item at the specified index.
-            </summary>
-            <param name="itemIndex">The index of the desired item.</param>
-            <returns>The offset value.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetOffsetLabel(System.Double)">
-            <summary>
-            Gets the label name via the specified offset.
-            </summary>
-            <param name="offset">The offset.</param>
-            <returns>The name of the label.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.InitializeComponent">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.Connect(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueSetSelector.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniquesProperty">
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacingProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques"/>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueSetSelector.SelectedTechniques">
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacingProperty">
             <summary>
-            Indicates the selected techniques.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectionModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing">
+            <summary>
+            Indicates the horizontal spacing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing">
+            <summary>
+            Indicates the vertical spacing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode">
+            <summary>
+            Indicates the selection mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques">
+            <summary>
+            Indicates the final selected techniques.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TokenButton">
+            <summary>
+            Represents for a button used in a token view.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenButton.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TokenButton"/> instance.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">

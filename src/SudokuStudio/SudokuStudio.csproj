@@ -103,7 +103,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Views\Controls\TechniqueSetSelector.xaml">
+		<Page Update="Views\Controls\TechniqueView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\GeneratingStrategyPage.xaml">

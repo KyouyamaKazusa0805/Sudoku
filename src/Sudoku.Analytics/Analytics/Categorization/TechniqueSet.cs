@@ -34,7 +34,6 @@ public partial struct TechniqueSet :
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
-	INotifyCollectionChanged,
 	IReadOnlyCollection<Technique>,
 	ISet<Technique>,
 	IReadOnlySet<Technique>,
@@ -180,10 +179,6 @@ public partial struct TechniqueSet :
 
 
 	/// <inheritdoc/>
-	public event NotifyCollectionChangedEventHandler? CollectionChanged;
-
-
-	/// <inheritdoc/>
 	public readonly bool Equals(TechniqueSet other)
 	{
 		if (Count != other.Count)
@@ -311,7 +306,6 @@ public partial struct TechniqueSet :
 		}
 
 		_techniqueBits.Set((int)item, true);
-		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Add));
 		return true;
 	}
 
@@ -330,7 +324,6 @@ public partial struct TechniqueSet :
 		}
 
 		_techniqueBits.Set((int)item, false);
-		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Remove));
 		return true;
 	}
 
@@ -347,7 +340,6 @@ public partial struct TechniqueSet :
 	{
 		_techniqueBits.SetAll(false);
 		_techniqueBits.Set((int)item, true);
-		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Replace));
 		return true;
 	}
 
@@ -356,11 +348,7 @@ public partial struct TechniqueSet :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public void Clear()
-	{
-		_techniqueBits.SetAll(false);
-		CollectionChanged?.Invoke(this, new(NotifyCollectionChangedAction.Reset));
-	}
+	public void Clear() => _techniqueBits.SetAll(false);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
