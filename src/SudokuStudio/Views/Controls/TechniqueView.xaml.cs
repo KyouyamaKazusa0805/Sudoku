@@ -17,6 +17,10 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<TechniqueSet>("SelectedTechniques", DocSummary = "Indicates the final selected techniques.")]
 public sealed partial class TechniqueView : UserControl
 {
+	[Default]
+	private static readonly TechniqueSet SelectedTechniquesDefaultValue = new();
+
+
 	/// <summary>
 	/// Initializes a <see cref="TechniqueView"/> instance.
 	/// </summary>
