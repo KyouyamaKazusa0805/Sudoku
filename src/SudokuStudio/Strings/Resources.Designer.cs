@@ -2698,6 +2698,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Techniques Gallery.
+        /// </summary>
+        internal static string MainWindow_TechniqueDebugger {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueDebugger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Techniques Gallery.
+        /// </summary>
+        internal static string MainWindow_TechniqueDebuggerPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueDebuggerPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {

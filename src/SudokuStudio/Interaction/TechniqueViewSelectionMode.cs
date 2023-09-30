@@ -6,6 +6,11 @@ namespace SudokuStudio.Interaction;
 public enum TechniqueViewSelectionMode
 {
 	/// <summary>
+	/// Indicates the mode is none.
+	/// </summary>
+	None,
+
+	/// <summary>
 	/// Indicates the mode is single-selection.
 	/// </summary>
 	Single,

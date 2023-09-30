@@ -3465,6 +3465,11 @@ if (student is (name: var name, age: >= 18))
             The technique view selection mode.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewSelectionMode.None">
+            <summary>
+            Indicates the mode is none.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Interaction.TechniqueViewSelectionMode.Single">
             <summary>
             Indicates the mode is single-selection.
@@ -5904,6 +5909,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_SingleCountingPracticingPageTitle">
             <summary>
               Looks up a localized string similar to Single Counting Practicing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueDebugger">
+            <summary>
+              Looks up a localized string similar to Techniques Gallery.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueDebuggerPageTitle">
+            <summary>
+              Looks up a localized string similar to Techniques Gallery.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.No">
@@ -10647,6 +10662,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.TechniqueDebuggerPage">
+            <summary>
+            A page that displays all techniques.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueDebuggerPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>
