@@ -25,11 +25,9 @@ public sealed partial class TechniqueToggleButton : ToggleButton
 	/// <inheritdoc/>
 	protected override void OnToggle()
 	{
-		if (ParentView is null || ParentView.SelectionMode == TechniqueViewSelectionMode.None)
+		if (ParentView is { SelectionMode: not TechniqueViewSelectionMode.None })
 		{
-			return;
+			base.OnToggle();
 		}
-
-		base.OnToggle();
 	}
 }

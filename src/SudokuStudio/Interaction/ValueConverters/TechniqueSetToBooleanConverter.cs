@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml.Data;
 using Sudoku.Analytics.Categorization;
+using SudokuStudio.BindableSource;
 
 namespace SudokuStudio.Interaction.ValueConverters;
 
@@ -12,7 +13,7 @@ internal sealed class TechniqueSetToBooleanConverter : IValueConverter
 {
 	/// <inheritdoc/>
 	public object Convert(object value, Type targetType, object parameter, string language)
-		=> value is TechniqueSet set && parameter is Technique technique
+		=> value is TechniqueSet set && parameter is TechniqueViewBindableSource { TechniqueField: var technique }
 			? (bool?)set.Contains(technique)
 			: throw new ArgumentException("The target value is invalid.");
 

@@ -9,7 +9,7 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueDebuggerPage}">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-			<c:TechniqueView SelectionMode="None" HorizontalSpacing="6" VerticalSpacing="6"  />
+			<c:TechniqueView SelectionMode="Single" HorizontalSpacing="6" VerticalSpacing="6"  />
 		</StackPanel>
 	</ScrollViewer>
 </Page>

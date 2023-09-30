@@ -48,8 +48,31 @@ public sealed partial class TechniqueView : UserControl
 			return;
 		}
 
-		Func<Technique, bool> f = SelectionMode == TechniqueViewSelectionMode.Single ? SelectedTechniques.Replace : SelectedTechniques.Add;
-		f(((TechniqueToggleButton)sender).Source.TechniqueField);
+		var techniqueField = ((TechniqueToggleButton)sender).Source.TechniqueField;
+		_ = SelectionMode == TechniqueViewSelectionMode.Single
+			? SelectedTechniques.Replace(techniqueField)
+			: SelectedTechniques.Add(techniqueField);
+
+		if (SelectionMode == TechniqueViewSelectionMode.Single)
+		{
+			foreach (var control in MainListView.ItemsPanelRoot.Children)
+			{
+				foreach (var childForGrid in (control as GridLayout)?.Children ?? (IEnumerable<UIElement>)[])
+				{
+					if (childForGrid is ItemsRepeater { ItemsSourceView: var itemsSourceView })
+					{
+						for (var i = 0; i < itemsSourceView.Count; i++)
+						{
+							if (itemsSourceView.GetAt(i) is TechniqueToggleButton { Source.TechniqueField: var currentTechnique } button
+								&& !SelectedTechniques.Contains(currentTechnique))
+							{
+								button.IsChecked = false;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void TokenButton_Unchecked(object sender, RoutedEventArgs e)

@@ -10,12 +10,12 @@
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	xmlns:wc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueView}"
-	x:Name="ThisObject">
+	Name="ThisObject">
 	<UserControl.Resources>
 		<vcvt:TechniqueSetToBooleanConverter x:Key="TechniqueExistenceConverter" />
 	</UserControl.Resources>
 
-	<ListView ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
+	<ListView x:Name="MainListView" ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:TechniqueViewGroupBindableSource">
 				<Grid RowDefinitions="Auto,*" Margin="0,20">
@@ -35,7 +35,7 @@
 									IsChecked="{Binding SelectedTechniques,
 										ElementName=ThisObject,
 										Converter={StaticResource TechniqueExistenceConverter},
-										ConverterParameter={Binding Tag,RelativeSource={RelativeSource Mode=Self}},
+										ConverterParameter={Binding},
 										Mode=OneWay}"
 									Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}"
 									BorderBrush="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
