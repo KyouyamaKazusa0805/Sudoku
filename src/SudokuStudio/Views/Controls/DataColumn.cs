@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Diagnostics.CodeAnalysis;
 using CommunityToolkit.WinUI;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
@@ -14,6 +15,7 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents for a data column.
 /// </summary>
+[TemplatePart(Name = nameof(PART_ColumnSizer), Type = typeof(ContentSizer))]
 [DependencyProperty<bool>("CanResize", DocSummary = "Gets or sets whether the column can be resized by the user.")]
 [DependencyProperty<GridLength>("DesiredWidth", DocSummary = "Gets or sets the desired width of the column upon initialization. Defaults to a <see cref=\"global::Microsoft.UI.Xaml.GridLength\"/> of 1 <see cref=\"global::Microsoft.UI.Xaml.GridUnitType.Star\"/>.")]
 public partial class DataColumn : ContentControl
@@ -21,6 +23,9 @@ public partial class DataColumn : ContentControl
 	[Default]
 	private static readonly GridLength DesiredWidthDefaultValue = GridLength.Auto;
 
+
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	private ContentSizer? PART_ColumnSizer;
 
 	private WeakReference<DataTable>? _parent;
 

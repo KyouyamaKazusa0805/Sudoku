@@ -7931,21 +7931,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.DataColumn.OnApplyTemplate">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.DataColumn.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.DataColumn.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.DataColumn.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.DataColumn.CanResizeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DataColumn.CanResize"/>.
