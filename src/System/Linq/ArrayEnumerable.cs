@@ -174,6 +174,54 @@ public static class ArrayEnumerable
 	}
 
 	/// <summary>
+	/// Invokes a transform function on each element of a sequence and returns the minimum <typeparamref name="TInterim"/> value.
+	/// </summary>
+	/// <typeparam name="T">The type of the elements of <paramref name="this"/>.</typeparam>
+	/// <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
+	/// <param name="this">A sequence of values to determine the minimum value of.</param>
+	/// <param name="selector">A transform function to apply to each element.</param>
+	/// <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the minimum value in the sequence.</returns>
+	public static TInterim Min<T, TInterim>(this T[] @this, Func<T, TInterim> selector)
+		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
+	{
+		var result = TInterim.MaxValue;
+		foreach (var element in @this)
+		{
+			var projectedElement = selector(element);
+			if (projectedElement <= result)
+			{
+				result = projectedElement;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Invokes a transform function on each element of a sequence and returns the maximum <typeparamref name="TInterim"/> value.
+	/// </summary>
+	/// <typeparam name="T">The type of the elements of <paramref name="this"/>.</typeparam>
+	/// <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
+	/// <param name="this">A sequence of values to determine the maximum value of.</param>
+	/// <param name="selector">A transform function to apply to each element.</param>
+	/// <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
+	public static TInterim Max<T, TInterim>(this T[] @this, Func<T, TInterim> selector)
+		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
+	{
+		var result = TInterim.MinValue;
+		foreach (var element in @this)
+		{
+			var projectedElement = selector(element);
+			if (projectedElement >= result)
+			{
+				result = projectedElement;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/summary"/>
 	/// </summary>
 	/// <typeparam name="TSource">

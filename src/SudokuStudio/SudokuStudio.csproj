@@ -104,6 +104,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\SummaryView.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\TechniqueToggleButton.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
