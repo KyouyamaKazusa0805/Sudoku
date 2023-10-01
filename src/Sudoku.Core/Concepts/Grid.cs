@@ -110,6 +110,8 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 	/// <summary>
 	/// Indicates the internal grid parsers.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly GridParser[] Parsers = [
 		new MultipleLineParser(),
 		new SimpleMultipleLineParser(),
