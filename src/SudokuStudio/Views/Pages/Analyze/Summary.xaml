@@ -30,6 +30,7 @@
 				<c:DataGrid.Columns>
 					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}">
 						<c:DataGridTemplateColumn.CellTemplate>
+
 							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
 								<TextBlock Text="{x:Bind TechniqueName}" Style="{StaticResource LabelStyle}" />
 							</DataTemplate>
