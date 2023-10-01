@@ -33,14 +33,7 @@ public partial class DataColumn : ContentControl
 	/// <summary>
 	/// Initalizes a <see cref="DataColumn"/> instance.
 	/// </summary>
-	public DataColumn()
-	{
-		DefaultStyleKey = typeof(ContentControl);
-
-		Padding = new(4, 0, 4, 0);
-		HorizontalContentAlignment = HorizontalAlignment.Stretch;
-		VerticalContentAlignment = VerticalAlignment.Center;
-	}
+	public DataColumn() => DefaultStyleKey = typeof(DataColumn);
 
 
 	/// <summary>
@@ -60,6 +53,8 @@ public partial class DataColumn : ContentControl
 		if (PART_ColumnSizer is not null)
 		{
 			PART_ColumnSizer.TargetControl = null;
+			PART_ColumnSizer.ManipulationDelta -= PART_ColumnSizer_ManipulationDelta;
+			PART_ColumnSizer.ManipulationCompleted -= PART_ColumnSizer_ManipulationCompleted;
 		}
 
 		PART_ColumnSizer = GetTemplateChild(nameof(PART_ColumnSizer)) as ContentSizer;
@@ -67,6 +62,8 @@ public partial class DataColumn : ContentControl
 		if (PART_ColumnSizer is not null)
 		{
 			PART_ColumnSizer.TargetControl = this;
+			PART_ColumnSizer.ManipulationDelta += PART_ColumnSizer_ManipulationDelta;
+			PART_ColumnSizer.ManipulationCompleted += PART_ColumnSizer_ManipulationCompleted;
 		}
 
 		// Get DataTable parent weak reference for when we manipulate columns.

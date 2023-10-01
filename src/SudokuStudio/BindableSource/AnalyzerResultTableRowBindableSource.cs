@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 
@@ -45,31 +46,30 @@ internal sealed class AnalyzerResultTableRowBindableSource
 	/// </param>
 	/// <returns>The result list of <see cref="AnalyzerResultTableRowBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static IEnumerable<AnalyzerResultTableRowBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
-	{
-		if (analyzerResult is not { IsSolved: true, Steps: var steps })
+	public static ObservableCollection<AnalyzerResultTableRowBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
+		=> analyzerResult switch
 		{
-			throw new InvalidOperationException("This method requires the puzzle having been solved, and has a unique solution.");
-		}
-
-		return
-			from step in steps
-			orderby step.DifficultyLevel, step.Code
-			group step by step.Name into stepGroup
-			let stepGroupArray = (Step[])[.. stepGroup]
-			let difficultyLevels =
-				from step in stepGroupArray
-				group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
-				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
-				orderby targetDifficultyLevel
-				select targetDifficultyLevel
-			select new AnalyzerResultTableRowBindableSource
-			{
-				TechniqueName = stepGroup.Key,
-				CountOfSteps = stepGroupArray.Length,
-				DifficultyLevel = difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
-				TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
-				MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
-			};
-	}
+			{ IsSolved: true, Steps: var steps } => [
+				..
+				from step in steps
+				orderby step.DifficultyLevel, step.Code
+				group step by step.Name into stepGroup
+				let stepGroupArray = (Step[])[.. stepGroup]
+				let difficultyLevels =
+					from step in stepGroupArray
+					group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
+					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
+					orderby targetDifficultyLevel
+					select targetDifficultyLevel
+				select new AnalyzerResultTableRowBindableSource
+				{
+					TechniqueName = stepGroup.Key,
+					CountOfSteps = stepGroupArray.Length,
+					DifficultyLevel = difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
+					TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
+					MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
+				}
+			],
+			_ => throw new InvalidOperationException("This method requires the puzzle having been solved, and has a unique solution.")
+		};
 }
