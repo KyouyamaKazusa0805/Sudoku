@@ -4,47 +4,48 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:c="using:CommunityToolkit.WinUI.UI.Controls"
+	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:model="using:SudokuStudio.BindableSource"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:Summary}">
+	xmlns:wc="using:CommunityToolkit.WinUI.UI.Controls"
+	mc:Ignorable="d c" d:DataContext="{d:DesignInstance Type=pa:Summary}">
 	<ScrollViewer>
 		<StackPanel Orientation="Vertical" Spacing="6">
-			<c:DataGrid
+			<wc:DataGrid
 				x:Name="SummaryTable" HorizontalScrollBarVisibility="Visible"
 				Visibility="{x:Bind cvt:AnalyzeConversion.GetSummaryTableVisibility(SummaryTable.ItemsSource),Mode=OneWay}"
 				VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
 				CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
 				AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
 				HorizontalAlignment="Center" VerticalAlignment="Top" RowBackground="White" GridLinesVisibility="All" Margin="12">
-				<c:DataGrid.Resources>
+				<wc:DataGrid.Resources>
 					<Style x:Key="LabelStyle" TargetType="TextBlock">
 						<Setter Property="HorizontalAlignment" Value="Center" />
 						<Setter Property="VerticalAlignment" Value="Center" />
 						<Setter Property="HorizontalAlignment" Value="Right" />
 						<Setter Property="Margin" Value="10,0" />
 					</Style>
-				</c:DataGrid.Resources>
-				<c:DataGrid.Columns>
-					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}">
-						<c:DataGridTemplateColumn.CellTemplate>
-							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
+				</wc:DataGrid.Resources>
+				<wc:DataGrid.Columns>
+					<wc:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}">
+						<wc:DataGridTemplateColumn.CellTemplate>
+							<DataTemplate x:DataType="model:SummaryViewBindableSource">
 								<TextBlock Text="{x:Bind TechniqueName}" Style="{StaticResource LabelStyle}" />
 							</DataTemplate>
-						</c:DataGridTemplateColumn.CellTemplate>
-					</c:DataGridTemplateColumn>
-					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueCount}">
-						<c:DataGridTemplateColumn.CellTemplate>
-							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
+						</wc:DataGridTemplateColumn.CellTemplate>
+					</wc:DataGridTemplateColumn>
+					<wc:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_TechniqueCount}">
+						<wc:DataGridTemplateColumn.CellTemplate>
+							<DataTemplate x:DataType="model:SummaryViewBindableSource">
 								<TextBlock Text="{x:Bind CountOfSteps}" Style="{StaticResource LabelStyle}" />
 							</DataTemplate>
-						</c:DataGridTemplateColumn.CellTemplate>
-					</c:DataGridTemplateColumn>
-					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyLevel}">
-						<c:DataGridTemplateColumn.CellTemplate>
-							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
+						</wc:DataGridTemplateColumn.CellTemplate>
+					</wc:DataGridTemplateColumn>
+					<wc:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyLevel}">
+						<wc:DataGridTemplateColumn.CellTemplate>
+							<DataTemplate x:DataType="model:SummaryViewBindableSource">
 								<Border
 									Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
 									CornerRadius="5" Margin="24,3">
@@ -53,24 +54,69 @@
 										HorizontalAlignment="Center" Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
 								</Border>
 							</DataTemplate>
-						</c:DataGridTemplateColumn.CellTemplate>
-					</c:DataGridTemplateColumn>
-					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyTotal}">
-						<c:DataGridTemplateColumn.CellTemplate>
-							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
+						</wc:DataGridTemplateColumn.CellTemplate>
+					</wc:DataGridTemplateColumn>
+					<wc:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyTotal}">
+						<wc:DataGridTemplateColumn.CellTemplate>
+							<DataTemplate x:DataType="model:SummaryViewBindableSource">
 								<TextBlock Text="{x:Bind TotalDifficulty}" Style="{StaticResource LabelStyle}" />
 							</DataTemplate>
-						</c:DataGridTemplateColumn.CellTemplate>
-					</c:DataGridTemplateColumn>
-					<c:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyMax}">
-						<c:DataGridTemplateColumn.CellTemplate>
-							<DataTemplate x:DataType="model:AnalyzerResultTableRowBindableSource">
+						</wc:DataGridTemplateColumn.CellTemplate>
+					</wc:DataGridTemplateColumn>
+					<wc:DataGridTemplateColumn Header="{m:R Key=AnalyzePage_DifficultyMax}">
+						<wc:DataGridTemplateColumn.CellTemplate>
+							<DataTemplate x:DataType="model:SummaryViewBindableSource">
 								<TextBlock Text="{x:Bind MaximumDifficulty}" Style="{StaticResource LabelStyle}" />
 							</DataTemplate>
-						</c:DataGridTemplateColumn.CellTemplate>
-					</c:DataGridTemplateColumn>
-				</c:DataGrid.Columns>
-			</c:DataGrid>
+						</wc:DataGridTemplateColumn.CellTemplate>
+					</wc:DataGridTemplateColumn>
+				</wc:DataGrid.Columns>
+			</wc:DataGrid>
+			<!--
+			<ListView x:Name="SummaryTable">
+				<ListView.Header>
+					<c:DataTable Margin="12,0,0,0">
+						<c:DataColumn DesiredWidth="*">
+							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}" />
+						</c:DataColumn>
+						<c:DataColumn MinWidth="120">
+							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_TechniqueCount}" />
+						</c:DataColumn>
+						<c:DataColumn DesiredWidth="80">
+							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyLevel}" />
+						</c:DataColumn>
+						<c:DataColumn DesiredWidth="50">
+							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyTotal}" />
+						</c:DataColumn>
+						<c:DataColumn DesiredWidth="50">
+							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyMax}" />
+						</c:DataColumn>
+					</c:DataTable>
+				</ListView.Header>
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="model:SummaryViewBindableSource">
+						<c:DataRow>
+							<TextBlock VerticalAlignment="Center" Text="{x:Bind TechniqueName}" />
+							<TextBlock VerticalAlignment="Center" Text="{x:Bind CountOfSteps}" />
+							<Border
+								Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
+								CornerRadius="5" Margin="24,3">
+								<TextBlock
+									Text="{x:Bind cvt:DifficultyLevelConversion.GetName(DifficultyLevel)}" Style="{StaticResource LabelStyle}"
+									HorizontalAlignment="Center" Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
+							</Border>
+							<TextBlock VerticalAlignment="Center" Text="{x:Bind TotalDifficulty}" />
+							<TextBlock VerticalAlignment="Center" Text="{x:Bind MaximumDifficulty}" />
+						</c:DataRow>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+				<ListView.ItemContainerStyle>
+					<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+						<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					</Style>
+				</ListView.ItemContainerStyle>
+			</ListView>
+			-->
 		</StackPanel>
 	</ScrollViewer>
 </Page>

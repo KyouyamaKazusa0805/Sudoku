@@ -26,12 +26,8 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="c:DataColumn">
 						<Grid
-							Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+							ColumnDefinitions="*,Auto" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
 							BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="*" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
 							<ContentPresenter
 								Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 								VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Foreground="{TemplateBinding Foreground}" />

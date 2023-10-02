@@ -118,49 +118,6 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource">
-            <summary>
-            Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
-            using technique name to distinct them.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty of all steps.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.MaximumDifficulty">
-            <summary>
-            Indicates the maximum difficulty in the steps.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.CountOfSteps">
-            <summary>
-            Indicates the number of steps that uses logic of the current technique.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.TechniqueName">
-            <summary>
-            Indicates the technique name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the technique belonging to.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
-            <summary>
-            Creates the list of <see cref="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource"/> as the result value,
-            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
-            </summary>
-            <param name="analyzerResult">
-            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
-            </param>
-            <returns>The result list of <see cref="T:SudokuStudio.BindableSource.AnalyzerResultTableRowBindableSource"/>-typed elements.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-        </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
             <summary>
             Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
@@ -300,6 +257,49 @@
             <summary>
             Indicates the supported difficulty levels.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.SummaryViewBindableSource">
+            <summary>
+            Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
+            using technique name to distinct them.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty of all steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.MaximumDifficulty">
+            <summary>
+            Indicates the maximum difficulty in the steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.CountOfSteps">
+            <summary>
+            Indicates the number of steps that uses logic of the current technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.TechniqueName">
+            <summary>
+            Indicates the technique name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.SummaryViewBindableSource.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the technique belonging to.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Creates the list of <see cref="T:SudokuStudio.BindableSource.SummaryViewBindableSource"/> as the result value,
+            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
+            </summary>
+            <param name="analyzerResult">
+            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
+            </param>
+            <returns>The result list of <see cref="T:SudokuStudio.BindableSource.SummaryViewBindableSource"/>-typed elements.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueBindableSource">
             <summary>
@@ -3790,6 +3790,20 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Microsoft.UI.Xaml.Thickness.Right"/>
         </member>
         <member name="M:SudokuStudio.Markup.ThicknessExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Markup.UriExtension">
+            <summary>
+            Represents a markup extension for creating a <see cref="T:System.Uri"/> instance.
+            </summary>
+            <seealso cref="T:System.Uri"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.UriExtension.Text">
+            <summary>
+            Indicates the text to be assigned.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.UriExtension.ProvideValue">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.ProjectWideConstants">
@@ -7975,6 +7989,14 @@ if (student is (name: var name, age: >= 18))
             their configured properties (akin to <see cref="T:Microsoft.UI.Xaml.Controls.ColumnDefinition"/>); similar to a <see cref="T:Sudoku.Concepts.Grid"/> with a single row.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.DataTable.Rows">
+            <summary>
+            The internal field storing rows.
+            </summary>
+            <remarks>
+            TODO: Check with Sergio if there's a better structure here, as I don't need a Dictionary like ConditionalWeakTable
+            </remarks>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.DataTable.ColumnResized">
             <summary>
             Called when column is re-sized.
@@ -9256,31 +9278,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
-        </member>
-        <member name="T:SudokuStudio.Views.Controls.SummaryView">
-            <summary>
-            Represents for a summary view.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SummaryView.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Controls.SummaryView"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SummaryView.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SummaryView.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SummaryView.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>

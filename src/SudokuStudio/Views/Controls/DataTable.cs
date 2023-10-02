@@ -1,6 +1,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
+// https://github.com/CommunityToolkit/Labs-Windows/blob/main/components/DataTable/src/DataTable/DataTable.cs
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -16,10 +17,12 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<double>("ColumnSpacing", DocSummary = "Gets or sets the amount of space to place between columns within the table.")]
 public partial class DataTable : Panel
 {
-	// TODO: We should cache this result and update if column properties change
-	internal bool IsAnyColumnAuto => Children.Any(static e => e is DataColumn { CurrentWidth.GridUnitType: GridUnitType.Auto });
-
-	// TODO: Check with Sergio if there's a better structure here, as I don't need a Dictionary like ConditionalWeakTable
+	/// <summary>
+	/// The internal field storing rows.
+	/// </summary>
+	/// <remarks>
+	/// TODO: Check with Sergio if there's a better structure here, as I don't need a Dictionary like ConditionalWeakTable
+	/// </remarks>
 	internal HashSet<DataRow> Rows { get; private set; } = new();
 
 

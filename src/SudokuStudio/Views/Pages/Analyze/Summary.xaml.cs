@@ -30,6 +30,6 @@ public sealed partial class Summary : Page, IAnalyzeTabPage
 			return;
 		}
 
-		page.SummaryTable.ItemsSource = rawValue is AnalyzerResult value ? AnalyzerResultTableRowBindableSource.CreateListFrom(value) : null;
+		page.SummaryTable.ItemsSource = rawValue is AnalyzerResult value ? SummaryViewBindableSource.CreateListFrom(value) : null;
 	}
 }

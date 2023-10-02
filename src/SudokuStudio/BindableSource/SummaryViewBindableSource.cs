@@ -9,7 +9,7 @@ namespace SudokuStudio.BindableSource;
 /// using technique name to distinct them.
 /// </summary>
 /// <seealso cref="AnalyzerResult"/>
-internal sealed class AnalyzerResultTableRowBindableSource
+internal sealed class SummaryViewBindableSource
 {
 	/// <summary>
 	/// Indicates the total difficulty of all steps.
@@ -38,15 +38,15 @@ internal sealed class AnalyzerResultTableRowBindableSource
 
 
 	/// <summary>
-	/// Creates the list of <see cref="AnalyzerResultTableRowBindableSource"/> as the result value,
+	/// Creates the list of <see cref="SummaryViewBindableSource"/> as the result value,
 	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
 	/// </summary>
 	/// <param name="analyzerResult">
 	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
 	/// </param>
-	/// <returns>The result list of <see cref="AnalyzerResultTableRowBindableSource"/>-typed elements.</returns>
+	/// <returns>The result list of <see cref="SummaryViewBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static ObservableCollection<AnalyzerResultTableRowBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
+	public static ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
 		=> analyzerResult switch
 		{
 			{ IsSolved: true, Steps: var steps } => [
@@ -61,7 +61,7 @@ internal sealed class AnalyzerResultTableRowBindableSource
 					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 					orderby targetDifficultyLevel
 					select targetDifficultyLevel
-				select new AnalyzerResultTableRowBindableSource
+				select new SummaryViewBindableSource
 				{
 					TechniqueName = stepGroup.Key,
 					CountOfSteps = stepGroupArray.Length,
