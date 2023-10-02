@@ -2700,18 +2700,18 @@ namespace SudokuStudio.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Techniques Gallery.
         /// </summary>
-        internal static string MainWindow_TechniqueDebugger {
+        internal static string MainWindow_TechniqueGallery {
             get {
-                return ResourceManager.GetString("MainWindow_TechniqueDebugger", resourceCulture);
+                return ResourceManager.GetString("MainWindow_TechniqueGallery", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Techniques Gallery.
         /// </summary>
-        internal static string MainWindow_TechniqueDebuggerPageTitle {
+        internal static string MainWindow_TechniqueGalleryPageTitle {
             get {
-                return ResourceManager.GetString("MainWindow_TechniqueDebuggerPageTitle", resourceCulture);
+                return ResourceManager.GetString("MainWindow_TechniqueGalleryPageTitle", resourceCulture);
             }
         }
         

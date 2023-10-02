@@ -6022,12 +6022,12 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueDebugger">
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGallery">
             <summary>
               Looks up a localized string similar to Techniques Gallery.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueDebuggerPageTitle">
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGalleryPageTitle">
             <summary>
               Looks up a localized string similar to Techniques Gallery.
             </summary>

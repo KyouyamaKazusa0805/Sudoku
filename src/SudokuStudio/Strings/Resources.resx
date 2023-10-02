@@ -924,10 +924,10 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>Single Counting Practicing</value>
   </data>
-  <data name="MainWindow_TechniqueDebugger" xml:space="preserve">
+  <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>Techniques Gallery</value>
   </data>
-  <data name="MainWindow_TechniqueDebuggerPageTitle" xml:space="preserve">
+  <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>Techniques Gallery</value>
   </data>
   <data name="No" xml:space="preserve">

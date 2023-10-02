@@ -49,7 +49,13 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ### UI 项目
 
+#### 主页
+
 ![](docs/pic/winui.png)
+
+#### 技巧展览馆
+
+![](docs/pic/gallery.png)
 
 ## 支持的技巧
 

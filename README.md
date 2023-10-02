@@ -53,7 +53,13 @@ This repository is created for the following kinds of users:
 
 ### User Interface
 
+#### Main Page
+
 ![](docs/pic/winui.png)
+
+#### Technique Gallery Page
+
+![](docs/pic/gallery.png)
 
 ## Technique Supports
 

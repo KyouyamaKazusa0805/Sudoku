@@ -927,10 +927,10 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>唯余数数练习</value>
   </data>
-  <data name="MainWindow_TechniqueDebugger" xml:space="preserve">
+  <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>技巧展览馆</value>
   </data>
-  <data name="MainWindow_TechniqueDebuggerPageTitle" xml:space="preserve">
+  <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>技巧展览馆</value>
   </data>
   <data name="No" xml:space="preserve">

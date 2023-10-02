@@ -97,7 +97,7 @@ public sealed partial class MainWindow : Window
 			(container => container == AboutPageItem, typeof(AboutPage)),
 			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
 			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage)),
-			(container => container == TechniqueDebuggerPage, typeof(TechniqueGalleryPage))
+			(container => container == TechniqueGalleryPage, typeof(TechniqueGalleryPage))
 		];
 
 	/// <summary>
