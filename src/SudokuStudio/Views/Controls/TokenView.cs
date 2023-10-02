@@ -12,7 +12,6 @@ using Microsoft.UI.Xaml.Input;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using Windows.Foundation.Collections;
-using Windows.Foundation.Metadata;
 using Windows.System;
 
 namespace SudokuStudio.Views.Controls;
@@ -27,13 +26,40 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("CanRemoveTokens", DocSummary = "Gets or sets if tokens can be removed.")]
 public partial class TokenView : ListViewBase
 {
-	private const string TokenViewScrollViewerName = "ScrollViewer";
-	private const string TokenViewScrollBackButtonName = "ScrollBackButton";
-	private const string TokenViewScrollForwardButtonName = "ScrollForwardButton";
+	/// <summary>
+	/// The name of the token view scroll viewer control.
+	/// </summary>
+	protected internal const string TokenViewScrollViewerName = "ScrollViewer";
 
-	private int _internalSelectedIndex = -1;
+	/// <summary>
+	/// The name of the token view scroll-back button control.
+	/// </summary>
+	protected internal const string TokenViewScrollBackButtonName = "ScrollBackButton";
+
+	/// <summary>
+	/// The name of the token view scroll-forward button control.
+	/// </summary>
+	protected internal const string TokenViewScrollForwardButtonName = "ScrollForwardButton";
+
+
+	/// <summary>
+	/// The field that records the currently-selected index.
+	/// </summary>
+	private int _selectedIndex = -1;
+
+	/// <summary>
+	/// The scroll viewer control.
+	/// </summary>
 	private ScrollViewer? _tokenViewScroller;
+
+	/// <summary>
+	/// The button that can scroll back.
+	/// </summary>
 	private ButtonBase? _tokenViewScrollBackButton;
+
+	/// <summary>
+	/// The button that can scroll forward.
+	/// </summary>
 	private ButtonBase? _tokenViewScrollForwardButton;
 
 	/// <summary>
@@ -71,7 +97,7 @@ public partial class TokenView : ListViewBase
 	protected override void OnApplyTemplate()
 	{
 		base.OnApplyTemplate();
-		SelectedIndex = _internalSelectedIndex;
+		SelectedIndex = _selectedIndex;
 		PreviewKeyDown -= TokenView_PreviewKeyDown;
 		SizeChanged += TokenView_SizeChanged;
 		if (_tokenViewScroller is not null)
@@ -126,19 +152,9 @@ public partial class TokenView : ListViewBase
 	protected override void OnItemsChanged(object e) => base.OnItemsChanged((IVectorChangedEventArgs)e);
 
 
-	private bool RemoveItem()
-	{
-		if (GetCurrentContainerItem() is TokenItem currentContainerItem && currentContainerItem.IsRemoveable)
-		{
-			Items.Remove(currentContainerItem);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
+	/// <summary>
+	/// Update visibility of the scroll buttons.
+	/// </summary>
 	private void UpdateScrollButtonsVisibility()
 	{
 		if (_tokenViewScrollForwardButton is not null && _tokenViewScroller is not null)
@@ -147,18 +163,16 @@ public partial class TokenView : ListViewBase
 		}
 	}
 
+	/// <summary>
+	/// Get the current container item.
+	/// </summary>
+	/// <returns>The container item.</returns>
 	private TokenItem? GetCurrentContainerItem()
-	{
-		if (ControlHelpers.IsXamlRootAvailable && XamlRoot is not null)
-		{
-			return FocusManager.GetFocusedElement(XamlRoot) as TokenItem;
-		}
-		else
-		{
-			return FocusManager.GetFocusedElement() as TokenItem;
-		}
-	}
+		=> (XamlRoot is not null ? FocusManager.GetFocusedElement(XamlRoot) : FocusManager.GetFocusedElement()) as TokenItem;
 
+	/// <summary>
+	/// Call this method when the property <see cref="IsWrapped"/> is changed.
+	/// </summary>
 	private void OnIsWrappedChanged()
 	{
 		if (_tokenViewScroller is not null)
@@ -167,6 +181,9 @@ public partial class TokenView : ListViewBase
 		}
 	}
 
+	/// <summary>
+	/// Call this method when the property <see cref="CanRemoveTokens"/> is changed.
+	/// </summary>
 	private void OnCanRemoveTokensChanged()
 	{
 	}
@@ -184,10 +201,10 @@ public partial class TokenView : ListViewBase
 	private void SelectedIndex_PropertyChanged(DependencyObject sender, DependencyProperty dp)
 	{
 		// This is a workaround for https://github.com/microsoft/microsoft-ui-xaml/issues/8257
-		if (_internalSelectedIndex == -1 && SelectedIndex > -1)
+		if (_selectedIndex == -1 && SelectedIndex > -1)
 		{
 			// We catch the correct SelectedIndex and save it.
-			_internalSelectedIndex = SelectedIndex;
+			_selectedIndex = SelectedIndex;
 		}
 	}
 
@@ -299,7 +316,7 @@ public partial class TokenView : ListViewBase
 		{
 			VirtualKey.Left => () => e.Handled = moveFocus(MoveDirection.Previous),
 			VirtualKey.Right => () => e.Handled = moveFocus(MoveDirection.Next),
-			VirtualKey.Back or VirtualKey.Delete => () => e.Handled = RemoveItem(),
+			VirtualKey.Back or VirtualKey.Delete => () => e.Handled = removeItem(),
 			_ => CommonMethods.DoNothing
 		});
 
@@ -345,6 +362,19 @@ public partial class TokenView : ListViewBase
 			}
 			return retVal;
 		}
+
+		bool removeItem()
+		{
+			if (GetCurrentContainerItem() is TokenItem currentContainerItem && currentContainerItem.IsRemoveable)
+			{
+				Items.Remove(currentContainerItem);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 
 	private void ItemsSource_PropertyChanged(DependencyObject sender, DependencyProperty dp)
@@ -356,12 +386,15 @@ public partial class TokenView : ListViewBase
 /// <summary>
 /// Represents an internal type describing move direction.
 /// </summary>
-file enum MoveDirection { Next, Previous }
-
-/// <summary>
-/// The internal helper methods provider.
-/// </summary>
-file static partial class ControlHelpers
+file enum MoveDirection
 {
-	internal static bool IsXamlRootAvailable { get; } = ApiInformation.IsPropertyPresent("Windows.UI.Xaml.UIElement", "XamlRoot");
+	/// <summary>
+	/// Indicates the move direction is to the next side.
+	/// </summary>
+	Next,
+
+	/// <summary>
+	/// Indicates the move direction is to the previous side.
+	/// </summary>
+	Previous
 }

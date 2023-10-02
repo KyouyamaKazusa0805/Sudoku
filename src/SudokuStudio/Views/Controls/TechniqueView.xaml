@@ -18,7 +18,7 @@
 				<StackPanel Margin="0,20">
 					<TextBlock Text="{x:Bind GroupFullName}" FontSize="20" FontWeight="Bold" Margin="0,0,0,8" />
 					<c:TokenView
-						SelectionMode="Single" IsWrapped="True" ItemsSource="{x:Bind Items}"
+						SelectionMode="None" IsWrapped="True" ItemsSource="{x:Bind Items}"
 						IsItemClickEnabled="{Binding SelectionMode,RelativeSource={RelativeSource Mode=Self},Converter={StaticResource SelectionModeToClickEnabledConverter},Mode=OneWay}"
 						Loaded="TokenView_Loaded" ItemClick="TokenView_ItemClick">
 						<c:TokenView.ItemTemplate>

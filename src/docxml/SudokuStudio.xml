@@ -9495,6 +9495,41 @@ if (student is (name: var name, age: >= 18))
             Represents for a token item.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IconLeftState">
+            <summary>
+            The template case for left-side icon state.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IconOnlyState">
+            <summary>
+            The template case for icon-only state.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.ContentOnlyState">
+            <summary>
+            The template case for content-only state.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.RemoveButtonVisibleState">
+            <summary>
+            The template case for the state remove-button being visible.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.RemoveButtonNotVisibleState">
+            <summary>
+            The template case for the state remove-button being invisible.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.TokenItemRemoveButtonName">
+            <summary>
+            The name of the token item remove button in the template.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem._tokenItemRemoveButton">
+            <summary>
+            The target remove button control.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.TokenItem.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.TokenItem"/> instance.
@@ -9525,6 +9560,21 @@ if (student is (name: var name, age: >= 18))
             <param name="oldValue">The original value.</param>
             <param name="newValue">The new value.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.ContentChanged">
+            <summary>
+            Call this method when the content is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.IconChanged">
+            <summary>
+            Call this method when the icon is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.IsRemoveableChanged">
+            <summary>
+            Call this method when <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/> is changed.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.TokenItem.IsRemoveableProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>.
@@ -9550,6 +9600,41 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Views.Controls.TokenView">
             <summary>
             This is an controĺ easily visualize tokens, to create filtering experiences.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView.TokenViewScrollViewerName">
+            <summary>
+            The name of the token view scroll viewer control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView.TokenViewScrollBackButtonName">
+            <summary>
+            The name of the token view scroll-back button control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView.TokenViewScrollForwardButtonName">
+            <summary>
+            The name of the token view scroll-forward button control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView._selectedIndex">
+            <summary>
+            The field that records the currently-selected index.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView._tokenViewScroller">
+            <summary>
+            The scroll viewer control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView._tokenViewScrollBackButton">
+            <summary>
+            The button that can scroll back.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView._tokenViewScrollForwardButton">
+            <summary>
+            The button that can scroll forward.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Controls.TokenView._removeItemsSourceMethod">
@@ -9596,6 +9681,27 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Controls.TokenView.OnItemsChanged(System.Object)">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.UpdateScrollButtonsVisibility">
+            <summary>
+            Update visibility of the scroll buttons.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.GetCurrentContainerItem">
+            <summary>
+            Get the current container item.
+            </summary>
+            <returns>The container item.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnIsWrappedChanged">
+            <summary>
+            Call this method when the property <see cref="P:SudokuStudio.Views.Controls.TokenView.IsWrapped"/> is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnCanRemoveTokensChanged">
+            <summary>
+            Call this method when the property <see cref="P:SudokuStudio.Views.Controls.TokenView.CanRemoveTokens"/> is changed.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.TokenView.IsWrappedProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenView.IsWrapped"/>.
@@ -9623,9 +9729,14 @@ if (student is (name: var name, age: >= 18))
             Represents an internal type describing move direction.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Controls.ControlHelpers">
+        <member name="F:SudokuStudio.Views.Controls.MoveDirection.Next">
             <summary>
-            The internal helper methods provider.
+            Indicates the move direction is to the next side.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.MoveDirection.Previous">
+            <summary>
+            Indicates the move direction is to the previous side.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">

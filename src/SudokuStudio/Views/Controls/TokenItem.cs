@@ -20,12 +20,40 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<IconElement>("Icon", DocSummary = "Gets or sets the icon.")]
 public partial class TokenItem : ListViewItem
 {
-	internal const string IconLeftState = "IconLeft";
-	internal const string IconOnlyState = "IconOnly";
-	internal const string ContentOnlyState = "ContentOnly";
-	internal const string RemoveButtonVisibleState = "RemoveButtonVisible";
-	internal const string RemoveButtonNotVisibleState = "RemoveButtonNotVisible";
-	internal const string TokenItemRemoveButtonName = "PART_RemoveButton";
+	/// <summary>
+	/// The template case for left-side icon state.
+	/// </summary>
+	protected internal const string IconLeftState = "IconLeft";
+
+	/// <summary>
+	/// The template case for icon-only state.
+	/// </summary>
+	protected internal const string IconOnlyState = "IconOnly";
+
+	/// <summary>
+	/// The template case for content-only state.
+	/// </summary>
+	protected internal const string ContentOnlyState = "ContentOnly";
+
+	/// <summary>
+	/// The template case for the state remove-button being visible.
+	/// </summary>
+	protected internal const string RemoveButtonVisibleState = "RemoveButtonVisible";
+
+	/// <summary>
+	/// The template case for the state remove-button being invisible.
+	/// </summary>
+	protected internal const string RemoveButtonNotVisibleState = "RemoveButtonNotVisible";
+
+	/// <summary>
+	/// The name of the token item remove button in the template.
+	/// </summary>
+	protected internal const string TokenItemRemoveButtonName = "PART_RemoveButton";
+
+
+	/// <summary>
+	/// The target remove button control.
+	/// </summary>
 	internal ButtonBase? _tokenItemRemoveButton;
 
 
@@ -84,10 +112,19 @@ public partial class TokenItem : ListViewItem
 	/// <param name="newValue">The new value.</param>
 	protected virtual void OnIsRemoveablePropertyChanged(bool oldValue, bool newValue) => IsRemoveableChanged();
 
+	/// <summary>
+	/// Call this method when the content is changed.
+	/// </summary>
 	private void ContentChanged() => VisualStateManager.GoToState(this, Content is not null ? IconLeftState : IconOnlyState, true);
 
+	/// <summary>
+	/// Call this method when the icon is changed.
+	/// </summary>
 	private void IconChanged() => VisualStateManager.GoToState(this, Icon is not null ? IconLeftState : ContentOnlyState, true);
 
+	/// <summary>
+	/// Call this method when <see cref="IsRemoveable"/> is changed.
+	/// </summary>
 	private void IsRemoveableChanged()
 		=> VisualStateManager.GoToState(this, IsRemoveable ? RemoveButtonVisibleState : RemoveButtonNotVisibleState, true);
 
