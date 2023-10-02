@@ -3551,6 +3551,30 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is multiple-selection.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.TokenItemRemovingEventArgs">
+            <summary>
+            Represents for event handler data provider.
+            </summary>
+            <param name="item">Item being removed.</param>
+            <param name="tokenItem"><see cref="P:SudokuStudio.Interaction.TokenItemRemovingEventArgs.TokenItem"/> container being closed.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.TokenItemRemovingEventArgs.#ctor(System.Object,SudokuStudio.Views.Controls.TokenItem)">
+            <summary>
+            Represents for event handler data provider.
+            </summary>
+            <param name="item">Item being removed.</param>
+            <param name="tokenItem"><see cref="P:SudokuStudio.Interaction.TokenItemRemovingEventArgs.TokenItem"/> container being closed.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.TokenItemRemovingEventArgs.Item">
+            <summary>
+            The generated property declaration for parameter <c>item</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.TokenItemRemovingEventArgs.TokenItem">
+            <summary>
+            The generated property declaration for parameter <c>tokenItem</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.DoubleToDecimalConverter">
             <summary>
             Represents a type that can convert values from <see cref="T:System.Double"/> to <see cref="T:System.Decimal"/>, or vice versa.
@@ -9502,6 +9526,144 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques">
             <summary>
             Indicates the final selected techniques.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TokenItem">
+            <summary>
+            Represents for a token item.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TokenItem"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.TokenItem.Removing">
+            <summary>
+            Fired when the Tab's close button is clicked.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.OnApplyTemplate">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.OnContentChanged(System.Object,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.OnIconPropertyChanged(Microsoft.UI.Xaml.Controls.IconElement,Microsoft.UI.Xaml.Controls.IconElement)">
+            <summary>
+            Callback method for changing <see cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/> property.
+            </summary>
+            <param name="oldValue">The original value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenItem.OnIsRemoveablePropertyChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Callback method for changing <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/> property.
+            </summary>
+            <param name="oldValue">The original value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IsRemoveableProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IconProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable">
+            <summary>
+            Gets or sets a value indicating whether the tab can be closed by the user with the close button.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TokenItem.Icon">
+            <summary>
+            Gets or sets the icon.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TokenView">
+            <summary>
+            This is an controĺ easily visualize tokens, to create filtering experiences.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView._removeItemsSourceMethod">
+            <summary>
+            Temporary tracking of previous collections for removing events.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:SudokuStudio.Views.Controls.TokenView"/> class.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.TokenView.TokenItemRemoving">
+            <summary>
+            Triggers when an item is removing.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.GetContainerForItemOverride">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.IsItemItsOwnContainerOverride(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnApplyTemplate">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.PrepareContainerForItemOverride(Microsoft.UI.Xaml.DependencyObject,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnIsWrappedPropertyChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Triggers when <see cref="P:SudokuStudio.Views.Controls.TokenView.IsWrapped"/> is changed.
+            </summary>
+            <param name="oldValue">The original value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnCanRemoveTokensPropertyChanged(System.Boolean,System.Boolean)">
+            <summary>
+            Triggers when <see cref="P:SudokuStudio.Views.Controls.TokenView.CanRemoveTokens"/> is changed.
+            </summary>
+            <param name="oldValue">The original value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TokenView.OnItemsChanged(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView.IsWrappedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenView.IsWrapped"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenView.IsWrapped"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenView.CanRemoveTokensProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenView.CanRemoveTokens"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenView.CanRemoveTokens"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TokenView.IsWrapped">
+            <summary>
+            Gets or sets if tokens are wrapped.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TokenView.CanRemoveTokens">
+            <summary>
+            Gets or sets if tokens can be removed.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.MoveDirection">
+            <summary>
+            Represents an internal type describing move direction.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.ControlHelpers">
+            <summary>
+            The internal helper methods provider.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.AnalyzePage">

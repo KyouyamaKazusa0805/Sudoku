@@ -9,6 +9,12 @@ namespace System;
 public static class CommonMethods
 {
 	/// <summary>
+	/// Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void DoNothing() { }
+
+	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value.
 	/// </summary>
 	/// <typeparam name="T">The type of the value.</typeparam>
