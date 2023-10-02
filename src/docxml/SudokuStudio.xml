@@ -3663,6 +3663,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter">
+            <summary>
+            Represents a value converter that can convert the value from <see cref="T:Microsoft.UI.Xaml.Controls.SelectionMode"/> to <see cref="T:System.Boolean"/>
+            indicating whether the item of type <see cref="T:Microsoft.UI.Xaml.Controls.ListViewItem"/> can be selected.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.SelectionMode"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.ListViewItem"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.StepTooltipDisplayItemToBooleanConverter">
             <summary>
             Represents a value converter that can convert a <see cref="T:SudokuStudio.Interaction.StepTooltipDisplayItems"/> to a <see cref="T:System.Boolean"/> value.
@@ -3705,18 +3719,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter">
-            <summary>
-            Defines a value converter that converts the value from <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> to a <see cref="T:System.Boolean"/> value, or vice versa.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.ValueConverters.TechniqueSetToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Markup.EmptyStringExtension">
@@ -9404,59 +9406,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the selected index.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Controls.TechniqueToggleButton">
-            <summary>
-            Represents for a technique toggle button.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueToggleButton"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.OnToggle">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueToggleButton.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentViewProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueToggleButton.SourceProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.Source"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueToggleButton.Source"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueToggleButton.ParentView">
-            <summary>
-            Indicates the parent view.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueToggleButton.Source">
-            <summary>
-            Indicates the source.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueView">
             <summary>
             Represents for a technique view.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView._tokenViews">
+            <summary>
+            Indicates the internal token views.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueView.#ctor">
@@ -9467,6 +9424,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.TechniqueView.ItemsSource">
             <summary>
             The items source.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.TokenItems">
+            <summary>
+            The entry that can traverse for all tokens.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueView.InitializeComponent">

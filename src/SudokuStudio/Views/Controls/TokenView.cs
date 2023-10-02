@@ -318,7 +318,7 @@ public partial class TokenView : ListViewBase
 				{
 					if (previousIndex > 0)
 					{
-						index -= 1;
+						index--;
 					}
 					else
 					{
@@ -329,7 +329,7 @@ public partial class TokenView : ListViewBase
 				{
 					if (previousIndex < Items.Count - 1)
 					{
-						index += 1;
+						index++;
 					}
 				}
 

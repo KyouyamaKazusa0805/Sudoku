@@ -108,9 +108,6 @@
 		<Page Update="Views\Controls\DataColumn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Controls\TechniqueToggleButton.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\TechniqueDebuggerPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

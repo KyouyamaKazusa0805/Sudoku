@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
@@ -324,22 +323,6 @@ public partial struct TechniqueSet :
 		}
 
 		_techniqueBits.Set((int)item, false);
-		return true;
-	}
-
-	/// <summary>
-	/// Clears the collection, and add a new technique into it.
-	/// </summary>
-	/// <param name="item">A technique to be added.</param>
-	/// <returns>
-	/// A <see cref="bool"/> result indicating whether the current technique is successfully added, and all other techniques are removed.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-	public bool Replace(Technique item)
-	{
-		_techniqueBits.SetAll(false);
-		_techniqueBits.Set((int)item, true);
 		return true;
 	}
 

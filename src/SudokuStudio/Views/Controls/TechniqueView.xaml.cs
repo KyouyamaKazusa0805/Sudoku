@@ -21,6 +21,12 @@ public sealed partial class TechniqueView : UserControl
 
 
 	/// <summary>
+	/// Indicates the internal token views.
+	/// </summary>
+	private readonly List<TokenView> _tokenViews = [];
+
+
+	/// <summary>
 	/// Initializes a <see cref="TechniqueView"/> instance.
 	/// </summary>
 	public TechniqueView() => InitializeComponent();
@@ -40,48 +46,58 @@ public sealed partial class TechniqueView : UserControl
 			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup])
 		];
 
+	/// <summary>
+	/// The entry that can traverse for all tokens.
+	/// </summary>
+	private Dictionary<Technique, TokenItem> TokenItems
+		=> new(
+			from view in _tokenViews
+			from item in view.Items
+			let tokenItem = item as TokenItem
+			where tokenItem is not null
+			let tag = (Technique)tokenItem.Tag!
+			select new KeyValuePair<Technique, TokenItem>(tag, tokenItem)
+		);
 
-	private void TokenButton_Checked(object sender, RoutedEventArgs e)
+
+	[Callback]
+	private static void SelectedTechniquesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (SelectionMode == TechniqueViewSelectionMode.None)
+		if ((d, e) is (TechniqueView view, { NewValue: TechniqueSet set }))
 		{
-			return;
-		}
-
-		var techniqueField = ((TechniqueToggleButton)sender).Source.TechniqueField;
-		_ = SelectionMode == TechniqueViewSelectionMode.Single
-			? SelectedTechniques.Replace(techniqueField)
-			: SelectedTechniques.Add(techniqueField);
-
-		if (SelectionMode == TechniqueViewSelectionMode.Single)
-		{
-			foreach (var control in MainListView.ItemsPanelRoot.Children)
+			foreach (var (technique, tokenItem) in view.TokenItems)
 			{
-				foreach (var childForGrid in (control as GridLayout)?.Children ?? (IEnumerable<UIElement>)[])
+				if (set.Contains(technique))
 				{
-					if (childForGrid is ItemsRepeater { ItemsSourceView: var itemsSourceView })
-					{
-						for (var i = 0; i < itemsSourceView.Count; i++)
-						{
-							if (itemsSourceView.GetAt(i) is TechniqueToggleButton { Source.TechniqueField: var currentTechnique } button
-								&& !SelectedTechniques.Contains(currentTechnique))
-							{
-								button.IsChecked = false;
-							}
-						}
-					}
+					tokenItem.IsSelected = true;
 				}
 			}
 		}
 	}
 
-	private void TokenButton_Unchecked(object sender, RoutedEventArgs e)
-	{
-		if (SelectionMode == TechniqueViewSelectionMode.None)
-		{
-			return;
-		}
+	private void TokenView_Loaded(object sender, RoutedEventArgs e) => _tokenViews.Add((TokenView)sender);
 
-		SelectedTechniques.Remove(((TechniqueToggleButton)sender).Source.TechniqueField);
+	private void TokenView_ItemClick(object sender, ItemClickEventArgs e)
+	{
+		if (e is
+			{
+				OriginalSource: TokenItem { Tag: Technique field, IsSelected: var isSelected },
+				ClickedItem: TechniqueViewBindableSource
+			})
+		{
+			switch (isSelected)
+			{
+				case true when !SelectedTechniques.Contains(field):
+				{
+					SelectedTechniques.Add(field);
+					break;
+				}
+				case false when SelectedTechniques.Contains(field):
+				{
+					SelectedTechniques.Remove(field);
+					break;
+				}
+			}
+		}
 	}
 }
