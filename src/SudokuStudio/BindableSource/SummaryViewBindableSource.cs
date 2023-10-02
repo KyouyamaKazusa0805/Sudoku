@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.SourceGeneration;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 
@@ -8,35 +10,21 @@ namespace SudokuStudio.BindableSource;
 /// Represents a type that can be used for binding as source, for the table-like grid controls to display techniques used,
 /// using technique name to distinct them.
 /// </summary>
+/// <param name="techniqueName">Indicates the name of the technique.</param>
+/// <param name="difficultyLevel">Indicates the difficulty level of the technique.</param>
+/// <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
+/// <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
+/// <param name="countOfSteps">Indicates the number of steps in this group.</param>
 /// <seealso cref="AnalyzerResult"/>
-internal sealed class SummaryViewBindableSource
+[method: SetsRequiredMembers]
+internal sealed partial class SummaryViewBindableSource(
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] string techniqueName,
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] DifficultyLevel difficultyLevel,
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] decimal totalDifficulty,
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] decimal maximumDifficulty,
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] int countOfSteps
+)
 {
-	/// <summary>
-	/// Indicates the total difficulty of all steps.
-	/// </summary>
-	public required decimal TotalDifficulty { get; set; }
-
-	/// <summary>
-	/// Indicates the maximum difficulty in the steps.
-	/// </summary>
-	public required decimal MaximumDifficulty { get; set; }
-
-	/// <summary>
-	/// Indicates the number of steps that uses logic of the current technique.
-	/// </summary>
-	public required int CountOfSteps { get; set; }
-
-	/// <summary>
-	/// Indicates the technique name.
-	/// </summary>
-	public required string TechniqueName { get; set; }
-
-	/// <summary>
-	/// Indicates the difficulty level of the technique belonging to.
-	/// </summary>
-	public required DifficultyLevel DifficultyLevel { get; set; }
-
-
 	/// <summary>
 	/// Creates the list of <see cref="SummaryViewBindableSource"/> as the result value,
 	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
@@ -61,14 +49,13 @@ internal sealed class SummaryViewBindableSource
 					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 					orderby targetDifficultyLevel
 					select targetDifficultyLevel
-				select new SummaryViewBindableSource
-				{
-					TechniqueName = stepGroup.Key,
-					CountOfSteps = stepGroupArray.Length,
-					DifficultyLevel = difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
-					TotalDifficulty = stepGroupArray.Sum(static step => step.Difficulty),
-					MaximumDifficulty = stepGroupArray.Max(static step => step.Difficulty)
-				}
+				select new SummaryViewBindableSource(
+					stepGroup.Key,
+					difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
+					stepGroupArray.Sum(static step => step.Difficulty),
+					stepGroupArray.Max(static step => step.Difficulty),
+					stepGroupArray.Length
+				)
 			],
 			_ => throw new InvalidOperationException("This method requires the puzzle having been solved, and has a unique solution.")
 		};
