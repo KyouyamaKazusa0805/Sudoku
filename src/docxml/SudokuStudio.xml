@@ -11120,27 +11120,27 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.TechniqueDebuggerPage">
+        <member name="T:SudokuStudio.Views.Pages.TechniqueGalleryPage">
             <summary>
             A page that displays all techniques.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.#ctor">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.#ctor">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueDebuggerPage"/> instance.
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueGalleryPage"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.InitializeComponent">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.Connect(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueDebuggerPage.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
