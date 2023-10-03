@@ -18,13 +18,8 @@ public static class AssemblyExtensions
 	/// <returns>All possible derived types.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[RequiresUnreferencedCode("Types might be removed")]
-#if NATIVE_AOT
-	public static TypeArrayEnumerator GetDerivedTypes(this Assembly @this, Type baseType)
-		=> new(from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type);
-#else
 	public static Type[] GetDerivedTypes(this Assembly @this, Type baseType)
 		=> from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type;
-#endif
 
 	/// <inheritdoc cref="GetDerivedTypes(Assembly, Type)"/>
 	/// <typeparam name="TBase">The type as the base type.</typeparam>
@@ -32,11 +27,6 @@ public static class AssemblyExtensions
 	/// <returns><inheritdoc/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[RequiresUnreferencedCode("Types might be removed")]
-#if NATIVE_AOT
-	public static TypeArrayEnumerator GetDerivedTypes<TBase>(this Assembly @this)
-		=> new(from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type);
-#else
 	public static Type[] GetDerivedTypes<TBase>(this Assembly @this)
 		=> from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type;
-#endif
 }

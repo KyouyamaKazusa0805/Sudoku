@@ -12,9 +12,6 @@ using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
-#if NATIVE_AOT || DEBUG
-using Sudoku.Concepts.Serialization;
-#endif
 
 namespace Sudoku.Concepts;
 
@@ -1167,11 +1164,7 @@ file sealed class Converter : JsonConverter<CellMap>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CellMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-#if !(NATIVE_AOT || DEBUG)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
-#else
-		=> new(JsonSerializer.Deserialize(ref reader, new CellMapAndCandidateMapRawValueSerializationContext(options).Target)!);
-#endif
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)

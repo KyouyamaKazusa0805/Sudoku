@@ -173,9 +173,7 @@ public abstract partial class Step(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if NATIVE_AOT
 	[UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
-#endif
 	public sealed override bool Equals([NotNullWhen(true)] object? obj)
 	{
 		if (obj is not Step)

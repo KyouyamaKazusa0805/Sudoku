@@ -41,13 +41,6 @@
 				<DefineConstants>DEBUG</DefineConstants>
 			</PropertyGroup>
 		</When>
-		<When Condition="'$(Configuration)'=='Release' And '$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
-			<PropertyGroup>
-				<PublishAot>true</PublishAot>
-				<DefineConstants>NATIVE_AOT</DefineConstants>
-				<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-			</PropertyGroup>
-		</When>
 	</Choose>
 
 	<!--
