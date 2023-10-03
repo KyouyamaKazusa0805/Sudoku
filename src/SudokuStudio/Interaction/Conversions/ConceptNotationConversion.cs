@@ -1,6 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts;
 
 namespace SudokuStudio.Interaction.Conversions;
 

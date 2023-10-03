@@ -2972,6 +2972,31 @@ if (student is (name: var name, age: >= 18))
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.CoordinateType">
+            <summary>
+            Represents a type of notation to describe a coordinate in sudoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CoordinateType.Literal">
+            <summary>
+            Idnicates the notation is based on literally notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CoordinateType.RxCy">
+            <summary>
+            Indicates the notation is based on <b>RxCy</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CoordinateType.K9">
+            <summary>
+            Indicates the notation is based on <b>K9</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CoordinateType.Excel">
+            <summary>
+            Indicates the notation is based on <b>Excel</b> notation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -4410,6 +4435,120 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Parsers.HodokuTripletParser.Parser">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Parsers.K9Parser">
+            <summary>
+            Represents a parser type that uses <b>K9</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CellParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CandidateParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.HouseParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConclusionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.DigitParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ChuteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCellGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[a-k]+[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                ○ Match a character in the set [1-9] greedily at least once.<br/>
+                ○ Loop greedily any number of times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match ','.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                        ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 4th capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9].<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Concepts.Parsers.MultipleLineParser">
             <summary>
             Represents a table parser.
@@ -4489,6 +4628,176 @@ if (student is (name: var name, age: >= 18))
                         ○ Match a Unicode digit greedily any number of times.<br/>
                         ○ Match a character in the set [+-] atomically, optionally.<br/>
                         ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.RxCyParser">
+            <summary>
+            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CellParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CandidateParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.HouseParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConclusionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.DigitParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ChuteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCellGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match '('.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match ')'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] greedily at least once.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitHousePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rcb][1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [BCRbcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitIntersectionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rc][1-9]+b[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Bb].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitMegaLineGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>m[rc][1-3]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-3] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match ')'.<br/>
             </code>
             </remarks>
         </member>
@@ -6760,315 +7069,6 @@ if (student is (name: var name, age: >= 18))
             <param name="format">The format.</param>
             <returns>The grid formatter.</returns>
             <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
-        </member>
-        <member name="T:Sudoku.Text.Coordinate.CoordinateType">
-            <summary>
-            Represents a type of notation to describe a coordinate in sudoku.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Coordinate.CoordinateType.Literal">
-            <summary>
-            Idnicates the notation is based on literally notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Coordinate.CoordinateType.RxCy">
-            <summary>
-            Indicates the notation is based on <b>RxCy</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Coordinate.CoordinateType.K9">
-            <summary>
-            Indicates the notation is based on <b>K9</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Coordinate.CoordinateType.Excel">
-            <summary>
-            Indicates the notation is based on <b>Excel</b> notation.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.Coordinate.K9Parser">
-            <summary>
-            Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.K9Parser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.K9Parser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[a-k]+[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.K9Parser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.K9Parser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                ○ Match a character in the set [1-9] greedily at least once.<br/>
-                ○ Loop greedily any number of times.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match ','.<br/>
-                        ○ Match a whitespace character atomically any number of times.<br/>
-                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 4th capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.K9Parser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9].<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Text.Coordinate.RxCyParser">
-            <summary>
-            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Text.Coordinate.RxCyParser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match with 2 alternative expressions, atomically.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] greedily at least once.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitHousePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rcb][1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [BCRbcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitIntersectionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rc][1-9]+b[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Bb].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitMegaLineGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>m[rc][1-3]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Mm].<br/>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-3] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.Coordinate.RxCyParser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match ')'.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
             <summary>

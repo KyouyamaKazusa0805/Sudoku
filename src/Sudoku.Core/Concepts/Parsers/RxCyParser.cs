@@ -1,14 +1,12 @@
 using System.Numerics;
 using System.Text.RegularExpressions;
 using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Runtime.MaskServices;
 using static Sudoku.Concepts.Intersection;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents a parser type that uses <b>RxCy</b> notation rule to parse text,

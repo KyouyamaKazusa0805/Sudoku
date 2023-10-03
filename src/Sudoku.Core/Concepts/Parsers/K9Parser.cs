@@ -1,11 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 
-namespace Sudoku.Text.Coordinate;
+namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents a parser type that uses <b>K9</b> notation rule to parse text,

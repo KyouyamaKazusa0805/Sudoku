@@ -1,4 +1,4 @@
-#if NATIVE_AOT
+#if NATIVE_AOT || DEBUG
 using System.Text.Json.Serialization;
 
 namespace Sudoku.Concepts.Serialization;
@@ -10,6 +10,5 @@ namespace Sudoku.Concepts.Serialization;
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
 [JsonSerializable(typeof(string[]), GenerationMode = JsonSourceGenerationMode.Serialization, TypeInfoPropertyName = "Target")]
-[JsonSourceGenerationOptions(WriteIndented = true, DefaultIgnoreCondition = JsonIgnoreCondition.Always)]
 internal sealed partial class CellMapAndCandidateMapRawValueSerializationContext : JsonSerializerContext;
 #endif

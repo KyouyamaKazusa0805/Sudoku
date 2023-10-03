@@ -8,12 +8,12 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
-using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
-#if NATIVE_AOT
+#if NATIVE_AOT || DEBUG
 using Sudoku.Concepts.Serialization;
 #endif
 
@@ -842,7 +842,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CandidateMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-#if !NATIVE_AOT
+#if !(NATIVE_AOT || DEBUG)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 #else
 		=> new(JsonSerializer.Deserialize(ref reader, new CellMapAndCandidateMapRawValueSerializationContext(options).Target)!);

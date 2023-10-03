@@ -2,7 +2,6 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
-using Sudoku.Text.Coordinate;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;

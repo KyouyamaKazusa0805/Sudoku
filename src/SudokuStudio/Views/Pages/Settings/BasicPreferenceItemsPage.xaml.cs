@@ -1,7 +1,7 @@
 using System.Globalization;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Sudoku.Text.Coordinate;
+using Sudoku.Concepts;
 using SudokuStudio.Configuration;
 using Windows.UI;
 

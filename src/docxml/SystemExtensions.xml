@@ -883,39 +883,6 @@
             </list>
             </returns>
         </member>
-        <member name="T:System.Reflection.TypeArrayEnumerator">
-            <summary>
-            Represents a <see cref="T:System.Type"/> array enumerator. This type solves for trimming rule.
-            </summary>
-            <param name="types">The types.</param>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="M:System.Reflection.TypeArrayEnumerator.#ctor(System.Type[])">
-            <summary>
-            Represents a <see cref="T:System.Type"/> array enumerator. This type solves for trimming rule.
-            </summary>
-            <param name="types">The types.</param>
-            <seealso cref="T:System.Type"/>
-        </member>
-        <member name="F:System.Reflection.TypeArrayEnumerator._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.Reflection.TypeArrayEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:System.Reflection.TypeArrayEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Reflection.TypeArrayEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="F:System.Reflection.TypeArrayEnumerator._types">
-            <summary>
-            The generated field declaration for parameter <c>types</c>.
-            </summary>
-        </member>
         <member name="T:System.Reflection.TypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Type"/>.

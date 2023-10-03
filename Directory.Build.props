@@ -26,9 +26,6 @@
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 		<Feature>InterceptorsPreview</Feature>
-		<PublishAot>true</PublishAot>
-		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
-		<DefineConstants>NATIVE_AOT</DefineConstants>
 	</PropertyGroup>
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
@@ -44,13 +41,13 @@
 				<DefineConstants>DEBUG</DefineConstants>
 			</PropertyGroup>
 		</When>
-		<!--
-		<When Condition="'$(Configuration)'=='Release'">
+		<When Condition="'$(Configuration)'=='Release' And '$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
 			<PropertyGroup>
-				<DefineConstants>TRACE</DefineConstants>
+				<PublishAot>true</PublishAot>
+				<DefineConstants>NATIVE_AOT</DefineConstants>
+				<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 			</PropertyGroup>
 		</When>
-		-->
 	</Choose>
 
 	<!--
