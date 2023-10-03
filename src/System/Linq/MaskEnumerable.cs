@@ -27,4 +27,23 @@ public static class MaskEnumerable
 
 		return result;
 	}
+
+	/// <summary>
+	/// Filters bits via the specified condition.
+	/// </summary>
+	/// <param name="this">The mask type of bits.</param>
+	/// <param name="predicate">The condition that filters bits, removing bits not satisfying the condition.</param>
+	/// <returns>A new <see cref="Mask"/> result.</returns>
+	public static Mask Where(this Mask @this, Func<int, bool> predicate)
+	{
+		var result = (Mask)0;
+		foreach (var bitPos in @this)
+		{
+			if (predicate(bitPos))
+			{
+				result |= (Mask)(1 << bitPos);
+			}
+		}
+		return result;
+	}
 }
