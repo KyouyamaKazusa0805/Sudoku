@@ -40,7 +40,7 @@ public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, 
 	where THouse : unmanaged, IBinaryInteger<THouse>
 	where TBitStatusMap : unmanaged, IBitStatusMap<TBitStatusMap, TCell>
 	where TConclusion : IConclusion<TConclusion, TMask>
-	where TConjugate : IConjugatePair<TConjugate, THouseMask, TConjugateMask, TCell, TDigit, THouse, TBitStatusMap>
+	where TConjugate : IConjugate<TConjugate, THouseMask, TConjugateMask, TCell, TDigit, THouse, TBitStatusMap>
 {
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.

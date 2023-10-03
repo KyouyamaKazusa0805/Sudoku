@@ -6,7 +6,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
-using ConjugateImpl = IConjugatePair<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>;
+using ConjugateImpl = IConjugate<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>;
 
 /// <summary>
 /// Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.

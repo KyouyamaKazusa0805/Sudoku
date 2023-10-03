@@ -12,10 +12,10 @@ namespace Sudoku.Concepts.Primitive;
 /// <typeparam name="TDigit">The type of the digit.</typeparam>
 /// <typeparam name="THouse">The type of the house.</typeparam>
 /// <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
-public interface IConjugatePair<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap> :
+public interface IConjugate<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap> :
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>
-	where TSelf : IConjugatePair<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap>
+	where TSelf : IConjugate<TSelf, THouseMask, TMask, TCell, TDigit, THouse, TBitStatusMap>
 	where THouseMask : unmanaged, IBinaryInteger<THouseMask>
 	where TMask : unmanaged, IBinaryInteger<TMask>
 	where TCell : unmanaged, IBinaryInteger<TCell>

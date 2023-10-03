@@ -2466,7 +2466,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Conjugate.Map">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Conjugate.Sudoku#Concepts#Primitive#IConjugatePair{Sudoku#Concepts#Conjugate,System#Int32,System#Int32,System#Int32,System#Int32,System#Int32,Sudoku#Concepts#CellMap}#Mask">
+        <member name="P:Sudoku.Concepts.Conjugate.Sudoku#Concepts#Primitive#IConjugate{Sudoku#Concepts#Conjugate,System#Int32,System#Int32,System#Int32,System#Int32,System#Int32,Sudoku#Concepts#CellMap}#Mask">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Deconstruct(System.Int32@,System.Int32@)">
@@ -5268,7 +5268,7 @@ if (student is (name: var name, age: >= 18))
             Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConjugatePair`7">
+        <member name="T:Sudoku.Concepts.Primitive.IConjugate`7">
             <summary>
             Represents a role that describes for a conjugate pair.
             </summary>
@@ -5280,38 +5280,38 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="THouse">The type of the house.</typeparam>
             <typeparam name="TBitStatusMap">The type of the bit status map.</typeparam>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.From">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.From">
             <summary>
             Indicates the cell that starts with the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.To">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.To">
             <summary>
             Indicates the cell that ends with the conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.Digit">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.Digit">
             <summary>
             Indicates the digit used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.Line">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.Line">
             <summary>
             Indicates the line that two cells lie in.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.Map">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.Map">
             <summary>
             Indicates the full map of cells used.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.Houses">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.Houses">
             <summary>
             Indicates the house that two cells lie in.
             </summary>
             <remarks><inheritdoc cref="P:Sudoku.Concepts.CellMap.CoveredHouses"/></remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.IConjugatePair`7.Mask">
+        <member name="P:Sudoku.Concepts.Primitive.IConjugate`7.Mask">
             <summary>
             Indicates the backing mask value.
             </summary>
