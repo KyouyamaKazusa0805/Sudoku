@@ -1,4 +1,3 @@
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json;
