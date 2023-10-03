@@ -3483,7 +3483,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when the target text is <see langword="null"/>.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
@@ -6029,6 +6028,43 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext">
+            <summary>
+            Represents a <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> instance that can serialize and deserialize for a <see cref="T:System.String"/>[] values.
+            SUch raw values can be used for <see cref="T:Sudoku.Concepts.CellMap"/> and <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.Target">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Serialization.CellMapAndCandidateMapRawValueSerializationContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricType">
             <summary>

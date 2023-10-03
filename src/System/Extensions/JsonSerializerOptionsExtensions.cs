@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 
@@ -26,6 +27,8 @@ public static class JsonSerializerOptionsExtensions
 	/// </returns>
 	/// <seealso cref="JsonSerializerOptions.Converters"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[RequiresDynamicCode("Getting a converter for a type may require reflection which depends on runtime code generation.")]
+	[RequiresUnreferencedCode("Getting a converter for a type may require reflection which depends on unreferenced code.")]
 	public static JsonConverter<T> GetConverter<T, TConverter>(this JsonSerializerOptions @this) where TConverter : JsonConverter<T>, new()
 		=> (JsonConverter<T>?)@this.GetConverter(typeof(T)) ?? new TConverter();
 }

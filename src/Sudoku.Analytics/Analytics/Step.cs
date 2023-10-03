@@ -173,25 +173,33 @@ public abstract partial class Step(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#if NATIVE_AOT
+	[UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
+#endif
 	public sealed override bool Equals([NotNullWhen(true)] object? obj)
 	{
+		if (obj is not Step)
+		{
+			return false;
+		}
+
 		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
 		var (equalityContract, currentTypeEqualityContract) = (GetType(), typeof(Step));
-		return (
-			obj?.GetType() != equalityContract,
-			equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)),
-			equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>))
-		) switch
+		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
 		{
-			(true, _, _) => false,
-			(_, true, _) => (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
+			return (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])!,
-			(_, _, true) => (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
+				.Invoke(null, [this, obj])!;
+		}
+
+		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
+		{
+			return (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
 				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])! == 0,
-			_ => false
-		};
+				.Invoke(null, [this, obj])! == 0;
+		}
+
+		return false;
 	}
 
 	/// <summary>

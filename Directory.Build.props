@@ -21,15 +21,14 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
 
-	<!--Enables the preview features if the project is not the source generators.-->
+	<!--Enables the preview features and native AOT if the project is not the source generators.-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-	</PropertyGroup>
-
-	<!--Enables for preview features-->
-	<PropertyGroup Condition="'$(TargetFramework.StartsWith(`netstandard`))'=='false'">
 		<Feature>InterceptorsPreview</Feature>
+		<PublishAot>true</PublishAot>
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<DefineConstants>NATIVE_AOT</DefineConstants>
 	</PropertyGroup>
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->

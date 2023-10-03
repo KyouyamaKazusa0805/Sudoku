@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Metadata;
 
 namespace Sudoku.Analytics;
@@ -23,6 +25,7 @@ public abstract class StepSearcherPool
 	/// </param>
 	/// <returns>An array of <see cref="StepSearcher"/> instances found.</returns>
 	/// <seealso cref="SplitStepSearcherAttribute"/>
+	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
 	public static StepSearcher[] Default(bool expandSplitStepSearchers = true)
 	{
 		var result = new SortedList<int, StepSearcher>();
@@ -58,12 +61,10 @@ public abstract class StepSearcherPool
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the corresponding <see cref="Type"/> reflection result is not found.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[RequiresUnreferencedCode("Types might be removed.")]
 	public static StepSearcher[] GetStepSearchers(string typeName, bool expandSplitStepSearchers)
-		=> GetStepSearchers(
-			typeof(StepSearcher).Assembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")
-				?? throw new InvalidOperationException("The target reflection type is not found."),
-			expandSplitStepSearchers
-		);
+		=> GetStepSearchers(ThisAssembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")!, expandSplitStepSearchers);
 
 	/// <summary>
 	/// The internal method to get all <see cref="StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
@@ -74,7 +75,10 @@ public abstract class StepSearcherPool
 	/// </param>
 	/// <returns><inheritdoc cref="Default(bool)" path="/returns"/></returns>
 	/// <seealso cref="SplitStepSearcherAttribute"/>
-	public static StepSearcher[] GetStepSearchers(Type type, bool expandSplitStepSearchers)
+	public static StepSearcher[] GetStepSearchers(
+		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type type,
+		bool expandSplitStepSearchers
+	)
 	{
 		// Check whether the step searcher is marked 'SeparatedAttribute'.
 		switch ((SplitStepSearcherAttribute[])type.GetCustomAttributes<SplitStepSearcherAttribute>())

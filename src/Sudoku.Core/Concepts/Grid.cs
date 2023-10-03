@@ -1548,10 +1548,8 @@ file sealed class Converter : JsonConverter<Grid>
 
 
 	/// <inheritdoc/>
-	/// <exception cref="InvalidOperationException">Throws when the target text is <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Grid.Parse(reader.GetString() ?? throw new InvalidOperationException("The target value text cannot be null."));
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) => Grid.Parse(reader.GetString()!);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

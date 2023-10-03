@@ -2804,7 +2804,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
             <summary>
-            Indicates the bound technique type instance.
+            The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique)">

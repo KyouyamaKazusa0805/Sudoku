@@ -12,6 +12,9 @@ using Sudoku.Linq;
 using Sudoku.Text.Coordinate;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
+#if NATIVE_AOT
+using Sudoku.Concepts.Serialization;
+#endif
 
 namespace Sudoku.Concepts;
 
@@ -1162,20 +1165,22 @@ file sealed class Converter : JsonConverter<CellMap>
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CellMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-	{
-		var result = CellMap.Empty;
-		var parts = JsonSerializer.Deserialize<string[]>(ref reader, options) ?? throw new JsonException("Unexpected token type.");
-		foreach (var part in parts)
-		{
-			result |= new RxCyParser().CellParser(part);
-		}
-
-		return result;
-	}
+#if !NATIVE_AOT
+		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
+#else
+		=> new(JsonSerializer.Deserialize(ref reader, new CellMapAndCandidateMapRawValueSerializationContext(options).Target)!);
+#endif
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
-		=> writer.WriteArray(value.StringChunks, options);
+	{
+		writer.WriteStartArray();
+		foreach (var element in value.StringChunks)
+		{
+			writer.WriteStringValue(element);
+		}
+		writer.WriteEndArray();
+	}
 }

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace System.Reflection;
@@ -16,14 +17,16 @@ public static class AssemblyExtensions
 	/// <param name="baseType">The type as the base type.</param>
 	/// <returns>All possible derived types.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Type[] GetDerivedTypes(this Assembly @this, Type baseType)
-		=> from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type;
+	[RequiresUnreferencedCode("Types might be removed")]
+	public static TypeArrayEnumerator GetDerivedTypes(this Assembly @this, Type baseType)
+		=> new(from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type);
 
 	/// <inheritdoc cref="GetDerivedTypes(Assembly, Type)"/>
 	/// <typeparam name="TBase">The type as the base type.</typeparam>
 	/// <param name="this"><inheritdoc/></param>
 	/// <returns><inheritdoc/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Type[] GetDerivedTypes<TBase>(this Assembly @this)
-		=> from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type;
+	[RequiresUnreferencedCode("Types might be removed")]
+	public static TypeArrayEnumerator GetDerivedTypes<TBase>(this Assembly @this)
+		=> new(from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type);
 }

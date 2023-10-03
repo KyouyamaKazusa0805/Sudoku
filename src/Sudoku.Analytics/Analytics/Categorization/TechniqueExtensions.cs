@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Strings;
@@ -13,8 +14,9 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
-	/// Indicates the bound technique type instance.
+	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
 	/// </summary>
+	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)]
 	private static readonly Type TypeOfTechnique = typeof(Technique);
 
 
