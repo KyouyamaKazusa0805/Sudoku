@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
@@ -24,7 +26,7 @@ public abstract partial class FishStep(
 	[DataMember] Digit digit,
 	[DataMember] HouseMask baseSetsMask,
 	[DataMember] HouseMask coverSetsMask
-) : Step(conclusions, views, options), ICoordinateObject
+) : Step(conclusions, views, options), ICoordinateObject<FishStep>
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -78,20 +80,22 @@ public abstract partial class FishStep(
 				var coverSets = c.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] }
-						=> $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
-					ComplexFishStep { Exofins: var f and not [] }
-						=> $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
+					NormalFishStep { Fins: var f and not [] } => $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
+					ComplexFishStep { Exofins: var f and not [] } => $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					ComplexFishStep { Endofins: var e and not [] }
-						=> $"{comma}{string.Format(GetString("EndofinsAre")!, c.CellConverter(in e))}",
+					ComplexFishStep { Endofins: var e and not [] } => $"{comma}{string.Format(GetString("EndofinsAre")!, c.CellConverter(in e))}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	static FishStep ICoordinateObject<FishStep>.ParseExact(string str, CoordinateParser parser)
+		=> throw new NotSupportedException("This method does not supported.");
 }

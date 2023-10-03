@@ -50,7 +50,7 @@ public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell>,
 	IComparable,
 	IComparable<CellMap>,
-	ICoordinateObject,
+	ICoordinateObject<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
@@ -930,6 +930,10 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap Parse(string str) => new RxCyParser().CellParser(str);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap ParseExact(string str, CoordinateParser parser) => parser.CellParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)

@@ -1667,6 +1667,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#IParsable{Sudoku#Concepts#CandidateMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -2172,6 +2175,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IParsable{Sudoku#Concepts#CellMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
@@ -2412,6 +2418,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Chute.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -2523,6 +2532,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.Conjugate._mask">
@@ -4350,9 +4362,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Concepts.Parsers.CoordinateParser">
             <summary>
             Represents for a parser instance that parses a <see cref="T:System.String"/> text,
-            converting it into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            converting it into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.CellParser">
             <summary>
@@ -4428,9 +4440,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Concepts.Parsers.HodokuTripletParser">
             <summary>
             Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.HodokuTripletParser.Parser">
             <inheritdoc/>
@@ -4438,9 +4450,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Concepts.Parsers.K9Parser">
             <summary>
             Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.K9Parser.CellParser">
             <inheritdoc/>
@@ -4634,9 +4646,9 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Concepts.Parsers.RxCyParser">
             <summary>
             Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/> instance.
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject"/>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CellParser">
             <inheritdoc/>
@@ -5625,18 +5637,40 @@ if (student is (name: var name, age: >= 18))
             Indicates the backing mask value.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.ICoordinateObject">
+        <member name="T:Sudoku.Concepts.Primitive.ICoordinateObject`1">
             <summary>
             Defines a type that supports for coordinate output rule.
             </summary>
+            <typeparam name="TSelf">The type of implementation.</typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <summary>
             Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
             The conversion rule is specified as parameter <paramref name="converter"/>.
             </summary>
             <param name="converter">The coordinate converter object.</param>
             <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <summary>
+            Parses the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
+            using the specified parsing rule.
+            </summary>
+            <param name="str">The string text to be parsed.</param>
+            <param name="parser">The parser instance to be used.</param>
+            <returns>A valid <typeparamref name="TSelf"/> instance parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when the <see cref="T:Sudoku.Concepts.Parsers.CoordinateParser"/> instance cannot parse it.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.TryParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser,`0@)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
+            using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
+            No exceptions will be thrown.
+            </summary>
+            <param name="str">The string text to be parsed.</param>
+            <param name="parser">The parser instance to be used.</param>
+            <param name="result">A parsed value of type <typeparamref name="TSelf"/>.</param>
+            <returns>Indicates whether the parsing operation is successful.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Primitive.IGrid`11">
             <summary>

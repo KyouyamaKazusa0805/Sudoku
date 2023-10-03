@@ -13070,6 +13070,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Concepts#Primitive#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
@@ -19481,6 +19484,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">

@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -19,7 +20,7 @@ using ConjugateImpl = IConjugate<Conjugate, HouseMask, ConjugateMask, Cell, Digi
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] ConjugateMask mask) : ConjugateImpl, ICoordinateObject
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] ConjugateMask mask) : ConjugateImpl, ICoordinateObject<Conjugate>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -111,4 +112,9 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] Conjuga
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter([this]);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conjugate ParseExact(string str, CoordinateParser parser)
+		=> parser.ConjuagteParser(str) is [var result] ? result : throw new FormatException("Multiple conjuagte pair values found.");
 }

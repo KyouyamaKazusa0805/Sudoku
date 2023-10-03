@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Converters;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -24,7 +25,7 @@ public sealed partial class AlmostLockedSet(
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] scoped ref readonly CellMap possibleEliminationMap
-) : ICoordinateObject
+) : ICoordinateObject<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -114,6 +115,21 @@ public sealed partial class AlmostLockedSet(
 		return IsBivalueCell ? $"{digitsStr}/{cellsStr}" : $"{digitsStr}/{cellsStr} {GetString("KeywordIn")} {houseStr}";
 	}
 
+	/// <inheritdoc/>
+	public static AlmostLockedSet ParseExact(string str, CoordinateParser parser)
+	{
+		if (str.SplitBy(['/']) is not [var digitsStr, var cellsStrAndHouseStr])
+		{
+			throw new FormatException("The ALS notation must contain only 1 slash character.");
+		}
+
+		if (cellsStrAndHouseStr.SplitBy([' ']) is not [var cellsStr, _, _])
+		{
+			throw new FormatException("Missing cells or target house.");
+		}
+
+		return new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), []); // Elimination map cannot be known :(
+	}
 
 	/// <summary>
 	/// Gathers all possible <see cref="AlmostLockedSet"/>s in the specified grid.

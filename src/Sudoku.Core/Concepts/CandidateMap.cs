@@ -48,7 +48,7 @@ namespace Sudoku.Concepts;
 public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
-	ICoordinateObject,
+	ICoordinateObject<CandidateMap>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
@@ -572,7 +572,12 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap Parse(string str) => new RxCyParser().CandidateParser(str);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap ParseExact(string str, CoordinateParser parser) => parser.CandidateParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)

@@ -7,9 +7,9 @@ namespace Sudoku.Concepts.Parsers;
 
 /// <summary>
 /// Represents a parser type that uses <b>K9</b> notation rule to parse text,
-/// converting into a valid <see cref="ICoordinateObject"/> instance.
+/// converting into a valid <see cref="ICoordinateObject{TSelf}"/> instance.
 /// </summary>
-/// <seealso cref="ICoordinateObject"/>
+/// <seealso cref="ICoordinateObject{TSelf}"/>
 public sealed partial record K9Parser : CoordinateParser
 {
 	/// <inheritdoc/>
