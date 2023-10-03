@@ -6,7 +6,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
-using ConjugateImpl = IConjugate<Conjugate, HouseMask, int, Cell, Digit, House, CellMap>;
+using ConjugateImpl = IConjugate<Conjugate, HouseMask, ConjugateMask, Cell, Digit, House, CellMap>;
 
 /// <summary>
 /// Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -19,7 +19,7 @@ using ConjugateImpl = IConjugate<Conjugate, HouseMask, int, Cell, Digit, House, 
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mask) : ConjugateImpl, ICoordinateObject
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] ConjugateMask mask) : ConjugateImpl, ICoordinateObject
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -89,7 +89,7 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] int mas
 	}
 
 	/// <inheritdoc/>
-	int ConjugateImpl.Mask => _mask;
+	ConjugateMask ConjugateImpl.Mask => _mask;
 
 	private Candidate FromCandidate => From * 9 + Digit;
 

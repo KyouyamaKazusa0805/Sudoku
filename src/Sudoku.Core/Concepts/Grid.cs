@@ -21,7 +21,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
-using GridImpl = IGrid<Grid, HouseMask, int, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
+using GridImpl = IGrid<Grid, HouseMask, ConjugateMask, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
