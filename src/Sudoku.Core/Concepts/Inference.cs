@@ -6,7 +6,6 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Defines an inference.
 /// </summary>
-[JsonConverter(typeof(EnumNameJsonConverter<Inference>))]
 public enum Inference
 {
 	/// <summary>

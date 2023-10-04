@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using SudokuStudio.Configuration;
 
 namespace SudokuStudio.Storage;
@@ -15,7 +16,8 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	private static readonly JsonSerializerOptions Options = new(CommonSerializerOptions.PascalCasing)
 	{
 		IncludeFields = true,
-		IgnoreReadOnlyProperties = false
+		IgnoreReadOnlyProperties = false,
+		Converters = { new JsonStringEnumConverter(PascalCaseJsonNamingPolicy.PascalCase, true) }
 	};
 
 
