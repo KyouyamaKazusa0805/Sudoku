@@ -45,5 +45,5 @@ public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>
 	/// <param name="value">The value to be determined.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual bool operator false(TSelf value) => !value;
+	public static virtual bool operator false(TSelf value) => !(value ? true : false);
 }
