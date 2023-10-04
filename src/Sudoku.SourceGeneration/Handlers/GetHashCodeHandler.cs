@@ -1,10 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class GetHashCodeHandler
 {
-	public static GetHashCodeCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static string? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -157,8 +155,7 @@ internal static class GetHashCodeHandler
 			_ => []
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
-		var finalString =
-			$$"""
+		return $$"""
 			namespace {{namespaceString}}
 			{
 			{{suppress0809}}partial {{kindString}} {{typeNameString}}
@@ -172,11 +169,9 @@ internal static class GetHashCodeHandler
 			{{enable0809}}}
 			}
 			""";
-
-		return new(finalString);
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<GetHashCodeCollectedResult> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
 		=> spc.AddSource(
 			"GetHashCode.g.cs",
 			$"""
@@ -184,7 +179,7 @@ internal static class GetHashCodeHandler
 
 			#nullable enable
 			
-			{string.Join("\r\n\r\n", from element in value select element.FinalString)}
+			{string.Join("\r\n\r\n", value)}
 			"""
 		);
 }

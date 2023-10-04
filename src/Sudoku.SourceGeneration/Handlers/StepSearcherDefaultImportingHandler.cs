@@ -1,5 +1,3 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
@@ -44,7 +42,7 @@ internal static class StepSearcherDefaultImportingHandler
 		}
 
 		// Gather the valid attributes data.
-		var foundAttributesData = new List<StepSearcherDefaultImportingCollectedResult>();
+		var foundAttributesData = new List<CollectedResult>();
 		var priorityValue = 0;
 		foreach (var attributeData in attributesData)
 		{
@@ -199,4 +197,19 @@ internal static class StepSearcherDefaultImportingHandler
 			return string.Join(" | ", targetList);
 		}
 	}
+
+
+	/// <summary>
+	/// Indicates the data collected via <see cref="StepSearcherDefaultImportingHandler"/>.
+	/// </summary>
+	/// <seealso cref="StepSearcherDefaultImportingHandler"/>
+	internal sealed record CollectedResult(
+		INamespaceSymbol Namespace,
+		INamedTypeSymbol BaseType,
+		int PriorityValue,
+		int StepSearcherLevel,
+		string TypeName,
+		NamedArgs NamedArguments,
+		bool IsPolymorphism
+	);
 }

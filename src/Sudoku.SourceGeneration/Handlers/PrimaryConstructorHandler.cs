@@ -1,5 +1,3 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
@@ -8,13 +6,13 @@ namespace Sudoku.SourceGeneration.Handlers;
 internal static class PrimaryConstructorHandler
 {
 	/// <inheritdoc/>
-	public static void Output(SourceProductionContext spc, ImmutableArray<PrimaryConstructorCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var valuesGrouped in
 			from tuple in values
 			group tuple by $"{tuple.Namesapce}.{tuple.Type}" into @group
-			select (PrimaryConstructorCollectedResult[])[.. @group])
+			select (CollectedResult[])[.. @group])
 		{
 			var (namespaceName, fieldDeclarations, propertyDeclarations) = (valuesGrouped[0].Namesapce, new List<string>(), new List<string>());
 			foreach (
@@ -185,7 +183,7 @@ internal static class PrimaryConstructorHandler
 	}
 
 	/// <inheritdoc/>
-	public static PrimaryConstructorCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static CollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 		=> gasc switch
 		{
 			{
@@ -232,4 +230,25 @@ internal static class PrimaryConstructorHandler
 				),
 			_ => null
 		};
+
+
+	/// <summary>
+	/// Indicates the data collected via <see cref="PrimaryConstructorHandler"/>.
+	/// </summary>
+	/// <seealso cref="PrimaryConstructorHandler"/>
+	internal sealed record CollectedResult(
+		string ParameterName,
+		TypeKind TypeKind,
+		RefKind RefKind,
+		ScopedKind ScopedKind,
+		NullableAnnotation NullableAnnotation,
+		ITypeSymbol ParameterType,
+		INamedTypeSymbol TypeSymbol,
+		bool IsReadOnly,
+		string Namesapce,
+		string Type,
+		bool IsRecord,
+		AttributeData[] AttributesData,
+		string? Comment
+	);
 }

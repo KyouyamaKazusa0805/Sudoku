@@ -44,90 +44,6 @@
             Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.CollectedResults.AttachedPropertyData})">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyData">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.CollectedResults.DependencyPropertyData})">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyData">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyData.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.SourceGeneration.Accessibility,System.String[])">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IPropertySymbol,System.Boolean)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.PrimaryConstructorCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.PrimaryConstructorCollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CollectedResults.StepSearcherDefaultImportingCollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CollectedResults.StepSearcherDefaultImportingCollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.CommonMethods">
             <summary>
             Represents a set of methods that can be used by the types in this file.
@@ -290,27 +206,64 @@
         <member name="M:Sudoku.SourceGeneration.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler">
+        <member name="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data">
             <summary>
-            The generator handler for attached properties.
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>.
             </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.AttachedPropertyCollectedResult})">
-            <inheritdoc/>
+        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler">
             <summary>
             The generator handler for dependency properties.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.DependencyPropertyCollectedResult})">
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.SourceGeneration.Accessibility,System.String[])">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.Data">
             <summary>
@@ -344,36 +297,46 @@
             The generator handler for implicit fields.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.ImplicitFieldCollectedResult})">
+        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.Extensions.ToCamelCase(System.String)">
+        <member name="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult">
             <summary>
-            Converts the current instance into its camel casing.
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
             </summary>
-            <param name="this">The string.</param>
-            <returns>The camel-cased string.</returns>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IPropertySymbol,System.Boolean)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler">
             <summary>
             The generator handler for primary constructor parameters.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.CollectedResults.PrimaryConstructorCollectedResult})">
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
             <summary>
@@ -382,6 +345,18 @@
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
@@ -434,6 +409,11 @@
         <member name="M:System.StringExtensions.ToCamelCasing(System.String)">
             <summary>
             Try to convert the specified identifier into camel casing.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.ToUnderscoreCamelCasing(System.String)">
+            <summary>
+            Try to convert the specified identifier into camel casing, with a leading underscore character.
             </summary>
         </member>
         <member name="T:RootLevelSourceGeneration.SolutionVersion">

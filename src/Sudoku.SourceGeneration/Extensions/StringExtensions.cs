@@ -15,4 +15,9 @@ public static class StringExtensions
 	/// Try to convert the specified identifier into camel casing.
 	/// </summary>
 	public static string ToCamelCasing(this string @this) => $"{char.ToLower(@this[0])}{@this[1..]}";
+
+	/// <summary>
+	/// Try to convert the specified identifier into camel casing, with a leading underscore character.
+	/// </summary>
+	public static string ToUnderscoreCamelCasing(this string @this) => $"_{@this.ToCamelCasing()}";
 }

@@ -1,10 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class ComparisonOperatorsHandler
 {
-	public static ComparisonOperatorsCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+	public static string? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{
@@ -186,8 +184,7 @@ internal static class ComparisonOperatorsHandler
 			return null;
 		}
 
-		return new(
-			$$"""
+		return $$"""
 			namespace {{namespaceString}}
 			{
 				partial {{typeKindString}} {{typeNameString}}
@@ -195,11 +192,10 @@ internal static class ComparisonOperatorsHandler
 					{{operatorDeclaration}}
 				}
 			}
-			"""
-		);
+			""";
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<ComparisonOperatorsCollectedResult> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
 		=> spc.AddSource(
 			"ComparisonOperators.g.cs",
 			$"""
@@ -207,7 +203,7 @@ internal static class ComparisonOperatorsHandler
 
 			#nullable enable
 			
-			{string.Join("\r\n\r\n", from element in value select element.FinalString)}
+			{string.Join("\r\n\r\n", value)}
 			"""
 		);
 }

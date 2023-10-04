@@ -1,10 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class EqualsHandler
 {
-	public static EqualsCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+	public static string? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{
@@ -91,8 +89,7 @@ internal static class EqualsHandler
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
 		var suppress0809 = isDeprecated ? "#pragma warning disable CS0809\r\n\t" : "\t";
 		var enable0809 = isDeprecated ? "#pragma warning restore CS0809\r\n\t" : string.Empty;
-		return new(
-			$$"""
+		return $$"""
 			namespace {{namespaceString}}
 			{
 			{{suppress0809}}partial {{typeKindString}} {{typeNameString}}
@@ -105,11 +102,10 @@ internal static class EqualsHandler
 						=> {{expressionString}};
 				}
 			{{enable0809}}}
-			"""
-		);
+			""";
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<EqualsCollectedResult> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
 		=> spc.AddSource(
 			"Equals.g.cs",
 			$"""
@@ -117,7 +113,7 @@ internal static class EqualsHandler
 
 			#nullable enable
 			
-			{string.Join("\r\n\r\n", from element in value select element.FinalString)}
+			{string.Join("\r\n\r\n", value)}
 			"""
 		);
 }

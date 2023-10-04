@@ -1,5 +1,3 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
@@ -8,7 +6,7 @@ namespace Sudoku.SourceGeneration.Handlers;
 internal static class ImplicitFieldHandler
 {
 	/// <inheritdoc/>
-	public static void Output(SourceProductionContext spc, ImmutableArray<ImplicitFieldCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var group in values.GroupBy(static value => value.ContainingType, (IEqualityComparer<ITypeSymbol>)SymbolEqualityComparer.Default))
@@ -28,7 +26,7 @@ internal static class ImplicitFieldHandler
 							/// <seealso cref="{{property.Name}}"/>
 							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ImplicitFieldHandler).FullName}}", "{{Value}}")]
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}}{{nullableToken}} {{property.Name.ToCamelCase()}};
+							private {{readOnlyKeyword}}{{property.Type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}}{{nullableToken}} {{property.Name.ToUnderscoreCamelCasing()}};
 					"""
 				);
 			}
@@ -67,7 +65,7 @@ internal static class ImplicitFieldHandler
 	}
 
 	/// <inheritdoc/>
-	public static ImplicitFieldCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+	public static CollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{
@@ -87,15 +85,11 @@ internal static class ImplicitFieldHandler
 		var readOnlyKeyword = namedArgs.TryGetValueOrDefault<bool>("RequiredReadOnlyModifier", out var r) && r;
 		return new(containingType, property, readOnlyKeyword);
 	}
-}
 
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
+
 	/// <summary>
-	/// Converts the current instance into its camel casing.
+	/// Indicates the data collected via <see cref="ImplicitFieldHandler"/>.
 	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The camel-cased string.</returns>
-	public static string ToCamelCase(this string @this) => $"_{char.ToLower(@this[0])}{@this[1..]}";
+	/// <seealso cref="ImplicitFieldHandler"/>
+	internal sealed record CollectedResult(INamedTypeSymbol ContainingType, IPropertySymbol Property, bool ReadOnlyModifier);
 }

@@ -1,10 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class ExplicitInterfaceImplHandler
 {
-	public static ExplicitInterfaeImplCollectedResult? Transform(GeneratorSyntaxContext gsc, CancellationToken ct)
+	public static string? Transform(GeneratorSyntaxContext gsc, CancellationToken ct)
 	{
 		const string comma = ", ";
 		if (gsc is not { Node: TypeDeclarationSyntax node, SemanticModel: { Compilation: var compilation } semanticModel })
@@ -329,8 +327,7 @@ internal static class ExplicitInterfaceImplHandler
 			return null;
 		}
 
-		return new(
-			$$"""
+		return $$"""
 			namespace {{globalNamespaceString}}
 			{
 				partial {{globalTypeKindString}} {{globalTypeNameString}}
@@ -338,15 +335,14 @@ internal static class ExplicitInterfaceImplHandler
 					{{string.Join("\r\n\r\n\r\n\t\t", finalMembers)}}
 				}
 			}
-			"""
-		);
+			""";
 
 
 		bool isLargeStructure(ITypeSymbol type)
 			=> type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, largeStructAttribute));
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<ExplicitInterfaeImplCollectedResult> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
 		=> spc.AddSource(
 			"ExplicitInterfaceImpl.g.cs",
 			$"""
@@ -355,7 +351,7 @@ internal static class ExplicitInterfaceImplHandler
 			#pragma warning disable CS9192, CS9193, CS9195
 			#nullable enable
 			
-			{string.Join("\r\n\r\n", from element in value select element.FinalString)}
+			{string.Join("\r\n\r\n", value)}
 			"""
 		);
 }

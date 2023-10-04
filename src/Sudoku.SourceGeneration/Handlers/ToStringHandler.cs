@@ -1,10 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class ToStringHandler
 {
-	public static ToStringCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	public static string? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -129,8 +127,7 @@ internal static class ToStringHandler
 			_ => []
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
-		var finalString =
-			$$"""
+		return $$"""
 			namespace {{namespaceString}}
 			{
 			{{suppress0809}}partial {{kindString}} {{typeNameString}}
@@ -144,8 +141,6 @@ internal static class ToStringHandler
 			{{enable0809}}}
 			}
 			""";
-
-		return new(finalString);
 
 
 		bool hasImpledFormattable(INamedTypeSymbol type)
@@ -162,7 +157,7 @@ internal static class ToStringHandler
 			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
 	}
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<ToStringCollectedResult> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
 		=> spc.AddSource(
 			"ToString.g.cs",
 			$"""
@@ -170,7 +165,7 @@ internal static class ToStringHandler
 
 			#nullable enable
 			
-			{string.Join("\r\n\r\n", from element in value select element.FinalString)}
+			{string.Join("\r\n\r\n", value)}
 			"""
 		);
 }

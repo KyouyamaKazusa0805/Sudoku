@@ -1,14 +1,8 @@
-using Sudoku.SourceGeneration.CollectedResults;
-
 namespace Sudoku.SourceGeneration.Handlers;
 
-/// <summary>
-/// The generator handler for attached properties.
-/// </summary>
 internal static class AttachedPropertyHandler
 {
-	/// <inheritdoc/>
-	public static void Output(SourceProductionContext spc, ImmutableArray<AttachedPropertyCollectedResult> values)
+	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
 		foreach (var group in values.GroupBy(static data => data.Type, (IEqualityComparer<INamedTypeSymbol>)SymbolEqualityComparer.Default))
@@ -110,8 +104,7 @@ internal static class AttachedPropertyHandler
 		);
 	}
 
-	/// <inheritdoc/>
-	public static AttachedPropertyCollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+	public static CollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{
@@ -123,7 +116,7 @@ internal static class AttachedPropertyHandler
 			return null;
 		}
 
-		var propertiesData = new List<AttachedPropertyData>();
+		var propertiesData = new List<Data>();
 		foreach (var attributeData in attributes)
 		{
 			if (attributeData is not
@@ -256,4 +249,26 @@ internal static class AttachedPropertyHandler
 
 		return new(typeSymbol, propertiesData);
 	}
+
+
+	/// <summary>
+	/// The nesting data structure for <see cref="CollectedResult"/>.
+	/// </summary>
+	/// <seealso cref="CollectedResult"/>
+	internal sealed record Data(
+		string PropertyName,
+		ITypeSymbol PropertyType,
+		DocumentationCommentData DocumentationCommentData,
+		string? DefaultValueGeneratingMemberName,
+		DefaultValueGeneratingMemberKind? DefaultValueGeneratingMemberKind,
+		object? DefaultValue,
+		string? CallbackMethodName,
+		bool IsNullable
+	);
+
+	/// <summary>
+	/// Indicates the data collected via <see cref="AttachedPropertyHandler"/>.
+	/// </summary>
+	/// <seealso cref="AttachedPropertyHandler"/>
+	internal sealed record CollectedResult(INamedTypeSymbol Type, List<Data> PropertiesData);
 }
