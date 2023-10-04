@@ -77,7 +77,7 @@ public partial struct CandidateMap :
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= new RxCyParser().CandidateParser(segment);
+			this |= ParseExact(segment, new RxCyParser());
 		}
 	}
 

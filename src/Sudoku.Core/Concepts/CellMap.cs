@@ -94,7 +94,7 @@ public partial struct CellMap :
 		this = Empty;
 		foreach (var segment in segments)
 		{
-			this |= new RxCyParser().CellParser(segment);
+			this |= ParseExact(segment, new RxCyParser());
 		}
 	}
 
