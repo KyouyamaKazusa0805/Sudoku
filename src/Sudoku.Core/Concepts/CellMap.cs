@@ -939,8 +939,7 @@ public partial struct CellMap :
 			}
 		}
 
-		// We cannot determine whether the parsing operation is failed or not.
-		return [];
+		throw new FormatException("The string is invalid to be parsed.");
 	}
 
 	/// <inheritdoc/>
