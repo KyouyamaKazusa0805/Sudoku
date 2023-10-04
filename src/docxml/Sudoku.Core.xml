@@ -1133,10 +1133,25 @@
             Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
             <param name="mask">
-            <inheritdoc cref="P:Sudoku.Analytics.IConclusion`2.Mask" path="/summary"/>
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
+            <code>
+            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-----------------------|---|---------------------------------------|
+            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-----------------------|---|---------------------------------------'
+                                     \_/ \_____________________________________/
+                                     (2)                   (1)
+            </code>
+            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
+            <see cref="P:Sudoku.Analytics.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
+            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
             </param>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Analytics.IConclusion`2.Mask" path="/remarks"/>
+            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.#ctor(System.Int16)">
@@ -1144,11 +1159,31 @@
             Defines a type that can describe a candidate is the correct or wrong digit.
             </summary>
             <param name="mask">
-            <inheritdoc cref="P:Sudoku.Analytics.IConclusion`2.Mask" path="/summary"/>
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
+            <code>
+            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-----------------------|---|---------------------------------------|
+            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-----------------------|---|---------------------------------------'
+                                     \_/ \_____________________________________/
+                                     (2)                   (1)
+            </code>
+            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
+            <see cref="P:Sudoku.Analytics.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
+            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
             </param>
             <remarks>
-            <inheritdoc cref="P:Sudoku.Analytics.IConclusion`2.Mask" path="/remarks"/>
+            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Conclusion.Parsers">
+            <summary>
+            The internal parsers.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.#ctor(Sudoku.Analytics.ConclusionType,System.Int32)">
             <summary>
@@ -1166,16 +1201,26 @@
             <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Analytics.Conclusion.Cell">
-            <inheritdoc/>
+            <summary>
+            Indicates the cell the current instance uses.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Conclusion.Digit">
-            <inheritdoc/>
+            <summary>
+            Indicates the digit the current instance uses.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Conclusion.Candidate">
-            <inheritdoc/>
+            <summary>
+            Indicates the candidate the current instance uses.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Conclusion.ConclusionType">
-            <inheritdoc/>
+            <summary>
+            Indicates the conclusion type of the current instance.
+            If the type is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Conclusion.Sudoku#Analytics#IConclusion{Sudoku#Analytics#Conclusion,System#Int16}#Mask">
             <inheritdoc/>
@@ -1298,8 +1343,25 @@ if (student is (name: var name, age: >= 18))
             symmetric with the current cell and digit.
             </exception>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
+        <member name="M:Sudoku.Analytics.Conclusion.TryParse(System.String,Sudoku.Analytics.Conclusion@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Conclusion.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Conclusion.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Conclusion.System#IParsable{Sudoku#Analytics#Conclusion}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
+            <summary>
+            Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
+            or from <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
+            </summary>
+            <param name="self">The current conclusion instance to be negated.</param>
+            <returns>The negation.</returns>
         </member>
         <member name="F:Sudoku.Analytics.Conclusion._mask">
             <summary>
@@ -1425,26 +1487,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.IConclusion`2.Mask">
             <summary>
-            The field uses the mask table of length 81 to indicate the state and all possible candidates
-            holding for each cell. Each mask uses a <see cref="P:Sudoku.Analytics.IConclusion`2.Mask"/> value, but only uses 11 of 16 bits.
-            <code>
-            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-            |-----------------------|---|---------------------------------------|
-            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-            '-----------------------|---|---------------------------------------'
-                                     \_/ \_____________________________________/
-                                     (2)                   (1)
-            </code>
-            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-            <see cref="P:Sudoku.Analytics.IConclusion`2.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
-            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
             </summary>
-            <remarks>
-            Two <typeparamref name="TSelf"/> values can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
-            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.IConclusion`2.Cell">
             <summary>
