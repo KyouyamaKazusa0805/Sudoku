@@ -4982,6 +4982,11 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
             <typeparam name="TElement">The type of each element.</typeparam>
         </member>
+        <member name="F:Sudoku.Concepts.Primitive.IBitStatusMap`2.Parsers">
+            <summary>
+            The parsers can be used.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Primitive.IBitStatusMap`2.ErrorInfo_SubsetsExceeded">
             <summary>
             Indicates the error information describing the case that the number of subsets calculated by methods

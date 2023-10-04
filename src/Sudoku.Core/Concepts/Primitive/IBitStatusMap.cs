@@ -2,6 +2,7 @@ using System.Collections;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Concepts.Parsers;
 using Sudoku.Linq;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -31,6 +32,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 {
+	/// <summary>
+	/// The parsers can be used.
+	/// </summary>
+	protected static readonly CoordinateParser[] Parsers = [new RxCyParser(), new K9Parser()];
+
 	/// <summary>
 	/// Indicates the error information describing the case that the number of subsets calculated by methods
 	/// <see cref="GetSubsets(int)"/> and <see cref="GetAllSubsets(int)"/> is too large.

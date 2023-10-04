@@ -925,11 +925,23 @@ public partial struct CellMap :
 	/// <param name="llong">The <see cref="llong"/> integer.</param>
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByInt128(scoped ref readonly llong llong) => CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
+	public static CellMap CreateByInt128(scoped ref readonly llong llong)
+		=> CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(string str) => new RxCyParser().CellParser(str);
+	public static CellMap Parse(string str)
+	{
+		foreach (var parser in IBitStatusMap<CellMap, Cell>.Parsers)
+		{
+			if (parser.CellParser(str) is { Count: not 0 } result)
+			{
+				return result;
+			}
+		}
+
+		// We cannot determine whether the parsing operation is failed or not.
+		return [];
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

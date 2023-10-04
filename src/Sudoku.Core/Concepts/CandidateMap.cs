@@ -572,8 +572,19 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse(string str) => new RxCyParser().CandidateParser(str);
+	public static CandidateMap Parse(string str)
+	{
+		foreach (var parser in IBitStatusMap<CandidateMap, Candidate>.Parsers)
+		{
+			if (parser.CandidateParser(str) is { Count: not 0 } result)
+			{
+				return result;
+			}
+		}
+
+		// We cannot determine whether the parsing operation is failed or not.
+		return [];
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
