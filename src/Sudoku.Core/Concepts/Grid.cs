@@ -1514,7 +1514,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 	public static explicit operator Grid(Mask[] maskArray)
 	{
 		var result = Empty;
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), ref Unsafe2.AsByteRef(ref maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
+		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
 
 		return result;
 	}
@@ -1528,7 +1528,7 @@ public unsafe partial struct Grid : GridImpl, IConceptObject<Grid, GridConverter
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), ref Unsafe2.AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
+		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
 
 		return result;
 	}
