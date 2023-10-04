@@ -20,8 +20,41 @@ public static class CommonMethods
 	/// <typeparam name="T">The type of the value.</typeparam>
 	/// <param name="value">The value to be checked.</param>
 	/// <returns>The logical conversion result.</returns>
+	/// <remarks>
+	/// This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="bool"/> value.
+	/// If the type <typeparamref name="T"/> has implemented <see cref="ILogicalOperators{TSelf}"/>, C# language will allow this type
+	/// using <see cref="bool"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
+	/// to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
+	/// to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
+	/// <code><![CDATA[
+	/// if (integer) // integer != 0 in C and op_True(integer) in C#
+	/// {
+	///     // ...
+	/// }
+	/// ]]></code>
+	/// The backing implementation is like the following code in C#:
+	/// <code><![CDATA[
+	/// struct Int32
+	/// {
+	///     public static bool operator true(int value) => value != 0;
+	///     public sttaic bool operator false(int value) => value == 0;
+	/// }
+	/// ]]></code>
+	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool LogicalConversion<T>(T value) where T : ILogicalOperators<T> => !!value;
+	public static bool True<T>(T value) where T : ILogicalOperators<T> => !!value;
+
+	/// <summary>
+	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
+	/// </summary>
+	/// <typeparam name="T">The type of the value.</typeparam>
+	/// <param name="value">The value to be checked.</param>
+	/// <returns>The logical conversion result.</returns>
+	/// <remarks>
+	/// <inheritdoc cref="True{T}(T)" path="/remarks"/>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool False<T>(T value) where T : ILogicalOperators<T> => !value;
 
 	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method

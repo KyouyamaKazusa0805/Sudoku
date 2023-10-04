@@ -78,7 +78,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
-		if (!Array.Exists(pomElims, CommonMethods.LogicalConversion))
+		if (!Array.Exists(pomElims, CommonMethods.True))
 		{
 			return null;
 		}

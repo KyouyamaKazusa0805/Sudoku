@@ -665,13 +665,45 @@
             Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
             </summary>
         </member>
-        <member name="M:System.CommonMethods.LogicalConversion``1(``0)">
+        <member name="M:System.CommonMethods.True``1(``0)">
             <summary>
             Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
             </summary>
             <typeparam name="T">The type of the value.</typeparam>
             <param name="value">The value to be checked.</param>
             <returns>The logical conversion result.</returns>
+            <remarks>
+            This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="T:System.Boolean"/> value.
+            If the type <typeparamref name="T"/> has implemented <see cref="T:System.ILogicalOperators`1"/>, C# language will allow this type
+            using <see cref="T:System.Boolean"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
+            to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
+            to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
+            <code><![CDATA[
+            if (integer) // integer != 0 in C and op_True(integer) in C#
+            {
+                // ...
+            }
+            ]]></code>
+            The backing implementation is like the following code in C#:
+            <code><![CDATA[
+            struct Int32
+            {
+                public static bool operator true(int value) => value != 0;
+                public sttaic bool operator false(int value) => value == 0;
+            }
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:System.CommonMethods.False``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+            <remarks>
+            <inheritdoc cref="M:System.CommonMethods.True``1(``0)" path="/remarks"/>
+            </remarks>
         </member>
         <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
             <summary>
