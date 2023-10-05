@@ -47,7 +47,6 @@ public unsafe partial struct Grid :
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IMinMaxValue<Grid>,
-	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>

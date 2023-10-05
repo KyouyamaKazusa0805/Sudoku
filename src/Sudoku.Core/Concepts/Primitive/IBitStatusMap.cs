@@ -24,7 +24,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
-	IParsable<TSelf>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
 	ISimpleParsable<TSelf>,

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -13,7 +14,7 @@ namespace System;
 /// <typeparam name="TSelf">The type of the target result.</typeparam>
 /// <seealso cref="IParsable{TSelf}"/>
 /// <seealso cref="IFormatProvider"/>
-public interface ISimpleParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
+public interface ISimpleParsable<TSelf> : IParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
 {
 	/// <summary>
 	/// Parse the specified string text, and get the same-meaning instance
@@ -40,4 +41,23 @@ public interface ISimpleParsable<TSelf> where TSelf : ISimpleParsable<TSelf>
 	/// A <see cref="bool"/> result indicating whether the operation is successful to execute.
 	/// </returns>
 	public static abstract bool TryParse(string str, [NotNullWhen(true)] out TSelf? result);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IParsable<TSelf>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [NotNullWhen(true)] out TSelf? result)
+	{
+		if (s is null)
+		{
+			result = default;
+			return false;
+		}
+		else
+		{
+			return TSelf.TryParse(s, out result);
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static TSelf IParsable<TSelf>.Parse(string s, IFormatProvider? provider) => TSelf.Parse(s);
 }

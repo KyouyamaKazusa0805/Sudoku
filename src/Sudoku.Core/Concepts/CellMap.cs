@@ -526,6 +526,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(scoped ref readonly CellMap other) => _low == other._low && _high == other._high;
 
 	/// <summary>

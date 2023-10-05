@@ -262,6 +262,8 @@ public partial struct CandidateMap :
 	public readonly bool Contains(Candidate offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(scoped ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>

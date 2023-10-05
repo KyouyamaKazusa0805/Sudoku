@@ -1352,9 +1352,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.System#IParsable{Sudoku#Analytics#Conclusion}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
             <summary>
             Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
@@ -1844,6 +1841,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the backing field of property <see cref="P:Sudoku.Concepts.CandidateMap.Count"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
@@ -2379,6 +2379,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the backing field of property <see cref="P:Sudoku.Concepts.CellMap.Count"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
