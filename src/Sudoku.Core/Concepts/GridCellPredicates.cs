@@ -1,7 +1,5 @@
-﻿#define TARGET_64BIT
+#define TARGET_64BIT
 using System.ComponentModel;
-using Sudoku.Analytics;
-using Sudoku.Concepts.Primitive;
 using static System.Numerics.BitOperations;
 
 namespace Sudoku.Concepts;

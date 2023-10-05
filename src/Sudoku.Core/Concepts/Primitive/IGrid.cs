@@ -23,7 +23,6 @@ namespace Sudoku.Concepts.Primitive;
 /// <typeparam name="TConclusion">The type of the conclusion.</typeparam>
 /// <typeparam name="TConjugate">The type of the conjugate pair.</typeparam>
 public partial interface IGrid<TSelf, THouseMask, TConjugateMask, TMask, TCell, TDigit, TCandidate, THouse, TBitStatusMap, TConclusion, TConjugate> :
-	//IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
