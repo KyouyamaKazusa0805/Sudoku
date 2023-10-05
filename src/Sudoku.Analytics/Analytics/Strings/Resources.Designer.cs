@@ -5704,7 +5704,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with unknown covering: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with baba grouping: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleWithBabaGroupingStep {
             get {

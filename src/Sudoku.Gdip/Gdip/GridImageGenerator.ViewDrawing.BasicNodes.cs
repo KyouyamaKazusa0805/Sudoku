@@ -386,10 +386,10 @@ partial class GridImageGenerator
 	}
 
 	/// <summary>
-	/// Draw unknown values.
+	/// Draw baba grouping values.
 	/// </summary>
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
-	private void DrawUnknownValue(Graphics g)
+	private void DrawBabaGrouping(Graphics g)
 	{
 		if (this is not
 			{
@@ -397,10 +397,10 @@ partial class GridImageGenerator
 				Calculator: { CellSize.Width: var cellWidth } calc,
 				Preferences:
 				{
-					UnknownIdentifierColor: var uColor,
+					BabaGroupingCharacterColor: var uColor,
 					ValueScale: var vScale,
-					UnknownFontStyle: var uFontStyle,
-					UnknownFontName: var uFontName
+					BabaGroupCharacterFontStyle: var uFontStyle,
+					BabaGroupingFontName: var uFontName
 				}
 			})
 		{
@@ -413,10 +413,10 @@ partial class GridImageGenerator
 		using var brush = new SolidBrush(uColor);
 		using var font = GetFont(uFontName, halfWidth, vScale, uFontStyle);
 
-		foreach (var unknownNode in view.OfType<BabaGroupViewNode>())
+		foreach (var node in view.OfType<BabaGroupViewNode>())
 		{
-			var cell = unknownNode.Cell;
-			var character = unknownNode.UnknownValueChar;
+			var cell = node.Cell;
+			var character = node.UnknownValueChar;
 
 			// Draw values.
 			var originalPoint = calc.GetMousePointInCenter(cell);

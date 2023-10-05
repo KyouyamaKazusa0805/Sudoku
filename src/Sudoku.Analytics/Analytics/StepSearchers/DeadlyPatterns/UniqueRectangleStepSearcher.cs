@@ -32,7 +32,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
 /// <item>Avoidable Rectangle + Hidden Single</item>
-/// <item>Unique Rectangle + Unknown Covering</item>
+/// <item>Unique Rectangle + Baba Grouping</item>
 /// <item>Unique Rectangle + Sue de Coq</item>
 /// <item>Unique Rectangle + XY-Wing, XYZ-Wing and WXYZ-Wing</item>
 /// <item>Unique Rectangle + W-Wing</item>

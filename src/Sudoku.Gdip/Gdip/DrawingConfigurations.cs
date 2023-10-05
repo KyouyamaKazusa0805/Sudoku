@@ -63,9 +63,9 @@ public sealed class DrawingConfigurations
 	public string? CandidateFontName { get; set; } = "MiSans";
 
 	/// <summary>
-	/// Indicates the font of unknown values to render.
+	/// Indicates the font of baba grouping characters to render.
 	/// </summary>
-	public string? UnknownFontName { get; set; } = "Times New Roman";
+	public string? BabaGroupingFontName { get; set; } = "Times New Roman";
 
 	/// <summary>
 	/// Indicates the font style of the givens.
@@ -83,9 +83,9 @@ public sealed class DrawingConfigurations
 	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <summary>
-	/// Indicates the font style of an unknown.
+	/// Indicates the font style of a baba group.
 	/// </summary>
-	public FontStyle UnknownFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
+	public FontStyle BabaGroupCharacterFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
 
 	/// <summary>
 	/// Indicates the given digits to render.
@@ -133,9 +133,9 @@ public sealed class DrawingConfigurations
 	public Color BlockLineColor { get; set; } = Color.Black;
 
 	/// <summary>
-	/// Indicates the color of the unknown identifier color.
+	/// Indicates the color of the baba grouping identifier color.
 	/// </summary>
-	public Color UnknownIdentifierColor { get; set; } = Color.FromArgb(192, Color.Red);
+	public Color BabaGroupingCharacterColor { get; set; } = Color.FromArgb(192, Color.Red);
 
 	/// <summary>
 	/// Indicates footer text color.

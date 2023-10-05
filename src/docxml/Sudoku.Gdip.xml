@@ -379,9 +379,9 @@
             Indicates the font of candidate digits to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontName">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BabaGroupingFontName">
             <summary>
-            Indicates the font of unknown values to render.
+            Indicates the font of baba grouping characters to render.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenFontStyle">
@@ -399,9 +399,9 @@
             Indicates the font style of the candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownFontStyle">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BabaGroupCharacterFontStyle">
             <summary>
-            Indicates the font style of an unknown.
+            Indicates the font style of a baba group.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.GivenColor">
@@ -449,9 +449,9 @@
             Indicates the block line color of the sudoku grid to render.
             </summary>
         </member>
-        <member name="P:Sudoku.Gdip.DrawingConfigurations.UnknownIdentifierColor">
+        <member name="P:Sudoku.Gdip.DrawingConfigurations.BabaGroupingCharacterColor">
             <summary>
-            Indicates the color of the unknown identifier color.
+            Indicates the color of the baba grouping identifier color.
             </summary>
         </member>
         <member name="P:Sudoku.Gdip.DrawingConfigurations.FooterTextColor">
@@ -754,9 +754,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>
-        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawUnknownValue(System.Drawing.Graphics)">
+        <member name="M:Sudoku.Gdip.GridImageGenerator.DrawBabaGrouping(System.Drawing.Graphics)">
             <summary>
-            Draw unknown values.
+            Draw baba grouping values.
             </summary>
             <param name="g"><inheritdoc cref="M:Sudoku.Gdip.GridImageGenerator.RenderTo(System.Drawing.Graphics)" path="/param[@name='g']"/></param>
         </member>

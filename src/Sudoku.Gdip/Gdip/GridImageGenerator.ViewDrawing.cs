@@ -24,7 +24,7 @@ partial class GridImageGenerator
 		DrawCandidates(g);
 		DrawLinks(g);
 		DrawChute(g);
-		DrawUnknownValue(g);
+		DrawBabaGrouping(g);
 		DrawFigure(g);
 	}
 

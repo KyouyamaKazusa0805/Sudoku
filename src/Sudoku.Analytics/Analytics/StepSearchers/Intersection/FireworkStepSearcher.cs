@@ -349,49 +349,33 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				continue;
 			}
 
-			var candidateOffsets = new List<CandidateViewNode>();
-			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & currentDigitsMask))
-			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, pivot * 9 + digit));
-			}
-			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & currentDigitsMask))
-			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell1 * 9 + digit));
-			}
-			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
-			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell2 * 9 + digit));
-			}
-
-			var cellOffsets = new List<CellViewNode>(12);
-			foreach (var house1CellExcluded in house1CellsExcluded)
-			{
-				cellOffsets.Add(new(WellKnownColorIdentifier.Elimination, house1CellExcluded));
-			}
-			foreach (var house2CellExcluded in house2CellsExcluded)
-			{
-				cellOffsets.Add(new(WellKnownColorIdentifier.Elimination, house2CellExcluded));
-			}
-
-			var unknowns = new List<BabaGroupViewNode>(4);
-			var house1 = (CellsMap[cell1] + pivot).CoveredLine;
-			var house2 = (CellsMap[cell2] + pivot).CoveredLine;
-			foreach (var cell in (HousesMap[house1] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
-			{
-				unknowns.Add(new(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'y', currentDigitsMask));
-			}
-			foreach (var cell in (HousesMap[house2] & HousesMap[pivotCellBlock] & EmptyCells) - pivot)
-			{
-				unknowns.Add(new(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'x', currentDigitsMask));
-			}
-
 			var step = new FireworkTripleStep(
 				[.. conclusions],
 				[
-					[.. candidateOffsets],
 					[
-						.. cellOffsets,
-						.. unknowns,
+						..
+						from digit in (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)
+						select new CandidateViewNode(WellKnownColorIdentifier.Normal, pivot * 9 + digit),
+						..
+						from digit in (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)
+						select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell1 * 9 + digit),
+						..
+						from digit in (Mask)(grid.GetCandidates(cell2) & currentDigitsMask)
+						select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell2 * 9 + digit)
+					],
+					[
+						..
+						from house1CellExcluded in house1CellsExcluded
+						select new CellViewNode(WellKnownColorIdentifier.Elimination, house1CellExcluded),
+						..
+						from house2CellExcluded in house2CellsExcluded
+						select new CellViewNode(WellKnownColorIdentifier.Elimination, house2CellExcluded),
+						..
+						from cell in (HousesMap[(CellsMap[cell1] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
+						select new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'y', currentDigitsMask),
+						..
+						from cell in (HousesMap[(CellsMap[cell2] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
+						select new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'x', currentDigitsMask),
 						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
 						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
 						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
