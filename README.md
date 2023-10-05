@@ -70,8 +70,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Hidden Single, Last Digit
 * Candidate-Related Techniques
   * Locked Candidates Family
-    * Locked Candidates
-    * Almost Locked Candidates
+    * LC (Locked Candidates)
+    * ALC (Almost Locked Candidates)
     * Firework Subsets (Hanabi)
   * Subsets
     * Naked Subsets
@@ -95,14 +95,14 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Hybrid-Wing
       * Purple Cow
   * Uniqueness
-    * Unique Rectangle
-    * Unique Loop
-    * Extended Rectangle (Including fit types and fat types)
+    * UR (Unique Rectangle)
+    * UL (Unique Loop)
+    * XR (Extended Rectangle, Including fit & fat types)
     * Borescoper's Deadly Pattern
     * Qiu's Deadly Pattern
-    * Unique Square
-    * Bivalue Universal Grave
-    * Reverse Bivalue Universal Grave
+    * Unique Matrix
+    * BUG (Bivalue Universal Grave)
+    * Reverse BUG (Reverse Bivalue Universal Grave)
   * Chains
     * Forcing Chains / Bidirectional Cycles
     * Multiple Forcing Chains
@@ -113,18 +113,18 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Empty Rectangle Intersection Pair
   * Rank Logics
     * Positive or 0 -Rank Logics
-      * Sue de Coq (Including basic type, isolated digit type and cannibalistic type)
-      * 3-Dimensional Sue de Coq
-      * Domino Loop
+      * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)
+      * 3D SDC (3-Dimensional Sue de Coq)
+      * DL (Domino Loop)
       * Exocets
-        * Junior Exocet
-      * Multi-Sector Locked Sets
+        * JE (Junior Exocet)
+      * MSLS (Multi-Sector Locked Sets)
     * Negative Rank Logics
       * Guardian
       * Bi-value Oddagon
       * Chromatic Pattern (i.e. Tri-value Oddagon)
   * Symmetrical Placements
-    * Gurth's Symmetrical Placements (Normal & Anti Type)
+    * GSP (Gurth's Symmetrical Placements, Normal & Anti Type)
   * Permutations
     * Aligned Exclusion
   * Last Resorts
