@@ -47,49 +47,37 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] Conjuga
 	}
 
 
-	/// <inheritdoc/>
-	public Cell From
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _mask & 1023;
-	}
+	/// <summary>
+	/// Indicates the "from" cell, i.e. the base cell that starts the conjugate pair.
+	/// </summary>
+	public Cell From => _mask & 1023;
 
-	/// <inheritdoc/>
-	public Cell To
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _mask >> 10 & 1023;
-	}
+	/// <summary>
+	/// Indicates the "to" cell, i.e. the target cell that ends the conjugate pair.
+	/// </summary>
+	public Cell To => _mask >> 10 & 1023;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the digit used.
+	/// </summary>
 	[HashCodeMember]
-	public Digit Digit
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _mask >> 20 & 15;
-	}
+	public Digit Digit => _mask >> 20 & 15;
 
-	/// <inheritdoc/>
-	public House Line
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map.CoveredLine;
-	}
+	/// <summary>
+	/// Indicates the target line of the two cells lie in.
+	/// </summary>
+	public House Line => Map.CoveredLine;
 
-	/// <inheritdoc/>
-	public HouseMask Houses
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Map.CoveredHouses;
-	}
+	/// <summary>
+	/// Indicates the house that the current conjugate pair lies in.
+	/// </summary>
+	public HouseMask Houses => Map.CoveredHouses;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the cells (the "from" cell and "to" cell).
+	/// </summary>
 	[HashCodeMember]
-	public CellMap Map
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => [From, To];
-	}
+	public CellMap Map => [From, To];
 
 	private Candidate FromCandidate => From * 9 + Digit;
 

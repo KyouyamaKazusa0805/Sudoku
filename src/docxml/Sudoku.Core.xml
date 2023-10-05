@@ -2501,22 +2501,34 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.From">
-            <inheritdoc/>
+            <summary>
+            Indicates the "from" cell, i.e. the base cell that starts the conjugate pair.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.To">
-            <inheritdoc/>
+            <summary>
+            Indicates the "to" cell, i.e. the target cell that ends the conjugate pair.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Digit">
-            <inheritdoc/>
+            <summary>
+            Indicates the digit used.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Line">
-            <inheritdoc/>
+            <summary>
+            Indicates the target line of the two cells lie in.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Houses">
-            <inheritdoc/>
+            <summary>
+            Indicates the house that the current conjugate pair lies in.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Conjugate.Map">
-            <inheritdoc/>
+            <summary>
+            Indicates the cells (the "from" cell and "to" cell).
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
