@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Converters;
@@ -6,8 +7,6 @@ using Sudoku.Concepts.Primitive;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
-
-using ConjugateImpl = IConjugate<Conjugate, HouseMask, ConjugateMask, Cell, Digit, House, CellMap>;
 
 /// <summary>
 /// Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -20,7 +19,10 @@ using ConjugateImpl = IConjugate<Conjugate, HouseMask, ConjugateMask, Cell, Digi
 [Equals]
 [GetHashCode]
 [EqualityOperators]
-public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] ConjugateMask mask) : ConjugateImpl, ICoordinateObject<Conjugate>
+public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] ConjugateMask mask) :
+	IEquatable<Conjugate>,
+	IEqualityOperators<Conjugate, Conjugate, bool>,
+	ICoordinateObject<Conjugate>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -88,9 +90,6 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] Conjuga
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => [From, To];
 	}
-
-	/// <inheritdoc/>
-	ConjugateMask ConjugateImpl.Mask => _mask;
 
 	private Candidate FromCandidate => From * 9 + Digit;
 

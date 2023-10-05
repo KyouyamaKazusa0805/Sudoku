@@ -1,4 +1,5 @@
 #define TARGET_64BIT
+using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -21,8 +22,6 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
-using GridImpl = IGrid<Grid, HouseMask, ConjugateMask, Mask, Cell, Digit, Candidate, House, CellMap, Conclusion, Conjugate>;
-
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
@@ -43,8 +42,8 @@ using GridImpl = IGrid<Grid, HouseMask, ConjugateMask, Mask, Cell, Digit, Candid
 [ToString]
 [EqualityOperators]
 public unsafe partial struct Grid :
-	GridImpl,
 	IConceptObject<Grid, GridConverter, GridParser>,
+	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IMinMaxValue<Grid>,
@@ -564,9 +563,6 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
-	/// <inheritdoc/>
-	static Mask GridImpl.DefaultMask => DefaultMask;
-
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
 	/// </summary>
@@ -584,12 +580,6 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
-
-	/// <inheritdoc/>
-	static Grid GridImpl.Empty => Empty;
-
-	/// <inheritdoc/>
-	static Grid GridImpl.Undefined => Undefined;
 
 
 	/// <summary>
@@ -696,9 +686,6 @@ public unsafe partial struct Grid :
 			static void or(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result |= grid[cell];
 		}
 	}
-
-	/// <inheritdoc/>
-	readonly ref Mask GridImpl.this[Cell cell] => ref Unsafe.AsRef(in this[cell]);
 
 
 	/// <summary>
@@ -1315,6 +1302,14 @@ public unsafe partial struct Grid :
 		}
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
+
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
 	/// </summary>
@@ -1322,7 +1317,6 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap GetMap(delegate*<ref readonly Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
@@ -1345,7 +1339,6 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	[ExplicitInterfaceImpl(typeof(IGrid<,,,,,,,,,,>))]
 	private readonly CellMap[] GetMaps(delegate*<ref readonly Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[9];
@@ -1623,6 +1616,15 @@ public unsafe partial struct Grid :
 			return false;
 		}
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result)
+		=> TryParse(s ?? $"<{nameof(Undefined)}>", out result);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.
