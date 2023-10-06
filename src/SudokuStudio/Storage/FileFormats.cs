@@ -36,7 +36,7 @@ public static class FileFormats
 	/// <summary>
 	/// Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
 	/// </summary>
-	public static readonly FileFormat GridLibrary = new(GetString("FileExtension_GridLibrary"), FileExtensions.GridLibrary);
+	public static readonly FileFormat PuzzleLibrary = new(GetString("FileExtension_GridLibrary"), FileExtensions.PuzzleLibrary);
 
 	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).

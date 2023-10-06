@@ -56,9 +56,10 @@
 						<FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7FC;" />
 					</NavigationViewItem.Icon>
 				</NavigationViewItem>
+				<NavigationViewItem x:Name="PuzzleLibraryPage" Content="{m:R Key=MainWindow_PuzzleLibraryPage}" Icon="Library" />
+				<NavigationViewItem x:Name="TechniqueGalleryPage" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
 				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
 				<NavigationViewItem x:Name="HotkeyCheatTablePage" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
-				<NavigationViewItem x:Name="TechniqueGalleryPage" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 			</NavigationView.MenuItems>
 

@@ -94,6 +94,7 @@ public sealed partial class MainWindow : Window
 		=> _navigatingData = [
 			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
 			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
+			(container => container == PuzzleLibraryPage, typeof(LibraryPage)),
 			(container => container == AboutPageItem, typeof(AboutPage)),
 			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
 			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage)),

@@ -864,6 +864,27 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryPage_Descrption" xml:space="preserve">
+    <value>该页面列举的是你自己配置的一些题库。通过该页面可以增加、删除或改变题库的配置数据。</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsPlural" xml:space="preserve">
+    <value>{0} 个题目</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
+    <value>{0} 个题目</value>
+  </data>
+  <data name="LibraryPage_TagsAre" xml:space="preserve">
+    <value>标签：{0}</value>
+  </data>
+  <data name="LibraryPage_UndefinedDescription" xml:space="preserve">
+    <value>&lt;暂无描述&gt;</value>
+  </data>
+  <data name="LibraryPage_UndefinedName" xml:space="preserve">
+    <value>&lt;未命名题库&gt;</value>
+  </data>
+  <data name="LibraryPage_UndefinedUserName" xml:space="preserve">
+    <value>&lt;未命名用户&gt;</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -906,11 +927,17 @@
   <data name="MainWindow_HotkeyCheatTablePageTitle" xml:space="preserve">
     <value>快捷键参照表</value>
   </data>
+  <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
+    <value>用户题库</value>
+  </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>
   </data>
   <data name="MainWindow_ProgramManual" xml:space="preserve">
     <value>程序手册</value>
+  </data>
+  <data name="MainWindow_PuzzleLibraryPage" xml:space="preserve">
+    <value>题库</value>
   </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>搜索……</value>

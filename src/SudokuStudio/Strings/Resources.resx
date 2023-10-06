@@ -861,6 +861,27 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryPage_Descrption" xml:space="preserve">
+    <value>This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page.</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsPlural" xml:space="preserve">
+    <value>{0} puzzles</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
+    <value>{0} puzzle</value>
+  </data>
+  <data name="LibraryPage_TagsAre" xml:space="preserve">
+    <value>Tags: {0}</value>
+  </data>
+  <data name="LibraryPage_UndefinedDescription" xml:space="preserve">
+    <value>&lt;To be added&gt;</value>
+  </data>
+  <data name="LibraryPage_UndefinedName" xml:space="preserve">
+    <value>&lt;Undefined&gt;</value>
+  </data>
+  <data name="LibraryPage_UndefinedUserName" xml:space="preserve">
+    <value>&lt;Unknown&gt;</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -903,11 +924,17 @@
   <data name="MainWindow_HotkeyCheatTablePageTitle" xml:space="preserve">
     <value>Hotkey Cheat Table</value>
   </data>
+  <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
+    <value>User-Defined Puzzle Libraries</value>
+  </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
   <data name="MainWindow_ProgramManual" xml:space="preserve">
     <value>Program Manual</value>
+  </data>
+  <data name="MainWindow_PuzzleLibraryPage" xml:space="preserve">
+    <value>Puzzle Libraries</value>
   </data>
   <data name="MainWindow_Search" xml:space="preserve">
     <value>Search...</value>

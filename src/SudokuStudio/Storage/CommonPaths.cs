@@ -17,13 +17,19 @@ internal static class CommonPaths
 	/// </summary>
 	public static readonly string GeneratingHistory;
 
+	/// <summary>
+	/// Indicates puzzle-library folder path.
+	/// </summary>
+	public static readonly string PuzzleLibrariesFolder;
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonPaths()
 	{
 		var documents = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 
-		UserPreference = $@"{documents}\SudokuStudio\user-preference{FileExtensions.UserPreference}";
-		GeneratingHistory = $@"{documents}\SudokuStudio\generating-history{FileExtensions.GeneratingHistory}";
+		UserPreference = $@"{documents}\{nameof(SudokuStudio)}\user-preference{FileExtensions.UserPreference}";
+		GeneratingHistory = $@"{documents}\{nameof(SudokuStudio)}\generating-history{FileExtensions.GeneratingHistory}";
+		PuzzleLibrariesFolder = $@"{documents}\{nameof(SudokuStudio)}\puzzle-lib";
 	}
 }

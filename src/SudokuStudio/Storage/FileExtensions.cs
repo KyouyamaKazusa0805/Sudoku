@@ -25,7 +25,7 @@ public static class FileExtensions
 	/// <summary>
 	/// Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
 	/// </summary>
-	public const string GridLibrary = ".ssl";
+	public const string PuzzleLibrary = ".ssl";
 
 	/// <summary>
 	/// Indicates the sudoku text file format (SST - Sudoku Studio Text format).

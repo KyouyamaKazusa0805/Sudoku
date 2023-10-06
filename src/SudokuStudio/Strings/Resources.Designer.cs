@@ -2509,6 +2509,69 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
+        /// </summary>
+        internal static string LibraryPage_Descrption {
+            get {
+                return ResourceManager.GetString("LibraryPage_Descrption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} puzzles.
+        /// </summary>
+        internal static string LibraryPage_PuzzlesCountIsPlural {
+            get {
+                return ResourceManager.GetString("LibraryPage_PuzzlesCountIsPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} puzzle.
+        /// </summary>
+        internal static string LibraryPage_PuzzlesCountIsSingular {
+            get {
+                return ResourceManager.GetString("LibraryPage_PuzzlesCountIsSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags: {0}.
+        /// </summary>
+        internal static string LibraryPage_TagsAre {
+            get {
+                return ResourceManager.GetString("LibraryPage_TagsAre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;To be added&gt;.
+        /// </summary>
+        internal static string LibraryPage_UndefinedDescription {
+            get {
+                return ResourceManager.GetString("LibraryPage_UndefinedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Undefined&gt;.
+        /// </summary>
+        internal static string LibraryPage_UndefinedName {
+            get {
+                return ResourceManager.GetString("LibraryPage_UndefinedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Unknown&gt;.
+        /// </summary>
+        internal static string LibraryPage_UndefinedUserName {
+            get {
+                return ResourceManager.GetString("LibraryPage_UndefinedUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {
@@ -2635,6 +2698,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User-Defined Puzzle Libraries.
+        /// </summary>
+        internal static string MainWindow_LibraryPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_LibraryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         internal static string MainWindow_Menu {
@@ -2649,6 +2721,15 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_ProgramManual {
             get {
                 return ResourceManager.GetString("MainWindow_ProgramManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle Libraries.
+        /// </summary>
+        internal static string MainWindow_PuzzleLibraryPage {
+            get {
+                return ResourceManager.GetString("MainWindow_PuzzleLibraryPage", resourceCulture);
             }
         }
         

@@ -167,6 +167,65 @@
             Indicates the puzzles. The default value is empty list. This property is never <see langword="null"/>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource">
+            <summary>
+            Describes for a puzzle library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.PuzzlesCount">
+            <summary>
+            Indicates the number of puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Name">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Description">
+            <summary>
+            Indicates the description of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.UserName">
+            <summary>
+            Indicates the name of the user.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId">
+            <summary>
+            Idnicates the file ID used as storage file name. <b>Note: The ID should be unique in all puzzle libraries.</b>
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FilePath">
+            <summary>
+            Indicates the path of the library storage file.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Tags">
+            <summary>
+            Indicates the tags of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Puzzles">
+            <summary>
+            The puzzles loaded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.LocalPuzzleLibraries">
+            <summary>
+            Try to fetch all puzzle libraries stored in the local path.
+            </summary>
+            <returns>
+            All puzzle libraies, having been converted into <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instances to be used and replaced.
+            </returns>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.PuzzleLibraryBindableSource._fileId">
+            <summary>
+            Indicates the backing field of property <see cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId"/>
+        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information
@@ -4313,6 +4372,11 @@ if (student is (name: var name, age: >= 18))
             Indicates puzzle-generating history path.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Storage.CommonPaths.PuzzleLibrariesFolder">
+            <summary>
+            Indicates puzzle-library folder path.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Storage.CommonPaths.#cctor">
             <static-constructor>
 		<summary>
@@ -4348,7 +4412,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.GridLibrary">
+        <member name="F:SudokuStudio.Storage.FileExtensions.PuzzleLibrary">
             <summary>
             Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
             </summary>
@@ -4420,7 +4484,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the sudoku generating history file format (SSG - Sudoku Studio Generating format).
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.FileFormats.GridLibrary">
+        <member name="F:SudokuStudio.Storage.FileFormats.PuzzleLibrary">
             <summary>
             Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
             </summary>
@@ -5917,6 +5981,41 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ctrl + R.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Descrption">
+            <summary>
+              Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_PuzzlesCountIsPlural">
+            <summary>
+              Looks up a localized string similar to {0} puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_PuzzlesCountIsSingular">
+            <summary>
+              Looks up a localized string similar to {0} puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_TagsAre">
+            <summary>
+              Looks up a localized string similar to Tags: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UndefinedDescription">
+            <summary>
+              Looks up a localized string similar to &lt;To be added&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UndefinedName">
+            <summary>
+              Looks up a localized string similar to &lt;Undefined&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UndefinedUserName">
+            <summary>
+              Looks up a localized string similar to &lt;Unknown&gt;.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -5987,6 +6086,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Hotkey Cheat Table.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPageTitle">
+            <summary>
+              Looks up a localized string similar to User-Defined Puzzle Libraries.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
@@ -5995,6 +6099,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_ProgramManual">
             <summary>
               Looks up a localized string similar to Program Manual.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_PuzzleLibraryPage">
+            <summary>
+              Looks up a localized string similar to Puzzle Libraries.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Search">
@@ -10451,6 +10560,36 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered">
             <summary>
             Indicates whether the edit button is hovered.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.LibraryPage">
+            <summary>
+            Represents for a library page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.LibraryPage._puzzleLibraries">
+            <summary>
+            Indicates the puzzle library.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
