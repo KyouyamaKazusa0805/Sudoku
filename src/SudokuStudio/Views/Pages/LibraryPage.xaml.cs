@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Storage;
 using Windows.System;
@@ -37,7 +38,7 @@ public sealed partial class LibraryPage : Page
 		if (isPlaceholder)
 		{
 			var selectedControl = (GridViewItem)items.First(item => ReferenceEquals(((ContentControl)item).Content, clickedSource));
-			((MenuFlyout)selectedControl.ContextFlyout!).ShowAt(selectedControl);
+			((MenuFlyout)selectedControl.ContextFlyout!).ShowAt(selectedControl, new FlyoutShowOptions { Placement = FlyoutPlacementMode.Auto });
 		}
 		else
 		{
