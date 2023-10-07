@@ -2509,11 +2509,38 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a library.
+        /// </summary>
+        internal static string LibraryPage_AddLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
         /// </summary>
         internal static string LibraryPage_Descrption {
             get {
                 return ResourceManager.GetString("LibraryPage_Descrption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a library via csv file....
+        /// </summary>
+        internal static string LibraryPage_LoadLibraryViaCsvFile {
+            get {
+                return ResourceManager.GetString("LibraryPage_LoadLibraryViaCsvFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a library via text file....
+        /// </summary>
+        internal static string LibraryPage_LoadLibraryViaTextFile {
+            get {
+                return ResourceManager.GetString("LibraryPage_LoadLibraryViaTextFile", resourceCulture);
             }
         }
         

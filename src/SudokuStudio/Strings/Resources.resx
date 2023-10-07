@@ -861,8 +861,17 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryPage_AddLibrary" xml:space="preserve">
+    <value>Create a library</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page.</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryViaCsvFile" xml:space="preserve">
+    <value>Load a library via csv file...</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryViaTextFile" xml:space="preserve">
+    <value>Load a library via text file...</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>Open local folder</value>

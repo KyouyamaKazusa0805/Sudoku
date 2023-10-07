@@ -26,15 +26,18 @@ public sealed partial class LibraryPage : Page
 
 	private void PuzzleLibraiesDisplayer_ItemClick(object sender, ItemClickEventArgs e)
 	{
-		if (e.ClickedItem is not PuzzleLibraryBindableSource { IsAddingOperationPlaceholder: var isPlaceholder })
+		if ((sender, e.ClickedItem) is not (
+			GridView { ItemsPanelRoot.Children: var items },
+			PuzzleLibraryBindableSource { IsAddingOperationPlaceholder: var isPlaceholder } clickedSource
+		))
 		{
 			return;
 		}
 
 		if (isPlaceholder)
 		{
-			// Create a dialog to display adding operation.
-
+			var selectedControl = (GridViewItem)items.First(item => ReferenceEquals(((ContentControl)item).Content, clickedSource));
+			((MenuFlyout)selectedControl.ContextFlyout!).ShowAt(selectedControl);
 		}
 		else
 		{

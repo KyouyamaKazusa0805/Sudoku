@@ -864,8 +864,17 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryPage_AddLibrary" xml:space="preserve">
+    <value>创建一个题库</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>该页面列举的是你自己配置的一些题库。通过该页面可以增加、删除或改变题库的配置数据。</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryViaCsvFile" xml:space="preserve">
+    <value>通过 csv 表格文件导入……</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryViaTextFile" xml:space="preserve">
+    <value>通过文本文件导入……</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>打开本地文件夹</value>

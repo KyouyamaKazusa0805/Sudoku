@@ -3473,6 +3473,24 @@ if (student is (name: var name, age: >= 18))
             Indicates the aliases.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector">
+            <summary>
+            Represents a style selector for puzzle library operation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.NormalStyle">
+            <summary>
+            Indicates the normal style.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.AddingStyle">
+            <summary>
+            Indicates the adding style.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.SelectStyleCore(System.Object,Microsoft.UI.Xaml.DependencyObject)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.SudokuFormatFlags">
             <summary>
             Represents a format flag.
@@ -6022,9 +6040,24 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ctrl + R.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AddLibrary">
+            <summary>
+              Looks up a localized string similar to Create a library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Descrption">
             <summary>
               Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryViaCsvFile">
+            <summary>
+              Looks up a localized string similar to Load a library via csv file....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryViaTextFile">
+            <summary>
+              Looks up a localized string similar to Load a library via text file....
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_OpenLibFolder">
