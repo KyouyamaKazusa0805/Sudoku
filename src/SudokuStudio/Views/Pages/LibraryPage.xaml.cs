@@ -23,6 +23,19 @@ public sealed partial class LibraryPage : Page
 
 	private void PuzzleLibraiesDisplayer_ItemClick(object sender, ItemClickEventArgs e)
 	{
+		if (e.ClickedItem is not PuzzleLibraryBindableSource { IsAddingOperationPlaceholder: var isPlaceholder })
+		{
+			return;
+		}
 
+		if (isPlaceholder)
+		{
+			// Create a dialog to display adding operation.
+
+		}
+		else
+		{
+			// TODO: Add a new detail page to display a library of puzzles.
+		}
 	}
 }

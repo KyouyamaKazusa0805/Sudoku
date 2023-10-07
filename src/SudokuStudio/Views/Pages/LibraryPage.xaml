@@ -7,7 +7,7 @@
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:p="using:SudokuStudio.Views.Pages" xmlns:dts="using:SudokuStudio.Interaction.DataTemplateSelectors"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPage}">
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 		<TextBlock Text="{m:R Key=LibraryPage_Descrption}" Margin="0,10,0,0" />
@@ -24,20 +24,32 @@
 					<ItemsWrapGrid MaximumRowsOrColumns="8" Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</GridView.ItemsPanel>
-			<GridView.ItemTemplate>
-				<DataTemplate x:DataType="bs:PuzzleLibraryBindableSource">
-					<Grid Width="250" Height="320" CornerRadius="5" BorderBrush="DimGray" BorderThickness="1">
-						<FontIcon Glyph="&#xE8F1;" FontSize="72" Opacity=".4" />
-						<StackPanel Padding="10" VerticalAlignment="Bottom" Background="LightGray" Opacity=".8" Spacing="4">
-							<TextBlock Text="{x:Bind Name}" FontWeight="Bold" FontSize="24" />
-							<TextBlock Text="{x:Bind Author}" FontWeight="Light" />
-							<TextBlock Text="{x:Bind Description}" TextWrapping="WrapWholeWords" Margin="0,0,0,20" FontSize="12" />
-							<TextBlock Text="{x:Bind cvt:PuzzleLibraryConversion.GetTags(Tags)}" />
-							<TextBlock Text="{x:Bind cvt:PuzzleLibraryConversion.GetPuzzlesCountText(PuzzlesCount)}" />
-						</StackPanel>
-					</Grid>
-				</DataTemplate>
-			</GridView.ItemTemplate>
+			<GridView.ItemTemplateSelector>
+				<dts:PuzzleLibraryOrAddingTemplateSelector>
+					<dts:PuzzleLibraryOrAddingTemplateSelector.DisplayTemplate>
+						<DataTemplate x:DataType="bs:PuzzleLibraryBindableSource">
+							<Grid Width="250" Height="320" CornerRadius="5" BorderBrush="LightGray" BorderThickness="1">
+								<FontIcon Glyph="&#xE8F1;" FontSize="72" Opacity=".4" />
+								<StackPanel Padding="10" VerticalAlignment="Bottom" Background="LightGray" Opacity=".8" Spacing="4">
+									<TextBlock Text="{x:Bind Name}" FontWeight="Bold" FontSize="24" />
+									<TextBlock Text="{x:Bind Author}" FontWeight="Light" />
+									<TextBlock Text="{x:Bind Description}" TextWrapping="WrapWholeWords" Margin="0,0,0,20" FontSize="12" />
+									<TextBlock Text="{x:Bind cvt:PuzzleLibraryConversion.GetTags(Tags)}" />
+									<TextBlock Text="{x:Bind cvt:PuzzleLibraryConversion.GetPuzzlesCountText(PuzzlesCount)}" />
+								</StackPanel>
+							</Grid>
+						</DataTemplate>
+					</dts:PuzzleLibraryOrAddingTemplateSelector.DisplayTemplate>
+					<dts:PuzzleLibraryOrAddingTemplateSelector.AddingOperationTemplate>
+						<DataTemplate x:DataType="bs:PuzzleLibraryBindableSource">
+							<Grid Width="250" Height="320" CornerRadius="5" BorderBrush="LightGray" BorderThickness="1">
+								<Ellipse Stroke="LightGray" Width="90" Height="90" Margin="-6,-6,0,0" />
+								<FontIcon Glyph="&#xE710;" FontSize="72" Opacity=".4" />
+							</Grid>
+						</DataTemplate>
+					</dts:PuzzleLibraryOrAddingTemplateSelector.AddingOperationTemplate>
+				</dts:PuzzleLibraryOrAddingTemplateSelector>
+			</GridView.ItemTemplateSelector>
 		</GridView>
 	</StackPanel>
 </Page>

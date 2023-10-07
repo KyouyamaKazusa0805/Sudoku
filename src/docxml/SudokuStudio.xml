@@ -171,6 +171,18 @@
             <summary>
             Describes for a puzzle library.
             </summary>
+            <param name="isAddingOperationPlaceholder">A <see cref="T:System.Boolean"/> value indicating whether the value is for a placeholder.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor(System.Boolean)">
+            <summary>
+            Describes for a puzzle library.
+            </summary>
+            <param name="isAddingOperationPlaceholder">A <see cref="T:System.Boolean"/> value indicating whether the value is for a placeholder.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instance.
+            </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.PuzzlesCount">
             <summary>
@@ -219,6 +231,17 @@
             <returns>
             All puzzle libraies, having been converted into <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instances to be used and replaced.
             </returns>
+            <remarks>
+            This property always returns a list that contain at least one element. If the directory doesn't contain any valid puzzle libraries,
+            this property will return a collection with one <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> element indicating the adding operation
+            as a placeholder; otherwise, a list of valid <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> elements
+            and a placeholder mentioned in the previous case.
+            </remarks>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.IsAddingOperationPlaceholder">
+            <summary>
+            The generated property declaration for parameter <c>isAddingOperationPlaceholder</c>.
+            </summary>
         </member>
         <member name="F:SudokuStudio.BindableSource.PuzzleLibraryBindableSource._fileId">
             <summary>
@@ -2711,6 +2734,24 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides with conversion methods used by XAML designer, about visibility.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector">
+            <summary>
+            Represents a template selector for puzzle library displaying or adding operation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.DisplayTemplate">
+            <summary>
+            The basic display template.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.AddingOperationTemplate">
+            <summary>
+            The adding operation template.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
             <summary>

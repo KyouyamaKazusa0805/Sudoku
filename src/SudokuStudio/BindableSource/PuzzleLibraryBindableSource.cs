@@ -11,8 +11,17 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Describes for a puzzle library.
 /// </summary>
-public sealed partial class PuzzleLibraryBindableSource
+/// <param name="isAddingOperationPlaceholder">A <see cref="bool"/> value indicating whether the value is for a placeholder.</param>
+public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddingOperationPlaceholder)
 {
+	/// <summary>
+	/// Initializes a <see cref="PuzzleLibraryBindableSource"/> instance.
+	/// </summary>
+	public PuzzleLibraryBindableSource() : this(false)
+	{
+	}
+
+
 	/// <summary>
 	/// Indicates the number of puzzles.
 	/// </summary>
@@ -70,42 +79,51 @@ public sealed partial class PuzzleLibraryBindableSource
 	/// <returns>
 	/// All puzzle libraies, having been converted into <see cref="PuzzleLibraryBindableSource"/> instances to be used and replaced.
 	/// </returns>
+	/// <remarks>
+	/// This property always returns a list that contain at least one element. If the directory doesn't contain any valid puzzle libraries,
+	/// this property will return a collection with one <see cref="PuzzleLibraryBindableSource"/> element indicating the adding operation
+	/// as a placeholder; otherwise, a list of valid <see cref="PuzzleLibraryBindableSource"/> elements
+	/// and a placeholder mentioned in the previous case.
+	/// </remarks>
 	public static ObservableCollection<PuzzleLibraryBindableSource> LocalPuzzleLibraries
 	{
 		get
 		{
-			var result = new List<PuzzleLibraryBindableSource>();
-			foreach (var file in new DirectoryInfo(CommonPaths.PuzzleLibrariesFolder).GetFiles())
+			var di = new DirectoryInfo(CommonPaths.PuzzleLibrariesFolder);
+			if (!di.Exists || di.GetFiles() is not (var files and not []))
 			{
-				PuzzleLibraryBindableSource instance;
+				di.Create(); // Implicit behavior: if the puzzle library does not exist, create a new directory.
+				return [new(true)];
+			}
+
+			var result = new List<PuzzleLibraryBindableSource>();
+			foreach (var file in files)
+			{
+				if (tryDeserialize(file.FullName, out var instance))
+				{
+					instance.PuzzlesCount = instance.Puzzles.Length;
+					instance.FileId = Path.GetFileNameWithoutExtension(file.FullName);
+					result.Add(instance);
+				}
+			}
+
+			return [.. result, new(true)];
+
+
+			static bool tryDeserialize(string fileName, [NotNullWhen(true)] out PuzzleLibraryBindableSource? result)
+			{
 				try
 				{
-					var json = File.ReadAllText(file.FullName);
-					instance = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(json) ?? throw new JsonException();
+					var json = File.ReadAllText(fileName);
+					result = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(json) ?? throw new JsonException();
+					return true;
 				}
 				catch (JsonException)
 				{
-					continue;
+					result = null;
+					return false;
 				}
-
-#if false
-				var newGrids = new List<Grid>(instance.Puzzles.Length);
-				foreach (ref readonly var grid in instance.Puzzles.EnumerateRef())
-				{
-					if (grid.IsValid)
-					{
-						newGrids.Add(grid);
-					}
-				}
-				instance.Puzzles = [.. newGrids];
-#endif
-
-				instance.PuzzlesCount = instance.Puzzles.Length;
-				instance.FileId = Path.GetFileNameWithoutExtension(file.FullName);
-				result.Add(instance);
 			}
-
-			return [.. result];
 		}
 	}
 }
