@@ -9,10 +9,10 @@
 	xmlns:pc="using:SudokuStudio.Views.Pages.ContentDialogs"
 	xmlns:wc="using:CommunityToolkit.WinUI.UI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pc:LibraryLoadOrAddContent}">
-	<StackPanel>
+	<StackPanel Spacing="24">
 		<TextBlock
 			Text="{x:Bind cvt:PuzzleLibraryConversion.GetLoadingOrAddingDialogTitle(IsAdding),Mode=OneWay}"
-			FontWeight="Bold" FontSize="24" Margin="0,0,0,12" />
+			FontWeight="Bold" FontSize="24" />
 		<wc:SwitchPresenter Value="{x:Bind IsAdding,Mode=OneWay}">
 			<wc:Case Value="{m:Boolean Value=True}">
 				<StackPanel Spacing="12">
