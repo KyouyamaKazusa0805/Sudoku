@@ -655,6 +655,18 @@
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
+        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
+            <summary>
+            Provides with extension methos on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Insert``1(System.Collections.ObjectModel.Collection{``0},System.Index,``0)">
+            <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)"/>
+            <param name="this">The current collection.</param>
+            <param name="index"/>
+            <param name="item"/>
+        </member>
         <member name="T:System.CommonMethods">
             <summary>
             Represents a set of methods to be used as method groups.

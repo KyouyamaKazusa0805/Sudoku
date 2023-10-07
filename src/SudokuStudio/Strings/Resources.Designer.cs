@@ -1942,6 +1942,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comma-separated values format.
+        /// </summary>
+        internal static string FileExtension_CommaSeparated {
+            get {
+                return ResourceManager.GetString("FileExtension_CommaSeparated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generating history file.
         /// </summary>
         internal static string FileExtension_GeneratingHistory {
@@ -2518,11 +2527,146 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new library.
+        /// </summary>
+        internal static string LibraryPage_AddLibraryTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibraryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LibraryPage_Close {
+            get {
+                return ResourceManager.GetString("LibraryPage_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
         /// </summary>
         internal static string LibraryPage_Descrption {
             get {
                 return ResourceManager.GetString("LibraryPage_Descrption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library local file conflicts with its name. Please rename the file ID and try again..
+        /// </summary>
+        internal static string LibraryPage_FileAlreadyExists {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File ID Conflicts.
+        /// </summary>
+        internal static string LibraryPage_FileAlreadyExistsTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileAlreadyExistsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File ID cannot be empty string.
+        /// </summary>
+        internal static string LibraryPage_FileIdCannotEmpty {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileIdCannotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File ID Error.
+        /// </summary>
+        internal static string LibraryPage_FileIdCannotEmptyTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileIdCannotEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author name.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryAuthor {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input an author name here.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryAuthorPlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryAuthorPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryDescription {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input description for the library here.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryDescriptionPlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryDescriptionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File ID.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryFileId {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryFileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File ID is a unique identifier that is the real file name of this puzzle library.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryFileIdPlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryFileIdPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library name.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryName {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input a name here.
+        /// </summary>
+        internal static string LibraryPage_InputLibraryNamePlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputLibraryNamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a library.
+        /// </summary>
+        internal static string LibraryPage_LoadLibraryTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_LoadLibraryTitle", resourceCulture);
             }
         }
         
@@ -2541,6 +2685,15 @@ namespace SudokuStudio.Strings {
         internal static string LibraryPage_LoadLibraryViaTextFile {
             get {
                 return ResourceManager.GetString("LibraryPage_LoadLibraryViaTextFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string LibraryPage_LoadOrAddingButtonText {
+            get {
+                return ResourceManager.GetString("LibraryPage_LoadOrAddingButtonText", resourceCulture);
             }
         }
         

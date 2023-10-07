@@ -11,6 +11,15 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:ss="using:SudokuStudio.Interaction.StyleSelectors"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPage}">
+	<Page.Resources>
+		<TeachingTip
+			x:Name="ErrorDialog_FileAlreadyExists"
+			Title="{m:R Key=LibraryPage_FileAlreadyExistsTitle}" Subtitle="{m:R Key=LibraryPage_FileAlreadyExists}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileIdCannotBeEmpty"
+			Title="{m:R Key=LibraryPage_FileIdCannotEmptyTitle}" Subtitle="{m:R Key=LibraryPage_FileIdCannotEmpty}" />
+	</Page.Resources>
+
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 		<TextBlock Text="{m:R Key=LibraryPage_Descrption}" Margin="0,10,0,0" />
 		<GridView
@@ -29,9 +38,13 @@
 							<Setter Property="ContextFlyout">
 								<Setter.Value>
 									<MenuFlyout>
-										<MenuFlyoutItem Text="{m:R Key=LibraryPage_AddLibrary}" />
-										<MenuFlyoutItem Text="{m:R Key=LibraryPage_LoadLibraryViaTextFile}" />
-										<MenuFlyoutItem Text="{m:R Key=LibraryPage_LoadLibraryViaCsvFile}" />
+										<MenuFlyoutItem Text="{m:R Key=LibraryPage_AddLibrary}" Click="AddLibraryMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutItem
+											Text="{m:R Key=LibraryPage_LoadLibraryViaTextFile}"
+											Click="LoadFromTextMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutItem
+											Text="{m:R Key=LibraryPage_LoadLibraryViaCsvFile}"
+											Click="LoadFromCsvMenuFlyoutItem_ClickAsync" />
 									</MenuFlyout>
 								</Setter.Value>
 							</Setter>

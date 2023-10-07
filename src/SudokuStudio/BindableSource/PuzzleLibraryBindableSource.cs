@@ -99,6 +99,12 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 			var result = new List<PuzzleLibraryBindableSource>();
 			foreach (var file in files)
 			{
+				if (Path.GetExtension(file.FullName) != FileExtensions.PuzzleLibrary)
+				{
+					// Filters invalid file extensions.
+					continue;
+				}
+
 				if (tryDeserialize(file.FullName, out var instance))
 				{
 					instance.PuzzlesCount = instance.Puzzles.Length;

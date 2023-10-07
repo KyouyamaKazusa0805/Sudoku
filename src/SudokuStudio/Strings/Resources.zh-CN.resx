@@ -675,6 +675,9 @@
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>选择模式：</value>
   </data>
+  <data name="FileExtension_CommaSeparated" xml:space="preserve">
+    <value>逗号分隔表格式</value>
+  </data>
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>题目生成记录文件</value>
   </data>
@@ -867,14 +870,62 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>创建一个题库</value>
   </data>
+  <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
+    <value>创建新题库</value>
+  </data>
+  <data name="LibraryPage_Close" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>该页面列举的是你自己配置的一些题库。通过该页面可以增加、删除或改变题库的配置数据。</value>
+  </data>
+  <data name="LibraryPage_FileAlreadyExists" xml:space="preserve">
+    <value>抱歉，你输入的文件 ID 在本地存储的文件夹下有重名文件。请重新改变一个文件 ID 然后重试。</value>
+  </data>
+  <data name="LibraryPage_FileAlreadyExistsTitle" xml:space="preserve">
+    <value>文件 ID 冲突</value>
+  </data>
+  <data name="LibraryPage_FileIdCannotEmpty" xml:space="preserve">
+    <value>文件 ID 不能是空字符串。</value>
+  </data>
+  <data name="LibraryPage_FileIdCannotEmptyTitle" xml:space="preserve">
+    <value>文件 ID 错误</value>
+  </data>
+  <data name="LibraryPage_InputLibraryAuthor" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="LibraryPage_InputLibraryAuthorPlaceholder" xml:space="preserve">
+    <value>在这里输入作者名</value>
+  </data>
+  <data name="LibraryPage_InputLibraryDescription" xml:space="preserve">
+    <value>描述信息</value>
+  </data>
+  <data name="LibraryPage_InputLibraryDescriptionPlaceholder" xml:space="preserve">
+    <value>在这里输入对这个题库的描述信息</value>
+  </data>
+  <data name="LibraryPage_InputLibraryFileId" xml:space="preserve">
+    <value>文件 ID</value>
+  </data>
+  <data name="LibraryPage_InputLibraryFileIdPlaceholder" xml:space="preserve">
+    <value>文件 ID 是存储该题库的文件名，题库和题库之间 ID 不能重复</value>
+  </data>
+  <data name="LibraryPage_InputLibraryName" xml:space="preserve">
+    <value>题库名</value>
+  </data>
+  <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
+    <value>在这里输入题库名称</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryTitle" xml:space="preserve">
+    <value>载入题库</value>
   </data>
   <data name="LibraryPage_LoadLibraryViaCsvFile" xml:space="preserve">
     <value>通过 csv 表格文件导入……</value>
   </data>
   <data name="LibraryPage_LoadLibraryViaTextFile" xml:space="preserve">
     <value>通过文本文件导入……</value>
+  </data>
+  <data name="LibraryPage_LoadOrAddingButtonText" xml:space="preserve">
+    <value>确定</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>打开本地文件夹</value>

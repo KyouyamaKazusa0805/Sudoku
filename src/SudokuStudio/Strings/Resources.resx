@@ -672,6 +672,9 @@
   <data name="DrawingPage_SelectMode" xml:space="preserve">
     <value>Select Mode: </value>
   </data>
+  <data name="FileExtension_CommaSeparated" xml:space="preserve">
+    <value>Comma-separated values format</value>
+  </data>
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>Generating history file</value>
   </data>
@@ -864,14 +867,62 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>Create a library</value>
   </data>
+  <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
+    <value>Create a new library</value>
+  </data>
+  <data name="LibraryPage_Close" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page.</value>
+  </data>
+  <data name="LibraryPage_FileAlreadyExists" xml:space="preserve">
+    <value>Library local file conflicts with its name. Please rename the file ID and try again.</value>
+  </data>
+  <data name="LibraryPage_FileAlreadyExistsTitle" xml:space="preserve">
+    <value>File ID Conflicts</value>
+  </data>
+  <data name="LibraryPage_FileIdCannotEmpty" xml:space="preserve">
+    <value>File ID cannot be empty string</value>
+  </data>
+  <data name="LibraryPage_FileIdCannotEmptyTitle" xml:space="preserve">
+    <value>File ID Error</value>
+  </data>
+  <data name="LibraryPage_InputLibraryAuthor" xml:space="preserve">
+    <value>Author name</value>
+  </data>
+  <data name="LibraryPage_InputLibraryAuthorPlaceholder" xml:space="preserve">
+    <value>Input an author name here</value>
+  </data>
+  <data name="LibraryPage_InputLibraryDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="LibraryPage_InputLibraryDescriptionPlaceholder" xml:space="preserve">
+    <value>Input description for the library here</value>
+  </data>
+  <data name="LibraryPage_InputLibraryFileId" xml:space="preserve">
+    <value>File ID</value>
+  </data>
+  <data name="LibraryPage_InputLibraryFileIdPlaceholder" xml:space="preserve">
+    <value>File ID is a unique identifier that is the real file name of this puzzle library</value>
+  </data>
+  <data name="LibraryPage_InputLibraryName" xml:space="preserve">
+    <value>Library name</value>
+  </data>
+  <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
+    <value>Input a name here</value>
+  </data>
+  <data name="LibraryPage_LoadLibraryTitle" xml:space="preserve">
+    <value>Load a library</value>
   </data>
   <data name="LibraryPage_LoadLibraryViaCsvFile" xml:space="preserve">
     <value>Load a library via csv file...</value>
   </data>
   <data name="LibraryPage_LoadLibraryViaTextFile" xml:space="preserve">
     <value>Load a library via text file...</value>
+  </data>
+  <data name="LibraryPage_LoadOrAddingButtonText" xml:space="preserve">
+    <value>Apply</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>Open local folder</value>

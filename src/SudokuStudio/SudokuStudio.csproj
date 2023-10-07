@@ -107,6 +107,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\ContentDialogs\LibraryLoadOrAddContent.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\DataColumn.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

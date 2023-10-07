@@ -3839,6 +3839,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.BooleanExtension">
+            <summary>
+            Represents a markup extension to provide a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.BooleanExtension.Value">
+            <summary>
+            The target value to be set.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.BooleanExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.EmptyStringExtension">
             <summary>
             A markup extension for empty strings.
@@ -4481,6 +4494,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the sudoku text file format (SST - Sudoku Studio Text format).
             </summary>
         </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.CommaSeparated">
+            <summary>
+            Indicates the comma-separated text file format.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.UserPreference">
             <summary>
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
@@ -4526,6 +4544,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Storage.FileFormats.Text">
             <summary>
             Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.CommaSeparated">
+            <summary>
+            Indicates the comma-separated values file format.
             </summary>
         </member>
         <member name="F:SudokuStudio.Storage.FileFormats.PortablePicture">
@@ -5725,6 +5748,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select Mode: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.FileExtension_CommaSeparated">
+            <summary>
+              Looks up a localized string similar to Comma-separated values format.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.FileExtension_GeneratingHistory">
             <summary>
               Looks up a localized string similar to Generating history file.
@@ -6045,9 +6073,84 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Create a library.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AddLibraryTitle">
+            <summary>
+              Looks up a localized string similar to Create a new library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Close">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Descrption">
             <summary>
               Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileAlreadyExists">
+            <summary>
+              Looks up a localized string similar to Library local file conflicts with its name. Please rename the file ID and try again..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileAlreadyExistsTitle">
+            <summary>
+              Looks up a localized string similar to File ID Conflicts.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileIdCannotEmpty">
+            <summary>
+              Looks up a localized string similar to File ID cannot be empty string.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileIdCannotEmptyTitle">
+            <summary>
+              Looks up a localized string similar to File ID Error.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryAuthor">
+            <summary>
+              Looks up a localized string similar to Author name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryAuthorPlaceholder">
+            <summary>
+              Looks up a localized string similar to Input an author name here.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryDescriptionPlaceholder">
+            <summary>
+              Looks up a localized string similar to Input description for the library here.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryFileId">
+            <summary>
+              Looks up a localized string similar to File ID.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryFileIdPlaceholder">
+            <summary>
+              Looks up a localized string similar to File ID is a unique identifier that is the real file name of this puzzle library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryName">
+            <summary>
+              Looks up a localized string similar to Library name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryNamePlaceholder">
+            <summary>
+              Looks up a localized string similar to Input a name here.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryTitle">
+            <summary>
+              Looks up a localized string similar to Load a library.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryViaCsvFile">
@@ -6058,6 +6161,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryViaTextFile">
             <summary>
               Looks up a localized string similar to Load a library via text file....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadOrAddingButtonText">
+            <summary>
+              Looks up a localized string similar to Apply.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_OpenLibFolder">
@@ -10568,6 +10676,108 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent">
+            <summary>
+            Defines a dialog content for adding or loading a puzzle library.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAddingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding">
+            <summary>
+            Indicates whether the puzzle library is adding a new one, instead of loading.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath">
+            <summary>
+            Indicates the target file path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId">
+            <summary>
+            Indicates the file ID.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName">
+            <summary>
+            Indicates the library name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor">
+            <summary>
+            Indicates the author of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription">
+            <summary>
+            Indicates the description of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags">
+            <summary>
+            Indicates the tags to the library.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
             <summary>
             The generating strategy page.
@@ -10646,6 +10856,11 @@ if (student is (name: var name, age: >= 18))
             Represents for a library page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.LibraryPage.SerializerOptions">
+            <summary>
+            The internal serialization options.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.LibraryPage._puzzleLibraries">
             <summary>
             Indicates the puzzle library.
@@ -10655,6 +10870,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPage"/> instance.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.EnsureUnsnapped">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.LoadFileAsync">
+            <summary>
+            Loads a file from local.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is success.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPage.InitializeComponent">
             <summary>

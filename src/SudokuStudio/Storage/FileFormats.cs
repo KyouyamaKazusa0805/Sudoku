@@ -19,6 +19,11 @@ public static class FileFormats
 	public static readonly FileFormat Text = new(GetString("FileExtension_TextDescription"), FileExtensions.Text);
 
 	/// <summary>
+	/// Indicates the comma-separated values file format.
+	/// </summary>
+	public static readonly FileFormat CommaSeparated = new(GetString("FileExtension_CommaSeparated"), FileExtensions.CommaSeparated);
+
+	/// <summary>
 	/// Indicates the portable picture format.
 	/// </summary>
 	public static readonly FileFormat PortablePicture = new(GetString("FileExtension_Picture"), FileExtensions.PortablePicture);

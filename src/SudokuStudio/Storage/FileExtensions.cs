@@ -33,6 +33,11 @@ public static class FileExtensions
 	public const string Text = ".sst";
 
 	/// <summary>
+	/// Indicates the comma-separated text file format.
+	/// </summary>
+	public const string CommaSeparated = ".csv";
+
+	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
 	/// </summary>
 	public const string UserPreference = ".ssp";
