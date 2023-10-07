@@ -12,7 +12,7 @@ namespace Sudoku.Concepts.Parsers;
 /// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
 /// <c>.</c>s or <c>0</c>s to a <c>*</c>.
 /// </param>
-public sealed partial record SusserParser(bool ShortenSusserFormat = false) : GridParser
+public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) : GridParser
 {
 	/// <inheritdoc/>
 	public override Func<string, Grid> Parser
@@ -103,7 +103,7 @@ public sealed partial record SusserParser(bool ShortenSusserFormat = false) : Gr
 
 			// Step 2: eliminates candidates if exist.
 			// If we have met the colon sign ':', this loop would not be executed.
-			if (SusserEliminationsConverter.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
+			if (SusserEliminationsGridConverter.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 			{
 				foreach (var candidate in new HodokuTripletParser().Parser(elimMatch))
 				{
@@ -192,7 +192,7 @@ public sealed partial record SusserParser(bool ShortenSusserFormat = false) : Gr
 			}
 		};
 
-	
+
 	[GeneratedRegex("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""", RegexOptions.Compiled, 5000)]
 	public static partial Regex GridSusserPattern();
 

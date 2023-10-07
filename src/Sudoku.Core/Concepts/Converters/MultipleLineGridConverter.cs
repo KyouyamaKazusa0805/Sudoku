@@ -9,9 +9,9 @@ namespace Sudoku.Text.SudokuGrid;
 /// Represents a converter that converts a <see cref="Grid"/> instance into an equivalent <see cref="string"/> representation
 /// using multiple-line formatting rule.
 /// </summary>
-/// <param name="SubtleGridLines"><inheritdoc cref="PencilmarkingConverter.SubtleGridLines" path="/summary"/></param>
-/// <param name="TreatValueAsGiven"><inheritdoc cref="PencilmarkingConverter.TreatValueAsGiven" path="/summary"/></param>
-public sealed partial record MultipleLineConverter(bool SubtleGridLines = true, bool TreatValueAsGiven = false) : GridConverter
+/// <param name="SubtleGridLines"><inheritdoc cref="PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+/// <param name="TreatValueAsGiven"><inheritdoc cref="PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
+public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = true, bool TreatValueAsGiven = false) : GridConverter
 {
 	/// <summary>
 	/// Indicates the zero character.
@@ -32,7 +32,7 @@ public sealed partial record MultipleLineConverter(bool SubtleGridLines = true, 
 	/// <item><see cref="TreatValueAsGiven"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static readonly MultipleLineConverter Default = new() { Placeholder = Dot };
+	public static readonly MultipleLineGridConverter Default = new() { Placeholder = Dot };
 
 
 	/// <summary>

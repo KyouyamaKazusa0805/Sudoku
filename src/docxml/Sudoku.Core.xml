@@ -5059,15 +5059,15 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.MultipleLineParser">
+        <member name="T:Sudoku.Concepts.Parsers.MultipleLineGridParser">
             <summary>
             Represents a table parser.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.MultipleLineParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.MultipleLineGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.MultipleLineParser.GridSusserDigitPattern">
+        <member name="M:Sudoku.Concepts.Parsers.MultipleLineGridParser.GridSusserDigitPattern">
             <remarks>
             Pattern:<br/>
             <code>(\\+?\\d|\\.)</code><br/>
@@ -5084,15 +5084,15 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuParser">
+        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuGridParser">
             <summary>
             Represents an Open-Sudoku format parser.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuParser.GridOpenSudokuPattern">
+        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuGridParser.GridOpenSudokuPattern">
             <remarks>
             Pattern:<br/>
             <code>\\d(\\|\\d){242}</code><br/>
@@ -5108,15 +5108,15 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingParser">
+        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingGridParser">
             <summary>
             Represents for a pencilmarking grid parser.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingParser.GridPencilmarkingPattern">
+        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingGridParser.GridPencilmarkingPattern">
             <remarks>
             Pattern:<br/>
             <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
@@ -5311,15 +5311,15 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineParser">
+        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser">
             <summary>
             Represents a simple multiple-line grid parser.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineParser.GridSimpleMultilinePattern">
+        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.GridSimpleMultilinePattern">
             <remarks>
             Pattern:<br/>
             <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
@@ -5338,7 +5338,7 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.SukakuParser">
+        <member name="T:Sudoku.Concepts.Parsers.SukakuGridParser">
             <summary>
             Represents a Sukaku grid parser.
             </summary>
@@ -5351,7 +5351,7 @@ if (student is (name: var name, age: >= 18))
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuParser.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.#ctor(System.Boolean)">
             <summary>
             Represents a Sukaku grid parser.
             </summary>
@@ -5364,7 +5364,7 @@ if (student is (name: var name, age: >= 18))
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuParser.SingleLine">
+        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.SingleLine">
             <summary>
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
@@ -5374,10 +5374,10 @@ if (student is (name: var name, age: >= 18))
             first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuParser.GridSukakuSegmentPattern">
+        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.GridSukakuSegmentPattern">
             <remarks>
             Pattern:<br/>
             <code>\\d*[\\-\\+]?\\d+</code><br/>
@@ -5391,7 +5391,7 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.SusserParser">
+        <member name="T:Sudoku.Concepts.Parsers.SusserGridParser">
             <summary>
             Represents a Susser format parser.
             </summary>
@@ -5401,7 +5401,7 @@ if (student is (name: var name, age: >= 18))
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserParser.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.#ctor(System.Boolean)">
             <summary>
             Represents a Susser format parser.
             </summary>
@@ -5411,17 +5411,17 @@ if (student is (name: var name, age: >= 18))
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </param>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserParser.ShortenSusserFormat">
+        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.ShortenSusserFormat">
             <summary>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserParser.Parser">
+        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserParser.GridSusserPattern">
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
@@ -5441,7 +5441,7 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserParser.GridShortenedSusserPattern">
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridShortenedSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
@@ -6240,22 +6240,22 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.ExcelConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.ExcelGridConverter">
             <summary>
             Represents with a converter that uses <c>Excel</c>-compatible <c>csv</c>-format to convert <see cref="T:Sudoku.Concepts.Grid"/> instances.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.ExcelConverter.Tab">
+        <member name="F:Sudoku.Text.SudokuGrid.ExcelGridConverter.Tab">
             <summary>
             Indicates the tab character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.ExcelConverter.Zero">
+        <member name="F:Sudoku.Text.SudokuGrid.ExcelGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.ExcelConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.ExcelGridConverter.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.GridConverter">
@@ -6277,31 +6277,31 @@ if (student is (name: var name, age: >= 18))
             <param name="Grid">The grid.</param>
             <returns>The equivalent <see cref="T:System.String"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.HodokuLibraryConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter">
             <summary>
             Represents a type that converts from a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Hodoku library text rule.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.FormatPrefix">
+        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.FormatPrefix">
             <summary>
             Indicates the format prefix.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.Default">
+        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.Default">
             <summary>
             Indicates the default instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.FormatSuffix">
+        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.FormatSuffix">
             <summary>
             Indicates the format suffix.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MaskConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.MaskGridConverter">
             <summary>
             Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
             </summary>
@@ -6317,7 +6317,7 @@ if (student is (name: var name, age: >= 18))
             can be output correctly, and other values will be incorrect: they're always 0.
             </remarks>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MaskConverter.#ctor(System.String)">
+        <member name="M:Sudoku.Text.SudokuGrid.MaskGridConverter.#ctor(System.String)">
             <summary>
             Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
             </summary>
@@ -6333,102 +6333,102 @@ if (student is (name: var name, age: >= 18))
             can be output correctly, and other values will be incorrect: they're always 0.
             </remarks>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MaskConverter.Separator">
+        <member name="P:Sudoku.Text.SudokuGrid.MaskGridConverter.Separator">
             <summary>
             <para>Indicates the mask separator.</para>
             <para>The default value is a comma followed by a space: <c>", "</c>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MaskConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.MaskGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MultipleLineConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.MultipleLineGridConverter">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
             using multiple-line formatting rule.
             </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.TreatValueAsGiven" path="/summary"/></param>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MultipleLineConverter.#ctor(System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
             using multiple-line formatting rule.
             </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.TreatValueAsGiven" path="/summary"/></param>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.SubtleGridLines">
-            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.SubtleGridLines" path="/summary"/></summary>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines">
+            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.TreatValueAsGiven">
-            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.TreatValueAsGiven" path="/summary"/></summary>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven">
+            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineConverter.Zero">
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineConverter.Dot">
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineConverter.Default">
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.SubtleGridLines"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Placeholder">
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineConverter._placeholder">
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter._placeholder">
             <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Placeholder"/>.
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>.
             </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.MultipleLineConverter.Placeholder"/>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.OpenSudokuConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter">
             <summary>
-            Represents a converter type
+            Represents a converter type for Open-Sudoku app format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuConverter.Terminator">
+        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Terminator">
             <summary>
             Indicates the string terminator character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuConverter.Separator">
+        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Separator">
             <summary>
             Indicates the separator character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuConverter.Zero">
+        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuConverter.One">
+        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.One">
             <summary>
             Indicates the one character.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.OpenSudokuConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.PencilmarkingConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using pencil-marking grid formatting rule.
@@ -6469,7 +6469,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.PencilmarkingConverter.#ctor(System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.#ctor(System.Boolean,System.Nullable{System.Boolean})">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using pencil-marking grid formatting rule.
@@ -6510,13 +6510,13 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.SubtleGridLines">
+        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines">
             <summary>
             <para>Indicates whether need to handle all grid outlines while outputting.</para>
             <para>The default value is <see langword="true"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.TreatValueAsGiven">
+        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven">
             <summary>
             <para>
             Indicates the output will treat modifiable values as given ones.
@@ -6549,10 +6549,10 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SukakuConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.SukakuGridConverter">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
             using Sukaku formatting rule.
@@ -6562,7 +6562,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SukakuConverter.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Text.SudokuGrid.SukakuGridConverter.#ctor(System.Boolean)">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
             using Sukaku formatting rule.
@@ -6572,48 +6572,85 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuConverter.Multiline">
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline">
             <summary>
             <para>Indicates whether the output should be multi-line.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuConverter.Dot">
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuConverter.Zero">
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuConverter.Default">
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuConverter.Multiline"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuConverter.Placeholder">
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuConverter._placeholder">
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter._placeholder">
             <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SukakuConverter.Placeholder"/>.
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>.
             </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SukakuConverter.Placeholder"/>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserConverter">
+        <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter">
+            <summary>
+            Represents with a Susser format, but only extracts for pre-eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.EliminationPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Zero-width positive lookbehind.<br/>
+                ○ Match ':' right-to-left.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverter">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Susser formatting rule.
@@ -6635,7 +6672,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Text.SudokuGrid.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Susser formatting rule.
@@ -6657,13 +6694,13 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates">
             <summary>
             <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables">
             <summary>
             <para>
             Indicates whether the formatter will output and distinct modifiable and given digits.
@@ -6673,90 +6710,90 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser">
             <summary>
             <para>Indicates whether the formatter will shorten the final text.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.ModifiablePrefix">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.ModifiablePrefix">
             <summary>
             Indicates the modifiable prefix character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.LineLimit">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.LineLimit">
             <summary>
             Indicates the line separator character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.Star">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Star">
             <summary>
             Indicates the star character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.Dot">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.Zero">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.PreeliminationPrefix">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.PreeliminationPrefix">
             <summary>
             Indicates the pre-elimination prefix character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.Default">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.Full">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Full">
             <summary>
             Indicates the instance whose inner properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter.FullZero">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.FullZero">
             <summary>
             Indicates the instance whose inner properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>: <c>'0'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'0'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverter.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverter._placeholder">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter._placeholder">
             <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>.
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>.
             </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.MatchLengthComparer">
             <summary>
@@ -6775,61 +6812,24 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.SudokuGrid.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserConverterTreatingValuesAsGivens">
+        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens">
             <summary>
             Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserConverterTreatingValuesAsGivens.Default">
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserConverterTreatingValuesAsGivens.Converter">
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens.Converter">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsConverter">
-            <summary>
-            Represents with a Susser format, but only extracts for pre-eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.Converter">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsConverter.EliminationPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Zero-width positive lookbehind.<br/>
-                ○ Match ':' right-to-left.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a Unicode digit exactly 3 times.<br/>
-                    ○ Match a whitespace character atomically at least once.<br/>
-            ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.GridFormatterFactory">
             <summary>

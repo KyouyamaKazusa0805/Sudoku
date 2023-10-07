@@ -7,7 +7,7 @@ namespace Sudoku.Concepts.Parsers;
 /// <summary>
 /// Represents a simple multiple-line grid parser.
 /// </summary>
-public sealed partial record SimpleMultipleLineParser : GridParser
+public sealed partial record SimpleMultipleLineGridParser : GridParser
 {
 	/// <inheritdoc/>
 	public override Func<string, Grid> Parser
@@ -21,7 +21,7 @@ public sealed partial record SimpleMultipleLineParser : GridParser
 			// Remove all '\r's and '\n's.
 			scoped var sb = new StringHandler(81 + (9 << 1));
 			sb.Append(from @char in match where @char is not ('\r' or '\n') select @char);
-			return new SusserParser().Parser(sb.ToStringAndClear());
+			return new SusserGridParser().Parser(sb.ToStringAndClear());
 		};
 
 

@@ -6,20 +6,20 @@ namespace Sudoku.Text.SudokuGrid;
 /// <summary>
 /// Represents with a Susser format, but only extracts for pre-eliminations.
 /// </summary>
-public sealed partial record SusserEliminationsConverter : SusserConverter
+public sealed partial record SusserEliminationsGridConverter : SusserGridConverter
 {
 	/// <summary>
 	/// Indicates the default instance. The property set are:
 	/// <list type="bullet">
-	/// <item><see cref="SusserConverter.Placeholder"/>: <c>'.'</c></item>
-	/// <item><see cref="SusserConverter.WithModifiables"/>: <see langword="true"/></item>
-	/// <item><see cref="SusserConverter.WithCandidates"/>: <see langword="true"/></item>
-	/// <item><see cref="SusserConverter.ShortenSusser"/>: <see langword="false"/></item>
+	/// <item><see cref="SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+	/// <item><see cref="SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+	/// <item><see cref="SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+	/// <item><see cref="SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static new readonly SusserEliminationsConverter Default = new()
+	public static new readonly SusserEliminationsGridConverter Default = new()
 	{
-		Placeholder = SusserConverter.Default.Placeholder,
+		Placeholder = SusserGridConverter.Default.Placeholder,
 		WithModifiables = true,
 		WithCandidates = true
 	};

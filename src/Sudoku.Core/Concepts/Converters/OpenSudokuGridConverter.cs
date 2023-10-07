@@ -3,9 +3,9 @@ using Sudoku.Concepts;
 namespace Sudoku.Text.SudokuGrid;
 
 /// <summary>
-/// Represents a converter type
+/// Represents a converter type for Open-Sudoku app format.
 /// </summary>
-public sealed record OpenSudokuConverter : GridConverter
+public sealed record OpenSudokuGridConverter : GridConverter
 {
 	/// <summary>
 	/// Indicates the string terminator character.

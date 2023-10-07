@@ -14,7 +14,7 @@ namespace Sudoku.Text.SudokuGrid;
 /// <para>Indicates whether the output should be multi-line.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed partial record SukakuConverter(bool Multiline = false) : GridConverter
+public sealed partial record SukakuGridConverter(bool Multiline = false) : GridConverter
 {
 	/// <summary>
 	/// Indicates the dot character.
@@ -34,7 +34,7 @@ public sealed partial record SukakuConverter(bool Multiline = false) : GridConve
 	/// <item><see cref="Multiline"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static readonly SukakuConverter Default = new() { Placeholder = '.' };
+	public static readonly SukakuGridConverter Default = new() { Placeholder = '.' };
 
 
 	/// <summary>

@@ -6,7 +6,7 @@ namespace Sudoku.Concepts.Parsers;
 /// <summary>
 /// Represents for a pencilmarking grid parser.
 /// </summary>
-public sealed partial record PencilmarkingParser : GridParser
+public sealed partial record PencilmarkingGridParser : GridParser
 {
 	/// <inheritdoc/>
 	public override Func<string, Grid> Parser

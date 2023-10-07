@@ -47,7 +47,7 @@ namespace Sudoku.Text.SudokuGrid;
 /// </para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed record PencilmarkingConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : GridConverter
+public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : GridConverter
 {
 	/// <inheritdoc/>
 	public override unsafe GridNotationConverter Converter

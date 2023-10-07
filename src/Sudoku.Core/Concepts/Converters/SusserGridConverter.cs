@@ -29,7 +29,7 @@ namespace Sudoku.Text.SudokuGrid;
 /// <para>Indicates whether the formatter will shorten the final text.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public partial record SusserConverter(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : GridConverter
+public partial record SusserGridConverter(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : GridConverter
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -71,7 +71,7 @@ public partial record SusserConverter(bool WithCandidates = false, bool WithModi
 	/// <item><see cref="ShortenSusser"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static readonly SusserConverter Default = new() { Placeholder = Dot };
+	public static readonly SusserGridConverter Default = new() { Placeholder = Dot };
 
 	/// <summary>
 	/// Indicates the instance whose inner properties are:
@@ -82,7 +82,7 @@ public partial record SusserConverter(bool WithCandidates = false, bool WithModi
 	/// <item><see cref="ShortenSusser"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static readonly SusserConverter Full = new(WithCandidates: true, WithModifiables: true) { Placeholder = Dot };
+	public static readonly SusserGridConverter Full = new(WithCandidates: true, WithModifiables: true) { Placeholder = Dot };
 
 	/// <summary>
 	/// Indicates the instance whose inner properties are:
@@ -93,7 +93,7 @@ public partial record SusserConverter(bool WithCandidates = false, bool WithModi
 	/// <item><see cref="ShortenSusser"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
-	public static readonly SusserConverter FullZero = new(WithCandidates: true, WithModifiables: true) { Placeholder = Zero };
+	public static readonly SusserGridConverter FullZero = new(WithCandidates: true, WithModifiables: true) { Placeholder = Zero };
 
 
 

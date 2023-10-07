@@ -131,15 +131,15 @@ public unsafe partial struct Grid :
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly GridParser[] Parsers = [
-		new MultipleLineParser(),
-		new SimpleMultipleLineParser(),
-		new PencilmarkingParser(),
-		new SusserParser(),
-		new SusserParser(true),
+		new MultipleLineGridParser(),
+		new SimpleMultipleLineGridParser(),
+		new PencilmarkingGridParser(),
+		new SusserGridParser(),
+		new SusserGridParser(true),
 		new ExcelGridParser(),
-		new OpenSudokuParser(),
-		new SukakuParser(),
-		new SukakuParser(true)
+		new OpenSudokuGridParser(),
+		new SukakuGridParser(),
+		new SukakuGridParser(true)
 	];
 
 
@@ -1529,15 +1529,15 @@ public unsafe partial struct Grid :
 	public static Grid ParseExact(string str, GridParsingOption gridParsingOption)
 		=> gridParsingOption switch
 		{
-			GridParsingOption.Susser => ParseExact(str, new SusserParser()),
-			GridParsingOption.ShortenSusser => ParseExact(str, new SusserParser(true)),
-			GridParsingOption.Table => ParseExact(str, new MultipleLineParser()),
-			GridParsingOption.PencilMarked => ParseExact(str, new PencilmarkingParser()),
-			GridParsingOption.SimpleTable => ParseExact(str, new SimpleMultipleLineParser()),
-			GridParsingOption.Sukaku => ParseExact(str, new SukakuParser()),
-			GridParsingOption.SukakuSingleLine => ParseExact(str, new SukakuParser(true)),
+			GridParsingOption.Susser => ParseExact(str, new SusserGridParser()),
+			GridParsingOption.ShortenSusser => ParseExact(str, new SusserGridParser(true)),
+			GridParsingOption.Table => ParseExact(str, new MultipleLineGridParser()),
+			GridParsingOption.PencilMarked => ParseExact(str, new PencilmarkingGridParser()),
+			GridParsingOption.SimpleTable => ParseExact(str, new SimpleMultipleLineGridParser()),
+			GridParsingOption.Sukaku => ParseExact(str, new SukakuGridParser()),
+			GridParsingOption.SukakuSingleLine => ParseExact(str, new SukakuGridParser(true)),
 			GridParsingOption.Excel => ParseExact(str, new ExcelGridParser()),
-			GridParsingOption.OpenSudoku => ParseExact(str, new OpenSudokuParser()),
+			GridParsingOption.OpenSudoku => ParseExact(str, new OpenSudokuGridParser()),
 			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
 		} is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
@@ -2008,5 +2008,5 @@ file sealed class Converter : JsonConverter<Grid>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(SusserConverter.Full));
+		=> writer.WriteStringValue(value.ToString(SusserGridConverter.Full));
 }

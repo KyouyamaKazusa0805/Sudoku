@@ -6,7 +6,7 @@ namespace Sudoku.Text.SudokuGrid;
 /// Represents a type that converts from a <see cref="Grid"/> into an equivalent <see cref="string"/> representation
 /// using Hodoku library text rule.
 /// </summary>
-public sealed record HodokuLibraryConverter : SusserConverter
+public sealed record HodokuLibraryGridConverter : SusserGridConverter
 {
 	/// <summary>
 	/// Indicates the format prefix.
@@ -17,7 +17,7 @@ public sealed record HodokuLibraryConverter : SusserConverter
 	/// <summary>
 	/// Indicates the default instance.
 	/// </summary>
-	public static new readonly HodokuLibraryConverter Default = new() { Placeholder = SusserConverter.Default.Placeholder };
+	public static new readonly HodokuLibraryGridConverter Default = new() { Placeholder = SusserGridConverter.Default.Placeholder };
 
 
 	/// <summary>

@@ -41,7 +41,7 @@ public sealed class AnalyzeCommand : Command, ICommand<AnalyzeCommand>
 					}
 					else
 					{
-						Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilmarkingConverter()));
+						Console.WriteLine(firstFoundStep.SteppingGrid.ToString(new PencilmarkingGridConverter()));
 						Console.WriteLine(firstFoundStep.Step.ToString());
 					}
 					break;

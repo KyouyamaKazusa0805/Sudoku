@@ -17,15 +17,15 @@ internal static class SudokuFormatFlagsExtensions
 	public static GridConverter GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
-			SudokuFormatFlags.InitialFormat => SusserConverter.Default,
-			SudokuFormatFlags.CurrentFormat => SusserConverter.Full,
-			SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserConverterTreatingValuesAsGivens.Default,
-			SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryConverter.Default,
-			SudokuFormatFlags.MultipleGridFormat => MultipleLineConverter.Default,
-			SudokuFormatFlags.PencilMarkFormat => new PencilmarkingConverter(),
-			SudokuFormatFlags.SukakuFormat => SukakuConverter.Default,
-			SudokuFormatFlags.ExcelFormat => new ExcelConverter(),
-			SudokuFormatFlags.OpenSudokuFormat => new OpenSudokuConverter(),
+			SudokuFormatFlags.InitialFormat => SusserGridConverter.Default,
+			SudokuFormatFlags.CurrentFormat => SusserGridConverter.Full,
+			SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserGridConverterTreatingValuesAsGivens.Default,
+			SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryGridConverter.Default,
+			SudokuFormatFlags.MultipleGridFormat => MultipleLineGridConverter.Default,
+			SudokuFormatFlags.PencilMarkFormat => new PencilmarkingGridConverter(),
+			SudokuFormatFlags.SukakuFormat => SukakuGridConverter.Default,
+			SudokuFormatFlags.ExcelFormat => new ExcelGridConverter(),
+			SudokuFormatFlags.OpenSudokuFormat => new OpenSudokuGridConverter(),
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }
