@@ -78,38 +78,86 @@ public sealed partial class LibraryPage : Page
 			return false;
 		}
 
-		var result = await new ContentDialog
+		var fileId = Path.GetFileNameWithoutExtension(filePath);
+		var libFilePath = $@"{CommonPaths.PuzzleLibrariesFolder}\{fileId}{FileExtensions.PuzzleLibrary}";
+		if (File.Exists(libFilePath))
 		{
-			XamlRoot = XamlRoot,
-			IsPrimaryButtonEnabled = true,
-			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
-			DefaultButton = ContentDialogButton.Close,
-			Content = new LibraryLoadOrAddContent { IsAdding = false, FilePath = filePath }
-		}.ShowAsync();
-		if (result != ContentDialogResult.Primary)
-		{
+			ErrorDialog_FileAlreadyExists.IsOpen = true;
 			return false;
 		}
 
-		// TODO: Fill logic here
-		switch (Path.GetExtension(filePath))
+		var fileExtension = Path.GetExtension(filePath);
+		if (fileExtension == FileExtensions.PuzzleLibrary)
 		{
-			case FileExtensions.PlainText:
+			var content = await File.ReadAllTextAsync(filePath);
+			PuzzleLibraryBindableSource instance;
+			try
 			{
-				break;
+				instance = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(content, SerializerOptions)
+					?? throw new JsonException("Invalid value.");
 			}
-			case FileExtensions.CommaSeparated:
+			catch (JsonException)
 			{
-				break;
+				ErrorDialog_FileIsInvalid.IsOpen = true;
+				return false;
 			}
-			case FileExtensions.PuzzleLibrary:
-			{
-				break;
-			}
-		}
 
-		return false;
+			File.WriteAllText(libFilePath, JsonSerializer.Serialize(instance, SerializerOptions));
+
+			_puzzleLibraries.Insert(^1, instance);
+			return true;
+		}
+		else
+		{
+			var contentDialog = new ContentDialog
+			{
+				XamlRoot = XamlRoot,
+				IsPrimaryButtonEnabled = true,
+				Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+				CloseButtonText = GetString("LibraryPage_Close"),
+				Content = new LibraryLoadOrAddContent
+				{
+					IsAdding = false,
+					FilePath = libFilePath,
+					FileId = fileId,
+					LibraryName = fileId,
+					LibraryDescription = string.Format(GetString("LibraryPage_DescriptionDefaultValue"), fileId)
+				},
+				DefaultButton = ContentDialogButton.Primary,
+				PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+			};
+			var result = await contentDialog.ShowAsync();
+			if (result != ContentDialogResult.Primary)
+			{
+				return false;
+			}
+
+			var validPuzzles = new List<Grid>();
+			await foreach (var line in File.ReadLinesAsync(filePath))
+			{
+				if (fileExtension is FileExtensions.PlainText or FileExtensions.CommaSeparated && Grid.TryParse(line, out var grid))
+				{
+					validPuzzles.Add(grid);
+				}
+			}
+
+			var content = (LibraryLoadOrAddContent)contentDialog.Content;
+			var instance = new PuzzleLibraryBindableSource
+			{
+				Name = content.LibraryName ?? "",
+				Author = content.LibraryAuthor ?? "",
+				Description = content.LibraryDescription ?? "",
+				FileId = fileId,
+				Tags = content.LibraryTags ?? [],
+				Puzzles = [.. validPuzzles],
+				PuzzlesCount = validPuzzles.Count
+			};
+
+			File.WriteAllText(libFilePath, JsonSerializer.Serialize(instance, SerializerOptions));
+
+			_puzzleLibraries.Insert(^1, instance);
+			return true;
+		}
 	}
 
 
@@ -145,8 +193,8 @@ public sealed partial class LibraryPage : Page
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 			CloseButtonText = GetString("LibraryPage_Close"),
-			DefaultButton = ContentDialogButton.Primary,
 			Content = new LibraryLoadOrAddContent { IsAdding = true },
+			DefaultButton = ContentDialogButton.Primary,
 			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)

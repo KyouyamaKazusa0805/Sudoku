@@ -6083,6 +6083,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Cancel.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_DescriptionDefaultValue">
+            <summary>
+              Looks up a localized string similar to The puzzle library &apos;{0}&apos;..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Descrption">
             <summary>
               Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
@@ -6106,6 +6111,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileIdCannotEmptyTitle">
             <summary>
               Looks up a localized string similar to File ID Error.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileIsInvalid">
+            <summary>
+              Looks up a localized string similar to The file contains invalid characters that cannot be parsed into a valid puzzle library..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_FileIsInvalidTitle">
+            <summary>
+              Looks up a localized string similar to File Content Error.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputLibraryAuthor">

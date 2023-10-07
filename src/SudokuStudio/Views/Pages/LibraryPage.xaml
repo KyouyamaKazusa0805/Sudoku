@@ -18,6 +18,9 @@
 		<TeachingTip
 			x:Name="ErrorDialog_FileIdCannotBeEmpty"
 			Title="{m:R Key=LibraryPage_FileIdCannotEmptyTitle}" Subtitle="{m:R Key=LibraryPage_FileIdCannotEmpty}" />
+		<TeachingTip
+			x:Name="ErrorDialog_FileIsInvalid"
+			Title="{m:R Key=LibraryPage_FileIsInvalidTitle}" Subtitle="{m:R Key=LibraryPage_FileIsInvalid}" />
 	</Page.Resources>
 
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">

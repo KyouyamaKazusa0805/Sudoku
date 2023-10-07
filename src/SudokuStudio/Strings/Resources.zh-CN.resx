@@ -876,6 +876,9 @@
   <data name="LibraryPage_Close" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="LibraryPage_DescriptionDefaultValue" xml:space="preserve">
+    <value>一个叫“{0}”的数独题库。</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>该页面列举的是你自己配置的一些题库。通过该页面可以增加、删除或改变题库的配置数据。</value>
   </data>
@@ -890,6 +893,12 @@
   </data>
   <data name="LibraryPage_FileIdCannotEmptyTitle" xml:space="preserve">
     <value>文件 ID 错误</value>
+  </data>
+  <data name="LibraryPage_FileIsInvalid" xml:space="preserve">
+    <value>抱歉，文件包含不合适的字符，导致其无法解析为合适的题库文件。</value>
+  </data>
+  <data name="LibraryPage_FileIsInvalidTitle" xml:space="preserve">
+    <value>文件错误</value>
   </data>
   <data name="LibraryPage_InputLibraryAuthor" xml:space="preserve">
     <value>作者</value>

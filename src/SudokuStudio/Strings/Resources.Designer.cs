@@ -2545,6 +2545,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle library &apos;{0}&apos;..
+        /// </summary>
+        internal static string LibraryPage_DescriptionDefaultValue {
+            get {
+                return ResourceManager.GetString("LibraryPage_DescriptionDefaultValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
         /// </summary>
         internal static string LibraryPage_Descrption {
@@ -2586,6 +2595,24 @@ namespace SudokuStudio.Strings {
         internal static string LibraryPage_FileIdCannotEmptyTitle {
             get {
                 return ResourceManager.GetString("LibraryPage_FileIdCannotEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file contains invalid characters that cannot be parsed into a valid puzzle library..
+        /// </summary>
+        internal static string LibraryPage_FileIsInvalid {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Content Error.
+        /// </summary>
+        internal static string LibraryPage_FileIsInvalidTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileIsInvalidTitle", resourceCulture);
             }
         }
         

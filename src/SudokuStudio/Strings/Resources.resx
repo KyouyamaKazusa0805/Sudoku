@@ -873,6 +873,9 @@
   <data name="LibraryPage_Close" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="LibraryPage_DescriptionDefaultValue" xml:space="preserve">
+    <value>The puzzle library '{0}'.</value>
+  </data>
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page.</value>
   </data>
@@ -887,6 +890,12 @@
   </data>
   <data name="LibraryPage_FileIdCannotEmptyTitle" xml:space="preserve">
     <value>File ID Error</value>
+  </data>
+  <data name="LibraryPage_FileIsInvalid" xml:space="preserve">
+    <value>The file contains invalid characters that cannot be parsed into a valid puzzle library.</value>
+  </data>
+  <data name="LibraryPage_FileIsInvalidTitle" xml:space="preserve">
+    <value>File Content Error</value>
   </data>
   <data name="LibraryPage_InputLibraryAuthor" xml:space="preserve">
     <value>Author name</value>
