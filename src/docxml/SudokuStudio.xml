@@ -187,7 +187,7 @@
             Indicates the description of the library.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.UserName">
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Author">
             <summary>
             Indicates the name of the user.
             </summary>

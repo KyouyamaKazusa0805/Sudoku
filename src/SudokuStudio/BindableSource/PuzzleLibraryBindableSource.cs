@@ -31,7 +31,7 @@ public sealed partial class PuzzleLibraryBindableSource
 	/// <summary>
 	/// Indicates the name of the user.
 	/// </summary>
-	public string UserName { get; set; } = GetString("LibraryPage_UndefinedUserName");
+	public string Author { get; set; } = GetString("LibraryPage_UndefinedUserName");
 
 	/// <summary>
 	/// Idnicates the file ID used as storage file name. <b>Note: The ID should be unique in all puzzle libraries.</b>
