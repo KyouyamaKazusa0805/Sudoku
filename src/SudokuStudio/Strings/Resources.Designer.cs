@@ -2536,6 +2536,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Append puzzles to this library.
+        /// </summary>
+        internal static string LibraryPage_AppendPuzzlesToThisLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_AppendPuzzlesToThisLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all puzzles in this library.
+        /// </summary>
+        internal static string LibraryPage_ClearLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_ClearLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string LibraryPage_Close {
@@ -2748,6 +2766,15 @@ namespace SudokuStudio.Strings {
         internal static string LibraryPage_PuzzlesCountIsSingular {
             get {
                 return ResourceManager.GetString("LibraryPage_PuzzlesCountIsSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove this library.
+        /// </summary>
+        internal static string LibraryPage_RemoveLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_RemoveLibrary", resourceCulture);
             }
         }
         

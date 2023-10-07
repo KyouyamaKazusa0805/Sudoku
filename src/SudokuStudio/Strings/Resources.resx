@@ -870,6 +870,12 @@
   <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
     <value>Create a new library</value>
   </data>
+  <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
+    <value>Append puzzles to this library</value>
+  </data>
+  <data name="LibraryPage_ClearLibrary" xml:space="preserve">
+    <value>Delete all puzzles in this library</value>
+  </data>
   <data name="LibraryPage_Close" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -941,6 +947,9 @@
   </data>
   <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
     <value>{0} puzzle</value>
+  </data>
+  <data name="LibraryPage_RemoveLibrary" xml:space="preserve">
+    <value>Remove this library</value>
   </data>
   <data name="LibraryPage_TagsAre" xml:space="preserve">
     <value>Tags: {0}</value>

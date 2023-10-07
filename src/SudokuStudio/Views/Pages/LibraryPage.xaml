@@ -33,6 +33,22 @@
 					<ss:PuzzleLibraryOperationStyleSelector.NormalStyle>
 						<Style TargetType="GridViewItem">
 							<Setter Property="Margin" Value="10" />
+							<Setter Property="ContextFlyout">
+								<Setter.Value>
+									<MenuFlyout x:Name="ParentLayout">
+										<MenuFlyoutItem
+											Tag="{x:Bind ParentLayout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
+											Click="AppendPuzzlesMenuFlyoutItem_ClickAsync" />
+										<!--
+										<MenuFlyoutSeparator />
+										<MenuFlyoutItem
+											Foreground="Red" FontWeight="Bold" Text="{m:R Key=LibraryPage_RemoveLibrary}" />
+										<MenuFlyoutItem
+											Foreground="Red" FontWeight="Bold" Text="{m:R Key=LibraryPage_ClearLibrary}" />
+										-->
+									</MenuFlyout>
+								</Setter.Value>
+							</Setter>
 						</Style>
 					</ss:PuzzleLibraryOperationStyleSelector.NormalStyle>
 					<ss:PuzzleLibraryOperationStyleSelector.AddingStyle>
@@ -42,12 +58,9 @@
 								<Setter.Value>
 									<MenuFlyout>
 										<MenuFlyoutItem Text="{m:R Key=LibraryPage_AddLibrary}" Click="AddLibraryMenuFlyoutItem_ClickAsync" />
-										<MenuFlyoutItem
-											Text="{m:R Key=LibraryPage_LoadLibraryViaTextFile}"
-											Click="LoadFromTextMenuFlyoutItem_ClickAsync" />
-										<MenuFlyoutItem
-											Text="{m:R Key=LibraryPage_LoadLibraryViaCsvFile}"
-											Click="LoadFromCsvMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutSeparator />
+										<MenuFlyoutItem Text="{m:R Key=LibraryPage_LoadLibraryViaTextFile}" Click="LoadFromTextMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutItem Text="{m:R Key=LibraryPage_LoadLibraryViaCsvFile}" Click="LoadFromCsvMenuFlyoutItem_ClickAsync" />
 									</MenuFlyout>
 								</Setter.Value>
 							</Setter>

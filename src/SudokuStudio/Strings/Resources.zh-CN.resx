@@ -873,6 +873,12 @@
   <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
     <value>创建新题库</value>
   </data>
+  <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
+    <value>往该题库里追加新题目</value>
+  </data>
+  <data name="LibraryPage_ClearLibrary" xml:space="preserve">
+    <value>清空该题库里的题</value>
+  </data>
   <data name="LibraryPage_Close" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -944,6 +950,9 @@
   </data>
   <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
     <value>{0} 个题目</value>
+  </data>
+  <data name="LibraryPage_RemoveLibrary" xml:space="preserve">
+    <value>删除该题库</value>
   </data>
   <data name="LibraryPage_TagsAre" xml:space="preserve">
     <value>标签：{0}</value>

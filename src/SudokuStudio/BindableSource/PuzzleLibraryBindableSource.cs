@@ -21,6 +21,23 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 	{
 	}
 
+	/// <summary>
+	/// Initializes a <see cref="PuzzleLibraryBindableSource"/> instance via another instance. <see cref="Puzzles"/> won't copy.
+	/// </summary>
+	/// <param name="other">Another instance.</param>
+	/// <param name="puzzles">The puzzles.</param>
+	internal PuzzleLibraryBindableSource(PuzzleLibraryBindableSource other, Grid[] puzzles) : this(false)
+	{
+		PuzzlesCount = other.PuzzlesCount;
+		Name = other.Name;
+		Description = other.Description;
+		Author = other.Author;
+		FileId = other.FileId!;
+		Tags = (string[])Tags.Clone();
+		Puzzles = puzzles;
+		PuzzlesCount = puzzles.Length;
+	}
+
 
 	/// <summary>
 	/// Indicates the number of puzzles.

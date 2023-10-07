@@ -233,4 +233,97 @@ public sealed partial class LibraryPage : Page
 	private async void LoadFromTextMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e) => await LoadFileAsync();
 
 	private async void LoadFromCsvMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e) => await LoadFileAsync();
+
+	private async void AppendPuzzlesMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem
+			{
+				Tag: MenuFlyout
+				{
+					Target: GridViewItem
+					{
+						Content: PuzzleLibraryBindableSource { FilePath: var originalFilePath, Puzzles: var puzzles }
+					}
+				}
+			})
+		{
+			return;
+		}
+
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
+		var fop = new FileOpenPicker();
+		fop.Initialize(this);
+		fop.ViewMode = PickerViewMode.Thumbnail;
+		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.AddFileFormat(FileFormats.PlainText);
+		fop.AddFileFormat(FileFormats.CommaSeparated);
+		fop.AddFileFormat(FileFormats.PuzzleLibrary);
+
+		if (await fop.PickSingleFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		var newPuzzles = default(List<Grid>);
+		switch (Path.GetExtension(filePath))
+		{
+			case FileExtensions.PlainText or FileExtensions.CommaSeparated:
+			{
+				newPuzzles = [];
+				await foreach (var line in File.ReadLinesAsync(filePath))
+				{
+					if (Grid.TryParse(line, out var puzzle))
+					{
+						newPuzzles.Add(puzzle);
+					}
+				}
+
+				break;
+			}
+			case FileExtensions.PuzzleLibrary:
+			{
+				var json = await File.ReadAllTextAsync(filePath);
+				var instance = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(json, SerializerOptions);
+				if (instance is not { Puzzles: { Length: var newPuzzlesCount } tempPuzzles })
+				{
+					ErrorDialog_FileIsInvalid.IsOpen = true;
+					return;
+				}
+
+				newPuzzles = new(tempPuzzles);
+				break;
+			}
+		}
+		if (newPuzzles is null)
+		{
+			return;
+		}
+
+		var originalJson = await File.ReadAllTextAsync(originalFilePath);
+		var originalInstance = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(originalJson, SerializerOptions)!;
+
+		var index = -1;
+		for (var i = 0; i < _puzzleLibraries.Count; i++)
+		{
+			if (_puzzleLibraries[i].FileId == originalInstance.FileId)
+			{
+				index = i;
+				break;
+			}
+		}
+		if (index == -1)
+		{
+			return;
+		}
+
+		var newInstance = new PuzzleLibraryBindableSource(originalInstance, [.. puzzles, .. newPuzzles]);
+		var resultJson = JsonSerializer.Serialize(newInstance, SerializerOptions);
+		await File.WriteAllTextAsync(originalFilePath, resultJson);
+
+		_puzzleLibraries[index] = newInstance;
+	}
 }

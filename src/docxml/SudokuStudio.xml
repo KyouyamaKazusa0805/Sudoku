@@ -184,6 +184,13 @@
             Initializes a <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor(SudokuStudio.BindableSource.PuzzleLibraryBindableSource,Sudoku.Concepts.Grid[])">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instance via another instance. <see cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Puzzles"/> won't copy.
+            </summary>
+            <param name="other">Another instance.</param>
+            <param name="puzzles">The puzzles.</param>
+        </member>
         <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.PuzzlesCount">
             <summary>
             Indicates the number of puzzles.
@@ -6078,6 +6085,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Create a new library.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AppendPuzzlesToThisLibrary">
+            <summary>
+              Looks up a localized string similar to Append puzzles to this library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_ClearLibrary">
+            <summary>
+              Looks up a localized string similar to Delete all puzzles in this library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Close">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -6196,6 +6213,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_PuzzlesCountIsSingular">
             <summary>
               Looks up a localized string similar to {0} puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_RemoveLibrary">
+            <summary>
+              Looks up a localized string similar to Remove this library.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_TagsAre">
