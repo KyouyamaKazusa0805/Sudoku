@@ -147,26 +147,6 @@
         <member name="P:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider.Items">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.BindableSource.GridLibraryBindableSource">
-            <summary>
-            Represents a type that describes for a library of sudoku puzzles and its introduction.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.LibraryName">
-            <summary>
-            Indicates the name of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.Author">
-            <summary>
-            Indicates the author of the library. The default value is "<c><![CDATA[<Anonymous>]]></c>".
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.GridLibraryBindableSource.Puzzles">
-            <summary>
-            Indicates the puzzles. The default value is empty list. This property is never <see langword="null"/>.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource">
             <summary>
             Describes for a puzzle library.

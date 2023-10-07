@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml.Controls;
 using SudokuStudio.ComponentModel;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.ContentDialogs;
 
@@ -15,6 +16,10 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<string[]>("LibraryTags", IsNullable = true, DocSummary = "Indicates the tags to the library.")]
 public sealed partial class LibraryLoadOrAddContent : Page
 {
+	[Default]
+	private static readonly string LibraryAuthorDefaultValue = GetString("AnonymousAuthor");
+
+
 	/// <summary>
 	/// Initializes a <see cref="LibraryLoadOrAddContent"/> instance.
 	/// </summary>
