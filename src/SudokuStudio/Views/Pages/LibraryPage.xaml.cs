@@ -306,15 +306,7 @@ public sealed partial class LibraryPage : Page
 		var originalJson = await File.ReadAllTextAsync(originalFilePath);
 		var originalInstance = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(originalJson, SerializerOptions)!;
 
-		var index = -1;
-		for (var i = 0; i < _puzzleLibraries.Count; i++)
-		{
-			if (_puzzleLibraries[i].FileId == originalInstance.FileId)
-			{
-				index = i;
-				break;
-			}
-		}
+		var index = _puzzleLibraries.FindIndexOf(c => c.FileId == originalInstance.FileId);
 		if (index == -1)
 		{
 			return;
@@ -325,5 +317,60 @@ public sealed partial class LibraryPage : Page
 		await File.WriteAllTextAsync(originalFilePath, resultJson);
 
 		_puzzleLibraries[index] = newInstance;
+	}
+
+	private void DeleteLibraryMenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: PuzzleLibraryBindableSource { FilePath: var filePath } source } } })
+		{
+			return;
+		}
+
+		if (!File.Exists(filePath))
+		{
+			return;
+		}
+
+		var index = _puzzleLibraries.FindIndexOf(c => c.FileId == source.FileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		File.Delete(filePath);
+		_puzzleLibraries.RemoveAt(index);
+	}
+
+	private void ClearLibraryMenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: PuzzleLibraryBindableSource source } } })
+		{
+			return;
+		}
+
+		var index = _puzzleLibraries.FindIndexOf(c => c.FileId == source.FileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		_puzzleLibraries[index] = new(_puzzleLibraries[index], []);
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	public static int FindIndexOf<T>(this ObservableCollection<T> @this, Func<T, bool> predicate)
+	{
+		for (var i = 0; i < @this.Count; i++)
+		{
+			if (predicate(@this[i]))
+			{
+				return i;
+			}
+		}
+
+		return -1;
 	}
 }

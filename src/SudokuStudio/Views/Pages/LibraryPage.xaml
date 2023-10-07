@@ -39,13 +39,13 @@
 										<MenuFlyoutItem
 											Tag="{x:Bind ParentLayout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
 											Click="AppendPuzzlesMenuFlyoutItem_ClickAsync" />
-										<!--
 										<MenuFlyoutSeparator />
 										<MenuFlyoutItem
-											Foreground="Red" FontWeight="Bold" Text="{m:R Key=LibraryPage_RemoveLibrary}" />
+											Tag="{x:Bind ParentLayout}" Foreground="Red" Text="{m:R Key=LibraryPage_RemoveLibrary}"
+											Click="DeleteLibraryMenuFlyoutItem_Click" />
 										<MenuFlyoutItem
-											Foreground="Red" FontWeight="Bold" Text="{m:R Key=LibraryPage_ClearLibrary}" />
-										-->
+											Tag="{x:Bind ParentLayout}" Foreground="Red" Text="{m:R Key=LibraryPage_ClearLibrary}"
+											Click="ClearLibraryMenuFlyoutItem_Click" />
 									</MenuFlyout>
 								</Setter.Value>
 							</Setter>

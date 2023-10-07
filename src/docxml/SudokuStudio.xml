@@ -10935,6 +10935,13 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
             <summary>
             Represents about page.
