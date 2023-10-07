@@ -35,16 +35,19 @@
 							<Setter Property="Margin" Value="10" />
 							<Setter Property="ContextFlyout">
 								<Setter.Value>
-									<MenuFlyout x:Name="ParentLayout">
+									<MenuFlyout x:Name="ParentFlyout">
 										<MenuFlyoutItem
-											Tag="{x:Bind ParentLayout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
+											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
 											Click="AppendPuzzlesMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutItem
+											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_RemoveInvalidPuzzles}"
+											Click="RemoveInvalidPuzzlesMenuFlyoutItem_ClickAsync" />
 										<MenuFlyoutSeparator />
 										<MenuFlyoutItem
-											Tag="{x:Bind ParentLayout}" Foreground="Red" Text="{m:R Key=LibraryPage_RemoveLibrary}"
+											Tag="{x:Bind ParentFlyout}" Foreground="Red" Text="{m:R Key=LibraryPage_RemoveLibrary}"
 											Click="DeleteLibraryMenuFlyoutItem_Click" />
 										<MenuFlyoutItem
-											Tag="{x:Bind ParentLayout}" Foreground="Red" Text="{m:R Key=LibraryPage_ClearLibrary}"
+											Tag="{x:Bind ParentFlyout}" Foreground="Red" Text="{m:R Key=LibraryPage_ClearLibrary}"
 											Click="ClearLibraryMenuFlyoutItem_Click" />
 									</MenuFlyout>
 								</Setter.Value>

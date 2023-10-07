@@ -951,6 +951,9 @@
   <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
     <value>{0} 个题目</value>
   </data>
+  <data name="LibraryPage_RemoveInvalidPuzzles" xml:space="preserve">
+    <value>删除该题库里所有非唯一解的题目</value>
+  </data>
   <data name="LibraryPage_RemoveLibrary" xml:space="preserve">
     <value>删除该题库</value>
   </data>

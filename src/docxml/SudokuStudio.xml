@@ -6215,6 +6215,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {0} puzzle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_RemoveInvalidPuzzles">
+            <summary>
+              Looks up a localized string similar to Delte all invalid puzzles in this library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_RemoveLibrary">
             <summary>
               Looks up a localized string similar to Remove this library.

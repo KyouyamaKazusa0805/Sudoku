@@ -356,6 +356,42 @@ public sealed partial class LibraryPage : Page
 
 		_puzzleLibraries[index] = new(_puzzleLibraries[index], []);
 	}
+
+	private async void RemoveInvalidPuzzlesMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: PuzzleLibraryBindableSource { FilePath: var filePath } source } } })
+		{
+			return;
+		}
+
+		var index = _puzzleLibraries.FindIndexOf(c => c.FileId == source.FileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		var origianlInstance = _puzzleLibraries[index];
+		var newInstance = new PuzzleLibraryBindableSource(origianlInstance, [.. getValidGrids(origianlInstance.Puzzles)]);
+		var resultJson = JsonSerializer.Serialize(newInstance, SerializerOptions);
+		await File.WriteAllTextAsync(filePath, resultJson);
+
+		_puzzleLibraries[index] = newInstance;
+
+
+		static Grid[] getValidGrids(Grid[] originalPuzzles)
+		{
+			var newPuzzles = new List<Grid>(originalPuzzles.Length);
+			foreach (ref readonly var puzzle in originalPuzzles.EnumerateRef())
+			{
+				if (puzzle.IsValid)
+				{
+					newPuzzles.Add(puzzle);
+				}
+			}
+
+			return [.. newPuzzles];
+		}
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

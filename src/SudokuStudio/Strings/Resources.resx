@@ -948,6 +948,9 @@
   <data name="LibraryPage_PuzzlesCountIsSingular" xml:space="preserve">
     <value>{0} puzzle</value>
   </data>
+  <data name="LibraryPage_RemoveInvalidPuzzles" xml:space="preserve">
+    <value>Delte all invalid puzzles in this library</value>
+  </data>
   <data name="LibraryPage_RemoveLibrary" xml:space="preserve">
     <value>Remove this library</value>
   </data>

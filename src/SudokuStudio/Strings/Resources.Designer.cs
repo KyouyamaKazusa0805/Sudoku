@@ -2770,6 +2770,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delte all invalid puzzles in this library.
+        /// </summary>
+        internal static string LibraryPage_RemoveInvalidPuzzles {
+            get {
+                return ResourceManager.GetString("LibraryPage_RemoveInvalidPuzzles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove this library.
         /// </summary>
         internal static string LibraryPage_RemoveLibrary {
