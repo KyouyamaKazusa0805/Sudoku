@@ -2518,6 +2518,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open local folder.
+        /// </summary>
+        internal static string LibraryPage_OpenLibFolder {
+            get {
+                return ResourceManager.GetString("LibraryPage_OpenLibFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} puzzles.
         /// </summary>
         internal static string LibraryPage_PuzzlesCountIsPlural {

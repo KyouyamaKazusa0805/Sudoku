@@ -867,6 +867,9 @@
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>该页面列举的是你自己配置的一些题库。通过该页面可以增加、删除或改变题库的配置数据。</value>
   </data>
+  <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
+    <value>打开本地文件夹</value>
+  </data>
   <data name="LibraryPage_PuzzlesCountIsPlural" xml:space="preserve">
     <value>{0} 个题目</value>
   </data>

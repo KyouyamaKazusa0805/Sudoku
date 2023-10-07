@@ -1,6 +1,9 @@
 using System.Collections.ObjectModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SudokuStudio.BindableSource;
+using SudokuStudio.Storage;
+using Windows.System;
 
 namespace SudokuStudio.Views.Pages;
 
@@ -38,4 +41,7 @@ public sealed partial class LibraryPage : Page
 			// TODO: Add a new detail page to display a library of puzzles.
 		}
 	}
+
+	private async void OpenLibraryFolderButton_ClickAsync(object sender, RoutedEventArgs e)
+		=> await Launcher.LaunchFolderPathAsync(CommonPaths.PuzzleLibrariesFolder);
 }

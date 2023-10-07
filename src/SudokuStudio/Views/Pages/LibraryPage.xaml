@@ -51,5 +51,6 @@
 				</dts:PuzzleLibraryOrAddingTemplateSelector>
 			</GridView.ItemTemplateSelector>
 		</GridView>
+		<Button Content="{m:R Key=LibraryPage_OpenLibFolder}" Click="OpenLibraryFolderButton_ClickAsync" />
 	</StackPanel>
 </Page>

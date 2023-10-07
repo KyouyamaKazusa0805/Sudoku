@@ -864,6 +864,9 @@
   <data name="LibraryPage_Descrption" xml:space="preserve">
     <value>This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page.</value>
   </data>
+  <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
+    <value>Open local folder</value>
+  </data>
   <data name="LibraryPage_PuzzlesCountIsPlural" xml:space="preserve">
     <value>{0} puzzles</value>
   </data>

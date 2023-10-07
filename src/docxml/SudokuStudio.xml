@@ -6027,6 +6027,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_OpenLibFolder">
+            <summary>
+              Looks up a localized string similar to Open local folder.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_PuzzlesCountIsPlural">
             <summary>
               Looks up a localized string similar to {0} puzzles.
