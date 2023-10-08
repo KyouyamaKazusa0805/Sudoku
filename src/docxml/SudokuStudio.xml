@@ -6097,17 +6097,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AppendANewPuzzle">
             <summary>
-              Looks up a localized string similar to Append a new puzzle into this library.
+              Looks up a localized string similar to Append one puzzle.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AppendPuzzlesToThisLibrary">
             <summary>
-              Looks up a localized string similar to Append puzzles to this library.
+              Looks up a localized string similar to Append puzzles from files.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_ClearLibrary">
             <summary>
-              Looks up a localized string similar to Delete all puzzles in this library.
+              Looks up a localized string similar to Delete all puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_Close">

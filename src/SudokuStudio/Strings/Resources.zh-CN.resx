@@ -877,10 +877,10 @@
     <value>添加一道题</value>
   </data>
   <data name="LibraryPage_AppendANewPuzzle" xml:space="preserve">
-    <value>往该题库追加一个题目</value>
+    <value>追加一个题目</value>
   </data>
   <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
-    <value>往该题库里追加新题目</value>
+    <value>从文件里追加一系列新题目</value>
   </data>
   <data name="LibraryPage_ClearLibrary" xml:space="preserve">
     <value>清空该题库里的题</value>

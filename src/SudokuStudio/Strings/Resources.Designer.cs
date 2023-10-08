@@ -2545,7 +2545,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Append a new puzzle into this library.
+        ///   Looks up a localized string similar to Append one puzzle.
         /// </summary>
         internal static string LibraryPage_AppendANewPuzzle {
             get {
@@ -2554,7 +2554,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Append puzzles to this library.
+        ///   Looks up a localized string similar to Append puzzles from files.
         /// </summary>
         internal static string LibraryPage_AppendPuzzlesToThisLibrary {
             get {
@@ -2563,7 +2563,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete all puzzles in this library.
+        ///   Looks up a localized string similar to Delete all puzzles.
         /// </summary>
         internal static string LibraryPage_ClearLibrary {
             get {

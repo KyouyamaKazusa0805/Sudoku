@@ -874,13 +874,13 @@
     <value>Add One Puzzle</value>
   </data>
   <data name="LibraryPage_AppendANewPuzzle" xml:space="preserve">
-    <value>Append a new puzzle into this library</value>
+    <value>Append one puzzle</value>
   </data>
   <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
-    <value>Append puzzles to this library</value>
+    <value>Append puzzles from files</value>
   </data>
   <data name="LibraryPage_ClearLibrary" xml:space="preserve">
-    <value>Delete all puzzles in this library</value>
+    <value>Delete all puzzles</value>
   </data>
   <data name="LibraryPage_Close" xml:space="preserve">
     <value>Cancel</value>
