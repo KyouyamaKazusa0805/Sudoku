@@ -25,7 +25,6 @@ public sealed partial class LibraryPage : Page
 	private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
 
 
-
 	/// <summary>
 	/// Indicates the puzzle library.
 	/// </summary>
