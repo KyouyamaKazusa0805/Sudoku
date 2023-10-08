@@ -10,8 +10,6 @@ internal static class PuzzleLibraryConversion
 
 	public static int GetTotalPagesCount(PuzzleLibraryBindableSource? source) => source?.Puzzles.Length ?? -1;
 
-	public static string PageIndexToString(int pageIndex) => (pageIndex + 1).ToString();
-
 	public static string GetTotalPagesCountText(PuzzleLibraryBindableSource? source) => $"/ {GetTotalPagesCount(source)}";
 
 	public static string GetLoadingOrAddingDialogTitle(LibraryDataUpdatingMode mode)
