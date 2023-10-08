@@ -57,6 +57,10 @@ This repository is created for the following kinds of users:
 
 ![](docs/pic/winui.png)
 
+#### Puzzle Library Page
+
+![](docs/pic/puzzle-lib.png)
+
 #### Technique Gallery Page
 
 ![](docs/pic/gallery.png)
