@@ -2860,6 +2860,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string LibraryPuzzleDetailsPage_Apply {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleDetailsPage_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!.
+        /// </summary>
+        internal static string LibraryPuzzleDetailsPage_Description {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleDetailsPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {
@@ -2991,6 +3009,15 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_LibraryPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_LibraryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library Puzzles.
+        /// </summary>
+        internal static string MainWindow_LibraryPuzzleDetailsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_LibraryPuzzleDetailsPageTitle", resourceCulture);
             }
         }
         

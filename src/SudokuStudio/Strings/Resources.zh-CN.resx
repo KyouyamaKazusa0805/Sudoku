@@ -981,6 +981,12 @@
   <data name="LibraryPage_UpdateLibraryTitle" xml:space="preserve">
     <value>修改题库配置</value>
   </data>
+  <data name="LibraryPuzzleDetailsPage_Apply" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="LibraryPuzzleDetailsPage_Description" xml:space="preserve">
+    <value>欢迎来到用户题库页面！你可以通过该页面查看刚才选择的题库里的所有题目！</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -1025,6 +1031,9 @@
   </data>
   <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
     <value>用户题库</value>
+  </data>
+  <data name="MainWindow_LibraryPuzzleDetailsPageTitle" xml:space="preserve">
+    <value>题库题目</value>
   </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>

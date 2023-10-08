@@ -6265,6 +6265,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Update Library Data.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleDetailsPage_Apply">
+            <summary>
+              Looks up a localized string similar to Apply.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleDetailsPage_Description">
+            <summary>
+              Looks up a localized string similar to Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -6338,6 +6348,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPageTitle">
             <summary>
               Looks up a localized string similar to User-Defined Puzzle Libraries.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPuzzleDetailsPageTitle">
+            <summary>
+              Looks up a localized string similar to Library Puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Menu">
@@ -10252,6 +10267,9 @@ if (student is (name: var name, age: >= 18))
             <returns>The task instance that handles this operation.</returns>
             <seealso cref="T:Windows.Storage.Pickers.FileOpenPicker"/>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
             <inheritdoc/>
         </member>
@@ -10923,6 +10941,11 @@ if (student is (name: var name, age: >= 18))
             The internal serialization options.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.LibraryPage.FlyoutShowOptions">
+            <summary>
+            The internal flyout showing options.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.LibraryPage._puzzleLibraries">
             <summary>
             Indicates the puzzle library.
@@ -10938,6 +10961,13 @@ if (student is (name: var name, age: >= 18))
             To determine whether the current application view is in an unsnapped state.
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetMainWindow">
+            <summary>
+            Gets the main window.
+            </summary>
+            <returns>The main window.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPage.LoadFileAsync">
             <summary>
@@ -10958,6 +10988,63 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage">
+            <summary>
+            Represents with a library puzzle details page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.GetMainWindow">
+            <summary>
+            Gets the main window.
+            </summary>
+            <returns>The main window.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndexProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.SourceProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex">
+            <summary>
+            Indicates the current page to be shown.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source">
+            <summary>
+            Indicates the source of the file.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">

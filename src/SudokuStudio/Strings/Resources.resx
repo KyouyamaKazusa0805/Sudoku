@@ -978,6 +978,12 @@
   <data name="LibraryPage_UpdateLibraryTitle" xml:space="preserve">
     <value>Update Library Data</value>
   </data>
+  <data name="LibraryPuzzleDetailsPage_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="LibraryPuzzleDetailsPage_Description" xml:space="preserve">
+    <value>Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -1022,6 +1028,9 @@
   </data>
   <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
     <value>User-Defined Puzzle Libraries</value>
+  </data>
+  <data name="MainWindow_LibraryPuzzleDetailsPageTitle" xml:space="preserve">
+    <value>Library Puzzles</value>
   </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>

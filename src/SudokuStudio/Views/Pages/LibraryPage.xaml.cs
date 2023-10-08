@@ -7,6 +7,7 @@ using SudokuStudio.BindableSource;
 using SudokuStudio.Interaction;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Pages.ContentDialogs;
+using SudokuStudio.Views.Windows;
 using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI.ViewManagement;
@@ -23,6 +24,11 @@ public sealed partial class LibraryPage : Page
 	/// The internal serialization options.
 	/// </summary>
 	private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
+
+	/// <summary>
+	/// The internal flyout showing options.
+	/// </summary>
+	private static readonly FlyoutShowOptions FlyoutShowOptions = new() { Placement = FlyoutPlacementMode.Auto };
 
 
 	/// <summary>
@@ -53,6 +59,18 @@ public sealed partial class LibraryPage : Page
 
 		return unsnapped;
 	}
+
+	/// <summary>
+	/// Gets the main window.
+	/// </summary>
+	/// <returns>The main window.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
+	private MainWindow GetMainWindow()
+		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
+		{
+			MainWindow mainWindow => mainWindow,
+			_ => throw new InvalidOperationException("Main window cannot be found.")
+		};
 
 	/// <summary>
 	/// Loads a file from local.
@@ -174,11 +192,11 @@ public sealed partial class LibraryPage : Page
 		if (isPlaceholder)
 		{
 			var selectedControl = (GridViewItem)items.First(item => ReferenceEquals(((ContentControl)item).Content, clickedSource));
-			((MenuFlyout)selectedControl.ContextFlyout!).ShowAt(selectedControl, new FlyoutShowOptions { Placement = FlyoutPlacementMode.Auto });
+			((MenuFlyout)selectedControl.ContextFlyout!).ShowAt(selectedControl, FlyoutShowOptions);
 		}
 		else
 		{
-			// TODO: Add a new detail page to display a library of puzzles.
+			GetMainWindow().NavigateToPage<LibraryPuzzleDetailsPage, PuzzleLibraryBindableSource>(clickedSource);
 		}
 	}
 

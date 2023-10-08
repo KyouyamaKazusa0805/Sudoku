@@ -76,7 +76,7 @@
 			</GridView.ItemContainerStyleSelector>
 			<GridView.ItemsPanel>
 				<ItemsPanelTemplate>
-					<ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+					<ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</GridView.ItemsPanel>
 			<GridView.ItemTemplateSelector>

@@ -1,0 +1,40 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPuzzleDetailsPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+		<TextBlock Text="{m:R Key=LibraryPuzzleDetailsPage_Description}" Margin="0,10,0,0" />
+		<Button HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Click="RedirectButton_Click">
+			<c:SudokuPane
+				x:Name="SudokuDisplayer" Width="400" Height="400" EnableAnimationFeedback="False" SelectedCell="-1" DisplayCursors="False"
+				DisplayCandidates="False" DisableFlyout="True" PreventConflictingInput="True" CoordinateLabelDisplayMode="None"
+				Puzzle="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentGrid(Source,CurrentPuzzleIndex),Mode=OneWay}"
+				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground}"
+				EnableUndoRedoStacking="False" EnableRightTapRemoving="False" EnableDoubleTapFilling="False"
+				GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter}}"
+				ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter}}" />
+		</Button>
+		<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,Auto,*">
+			<c:IntegerBox
+				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" Value="1" SmallChange="1" LargeChange="5" Minimum="0"
+				Maximum="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCount(Source),Mode=OneWay}" />
+			<TextBlock
+				Grid.Column="1" VerticalAlignment="Center" Margin="10,0,30,0"
+				Text="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCountText(Source),Mode=OneWay}"
+				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPagingControlsVisibility(Source),Mode=OneWay}" />
+			<Button
+				Grid.Column="3" VerticalAlignment="Center" Content="{m:R Key=LibraryPuzzleDetailsPage_Apply}"
+				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPagingControlsVisibility(Source),Mode=OneWay}"
+				Click="ApplyButton_Click" />
+		</Grid>
+	</StackPanel>
+</Page>

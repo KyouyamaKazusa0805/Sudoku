@@ -493,6 +493,15 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <inheritdoc/>
+	protected override void OnNavigatedTo(NavigationEventArgs e)
+	{
+		if (e.Parameter is Grid targetGrid)
+		{
+			SudokuPane.Puzzle = targetGrid;
+		}
+	}
+
+	/// <inheritdoc/>
 	protected override void OnKeyDown(KeyRoutedEventArgs e)
 	{
 		base.OnKeyDown(e);
