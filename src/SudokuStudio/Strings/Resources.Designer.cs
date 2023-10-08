@@ -2707,6 +2707,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        internal static string LibraryPage_InputTags {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input tags here.
+        /// </summary>
+        internal static string LibraryPage_InputTagsPlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputTagsPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load a library.
         /// </summary>
         internal static string LibraryPage_LoadLibraryTitle {

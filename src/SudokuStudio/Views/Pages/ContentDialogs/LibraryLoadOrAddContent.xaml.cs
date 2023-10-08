@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Microsoft.UI.Xaml.Controls;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
@@ -13,12 +14,15 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<string>("LibraryName", IsNullable = true, DocSummary = "Indicates the library name.")]
 [DependencyProperty<string>("LibraryAuthor", IsNullable = true, DocSummary = "Indicates the author of the library.")]
 [DependencyProperty<string>("LibraryDescription", IsNullable = true, DocSummary = "Indicates the description of the library.")]
-[DependencyProperty<string[]>("LibraryTags", IsNullable = true, DocSummary = "Indicates the tags to the library.")]
 [DependencyProperty<LibraryDataUpdatingMode>("Mode", DocSummary = "Indicates whether the puzzle library is adding a new one, instead of loading.")]
+[DependencyProperty<ObservableCollection<string>>("LibraryTags", DocSummary = "Indicates the tags to the library.")]
 public sealed partial class LibraryLoadOrAddContent : Page
 {
 	[Default]
 	private static readonly string LibraryAuthorDefaultValue = GetString("AnonymousAuthor");
+
+	[Default]
+	private static readonly ObservableCollection<string> LibraryTagsDefaultValue = [];
 
 
 	/// <summary>

@@ -927,6 +927,12 @@
   <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
     <value>Input a name here</value>
   </data>
+  <data name="LibraryPage_InputTags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="LibraryPage_InputTagsPlaceholder" xml:space="preserve">
+    <value>Input tags here</value>
+  </data>
   <data name="LibraryPage_LoadLibraryTitle" xml:space="preserve">
     <value>Load a library</value>
   </data>

@@ -8,6 +8,7 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pc="using:SudokuStudio.Views.Pages.ContentDialogs"
 	xmlns:wc="using:CommunityToolkit.WinUI.UI.Controls"
+	xmlns:wwc="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pc:LibraryLoadOrAddContent}">
 	<StackPanel Spacing="24">
 		<TextBlock
@@ -32,6 +33,12 @@
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
 						<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
 					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputTags}" />
+						<wwc:TokenizingTextBox
+							Grid.Row="1" IsItemClickEnabled="False" MaximumTokens="5" PlaceholderText="{m:R Key=LibraryPage_InputTagsPlaceholder}"
+							ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" />
+					</Grid>
 				</StackPanel>
 			</wc:Case>
 			<wc:Case Value="{m:Int32 Value=1}">
@@ -52,6 +59,12 @@
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
 						<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
 					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputTags}" />
+						<wwc:TokenizingTextBox
+							Grid.Row="1" IsItemClickEnabled="False" MaximumTokens="5" PlaceholderText="{m:R Key=LibraryPage_InputTagsPlaceholder}"
+							ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" />
+					</Grid>
 				</StackPanel>
 			</wc:Case>
 			<wc:Case Value="{m:Int32 Value=2}">
@@ -71,6 +84,12 @@
 					<Grid RowDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
 						<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputTags}" />
+						<wwc:TokenizingTextBox
+							Grid.Row="1" IsItemClickEnabled="False" MaximumTokens="5" PlaceholderText="{m:R Key=LibraryPage_InputTagsPlaceholder}"
+							ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" />
 					</Grid>
 				</StackPanel>
 			</wc:Case>

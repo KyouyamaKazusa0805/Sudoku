@@ -930,6 +930,12 @@
   <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
     <value>在这里输入题库名称</value>
   </data>
+  <data name="LibraryPage_InputTags" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="LibraryPage_InputTagsPlaceholder" xml:space="preserve">
+    <value>在此处填写标签</value>
+  </data>
   <data name="LibraryPage_LoadLibraryTitle" xml:space="preserve">
     <value>载入题库</value>
   </data>

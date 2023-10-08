@@ -149,7 +149,7 @@ public sealed partial class LibraryPage : Page
 				Author = content.LibraryAuthor ?? "",
 				Description = content.LibraryDescription ?? "",
 				FileId = fileId,
-				Tags = content.LibraryTags ?? [],
+				Tags = [.. content.LibraryTags],
 				Puzzles = [.. validPuzzles],
 				PuzzlesCount = validPuzzles.Count
 			};
@@ -220,7 +220,7 @@ public sealed partial class LibraryPage : Page
 				Author = content.LibraryAuthor ?? "",
 				FileId = fileId,
 				Description = content.LibraryDescription ?? "",
-				Tags = content.LibraryTags ?? [],
+				Tags = [.. content.LibraryTags],
 				Puzzles = [],
 				PuzzlesCount = 0
 			};
@@ -438,7 +438,7 @@ public sealed partial class LibraryPage : Page
 				LibraryName = libraryName,
 				LibraryAuthor = libraryAuthor,
 				LibraryDescription = libraryDescription,
-				LibraryTags = libraryTags,
+				LibraryTags = new(libraryTags),
 				FileId = fileId
 			},
 			DefaultButton = ContentDialogButton.Primary,
@@ -466,7 +466,7 @@ public sealed partial class LibraryPage : Page
 				Author = content.LibraryAuthor ?? "",
 				FileId = newFileId,
 				Description = content.LibraryDescription ?? "",
-				Tags = content.LibraryTags ?? [],
+				Tags = [.. content.LibraryTags],
 				Puzzles = puzzles,
 				PuzzlesCount = puzzlesCount
 			};

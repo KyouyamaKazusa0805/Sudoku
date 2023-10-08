@@ -6180,6 +6180,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Input a name here.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputTags">
+            <summary>
+              Looks up a localized string similar to Tags.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputTagsPlaceholder">
+            <summary>
+              Looks up a localized string similar to Input tags here.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadLibraryTitle">
             <summary>
               Looks up a localized string similar to Load a library.
@@ -10783,17 +10793,17 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTagsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.ModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath">
             <summary>
@@ -10820,14 +10830,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the description of the library.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags">
-            <summary>
-            Indicates the tags to the library.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode">
             <summary>
             Indicates whether the puzzle library is adding a new one, instead of loading.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags">
+            <summary>
+            Indicates the tags to the library.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
