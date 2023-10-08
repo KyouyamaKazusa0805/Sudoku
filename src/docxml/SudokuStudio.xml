@@ -10960,23 +10960,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Extensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
             <summary>
             Represents about page.
