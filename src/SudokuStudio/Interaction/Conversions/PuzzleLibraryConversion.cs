@@ -20,7 +20,8 @@ internal static class PuzzleLibraryConversion
 			{
 				LibraryDataUpdatingMode.Add => "LibraryPage_AddLibraryTitle",
 				LibraryDataUpdatingMode.Load => "LibraryPage_LoadLibraryTitle",
-				LibraryDataUpdatingMode.Update => "LibraryPage_UpdateLibraryTitle"
+				LibraryDataUpdatingMode.Update => "LibraryPage_UpdateLibraryTitle",
+				LibraryDataUpdatingMode.AddOne => "LibraryPage_AddOneLibraryTitle"
 			}
 		);
 

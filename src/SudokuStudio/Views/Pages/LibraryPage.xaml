@@ -21,6 +21,9 @@
 		<TeachingTip
 			x:Name="ErrorDialog_FileIsInvalid"
 			Title="{m:R Key=LibraryPage_FileIsInvalidTitle}" Subtitle="{m:R Key=LibraryPage_FileIsInvalid}" />
+		<TeachingTip
+			x:Name="ErrorDialog_TextCodeIsInvalid"
+			Title="{m:R Key=LibraryPage_TextCodeIsInvalidTitle}" Subtitle="{m:R Key=LibraryPage_TextCodeIsInvalid}" />
 	</Page.Resources>
 
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
@@ -36,6 +39,9 @@
 							<Setter Property="ContextFlyout">
 								<Setter.Value>
 									<MenuFlyout x:Name="ParentFlyout">
+										<MenuFlyoutItem
+											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_AppendANewPuzzle}"
+											Click="AppendANewPuzzleMenuFlyoutItem_ClickAsync" />
 										<MenuFlyoutItem
 											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
 											Click="AppendPuzzlesMenuFlyoutItem_ClickAsync" />

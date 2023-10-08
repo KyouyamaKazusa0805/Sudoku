@@ -870,6 +870,12 @@
   <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
     <value>Create a new library</value>
   </data>
+  <data name="LibraryPage_AddOneLibraryTitle" xml:space="preserve">
+    <value>Add One Puzzle</value>
+  </data>
+  <data name="LibraryPage_AppendANewPuzzle" xml:space="preserve">
+    <value>Append a new puzzle into this library</value>
+  </data>
   <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
     <value>Append puzzles to this library</value>
   </data>
@@ -927,6 +933,12 @@
   <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
     <value>Input a name here</value>
   </data>
+  <data name="LibraryPage_InputPuzzleTextCode" xml:space="preserve">
+    <value>Puzzle text code</value>
+  </data>
+  <data name="LibraryPage_InputPuzzleTextCodePlaceholder" xml:space="preserve">
+    <value>A text string describing the puzzle, compatible with other sudoku analysis program</value>
+  </data>
   <data name="LibraryPage_InputTags" xml:space="preserve">
     <value>Tags</value>
   </data>
@@ -962,6 +974,12 @@
   </data>
   <data name="LibraryPage_TagsAre" xml:space="preserve">
     <value>Tags: {0}</value>
+  </data>
+  <data name="LibraryPage_TextCodeIsInvalid" xml:space="preserve">
+    <value>Text Code Error</value>
+  </data>
+  <data name="LibraryPage_TextCodeIsInvalidTitle" xml:space="preserve">
+    <value>The specified text code is invalid and cannot be parsed as a valid sudoku grid puzzle to be stored. Please check for the validity and try again.</value>
   </data>
   <data name="LibraryPage_UndefinedDescription" xml:space="preserve">
     <value>&lt;To be added&gt;</value>

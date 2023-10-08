@@ -93,6 +93,14 @@
 					</Grid>
 				</StackPanel>
 			</wc:Case>
+			<wc:Case Value="{m:Int32 Value=3}">
+				<StackPanel Spacing="12">
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputPuzzleTextCode}" />
+						<TextBox Grid.Row="1" Text="{x:Bind AppendingPuzzleTextCode,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputPuzzleTextCodePlaceholder}" />
+					</Grid>
+				</StackPanel>
+			</wc:Case>
 		</wc:SwitchPresenter>
 	</StackPanel>
 </Page>

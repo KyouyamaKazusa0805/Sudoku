@@ -873,6 +873,12 @@
   <data name="LibraryPage_AddLibraryTitle" xml:space="preserve">
     <value>创建新题库</value>
   </data>
+  <data name="LibraryPage_AddOneLibraryTitle" xml:space="preserve">
+    <value>添加一道题</value>
+  </data>
+  <data name="LibraryPage_AppendANewPuzzle" xml:space="preserve">
+    <value>往该题库追加一个题目</value>
+  </data>
   <data name="LibraryPage_AppendPuzzlesToThisLibrary" xml:space="preserve">
     <value>往该题库里追加新题目</value>
   </data>
@@ -930,6 +936,12 @@
   <data name="LibraryPage_InputLibraryNamePlaceholder" xml:space="preserve">
     <value>在这里输入题库名称</value>
   </data>
+  <data name="LibraryPage_InputPuzzleTextCode" xml:space="preserve">
+    <value>题目文本代码</value>
+  </data>
+  <data name="LibraryPage_InputPuzzleTextCodePlaceholder" xml:space="preserve">
+    <value>一个可表示题目的文本字符串代码，支持从其他软件里粘贴</value>
+  </data>
   <data name="LibraryPage_InputTags" xml:space="preserve">
     <value>标签</value>
   </data>
@@ -965,6 +977,12 @@
   </data>
   <data name="LibraryPage_TagsAre" xml:space="preserve">
     <value>标签：{0}</value>
+  </data>
+  <data name="LibraryPage_TextCodeIsInvalid" xml:space="preserve">
+    <value>输入的字符串无法被解析成正确的一个题目盘面，因此无法存储到题库之中。请检查字符串，并重试一次。</value>
+  </data>
+  <data name="LibraryPage_TextCodeIsInvalidTitle" xml:space="preserve">
+    <value>文本代码错误</value>
   </data>
   <data name="LibraryPage_UndefinedDescription" xml:space="preserve">
     <value>&lt;暂无描述&gt;</value>

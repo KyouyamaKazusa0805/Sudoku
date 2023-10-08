@@ -18,5 +18,10 @@ public enum LibraryDataUpdatingMode
 	/// <summary>
 	/// Indicates the mode is updating.
 	/// </summary>
-	Update
+	Update,
+
+	/// <summary>
+	/// Indicates the mode is adding one puzzle.
+	/// </summary>
+	AddOne
 }

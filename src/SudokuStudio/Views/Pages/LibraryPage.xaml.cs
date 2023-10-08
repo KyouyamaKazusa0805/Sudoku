@@ -500,4 +500,63 @@ public sealed partial class LibraryPage : Page
 			_puzzleLibraries.Insert(index, newInstance);
 		}
 	}
+
+	private async void AppendANewPuzzleMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem
+			{
+				Tag: MenuFlyout
+				{
+					Target: GridViewItem
+					{
+						Content: PuzzleLibraryBindableSource
+						{
+							FilePath: var filePath,
+							FileId: var fileId
+						} source
+					}
+				}
+			})
+		{
+			return;
+		}
+
+		var index = _puzzleLibraries.FindIndex(c => c.FileId == source.FileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		var contentDialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			IsPrimaryButtonEnabled = true,
+			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+			CloseButtonText = GetString("LibraryPage_Close"),
+			Content = new LibraryInfoDisplayerContent { Mode = LibraryDataUpdatingMode.AddOne },
+			DefaultButton = ContentDialogButton.Primary,
+			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+		};
+		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
+		{
+			var content = (LibraryInfoDisplayerContent)contentDialog.Content;
+			if (content.AppendingPuzzleTextCode is not (var textCode and not (null or [])))
+			{
+				return;
+			}
+
+			if (!Grid.TryParse(textCode, out var validGrid))
+			{
+				ErrorDialog_TextCodeIsInvalid.IsOpen = true;
+				return;
+			}
+
+			var instance = _puzzleLibraries[index];
+			var newInstance = new PuzzleLibraryBindableSource(instance, [.. instance.Puzzles, validGrid]);
+			File.WriteAllText(filePath, JsonSerializer.Serialize(newInstance, SerializerOptions));
+
+			_puzzleLibraries.RemoveAt(index);
+			_puzzleLibraries.Insert(index, newInstance);
+		}
+	}
 }

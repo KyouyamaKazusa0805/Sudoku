@@ -14,6 +14,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<string>("LibraryName", IsNullable = true, DocSummary = "Indicates the library name.")]
 [DependencyProperty<string>("LibraryAuthor", IsNullable = true, DocSummary = "Indicates the author of the library.")]
 [DependencyProperty<string>("LibraryDescription", IsNullable = true, DocSummary = "Indicates the description of the library.")]
+[DependencyProperty<string>("AppendingPuzzleTextCode", IsNullable = true, DocSummary = "Indicates the text code of the new appending puzzle.")]
 [DependencyProperty<LibraryDataUpdatingMode>("Mode", DocSummary = "Indicates whether the puzzle library is adding a new one, instead of loading.")]
 [DependencyProperty<ObservableCollection<string>>("LibraryTags", DocSummary = "Indicates the tags to the library.")]
 public sealed partial class LibraryInfoDisplayerContent : Page

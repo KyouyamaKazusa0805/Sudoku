@@ -3177,6 +3177,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is updating.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.LibraryDataUpdatingMode.AddOne">
+            <summary>
+            Indicates the mode is adding one puzzle.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -6085,6 +6090,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Create a new library.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AddOneLibraryTitle">
+            <summary>
+              Looks up a localized string similar to Add One Puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AppendANewPuzzle">
+            <summary>
+              Looks up a localized string similar to Append a new puzzle into this library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AppendPuzzlesToThisLibrary">
             <summary>
               Looks up a localized string similar to Append puzzles to this library.
@@ -6180,6 +6195,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Input a name here.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputPuzzleTextCode">
+            <summary>
+              Looks up a localized string similar to Puzzle text code.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputPuzzleTextCodePlaceholder">
+            <summary>
+              Looks up a localized string similar to A text string describing the puzzle, compatible with other sudoku analysis program.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_InputTags">
             <summary>
               Looks up a localized string similar to Tags.
@@ -6238,6 +6263,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_TagsAre">
             <summary>
               Looks up a localized string similar to Tags: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_TextCodeIsInvalid">
+            <summary>
+              Looks up a localized string similar to Text Code Error.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_TextCodeIsInvalidTitle">
+            <summary>
+              Looks up a localized string similar to The specified text code is invalid and cannot be parsed as a valid sudoku grid puzzle to be stored. Please check for the validity and try again..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UndefinedDescription">
@@ -10821,6 +10856,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCodeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.ModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode"/>.
@@ -10856,6 +10897,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription">
             <summary>
             Indicates the description of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode">
+            <summary>
+            Indicates the text code of the new appending puzzle.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode">

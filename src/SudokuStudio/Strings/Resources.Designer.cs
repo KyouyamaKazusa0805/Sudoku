@@ -2536,6 +2536,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add One Puzzle.
+        /// </summary>
+        internal static string LibraryPage_AddOneLibraryTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOneLibraryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Append a new puzzle into this library.
+        /// </summary>
+        internal static string LibraryPage_AppendANewPuzzle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AppendANewPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Append puzzles to this library.
         /// </summary>
         internal static string LibraryPage_AppendPuzzlesToThisLibrary {
@@ -2707,6 +2725,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Puzzle text code.
+        /// </summary>
+        internal static string LibraryPage_InputPuzzleTextCode {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputPuzzleTextCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A text string describing the puzzle, compatible with other sudoku analysis program.
+        /// </summary>
+        internal static string LibraryPage_InputPuzzleTextCodePlaceholder {
+            get {
+                return ResourceManager.GetString("LibraryPage_InputPuzzleTextCodePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tags.
         /// </summary>
         internal static string LibraryPage_InputTags {
@@ -2811,6 +2847,24 @@ namespace SudokuStudio.Strings {
         internal static string LibraryPage_TagsAre {
             get {
                 return ResourceManager.GetString("LibraryPage_TagsAre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Code Error.
+        /// </summary>
+        internal static string LibraryPage_TextCodeIsInvalid {
+            get {
+                return ResourceManager.GetString("LibraryPage_TextCodeIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified text code is invalid and cannot be parsed as a valid sudoku grid puzzle to be stored. Please check for the validity and try again..
+        /// </summary>
+        internal static string LibraryPage_TextCodeIsInvalidTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_TextCodeIsInvalidTitle", resourceCulture);
             }
         }
         
