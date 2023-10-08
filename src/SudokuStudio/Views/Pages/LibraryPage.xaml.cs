@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using SudokuStudio.BindableSource;
+using SudokuStudio.Interaction;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Pages.ContentDialogs;
 using Windows.Storage.Pickers;
@@ -117,7 +118,7 @@ public sealed partial class LibraryPage : Page
 				CloseButtonText = GetString("LibraryPage_Close"),
 				Content = new LibraryLoadOrAddContent
 				{
-					IsAdding = false,
+					Mode = LibraryDataUpdatingMode.Load,
 					FilePath = libFilePath,
 					FileId = fileId,
 					LibraryName = fileId,
@@ -193,7 +194,7 @@ public sealed partial class LibraryPage : Page
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 			CloseButtonText = GetString("LibraryPage_Close"),
-			Content = new LibraryLoadOrAddContent { IsAdding = true },
+			Content = new LibraryLoadOrAddContent { Mode = LibraryDataUpdatingMode.Add },
 			DefaultButton = ContentDialogButton.Primary,
 			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
 		};
@@ -390,6 +391,96 @@ public sealed partial class LibraryPage : Page
 			}
 
 			return [.. newPuzzles];
+		}
+	}
+
+	private async void UpdateLibraryInfoMenuFlyoutItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem
+			{
+				Tag: MenuFlyout
+				{
+					Target: GridViewItem
+					{
+						Content: PuzzleLibraryBindableSource
+						{
+							Name: var libraryName,
+							Author: var libraryAuthor,
+							Description: var libraryDescription,
+							Tags: var libraryTags,
+							FilePath: var filePath,
+							FileId: var fileId,
+							Puzzles: var puzzles,
+							PuzzlesCount: var puzzlesCount
+						} source
+					}
+				}
+			})
+		{
+			return;
+		}
+
+		var index = _puzzleLibraries.FindIndex(c => c.FileId == source.FileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		var contentDialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			IsPrimaryButtonEnabled = true,
+			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+			CloseButtonText = GetString("LibraryPage_Close"),
+			Content = new LibraryLoadOrAddContent
+			{
+				Mode = LibraryDataUpdatingMode.Update,
+				LibraryName = libraryName,
+				LibraryAuthor = libraryAuthor,
+				LibraryDescription = libraryDescription,
+				LibraryTags = libraryTags,
+				FileId = fileId
+			},
+			DefaultButton = ContentDialogButton.Primary,
+			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+		};
+		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
+		{
+			var content = (LibraryLoadOrAddContent)contentDialog.Content;
+			if (content.FileId is not { Length: not 0 } newFileId)
+			{
+				ErrorDialog_FileIdCannotBeEmpty.IsOpen = true;
+				return;
+			}
+
+			var newFilePath = fileId == newFileId ? filePath : $@"{CommonPaths.PuzzleLibrariesFolder}\{newFileId}{FileExtensions.PuzzleLibrary}";
+			if (filePath != newFilePath && File.Exists(newFilePath))
+			{
+				ErrorDialog_FileAlreadyExists.IsOpen = true;
+				return;
+			}
+
+			var newInstance = new PuzzleLibraryBindableSource
+			{
+				Name = content.LibraryName ?? "",
+				Author = content.LibraryAuthor ?? "",
+				FileId = newFileId,
+				Description = content.LibraryDescription ?? "",
+				Tags = content.LibraryTags ?? [],
+				Puzzles = puzzles,
+				PuzzlesCount = puzzlesCount
+			};
+
+			if (fileId != newFileId)
+			{
+				// Special case: If a user has modified the file ID, the local path would be also changed. We should rename a file.
+				File.Move(filePath, newFilePath);
+			}
+
+			File.WriteAllText(newFilePath, JsonSerializer.Serialize(newInstance, SerializerOptions));
+
+			_puzzleLibraries.RemoveAt(index);
+			_puzzleLibraries.Insert(index, newInstance);
 		}
 	}
 }

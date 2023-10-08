@@ -969,6 +969,12 @@
   <data name="LibraryPage_UndefinedUserName" xml:space="preserve">
     <value>&lt;未命名用户&gt;</value>
   </data>
+  <data name="LibraryPage_UpdateLibraryInfo" xml:space="preserve">
+    <value>修改题库信息</value>
+  </data>
+  <data name="LibraryPage_UpdateLibraryTitle" xml:space="preserve">
+    <value>修改题库配置</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>

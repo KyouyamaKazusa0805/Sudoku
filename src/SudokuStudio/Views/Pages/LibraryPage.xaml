@@ -40,6 +40,9 @@
 											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_AppendPuzzlesToThisLibrary}"
 											Click="AppendPuzzlesMenuFlyoutItem_ClickAsync" />
 										<MenuFlyoutItem
+											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_UpdateLibraryInfo}"
+											Click="UpdateLibraryInfoMenuFlyoutItem_ClickAsync" />
+										<MenuFlyoutItem
 											Tag="{x:Bind ParentFlyout}" Text="{m:R Key=LibraryPage_RemoveInvalidPuzzles}"
 											Click="RemoveInvalidPuzzlesMenuFlyoutItem_ClickAsync" />
 										<MenuFlyoutSeparator />

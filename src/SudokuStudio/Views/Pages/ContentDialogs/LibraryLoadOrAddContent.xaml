@@ -11,10 +11,10 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pc:LibraryLoadOrAddContent}">
 	<StackPanel Spacing="24">
 		<TextBlock
-			Text="{x:Bind cvt:PuzzleLibraryConversion.GetLoadingOrAddingDialogTitle(IsAdding),Mode=OneWay}"
+			Text="{x:Bind cvt:PuzzleLibraryConversion.GetLoadingOrAddingDialogTitle(Mode),Mode=OneWay}"
 			FontWeight="Bold" FontSize="24" />
-		<wc:SwitchPresenter Value="{x:Bind IsAdding,Mode=OneWay}">
-			<wc:Case Value="{m:Boolean Value=True}">
+		<wc:SwitchPresenter Value="{x:Bind cvt:PuzzleLibraryConversion.GetModeRawValue(Mode),Mode=OneWay}">
+			<wc:Case Value="{m:Int32 Value=0}">
 				<StackPanel Spacing="12">
 					<Grid RowDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryName}" />
@@ -34,7 +34,7 @@
 					</Grid>
 				</StackPanel>
 			</wc:Case>
-			<wc:Case Value="{m:Boolean Value=False}">
+			<wc:Case Value="{m:Int32 Value=1}">
 				<StackPanel Spacing="12">
 					<Grid RowDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryName}" />
@@ -43,6 +43,26 @@
 					<Grid RowDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryFileId}" />
 						<TextBlock Grid.Row="1" Text="{x:Bind FileId,Mode=OneWay}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryAuthor}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryAuthor,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryAuthorPlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
+					</Grid>
+				</StackPanel>
+			</wc:Case>
+			<wc:Case Value="{m:Int32 Value=2}">
+				<StackPanel Spacing="12">
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryName}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryName,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryNamePlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryFileId}" />
+						<TextBox Grid.Row="1" Text="{x:Bind FileId,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryFileIdPlaceholder}" />
 					</Grid>
 					<Grid RowDefinitions="Auto,*">
 						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryAuthor}" />

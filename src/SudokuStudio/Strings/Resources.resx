@@ -966,6 +966,12 @@
   <data name="LibraryPage_UndefinedUserName" xml:space="preserve">
     <value>&lt;Unknown&gt;</value>
   </data>
+  <data name="LibraryPage_UpdateLibraryInfo" xml:space="preserve">
+    <value>Update library information</value>
+  </data>
+  <data name="LibraryPage_UpdateLibraryTitle" xml:space="preserve">
+    <value>Update Library Data</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>

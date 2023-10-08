@@ -2824,6 +2824,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update library information.
+        /// </summary>
+        internal static string LibraryPage_UpdateLibraryInfo {
+            get {
+                return ResourceManager.GetString("LibraryPage_UpdateLibraryInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Library Data.
+        /// </summary>
+        internal static string LibraryPage_UpdateLibraryTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_UpdateLibraryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {

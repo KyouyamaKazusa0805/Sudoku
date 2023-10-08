@@ -3157,6 +3157,26 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.LibraryDataUpdatingMode">
+            <summary>
+            Represents a mode to display for library data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryDataUpdatingMode.Add">
+            <summary>
+            Indicates the mode is adding.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryDataUpdatingMode.Load">
+            <summary>
+            Indicates the mode is loading.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryDataUpdatingMode.Update">
+            <summary>
+            Indicates the mode is updating.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -6223,6 +6243,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UndefinedUserName">
             <summary>
               Looks up a localized string similar to &lt;Unknown&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UpdateLibraryInfo">
+            <summary>
+              Looks up a localized string similar to Update library information.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_UpdateLibraryTitle">
+            <summary>
+              Looks up a localized string similar to Update Library Data.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
@@ -10723,12 +10753,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAddingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePathProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath"/>.
@@ -10765,10 +10789,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.IsAdding">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.ModeProperty">
             <summary>
-            Indicates whether the puzzle library is adding a new one, instead of loading.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>.
             </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath">
             <summary>
@@ -10798,6 +10823,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags">
             <summary>
             Indicates the tags to the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode">
+            <summary>
+            Indicates whether the puzzle library is adding a new one, instead of loading.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
