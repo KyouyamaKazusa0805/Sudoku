@@ -116,7 +116,7 @@ public sealed partial class LibraryPage : Page
 				IsPrimaryButtonEnabled = true,
 				Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 				CloseButtonText = GetString("LibraryPage_Close"),
-				Content = new LibraryLoadOrAddContent
+				Content = new LibraryInfoDisplayerContent
 				{
 					Mode = LibraryDataUpdatingMode.Load,
 					FilePath = libFilePath,
@@ -142,7 +142,7 @@ public sealed partial class LibraryPage : Page
 				}
 			}
 
-			var content = (LibraryLoadOrAddContent)contentDialog.Content;
+			var content = (LibraryInfoDisplayerContent)contentDialog.Content;
 			var instance = new PuzzleLibraryBindableSource
 			{
 				Name = content.LibraryName ?? "",
@@ -194,13 +194,13 @@ public sealed partial class LibraryPage : Page
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 			CloseButtonText = GetString("LibraryPage_Close"),
-			Content = new LibraryLoadOrAddContent { Mode = LibraryDataUpdatingMode.Add },
+			Content = new LibraryInfoDisplayerContent { Mode = LibraryDataUpdatingMode.Add },
 			DefaultButton = ContentDialogButton.Primary,
 			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 		{
-			var content = (LibraryLoadOrAddContent)contentDialog.Content;
+			var content = (LibraryInfoDisplayerContent)contentDialog.Content;
 			if (content.FileId is not { Length: not 0 } fileId)
 			{
 				ErrorDialog_FileIdCannotBeEmpty.IsOpen = true;
@@ -432,7 +432,7 @@ public sealed partial class LibraryPage : Page
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 			CloseButtonText = GetString("LibraryPage_Close"),
-			Content = new LibraryLoadOrAddContent
+			Content = new LibraryInfoDisplayerContent
 			{
 				Mode = LibraryDataUpdatingMode.Update,
 				LibraryName = libraryName,
@@ -446,7 +446,7 @@ public sealed partial class LibraryPage : Page
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 		{
-			var content = (LibraryLoadOrAddContent)contentDialog.Content;
+			var content = (LibraryInfoDisplayerContent)contentDialog.Content;
 			if (content.FileId is not { Length: not 0 } newFileId)
 			{
 				ErrorDialog_FileIdCannotBeEmpty.IsOpen = true;

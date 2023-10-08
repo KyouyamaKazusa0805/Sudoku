@@ -10738,104 +10738,104 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent">
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent">
             <summary>
             Defines a dialog content for adding or loading a puzzle library.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.#ctor">
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.#ctor">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent"/> instance.
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.InitializeComponent">
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Connect(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePathProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePathProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileIdProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileIdProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryNameProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryNameProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthorProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthorProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescriptionProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescriptionProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.ModeProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.ModeProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTagsProperty">
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTagsProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags"/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FilePath">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath">
             <summary>
             Indicates the target file path.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.FileId">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId">
             <summary>
             Indicates the file ID.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryName">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName">
             <summary>
             Indicates the library name.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryAuthor">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor">
             <summary>
             Indicates the author of the library.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryDescription">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription">
             <summary>
             Indicates the description of the library.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.Mode">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode">
             <summary>
             Indicates whether the puzzle library is adding a new one, instead of loading.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryLoadOrAddContent.LibraryTags">
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags">
             <summary>
             Indicates the tags to the library.
             </summary>
