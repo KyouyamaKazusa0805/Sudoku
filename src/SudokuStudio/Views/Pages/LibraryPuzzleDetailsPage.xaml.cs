@@ -103,4 +103,8 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 			GetMainWindow().NavigateToPage<AnalyzePage, Grid>(z);
 		}
 	}
+
+	private void GoToPreviousPuzzleButton_Click(object sender, RoutedEventArgs e) => CurrentPuzzleIndex--;
+
+	private void GotoNextPuzzleButton_Click(object sender, RoutedEventArgs e) => CurrentPuzzleIndex++;
 }

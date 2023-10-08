@@ -23,10 +23,25 @@
 				GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter}}"
 				ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter}}" />
 		</Button>
-		<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,Auto,*">
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+			<Button
+				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPreviousButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
+				Click="GoToPreviousPuzzleButton_Click">
+				<Button.Content>
+					<FontIcon Glyph="&#xE76B;" />
+				</Button.Content>
+			</Button>
+			<Button
+				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetNextButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
+				Click="GotoNextPuzzleButton_Click">
+				<Button.Content>
+					<FontIcon Glyph="&#xE76C;" />
+				</Button.Content>
+			</Button>
 			<c:IntegerBox
-				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" Value="1" SmallChange="1" LargeChange="5" Minimum="0"
-				Maximum="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCount(Source),Mode=OneWay}" />
+				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" SmallChange="1" LargeChange="5" Minimum="0"
+				Maximum="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCount(Source),Mode=OneWay}"
+				Value="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentPuzzleIndexInIntegerBox(CurrentPuzzleIndex),Mode=OneWay}" />
 			<TextBlock
 				Grid.Column="1" VerticalAlignment="Center" Margin="10,0,30,0"
 				Text="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCountText(Source),Mode=OneWay}"
@@ -35,6 +50,6 @@
 				Grid.Column="3" VerticalAlignment="Center" Content="{m:R Key=LibraryPuzzleDetailsPage_Apply}"
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPagingControlsVisibility(Source),Mode=OneWay}"
 				Click="ApplyButton_Click" />
-		</Grid>
+		</StackPanel>
 	</StackPanel>
 </Page>

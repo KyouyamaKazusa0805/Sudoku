@@ -10,6 +10,8 @@ internal static class PuzzleLibraryConversion
 
 	public static int GetTotalPagesCount(PuzzleLibraryBindableSource? source) => source?.Puzzles.Length ?? -1;
 
+	public static int GetCurrentPuzzleIndexInIntegerBox(int currentPuzzleIndex) => currentPuzzleIndex + 1;
+
 	public static string GetTotalPagesCountText(PuzzleLibraryBindableSource? source) => $"/ {GetTotalPagesCount(source)}";
 
 	public static string GetLoadingOrAddingDialogTitle(LibraryDataUpdatingMode mode)
@@ -26,6 +28,12 @@ internal static class PuzzleLibraryConversion
 
 	public static string GetPuzzlesCountText(int count)
 		=> string.Format(GetString(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural"), count);
+
+	public static Visibility GetPreviousButtonVisibility(PuzzleLibraryBindableSource? source, int currentPuzzleIndex)
+		=> source is null ? Visibility.Collapsed : currentPuzzleIndex == 0 ? Visibility.Collapsed : Visibility.Visible;
+
+	public static Visibility GetNextButtonVisibility(PuzzleLibraryBindableSource? source, int currentPuzzleIndex)
+		=> source is null ? Visibility.Collapsed : currentPuzzleIndex == source.PuzzlesCount - 1 ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetPagingControlsVisibility(PuzzleLibraryBindableSource? source)
 		=> source?.Puzzles.Length switch { null or 0 or 1 => Visibility.Collapsed, _ => Visibility.Visible };
