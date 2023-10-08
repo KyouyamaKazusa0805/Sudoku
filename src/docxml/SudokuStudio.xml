@@ -211,7 +211,7 @@
             The puzzles loaded.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.LocalPuzzleLibraries">
+        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.LocalPuzzleLibraries(System.Boolean)">
             <summary>
             Try to fetch all puzzle libraries stored in the local path.
             </summary>
@@ -4940,6 +4940,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Version.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AddToLibraryContent_Apply">
+            <summary>
+              Looks up a localized string similar to Apply.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AddToLibraryContent_Title">
+            <summary>
+              Looks up a localized string similar to Add current puzzle into library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange">
             <summary>
               Looks up a localized string similar to Difficulty levels supported.
@@ -5573,6 +5583,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SaveFileAnother">
             <summary>
               Looks up a localized string similar to Save as.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SavePuzzleToLibrary">
+            <summary>
+              Looks up a localized string similar to Save the puzzle to the library.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SearchAllSteps">
@@ -6233,6 +6248,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_LoadOrAddingButtonText">
             <summary>
               Looks up a localized string similar to Apply.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_MustSelectOneLibrary">
+            <summary>
+              Looks up a localized string similar to You must select one library to store this puzzle..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPage_MustSelectOneLibraryTitle">
+            <summary>
+              Looks up a localized string similar to Operation Error.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_OpenLibFolder">
@@ -10710,6 +10735,102 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
             <summary>
             Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent">
+            <summary>
+            Represents with a dialog content "add a puzzle to the library" from analyze page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent._puzzleLibraries">
+            <summary>
+            Indicates the puzzle libraries.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibraryProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName">
+            <summary>
+            Indicates the library name configured.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId">
+            <summary>
+            Indicates the file ID configured.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor">
+            <summary>
+            Indicates the library author configured.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription">
+            <summary>
+            Indicates the library description configured.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary">
+            <summary>
+            Indicates the currently-selected library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags">
+            <summary>
+            Indicates the library description configured.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent">

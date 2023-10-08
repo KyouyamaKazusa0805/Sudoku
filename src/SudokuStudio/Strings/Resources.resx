@@ -180,6 +180,12 @@
   <data name="AboutPage_Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="AddToLibraryContent_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="AddToLibraryContent_Title" xml:space="preserve">
+    <value>Add current puzzle into library</value>
+  </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
     <value>Difficulty levels supported</value>
   </data>
@@ -560,6 +566,9 @@
   </data>
   <data name="AnalyzePage_SaveFileAnother" xml:space="preserve">
     <value>Save as</value>
+  </data>
+  <data name="AnalyzePage_SavePuzzleToLibrary" xml:space="preserve">
+    <value>Save the puzzle to the library</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
     <value>Input search expression, e.g. name like '[Uu]nique\sRectangle.*'</value>
@@ -956,6 +965,12 @@
   </data>
   <data name="LibraryPage_LoadOrAddingButtonText" xml:space="preserve">
     <value>Apply</value>
+  </data>
+  <data name="LibraryPage_MustSelectOneLibrary" xml:space="preserve">
+    <value>You must select one library to store this puzzle.</value>
+  </data>
+  <data name="LibraryPage_MustSelectOneLibraryTitle" xml:space="preserve">
+    <value>Operation Error</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>Open local folder</value>

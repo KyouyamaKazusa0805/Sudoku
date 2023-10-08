@@ -180,6 +180,12 @@
   <data name="AboutPage_Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="AddToLibraryContent_Apply" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="AddToLibraryContent_Title" xml:space="preserve">
+    <value>将该题目加到题库</value>
+  </data>
   <data name="AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange" xml:space="preserve">
     <value>支持分析的难度级别</value>
   </data>
@@ -563,6 +569,9 @@
   </data>
   <data name="AnalyzePage_SaveFileAnother" xml:space="preserve">
     <value>另存格式</value>
+  </data>
+  <data name="AnalyzePage_SavePuzzleToLibrary" xml:space="preserve">
+    <value>将此题存入题库</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
     <value>查询表达式，如 name like '唯一矩形.*'</value>
@@ -959,6 +968,12 @@
   </data>
   <data name="LibraryPage_LoadOrAddingButtonText" xml:space="preserve">
     <value>确定</value>
+  </data>
+  <data name="LibraryPage_MustSelectOneLibrary" xml:space="preserve">
+    <value>你必须选择一个仓库才能保存题目。</value>
+  </data>
+  <data name="LibraryPage_MustSelectOneLibraryTitle" xml:space="preserve">
+    <value>操作错误</value>
   </data>
   <data name="LibraryPage_OpenLibFolder" xml:space="preserve">
     <value>打开本地文件夹</value>

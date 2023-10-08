@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using SudokuStudio.BindableSource;
+using SudokuStudio.Storage;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;
@@ -29,6 +30,8 @@ internal static class PuzzleLibraryConversion
 
 	public static string GetPuzzlesCountText(int count)
 		=> string.Format(GetString(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural"), count);
+
+	public static string GetLibraryName(string libName, string libFileId) => $"{libName} ({libFileId}{FileExtensions.PuzzleLibrary})";
 
 	public static Visibility GetPreviousButtonVisibility(PuzzleLibraryBindableSource? source, int currentPuzzleIndex)
 		=> source is null ? Visibility.Collapsed : currentPuzzleIndex == 0 ? Visibility.Collapsed : Visibility.Visible;

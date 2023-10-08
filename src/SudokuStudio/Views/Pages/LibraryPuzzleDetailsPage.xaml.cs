@@ -112,12 +112,17 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 
 	private async void PuzzleRemoveButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not Button { Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup f } } } || Source is null)
+		if (sender is not Button { Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup f } } })
 		{
 			return;
 		}
 
 		f.IsOpen = false;
+
+		if (Source is null)
+		{
+			return;
+		}
 
 		var newInstance = new PuzzleLibraryBindableSource(
 			Source,

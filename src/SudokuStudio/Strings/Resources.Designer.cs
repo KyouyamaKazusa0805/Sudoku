@@ -466,6 +466,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string AddToLibraryContent_Apply {
+            get {
+                return ResourceManager.GetString("AddToLibraryContent_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add current puzzle into library.
+        /// </summary>
+        internal static string AddToLibraryContent_Title {
+            get {
+                return ResourceManager.GetString("AddToLibraryContent_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty levels supported.
         /// </summary>
         internal static string AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange {
@@ -1605,6 +1623,15 @@ namespace SudokuStudio.Strings {
         internal static string AnalyzePage_SaveFileAnother {
             get {
                 return ResourceManager.GetString("AnalyzePage_SaveFileAnother", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save the puzzle to the library.
+        /// </summary>
+        internal static string AnalyzePage_SavePuzzleToLibrary {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SavePuzzleToLibrary", resourceCulture);
             }
         }
         
@@ -2793,6 +2820,24 @@ namespace SudokuStudio.Strings {
         internal static string LibraryPage_LoadOrAddingButtonText {
             get {
                 return ResourceManager.GetString("LibraryPage_LoadOrAddingButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select one library to store this puzzle..
+        /// </summary>
+        internal static string LibraryPage_MustSelectOneLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_MustSelectOneLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Error.
+        /// </summary>
+        internal static string LibraryPage_MustSelectOneLibraryTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_MustSelectOneLibraryTitle", resourceCulture);
             }
         }
         

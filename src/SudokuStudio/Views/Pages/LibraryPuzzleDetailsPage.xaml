@@ -27,16 +27,12 @@
 			<Button
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPreviousButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				Click="GoToPreviousPuzzleButton_Click">
-				<Button.Content>
-					<FontIcon Glyph="&#xE76B;" />
-				</Button.Content>
+				<FontIcon Glyph="&#xE76B;" />
 			</Button>
 			<Button
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetNextButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				Click="GotoNextPuzzleButton_Click">
-				<Button.Content>
-					<FontIcon Glyph="&#xE76C;" />
-				</Button.Content>
+				<FontIcon Glyph="&#xE76C;" />
 			</Button>
 			<c:IntegerBox
 				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" SmallChange="1" LargeChange="5" Minimum="1"

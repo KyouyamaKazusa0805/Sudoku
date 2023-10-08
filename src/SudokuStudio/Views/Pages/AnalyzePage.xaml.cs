@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.SourceGeneration;
+using System.Text.Json;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -1336,5 +1338,44 @@ public sealed partial class AnalyzePage : Page
 		{
 			_isFirstLaunched = false;
 		}
+	}
+
+	private async void SavePuzzleToLibraryAppBarButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var contentDialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			IsPrimaryButtonEnabled = true,
+			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
+			CloseButtonText = GetString("LibraryPage_Close"),
+			Content = new AddToLibraryContent(),
+			DefaultButton = ContentDialogButton.Primary,
+			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+		};
+
+		if (await contentDialog.ShowAsync() != ContentDialogResult.Primary)
+		{
+			return;
+		}
+
+		if (contentDialog.Content is not AddToLibraryContent { SelectedLibrary.FileId: var selectedFileId } content)
+		{
+			ErrorDialog_MustSelectAtLeastOneLibrary.IsOpen = true;
+			return;
+		}
+
+		var index = content._puzzleLibraries.FindIndex(lib => lib.FileId == selectedFileId);
+		if (index == -1)
+		{
+			return;
+		}
+
+		var instance = content._puzzleLibraries[index];
+		var newInstance = new PuzzleLibraryBindableSource(instance, [.. instance.Puzzles, SudokuPane.Puzzle]);
+
+		content._puzzleLibraries[index] = newInstance;
+
+		var json = JsonSerializer.Serialize(newInstance, LibraryPage.SerializerOptions);
+		await File.WriteAllTextAsync(newInstance.FilePath, json);
 	}
 }

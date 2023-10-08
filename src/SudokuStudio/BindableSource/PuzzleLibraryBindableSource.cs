@@ -102,50 +102,47 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 	/// as a placeholder; otherwise, a list of valid <see cref="PuzzleLibraryBindableSource"/> elements
 	/// and a placeholder mentioned in the previous case.
 	/// </remarks>
-	public static ObservableCollection<PuzzleLibraryBindableSource> LocalPuzzleLibraries
+	public static ObservableCollection<PuzzleLibraryBindableSource> LocalPuzzleLibraries(bool autoAdding)
 	{
-		get
+		var di = new DirectoryInfo(CommonPaths.PuzzleLibrariesFolder);
+		if (!di.Exists || di.GetFiles() is not (var files and not []))
 		{
-			var di = new DirectoryInfo(CommonPaths.PuzzleLibrariesFolder);
-			if (!di.Exists || di.GetFiles() is not (var files and not []))
+			di.Create(); // Implicit behavior: if the puzzle library does not exist, create a new directory.
+			return autoAdding ? [new(true)] : [];
+		}
+
+		var result = new List<PuzzleLibraryBindableSource>();
+		foreach (var file in files)
+		{
+			if (Path.GetExtension(file.FullName) != FileExtensions.PuzzleLibrary)
 			{
-				di.Create(); // Implicit behavior: if the puzzle library does not exist, create a new directory.
-				return [new(true)];
+				// Filters invalid file extensions.
+				continue;
 			}
 
-			var result = new List<PuzzleLibraryBindableSource>();
-			foreach (var file in files)
+			if (tryDeserialize(file.FullName, out var instance))
 			{
-				if (Path.GetExtension(file.FullName) != FileExtensions.PuzzleLibrary)
-				{
-					// Filters invalid file extensions.
-					continue;
-				}
-
-				if (tryDeserialize(file.FullName, out var instance))
-				{
-					instance.PuzzlesCount = instance.Puzzles.Length;
-					instance.FileId = Path.GetFileNameWithoutExtension(file.FullName);
-					result.Add(instance);
-				}
+				instance.PuzzlesCount = instance.Puzzles.Length;
+				instance.FileId = Path.GetFileNameWithoutExtension(file.FullName);
+				result.Add(instance);
 			}
+		}
 
-			return [.. result, new(true)];
+		return autoAdding ? [.. result, new(true)] : [.. result];
 
 
-			static bool tryDeserialize(string fileName, [NotNullWhen(true)] out PuzzleLibraryBindableSource? result)
+		static bool tryDeserialize(string fileName, [NotNullWhen(true)] out PuzzleLibraryBindableSource? result)
+		{
+			try
 			{
-				try
-				{
-					var json = File.ReadAllText(fileName);
-					result = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(json) ?? throw new JsonException();
-					return true;
-				}
-				catch (JsonException)
-				{
-					result = null;
-					return false;
-				}
+				var json = File.ReadAllText(fileName);
+				result = JsonSerializer.Deserialize<PuzzleLibraryBindableSource>(json) ?? throw new JsonException();
+				return true;
+			}
+			catch (JsonException)
+			{
+				result = null;
+				return false;
 			}
 		}
 	}

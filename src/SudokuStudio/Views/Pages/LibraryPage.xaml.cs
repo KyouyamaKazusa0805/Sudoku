@@ -34,7 +34,7 @@ public sealed partial class LibraryPage : Page
 	/// <summary>
 	/// Indicates the puzzle library.
 	/// </summary>
-	private readonly ObservableCollection<PuzzleLibraryBindableSource> _puzzleLibraries = PuzzleLibraryBindableSource.LocalPuzzleLibraries;
+	private readonly ObservableCollection<PuzzleLibraryBindableSource> _puzzleLibraries = PuzzleLibraryBindableSource.LocalPuzzleLibraries(true);
 
 
 	/// <summary>
