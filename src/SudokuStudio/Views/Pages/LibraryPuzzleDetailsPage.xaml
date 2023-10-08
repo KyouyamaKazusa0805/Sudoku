@@ -15,7 +15,7 @@
 		<TextBlock Text="{m:R Key=LibraryPuzzleDetailsPage_Description}" Margin="0,10,0,40" />
 		<Button HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Click="RedirectButton_Click">
 			<c:SudokuPane
-				x:Name="SudokuDisplayer" Width="400" Height="400" EnableAnimationFeedback="False" SelectedCell="-1" DisplayCursors="False"
+				x:Name="SudokuDisplayer" Width="450" Height="450" EnableAnimationFeedback="False" SelectedCell="-1" DisplayCursors="False"
 				DisplayCandidates="False" DisableFlyout="True" PreventConflictingInput="True" CoordinateLabelDisplayMode="None"
 				Puzzle="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentGrid(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground}"
