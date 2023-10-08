@@ -23,7 +23,7 @@ public sealed partial class LibraryPage : Page
 	/// <summary>
 	/// The internal serialization options.
 	/// </summary>
-	private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
+	internal static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
 
 	/// <summary>
 	/// The internal flyout showing options.

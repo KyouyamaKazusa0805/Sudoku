@@ -984,6 +984,12 @@
   <data name="LibraryPuzzleDetailsPage_Description" xml:space="preserve">
     <value>Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!</value>
   </data>
+  <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzle" xml:space="preserve">
+    <value>Remove this puzzle</value>
+  </data>
+  <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription" xml:space="preserve">
+    <value>If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>

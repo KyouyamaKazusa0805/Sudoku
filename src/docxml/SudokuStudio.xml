@@ -6275,6 +6275,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleDetailsPage_RemoveThisPuzzle">
+            <summary>
+              Looks up a localized string similar to Remove this puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription">
+            <summary>
+              Looks up a localized string similar to If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.

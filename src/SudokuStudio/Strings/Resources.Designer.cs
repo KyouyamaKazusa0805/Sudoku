@@ -2878,6 +2878,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove this puzzle.
+        /// </summary>
+        internal static string LibraryPuzzleDetailsPage_RemoveThisPuzzle {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleDetailsPage_RemoveThisPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?.
+        /// </summary>
+        internal static string LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {

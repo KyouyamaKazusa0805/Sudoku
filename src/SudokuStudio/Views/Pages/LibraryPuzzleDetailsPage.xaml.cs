@@ -1,5 +1,7 @@
+using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Navigation;
 using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
@@ -107,4 +109,25 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 	private void GoToPreviousPuzzleButton_Click(object sender, RoutedEventArgs e) => CurrentPuzzleIndex--;
 
 	private void GotoNextPuzzleButton_Click(object sender, RoutedEventArgs e) => CurrentPuzzleIndex++;
+
+	private async void PuzzleRemoveButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not Button { Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup f } } } || Source is null)
+		{
+			return;
+		}
+
+		f.IsOpen = false;
+
+		var newInstance = new PuzzleLibraryBindableSource(
+			Source,
+			[.. Source.Puzzles[..CurrentPuzzleIndex], .. Source.Puzzles[(CurrentPuzzleIndex + 1)..]]
+		);
+
+		var json = JsonSerializer.Serialize(newInstance, LibraryPage.SerializerOptions);
+		await File.WriteAllTextAsync(newInstance.FilePath, json);
+
+		Source = newInstance;
+		CurrentPuzzleIndexBox.Value = CurrentPuzzleIndex = Math.Min(CurrentPuzzleIndex, newInstance.PuzzlesCount - 1);
+	}
 }

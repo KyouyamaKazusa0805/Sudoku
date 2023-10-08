@@ -987,6 +987,12 @@
   <data name="LibraryPuzzleDetailsPage_Description" xml:space="preserve">
     <value>欢迎来到用户题库页面！你可以通过该页面查看刚才选择的题库里的所有题目！</value>
   </data>
+  <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzle" xml:space="preserve">
+    <value>从题库里删除此题</value>
+  </data>
+  <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription" xml:space="preserve">
+    <value>如果你执行此操作，该题目将会永久从题库里消失。你无法再以任何方式重新看到它。你是否确定需要这么做？</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>

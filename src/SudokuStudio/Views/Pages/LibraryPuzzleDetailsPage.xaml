@@ -39,7 +39,7 @@
 				</Button.Content>
 			</Button>
 			<c:IntegerBox
-				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" SmallChange="1" LargeChange="5" Minimum="0"
+				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" SmallChange="1" LargeChange="5" Minimum="1"
 				Maximum="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCount(Source),Mode=OneWay}"
 				Value="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentPuzzleIndexInIntegerBox(CurrentPuzzleIndex),Mode=OneWay}" />
 			<TextBlock
@@ -51,5 +51,17 @@
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPagingControlsVisibility(Source),Mode=OneWay}"
 				Click="ApplyButton_Click" />
 		</StackPanel>
+		<Button HorizontalAlignment="Center" Background="Red" Foreground="White" Content="{m:R Key=LibraryPuzzleDetailsPage_RemoveThisPuzzle}">
+			<Button.Flyout>
+				<Flyout>
+					<StackPanel Width="400">
+						<TextBlock
+							Text="{m:R Key=LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription}" Margin="0,0,0,20"
+							TextWrapping="WrapWholeWords" />
+						<Button Content="{m:R Key=LibraryPuzzleDetailsPage_Apply}" Click="PuzzleRemoveButton_ClickAsync" />
+					</StackPanel>
+				</Flyout>
+			</Button.Flyout>
+		</Button>
 	</StackPanel>
 </Page>
