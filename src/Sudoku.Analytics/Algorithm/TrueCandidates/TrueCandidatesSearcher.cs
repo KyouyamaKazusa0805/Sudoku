@@ -32,7 +32,7 @@ public static class TrueCandidatesSearcher
 			{
 				case 1:
 				{
-					return CandidateMap.Empty;
+					return [];
 				}
 				case >= 3:
 				{
@@ -59,7 +59,7 @@ public static class TrueCandidatesSearcher
 					{
 						// The specified house contains at least three positions to fill with the digit,
 						// which is invalid in any BUG + n patterns.
-						return CandidateMap.Empty;
+						return [];
 					}
 				}
 			}
