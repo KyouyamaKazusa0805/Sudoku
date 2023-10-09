@@ -81,7 +81,7 @@ public partial struct CellMap :
 	/// </list>
 	/// </summary>
 	[HashCodeMember]
-	internal long _high, _low;
+	private long _high, _low;
 
 
 	/// <summary>
