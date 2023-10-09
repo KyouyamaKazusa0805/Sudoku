@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
 
@@ -36,12 +37,30 @@ public sealed partial class AddToLibraryContent : Page
 
 	private async void ApplyButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not Button { Parent: StackPanel { Parent: TeachingTip teachingTip } })
+		if (sender is not Button
+			{
+				Parent: StackPanel
+				{
+					Parent: Border
+					{
+						Parent: GridLayout
+						{
+							Parent: GridLayout
+							{
+								Parent: GridLayout
+								{
+									Parent: Popup f
+								}
+							}
+						}
+					}
+				}
+			})
 		{
 			return;
 		}
 
-		teachingTip.IsOpen = false;
+		f.IsOpen = false;
 
 		if (FileId is null or [])
 		{
