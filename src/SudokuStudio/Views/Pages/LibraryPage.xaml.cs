@@ -7,7 +7,6 @@ using SudokuStudio.BindableSource;
 using SudokuStudio.Interaction;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Pages.ContentDialogs;
-using SudokuStudio.Views.Windows;
 using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI.ViewManagement;
