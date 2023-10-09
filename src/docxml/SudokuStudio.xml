@@ -92,6 +92,15 @@
             Loads configuration file from local path.
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.GetMainWindow``1(``0)">
+            <summary>
+            Try to get main window the program uses. This operation can be used for locating pages.
+            </summary>
+            <typeparam name="T">The type of the calling instance.</typeparam>
+            <param name="this">The instance of the control itself.</param>
+            <returns>The <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> found.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the main window isn't found.</exception>
+        </member>
         <member name="M:SudokuStudio.App.CreateStepSearcherOptions">
             <summary>
             Creates a <see cref="T:Sudoku.Analytics.Configuration.StepSearcherOptions"/> instance via the currently-configured preferences.
@@ -11139,13 +11148,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetMainWindow">
-            <summary>
-            Gets the main window.
-            </summary>
-            <returns>The main window.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPage.LoadFileAsync">
             <summary>
             Loads a file from local.
@@ -11179,13 +11181,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
             <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.GetMainWindow">
-            <summary>
-            Gets the main window.
-            </summary>
-            <returns>The main window.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.InitializeComponent">
             <summary>
@@ -11586,13 +11581,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.SettingsPage"/> instance.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.SettingsPage.GetMainWindow">
-            <summary>
-            Gets the main window.
-            </summary>
-            <returns>The main window.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the base window cannot be found.</exception>
         </member>
         <member name="M:SudokuStudio.Views.Pages.SettingsPage.InitializeComponent">
             <summary>

@@ -18,27 +18,14 @@ public sealed partial class SettingsPage : Page
 	public SettingsPage() => InitializeComponent();
 
 
-	/// <summary>
-	/// Gets the main window.
-	/// </summary>
-	/// <returns>The main window.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
-	private MainWindow GetMainWindow()
-		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
-		{
-			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException("Main window cannot be found.")
-		};
-
-
 	private void GoToBasicOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> GetMainWindow().NavigateToPage<BasicPreferenceItemsPage>();
+		=> App.GetMainWindow(this).NavigateToPage<BasicPreferenceItemsPage>();
 
 	private void GoToAnalysisOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> GetMainWindow().NavigateToPage<AnalysisPreferenceItemsPage>();
+		=> App.GetMainWindow(this).NavigateToPage<AnalysisPreferenceItemsPage>();
 
 	private void GoToRenderingOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> GetMainWindow().NavigateToPage<DrawingPreferenceItemsPage>();
+		=> App.GetMainWindow(this).NavigateToPage<DrawingPreferenceItemsPage>();
 
 	private async void OpenSettingsFolderButton_ClickAsync(object sender, RoutedEventArgs e)
 		=> await Launcher.LaunchFolderPathAsync(Path.GetDirectoryName(CommonPaths.UserPreference));

@@ -61,18 +61,6 @@ public sealed partial class LibraryPage : Page
 	}
 
 	/// <summary>
-	/// Gets the main window.
-	/// </summary>
-	/// <returns>The main window.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
-	private MainWindow GetMainWindow()
-		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
-		{
-			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException("Main window cannot be found.")
-		};
-
-	/// <summary>
 	/// Loads a file from local.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is success.</returns>
@@ -196,7 +184,7 @@ public sealed partial class LibraryPage : Page
 		}
 		else
 		{
-			GetMainWindow().NavigateToPage<LibraryPuzzleDetailsPage, PuzzleLibraryBindableSource>(clickedSource);
+			App.GetMainWindow(this).NavigateToPage<LibraryPuzzleDetailsPage, PuzzleLibraryBindableSource>(clickedSource);
 		}
 	}
 

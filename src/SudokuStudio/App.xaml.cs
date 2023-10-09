@@ -142,6 +142,20 @@ public partial class App : Application
 
 
 	/// <summary>
+	/// Try to get main window the program uses. This operation can be used for locating pages.
+	/// </summary>
+	/// <typeparam name="T">The type of the calling instance.</typeparam>
+	/// <param name="this">The instance of the control itself.</param>
+	/// <returns>The <see cref="MainWindow"/> found.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the main window isn't found.</exception>
+	internal static MainWindow GetMainWindow<T>(T @this) where T : UIElement
+		=> ((App)Current).WindowManager.GetWindowForElement(@this) switch
+		{
+			MainWindow mainWindow => mainWindow,
+			_ => throw new InvalidOperationException("Main window cannot be found.")
+		};
+
+	/// <summary>
 	/// Creates a <see cref="StepSearcherOptions"/> instance via the currently-configured preferences.
 	/// </summary>
 	/// <returns>A <see cref="StepSearcherOptions"/> instance whose internal values referenced the preferences configured by user.</returns>

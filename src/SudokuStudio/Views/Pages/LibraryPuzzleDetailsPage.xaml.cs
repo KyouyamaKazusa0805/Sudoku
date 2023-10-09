@@ -7,7 +7,6 @@ using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Controls;
-using SudokuStudio.Views.Windows;
 
 namespace SudokuStudio.Views.Pages;
 
@@ -32,18 +31,6 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 			Source = source;
 		}
 	}
-
-	/// <summary>
-	/// Gets the main window.
-	/// </summary>
-	/// <returns>The main window.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the base window cannot be found.</exception>
-	private MainWindow GetMainWindow()
-		=> ((App)Application.Current).WindowManager.GetWindowForElement(this) switch
-		{
-			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException("Main window cannot be found.")
-		};
 
 
 	[Callback]
@@ -102,7 +89,7 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 	{
 		if (sender is Button { Content: SudokuPane { Puzzle: var z } })
 		{
-			GetMainWindow().NavigateToPage<AnalyzePage, Grid>(z);
+			App.GetMainWindow(this).NavigateToPage<AnalyzePage, Grid>(z);
 		}
 	}
 
