@@ -8,6 +8,7 @@
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:wwc="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pc:AddToLibraryContent}">
 	<Page.Resources>
@@ -35,7 +36,7 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<Button>
+		<Button Content="{ui:FontIcon Glyph=&#xECC8;}">
 			<Button.Flyout>
 				<Flyout>
 					<StackPanel Spacing="12">
@@ -65,8 +66,6 @@
 					</StackPanel>
 				</Flyout>
 			</Button.Flyout>
-
-			<FontIcon Glyph="&#xECC8;" />
 		</Button>
 	</StackPanel>
 </Page>

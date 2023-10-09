@@ -10,6 +10,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
@@ -28,10 +29,9 @@
 			<AppBarButton
 				Label="{m:R Key=SudokuPane_Copy}" Icon="Copy" ToolTipService.ToolTip="{m:R Key=SudokuPane_Copy}"
 				Click="CopyButton_Click" />
-			<AppBarButton Label="{m:R Key=SudokuPane_CopyKind}" ToolTipService.ToolTip="{m:R Key=SudokuPane_CopyKind}">
-				<AppBarButton.Icon>
-					<FontIcon Glyph="&#xF413;" />
-				</AppBarButton.Icon>
+			<AppBarButton
+				Label="{m:R Key=SudokuPane_CopyKind}" ToolTipService.ToolTip="{m:R Key=SudokuPane_CopyKind}"
+				Icon="{ui:FontIcon Glyph=&#xF413;}">
 				<AppBarButton.Flyout>
 					<MenuFlyout>
 						<MenuFlyoutItem Text="{m:R Key=AnalyzePage_InitialGridFormat}" Tag="{m:Int32 Value=1}" Click="CopyKindButton_Click" />

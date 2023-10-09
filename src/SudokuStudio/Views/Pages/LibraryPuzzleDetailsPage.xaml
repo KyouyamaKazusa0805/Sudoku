@@ -8,6 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPuzzleDetailsPage}">
@@ -25,15 +26,13 @@
 		</Button>
 		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 			<Button
+				Content="{ui:FontIcon Glyph=&#xE76B;}"
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetPreviousButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
-				Click="GoToPreviousPuzzleButton_Click">
-				<FontIcon Glyph="&#xE76B;" />
-			</Button>
+				Click="GoToPreviousPuzzleButton_Click" />
 			<Button
+				Content="{ui:FontIcon Glyph=&#xE76C;}"
 				Visibility="{x:Bind cvt:PuzzleLibraryConversion.GetNextButtonVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
-				Click="GotoNextPuzzleButton_Click">
-				<FontIcon Glyph="&#xE76C;" />
-			</Button>
+				Click="GotoNextPuzzleButton_Click" />
 			<c:IntegerBox
 				x:Name="CurrentPuzzleIndexBox" VerticalAlignment="Center" SmallChange="1" LargeChange="5" Minimum="1"
 				Maximum="{x:Bind cvt:PuzzleLibraryConversion.GetTotalPagesCount(Source),Mode=OneWay}"
