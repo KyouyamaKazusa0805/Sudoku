@@ -4654,15 +4654,15 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.Concepts.IntersectionBaseComparer">
+        <member name="T:Sudoku.Concepts.EqualityComparer">
             <summary>
             Represents a comparer instance that compares two tuples.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionBaseComparer.Equals(Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionBase)">
+        <member name="M:Sudoku.Concepts.EqualityComparer.Equals(Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionBase)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionBaseComparer.GetHashCode(Sudoku.Concepts.IntersectionBase)">
+        <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.IntersectionBase)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.IntersectionBase">
@@ -6793,21 +6793,21 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MatchLengthComparer">
+        <member name="T:Sudoku.Text.SudokuGrid.EqualityComparer">
             <summary>
             Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
             </summary>
             <seealso cref="T:System.Text.RegularExpressions.Match"/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MatchLengthComparer.Instance">
+        <member name="F:Sudoku.Text.SudokuGrid.EqualityComparer.Instance">
             <summary>
             The singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MatchLengthComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MatchLengthComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.GetHashCode(System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens">

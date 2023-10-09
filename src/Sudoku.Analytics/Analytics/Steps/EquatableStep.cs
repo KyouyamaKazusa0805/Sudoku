@@ -26,7 +26,7 @@ public static class EquatableStep
 			[] => [],
 			[var firstElement] => [firstElement],
 			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TSelf>(steps, new StepEqualityComparer<TSelf>())
+			_ => new HashSet<TSelf>(steps, new EqualityComparer<TSelf>())
 		};
 }
 
@@ -35,7 +35,7 @@ public static class EquatableStep
 /// The internal comparer type for <typeparamref name="T"/> instances.
 /// </summary>
 /// <typeparam name="T">The type of the step.</typeparam>
-file sealed class StepEqualityComparer<T> : IEqualityComparer<T> where T : Step, IEquatableStep<T>
+file sealed class EqualityComparer<T> : IEqualityComparer<T> where T : Step, IEquatableStep<T>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

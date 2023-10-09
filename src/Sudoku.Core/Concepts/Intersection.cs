@@ -41,7 +41,7 @@ internal static class Intersection
 
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
-		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new IntersectionBaseComparer());
+		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new EqualityComparer());
 		for (var bs = (byte)9; bs < 27; bs++)
 		{
 			for (var j = (byte)0; j < 3; j++)
@@ -61,7 +61,7 @@ internal static class Intersection
 /// <summary>
 /// Represents a comparer instance that compares two tuples.
 /// </summary>
-file sealed class IntersectionBaseComparer : IEqualityComparer<IntersectionBase>
+file sealed class EqualityComparer : IEqualityComparer<IntersectionBase>
 {
 	/// <inheritdoc/>
 	public bool Equals(IntersectionBase x, IntersectionBase y) => x == y;

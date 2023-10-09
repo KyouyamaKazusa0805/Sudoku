@@ -209,7 +209,7 @@ public abstract partial class ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(new Comparer());
+			var processed = new HashSet<ChainingStep>(new EqualityComparer());
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -234,7 +234,7 @@ public abstract partial class ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(new Comparer());
+			var processed = new HashSet<ChainingStep>(new EqualityComparer());
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -489,7 +489,7 @@ public abstract partial class ChainingStep(
 	private List<ChainingStep> GetNestedChains()
 	{
 		var result = new List<ChainingStep>();
-		var processed = new HashSet<ChainingStep>(new Comparer());
+		var processed = new HashSet<ChainingStep>(new EqualityComparer());
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -528,7 +528,7 @@ public abstract partial class ChainingStep(
 	/// <returns>A pair of values.</returns>
 	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
-		var processed = new HashSet<ChainingStep>(new Comparer());
+		var processed = new HashSet<ChainingStep>(new EqualityComparer());
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -651,7 +651,7 @@ public abstract partial class ChainingStep(
 /// Defines a equality comparer used for comparison with two <see cref="ChainingStep"/> instances.
 /// </summary>
 /// <seealso cref="ChainingStep"/>
-file sealed class Comparer : IEqualityComparer<ChainingStep>
+file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 {
 	/// <inheritdoc/>
 	public unsafe bool Equals(ChainingStep? x, ChainingStep? y)

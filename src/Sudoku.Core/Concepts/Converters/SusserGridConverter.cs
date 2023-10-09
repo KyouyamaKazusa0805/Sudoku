@@ -215,7 +215,7 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 						}
 						case var collection:
 						{
-							switch (new HashSet<Match>(collection, MatchLengthComparer.Instance))
+							switch (new HashSet<Match>(collection, EqualityComparer.Instance))
 							{
 								case { Count: 1 } set when set.First() is { Length: var firstLength }:
 								{
@@ -274,12 +274,12 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 /// Represents a comparer instance that compares two <see cref="Match"/> instances via their length.
 /// </summary>
 /// <seealso cref="Match"/>
-file sealed class MatchLengthComparer : IEqualityComparer<Match>
+file sealed class EqualityComparer : IEqualityComparer<Match>
 {
 	/// <summary>
 	/// The singleton instance.
 	/// </summary>
-	public static readonly MatchLengthComparer Instance = new();
+	public static readonly EqualityComparer Instance = new();
 
 
 	/// <inheritdoc/>

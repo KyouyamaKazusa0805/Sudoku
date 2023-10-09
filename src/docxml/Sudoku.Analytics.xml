@@ -9757,16 +9757,16 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>dynamicNestingLevel</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.Comparer">
+        <member name="T:Sudoku.Analytics.Steps.EqualityComparer">
             <summary>
             Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Steps.ChainingStep"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Comparer.Equals(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
+        <member name="M:Sudoku.Analytics.Steps.EqualityComparer.Equals(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Comparer.GetHashCode(Sudoku.Analytics.Steps.ChainingStep)">
+        <member name="M:Sudoku.Analytics.Steps.EqualityComparer.GetHashCode(Sudoku.Analytics.Steps.ChainingStep)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ForcingChainStep">
@@ -12723,16 +12723,16 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.StepEqualityComparer`1">
+        <member name="T:Sudoku.Analytics.Steps.EqualityComparer`1">
             <summary>
             The internal comparer type for <typeparamref name="T"/> instances.
             </summary>
             <typeparam name="T">The type of the step.</typeparam>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.StepEqualityComparer`1.Equals(`0,`0)">
+        <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.Equals(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.StepEqualityComparer`1.GetHashCode(`0)">
+        <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetStep">
