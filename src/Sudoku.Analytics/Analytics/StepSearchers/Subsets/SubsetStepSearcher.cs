@@ -113,12 +113,6 @@ public abstract class SubsetStepSearcher(
 			{
 				scoped ref readonly var currentHouseCells = ref HousesMap[house];
 				var traversingMap = currentHouseCells & EmptyCells;
-				if (traversingMap.Count >= 8)
-				{
-					// No available digit (Or hidden single).
-					continue;
-				}
-
 				var mask = grid[in traversingMap];
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
