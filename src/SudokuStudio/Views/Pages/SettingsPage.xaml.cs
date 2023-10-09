@@ -20,6 +20,9 @@ public sealed partial class SettingsPage : Page
 	private void GoToBasicOptionsButton_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage<BasicPreferenceItemsPage>();
 
+	private void GoToLibraryOptionsButton_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage<LibraryPreferenceItemsPage>();
+
 	private void GoToAnalysisOptionsButton_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage<AnalysisPreferenceItemsPage>();
 

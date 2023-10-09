@@ -12,16 +12,19 @@
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
 		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}"
-			IsClickEnabled="True" Click="GoToBasicOptionsButton_Click" />
+			Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}" IsClickEnabled="True"
+			Click="GoToBasicOptionsButton_Click" />
 		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_Analysis}" Description="{m:R Key=SettingsPage_AnalysisDescription}"
-			IsClickEnabled="True" Click="GoToAnalysisOptionsButton_Click" />
+			Header="{m:R Key=SettingsPage_Library}" Description="{m:R Key=SettingsPage_LibraryDescription}" IsClickEnabled="True"
+			Click="GoToLibraryOptionsButton_Click" />
 		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_Drawing}" Description="{m:R Key=SettingsPage_DrawingDescription}"
-			IsClickEnabled="True" Click="GoToRenderingOptionsButton_Click" />
+			Header="{m:R Key=SettingsPage_Analysis}" Description="{m:R Key=SettingsPage_AnalysisDescription}" IsClickEnabled="True"
+			Click="GoToAnalysisOptionsButton_Click" />
 		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_OpenSettingsFolder}" IsClickEnabled="True" ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}"
+			Header="{m:R Key=SettingsPage_Drawing}" Description="{m:R Key=SettingsPage_DrawingDescription}" IsClickEnabled="True"
+			Click="GoToRenderingOptionsButton_Click" />
+		<w:SettingsCard
+			Header="{m:R Key=SettingsPage_OpenSettingsFolder}" ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}" IsClickEnabled="True"
 			Click="OpenSettingsFolderButton_ClickAsync" />
 	</StackPanel>
 </Page>

@@ -1295,6 +1295,22 @@
             Indicates the data that represents the conclusions and view nodes.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Configuration.LibraryPreferenceGroup">
+            <summary>
+            Represents with preference items that is used in library-related pages.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibilityProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibility"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibility"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibility">
+            <summary>
+            Indicates whether the candidates in a puzzle defined in puzzle libraries should be shown.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
             <summary>
             Defines a preference group that contains a list of preference items that can be serialized and deserialized by JSON.
@@ -1322,6 +1338,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.AnalysisPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.AnalysisPreferenceGroup"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.LibraryPreferences">
+            <inheritdoc cref="T:SudokuStudio.Configuration.LibraryPreferenceGroup"/>
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.UIPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.UIPreferenceGroup"/>
@@ -2680,6 +2699,11 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about pencilmark text.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.PuzzleLibraryConversion.Analyzer">
+            <summary>
+            The internal analyzer.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SelectedCellConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about selected cells.
@@ -3171,6 +3195,37 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.LibraryCandidatesVisibility">
+            <summary>
+            Represents a kind of visibility for candidates in a library puzzle to be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.AlwaysHidden">
+            <summary>
+            Indicates all candidates will be hidden no matter what kind of the state the puzzle is at.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate">
+            <summary>
+            Indicates the candidates will be shown when the state of the puzzle is found a solving step
+            with <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard"/> or greater difficulty.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound">
+            <summary>
+            Indicates the candidates will be shown when extra eliminated candidates exists.
+            </summary>
+            <remarks>
+            An <b>extra eliminated candidate</b> is a candidate that is removed from a technique,
+            but it does exist at the current grid state if we don't remove it.
+            </remarks>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryCandidatesVisibility.AlwaysShown">
+            <summary>
+            Indicates all candidates will be shown no matter what kind of the state the puzzle is at.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.LibraryDataUpdatingMode">
             <summary>
@@ -6110,6 +6165,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ctrl + R.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryCandidatesVisibility_AlwaysHidden">
+            <summary>
+              Looks up a localized string similar to Always hidden.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryCandidatesVisibility_AlwaysShown">
+            <summary>
+              Looks up a localized string similar to Always shown.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryCandidatesVisibility_ShownWhenExtraEliminatedCandidatesFound">
+            <summary>
+              Looks up a localized string similar to Shown if extra-eliminated candidates exist.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate">
+            <summary>
+              Looks up a localized string similar to Shown if cannot be finished by easy &amp; moderate techniques.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.LibraryPage_AddLibrary">
             <summary>
               Looks up a localized string similar to Create a library.
@@ -6433,6 +6508,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPageTitle">
             <summary>
               Looks up a localized string similar to User-Defined Puzzle Libraries.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPreferenceItemsPageTitle">
+            <summary>
+              Looks up a localized string similar to Library Preferences.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_LibraryPuzzleDetailsPageTitle">
@@ -6810,6 +6890,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Disable flyout in sudoku pane when right-clicked.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DisplayCandidatesForPuzzles">
+            <summary>
+              Looks up a localized string similar to Candidate displaying.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DisplayCandidatesForPuzzlesDescription">
+            <summary>
+              Looks up a localized string similar to Due to unknown information of candidate visibility, we cannot determine which kind of candidate displaying case is good. This option gives you some options you can control for this behavior..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DisplayCursorsDescription">
             <summary>
               Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
@@ -7055,6 +7145,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_K9Notation">
             <summary>
               Looks up a localized string similar to K9 Notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Library">
+            <summary>
+              Looks up a localized string similar to Puzzle Library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LibraryDescription">
+            <summary>
+              Looks up a localized string similar to This page lists options that controls the preferences for library-related pages..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LiteralNotation">
@@ -11697,6 +11797,36 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage">
+            <summary>
+            Represents a page that displays for preference items used in puzzle library page and its related pages.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.InitializeFields">
+            <summary>
+            Initializes for fields.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

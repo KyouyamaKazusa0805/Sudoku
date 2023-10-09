@@ -10,6 +10,9 @@ public sealed class ProgramPreference
 	/// <inheritdoc cref="AnalysisPreferenceGroup"/>
 	public AnalysisPreferenceGroup AnalysisPreferences { get; set; } = new();
 
+	/// <inheritdoc cref="LibraryPreferenceGroup"/>
+	public LibraryPreferenceGroup LibraryPreferences { get; set; } = new();
+
 	/// <inheritdoc cref="UIPreferenceGroup"/>
 	public UIPreferenceGroup UIPreferences { get; set; } = new();
 

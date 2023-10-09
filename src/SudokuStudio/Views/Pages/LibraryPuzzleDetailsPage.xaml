@@ -17,7 +17,8 @@
 		<Button HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Click="RedirectButton_Click">
 			<c:SudokuPane
 				x:Name="SudokuDisplayer" Width="500" Height="500" EnableAnimationFeedback="False" SelectedCell="-1" DisplayCursors="False"
-				DisplayCandidates="True" DisableFlyout="True" PreventConflictingInput="True" CoordinateLabelDisplayMode="None"
+				DisableFlyout="True" PreventConflictingInput="True" CoordinateLabelDisplayMode="None"
+				DisplayCandidates="{x:Bind cvt:PuzzleLibraryConversion.GetCandidatesVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				Puzzle="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentGrid(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground}"
 				EnableUndoRedoStacking="False" EnableRightTapRemoving="False" EnableDoubleTapFilling="False"

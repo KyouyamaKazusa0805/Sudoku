@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Sudoku.Analytics;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Storage;
 using static SudokuStudio.Strings.StringsAccessor;
@@ -7,6 +8,29 @@ namespace SudokuStudio.Interaction.Conversions;
 
 internal static class PuzzleLibraryConversion
 {
+	/// <summary>
+	/// The internal analyzer.
+	/// </summary>
+	private static readonly Analyzer Analyzer = PredefinedAnalyzers.SstsOnly;
+
+
+	public static bool GetCandidatesVisibility(PuzzleLibraryBindableSource? source, int currentPuzzleIndex)
+	{
+		if (source is null)
+		{
+			return false;
+		}
+
+		var currentPuzzle = source.Puzzles[currentPuzzleIndex];
+		return ((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility switch
+		{
+			LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate => !Analyzer.Analyze(in currentPuzzle).IsSolved,
+			LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound => currentPuzzle.ToString("#").Contains(':'),
+			LibraryCandidatesVisibility.AlwaysShown => true,
+			_ => false
+		};
+	}
+
 	public static int GetModeRawValue(LibraryDataUpdatingMode mode) => (int)mode;
 
 	public static int GetTotalPagesCount(PuzzleLibraryBindableSource? source) => source?.Puzzles.Length ?? -1;

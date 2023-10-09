@@ -876,6 +876,18 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryCandidatesVisibility_AlwaysHidden" xml:space="preserve">
+    <value>不显示候选数</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_AlwaysShown" xml:space="preserve">
+    <value>总是显示候选数</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_ShownWhenExtraEliminatedCandidatesFound" xml:space="preserve">
+    <value>当题目存在提前删过的候选数的时候，显示候选数</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate" xml:space="preserve">
+    <value>当题目至少需要困难级技巧才能解的时候，显示候选数</value>
+  </data>
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>创建一个题库</value>
   </data>
@@ -1070,6 +1082,9 @@
   </data>
   <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
     <value>用户题库</value>
+  </data>
+  <data name="MainWindow_LibraryPreferenceItemsPageTitle" xml:space="preserve">
+    <value>题库设置</value>
   </data>
   <data name="MainWindow_LibraryPuzzleDetailsPageTitle" xml:space="preserve">
     <value>题库题目</value>
@@ -1281,6 +1296,12 @@
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>阻止右键数独盘面的时候弹出菜单</value>
   </data>
+  <data name="SettingsPage_DisplayCandidatesForPuzzles" xml:space="preserve">
+    <value>题库题目的候选数显示</value>
+  </data>
+  <data name="SettingsPage_DisplayCandidatesForPuzzlesDescription" xml:space="preserve">
+    <value>由于一些未知因素，程序无法直接知道某个题目是否需要在题库详情页里展示出候选数。该设置项控制的是这个行为。</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>光标指的是一组高亮单元格，它用来指示你鼠标指针指向的单元格。</value>
   </data>
@@ -1429,6 +1450,12 @@
   </data>
   <data name="SettingsPage_K9Notation" xml:space="preserve">
     <value>K9 坐标模式</value>
+  </data>
+  <data name="SettingsPage_Library" xml:space="preserve">
+    <value>题库</value>
+  </data>
+  <data name="SettingsPage_LibraryDescription" xml:space="preserve">
+    <value>该页面设置的是一些跟题库有关页面的呈现和处理规则。</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>字面书写</value>

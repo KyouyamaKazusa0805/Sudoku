@@ -45,18 +45,11 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 	[Callback]
 	private static void CurrentPuzzleIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (LibraryPuzzleDetailsPage { Source.Puzzles: var allPuzzles } currentPage, { OldValue: int originalValue, NewValue: int value }))
+		if ((d, e) is (LibraryPuzzleDetailsPage { Source.Puzzles.Length: var count } currentPage, { OldValue: int oldValue, NewValue: int value })
+			&& (value < 0 || value >= count))
 		{
-			return;
+			currentPage.CurrentPuzzleIndex = oldValue;
 		}
-
-		if (value < 0 || value >= allPuzzles.Length)
-		{
-			currentPage.CurrentPuzzleIndex = originalValue;
-			return;
-		}
-
-		currentPage.CurrentPuzzleIndex = value;
 	}
 
 

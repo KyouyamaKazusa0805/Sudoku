@@ -873,6 +873,18 @@
   <data name="HotkeyCheatTablePage_ViewSolutionValue" xml:space="preserve">
     <value>Ctrl + R</value>
   </data>
+  <data name="LibraryCandidatesVisibility_AlwaysHidden" xml:space="preserve">
+    <value>Always hidden</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_AlwaysShown" xml:space="preserve">
+    <value>Always shown</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_ShownWhenExtraEliminatedCandidatesFound" xml:space="preserve">
+    <value>Shown if extra-eliminated candidates exist</value>
+  </data>
+  <data name="LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate" xml:space="preserve">
+    <value>Shown if cannot be finished by easy &amp; moderate techniques</value>
+  </data>
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>Create a library</value>
   </data>
@@ -1067,6 +1079,9 @@
   </data>
   <data name="MainWindow_LibraryPageTitle" xml:space="preserve">
     <value>User-Defined Puzzle Libraries</value>
+  </data>
+  <data name="MainWindow_LibraryPreferenceItemsPageTitle" xml:space="preserve">
+    <value>Library Preferences</value>
   </data>
   <data name="MainWindow_LibraryPuzzleDetailsPageTitle" xml:space="preserve">
     <value>Library Puzzles</value>
@@ -1278,6 +1293,12 @@
   <data name="SettingsPage_DisableSudokuPaneLayoutDisplaying" xml:space="preserve">
     <value>Disable flyout in sudoku pane when right-clicked</value>
   </data>
+  <data name="SettingsPage_DisplayCandidatesForPuzzles" xml:space="preserve">
+    <value>Candidate displaying</value>
+  </data>
+  <data name="SettingsPage_DisplayCandidatesForPuzzlesDescription" xml:space="preserve">
+    <value>Due to unknown information of candidate visibility, we cannot determine which kind of candidate displaying case is good. This option gives you some options you can control for this behavior.</value>
+  </data>
   <data name="SettingsPage_DisplayCursorsDescription" xml:space="preserve">
     <value>Cursors are a group of highlighted cells that describes what cell your cursor point points to.</value>
   </data>
@@ -1426,6 +1447,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_K9Notation" xml:space="preserve">
     <value>K9 Notation</value>
+  </data>
+  <data name="SettingsPage_Library" xml:space="preserve">
+    <value>Puzzle Library</value>
+  </data>
+  <data name="SettingsPage_LibraryDescription" xml:space="preserve">
+    <value>This page lists options that controls the preferences for library-related pages.</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>Literal</value>

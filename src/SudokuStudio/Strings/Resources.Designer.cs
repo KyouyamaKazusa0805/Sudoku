@@ -2545,6 +2545,42 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always hidden.
+        /// </summary>
+        internal static string LibraryCandidatesVisibility_AlwaysHidden {
+            get {
+                return ResourceManager.GetString("LibraryCandidatesVisibility_AlwaysHidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always shown.
+        /// </summary>
+        internal static string LibraryCandidatesVisibility_AlwaysShown {
+            get {
+                return ResourceManager.GetString("LibraryCandidatesVisibility_AlwaysShown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shown if extra-eliminated candidates exist.
+        /// </summary>
+        internal static string LibraryCandidatesVisibility_ShownWhenExtraEliminatedCandidatesFound {
+            get {
+                return ResourceManager.GetString("LibraryCandidatesVisibility_ShownWhenExtraEliminatedCandidatesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shown if cannot be finished by easy &amp; moderate techniques.
+        /// </summary>
+        internal static string LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate {
+            get {
+                return ResourceManager.GetString("LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a library.
         /// </summary>
         internal static string LibraryPage_AddLibrary {
@@ -3126,6 +3162,15 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_LibraryPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_LibraryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library Preferences.
+        /// </summary>
+        internal static string MainWindow_LibraryPreferenceItemsPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_LibraryPreferenceItemsPageTitle", resourceCulture);
             }
         }
         
@@ -3805,6 +3850,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Candidate displaying.
+        /// </summary>
+        internal static string SettingsPage_DisplayCandidatesForPuzzles {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisplayCandidatesForPuzzles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to unknown information of candidate visibility, we cannot determine which kind of candidate displaying case is good. This option gives you some options you can control for this behavior..
+        /// </summary>
+        internal static string SettingsPage_DisplayCandidatesForPuzzlesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisplayCandidatesForPuzzlesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursors are a group of highlighted cells that describes what cell your cursor point points to..
         /// </summary>
         internal static string SettingsPage_DisplayCursorsDescription {
@@ -4244,6 +4307,24 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_K9Notation {
             get {
                 return ResourceManager.GetString("SettingsPage_K9Notation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puzzle Library.
+        /// </summary>
+        internal static string SettingsPage_Library {
+            get {
+                return ResourceManager.GetString("SettingsPage_Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists options that controls the preferences for library-related pages..
+        /// </summary>
+        internal static string SettingsPage_LibraryDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_LibraryDescription", resourceCulture);
             }
         }
         
