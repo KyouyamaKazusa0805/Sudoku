@@ -3250,15 +3250,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsUndefined">
             <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, which means the grid holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsEmpty">
             <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Empty"/>, which means the grid
-            holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Empty"/>.
+            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Empty"/>, which means the grid holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Empty"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Empty"/>
         </member>

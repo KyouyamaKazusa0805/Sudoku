@@ -271,8 +271,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid
-	/// holds totally same value with <see cref="Undefined"/>.
+	/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid holds totally same value with <see cref="Undefined"/>.
 	/// </summary>
 	/// <seealso cref="Undefined"/>
 	public readonly bool IsUndefined
@@ -282,8 +281,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
-	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid
-	/// holds totally same value with <see cref="Empty"/>.
+	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid holds totally same value with <see cref="Empty"/>.
 	/// </summary>
 	/// <seealso cref="Empty"/>
 	public readonly bool IsEmpty
