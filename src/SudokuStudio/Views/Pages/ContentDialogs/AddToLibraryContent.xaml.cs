@@ -91,5 +91,15 @@ public sealed partial class AddToLibraryContent : Page
 		await File.WriteAllTextAsync(instance.FilePath, json);
 	}
 
-	private void AddNewLibraryButton_Click(object sender, RoutedEventArgs e) => AddNewLibraryDialog.IsOpen = true;
+	private void AddNewLibraryButton_Click(object sender, RoutedEventArgs e)
+	{
+		AddNewLibraryDialog.IsOpen = false; // A little bug fix.
+		AddNewLibraryDialog.IsOpen = true;
+	}
+
+	private void AddNewLibraryDialog_CloseButtonClick(TeachingTip sender, object args)
+	{
+		AddNewLibraryDialog.IsOpen = true; // A little bug fix.
+		AddNewLibraryDialog.IsOpen = false;
+	}
 }

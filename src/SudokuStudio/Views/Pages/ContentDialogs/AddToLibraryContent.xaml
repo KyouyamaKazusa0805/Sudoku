@@ -18,7 +18,7 @@
 		<TeachingTip
 			x:Name="ErrorDialog_FileIdCannotBeEmpty"
 			Title="{m:R Key=LibraryPage_FileIdCannotEmptyTitle}" Subtitle="{m:R Key=LibraryPage_FileIdCannotEmpty}" />
-		<TeachingTip x:Name="AddNewLibraryDialog">
+		<TeachingTip x:Name="AddNewLibraryDialog" CloseButtonClick="AddNewLibraryDialog_CloseButtonClick">
 			<TeachingTip.HeroContent>
 				<StackPanel Spacing="12" Margin="20">
 					<Grid RowDefinitions="Auto,*">
