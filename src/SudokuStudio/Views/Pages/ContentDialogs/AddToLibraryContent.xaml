@@ -18,6 +18,35 @@
 		<TeachingTip
 			x:Name="ErrorDialog_FileIdCannotBeEmpty"
 			Title="{m:R Key=LibraryPage_FileIdCannotEmptyTitle}" Subtitle="{m:R Key=LibraryPage_FileIdCannotEmpty}" />
+		<TeachingTip x:Name="AddNewLibraryDialog">
+			<TeachingTip.HeroContent>
+				<StackPanel Spacing="12" Margin="20">
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryName}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryName,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryNamePlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryFileId}" />
+						<TextBox Grid.Row="1" Text="{x:Bind FileId,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryFileIdPlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryAuthor}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryAuthor,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryAuthorPlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
+						<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
+					</Grid>
+					<Grid RowDefinitions="Auto,*">
+						<TextBlock Text="{m:R Key=LibraryPage_InputTags}" />
+						<wwc:TokenizingTextBox
+							Grid.Row="1" IsItemClickEnabled="False" MaximumTokens="5" PlaceholderText="{m:R Key=LibraryPage_InputTagsPlaceholder}"
+							ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" />
+					</Grid>
+					<Button Content="{m:R Key=AddToLibraryContent_Apply}" Click="ApplyButton_ClickAsync" />
+				</StackPanel>
+			</TeachingTip.HeroContent>
+		</TeachingTip>
 	</Page.Resources>
 
 	<StackPanel Spacing="24">
@@ -36,36 +65,6 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-		<Button Content="{ui:FontIcon Glyph=&#xECC8;}">
-			<Button.Flyout>
-				<Flyout>
-					<StackPanel Spacing="12">
-						<Grid RowDefinitions="Auto,*">
-							<TextBlock Text="{m:R Key=LibraryPage_InputLibraryName}" />
-							<TextBox Grid.Row="1" Text="{x:Bind LibraryName,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryNamePlaceholder}" />
-						</Grid>
-						<Grid RowDefinitions="Auto,*">
-							<TextBlock Text="{m:R Key=LibraryPage_InputLibraryFileId}" />
-							<TextBox Grid.Row="1" Text="{x:Bind FileId,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryFileIdPlaceholder}" />
-						</Grid>
-						<Grid RowDefinitions="Auto,*">
-							<TextBlock Text="{m:R Key=LibraryPage_InputLibraryAuthor}" />
-							<TextBox Grid.Row="1" Text="{x:Bind LibraryAuthor,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryAuthorPlaceholder}" />
-						</Grid>
-						<Grid RowDefinitions="Auto,*">
-							<TextBlock Text="{m:R Key=LibraryPage_InputLibraryDescription}" />
-							<TextBox Grid.Row="1" Text="{x:Bind LibraryDescription,Mode=TwoWay}" PlaceholderText="{m:R Key=LibraryPage_InputLibraryDescriptionPlaceholder}" />
-						</Grid>
-						<Grid RowDefinitions="Auto,*">
-							<TextBlock Text="{m:R Key=LibraryPage_InputTags}" />
-							<wwc:TokenizingTextBox
-								Grid.Row="1" IsItemClickEnabled="False" MaximumTokens="5" PlaceholderText="{m:R Key=LibraryPage_InputTagsPlaceholder}"
-								ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" />
-						</Grid>
-						<Button Content="{m:R Key=AddToLibraryContent_Apply}" Click="ApplyButton_ClickAsync" />
-					</StackPanel>
-				</Flyout>
-			</Button.Flyout>
-		</Button>
+		<Button Content="{ui:FontIcon Glyph=&#xECC8;}" Click="AddNewLibraryButton_Click" />
 	</StackPanel>
 </Page>

@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
 
@@ -37,12 +36,12 @@ public sealed partial class AddToLibraryContent : Page
 
 	private async void ApplyButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not Button { Parent: StackPanel { Parent: FlyoutPresenter { Parent: Popup f } } })
+		if (sender is not Button { Parent: StackPanel { Parent: TeachingTip teachingTip } })
 		{
 			return;
 		}
 
-		f.IsOpen = false;
+		teachingTip.IsOpen = false;
 
 		if (FileId is null or [])
 		{
@@ -53,6 +52,7 @@ public sealed partial class AddToLibraryContent : Page
 		var instance = new PuzzleLibraryBindableSource
 		{
 			Name = LibraryName ?? "",
+			Author = LibraryAuthor ?? "",
 			Description = LibraryDescription ?? "",
 			FileId = FileId,
 			Tags = [.. LibraryTags],
@@ -71,4 +71,6 @@ public sealed partial class AddToLibraryContent : Page
 		var json = JsonSerializer.Serialize(instance, LibraryPage.SerializerOptions);
 		await File.WriteAllTextAsync(instance.FilePath, json);
 	}
+
+	private void AddNewLibraryButton_Click(object sender, RoutedEventArgs e) => AddNewLibraryDialog.IsOpen = true;
 }
