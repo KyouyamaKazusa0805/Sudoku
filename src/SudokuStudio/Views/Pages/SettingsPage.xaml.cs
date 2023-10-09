@@ -2,7 +2,6 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Pages.Settings;
-using SudokuStudio.Views.Windows;
 using Windows.System;
 
 namespace SudokuStudio.Views.Pages;
