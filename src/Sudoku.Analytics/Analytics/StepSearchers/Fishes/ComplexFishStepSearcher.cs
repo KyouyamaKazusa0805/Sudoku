@@ -381,31 +381,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									goto BacktrackValue;
 								}
 
-								// Gather eliminations, views and step information.
-								var conclusions = new List<Conclusion>();
-								foreach (var elimCell in elimMap)
-								{
-									conclusions.Add(new(Elimination, elimCell, digit));
-								}
-
-								// Collect highlighting candidates.
-								var candidateOffsets = new List<CandidateViewNode>();
-								var houseOffsets = new List<HouseViewNode>();
-								foreach (var body in actualBaseMap - exofins - endofins)
-								{
-									candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, body * 9 + digit));
-								}
-								foreach (var exofin in exofins)
-								{
-									candidateOffsets.Add(new(WellKnownColorIdentifier.Exofin, exofin * 9 + digit));
-								}
-								foreach (var endofin in endofins)
-								{
-									candidateOffsets.Add(new(WellKnownColorIdentifier.Endofin, endofin * 9 + digit));
-								}
-
-								// Don't forget the extra cover set.
-								// Add it into the list now.
+								// Gather step information.
+								// Don't forget the extra cover set. Add it into the list now.
 								var actualCoverSets = new House[size];
 								for (var p = 0; p < size - 1; p++)
 								{
@@ -415,6 +392,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 
 								// Collect highlighting houses.
 								var coverSetsMask = 0;
+								var houseOffsets = new List<HouseViewNode>();
 								foreach (var baseSet in baseSets)
 								{
 									houseOffsets.Add(new(WellKnownColorIdentifier.Normal, baseSet));
@@ -427,8 +405,21 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 
 								// Add into the 'accumulator'.
 								var step = new ComplexFishStep(
-									[.. conclusions],
-									[[.. candidateOffsets, .. houseOffsets]],
+									[.. from elimCell in elimMap select new Conclusion(Elimination, elimCell, digit)],
+									[
+										[
+											..
+											from body in actualBaseMap - exofins - endofins
+											select new CandidateViewNode(WellKnownColorIdentifier.Normal, body * 9 + digit),
+											..
+											from exofin in exofins
+											select new CandidateViewNode(WellKnownColorIdentifier.Exofin, exofin * 9 + digit),
+											..
+											from endofin in endofins
+											select new CandidateViewNode(WellKnownColorIdentifier.Endofin, endofin * 9 + digit),
+											.. houseOffsets
+										]
+									],
 									context.PredefinedOptions,
 									digit,
 									baseSetsMask,
@@ -445,8 +436,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 
 								accumulator.Add(step);
 
-							// Backtracking.
 							BacktrackValue:
+								// If failed to be checked, the code will jump to here. We should reset the value in order to backtrack.
 								usedInCoverSets &= ~(1 << houseIndex);
 							}
 						}

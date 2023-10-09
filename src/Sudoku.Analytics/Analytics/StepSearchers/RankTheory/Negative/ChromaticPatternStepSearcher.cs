@@ -236,12 +236,6 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var conclusions = new List<Conclusion>();
-			foreach (var digit in elimDigitsMask)
-			{
-				conclusions.Add(new(Elimination, extraCell, digit));
-			}
-
 			var candidateOffsets = new List<CandidateViewNode>((12 - 1) * 3);
 			foreach (var otherCell in otherCells)
 			{
@@ -252,7 +246,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			}
 
 			var step = new ChromaticPatternType1Step(
-				[.. conclusions],
+				[.. from digit in elimDigitsMask select new Conclusion(Elimination, extraCell, digit)],
 				[[.. candidateOffsets, .. from house in blocks select new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				context.PredefinedOptions,
 				blocks,

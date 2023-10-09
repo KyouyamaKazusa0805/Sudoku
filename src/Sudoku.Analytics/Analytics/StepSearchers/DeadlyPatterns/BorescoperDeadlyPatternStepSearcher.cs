@@ -300,27 +300,25 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			using scoped var conclusions = new ValueList<Conclusion>(4);
-			foreach (var digit in elimMask)
-			{
-				conclusions.Add(new(Elimination, elimCell, digit));
-			}
-
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var cell in map)
 			{
-				if (mapContainingThatDigit.Contains(cell))
+				if (!mapContainingThatDigit.Contains(cell))
 				{
-					continue;
-				}
-
-				foreach (var digit in grid.GetCandidates(cell))
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					}
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType1Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map, tempMask);
+			var step = new BorescoperDeadlyPatternType1Step(
+				[.. from digit in elimMask select new Conclusion(Elimination, elimCell, digit)],
+				[[.. candidateOffsets]],
+				context.PredefinedOptions,
+				in map,
+				tempMask
+			);
 			if (findOnlyOne)
 			{
 				return step;
@@ -366,12 +364,6 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var conclusions = new List<Conclusion>();
-			foreach (var cell in elimMap)
-			{
-				conclusions.Add(new(Elimination, cell, otherDigit));
-			}
-
 			var candidateOffsets = new List<CandidateViewNode>();
 			foreach (var cell in map)
 			{
@@ -381,7 +373,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new BorescoperDeadlyPatternType2Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map, tempMask, otherDigit);
+			var step = new BorescoperDeadlyPatternType2Step(
+				[.. from cell in elimMap select new Conclusion(Elimination, cell, otherDigit)],
+				[[.. candidateOffsets]],
+				context.PredefinedOptions,
+				in map,
+				tempMask,
+				otherDigit
+			);
 			if (findOnlyOne)
 			{
 				return step;
@@ -441,14 +440,12 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						var conclusions = new List<Conclusion>();
 						foreach (var digit in comparer)
 						{
-							if ((iterationCellsMap & CandidatesMap[digit]) is not (var cells and not []))
+							if ((iterationCellsMap & CandidatesMap[digit]) is var cells and not [])
 							{
-								continue;
-							}
-
-							foreach (var cell in cells)
-							{
-								conclusions.Add(new(Elimination, cell, digit));
+								foreach (var cell in cells)
+								{
+									conclusions.Add(new(Elimination, cell, digit));
+								}
 							}
 						}
 						if (conclusions.Count == 0)

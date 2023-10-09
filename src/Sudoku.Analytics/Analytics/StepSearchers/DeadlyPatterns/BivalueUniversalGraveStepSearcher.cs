@@ -203,15 +203,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					continue;
 				}
 
-				var cellOffsets = new List<CellViewNode>(multivalueCells.Count);
-				foreach (var multiValueCell in multivalueCells)
-				{
-					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, multiValueCell));
-				}
-
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
 					[new(Elimination, cell, digit)],
-					[[.. cellOffsets]],
+					[[.. from multiValueCell in multivalueCells select new CellViewNode(WellKnownColorIdentifier.Normal, multiValueCell)]],
 					context.PredefinedOptions,
 					cell * 9 + digit
 				);
@@ -286,22 +280,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			return null;
 		}
 
-		var conclusions = new List<Conclusion>(elimMap.Count);
-		foreach (var cell in elimMap)
-		{
-			conclusions.Add(new(Elimination, cell, digit));
-		}
-
-		var candidateOffsets = new List<CandidateViewNode>(trueCandidates.Count);
-		foreach (var candidate in trueCandidates)
-		{
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, candidate));
-		}
-
 		// BUG type 2.
 		var step = new BivalueUniversalGraveType2Step(
-			[.. conclusions],
-			[[.. candidateOffsets]],
+			[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
+			[[.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)]],
 			context.PredefinedOptions,
 			digit,
 			in cellsMap
@@ -516,22 +498,19 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					continue;
 				}
 
-				var candidateOffsets = new CandidateViewNode[trueCandidates.Count + 2];
-				var i = 0;
-				foreach (var candidate in trueCandidates)
-				{
-					candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
-				}
-				candidateOffsets[^2] = new(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + conjugatePairDigit);
-				candidateOffsets[^1] = new(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + conjugatePairDigit);
-
 				// BUG type 4.
-				var digitsMask = MaskOperations.Create(digits);
 				var step = new BivalueUniversalGraveType4Step(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					[
+						[
+							.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate),
+							new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + conjugatePairDigit),
+							new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + conjugatePairDigit),
+							new HouseViewNode(WellKnownColorIdentifier.Normal, house)
+						]
+					],
 					context.PredefinedOptions,
-					digitsMask,
+					MaskOperations.Create(digits),
 					[.. cells],
 					new(c1, c2, conjugatePairDigit)
 				);
@@ -582,15 +561,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			return null;
 		}
 
-		var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
-		var i = 0;
-		foreach (var candidate in trueCandidates)
-		{
-			candidateOffsets[i++] = new(WellKnownColorIdentifier.Normal, candidate);
-		}
-
 		// BUG + n.
-		var step = new BivalueUniversalGraveMultipleStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in trueCandidates);
+		var step = new BivalueUniversalGraveMultipleStep(
+			[.. conclusions],
+			[[.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)]],
+			context.PredefinedOptions,
+			in trueCandidates
+		);
 		if (onlyFindOne)
 		{
 			return step;
@@ -646,15 +623,14 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				continue;
 			}
 
-			var candidateOffsets = new CandidateViewNode[trueCandidates.Count];
-			for (var i = 0; i < trueCandidates.Count; i++)
-			{
-				candidateOffsets[i] = new(WellKnownColorIdentifier.Normal, trueCandidates[i]);
-			}
-
 			var step = new BivalueUniversalGraveXzStep(
 				[.. conclusions],
-				[[new CellViewNode(WellKnownColorIdentifier.Normal, cell), .. candidateOffsets]],
+				[
+					[
+						new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+						.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)
+					]
+				],
 				context.PredefinedOptions,
 				mask,
 				[c1, c2],

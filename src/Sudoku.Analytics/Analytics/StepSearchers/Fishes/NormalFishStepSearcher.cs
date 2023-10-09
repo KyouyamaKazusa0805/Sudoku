@@ -5,6 +5,7 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -207,7 +208,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 					};
 
 					// Now check the fins and the elimination cells.
-					CellMap elimMap, fins = CellMap.Empty;
+					CellMap elimMap, fins = [];
 					if (!withFin)
 					{
 						// If the current searcher doesn't check fins, we'll just get the pure check:
@@ -257,47 +258,24 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 						continue;
 					}
 
-					// Gather the conclusions and candidates or houses to be highlighted.
-					var candidateOffsets = new List<CandidateViewNode>();
-					var houseOffsets = new List<HouseViewNode>();
-					foreach (var cell in withFin ? baseLine - fins : baseLine)
-					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-					}
-					if (withFin)
-					{
-						foreach (var cell in fins)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-					}
-					foreach (var baseSet in bs)
-					{
-						houseOffsets.Add(new(WellKnownColorIdentifier.Normal, baseSet));
-					}
-					foreach (var coverSet in cs)
-					{
-						houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, coverSet));
-					}
-
-					var (baseSetsMask, coverSetsMask) = (0, 0);
-					foreach (var baseSet in bs)
-					{
-						baseSetsMask |= 1 << baseSet;
-					}
-					foreach (var coverSet in cs)
-					{
-						coverSetsMask |= 1 << coverSet;
-					}
-
 					// Gather the result.
 					var step = new NormalFishStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
-						[[.. candidateOffsets, .. houseOffsets], GetDirectView(digit, bs, cs, in fins, searchRow)],
+						[
+							[
+								..
+								from cell in withFin ? baseLine - fins : baseLine
+								select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+								.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit) : [],
+								.. from baseSet in bs select new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
+								.. from coverSet in cs select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet),
+							],
+							GetDirectView(digit, bs, cs, in fins, searchRow)
+						],
 						context.PredefinedOptions,
 						digit,
-						baseSetsMask,
-						coverSetsMask,
+						MaskOperations.CreateHouse(bs),
+						MaskOperations.CreateHouse(cs),
 						in fins,
 						IsSashimi(bs, in fins, digit)
 					);

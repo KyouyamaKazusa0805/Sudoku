@@ -129,11 +129,10 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 							}
 
 							// Gather highlight cells and candidates.
-							var candidateOffsets = new List<CandidateViewNode>
-							{
+							var candidateOffsets = (List<CandidateViewNode>)[
 								new(WellKnownColorIdentifier.Normal, cpMap[0] * 9 + x),
 								new(WellKnownColorIdentifier.Normal, cpMap[1] * 9 + x)
-							};
+							];
 							foreach (var cell in map1)
 							{
 								foreach (var digit in grid.GetCandidates(cell))

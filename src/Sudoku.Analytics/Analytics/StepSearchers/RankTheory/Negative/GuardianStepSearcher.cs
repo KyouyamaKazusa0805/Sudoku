@@ -73,16 +73,6 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 					continue;
 				}
 
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var c in loop)
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, c * 9 + digit));
-				}
-				foreach (var c in guardians)
-				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, c * 9 + digit));
-				}
-
 				// Add found step into the collection.
 				// To be honest I can return the step if 'LogicalAnalysisContext.OnlyFindOne' is true,
 				// but due to the limit of the algorithm, the method always gets the longer guardian loops instead of shorter ones.
@@ -90,7 +80,16 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 				resultAccumulator.Add(
 					new GuardianStep(
 						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
-						[[.. candidateOffsets]],
+						[
+							[
+								..
+								from c in loop
+								select new CandidateViewNode(WellKnownColorIdentifier.Normal, c * 9 + digit),
+								..
+								from c in guardians
+								select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c * 9 + digit)
+							]
+						],
 						context.PredefinedOptions,
 						digit,
 						in loop,

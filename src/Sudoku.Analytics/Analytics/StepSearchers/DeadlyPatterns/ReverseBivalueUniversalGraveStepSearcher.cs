@@ -221,9 +221,6 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		var elimDigit = TrailingZeroCount(elimDigitsMask);
-		var conclusion = new Conclusion(Elimination, extraCell, elimDigit);
-
 		var cellOffsets = new List<CellViewNode>(completePattern.Count);
 		foreach (var cell in completePattern)
 		{
@@ -231,7 +228,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
-			[conclusion],
+			[new(Elimination, extraCell, TrailingZeroCount(elimDigitsMask))],
 			[[.. cellOffsets]],
 			context.PredefinedOptions,
 			d1,
@@ -288,15 +285,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell));
 		}
 
-		var candidateOffsets = new List<CandidateViewNode>(cellsChosen.Count);
-		foreach (var cell in cellsChosen)
-		{
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + extraDigit));
-		}
-
 		var step = new ReverseBivalueUniversalGraveType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
-			[[.. cellOffsets, .. candidateOffsets]],
+			[[.. cellOffsets, .. from cell in cellsChosen select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + extraDigit)]],
 			context.PredefinedOptions,
 			d1,
 			d2,
@@ -502,20 +493,17 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				continue;
 			}
 
-			var conclusion = new Conclusion(Elimination, anotherCell, selectedDigit);
 			var cellOffsets = new List<CellViewNode>(completePattern.Count);
 			foreach (var cell in completePattern)
 			{
-				cellOffsets.Add(
-					new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell)
-				);
+				cellOffsets.Add(new(cellsChosen.Contains(cell) ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell));
 			}
 
 			var lockedTargetInner = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellInnerPattern]);
 			var lockedTargetOuter = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellOuterPattern]);
 			var anotherLockedTarget = new LockedTarget(selectedDigit, CellsMap[anotherCell]);
 			var step = new ReverseBivalueUniversalGraveType4Step(
-				[conclusion],
+				[new(Elimination, anotherCell, selectedDigit)],
 				[
 					[
 						.. cellOffsets,
