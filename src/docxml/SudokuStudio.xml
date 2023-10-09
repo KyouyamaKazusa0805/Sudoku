@@ -92,6 +92,12 @@
             Loads configuration file from local path.
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.EnsureUnsnapped">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="M:SudokuStudio.App.GetMainWindow``1(``0)">
             <summary>
             Try to get main window the program uses. This operation can be used for locating pages.
@@ -11141,12 +11147,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPage"/> instance.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.EnsureUnsnapped">
-            <summary>
-            To determine whether the current application view is in an unsnapped state.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.LibraryPage.LoadFileAsync">
             <summary>

@@ -9,7 +9,6 @@ using SudokuStudio.Storage;
 using SudokuStudio.Views.Pages.ContentDialogs;
 using Windows.Storage.Pickers;
 using Windows.System;
-using Windows.UI.ViewManagement;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages;
@@ -43,29 +42,12 @@ public sealed partial class LibraryPage : Page
 
 
 	/// <summary>
-	/// To determine whether the current application view is in an unsnapped state.
-	/// </summary>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	private bool EnsureUnsnapped()
-	{
-		// 'FileOpenPicker' APIs will not work if the application is in a snapped state.
-		// If an app wants to show a 'FileOpenPicker' while snapped, it must attempt to unsnap first.
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
-		{
-			throw new InvalidOperationException("Ensure the file should be unsnapped.");
-		}
-
-		return unsnapped;
-	}
-
-	/// <summary>
 	/// Loads a file from local.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is success.</returns>
 	private async Task<bool> LoadFileAsync()
 	{
-		if (!EnsureUnsnapped())
+		if (!App.EnsureUnsnapped())
 		{
 			return false;
 		}
@@ -255,7 +237,7 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
-		if (!EnsureUnsnapped())
+		if (!App.EnsureUnsnapped())
 		{
 			return;
 		}
