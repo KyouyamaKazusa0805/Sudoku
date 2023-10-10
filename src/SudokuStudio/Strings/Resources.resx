@@ -1062,6 +1062,9 @@
   <data name="MainWindow_DrawingPreferenceItemsPageTitle" xml:space="preserve">
     <value>Drawing Options</value>
   </data>
+  <data name="MainWindow_Experiemental" xml:space="preserve">
+    <value>Experimental</value>
+  </data>
   <data name="MainWindow_ExtraFunctions" xml:space="preserve">
     <value>Extra Functions</value>
   </data>
@@ -1088,6 +1091,12 @@
   </data>
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="MainWindow_OcrPageItem" xml:space="preserve">
+    <value>OCR</value>
+  </data>
+  <data name="MainWindow_OcrPageTitle" xml:space="preserve">
+    <value>Sudoku Puzzle Recognition</value>
   </data>
   <data name="MainWindow_ProgramManual" xml:space="preserve">
     <value>Program Manual</value>
@@ -1118,6 +1127,21 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="OcrPage_DescriptionPart1" xml:space="preserve">
+    <value>This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program.</value>
+  </data>
+  <data name="OcrPage_DescriptionPart2" xml:space="preserve">
+    <value>This function is experimental one. Please DO NOT rely on it.</value>
+  </data>
+  <data name="OcrPage_LanguageIsNotSupportedForNow" xml:space="preserve">
+    <value>Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs.</value>
+  </data>
+  <data name="OcrPage_LanguageIsNotSupportedForNowTitle" xml:space="preserve">
+    <value>OCR Engine Error</value>
+  </data>
+  <data name="OcrPage_ReadPicture" xml:space="preserve">
+    <value>Read picture</value>
   </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>Maximum number of cell permutation in aligned exclusion</value>

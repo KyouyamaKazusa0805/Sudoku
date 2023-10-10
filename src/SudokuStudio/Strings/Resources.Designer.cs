@@ -3112,6 +3112,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experimental.
+        /// </summary>
+        internal static string MainWindow_Experiemental {
+            get {
+                return ResourceManager.GetString("MainWindow_Experiemental", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra Functions.
         /// </summary>
         internal static string MainWindow_ExtraFunctions {
@@ -3189,6 +3198,24 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_Menu {
             get {
                 return ResourceManager.GetString("MainWindow_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OCR.
+        /// </summary>
+        internal static string MainWindow_OcrPageItem {
+            get {
+                return ResourceManager.GetString("MainWindow_OcrPageItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sudoku Puzzle Recognition.
+        /// </summary>
+        internal static string MainWindow_OcrPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_OcrPageTitle", resourceCulture);
             }
         }
         
@@ -3279,6 +3306,51 @@ namespace SudokuStudio.Strings {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program..
+        /// </summary>
+        internal static string OcrPage_DescriptionPart1 {
+            get {
+                return ResourceManager.GetString("OcrPage_DescriptionPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This function is experimental one. Please DO NOT rely on it..
+        /// </summary>
+        internal static string OcrPage_DescriptionPart2 {
+            get {
+                return ResourceManager.GetString("OcrPage_DescriptionPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs..
+        /// </summary>
+        internal static string OcrPage_LanguageIsNotSupportedForNow {
+            get {
+                return ResourceManager.GetString("OcrPage_LanguageIsNotSupportedForNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OCR Engine Error.
+        /// </summary>
+        internal static string OcrPage_LanguageIsNotSupportedForNowTitle {
+            get {
+                return ResourceManager.GetString("OcrPage_LanguageIsNotSupportedForNowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read picture.
+        /// </summary>
+        internal static string OcrPage_ReadPicture {
+            get {
+                return ResourceManager.GetString("OcrPage_ReadPicture", resourceCulture);
             }
         }
         

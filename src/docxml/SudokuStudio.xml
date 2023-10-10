@@ -6480,6 +6480,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Drawing Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_Experiemental">
+            <summary>
+              Looks up a localized string similar to Experimental.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
@@ -6523,6 +6528,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_OcrPageItem">
+            <summary>
+              Looks up a localized string similar to OCR.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_OcrPageTitle">
+            <summary>
+              Looks up a localized string similar to Sudoku Puzzle Recognition.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_ProgramManual">
@@ -6573,6 +6588,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.No">
             <summary>
               Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.OcrPage_DescriptionPart1">
+            <summary>
+              Looks up a localized string similar to This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.OcrPage_DescriptionPart2">
+            <summary>
+              Looks up a localized string similar to This function is experimental one. Please DO NOT rely on it..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.OcrPage_LanguageIsNotSupportedForNow">
+            <summary>
+              Looks up a localized string similar to Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.OcrPage_LanguageIsNotSupportedForNowTitle">
+            <summary>
+              Looks up a localized string similar to OCR Engine Error.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.OcrPage_ReadPicture">
+            <summary>
+              Looks up a localized string similar to Read picture.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.Settings_Compatibility">
@@ -11365,6 +11405,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Manuals.HotkeyCheatTablePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.OcrPage">
+            <summary>
+            Represents an OCR page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OcrPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.OcrPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OcrPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OcrPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OcrPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
