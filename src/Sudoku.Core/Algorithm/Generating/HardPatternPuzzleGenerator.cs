@@ -154,7 +154,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	private void RecreatePattern(Cell* pattern)
 	{
 #if true
-		var target = stackalloc[] { (23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27) };
+		scoped var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
 		for (var index = 0; index < 4; index++)
 		{
 			var (initial, boundary, delta) = target[index];

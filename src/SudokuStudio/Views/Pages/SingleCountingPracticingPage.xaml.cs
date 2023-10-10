@@ -247,7 +247,7 @@ file static class Generator
 			mode = Rng.Next(0, 1000) < 500 ? GeneratingMode.FullHouse : GeneratingMode.NakedSingle;
 		}
 
-		scoped var digits = (stackalloc[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 });
+		scoped var digits = (Span<Cell>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 		// Shuffle digits.
 		for (var currentShuffleRound = 0; currentShuffleRound < 10; currentShuffleRound++)

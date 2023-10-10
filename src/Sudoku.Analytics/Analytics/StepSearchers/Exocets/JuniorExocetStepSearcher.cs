@@ -279,13 +279,12 @@ public sealed partial class JuniorExocetStepSearcher : StepSearcher
 		}
 
 		var otherDigitsMask = (Mask)((targetCell1Mask | targetCell2Mask) & ~baseCellsDigitsMask);
-		var housePair = stackalloc[]
-		{
+		scoped var housePair = (ReadOnlySpan<House>)[
 			targetCell1.ToHouseIndex(HouseType.Block),
 			targetCell1.ToHouseIndex(HouseType.Row) == targetCell2.ToHouseIndex(HouseType.Row)
 				? targetCell1.ToHouseIndex(HouseType.Row)
 				: targetCell1.ToHouseIndex(HouseType.Column)
-		};
+		];
 
 		for (var i = 1; i <= PopCount((uint)otherDigitsMask); i++)
 		{
