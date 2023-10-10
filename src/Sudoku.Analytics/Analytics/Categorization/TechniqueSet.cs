@@ -126,7 +126,8 @@ public partial struct TechniqueSet :
 		}
 	}
 
-	bool ICollection<Technique>.IsReadOnly { get; }
+	/// <inheritdoc/>
+	readonly bool ICollection<Technique>.IsReadOnly => false;
 
 
 	/// <summary>

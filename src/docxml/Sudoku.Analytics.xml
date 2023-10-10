@@ -3285,6 +3285,9 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>
         </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#IsReadOnly">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Item(System.Int32)">
             <summary>
             Try to get the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> at the specified index.
