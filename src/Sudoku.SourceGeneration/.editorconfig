@@ -1,6 +1,0 @@
-root = false
-
-[*.cs]
-
-# IDE0011: Add brace
-dotnet_diagnostic.IDE0011.severity = none

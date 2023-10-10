@@ -4,6 +4,62 @@
         <name>Sudoku.SourceGeneration</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.SourceGeneration.AccessibilityExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Sudoku.SourceGeneration.Accessibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Accessibility"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AccessibilityExtensions.GetName(Sudoku.SourceGeneration.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.PrimaryConstructor">
+            <summary>
+            Provides with primary constructor operations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.PrimaryConstructor.GetCorrespondingMemberNames``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterListSyntax,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Func{Microsoft.CodeAnalysis.AttributeData,System.Boolean},System.Func{Microsoft.CodeAnalysis.ISymbol,``0},System.Threading.CancellationToken)">
+            <summary>
+            Try to get corresponding member names.
+            </summary>
+            <typeparam name="TExtraData">The type of projected result after argument <paramref name="extraDataSelector"/> handled.</typeparam>
+            <param name="this">The type symbol.</param>
+            <param name="model">The semantic model instance.</param>
+            <param name="parameterList">The parameter list.</param>
+            <param name="primaryConstructorParameterAttributeSymbol">The primary constructor parameter type symbol.</param>
+            <param name="attributeMatcher">Indicates the primary constructor attribute matcher.</param>
+            <param name="extraDataSelector">Extra data selector.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A list of values (member names and extra data).</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.PrimaryConstructor.GetTargetMemberName(System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.String,System.String)">
+            <summary>
+            Try to get target member name via according named arguments.
+            </summary>
+            <param name="namedArgs">The named arguments.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="defaultPattern">The default pattern to convert the naming.</param>
+            <returns>The referenced member name.</returns>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Extensions.InternalHandle(System.String,System.String)">
+            <summary>
+            Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
+            </summary>
+            <param name="this">The naming rule.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns>The final identifier.</returns>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Accessibility">
             <summary>
             Defines an accessibility kind.
@@ -141,62 +197,6 @@
             <summary>
             The documentation comment data used by XAML binding generator functions.
             </summary>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.AccessibilityExtensions">
-            <summary>
-            Provides with extension methods for <see cref="T:Sudoku.SourceGeneration.Accessibility"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Accessibility"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.AccessibilityExtensions.GetName(Sudoku.SourceGeneration.Accessibility)">
-            <summary>
-            Gets the name of the accessibility enumeration field.
-            </summary>
-            <param name="this">The field.</param>
-            <returns>The name of the field.</returns>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.PrimaryConstructor">
-            <summary>
-            Provides with primary constructor operations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.PrimaryConstructor.GetCorrespondingMemberNames``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterListSyntax,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Func{Microsoft.CodeAnalysis.AttributeData,System.Boolean},System.Func{Microsoft.CodeAnalysis.ISymbol,``0},System.Threading.CancellationToken)">
-            <summary>
-            Try to get corresponding member names.
-            </summary>
-            <typeparam name="TExtraData">The type of projected result after argument <paramref name="extraDataSelector"/> handled.</typeparam>
-            <param name="this">The type symbol.</param>
-            <param name="model">The semantic model instance.</param>
-            <param name="parameterList">The parameter list.</param>
-            <param name="primaryConstructorParameterAttributeSymbol">The primary constructor parameter type symbol.</param>
-            <param name="attributeMatcher">Indicates the primary constructor attribute matcher.</param>
-            <param name="extraDataSelector">Extra data selector.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A list of values (member names and extra data).</returns>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.PrimaryConstructor.GetTargetMemberName(System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.String,System.String)">
-            <summary>
-            Try to get target member name via according named arguments.
-            </summary>
-            <param name="namedArgs">The named arguments.</param>
-            <param name="parameterName">The parameter name.</param>
-            <param name="defaultPattern">The default pattern to convert the naming.</param>
-            <returns>The referenced member name.</returns>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Extensions.InternalHandle(System.String,System.String)">
-            <summary>
-            Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
-            </summary>
-            <param name="this">The naming rule.</param>
-            <param name="parameterName">The parameter name.</param>
-            <returns>The final identifier.</returns>
         </member>
         <member name="T:Sudoku.SourceGeneration.Generator">
             <summary>
