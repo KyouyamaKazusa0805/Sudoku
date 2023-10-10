@@ -46,7 +46,7 @@ internal static class DependencyPropertyHandler
 
 					dependencyProperties.Add(
 						$"""
-							/// <summary>
+						/// <summary>
 								/// Defines a dependency property that binds with property <see cref="{propertyName}"/>.
 								/// </summary>
 								/// <seealso cref="{propertyName}"/>
