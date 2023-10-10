@@ -73,14 +73,17 @@ public sealed partial record PencilmarkingGridParser : GridParser
 						return Grid.Undefined;
 					}
 				}
-				else if (s.SatisfyPattern("""[1-9]{1,9}"""))
+				else if (s.SatisfyPattern("""[1-9\+\-]{1,9}"""))
 				{
 					// Candidates.
 					// Here don't need to check the length of the string, and also all characters are digit characters.
 					var mask = (Mask)0;
 					foreach (var c in s)
 					{
-						mask |= (Mask)(1 << c - '1');
+						if (c is not ('+' or '-'))
+						{
+							mask |= (Mask)(1 << c - '1');
+						}
 					}
 
 					if (mask == 0)

@@ -1472,7 +1472,7 @@ public unsafe partial struct Grid :
 			}
 			case (_, true, _):
 			{
-				foreach (var parser in Parsers[..2])
+				foreach (var parser in Parsers[..3])
 				{
 					if (parser.Parser(str) is { IsUndefined: false } grid)
 					{
