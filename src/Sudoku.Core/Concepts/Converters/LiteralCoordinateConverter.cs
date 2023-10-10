@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
+using Sudoku.Linq;
 using static System.Numerics.BitOperations;
 using static Sudoku.Strings.InternalStringAccessor;
 

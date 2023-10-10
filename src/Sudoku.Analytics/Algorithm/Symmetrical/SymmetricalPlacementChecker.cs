@@ -5,6 +5,7 @@ using Sudoku.Analytics;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static Sudoku.Analytics.ConclusionType;
