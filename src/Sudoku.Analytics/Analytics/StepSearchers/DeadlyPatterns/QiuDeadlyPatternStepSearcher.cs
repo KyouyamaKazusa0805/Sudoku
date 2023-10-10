@@ -3,6 +3,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;

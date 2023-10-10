@@ -1941,8 +1941,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.CellMap.IsInIntersection">
             <summary>
-            Determines whether the current list of cells are all lie in an intersection area,
-            i.e. a locked candidates.
+            Determines whether the current list of cells are all lie in an intersection area, i.e. a locked candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.BlockMask">
@@ -1950,8 +1949,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the mask of block that all cells in this collection spanned.
             </summary>
             <remarks>
-            For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned blocks are 0 and 3, so the return
-            mask is <c>0b000001001</c> (i.e. 9).
+            For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned blocks are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.RowMask">
@@ -1959,7 +1957,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the mask of row that all cells in this collection spanned.
             </summary>
             <remarks>
-            For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
+            For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.ColumnMask">
@@ -1967,7 +1965,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the mask of column that all cells in this collection spanned.
             </summary>
             <remarks>
-            For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
+            For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.CoveredLine">
@@ -6900,6 +6898,27 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>values</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Linq.MaskEnumerable">
+            <summary>
+            Represents a list of methods for iteration on a <see cref="T:System.Int16"/>.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="M:Sudoku.Linq.MaskEnumerable.SelectMany``1(System.Int16,System.Func{System.Int32,Sudoku.Concepts.CellMap},System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            Projects each <see cref="T:System.Int32"/> of a <see cref="T:System.Int16"/> to a <see cref="T:Sudoku.Concepts.CellMap"/>, flattens the resulting sequence into one sequence,
+            and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="source">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:System.Int16"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> whose elements are the result of invoking the one-to-many transform function
+            <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequences
+            and their corresponding source element to a result element.
+            </returns>
         </member>
         <member name="T:Sudoku.Linq.ViewEnumerable">
             <summary>

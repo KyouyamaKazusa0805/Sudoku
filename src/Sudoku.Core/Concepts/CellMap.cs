@@ -100,8 +100,7 @@ public partial struct CellMap :
 
 
 	/// <summary>
-	/// Determines whether the current list of cells are all lie in an intersection area,
-	/// i.e. a locked candidates.
+	/// Determines whether the current list of cells are all lie in an intersection area, i.e. a locked candidates.
 	/// </summary>
 	public readonly bool IsInIntersection
 	{
@@ -113,8 +112,7 @@ public partial struct CellMap :
 	/// Indicates the mask of block that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned blocks are 0 and 3, so the return
-	/// mask is <c>0b000001001</c> (i.e. 9).
+	/// For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned blocks are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
 	public readonly Mask BlockMask
 	{
@@ -141,7 +139,7 @@ public partial struct CellMap :
 	/// Indicates the mask of row that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
+	/// For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned rows are 0 and 3, so the return mask is <c>0b000001001</c> (i.e. 9).
 	/// </remarks>
 	public readonly Mask RowMask
 	{
@@ -168,7 +166,7 @@ public partial struct CellMap :
 	/// Indicates the mask of column that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the cells are <c>{ 0, 1, 27, 28 }</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
+	/// For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
 	/// </remarks>
 	public readonly Mask ColumnMask
 	{
