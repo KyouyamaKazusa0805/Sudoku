@@ -215,6 +215,7 @@ internal static class AttachedPropertyHandler
 			var defaultValueGeneratorKind = default(DefaultValueGeneratingMemberKind?);
 			if (defaultValueGenerator is not null)
 			{
+				bool e(ITypeSymbol t) => SymbolEqualityComparer.Default.Equals(t, propertyType);
 				defaultValueGeneratorKind = typeSymbol.GetAllMembers().FirstOrDefault(m => m.Name == defaultValueGenerator) switch
 				{
 					IFieldSymbol { Type: var t, IsStatic: true } when e(t)
@@ -242,9 +243,6 @@ internal static class AttachedPropertyHandler
 					defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName, isNullable
 				)
 			);
-
-
-			bool e(ITypeSymbol t) => SymbolEqualityComparer.Default.Equals(t, propertyType);
 		}
 
 		return new(typeSymbol, propertiesData);
