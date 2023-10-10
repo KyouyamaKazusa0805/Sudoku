@@ -131,7 +131,7 @@ internal static class PrimaryConstructorHandler
 			static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField, bool setterIsEmpty)
 				=> (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField, setterIsEmpty) switch
 				{
-					(0, RefKind.In, TypeKind.Struct, false, true, _, true) => "readonly ",
+					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _, true) => "readonly ",
 					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _, true) => "readonly ",
 					(_, _, TypeKind.Struct, _, _, true, true) => "readonly ",
 					(_, _, TypeKind.Struct, false, _, _, true) => "readonly ",
@@ -142,8 +142,8 @@ internal static class PrimaryConstructorHandler
 				=> (namedArgs.TryGetValueOrDefault<string>("RefKind", out var l) && l is not null ? $"{l} " : null)
 				?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
 				{
-					(0, RefKind.In, TypeKind.Struct, false, true, _) => "ref readonly ",
-					(0, RefKind.In, TypeKind.Struct, true, true, _) => "ref readonly ",
+					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _) => "ref readonly ",
+					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, true, true, _) => "ref readonly ",
 					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "ref ",
 					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, true, _) => "ref ",
 					_ => null

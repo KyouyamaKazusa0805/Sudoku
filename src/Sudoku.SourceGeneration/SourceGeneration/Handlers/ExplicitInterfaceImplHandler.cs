@@ -29,19 +29,16 @@ internal static class ExplicitInterfaceImplHandler
 
 		var dataList = new List<Data>();
 		foreach (var methodSymbol in
-#if true
+			// Don't do this. Due to having used 'partial' keyword, a type can be split into multiple files.
+			// However, a syntax node may not contain all members defined in one file when a type is partial.
+			// If we do this, we can get all members defined in a type because such API has already merged members from multiple files.
+			// Therefore, we may get a runtime error from source generator, telling us that generation may contain duplicate.
+			//typeSymbol.GetMembers().OfType<IMethodSymbol>()
 			from member in node.DescendantNodes()
 			where member is MethodDeclarationSyntax or OperatorDeclarationSyntax or ConversionOperatorDeclarationSyntax
 			select semanticModel.GetDeclaredSymbol(member, ct) as IMethodSymbol into methodSymbol
 			where methodSymbol is not null
 			select methodSymbol
-#else
-			// Don't do this. Due to having used 'partial' keyword, a type can be split into multiple files.
-			// However, a syntax node may not contain all members defined in one file when a type is partial.
-			// If we do this, we can get all members defined in a type because such API has already merged members from multiple files.
-			// Therefore, we may get a runtime error from source generator, telling us that generation may contain duplicate.
-			typeSymbol.GetMembers().OfType<IMethodSymbol>()
-#endif
 		)
 		{
 			var attributesData = (
@@ -135,19 +132,6 @@ internal static class ExplicitInterfaceImplHandler
 				INamedTypeSymbol containingInterfaceType;
 				switch (attributeData.ConstructorArguments, impledInterfaces)
 				{
-#if false
-					case ([{ Kind: TypedConstantKind.Type, Value: null }], [var interfaceTypeDirectlyImpled]):
-					{
-						var methodsOrOperators = interfaceTypeDirectlyImpled.GetMembers().OfType<IMethodSymbol>();
-						if (methodsOrOperators.FirstOrDefault(methodOrOperator => methodOrOperator.Name == methodName) is not { } foundMember)
-						{
-							continue;
-						}
-
-						(methodOrOperator, containingInterfaceType) = (foundMember, interfaceTypeDirectlyImpled);
-						break;
-					}
-#endif
 					case ([{ Kind: TypedConstantKind.Type, Value: INamedTypeSymbol { TypeKind: TypeKind.Interface } interfaceTypeSymbol }], _):
 					{
 						var unboundedInterfaceTypeSymbol = interfaceTypeSymbol.Unbound();
@@ -272,10 +256,10 @@ internal static class ExplicitInterfaceImplHandler
 					{
 						(ScopedKind.None, RefKind.Ref) => "ref ",
 						//(ScopedKind.None, RefKind.RefReadOnly) => "ref readonly ",
-						(ScopedKind.None, RefKind.In) => /*"in "*/parameterIsInOperator ? "in " : "ref readonly ",
+						(ScopedKind.None, RefKind.In or RefKind.RefReadOnlyParameter) => parameterIsInOperator ? "in " : "ref readonly ",
 						(_, RefKind.Ref) => "scoped ref ",
 						//(_, RefKind.RefReadOnly) => "scoped ref readonly ",
-						(_, RefKind.In) => /*"scoped in "*/parameterIsInOperator ? "scoped in " : "scoped ref readonly ",
+						(_, RefKind.In or RefKind.RefReadOnlyParameter) => parameterIsInOperator ? "scoped in " : "scoped ref readonly ",
 						(_, RefKind.Out) => "out ",
 						_ => string.Empty
 					}
