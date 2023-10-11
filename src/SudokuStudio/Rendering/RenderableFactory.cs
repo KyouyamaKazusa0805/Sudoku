@@ -762,7 +762,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						Stroke = new SolidColorBrush(Pane.LinkColor),
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
-						Data = new GeometryGroup { Children = new() { new LineGeometry { StartPoint = pt1, EndPoint = pt2 } } },
+						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
 						Tag = $"{nameof(RenderableFactory)}: cell link {start} -> {end}",
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					};
@@ -1000,13 +1000,11 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var points = new HashSet<Point>();
 			foreach (var node in nodes)
 			{
-				if (node is not (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var kind))
+				if (node is (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var kind))
 				{
-					continue;
+					points.Add(Converter.GetPosition(startCell * 9 + (kind == Inference.Default ? 4 : startDigit)));
+					points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
 				}
-
-				points.Add(Converter.GetPosition(startCell * 9 + (kind == Inference.Default ? 4 : startDigit)));
-				points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
 			}
 
 			foreach (var (_, candidate) in Conclusions)
