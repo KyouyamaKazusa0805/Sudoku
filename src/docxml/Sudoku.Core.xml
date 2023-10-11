@@ -3563,24 +3563,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.MostTimesOf(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
-            </summary>
-            <param name="digit">The digit to be checked.</param>
-            <param name="houses">The houses that the digit can be filled with.</param>
-            <param name="excludedCells">
-            Indicates the cells the method doesn't cover them. If the value is not <see cref="F:Sudoku.Concepts.CellMap.Empty"/>,
-            all cells in the houses should be checked.
-            </param>
-            <returns>
-            <para>The number of times that the digit can be filled with the specified houses, at most.</para>
-            <para>
-            If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
-            or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
-            </para>
-            </returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.ToArray">
             <summary>
             Serializes this instance to an array, where all digit value will be stored.

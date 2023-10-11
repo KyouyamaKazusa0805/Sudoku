@@ -222,7 +222,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 									foreach (var digit in baseCellsDigitsMask)
 									{
-										var mostTimes = grid.MostTimesOf(digit, housesMask, in chuteCells);
+										var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
 										if (mostTimes != size - 1)
 										{
 											allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -303,5 +303,60 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return null;
+	}
+
+
+	/// <summary>
+	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
+	/// </summary>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <param name="houses">The houses that the digit can be filled with.</param>
+	/// <param name="excludedCells">
+	/// Indicates the cells the method doesn't cover them. If the value is not <see cref="CellMap.Empty"/>,
+	/// all cells in the houses should be checked.
+	/// </param>
+	/// <returns>
+	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
+	/// <para>
+	/// If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
+	/// or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
+	/// </para>
+	/// </returns>
+	private static int MostTimesOf(Digit digit, HouseMask houses, scoped ref readonly CellMap excludedCells)
+	{
+		var cells = CandidatesMap[digit];
+		var cellsInHouses = CellMap.Empty;
+		foreach (var house in houses)
+		{
+			cellsInHouses |= HousesMap[house] - excludedCells;
+		}
+		cells &= cellsInHouses;
+
+		for (var size = Math.Min(9, PopCount((uint)houses)); size >= 1; size--)
+		{
+			foreach (var cellsChosen in cells.GetSubsets(size))
+			{
+				if (size >= 2)
+				{
+					var duplicated = false;
+					foreach (var cellPair in cellsChosen.GetSubsets(2))
+					{
+						if (cellPair.InOneHouse(out _))
+						{
+							duplicated = true;
+							break;
+						}
+					}
+					if (duplicated)
+					{
+						continue;
+					}
+				}
+
+				return size;
+			}
+		}
+
+		return 0;
 	}
 }
