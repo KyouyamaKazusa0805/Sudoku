@@ -96,8 +96,7 @@ internal static class EqualityOperatorsHandler
 		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch
 		{
-			Behavior.StaticAbstract
-				=> "\r\n\t\t",
+			Behavior.StaticAbstract => "\r\n\t\t",
 			Behavior.WithScopedInButDeprecated or Behavior.DefaultButDeprecated
 				=> """
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

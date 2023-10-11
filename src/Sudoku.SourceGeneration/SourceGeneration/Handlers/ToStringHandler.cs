@@ -115,12 +115,8 @@ internal static class ToStringHandler
 			""";
 		var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
 		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
-		var suppress0809 = isDeprecated
-			? "#pragma warning disable CS0809\r\n\t"
-			: "\t";
-		var enable0809 = isDeprecated
-			? "#pragma warning restore CS0809\r\n\t"
-			: "\t";
+		var suppress0809 = isDeprecated ? "#pragma warning disable CS0809\r\n\t" : "\t";
+		var enable0809 = isDeprecated ? "#pragma warning restore CS0809\r\n\t" : "\t";
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
 			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),
