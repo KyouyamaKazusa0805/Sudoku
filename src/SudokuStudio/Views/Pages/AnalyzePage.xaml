@@ -227,8 +227,6 @@
 							a:AnalyzerProperties.BowmanBingoMaxLength="64"
 							a:AnalyzerProperties.CheckValueTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckValueTypes,Mode=OneWay}"
 							a:AnalyzerProperties.CheckAlmostLockedQuadruple="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckAlmostLockedQuadruple,Mode=OneWay}"
-							a:AnalyzerProperties.CheckAdvancedJuniorExocet="True"
-							a:AnalyzerProperties.CheckAdvancedSeniorExocet="True"
 							a:AnalyzerProperties.IttoryuSupportedTechniques="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=OneWay}"
 							a:GathererProperties.DifficultyLevelMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"

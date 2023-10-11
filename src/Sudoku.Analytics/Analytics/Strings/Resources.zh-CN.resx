@@ -1536,18 +1536,6 @@
     <value>高级飞鱼导弹</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ComplexSeniorExocet" xml:space="preserve">
-    <value>复杂高级飞鱼导弹</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="SiameseJuniorExocet" xml:space="preserve">
-    <value>孪生初级飞鱼导弹</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="SiameseSeniorExocet" xml:space="preserve">
-    <value>孪生高级飞鱼导弹</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="DominoLoop" xml:space="preserve">
     <value>多米诺环</value>
     <comment>Technique Name</comment>
@@ -1931,10 +1919,6 @@
     <value>宇宙法</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_JuniorExocetStepSearcher" xml:space="preserve">
-    <value>初级飞鱼导弹</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>区块</value>
     <comment>Step Searcher Name</comment>
@@ -1977,10 +1961,6 @@
   </data>
   <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
     <value>RW 致命结构</value>
-    <comment>Step Searcher Name</comment>
-  </data>
-  <data name="StepSearcherName_SeniorExocetStepSearcher" xml:space="preserve">
-    <value>高级飞鱼导弹</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
@@ -2478,5 +2458,9 @@
   </data>
   <data name="TechniqueGroup_Wing" xml:space="preserve">
     <value>Wing</value>
+  </data>
+  <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
+    <value>飞鱼导弹</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

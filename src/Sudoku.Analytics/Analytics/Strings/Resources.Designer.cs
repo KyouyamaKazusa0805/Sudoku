@@ -898,15 +898,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complex Senior Exocet.
-        /// </summary>
-        public static string ComplexSeniorExocet {
-            get {
-                return ResourceManager.GetString("ComplexSeniorExocet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
         public static string ContinuousNiceLoop {
@@ -2950,15 +2941,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Siamese Junior Exocet.
-        /// </summary>
-        public static string SiameseJuniorExocet {
-            get {
-                return ResourceManager.GetString("SiameseJuniorExocet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
         /// </summary>
         public static string SiameseSashimiFrankenJellyfish {
@@ -3117,15 +3099,6 @@ namespace Sudoku.Analytics.Strings {
         public static string SiameseSashimiXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiXWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Siamese Senior Exocet.
-        /// </summary>
-        public static string SiameseSeniorExocet {
-            get {
-                return ResourceManager.GetString("SiameseSeniorExocet", resourceCulture);
             }
         }
         
@@ -3328,6 +3301,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exocets.
+        /// </summary>
+        public static string StepSearcherName_ExocetStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ExocetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle.
         /// </summary>
         public static string StepSearcherName_ExtendedRectangleStepSearcher {
@@ -3369,15 +3351,6 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GurthSymmetricalPlacementStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Junior Exocet.
-        /// </summary>
-        public static string StepSearcherName_JuniorExocetStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_JuniorExocetStepSearcher", resourceCulture);
             }
         }
         
@@ -3495,15 +3468,6 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_RwDeadlyPatternStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_RwDeadlyPatternStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Senior Exocet.
-        /// </summary>
-        public static string StepSearcherName_SeniorExocetStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_SeniorExocetStepSearcher", resourceCulture);
             }
         }
         

@@ -29,7 +29,7 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
 	[DataMember(SetterExpression = "internal set")] List<Step>? accumulator,
-	[DataMember(MemberKinds.Field)] ref Grid grid,
+	[DataMember(MemberKinds.Field)] ref readonly Grid grid,
 	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
 	[DataMember] StepSearcherOptions predefinedOptions
 )
@@ -49,7 +49,7 @@ public ref partial struct AnalysisContext(
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
 	/// </summary>
-	public readonly ref Grid Grid => ref _grid;
+	public readonly ref readonly Grid Grid => ref _grid;
 
 	/// <summary>
 	/// Indicates the previously set digit.

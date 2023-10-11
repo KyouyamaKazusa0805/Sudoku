@@ -44,8 +44,6 @@ using Sudoku.Analytics.StepSearchers;
 [assembly: StepSearcherImport<TemplateStepSearcher>(3, Areas = 0)]
 [assembly: StepSearcherImport<PatternOverlayStepSearcher>(3, Areas = StepSearcherRunningArea.Gathering)]
 [assembly: StepSearcherImport<ExocetStepSearcher>(3)]
-[assembly: StepSearcherImport<JuniorExocetStepSearcher>(3, Areas = 0)]
-[assembly: StepSearcherImport<SeniorExocetStepSearcher>(3, Areas = 0)]
 [assembly: StepSearcherImport<DominoLoopStepSearcher>(3)]
 [assembly: StepSearcherImport<MultisectorLockedSetsStepSearcher>(3)]
 [assembly: StepSearcherImport<AdvancedMultipleChainingStepSearcher>(3, Areas = 0)]

@@ -2746,21 +2746,6 @@ if (student is (name: var name, age: >= 18))
             Indicates senior exocet.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexSeniorExocet">
-            <summary>
-            Indicates complex senior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseJuniorExocet">
-            <summary>
-            Indicates Siamese junior exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSeniorExocet">
-            <summary>
-            Indicates Siamese senior exocet.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
             <summary>
             Indicates domino loop.
@@ -3846,12 +3831,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.BowmanBingoMaxLength">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckAdvancedJuniorExocet">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckAdvanced"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckAdvancedSeniorExocet">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.CheckAdvanced"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckAlmostLockedQuadruple">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
@@ -7628,29 +7607,12 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.MinilinesGroupedByChuteIndex">
             <summary>
-            Provides with a <b>Junior Exocet</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Junior Exocet</item>
-            </list>
+            Indicates the mini-lines to be iterated, grouped by chute index.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.ExocetTemplatesCount">
-            <summary>
-            Indicates the total number of exocet patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.Patterns">
-            <summary>
-            Indicates all patterns.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.#cctor">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.#cctor">
             <static-constructor>
 		<summary>
 			<para>
@@ -7663,53 +7625,15 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckAdvanced">
-            <summary>
-            Indicates whether the searcher will find advanced eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckTargetCells(System.Int32,System.Int32,System.Int16,Sudoku.Concepts.Grid@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectForAllRowColumnType(Sudoku.Analytics.AnalysisContext@)">
             <summary>
-            Checks for the validity of the target cells, guaranteeing the target cells is valid in the full exocet map.
+            Try to fetch for all-row or all-column types.
             </summary>
-            <param name="targetCell1">The first target cell to be checked.</param>
-            <param name="targetCell2">The second target cell to be checked.</param>
-            <param name="baseCellsDigitsMask">The mask that holds the digits appearing in the base cells.</param>
-            <param name="grid">The grid to be checked.</param>
-            <param name="resultOtherDigitsMask">
-            The other digits found in the exocet pattern, which means the digits that is not the valid digits
-            as the base digits.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher.CheckCrossLineCells(Sudoku.Concepts.Exocet@,System.Int16)">
-            <summary>
-            Checks for the validity of the cross-line cells, guaranteeing the target cells is valid
-            in the full exocet map.
-            </summary>
-            <param name="currentJe">The current JE pattern.</param>
-            <param name="digitsNeedChecking">The digits need checking.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher">
-            <summary>
-            (<b>Not implemented</b>) Provides with a <b>Senior Exocet</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Senior Exocet</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.CheckAdvanced">
-            <summary>
-            Indicates whether the searcher will find advanced eliminations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SeniorExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
+            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
@@ -12751,130 +12675,82 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetStep">
+        <member name="T:Sudoku.Analytics.Steps.NormalExocetStep">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="exocet">Indicates the exocet pattern used.</param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
+            <param name="digitsMask">Indicates the mask that holds a list of digits used in the pattern.</param>
+            <param name="baseCells">Indicates the base cells used.</param>
+            <param name="targetCells">Indicates the target cells used.</param>
+            <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
+        <member name="M:Sudoku.Analytics.Steps.NormalExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
+            <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="exocet">Indicates the exocet pattern used.</param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="eliminations">Indicates the eliminations, grouped by the type.</param>
+            <param name="digitsMask">Indicates the mask that holds a list of digits used in the pattern.</param>
+            <param name="baseCells">Indicates the base cells used.</param>
+            <param name="targetCells">Indicates the target cells used.</param>
+            <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Delta">
+            <summary>
+            <para>Indicates the delta value of the pattern.</para>
+            <para>
+            The values can be -2, -1, 0, 1 and 2, separated with 3 groups:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>-2 or -1 <![CDATA[(< 0)]]></term>
+            <description>The base contain more cells than the target, meaning the pattern will be a "Senior Exocet"</description>
+            </item>
+            <item>
+            <term>1 or 2 <![CDATA[(> 0)]]></term>
+            <description>
+            The target contain more cells than the base, meaning the pattern will contain extra items like conjugate pairs of other digits
+            </description>
+            </item>
+            <item>
+            <term>0</term>
+            <description>The base has same number of cells with the target, a standard "Junior Exocet" will be formed</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseMap">
-            <summary>
-            Indicates the map of the base cells.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Code">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.TargetMap">
-            <summary>
-            Indicates the map of the target cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Exocet">
-            <summary>
-            The generated property declaration for parameter <c>exocet</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.DigitsMask">
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.JuniorExocetStep">
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.BaseCells">
             <summary>
-            Provides with a step that is a <b>Junior Exocet</b> technique.
-            </summary>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="exocet"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
-            <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
-            <param name="eliminations"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Exocet,System.Int16,Sudoku.Analytics.Eliminations.ExocetElimination[])">
-            <summary>
-            Provides with a step that is a <b>Junior Exocet</b> technique.
-            </summary>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="exocet"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="lockedMemberQ">Indicates the locked member bound with Q cells.</param>
-            <param name="lockedMemberR">Indicates the locked member bound with R cells.</param>
-            <param name="eliminations"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.ExtraDifficultyCases">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetStep.Eliminations">
-            <summary>
-            The generated property declaration for parameter <c>eliminations</c>.
+            The generated property declaration for parameter <c>baseCells</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.SeniorExocetStep">
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.TargetCells">
             <summary>
-            Provides with a step that is a <b>Senior Exocet</b> technique.
-            </summary>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="exocet"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
-            <param name="extraHouses">Indicates the extra houses used.</param>
-            <param name="eliminations"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.SeniorExocetStep.#ctor(Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Exocet,System.Int16,System.Int32,System.Int32[],Sudoku.Analytics.Eliminations.ExocetElimination[])">
-            <summary>
-            Provides with a step that is a <b>Senior Exocet</b> technique.
-            </summary>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="exocet"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="endoTargetCell">Indicates the target cell in the cross-line cells' houses.</param>
-            <param name="extraHouses">Indicates the extra houses used.</param>
-            <param name="eliminations"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ContainsExtraHouses">
-            <summary>
-            Indicates whether the specified instance contains any extra houses.
+            The generated property declaration for parameter <c>targetCells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraDifficultyCases">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.EndoTargetCell">
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.CrosslineCells">
             <summary>
-            The generated property declaration for parameter <c>endoTargetCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetStep.ExtraHouses">
-            <summary>
-            The generated property declaration for parameter <c>extraHouses</c>.
+            The generated property declaration for parameter <c>crosslineCells</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
@@ -15740,11 +15616,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to , .
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ComplexSeniorExocet">
-            <summary>
-              Looks up a localized string similar to Complex Senior Exocet.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ContinuousNiceLoop">
             <summary>
               Looks up a localized string similar to Continuous Nice Loop.
@@ -16880,11 +16751,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Siamese Finned X-Wing.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.SiameseJuniorExocet">
-            <summary>
-              Looks up a localized string similar to Siamese Junior Exocet.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseSashimiFrankenJellyfish">
             <summary>
               Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
@@ -16973,11 +16839,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseSashimiXWing">
             <summary>
               Looks up a localized string similar to Siamese Sashimi X-Wing.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.SiameseSeniorExocet">
-            <summary>
-              Looks up a localized string similar to Siamese Senior Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SinglyLinkedAlmostLockedSetsXzRule">
@@ -17090,6 +16951,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Empty Rectangle.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_ExocetStepSearcher">
+            <summary>
+              Looks up a localized string similar to Exocets.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_ExtendedRectangleStepSearcher">
             <summary>
               Looks up a localized string similar to Extended Rectangle.
@@ -17113,11 +16979,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GurthSymmetricalPlacementStepSearcher">
             <summary>
               Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_JuniorExocetStepSearcher">
-            <summary>
-              Looks up a localized string similar to Junior Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_LockedCandidatesStepSearcher">
@@ -17183,11 +17044,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_RwDeadlyPatternStepSearcher">
             <summary>
               Looks up a localized string similar to RW&apos;s Deadly Pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_SeniorExocetStepSearcher">
-            <summary>
-              Looks up a localized string similar to Senior Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_SingleStepSearcher">

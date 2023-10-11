@@ -38,8 +38,6 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckValueTypes)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
-[AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedJuniorExocet, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.CheckAdvancedSeniorExocet, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms)]
@@ -195,14 +193,6 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void DisableFinnedOrSashimiXWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<NormalFishStepSearcher>(d, s => s.DisableFinnedOrSashimiXWing = (bool)e.NewValue);
-
-	[Callback]
-	private static void CheckAdvancedJuniorExocetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<JuniorExocetStepSearcher>(d, s => s.CheckAdvanced = (bool)e.NewValue);
-
-	[Callback]
-	private static void CheckAdvancedSeniorExocetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<SeniorExocetStepSearcher>(d, s => s.CheckAdvanced = (bool)e.NewValue);
 
 	[Callback]
 	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

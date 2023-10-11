@@ -34,7 +34,7 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMembe
 	/// </para>
 	/// </summary>
 	[JsonIgnore]
-	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, _, isRow, rawMask) => rawMask << (isRow ? 9 : 18) };
+	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, _, isRow, rawMask) => rawMask };
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

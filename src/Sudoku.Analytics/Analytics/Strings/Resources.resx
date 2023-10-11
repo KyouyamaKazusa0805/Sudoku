@@ -1272,15 +1272,6 @@
   <data name="SeniorExocet" xml:space="preserve">
     <value>Senior Exocet</value>
   </data>
-  <data name="ComplexSeniorExocet" xml:space="preserve">
-    <value>Complex Senior Exocet</value>
-  </data>
-  <data name="SiameseJuniorExocet" xml:space="preserve">
-    <value>Siamese Junior Exocet</value>
-  </data>
-  <data name="SiameseSeniorExocet" xml:space="preserve">
-    <value>Siamese Senior Exocet</value>
-  </data>
   <data name="DominoLoop" xml:space="preserve">
     <value>Domino Loop</value>
   </data>
@@ -1602,9 +1593,6 @@
   <data name="StepSearcherName_GurthSymmetricalPlacementStepSearcher" xml:space="preserve">
     <value>Gurth's Symmetrical Placement</value>
   </data>
-  <data name="StepSearcherName_JuniorExocetStepSearcher" xml:space="preserve">
-    <value>Junior Exocet</value>
-  </data>
   <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>Locked Candidates</value>
   </data>
@@ -1637,9 +1625,6 @@
   </data>
   <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
     <value>RW's Deadly Pattern</value>
-  </data>
-  <data name="StepSearcherName_SeniorExocetStepSearcher" xml:space="preserve">
-    <value>Senior Exocet</value>
   </data>
   <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
     <value>Singles</value>
@@ -2342,5 +2327,8 @@
   </data>
   <data name="TechniqueGroup_Wing" xml:space="preserve">
     <value>Wing</value>
+  </data>
+  <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
+    <value>Exocets</value>
   </data>
 </root>

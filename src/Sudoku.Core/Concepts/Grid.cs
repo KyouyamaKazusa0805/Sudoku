@@ -893,76 +893,57 @@ public unsafe partial struct Grid :
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 	/// <summary>
-	/// Try to get the minimum times that the specified digit, describing it can be filled with the specified houses.
+	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
 	/// </summary>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="houses">The houses that the digit can be filled with.</param>
-	/// <param name="leastHousesUsed">
-	/// <para>One of all possibilities of the combination of least using for houses appearing.</para>
-	/// <para>The number of bits is always same as return value if the return value is not 0.</para>
+	/// <param name="excludedCells">
+	/// Indicates the cells the method doesn't cover them. If the value is not <see cref="CellMap.Empty"/>,
+	/// all cells in the houses should be checked.
 	/// </param>
 	/// <returns>
-	/// <para>The number of times that the digit can be filled with the specified houses, at least.</para>
+	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
 	/// <para>
 	/// If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
 	/// or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
 	/// </para>
 	/// </returns>
-	/// <remarks>
-	/// For example, the following diagram shows for a sample grid.
-	/// <code><![CDATA[
-	///          c2           c4                    c8
-	///    b1---------------,---------------,-----------------,
-	///    | 5   1     469  | 2    489  7   | 46    3     48  |
-	/// r2 | 7   2346  2346 | 48   1    38  | 2456  2458  9   |
-	///    | 39  234   8    | 6    349  5   | 7     1     24  |
-	///    :----------------+---------------+-----------------:
-	/// r4 | 2   67    5    | 478  48   689 | 1     49    3   |
-	///    | 39  8     369  | 1    234  26  | 245   7     245 |
-	///    | 4   37    1    | 57   235  239 | 8     29    6   |
-	///    :----------------+---------------+-----------------:
-	///    | 1   25    7    | 9    6    4   | 3     258   258 |
-	/// r8 | 6   2345  234  | 58   7    28  | 9     245   1   |
-	///    | 8   9     24   | 3    25   1   | 245   6     7   |
-	///    '----------------'---------------'-----------------'
-	/// ]]></code>
-	/// If we check for the digit 4 in houses <c>c248</c>, we can get the result number 3,
-	/// meaning we must fill with at least 4 times of the digit 4 into the columns 2, 4 and 8, they are:
-	/// <list type="bullet">
-	/// <item>Row 2</item>
-	/// <item>Row 4</item>
-	/// <item>Row 8</item>
-	/// <item>Block 1</item>
-	/// </list>
-	/// Therefore, the method will return 4 as the final answer.
-	/// </remarks>
-	public readonly int LeastTimesOf(Digit digit, HouseMask houses, out HouseMask leastHousesUsed)
+	public readonly int MostTimesOf(Digit digit, HouseMask houses, scoped ref readonly CellMap excludedCells)
 	{
-		var digitsAppearedInSuchHouses = CandidatesMap[digit];
-		for (var size = 1; size <= PopCount((uint)houses); size++)
+		var cells = CandidatesMap[digit];
+		var cellsInHouses = CellMap.Empty;
+		foreach (var house in houses)
 		{
-			foreach (var houseCombination in houses.GetAllSets().GetSubsets(size))
+			cellsInHouses |= HousesMap[house] - excludedCells;
+		}
+		cells &= cellsInHouses;
+
+		for (var size = Math.Min(9, PopCount((uint)houses)); size >= 1; size--)
+		{
+			foreach (var cellsChosen in cells.GetSubsets(size))
 			{
-				var houseCells = CellMap.Empty;
-				foreach (var house in houseCombination)
+				if (size >= 2)
 				{
-					houseCells |= HousesMap[house];
+					var duplicated = false;
+					foreach (var cellPair in cellsChosen.GetSubsets(2))
+					{
+						if (cellPair.InOneHouse(out _))
+						{
+							duplicated = true;
+							break;
+						}
+					}
+					if (duplicated)
+					{
+						continue;
+					}
 				}
 
-				digitsAppearedInSuchHouses &= houseCells;
-
-				if ((houseCells & digitsAppearedInSuchHouses) != digitsAppearedInSuchHouses)
-				{
-					// Not fully-covered.
-					continue;
-				}
-
-				leastHousesUsed = houseCombination.Aggregate(CommonMethods.BitMerger);
 				return size;
 			}
 		}
 
-		return leastHousesUsed = 0;
+		return 0;
 	}
 
 	/// <summary>

@@ -67,12 +67,6 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
 	public const string BowmanBingoMaxLength = nameof(BowmanBingoMaxLength);
 
-	/// <inheritdoc cref="JuniorExocetStepSearcher.CheckAdvanced"/>
-	public const string CheckAdvancedJuniorExocet = nameof(CheckAdvancedJuniorExocet);
-
-	/// <inheritdoc cref="SeniorExocetStepSearcher.CheckAdvanced"/>
-	public const string CheckAdvancedSeniorExocet = nameof(CheckAdvancedSeniorExocet);
-
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	public const string CheckAlmostLockedQuadruple = nameof(CheckAlmostLockedQuadruple);
 

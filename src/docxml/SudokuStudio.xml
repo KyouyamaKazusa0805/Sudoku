@@ -8013,16 +8013,6 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>CheckAlmostLockedQuadruple</c>.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedJuniorExocet</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>CheckAdvancedSeniorExocet</c>.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.LogicalSolverIsFullApplyingProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>LogicalSolverIsFullApplying</c>.
@@ -8282,30 +8272,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAdvancedJuniorExocet(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedJuniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAdvancedSeniorExocet(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAdvancedSeniorExocetProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetLogicalSolverIsFullApplying(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

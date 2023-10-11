@@ -2844,29 +2844,6 @@ public enum Technique
 	[Abbreviation("SE")]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocet,
-
-	/// <summary>
-	/// Indicates complex senior exocet.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	ComplexSeniorExocet,
-
-	/// <summary>
-	/// Indicates Siamese junior exocet.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	SiameseJuniorExocet,
-
-	/// <summary>
-	/// Indicates Siamese senior exocet.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	SiameseSeniorExocet,
 	#endregion
 
 	//
