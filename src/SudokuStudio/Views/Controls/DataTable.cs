@@ -23,7 +23,7 @@ public partial class DataTable : Panel
 	/// <remarks>
 	/// TODO: Check with Sergio if there's a better structure here, as I don't need a Dictionary like ConditionalWeakTable
 	/// </remarks>
-	internal HashSet<DataRow> Rows { get; private set; } = new();
+	internal HashSet<DataRow> Rows { get; private set; } = [];
 
 
 	/// <summary>
