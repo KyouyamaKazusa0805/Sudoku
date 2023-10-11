@@ -7618,6 +7618,19 @@ if (student is (name: var name, age: >= 18))
             <param name="urCells">The all UR cells used.</param>
             <returns>The list of highlight cells.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ExocetStepSearcher">
+            <summary>
+            Provides with a <b>Junior Exocet</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Junior Exocet</item>
+            <item>Senior Exocet</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.JuniorExocetStepSearcher">
             <summary>
             Provides with a <b>Junior Exocet</b> step searcher.
