@@ -41,7 +41,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			var (_, _, _, chuteHouses) = Chutes[i];
 			var isRow = i is 0 or 1 or 2;
 			var tempIndex = 0;
-			foreach (var chuteHouse in chuteHouses << (isRow ? 9 : 18))
+			foreach (var chuteHouse in chuteHouses)
 			{
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
 				{
@@ -84,18 +84,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
 					var housesEmptyCells = CellMap.Empty;
+					var housesCells = CellMap.Empty;
 					var housesMask = MaskOperations.CreateHouse(houses);
 					foreach (var house in houses)
 					{
 						housesEmptyCells |= HousesMap[house] & EmptyCells;
+						housesCells |= HousesMap[house];
 					}
 
 					// Iterate on each chute (mega rows or columns) in order to check for each empty cell,
 					// determining whether it can be used as a base.
 					for (var (i, timesOfI) = (isRow ? 3 : 0, 0); timesOfI < 3; i++, timesOfI++)
 					{
-						var (_, chuteCells, _, c) = Chutes[i];
-						var chuteHouses = c << (isRow ? 9 : 18);
+						var (_, chuteCells, _, chuteHouses) = Chutes[i];
 						var chuteEmptyCells = chuteCells & EmptyCells;
 
 						// Now iterate by size of base cells. The minimum value is 1, e.g.:
@@ -135,7 +136,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									// Now we should check for target cells.
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
-									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection & EmptyCells;
+									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
+									var generializedTargetCells = (housesCells & chuteCells) - baseCells.PeerIntersection;
+									var targetCellsDigitsMask = grid[in targetCells];
+									if ((targetCellsDigitsMask & baseCellsDigitsMask) == 0)
+									{
+										// They are out of relation.
+										continue;
+									}
 
 									// Get the count delta (target.count - base.count). The result value must be -2, -1, 0, 1 and 2.
 									// The details are mentioned below:
@@ -161,17 +169,32 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 #endif
 
-									// Now check whether all digits appeared in base cells can be filled in target empty cells.
+									// Check whether all digits appeared in base cells can be filled in target empty cells.
 									var allDigitsCanBeFilledInTargetEmptyCells = true;
 									foreach (var digit in baseCellsDigitsMask)
 									{
-										if ((targetCells & CandidatesMap[digit]).Count != 0)
+										if (!(targetCells & CandidatesMap[digit]))
 										{
 											allDigitsCanBeFilledInTargetEmptyCells = false;
 											break;
 										}
 									}
 									if (!allDigitsCanBeFilledInTargetEmptyCells)
+									{
+										continue;
+									}
+
+									// Check whether generalized target cells (non-empty) don't contain any possible digits appeared in base cells.
+									var targetUncoveredCellsContainDigitsAppearedInBaseCells = false;
+									foreach (var cell in generializedTargetCells - EmptyCells)
+									{
+										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+										{
+											targetUncoveredCellsContainDigitsAppearedInBaseCells = true;
+											break;
+										}
+									}
+									if (targetUncoveredCellsContainDigitsAppearedInBaseCells)
 									{
 										continue;
 									}

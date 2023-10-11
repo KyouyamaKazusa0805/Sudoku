@@ -12675,7 +12675,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.NormalExocetStep">
+        <member name="T:Sudoku.Analytics.Steps.ExocetStep">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -12687,7 +12687,7 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">Indicates the target cells used.</param>
             <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -12699,7 +12699,7 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">Indicates the target cells used.</param>
             <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Delta">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Delta">
             <summary>
             <para>Indicates the delta value of the pattern.</para>
             <para>
@@ -12727,28 +12727,28 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.DigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.DigitsMask">
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.BaseCells">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.BaseCells">
             <summary>
             The generated property declaration for parameter <c>baseCells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.TargetCells">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.TargetCells">
             <summary>
             The generated property declaration for parameter <c>targetCells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.CrosslineCells">
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.CrosslineCells">
             <summary>
             The generated property declaration for parameter <c>crosslineCells</c>.
             </summary>
