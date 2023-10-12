@@ -157,9 +157,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Other values (like 3) hold invalid cases we may not consider.
 									var delta = targetCells.Count - baseCells.Count;
 
-									// Today we should only consider the cases on delta == 0.
-									// Note: the following code only handles on delta == 0. I'll adjust the code later.
-									if (delta != 0)
+									// Note: Today we should only consider the cases on delta <= 0.
+									// I'll adjust the code later for supporting on delta > 0.
+									if (delta > 0)
+									{
+										continue;
+									}
+
+									// Note: Today I'll disable the case that both target cells are located in cross-line cells.
+									// I'll adjust the code later for supporting on delta == -2.
+									if (delta == -2)
 									{
 										continue;
 									}
@@ -199,13 +206,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// If so, they will be endo-target cells.
 									// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
 									var crossline = housesCells - chuteCells;
-									var endoTargetCells = CellMap.Empty;
 									var crosslineContainsDigitsAppearedInBaseCells = false;
 									foreach (var cell in crossline)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
-											endoTargetCells.Add(cell);
+											crosslineContainsDigitsAppearedInBaseCells = true;
+											break;
 										}
 									}
 									if (crosslineContainsDigitsAppearedInBaseCells)
@@ -213,36 +220,80 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// If the number of endo-target cells plus exo-target cells (i.e. target cells) isn't equal
-									// to the number of base cells, the exocet won't be formed.
-									if (endoTargetCells.Count + targetCells.Count != baseCells.Count)
+									// Try to fetch all possible endo-target cells if worth.
+									var endoTargetCells = CellMap.Empty;
+									if (delta != 0)
 									{
-										continue;
-									}
-
-									// Check for maximum times can be appeared in cross-line cells.
-									var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-									foreach (var digit in baseCellsDigitsMask)
-									{
-										var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
-										if (mostTimes != size - 1)
+										// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
+										foreach (var cell in crossline)
 										{
-											allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-											break;
+											if (grid.GetState(cell) != CellState.Empty)
+											{
+												continue;
+											}
+
+											// Endo-target cells must contain at least one digit appeared in base cells.
+											if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
+											{
+												continue;
+											}
+
+											// Check if the current cell is filled with the digit not appeared in base cells,
+											// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
+											// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+											// If greater (times > size - 1), an exocet cannot be formed;
+											// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+											foreach (var digit in baseCellsDigitsMask)
+											{
+												var mostTimes = MostTimesOf(digit, housesMask, chuteCells + cell);
+												if (mostTimes != size - 1)
+												{
+													allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+													break;
+												}
+											}
+											if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+											{
+												// All digits should strictly appear (size - 1) times at most in cross-line cells.
+												continue;
+											}
+
+											endoTargetCells.Add(cell);
+										}
+
+										if (!endoTargetCells)
+										{
+											// No possible endo-target cells are found.
+											continue;
 										}
 									}
-									if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+									else
 									{
-										// All digits should strictly appear (size - 1) times at most in cross-line cells.
-										// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-										// If greater (times > size - 1), an exocet cannot be formed;
-										// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-										continue;
+										// Check for maximum times can be appeared in cross-line cells.
+										var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+										foreach (var digit in baseCellsDigitsMask)
+										{
+											var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
+											if (mostTimes != size - 1)
+											{
+												allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+												break;
+											}
+										}
+										if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+										{
+											// All digits should strictly appear (size - 1) times at most in cross-line cells.
+											// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+											// If greater (times > size - 1), an exocet cannot be formed;
+											// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+											continue;
+										}
 									}
 
 									// An exocet will be formed.
 									var conclusions = new List<Conclusion>();
-									foreach (var cell in targetCells)
+									foreach (var cell in targetCells | endoTargetCells)
 									{
 										foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 										{
@@ -256,37 +307,97 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									var gridCopied = grid;
-									var step = new ExocetStep(
-										[.. conclusions],
-										[
-											[
-												.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-												.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-												.. from cell in endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-												.. from cell in crossline - endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-												..
-												from cell in baseCells
-												from digit in gridCopied.GetCandidates(cell)
-												select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-												..
-												from cell in crossline
-												where gridCopied.GetState(cell) == CellState.Empty
-												from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
-												select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
-											]
-										],
-										context.PredefinedOptions,
-										baseCellsDigitsMask,
-										in baseCells,
-										in targetCells,
-										in crossline
-									);
-									if (context.OnlyFindOne)
+									switch (delta)
 									{
-										return step;
-									}
+										case -1:
+										{
+											foreach (var endoTargetCell in endoTargetCells)
+											{
+												var step = new ExocetStep(
+													[.. conclusions],
+													[
+														[
+															..
+															from cell in baseCells
+															select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+															..
+															from cell in targetCells
+															select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+															..
+															from cell in endoTargetCells
+															select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+															..
+															from cell in crossline - endoTargetCells
+															select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+															..
+															from cell in baseCells
+															from digit in gridCopied.GetCandidates(cell)
+															select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+															..
+															from cell in crossline - endoTargetCells
+															where gridCopied.GetState(cell) == CellState.Empty
+															from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
+															select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
+														]
+													],
+													context.PredefinedOptions,
+													baseCellsDigitsMask,
+													in baseCells,
+													in targetCells,
+													[endoTargetCell],
+													in crossline
+												);
+												if (context.OnlyFindOne)
+												{
+													return step;
+												}
 
-									context.Accumulator.Add(step);
+												context.Accumulator.Add(step);
+											}
+
+											break;
+										}
+										case 0:
+										{
+											var step = new ExocetStep(
+												[.. conclusions],
+												[
+													[
+														..
+														from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+														..
+														from cell in targetCells
+														select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+														..
+														from cell in crossline
+														select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+														..
+														from cell in baseCells
+														from digit in gridCopied.GetCandidates(cell)
+														select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+														..
+														from cell in crossline
+														where gridCopied.GetState(cell) == CellState.Empty
+														from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
+														select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
+													]
+												],
+												context.PredefinedOptions,
+												baseCellsDigitsMask,
+												in baseCells,
+												in targetCells,
+												[],
+												in crossline
+											);
+											if (context.OnlyFindOne)
+											{
+												return step;
+											}
+
+											context.Accumulator.Add(step);
+											break;
+										}
+									}
 								}
 							}
 						}

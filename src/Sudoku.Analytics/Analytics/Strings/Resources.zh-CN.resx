@@ -1529,11 +1529,11 @@
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocet" xml:space="preserve">
-    <value>初级飞鱼导弹</value>
+    <value>初级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SeniorExocet" xml:space="preserve">
-    <value>高级飞鱼导弹</value>
+    <value>高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="DominoLoop" xml:space="preserve">
@@ -2385,7 +2385,7 @@
     <value>对交空矩形</value>
   </data>
   <data name="TechniqueGroup_Exocet" xml:space="preserve">
-    <value>飞鱼导弹</value>
+    <value>飞鱼</value>
   </data>
   <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>扩展矩形</value>
@@ -2460,7 +2460,7 @@
     <value>Wing</value>
   </data>
   <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
-    <value>飞鱼导弹</value>
+    <value>飞鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
 </root>

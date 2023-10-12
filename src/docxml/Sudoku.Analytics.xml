@@ -12703,9 +12703,10 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates the mask that holds a list of digits used in the pattern.</param>
             <param name="baseCells">Indicates the base cells used.</param>
             <param name="targetCells">Indicates the target cells used.</param>
+            <param name="endoTargetCells">Indicates the endo-target cells used.</param>
             <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -12715,6 +12716,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates the mask that holds a list of digits used in the pattern.</param>
             <param name="baseCells">Indicates the base cells used.</param>
             <param name="targetCells">Indicates the target cells used.</param>
+            <param name="endoTargetCells">Indicates the endo-target cells used.</param>
             <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.Delta">
@@ -12764,6 +12766,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.TargetCells">
             <summary>
             The generated property declaration for parameter <c>targetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetStep.EndoTargetCells">
+            <summary>
+            The generated property declaration for parameter <c>endoTargetCells</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.CrosslineCells">

@@ -15,6 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates the mask that holds a list of digits used in the pattern.</param>
 /// <param name="baseCells">Indicates the base cells used.</param>
 /// <param name="targetCells">Indicates the target cells used.</param>
+/// <param name="endoTargetCells">Indicates the endo-target cells used.</param>
 /// <param name="crosslineCells">Indicates the cross-line cells used.</param>
 public partial class ExocetStep(
 	Conclusion[] conclusions,
@@ -23,6 +24,7 @@ public partial class ExocetStep(
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap baseCells,
 	[DataMember] scoped ref readonly CellMap targetCells,
+	[DataMember] scoped ref readonly CellMap endoTargetCells,
 	[DataMember] scoped ref readonly CellMap crosslineCells
 ) : Step(conclusions, views, options)
 {
