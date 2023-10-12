@@ -15,7 +15,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>Junior Exocet</b> step searcher.
+/// Provides with an <b>Exocet</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Junior Exocet</item>
