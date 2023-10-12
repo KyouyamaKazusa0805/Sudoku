@@ -122,6 +122,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * DL (Domino Loop)
       * Exocets
         * JE (Junior Exocet)
+        * SE (Senior Exocet)
       * MSLS (Multi-Sector Locked Sets)
     * Negative Rank Logics
       * Guardian
