@@ -81,7 +81,7 @@ public abstract partial class ChainingStep(
 			string prefixWithoutLevel()
 				=> this switch
 				{
-					ForcingChainStep => GetString("NormalChains")!,
+					ForcingChainStep or BidirectionalCycleStep => GetString("NormalChains")!,
 					CellForcingChainsStep { IsDynamic: false } => GetString("CellChains")!,
 					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("CellChains")!}",
 					RegionForcingChainsStep { IsDynamic: false } => GetString("HouseChains")!,

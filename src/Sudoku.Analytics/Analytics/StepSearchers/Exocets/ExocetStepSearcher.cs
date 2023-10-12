@@ -3,6 +3,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Runtime.MaskServices;
@@ -155,19 +156,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//
 									// Other values (like 3) hold invalid cases we may not consider.
 									var delta = targetCells.Count - baseCells.Count;
-									if (delta is not (>= -2 and <= 2))
-									{
-										continue;
-									}
 
-#if true || DEBUG
 									// Today we should only consider the cases on delta == 0.
 									// Note: the following code only handles on delta == 0. I'll adjust the code later.
 									if (delta != 0)
 									{
 										continue;
 									}
-#endif
 
 									// Check whether all digits appeared in base cells can be filled in target empty cells.
 									var allDigitsCanBeFilledInTargetEmptyCells = true;
@@ -184,7 +179,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Check whether generalized target cells (non-empty) don't contain any possible digits appeared in base cells.
+									// Check whether generalized target cells (non-empty) don't contain
+									// any possible digits appeared in base cells.
 									var targetUncoveredCellsContainDigitsAppearedInBaseCells = false;
 									foreach (var cell in generializedTargetCells - EmptyCells)
 									{
@@ -259,25 +255,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									var candidateOffsets = new List<CandidateViewNode>();
-									foreach (var cell in baseCells)
-									{
-										foreach (var digit in grid.GetCandidates(cell))
-										{
-											candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-										}
-									}
-									foreach (var cell in crossline)
-									{
-										if (grid.GetState(cell) == CellState.Empty)
-										{
-											foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
-											{
-												candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
-											}
-										}
-									}
-
+									var gridCopied = grid;
 									var step = new ExocetStep(
 										[.. conclusions],
 										[
@@ -286,7 +264,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 												.. from cell in endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 												.. from cell in crossline - endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-												.. candidateOffsets
+												..
+												from cell in baseCells
+												from digit in gridCopied.GetCandidates(cell)
+												select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+												..
+												from cell in crossline
+												where gridCopied.GetState(cell) == CellState.Empty
+												from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
+												select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
 											]
 										],
 										context.PredefinedOptions,
