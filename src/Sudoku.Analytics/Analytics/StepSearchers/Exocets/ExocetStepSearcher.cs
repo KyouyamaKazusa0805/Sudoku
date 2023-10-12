@@ -199,18 +199,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Now check for cross-line cells.
-									var crossline = housesEmptyCells - chuteCells;
-
-									// Check whether cross-line cells contain the value digits appeared in base cells.
-									// Note: we will miss for Senior Exocets. The code will be adjusted later.
+									// Check whether cross-line non-empty cells contains digits appeared in base cells.
+									// If so, they will be endo-target cells.
+									// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
+									var crossline = housesCells - chuteCells;
+									var endoTargetCells = CellMap.Empty;
 									var crosslineContainsDigitsAppearedInBaseCells = false;
 									foreach (var cell in crossline)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
-											crosslineContainsDigitsAppearedInBaseCells = true;
-											break;
+											endoTargetCells.Add(cell);
 										}
 									}
 									if (crosslineContainsDigitsAppearedInBaseCells)
@@ -218,12 +217,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Check whether cross-line non-empty cells contains digits appeared in base cells.
-									// If so, they will be endo-target cells.
-									// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-#if false
-
-#endif
+									// If the number of endo-target cells plus exo-target cells (i.e. target cells) isn't equal
+									// to the number of base cells, the exocet won't be formed.
+									if (endoTargetCells.Count + targetCells.Count != baseCells.Count)
+									{
+										continue;
+									}
 
 									// Check for maximum times can be appeared in cross-line cells.
 									var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
@@ -285,7 +284,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											[
 												.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 												.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-												.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+												.. from cell in endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+												.. from cell in crossline - endoTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 												.. candidateOffsets
 											]
 										],
