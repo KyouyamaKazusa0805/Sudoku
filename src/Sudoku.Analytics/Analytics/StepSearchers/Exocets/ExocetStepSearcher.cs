@@ -128,7 +128,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									var baseCellsDigitsMask = grid[in baseCells];
-									if (PopCount((uint)baseCellsDigitsMask) > baseCells.Count + 2)
+									if (PopCount((uint)baseCellsDigitsMask) > baseCells.Count + 3)
 									{
 										// The base cells hold too much digits to be checked.
 										continue;
@@ -217,6 +217,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									{
 										continue;
 									}
+
+									// Check whether cross-line non-empty cells contains digits appeared in base cells.
+									// If so, they will be endo-target cells.
+									// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
+#if false
+
+#endif
 
 									// Check for maximum times can be appeared in cross-line cells.
 									var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
