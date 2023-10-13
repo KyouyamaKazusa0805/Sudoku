@@ -6889,6 +6889,45 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>values</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Linq.HouseMaskEnumerable">
+            <summary>
+            Represents a list of methods for iteration on a <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Linq.HouseMaskEnumerable.Select``1(System.Int32,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each bit from a specified mask, converting it into a (an) <typeparamref name="T"/> instance,
+            with specified method to be called.
+            </summary>
+            <typeparam name="T">The target type of values for each bit converted.</typeparam>
+            <param name="this">A mask instance.</param>
+            <param name="selector">The selector method to be converted.</param>
+            <returns>A list of converted result, encapsulated by a <see cref="T:System.ReadOnlySpan`1"/> type.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.HouseMaskEnumerable.SelectMany``1(System.Int32,System.Func{System.Int32,Sudoku.Concepts.CellMap},System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            Projects each <see cref="T:System.Int32"/> of a <see cref="T:System.Int32"/> to a <see cref="T:Sudoku.Concepts.CellMap"/>,
+            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="source">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:System.Int32"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> whose elements are the result of invoking the one-to-many transform function
+            <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequences
+            and their corresponding source element to a result element.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.HouseMaskEnumerable.Where(System.Int32,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters bits via the specified condition.
+            </summary>
+            <param name="this">The mask type of bits.</param>
+            <param name="predicate">The condition that filters bits, removing bits not satisfying the condition.</param>
+            <returns>A new <see cref="T:System.Int32"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Linq.ListEnumerable">
             <summary>
             Represents a list of LINQ methods to be used for type <see cref="T:System.Collections.Generic.List`1"/>.

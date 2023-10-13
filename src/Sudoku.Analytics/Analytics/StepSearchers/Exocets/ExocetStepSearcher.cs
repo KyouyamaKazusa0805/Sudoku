@@ -267,7 +267,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											if (CheckBaseJeOrSe(
 												ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
-												baseCellsDigitsMask
+												baseCellsDigitsMask, housesMask
 											) is { } baseTypeStep)
 											{
 												return baseTypeStep;
@@ -315,21 +315,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 
 										if (CheckBaseJeOrSe(
-											ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask
+											ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
+											housesMask
 										) is { } baseTypeStep)
 										{
 											return baseTypeStep;
 										}
 
 										if (CheckMirror(
-											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
+											housesMask
 										) is { } mirrorTypeStep)
 										{
 											return mirrorTypeStep;
 										}
 
 										if (CheckSingleMirror(
-											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
+											housesMask
 										) is { } singleMirrorTypeStep)
 										{
 											return singleMirrorTypeStep;
@@ -337,7 +340,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 										if (CheckIncompatiblePair(
 											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta,
-											out var inferredTargetPairMask
+											out var inferredTargetPairMask, housesMask
 										) is { } incompatiblePairTypeStep)
 										{
 											return incompatiblePairTypeStep;
@@ -345,7 +348,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 										if (CheckTargetPair(
 											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-											inferredTargetPairMask, delta
+											inferredTargetPairMask, delta, housesMask
 										) is { } targetPairTypeStep)
 										{
 											return targetPairTypeStep;
@@ -353,7 +356,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 										if (CheckGeneralizedFish(
 											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-											inferredTargetPairMask, delta, isRow
+											inferredTargetPairMask, delta, isRow, housesMask
 										) is { } generalizedFishTypeStep)
 										{
 											return generalizedFishTypeStep;
@@ -378,7 +381,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap targetCells,
 		Cell endoTargetCell,
 		scoped ref readonly CellMap crossline,
-		Mask baseCellsDigitsMask
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask
 	)
 	{
 		var conclusions = new List<Conclusion>();
@@ -405,7 +409,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. endoTargetCell != -1 ? [new CellViewNode(WellKnownColorIdentifier.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
-					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from digit in grid.GetCandidates(cell)
@@ -414,7 +418,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from cell in crossline - endoTargetCell
 					where grid.GetState(cell) == CellState.Empty
 					from digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
@@ -441,7 +446,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		int chuteIndex
+		int chuteIndex,
+		HouseMask housesMask
 	)
 	{
 		var conclusions = new List<Conclusion>();
@@ -504,7 +510,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
@@ -517,7 +523,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
@@ -545,7 +552,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		int chuteIndex
+		int chuteIndex,
+		HouseMask housesMask
 	)
 	{
 		// Note: Here we suppose the target cells only contains 2 cells.
@@ -616,7 +624,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					.. from cell in singleMirrors select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
 					..
 					from cell in baseCells
@@ -626,7 +634,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
@@ -654,7 +663,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		int delta,
-		out Mask inferredTargetPairMask
+		out Mask inferredTargetPairMask,
+		HouseMask housesMask
 	)
 	{
 		inferredTargetPairMask = 0;
@@ -817,7 +827,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					.. from cell in lastSixteenCells - EmptyCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
 					..
 					from cell in baseCells
@@ -827,7 +837,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
@@ -854,7 +865,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		Mask inferredTargetPairMask,
-		int delta
+		int delta,
+		HouseMask housesMask
 	)
 	{
 		if (inferredTargetPairMask == 0)
@@ -912,7 +924,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
@@ -921,7 +933,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
@@ -949,7 +962,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		Mask inferredTargetPairMask,
 		int delta,
-		bool isRow
+		bool isRow,
+		HouseMask housesMask
 	)
 	{
 		if (inferredTargetPairMask == 0)
@@ -1000,7 +1014,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					//.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
@@ -1016,7 +1030,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					let isSwordfishDigit = (inferredTargetPairMask >> d & 1) != 0
 					let colorIdentifier = isSwordfishDigit ? WellKnownColorIdentifier.Auxiliary3 : WellKnownColorIdentifier.Auxiliary2
-					select new CandidateViewNode(colorIdentifier, cell * 9 + d)
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+					.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
