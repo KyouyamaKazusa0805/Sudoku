@@ -343,9 +343,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										if (CheckGeneralizedFish(
 											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 											inferredTargetPairMask, delta, isRow
-										) is { } generalizedSwordfishTypeStep)
+										) is { } generalizedFishTypeStep)
 										{
-											return generalizedSwordfishTypeStep;
+											return generalizedFishTypeStep;
 										}
 									}
 								}
