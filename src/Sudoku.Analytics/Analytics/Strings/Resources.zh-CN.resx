@@ -2032,8 +2032,8 @@
   <data name="ExtraDifficultyCaseNames_FishShape" xml:space="preserve">
     <value>鱼的形状</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_GeneralizedSwordfish" xml:space="preserve">
-    <value>广义三阶鱼</value>
+  <data name="ExtraDifficultyCaseNames_GeneralizedFish" xml:space="preserve">
+    <value>鱼</value>
   </data>
   <data name="ExtraDifficultyCaseNames_Guardian" xml:space="preserve">
     <value>守护者逻辑</value>
@@ -2482,8 +2482,8 @@
     <value>高级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="JuniorExocetGeneralizedSwordfish" xml:space="preserve">
-    <value>初级飞鱼・三阶鱼</value>
+  <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
+    <value>初级飞鱼・鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetIncompatiblePair" xml:space="preserve">

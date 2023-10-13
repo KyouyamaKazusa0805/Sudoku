@@ -1267,11 +1267,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generalized swordfish.
+        ///   Looks up a localized string similar to Fish.
         /// </summary>
-        public static string ExtraDifficultyCaseNames_GeneralizedSwordfish {
+        public static string ExtraDifficultyCaseNames_GeneralizedFish {
             get {
-                return ResourceManager.GetString("ExtraDifficultyCaseNames_GeneralizedSwordfish", resourceCulture);
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_GeneralizedFish", resourceCulture);
             }
         }
         
@@ -2086,11 +2086,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Junior Exocet (Swordfish).
+        ///   Looks up a localized string similar to Junior Exocet (Fish).
         /// </summary>
-        public static string JuniorExocetGeneralizedSwordfish {
+        public static string JuniorExocetGeneralizedFish {
             get {
-                return ResourceManager.GetString("JuniorExocetGeneralizedSwordfish", resourceCulture);
+                return ResourceManager.GetString("JuniorExocetGeneralizedFish", resourceCulture);
             }
         }
         

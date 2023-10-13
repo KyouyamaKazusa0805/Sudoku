@@ -2867,11 +2867,11 @@ public enum Technique
 	JuniorExocetTargetPair,
 
 	/// <summary>
-	/// Indicates junior exocet generalized swordfish.
+	/// Indicates junior exocet generalized fish.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	JuniorExocetGeneralizedSwordfish,
+	JuniorExocetGeneralizedFish,
 
 	/// <summary>
 	/// Indicates senior exocet.

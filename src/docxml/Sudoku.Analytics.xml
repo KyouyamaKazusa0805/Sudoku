@@ -2761,9 +2761,9 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet target pair.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetGeneralizedSwordfish">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetGeneralizedFish">
             <summary>
-            Indicates junior exocet generalized swordfish.
+            Indicates junior exocet generalized fish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
@@ -4282,9 +4282,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the target pair eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.GeneralizedSwordfish">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.GeneralizedFish">
             <summary>
-            Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
+            Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
@@ -16096,9 +16096,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Fish shape.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_GeneralizedSwordfish">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_GeneralizedFish">
             <summary>
-              Looks up a localized string similar to Generalized swordfish.
+              Looks up a localized string similar to Fish.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Guardian">
@@ -16551,9 +16551,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Junior Exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetGeneralizedSwordfish">
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetGeneralizedFish">
             <summary>
-              Looks up a localized string similar to Junior Exocet (Swordfish).
+              Looks up a localized string similar to Junior Exocet (Fish).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetIncompatiblePair">

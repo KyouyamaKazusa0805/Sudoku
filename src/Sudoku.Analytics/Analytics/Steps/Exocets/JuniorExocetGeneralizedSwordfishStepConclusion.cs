@@ -30,8 +30,8 @@ public sealed partial class JuniorExocetGeneralizedSwordfishStepConclusion(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.JuniorExocetGeneralizedSwordfish;
+	public override Technique Code => Technique.JuniorExocetGeneralizedFish;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.GeneralizedSwordfish, .3M)];
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.GeneralizedFish, .3M)];
 }

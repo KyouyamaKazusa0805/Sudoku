@@ -111,9 +111,9 @@ public static class ExtraDifficultyCaseNames
 	public const string TargetPair = nameof(TargetPair);
 
 	/// <summary>
-	/// Indicates the kind is the generalized swordfish eliminations. This field is only used for exocets.
+	/// Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
 	/// </summary>
-	public const string GeneralizedSwordfish = nameof(GeneralizedSwordfish);
+	public const string GeneralizedFish = nameof(GeneralizedFish);
 
 	/// <summary>
 	/// Indicates the kind is the extra house. This field is only used for complex senior exocets.
