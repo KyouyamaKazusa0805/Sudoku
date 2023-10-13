@@ -325,10 +325,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 
 										if (CheckIncompatiblePair(
-											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta,
+											out var inferredTargetPairMask
 										) is { } incompatiblePairTypeStep)
 										{
 											return incompatiblePairTypeStep;
+										}
+
+										if (CheckTargetPair(
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+											inferredTargetPairMask, delta
+										) is { } targetPairTypeStep)
+										{
+											return targetPairTypeStep;
 										}
 									}
 								}
@@ -625,9 +634,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap targetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
-		int delta
+		int delta,
+		out Mask inferredTargetPairMask
 	)
 	{
+		inferredTargetPairMask = 0;
+
 		// This rule can only apply for the case on such conditions:
 		//   1) The number of base cells must be 2.
 		//   2) The delta value must be 0 (i.e. a standard JE).
@@ -739,6 +751,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Now check for eliminations.
 		var incompatibleCandidates = CandidateMap.Empty;
 		var conclusions = new List<Conclusion>();
+		var targetCellsDigitsMask = grid[in targetCells];
 		foreach (var (elimCell, theOtherCell) in ((base1, base2), (base2, base1)))
 		{
 			var allDigits = grid.GetCandidates(theOtherCell);
@@ -753,9 +766,30 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				incompatibleCandidates.Add(elimCell * 9 + elimDigit);
 			}
 		}
-		if (conclusions.Count == 0/* || !incompatibleCandidates*/)
+		if (conclusions.Count == 0)
 		{
 			return null;
+		}
+
+		// Temporarily remove the eliminated digits, and check whether the last digits in target cells form a pair.
+		// Because we know a JE pattern will lead to a conclusion:
+		//
+		//   "The target cells should be a pair of different digits if a JE formed."
+		//
+		// we can conclude that the target cells will form a distributed disjointed pair (from concept "Distributed Disjointed Subset", DDS).
+		// Then we can remove all digits from the cells that both target cells can see.
+		var baseCellsLastDigitsMask = baseCellsDigitsMask;
+		foreach (var digitCanBeRemoved in targetCellsDigitsMask)
+		{
+			if (baseCells == [.. from conclusion in conclusions where conclusion.Digit == digitCanBeRemoved select conclusion.Cell])
+			{
+				baseCellsLastDigitsMask &= (Mask)~(1 << digitCanBeRemoved);
+			}
+		}
+		if (PopCount((uint)baseCellsLastDigitsMask) == 2)
+		{
+			// The JE has formed a distribution disjointed pair.
+			inferredTargetPairMask = baseCellsLastDigitsMask;
 		}
 
 		var step = new JuniorExocetIncompatiblePairStep(
@@ -780,6 +814,100 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			context.PredefinedOptions,
 			baseCellsDigitsMask,
 			in incompatibleCandidates,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static JuniorExocetTargetPairStep? CheckTargetPair(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		Mask inferredTargetPairMask,
+		int delta
+	)
+	{
+		if (inferredTargetPairMask == 0)
+		{
+			return null;
+		}
+
+		if (delta != 0)
+		{
+			return null;
+		}
+
+		if (baseCells.Count != 2)
+		{
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in baseCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetPairMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		foreach (var cell in targetCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetPairMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		foreach (var cell in targetCells.PeerIntersection)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & inferredTargetPairMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		foreach (var cell in baseCells.PeerIntersection)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & inferredTargetPairMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new JuniorExocetTargetPairStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			inferredTargetPairMask,
 			in baseCells,
 			in targetCells,
 			in crossline

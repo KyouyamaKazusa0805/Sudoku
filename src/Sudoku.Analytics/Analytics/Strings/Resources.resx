@@ -2346,4 +2346,7 @@
   <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
     <value>Junior Exocet (Incompatible Pair)</value>
   </data>
+  <data name="JuniorExocetTargetPair" xml:space="preserve">
+    <value>Junior Exocet (Target Pair)</value>
+  </data>
 </root>

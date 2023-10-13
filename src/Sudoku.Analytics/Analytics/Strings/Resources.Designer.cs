@@ -2113,6 +2113,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Target Pair).
+        /// </summary>
+        public static string JuniorExocetTargetPair {
+            get {
+                return ResourceManager.GetString("JuniorExocetTargetPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to in.
         /// </summary>
         public static string KeywordIn {

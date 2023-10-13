@@ -2486,4 +2486,8 @@
     <value>初级飞鱼・同宫定理</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="JuniorExocetTargetPair" xml:space="preserve">
+    <value>初级飞鱼・T 格数对</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -2860,6 +2860,13 @@ public enum Technique
 	JuniorExocetIncompatiblePair,
 
 	/// <summary>
+	/// Indicates junior exocet target pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetTargetPair,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
