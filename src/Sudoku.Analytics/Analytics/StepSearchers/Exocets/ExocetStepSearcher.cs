@@ -929,7 +929,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static JuniorExocetGeneralizedSwordfishStepConclusion? CheckGeneralizedFish(
+	private static JuniorExocetGeneralizedFishStepConclusion? CheckGeneralizedFish(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -983,7 +983,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new JuniorExocetGeneralizedSwordfishStepConclusion(
+		var step = new JuniorExocetGeneralizedFishStepConclusion(
 			[.. conclusions],
 			[
 				[

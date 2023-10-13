@@ -8,7 +8,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
+/// Provides with a step that is a <b>Junior Exocet (Fish)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="baseCells"><inheritdoc/></param>
 /// <param name="targetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
-public sealed partial class JuniorExocetGeneralizedSwordfishStepConclusion(
+public sealed partial class JuniorExocetGeneralizedFishStepConclusion(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
