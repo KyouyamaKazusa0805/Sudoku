@@ -2086,6 +2086,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Swordfish).
+        /// </summary>
+        public static string JuniorExocetGeneralizedSwordfish {
+            get {
+                return ResourceManager.GetString("JuniorExocetGeneralizedSwordfish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Junior Exocet (Incompatible Pair).
         /// </summary>
         public static string JuniorExocetIncompatiblePair {

@@ -2343,6 +2343,9 @@
   <data name="SeniorExocetSingleMirror" xml:space="preserve">
     <value>Senior Exocet (Adjacent Target)</value>
   </data>
+  <data name="JuniorExocetGeneralizedSwordfish" xml:space="preserve">
+    <value>Junior Exocet (Swordfish)</value>
+  </data>
   <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
     <value>Junior Exocet (Incompatible Pair)</value>
   </data>

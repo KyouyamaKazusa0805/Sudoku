@@ -339,6 +339,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return targetPairTypeStep;
 										}
+
+										if (CheckGeneralizedSwordfish(
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+											inferredTargetPairMask, delta, isRow
+										) is { } generalizedSwordfishTypeStep)
+										{
+											return generalizedSwordfishTypeStep;
+										}
 									}
 								}
 							}
@@ -903,6 +911,101 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			inferredTargetPairMask,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static JuniorExocetGeneralizedSwordfishStepConclusion? CheckGeneralizedSwordfish(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		Mask inferredTargetPairMask,
+		int delta,
+		bool isRow
+	)
+	{
+		if (inferredTargetPairMask == 0)
+		{
+			return null;
+		}
+
+		if (delta != 0)
+		{
+			return null;
+		}
+
+		if (baseCells.Count != 2)
+		{
+			return null;
+		}
+
+		var inferredTargetPairMaskDigit1 = TrailingZeroCount(inferredTargetPairMask);
+		var inferredTargetPairMaskDigit2 = inferredTargetPairMask.GetNextSet(inferredTargetPairMaskDigit1 + 1);
+
+		var conclusions = new List<Conclusion>();
+		foreach (var line in isRow ? crossline.ColumnMask << 18 : crossline.RowMask << 9)
+		{
+			var crosslineCellsIntersectedWithLine = HousesMap[line] & crossline & (CandidatesMap[inferredTargetPairMaskDigit1] | CandidatesMap[inferredTargetPairMaskDigit2]);
+			if (!crosslineCellsIntersectedWithLine)
+			{
+				// The current line does not contain any eliminations because all intersected cells in cross-line are not empty.
+				continue;
+			}
+
+			var elimCells = (HousesMap[line] & EmptyCells) - crossline;
+			foreach (var cell in elimCells)
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & inferredTargetPairMask))
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new JuniorExocetGeneralizedSwordfishStepConclusion(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in targetCells
+					from d in grid.GetCandidates(cell)
+					where (inferredTargetPairMask >> d & 1) != 0
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					let isSwordfishDigit = (inferredTargetPairMask >> d & 1) != 0
+					let colorIdentifier = isSwordfishDigit ? WellKnownColorIdentifier.Auxiliary3 : WellKnownColorIdentifier.Auxiliary2
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d)
 				]
 			],
 			context.PredefinedOptions,

@@ -2482,6 +2482,10 @@
     <value>高级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="JuniorExocetGeneralizedSwordfish" xml:space="preserve">
+    <value>初级飞鱼・三阶鱼</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
     <value>初级飞鱼・同宫定理</value>
     <comment>Technique Name</comment>

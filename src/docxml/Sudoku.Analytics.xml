@@ -2761,6 +2761,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet target pair.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetGeneralizedSwordfish">
+            <summary>
+            Indicates junior exocet generalized swordfish.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -12912,6 +12917,43 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>crosslineCells</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetGeneralizedSwordfishStepConclusion">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="targetPairMask">Indicates the mask that holds the pair of digits that target cells forming a naked pair of such digits.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetGeneralizedSwordfishStepConclusion.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="targetPairMask">Indicates the mask that holds the pair of digits that target cells forming a naked pair of such digits.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedSwordfishStepConclusion.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedSwordfishStepConclusion.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedSwordfishStepConclusion.TargetPairMask">
+            <summary>
+            The generated property declaration for parameter <c>targetPairMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
@@ -16507,6 +16549,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocet">
             <summary>
               Looks up a localized string similar to Junior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetGeneralizedSwordfish">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Swordfish).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetIncompatiblePair">
