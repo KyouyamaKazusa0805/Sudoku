@@ -158,16 +158,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Other values (like 3) hold invalid cases we may not consider.
 									var delta = targetCells.Count - baseCells.Count;
 
-									// Note: Today we should only consider the cases on delta <= 0.
+									// Note: Today we should only consider the cases on delta <= 0 and not -2.
 									// I'll adjust the code later for supporting on delta > 0.
-									if (delta > 0)
-									{
-										continue;
-									}
-
-									// Note: Today I'll disable the case that both target cells are located in cross-line cells.
-									// I'll adjust the code later for supporting on delta == -2.
-									if (delta == -2)
+									if (delta is not (0 or -1))
 									{
 										continue;
 									}
@@ -203,27 +196,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Check whether cross-line non-empty cells contains digits appeared in base cells.
-									// If so, they will be endo-target cells.
-									// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-									var crossline = housesCells - chuteCells;
-									var crosslineContainsDigitsAppearedInBaseCells = false;
-									foreach (var cell in crossline)
-									{
-										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
-										{
-											crosslineContainsDigitsAppearedInBaseCells = true;
-											break;
-										}
-									}
-									if (crosslineContainsDigitsAppearedInBaseCells)
-									{
-										continue;
-									}
-
 									// Try to fetch all possible endo-target cells if worth.
 									if (delta != 0)
 									{
+										// Check whether cross-line non-empty cells contains digits appeared in base cells.
+										// If so, they will be endo-target cells.
+										// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
+										var crossline = housesCells - chuteCells;
+										var crosslineContainsDigitsAppearedInBaseCells = false;
+										foreach (var cell in crossline)
+										{
+											if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+											{
+												crosslineContainsDigitsAppearedInBaseCells = true;
+												break;
+											}
+										}
+										if (crosslineContainsDigitsAppearedInBaseCells)
+										{
+											continue;
+										}
+
 										var endoTargetCells = CellMap.Empty;
 
 										// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
@@ -283,6 +276,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 									else
 									{
+										// Check whether cross-line non-empty cells contains digits appeared in base cells.
+										// If so, they will be endo-target cells.
+										// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
+										var crossline = housesCells - chuteCells;
+										var crosslineContainsDigitsAppearedInBaseCells = false;
+										foreach (var cell in crossline)
+										{
+											if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+											{
+												crosslineContainsDigitsAppearedInBaseCells = true;
+												break;
+											}
+										}
+										if (crosslineContainsDigitsAppearedInBaseCells)
+										{
+											continue;
+										}
+
 										// Check for maximum times can be appeared in cross-line cells.
 										var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 										foreach (var digit in baseCellsDigitsMask)
