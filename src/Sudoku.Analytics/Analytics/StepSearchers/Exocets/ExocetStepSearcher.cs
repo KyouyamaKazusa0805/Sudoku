@@ -340,7 +340,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return targetPairTypeStep;
 										}
 
-										if (CheckGeneralizedSwordfish(
+										if (CheckGeneralizedFish(
 											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 											inferredTargetPairMask, delta, isRow
 										) is { } generalizedSwordfishTypeStep)
@@ -929,7 +929,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static JuniorExocetGeneralizedSwordfishStepConclusion? CheckGeneralizedSwordfish(
+	private static JuniorExocetGeneralizedSwordfishStepConclusion? CheckGeneralizedFish(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
