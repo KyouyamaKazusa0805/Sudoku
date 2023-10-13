@@ -2746,6 +2746,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet mirror.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetSingleMirror">
+            <summary>
+            Indicates junior exocet single mirror.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -2754,6 +2759,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetMirror">
             <summary>
             Indicates senior exocet mirror.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetSingleMirror">
+            <summary>
+            Indicates senior exocet single mirror.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
@@ -12768,6 +12778,45 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ExocetSingleMirrorStep">
+            <summary>
+            Provides with a step that is an <b>Exocet (Single Mirror)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExocetSingleMirrorStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is an <b>Exocet (Single Mirror)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetSingleMirrorStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetSingleMirrorStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetSingleMirrorStep.SingleMirrors">
+            <summary>
+            The generated property declaration for parameter <c>singleMirrors</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetStep">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
@@ -16381,6 +16430,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Junior Exocet (Mirror).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetSingleMirror">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Adjacent Target).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.KeywordIn">
             <summary>
               Looks up a localized string similar to in.
@@ -16769,6 +16823,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetMirror">
             <summary>
               Looks up a localized string similar to Senior Exocet (Mirror).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetSingleMirror">
+            <summary>
+              Looks up a localized string similar to Senior Exocet (Adjacent Target).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseFinnedFrankenJellyfish">

@@ -2846,6 +2846,13 @@ public enum Technique
 	JuniorExocetMirror,
 
 	/// <summary>
+	/// Indicates junior exocet single mirror.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetSingleMirror,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -2858,6 +2865,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetMirror,
+
+	/// <summary>
+	/// Indicates senior exocet single mirror.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	SeniorExocetSingleMirror,
 	#endregion
 
 	//

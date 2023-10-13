@@ -2464,11 +2464,19 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="JuniorExocetMirror" xml:space="preserve">
-    <value>初级飞鱼（Mirror 删数）</value>
+    <value>初级飞鱼・Mirror 共轭对</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="JuniorExocetSingleMirror" xml:space="preserve">
+    <value>初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SeniorExocetMirror" xml:space="preserve">
-    <value>高级飞鱼（Mirror 删数）</value>
+    <value>高级飞鱼・Mirror 共轭对</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SeniorExocetSingleMirror" xml:space="preserve">
+    <value>高级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
 </root>

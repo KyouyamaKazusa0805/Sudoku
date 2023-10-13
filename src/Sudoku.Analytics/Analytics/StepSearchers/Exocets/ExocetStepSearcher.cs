@@ -316,6 +316,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return mirrorTypeStep;
 										}
+
+										if (CheckSingleMirror(
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i
+										) is { } singleMirrorTypeStep)
+										{
+											return singleMirrorTypeStep;
+										}
 									}
 								}
 							}
@@ -485,6 +492,115 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[],
 			in crossline,
 			[.. conjugatePairs]
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ExocetSingleMirrorStep? CheckSingleMirror(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex
+	)
+	{
+		// Note: Here we suppose the target cells only contains 2 cells.
+		if (targetCells.Count != 2)
+		{
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+		var singleMirrors = CellMap.Empty;
+		foreach (var targetCell in targetCells)
+		{
+			Unsafe.SkipInit(out CellMap miniline);
+			foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
+			{
+				if (temp.Contains(targetCell))
+				{
+					miniline = temp;
+					break;
+				}
+			}
+
+			if ((miniline - targetCell & EmptyCells) is not [var theOnlyMirrorCell])
+			{
+				// The mirror cells contain not 1 cell, it may not be included in this type.
+				continue;
+			}
+
+			// Try to get the target cell that is not share with a same block with this mirror cell.
+			var theOtherTargetCell = (targetCells - targetCell)[0];
+
+			// Check for the only mirror cell, determining whether the cell contains an arbitrary extra digits.
+			var digitsInMirrorCell = grid.GetCandidates(theOnlyMirrorCell);
+			var elimDigitsFromTheOnlyMirrorCell = (Mask)(digitsInMirrorCell & ~baseCellsDigitsMask);
+
+			// Check for the containing digits in mirror cells, and fetch which digits are appeared in base cells.
+			// Such digits will be sync'ed with the other target cell.
+			var containedDigitsAppearedInBaseCellsInMirror = (Mask)(digitsInMirrorCell & baseCellsDigitsMask);
+			var elimDigitsFromTheOtherTargetCell = (Mask)(grid.GetCandidates(theOtherTargetCell) & ~containedDigitsAppearedInBaseCellsInMirror);
+
+			// Try to fetch eliminations.
+			if (elimDigitsFromTheOnlyMirrorCell != 0)
+			{
+				foreach (var elimDigit in elimDigitsFromTheOnlyMirrorCell)
+				{
+					conclusions.Add(new(Elimination, theOnlyMirrorCell, elimDigit));
+				}
+			}
+			if (elimDigitsFromTheOtherTargetCell != 0)
+			{
+				foreach (var elimDigit in elimDigitsFromTheOtherTargetCell)
+				{
+					conclusions.Add(new(Elimination, theOtherTargetCell, elimDigit));
+				}
+			}
+
+			singleMirrors.Add(theOnlyMirrorCell);
+		}
+		if (conclusions.Count == 0 || !singleMirrors)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ExocetSingleMirrorStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in singleMirrors select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[],
+			in crossline,
+			in singleMirrors
 		);
 		if (context.OnlyFindOne)
 		{
