@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Rating;
+namespace Sudoku.Analytics.Rating;
 
 /// <summary>
 /// Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
@@ -101,9 +101,9 @@ public static class ExtraDifficultyCaseNames
 	public const string Mirror = nameof(Mirror);
 
 	/// <summary>
-	/// Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
+	/// Indicates the kind is the incompatible pair eliminations. This field is only used for exocets.
 	/// </summary>
-	public const string BiBiPattern = nameof(BiBiPattern);
+	public const string IncompatiblePair = nameof(IncompatiblePair);
 
 	/// <summary>
 	/// Indicates the kind is the target pair eliminations. This field is only used for exocets.

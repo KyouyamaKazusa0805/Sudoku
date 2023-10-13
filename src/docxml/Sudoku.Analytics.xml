@@ -2751,6 +2751,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet single mirror.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetIncompatiblePair">
+            <summary>
+            Indicates junior exocet incompatible pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -4257,9 +4262,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the mirror eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.BiBiPattern">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.IncompatiblePair">
             <summary>
-            Indicates the kind is the Bi-Bi pattern eliminations. This field is only used for exocets.
+            Indicates the kind is the incompatible pair eliminations. This field is only used for exocets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.TargetPair">
@@ -12902,6 +12907,43 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>crosslineCells</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="incompatibleCandidates">Indicates the incompatible candidates.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="incompatibleCandidates">Indicates the incompatible candidates.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.IncompatibleCandidates">
+            <summary>
+            The generated property declaration for parameter <c>incompatibleCandidates</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexFishStep">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
@@ -15945,11 +15987,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Avoidable logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_BiBiPattern">
-            <summary>
-              Looks up a localized string similar to Bi-Bi pattern eliminations.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Cannibalism">
             <summary>
               Looks up a localized string similar to Cannibalism.
@@ -15957,7 +15994,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ConjugatePair">
             <summary>
-              Looks up a localized string similar to Conjugate Pair logic.
+              Looks up a localized string similar to Conjugate pair.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ExtraDigit">
@@ -15977,7 +16014,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_GeneralizedSwordfish">
             <summary>
-              Looks up a localized string similar to Generalized swordfish logic.
+              Looks up a localized string similar to Generalized swordfish.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Guardian">
@@ -15988,6 +16025,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Hidden">
             <summary>
               Looks up a localized string similar to Hidden logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_IncompatiblePair">
+            <summary>
+              Looks up a localized string similar to Incompatible pair.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Incompleteness">
@@ -16037,7 +16079,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_TargetPair">
             <summary>
-              Looks up a localized string similar to Target pair logic.
+              Looks up a localized string similar to Target pair.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ValueCell">
@@ -16423,6 +16465,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocet">
             <summary>
               Looks up a localized string similar to Junior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetIncompatiblePair">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Incompatible Pair).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirror">

@@ -323,6 +323,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return singleMirrorTypeStep;
 										}
+
+										if (CheckIncompatiblePair(
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta
+										) is { } incompatiblePairTypeStep)
+										{
+											return incompatiblePairTypeStep;
+										}
 									}
 								}
 							}
@@ -347,7 +354,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		var conclusions = new List<Conclusion>();
-		foreach (var cell in targetCells + endoTargetCell)
+		foreach (var cell in endoTargetCell == -1 ? targetCells : targetCells + endoTargetCell)
 		{
 			if (grid.GetState(cell) == CellState.Empty)
 			{
@@ -601,6 +608,124 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[],
 			in crossline,
 			in singleMirrors
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static JuniorExocetIncompatiblePairStep? CheckIncompatiblePair(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		int delta
+	)
+	{
+		// This rule can only apply for the case on such conditions:
+		//   1) The number of base cells must be 2.
+		//   2) The delta value must be 0 (i.e. a standard JE).
+		//   3) The number of digits appeared in base cells must be 3 or 4.
+		if (delta != 0)
+		{
+			return null;
+		}
+
+		if (baseCells is not [var base1, var base2])
+		{
+			return null;
+		}
+
+		var base1Digits = grid.GetCandidates(base1);
+		var base2Digits = grid.GetCandidates(base2);
+		if (PopCount((uint)(Mask)(base1Digits | base2Digits)) is not (3 or 4))
+		{
+			return null;
+		}
+
+		// Create a collection that stores all possible combinations in 6 blocks cross-line cells spanned.
+		var crosslineBlocks = crossline.BlockMask;
+		scoped var crosslineValueMasks = (stackalloc Mask[6]);
+		var i = 0;
+		foreach (var block in crosslineBlocks)
+		{
+			var valueCells = HousesMap[block] - EmptyCells - crossline;
+			var mask = grid[in valueCells, true];
+			crosslineValueMasks[i++] = mask;
+		}
+
+		// Iterate on each digits on base cell 1 and 2, check which combinations lead to confliction.
+		var conclusions = new List<Conclusion>();
+		var incompatibleCandidates = CandidateMap.Empty;
+		foreach (var (baseCell, firstDigits, secondDigits) in ((base1, base1Digits, base2Digits), (base2, base2Digits, base1Digits)))
+		{
+			foreach (var digit in firstDigits)
+			{
+				var digitsToCheck = secondDigits & ~(1 << digit);
+
+				// Check whether all digits from the other digit cannot in a same block.
+				var anyDigitIsInSameBlock = false;
+				foreach (var digitToCheck in digitsToCheck)
+				{
+					foreach (var block in crosslineBlocks)
+					{
+						var valueCells = HousesMap[block] - EmptyCells - crossline;
+						var mask = grid[in valueCells, true];
+						if (mask == (Mask)(1 << digitToCheck | 1 << digit))
+						{
+							anyDigitIsInSameBlock = true;
+							goto FinalCheck;
+						}
+					}
+				}
+
+			FinalCheck:
+				if (anyDigitIsInSameBlock)
+				{
+					// The current combination is valid.
+					continue;
+				}
+
+				// This combination is invalid. We can remove the current digit from the first base cell.
+				conclusions.Add(new(Elimination, baseCell, digit));
+				incompatibleCandidates.Add(baseCell * 9 + digit);
+			}
+		}
+		if (conclusions.Count == 0/* || !incompatibleCandidates*/)
+		{
+			return null;
+		}
+
+		var step = new JuniorExocetIncompatiblePairStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in incompatibleCandidates,
+			in baseCells,
+			in targetCells,
+			in crossline
 		);
 		if (context.OnlyFindOne)
 		{

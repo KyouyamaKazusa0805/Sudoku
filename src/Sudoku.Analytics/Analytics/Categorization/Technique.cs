@@ -2853,6 +2853,13 @@ public enum Technique
 	JuniorExocetSingleMirror,
 
 	/// <summary>
+	/// Indicates junior exocet incompatible pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetIncompatiblePair,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

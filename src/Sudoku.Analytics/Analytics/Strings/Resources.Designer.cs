@@ -1222,15 +1222,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-Bi pattern eliminations.
-        /// </summary>
-        public static string ExtraDifficultyCaseNames_BiBiPattern {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyCaseNames_BiBiPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannibalism.
         /// </summary>
         public static string ExtraDifficultyCaseNames_Cannibalism {
@@ -1240,7 +1231,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conjugate Pair logic.
+        ///   Looks up a localized string similar to Conjugate pair.
         /// </summary>
         public static string ExtraDifficultyCaseNames_ConjugatePair {
             get {
@@ -1276,7 +1267,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generalized swordfish logic.
+        ///   Looks up a localized string similar to Generalized swordfish.
         /// </summary>
         public static string ExtraDifficultyCaseNames_GeneralizedSwordfish {
             get {
@@ -1299,6 +1290,15 @@ namespace Sudoku.Analytics.Strings {
         public static string ExtraDifficultyCaseNames_Hidden {
             get {
                 return ResourceManager.GetString("ExtraDifficultyCaseNames_Hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incompatible pair.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_IncompatiblePair {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_IncompatiblePair", resourceCulture);
             }
         }
         
@@ -1384,7 +1384,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Target pair logic.
+        ///   Looks up a localized string similar to Target pair.
         /// </summary>
         public static string ExtraDifficultyCaseNames_TargetPair {
             get {
@@ -2082,6 +2082,15 @@ namespace Sudoku.Analytics.Strings {
         public static string JuniorExocet {
             get {
                 return ResourceManager.GetString("JuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Incompatible Pair).
+        /// </summary>
+        public static string JuniorExocetIncompatiblePair {
+            get {
+                return ResourceManager.GetString("JuniorExocetIncompatiblePair", resourceCulture);
             }
         }
         
