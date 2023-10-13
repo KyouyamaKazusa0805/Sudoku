@@ -631,7 +631,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// This rule can only apply for the case on such conditions:
 		//   1) The number of base cells must be 2.
 		//   2) The delta value must be 0 (i.e. a standard JE).
-		//   3) The number of digits appeared in base cells must be 3 or 4.
 		if (delta != 0)
 		{
 			return null;
@@ -642,58 +641,116 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var base1Digits = grid.GetCandidates(base1);
-		var base2Digits = grid.GetCandidates(base2);
-		if (PopCount((uint)(Mask)(base1Digits | base2Digits)) is not (3 or 4))
+		// Now try to fetch the defining cells. First, try to get uncovered 4 blocks that the final cells should be located in.
+		var cellsDoNotCover = CellMap.Empty;
+		foreach (var (_, chuteCells, _, _) in Chutes)
+		{
+			if (chuteCells & baseCells)
+			{
+				cellsDoNotCover |= chuteCells;
+			}
+		}
+		var lastFourBlocks = ~CellMap.Empty - cellsDoNotCover;
+		var lastFourBlocksNotIntersectedWithCrossline = lastFourBlocks - crossline;
+		var lastFourBlocksIntersectedWithCrossline = lastFourBlocks & crossline;
+
+		// Try to check for cross-line cells, get all values and its containing cells.
+		var valueCellsInLastFourBlocksIntersectedWithCrossline = lastFourBlocksIntersectedWithCrossline - EmptyCells;
+
+		// Determine whether the value cells only span with 2 rows and columns, forming a square shape:
+		//
+		//   1 . . | 2 . .
+		//   . . . | . . .
+		//   . . . | . . .
+		//   ------+------
+		//   2 . . | 1 . .
+		//   . . . | . . .
+		//   . . . | . . .
+		//
+		// If not, the rule cannot be formed.
+		if (valueCellsInLastFourBlocksIntersectedWithCrossline.Count != 4
+			|| PopCount((uint)valueCellsInLastFourBlocksIntersectedWithCrossline.RowMask) != 2
+			|| PopCount((uint)valueCellsInLastFourBlocksIntersectedWithCrossline.ColumnMask) != 2)
 		{
 			return null;
 		}
 
-		// Create a collection that stores all possible combinations in 6 blocks cross-line cells spanned.
-		var crosslineBlocks = crossline.BlockMask;
-		scoped var crosslineValueMasks = (stackalloc Mask[6]);
-		var allValueCells = CellMap.Empty;
-		var i = 0;
-		foreach (var block in crosslineBlocks)
+		// Try to fetch the last 16 cells to be checked.
+		var lastSixteenCells = lastFourBlocksNotIntersectedWithCrossline;
+		foreach (var house in valueCellsInLastFourBlocksIntersectedWithCrossline.RowMask << 9)
 		{
-			var valueCellsInCurrentBlock = HousesMap[block] - EmptyCells - crossline;
-			crosslineValueMasks[i++] = grid[in valueCellsInCurrentBlock, true];
-			allValueCells |= valueCellsInCurrentBlock;
+			lastSixteenCells -= HousesMap[house];
+		}
+		foreach (var house in valueCellsInLastFourBlocksIntersectedWithCrossline.ColumnMask << 18)
+		{
+			lastSixteenCells -= HousesMap[house];
 		}
 
-		// Iterate on each digits on base cell 1 and 2, check which combinations lead to confliction.
-		var conclusions = new List<Conclusion>();
-		var incompatibleCandidates = CandidateMap.Empty;
-		foreach (var (baseCell, firstDigits, secondDigits) in ((base1, base1Digits, base2Digits), (base2, base2Digits, base1Digits)))
+		// Now we have the 16 cells to be checked. Such cells are called "X Region".
+		// We should check for value cells, determining which combinations of digits have spanned all 4 blocks the current 16 cells located in.
+		scoped var valuesGroupedByBlock = (stackalloc Mask[2]);
+		scoped var valueCellsBlocks = lastSixteenCells.BlockMask.GetAllSets();
+		foreach (var blockIndex in (0, 1))
 		{
-			foreach (var digit in firstDigits)
+			var valueCellsFromBlock1 = (lastSixteenCells & HousesMap[valueCellsBlocks[blockIndex]]) - EmptyCells;
+			var valueCellsFromBlock2 = (lastSixteenCells & HousesMap[valueCellsBlocks[3 - blockIndex]]) - EmptyCells;
+			var valuesFromBlock1 = MaskOperations.Create(from cell in valueCellsFromBlock1 select grid.GetDigit(cell));
+			var valuesFromBlock2 = MaskOperations.Create(from cell in valueCellsFromBlock2 select grid.GetDigit(cell));
+			var valuesFromBothBlocks = (Mask)(valuesFromBlock1 & valuesFromBlock2);
+			if (valuesFromBothBlocks == 0)
 			{
-				var digitsToCheck = secondDigits & ~(1 << digit);
+				// It seems no digits will be intersected with two blocks in diagonal direction...
+				// The current "X Region" may not contain any possible conclusions. Just return.
+				return null;
+			}
 
-				// Check whether all digits from the other digit cannot in a same block.
-				var anyDigitIsInSameBlock = false;
-				foreach (var digitToCheck in digitsToCheck)
-				{
-					foreach (var valueMaskInBlock in crosslineValueMasks)
-					{
-						if (valueMaskInBlock == (Mask)(1 << digitToCheck | 1 << digit))
-						{
-							anyDigitIsInSameBlock = true;
-							goto FinalCheck;
-						}
-					}
-				}
+			// Write down such digits.
+			valuesGroupedByBlock[blockIndex] = valuesFromBothBlocks;
+		}
 
-			FinalCheck:
-				if (anyDigitIsInSameBlock)
+		// Then we should check for combinations, determining which combinations are not correct.
+		// The rule is, if two different digits from two groups of blocks in a diagonal direction are found,
+		// they will not be the final pair of digits appeared in base cells.
+		// For example, if the following diagram exists:
+		//
+		//   1 . . | 2 . .
+		//   . . . | . . .
+		//   . . . | . . .
+		//   ------+------
+		//   2 . . | 1 . .
+		//   . . . | . . .
+		//   . . . | . . .
+		//
+		// The pair of digits 1 and 2 cannot be the final pair in base cells,
+		// meaning the base cells cannot be filled with 1 and 2 at the same time. They are incompatible. Here is the prove:
+		// https://tieba.baidu.com/p/5916787916
+		// Which tells us that, if so, the last pattern of exocet may form a deadly pattern.
+		scoped var incompatibleCombinationsGroupedByDigit = (stackalloc Mask[9]);
+		incompatibleCombinationsGroupedByDigit.Clear();
+		foreach (var value1 in valuesGroupedByBlock[0])
+		{
+			foreach (var value2 in valuesGroupedByBlock[1])
+			{
+				incompatibleCombinationsGroupedByDigit[value1] |= (Mask)(1 << value2);
+				incompatibleCombinationsGroupedByDigit[value2] |= (Mask)(1 << value1);
+			}
+		}
+
+		// Now check for eliminations.
+		var incompatibleCandidates = CandidateMap.Empty;
+		var conclusions = new List<Conclusion>();
+		foreach (var (elimCell, theOtherCell) in ((base1, base2), (base2, base1)))
+		{
+			var allDigits = grid.GetCandidates(theOtherCell);
+			foreach (var elimDigit in grid.GetCandidates(elimCell))
+			{
+				if (incompatibleCombinationsGroupedByDigit[elimDigit] != (Mask)(allDigits & ~(1 << elimDigit)))
 				{
-					// The current combination is valid.
 					continue;
 				}
 
-				// This combination is invalid. We can remove the current digit from the first base cell.
-				conclusions.Add(new(Elimination, baseCell, digit));
-				incompatibleCandidates.Add(baseCell * 9 + digit);
+				conclusions.Add(new(Elimination, elimCell, elimDigit));
+				incompatibleCandidates.Add(elimCell * 9 + elimDigit);
 			}
 		}
 		if (conclusions.Count == 0/* || !incompatibleCandidates*/)
@@ -708,7 +765,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					.. from cell in allValueCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+					.. from cell in lastSixteenCells - EmptyCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
