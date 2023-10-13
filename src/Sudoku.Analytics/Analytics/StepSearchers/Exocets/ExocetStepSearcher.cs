@@ -652,12 +652,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Create a collection that stores all possible combinations in 6 blocks cross-line cells spanned.
 		var crosslineBlocks = crossline.BlockMask;
 		scoped var crosslineValueMasks = (stackalloc Mask[6]);
+		var allValueCells = CellMap.Empty;
 		var i = 0;
 		foreach (var block in crosslineBlocks)
 		{
-			var valueCells = HousesMap[block] - EmptyCells - crossline;
-			var mask = grid[in valueCells, true];
-			crosslineValueMasks[i++] = mask;
+			var valueCellsInCurrentBlock = HousesMap[block] - EmptyCells - crossline;
+			crosslineValueMasks[i++] = grid[in valueCellsInCurrentBlock, true];
+			allValueCells |= valueCellsInCurrentBlock;
 		}
 
 		// Iterate on each digits on base cell 1 and 2, check which combinations lead to confliction.
@@ -673,11 +674,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var anyDigitIsInSameBlock = false;
 				foreach (var digitToCheck in digitsToCheck)
 				{
-					foreach (var block in crosslineBlocks)
+					foreach (var valueMaskInBlock in crosslineValueMasks)
 					{
-						var valueCells = HousesMap[block] - EmptyCells - crossline;
-						var mask = grid[in valueCells, true];
-						if (mask == (Mask)(1 << digitToCheck | 1 << digit))
+						if (valueMaskInBlock == (Mask)(1 << digitToCheck | 1 << digit))
 						{
 							anyDigitIsInSameBlock = true;
 							goto FinalCheck;
@@ -709,6 +708,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in allValueCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
