@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
@@ -221,9 +222,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Try to fetch all possible endo-target cells if worth.
-									var endoTargetCells = CellMap.Empty;
 									if (delta != 0)
 									{
+										var endoTargetCells = CellMap.Empty;
+
 										// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
 										foreach (var cell in crossline)
 										{
@@ -267,6 +269,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											// No possible endo-target cells are found.
 											continue;
 										}
+
+										foreach (var endoTargetCell in endoTargetCells)
+										{
+											if (CheckBaseJeOrSe(
+												ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+												baseCellsDigitsMask
+											) is { } baseTypeStep)
+											{
+												return baseTypeStep;
+											}
+										}
 									}
 									else
 									{
@@ -289,113 +302,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											// and if less (times < size - 1), we cannot conclude which digits are the target cells.
 											continue;
 										}
-									}
 
-									// An exocet will be formed.
-									var conclusions = new List<Conclusion>();
-									foreach (var cell in targetCells | endoTargetCells)
-									{
-										foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+										if (CheckBaseJeOrSe(
+											ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask
+										) is { } baseTypeStep)
 										{
-											conclusions.Add(new(Elimination, cell, digit));
+											return baseTypeStep;
 										}
-									}
-									if (conclusions.Count == 0)
-									{
-										// No eliminations found.
-										continue;
-									}
 
-									var gridCopied = grid;
-									switch (delta)
-									{
-										case -1:
+										if (CheckMirror(
+											ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i
+										) is { } mirrorTypeStep)
 										{
-											foreach (var endoTargetCell in endoTargetCells)
-											{
-												var step = new ExocetStep(
-													[.. conclusions],
-													[
-														[
-															..
-															from cell in baseCells
-															select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-															..
-															from cell in targetCells
-															select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-															..
-															from cell in endoTargetCells
-															select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-															..
-															from cell in crossline - endoTargetCells
-															select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-															..
-															from cell in baseCells
-															from digit in gridCopied.GetCandidates(cell)
-															select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-															..
-															from cell in crossline - endoTargetCells
-															where gridCopied.GetState(cell) == CellState.Empty
-															from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
-															select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
-														]
-													],
-													context.PredefinedOptions,
-													baseCellsDigitsMask,
-													in baseCells,
-													in targetCells,
-													[endoTargetCell],
-													in crossline
-												);
-												if (context.OnlyFindOne)
-												{
-													return step;
-												}
-
-												context.Accumulator.Add(step);
-											}
-
-											break;
-										}
-										case 0:
-										{
-											var step = new ExocetStep(
-												[.. conclusions],
-												[
-													[
-														..
-														from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-														..
-														from cell in targetCells
-														select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-														..
-														from cell in crossline
-														select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-														..
-														from cell in baseCells
-														from digit in gridCopied.GetCandidates(cell)
-														select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-														..
-														from cell in crossline
-														where gridCopied.GetState(cell) == CellState.Empty
-														from digit in (Mask)(gridCopied.GetCandidates(cell) & baseCellsDigitsMask)
-														select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
-													]
-												],
-												context.PredefinedOptions,
-												baseCellsDigitsMask,
-												in baseCells,
-												in targetCells,
-												[],
-												in crossline
-											);
-											if (context.OnlyFindOne)
-											{
-												return step;
-											}
-
-											context.Accumulator.Add(step);
-											break;
+											return mirrorTypeStep;
 										}
 									}
 								}
@@ -409,6 +328,172 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
+
+	private static ExocetBaseStep? CheckBaseJeOrSe(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in targetCells + endoTargetCell)
+		{
+			if (grid.GetState(cell) == CellState.Empty)
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ExocetBaseStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. endoTargetCell != -1 ? [new CellViewNode(WellKnownColorIdentifier.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
+					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from digit in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+					..
+					from cell in crossline - endoTargetCell
+					where grid.GetState(cell) == CellState.Empty
+					from digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			endoTargetCell != -1 ? [endoTargetCell] : [],
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ExocetMirrorStep? CheckMirror(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		var conjugatePairs = new List<Conjugate>(2);
+		foreach (var targetCell in targetCells)
+		{
+			Unsafe.SkipInit(out CellMap miniline);
+			foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
+			{
+				if (temp.Contains(targetCell))
+				{
+					miniline = temp;
+					break;
+				}
+			}
+
+			var theOtherTwoCells = miniline - targetCell;
+			var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
+			if (!theOtherEmptyCells)
+			{
+				// The current miniline cannot contain any eliminations.
+				continue;
+			}
+
+			var otherCellsDigitsMask = grid[in theOtherEmptyCells];
+			foreach (var house in theOtherEmptyCells.CoveredHouses)
+			{
+				// Check whether the current house has a conjugate pair in the current cells.
+				foreach (var digit in otherCellsDigitsMask)
+				{
+					var cellsContainingDigit = (CandidatesMap[digit] & HousesMap[house]) - targetCell;
+					if (cellsContainingDigit != theOtherEmptyCells)
+					{
+						continue;
+					}
+
+					// Here a conjugate pair will be formed.
+					// Now check for eliminations.
+					foreach (var elimCell in theOtherEmptyCells)
+					{
+						foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & ~baseCellsDigitsMask & ~(1 << digit)))
+						{
+							conclusions.Add(new(Elimination, elimCell, elimDigit));
+						}
+					}
+
+					conjugatePairs.Add(new(in theOtherEmptyCells, digit));
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ExocetMirrorStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					..
+					from conjugatePair in conjugatePairs
+					from cell in conjugatePair.Map
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[],
+			in crossline,
+			[.. conjugatePairs]
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
 
 	/// <summary>
 	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.

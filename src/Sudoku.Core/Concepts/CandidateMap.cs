@@ -435,7 +435,7 @@ public partial struct CandidateMap :
 	public readonly CandidateMap Where(Func<Candidate, bool> predicate)
 	{
 		var result = this;
-		foreach (var cell in this)
+		foreach (var cell in Offsets)
 		{
 			if (!predicate(cell))
 			{

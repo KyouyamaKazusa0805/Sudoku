@@ -2331,4 +2331,10 @@
   <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
     <value>Exocets</value>
   </data>
+  <data name="JuniorExocetMirror" xml:space="preserve">
+    <value>Junior Exocet (Mirror)</value>
+  </data>
+  <data name="SeniorExocetMirror" xml:space="preserve">
+    <value>Senior Exocet (Mirror)</value>
+  </data>
 </root>

@@ -746,7 +746,7 @@ public partial struct CellMap :
 	public readonly CellMap Where(Func<Cell, bool> predicate)
 	{
 		var result = this;
-		foreach (var cell in this)
+		foreach (var cell in Offsets)
 		{
 			if (!predicate(cell))
 			{

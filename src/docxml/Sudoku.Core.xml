@@ -6889,6 +6889,44 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>values</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Linq.ListEnumerable">
+            <summary>
+            Represents a list of LINQ methods to be used for type <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:Sudoku.Linq.ListEnumerable.SelectMany``2(System.Collections.Generic.List{``0},System.Func{``0,Sudoku.Concepts.CellMap},System.Func{``0,System.Int32,``1})">
+            <summary>
+            Projects each element in a <see cref="T:System.Collections.Generic.List`1"/> to a <see cref="T:Sudoku.Concepts.CellMap"/>,
+            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TSource">The type of the elements in sourece.</typeparam>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="this">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:System.Collections.Generic.List`1"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            and then mapping each of those sequences and their corresponding source element to a result element.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.ListEnumerable.SelectMany``2(System.Collections.Generic.List{``0},System.Func{``0,Sudoku.Concepts.CandidateMap},System.Func{``0,System.Int32,``1})">
+            <summary>
+            Projects each element in a <see cref="T:System.Collections.Generic.List`1"/> to a <see cref="T:Sudoku.Concepts.CandidateMap"/>,
+            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TSource">The type of the elements in sourece.</typeparam>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="this">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:System.Collections.Generic.List`1"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate <see cref="T:Sudoku.Concepts.CandidateMap"/>.</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            and then mapping each of those sequences and their corresponding source element to a result element.
+            </returns>
+        </member>
         <member name="T:Sudoku.Linq.MaskEnumerable">
             <summary>
             Represents a list of methods for iteration on a <see cref="T:System.Int16"/>.

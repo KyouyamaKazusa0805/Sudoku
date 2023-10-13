@@ -2086,6 +2086,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Mirror).
+        /// </summary>
+        public static string JuniorExocetMirror {
+            get {
+                return ResourceManager.GetString("JuniorExocetMirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to in.
         /// </summary>
         public static string KeywordIn {
@@ -2775,6 +2784,15 @@ namespace Sudoku.Analytics.Strings {
         public static string SeniorExocet {
             get {
                 return ResourceManager.GetString("SeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Exocet (Mirror).
+        /// </summary>
+        public static string SeniorExocetMirror {
+            get {
+                return ResourceManager.GetString("SeniorExocetMirror", resourceCulture);
             }
         }
         

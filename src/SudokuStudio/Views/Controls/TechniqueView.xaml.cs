@@ -50,14 +50,15 @@ public sealed partial class TechniqueView : UserControl
 	/// The entry that can traverse for all tokens.
 	/// </summary>
 	private Dictionary<Technique, TokenItem> TokenItems
-		=> new(
+		=> new([
+			..
 			from view in _tokenViews
 			from item in view.Items
 			let tokenItem = item as TokenItem
 			where tokenItem is not null
 			let tag = (Technique)tokenItem.Tag!
 			select new KeyValuePair<Technique, TokenItem>(tag, tokenItem)
-		);
+		]);
 
 
 	[Callback]

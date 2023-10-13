@@ -2463,4 +2463,12 @@
     <value>飞鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="JuniorExocetMirror" xml:space="preserve">
+    <value>初级飞鱼（Mirror 删数）</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SeniorExocetMirror" xml:space="preserve">
+    <value>高级飞鱼（Mirror 删数）</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

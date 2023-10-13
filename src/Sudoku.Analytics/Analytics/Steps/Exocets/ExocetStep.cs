@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells">Indicates the target cells used.</param>
 /// <param name="endoTargetCells">Indicates the endo-target cells used.</param>
 /// <param name="crosslineCells">Indicates the cross-line cells used.</param>
-public partial class ExocetStep(
+public abstract partial class ExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
