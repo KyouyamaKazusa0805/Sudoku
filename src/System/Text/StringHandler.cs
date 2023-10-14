@@ -209,7 +209,8 @@ public unsafe ref partial struct StringHandler
 	{
 		Unsafe.CopyBlock(
 			ref Unsafe2.AsByteRef(ref _chars[0]),
-			ref Unsafe2.AsByteRef(ref Unsafe.AsRef(in initialString.GetRef())), (uint)(sizeof(char) * initialString.Length)
+			in Unsafe2.AsReadOnlyByteRef(in initialString.GetRef()),
+			(uint)(sizeof(char) * initialString.Length)
 		);
 
 		_arrayToReturnToPool = null;
@@ -243,7 +244,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-		=> Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref handler._chars[0]), ref Unsafe2.AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
+		=> Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref handler._chars[0]), in Unsafe2.AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
@@ -349,7 +350,7 @@ public unsafe ref partial struct StringHandler
 				{
 					Unsafe.WriteUnaligned(
 						ref Unsafe2.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
-						Unsafe.ReadUnaligned<int>(ref Unsafe2.AsByteRef(ref Unsafe.AsRef(in value.GetRef())))
+						Unsafe.ReadUnaligned<int>(in Unsafe2.AsReadOnlyByteRef(in value.GetRef()))
 					);
 
 					Length = pos + 2;

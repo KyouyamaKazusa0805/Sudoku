@@ -85,7 +85,7 @@ public readonly unsafe partial struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref _value[0]), ref array[0], (uint)(sizeof(byte) * array.Length));
+		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref _value[0]), in array[0], (uint)(sizeof(byte) * array.Length));
 	}
 
 

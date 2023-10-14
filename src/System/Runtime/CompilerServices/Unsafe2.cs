@@ -36,4 +36,8 @@ public static class Unsafe2
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref byte AsByteRef<T>(ref T @ref) => ref Unsafe.As<T, byte>(ref @ref);
+
+	/// <inheritdoc cref="AsByteRef{T}(ref T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly byte AsReadOnlyByteRef<T>(ref readonly T @ref) => ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
 }

@@ -2451,6 +2451,9 @@ fixed (short* ptr = instance)
             using <see langword="ref readonly"/> as a combined parameter modifier.
             </param>
         </member>
+        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsReadOnlyByteRef``1(``0@)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)"/>
+        </member>
         <member name="T:System.Runtime.CompilerServices.TupleEnumerator">
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.

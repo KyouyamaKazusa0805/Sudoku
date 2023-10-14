@@ -684,11 +684,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(scoped ref readonly Grid other)
-		=> InternalEqualsByRef(
-			in Unsafe2.AsByteRef(ref Unsafe.AsRef(in this[0])),
-			in Unsafe2.AsByteRef(ref Unsafe.AsRef(in other[0])),
-			sizeof(Mask) * 81
-		);
+		=> InternalEqualsByRef(in Unsafe2.AsReadOnlyByteRef(in this[0]), in Unsafe2.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * 81);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
