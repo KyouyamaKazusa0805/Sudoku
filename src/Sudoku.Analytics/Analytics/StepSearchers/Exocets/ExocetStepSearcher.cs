@@ -23,7 +23,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Senior Exocet</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.JuniorExocet, Technique.SeniorExocet)]
+[StepSearcher(
+	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetSingleMirror,
+	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
+	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetSingleMirror)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <summary>
