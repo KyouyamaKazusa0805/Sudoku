@@ -2881,6 +2881,13 @@ public enum Technique
 	JuniorExocetGeneralizedFish,
 
 	/// <summary>
+	/// Indicates junior exocet mirror almost hidden set.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetMirrorAlmostHiddenSet,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

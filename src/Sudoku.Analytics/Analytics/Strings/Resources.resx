@@ -2352,7 +2352,13 @@
   <data name="JuniorExocetTargetPair" xml:space="preserve">
     <value>Junior Exocet (Target Pair)</value>
   </data>
+  <data name="ExtraDifficultyCaseNames_AlmostHiddenSet" xml:space="preserve">
+    <value>Almost Hidden Set (AHS) logic</value>
+  </data>
   <data name="JuniorExocetConjugatePair" xml:space="preserve">
     <value>Junior Exocet (Target Conjugate Pair)</value>
+  </data>
+  <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
+    <value>Junior Exocet (Mirror Alomst Hidden Set)</value>
   </data>
 </root>

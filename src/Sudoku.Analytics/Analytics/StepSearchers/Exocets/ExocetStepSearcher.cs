@@ -369,6 +369,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return generalizedFishTypeStep;
 											}
 
+											if (CheckMirrorAlmostHiddenSet(
+												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+												delta, isRow, housesMask, i
+											) is { } mirrorAhsTypeStep)
+											{
+												return mirrorAhsTypeStep;
+											}
+
 											break;
 										}
 									}
@@ -1183,6 +1191,147 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static JuniorExocetMirrorAlmostHiddenSetStep? CheckMirrorAlmostHiddenSet(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		int delta,
+		bool isRow,
+		HouseMask housesMask,
+		int chuteIndex
+	)
+	{
+		if (delta != 0)
+		{
+			return null;
+		}
+
+		foreach (var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		{
+			if (cellGroup is not (_, [var targetCell]))
+			{
+				continue;
+			}
+
+			// Try to fetch the miniline of the current target cell located in.
+			Unsafe.SkipInit(out CellMap miniline);
+			foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
+			{
+				if (temp.Contains(targetCell))
+				{
+					miniline = temp;
+					break;
+				}
+			}
+
+			var mirrorTwoCells = miniline - targetCell;
+			var mirrorEmptyCells = mirrorTwoCells & EmptyCells;
+			if (!mirrorEmptyCells)
+			{
+				// The current miniline cannot contain any eliminations.
+				continue;
+			}
+
+			// Now check for empty cells in this house, removing all cells located in the miniline that the target cell located in.
+			foreach (var coveredHouse in mirrorEmptyCells.CoveredHouses)
+			{
+				var otherCells = (HousesMap[coveredHouse] & EmptyCells) - miniline;
+				if (otherCells.Count < 2)
+				{
+					// The target house does not contain enough cells to form an AHS.
+					continue;
+				}
+
+				for (var size = 2; size <= otherCells.Count - 1; size++)
+				{
+					foreach (var extraCells in otherCells.GetSubsets(size - 1))
+					{
+						var ahsCells = extraCells | mirrorEmptyCells;
+						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
+						{
+							var extraDigitsMask = MaskOperations.Create(digitsMaskGroup);
+							var lastHoldingMap = CellMap.Empty;
+							foreach (var digit in digitsMaskGroup)
+							{
+								lastHoldingMap |= CandidatesMap[digit];
+							}
+
+							lastHoldingMap &= HousesMap[coveredHouse];
+							if (lastHoldingMap - targetCell != ahsCells)
+							{
+								// Final map does not match.
+								continue;
+							}
+
+							var conclusions = new List<Conclusion>();
+							foreach (var cell in extraCells)
+							{
+								foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~extraDigitsMask))
+								{
+									conclusions.Add(new(Elimination, cell, digit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								// No valid conclusions exist.
+								continue;
+							}
+
+							var step = new JuniorExocetMirrorAlmostHiddenSetStep(
+								[.. conclusions],
+								[
+									[
+										.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+										.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+										.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+										.. from cell in extraCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+										.. from cell in mirrorEmptyCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+										..
+										from cell in baseCells
+										from d in grid.GetCandidates(cell)
+										select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+										..
+										from cell in mirrorEmptyCells
+										from d in (Mask)(grid.GetCandidates(cell) & extraDigitsMask)
+										select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+										..
+										from cell in extraCells
+										from d in (Mask)(grid.GetCandidates(cell) & extraDigitsMask)
+										select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+										..
+										from cell in crossline
+										where grid.GetState(cell) == CellState.Empty
+										from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+										select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+										//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+									]
+								],
+								context.PredefinedOptions,
+								baseCellsDigitsMask,
+								in baseCells,
+								in targetCells,
+								in crossline,
+								in extraCells,
+								extraDigitsMask
+							);
+							if (context.OnlyFindOne)
+							{
+								return step;
+							}
+
+							context.Accumulator.Add(step);
+						}
+					}
+				}
+			}
+		}
+
 		return null;
 	}
 

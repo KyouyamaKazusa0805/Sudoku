@@ -2467,7 +2467,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="JuniorExocetMirror" xml:space="preserve">
-    <value>初级飞鱼・Mirror 共轭对</value>
+    <value>初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetSingleMirror" xml:space="preserve">
@@ -2494,8 +2494,15 @@
     <value>初级飞鱼・T 格数对</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtraDifficultyCaseNames_AlmostHiddenSet" xml:space="preserve">
+    <value>隐性待定数组</value>
+  </data>
   <data name="JuniorExocetConjugatePair" xml:space="preserve">
     <value>初级飞鱼・T 格共轭对</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
+    <value>初级飞鱼・M 格隐性待定数组</value>
     <comment>Technique Name</comment>
   </data>
 </root>

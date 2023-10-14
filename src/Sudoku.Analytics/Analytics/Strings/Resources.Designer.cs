@@ -1213,6 +1213,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Hidden Set (AHS) logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_AlmostHiddenSet {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_AlmostHiddenSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable logic.
         /// </summary>
         public static string ExtraDifficultyCaseNames_Avoidable {
@@ -2118,6 +2127,15 @@ namespace Sudoku.Analytics.Strings {
         public static string JuniorExocetMirror {
             get {
                 return ResourceManager.GetString("JuniorExocetMirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Mirror Alomst Hidden Set).
+        /// </summary>
+        public static string JuniorExocetMirrorAlmostHiddenSet {
+            get {
+                return ResourceManager.GetString("JuniorExocetMirrorAlmostHiddenSet", resourceCulture);
             }
         }
         

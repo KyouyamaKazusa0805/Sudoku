@@ -116,6 +116,11 @@ public static class ExtraDifficultyCaseNames
 	public const string GeneralizedFish = nameof(GeneralizedFish);
 
 	/// <summary>
+	/// Indicates the kind is the almost hidden set. This field is only used for exocets.
+	/// </summary>
+	public const string AlmostHiddenSet = nameof(AlmostHiddenSet);
+
+	/// <summary>
 	/// Indicates the kind is the extra house. This field is only used for complex senior exocets.
 	/// </summary>
 	public const string ExtraHouse = nameof(ExtraHouse);

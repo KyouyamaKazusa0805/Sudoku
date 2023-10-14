@@ -2771,6 +2771,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet generalized fish.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetMirrorAlmostHiddenSet">
+            <summary>
+            Indicates junior exocet mirror almost hidden set.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -4290,6 +4295,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.GeneralizedFish">
             <summary>
             Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.AlmostHiddenSet">
+            <summary>
+            Indicates the kind is the almost hidden set. This field is only used for exocets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
@@ -13009,6 +13019,50 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>incompatibleCandidates</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Mirror Almost Hidden Set)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="extraCells">Indicates the cells that provides with the AHS rule.</param>
+            <param name="extraDigitsMask">Indicates the mask that holds the digits used by the AHS.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Mirror Almost Hidden Set)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="extraCells">Indicates the cells that provides with the AHS rule.</param>
+            <param name="extraDigitsMask">Indicates the mask that holds the digits used by the AHS.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraCells">
+            <summary>
+            The generated property declaration for parameter <c>extraCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
@@ -16084,6 +16138,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_AlmostHiddenSet">
+            <summary>
+              Looks up a localized string similar to Almost Hidden Set (AHS) logic.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Avoidable">
             <summary>
               Looks up a localized string similar to Avoidable logic.
@@ -16587,6 +16646,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirror">
             <summary>
               Looks up a localized string similar to Junior Exocet (Mirror).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorAlmostHiddenSet">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Mirror Alomst Hidden Set).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetSingleMirror">
