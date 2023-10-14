@@ -1,5 +1,7 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 
@@ -16,6 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells"><inheritdoc/></param>
 /// <param name="endoTargetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
+/// <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
 public sealed partial class ExocetBaseStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -24,5 +27,19 @@ public sealed partial class ExocetBaseStep(
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap endoTargetCells,
-	scoped ref readonly CellMap crosslineCells
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells);
+	scoped ref readonly CellMap crosslineCells,
+	[DataMember] Conjugate[] conjugatePairs
+) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
+{
+	/// <inheritdoc/>
+	public override Technique Code
+		=> (Delta, ConjugatePairs) switch
+		{
+			( < 0, _) => Technique.SeniorExocet,
+			(_, []) => Technique.JuniorExocet,
+			_ => Technique.JuniorExocetConjugatePair
+		};
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[]? ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .1M)];
+}

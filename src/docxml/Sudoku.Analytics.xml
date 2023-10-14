@@ -2741,6 +2741,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetConjugatePair">
+            <summary>
+            Indicates junior exocet with target conjugate pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetMirror">
             <summary>
             Indicates junior exocet mirror.
@@ -12740,8 +12745,9 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetBaseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetBaseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
             <summary>
             Provides with a step that is an <b>Exocet (Base)</b> technique.
             </summary>
@@ -12753,6 +12759,18 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ConjugatePairs">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePairs</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetMirrorStep">
             <summary>
@@ -16549,6 +16567,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocet">
             <summary>
               Looks up a localized string similar to Junior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetConjugatePair">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Target Conjugate Pair).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetGeneralizedFish">

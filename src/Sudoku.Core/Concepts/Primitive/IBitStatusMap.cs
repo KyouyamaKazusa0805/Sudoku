@@ -395,7 +395,13 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 			var key = keySelector(element);
 			if (!dictionary.TryAdd(key, [element]))
 			{
-				dictionary[key].Add(element);
+				var originalElement = dictionary[key];
+				originalElement.Add(element);
+				dictionary[key] = originalElement;
+				// Don't use this due to the struct handling bug:
+				//dictionary[key].Add(element);
+				// This will copy a new instance, which means you add a new element into the new instance
+				// instead of the instance stored in the collection.
 			}
 		}
 

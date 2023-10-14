@@ -2838,6 +2838,13 @@ public enum Technique
 	JuniorExocet,
 
 	/// <summary>
+	/// Indicates junior exocet with target conjugate pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetConjugatePair,
+
+	/// <summary>
 	/// Indicates junior exocet mirror.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

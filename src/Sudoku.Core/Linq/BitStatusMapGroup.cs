@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
@@ -14,11 +15,17 @@ namespace Sudoku.Linq;
 /// <typeparam name="TKey">The type of the key in the group.</typeparam>
 /// <param name="key">Indicates the key used.</param>
 /// <param name="values">Indicates the candidates.</param>
-public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMember] TKey key, [DataMember] scoped ref readonly TMap values)
+public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMember] TKey key, [DataMember] scoped ref readonly TMap values) :
+	IEnumerable<TElement>,
+	IGrouping<TKey, TElement>
 	where TMap : unmanaged, IBitStatusMap<TMap, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TKey : notnull
 {
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out TKey key, out TMap values) => (key, values) = (Key, Values);
+
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
 	/// </summary>
@@ -71,4 +78,10 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([DataMemb
 
 		return result;
 	}
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Values).GetEnumerator();
 }

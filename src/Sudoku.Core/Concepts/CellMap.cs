@@ -766,7 +766,9 @@ public partial struct CellMap :
 			var key = keySelector(cell);
 			if (!dictionary.TryAdd(key, CellsMap[cell]))
 			{
-				dictionary[key].Add(cell);
+				var originalElement = dictionary[key];
+				originalElement.Add(cell);
+				dictionary[key] = originalElement;
 			}
 		}
 

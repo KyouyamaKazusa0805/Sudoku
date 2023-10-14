@@ -2352,4 +2352,7 @@
   <data name="JuniorExocetTargetPair" xml:space="preserve">
     <value>Junior Exocet (Target Pair)</value>
   </data>
+  <data name="JuniorExocetConjugatePair" xml:space="preserve">
+    <value>Junior Exocet (Target Conjugate Pair)</value>
+  </data>
 </root>

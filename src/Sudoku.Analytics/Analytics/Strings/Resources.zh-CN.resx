@@ -2494,4 +2494,8 @@
     <value>初级飞鱼・T 格数对</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="JuniorExocetConjugatePair" xml:space="preserve">
+    <value>初级飞鱼・T 格共轭对</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

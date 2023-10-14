@@ -81,6 +81,20 @@ public static class SpanEnumerable
 		return copied;
 	}
 
+	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
+	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	{
+		foreach (var element in @this)
+		{
+			if (condition(element))
+			{
+				return element;
+			}
+		}
+
+		throw new InvalidOperationException("The collection does not contain any possible element satisfying the specified condition.");
+	}
+
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T? FirstOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
 	{

@@ -6850,6 +6850,53 @@ if (student is (name: var name, age: >= 18))
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Deconstruct(`2@,`0@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through a collection.
@@ -6878,6 +6925,12 @@ if (student is (name: var name, age: >= 18))
             A (An) <typeparamref name="TResult"/>[] whose elements are the result of invoking the transform function
             on each element of the current instance.
             </returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Key">
             <summary>

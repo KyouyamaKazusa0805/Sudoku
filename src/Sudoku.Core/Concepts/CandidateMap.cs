@@ -456,7 +456,9 @@ public partial struct CandidateMap :
 			var key = keySelector(candidate);
 			if (!dictionary.TryAdd(key, [candidate]))
 			{
-				dictionary[key].Add(candidate);
+				var originalElement = dictionary[key];
+				originalElement.Add(candidate);
+				dictionary[key] = originalElement;
 			}
 		}
 
