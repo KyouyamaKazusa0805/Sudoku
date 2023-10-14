@@ -183,8 +183,7 @@ public unsafe partial struct Grid :
 
 
 	/// <summary>
-	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit,
-	/// and the creating option.
+	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit, and the creating option.
 	/// </summary>
 	/// <param name="firstElement">The reference of the first element.</param>
 	/// <param name="creatingOption">The creating option.</param>

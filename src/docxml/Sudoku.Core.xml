@@ -3197,8 +3197,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the pointer of the first element of the cell digit,
-            and the creating option.
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the pointer of the first element of the cell digit, and the creating option.
             </summary>
             <param name="firstElement">The reference of the first element.</param>
             <param name="creatingOption">The creating option.</param>
