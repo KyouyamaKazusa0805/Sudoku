@@ -186,16 +186,8 @@ public unsafe partial struct Grid :
 	/// Creates a <see cref="Grid"/> instance via the pointer of the first element of the cell digit,
 	/// and the creating option.
 	/// </summary>
-	/// <param name="firstElement">
-	/// <para>The reference of the first element.</para>
-	/// <para>
-	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="in-parameter"]'/>
-	/// </para>
-	/// </param>
+	/// <param name="firstElement">The reference of the first element.</param>
 	/// <param name="creatingOption">The creating option.</param>
-	/// <remarks>
-	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="method"]'/>
-	/// </remarks>
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>

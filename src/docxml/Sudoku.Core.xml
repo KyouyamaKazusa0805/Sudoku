@@ -3197,48 +3197,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Grid" /> instance via the pointer of the first element of the cell digit,
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the pointer of the first element of the cell digit,
             and the creating option.
             </summary>
-            <param name="firstElement">
-            <para>The reference of the first element.</para>
-            <para>
-            <target name="in-parameter">
-				<i>
-					Please note that the parameter is an <see langword="in" /> parameter, which has the same meaning
-					for <see langword="ref readonly" /> returns or locals. You can treat it as the first element
-					in an array of elements. Different with <see langword="ref" /> parameter, <see langword="in" />
-					modifier has the same semantic as <see langword="ref readonly var" />
-					instead of <see langword="ref var" />.
-				</i>
-			</target>
-            </para>
-            </param>
+            <param name="firstElement">The reference of the first element.</param>
             <param name="creatingOption">The creating option.</param>
-            <remarks>
-            <target name="method">
-				<i>
-					C# 7.3 introduces a new keyword <see langword="in" /> as the parameter modifier to make the parameter
-					pass by reference and be read-only. Therefore, this keyword contains 2 usages:
-					<list type="number">
-						<item>
-							Ensure the argument to <b>be read-only</b> and cannot be modified. Otherwise,
-							a new copied instance will be created to prevent any modifications on the original variable.
-						</item>
-						<item>
-							Ensure the argument to <b>pass by reference</b> in order to treat it as the pointer or array of elements
-							of this type, and treat the argument as the first element of the whole element series.
-						</item>
-					</list>
-					From the above meaning on this keyword, we can conclude that
-					we should regard it as <see langword="ref readonly" /> parameters,
-					but C# requires us using the keyword <see langword="in" /> as the modifier
-					on a parameter rather than <see langword="ref readonly" />.
-				</i>
-			</target>
-            </remarks>
             <exception cref="T:System.ArgumentNullRefException">
-            Throws when the argument <paramref name="firstElement" /> is <see langword="null" /> reference.
+            Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
             </exception>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsSolved">
