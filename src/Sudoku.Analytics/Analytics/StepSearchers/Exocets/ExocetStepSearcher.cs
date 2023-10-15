@@ -26,7 +26,8 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetSingleMirror,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
-	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetSingleMirror)]
+	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember,
+	Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetSingleMirror, Technique.SeniorExocetLockedMember)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <summary>
