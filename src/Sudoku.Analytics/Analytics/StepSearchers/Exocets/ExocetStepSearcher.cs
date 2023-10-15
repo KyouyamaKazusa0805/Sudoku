@@ -218,75 +218,116 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											// If so, they will be endo-target cells.
 											// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
 											var crossline = housesCells - chuteCells;
-											var crosslineContainsDigitsAppearedInBaseCells = false;
+											var lockedDigitsMask = (Mask)0;
 											foreach (var cell in crossline)
 											{
-												if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+												var digit = grid.GetDigit(cell);
+												if ((baseCellsDigitsMask >> digit & 1) != 0)
 												{
-													crosslineContainsDigitsAppearedInBaseCells = true;
+													lockedDigitsMask |= (Mask)(1 << digit);
+												}
+											}
+
+											switch (PopCount((uint)lockedDigitsMask))
+											{
+												case 0:
+												{
+													var endoTargetCells = CellMap.Empty;
+
+													// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
+													foreach (var cell in crossline)
+													{
+														if (grid.GetState(cell) != CellState.Empty)
+														{
+															continue;
+														}
+
+														// Endo-target cells must contain at least one digit appeared in base cells.
+														if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
+														{
+															continue;
+														}
+
+														// Check if the current cell is filled with the digit not appeared in base cells,
+														// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
+														// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+														// If greater (times > size - 1), an exocet cannot be formed;
+														// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+														foreach (var digit in baseCellsDigitsMask)
+														{
+															var mostTimes = MostTimesOf(digit, housesMask, chuteCells + cell);
+															if (mostTimes != size - 1)
+															{
+																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+																break;
+															}
+														}
+														if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+														{
+															// All digits should strictly appear (size - 1) times at most in cross-line cells.
+															continue;
+														}
+
+														endoTargetCells.Add(cell);
+													}
+
+													if (!endoTargetCells)
+													{
+														// No possible endo-target cells are found.
+														continue;
+													}
+
+													foreach (var endoTargetCell in endoTargetCells)
+													{
+														if (CheckBaseJeOrSe(
+															ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+															baseCellsDigitsMask, housesMask, out _
+														) is { } baseTypeStep)
+														{
+															return baseTypeStep;
+														}
+													}
 													break;
 												}
-											}
-											if (crosslineContainsDigitsAppearedInBaseCells)
-											{
-												continue;
-											}
-
-											var endoTargetCells = CellMap.Empty;
-
-											// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
-											foreach (var cell in crossline)
-											{
-												if (grid.GetState(cell) != CellState.Empty)
+												case 1:
 												{
-													continue;
-												}
-
-												// Endo-target cells must contain at least one digit appeared in base cells.
-												if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
-												{
-													continue;
-												}
-
-												// Check if the current cell is filled with the digit not appeared in base cells,
-												// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
-												// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-												// If greater (times > size - 1), an exocet cannot be formed;
-												// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-												var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-												foreach (var digit in baseCellsDigitsMask)
-												{
-													var mostTimes = MostTimesOf(digit, housesMask, chuteCells + cell);
-													if (mostTimes != size - 1)
+													// Check for maximum times can be appeared in cross-line cells.
+													// Due to consideration on locked members, we may not handle for them.
+													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 													{
-														allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-														break;
+														var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
+														if (mostTimes != size - 1)
+														{
+															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+															break;
+														}
 													}
-												}
-												if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-												{
-													// All digits should strictly appear (size - 1) times at most in cross-line cells.
-													continue;
-												}
+													if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+													{
+														// All digits should strictly appear (size - 1) times at most in cross-line cells.
+														// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+														// If greater (times > size - 1), an exocet cannot be formed;
+														// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+														continue;
+													}
 
-												endoTargetCells.Add(cell);
-											}
+													if (CheckLockedMemberSe(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														TrailingZeroCount(lockedDigitsMask)
+													) is { } lockedMemberTypeStep)
+													{
+														return lockedMemberTypeStep;
+													}
 
-											if (!endoTargetCells)
-											{
-												// No possible endo-target cells are found.
-												continue;
-											}
-
-											foreach (var endoTargetCell in endoTargetCells)
-											{
-												if (CheckBaseJeOrSe(
-													ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
-													baseCellsDigitsMask, housesMask, out _
-												) is { } baseTypeStep)
-												{
-													return baseTypeStep;
+													break;
 												}
+												//case 2:
+												//{
+												//	// TODO: Fixed base digits due to fixed target cell digits.
+												//	break;
+												//}
 											}
 											break;
 										}
@@ -405,11 +446,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												}
 
 												// Two locked digits are found. Now we should check for locked members.
-												case 2 when baseCells.Count == 2:
-												{
-													// TODO: Will be considered later.
-													break;
-												}
+												//case 2 when baseCells.Count == 2:
+												//{
+												//	// TODO: Will be considered later.
+												//	break;
+												//}
 											}
 
 											break;
@@ -1585,6 +1626,112 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ExocetLockedMemberStep? CheckLockedMemberSe(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		Digit lockedDigit
+	)
+	{
+		switch (targetCells)
+		{
+			case [var targetCell]:
+			{
+				// Check whether the endo-target cell only holds one.
+				var endoTargetCell = -1;
+				var multipleEndoTargetCellsFound = false;
+				foreach (var cell in crossline)
+				{
+					if (grid.GetDigit(cell) == lockedDigit)
+					{
+						if (endoTargetCell != -1)
+						{
+							// Multiple endo-target cells found.
+							multipleEndoTargetCellsFound = true;
+							break;
+						}
+
+						endoTargetCell = cell;
+					}
+				}
+				if (multipleEndoTargetCellsFound)
+				{
+					// Invalid.
+					break;
+				}
+
+				var conclusions = new List<Conclusion>();
+
+				// First, check for elimination on target cell.
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+				{
+					conclusions.Add(new(Elimination, targetCell, digit));
+				}
+
+				// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
+				foreach (var cell in baseCells % CandidatesMap[lockedDigit])
+				{
+					conclusions.Add(new(Elimination, cell, lockedDigit));
+				}
+
+				if (conclusions.Count == 0)
+				{
+					// No eliminations found.
+					break;
+				}
+
+				var step = new ExocetLockedMemberStep(
+					[.. conclusions],
+					[
+						[
+							.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+							.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+							.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+							..
+							from cell in baseCells
+							from d in grid.GetCandidates(cell)
+							let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
+							select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+							..
+							from cell in crossline - EmptyCells
+							where grid.GetDigit(cell) == lockedDigit
+							select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+							..
+							from cell in crossline
+							where grid.GetState(cell) == CellState.Empty
+							from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+							select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+							//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+						]
+					],
+					context.PredefinedOptions,
+					baseCellsDigitsMask,
+					(Mask)(1 << lockedDigit),
+					in baseCells,
+					in targetCells,
+					[endoTargetCell],
+					in crossline
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+				return null;
+			}
+			//case { Count: 2 }:
+			//{
+			//	// TODO: May be conjugate pair or AHS.
+			//}
+		}
+
 		return null;
 	}
 
