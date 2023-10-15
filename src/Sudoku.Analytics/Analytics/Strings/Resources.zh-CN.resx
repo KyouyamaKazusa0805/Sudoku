@@ -2505,4 +2505,15 @@
     <value>初级飞鱼・M 格隐性待定数组</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtraDifficultyCaseNames_LockedMember" xml:space="preserve">
+    <value>死锁成员</value>
+  </data>
+  <data name="JuniorExocetLockedMember" xml:space="preserve">
+    <value>初级飞鱼・死锁成员</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SeniorExocetLockedMember" xml:space="preserve">
+    <value>高级飞鱼・死锁成员</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

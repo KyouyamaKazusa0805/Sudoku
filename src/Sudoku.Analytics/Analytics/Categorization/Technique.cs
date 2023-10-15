@@ -2888,6 +2888,13 @@ public enum Technique
 	JuniorExocetMirrorAlmostHiddenSet,
 
 	/// <summary>
+	/// Indicates junior exocet locked member.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetLockedMember,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -2907,6 +2914,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetSingleMirror,
+
+	/// <summary>
+	/// Indicates senior exocet locked member.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	SeniorExocetLockedMember,
 	#endregion
 
 	//

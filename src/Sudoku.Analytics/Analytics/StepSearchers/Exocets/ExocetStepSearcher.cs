@@ -293,23 +293,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											// Check whether cross-line non-empty cells contains digits appeared in base cells.
 											var crossline = housesCells - chuteCells;
-											var crosslineContainsDigitsAppearedInBaseCells = false;
+											var lockedDigitsMask = (Mask)0;
 											foreach (var cell in crossline)
 											{
-												if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+												var digit = grid.GetDigit(cell);
+												if ((baseCellsDigitsMask >> digit & 1) != 0)
 												{
-													crosslineContainsDigitsAppearedInBaseCells = true;
-													break;
+													lockedDigitsMask |= (Mask)(1 << digit);
 												}
-											}
-											if (crosslineContainsDigitsAppearedInBaseCells)
-											{
-												continue;
 											}
 
 											// Check for maximum times can be appeared in cross-line cells.
+											// Due to consideration on locked members, we may not handle for them.
 											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-											foreach (var digit in baseCellsDigitsMask)
+											foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 											{
 												var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
 												if (mostTimes != size - 1)
@@ -327,60 +324,91 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												continue;
 											}
 
-											if (CheckBaseJeOrSe(
-												ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
-												housesMask, out var inferredTargetConjugatePairs
-											) is { } baseTypeStep)
+											switch (PopCount((uint)lockedDigitsMask)) // Must be 0, 1 or 2.
 											{
-												return baseTypeStep;
-											}
+												// No locked digits are found.
+												case 0:
+												{
+													if (CheckBaseJeOrSe(
+														ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
+														housesMask, out var inferredTargetConjugatePairs
+													) is { } baseTypeStep)
+													{
+														return baseTypeStep;
+													}
 
-											if (CheckMirror(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
-												housesMask
-											) is { } mirrorTypeStep)
-											{
-												return mirrorTypeStep;
-											}
+													if (CheckMirror(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
+														housesMask
+													) is { } mirrorTypeStep)
+													{
+														return mirrorTypeStep;
+													}
 
-											if (CheckSingleMirror(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
-												housesMask
-											) is { } singleMirrorTypeStep)
-											{
-												return singleMirrorTypeStep;
-											}
+													if (CheckSingleMirror(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
+														housesMask
+													) is { } singleMirrorTypeStep)
+													{
+														return singleMirrorTypeStep;
+													}
 
-											if (CheckIncompatiblePair(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta,
-												out var inferredTargetPairMask, housesMask
-											) is { } incompatiblePairTypeStep)
-											{
-												return incompatiblePairTypeStep;
-											}
+													if (CheckIncompatiblePair(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta,
+														out var inferredTargetPairMask, housesMask
+													) is { } incompatiblePairTypeStep)
+													{
+														return incompatiblePairTypeStep;
+													}
 
-											if (CheckTargetPair(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												inferredTargetPairMask, delta, housesMask, inferredTargetConjugatePairs
-											) is { } targetPairTypeStep)
-											{
-												return targetPairTypeStep;
-											}
+													if (CheckTargetPair(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														inferredTargetPairMask, delta, housesMask, inferredTargetConjugatePairs
+													) is { } targetPairTypeStep)
+													{
+														return targetPairTypeStep;
+													}
 
-											if (CheckGeneralizedFish(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												inferredTargetPairMask, delta, isRow, housesMask
-											) is { } generalizedFishTypeStep)
-											{
-												return generalizedFishTypeStep;
-											}
+													if (CheckGeneralizedFish(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														inferredTargetPairMask, delta, isRow, housesMask
+													) is { } generalizedFishTypeStep)
+													{
+														return generalizedFishTypeStep;
+													}
 
-											if (CheckMirrorAlmostHiddenSet(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												delta, isRow, housesMask, i
-											) is { } mirrorAhsTypeStep)
-											{
-												return mirrorAhsTypeStep;
+													if (CheckMirrorAlmostHiddenSet(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														delta, isRow, housesMask, i
+													) is { } mirrorAhsTypeStep)
+													{
+														return mirrorAhsTypeStep;
+													}
+
+													break;
+												}
+
+												// One locked digit is found. Now we should check for locked members.
+												case 1 when baseCells.Count == 2:
+												{
+													var lockedDigit = TrailingZeroCount(lockedDigitsMask);
+													if (CheckJeLockedMember(
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														lockedDigit
+													) is { } lockedMemberTypeStep)
+													{
+														return lockedMemberTypeStep;
+													}
+
+													break;
+												}
+
+												// Two locked digits are found. Now we should check for locked members.
+												case 2 when baseCells.Count == 2:
+												{
+													// TODO: Will be considered later.
+													break;
+												}
 											}
 
 											break;
@@ -1338,6 +1366,127 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 		}
 
+		return null;
+	}
+
+	private static ExocetLockedMemberStep? CheckJeLockedMember(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		Digit lockedDigit
+	)
+	{
+		// Check whether the digit is a real locked member. Locked member:
+		//
+		//   B B / | . . . | L L L
+		//   . . . | T . . | V / /
+		//   . . . | V . . | T / /
+		//
+		// Symbols:
+		//   B: Base cells that contain candidate 'a'.
+		//   T: Target cells that are empty.
+		//   V: A cell that is filled with a value that is not appeared in base cells.
+		//   L: Cells forming a locked member of digit 'a'.
+		//   /: Cells don't contain candidate 'a'.
+		var conclusions = new List<Conclusion>();
+		var lockedMemberMap = CellMap.Empty;
+		var lockedBlock = -1;
+		foreach (var block in targetCells.BlockMask)
+		{
+			var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
+			if (!lastMap || (HousesMap[baseCells.CoveredLine] & lastMap) != lastMap)
+			{
+				// Not a locked member.
+				continue;
+			}
+
+			(lockedMemberMap, lockedBlock) = (lastMap, block);
+
+			// Now a locked member is found, check for eliminations.
+			// First, check for target cells in this block.
+			var targetCellsInThisBlock = HousesMap[block] & targetCells;
+			switch (targetCellsInThisBlock)
+			{
+				case [var cell]:
+				{
+					// Just to be an elimination.
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+					break;
+				}
+				// TODO: With be considered later.
+				//case { Count: 2 }:
+				//{
+				//	break;
+				//}
+			}
+
+			// Second, check for target cells out of this block.
+			var targetCellsOutOfThisBlock = targetCells - targetCellsInThisBlock;
+			switch (targetCellsOutOfThisBlock)
+			{
+				case [var cell]:
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+					break;
+				}
+				// TODO: With be considered later.
+				//case { Count: 2 }:
+				//{
+				//	break;
+				//}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ExocetLockedMemberStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary2
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. from cell in lockedMemberMap select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit),
+					new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, lockedBlock),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			(Mask)(1 << lockedDigit),
+			in baseCells,
+			in targetCells,
+			[],
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
 		return null;
 	}
 

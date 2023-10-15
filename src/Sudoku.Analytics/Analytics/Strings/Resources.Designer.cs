@@ -1357,6 +1357,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked member logic.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_LockedMember {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_LockedMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mirror eliminations.
         /// </summary>
         public static string ExtraDifficultyCaseNames_Mirror {
@@ -2122,6 +2131,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Locked Member).
+        /// </summary>
+        public static string JuniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("JuniorExocetLockedMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Junior Exocet (Mirror).
         /// </summary>
         public static string JuniorExocetMirror {
@@ -2847,6 +2865,15 @@ namespace Sudoku.Analytics.Strings {
         public static string SeniorExocet {
             get {
                 return ResourceManager.GetString("SeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Exocet (Locked Member).
+        /// </summary>
+        public static string SeniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("SeniorExocetLockedMember", resourceCulture);
             }
         }
         

@@ -2776,6 +2776,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet mirror almost hidden set.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetLockedMember">
+            <summary>
+            Indicates junior exocet locked member.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -2789,6 +2794,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetSingleMirror">
             <summary>
             Indicates senior exocet single mirror.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetLockedMember">
+            <summary>
+            Indicates senior exocet locked member.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
@@ -4300,6 +4310,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.AlmostHiddenSet">
             <summary>
             Indicates the kind is the almost hidden set. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.LockedMember">
+            <summary>
+            Indicates the kind is the locked member. This field is only used for exocets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
@@ -12782,6 +12797,45 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ExocetLockedMemberStep">
+            <summary>
+            Provides with a step that is an <b>Exocet Locked Member</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="lockedMemberDigitsMask">Indicates the mask that holds a list of locked member digits.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExocetLockedMemberStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is an <b>Exocet Locked Member</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="lockedMemberDigitsMask">Indicates the mask that holds a list of locked member digits.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.LockedMemberDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>lockedMemberDigitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetMirrorStep">
             <summary>
             Provides with a step that is an <b>Exocet (Mirror)</b> technique.
@@ -16218,6 +16272,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Locked digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_LockedMember">
+            <summary>
+              Looks up a localized string similar to Locked member logic.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Mirror">
             <summary>
               Looks up a localized string similar to Mirror eliminations.
@@ -16643,6 +16702,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Junior Exocet (Incompatible Pair).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Locked Member).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirror">
             <summary>
               Looks up a localized string similar to Junior Exocet (Mirror).
@@ -17046,6 +17110,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocet">
             <summary>
               Looks up a localized string similar to Senior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Senior Exocet (Locked Member).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetMirror">
