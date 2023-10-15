@@ -546,10 +546,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							}
 							break;
 						}
-						default:
-						{
-							throw new InvalidOperationException("The value is unsupported and invalid.");
-						}
+						//default:
+						//{
+						//	throw new InvalidOperationException("The value is unsupported and invalid.");
+						//}
 					}
 				}
 				break;
@@ -573,12 +573,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. endoTargetCell != -1 ? [new CellViewNode(WellKnownColorIdentifier.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
 					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					.. conjugatePairs.Count != 0
-						?
-						from conjugatePair in conjugatePairs
-						from cell in conjugatePair.Map
-						select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit)
-						: [],
+					..
+					from conjugatePair in conjugatePairs
+					from cell in conjugatePair.Map
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit),
 					..
 					from cell in baseCells
 					from digit in grid.GetCandidates(cell)
