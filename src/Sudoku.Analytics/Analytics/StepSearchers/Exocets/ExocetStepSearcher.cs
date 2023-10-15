@@ -368,7 +368,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 											if (CheckMirrorSync(
 												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												housesMask, i
+												housesMask, i, lockedDigitsMask
 											) is { } mirrorSyncTypeStep)
 											{
 												return mirrorSyncTypeStep;
@@ -1654,10 +1654,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
-		int chuteIndex
+		int chuteIndex,
+		Mask lockedDigitsMask
 	)
 	{
-		if (targetCells.Count != 2)
+		if (PopCount((uint)lockedDigitsMask) > 2 || targetCells.Count != 2 || targetCells.InOneHouse(out _))
 		{
 			// TODO: Now ignores the case on conjugate pairs and AHS.
 			return null;
