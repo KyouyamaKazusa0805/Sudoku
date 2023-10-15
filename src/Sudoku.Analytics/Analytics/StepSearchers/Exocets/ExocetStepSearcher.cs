@@ -194,17 +194,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Get the count delta (target group by block.count - base.count). The result value must be -2, -1 or 0.
-									// The details are mentioned below:
+									// Get the count delta (target group by block.count - base.count).
+									var delta = (from c in targetCells group c by c.ToHouseIndex(HouseType.Block)).Length - baseCells.Count;
+
+									// Delta can be -2, -1 or 0. In fact the possible values can be [-2, 2], but 1 and 2 are invalid. Details:
 									//
-									//   1) if < 0, the base contain more cells than the target, meaning the pattern may be a senior exocet;
-									//   2) if > 0, the target contain more cells than the base,
-									//      meaning the pattern contains more group than the number of base cells,
-									//      which will lead to no conclusion;
-									//   3) if == 0, the base has same number of cells with the target, a standard junior exocet will be formed.
+									//   delta < 0:
+									//      The base contain more cells than the target, meaning the pattern may be a senior exocet;
+									//   delta > 0:
+									//      The target contain more cells than the base, meaning the pattern contains more group
+									//      than the number of base cells, to lead to no conclusion;
+									//   delta == 0:
+									//      The base has same number of cells with the target, a standard junior exocet will be formed.
 									//
 									// Therefore, I just check for the value on -2, -1 and 0.
-									var delta = (from c in targetCells group c by c.ToHouseIndex(HouseType.Block)).Length - baseCells.Count;
 									switch (delta)
 									{
 										case -1: // Note: Today we should only consider the cases on delta != -2.
