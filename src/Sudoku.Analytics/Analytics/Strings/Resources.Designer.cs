@@ -2158,6 +2158,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Mirror Sync).
+        /// </summary>
+        public static string JuniorExocetMirrorSync {
+            get {
+                return ResourceManager.GetString("JuniorExocetMirrorSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Junior Exocet (Adjacent Target).
         /// </summary>
         public static string JuniorExocetSingleMirror {

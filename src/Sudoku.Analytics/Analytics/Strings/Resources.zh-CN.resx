@@ -2516,4 +2516,8 @@
     <value>高级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="JuniorExocetMirrorSync" xml:space="preserve">
+    <value>初级飞鱼・M 格同步</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -366,6 +366,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												continue;
 											}
 
+											if (CheckMirrorSync(
+												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+												housesMask, i
+											) is { } mirrorSyncTypeStep)
+											{
+												return mirrorSyncTypeStep;
+											}
+
 											switch (PopCount((uint)lockedDigitsMask)) // Must be 0, 1 or 2.
 											{
 												// No locked digits are found.
@@ -1471,8 +1479,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Second, check for target cells out of this block.
-		var targetCellsOutOfThisBlock = targetCells - targetCellsInThisBlock;
-		switch (targetCellsOutOfThisBlock)
+		switch (targetCells - targetCellsInThisBlock)
 		{
 			case [var cell]:
 			{
@@ -1488,100 +1495,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			//	break;
 			//}
 		}
-
-		// Third, check for sync candidates on target cells from mirror.
-		//
-		//   B B . | . . . | L L L
-		//   . . . | T . . | V . .
-		//   . . . | V . . | T M M
-		//
-		// Here, the mirror cells (marked with 'M') can be used for sync candidates.
-		// Check for mirror cell, whether one of two mirror cells contain a value. If not, we don't sync for candidates.
-		if (targetCellsInThisBlock is not [var targetCell] || targetCellsOutOfThisBlock is not [var theOtherTargetCell])
-		{
-			goto CheckEliminationsCount;
-		}
-
-		Unsafe.SkipInit(out CellMap miniline);
-		foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
-		{
-			if (tempMiniline.Contains(targetCell))
-			{
-				miniline = tempMiniline;
-				break;
-			}
-		}
-
-		// TODO: This will ignore the case that mirror cell contains a conjugate pair or an AHS.
-		if ((miniline - targetCell & EmptyCells) is not [var mirrorCell])
-		{
-			// The current mirror cells cannot be determined.
-			goto CheckEliminationsCount;
-		}
-
-		// Sync for the mirror cell.
-		foreach (var digit in (Mask)(grid.GetCandidates(mirrorCell) & ~baseCellsDigitsMask))
-		{
-			conclusions.Add(new(Elimination, mirrorCell, digit));
-		}
-
-		var digitsMaskForMirrorFromThisTargetCell = (Mask)(grid.GetCandidates(mirrorCell) & baseCellsDigitsMask);
-		if (digitsMaskForMirrorFromThisTargetCell == baseCellsDigitsMask)
-		{
-			// They are same. Don't need to sync candidates.
-			goto CheckEliminationsCount;
-		}
-
-		var digitsMaskTheOtherTargetCell = (Mask)(grid.GetCandidates(theOtherTargetCell) & ~digitsMaskForMirrorFromThisTargetCell);
-		if (digitsMaskTheOtherTargetCell == 0)
-		{
-			// No candidates should be sync'ed.
-			goto CheckEliminationsCount;
-		}
-
-		// Sync for candidates for the current target cell.
-		foreach (var digit in digitsMaskTheOtherTargetCell)
-		{
-			conclusions.Add(new(Elimination, theOtherTargetCell, digit));
-		}
-
-		// Sync the current target cell if worth.
-		foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
-		{
-			if (tempMiniline.Contains(theOtherTargetCell))
-			{
-				miniline = tempMiniline;
-				break;
-			}
-		}
-
-		if ((miniline - theOtherTargetCell & EmptyCells) is not [var mirrorEmptyCellFromTheOtherTargetCell])
-		{
-			// The number of the other side of mirror cells is not 1.
-			goto CheckEliminationsCount;
-		}
-
-		var digitsMaskForMirrorFromTheOtherTargetCell = (Mask)(grid.GetCandidates(mirrorEmptyCellFromTheOtherTargetCell) & baseCellsDigitsMask);
-		if (digitsMaskForMirrorFromTheOtherTargetCell == baseCellsDigitsMask)
-		{
-			// They are same. Don't need to sync candidates.
-			goto CheckEliminationsCount;
-		}
-
-		var digitsMaskTargetCell = (Mask)(grid.GetCandidates(targetCell) & ~digitsMaskForMirrorFromTheOtherTargetCell & ~(1 << lockedDigit));
-		if (digitsMaskTargetCell == 0)
-		{
-			// No candidates should be sync'ed.
-			goto CheckEliminationsCount;
-		}
-
-		// Sync for candidates for the other side of target cell.
-		foreach (var digit in digitsMaskTargetCell)
-		{
-			conclusions.Add(new(Elimination, targetCell, digit));
-		}
-
-	CheckEliminationsCount:
 		if (conclusions.Count == 0)
 		{
 			// No eliminations found.
@@ -1731,6 +1644,112 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return null;
+	}
+
+	private static JuniorExocetMirrorSyncStep? CheckMirrorSync(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		int chuteIndex
+	)
+	{
+		if (targetCells.Count != 2)
+		{
+			// TODO: Now ignores the case on conjugate pairs and AHS.
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+		foreach (var block in targetCells.BlockMask)
+		{
+			var targetCell = (HousesMap[block] & targetCells)[0];
+			var theOtherTargetCell = (targetCells - targetCell)[0];
+			g(conclusions, in grid, targetCell, theOtherTargetCell);
+		}
+
+		if (conclusions.Count == 0)
+		{
+			// No conclusions found.
+			return null;
+		}
+
+		var step = new JuniorExocetMirrorSyncStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+
+
+		void g(List<Conclusion> conclusions, scoped ref readonly Grid grid, Cell targetCell, Cell theOtherTargetCell)
+		{
+			Unsafe.SkipInit(out CellMap miniline);
+			foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
+			{
+				if (tempMiniline.Contains(theOtherTargetCell))
+				{
+					miniline = tempMiniline;
+					break;
+				}
+			}
+
+			switch (miniline - theOtherTargetCell & EmptyCells)
+			{
+				case [var mirrorEmptyCellFromTheOtherTargetCell]:
+				{
+					var digitsMaskForMirrorFromTheOtherTargetCell = (Mask)(grid.GetCandidates(mirrorEmptyCellFromTheOtherTargetCell) & baseCellsDigitsMask);
+					if (digitsMaskForMirrorFromTheOtherTargetCell == baseCellsDigitsMask)
+					{
+						// They are same. Don't need to sync candidates.
+						return;
+					}
+
+					var digitsMaskTargetCell = (Mask)(grid.GetCandidates(targetCell) & ~digitsMaskForMirrorFromTheOtherTargetCell);
+					if (digitsMaskTargetCell == 0)
+					{
+						// No candidates should be sync'ed.
+						return;
+					}
+
+					// Sync for candidates for the other side of target cell.
+					foreach (var digit in digitsMaskTargetCell)
+					{
+						conclusions.Add(new(Elimination, targetCell, digit));
+					}
+					break;
+				}
+			}
+		}
 	}
 
 	/// <summary>

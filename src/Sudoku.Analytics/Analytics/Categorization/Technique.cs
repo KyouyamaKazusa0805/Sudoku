@@ -2895,6 +2895,13 @@ public enum Technique
 	JuniorExocetLockedMember,
 
 	/// <summary>
+	/// Indicates junior exocet mirror sync.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	JuniorExocetMirrorSync,
+
+	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

@@ -2370,4 +2370,7 @@
   <data name="SeniorExocetLockedMember" xml:space="preserve">
     <value>Senior Exocet (Locked Member)</value>
   </data>
+  <data name="JuniorExocetMirrorSync" xml:space="preserve">
+    <value>Junior Exocet (Mirror Sync)</value>
+  </data>
 </root>

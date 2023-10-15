@@ -2781,6 +2781,11 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet locked member.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetMirrorSync">
+            <summary>
+            Indicates junior exocet mirror sync.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocet">
             <summary>
             Indicates senior exocet.
@@ -13117,6 +13122,36 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraDigitsMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Mirror Sync)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Junior Exocet (Mirror Sync)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
@@ -16715,6 +16750,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorAlmostHiddenSet">
             <summary>
               Looks up a localized string similar to Junior Exocet (Mirror Alomst Hidden Set).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorSync">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Mirror Sync).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetSingleMirror">
