@@ -6861,6 +6861,9 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through a collection.
@@ -6905,6 +6908,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>values</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Linq.HouseMaskEnumerable">
             <summary>
