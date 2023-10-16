@@ -1771,7 +1771,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// </returns>
 	private static int MostTimesOf(Digit digit, HouseMask houses, scoped ref readonly CellMap excludedCells)
 	{
-		var cells = CandidatesMap[digit];
+		var cells = DigitsMap[digit];
 		var cellsInHouses = CellMap.Empty;
 		foreach (var house in houses)
 		{
