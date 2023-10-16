@@ -7705,22 +7705,15 @@ if (student is (name: var name, age: >= 18))
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.MostTimesOf(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.MostTimesOf(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
             </summary>
             <param name="digit">The digit to be checked.</param>
-            <param name="houses">The houses that the digit can be filled with.</param>
-            <param name="excludedCells">
-            Indicates the cells the method doesn't cover them. If the value is not <see cref="F:Sudoku.Concepts.CellMap.Empty"/>,
-            all cells in the houses should be checked.
-            </param>
+            <param name="cells">The cells to be checked.</param>
+            <param name="limitCount">The maximum number of filling with <paramref name="digit"/> in <paramref name="cells"/>.</param>
             <returns>
             <para>The number of times that the digit can be filled with the specified houses, at most.</para>
-            <para>
-            If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
-            or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
-            </para>
             </returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">

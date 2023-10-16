@@ -256,7 +256,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 														foreach (var digit in baseCellsDigitsMask)
 														{
-															var mostTimes = MostTimesOf(digit, housesMask, chuteCells + cell);
+															var mostTimes = MostTimesOf(digit, housesCells - chuteCells - cell, size);
 															if (mostTimes != size - 1)
 															{
 																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -297,7 +297,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 													{
-														var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
+														var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size);
 														if (mostTimes != size - 1)
 														{
 															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -350,7 +350,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 											foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 											{
-												var mostTimes = MostTimesOf(digit, housesMask, in chuteCells);
+												var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size);
 												if (mostTimes != size - 1)
 												{
 													allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -1766,50 +1766,29 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
 	/// </summary>
 	/// <param name="digit">The digit to be checked.</param>
-	/// <param name="houses">The houses that the digit can be filled with.</param>
-	/// <param name="excludedCells">
-	/// Indicates the cells the method doesn't cover them. If the value is not <see cref="CellMap.Empty"/>,
-	/// all cells in the houses should be checked.
-	/// </param>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="limitCount">The maximum number of filling with <paramref name="digit"/> in <paramref name="cells"/>.</param>
 	/// <returns>
 	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
-	/// <para>
-	/// If any one of the houses from argument <paramref name="houses"/> doesn't contain that digit,
-	/// or the digit has already been filled with that house as a value, the value will be 0. No exception will be thrown.
-	/// </para>
 	/// </returns>
-	private static int MostTimesOf(Digit digit, HouseMask houses, scoped ref readonly CellMap excludedCells)
+	private static int MostTimesOf(Digit digit, scoped ref readonly CellMap cells, int limitCount)
 	{
-		var cells = DigitsMap[digit];
-		var cellsInHouses = CellMap.Empty;
-		foreach (var house in houses)
+		var inactiveCells = ValuesMap[digit] & cells;
+		var activeCells = (cells & CandidatesMap[digit]) - inactiveCells;
+		for (var i = 1; i <= Math.Min(activeCells.Count, limitCount) - 1; i++)
 		{
-			cellsInHouses |= HousesMap[house] - excludedCells;
-		}
-		cells &= cellsInHouses;
-
-		for (var size = Math.Min(9, PopCount((uint)houses)); size >= 1; size--)
-		{
-			foreach (var cellsChosen in cells.GetSubsets(size))
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
 			{
-				if (size >= 2)
+				var housesMap = CellMap.Empty;
+				foreach (var house in cellsCombination.Houses)
 				{
-					var duplicated = false;
-					foreach (var cellPair in cellsChosen.GetSubsets(2))
-					{
-						if (cellPair.InOneHouse(out _))
-						{
-							duplicated = true;
-							break;
-						}
-					}
-					if (duplicated)
-					{
-						continue;
-					}
+					housesMap |= HousesMap[house];
 				}
 
-				return size;
+				if ((housesMap & activeCells) == activeCells)
+				{
+					return inactiveCells.Count + i;
+				}
 			}
 		}
 
