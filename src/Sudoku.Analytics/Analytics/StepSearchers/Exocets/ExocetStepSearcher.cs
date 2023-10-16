@@ -1669,7 +1669,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			var targetCell = (HousesMap[block] & targetCells)[0];
 			var theOtherTargetCell = (targetCells - targetCell)[0];
-			g(conclusions, in grid, targetCell, theOtherTargetCell);
+			collectFor(conclusions, in grid, targetCell, theOtherTargetCell);
 		}
 
 		if (conclusions.Count == 0)
@@ -1712,7 +1712,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 
 
-		void g(List<Conclusion> conclusions, scoped ref readonly Grid grid, Cell targetCell, Cell theOtherTargetCell)
+		void collectFor(List<Conclusion> conclusions, scoped ref readonly Grid grid, Cell targetCell, Cell theOtherTargetCell)
 		{
 			Unsafe.SkipInit(out CellMap miniline);
 			foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
@@ -1743,10 +1743,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 
 					// Sync for candidates for the other side of target cell.
+					var lastDigitsMaskForTarget = grid.GetCandidates(targetCell) & baseCellsDigitsMask;
 					foreach (var digit in digitsMaskTargetCell)
 					{
+						lastDigitsMaskForTarget &= (Mask)~(1 << digit);
 						conclusions.Add(new(Elimination, targetCell, digit));
 					}
+
+					// Sync for mirror cells.
+					foreach (var digit in (Mask)(grid.GetCandidates(mirrorEmptyCellFromTheOtherTargetCell) & ~lastDigitsMaskForTarget))
+					{
+						conclusions.Add(new(Elimination, mirrorEmptyCellFromTheOtherTargetCell, digit));
+					}
+
 					break;
 				}
 			}
