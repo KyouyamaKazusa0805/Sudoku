@@ -15,6 +15,8 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
+using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
+
 /// <summary>
 /// Provides with an <b>Exocet</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -194,7 +196,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Check whether the number of total target cell groups must be 2.
 									// Note: This statement may not be valid for checking of cases like base.count == 1 and size == 4.
 									// I'll adjust them later.
-									scoped var groupsOfTargetCells = GetGroupsOfTargets(in targetCells, housesMask);
+									scoped var groupsOfTargetCells = GroupTargets(in targetCells, housesMask);
 									if (groupsOfTargetCells.Length != 2)
 									{
 										continue;
@@ -525,7 +527,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case 3 or 4 when endoTargetCell == -1:
 			{
-				scoped var cellGroups = GetGroupsOfTargets(in targetCells, housesMask);
+				scoped var cellGroups = GroupTargets(in targetCells, housesMask);
 				foreach (ref readonly var cellGroup in cellGroups)
 				{
 					switch (cellGroup.Values.Count)
@@ -648,7 +650,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var conjugatePairs = new List<Conjugate>(2);
-		scoped var cellGroups = GetGroupsOfTargets(in targetCells, housesMask);
+		scoped var cellGroups = GroupTargets(in targetCells, housesMask);
 		if (cellGroups.Length != 2)
 		{
 			return null;
@@ -759,7 +761,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var singleMirrors = CellMap.Empty;
-		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
 			if (cellGroup.Values.Count == 2)
 			{
@@ -1095,7 +1097,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
 			var (_, values) = cellGroup;
 			switch (values.Count)
@@ -1296,7 +1298,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
 			if (cellGroup is not (_, [var targetCell]))
 			{
@@ -1804,19 +1806,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Try to split target cells into multiple parts, grouped by its containing row or column.
+	/// Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
 	/// </summary>
 	/// <param name="targetCells">The target cells to be split.</param>
-	/// <param name="houseMask">The houses to be matched.</param>
-	/// <returns>A list of <see cref="CellMap"/> grouped.</returns>
-	private static ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, House>> GetGroupsOfTargets(
-		scoped ref readonly CellMap targetCells,
-		HouseMask houseMask
-	)
+	/// <param name="houses">The mask value holding a list of houses to be matched.</param>
+	/// <returns>A list of <see cref="CellMap"/> grouped, representing as a <see cref="TargetCellsGroup"/>.</returns>
+	private static ReadOnlySpan<TargetCellsGroup> GroupTargets(scoped ref readonly CellMap targetCells, HouseMask houses)
 	{
-		var result = new BitStatusMapGroup<CellMap, Cell, House>[PopCount((uint)houseMask)];
+		var result = new TargetCellsGroup[PopCount((uint)houses)];
 		var i = 0;
-		foreach (var house in houseMask)
+		foreach (var house in houses)
 		{
 			if ((targetCells & HousesMap[house]) is var map and not [])
 			{
