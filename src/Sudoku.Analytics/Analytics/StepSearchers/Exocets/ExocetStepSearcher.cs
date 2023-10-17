@@ -506,7 +506,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			case 3 or 4 when endoTargetCell == -1:
 			{
 				scoped var cellGroups = from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block);
-				foreach (var cellGroup in cellGroups)
+				foreach (ref readonly var cellGroup in cellGroups)
 				{
 					switch (cellGroup.Values.Count)
 					{
@@ -644,17 +644,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			foreach (var targetCell in cellGroup)
 			{
-				Unsafe.SkipInit(out CellMap miniline);
-				foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
-				{
-					if (temp.Contains(targetCell))
-					{
-						miniline = temp;
-						break;
-					}
-				}
-
-				var theOtherTwoCells = miniline - targetCell;
+				var theOtherTwoCells = GetMirrorCell(targetCell, chuteIndex, out _);
 				var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
 				if (!theOtherEmptyCells)
 				{
@@ -749,7 +739,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var singleMirrors = CellMap.Empty;
-		foreach (var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
 		{
 			if (cellGroup.Values.Count == 2)
 			{
@@ -759,17 +749,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			foreach (var targetCell in cellGroup)
 			{
-				Unsafe.SkipInit(out CellMap miniline);
-				foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
-				{
-					if (temp.Contains(targetCell))
-					{
-						miniline = temp;
-						break;
-					}
-				}
-
-				if ((miniline - targetCell & EmptyCells) is not [var theOnlyMirrorCell])
+				var mirrorCells = GetMirrorCell(targetCell, chuteIndex, out _);
+				if ((mirrorCells & EmptyCells) is not [var theOnlyMirrorCell])
 				{
 					// The mirror cells contain not 1 cell, it may not be included in this type.
 					continue;
@@ -1094,8 +1075,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		foreach (var (_, values) in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
 		{
+			var (_, values) = cellGroup;
 			switch (values.Count)
 			{
 				case 1:
@@ -1294,7 +1276,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
 		{
 			if (cellGroup is not (_, [var targetCell]))
 			{
@@ -1302,18 +1284,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Try to fetch the miniline of the current target cell located in.
-			Unsafe.SkipInit(out CellMap miniline);
-			foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
-			{
-				if (temp.Contains(targetCell))
-				{
-					miniline = temp;
-					break;
-				}
-			}
-
-			var mirrorTwoCells = miniline - targetCell;
-			var mirrorEmptyCells = mirrorTwoCells & EmptyCells;
+			var mirrorCells = GetMirrorCell(targetCell, chuteIndex, out var miniline);
+			var mirrorEmptyCells = mirrorCells & EmptyCells;
 			if (!mirrorEmptyCells)
 			{
 				// The current miniline cannot contain any eliminations.
@@ -1793,5 +1765,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return 0;
+	}
+
+	/// <summary>
+	/// Try to get the mirror cells for the specified target cell at the specified index of the chute.
+	/// </summary>
+	/// <param name="chuteIndex">The chute index (in range 0..6).</param>
+	/// <param name="targetCell">The target cell.</param>
+	/// <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
+	/// <returns>The mirror cells that may contain non-empty cells.</returns>
+	private static CellMap GetMirrorCell(Cell targetCell, int chuteIndex, out CellMap miniline)
+	{
+		Unsafe.SkipInit(out miniline);
+		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
+		{
+			if (temp.Contains(targetCell))
+			{
+				miniline = temp;
+				break;
+			}
+		}
+
+		return miniline - targetCell;
 	}
 }

@@ -7716,6 +7716,15 @@ if (student is (name: var name, age: >= 18))
             <para>The number of times that the digit can be filled with the specified houses, at most.</para>
             </returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetMirrorCell(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get the mirror cells for the specified target cell at the specified index of the chute.
+            </summary>
+            <param name="chuteIndex">The chute index (in range 0..6).</param>
+            <param name="targetCell">The target cell.</param>
+            <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
+            <returns>The mirror cells that may contain non-empty cells.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
             Provides with a <b>Complex Fish</b> step searcher.
