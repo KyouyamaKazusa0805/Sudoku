@@ -42,16 +42,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		MinilinesGroupedByChuteIndex = new CellMap[6][];
 		for (var i = 0; i < 6; i++)
 		{
-			MinilinesGroupedByChuteIndex[i] = [[], [], [], [], [], [], [], [], []];
+			scoped ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
+			currentMinilineGroup = [[], [], [], [], [], [], [], [], []];
 
-			var (_, _, _, chuteHouses) = Chutes[i];
-			var isRow = i is 0 or 1 or 2;
-			var tempIndex = 0;
+			var ((_, _, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
 			foreach (var chuteHouse in chuteHouses)
 			{
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
 				{
-					scoped ref var current = ref MinilinesGroupedByChuteIndex[i][tempIndex++];
+					scoped ref var current = ref currentMinilineGroup[tempIndex++];
 					current.Add(houseCell);
 					current.Add(houseCell + (isRow ? 1 : 9));
 					current.Add(houseCell + (isRow ? 2 : 18));
