@@ -195,7 +195,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Get the count delta (target group by block.count - base.count).
-									var delta = (from c in targetCells group c by c.ToHouseIndex(HouseType.Block)).Length - baseCells.Count;
+									var delta = GetGroupsOfTargets(in targetCells, housesMask).Length - baseCells.Count;
 
 									// Delta can be -2, -1 or 0. In fact the possible values can be [-2, 2], but 1 and 2 are invalid. Details:
 									//
@@ -1803,9 +1803,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var i = 0;
 		foreach (var house in houseMask)
 		{
-			result[i++] = new(house, targetCells & HousesMap[house]);
+			if ((targetCells & HousesMap[house]) is var map and not [])
+			{
+				result[i++] = new(house, in map);
+			}
 		}
 
-		return result;
+		return result.AsSpan()[..i];
 	}
 }
