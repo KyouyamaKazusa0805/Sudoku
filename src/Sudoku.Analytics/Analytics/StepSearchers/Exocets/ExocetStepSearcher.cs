@@ -155,7 +155,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Now we should check for target cells.
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
-									var generializedTargetCells = (housesCells & chuteCells) - baseCells.PeerIntersection;
+									var targetCellsWithNonEmptyCells = (housesCells & chuteCells) - baseCells.PeerIntersection;
 									var targetCellsDigitsMask = grid[in targetCells];
 									if ((targetCellsDigitsMask & baseCellsDigitsMask) == 0)
 									{
@@ -178,18 +178,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Check whether generalized target cells (non-empty) don't contain
+									// Check whether target cells (with non-empty cells) don't contain
 									// any possible digits appeared in base cells.
-									var targetUncoveredCellsContainDigitsAppearedInBaseCells = false;
-									foreach (var cell in generializedTargetCells - EmptyCells)
+									var targetNonEmptyCellsContainDigitsAppearedInBaseCells = false;
+									foreach (var cell in targetCellsWithNonEmptyCells - EmptyCells)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
-											targetUncoveredCellsContainDigitsAppearedInBaseCells = true;
+											targetNonEmptyCellsContainDigitsAppearedInBaseCells = true;
 											break;
 										}
 									}
-									if (targetUncoveredCellsContainDigitsAppearedInBaseCells)
+									if (targetNonEmptyCellsContainDigitsAppearedInBaseCells)
 									{
 										continue;
 									}
