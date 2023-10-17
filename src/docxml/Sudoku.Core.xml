@@ -3589,23 +3589,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Where(System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Filters the candidates that satisfies the specified condition.
-            </summary>
-            <param name="predicate">The condition to filter candidates.</param>
-            <returns>All candidates satisfied the specified condition.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Select``1(System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element of a sequence into a new form.
-            </summary>
-            <typeparam name="TResult">The type of the value returned by <paramref name="selector"/>.</typeparam>
-            <param name="selector">A transform function to apply to each element.</param>
-            <returns>
-            An array of <typeparamref name="TResult"/> elements converted.
-            </returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Reset">
             <summary>
             Reset the sudoku grid, to set all modifiable values to empty ones.
@@ -6920,6 +6903,31 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Linq.GridEnumerable">
+            <summary>
+            Provides with a list of LINQ methods operating with <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Linq.GridEnumerable.Where(Sudoku.Concepts.Grid@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters the candidates that satisfies the specified condition.
+            </summary>
+            <param name="this">The instance to be iterated.</param>
+            <param name="predicate">The condition to filter candidates.</param>
+            <returns>All candidates satisfied the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.GridEnumerable.Select``1(Sudoku.Concepts.Grid@,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element of a sequence into a new form.
+            </summary>
+            <typeparam name="TResult">The type of the value returned by <paramref name="selector"/>.</typeparam>
+            <param name="this">The instance to be iterated.</param>
+            <param name="selector">A transform function to apply to each element.</param>
+            <returns>
+            An array of <typeparamref name="TResult"/> elements converted.
+            </returns>
         </member>
         <member name="T:Sudoku.Linq.HouseMaskEnumerable">
             <summary>
