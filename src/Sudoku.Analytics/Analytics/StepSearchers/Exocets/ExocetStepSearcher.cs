@@ -121,13 +121,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						//   ..64.....1....39.7.5.............3..2....1.89....59....4......83....2....126...7.
 						//
 						// For digits 4 & 5 in houses r258, with base cell r9c7 and target cell r2c8 => r2c8 must be 4 or 5.
-						for (var sizeOfBaseAndTarget = 1; sizeOfBaseAndTarget <= 2; sizeOfBaseAndTarget++)
+						for (var baseSize = 1; baseSize <= 2; baseSize++)
 						{
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
-							scoped ref readonly var chuteHousesInCurrentChute = ref MinilinesGroupedByChuteIndex[i];
-							for (var j = 0; j < 9; j++)
+							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].EnumerateRef())
 							{
-								scoped ref readonly var minilineBaseCells = ref chuteHousesInCurrentChute[j];
 								var baseEmptyCellsToBeIterated = minilineBaseCells & EmptyCells;
 								if (!baseEmptyCellsToBeIterated)
 								{
@@ -136,7 +134,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								}
 
 								// Iterate on each miniline, to get all possible cases.
-								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(sizeOfBaseAndTarget).EnumerateRef())
+								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(baseSize).EnumerateRef())
 								{
 									if (housesEmptyCells & baseCells)
 									{
