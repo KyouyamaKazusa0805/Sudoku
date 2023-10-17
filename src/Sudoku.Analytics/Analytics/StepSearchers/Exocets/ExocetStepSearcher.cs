@@ -80,12 +80,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private ExocetStep? CollectForAllRowColumnType(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-
-		// Iterate by size of houses to be iterated.
 		scoped var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
 		{
-			for (var size = 3; size <= 4; size++)
+			// Iterate by size of houses to be iterated.
+			for (var size = 3; size <= 3/*4*/; size++)
 			{
 				// Iterate on all possible rows and columns on size 3 or 4.
 				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).GetAllSets().GetSubsets(size))
