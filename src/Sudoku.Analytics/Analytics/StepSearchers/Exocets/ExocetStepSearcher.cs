@@ -504,7 +504,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case 3 or 4 when endoTargetCell == -1:
 			{
-				scoped var cellGroups = from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block);
+				scoped var cellGroups = GetGroupsOfTargets(in targetCells, housesMask);
 				foreach (ref readonly var cellGroup in cellGroups)
 				{
 					switch (cellGroup.Values.Count)
@@ -627,7 +627,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var conjugatePairs = new List<Conjugate>(2);
-		scoped var cellGroups = from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block);
+		scoped var cellGroups = GetGroupsOfTargets(in targetCells, housesMask);
 		if (cellGroups.Length != 2)
 		{
 			return null;
@@ -738,7 +738,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var singleMirrors = CellMap.Empty;
-		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
 		{
 			if (cellGroup.Values.Count == 2)
 			{
@@ -1074,7 +1074,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
 		{
 			var (_, values) = cellGroup;
 			switch (values.Count)
@@ -1275,7 +1275,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (ref readonly var cellGroup in from cell in targetCells group cell by cell.ToHouseIndex(HouseType.Block))
+		foreach (ref readonly var cellGroup in GetGroupsOfTargets(in targetCells, housesMask))
 		{
 			if (cellGroup is not (_, [var targetCell]))
 			{
@@ -1786,5 +1786,26 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return miniline - targetCell;
+	}
+
+	/// <summary>
+	/// Try to split target cells into multiple parts, grouped by its containing row or column.
+	/// </summary>
+	/// <param name="targetCells">The target cells to be split.</param>
+	/// <param name="houseMask">The houses to be matched.</param>
+	/// <returns>A list of <see cref="CellMap"/> grouped.</returns>
+	private static ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, House>> GetGroupsOfTargets(
+		scoped ref readonly CellMap targetCells,
+		HouseMask houseMask
+	)
+	{
+		var result = new BitStatusMapGroup<CellMap, Cell, House>[PopCount((uint)houseMask)];
+		var i = 0;
+		foreach (var house in houseMask)
+		{
+			result[i++] = new(house, targetCells & HousesMap[house]);
+		}
+
+		return result;
 	}
 }

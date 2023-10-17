@@ -7725,6 +7725,14 @@ if (student is (name: var name, age: >= 18))
             <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
             <returns>The mirror cells that may contain non-empty cells.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetGroupsOfTargets(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Try to split target cells into multiple parts, grouped by its containing row or column.
+            </summary>
+            <param name="targetCells">The target cells to be split.</param>
+            <param name="houseMask">The houses to be matched.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
             Provides with a <b>Complex Fish</b> step searcher.
