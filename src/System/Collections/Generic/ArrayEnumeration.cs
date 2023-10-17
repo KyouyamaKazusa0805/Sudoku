@@ -75,16 +75,4 @@ public static class ArrayEnumeration
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ArrayPairEnumerator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
 		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
-
-	/// <summary>
-	/// Get all possible flags that the current enumeration field set.
-	/// </summary>
-	/// <typeparam name="T">The type of the enumeration.</typeparam>
-	/// <param name="this">The current enumeration type instance.</param>
-	/// <returns>All flags.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldEnumerator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
 }

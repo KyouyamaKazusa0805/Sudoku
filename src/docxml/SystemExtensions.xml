@@ -179,17 +179,6 @@
             <param name="this">The array.</param>
             <returns>An enumerable collection.</returns>
         </member>
-        <member name="M:System.Collections.Generic.ArrayEnumeration.GetEnumerator``1(``0)">
-            <summary>
-            Get all possible flags that the current enumeration field set.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <returns>All flags.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
-            </exception>
-        </member>
         <member name="T:System.Collections.Generic.ArrayPairEnumerator`3">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
@@ -236,6 +225,24 @@
         </member>
         <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:System.Collections.Generic.EnumFlagEnumeration">
+            <summary>
+            Represents enumeration methods for flags defined in an enumeration type, marked with <see cref="T:System.FlagsAttribute"/>.
+            </summary>
+            <seealso cref="T:System.Enum"/>
+            <seealso cref="T:System.FlagsAttribute"/>
+        </member>
+        <member name="M:System.Collections.Generic.EnumFlagEnumeration.GetEnumerator``1(``0)">
+            <summary>
+            Get all possible flags that the current enumeration field set.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="this">The current enumeration type instance.</param>
+            <returns>All flags.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
+            </exception>
         </member>
         <member name="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1">
             <summary>
