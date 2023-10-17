@@ -448,15 +448,11 @@ public readonly unsafe partial struct Utf8String :
 	public static implicit operator string(Utf8String s) => s.ToString();
 
 	/// <summary>
-	/// Implicitly cast from <see cref="Utf8Char"/>[] to <see cref="Utf8String"/>.
+	/// Implicitly cast from <see cref="Utf8Char"/>[]? to <see cref="Utf8String"/>.
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-#if true
-	public static implicit operator Utf8String(Utf8Char[] underlyingArray) => new(underlyingArray);
-#else
-	public static implicit operator Utf8String(Utf8Char[]? underlyingArray) => new(underlyingArray ?? Array.Empty<Utf8Char>());
-#endif
+	public static implicit operator Utf8String(Utf8Char[]? underlyingArray) => new(underlyingArray ?? []);
 
 	/// <summary>
 	/// Implicitly cast from <see cref="byte"/>[] to <see cref="Utf8String"/>.

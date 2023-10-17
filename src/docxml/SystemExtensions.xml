@@ -4439,7 +4439,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Utf8String.op_Implicit(System.Utf8Char[])~System.Utf8String">
             <summary>
-            Implicitly cast from <see cref="T:System.Utf8Char"/>[] to <see cref="T:System.Utf8String"/>.
+            Implicitly cast from <see cref="T:System.Utf8Char"/>[]? to <see cref="T:System.Utf8String"/>.
             </summary>
             <param name="underlyingArray">The underlying array.</param>
         </member>
