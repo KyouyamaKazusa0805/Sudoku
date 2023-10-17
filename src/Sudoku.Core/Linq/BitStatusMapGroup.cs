@@ -77,7 +77,7 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
 	/// </param>
 	/// <returns>
-	/// A (An) <typeparamref name="TResult"/>[] whose elements are the result of invoking the transform function
+	/// An array of <typeparamref name="TResult"/> instances whose elements are the result of invoking the transform function
 	/// on each element of the current instance.
 	/// </returns>
 	public ReadOnlySpan<TResult> Select<TResult>(Func<TElement, TResult> selector)
