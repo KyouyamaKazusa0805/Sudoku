@@ -2,7 +2,8 @@ namespace System.SourceGeneration;
 
 /// <summary>
 /// Represents an attribute that can tell source generators the type is a large structure,
-/// meaning the source generators will always append <see langword="scoped ref readonly"/> modifiers onto target-typed parameters.
+/// meaning the source generators will always append <see langword="scoped ref readonly"/> onto target-typed parameters
+/// if the containing member isn't an operator, or append <see langword="scoped in"/> if the containing member is an operator.
 /// </summary>
 /// <remarks>
 /// Please note that the type can be also consumed by interfaces. Such cases mean the target structure types implemented is a large structure.

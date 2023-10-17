@@ -18,6 +18,7 @@ namespace Sudoku.Linq;
 [Equals]
 [GetHashCode]
 [EqualityOperators]
+[LargeStructure]
 public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	[DataMember] TKey key,
 	[DataMember, HashCodeMember] scoped ref readonly TMap values
@@ -34,9 +35,9 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out TKey key, out TMap values) => (key, values) = (Key, Values);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(BitStatusMapGroup<TMap, TElement, TKey> other) => Values == other.Values;
+	public bool Equals(scoped ref readonly BitStatusMapGroup<TMap, TElement, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
@@ -92,8 +93,14 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<BitStatusMapGroup<TMap, TElement, TKey>>.Equals(BitStatusMapGroup<TMap, TElement, TKey> other) => Equals(in other);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Values).GetEnumerator();
 }

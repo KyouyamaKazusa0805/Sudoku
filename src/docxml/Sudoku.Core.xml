@@ -6844,8 +6844,8 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
-            <inheritdoc/>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2}@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetEnumerator">
             <summary>
@@ -6876,6 +6876,9 @@ if (student is (name: var name, age: >= 18))
             on each element of the current instance.
             </returns>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#IEquatable{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey}}#Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -6898,11 +6901,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2}@,Sudoku.Linq.BitStatusMapGroup{`0,`1,`2}@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2}@,Sudoku.Linq.BitStatusMapGroup{`0,`1,`2}@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},System#Boolean}#op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
