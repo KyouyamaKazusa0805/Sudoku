@@ -1771,13 +1771,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
 			{
-				var housesMap = CellMap.Empty;
-				foreach (var house in cellsCombination.Houses)
-				{
-					housesMap |= HousesMap[house];
-				}
-
-				if ((housesMap & activeCells) == activeCells)
+				if ((cellsCombination.ExpandedHouses & activeCells) == activeCells)
 				{
 					return inactiveCells.Count + i;
 				}

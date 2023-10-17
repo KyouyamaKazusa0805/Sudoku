@@ -301,6 +301,27 @@ public partial struct CellMap :
 		}
 	}
 
+	/// <summary>
+	/// Gets the houses map of the current map.
+	/// </summary>
+	/// <remarks>
+	/// A <b>Houses Map</b> is a list of cells whose containing houses can be fetched from property <see cref="Houses"/>.
+	/// </remarks>
+	/// <seealso cref="Houses"/>
+	public readonly CellMap ExpandedHouses
+	{
+		get
+		{
+			var result = Empty;
+			foreach (var house in Houses)
+			{
+				result |= HousesMap[house];
+			}
+
+			return result;
+		}
+	}
+
 	/// <inheritdoc/>
 	public readonly CellMap PeerIntersection
 	{

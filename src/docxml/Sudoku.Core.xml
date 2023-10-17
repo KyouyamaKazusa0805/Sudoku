@@ -2015,6 +2015,15 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.PeersMap"/>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.ExpandedHouses">
+            <summary>
+            Gets the houses map of the current map.
+            </summary>
+            <remarks>
+            A <b>Houses Map</b> is a list of cells whose containing houses can be fetched from property <see cref="P:Sudoku.Concepts.CellMap.Houses"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.CellMap.Houses"/>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
         </member>
