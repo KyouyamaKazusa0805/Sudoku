@@ -1,9 +1,11 @@
+using System.Algorithm;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
+using static System.Numerics.BitOperations;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -36,5 +38,8 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[]? ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.AlmostHiddenSet, .2M), new(ExtraDifficultyCaseNames.Size, ExtraCells.Count >> 1)];
+		=> [
+			new(ExtraDifficultyCaseNames.AlmostHiddenSet, .2M),
+			new(ExtraDifficultyCaseNames.Size, Sequences.A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
+		];
 }
