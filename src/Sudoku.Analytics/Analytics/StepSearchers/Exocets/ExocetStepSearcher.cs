@@ -154,7 +154,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Now we should check for target cells.
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
-									var targetCellsWithNonEmptyCells = (housesCells & chuteCells) - baseCells.PeerIntersection;
 									var targetCellsDigitsMask = grid[in targetCells];
 									if ((targetCellsDigitsMask & baseCellsDigitsMask) == 0)
 									{
@@ -163,32 +162,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Check whether all digits appeared in base cells can be filled in target empty cells.
-									var allDigitsCanBeFilledInTargetEmptyCells = true;
+									var allDigitsCanBeFilledInTargetCells = true;
 									foreach (var digit in baseCellsDigitsMask)
 									{
 										if (!(targetCells & CandidatesMap[digit]))
 										{
-											allDigitsCanBeFilledInTargetEmptyCells = false;
+											allDigitsCanBeFilledInTargetCells = false;
 											break;
 										}
 									}
-									if (!allDigitsCanBeFilledInTargetEmptyCells)
-									{
-										continue;
-									}
-
-									// Check whether target cells (with non-empty cells) don't contain
-									// any possible digits appeared in base cells.
-									var targetNonEmptyCellsContainDigitsAppearedInBaseCells = false;
-									foreach (var cell in targetCellsWithNonEmptyCells - EmptyCells)
-									{
-										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
-										{
-											targetNonEmptyCellsContainDigitsAppearedInBaseCells = true;
-											break;
-										}
-									}
-									if (targetNonEmptyCellsContainDigitsAppearedInBaseCells)
+									if (!allDigitsCanBeFilledInTargetCells)
 									{
 										continue;
 									}
@@ -278,7 +261,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 														foreach (var digit in baseCellsDigitsMask)
 														{
-															var mostTimes = MostTimesOf(digit, housesCells - chuteCells - cell, size);
+															var mostTimes = MostTimesOf(digit, housesCells - chuteCells - cell, size - 1);
 															if (mostTimes != size - 1)
 															{
 																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -319,7 +302,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 													{
-														var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size);
+														var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size - 1);
 														if (mostTimes != size - 1)
 														{
 															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
@@ -355,25 +338,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 										case 0:
 										{
-											// Check whether cross-line non-empty cells contains digits appeared in base cells.
-											var crossline = housesCells - chuteCells;
-											var lockedDigitsMask = (Mask)0;
-											foreach (var cell in crossline)
-											{
-												var digit = grid.GetDigit(cell);
-												if ((baseCellsDigitsMask >> digit & 1) != 0)
-												{
-													lockedDigitsMask |= (Mask)(1 << digit);
-												}
-											}
-
-											// Check for maximum times can be appeared in cross-line cells.
-											// Due to consideration on locked members, we may not handle for them.
+											// Check for maximum times can be appeared in cross-line cells,
+											// and collect all possible digits can be filled in cross-line for (size - 1) times at most.
+											// Here is an confliction: Locked Members will make digits appeared in base cells
+											// appear in cross-line cells as values (i.e. non-empty cells).
+											// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
+											// in cross-line cells as values, but they are non-locked members.
+											// Here is an example:
+											//
+											//   98.7.....6.....97...7.....54...3..2...86..4.......4..1..68..5......1...4.....2.3.
+											//
+											// We should treat the digit as a non-locked member.
+											var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
 											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-											foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
+											foreach (var digit in baseCellsDigitsMask)
 											{
-												var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size);
-												if (mostTimes != size - 1)
+												if (MostTimesOf(digit, housesCells - chuteCells, size - 1) == size - 1)
+												{
+													// The current digit can be filled in cross-line cells at most (size - 1) times.
+													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
+												}
+												else
 												{
 													allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 													break;
@@ -388,15 +373,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												continue;
 											}
 
+											// Check whether cross-line non-empty cells contains digits appeared in base cells.
+											var (digitsMaskMayBeLockedMembers, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
+											var crossline = housesCells - chuteCells;
+											foreach (var cell in crossline)
+											{
+												if (grid.GetDigit(cell) is var digit and not -1 && (baseCellsDigitsMask >> digit & 1) != 0)
+												{
+													digitsMaskMayBeLockedMembers |= (Mask)(1 << digit);
+													digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+												}
+											}
+
+											// Filters the digits they may not be locked members
+											// when they matches exactly appeared (size - 1) times.
+											digitsMaskMayBeLockedMembers &= (Mask)~digitsMaskExactlySizeMinusOneTimes;
+
 											if (CheckMirrorSync(
 												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												housesMask, i, lockedDigitsMask
+												housesMask, i, digitsMaskMayBeLockedMembers
 											) is { } mirrorSyncTypeStep)
 											{
 												return mirrorSyncTypeStep;
 											}
 
-											switch (PopCount((uint)lockedDigitsMask)) // Must be 0, 1 or 2.
+											switch (PopCount((uint)digitsMaskMayBeLockedMembers)) // Must be 0, 1 or 2.
 											{
 												// No locked digits are found.
 												case 0:
@@ -410,24 +411,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													}
 
 													if (CheckMirror(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
-														housesMask
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														isRow, i, housesMask
 													) is { } mirrorTypeStep)
 													{
 														return mirrorTypeStep;
 													}
 
 													if (CheckSingleMirror(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, isRow, i,
-														housesMask
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														isRow, i, housesMask
 													) is { } singleMirrorTypeStep)
 													{
 														return singleMirrorTypeStep;
 													}
 
 													if (CheckIncompatiblePair(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask, delta,
-														out var inferredTargetPairMask, housesMask
+														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+														delta, out var inferredTargetPairMask, housesMask, digitsMaskAppearedInCrossline
 													) is { } incompatiblePairTypeStep)
 													{
 														return incompatiblePairTypeStep;
@@ -463,7 +464,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												// One locked digit is found. Now we should check for locked members.
 												case 1 when baseCells.Count == 2:
 												{
-													var lockedDigit = TrailingZeroCount(lockedDigitsMask);
+													var lockedDigit = TrailingZeroCount(digitsMaskMayBeLockedMembers);
 													if (CheckJeLockedMember(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 														lockedDigit, i
@@ -867,7 +868,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		int delta,
 		out Mask inferredTargetPairMask,
-		HouseMask housesMask
+		HouseMask housesMask,
+		Mask digitsMaskAppearedInCrossline
 	)
 	{
 		inferredTargetPairMask = 0;
@@ -875,6 +877,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// This rule can only apply for the case on such conditions:
 		//   1) The number of base cells must be 2.
 		//   2) The delta value must be 0 (i.e. a standard JE).
+		//   3) The cross-line cells contain at least one cell filled with digits appeared in base cells.
+
+		if (digitsMaskAppearedInCrossline != 0)
+		{
+			return null;
+		}
+
 		if (delta != 0)
 		{
 			return null;
@@ -1769,7 +1778,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var inactiveCells = ValuesMap[digit] & cells;
 		var activeCells = (cells & CandidatesMap[digit]) - inactiveCells;
-		for (var i = 1; i <= Math.Min(activeCells.Count, limitCount) - 1; i++)
+		for (var i = 1; i <= Math.Min(activeCells.Count, limitCount); i++)
 		{
 			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
 			{
