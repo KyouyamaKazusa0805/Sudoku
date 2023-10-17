@@ -128,9 +128,11 @@ public static class ArrayEnumerable
 	/// Filters a sequence of values based on a predicate.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements of source.</typeparam>
-	/// <param name="this">A (An) <typeparamref name="T"/>[] to filter.</param>
+	/// <param name="this">An array of <typeparamref name="T"/> instances to filter.</param>
 	/// <param name="predicate">A function to test each element for a condition.</param>
-	/// <returns>A (An) <typeparamref name="T"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
+	/// <returns>
+	/// An array of <typeparamref name="T"/> instances that contains elements from the input sequence that satisfy the condition.
+	/// </returns>
 	public static T[] Where<T>(this T[] @this, Func<T, bool> predicate)
 	{
 		var (length, finalIndex) = (@this.Length, 0);
