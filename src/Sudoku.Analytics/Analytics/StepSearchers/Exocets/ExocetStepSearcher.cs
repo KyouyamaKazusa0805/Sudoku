@@ -194,8 +194,32 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
+									// Check whether the number of total target cell groups must be 2.
+									// Note: This statement may not be valid for checking of cases like base.count == 1 and size == 4.
+									// I'll adjust them later.
+									scoped var groupsOfTargetCells = GetGroupsOfTargets(in targetCells, housesMask);
+									if (groupsOfTargetCells.Length != 2)
+									{
+										continue;
+									}
+
+									// Check whether all groups of target cells don't exceed the maximum limit, 2 cells.
+									var containsAtLeastOneGroupMoreThanTwoCells = false;
+									foreach (ref readonly var element in groupsOfTargetCells)
+									{
+										if (element.Values.Count > 2)
+										{
+											containsAtLeastOneGroupMoreThanTwoCells = true;
+											break;
+										}
+									}
+									if (containsAtLeastOneGroupMoreThanTwoCells)
+									{
+										continue;
+									}
+
 									// Get the count delta (target group by block.count - base.count).
-									var delta = GetGroupsOfTargets(in targetCells, housesMask).Length - baseCells.Count;
+									var delta = groupsOfTargetCells.Length - baseCells.Count;
 
 									// Delta can be -2, -1 or 0. In fact the possible values can be [-2, 2], but 1 and 2 are invalid. Details:
 									//
