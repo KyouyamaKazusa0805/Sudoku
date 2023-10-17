@@ -47,21 +47,15 @@ This repository is created for the following kinds of users:
 
 ## Prefaces
 
-### Command Line
-
-![](docs/pic/command-line.png)
-
-### User Interface
-
-#### Main Page
+### Main Page
 
 ![](docs/pic/winui.png)
 
-#### Puzzle Library Page
+### Puzzle Library Page
 
 ![](docs/pic/puzzle-lib.png)
 
-#### Technique Gallery Page
+### Technique Gallery Page
 
 ![](docs/pic/gallery.png)
 

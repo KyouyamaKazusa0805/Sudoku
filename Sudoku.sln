@@ -43,8 +43,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootLevelSourceGeneration",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio", "src\SudokuStudio\SudokuStudio.csproj", "{88EAFE6C-050B-4F43-B768-0C564D48CC3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Cli", "src\Sudoku.Cli\Sudoku.Cli.csproj", "{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellaneous", "Miscellaneous", "{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -331,36 +329,6 @@ Global
 		{88EAFE6C-050B-4F43-B768-0C564D48CC3E}.Release|x86.ActiveCfg = Release|x86
 		{88EAFE6C-050B-4F43-B768-0C564D48CC3E}.Release|x86.Build.0 = Release|x86
 		{88EAFE6C-050B-4F43-B768-0C564D48CC3E}.Release|x86.Deploy.0 = Release|x86
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|Any CPU.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|ARM.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|ARM.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|ARM64.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|ARM64.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|x64.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|x64.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|x86.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Build|x86.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|ARM.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|x64.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Debug|x86.Build.0 = Debug|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|ARM.ActiveCfg = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|ARM.Build.0 = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|ARM64.Build.0 = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x64.ActiveCfg = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x64.Build.0 = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x86.ActiveCfg = Release|Any CPU
-		{4BD3A90D-DA3F-4A69-8FA5-31E91D638538}.Release|x86.Build.0 = Release|Any CPU
 		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|Any CPU.ActiveCfg = Debug|Any CPU
 		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|Any CPU.Build.0 = Debug|Any CPU
 		{8870D44F-0973-4315-AFAE-B4220F3D6DB6}.Build|ARM.ActiveCfg = Debug|Any CPU
@@ -402,9 +370,9 @@ Global
 		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13

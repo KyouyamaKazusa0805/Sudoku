@@ -43,21 +43,15 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ## 界面
 
-### 控制台项目
-
-![](docs/pic/command-line.png)
-
-### UI 项目
-
-#### 主页
+### 主页
 
 ![](docs/pic/winui.png)
 
-#### 题库
+### 题库
 
 ![](docs/pic/puzzle-lib.png)
 
-#### 技巧展览馆
+### 技巧展览馆
 
 ![](docs/pic/gallery.png)
 

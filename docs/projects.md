@@ -29,7 +29,6 @@
 
 属于该类型的项目有：
 
-* [`Sudoku.Cli`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Cli)（控制台）：提供一个关于数独基本操作的控制台实现。
 * [`SudokuStudio`](https://github.com/SunnieShine/Sudoku/tree/main/src/SudokuStudio)（UI）：提供一个关于数独基本运算和操作的 UI 级别实现。
 * [`SudokuTutorial`](https://github.com/SunnieShine/Sudoku/tree/main/src/SudokuTutorial)（共享项目）：是数独教程的源文件。这些文件虽然放在 Shared Project 模板内，但大部分文件都不是 C# 源代码。
 
