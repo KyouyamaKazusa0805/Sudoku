@@ -176,7 +176,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Note: This statement may not be valid for checking of cases like base.count == 1 and size == 4.
 									// I'll adjust them later.
 									scoped var groupsOfTargetCells = GroupTargets(in targetCells, housesMask);
-									if (groupsOfTargetCells.Length != 2)
+									if (groupsOfTargetCells.Length != baseSize)
 									{
 										continue;
 									}
@@ -504,6 +504,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conjugatePairs = new List<Conjugate>(2);
 		switch (targetCells.Count)
 		{
+			case 1 when endoTargetCell == -1 && baseCells.Count == 1 && targetCells[0] is var targetCell:
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, targetCell, digit));
+				}
+				break;
+			}
 			case 2:
 			{
 				foreach (var cell in endoTargetCell == -1 ? targetCells : targetCells + endoTargetCell)
