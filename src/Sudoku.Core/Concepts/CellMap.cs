@@ -109,6 +109,33 @@ public partial struct CellMap :
 	}
 
 	/// <summary>
+	/// Indicates whether every cell in the current collection cannot see each other.
+	/// </summary>
+	public readonly bool CanSeeEachOther
+	{
+		get
+		{
+			switch (_count)
+			{
+				case 0 or 1: { return false; }
+				case 2: { return InOneHouse(out _); }
+				default:
+				{
+					foreach (var pair in GetSubsets(2))
+					{
+						if (pair.InOneHouse(out _))
+						{
+							return true;
+						}
+					}
+
+					return false;
+				}
+			}
+		}
+	}
+
+	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.
 	/// </summary>
 	/// <remarks>
@@ -295,27 +322,6 @@ public partial struct CellMap :
 			foreach (var cell in Offsets)
 			{
 				result |= PeersMap[cell];
-			}
-
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// Gets the houses map of the current map.
-	/// </summary>
-	/// <remarks>
-	/// A <b>Houses Map</b> is a list of cells whose containing houses can be fetched from property <see cref="Houses"/>.
-	/// </remarks>
-	/// <seealso cref="Houses"/>
-	public readonly CellMap ExpandedHouses
-	{
-		get
-		{
-			var result = Empty;
-			foreach (var house in Houses)
-			{
-				result |= HousesMap[house];
 			}
 
 			return result;

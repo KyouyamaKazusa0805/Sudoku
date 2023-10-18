@@ -1944,6 +1944,11 @@ if (student is (name: var name, age: >= 18))
             Determines whether the current list of cells are all lie in an intersection area, i.e. a locked candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.CanSeeEachOther">
+            <summary>
+            Indicates whether every cell in the current collection cannot see each other.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.BlockMask">
             <summary>
             Indicates the mask of block that all cells in this collection spanned.
@@ -2014,15 +2019,6 @@ if (student is (name: var name, age: >= 18))
             where the member <c>PeersMap</c> corresponds to the array <see cref="F:Sudoku.SolutionWideReadOnlyFields.PeersMap"/>.
             </remarks>
             <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.PeersMap"/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.ExpandedHouses">
-            <summary>
-            Gets the houses map of the current map.
-            </summary>
-            <remarks>
-            A <b>Houses Map</b> is a list of cells whose containing houses can be fetched from property <see cref="P:Sudoku.Concepts.CellMap.Houses"/>.
-            </remarks>
-            <seealso cref="P:Sudoku.Concepts.CellMap.Houses"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>

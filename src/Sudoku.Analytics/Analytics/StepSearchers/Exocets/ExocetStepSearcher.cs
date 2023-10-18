@@ -261,8 +261,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 														foreach (var digit in baseCellsDigitsMask)
 														{
-															var mostTimes = MostTimesOf(digit, housesCells - chuteCells - cell, size - 1);
-															if (mostTimes != size - 1)
+															if (MostTimesOf(digit, housesCells - chuteCells - cell, size - 1))
 															{
 																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 																break;
@@ -302,8 +301,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 													{
-														var mostTimes = MostTimesOf(digit, housesCells - chuteCells, size - 1);
-														if (mostTimes != size - 1)
+														if (MostTimesOf(digit, housesCells - chuteCells, size - 1))
 														{
 															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 															break;
@@ -353,7 +351,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 											foreach (var digit in baseCellsDigitsMask)
 											{
-												if (MostTimesOf(digit, housesCells - chuteCells, size - 1) == size - 1)
+												if (MostTimesOf(digit, housesCells - chuteCells, size - 1))
 												{
 													// The current digit can be filled in cross-line cells at most (size - 1) times.
 													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
@@ -1774,22 +1772,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <returns>
 	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
 	/// </returns>
-	private static int MostTimesOf(Digit digit, scoped ref readonly CellMap cells, int limitCount)
+	private static bool MostTimesOf(Digit digit, scoped ref readonly CellMap cells, int limitCount)
 	{
+		var activeCells = CandidatesMap[digit] & cells;
 		var inactiveCells = ValuesMap[digit] & cells;
-		var activeCells = (cells & CandidatesMap[digit]) - inactiveCells;
-		for (var i = 1; i <= Math.Min(activeCells.Count, limitCount); i++)
+		if (!activeCells && limitCount == inactiveCells.Count)
+		{
+			return true;
+		}
+
+		for (var i = activeCells.Count; i >= 1; i--)
 		{
 			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
 			{
-				if ((cellsCombination.ExpandedHouses & activeCells) == activeCells)
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{
-					return inactiveCells.Count + i;
+					return i + inactiveCells.Count == limitCount;
 				}
 			}
 		}
 
-		return 0;
+		return false;
 	}
 
 	/// <summary>

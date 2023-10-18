@@ -184,7 +184,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create([.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -321,7 +321,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create([.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -664,7 +664,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create([.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 1 || (Mask)(grid.GetCandidates(40) & singleDigitsMask) == 0;
