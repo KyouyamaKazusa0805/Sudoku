@@ -145,11 +145,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									var baseCellsDigitsMask = grid[in baseCells];
-									if (PopCount((uint)baseCellsDigitsMask) > baseCells.Count + 3)
-									{
-										// The base cells hold too much digits to be checked.
-										continue;
-									}
 
 									// Now we should check for target cells.
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
@@ -338,7 +333,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											// Check for maximum times can be appeared in cross-line cells,
 											// and collect all possible digits can be filled in cross-line for (size - 1) times at most.
-											// Here is an confliction: Locked Members will make digits appeared in base cells
+											// Here will cause an confliction: Locked Members will make digits appeared in base cells
 											// appear in cross-line cells as values (i.e. non-empty cells).
 											// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
 											// in cross-line cells as values, but they are non-locked members.
@@ -348,7 +343,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											//
 											// We should treat the digit as a non-locked member.
 											var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
-											var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 											foreach (var digit in baseCellsDigitsMask)
 											{
 												if (MostTimesOf(digit, housesCells - chuteCells, size - 1))
@@ -356,19 +350,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													// The current digit can be filled in cross-line cells at most (size - 1) times.
 													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
 												}
-												else
-												{
-													allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-													break;
-												}
-											}
-											if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-											{
-												// All digits should strictly appear (size - 1) times at most in cross-line cells.
-												// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-												// If greater (times > size - 1), an exocet cannot be formed;
-												// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-												continue;
 											}
 
 											// Check whether cross-line non-empty cells contains digits appeared in base cells.
@@ -386,6 +367,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											// Filters the digits they may not be locked members
 											// when they matches exactly appeared (size - 1) times.
 											digitsMaskMayBeLockedMembers &= (Mask)~digitsMaskExactlySizeMinusOneTimes;
+											var countOfLockedMembers = PopCount((uint)digitsMaskMayBeLockedMembers);
+											if (countOfLockedMembers > 2)
+											{
+												// We cannot hold 3 or more locked members.
+												continue;
+											}
 
 											if (CheckMirrorSync(
 												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
@@ -395,7 +382,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return mirrorSyncTypeStep;
 											}
 
-											switch (PopCount((uint)digitsMaskMayBeLockedMembers)) // Must be 0, 1 or 2.
+											switch (countOfLockedMembers)
 											{
 												// No locked digits are found.
 												case 0:
@@ -459,13 +446,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													break;
 												}
 
-												// One locked digit is found. Now we should check for locked members.
-												case 1 when baseCells.Count == 2:
+												// Locked digit is found. Now we should check for locked members.
+												case 1 or 2 when baseCells.Count == 2:
 												{
-													var lockedDigit = TrailingZeroCount(digitsMaskMayBeLockedMembers);
 													if (CheckJeLockedMember(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														lockedDigit, i
+														digitsMaskMayBeLockedMembers, i
 													) is { } lockedMemberTypeStep)
 													{
 														return lockedMemberTypeStep;
@@ -473,13 +459,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 													break;
 												}
-
-												// Two locked digits are found. Now we should check for locked members.
-												//case 2 when baseCells.Count == 2:
-												//{
-												//	// TODO: Will be considered later.
-												//	break;
-												//}
 											}
 
 											break;
@@ -1425,7 +1404,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap targetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
-		Digit lockedDigit,
+		Mask lockedDigitsMask,
 		int chuteIndex
 	)
 	{
@@ -1442,59 +1421,70 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//   L: Cells forming a locked member of digit 'a'.
 		//   /: Cells don't contain candidate 'a'.
 		var conclusions = new List<Conclusion>();
-		var lockedMemberMap = CellMap.Empty;
-		var lockedBlock = -1;
-		foreach (var block in targetCells.BlockMask)
+		var candidateOffsets = new List<CandidateViewNode>();
+		var houseNodes = new List<HouseViewNode>(2);
+		foreach (var lockedDigit in lockedDigitsMask)
 		{
-			var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
-			if (!!lastMap && (HousesMap[baseCells.CoveredLine] & lastMap) == lastMap)
+			var lockedMemberMap = CellMap.Empty;
+			var lockedBlock = -1;
+			foreach (var block in targetCells.BlockMask)
 			{
-				(lockedMemberMap, lockedBlock) = (lastMap, block);
-				break;
-			}
-		}
-		if (lockedBlock == -1)
-		{
-			return null;
-		}
-
-		// Now a locked member is found, check for eliminations.
-		// First, check for target cells in this block.
-		var targetCellsInThisBlock = HousesMap[lockedBlock] & targetCells;
-		switch (targetCellsInThisBlock)
-		{
-			case [var cell]:
-			{
-				// Just to be an elimination.
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
+				if (!!lastMap && (HousesMap[baseCells.CoveredLine] & lastMap) == lastMap)
 				{
-					conclusions.Add(new(Elimination, cell, digit));
+					(lockedMemberMap, lockedBlock) = (lastMap, block);
+					break;
 				}
-				break;
 			}
-			// TODO: With be considered later.
-			//case { Count: 2 }:
-			//{
-			//	break;
-			//}
-		}
-
-		// Second, check for target cells out of this block.
-		switch (targetCells - targetCellsInThisBlock)
-		{
-			case [var cell]:
+			if (lockedBlock == -1)
 			{
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
-				{
-					conclusions.Add(new(Elimination, cell, digit));
-				}
-				break;
+				continue;
 			}
-			// TODO: With be considered later.
-			//case { Count: 2 }:
-			//{
-			//	break;
-			//}
+
+			// Now a locked member is found, check for eliminations.
+			// First, check for target cells in this block.
+			var targetCellsInThisBlock = HousesMap[lockedBlock] & targetCells;
+			switch (targetCellsInThisBlock)
+			{
+				case [var cell]:
+				{
+					// Just to be an elimination.
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask & ~lockedDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+					break;
+				}
+				// TODO: With be considered later.
+				//case { Count: 2 }:
+				//{
+				//	break;
+				//}
+			}
+
+			// Second, check for target cells out of this block.
+			switch (targetCells - targetCellsInThisBlock)
+			{
+				case [var cell]:
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask & ~lockedDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+					break;
+				}
+				// TODO: With be considered later.
+				//case { Count: 2 }:
+				//{
+				//	break;
+				//}
+			}
+
+			candidateOffsets.AddRange(
+				from cell in lockedMemberMap
+				select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+			);
+			houseNodes.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
 		}
 		if (conclusions.Count == 0)
 		{
@@ -1509,24 +1499,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. candidateOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary2
+					let colorIdentifier = (lockedDigitsMask >> d & 1) != 0 ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-					.. from cell in lockedMemberMap select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit),
-					new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, lockedBlock),
+					.. houseNodes,
 					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
 			baseCellsDigitsMask,
-			(Mask)(1 << lockedDigit),
+			lockedDigitsMask,
 			in baseCells,
 			in targetCells,
 			[],
