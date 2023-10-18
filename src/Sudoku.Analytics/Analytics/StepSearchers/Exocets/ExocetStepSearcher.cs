@@ -15,8 +15,8 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
-using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 using LockedMember = (CellMap LockedCells, House LockedBlock);
+using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 
 /// <summary>
 /// Provides with an <b>Exocet</b> step searcher.
