@@ -463,7 +463,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												{
 													if (CheckJeLockedMember(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														lockedMembers, i, groupsOfTargetCells
+														lockedMembers, i, groupsOfTargetCells, out _
 													) is { } lockedMemberTypeStep)
 													{
 														return lockedMemberTypeStep;
@@ -1418,7 +1418,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
 		int chuteIndex,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		out Mask inferredLastTargetDigitsMask
 	)
 	{
 		// Check whether the digit is a real locked member. Locked member:
@@ -1435,43 +1436,42 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//   /: Cells don't contain candidate 'a'.
 		if (lockedMembers.IsEmpty || groupsOfTargetCells is not [(_, [var targetCell1]), (_, [var targetCell2])])
 		{
-			return null;
+			goto AssignBaseMaskByDefault;
 		}
 
-		var conclusions = new List<Conclusion>();
-		var candidateOffsets = new List<CandidateViewNode>();
-		var houseNodes = new List<HouseViewNode>(2);
-		var lockedDigitsMask = (Mask)0;
+		var (cellOffsets, candidateOffsets, houseOffsets) = (new List<CellViewNode>(4), new List<CandidateViewNode>(), new List<HouseViewNode>(2));
+		(var lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = ((Mask)0, 0, new List<Conclusion>());
+
+		// Collect eliminations via mirror cells.
+		// For each locked member, we should check for its mirror cells,
+		// determining whether the mirror cells can make this target cell and the other target cell any conclusions.
+		// Rule:
+		//
+		//   1)
+		//   If all mirror cells of a target cell are non-empty, check its containing values and determine
+		//   whether one of the digits is concluded as a locked member.
+		//   If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
+		//   all digits non-fixed can be removed.
+		//
+		//   2)
+		//   If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
+		//   If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
+		//   they are possible candidates in the other side of target cell. Other digits can be removed.
+		//
+		// Here is an example:
+		//
+		//   98.7..6..5...9..7...7..4...4...8...3.3....4.6..54...9.2.....1...5..12.....89...6.
 		for (var lockedDigit = 0; lockedDigit < 9; lockedDigit++)
 		{
 			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock))
 			{
-				// For each locked member, we should check for its mirror cells,
-				// determining whether the mirror cells can make this target cell and the other target cell any conclusions.
-				// Rule:
-				//
-				//   1)
-				//   If all mirror cells of a target cell are non-empty, check its containing values and determine
-				//   whether one of the digits is concluded as a locked member.
-				//   If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
-				//   all digits non-fixed can be removed.
-				//
-				//   2)
-				//   If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
-				//   If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
-				//   they are possible candidates in the other side of target cell. Other digits can be removed.
-				//
-				// Here is an example:
-				//
-				//   98.7..6..5...9..7...7..4...4...8...3.3....4.6..54...9.2.....1...5..12.....89...6.
 				var (thisTargetCell, theOtherTargetCell) = HousesMap[lockedBlock].Contains(targetCell1)
 					? (targetCell1, targetCell2)
 					: (targetCell2, targetCell1);
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
-				var mirrorCellsTheOtherTarget = GetMirrorCells(theOtherTargetCell, chuteIndex, out _);
 				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-					[] when mirrorCellsTheOtherTarget is [var a, var b]
+					[] when mirrorCellsThisTarget is [var a, var b]
 						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 					[var a] when mirrorCellsThisTarget - a is [var b]
 						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
@@ -1483,19 +1483,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 				}
 
+				cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell));
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
 				);
-				houseNodes.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
+				houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
+				inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
 			}
 		}
+
+		// Sync candidates in base cells from target cells.
+		foreach (var cell in baseCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredLastTargetDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+
 		if (conclusions.Count == 0)
 		{
 			// No eliminations found.
-			return null;
+			goto AssignBaseMaskByDefault;
 		}
 
 		var step = new ExocetLockedMemberStep(
@@ -1505,6 +1517,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. cellOffsets,
 					.. candidateOffsets,
 					..
 					from cell in baseCells
@@ -1516,7 +1529,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-					.. houseNodes,
+					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
@@ -1534,6 +1547,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+
+	AssignBaseMaskByDefault:
+		inferredLastTargetDigitsMask = baseCellsDigitsMask;
 		return null;
 	}
 
