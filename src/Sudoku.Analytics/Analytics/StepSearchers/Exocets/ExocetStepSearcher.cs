@@ -500,11 +500,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		out ReadOnlySpan<Conjugate> inferredTargetConjugatePairs
 	)
 	{
-		var conclusions = new List<Conclusion>();
-		var conjugatePairs = new List<Conjugate>(2);
-		switch (targetCells.Count)
+		var (conclusions, conjugatePairs) = (new List<Conclusion>(), new List<Conjugate>(2));
+		switch (baseCells, targetCells, endoTargetCell)
 		{
-			case 1 when endoTargetCell == -1 && baseCells.Count == 1 && targetCells[0] is var targetCell:
+			case ({ Count: 1 }, [var targetCell], -1):
 			{
 				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
 				{
@@ -512,7 +511,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 				break;
 			}
-			case 2:
+			case (_, { Count: 2 }, _):
 			{
 				foreach (var cell in endoTargetCell == -1 ? targetCells : targetCells + endoTargetCell)
 				{
@@ -523,16 +522,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 				break;
 			}
-			case 3 or 4 when endoTargetCell == -1:
+			case (_, { Count: 3 or 4 }, -1):
 			{
-				scoped var cellGroups = GroupTargets(in targetCells, housesMask);
-				foreach (ref readonly var cellGroup in cellGroups)
+				foreach (var (_, cellsInThisBlock) in GroupTargets(in targetCells, housesMask))
 				{
-					switch (cellGroup.Values.Count)
+					switch (cellsInThisBlock.Count)
 					{
 						case 1:
 						{
-							foreach (var cell in cellGroup)
+							foreach (var cell in cellsInThisBlock)
 							{
 								foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 								{
@@ -543,7 +541,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						case 2:
 						{
-							var cellsInThisBlock = cellGroup.Values;
 							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, GridMaskMergingMethod.And] & ~baseCellsDigitsMask);
 							if (digitsMask == 0)
 							{
@@ -574,10 +571,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							}
 							break;
 						}
-						//default:
-						//{
-						//	throw new InvalidOperationException("The value is unsupported and invalid.");
-						//}
 					}
 				}
 				break;
