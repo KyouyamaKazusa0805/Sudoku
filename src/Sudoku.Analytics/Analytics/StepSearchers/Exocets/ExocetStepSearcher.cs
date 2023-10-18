@@ -16,6 +16,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 namespace Sudoku.Analytics.StepSearchers;
 
 using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
+using LockedMember = (CellMap LockedCells, House LockedBlock);
 
 /// <summary>
 /// Provides with an <b>Exocet</b> step searcher.
@@ -343,46 +344,57 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											//
 											// We should treat the digit as a non-locked member.
 											var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
+											var digitsMaskAppearedInCrossline = (Mask)0;
+											var crossline = housesCells - chuteCells;
 											foreach (var digit in baseCellsDigitsMask)
 											{
-												if (MostTimesOf(digit, housesCells - chuteCells, size - 1))
+												if (MostTimesOf(digit, in crossline, size - 1))
 												{
 													// The current digit can be filled in cross-line cells at most (size - 1) times.
 													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
 												}
-											}
 
-											// Check whether cross-line non-empty cells contains digits appeared in base cells.
-											var (digitsMaskMayBeLockedMembers, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
-											var crossline = housesCells - chuteCells;
-											foreach (var cell in crossline)
-											{
-												if (grid.GetDigit(cell) is var digit and not -1 && (baseCellsDigitsMask >> digit & 1) != 0)
+												foreach (var cell in crossline)
 												{
-													digitsMaskMayBeLockedMembers |= (Mask)(1 << digit);
-													digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+													if (grid.GetDigit(cell) == digit)
+													{
+														digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+														break;
+													}
 												}
 											}
 
+											var lockedMemberDigitsMask = baseCellsDigitsMask;
+
 											// Filters the digits they may not be locked members
 											// when they matches exactly appeared (size - 1) times.
-											digitsMaskMayBeLockedMembers &= (Mask)~digitsMaskExactlySizeMinusOneTimes;
-											var countOfLockedMembers = PopCount((uint)digitsMaskMayBeLockedMembers);
-											if (countOfLockedMembers > 2)
+											scoped var lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
+
+											// Check whether at least one digit appeared in base cells isn't locked
+											// and doesn't satisfy the (size - 1) rule.
+											var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
+											foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
 											{
-												// We cannot hold 3 or more locked members.
+												if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
+												{
+													atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
+													break;
+												}
+											}
+											if (atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule)
+											{
 												continue;
 											}
 
 											if (CheckMirrorSync(
 												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												housesMask, i, digitsMaskMayBeLockedMembers
+												housesMask, i, digitsMaskAppearedInCrossline
 											) is { } mirrorSyncTypeStep)
 											{
 												return mirrorSyncTypeStep;
 											}
 
-											switch (countOfLockedMembers)
+											switch (PopCount((uint)lockedMemberDigitsMask))
 											{
 												// No locked digits are found.
 												case 0:
@@ -413,7 +425,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 													if (CheckIncompatiblePair(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														delta, out var inferredTargetPairMask, housesMask, digitsMaskAppearedInCrossline
+														delta, housesMask, digitsMaskAppearedInCrossline, out var inferredTargetPairMask
 													) is { } incompatiblePairTypeStep)
 													{
 														return incompatiblePairTypeStep;
@@ -451,7 +463,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												{
 													if (CheckJeLockedMember(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														digitsMaskMayBeLockedMembers, i
+														lockedMembers, i, groupsOfTargetCells
 													) is { } lockedMemberTypeStep)
 													{
 														return lockedMemberTypeStep;
@@ -644,7 +656,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			foreach (var targetCell in cellGroup)
 			{
-				var theOtherTwoCells = GetMirrorCell(targetCell, chuteIndex, out _);
+				var theOtherTwoCells = GetMirrorCells(targetCell, chuteIndex, out _);
 				var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
 				if (!theOtherEmptyCells)
 				{
@@ -749,7 +761,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			foreach (var targetCell in cellGroup)
 			{
-				var mirrorCells = GetMirrorCell(targetCell, chuteIndex, out _);
+				var mirrorCells = GetMirrorCells(targetCell, chuteIndex, out _);
 				if ((mirrorCells & EmptyCells) is not [var theOnlyMirrorCell])
 				{
 					// The mirror cells contain not 1 cell, it may not be included in this type.
@@ -844,9 +856,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		int delta,
-		out Mask inferredTargetPairMask,
 		HouseMask housesMask,
-		Mask digitsMaskAppearedInCrossline
+		Mask digitsMaskAppearedInCrossline,
+		out Mask inferredTargetPairMask
 	)
 	{
 		inferredTargetPairMask = 0;
@@ -1292,7 +1304,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Try to fetch the miniline of the current target cell located in.
-			var mirrorCells = GetMirrorCell(targetCell, chuteIndex, out var miniline);
+			var mirrorCells = GetMirrorCells(targetCell, chuteIndex, out var miniline);
 			var mirrorEmptyCells = mirrorCells & EmptyCells;
 			if (!mirrorEmptyCells)
 			{
@@ -1404,8 +1416,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap targetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
-		Mask lockedDigitsMask,
-		int chuteIndex
+		scoped ReadOnlySpan<LockedMember?> lockedMembers,
+		int chuteIndex,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
 	)
 	{
 		// Check whether the digit is a real locked member. Locked member:
@@ -1420,49 +1433,64 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//   V: A cell that is filled with a value that is not appeared in base cells.
 		//   L: Cells forming a locked member of digit 'a'.
 		//   /: Cells don't contain candidate 'a'.
+		if (lockedMembers.IsEmpty || groupsOfTargetCells is not [(_, [var targetCell1]), (_, [var targetCell2])])
+		{
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		var candidateOffsets = new List<CandidateViewNode>();
 		var houseNodes = new List<HouseViewNode>(2);
-		foreach (var lockedDigit in lockedDigitsMask)
+		var lockedDigitsMask = (Mask)0;
+		for (var lockedDigit = 0; lockedDigit < 9; lockedDigit++)
 		{
-			var lockedMemberMap = CellMap.Empty;
-			var lockedBlock = -1;
-			foreach (var block in targetCells.BlockMask)
+			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock))
 			{
-				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
-				if (!!lastMap && (HousesMap[baseCells.CoveredLine] & lastMap) == lastMap)
+				// For each locked member, we should check for its mirror cells,
+				// determining whether the mirror cells can make this target cell and the other target cell any conclusions.
+				// Rule:
+				//
+				//   1)
+				//   If all mirror cells of a target cell are non-empty, check its containing values and determine
+				//   whether one of the digits is concluded as a locked member.
+				//   If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
+				//   all digits non-fixed can be removed.
+				//
+				//   2)
+				//   If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
+				//   If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
+				//   they are possible candidates in the other side of target cell. Other digits can be removed.
+				//
+				// Here is an example:
+				//
+				//   98.7..6..5...9..7...7..4...4...8...3.3....4.6..54...9.2.....1...5..12.....89...6.
+				var (thisTargetCell, theOtherTargetCell) = HousesMap[lockedBlock].Contains(targetCell1)
+					? (targetCell1, targetCell2)
+					: (targetCell2, targetCell1);
+				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
+				var mirrorCellsTheOtherTarget = GetMirrorCells(theOtherTargetCell, chuteIndex, out _);
+				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-					(lockedMemberMap, lockedBlock) = (lastMap, block);
-					break;
+					[] when mirrorCellsTheOtherTarget is [var a, var b]
+						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+					[var a] when mirrorCellsThisTarget - a is [var b]
+						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+					[var a, var b]
+						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+				};
+				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
+				{
+					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 				}
-			}
-			if (lockedBlock == -1)
-			{
-				continue;
-			}
 
-			// Now a locked member is found, check for eliminations.
-			var targetCellsInThisBlock = HousesMap[lockedBlock] & targetCells;
-			if (targetCellsInThisBlock is [var targetCell1])
-			{
-				foreach (var digit in (Mask)(grid.GetCandidates(targetCell1) & baseCellsDigitsMask & ~lockedDigitsMask))
-				{
-					conclusions.Add(new(Elimination, targetCell1, digit));
-				}
-			}
-			if (targetCells - targetCellsInThisBlock is [var targetCell2])
-			{
-				foreach (var digit in (Mask)(grid.GetCandidates(targetCell2) & baseCellsDigitsMask & ~lockedDigitsMask))
-				{
-					conclusions.Add(new(Elimination, targetCell2, digit));
-				}
-			}
+				candidateOffsets.AddRange(
+					from cell in lockedMemberMap
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+				);
+				houseNodes.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
 
-			candidateOffsets.AddRange(
-				from cell in lockedMemberMap
-				select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
-			);
-			houseNodes.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
+				lockedDigitsMask |= (Mask)(1 << lockedDigit);
+			}
 		}
 		if (conclusions.Count == 0)
 		{
@@ -1624,10 +1652,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		int chuteIndex,
-		Mask lockedDigitsMask
+		Mask digitsMaskAppearedInCrossline
 	)
 	{
-		if (PopCount((uint)lockedDigitsMask) > 2 || targetCells.Count != 2 || targetCells.InOneHouse(out _))
+		if (digitsMaskAppearedInCrossline != 0)
+		{
+			// Mirror rule requires the digit cannot be appeared in cross-line as values.
+			return null;
+		}
+
+		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
 		{
 			// TODO: Now ignores the case on conjugate pairs and AHS.
 			return null;
@@ -1770,7 +1804,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="targetCell">The target cell.</param>
 	/// <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
 	/// <returns>The mirror cells that may contain non-empty cells.</returns>
-	private static CellMap GetMirrorCell(Cell targetCell, int chuteIndex, out CellMap miniline)
+	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap miniline)
 	{
 		Unsafe.SkipInit(out miniline);
 		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
@@ -1804,5 +1838,49 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return result.AsSpan()[..i];
+	}
+
+	/// <summary>
+	/// Try to create a <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances
+	/// indicating the locked members for the digit at the specified index.
+	/// </summary>
+	/// <param name="baseCells">The base cells.</param>
+	/// <param name="targetCells">The target cells.</param>
+	/// <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
+	private static ReadOnlySpan<LockedMember?> GetLockedMembers(
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref Mask lockedDigitsMask
+	)
+	{
+		var flag = false;
+		var r = new (CellMap, House)?[9];
+		var realLockedDigitsMask = (Mask)0;
+		foreach (var lockedDigit in lockedDigitsMask)
+		{
+			var lockedMemberMap = CellMap.Empty;
+			var lockedBlock = -1;
+			foreach (var block in targetCells.BlockMask)
+			{
+				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
+				if (!!lastMap && (HousesMap[baseCells.CoveredLine] & lastMap) == lastMap)
+				{
+					(lockedMemberMap, lockedBlock) = (lastMap, block);
+					break;
+				}
+			}
+			if (lockedBlock == -1)
+			{
+				continue;
+			}
+
+			r[lockedDigit] = (lockedMemberMap, lockedBlock);
+			realLockedDigitsMask |= (Mask)(1 << lockedDigit);
+			flag = true;
+		}
+
+		(var @return, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
+		return @return;
 	}
 }
