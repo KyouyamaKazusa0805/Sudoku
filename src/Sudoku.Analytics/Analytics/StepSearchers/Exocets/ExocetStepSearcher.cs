@@ -1442,42 +1442,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Now a locked member is found, check for eliminations.
-			// First, check for target cells in this block.
 			var targetCellsInThisBlock = HousesMap[lockedBlock] & targetCells;
-			switch (targetCellsInThisBlock)
+			if (targetCellsInThisBlock is [var targetCell1])
 			{
-				case [var cell]:
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell1) & baseCellsDigitsMask & ~lockedDigitsMask))
 				{
-					// Just to be an elimination.
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask & ~lockedDigitsMask))
-					{
-						conclusions.Add(new(Elimination, cell, digit));
-					}
-					break;
+					conclusions.Add(new(Elimination, targetCell1, digit));
 				}
-				// TODO: With be considered later.
-				//case { Count: 2 }:
-				//{
-				//	break;
-				//}
 			}
-
-			// Second, check for target cells out of this block.
-			switch (targetCells - targetCellsInThisBlock)
+			if (targetCells - targetCellsInThisBlock is [var targetCell2])
 			{
-				case [var cell]:
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell2) & baseCellsDigitsMask & ~lockedDigitsMask))
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask & ~lockedDigitsMask))
-					{
-						conclusions.Add(new(Elimination, cell, digit));
-					}
-					break;
+					conclusions.Add(new(Elimination, targetCell2, digit));
 				}
-				// TODO: With be considered later.
-				//case { Count: 2 }:
-				//{
-				//	break;
-				//}
 			}
 
 			candidateOffsets.AddRange(
