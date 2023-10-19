@@ -2046,10 +2046,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		if (CheckWeakExocetSlash(
 			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, valueDigitCell, missingValueCell,
-			baseCellsDigitsMask, isRow, chuteIndex
+			baseCellsDigitsMask, isRow, chuteIndex, out var cellsCanBeEliminated
 		) is { } slashTypeStep)
 		{
 			return slashTypeStep;
+		}
+
+		if (CheckWeakExocetBzRectangle(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, in cellsCanBeEliminated,
+			valueDigitCell, missingValueCell, baseCellsDigitsMask, isRow, chuteIndex
+		) is { } bzRectangleTypeStep)
+		{
+			return bzRectangleTypeStep;
 		}
 
 		return null;
@@ -2214,7 +2222,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Cell missingValueCell,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		int chuteIndex
+		int chuteIndex,
+		out CellMap cellsCanBeEliminated
 	)
 	{
 		Unsafe.SkipInit(out Chute sharedChute);
@@ -2228,7 +2237,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		scoped var blocks = ((Mask)(lastSixteenCells.BlockMask & ~sharedChute.Cells.BlockMask)).GetAllSets();
-		var cellsCanBeEliminated = lastSixteenCells & (HousesMap[blocks[0]] | HousesMap[blocks[1]]);
+		cellsCanBeEliminated = lastSixteenCells & (HousesMap[blocks[0]] | HousesMap[blocks[1]]);
 
 		var conclusions = new List<Conclusion>();
 		foreach (var block in blocks)
@@ -2259,6 +2268,79 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var targetCells = (CellMap)([.. from @group in groupsOfTargetCells select @group.Values[0]]);
 		var step = new WeakExocetSlashStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			valueDigitCell,
+			missingValueCell,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static WeakExocetBzRectangleStep? CheckWeakExocetBzRectangle(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap lastSixteenCells,
+		scoped ref readonly CellMap cellsCanBeEliminated,
+		Cell valueDigitCell,
+		Cell missingValueCell,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex
+	)
+	{
+		scoped var elimLines = (isRow ? baseCells.RowMask << 9 : baseCells.ColumnMask << 18).GetAllSets();
+		var elimLinesMap = HousesMap[elimLines[0]] | HousesMap[elimLines[1]];
+		scoped var intersectedLines = (isRow ? cellsCanBeEliminated.ColumnMask << 18 : cellsCanBeEliminated.RowMask << 9).GetAllSets();
+		var intersectedLinesMap = HousesMap[intersectedLines[0]] | HousesMap[intersectedLines[1]];
+		var finalIntersectedFourCells = elimLinesMap & intersectedLinesMap;
+
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in HousesMap[TrailingZeroCount(finalIntersectedFourCells.BlockMask)] - crossline - finalIntersectedFourCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var targetCells = (CellMap)([.. from @group in groupsOfTargetCells select @group.Values[0]]);
+		var step = new WeakExocetBzRectangleStep(
 			[.. conclusions],
 			[
 				[
