@@ -344,8 +344,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											// We should treat the digit as a non-locked member.
 											var crossline = housesCells - chuteCells;
 											if (CheckWeak(
-												ref context, in grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												housesMask, isRow, size
+												ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
+												housesMask, isRow, size, i
 											) is { } weakTypeStep)
 											{
 												return weakTypeStep;
@@ -1794,12 +1794,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
-		int size
+		int size,
+		int chuteIndex
 	)
 	{
 		// See following links to learn more information about this technique:
@@ -1851,16 +1852,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// A weak exocet may contain some extra eliminations that a normal JE pattern (even not containing the missing-value cell) doesn't have.
 
+		// Target cells must be 2.
+		if (groupsOfTargetCells.Length != 2)
+		{
+			return null;
+		}
+
 		// Try to get cross-line cells, count up the positions of the value cells in the cross-line cells.
 		if (crossline - EmptyCells is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Check whether such 5 and 6 cells are in a 2 * 3 "rectangle".
 		if ((isRow, PopCount((uint)rowsCovered), PopCount((uint)columnsCovered)) is not ((false, 2, 3) or (true, 3, 2)))
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Check whether the rows or columns are spanned 3 different chute in the same direction of the cross-line cells.
@@ -1870,7 +1877,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var spanningLinesChute3 = spanningLinesMask >> 6 & 7;
 		if ((PopCount((uint)spanningLinesChute1), PopCount((uint)spanningLinesChute2), PopCount((uint)spanningLinesChute3)) is not (1, 1, 1))
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Try to fetch the missing-value cell.
@@ -1887,7 +1894,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					if (missingValueCell != -1)
 					{
 						// At least 2 cells satisfied this condition, which is invalid in a weak exocet.
-						goto ReturnNull;
+						return null;
 					}
 
 					missingValueCell = cell;
@@ -1897,7 +1904,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 		if (missingValueCell == -1)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 	CheckForOutsideValueCellPosition:
@@ -1923,7 +1930,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether the missing-value cell isn't in the chute that base cells can cover.
 		if (baseCellCoveredBlockCells.Contains(missingValueCell))
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Now fetch the value cell outside the blocks of the missing-value cell.
@@ -1947,7 +1954,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		CheckValueDigitsPosCount:
 			if (valueDigitsPos.Count == 0 || valueDigitsPosIsAtLeastTwo)
 			{
-				goto ReturnNull;
+				return null;
 			}
 
 			// Assign the value digit position.
@@ -1970,7 +1977,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 		if (!sizeMinusOneRule)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Check whether the value cell digit isn't covered in the same line as value cells in cross-line.
@@ -1978,7 +1985,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) - crossline;
 		if (intersectedLinesForSuchLastCells.Contains(valueDigitCell))
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Check whether lines of value cells don't contain the digits appeared in base cells, of value representation.
@@ -1993,7 +2000,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 		if (intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// Then check for digits of values in houses that base cell chute does not cover.
@@ -2017,19 +2024,26 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 		if (!isDiagonallyDistributed)
 		{
-			goto ReturnNull;
+			return null;
 		}
 
 		// A weak exocet is formed. Phew! Now check for eliminations.
 		if (CheckBaseWeak(
-			ref context, grid, in baseCells, in targetCells, in crossline, valueDigitCell, missingValueCell,
-			baseCellsDigitsMask, housesMask
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask
 		) is { } baseWeakTypeStep)
 		{
 			return baseWeakTypeStep;
 		}
 
-	ReturnNull:
+		if (CheckWeakAdjacentTarget(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask, chuteIndex
+		) is { } adjacentTargetTypeStep)
+		{
+			return adjacentTargetTypeStep;
+		}
+
 		return null;
 	}
 
@@ -2037,20 +2051,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Cell valueDigitCell,
 		Cell missingValueCell,
-		Mask baseCellsDigitsMask,
-		HouseMask housesMask
+		Mask baseCellsDigitsMask
 	)
 	{
 		var conclusions = new List<Conclusion>();
-		foreach (var cell in targetCells)
+		var targetCells = CellMap.Empty;
+		foreach (var groupOfTargetCells in groupsOfTargetCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+			foreach (var cell in groupOfTargetCells)
 			{
-				conclusions.Add(new(Elimination, cell, digit));
+				targetCells.Add(cell);
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
 			}
 		}
 		if (conclusions.Count == 0)
@@ -2064,6 +2082,87 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			valueDigitCell,
+			missingValueCell,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static WeakExocetAdjacentTargetStep? CheckWeakAdjacentTarget(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		Cell valueDigitCell,
+		Cell missingValueCell,
+		Mask baseCellsDigitsMask,
+		int chuteIndex
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		var cellOffsets = new List<CellViewNode>();
+		var targetCells = (CellMap)([groupsOfTargetCells[0].Values[0], groupsOfTargetCells[1].Values[0]]);
+		foreach (var (thisTargetCell, theOtherTargetCell) in (
+			(groupsOfTargetCells[0].Values[0], groupsOfTargetCells[1].Values[0]),
+			(groupsOfTargetCells[1].Values[0], groupsOfTargetCells[0].Values[0])
+		))
+		{
+			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
+			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
+			{
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[var a] when mirrorCellsThisTarget - a is [var b]
+					=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[var a, var b]
+					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+			};
+			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
+			{
+				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
+			}
+
+			cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell));
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new WeakExocetAdjacentTargetStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. cellOffsets,
 					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),
