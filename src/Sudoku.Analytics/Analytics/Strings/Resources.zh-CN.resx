@@ -2520,4 +2520,12 @@
     <value>初级飞鱼・M 格同步</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="WeakExocet" xml:space="preserve">
+    <value>衰弱飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="WeakExocetAdjacentTarget" xml:space="preserve">
+    <value>衰弱飞鱼・T 邻</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

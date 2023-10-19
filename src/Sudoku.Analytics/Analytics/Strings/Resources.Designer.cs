@@ -6712,6 +6712,24 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weak Exocet.
+        /// </summary>
+        public static string WeakExocet {
+            get {
+                return ResourceManager.GetString("WeakExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak Exocet Adjacent Target.
+        /// </summary>
+        public static string WeakExocetAdjacentTarget {
+            get {
+                return ResourceManager.GetString("WeakExocetAdjacentTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Whale.
         /// </summary>
         public static string Whale {

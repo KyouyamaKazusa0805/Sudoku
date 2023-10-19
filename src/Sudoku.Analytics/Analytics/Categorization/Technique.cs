@@ -2928,6 +2928,20 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetLockedMember,
+
+	/// <summary>
+	/// Indicates weak exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	WeakExocet,
+
+	/// <summary>
+	/// Indicates weak exocet adjacent target.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	WeakExocetAdjacentTarget,
 	#endregion
 
 	//

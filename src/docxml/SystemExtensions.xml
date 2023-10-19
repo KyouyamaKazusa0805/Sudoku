@@ -518,6 +518,13 @@
             </summary>
             <param name="element">The element.</param>
         </member>
+        <member name="M:System.Collections.Generic.ValueList`1.TryAdd(`0)">
+            <summary>
+            Try to add the element into the current list, and return <see langword="false"/> if the collection is full.
+            </summary>
+            <param name="element">The element.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
+        </member>
         <member name="M:System.Collections.Generic.ValueList`1.Remove">
             <summary>
             Removes the last element from the collection.

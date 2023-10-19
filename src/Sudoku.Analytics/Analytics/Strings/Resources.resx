@@ -2373,4 +2373,10 @@
   <data name="JuniorExocetMirrorSync" xml:space="preserve">
     <value>Junior Exocet (Mirror Sync)</value>
   </data>
+  <data name="WeakExocet" xml:space="preserve">
+    <value>Weak Exocet</value>
+  </data>
+  <data name="WeakExocetAdjacentTarget" xml:space="preserve">
+    <value>Weak Exocet Adjacent Target</value>
+  </data>
 </root>

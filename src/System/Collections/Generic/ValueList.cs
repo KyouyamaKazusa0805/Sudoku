@@ -102,6 +102,23 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	}
 
 	/// <summary>
+	/// Try to add the element into the current list, and return <see langword="false"/> if the collection is full.
+	/// </summary>
+	/// <param name="element">The element.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool TryAdd(T element)
+	{
+		if (_length >= _capacity)
+		{
+			return false;
+		}
+
+		_startPtr[_length++] = element;
+		return true;
+	}
+
+	/// <summary>
 	/// Removes the last element from the collection.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
