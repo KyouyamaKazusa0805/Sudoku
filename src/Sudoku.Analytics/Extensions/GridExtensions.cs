@@ -104,4 +104,37 @@ public static class GridExtensions
 			return false;
 		}
 	}
+
+	/// <summary>
+	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
+	/// </summary>
+	/// <param name="this">The grid to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="limitCount">The maximum number of filling with <paramref name="digit"/> in <paramref name="cells"/>.</param>
+	/// <returns>
+	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
+	/// </returns>
+	public static bool MaxPlacementsOf(this scoped ref readonly Grid @this, Digit digit, scoped ref readonly CellMap cells, int limitCount)
+	{
+		var activeCells = @this.CandidatesMap[digit] & cells;
+		var inactiveCells = @this.ValuesMap[digit] & cells;
+		if (!activeCells && limitCount == inactiveCells.Count)
+		{
+			return true;
+		}
+
+		for (var i = activeCells.Count; i >= 1; i--)
+		{
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
+			{
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
+				{
+					return i + inactiveCells.Count == limitCount;
+				}
+			}
+		}
+
+		return false;
+	}
 }

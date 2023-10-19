@@ -256,7 +256,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 														foreach (var digit in baseCellsDigitsMask)
 														{
-															if (MostTimesOf(digit, housesCells - chuteCells - cell, size - 1))
+															if (grid.MaxPlacementsOf(digit, housesCells - chuteCells - cell, size - 1))
 															{
 																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 																break;
@@ -296,7 +296,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 													{
-														if (MostTimesOf(digit, housesCells - chuteCells, size - 1))
+														if (grid.MaxPlacementsOf(digit, housesCells - chuteCells, size - 1))
 														{
 															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 															break;
@@ -355,7 +355,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											var digitsMaskAppearedInCrossline = (Mask)0;
 											foreach (var digit in baseCellsDigitsMask)
 											{
-												if (MostTimesOf(digit, in crossline, size - 1))
+												if (grid.MaxPlacementsOf(digit, in crossline, size - 1))
 												{
 													// The current digit can be filled in cross-line cells at most (size - 1) times.
 													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
@@ -1968,7 +1968,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var exceptionDigit = grid.GetDigit(valueDigitCell);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (MostTimesOf(digit, crossline - missingValueCell, exceptionDigit == digit ? size - 1 : size))
+			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit == digit ? size - 1 : size))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				sizeMinusOneRule = false;
@@ -2376,38 +2376,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		context.Accumulator.Add(step);
 		return null;
-	}
-
-	/// <summary>
-	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
-	/// </summary>
-	/// <param name="digit">The digit to be checked.</param>
-	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="limitCount">The maximum number of filling with <paramref name="digit"/> in <paramref name="cells"/>.</param>
-	/// <returns>
-	/// <para>The number of times that the digit can be filled with the specified houses, at most.</para>
-	/// </returns>
-	private static bool MostTimesOf(Digit digit, scoped ref readonly CellMap cells, int limitCount)
-	{
-		var activeCells = CandidatesMap[digit] & cells;
-		var inactiveCells = ValuesMap[digit] & cells;
-		if (!activeCells && limitCount == inactiveCells.Count)
-		{
-			return true;
-		}
-
-		for (var i = activeCells.Count; i >= 1; i--)
-		{
-			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
-			{
-				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
-				{
-					return i + inactiveCells.Count == limitCount;
-				}
-			}
-		}
-
-		return false;
 	}
 
 	/// <summary>
