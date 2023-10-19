@@ -2942,6 +2942,20 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	WeakExocetAdjacentTarget,
+
+	/// <summary>
+	/// Indicates weak exocet slash.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	WeakExocetSlash,
+
+	/// <summary>
+	/// Indicates weak exocet BZ rectangle.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	WeakExocetBzRectangle,
 	#endregion
 
 	//

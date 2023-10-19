@@ -2528,4 +2528,20 @@
     <value>衰弱飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtraDifficultyCaseNames_BzRectangle" xml:space="preserve">
+    <value>BZ 矩形删数</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ExtraDifficultyCaseNames_SlashElimination" xml:space="preserve">
+    <value>斜杠删数</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="WeakExocetBzRectangle" xml:space="preserve">
+    <value>衰弱飞鱼・BZ 矩形模式</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="WeakExocetSlash" xml:space="preserve">
+    <value>衰弱飞鱼・斜杠模式</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

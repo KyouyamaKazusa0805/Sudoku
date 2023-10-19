@@ -1231,6 +1231,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to B-Z rectangle.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_BzRectangle {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_BzRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannibalism.
         /// </summary>
         public static string ExtraDifficultyCaseNames_Cannibalism {
@@ -1398,6 +1407,15 @@ namespace Sudoku.Analytics.Strings {
         public static string ExtraDifficultyCaseNames_Size {
             get {
                 return ResourceManager.GetString("ExtraDifficultyCaseNames_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slash pattern.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_SlashElimination {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_SlashElimination", resourceCulture);
             }
         }
         
@@ -6721,11 +6739,29 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weak Exocet Adjacent Target.
+        ///   Looks up a localized string similar to Weak Exocet (Adjacent Target).
         /// </summary>
         public static string WeakExocetAdjacentTarget {
             get {
                 return ResourceManager.GetString("WeakExocetAdjacentTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak Exocet (BZ Rectangle).
+        /// </summary>
+        public static string WeakExocetBzRectangle {
+            get {
+                return ResourceManager.GetString("WeakExocetBzRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weak Exocet (Slash).
+        /// </summary>
+        public static string WeakExocetSlash {
+            get {
+                return ResourceManager.GetString("WeakExocetSlash", resourceCulture);
             }
         }
         

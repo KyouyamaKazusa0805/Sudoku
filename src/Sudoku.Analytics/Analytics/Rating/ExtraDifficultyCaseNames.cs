@@ -129,4 +129,14 @@ public static class ExtraDifficultyCaseNames
 	/// Indicates the kind is the extra house. This field is only used for complex senior exocets.
 	/// </summary>
 	public const string ExtraHouse = nameof(ExtraHouse);
+
+	/// <summary>
+	/// Indicates the kind is the slash pattern elimination. This field is only used for weak exocets.
+	/// </summary>
+	public const string SlashElimination = nameof(SlashElimination);
+
+	/// <summary>
+	/// Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
+	/// </summary>
+	public const string BzRectangle = nameof(BzRectangle);
 }

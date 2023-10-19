@@ -2044,6 +2044,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return adjacentTargetTypeStep;
 		}
 
+		if (CheckWeakExocetSlash(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask, isRow, chuteIndex
+		) is { } slashTypeStep)
+		{
+			return slashTypeStep;
+		}
+
 		return null;
 	}
 
@@ -2163,6 +2171,99 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. cellOffsets,
+					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			valueDigitCell,
+			missingValueCell,
+			in baseCells,
+			in targetCells,
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static WeakExocetSlashStep? CheckWeakExocetSlash(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap lastSixteenCells,
+		Cell valueDigitCell,
+		Cell missingValueCell,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex
+	)
+	{
+		Unsafe.SkipInit(out Chute sharedChute);
+		foreach (var chute in Chutes[isRow ? 3.. : ..3])
+		{
+			if (chute.Cells.Contains(valueDigitCell))
+			{
+				sharedChute = chute;
+				break;
+			}
+		}
+
+		scoped var blocks = ((Mask)(lastSixteenCells.BlockMask & ~sharedChute.Cells.BlockMask)).GetAllSets();
+		var cellsCanBeEliminated = lastSixteenCells & (HousesMap[blocks[0]] | HousesMap[blocks[1]]);
+
+		var conclusions = new List<Conclusion>();
+		foreach (var block in blocks)
+		{
+			// Check for digits appeared in this block.
+			var valueCells = (cellsCanBeEliminated & HousesMap[block]) - EmptyCells;
+			var valueCellsBaseDigitsMask = (Mask)0;
+			foreach (var digit in baseCellsDigitsMask)
+			{
+				if (valueCells & ValuesMap[digit])
+				{
+					valueCellsBaseDigitsMask |= (Mask)(1 << digit);
+				}
+			}
+
+			foreach (var cell in cellsCanBeEliminated & HousesMap[block] & EmptyCells)
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var targetCells = (CellMap)([.. from @group in groupsOfTargetCells select @group.Values[0]]);
+		var step = new WeakExocetSlashStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),

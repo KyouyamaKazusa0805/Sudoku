@@ -2816,6 +2816,16 @@ if (student is (name: var name, age: >= 18))
             Indicates weak exocet adjacent target.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.WeakExocetSlash">
+            <summary>
+            Indicates weak exocet slash.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.WeakExocetBzRectangle">
+            <summary>
+            Indicates weak exocet BZ rectangle.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
             <summary>
             Indicates domino loop.
@@ -4236,6 +4246,16 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
             <summary>
             Indicates the kind is the extra house. This field is only used for complex senior exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.SlashElimination">
+            <summary>
+            Indicates the kind is the slash pattern elimination. This field is only used for weak exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.BzRectangle">
+            <summary>
+            Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
@@ -13167,6 +13187,53 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>missingValueCell</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.WeakExocetSlashStep">
+            <summary>
+            Provides with a step that is a <b>Weak Exocet (Slash)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="stabilityBalancer">Indicates the value cell that makes the exocet pattern to be stable.</param>
+            <param name="missingValueCell">Indicates the missing value cell in cross-line.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WeakExocetSlashStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Weak Exocet (Slash)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="stabilityBalancer">Indicates the value cell that makes the exocet pattern to be stable.</param>
+            <param name="missingValueCell">Indicates the missing value cell in cross-line.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.StabilityBalancer">
+            <summary>
+            The generated property declaration for parameter <c>stabilityBalancer</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.MissingValueCell">
+            <summary>
+            The generated property declaration for parameter <c>missingValueCell</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.WeakExocetStep">
             <summary>
             Provides with a step that is a <b>Weak Exocet (Base)</b> technique.
@@ -16259,6 +16326,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Avoidable logic.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_BzRectangle">
+            <summary>
+              Looks up a localized string similar to B-Z rectangle.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Cannibalism">
             <summary>
               Looks up a localized string similar to Cannibalism.
@@ -16352,6 +16424,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Size">
             <summary>
               Looks up a localized string similar to Size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_SlashElimination">
+            <summary>
+              Looks up a localized string similar to Slash pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_TargetPair">
@@ -19311,7 +19388,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.WeakExocetAdjacentTarget">
             <summary>
-              Looks up a localized string similar to Weak Exocet Adjacent Target.
+              Looks up a localized string similar to Weak Exocet (Adjacent Target).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.WeakExocetBzRectangle">
+            <summary>
+              Looks up a localized string similar to Weak Exocet (BZ Rectangle).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.WeakExocetSlash">
+            <summary>
+              Looks up a localized string similar to Weak Exocet (Slash).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.Whale">

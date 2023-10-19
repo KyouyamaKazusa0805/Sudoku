@@ -2377,6 +2377,18 @@
     <value>Weak Exocet</value>
   </data>
   <data name="WeakExocetAdjacentTarget" xml:space="preserve">
-    <value>Weak Exocet Adjacent Target</value>
+    <value>Weak Exocet (Adjacent Target)</value>
+  </data>
+  <data name="ExtraDifficultyCaseNames_BzRectangle" xml:space="preserve">
+    <value>B-Z rectangle</value>
+  </data>
+  <data name="ExtraDifficultyCaseNames_SlashElimination" xml:space="preserve">
+    <value>Slash pattern</value>
+  </data>
+  <data name="WeakExocetBzRectangle" xml:space="preserve">
+    <value>Weak Exocet (BZ Rectangle)</value>
+  </data>
+  <data name="WeakExocetSlash" xml:space="preserve">
+    <value>Weak Exocet (Slash)</value>
   </data>
 </root>
