@@ -2853,11 +2853,11 @@ public enum Technique
 	JuniorExocetMirror,
 
 	/// <summary>
-	/// Indicates junior exocet single mirror.
+	/// Indicates junior exocet adjacent target.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	JuniorExocetSingleMirror,
+	JuniorExocetAdjacentTarget,
 
 	/// <summary>
 	/// Indicates junior exocet incompatible pair.
@@ -2914,13 +2914,6 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetMirror,
-
-	/// <summary>
-	/// Indicates senior exocet single mirror.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	SeniorExocetSingleMirror,
 
 	/// <summary>
 	/// Indicates senior exocet locked member.

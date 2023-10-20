@@ -27,10 +27,10 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// </list>
 /// </summary>
 [StepSearcher(
-	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetSingleMirror,
+	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetAdjacentTarget,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
 	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember,
-	Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetSingleMirror, Technique.SeniorExocetLockedMember)]
+	Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetLockedMember)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -422,7 +422,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 														return mirrorTypeStep;
 													}
 
-													if (CheckSingleMirror(
+													if (CheckAdjacentTarget(
 														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 														isRow, i, housesMask
 													) is { } singleMirrorTypeStep)
@@ -745,7 +745,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetSingleMirrorStep? CheckSingleMirror(
+	private static JuniorExocetAdjacentTargetStep? CheckAdjacentTarget(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -817,7 +817,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				return null;
 			}
 
-			var step = new ExocetSingleMirrorStep(
+			var step = new JuniorExocetAdjacentTargetStep(
 				[.. conclusions],
 				[
 					[

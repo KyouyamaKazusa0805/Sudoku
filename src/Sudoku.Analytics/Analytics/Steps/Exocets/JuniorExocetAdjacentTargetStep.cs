@@ -8,7 +8,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is an <b>Exocet (Single Mirror)</b> technique.
+/// Provides with a step that is a <b>Junior Exocet (Adjacent Target)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="endoTargetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
-public sealed partial class ExocetSingleMirrorStep(
+public sealed partial class JuniorExocetAdjacentTargetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -41,7 +41,7 @@ public sealed partial class ExocetSingleMirrorStep(
 )
 {
 	/// <inheritdoc/>
-	public override Technique Code => Delta < 0 ? Technique.SeniorExocetSingleMirror : Technique.JuniorExocetSingleMirror;
+	public override Technique Code => Technique.JuniorExocetAdjacentTarget;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Mirror, .1M)];

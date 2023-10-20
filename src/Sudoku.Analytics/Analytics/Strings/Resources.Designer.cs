@@ -2122,6 +2122,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Junior Exocet (Adjacent Target).
+        /// </summary>
+        public static string JuniorExocetAdjacentTarget {
+            get {
+                return ResourceManager.GetString("JuniorExocetAdjacentTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Junior Exocet (Target Conjugate Pair).
         /// </summary>
         public static string JuniorExocetConjugatePair {
@@ -2181,15 +2190,6 @@ namespace Sudoku.Analytics.Strings {
         public static string JuniorExocetMirrorSync {
             get {
                 return ResourceManager.GetString("JuniorExocetMirrorSync", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Junior Exocet (Adjacent Target).
-        /// </summary>
-        public static string JuniorExocetSingleMirror {
-            get {
-                return ResourceManager.GetString("JuniorExocetSingleMirror", resourceCulture);
             }
         }
         
@@ -2910,15 +2910,6 @@ namespace Sudoku.Analytics.Strings {
         public static string SeniorExocetMirror {
             get {
                 return ResourceManager.GetString("SeniorExocetMirror", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Senior Exocet (Adjacent Target).
-        /// </summary>
-        public static string SeniorExocetSingleMirror {
-            get {
-                return ResourceManager.GetString("SeniorExocetSingleMirror", resourceCulture);
             }
         }
         

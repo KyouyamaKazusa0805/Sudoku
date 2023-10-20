@@ -2470,16 +2470,12 @@
     <value>初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="JuniorExocetSingleMirror" xml:space="preserve">
+  <data name="JuniorExocetAdjacentTarget" xml:space="preserve">
     <value>初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SeniorExocetMirror" xml:space="preserve">
     <value>高级飞鱼・Mirror 共轭对</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="SeniorExocetSingleMirror" xml:space="preserve">
-    <value>高级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetGeneralizedFish" xml:space="preserve">

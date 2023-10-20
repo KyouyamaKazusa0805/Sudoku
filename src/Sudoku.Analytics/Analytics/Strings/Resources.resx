@@ -2334,14 +2334,11 @@
   <data name="JuniorExocetMirror" xml:space="preserve">
     <value>Junior Exocet (Mirror)</value>
   </data>
-  <data name="JuniorExocetSingleMirror" xml:space="preserve">
+  <data name="JuniorExocetAdjacentTarget" xml:space="preserve">
     <value>Junior Exocet (Adjacent Target)</value>
   </data>
   <data name="SeniorExocetMirror" xml:space="preserve">
     <value>Senior Exocet (Mirror)</value>
-  </data>
-  <data name="SeniorExocetSingleMirror" xml:space="preserve">
-    <value>Senior Exocet (Adjacent Target)</value>
   </data>
   <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
     <value>Junior Exocet (Fish)</value>
