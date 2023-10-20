@@ -1898,7 +1898,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 
 					missingValueCell = cell;
-					goto CheckForOutsideValueCellPosition;
 				}
 			}
 		}
@@ -1907,7 +1906,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-	CheckForOutsideValueCellPosition:
 		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
 		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
 		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
@@ -1939,12 +1937,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
 			{
-				foreach (var cell in HousesMap[block] - EmptyCells)
+				foreach (var cell in HousesMap[block] - EmptyCells - crossline)
 				{
-					var digit = grid.GetDigit(cell);
-					if ((baseCellsDigitsMask >> digit & 1) != 0 && PeersMap[missingValueCell].Contains(cell))
+					if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell)
+						&& !valueDigitsPos.TryAdd(cell))
 					{
-						valueDigitsPos.Add(cell);
+						return null;
 					}
 				}
 			}
