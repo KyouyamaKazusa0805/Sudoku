@@ -2906,6 +2906,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[Abbreviation("SE")]
 	SeniorExocet,
 
 	/// <summary>
@@ -2927,6 +2928,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[Abbreviation("WE")]
 	WeakExocet,
 
 	/// <summary>
