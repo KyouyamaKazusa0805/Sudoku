@@ -1,4 +1,6 @@
 #pragma warning disable IDE0032
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
@@ -62,6 +64,8 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	/// by slicing and list patterns.
 	/// </summary>
 	/// <seealso cref="Count"/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	public readonly int Length
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -82,6 +86,8 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	}
 
 	/// <inheritdoc cref="this[byte]"/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	public readonly ref T this[Index index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

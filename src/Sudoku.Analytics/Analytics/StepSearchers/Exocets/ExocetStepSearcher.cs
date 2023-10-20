@@ -1935,30 +1935,26 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Now fetch the value cell outside the blocks of the missing-value cell.
 		var valueDigitCell = -1;
-		using (scoped var valueDigitsPos = new ValueList<Cell>(1))
+		using (scoped var valueDigitsPos = new ValueList<Cell>(6))
 		{
-			var valueDigitsPosIsAtLeastTwo = false;
 			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
 			{
 				foreach (var cell in HousesMap[block] - EmptyCells)
 				{
 					var digit = grid.GetDigit(cell);
-					if ((baseCellsDigitsMask >> digit & 1) != 0
-						&& (PeersMap[missingValueCell].Contains(cell) || !valueDigitsPos.TryAdd(cell)))
+					if ((baseCellsDigitsMask >> digit & 1) != 0 && PeersMap[missingValueCell].Contains(cell))
 					{
-						valueDigitsPosIsAtLeastTwo = true;
-						goto CheckValueDigitsPosCount;
+						valueDigitsPos.Add(cell);
 					}
 				}
 			}
-		CheckValueDigitsPosCount:
-			if (valueDigitsPos.Count == 0 || valueDigitsPosIsAtLeastTwo)
+			if (valueDigitsPos is not [var vdc])
 			{
 				return null;
 			}
 
 			// Assign the value digit position.
-			valueDigitCell = valueDigitsPos[0];
+			valueDigitCell = vdc;
 		}
 
 		// Check for cross-line (size - 1) rule.
