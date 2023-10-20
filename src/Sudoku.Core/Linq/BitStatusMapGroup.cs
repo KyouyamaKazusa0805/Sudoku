@@ -31,6 +31,17 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TKey : notnull
 {
+	/// <summary>
+	/// Indicates the number of values stored in <see cref="Values"/>, i.e. the shorthand of expression <c>Values.Count</c>.
+	/// </summary>
+	/// <seealso cref="Values"/>
+	public int Count => Values.Count;
+
+
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.this[int]"/>
+	public TElement this[int index] => Values[index];
+
+
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out TKey key, out TMap values) => (key, values) = (Key, Values);

@@ -184,7 +184,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									var containsAtLeastOneGroupMoreThanTwoCells = false;
 									foreach (ref readonly var element in groupsOfTargetCells)
 									{
-										if (element.Values.Count > 2)
+										if (element.Count > 2)
 										{
 											containsAtLeastOneGroupMoreThanTwoCells = true;
 											break;
@@ -656,7 +656,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		foreach (ref readonly var cellGroup in cellGroups)
 		{
-			if (cellGroup.Values.Count == 2)
+			if (cellGroup.Count == 2)
 			{
 				// If the number of target cells in one side is 2, we cannot determine which one is correct.
 				continue;
@@ -761,7 +761,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var singleMirrors = CellMap.Empty;
 		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
-			if (cellGroup.Values.Count == 2)
+			if (cellGroup.Count == 2)
 			{
 				// This side contain 2 target empty cells. We cannot conclude for this case.
 				continue;
@@ -2144,11 +2144,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		var conclusions = new List<Conclusion>();
 		var cellOffsets = new List<CellViewNode>();
-		var targetCells = (CellMap)([groupsOfTargetCells[0].Values[0], groupsOfTargetCells[1].Values[0]]);
-		foreach (var (thisTargetCell, theOtherTargetCell) in (
-			(groupsOfTargetCells[0].Values[0], groupsOfTargetCells[1].Values[0]),
-			(groupsOfTargetCells[1].Values[0], groupsOfTargetCells[0].Values[0])
-		))
+		var targetCells = (CellMap)([groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]]);
+		foreach (var (thisTargetCell, theOtherTargetCell) in ((groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]), (groupsOfTargetCells[1][0], groupsOfTargetCells[0][0])))
 		{
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
@@ -2266,7 +2263,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var targetCells = (CellMap)([.. from @group in groupsOfTargetCells select @group.Values[0]]);
+		var targetCells = from @group in groupsOfTargetCells select @group[0];
 		var step = new WeakExocetSlashStep(
 			[.. conclusions],
 			[
@@ -2339,7 +2336,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var targetCells = (CellMap)([.. from @group in groupsOfTargetCells select @group.Values[0]]);
+		var targetCells = from @group in groupsOfTargetCells select @group[0];
 		var step = new WeakExocetBzRectangleStep(
 			[.. conclusions],
 			[

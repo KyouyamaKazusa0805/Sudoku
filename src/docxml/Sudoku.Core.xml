@@ -6802,6 +6802,15 @@ if (student is (name: var name, age: >= 18))
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
         </member>
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Count">
+            <summary>
+            Indicates the number of values stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>, i.e. the shorthand of expression <c>Values.Count</c>.
+            </summary>
+            <seealso cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>
+        </member>
+        <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Item(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`2.Item(System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Deconstruct(`2@,`0@)">
             <target name="method">
 				<summary>
@@ -6917,6 +6926,15 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Linq.BitStatusMapGroupEnumerable">
+            <summary>
+            Represents a list of LINQ methods used by <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32},System.Int32})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
