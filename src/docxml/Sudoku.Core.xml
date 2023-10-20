@@ -4528,6 +4528,11 @@ if (student is (name: var name, age: >= 18))
             Defines a type that stores some fields as shared one.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Intersection.MinilinesGroupedByChuteIndex">
+            <summary>
+            Indicates the mini-lines to be iterated, grouped by chute index.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Intersection.IntersectionMaps">
             <summary>
             <para>

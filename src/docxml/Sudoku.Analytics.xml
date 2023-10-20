@@ -7643,24 +7643,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.MinilinesGroupedByChuteIndex">
-            <summary>
-            Indicates the mini-lines to be iterated, grouped by chute index.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>

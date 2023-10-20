@@ -11,6 +11,7 @@ using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.Concepts.Intersection;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
@@ -64,36 +65,6 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the mini-lines to be iterated, grouped by chute index.
-	/// </summary>
-	private static readonly CellMap[][] MinilinesGroupedByChuteIndex;
-
-
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static ExocetStepSearcher()
-	{
-		MinilinesGroupedByChuteIndex = new CellMap[6][];
-		for (var i = 0; i < 6; i++)
-		{
-			scoped ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
-			currentMinilineGroup = [[], [], [], [], [], [], [], [], []];
-
-			var ((_, _, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
-			foreach (var chuteHouse in chuteHouses)
-			{
-				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
-				{
-					scoped ref var current = ref currentMinilineGroup[tempIndex++];
-					current.Add(houseCell);
-					current.Add(houseCell + (isRow ? 1 : 9));
-					current.Add(houseCell + (isRow ? 2 : 18));
-				}
-			}
-		}
-	}
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{

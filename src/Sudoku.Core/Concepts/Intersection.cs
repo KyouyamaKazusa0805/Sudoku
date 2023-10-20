@@ -1,3 +1,4 @@
+using System.Numerics;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
@@ -7,6 +8,11 @@ namespace Sudoku.Concepts;
 /// </summary>
 internal static class Intersection
 {
+	/// <summary>
+	/// Indicates the mini-lines to be iterated, grouped by chute index.
+	/// </summary>
+	public static readonly CellMap[][] MinilinesGroupedByChuteIndex;
+
 	/// <summary>
 	/// <para>
 	/// Indicates all maps that forms the each intersection. The pattern will be like:
@@ -28,6 +34,26 @@ internal static class Intersection
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static Intersection()
 	{
+		MinilinesGroupedByChuteIndex = new CellMap[6][];
+		for (var i = 0; i < 6; i++)
+		{
+			scoped ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
+			currentMinilineGroup = [[], [], [], [], [], [], [], [], []];
+
+			var ((_, _, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
+			foreach (var chuteHouse in chuteHouses)
+			{
+				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
+				{
+					scoped ref var current = ref currentMinilineGroup[tempIndex++];
+					current.Add(houseCell);
+					current.Add(houseCell + (isRow ? 1 : 9));
+					current.Add(houseCell + (isRow ? 2 : 18));
+				}
+			}
+		}
+
+
 #pragma warning disable format
 		var intersectionBlockTable = (byte[][])[
 			[1, 2], [0, 2], [0, 1], [1, 2], [0, 2], [0, 1], [1, 2], [0, 2], [0, 1],
