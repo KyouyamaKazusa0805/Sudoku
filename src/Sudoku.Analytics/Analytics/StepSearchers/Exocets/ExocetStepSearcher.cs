@@ -175,9 +175,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Check whether the number of total target cell groups must be 2.
-									// Note: This statement may not be valid for checking of cases like size == 4. I'll adjust them later.
 									scoped var groupsOfTargetCells = GroupTargets(in targetCells, housesMask);
 									if (groupsOfTargetCells.Length != baseSize)
+									{
+										continue;
+									}
+
+									// Check whether escape cells contain any digits appeared in base. If so, invalid.
+									var crossline = housesCells - chuteCells;
+									var escapeCellsContainValueCellsDigitAppearedInBaseCells = false;
+									var crosslineLineCells = CellMap.Empty;
+									foreach (var house in housesMask)
+									{
+										crosslineLineCells |= HousesMap[house];
+									}
+
+									var escapeCells = crosslineLineCells - crossline - EmptyCells;
+									foreach (var cell in escapeCells)
+									{
+										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+										{
+											escapeCellsContainValueCellsDigitAppearedInBaseCells = true;
+											break;
+										}
+									}
+									if (escapeCellsContainValueCellsDigitAppearedInBaseCells)
 									{
 										continue;
 									}
@@ -211,7 +233,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//      The base has same number of cells with the target, a standard junior exocet will be formed.
 									//
 									// Therefore, I just check for the value on -2, -1 and 0.
-									var crossline = housesCells - chuteCells;
 									switch (delta)
 									{
 										case -1: // Note: Today we should only consider the cases on delta != -2.
