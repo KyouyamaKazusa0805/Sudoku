@@ -9,7 +9,8 @@ namespace Sudoku.Linq;
 public static class BitStatusMapGroupEnumerable
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public static CellMap Select(this scoped ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, Cell>> @this, Func<BitStatusMapGroup<CellMap, Cell, Cell>, Cell> selector)
+	public static CellMap Select<TKey>(this scoped ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> @this, Func<BitStatusMapGroup<CellMap, Cell, TKey>, Cell> selector)
+		where TKey : notnull
 	{
 		var result = CellMap.Empty;
 		foreach (var group in @this)
