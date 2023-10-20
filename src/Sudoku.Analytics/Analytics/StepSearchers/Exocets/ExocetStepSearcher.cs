@@ -240,140 +240,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//      The base has same number of cells with the target, a standard junior exocet will be formed.
 									//
 									// Therefore, I just check for the value on -2, -1 and 0.
+									var crossline = housesCells - chuteCells;
 									switch (delta)
 									{
 										case -1: // Note: Today we should only consider the cases on delta != -2.
 										{
-											// Try to fetch all possible endo-target cells if worth.
-											// Check whether cross-line non-empty cells contains digits appeared in base cells.
-											// If so, they will be endo-target cells.
-											// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-											var crossline = housesCells - chuteCells;
-											var lockedDigitsMask = (Mask)0;
-											foreach (var cell in crossline)
+											if (CheckSenior(
+												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+												in housesCells, in chuteCells, baseCellsDigitsMask, housesMask, isRow, size, delta, i
+											) is { } seniorTypeStep)
 											{
-												var digit = grid.GetDigit(cell);
-												if ((baseCellsDigitsMask >> digit & 1) != 0)
-												{
-													lockedDigitsMask |= (Mask)(1 << digit);
-												}
+												return seniorTypeStep;
 											}
 
-											switch (PopCount((uint)lockedDigitsMask))
-											{
-												case 0:
-												{
-													var endoTargetCells = CellMap.Empty;
-
-													// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
-													foreach (var cell in crossline)
-													{
-														if (grid.GetState(cell) != CellState.Empty)
-														{
-															continue;
-														}
-
-														// Endo-target cells must contain at least one digit appeared in base cells.
-														if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
-														{
-															continue;
-														}
-
-														// Check if the current cell is filled with the digit not appeared in base cells,
-														// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
-														// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-														// If greater (times > size - 1), an exocet cannot be formed;
-														// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-														var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-														foreach (var digit in baseCellsDigitsMask)
-														{
-															if (grid.MaxPlacementsOf(digit, housesCells - chuteCells - cell, size - 1))
-															{
-																allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-																break;
-															}
-														}
-														if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-														{
-															// All digits should strictly appear (size - 1) times at most in cross-line cells.
-															continue;
-														}
-
-														endoTargetCells.Add(cell);
-													}
-
-													if (!endoTargetCells)
-													{
-														// No possible endo-target cells are found.
-														continue;
-													}
-
-													foreach (var endoTargetCell in endoTargetCells)
-													{
-														if (CheckBaseJeOrSe(
-															ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
-															baseCellsDigitsMask, housesMask, out _
-														) is { } baseTypeStep)
-														{
-															return baseTypeStep;
-														}
-													}
-													break;
-												}
-												case 1:
-												{
-													// Check for maximum times can be appeared in cross-line cells.
-													// Due to consideration on locked members, we may not handle for them.
-													var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-													foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
-													{
-														if (grid.MaxPlacementsOf(digit, housesCells - chuteCells, size - 1))
-														{
-															allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-															break;
-														}
-													}
-													if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-													{
-														// All digits should strictly appear (size - 1) times at most in cross-line cells.
-														// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-														// If greater (times > size - 1), an exocet cannot be formed;
-														// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-														continue;
-													}
-
-													if (CheckLockedMemberSe(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														TrailingZeroCount(lockedDigitsMask)
-													) is { } lockedMemberTypeStep)
-													{
-														return lockedMemberTypeStep;
-													}
-
-													break;
-												}
-												//case 2:
-												//{
-												//	// TODO: Fixed base digits due to fixed target cell digits.
-												//	break;
-												//}
-											}
 											break;
 										}
 										case 0:
 										{
-											// Check for maximum times can be appeared in cross-line cells,
-											// and collect all possible digits can be filled in cross-line for (size - 1) times at most.
-											// Here will cause an confliction: Locked Members will make digits appeared in base cells
-											// appear in cross-line cells as values (i.e. non-empty cells).
-											// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
-											// in cross-line cells as values, but they are non-locked members.
-											// Here is an example:
-											//
-											//   98.7.....6.....97...7.....54...3..2...86..4.......4..1..68..5......1...4.....2.3.
-											//
-											// We should treat the digit as a non-locked member.
-											var crossline = housesCells - chuteCells;
 											if (CheckWeak(
 												ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
 												housesMask, isRow, size, i
@@ -382,133 +265,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return weakTypeStep;
 											}
 
-											var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
-											var digitsMaskAppearedInCrossline = (Mask)0;
-											foreach (var digit in baseCellsDigitsMask)
+											if (CheckJunior(
+												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+												baseCellsDigitsMask, housesMask, isRow, size, delta, i
+											) is { } juniorTypeStep)
 											{
-												if (grid.MaxPlacementsOf(digit, in crossline, size - 1))
-												{
-													// The current digit can be filled in cross-line cells at most (size - 1) times.
-													digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
-												}
-
-												foreach (var cell in crossline)
-												{
-													if (grid.GetDigit(cell) == digit)
-													{
-														digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
-														break;
-													}
-												}
-											}
-
-											var lockedMemberDigitsMask = baseCellsDigitsMask;
-
-											// Filters the digits they may not be locked members
-											// when they matches exactly appeared (size - 1) times.
-											scoped var lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
-
-											// Check whether at least one digit appeared in base cells isn't locked
-											// and doesn't satisfy the (size - 1) rule.
-											var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
-											foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
-											{
-												if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
-												{
-													atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
-													break;
-												}
-											}
-											if (atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule)
-											{
-												continue;
-											}
-
-											if (CheckMirrorSync(
-												ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-												housesMask, i, digitsMaskAppearedInCrossline
-											) is { } mirrorSyncTypeStep)
-											{
-												return mirrorSyncTypeStep;
-											}
-
-											switch (PopCount((uint)lockedMemberDigitsMask))
-											{
-												// No locked digits are found.
-												case 0:
-												{
-													if (CheckBaseJeOrSe(
-														ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
-														housesMask, out var inferredTargetConjugatePairs
-													) is { } baseTypeStep)
-													{
-														return baseTypeStep;
-													}
-
-													if (CheckMirror(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														isRow, i, housesMask
-													) is { } mirrorTypeStep)
-													{
-														return mirrorTypeStep;
-													}
-
-													if (CheckAdjacentTarget(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														isRow, i, housesMask
-													) is { } singleMirrorTypeStep)
-													{
-														return singleMirrorTypeStep;
-													}
-
-													if (CheckIncompatiblePair(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														delta, housesMask, digitsMaskAppearedInCrossline, out var inferredTargetPairMask
-													) is { } incompatiblePairTypeStep)
-													{
-														return incompatiblePairTypeStep;
-													}
-
-													if (CheckTargetPair(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														inferredTargetPairMask, delta, housesMask, inferredTargetConjugatePairs
-													) is { } targetPairTypeStep)
-													{
-														return targetPairTypeStep;
-													}
-
-													if (CheckGeneralizedFish(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														inferredTargetPairMask, delta, isRow, housesMask
-													) is { } generalizedFishTypeStep)
-													{
-														return generalizedFishTypeStep;
-													}
-
-													if (CheckMirrorAlmostHiddenSet(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														delta, isRow, housesMask, i
-													) is { } mirrorAhsTypeStep)
-													{
-														return mirrorAhsTypeStep;
-													}
-
-													break;
-												}
-
-												// Locked digit is found. Now we should check for locked members.
-												case 1 or 2 when baseCells.Count == 2:
-												{
-													if (CheckJeLockedMember(
-														ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-														lockedMembers, i, groupsOfTargetCells, out _
-													) is { } lockedMemberTypeStep)
-													{
-														return lockedMemberTypeStep;
-													}
-
-													break;
-												}
+												return juniorTypeStep;
 											}
 
 											break;
@@ -525,6 +287,605 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
+
+	/// <summary>
+	/// The core method to check for Junior Exocet sub-types.
+	/// </summary>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCells">The cells of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="groupsOfTargetCells">
+	/// The grouped cells for the argument <paramref name="targetCells"/>, by is containing crossline house.
+	/// </param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="delta">The delta value. The value can be 0, -1 and -2.</param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
+	private static ExocetStep? CheckJunior(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		bool isRow,
+		int size,
+		int delta,
+		int chuteIndex
+	)
+	{
+		// Check for maximum times can be appeared in cross-line cells,
+		// and collect all possible digits can be filled in cross-line for (size - 1) times at most.
+		// Here will cause an confliction: Locked Members will make digits appeared in base cells
+		// appear in cross-line cells as values (i.e. non-empty cells).
+		// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
+		// in cross-line cells as values, but they are non-locked members.
+		// Here is an example:
+		//
+		//   98.7.....6.....97...7.....54...3..2...86..4.......4..1..68..5......1...4.....2.3.
+		//
+		// We should treat the digit as a non-locked member.
+
+		var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
+		var digitsMaskAppearedInCrossline = (Mask)0;
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			if (grid.MaxPlacementsOf(digit, in crossline, size - 1))
+			{
+				// The current digit can be filled in cross-line cells at most (size - 1) times.
+				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
+			}
+
+			foreach (var cell in crossline)
+			{
+				if (grid.GetDigit(cell) == digit)
+				{
+					digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+					break;
+				}
+			}
+		}
+
+		var lockedMemberDigitsMask = baseCellsDigitsMask;
+
+		// Filters the digits they may not be locked members
+		// when they matches exactly appeared (size - 1) times.
+		scoped var lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
+
+		// Check whether at least one digit appeared in base cells isn't locked
+		// and doesn't satisfy the (size - 1) rule.
+		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
+		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
+		{
+			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
+			{
+				atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
+				break;
+			}
+		}
+		if (atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule)
+		{
+			return null;
+		}
+
+		if (CheckMirrorSync(
+			ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+			housesMask, chuteIndex, digitsMaskAppearedInCrossline
+		) is { } mirrorSyncTypeStep)
+		{
+			return mirrorSyncTypeStep;
+		}
+
+		switch (PopCount((uint)lockedMemberDigitsMask))
+		{
+			// No locked digits are found.
+			case 0:
+			{
+				if (CheckBaseJeOrSe(
+					ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
+					housesMask, out var inferredTargetConjugatePairs
+				) is { } baseTypeStep)
+				{
+					return baseTypeStep;
+				}
+
+				if (CheckMirror(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					isRow, chuteIndex, housesMask
+				) is { } mirrorTypeStep)
+				{
+					return mirrorTypeStep;
+				}
+
+				if (CheckAdjacentTarget(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					isRow, chuteIndex, housesMask
+				) is { } singleMirrorTypeStep)
+				{
+					return singleMirrorTypeStep;
+				}
+
+				if (CheckIncompatiblePair(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					delta, housesMask, digitsMaskAppearedInCrossline, out var inferredTargetPairMask
+				) is { } incompatiblePairTypeStep)
+				{
+					return incompatiblePairTypeStep;
+				}
+
+				if (CheckTargetPair(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					inferredTargetPairMask, delta, housesMask, inferredTargetConjugatePairs
+				) is { } targetPairTypeStep)
+				{
+					return targetPairTypeStep;
+				}
+
+				if (CheckGeneralizedFish(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					inferredTargetPairMask, delta, isRow, housesMask
+				) is { } generalizedFishTypeStep)
+				{
+					return generalizedFishTypeStep;
+				}
+
+				if (CheckMirrorAlmostHiddenSet(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					delta, isRow, housesMask, chuteIndex
+				) is { } mirrorAhsTypeStep)
+				{
+					return mirrorAhsTypeStep;
+				}
+
+				break;
+			}
+
+			// Locked digit is found. Now we should check for locked members.
+			case 1 or 2 when baseCells.Count == 2:
+			{
+				if (CheckJeLockedMember(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					lockedMembers, chuteIndex, groupsOfTargetCells, out _
+				) is { } lockedMemberTypeStep)
+				{
+					return lockedMemberTypeStep;
+				}
+
+				break;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// The core method to check for Senior Exocet sub-types.
+	/// </summary>
+	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int, int)"/>
+	private static ExocetStep? CheckSenior(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap housesCells,
+		scoped ref readonly CellMap chuteCells,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		bool isRow,
+		int size,
+		int delta,
+		int chuteIndex
+	)
+	{
+		// Try to fetch all possible endo-target cells if worth.
+		// Check whether cross-line non-empty cells contains digits appeared in base cells.
+		// If so, they will be endo-target cells.
+		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
+		var lockedDigitsMask = (Mask)0;
+		foreach (var cell in crossline)
+		{
+			var digit = grid.GetDigit(cell);
+			if ((baseCellsDigitsMask >> digit & 1) != 0)
+			{
+				lockedDigitsMask |= (Mask)(1 << digit);
+			}
+		}
+
+		switch (PopCount((uint)lockedDigitsMask))
+		{
+			case 0:
+			{
+				var endoTargetCells = CellMap.Empty;
+
+				// Here delta is strictly equal to -1 because I disable delta == -2 temporarily.
+				foreach (var cell in crossline)
+				{
+					if (grid.GetState(cell) != CellState.Empty)
+					{
+						continue;
+					}
+
+					// Endo-target cells must contain at least one digit appeared in base cells.
+					if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
+					{
+						continue;
+					}
+
+					// Check if the current cell is filled with the digit not appeared in base cells,
+					// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
+					// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+					// If greater (times > size - 1), an exocet cannot be formed;
+					// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+					var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+					foreach (var digit in baseCellsDigitsMask)
+					{
+						if (grid.MaxPlacementsOf(digit, housesCells - chuteCells - cell, size - 1))
+						{
+							allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+							break;
+						}
+					}
+					if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+					{
+						// All digits should strictly appear (size - 1) times at most in cross-line cells.
+						continue;
+					}
+
+					endoTargetCells.Add(cell);
+				}
+
+				if (!endoTargetCells)
+				{
+					// No possible endo-target cells are found.
+					return null;
+				}
+
+				foreach (var endoTargetCell in endoTargetCells)
+				{
+					if (CheckBaseJeOrSe(
+						ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+						baseCellsDigitsMask, housesMask, out _
+					) is { } baseTypeStep)
+					{
+						return baseTypeStep;
+					}
+				}
+				break;
+			}
+			case 1:
+			{
+				// Check for maximum times can be appeared in cross-line cells.
+				// Due to consideration on locked members, we may not handle for them.
+				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+				foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
+				{
+					if (grid.MaxPlacementsOf(digit, housesCells - chuteCells, size - 1))
+					{
+						allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+						break;
+					}
+				}
+				if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+				{
+					// All digits should strictly appear (size - 1) times at most in cross-line cells.
+					// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+					// If greater (times > size - 1), an exocet cannot be formed;
+					// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+					return null;
+				}
+
+				if (CheckLockedMemberSe(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					TrailingZeroCount(lockedDigitsMask)
+				) is { } lockedMemberTypeStep)
+				{
+					return lockedMemberTypeStep;
+				}
+
+				break;
+			}
+			//case 2:
+			//{
+			//	// TODO: Fixed base digits due to fixed target cell digits.
+			//	break;
+			//}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// The core method to check for Weak Exocet sub-types.
+	/// </summary>
+	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int, int)"/>
+	private static ExocetStep? CheckWeak(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		bool isRow,
+		int size,
+		int chuteIndex
+	)
+	{
+		// See following links to learn more information about this technique:
+		//
+		//   * http://forum.enjoysudoku.com/weak-exocet-t39651.html
+		//   * https://tieba.baidu.com/p/7637653732
+		//
+		// The conditions of this technique is very hard to be described so... here is an example:
+		//
+		//   ,--------------------------,------------------------,-----------------------,
+		//   | 1278    237     m1237    | 23468   5      3468    | 2678   2478   9       |
+		//   | a4      2579    279      | *1      268    689     | 25678  a3     568     |
+		//   | 2589    a6      239      | 7       2348   3489    | a1     2458   458     |
+		//   :--------------------------+------------------------+-----------------------:
+		//   | 1267    2347    5        | 9       13468  13468   | 2368   1248   T1346-8 |
+		//   | 1269    8       123469   | B346    7      B1346   | 23569  12459  13456   |
+		//   | 169     349     T1346-9  | 5       13468  2       | 3689   1489   7       |
+		//   :--------------------------+------------------------+-----------------------:
+		//   | a3      2579-4  2479     | 248     1248   14578   | 5789   a6     158     |
+		//   | 567     457     8        | 346     9      1346-57 | 357    157    2       |
+		//   | 2579-6  a1      2679     | 2368    2368   35678   | a4     5789   358     |
+		//   '--------------------------'------------------------'-----------------------'
+		//                     crossline          crossline                      crossline
+		//
+		// (Single-line text code: ....5...94..1...3..6.7..1....59......8..7.......5.2..73......6...8.9...2.1....4..)
+		// Here is an exocet with digits [1, 3, 4, 6], base: r5c46, target: r4c9 & r6c3, crossline cells: r123789c359.
+		//
+		// If we don't have the value digit 1 from the cell r2c4 (marked as '*'), the cell r1c3 must be an value digit not be 1, 3, 4 and 6
+		// to ensure every digit [1, 3, 4, 6] appearing at most 2 times (size = 3, 3 - 1 = 2).
+		// However, this cell is an empty cell, which means it may cause an extra chance to arrange the filling the digit 1,
+		// so here the digit 1 may contain 3 times to be filled with the cross-line cells if so.
+		// In this way a standard JE may not be formed because of the digit 1.
+		// We should use an extra digit 1 to make this rule to be "balanced" again.
+		// If the value digit 1 (r2c4) exists in a different block as cell r1c3, the JE can also be formed,
+		// with all standard JE rule being obeyed (even adjacent target, i.e. the mirror rules).
+		// In addition, this exocet pattern may raise extra eliminations to be used, which will not introduced by a standard JE.
+		// This technique is called "Weak Exocet", having been found and proved by Borescoper, my friend.
+		//
+		// However, a weak exocet should rely on some extra conditions:
+		//
+		//   1) All four digits in base should contain value representations in 4 blocks cross-line cells used.
+		//   2) All value cells using such four digits should appear twice for each.
+		//   3) For each value digit, it should be paired with another digit to make a group; the last digit will be the other group.
+		//   4) Such two groups should be filled into four blocks mentioned in condition 1) with diagonal-distributed blocks.
+		//   5) The missing-value cell shouldn't lie in any blocks mentioned in condition 1) and 4).
+		//   6) An extra value digit should be placed in a block that 4 blocks mentioned above not covered,
+		//      but not in a same chute with base cells.
+		//   7) The missing-value cell cannot lie in a same line with that given value digit condition 6) mentioned.
+		//
+		// A weak exocet may contain some extra eliminations that a normal JE pattern (even not containing the missing-value cell) doesn't have.
+
+		// Target cells must be 2.
+		if (groupsOfTargetCells.Length != 2)
+		{
+			return null;
+		}
+
+		// Try to get cross-line cells, count up the positions of the value cells in the cross-line cells.
+		if (crossline - EmptyCells is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
+		{
+			return null;
+		}
+
+		// Check whether such 5 and 6 cells are in a 2 * 3 "rectangle".
+		if ((isRow, PopCount((uint)rowsCovered), PopCount((uint)columnsCovered)) is not ((false, 2, 3) or (true, 3, 2)))
+		{
+			return null;
+		}
+
+		// Check whether the rows or columns are spanned 3 different chute in the same direction of the cross-line cells.
+		var spanningLinesMask = isRow ? rowsCovered : columnsCovered;
+		var spanningLinesChute1 = spanningLinesMask & 7;
+		var spanningLinesChute2 = spanningLinesMask >> 3 & 7;
+		var spanningLinesChute3 = spanningLinesMask >> 6 & 7;
+		if ((PopCount((uint)spanningLinesChute1), PopCount((uint)spanningLinesChute2), PopCount((uint)spanningLinesChute3)) is not (1, 1, 1))
+		{
+			return null;
+		}
+
+		// Try to fetch the missing-value cell.
+		// Please note here is an exceception: If the missing-value cell isn't missing the digit, it can also be a weak exocet
+		// if the digit belongs to digits appeared in base cells, and such cells should only contain 1. 2 or more cells is invalid.
+		var missingValueCell = -1;
+		foreach (var row in rowsCovered)
+		{
+			foreach (var column in columnsCovered)
+			{
+				var cell = row * 9 + column;
+				if (grid.GetState(cell) == CellState.Empty || (baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+				{
+					if (missingValueCell != -1)
+					{
+						// At least 2 cells satisfied this condition, which is invalid in a weak exocet.
+						return null;
+					}
+
+					missingValueCell = cell;
+				}
+			}
+		}
+		if (missingValueCell == -1)
+		{
+			return null;
+		}
+
+		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
+		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
+		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
+		foreach (var (_, chuteCells, _, _) in Chutes[isRow ? ..3 : 3..])
+		{
+			if (chuteCells & baseCells)
+			{
+				foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline = (chuteCells & crossline).BlockMask)
+				{
+					baseCellCoveredBlockCells |= HousesMap[block];
+				}
+				foreach (var block in baseCellUncoveredBlocksMaskCoveringCrossline = (Mask)(crossline.BlockMask & ~baseCellCoveredBlocksMaskCoveringCrossline))
+				{
+					baseCellUncoveredBlockCells |= HousesMap[block];
+				}
+				break;
+			}
+		}
+
+		// Check whether the missing-value cell isn't in the chute that base cells can cover.
+		if (baseCellCoveredBlockCells.Contains(missingValueCell))
+		{
+			return null;
+		}
+
+		// Now fetch the value cell outside the blocks of the missing-value cell.
+		const Cell invalidPos = -2;
+		Cell valueDigitCell;
+		using (scoped var valueDigitsPos = new ValueList<Cell>(6))
+		{
+			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
+			{
+				foreach (var cell in HousesMap[block] - EmptyCells - crossline)
+				{
+					if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell)
+						&& !valueDigitsPos.TryAdd(cell))
+					{
+						// Exceeds the adding limit.
+						return null;
+					}
+				}
+			}
+
+			valueDigitCell = valueDigitsPos switch { [] => -1, [var vdc] => vdc, _ => invalidPos };
+		}
+		if (valueDigitCell == invalidPos)
+		{
+			// This case is invalid to be checked.
+			return null;
+		}
+
+		// Check whether the missing-value cell has a value, and they are same.
+		if (grid.GetDigit(missingValueCell) is var missingValueCellDigit and not -1 && missingValueCellDigit != grid.GetDigit(valueDigitCell))
+		{
+			return null;
+		}
+
+		// Check for cross-line (size - 1) rule.
+		// Due to the reason of the exocet pattern forming rule, the missing-value cell may cause some digits appeared in base cells
+		// exceed the (size - 1) times appearing.
+		var sizeMinusOneRule = true;
+		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
+			{
+				// The current digit can be filled in cross-line cells at most (size - 1) times.
+				sizeMinusOneRule = false;
+				break;
+			}
+		}
+		if (!sizeMinusOneRule)
+		{
+			return null;
+		}
+
+		// Check whether the value cell digit isn't covered in the same line as value cells in cross-line.
+		scoped var coveredLinesForValueCells = (isRow ? columnsCovered << 18 : rowsCovered << 9).GetAllSets();
+		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) - crossline;
+		if (valueDigitCell != -1 && intersectedLinesForSuchLastCells.Contains(valueDigitCell))
+		{
+			return null;
+		}
+
+		// Check whether lines of value cells don't contain the digits appeared in base cells, of value representation.
+		var intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = false;
+		foreach (var cell in intersectedLinesForSuchLastCells)
+		{
+			if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
+			{
+				intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = true;
+				break;
+			}
+		}
+		if (intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells)
+		{
+			return null;
+		}
+
+		// Then check for digits of values in houses that base cell chute does not cover.
+		// All four blocks should contain 4 kinds of digits of value representation, with diagonal-distributed rule.
+		scoped var blocks = baseCellUncoveredBlocksMaskCoveringCrossline.GetAllSets();
+		var lastSixteenCells = (HousesMap[blocks[0]] | HousesMap[blocks[1]] | HousesMap[blocks[2]] | HousesMap[blocks[3]]) - crossline - intersectedLinesForSuchLastCells;
+		var isDiagonallyDistributed = true;
+		foreach (var ((a1, da1), (a2, da2)) in (((0, 3), (1, 2)), ((1, 2), (0, 3))))
+		{
+			var ca1 = (Mask)(grid[(HousesMap[blocks[a1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
+			var cda1 = (Mask)(grid[(HousesMap[blocks[da1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
+			var ca2 = (Mask)(grid[(HousesMap[blocks[a2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
+			var cda2 = (Mask)(grid[(HousesMap[blocks[da2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
+			if (ca1 != cda1 || ca2 != cda2
+				|| (Mask)(ca1 | ca2) != baseCellsDigitsMask
+				|| (PopCount((uint)ca1), PopCount((uint)cda1), PopCount((uint)ca2), PopCount((uint)cda2)) is not (2, 2, 2, 2))
+			{
+				isDiagonallyDistributed = false;
+				break;
+			}
+		}
+		if (!isDiagonallyDistributed)
+		{
+			return null;
+		}
+
+		// A weak exocet is formed. Phew! Now check for eliminations.
+		if (CheckBaseWeak(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask
+		) is { } baseWeakTypeStep)
+		{
+			return baseWeakTypeStep;
+		}
+
+		if (CheckWeakAdjacentTarget(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask, chuteIndex
+		) is { } adjacentTargetTypeStep)
+		{
+			return adjacentTargetTypeStep;
+		}
+
+		if (CheckWeakExocetSlash(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, valueDigitCell, missingValueCell,
+			baseCellsDigitsMask, isRow, chuteIndex, out var cellsCanBeEliminated
+		) is { } slashTypeStep)
+		{
+			return slashTypeStep;
+		}
+
+		if (CheckWeakExocetBzRectangle(
+			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, in cellsCanBeEliminated,
+			valueDigitCell, missingValueCell, baseCellsDigitsMask, isRow, chuteIndex
+		) is { } bzRectangleTypeStep)
+		{
+			return bzRectangleTypeStep;
+		}
+
+		return null;
+	}
 
 	private static ExocetBaseStep? CheckBaseJeOrSe(
 		scoped ref AnalysisContext context,
@@ -1819,281 +2180,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 			}
 		}
-	}
-
-	private static ExocetStep? CheckWeak(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CellMap baseCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
-		scoped ref readonly CellMap crossline,
-		Mask baseCellsDigitsMask,
-		HouseMask housesMask,
-		bool isRow,
-		int size,
-		int chuteIndex
-	)
-	{
-		// See following links to learn more information about this technique:
-		//
-		//   * http://forum.enjoysudoku.com/weak-exocet-t39651.html
-		//   * https://tieba.baidu.com/p/7637653732
-		//
-		// The conditions of this technique is very hard to be described so... here is an example:
-		//
-		//   ,--------------------------,------------------------,-----------------------,
-		//   | 1278    237     m1237    | 23468   5      3468    | 2678   2478   9       |
-		//   | a4      2579    279      | *1      268    689     | 25678  a3     568     |
-		//   | 2589    a6      239      | 7       2348   3489    | a1     2458   458     |
-		//   :--------------------------+------------------------+-----------------------:
-		//   | 1267    2347    5        | 9       13468  13468   | 2368   1248   T1346-8 |
-		//   | 1269    8       123469   | B346    7      B1346   | 23569  12459  13456   |
-		//   | 169     349     T1346-9  | 5       13468  2       | 3689   1489   7       |
-		//   :--------------------------+------------------------+-----------------------:
-		//   | a3      2579-4  2479     | 248     1248   14578   | 5789   a6     158     |
-		//   | 567     457     8        | 346     9      1346-57 | 357    157    2       |
-		//   | 2579-6  a1      2679     | 2368    2368   35678   | a4     5789   358     |
-		//   '--------------------------'------------------------'-----------------------'
-		//                     crossline          crossline                      crossline
-		//
-		// (Single-line text code: ....5...94..1...3..6.7..1....59......8..7.......5.2..73......6...8.9...2.1....4..)
-		// Here is an exocet with digits [1, 3, 4, 6], base: r5c46, target: r4c9 & r6c3, crossline cells: r123789c359.
-		//
-		// If we don't have the value digit 1 from the cell r2c4 (marked as '*'), the cell r1c3 must be an value digit not be 1, 3, 4 and 6
-		// to ensure every digit [1, 3, 4, 6] appearing at most 2 times (size = 3, 3 - 1 = 2).
-		// However, this cell is an empty cell, which means it may cause an extra chance to arrange the filling the digit 1,
-		// so here the digit 1 may contain 3 times to be filled with the cross-line cells if so.
-		// In this way a standard JE may not be formed because of the digit 1.
-		// We should use an extra digit 1 to make this rule to be "balanced" again.
-		// If the value digit 1 (r2c4) exists in a different block as cell r1c3, the JE can also be formed,
-		// with all standard JE rule being obeyed (even adjacent target, i.e. the mirror rules).
-		// In addition, this exocet pattern may raise extra eliminations to be used, which will not introduced by a standard JE.
-		// This technique is called "Weak Exocet", having been found and proved by Borescoper, my friend.
-		//
-		// However, a weak exocet should rely on some extra conditions:
-		//
-		//   1) All four digits in base should contain value representations in 4 blocks cross-line cells used.
-		//   2) All value cells using such four digits should appear twice for each.
-		//   3) For each value digit, it should be paired with another digit to make a group; the last digit will be the other group.
-		//   4) Such two groups should be filled into four blocks mentioned in condition 1) with diagonal-distributed blocks.
-		//   5) The missing-value cell shouldn't lie in any blocks mentioned in condition 1) and 4).
-		//   6) An extra value digit should be placed in a block that 4 blocks mentioned above not covered,
-		//      but not in a same chute with base cells.
-		//   7) The missing-value cell cannot lie in a same line with that given value digit condition 6) mentioned.
-		//
-		// A weak exocet may contain some extra eliminations that a normal JE pattern (even not containing the missing-value cell) doesn't have.
-
-		// Target cells must be 2.
-		if (groupsOfTargetCells.Length != 2)
-		{
-			return null;
-		}
-
-		// Try to get cross-line cells, count up the positions of the value cells in the cross-line cells.
-		if (crossline - EmptyCells is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
-		{
-			return null;
-		}
-
-		// Check whether such 5 and 6 cells are in a 2 * 3 "rectangle".
-		if ((isRow, PopCount((uint)rowsCovered), PopCount((uint)columnsCovered)) is not ((false, 2, 3) or (true, 3, 2)))
-		{
-			return null;
-		}
-
-		// Check whether the rows or columns are spanned 3 different chute in the same direction of the cross-line cells.
-		var spanningLinesMask = isRow ? rowsCovered : columnsCovered;
-		var spanningLinesChute1 = spanningLinesMask & 7;
-		var spanningLinesChute2 = spanningLinesMask >> 3 & 7;
-		var spanningLinesChute3 = spanningLinesMask >> 6 & 7;
-		if ((PopCount((uint)spanningLinesChute1), PopCount((uint)spanningLinesChute2), PopCount((uint)spanningLinesChute3)) is not (1, 1, 1))
-		{
-			return null;
-		}
-
-		// Try to fetch the missing-value cell.
-		// Please note here is an exceception: If the missing-value cell isn't missing the digit, it can also be a weak exocet
-		// if the digit belongs to digits appeared in base cells, and such cells should only contain 1. 2 or more cells is invalid.
-		var missingValueCell = -1;
-		foreach (var row in rowsCovered)
-		{
-			foreach (var column in columnsCovered)
-			{
-				var cell = row * 9 + column;
-				if (grid.GetState(cell) == CellState.Empty || (baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
-				{
-					if (missingValueCell != -1)
-					{
-						// At least 2 cells satisfied this condition, which is invalid in a weak exocet.
-						return null;
-					}
-
-					missingValueCell = cell;
-				}
-			}
-		}
-		if (missingValueCell == -1)
-		{
-			return null;
-		}
-
-		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
-		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
-		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
-		foreach (var (_, chuteCells, _, _) in Chutes[isRow ? ..3 : 3..])
-		{
-			if (chuteCells & baseCells)
-			{
-				foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline = (chuteCells & crossline).BlockMask)
-				{
-					baseCellCoveredBlockCells |= HousesMap[block];
-				}
-				foreach (var block in baseCellUncoveredBlocksMaskCoveringCrossline = (Mask)(crossline.BlockMask & ~baseCellCoveredBlocksMaskCoveringCrossline))
-				{
-					baseCellUncoveredBlockCells |= HousesMap[block];
-				}
-				break;
-			}
-		}
-
-		// Check whether the missing-value cell isn't in the chute that base cells can cover.
-		if (baseCellCoveredBlockCells.Contains(missingValueCell))
-		{
-			return null;
-		}
-
-		// Now fetch the value cell outside the blocks of the missing-value cell.
-		const Cell invalidPos = -2;
-		Cell valueDigitCell;
-		using (scoped var valueDigitsPos = new ValueList<Cell>(6))
-		{
-			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
-			{
-				foreach (var cell in HousesMap[block] - EmptyCells - crossline)
-				{
-					if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell)
-						&& !valueDigitsPos.TryAdd(cell))
-					{
-						// Exceeds the adding limit.
-						return null;
-					}
-				}
-			}
-
-			valueDigitCell = valueDigitsPos switch { [] => -1, [var vdc] => vdc, _ => invalidPos };
-		}
-		if (valueDigitCell == invalidPos)
-		{
-			// This case is invalid to be checked.
-			return null;
-		}
-
-		// Check whether the missing-value cell has a value, and they are same.
-		if (grid.GetDigit(missingValueCell) is var missingValueCellDigit and not -1 && missingValueCellDigit != grid.GetDigit(valueDigitCell))
-		{
-			return null;
-		}
-
-		// Check for cross-line (size - 1) rule.
-		// Due to the reason of the exocet pattern forming rule, the missing-value cell may cause some digits appeared in base cells
-		// exceed the (size - 1) times appearing.
-		var sizeMinusOneRule = true;
-		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
-		foreach (var digit in baseCellsDigitsMask)
-		{
-			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
-			{
-				// The current digit can be filled in cross-line cells at most (size - 1) times.
-				sizeMinusOneRule = false;
-				break;
-			}
-		}
-		if (!sizeMinusOneRule)
-		{
-			return null;
-		}
-
-		// Check whether the value cell digit isn't covered in the same line as value cells in cross-line.
-		scoped var coveredLinesForValueCells = (isRow ? columnsCovered << 18 : rowsCovered << 9).GetAllSets();
-		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) - crossline;
-		if (valueDigitCell != -1 && intersectedLinesForSuchLastCells.Contains(valueDigitCell))
-		{
-			return null;
-		}
-
-		// Check whether lines of value cells don't contain the digits appeared in base cells, of value representation.
-		var intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = false;
-		foreach (var cell in intersectedLinesForSuchLastCells)
-		{
-			if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
-			{
-				intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = true;
-				break;
-			}
-		}
-		if (intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells)
-		{
-			return null;
-		}
-
-		// Then check for digits of values in houses that base cell chute does not cover.
-		// All four blocks should contain 4 kinds of digits of value representation, with diagonal-distributed rule.
-		scoped var blocks = baseCellUncoveredBlocksMaskCoveringCrossline.GetAllSets();
-		var lastSixteenCells = (HousesMap[blocks[0]] | HousesMap[blocks[1]] | HousesMap[blocks[2]] | HousesMap[blocks[3]]) - crossline - intersectedLinesForSuchLastCells;
-		var isDiagonallyDistributed = true;
-		foreach (var ((a1, da1), (a2, da2)) in (((0, 3), (1, 2)), ((1, 2), (0, 3))))
-		{
-			var ca1 = (Mask)(grid[(HousesMap[blocks[a1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var cda1 = (Mask)(grid[(HousesMap[blocks[da1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var ca2 = (Mask)(grid[(HousesMap[blocks[a2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var cda2 = (Mask)(grid[(HousesMap[blocks[da2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			if (ca1 != cda1 || ca2 != cda2
-				|| (Mask)(ca1 | ca2) != baseCellsDigitsMask
-				|| (PopCount((uint)ca1), PopCount((uint)cda1), PopCount((uint)ca2), PopCount((uint)cda2)) is not (2, 2, 2, 2))
-			{
-				isDiagonallyDistributed = false;
-				break;
-			}
-		}
-		if (!isDiagonallyDistributed)
-		{
-			return null;
-		}
-
-		// A weak exocet is formed. Phew! Now check for eliminations.
-		if (CheckBaseWeak(
-			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
-			baseCellsDigitsMask
-		) is { } baseWeakTypeStep)
-		{
-			return baseWeakTypeStep;
-		}
-
-		if (CheckWeakAdjacentTarget(
-			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, valueDigitCell, missingValueCell,
-			baseCellsDigitsMask, chuteIndex
-		) is { } adjacentTargetTypeStep)
-		{
-			return adjacentTargetTypeStep;
-		}
-
-		if (CheckWeakExocetSlash(
-			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, valueDigitCell, missingValueCell,
-			baseCellsDigitsMask, isRow, chuteIndex, out var cellsCanBeEliminated
-		) is { } slashTypeStep)
-		{
-			return slashTypeStep;
-		}
-
-		if (CheckWeakExocetBzRectangle(
-			ref context, grid, in baseCells, groupsOfTargetCells, in crossline, in lastSixteenCells, in cellsCanBeEliminated,
-			valueDigitCell, missingValueCell, baseCellsDigitsMask, isRow, chuteIndex
-		) is { } bzRectangleTypeStep)
-		{
-			return bzRectangleTypeStep;
-		}
-
-		return null;
 	}
 
 	private static WeakExocetStep? CheckBaseWeak(
