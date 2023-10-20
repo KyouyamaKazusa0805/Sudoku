@@ -88,7 +88,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var isRow in (true, false))
 		{
 			// Iterate by size of houses to be iterated.
-			for (var size = 3; size <= 3/*4*/; size++)
+			for (var size = 3; size <= 4; size++)
 			{
 				// Iterate on all possible rows and columns on size 3 or 4.
 				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).GetAllSets().GetSubsets(size))
@@ -361,8 +361,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		switch (PopCount((uint)lockedMemberDigitsMask))
 		{
-			// No locked digits are found.
-			case 0:
+			case 1 or 2:
+			{
+				if (CheckJeLockedMember(
+					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					lockedMembers, chuteIndex, groupsOfTargetCells, out _
+				) is { } lockedMemberTypeStep)
+				{
+					return lockedMemberTypeStep;
+				}
+
+				goto FallThrough;
+			}
+#pragma warning disable format
+			case 0: FallThrough:
 			{
 				if (CheckBaseJeOrSe(
 					ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
@@ -422,20 +434,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				break;
 			}
-
-			// Locked digit is found. Now we should check for locked members.
-			case 1 or 2:
-			{
-				if (CheckJeLockedMember(
-					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-					lockedMembers, chuteIndex, groupsOfTargetCells, out _
-				) is { } lockedMemberTypeStep)
-				{
-					return lockedMemberTypeStep;
-				}
-
-				break;
-			}
+#pragma warning restore format
 		}
 
 		return null;
