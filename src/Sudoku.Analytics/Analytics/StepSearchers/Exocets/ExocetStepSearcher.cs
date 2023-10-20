@@ -22,15 +22,46 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// Provides with an <b>Exocet</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Junior Exocet</item>
-/// <item>Senior Exocet</item>
+/// <item>
+/// Junior Exocets:
+/// <list type="bullet">
+/// <item>Standard Junior Exocet</item>
+/// <item>Junior Exocet (Target Conjugate Pair)</item>
+/// <item>Junior Exocet (Mirror Conjugate Pair)</item>
+/// <item>Junior Exocet (Adjacent Target)</item>
+/// <item>Junior Exocet (Incompatible Pair)</item>
+/// <item>Junior Exocet (Target Pair)</item>
+/// <item>Junior Exocet (Generalized Fish)</item>
+/// <item>Junior Exocet (Mirror AHS)</item>
+/// <item>Junior Exocet (Locked Member)</item>
+/// <item>
+/// Weak Exocets:
+/// <list type="bullet">
+/// <item>Standard Weak Exocet</item>
+/// <item>Weak Exocet (Adjacent Target)</item>
+/// <item>Weak Exocet (Slash)</item>
+/// <item>Weak Exocet (BZ Rectangle)</item>
+/// <item>Lame Weak Exocet</item>
+/// </list>
+/// </item>
+/// </list>
+/// </item>
+/// <item>
+/// Senior Exocets:
+/// <list type="bullet">
+/// <item>Standard Senior Exocet</item>
+/// <item>Senior Exocet (Mirror)</item>
+/// <item>Senior Exocet (Locked Member)</item>
+/// </list>
+/// </item>
 /// </list>
 /// </summary>
 [StepSearcher(
 	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetAdjacentTarget,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
-	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember,
-	Technique.SeniorExocet, Technique.SeniorExocetMirror, Technique.SeniorExocetLockedMember)]
+	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirror,
+	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
+	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <summary>
