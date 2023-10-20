@@ -1955,6 +1955,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			valueDigitCell = vdc;
 		}
 
+		// Check whether the missing-value cell has a value, and they are same.
+		if (grid.GetDigit(missingValueCell) is var missingValueCellDigit and not -1 && missingValueCellDigit != grid.GetDigit(valueDigitCell))
+		{
+			return null;
+		}
+
 		// Check for cross-line (size - 1) rule.
 		// Due to the reason of the exocet pattern forming rule, the missing-value cell may cause some digits appeared in base cells
 		// exceed the (size - 1) times appearing.
