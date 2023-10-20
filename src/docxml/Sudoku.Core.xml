@@ -6936,6 +6936,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0},System.Int32})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0},System.Int32})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>
             Provides with a list of LINQ methods operating with <see cref="T:Sudoku.Concepts.Grid"/> instances.
