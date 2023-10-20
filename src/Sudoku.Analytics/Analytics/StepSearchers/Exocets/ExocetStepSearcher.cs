@@ -424,7 +424,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Locked digit is found. Now we should check for locked members.
-			case 1 or 2 when baseCells.Count == 2:
+			case 1 or 2:
 			{
 				if (CheckJeLockedMember(
 					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
@@ -1793,6 +1793,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		out Mask inferredLastTargetDigitsMask
 	)
 	{
+		if (baseCells.Count != 2)
+		{
+			// No conclusions when the number of base cells is not 2.
+			inferredLastTargetDigitsMask = 0;
+			return null;
+		}
+
 		// Check whether the digit is a real locked member. Locked member:
 		//
 		//   B B / | . . . | L L L
