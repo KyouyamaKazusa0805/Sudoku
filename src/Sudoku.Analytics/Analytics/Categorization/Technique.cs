@@ -2949,6 +2949,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	WeakExocetBzRectangle,
+
+	/// <summary>
+	/// Indicates lame weak exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	LameWeakExocet,
 	#endregion
 
 	//

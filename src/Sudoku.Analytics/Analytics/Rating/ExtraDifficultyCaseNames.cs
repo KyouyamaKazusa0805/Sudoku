@@ -139,4 +139,9 @@ public static class ExtraDifficultyCaseNames
 	/// Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
 	/// </summary>
 	public const string BzRectangle = nameof(BzRectangle);
+
+	/// <summary>
+	/// Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
+	/// </summary>
+	public const string MissingStabilityBalancer = nameof(MissingStabilityBalancer);
 }

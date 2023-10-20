@@ -2540,4 +2540,11 @@
     <value>衰弱飞鱼・斜杠模式</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtraDifficultyCaseNames_MissingStabilityBalancer" xml:space="preserve">
+    <value>“强心针”单元格缺失</value>
+  </data>
+  <data name="LameWeakExocet" xml:space="preserve">
+    <value>全衰飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

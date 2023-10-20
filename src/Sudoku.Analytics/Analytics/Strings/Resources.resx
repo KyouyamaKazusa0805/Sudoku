@@ -2388,4 +2388,10 @@
   <data name="WeakExocetSlash" xml:space="preserve">
     <value>Weak Exocet (Slash)</value>
   </data>
+  <data name="ExtraDifficultyCaseNames_MissingStabilityBalancer" xml:space="preserve">
+    <value>Missing stability balancer</value>
+  </data>
+  <data name="LameWeakExocet" xml:space="preserve">
+    <value>Lame Weak Exocet</value>
+  </data>
 </root>

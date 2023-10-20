@@ -1384,6 +1384,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing stability balancer.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_MissingStabilityBalancer {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_MissingStabilityBalancer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Petal.
         /// </summary>
         public static string ExtraDifficultyCaseNames_Petals {
@@ -2208,6 +2217,15 @@ namespace Sudoku.Analytics.Strings {
         public static string KeywordIn {
             get {
                 return ResourceManager.GetString("KeywordIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lame Weak Exocet.
+        /// </summary>
+        public static string LameWeakExocet {
+            get {
+                return ResourceManager.GetString("LameWeakExocet", resourceCulture);
             }
         }
         

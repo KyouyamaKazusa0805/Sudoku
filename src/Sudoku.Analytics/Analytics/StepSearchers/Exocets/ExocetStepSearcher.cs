@@ -1932,7 +1932,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Now fetch the value cell outside the blocks of the missing-value cell.
-		var valueDigitCell = -1;
+		const Cell invalidPos = -2;
+		Cell valueDigitCell;
 		using (scoped var valueDigitsPos = new ValueList<Cell>(6))
 		{
 			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
@@ -1942,17 +1943,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell)
 						&& !valueDigitsPos.TryAdd(cell))
 					{
+						// Exceeds the adding limit.
 						return null;
 					}
 				}
 			}
-			if (valueDigitsPos is not [var vdc])
-			{
-				return null;
-			}
 
-			// Assign the value digit position.
-			valueDigitCell = vdc;
+			valueDigitCell = valueDigitsPos switch { [] => -1, [var vdc] => vdc, _ => invalidPos };
+		}
+		if (valueDigitCell == invalidPos)
+		{
+			// This case is invalid to be checked.
+			return null;
 		}
 
 		// Check whether the missing-value cell has a value, and they are same.
@@ -1965,10 +1967,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Due to the reason of the exocet pattern forming rule, the missing-value cell may cause some digits appeared in base cells
 		// exceed the (size - 1) times appearing.
 		var sizeMinusOneRule = true;
-		var exceptionDigit = grid.GetDigit(valueDigitCell);
+		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit == digit ? size - 1 : size))
+			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				sizeMinusOneRule = false;
@@ -1983,7 +1985,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether the value cell digit isn't covered in the same line as value cells in cross-line.
 		scoped var coveredLinesForValueCells = (isRow ? columnsCovered << 18 : rowsCovered << 9).GetAllSets();
 		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) - crossline;
-		if (intersectedLinesForSuchLastCells.Contains(valueDigitCell))
+		if (valueDigitCell != -1 && intersectedLinesForSuchLastCells.Contains(valueDigitCell))
 		{
 			return null;
 		}
@@ -2081,9 +2083,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			foreach (var cell in groupOfTargetCells)
 			{
 				targetCells.Add(cell);
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+
+				if (valueDigitCell != -1 || !PeersMap[cell].Contains(missingValueCell))
 				{
-					conclusions.Add(new(Elimination, cell, digit));
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
 				}
 			}
 		}
@@ -2099,7 +2105,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline - missingValueCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell),
+					.. valueDigitCell != -1 ? [new CellViewNode(WellKnownColorIdentifier.Auxiliary3, valueDigitCell)] : (ViewNode[])[],
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary3, missingValueCell),
 					..
 					from cell in baseCells
@@ -2142,6 +2148,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
+		if (valueDigitCell == -1)
+		{
+			// The value-digit cell shouldn't be missing.
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		var cellOffsets = new List<CellViewNode>();
 		var targetCells = (CellMap)([groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]]);
@@ -2223,6 +2235,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		out CellMap cellsCanBeEliminated
 	)
 	{
+		if (valueDigitCell == -1)
+		{
+			// The value-digit cell shouldn't be missing.
+			cellsCanBeEliminated = [];
+			return null;
+		}
+
 		Unsafe.SkipInit(out Chute sharedChute);
 		foreach (var chute in Chutes[isRow ? 3.. : ..3])
 		{
@@ -2317,6 +2336,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
+		if (valueDigitCell == -1)
+		{
+			// The value-digit cell shouldn't be missing.
+			return null;
+		}
+
 		scoped var elimLines = (isRow ? baseCells.RowMask << 9 : baseCells.ColumnMask << 18).GetAllSets();
 		var elimLinesMap = HousesMap[elimLines[0]] | HousesMap[elimLines[1]];
 		scoped var intersectedLines = (isRow ? cellsCanBeEliminated.ColumnMask << 18 : cellsCanBeEliminated.RowMask << 9).GetAllSets();

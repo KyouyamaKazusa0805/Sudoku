@@ -2821,6 +2821,11 @@ if (student is (name: var name, age: >= 18))
             Indicates weak exocet BZ rectangle.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LameWeakExocet">
+            <summary>
+            Indicates lame weak exocet.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
             <summary>
             Indicates domino loop.
@@ -4251,6 +4256,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.BzRectangle">
             <summary>
             Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.MissingStabilityBalancer">
+            <summary>
+            Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
@@ -13299,6 +13309,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.StabilityBalancer">
             <summary>
             The generated property declaration for parameter <c>stabilityBalancer</c>.
@@ -16442,6 +16455,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mirror eliminations.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_MissingStabilityBalancer">
+            <summary>
+              Looks up a localized string similar to Missing stability balancer.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Petals">
             <summary>
               Looks up a localized string similar to Petal.
@@ -16900,6 +16918,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.KeywordIn">
             <summary>
               Looks up a localized string similar to in.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.LameWeakExocet">
+            <summary>
+              Looks up a localized string similar to Lame Weak Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.Language">
