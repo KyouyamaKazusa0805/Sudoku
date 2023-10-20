@@ -1535,13 +1535,13 @@ if (student is (name: var name, age: >= 18))
             <para>
             This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CandidateMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})" />
-            or just <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" /> or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" />
+            or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
             <code><![CDATA[
             var map = CandidateMap.Empty;
             map += 0; // Adds 'r1c1(1)' into the collection.
             map.Add(1); // Adds 'r1c1(2)' into the collection.
-            map.AddRange([2, 3, 4]); // Adds 'r1c1(345)' into the collection.
+            map |= [2, 3, 4]; // Adds 'r1c1(345)' into the collection.
             map |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
             ]]></code>
             </para>
@@ -1870,13 +1870,13 @@ if (student is (name: var name, age: >= 18))
             <para>
             This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CellMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})" />
-            or just <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" /> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" />
+            or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
             <code><![CDATA[
             var map = CellMap.Empty;
             map += 0; // Adds 'r1c1' into the collection.
             map.Add(1); // Adds 'r1c2' into the collection.
-            map.AddRange([2, 3, 4]); // Adds 'r1c345' into the collection.
+            map |= [2, 3, 4]; // Adds 'r1c345' into the collection.
             map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
             ]]></code>
             </para>
@@ -6943,6 +6943,21 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0},System.Int32})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:Sudoku.Linq.ConclusionsEnumerable">
+            <summary>
+            Provides with a list of LINQ methods used by <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Linq.ConclusionsEnumerable.Select(System.ReadOnlySpan{Sudoku.Analytics.Conclusion},System.Func{Sudoku.Analytics.Conclusion,System.Int32})">
+            <summary>
+            Projects a list of <see cref="T:Sudoku.Analytics.Conclusion"/> instances, converted each instances into a <see cref="T:System.Int32"/> value,
+            and merge them into a <see cref="T:Sudoku.Concepts.CellMap"/> and return it.
+            </summary>
+            <param name="this">A list of <see cref="T:Sudoku.Analytics.Conclusion"/> instances.</param>
+            <param name="selector">The selector to project the values.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> result.</returns>
         </member>
         <member name="T:Sudoku.Linq.GridEnumerable">
             <summary>

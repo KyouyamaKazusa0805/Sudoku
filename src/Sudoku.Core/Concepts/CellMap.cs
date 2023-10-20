@@ -22,13 +22,13 @@ namespace Sudoku.Concepts;
 /// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Cell)"/>, <see cref="AddRange(IEnumerable{Cell})"/>
-/// or just <see cref="op_Addition(in CellMap, Cell)"/> or <see cref="op_Addition(in CellMap, IEnumerable{Cell})"/>:
+/// If you want to add elements into it, you can use <see cref="Add(Cell)"/>, <see cref="op_Addition(in CellMap, Cell)"/>
+/// or <see cref="op_Addition(in CellMap, IEnumerable{Cell})"/>:
 /// <code><![CDATA[
 /// var map = CellMap.Empty;
 /// map += 0; // Adds 'r1c1' into the collection.
 /// map.Add(1); // Adds 'r1c2' into the collection.
-/// map.AddRange([2, 3, 4]); // Adds 'r1c345' into the collection.
+/// map |= [2, 3, 4]; // Adds 'r1c345' into the collection.
 /// map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
 /// ]]></code>
 /// </para>
@@ -826,6 +826,7 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void AddRange(IEnumerable<Cell> offsets)
 	{
 		foreach (var offset in offsets)

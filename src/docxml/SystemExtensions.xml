@@ -3178,6 +3178,15 @@ fixed (short* ptr = instance)
         <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="T:System.MemoryExtensions2">
+            <summary>
+            Extends from type <see cref="T:System.MemoryExtensions"/>.
+            </summary>
+            <seealso cref="T:System.MemoryExtensions"/>
+        </member>
+        <member name="M:System.MemoryExtensions2.AsReadOnlySpan``1(``0[])">
+            <inheritdoc cref="M:System.MemoryExtensions.AsSpan``1(``0[])"/>
+        </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.

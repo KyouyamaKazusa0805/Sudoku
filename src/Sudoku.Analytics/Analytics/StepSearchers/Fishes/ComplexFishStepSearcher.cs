@@ -4,6 +4,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;
@@ -466,7 +467,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)
 		{
-			result[step.Digit].AddRange(from conclusion in step.Conclusions select conclusion.Cell);
+			scoped ref var current = ref result[step.Digit];
+			current |= from conclusion in step.Conclusions.AsReadOnlySpan() select conclusion.Cell;
 		}
 		return result;
 	}

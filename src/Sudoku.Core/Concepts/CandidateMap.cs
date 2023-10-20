@@ -24,13 +24,13 @@ namespace Sudoku.Concepts;
 /// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>, <see cref="AddRange(IEnumerable{Candidate})"/>
-/// or just <see cref="op_Addition(in CandidateMap, Candidate)"/> or <see cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>:
+/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>, <see cref="op_Addition(in CandidateMap, Candidate)"/>
+/// or <see cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>:
 /// <code><![CDATA[
 /// var map = CandidateMap.Empty;
 /// map += 0; // Adds 'r1c1(1)' into the collection.
 /// map.Add(1); // Adds 'r1c1(2)' into the collection.
-/// map.AddRange([2, 3, 4]); // Adds 'r1c1(345)' into the collection.
+/// map |= [2, 3, 4]; // Adds 'r1c1(345)' into the collection.
 /// map |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
 /// ]]></code>
 /// </para>
@@ -489,6 +489,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
+	[EditorBrowsable(EditorBrowsableState.Never)]
 	public void AddRange(IEnumerable<Candidate> offsets)
 	{
 		foreach (var element in offsets)
