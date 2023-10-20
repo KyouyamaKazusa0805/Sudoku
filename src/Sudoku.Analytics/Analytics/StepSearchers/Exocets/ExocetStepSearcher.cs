@@ -181,17 +181,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Check whether escape cells contain any digits appeared in base. If so, invalid.
 									var crossline = housesCells - chuteCells;
+
+									// Check whether escape cells contain any digits appeared in base. If so, invalid.
 									var escapeCellsContainValueCellsDigitAppearedInBaseCells = false;
 									var crosslineLineCells = CellMap.Empty;
 									foreach (var house in housesMask)
 									{
 										crosslineLineCells |= HousesMap[house];
 									}
-
-									var escapeCells = crosslineLineCells - crossline - EmptyCells;
-									foreach (var cell in escapeCells)
+									foreach (var cell in crosslineLineCells - crossline - EmptyCells)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
