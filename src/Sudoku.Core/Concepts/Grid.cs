@@ -461,6 +461,28 @@ public unsafe partial struct Grid :
 	public readonly CellMap[] ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
 
 	/// <summary>
+	/// Indicates all possible candidates in the current grid.
+	/// </summary>
+	public readonly ReadOnlySpan<Candidate> Candidates
+	{
+		get
+		{
+			var candidates = new Candidate[CandidatesCount];
+			for (var (cell, i) = (0, 0); cell < 81; cell++)
+			{
+				if (GetState(cell) == CellState.Empty)
+				{
+					foreach (var digit in GetCandidates(cell))
+					{
+						candidates[i++] = cell * 9 + digit;
+					}
+				}
+			}
+			return candidates;
+		}
+	}
+
+	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
 	/// </summary>
 	public readonly Conjugate[] ConjugatePairs
@@ -997,26 +1019,6 @@ public unsafe partial struct Grid :
 			CellState.Modifiable or CellState.Given => TrailingZeroCount(this[cell]),
 			_ => throw new InvalidOperationException("The grid cannot keep invalid cell state value.")
 		};
-
-	/// <summary>
-	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-	/// </summary>
-	/// <returns>The enumerator instance.</returns>
-	public readonly ReadOnlySpan<Candidate> EnumerateCandidates()
-	{
-		var candidates = new Candidate[CandidatesCount];
-		for (var (cell, i) = (0, 0); cell < 81; cell++)
-		{
-			if (GetState(cell) == CellState.Empty)
-			{
-				foreach (var digit in GetCandidates(cell))
-				{
-					candidates[i++] = cell * 9 + digit;
-				}
-			}
-		}
-		return candidates;
-	}
 
 	/// <summary>
 	/// Reset the sudoku grid, to set all modifiable values to empty ones.

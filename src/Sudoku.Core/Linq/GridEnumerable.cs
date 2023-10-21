@@ -17,7 +17,7 @@ public static class GridEnumerable
 	public static ReadOnlySpan<Candidate> Where(this scoped ref readonly Grid @this, Func<Candidate, bool> predicate)
 	{
 		var (result, i) = (new Candidate[@this.CandidatesCount], 0);
-		foreach (var candidate in @this.EnumerateCandidates())
+		foreach (var candidate in @this.Candidates)
 		{
 			if (predicate(candidate))
 			{
@@ -39,7 +39,7 @@ public static class GridEnumerable
 	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly Grid @this, Func<Candidate, TResult> selector)
 	{
 		var (result, i) = (new TResult[@this.CandidatesCount], 0);
-		foreach (var candidate in @this.EnumerateCandidates())
+		foreach (var candidate in @this.Candidates)
 		{
 			result[i++] = selector(candidate);
 		}

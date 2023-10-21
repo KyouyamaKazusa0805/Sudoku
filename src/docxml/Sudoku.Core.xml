@@ -3327,6 +3327,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Candidates">
+            <summary>
+            Indicates all possible candidates in the current grid.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.ConjugatePairs">
             <summary>
             Indicates all possible conjugate pairs appeared in this grid.
@@ -3596,12 +3601,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">
             Throws when the specified cell keeps a wrong cell state value. For example, <see cref="F:Sudoku.Concepts.CellState.Undefined"/>.
             </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.EnumerateCandidates">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Reset">
             <summary>
