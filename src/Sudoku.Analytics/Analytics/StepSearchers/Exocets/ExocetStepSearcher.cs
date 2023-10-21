@@ -69,21 +69,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		if (CollectForAllRowColumnType(ref context) is { } baseTypeStep)
-		{
-			return baseTypeStep;
-		}
-
-		return null;
-	}
-
-	/// <summary>
-	/// Try to fetch for all-row or all-column types.
-	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private ExocetStep? CollectForAllRowColumnType(scoped ref AnalysisContext context)
-	{
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
