@@ -107,7 +107,7 @@ public abstract partial class ChainingStep(
 			(ForcingChainStep, true, false, _, _) => Technique.XChain,
 			(BidirectionalCycleStep, true, true, _, _) => Technique.ContinuousNiceLoop,
 			(BidirectionalCycleStep, false, true, _, _) => Technique.XyChain,
-			(BidirectionalCycleStep, false, false, _, _) => Technique.FishyCycle,
+			(BidirectionalCycleStep, true, false, _, _) => Technique.FishyCycle,
 			(CellForcingChainsStep, _, _, true, _) => Technique.DynamicCellForcingChains,
 			(CellForcingChainsStep, _, _, false, _) => Technique.CellForcingChains,
 			(RegionForcingChainsStep, _, _, true, _) => Technique.DynamicRegionForcingChains,

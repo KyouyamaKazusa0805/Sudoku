@@ -1595,7 +1595,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var inferredTargetPairMaskDigit1 = TrailingZeroCount(inferredTargetPairMask);
-		var inferredTargetPairMaskDigit2 = inferredTargetPairMask.GetNextSet(inferredTargetPairMaskDigit1 + 1);
+		var inferredTargetPairMaskDigit2 = inferredTargetPairMask.GetNextSet(inferredTargetPairMaskDigit1);
 
 		var conclusions = new List<Conclusion>();
 		foreach (var line in isRow ? crossline.ColumnMask << 18 : crossline.RowMask << 9)
