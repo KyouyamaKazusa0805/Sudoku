@@ -1023,6 +1023,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask housesMask
 	)
 	{
+		// Mirror conjugate pair cannot be used for same-side target cells.
+		if (targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		var conjugatePairs = new List<Conjugate>(2);
 		scoped var cellGroups = GroupTargets(in targetCells, housesMask);
@@ -1134,6 +1140,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask housesMask
 	)
 	{
+		// Adjacent target cannot be used for same-side target cells.
+		if (targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		var singleMirrors = CellMap.Empty;
 		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
@@ -1681,6 +1693,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
+		// AHS cannot be used on same-side target cells.
+		if (targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
 		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
 			if (cellGroup is not (_, [var targetCell]))
@@ -1807,6 +1825,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		out Mask inferredLastTargetDigitsMask
 	)
 	{
+		// Same-side target cells cannot be used in this case, because locked member will check for mirror cells,
+		// invalid for mirror checking on same-side cells.
+		if (targetCells.InOneHouse(out _))
+		{
+			inferredLastTargetDigitsMask = 0;
+			return null;
+		}
+
 		if (baseCells.Count != 2)
 		{
 			// No conclusions when the number of base cells is not 2.
@@ -1853,7 +1879,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Here is an example:
 		//
 		//   98.7..6..5...9..7...7..4...4...8...3.3....4.6..54...9.2.....1...5..12.....89...6.
-		for (var lockedDigit = 0; lockedDigit < 9; lockedDigit++)
+		foreach (var lockedDigit in baseCellsDigitsMask)
 		{
 			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock))
 			{
