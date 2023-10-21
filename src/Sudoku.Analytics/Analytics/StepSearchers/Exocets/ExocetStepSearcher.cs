@@ -1911,6 +1911,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Here is an example:
 		//
 		//   98.7..6..5...9..7...7..4...4...8...3.3....4.6..54...9.2.....1...5..12.....89...6.
+		var lockedDigitElimTimes = 0;
 		foreach (var lockedDigit in baseCellsDigitsMask)
 		{
 			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock))
@@ -1942,15 +1943,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
 				inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
+				lockedDigitElimTimes++;
 			}
 		}
 
-		// Sync candidates in base cells from target cells.
-		foreach (var cell in baseCells)
+		if (lockedDigitElimTimes == 2)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredLastTargetDigitsMask))
+			// Sync candidates in base cells from target cells.
+			foreach (var cell in baseCells)
 			{
-				conclusions.Add(new(Elimination, cell, digit));
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredLastTargetDigitsMask))
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
 			}
 		}
 
