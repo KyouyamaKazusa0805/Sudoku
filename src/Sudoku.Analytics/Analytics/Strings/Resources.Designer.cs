@@ -961,6 +961,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double Exocet.
+        /// </summary>
+        public static string DoubleExocet {
+            get {
+                return ResourceManager.GetString("DoubleExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
         public static string DoublyLinkedAlmostLockedSetsXzRule {
@@ -1699,11 +1708,29 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Franken Junior Exocet.
+        /// </summary>
+        public static string FrankenJuniorExocet {
+            get {
+                return ResourceManager.GetString("FrankenJuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Franken Leviathan.
         /// </summary>
         public static string FrankenLeviathan {
             get {
                 return ResourceManager.GetString("FrankenLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Senior Exocet.
+        /// </summary>
+        public static string FrankenSeniorExocet {
+            get {
+                return ResourceManager.GetString("FrankenSeniorExocet", resourceCulture);
             }
         }
         
@@ -2356,11 +2383,29 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mutant Junior Exocet.
+        /// </summary>
+        public static string MutantJuniorExocet {
+            get {
+                return ResourceManager.GetString("MutantJuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mutant Leviathan.
         /// </summary>
         public static string MutantLeviathan {
             get {
                 return ResourceManager.GetString("MutantLeviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Senior Exocet.
+        /// </summary>
+        public static string MutantSeniorExocet {
+            get {
+                return ResourceManager.GetString("MutantSeniorExocet", resourceCulture);
             }
         }
         
@@ -2586,6 +2631,15 @@ namespace Sudoku.Analytics.Strings {
         public static string OrKeywordWithSpaces {
             get {
                 return ResourceManager.GetString("OrKeywordWithSpaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pattern-Locked Quadruple.
+        /// </summary>
+        public static string PatternLockedQuadruple {
+            get {
+                return ResourceManager.GetString("PatternLockedQuadruple", resourceCulture);
             }
         }
         

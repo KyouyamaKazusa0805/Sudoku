@@ -2826,6 +2826,36 @@ if (student is (name: var name, age: >= 18))
             Indicates lame weak exocet.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocet">
+            <summary>
+            Indicates franken junior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocet">
+            <summary>
+            Indicates mutant junior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocet">
+            <summary>
+            Indicates franken senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocet">
+            <summary>
+            Indicates mutant senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DoubleExocet">
+            <summary>
+            Indicates double exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PatternLockedQuadruple">
+            <summary>
+            Indicates pattern-locked quadruple. This quadruple is a special quadruple: it can only be concluded after both JE and SK-Loop are formed.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DominoLoop">
             <summary>
             Indicates domino loop.
@@ -16269,6 +16299,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Dynamic Double Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.DoubleExocet">
+            <summary>
+              Looks up a localized string similar to Double Exocet.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.DoublyLinkedAlmostLockedSetsXzRule">
             <summary>
               Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
@@ -16679,9 +16714,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Jellyfish.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocet">
+            <summary>
+              Looks up a localized string similar to Franken Junior Exocet.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenLeviathan">
             <summary>
               Looks up a localized string similar to Franken Leviathan.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocet">
+            <summary>
+              Looks up a localized string similar to Franken Senior Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSquirmbag">
@@ -17044,9 +17089,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mutant Jellyfish.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocet">
+            <summary>
+              Looks up a localized string similar to Mutant Junior Exocet.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantLeviathan">
             <summary>
               Looks up a localized string similar to Mutant Leviathan.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocet">
+            <summary>
+              Looks up a localized string similar to Mutant Senior Exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSquirmbag">
@@ -17172,6 +17227,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.OrKeywordWithSpaces">
             <summary>
               Looks up a localized string similar to  or .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.PatternLockedQuadruple">
+            <summary>
+              Looks up a localized string similar to Pattern-Locked Quadruple.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.PatternOverlay">

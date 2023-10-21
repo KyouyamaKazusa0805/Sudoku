@@ -2394,4 +2394,22 @@
   <data name="LameWeakExocet" xml:space="preserve">
     <value>Lame Weak Exocet</value>
   </data>
+  <data name="DoubleExocet" xml:space="preserve">
+    <value>Double Exocet</value>
+  </data>
+  <data name="FrankenJuniorExocet" xml:space="preserve">
+    <value>Franken Junior Exocet</value>
+  </data>
+  <data name="FrankenSeniorExocet" xml:space="preserve">
+    <value>Franken Senior Exocet</value>
+  </data>
+  <data name="MutantJuniorExocet" xml:space="preserve">
+    <value>Mutant Junior Exocet</value>
+  </data>
+  <data name="MutantSeniorExocet" xml:space="preserve">
+    <value>Mutant Senior Exocet</value>
+  </data>
+  <data name="PatternLockedQuadruple" xml:space="preserve">
+    <value>Pattern-Locked Quadruple</value>
+  </data>
 </root>

@@ -2547,4 +2547,28 @@
     <value>全衰飞鱼</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="DoubleExocet" xml:space="preserve">
+    <value>双飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FrankenJuniorExocet" xml:space="preserve">
+    <value>宫内初级飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FrankenSeniorExocet" xml:space="preserve">
+    <value>宫内高级飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantJuniorExocet" xml:space="preserve">
+    <value>交叉初级飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantSeniorExocet" xml:space="preserve">
+    <value>交叉高级飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="PatternLockedQuadruple" xml:space="preserve">
+    <value>结构限定四数组</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

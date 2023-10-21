@@ -2957,6 +2957,49 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	LameWeakExocet,
+
+	/// <summary>
+	/// Indicates franken junior exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenJuniorExocet,
+
+	/// <summary>
+	/// Indicates mutant junior exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantJuniorExocet,
+
+	/// <summary>
+	/// Indicates franken senior exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenSeniorExocet,
+
+	/// <summary>
+	/// Indicates mutant senior exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantSeniorExocet,
+
+	/// <summary>
+	/// Indicates double exocet.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	DoubleExocet,
+
+	/// <summary>
+	/// Indicates pattern-locked quadruple. This quadruple is a special quadruple: it can only be concluded after both JE and SK-Loop are formed.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[Abbreviation("PLQ")]
+	PatternLockedQuadruple,
 	#endregion
 
 	//
