@@ -2590,7 +2590,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		var flag = false;
-		var r = new (CellMap, House)?[9];
+		var r = new LockedMember?[9];
 		var realLockedDigitsMask = (Mask)0;
 		foreach (var lockedDigit in lockedDigitsMask)
 		{
