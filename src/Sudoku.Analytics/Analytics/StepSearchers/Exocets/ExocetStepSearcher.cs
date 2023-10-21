@@ -181,7 +181,25 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
+									// Check whether all cross-line lines contains at least one digit appeared in base cells.
 									var crossline = housesCells - chuteCells;
+									var atLeastOneLineContainNoDigitsAppearedInBase = false;
+									foreach (var line in isRow ? crossline.RowMask << 9 : crossline.ColumnMask << 18)
+									{
+										var houseCells = HousesMap[line] & EmptyCells;
+										foreach (var cell in houseCells)
+										{
+											if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
+											{
+												atLeastOneLineContainNoDigitsAppearedInBase = true;
+												break;
+											}
+										}
+									}
+									if (atLeastOneLineContainNoDigitsAppearedInBase)
+									{
+										continue;
+									}
 
 									// Check whether escape cells contain any digits appeared in base. If so, invalid.
 									var escapeCellsContainValueCellsDigitAppearedInBaseCells = false;
