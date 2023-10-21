@@ -172,14 +172,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									var atLeastOneLineContainNoDigitsAppearedInBase = false;
 									foreach (var line in isRow ? crossline.RowMask << 9 : crossline.ColumnMask << 18)
 									{
-										var houseCells = HousesMap[line] & EmptyCells;
-										foreach (var cell in houseCells)
+										var lineMask = grid[HousesMap[line] & crossline & EmptyCells];
+										if ((lineMask & baseCellsDigitsMask) == 0)
 										{
-											if ((grid.GetCandidates(cell) & baseCellsDigitsMask) == 0)
-											{
-												atLeastOneLineContainNoDigitsAppearedInBase = true;
-												break;
-											}
+											atLeastOneLineContainNoDigitsAppearedInBase = true;
+											break;
 										}
 									}
 									if (atLeastOneLineContainNoDigitsAppearedInBase)
@@ -336,7 +333,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var (digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.MaxPlacementsOf(digit, in crossline, size - 1))
+			if (grid.ExactlyAppearsWith(digit, in crossline, size - 1))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
@@ -526,7 +523,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 					foreach (var digit in baseCellsDigitsMask)
 					{
-						if (grid.MaxPlacementsOf(digit, housesCells - chuteCells - cell, size - 1))
+						if (grid.ExactlyAppearsWith(digit, housesCells - chuteCells - cell, size - 1))
 						{
 							allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 							break;
@@ -566,7 +563,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 				foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 				{
-					if (grid.MaxPlacementsOf(digit, housesCells - chuteCells, size - 1))
+					if (grid.ExactlyAppearsWith(digit, housesCells - chuteCells, size - 1))
 					{
 						allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 						break;
@@ -785,7 +782,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.MaxPlacementsOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
+			if (grid.ExactlyAppearsWith(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				sizeMinusOneRule = false;
