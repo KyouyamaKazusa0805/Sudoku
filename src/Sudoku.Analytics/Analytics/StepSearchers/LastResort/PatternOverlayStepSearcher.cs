@@ -34,7 +34,10 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 				continue;
 			}
 
-			var step = new PatternOverlayStep([.. from cell in template select new Conclusion(Elimination, cell, digit)], context.PredefinedOptions);
+			var step = new PatternOverlayStep(
+				[.. from cell in template select new Conclusion(Elimination, cell, digit)],
+				context.PredefinedOptions
+			);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -74,7 +77,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 
 		for (var digit = 0; digit < 9; digit++)
 		{
-			foreach (ref readonly var map in TemplateCellMaps.EnumerateRef())
+			foreach (ref readonly var map in TemplateCellMaps.AsSpan())
 			{
 				if (mustPos[digit] - map || invalidPos[digit] & map)
 				{

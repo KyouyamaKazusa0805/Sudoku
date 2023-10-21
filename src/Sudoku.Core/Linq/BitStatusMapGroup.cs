@@ -53,10 +53,9 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
 	/// </summary>
-	/// <returns>An <see cref="OneDimensionalArrayEnumerator{T}"/> object that can be used to iterate through the collection.</returns>
-	/// <seealso cref="OneDimensionalArrayEnumerator{T}"/>
+	/// <returns>An enumerator object that can be used to iterate through the collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OneDimensionalArrayEnumerator<TElement> GetEnumerator() => Values.GetEnumerator();
+	public ReadOnlySpan<TElement>.Enumerator GetEnumerator() => Values.GetEnumerator();
 
 	/// <summary>
 	/// Filters a sequence of values based on a predicate.

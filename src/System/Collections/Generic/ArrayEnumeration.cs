@@ -8,36 +8,6 @@ namespace System.Collections.Generic;
 public static class ArrayEnumeration
 {
 	/// <summary>
-	/// Creates a <see cref="OneDimensionalArrayEnumerator{T}"/> instance that iterates on each element.
-	/// </summary>
-	/// <typeparam name="T">The type of the array elements.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <returns>
-	/// The enumerable collection that allows the iteration on an one-dimensional array.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayEnumerator<T> Enumerate<T>(this T[] @this) => new(@this);
-
-	/// <summary>
-	/// Creates a <see cref="OneDimensionalArrayRefEnumerator{T}"/> instance that iterates on each element.
-	/// Different with the default iteration operation, this type will iterate each element by reference,
-	/// in order that you can write the code like:
-	/// <code><![CDATA[
-	/// foreach (ref int element in new[] { 1, 3, 6, 10 }.EnumerateRef())
-	/// {
-	///	    Console.WriteLine(++element);
-	/// }
-	/// ]]></code>
-	/// </summary>
-	/// <typeparam name="T">The type of the array elements.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <returns>
-	/// The enumerable collection that allows the iteration by reference on an one-dimensional array.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static OneDimensionalArrayRefEnumerator<T> EnumerateRef<T>(this T[] @this) => new(@this);
-
-	/// <summary>
 	/// Same as for-each method <see cref="Array.ForEach{T}(T[], Action{T})"/>, but iterating on references to corresponding elements.
 	/// </summary>
 	/// <typeparam name="T">The type of each element in this array.</typeparam>
@@ -45,7 +15,7 @@ public static class ArrayEnumeration
 	/// <param name="callback">The callback method to handle for each reference to each element.</param>
 	public static void ForEachRef<T>(this T[] @this, ActionRef<T> callback)
 	{
-		foreach (ref var element in @this.EnumerateRef())
+		foreach (ref var element in @this.AsSpan())
 		{
 			callback(ref element);
 		}
@@ -54,7 +24,7 @@ public static class ArrayEnumeration
 	/// <inheritdoc cref="ForEachRef{T}(T[], ActionRef{T})"/>
 	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*<ref T, void> callback)
 	{
-		foreach (ref var element in @this.EnumerateRef())
+		foreach (ref var element in @this.AsSpan())
 		{
 			callback(ref element);
 		}

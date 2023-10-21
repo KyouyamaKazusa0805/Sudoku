@@ -62,7 +62,7 @@ public readonly partial record struct DigitPath(Digit[] Digits) :
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OneDimensionalArrayEnumerator<Digit> GetEnumerator() => new(Digits);
+	public ReadOnlySpan<Digit>.Enumerator GetEnumerator() => ((ReadOnlySpan<Digit>)Digits).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

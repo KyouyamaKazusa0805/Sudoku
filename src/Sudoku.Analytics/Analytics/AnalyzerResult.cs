@@ -704,7 +704,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OneDimensionalArrayEnumerator<Step> GetEnumerator() => new(Steps ?? []);
+	public ReadOnlySpan<Step>.Enumerator GetEnumerator() => ((ReadOnlySpan<Step>)(Steps ?? [])).GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

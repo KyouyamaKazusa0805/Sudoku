@@ -301,7 +301,7 @@ public readonly unsafe partial struct Utf8String :
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public OneDimensionalArrayRefEnumerator<Utf8Char> GetEnumerator() => _value.EnumerateRef();
+	public Span<Utf8Char>.Enumerator GetEnumerator() => _value.AsSpan().GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -57,7 +57,7 @@ public static class DeadlyPatternChecker
 			return false;
 		}
 
-		foreach (ref var solution in solutions.ToArray().EnumerateRef())
+		foreach (ref var solution in solutions.ToArray().AsSpan())
 		{
 			// Step 2: Make complete pattern for each solution.
 			foreach (var cell in cellsUsed)

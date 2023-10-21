@@ -6879,8 +6879,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Returns an enumerator that iterates through a collection.
             </summary>
-            <returns>An <see cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/> object that can be used to iterate through the collection.</returns>
-            <seealso cref="T:System.Collections.Generic.OneDimensionalArrayEnumerator`1"/>
+            <returns>An enumerator object that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Where(System.Func{`1,System.Boolean})">
             <summary>

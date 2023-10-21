@@ -665,10 +665,10 @@ file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
 		};
 
 
-		static bool branchEquals(ChainNode[] a, ChainNode[] b)
+		static bool branchEquals(scoped ReadOnlySpan<ChainNode> a, scoped ReadOnlySpan<ChainNode> b)
 		{
-			scoped var i1 = a.Enumerate();
-			scoped var i2 = b.Enumerate();
+			scoped var i1 = a.GetEnumerator();
+			scoped var i2 = b.GetEnumerator();
 			while (i1.MoveNext() && i2.MoveNext())
 			{
 				if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))

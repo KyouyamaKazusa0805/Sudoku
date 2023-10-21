@@ -115,7 +115,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						for (var baseSize = 1; baseSize <= 2; baseSize++)
 						{
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
-							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].EnumerateRef())
+							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].AsSpan())
 							{
 								var baseEmptyCellsToBeIterated = minilineBaseCells & EmptyCells;
 								if (!baseEmptyCellsToBeIterated)
@@ -125,7 +125,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								}
 
 								// Iterate on each miniline, to get all possible cases.
-								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(baseSize).EnumerateRef())
+								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(baseSize).AsSpan())
 								{
 									if (housesEmptyCells & baseCells)
 									{
@@ -2519,7 +2519,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap miniline)
 	{
 		Unsafe.SkipInit(out miniline);
-		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].EnumerateRef())
+		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].AsSpan())
 		{
 			if (temp.Contains(targetCell))
 			{

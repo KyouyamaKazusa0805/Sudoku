@@ -897,7 +897,7 @@ public unsafe partial struct Grid :
 
 		for (var i = activeCells.Count; i >= 1; i--)
 		{
-			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).EnumerateRef())
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).AsSpan())
 			{
 				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{
@@ -1002,7 +1002,7 @@ public unsafe partial struct Grid :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public readonly OneDimensionalArrayEnumerator<Candidate> EnumerateCandidates()
+	public readonly ReadOnlySpan<Candidate> EnumerateCandidates()
 	{
 		var candidates = new Candidate[CandidatesCount];
 		for (var (cell, i) = (0, 0); cell < 81; cell++)
@@ -1015,7 +1015,7 @@ public unsafe partial struct Grid :
 				}
 			}
 		}
-		return candidates.Enumerate();
+		return candidates;
 	}
 
 	/// <summary>

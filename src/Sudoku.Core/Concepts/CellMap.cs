@@ -633,7 +633,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly OneDimensionalArrayEnumerator<Cell> GetEnumerator() => Offsets.Enumerate();
+	public readonly ReadOnlySpan<Cell>.Enumerator GetEnumerator() => ((ReadOnlySpan<Cell>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)

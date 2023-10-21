@@ -293,7 +293,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly OneDimensionalArrayEnumerator<Candidate> GetEnumerator() => Offsets.Enumerate();
+	public readonly ReadOnlySpan<Candidate>.Enumerator GetEnumerator() => ((ReadOnlySpan<Candidate>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)

@@ -330,7 +330,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public new abstract OneDimensionalArrayEnumerator<TElement> GetEnumerator();
+	public new abstract ReadOnlySpan<TElement>.Enumerator GetEnumerator();
 
 	/// <summary>
 	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
