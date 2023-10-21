@@ -77,7 +77,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 
 		for (var digit = 0; digit < 9; digit++)
 		{
-			foreach (ref readonly var map in TemplateCellMaps.AsSpan())
+			foreach (ref readonly var map in TemplateCellMaps.AsReadOnlySpan())
 			{
 				if (mustPos[digit] - map || invalidPos[digit] & map)
 				{

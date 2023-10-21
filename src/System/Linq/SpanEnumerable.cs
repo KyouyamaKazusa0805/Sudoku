@@ -68,7 +68,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		return result.AsSpan()[..i];
+		return result.AsReadOnlySpan()[..i];
 	}
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>

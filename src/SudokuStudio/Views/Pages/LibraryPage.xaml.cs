@@ -368,7 +368,7 @@ public sealed partial class LibraryPage : Page
 		static Grid[] getValidGrids(Grid[] originalPuzzles)
 		{
 			var newPuzzles = new List<Grid>(originalPuzzles.Length);
-			foreach (ref readonly var puzzle in originalPuzzles.AsSpan())
+			foreach (ref readonly var puzzle in originalPuzzles.AsReadOnlySpan())
 			{
 				if (puzzle.IsValid)
 				{

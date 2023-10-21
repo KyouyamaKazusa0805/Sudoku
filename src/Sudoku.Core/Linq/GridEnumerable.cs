@@ -24,7 +24,7 @@ public static class GridEnumerable
 				result[i++] = candidate;
 			}
 		}
-		return result.AsSpan()[..i];
+		return result.AsReadOnlySpan()[..i];
 	}
 
 	/// <summary>
@@ -43,6 +43,6 @@ public static class GridEnumerable
 		{
 			result[i++] = selector(candidate);
 		}
-		return result.AsSpan()[..i];
+		return result.AsReadOnlySpan()[..i];
 	}
 }

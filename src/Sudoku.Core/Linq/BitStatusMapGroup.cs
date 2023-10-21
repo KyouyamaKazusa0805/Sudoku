@@ -74,7 +74,7 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 			}
 		}
 
-		return result.AsSpan()[..i];
+		return result.AsReadOnlySpan()[..i];
 	}
 
 	/// <summary>

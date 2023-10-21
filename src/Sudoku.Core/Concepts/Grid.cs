@@ -919,7 +919,7 @@ public unsafe partial struct Grid :
 
 		for (var i = activeCells.Count; i >= 1; i--)
 		{
-			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).AsSpan())
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i).AsReadOnlySpan())
 			{
 				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{
