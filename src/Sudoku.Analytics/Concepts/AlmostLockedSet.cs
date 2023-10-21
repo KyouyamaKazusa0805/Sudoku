@@ -157,7 +157,7 @@ public sealed partial class AlmostLockedSet(
 
 			for (var size = 2; size <= tempMap.Count - 1; size++)
 			{
-				foreach (var map in tempMap.GetSubsets(size))
+				foreach (ref readonly var map in tempMap.GetSubsets(size).AsReadOnlySpan())
 				{
 					var blockMask = map.BlockMask;
 					if (IsPow2(blockMask) && house >= 9)

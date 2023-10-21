@@ -121,7 +121,7 @@ public partial struct CellMap :
 				case 2: { return InOneHouse(out _); }
 				default:
 				{
-					foreach (var pair in GetSubsets(2))
+					foreach (ref readonly var pair in GetSubsets(2).AsReadOnlySpan())
 					{
 						if (pair.InOneHouse(out _))
 						{
@@ -751,7 +751,7 @@ public partial struct CellMap :
 		var result = new List<CellMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i));
+			result.AddRange(GetSubsets(i).AsReadOnlySpan());
 		}
 
 		return [.. result];

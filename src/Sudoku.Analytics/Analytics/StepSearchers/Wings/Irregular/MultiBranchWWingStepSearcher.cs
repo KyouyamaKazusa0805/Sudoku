@@ -44,7 +44,7 @@ public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 				for (var size = 3; size <= Math.Min(possibleCells.Count, 5); size++)
 				{
 					// Iterates on each combination.
-					foreach (var cells in possibleCells.GetSubsets(size))
+					foreach (ref readonly var cells in possibleCells.GetSubsets(size).AsReadOnlySpan())
 					{
 						// Checks whether they can intersect to at least one cell, as the elimination cell.
 						if (cells.PeerIntersection is not (var elimMap and not []))

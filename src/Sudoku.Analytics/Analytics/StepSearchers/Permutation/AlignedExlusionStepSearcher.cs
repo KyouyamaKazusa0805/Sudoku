@@ -92,7 +92,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			// and we continue the iteration on these remaining cells.
 
 			// First iterate on the first two cells.
-			foreach (var cellPair in candidateList.GetSubsets(2))
+			foreach (ref readonly var cellPair in candidateList.GetSubsets(2).AsReadOnlySpan())
 			{
 				// Setup the first two cells.
 				var (cell1, cell2) = (cellPair[0], cellPair[1]);
@@ -110,7 +110,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				var tailCells = twinArea;
 
 				// Iterate on remaining cells using the twinArea.
-				foreach (var tIndices in tailCells.GetSubsets(size - 2).ToArray())
+				foreach (ref readonly var tIndices in tailCells.GetSubsets(size - 2).AsReadOnlySpan())
 				{
 					var (cells, cardinalities) = (new Cell[size], new int[size]);
 

@@ -419,7 +419,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
 			for (var size = 1; size < otherCells.Count; size++)
 			{
-				foreach (var cells in otherCells.GetSubsets(size))
+				foreach (ref readonly var cells in otherCells.GetSubsets(size).AsReadOnlySpan())
 				{
 					var mask = grid[in cells];
 					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)

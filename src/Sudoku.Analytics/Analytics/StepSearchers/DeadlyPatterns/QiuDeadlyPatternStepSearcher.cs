@@ -567,7 +567,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var extraCells in emptyCellsInCurrentHouse.GetSubsets(size))
+			foreach (ref readonly var extraCells in emptyCellsInCurrentHouse.GetSubsets(size).AsReadOnlySpan())
 			{
 				var currentDigitsMask = grid[in extraCells];
 				if (currentDigitsMask != extraDigitsMask)

@@ -412,7 +412,7 @@ public partial struct CandidateMap :
 		var result = new List<CandidateMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i));
+			result.AddRange(GetSubsets(i).AsReadOnlySpan());
 		}
 
 		return [.. result];

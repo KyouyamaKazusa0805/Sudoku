@@ -320,7 +320,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		var result = new List<TSelf>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i));
+			result.AddRange(GetSubsets(i).AsReadOnlySpan());
 		}
 
 		return [.. result];

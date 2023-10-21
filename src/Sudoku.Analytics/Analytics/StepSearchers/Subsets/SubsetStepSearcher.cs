@@ -50,7 +50,7 @@ public abstract class SubsetStepSearcher(
 				}
 
 				// Iterate on each combination.
-				foreach (var cells in currentEmptyMap.GetSubsets(size))
+				foreach (ref readonly var cells in currentEmptyMap.GetSubsets(size).AsReadOnlySpan())
 				{
 					var digitsMask = grid[in cells];
 					if (PopCount((uint)digitsMask) != size)

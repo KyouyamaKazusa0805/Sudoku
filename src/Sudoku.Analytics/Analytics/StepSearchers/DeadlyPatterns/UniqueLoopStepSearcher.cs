@@ -320,7 +320,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 				{
-					foreach (var cells in otherCells.GetSubsets(size))
+					foreach (ref readonly var cells in otherCells.GetSubsets(size).AsReadOnlySpan())
 					{
 						var mask = grid[in cells];
 						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
@@ -401,7 +401,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
-				foreach (var cells in otherCells.GetSubsets(size))
+				foreach (ref readonly var cells in otherCells.GetSubsets(size).AsReadOnlySpan())
 				{
 					var mask = grid[in cells];
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)

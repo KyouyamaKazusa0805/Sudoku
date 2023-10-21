@@ -133,7 +133,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on each cell combination.
-		foreach (var alsCells in (checkValueCells ? a : a & EmptyCells).GetSubsets(size - 1))
+		foreach (ref readonly var alsCells in (checkValueCells ? a : a & EmptyCells).GetSubsets(size - 1).AsReadOnlySpan())
 		{
 			// Gather the mask. The cell combination must contain the specified number of digits.
 			var mask = grid[in alsCells, checkValueCells];

@@ -1709,7 +1709,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				for (var size = 2; size <= otherCells.Count - 1; size++)
 				{
-					foreach (var extraCells in otherCells.GetSubsets(size - 1))
+					foreach (ref readonly var extraCells in otherCells.GetSubsets(size - 1).AsReadOnlySpan())
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
 						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
