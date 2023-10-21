@@ -1,15 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Concepts;
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Algorithm.Ittoryu;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridExtensions
+public static class IttoryuExtensions
 {
 	/// <summary>
 	/// Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="IttoryuPathFinder"/>.

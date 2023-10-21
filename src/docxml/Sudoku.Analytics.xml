@@ -117,6 +117,54 @@
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
+            <summary>
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
+            </summary>
+            <param name="this">The grid to be adjusted.</param>
+            <param name="ittoryuPath">
+            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
+            with checking using the specified techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">
+            <para>The techniques supported.</para>
+            <para>
+            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
+            </list>
+            </para>
+            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
+            </param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder">
             <summary>
             Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
@@ -20756,54 +20804,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.GridExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <summary>
-            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
-            </summary>
-            <param name="this">The grid to be adjusted.</param>
-            <param name="ittoryuPath">
-            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
-            </param>
-            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
-            with checking using the specified techniques.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="techniques">
-            <para>The techniques supported.</para>
-            <para>
-            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
-            </list>
-            </para>
-            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
-            </param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
