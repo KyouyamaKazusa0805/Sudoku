@@ -6939,10 +6939,26 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0},System.Int32})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+            <summary>
+            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> of types <see cref="T:Sudoku.Concepts.CellMap"/>, <see cref="T:System.Int32"/>
+            and <typeparamref name="TKey"/>, into a <see cref="T:System.Int32"/> value; collect converted results and merge
+            into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <typeparam name="TKey">The type of the grouping.</typeparam>
+            <param name="this">The list to be checked.</param>
+            <param name="selector">The transform method to apply to each element.</param>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,``0},System.Int32})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+            <summary>
+            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> of types <see cref="T:Sudoku.Concepts.CandidateMap"/>, <see cref="T:System.Int32"/>
+            and <typeparamref name="TKey"/>, into a <see cref="T:System.Int32"/> value; collect converted results and merge
+            into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <typeparam name="TKey">The type of the grouping.</typeparam>
+            <param name="this">The list to be checked.</param>
+            <param name="selector">The transform method to apply to each element.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Linq.ConclusionsEnumerable">
             <summary>
