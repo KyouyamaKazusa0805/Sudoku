@@ -333,8 +333,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// We should treat the digit as a non-locked member.
 
-		var digitsMaskExactlySizeMinusOneTimes = (Mask)0;
-		var digitsMaskAppearedInCrossline = (Mask)0;
+		var (digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
 		foreach (var digit in baseCellsDigitsMask)
 		{
 			if (grid.MaxPlacementsOf(digit, in crossline, size - 1))
