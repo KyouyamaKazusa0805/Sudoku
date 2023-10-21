@@ -3532,7 +3532,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ExactlyAppearsWith(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.ExactlyAppearingTimesWith(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
             </summary>

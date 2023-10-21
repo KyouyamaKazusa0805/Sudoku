@@ -886,7 +886,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The cells to be checked.</param>
 	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
-	public readonly bool ExactlyAppearsWith(Digit digit, scoped ref readonly CellMap cells, int limitCount)
+	public readonly bool ExactlyAppearingTimesWith(Digit digit, scoped ref readonly CellMap cells, int limitCount)
 	{
 		var activeCells = CandidatesMap[digit] & cells;
 		var inactiveCells = ValuesMap[digit] & cells;
