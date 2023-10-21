@@ -895,6 +895,38 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 				break;
 			}
+			case ({ Count: 1 }, { Count: 2 }, -1):
+			{
+				var digitsMask = (Mask)(grid[in targetCells, false, GridMaskMergingMethod.And] & ~baseCellsDigitsMask);
+				if (digitsMask == 0)
+				{
+					break;
+				}
+
+				foreach (var coveredLine in targetCells.CoveredHouses)
+				{
+					foreach (var conjugatePairDigit in digitsMask)
+					{
+						if ((HousesMap[coveredLine] & CandidatesMap[conjugatePairDigit]) != targetCells)
+						{
+							continue;
+						}
+
+						// This digit is a conjugate pair.
+						foreach (var cell in targetCells)
+						{
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask & ~(1 << conjugatePairDigit)))
+							{
+								conclusions.Add(new(Elimination, cell, digit));
+							}
+						}
+
+						conjugatePairs.Add(new(in targetCells, conjugatePairDigit));
+						break;
+					}
+				}
+				break;
+			}
 			case (_, { Count: 2 }, _):
 			{
 				foreach (var cell in endoTargetCell == -1 ? targetCells : targetCells + endoTargetCell)
