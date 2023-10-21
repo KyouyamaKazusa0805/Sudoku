@@ -186,12 +186,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									// Check whether escape cells contain any digits appeared in base. If so, invalid.
 									var escapeCellsContainValueCellsDigitAppearedInBaseCells = false;
-									var crosslineLineCells = CellMap.Empty;
-									foreach (var house in housesMask)
-									{
-										crosslineLineCells |= HousesMap[house];
-									}
-									foreach (var cell in crosslineLineCells - crossline - EmptyCells)
+									foreach (var cell in housesCells - crossline - EmptyCells)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
