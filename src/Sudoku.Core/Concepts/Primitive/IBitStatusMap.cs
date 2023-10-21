@@ -38,10 +38,10 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <summary>
 	/// Indicates the error information describing the case that the number of subsets calculated by methods
-	/// <see cref="GetSubsets(int)"/> and <see cref="GetAllSubsets(int)"/> is too large.
+	/// <see cref="GetSubsets(Count)"/> and <see cref="GetAllSubsets(Count)"/> is too large.
 	/// </summary>
-	/// <seealso cref="GetSubsets(int)"/>
-	/// <seealso cref="GetAllSubsets(int)"/>
+	/// <seealso cref="GetSubsets(Count)"/>
+	/// <seealso cref="GetAllSubsets(Count)"/>
 	private protected static readonly string ErrorInfo_SubsetsExceeded = """
 		Both cells count and subset size is too large, which may cause potential out of memory exception. 
 		This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
@@ -51,12 +51,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the size of each unit.
 	/// </summary>
-	public abstract int Shifting { get; }
+	public abstract Count Shifting { get; }
 
 	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
-	public new abstract int Count { get; }
+	public new abstract Count Count { get; }
 
 	/// <summary>
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
@@ -82,7 +82,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	bool ICollection<TElement>.IsReadOnly => false;
 
 	/// <inheritdoc/>
-	int ICollection<TElement>.Count => Count;
+	Count ICollection<TElement>.Count => Count;
 
 
 	/// <summary>
@@ -103,7 +103,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	public abstract TElement this[int index] { get; }
+	public abstract TElement this[Offset index] { get; }
 
 
 	/// <inheritdoc/>
@@ -160,11 +160,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public abstract unsafe void CopyTo(TElement* arr, int length);
+	public abstract unsafe void CopyTo(TElement* arr, Count length);
 
-	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
+	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], Offset)"/>
 	[ExplicitInterfaceImpl(typeof(ICollection<>))]
-	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex)
+	public new sealed unsafe void CopyTo(TElement[] array, Offset arrayIndex)
 	{
 		fixed (TElement* pArray = array)
 		{
@@ -233,7 +233,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="start">The start index.</param>
 	/// <param name="count">The number of elements.</param>
 	/// <returns>The target instance.</returns>
-	public abstract TSelf Slice(int start, int count);
+	public abstract TSelf Slice(Offset start, Count count);
 
 	/// <summary>
 	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
@@ -270,13 +270,13 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
 	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
-	public abstract TSelf[] GetSubsets(int subsetSize);
+	public abstract TSelf[] GetSubsets(Count subsetSize);
 
 	/// <summary>
 	/// Equivalent to <c>GetAllSubsets(Count)</c>.
 	/// </summary>
 	/// <returns>All subsets of the current instance.</returns>
-	/// <seealso cref="GetAllSubsets(int)"/>
+	/// <seealso cref="GetAllSubsets(Count)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual TSelf[] GetAllSubsets() => GetAllSubsets(Count);
 
@@ -302,7 +302,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </item>
 	/// </list>
 	/// </returns>
-	public virtual TSelf[] GetAllSubsets(int limitSubsetSize)
+	public virtual TSelf[] GetAllSubsets(Count limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || Count == 0)
 		{

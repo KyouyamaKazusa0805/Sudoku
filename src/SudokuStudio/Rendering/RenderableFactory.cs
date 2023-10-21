@@ -512,7 +512,7 @@ internal static class RenderableFactory
 			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
 			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
 			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
-			_ => Throw<(int, int, int, int)>(house, 27)
+			_ => Throw<(Offset, Offset, Offset, Offset)>(house, 27)
 		};
 
 		var control = new Border

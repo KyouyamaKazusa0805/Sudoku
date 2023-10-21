@@ -34,7 +34,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 	/// Indicates the maximum searching size. This value must be 3, 4 or 5. The default value is 3.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.AlignedExclusionMaxSearchingSize)]
-	public int MaxSearchingSize { get; set; } = 3;
+	public Count MaxSearchingSize { get; set; } = 3;
 
 
 	/// <inheritdoc/>
@@ -112,7 +112,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				// Iterate on remaining cells using the twinArea.
 				foreach (ref readonly var tIndices in tailCells.GetSubsets(size - 2).AsReadOnlySpan())
 				{
-					var (cells, cardinalities) = (new Cell[size], new int[size]);
+					var (cells, cardinalities) = (new Cell[size], new Count[size]);
 
 					// Copy the first two cells.
 					(cells[0], cells[1]) = (cell1, cell2);
@@ -145,7 +145,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						continue;
 					}
 
-					var potentialIndices = new int[size];
+					var potentialIndices = new Offset[size];
 
 					// Iterate on combinations of candidates across the base cells.
 					var allowedCombinations = new List<Digit[]>();

@@ -25,7 +25,7 @@ public sealed partial class RegularWingStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[DataMember] Cell pivot,
-	[DataMember] int pivotCandidatesCount,
+	[DataMember] Count pivotCandidatesCount,
 	[DataMember] Mask digitsMask,
 	[DataMember] scoped ref readonly CellMap petals
 ) : WingStep(conclusions, views, options)
@@ -74,7 +74,7 @@ public sealed partial class RegularWingStep(
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public int Size => PopCount((uint)DigitsMask);
+	public Count Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
 	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.GetRegularWingEnglishName(Size, IsIncomplete));

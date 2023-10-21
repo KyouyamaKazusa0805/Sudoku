@@ -27,7 +27,7 @@ public static class ArrayEnumerable
 	/// <param name="this">The array.</param>
 	/// <param name="predicate">The condition.</param>
 	/// <returns>The number of elements satisfying the specified condition.</returns>
-	public static int Count<T>(this T[] @this, Func<T, bool> predicate)
+	public static Count Count<T>(this T[] @this, Func<T, bool> predicate)
 	{
 		var result = 0;
 		foreach (var element in @this)
@@ -334,7 +334,7 @@ public static class ArrayEnumerable
 	/// </code>
 	/// 3 cases.
 	/// </returns>
-	public static T[][] GetSubsets<T>(this T[] @this, int count)
+	public static T[][] GetSubsets<T>(this T[] @this, Count count)
 	{
 		if (count == 0)
 		{
@@ -342,11 +342,11 @@ public static class ArrayEnumerable
 		}
 
 		var result = new List<T[]>();
-		g(@this.Length, count, count, stackalloc int[count], @this, result);
+		g(@this.Length, count, count, stackalloc Offset[count], @this, result);
 		return [.. result];
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, T[] @this, List<T[]> resultList)
+		static void g(Offset last, Count count, Offset index, scoped Span<Offset> tempArray, T[] @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
@@ -392,7 +392,7 @@ public static class ArrayEnumerable
 	{
 		var length = @this.Length;
 		var resultCount = 1;
-		var tempArray = stackalloc int[length];
+		var tempArray = stackalloc Offset[length];
 		for (var i = 0; i < length; i++)
 		{
 			tempArray[i] = -1;

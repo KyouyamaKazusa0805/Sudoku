@@ -96,7 +96,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Indicates the complexity of the chain.
 	/// </summary>
-	public int Complexity => FlatComplexity + NestedComplexity;
+	public Count Complexity => FlatComplexity + NestedComplexity;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code
@@ -151,7 +151,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Returns how many views the current step will be used.
 	/// </summary>
-	protected int FlatViewsCount
+	protected Count FlatViewsCount
 		=> this switch
 		{
 			ForcingChainStep or BidirectionalCycleStep => 1,
@@ -164,7 +164,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Indicates the total number of views the step will be displayed.
 	/// </summary>
-	protected int ViewsCount => FlatViewsCount + NestedViewsCount;
+	protected Count ViewsCount => FlatViewsCount + NestedViewsCount;
 
 	/// <summary>
 	/// Indicates the result node.
@@ -190,7 +190,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.
 	/// </summary>
-	private int FlatComplexity
+	private Count FlatComplexity
 		=> this switch
 		{
 			ForcingChainStep { Target: var target } => AncestorsCountOf(target),
@@ -204,7 +204,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Indicates the nested complexity of the chain. This property is useful on checking nesting chains.
 	/// </summary>
-	private int NestedComplexity
+	private Count NestedComplexity
 	{
 		get
 		{
@@ -229,7 +229,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Returns the number of nested views.
 	/// </summary>
-	private int NestedViewsCount
+	private Count NestedViewsCount
 	{
 		get
 		{
@@ -348,7 +348,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetNestedOnPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedOnPotentials(Offset nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
@@ -361,7 +361,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetNestedOffPotentials(int nestedViewIndex)
+	protected CandidateMap GetNestedOffPotentials(Offset nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
@@ -374,14 +374,14 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract CandidateMap GetOnPotentials(int viewIndex);
+	protected abstract CandidateMap GetOnPotentials(Offset viewIndex);
 
 	/// <summary>
 	/// Try to fetch all candidates to be colored as state 2: the candidate is "off".
 	/// </summary>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected abstract CandidateMap GetOffPotentials(int viewIndex);
+	protected abstract CandidateMap GetOffPotentials(Offset viewIndex);
 
 	/// <summary>
 	/// Try to fetch all candidates to be colored as state 3: the candidate is partially "off";
@@ -390,7 +390,7 @@ public abstract partial class ChainingStep(
 	/// <param name="grid">The grid as a candidate reference.</param>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetPartiallyOffPotentials(scoped ref readonly Grid grid, int viewIndex)
+	protected CandidateMap GetPartiallyOffPotentials(scoped ref readonly Grid grid, Offset viewIndex)
 	{
 		var result = CandidateMap.Empty;
 
@@ -430,14 +430,14 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>All <see cref="LinkViewNode"/>.</returns>
-	protected abstract List<LinkViewNode> GetLinks(int viewIndex);
+	protected abstract List<LinkViewNode> GetLinks(Offset viewIndex);
 
 	/// <summary>
 	/// Try to fetch all nested <see cref="LinkViewNode"/> instances of the specified view.
 	/// </summary>
 	/// <param name="nestedViewIndex">The specified index of the view.</param>
 	/// <returns>All <see cref="LinkViewNode"/> instance in this view.</returns>
-	protected List<LinkViewNode> GetNestedLinks(int nestedViewIndex)
+	protected List<LinkViewNode> GetNestedLinks(Offset nestedViewIndex)
 	{
 		nestedViewIndex -= FlatViewsCount;
 
@@ -450,7 +450,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>The <see cref="ChainNode"/> result.</returns>
-	private ChainNode GetChainTargetAt(int viewIndex)
+	private ChainNode GetChainTargetAt(Offset viewIndex)
 		=> this switch
 		{
 			ForcingChainStep { Target: var target } => target,
@@ -526,7 +526,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="nestedViewIndex">The nested view index.</param>
 	/// <returns>A pair of values.</returns>
-	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
+	private (ChainingStep Step, Offset ViewIndex) GetNestedChain(Offset nestedViewIndex)
 	{
 		var processed = new HashSet<ChainingStep>(new EqualityComparer());
 		foreach (var target in ChainsTargets)
@@ -556,7 +556,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="child">The specified node.</param>
 	/// <returns>The total number of all found ancestors.</returns>
-	protected internal static int AncestorsCountOf(ChainNode child)
+	protected internal static Count AncestorsCountOf(ChainNode child)
 	{
 		var ancestors = new NodeSet();
 		var todo = new List<ChainNode> { child };

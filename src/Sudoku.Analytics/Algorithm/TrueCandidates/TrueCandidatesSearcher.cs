@@ -98,7 +98,7 @@ public static class TrueCandidatesSearcher
 		chosen.Clear();
 		do
 		{
-			int i;
+			Offset i;
 			var currentCell = multivalueCells[currentIndex - 1];
 			var @continue = false;
 			for (i = chosen[currentIndex] + 1; i <= pairs[currentIndex - 1, 0]; i++)

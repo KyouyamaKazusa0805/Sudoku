@@ -30,12 +30,12 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	[DataMember] Cell baseCell,
 	[DataMember] Cell targetCell,
 	[DataMember] House house,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
 	options,
-	(Technique)((int)Technique.AvoidableRectangleHiddenSingleBlock + (int)house.ToHouseType()),
+	(Technique)((Offset)Technique.AvoidableRectangleHiddenSingleBlock + (Offset)house.ToHouseType()),
 	digit1,
 	digit2,
 	in cells,

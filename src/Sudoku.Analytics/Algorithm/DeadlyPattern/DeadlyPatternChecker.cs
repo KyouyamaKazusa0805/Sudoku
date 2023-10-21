@@ -118,7 +118,7 @@ public static class DeadlyPatternChecker
 			}
 
 
-			static bool isValid(scoped ref readonly Grid grid, int r, int c)
+			static bool isValid(scoped ref readonly Grid grid, RowIndex r, ColumnIndex c)
 			{
 				var number = grid.GetDigit(r * 9 + c);
 				for (var i = 0; i < 9; i++)
@@ -128,9 +128,9 @@ public static class DeadlyPatternChecker
 						return false;
 					}
 				}
-				for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+				for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
 				{
-					for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+					for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
 					{
 						if ((i != r || j != c) && grid.GetDigit(i * 9 + j) == number)
 						{

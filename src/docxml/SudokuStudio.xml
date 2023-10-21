@@ -3030,11 +3030,11 @@ if (student is (name: var name, age: >= 18))
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment"/></term>
-            <description>An <see cref="T:System.Int32"/> value indicating the candidate set.</description>
+            <description>A <see cref="T:System.Int32"/> value indicating the candidate set.</description>
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear"/></term>
-            <description>An <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
+            <description>A <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Undoing"/></term>
@@ -3051,8 +3051,8 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             <para>
-            You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
-            or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
+            You can use pattern matching to check the internal type such as <c>NewValue is T targetValue</c>,
+            or just use type casting: <c>(T)NewValue</c> if you know what the behavior is currently.
             </para>
             </param>
             <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>
@@ -3085,11 +3085,11 @@ if (student is (name: var name, age: >= 18))
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Assignment"/></term>
-            <description>An <see cref="T:System.Int32"/> value indicating the candidate set.</description>
+            <description>A <see cref="T:System.Int32"/> value indicating the candidate set.</description>
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Clear"/></term>
-            <description>An <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
+            <description>A <see cref="T:System.Int32"/> value indicating the cell to be set empty.</description>
             </item>
             <item>
             <term><see cref="F:SudokuStudio.Interaction.GridUpdatedBehavior.Undoing"/></term>
@@ -3106,8 +3106,8 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             <para>
-            You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
-            or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
+            You can use pattern matching to check the internal type such as <c>NewValue is T targetValue</c>,
+            or just use type casting: <c>(T)NewValue</c> if you know what the behavior is currently.
             </para>
             </param>
             <seealso cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>

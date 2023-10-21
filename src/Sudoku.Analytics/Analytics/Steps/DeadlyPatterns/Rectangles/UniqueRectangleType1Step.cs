@@ -25,7 +25,7 @@ public sealed class UniqueRectangleType1Step(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

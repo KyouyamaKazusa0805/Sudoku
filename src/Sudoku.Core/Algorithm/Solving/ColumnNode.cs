@@ -12,11 +12,11 @@ public sealed class ColumnNode : DancingLinkNode
 	/// </summary>
 	/// <param name="id">The ID value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ColumnNode(int id) : base(id) => (Column, Size) = (this, 0);
+	public ColumnNode(Offset id) : base(id) => (Column, Size) = (this, 0);
 
 
 	/// <summary>
 	/// Indicates the size of the node.
 	/// </summary>
-	public int Size { get; set; }
+	public Count Size { get; set; }
 }

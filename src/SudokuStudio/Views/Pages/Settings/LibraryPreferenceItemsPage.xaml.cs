@@ -24,7 +24,7 @@ public sealed partial class LibraryPreferenceItemsPage : Page
 	/// Initializes for fields.
 	/// </summary>
 	private void InitializeFields()
-		=> CandidateDisplayingComboBox.SelectedIndex = (int)((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility;
+		=> CandidateDisplayingComboBox.SelectedIndex = (Offset)((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility;
 
 
 	private void CandidateDisplayingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -13,7 +13,7 @@ internal static class CoordinateLabelConversion
 {
 	public static double GetFontSize(double globalFontSize, decimal scale) => globalFontSize * (double)scale;
 
-	public static string ToCoordinateLabelText(CoordinateType based, int index, bool isRow)
+	public static string ToCoordinateLabelText(CoordinateType based, Offset index, bool isRow)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		switch (based)

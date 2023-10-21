@@ -60,15 +60,15 @@ public sealed partial class CellForcingChainsStep(
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOnPotentials(int viewIndex)
+	protected override CandidateMap GetOnPotentials(Offset viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOffPotentials(int viewIndex)
+	protected override CandidateMap GetOffPotentials(Offset viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOffPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(int viewIndex)
+	protected override List<LinkViewNode> GetLinks(Offset viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(GetPotentialAt(viewIndex));
 
 	/// <summary>
@@ -77,5 +77,5 @@ public sealed partial class CellForcingChainsStep(
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>The view index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ChainNode GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
+	private ChainNode GetPotentialAt(Offset viewIndex) => Chains[viewIndex].Potential;
 }

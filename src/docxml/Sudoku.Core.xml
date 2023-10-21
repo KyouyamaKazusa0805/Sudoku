@@ -7688,7 +7688,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Rendering.Nodes.ChuteViewNode.HousesMask">
             <summary>
             <para>
-            Indicates a <see cref="T:System.Int32"/> bits that represents for the houses used.
+            Indicates a <see cref="T:System.Int32"/> that represents for the houses used.
             The result mask is a 27-bit digit that represents every possible houses using cases.
             </para>
             <para>

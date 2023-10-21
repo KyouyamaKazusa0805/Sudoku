@@ -14,7 +14,7 @@ public static class TechniqueFact
 	/// </summary>
 	/// <returns>The number of techniques.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetTechniquesCount() => GetTechniques().Count;
+	public static Count GetTechniquesCount() => GetTechniques().Count;
 
 	/// <summary>
 	/// Try to get all possible <see cref="Technique"/> values.
@@ -29,7 +29,7 @@ public static class TechniqueFact
 	/// <param name="size">The number of cells used in a subset.</param>
 	/// <returns>The name of the subset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetSubsetName(int size) => GetString($"SubsetNamesSize{size}")!;
+	public static string GetSubsetName(Count size) => GetString($"SubsetNamesSize{size}")!;
 
 	/// <summary>
 	/// Make the real name of the regular wing.
@@ -38,7 +38,7 @@ public static class TechniqueFact
 	/// <param name="isIncomplete">A <see cref="bool"/> value indicating whether the wing is incomplete.</param>
 	/// <returns>The real name of the regular wing.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-	public static string GetRegularWingEnglishName(int size, bool isIncomplete)
+	public static string GetRegularWingEnglishName(Count size, bool isIncomplete)
 		=> size switch
 		{
 			3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
@@ -60,7 +60,7 @@ public static class TechniqueFact
 	/// <param name="size">The size.</param>
 	/// <returns>The fish name.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-	public static string GetFishEnglishName(int size)
+	public static string GetFishEnglishName(Count size)
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),

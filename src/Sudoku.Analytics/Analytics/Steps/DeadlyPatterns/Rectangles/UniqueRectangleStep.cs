@@ -24,7 +24,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="absoluteOffset">
 /// <para>Indicates the absolute offset.</para>
 /// <para>
-/// The value is an <see cref="int"/> value, as an index, in order to distinct with all unique rectangle patterns.
+/// The value is an <see cref="Offset"/> value, as an index, in order to distinct with all unique rectangle patterns.
 /// The greater the value is, the later the corresponding pattern will be processed.
 /// The value must be between 0 and 485, because the total number of possible patterns is 486.
 /// </para>
@@ -38,7 +38,7 @@ public abstract partial class UniqueRectangleStep(
 	[DataMember] Digit digit2,
 	[DataMember] scoped ref readonly CellMap cells,
 	[DataMember] bool isAvoidable,
-	[DataMember] int absoluteOffset
+	[DataMember] Offset absoluteOffset
 ) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>

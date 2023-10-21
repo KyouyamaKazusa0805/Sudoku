@@ -14,7 +14,7 @@ public static class DragEventArgsExtensions
 	/// <param name="this">The drag-drop event data provider instance.</param>
 	/// <param name="target">The target list view.</param>
 	/// <returns>The index of the element to be removed.</returns>
-	public static int GetIndexViaCursorPoint<T>(this DragEventArgs @this, T target) where T : ItemsControl
+	public static Offset GetIndexViaCursorPoint<T>(this DragEventArgs @this, T target) where T : ItemsControl
 	{
 		var (pos, index) = (@this.GetPosition(target.ItemsPanelRoot), 0);
 		if (target.Items.Count != 0)

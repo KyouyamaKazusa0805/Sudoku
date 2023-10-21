@@ -33,7 +33,7 @@ public sealed record OpenSudokuGridConverter : GridConverter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Calculates the length of the result string.
-			const int length = 1 + (81 * 3 - 1 << 1);
+			const Count length = 1 + (81 * 3 - 1 << 1);
 
 			// Creates a string instance as a buffer.
 			var result = new string(Terminator, length);

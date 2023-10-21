@@ -14,7 +14,7 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] int chuteIndex) :
+public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] Offset chuteIndex) :
 	BasicViewNode(identifier)
 {
 	/// <summary>
@@ -25,7 +25,7 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMembe
 
 	/// <summary>
 	/// <para>
-	/// Indicates a <see cref="int"/> bits that represents for the houses used.
+	/// Indicates a <see cref="HouseMask"/> that represents for the houses used.
 	/// The result mask is a 27-bit digit that represents every possible houses using cases.
 	/// </para>
 	/// <para>
@@ -34,12 +34,12 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMembe
 	/// </para>
 	/// </summary>
 	[JsonIgnore]
-	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, _, isRow, rawMask) => rawMask };
+	public HouseMask HousesMask => Chutes[ChuteIndex] switch { var (_, _, _, rawMask) => rawMask };
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ColorIdentifier identifier, out int chute) => (identifier, chute) = (Identifier, ChuteIndex);
+	public void Deconstruct(out ColorIdentifier identifier, out Offset chute) => (identifier, chute) = (Identifier, ChuteIndex);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

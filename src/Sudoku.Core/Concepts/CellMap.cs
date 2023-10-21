@@ -58,7 +58,7 @@ public partial struct CellMap :
 	ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
-	private const int Shifting = 41;
+	private const Count Shifting = 41;
 
 
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Empty"/>
@@ -231,7 +231,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public readonly int Count
+	public readonly Count Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count;
@@ -359,7 +359,7 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
+	readonly Count IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
 
 	/// <inheritdoc/>
 	readonly Cell[] IBitStatusMap<CellMap, Cell>.Offsets => Offsets;
@@ -377,7 +377,7 @@ public partial struct CellMap :
 			}
 
 			long value;
-			int i, pos = 0;
+			Offset i, pos = 0;
 			var arr = new Cell[_count];
 			if (_low != 0)
 			{
@@ -419,7 +419,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[IndexerName("CellIndex")]
-	public readonly Cell this[int index]
+	public readonly Cell this[Offset index]
 	{
 		get
 		{
@@ -429,7 +429,7 @@ public partial struct CellMap :
 			}
 
 			long value;
-			int i, pos = -1;
+			Offset i, pos = -1;
 			if (_low != 0)
 			{
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -457,7 +457,7 @@ public partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(Cell* arr, int length)
+	public readonly unsafe void CopyTo(Cell* arr, Count length)
 	{
 		ArgumentNullException.ThrowIfNull(arr);
 
@@ -469,7 +469,7 @@ public partial struct CellMap :
 		ArgumentOutOfRangeException.ThrowIfGreaterThan(_count, length);
 
 		long value;
-		int i, pos = 0;
+		Offset i, pos = 0;
 		if (_low != 0)
 		{
 			for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -636,10 +636,10 @@ public partial struct CellMap :
 	public readonly ReadOnlySpan<Cell>.Enumerator GetEnumerator() => ((ReadOnlySpan<Cell>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
-	public readonly CellMap Slice(int start, int count)
+	public readonly CellMap Slice(Offset start, Count count)
 	{
 		var (result, offsets) = (Empty, Offsets);
-		for (int i = start, end = start + count; i < end; i++)
+		for (Offset i = start, end = start + count; i < end; i++)
 		{
 			result.Add(offsets[i]);
 		}
@@ -649,7 +649,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe CellMap[] GetSubsets(int subsetSize)
+	public readonly unsafe CellMap[] GetSubsets(Count subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
@@ -662,7 +662,7 @@ public partial struct CellMap :
 		}
 
 		var n = _count;
-		var buffer = stackalloc int[subsetSize];
+		var buffer = stackalloc Count[subsetSize];
 		if (n <= 30 && subsetSize <= 30)
 		{
 			// Optimization: Use table to get the total number of result elements.
@@ -672,7 +672,7 @@ public partial struct CellMap :
 			return result;
 
 
-			void enumerateWithLimit(int size, int last, int index, Cell[] offsets)
+			void enumerateWithLimit(Count size, Offset last, Offset index, Cell[] offsets)
 			{
 				for (var i = last; i >= index; i--)
 				{
@@ -705,7 +705,7 @@ public partial struct CellMap :
 			return [.. result];
 
 
-			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
+			void enumerateWithoutLimit(Count size, Offset last, Offset index, Cell[] offsets)
 			{
 				for (var i = last; i >= index; i--)
 				{
@@ -734,7 +734,7 @@ public partial struct CellMap :
 	public readonly CellMap[] GetAllSubsets() => GetAllSubsets(_count);
 
 	/// <inheritdoc/>
-	public readonly CellMap[] GetAllSubsets(int limitSubsetSize)
+	public readonly CellMap[] GetAllSubsets(Count limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{

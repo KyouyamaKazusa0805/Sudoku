@@ -134,7 +134,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <summary>
 	/// Indicates the number of all solving steps recorded.
 	/// </summary>
-	public int SolvingStepsCount => Steps?.Length ?? 1;
+	public Count SolvingStepsCount => Steps?.Length ?? 1;
 
 	/// <summary>
 	/// Indicates why the solving operation is failed.
@@ -330,7 +330,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <param name="index">The index.</param>
 	/// <returns>The step information.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is not solved.</exception>
-	public Step this[int index]
+	public Step this[Offset index]
 		=> IsSolved ? Steps[index] : throw new InvalidOperationException("The puzzle must have been solved before you use this indexer.");
 
 	/// <summary>
@@ -678,7 +678,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 			}
 		}
 
-		(int, Step)? getBottleneck()
+		(Offset, Step)? getBottleneck()
 		{
 			if (this is not { IsSolved: true, Steps: var steps, SolvingStepsCount: var stepsCount })
 			{

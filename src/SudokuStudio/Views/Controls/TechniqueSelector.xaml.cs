@@ -10,7 +10,7 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a technique selector control.
 /// </summary>
-[DependencyProperty<int>("SelectedIndex", DocSummary = "Indicates the selected index.")]
+[DependencyProperty<Offset>("SelectedIndex", DocSummary = "Indicates the selected index.")]
 public sealed partial class TechniqueSelector : UserControl
 {
 	/// <summary>

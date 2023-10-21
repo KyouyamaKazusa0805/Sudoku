@@ -33,7 +33,7 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	[DataMember] Conjugate conjugatePair,
 	[DataMember] bool isIncomplete,
 	bool isAvoidable,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

@@ -245,6 +245,6 @@ file readonly record struct GeneratingDetails(
 	bool ShouldBeMinimal,
 	bool ShouldBePearl,
 	Technique SelectedTechnique,
-	int CountOfGivens,
-	int IttoryuLength
+	Count CountOfGivens,
+	Count IttoryuLength
 );

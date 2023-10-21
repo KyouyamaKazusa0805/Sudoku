@@ -18,12 +18,12 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <summary>
 	/// Indicates the ThOcrMin.
 	/// </summary>
-	private const int ThOcrMin = 120;
+	private const Count ThOcrMin = 120;
 
 	/// <summary>
 	/// Indicates the ThOcrMax.
 	/// </summary>
-	private const int ThOcrMax = 255;
+	private const Count ThOcrMax = 255;
 
 
 	/// <summary>

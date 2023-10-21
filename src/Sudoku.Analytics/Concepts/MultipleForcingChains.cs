@@ -42,7 +42,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	/// <summary>
 	/// Indicates the number of elements stored in this collection.
 	/// </summary>
-	public int Count => _internalDictionary.Count;
+	public Count Count => _internalDictionary.Count;
 
 	/// <summary>
 	/// Indicates the cells or digits.
@@ -61,7 +61,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	/// <param name="index">The desired index.</param>
 	/// <returns>The pair of data.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public (byte CellOrDigit, ChainNode Potential) this[int index]
+	public (byte CellOrDigit, ChainNode Potential) this[Offset index]
 	{
 		get
 		{

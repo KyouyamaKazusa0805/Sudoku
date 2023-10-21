@@ -29,9 +29,9 @@ internal static class AnalyzeConversion
 	public static bool GetProgressRingIsActive(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
 		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch { (_, _, true) => false, _ => true };
 
-	public static int GetViewPipsPagerPageCount(IRenderable? renderable) => renderable?.Views?.Length ?? 0;
+	public static Count GetViewPipsPagerPageCount(IRenderable? renderable) => renderable?.Views?.Length ?? 0;
 
-	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
+	public static Offset GetCurrentViewIndexForViewPipsPager(Offset currentIndex) => currentIndex;
 
 	public static double GetWidth_HodokuRatingText(bool showing) => showing ? 40 : 0;
 
@@ -56,7 +56,7 @@ internal static class AnalyzeConversion
 
 	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
 
-	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
+	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, Offset currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
 
 	public static Thickness GetMargin_HodokuRating(bool showing) => showing ? new(12, 0, 0, 0) : new();

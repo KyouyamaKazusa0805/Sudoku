@@ -37,7 +37,7 @@ public sealed partial class UniqueRectangleType3Step(
 	[DataMember] Mask extraDigitsMask,
 	[DataMember] House house,
 	bool isAvoidable,
-	int absoluteOffset,
+	Offset absoluteOffset,
 	[DataMember] bool isNaked = true
 ) : UniqueRectangleStep(
 	conclusions,

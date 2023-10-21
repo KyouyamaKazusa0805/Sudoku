@@ -54,7 +54,7 @@ public sealed record K9Converter(
 			string r(scoped ref readonly CellMap cells)
 			{
 				scoped var sbRow = new StringHandler(18);
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Cell, List<Digit>>(9);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell / 9))
@@ -81,7 +81,7 @@ public sealed record K9Converter(
 
 			string c(scoped ref readonly CellMap cells)
 			{
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Digit, List<Cell>>(9);
 				scoped var sbColumn = new StringHandler(18);
 				foreach (var cell in cells)
 				{
@@ -163,7 +163,7 @@ public sealed record K9Converter(
 				}), house % 9 + 1);
 			}
 
-			var dic = new Dictionary<HouseType, List<int>>(3);
+			var dic = new Dictionary<HouseType, List<House>>(3);
 			foreach (var house in housesMask)
 			{
 				var houseType = house.ToHouseType();
@@ -264,13 +264,13 @@ public sealed record K9Converter(
 				let coverSet = intersection.Base.Block
 				select string.Format(
 					GetString("LockedCandidatesLabel"),
-					((int)baseSet).ToHouseType() switch
+					((House)baseSet).ToHouseType() switch
 					{
 						HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
 						HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
 						HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
 					},
-					((int)coverSet).ToHouseType() switch
+					((House)coverSet).ToHouseType() switch
 					{
 						HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
 						HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),
@@ -287,13 +287,13 @@ public sealed record K9Converter(
 					let coverSet = intersection.Base.Block
 					select string.Format(
 						GetString("LockedCandidatesLabel"),
-						((int)baseSet).ToHouseType() switch
+						((House)baseSet).ToHouseType() switch
 						{
 							HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
 							HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
 							HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
 						},
-						((int)coverSet).ToHouseType() switch
+						((House)coverSet).ToHouseType() switch
 						{
 							HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
 							HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),

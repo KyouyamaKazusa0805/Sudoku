@@ -37,7 +37,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 	/// Indicates the maximum number of pivots to be searched for. The default value is 3.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.MaxSizeOfRegularWing)]
-	public int MaxSearchingPivotsCount { get; set; } = 3;
+	public Count MaxSearchingPivotsCount { get; set; } = 3;
 
 
 	/// <inheritdoc/>

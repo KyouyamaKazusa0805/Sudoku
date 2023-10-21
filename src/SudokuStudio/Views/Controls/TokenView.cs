@@ -45,7 +45,7 @@ public partial class TokenView : ListViewBase
 	/// <summary>
 	/// The field that records the currently-selected index.
 	/// </summary>
-	private int _selectedIndex = -1;
+	private Offset _selectedIndex = -1;
 
 	/// <summary>
 	/// The scroll viewer control.

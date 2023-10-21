@@ -22,22 +22,22 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 	/// <summary>
 	/// Indicates the maximum size.
 	/// </summary>
-	private const int MaxSize = 2000;
+	private const Count MaxSize = 2000;
 
 	/// <summary>
 	/// Indicates the R-size.
 	/// </summary>
-	private const int RSize = 360;
+	private const Count RSize = 360;
 
 	/// <summary>
 	/// Indicates the minimum threshold.
 	/// </summary>
-	private const int ThresholdMin = 50;
+	private const Count ThresholdMin = 50;
 
 	/// <summary>
 	/// Indicates the maximum threshold.
 	/// </summary>
-	private const int ThresholdMax = 100;
+	private const Count ThresholdMax = 100;
 
 	/// <summary>
 	/// Indicates the font size.

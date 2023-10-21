@@ -139,7 +139,7 @@ public static class SpanEnumerable
 	/// <param name="this">The array.</param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>All subsets.</returns>
-	public static T[][] GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
+	public static T[][] GetSubsets<T>(this scoped ReadOnlySpan<T> @this, Count count)
 	{
 		if (count == 0)
 		{
@@ -147,11 +147,11 @@ public static class SpanEnumerable
 		}
 
 		var result = new List<T[]>();
-		g(@this.Length, count, count, stackalloc int[count], @this, result);
+		g(@this.Length, count, count, stackalloc Offset[count], @this, result);
 		return [.. result];
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
+		static void g(Offset last, Count count, Offset index, scoped Span<Offset> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{

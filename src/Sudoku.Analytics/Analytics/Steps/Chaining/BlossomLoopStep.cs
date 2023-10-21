@@ -94,11 +94,11 @@ public sealed partial class BlossomLoopStep(
 		return [.. result];
 	}
 
-	/// <inheritdoc cref="ChainingStep.GetOnPotentials(int)"/>
-	private CandidateMap GetOnPotentials(int viewIndex) => ChainingStep.GetColorCandidates(GetPotentialAt(viewIndex), true, true);
+	/// <inheritdoc cref="ChainingStep.GetOnPotentials(Offset)"/>
+	private CandidateMap GetOnPotentials(Offset viewIndex) => ChainingStep.GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
-	/// <inheritdoc cref="ChainingStep.GetOffPotentials(int)"/>
-	private CandidateMap GetOffPotentials(int viewIndex) => ChainingStep.GetColorCandidates(GetPotentialAt(viewIndex), false, false);
+	/// <inheritdoc cref="ChainingStep.GetOffPotentials(Offset)"/>
+	private CandidateMap GetOffPotentials(Offset viewIndex) => ChainingStep.GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <summary>
 	/// Gets the potential at the specified index.
@@ -106,10 +106,10 @@ public sealed partial class BlossomLoopStep(
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>The view index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ChainNode GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
+	private ChainNode GetPotentialAt(Offset viewIndex) => Chains[viewIndex].Potential;
 
-	/// <inheritdoc cref="ChainingStep.GetLinks(int)"/>
-	private List<LinkViewNode> GetLinks(int viewIndex) => ChainingStep.GetLinks(GetPotentialAt(viewIndex));
+	/// <inheritdoc cref="ChainingStep.GetLinks(Offset)"/>
+	private List<LinkViewNode> GetLinks(Offset viewIndex) => ChainingStep.GetLinks(GetPotentialAt(viewIndex));
 
 
 	/// <inheritdoc/>

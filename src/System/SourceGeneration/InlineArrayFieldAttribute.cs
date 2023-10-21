@@ -9,4 +9,4 @@ namespace System.SourceGeneration;
 /// <param name="fieldName">Indicates the target field name.</param>
 /// <param name="length">Indicates the length of the fixed-sized buffer type.</param>
 [AttributeUsage(AttributeTargets.Struct, Inherited = false)]
-public sealed partial class InlineArrayFieldAttribute<T>([DataMember] string fieldName, [DataMember] int length) : Attribute;
+public sealed partial class InlineArrayFieldAttribute<T>([DataMember] string fieldName, [DataMember] Count length) : Attribute;

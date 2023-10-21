@@ -44,7 +44,7 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	public static T[] Slice<T>(T* ptr, int index, int length)
+	public static T[] Slice<T>(T* ptr, Offset index, Count length)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
@@ -65,7 +65,7 @@ public static unsafe class PointerOperations
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <param name="removeTrailingZeros">
 	/// Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-	/// the method will be same as <see cref="Slice{T}(T*, int, int)"/>.
+	/// the method will be same as <see cref="Slice{T}(T*, Offset, Count)"/>.
 	/// </param>
 	/// <returns>The array of elements.</returns>
 	/// <exception cref="ArgumentNullException">
@@ -77,8 +77,8 @@ public static unsafe class PointerOperations
 	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
 	/// 5 elements in this case.
 	/// </remarks>
-	/// <seealso cref="Slice{T}(T*, int, int)"/>
-	public static int[] Slice(int* ptr, int length, int index, bool removeTrailingZeros)
+	/// <seealso cref="Slice{T}(T*, Offset, Count)"/>
+	public static int[] Slice(int* ptr, Count length, Offset index, bool removeTrailingZeros)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 

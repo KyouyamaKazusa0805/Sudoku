@@ -121,7 +121,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// </remarks>
 	private static AlmostLockedCandidatesStep? Collect(
 		scoped ref AnalysisContext context,
-		int size,
+		Count size,
 		House baseSet,
 		House coverSet,
 		scoped ref readonly CellMap a,

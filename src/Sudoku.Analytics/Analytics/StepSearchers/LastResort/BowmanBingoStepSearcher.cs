@@ -37,7 +37,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// The default value is 32.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.BowmanBingoMaxLength)]
-	public int MaxLength { get; set; } = 32;
+	public Count MaxLength { get; set; } = 32;
 
 
 	/// <inheritdoc/>
@@ -113,7 +113,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		bool onlyFindOne,
 		Candidate startCand,
-		int length
+		Count length
 	)
 	{
 		scoped var context2 = new AnalysisContext(null, ref grid, true, context.PredefinedOptions);

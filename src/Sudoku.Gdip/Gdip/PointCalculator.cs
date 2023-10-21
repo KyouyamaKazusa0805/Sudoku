@@ -17,7 +17,7 @@ public sealed class PointCalculator
 	/// of each digits (candidates also included). Each row or column always contains 27 candidates,
 	/// so this value is 27.
 	/// </remarks>
-	internal const int AnchorsCount = 27;
+	internal const Count AnchorsCount = 27;
 
 	/// <summary>
 	/// Indicates the default padding of the sudoku grid drawn.
@@ -61,7 +61,7 @@ public sealed class PointCalculator
 		CandidateSize = new(gridWidth / AnchorsCount, gridHeight / AnchorsCount);
 
 		// Initialize points.
-		const int length = AnchorsCount + 1;
+		const Count length = AnchorsCount + 1;
 		var (cw, ch) = CandidateSize;
 		GridPoints = new PointF[length, length];
 		for (var i = 0; i < length; i++)

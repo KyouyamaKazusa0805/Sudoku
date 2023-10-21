@@ -10,13 +10,13 @@ namespace Sudoku.Algorithm.MinLex;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
 public unsafe struct MinLexCandidate
 {
-	private const int CandListSize = 15552;
+	private const Count CandListSize = 15552;
 
 
 	/// <summary>
 	/// The permutation cases.
 	/// </summary>
-	private static readonly int[][] Perm = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+	private static readonly Offset[][] Perm = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 
 	private bool _isTransposed; // false
@@ -81,7 +81,7 @@ public unsafe struct MinLexCandidate
 	/// <summary>
 	/// Try to expand stacks for the specified pair of <see cref="GridPattern"/> instances.
 	/// </summary>
-	private void ExpandStacks(GridPattern* pair, int topKey, MinLexCandidate* candidates, int* nResults)
+	private void ExpandStacks(GridPattern* pair, int topKey, MinLexCandidate* candidates, Count* nResults)
 	{
 		*nResults = 0;
 

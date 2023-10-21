@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	[DataMember] Digit guardianDigit,
 	[DataMember] bool isIncomplete,
 	bool isAvoidable,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

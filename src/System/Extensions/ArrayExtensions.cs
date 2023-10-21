@@ -23,11 +23,11 @@ public static class ArrayExtensions
 		q(0, @this.Length - 1, @this, comparer);
 
 
-		static void q(int l, int r, T[] @this, delegate*<ref readonly T, ref readonly T, int> comparer)
+		static void q(Offset l, Offset r, T[] @this, delegate*<ref readonly T, ref readonly T, int> comparer)
 		{
 			if (l < r)
 			{
-				int i = l, j = r - 1;
+				Offset i = l, j = r - 1;
 				var middle = @this[(l + r) / 2];
 				while (true)
 				{
@@ -62,11 +62,11 @@ public static class ArrayExtensions
 		q(startIndex, endIndex, @this, comparer);
 
 
-		static void q(int l, int r, T[] @this, delegate*<T, T, int> comparer)
+		static void q(Offset l, Offset r, T[] @this, delegate*<T, T, int> comparer)
 		{
 			if (l < r)
 			{
-				int i = l, j = r - 1;
+				Offset i = l, j = r - 1;
 				var middle = @this[(l + r) / 2];
 				while (true)
 				{

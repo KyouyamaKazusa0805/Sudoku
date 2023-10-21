@@ -14,7 +14,7 @@ public ref partial struct ReverseEnumerator<T>([DataMember(MemberKinds.Field)] T
 	/// <summary>
 	/// Indicates the current index.
 	/// </summary>
-	private int _index = array.Length;
+	private Offset _index = array.Length;
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>

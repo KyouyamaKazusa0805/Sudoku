@@ -21,7 +21,7 @@ public sealed class SolvingPathStepBindableSource
 	/// <summary>
 	/// Indicates the index of the step.
 	/// </summary>
-	public int Index { get; set; }
+	public Offset Index { get; set; }
 
 	/// <summary>
 	/// Indicates the step grid used.

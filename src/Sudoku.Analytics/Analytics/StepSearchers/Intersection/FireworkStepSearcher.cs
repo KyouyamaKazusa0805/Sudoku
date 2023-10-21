@@ -36,12 +36,12 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the total number of firework subset patterns.
 	/// </summary>
-	public const int FireworkSubsetCount = 3645;
+	public const Count FireworkSubsetCount = 3645;
 
 	/// <summary>
 	/// Indicates the total number of pair fireworks.
 	/// </summary>
-	public const int PairFireworksCount = 103518;
+	public const Count PairFireworksCount = 103518;
 
 
 	/// <summary>
@@ -53,7 +53,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		var houses = (int[][])[
+		var houses = (Offset[][])[
 			[0, 1, 3, 4],
 			[0, 2, 3, 5],
 			[1, 2, 4, 5],

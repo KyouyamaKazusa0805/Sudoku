@@ -14,7 +14,7 @@ public ref partial struct TupleEnumerator([DataMember(MemberKinds.Field)] ITuple
 	/// <summary>
 	/// The current index.
 	/// </summary>
-	private int _index = -1;
+	private Offset _index = -1;
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>

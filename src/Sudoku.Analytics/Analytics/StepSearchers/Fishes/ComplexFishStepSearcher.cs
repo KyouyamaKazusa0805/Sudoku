@@ -69,7 +69,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 	/// The default value is 3.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.MaxSizeOfComplexFish)]
-	public int MaxSize { get; set; } = 3;
+	public Count MaxSize { get; set; } = 3;
 
 
 	/// <inheritdoc/>

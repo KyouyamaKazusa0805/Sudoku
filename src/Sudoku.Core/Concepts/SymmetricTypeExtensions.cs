@@ -18,7 +18,7 @@ public static class SymmetricTypeExtensions
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetAxisDimension(this SymmetricType @this)
+	public static Count GetAxisDimension(this SymmetricType @this)
 		=> @this switch
 		{
 			SymmetricType.None => -1,
@@ -57,8 +57,8 @@ public static class SymmetricTypeExtensions
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 
-	/// <inheritdoc cref="GetCells(SymmetricType, int, int)"/>
-	/// <param name="this"><inheritdoc cref="GetCells(SymmetricType, int, int)"/></param>
+	/// <inheritdoc cref="GetCells(SymmetricType, RowIndex, ColumnIndex)"/>
+	/// <param name="this"><inheritdoc cref="GetCells(SymmetricType, RowIndex, ColumnIndex)"/></param>
 	/// <param name="cell">Indicates the target cell to be checked.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap GetCells(this SymmetricType @this, Cell cell) => @this.GetCells(cell / 9, cell % 9);
@@ -71,7 +71,7 @@ public static class SymmetricTypeExtensions
 	/// <param name="column">The column value.</param>
 	/// <returns>The cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap GetCells(this SymmetricType @this, int row, int column)
+	public static CellMap GetCells(this SymmetricType @this, RowIndex row, ColumnIndex column)
 		=> @this switch
 		{
 			SymmetricType.Central => [row * 9 + column, (8 - row) * 9 + 8 - column],

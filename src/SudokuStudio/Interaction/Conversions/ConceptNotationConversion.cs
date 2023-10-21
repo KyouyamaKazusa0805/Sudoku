@@ -9,7 +9,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class ConceptNotationConversion
 {
-	public static int GetSelectedIndex(ComboBox comboBox)
+	public static Offset GetSelectedIndex(ComboBox comboBox)
 	{
 		var notationKind = ((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind;
 		var i = 0;
@@ -26,7 +26,7 @@ internal static class ConceptNotationConversion
 		return -1;
 	}
 
-	public static int NotationSeparatorSelectorSelectedIndex(ComboBox comboBox)
+	public static Offset NotationSeparatorSelectorSelectedIndex(ComboBox comboBox)
 	{
 		var defaultSeparator = ((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation;
 		var i = 0;
@@ -43,7 +43,7 @@ internal static class ConceptNotationConversion
 		return -1;
 	}
 
-	public static int FinalRowLetterInK9NotationSelectedIndex(ComboBox comboBox)
+	public static Offset FinalRowLetterInK9NotationSelectedIndex(ComboBox comboBox)
 	{
 		var @char = ((App)Application.Current).Preference.UIPreferences.FinalRowLetterInK9Notation;
 		var i = 0;

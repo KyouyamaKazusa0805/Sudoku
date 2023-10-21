@@ -26,7 +26,7 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 	/// <summary>
 	/// Indicates the current index being iterated.
 	/// </summary>
-	private int _index = -1;
+	private Offset _index = -1;
 
 
 	/// <summary>

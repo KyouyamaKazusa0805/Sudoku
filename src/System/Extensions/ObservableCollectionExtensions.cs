@@ -14,7 +14,7 @@ public static class ObservableCollectionExtensions
 	/// <param name="this">The current collection.</param>
 	/// <param name="match"><inheritdoc cref="List{T}.FindIndex(Predicate{T})" path="/param[@name='match']"/></param>
 	/// <returns><inheritdoc cref="List{T}.FindIndex(Predicate{T})" path="/returns"/></returns>
-	public static int FindIndex<T>(this ObservableCollection<T> @this, Func<T, bool> match)
+	public static Offset FindIndex<T>(this ObservableCollection<T> @this, Func<T, bool> match)
 	{
 		for (var i = 0; i < @this.Count; i++)
 		{
@@ -35,7 +35,7 @@ public static class ObservableCollectionExtensions
 	/// <param name="this">The current collection.</param>
 	/// <param name="match"><inheritdoc cref="List{T}.FindLastIndex(Predicate{T})" path="/param[@name='match']"/></param>
 	/// <returns><inheritdoc cref="List{T}.FindLastIndex(Predicate{T})" path="/returns"/></returns>
-	public static int FindLastIndex<T>(this ObservableCollection<T> @this, Func<T, bool> match)
+	public static Offset FindLastIndex<T>(this ObservableCollection<T> @this, Func<T, bool> match)
 	{
 		for (var i = @this.Count - 1; i >= 0; i--)
 		{

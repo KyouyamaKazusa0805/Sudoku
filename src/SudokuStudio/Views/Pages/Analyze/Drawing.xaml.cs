@@ -27,9 +27,9 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 	AnalyzerResult? IAnalyzeTabPage.AnalysisResult { get; set; }
 
 
-	private void SetSelectedMode(int selectedIndex) => BasePage.SelectedMode = (DrawingMode)(selectedIndex + 1);
+	private void SetSelectedMode(Offset selectedIndex) => BasePage.SelectedMode = (DrawingMode)(selectedIndex + 1);
 
-	private void SetLinkType(int selectedIndex)
+	private void SetLinkType(Offset selectedIndex)
 		=> BasePage.LinkKind = Enum.Parse<Inference>((string)((ComboBoxItem)LinkTypeChoser.Items[selectedIndex]).Tag!);
 
 
@@ -37,7 +37,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 	{
 		foreach (var button in ColorPaletteButtonGroup.Children.OfType<Button>())
 		{
-			if (button.Tag is string s && int.TryParse(s, out var index))
+			if (button.Tag is string s && Offset.TryParse(s, out var index))
 			{
 				button.Background = DrawingConversion.GetBrush(BasePage.UserDefinedPalette[index]);
 			}
@@ -46,7 +46,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 
 	private void ColorPaletteButton_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is Button { Tag: string s } && int.TryParse(s, out var i))
+		if (sender is Button { Tag: string s } && Offset.TryParse(s, out var i))
 		{
 			BasePage.SelectedColorIndex = i;
 		}

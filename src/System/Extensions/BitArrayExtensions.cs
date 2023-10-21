@@ -14,7 +14,7 @@ public static class BitArrayExtensions
 	/// </summary>
 	/// <param name="this">The array.</param>
 	/// <returns>The total number of bits set <see langword="true"/>.</returns>
-	public static int GetCardinality(this BitArray @this)
+	public static Count GetCardinality(this BitArray @this)
 	{
 		var integers = ArrayPool<int>.Shared.Rent((@this.Length >> 5) + 1);
 		try

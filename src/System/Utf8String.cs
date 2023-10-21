@@ -45,7 +45,7 @@ public readonly unsafe partial struct Utf8String :
 	/// <param name="c">The character.</param>
 	/// <param name="count">The times of the appearance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8String(Utf8Char c, int count)
+	public Utf8String(Utf8Char c, Count count)
 	{
 		_value = new Utf8Char[count];
 		Array.Fill(_value, c);
@@ -90,7 +90,7 @@ public readonly unsafe partial struct Utf8String :
 
 
 	/// <inheritdoc/>
-	public int Length
+	public Count Length
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _value.Length;
@@ -106,7 +106,7 @@ public readonly unsafe partial struct Utf8String :
 	}
 
 	/// <inheritdoc/>
-	int IReadOnlyCollection<Utf8Char>.Count
+	Count IReadOnlyCollection<Utf8Char>.Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Length;
@@ -118,14 +118,14 @@ public readonly unsafe partial struct Utf8String :
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The reference of the character.</returns>
-	public ref Utf8Char this[int index]
+	public ref Utf8Char this[Offset index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _value[index];
 	}
 
 	/// <inheritdoc/>
-	Utf8Char IReadOnlyList<Utf8Char>.this[int index] => _value[index];
+	Utf8Char IReadOnlyList<Utf8Char>.this[Offset index] => _value[index];
 
 
 	/// <inheritdoc/>
@@ -238,7 +238,7 @@ public readonly unsafe partial struct Utf8String :
 	/// The zero-based index position of <paramref name="c"/> if that character is found, or -1 if it is not.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int IndexOf(Utf8Char c) => Array.IndexOf(_value, c);
+	public Offset IndexOf(Utf8Char c) => Array.IndexOf(_value, c);
 
 	/// <summary>
 	/// Reports the zero-based index of the first occurrence of the specified UTF-8 string in this string.
@@ -247,10 +247,10 @@ public readonly unsafe partial struct Utf8String :
 	/// <returns>
 	/// The zero-based index position of <paramref name="s"/> if that character is found, or -1 if it is not.
 	/// </returns>
-	public int IndexOf(Utf8String s)
+	public Offset IndexOf(Utf8String s)
 	{
 		var next = getNext(s);
-		int i = 0, j = 0;
+		var (i, j) = (0, 0);
 
 		while (i < Length && j < s.Length)
 		{
@@ -267,10 +267,10 @@ public readonly unsafe partial struct Utf8String :
 		return j == s.Length ? i - j : -1;
 
 
-		static int[] getNext(Utf8String s)
+		static Offset[] getNext(Utf8String s)
 		{
-			int i = 0, j = -1;
-			var next = new int[s.Length];
+			var (i, j) = (0, -1);
+			var next = new Offset[s.Length];
 			next[0] = -1;
 
 			while (i < next.Length - 1)
@@ -388,7 +388,7 @@ public readonly unsafe partial struct Utf8String :
 	/// <see cref="Utf8Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	private static unsafe int StringLengthOf(Utf8Char* ptr)
+	private static unsafe Count StringLengthOf(Utf8Char* ptr)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 

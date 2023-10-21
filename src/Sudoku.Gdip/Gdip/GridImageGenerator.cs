@@ -175,7 +175,7 @@ public sealed partial class GridImageGenerator
 	/// <param name="result">The result color got.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the ID is invalid.</exception>
-	private bool GetValueById(int value, out Color result)
+	private bool GetValueById(Offset value, out Color result)
 	{
 		if (Preferences is { ColorPalette: var palette })
 		{

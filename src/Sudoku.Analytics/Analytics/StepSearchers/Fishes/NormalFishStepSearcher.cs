@@ -74,10 +74,10 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
-		var r = stackalloc int*[9];
-		var c = stackalloc int*[9];
-		Unsafe.InitBlock(r, 0, (uint)sizeof(int*) * 9);
-		Unsafe.InitBlock(c, 0, (uint)sizeof(int*) * 9);
+		var r = stackalloc House*[9];
+		var c = stackalloc House*[9];
+		Unsafe.InitBlock(r, 0, (uint)sizeof(House*) * 9);
+		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -99,8 +99,8 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 					{
 						if (r[digit] == null)
 						{
-							var ptr = stackalloc int[10];
-							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
+							var ptr = stackalloc House[10];
+							Unsafe.InitBlock(ptr, 0, 10 * sizeof(House));
 
 							r[digit] = ptr;
 						}
@@ -111,8 +111,8 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 					{
 						if (c[digit] == null)
 						{
-							var ptr = stackalloc int[10];
-							Unsafe.InitBlock(ptr, 0, 10 * sizeof(int));
+							var ptr = stackalloc House[10];
+							Unsafe.InitBlock(ptr, 0, 10 * sizeof(House));
 
 							c[digit] = ptr;
 						}
@@ -166,9 +166,9 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		int size,
-		int** r,
-		int** c,
+		Count size,
+		House** r,
+		House** c,
 		bool withFin,
 		bool searchRow,
 		bool onlyFindOne

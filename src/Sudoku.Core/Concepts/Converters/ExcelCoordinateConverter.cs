@@ -40,7 +40,7 @@ public sealed record ExcelCoordinateConverter(
 			string r(scoped ref readonly CellMap cells)
 			{
 				scoped var sbRow = new StringHandler(18);
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Cell, List<Digit>>(9);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell / 9))
@@ -63,7 +63,7 @@ public sealed record ExcelCoordinateConverter(
 
 			string c(scoped ref readonly CellMap cells)
 			{
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Digit, List<Cell>>(9);
 				scoped var sbColumn = new StringHandler(18);
 				foreach (var cell in cells)
 				{

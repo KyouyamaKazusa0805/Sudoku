@@ -46,7 +46,7 @@ public sealed record RxCyConverter(
 			string r(scoped ref readonly CellMap cells)
 			{
 				scoped var sbRow = new StringHandler(50);
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Cell, List<Digit>>(9);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell / 9))
@@ -71,7 +71,7 @@ public sealed record RxCyConverter(
 
 			string c(scoped ref readonly CellMap cells)
 			{
-				var dic = new Dictionary<int, List<int>>(9);
+				var dic = new Dictionary<Digit, List<Cell>>(9);
 				scoped var sbColumn = new StringHandler(50);
 				foreach (var cell in cells)
 				{
@@ -164,7 +164,7 @@ public sealed record RxCyConverter(
 			}
 
 			{
-				var dic = new Dictionary<HouseType, List<int>>(3);
+				var dic = new Dictionary<HouseType, List<House>>(3);
 				foreach (var house in housesMask)
 				{
 					var houseType = house.ToHouseType();

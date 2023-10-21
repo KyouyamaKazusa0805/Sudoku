@@ -11,9 +11,9 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class DrawingConversion
 {
-	public static int GetDrawingModeIndex(DrawingMode drawingMode) => (int)(drawingMode - 1);
+	public static Offset GetDrawingModeIndex(DrawingMode drawingMode) => (Offset)(drawingMode - 1);
 
-	public static int GetLinkTypeIndex(Inference inference)
+	public static Offset GetLinkTypeIndex(Inference inference)
 		=> inference switch
 		{
 			Inference.Strong => 0,
@@ -36,7 +36,7 @@ internal static class DrawingConversion
 
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 
-	public static Brush GetSelectedBrush(int currentColorIndex)
+	public static Brush GetSelectedBrush(Offset currentColorIndex)
 		=> ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette switch
 		{
 			{ Count: var countOfColors } palette when currentColorIndex >= 0 && currentColorIndex < countOfColors

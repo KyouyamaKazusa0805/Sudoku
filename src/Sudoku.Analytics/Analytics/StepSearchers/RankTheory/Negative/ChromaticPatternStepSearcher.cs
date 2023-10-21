@@ -50,7 +50,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
-	private static readonly (int[], int[], int[], int[])[] PatternOffsets;
+	private static readonly (Offset[], Offset[], Offset[], Offset[])[] PatternOffsets;
 
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
@@ -71,9 +71,9 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		var diagonalCases = (int[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
-		var antidiagonalCases = (int[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
-		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
+		var diagonalCases = (Offset[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
+		var antidiagonalCases = (Offset[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
+		var patternOffsetsList = new List<(Offset[], Offset[], Offset[], Offset[])>();
 		foreach (var (aCase, bCase, cCase, dCase) in (
 			(true, false, false, false),
 			(false, true, false, false),

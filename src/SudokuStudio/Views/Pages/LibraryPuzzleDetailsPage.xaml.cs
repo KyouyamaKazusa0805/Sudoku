@@ -13,7 +13,7 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents with a library puzzle details page.
 /// </summary>
-[DependencyProperty<int>("CurrentPuzzleIndex", DefaultValue = -1, DocSummary = "Indicates the current page to be shown.")]
+[DependencyProperty<Offset>("CurrentPuzzleIndex", DefaultValue = -1, DocSummary = "Indicates the current page to be shown.")]
 [DependencyProperty<PuzzleLibraryBindableSource>("Source", IsNullable = true, DocSummary = "Indicates the source of the file.")]
 public sealed partial class LibraryPuzzleDetailsPage : Page
 {
@@ -45,8 +45,9 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 	[Callback]
 	private static void CurrentPuzzleIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (LibraryPuzzleDetailsPage { Source.Puzzles.Length: var count } currentPage, { OldValue: int oldValue, NewValue: int value })
-			&& (value < 0 || value >= count))
+		if ((d, e) is (
+			LibraryPuzzleDetailsPage { Source.Puzzles.Length: var count } currentPage, { OldValue: Offset oldValue, NewValue: Offset value }
+		) && (value < 0 || value >= count))
 		{
 			currentPage.CurrentPuzzleIndex = oldValue;
 		}

@@ -12,7 +12,7 @@ public ref struct ValueTupleEnumerator<T>
 	/// <summary>
 	/// Indicates the maximum number of values to be iterated.
 	/// </summary>
-	private readonly int _limit;
+	private readonly Count _limit;
 
 	/// <summary>
 	/// Indicates the internal tuple.
@@ -22,7 +22,7 @@ public ref struct ValueTupleEnumerator<T>
 	/// <summary>
 	/// Indicates the index.
 	/// </summary>
-	private int _index = -1;
+	private Offset _index = -1;
 
 
 	/// <summary>

@@ -36,7 +36,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	[DataMember] Mask subsetDigitsMask,
 	[DataMember] bool isIncomplete,
 	bool isAvoidable,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

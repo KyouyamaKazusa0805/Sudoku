@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	[DataMember] Digit xDigit,
 	[DataMember] Digit yDigit,
 	[DataMember] Cell xyCell,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>

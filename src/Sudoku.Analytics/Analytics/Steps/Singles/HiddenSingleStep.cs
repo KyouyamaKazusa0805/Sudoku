@@ -37,7 +37,7 @@ public sealed partial class HiddenSingleStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> EnableAndIsLastDigit ? Technique.LastDigit : (Technique)((int)Technique.HiddenSingleBlock + (int)House.ToHouseType());
+		=> EnableAndIsLastDigit ? Technique.LastDigit : (Technique)((Offset)Technique.HiddenSingleBlock + (Offset)House.ToHouseType());
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

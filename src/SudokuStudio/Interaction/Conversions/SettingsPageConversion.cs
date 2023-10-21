@@ -10,7 +10,7 @@ namespace SudokuStudio.Interaction.Conversions;
 
 internal static class SettingsPageConversion
 {
-	public static int GetSelectedIndexForEmptyCellCharacter(ComboBox comboBox)
+	public static Offset GetSelectedIndexForEmptyCellCharacter(ComboBox comboBox)
 	{
 		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var i = 0;
@@ -49,7 +49,7 @@ internal static class SettingsPageConversion
 		return $"{nameof(Color.A)} = {a} {nameof(Color.R)} = {r} {nameof(Color.G)} = {g} {nameof(Color.B)} = {b}";
 	}
 
-	public static CoordinateLabelDisplayMode GetCoordinateLabelDisplayMode(int index) => (CoordinateLabelDisplayMode)index;
+	public static CoordinateLabelDisplayMode GetCoordinateLabelDisplayMode(Offset index) => (CoordinateLabelDisplayMode)index;
 
 	public static Visibility GetVisibility(string? text) => string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
 

@@ -45,7 +45,7 @@ public static class ImmutableArrayEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static int Count<T>(this ImmutableArray<T> @this, Predicate<T> predicate)
+	public static Count Count<T>(this ImmutableArray<T> @this, Predicate<T> predicate)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(@this.IsDefault, false);
 

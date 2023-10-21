@@ -18,7 +18,7 @@ partial struct DashArray
 		/// <summary>
 		/// Indicates the index of the current position.
 		/// </summary>
-		private int _index = -1;
+		private Offset _index = -1;
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

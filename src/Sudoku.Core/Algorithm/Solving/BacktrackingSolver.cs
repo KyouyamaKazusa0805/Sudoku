@@ -79,7 +79,7 @@ public sealed class BacktrackingSolver : ISolver
 		}
 
 
-		static void solve(scoped ref int solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
+		static void solve(scoped ref Count solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, Count finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{
@@ -121,7 +121,7 @@ public sealed class BacktrackingSolver : ISolver
 			}
 
 
-			static bool isValid(Digit[] gridValues, int r, int c)
+			static bool isValid(Digit[] gridValues, RowIndex r, ColumnIndex c)
 			{
 				var number = gridValues[r * 9 + c];
 
@@ -135,9 +135,9 @@ public sealed class BacktrackingSolver : ISolver
 				}
 
 				// Check blocks.
-				for (int ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+				for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
 				{
-					for (int jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+					for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
 					{
 						if ((i != r || j != c) && gridValues[i * 9 + j] == number)
 						{

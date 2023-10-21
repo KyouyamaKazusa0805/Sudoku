@@ -1737,7 +1737,7 @@ fixed (short* ptr = instance)
             const string separator = ", "; // Defines a separator.
             
             scoped var sb = new StringHandler(); // Creates a string concatenator.
-            foreach (int element in list)
+            foreach (var element in list)
             {
                 sb.Append(element); // Append the element.
                 sb.Append(separator); // Append the separator.
@@ -1880,10 +1880,8 @@ fixed (short* ptr = instance)
             </exception>
             <remarks>
             You can put this method as the argument into the method invocation
-            <see cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(T*, int, delegate*&lt;T, string?&gt;, string)"/>
-            or <see cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>.
+            <see cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>.
             </remarks>
-            <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(T*, int, delegate*&lt;T, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0*,System.Int32,System.Func{``0,System.String},System.String)"/>
         </member>
         <member name="M:System.Text.StringHandler.ElementToStringConverter``1(``0@)">
@@ -1900,10 +1898,8 @@ fixed (short* ptr = instance)
             </exception>
             <remarks>
             You can put this method as the argument into the method invocation
-            <see cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(in T, int, delegate*&lt;in T, string?&gt;, string)"/>
-            or <see cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0@,System.Int32,System.Text.StringHandlerRefAppender{``0},System.String)"/>.
+            <see cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0@,System.Int32,System.Text.StringHandlerRefAppender{``0},System.String)"/>.
             </remarks>
-            <seealso cref="!:AppendRangeWithSeparatorUnsafe&lt;T&gt;(in T, int, delegate*&lt;in T, string?&gt;, string)"/>
             <seealso cref="M:System.Text.StringHandler.AppendRangeWithSeparatorRef``1(``0@,System.Int32,System.Text.StringHandlerRefAppender{``0},System.String)"/>
         </member>
         <member name="T:System.Text.StringHandler.Enumerator">
@@ -3096,7 +3092,7 @@ fixed (short* ptr = instance)
             <remarks>
             This method allows you using <see langword="foreach"/> loop to iterate this value:
             <code><![CDATA[
-            foreach (int bit in 17)
+            foreach (var bit in 17)
             {
                 // Do something...
             }

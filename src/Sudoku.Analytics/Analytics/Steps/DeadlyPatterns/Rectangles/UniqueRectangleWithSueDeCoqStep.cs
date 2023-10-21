@@ -49,7 +49,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	[DataMember] scoped ref readonly CellMap blockCells,
 	[DataMember] scoped ref readonly CellMap lineCells,
 	[DataMember] scoped ref readonly CellMap intersectionCells,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

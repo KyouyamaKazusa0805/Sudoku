@@ -33,7 +33,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	static DominoLoopStepSearcher()
 	{
 		// Initialize for SK-loop table.
-		scoped var s = (stackalloc int[4]);
+		scoped var s = (stackalloc Offset[4]);
 		for (var (a, n) = (9, 0); a < 18; a++)
 		{
 			for (var b = 9; b < 18; b++)

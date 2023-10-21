@@ -37,7 +37,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// <summary>
 	/// The maximum number of loops can be searched for in code.
 	/// </summary>
-	private const int MaximumCount = 100;
+	private const Count MaximumCount = 100;
 
 
 	/// <inheritdoc/>
@@ -146,7 +146,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			scoped ref readonly CellMap loop,
 			scoped ref readonly CellMap extraCells,
 			HashSet<BivalueOddagonInfo> result,
-			scoped ref int loopsCount,
+			scoped ref Count loopsCount,
 			Mask comparer,
 			Mask extraDigitsMask
 		)

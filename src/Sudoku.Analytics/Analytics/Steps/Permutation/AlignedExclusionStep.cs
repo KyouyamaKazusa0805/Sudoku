@@ -38,7 +38,7 @@ public sealed partial class AlignedExclusionStep(
 	/// <summary>
 	/// Indicates the size of the permutation.
 	/// </summary>
-	public int Size => Cells.Count;
+	public Count Size => Cells.Count;
 
 	/// <inheritdoc/>
 	public override Technique Code

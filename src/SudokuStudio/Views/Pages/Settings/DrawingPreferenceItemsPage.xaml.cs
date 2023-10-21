@@ -70,7 +70,7 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	/// <param name="palette">The instance.</param>
 	/// <param name="index">The index to be set.</param>
 	/// <param name="newColor">The new color to be set.</param>
-	private void ChangeColor(ColorPalette palette, int index, Color newColor) => palette[index] = newColor;
+	private void ChangeColor(ColorPalette palette, Offset index, Color newColor) => palette[index] = newColor;
 
 
 	private void Page_Loaded(object sender, RoutedEventArgs e) => SampleSudokuGrid.ViewUnit = _defaultViewUnit;

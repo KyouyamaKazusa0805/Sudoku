@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	[DataMember] scoped ref readonly CellMap cellPair,
 	[DataMember] bool isIncomplete,
 	bool isAvoidable,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

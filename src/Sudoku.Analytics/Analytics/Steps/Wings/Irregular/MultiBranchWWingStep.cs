@@ -29,7 +29,7 @@ public sealed partial class MultiBranchWWingStep(
 	/// <summary>
 	/// Indicates the number of branches of the technique.
 	/// </summary>
-	public int Size => Leaves.Count;
+	public Count Size => Leaves.Count;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.4M;

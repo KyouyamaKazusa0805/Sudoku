@@ -18,7 +18,7 @@ namespace SudokuStudio.Interaction;
 /// </listheader>
 /// <item>
 /// <term><see cref="GridUpdatedBehavior.Elimination"/></term>
-/// <description>An <see cref="int"/> value indicating the candidate eliminated.</description>
+/// <description>An <see cref="Candidate"/> value indicating the candidate eliminated.</description>
 /// </item>
 /// <item>
 /// <term><see cref="GridUpdatedBehavior.EliminationMultiple"/></term>
@@ -29,11 +29,11 @@ namespace SudokuStudio.Interaction;
 /// </item>
 /// <item>
 /// <term><see cref="GridUpdatedBehavior.Assignment"/></term>
-/// <description>An <see cref="int"/> value indicating the candidate set.</description>
+/// <description>A <see cref="Candidate"/> value indicating the candidate set.</description>
 /// </item>
 /// <item>
 /// <term><see cref="GridUpdatedBehavior.Clear"/></term>
-/// <description>An <see cref="int"/> value indicating the cell to be set empty.</description>
+/// <description>A <see cref="Cell"/> value indicating the cell to be set empty.</description>
 /// </item>
 /// <item>
 /// <term><see cref="GridUpdatedBehavior.Undoing"/></term>
@@ -50,8 +50,8 @@ namespace SudokuStudio.Interaction;
 /// </list>
 /// </para>
 /// <para>
-/// You can use pattern matching to check the internal type such as <c>NewValue is int targetValue</c>,
-/// or just use type casting: <c>(int)NewValue</c> if you know what the behavior is currently.
+/// You can use pattern matching to check the internal type such as <c>NewValue is T targetValue</c>,
+/// or just use type casting: <c>(T)NewValue</c> if you know what the behavior is currently.
 /// </para>
 /// </param>
 /// <seealso cref="GridUpdatedEventHandler"/>

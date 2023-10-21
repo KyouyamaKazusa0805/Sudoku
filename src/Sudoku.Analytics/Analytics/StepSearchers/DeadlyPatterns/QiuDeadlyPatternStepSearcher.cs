@@ -57,7 +57,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	static QiuDeadlyPatternStepSearcher()
 	{
 		// Case 1: 2 lines + 2 cells.
-		var lineOffsets = (int[][])[[0, 1, 2], [0, 2, 1], [1, 2, 0], [3, 4, 5], [3, 5, 4], [4, 5, 3], [6, 7, 8], [6, 8, 7], [7, 8, 6]];
+		var lineOffsets = (Offset[][])[[0, 1, 2], [0, 2, 1], [1, 2, 0], [3, 4, 5], [3, 5, 4], [4, 5, 3], [6, 7, 8], [6, 8, 7], [7, 8, 6]];
 		var patternsForCase1 = new List<Pattern1>();
 		foreach (var isRow in (true, false))
 		{

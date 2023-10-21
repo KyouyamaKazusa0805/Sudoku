@@ -42,7 +42,7 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 	/// <summary>
 	/// Indicates the number of puzzles.
 	/// </summary>
-	public int PuzzlesCount { get; set; }
+	public Count PuzzlesCount { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the library.

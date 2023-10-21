@@ -64,7 +64,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					// Check two cells share a same house.
 					House sameHouse;
-					int headIndex, tailIndex, c1Index, c2Index;
+					Offset headIndex, tailIndex, c1Index, c2Index;
 					for (var i = 0; i < 2; i++)
 					{
 						var cell1 = cellsList1[i];

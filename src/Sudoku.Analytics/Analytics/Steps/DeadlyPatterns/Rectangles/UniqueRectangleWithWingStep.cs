@@ -35,7 +35,7 @@ public sealed partial class UniqueRectangleWithWingStep(
 	[DataMember] scoped ref readonly CellMap branches,
 	[DataMember] scoped ref readonly CellMap petals,
 	[DataMember] Mask extraDigitsMask,
-	int absoluteOffset
+	Offset absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

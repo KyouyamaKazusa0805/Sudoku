@@ -21,7 +21,7 @@ public static class SolutionWideReadOnlyFields
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(int)"/>
 	/// <seealso cref="TrailingZeroCount(uint)"/>
-	public const int InvalidTrailingZeroCountMethodFallback = 32;
+	public const Count InvalidTrailingZeroCountMethodFallback = 32;
 
 	/// <summary>
 	/// Indicates the invalid fallback value
@@ -36,7 +36,7 @@ public static class SolutionWideReadOnlyFields
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCount(long)"/>
 	/// <seealso cref="TrailingZeroCount(ulong)"/>
-	public const int InvalidTrailingZeroCountMethodFallbackLong = 64;
+	public const Count InvalidTrailingZeroCountMethodFallbackLong = 64;
 
 	/// <summary>
 	/// Indicates the mask that means all blocks.
@@ -285,7 +285,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the Pascal Triangle (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
 	/// </summary>
-	internal static readonly int[][] PascalTriangle = [
+	internal static readonly Count[][] PascalTriangle = [
 		[1],
 		[2, 1],
 		[3, 3, 1],
