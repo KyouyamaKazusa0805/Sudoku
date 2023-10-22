@@ -139,24 +139,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
 									var targetCellsDigitsMask = grid[in targetCells];
-									if ((targetCellsDigitsMask & baseCellsDigitsMask) == 0)
-									{
-										// They are out of relation.
-										continue;
-									}
 
 									// Check whether all digits appeared in base cells can be filled in target empty cells.
-									var allDigitsCanBeFilledInTargetCells = true;
-									foreach (var digit in baseCellsDigitsMask)
+									if ((targetCellsDigitsMask & baseCellsDigitsMask) != baseCellsDigitsMask)
 									{
-										if (!(targetCells & CandidatesMap[digit]))
-										{
-											allDigitsCanBeFilledInTargetCells = false;
-											break;
-										}
-									}
-									if (!allDigitsCanBeFilledInTargetCells)
-									{
+										// They are out of relation.
 										continue;
 									}
 
@@ -262,7 +249,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 											if (CheckDouble(
 												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
-												baseCellsDigitsMask, housesMask, isRow, size, delta, i
+												in housesEmptyCells, baseCellsDigitsMask, housesMask, isRow, size, delta, i
 											) is { } doubleTypeStep)
 											{
 												return doubleTypeStep;
@@ -901,13 +888,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
 	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
-	private static DoubleExocetStep? CheckDouble(
+	private static DoubleExocetBaseStep? CheckDouble(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
 		scoped ref readonly CellMap targetCells,
 		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap housesEmptyCells,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
@@ -916,6 +904,72 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Offset chuteIndex
 	)
 	{
+		// Before the checking we have a normal JE pattern. Now we should check for the other one, to form a double JE.
+		// A double JE is not two combined JEs. A double JE can contain extra eliminations that won't be formed in a single JE pattern.
+
+		// Check whether the number of target cells is 2.
+		if (baseCells.Count != targetCells.Count || targetCells.Count != 2)
+		{
+			return null;
+		}
+
+		// Check for the other pair of base cells.
+		var blocksMask = AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
+		var lastCells = CellMap.Empty;
+		foreach (var block in blocksMask)
+		{
+			lastCells |= HousesMap[block];
+		}
+		lastCells -= baseCells.PeerIntersection;
+		foreach (var line in isRow ? crossline.RowMask << 9 : crossline.ColumnMask << 18)
+		{
+			lastCells -= HousesMap[line];
+		}
+
+		// Iterate on each intersection to get the other side of base cells.
+		foreach (ref readonly var intersection in MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
+		{
+			var theOtherBaseCells = intersection & lastCells;
+			if (theOtherBaseCells.Count != 2)
+			{
+				// The other side of cells should contain the same number of the current base cells.
+				continue;
+			}
+
+			var theOtherBaseCellsDigitsMask = grid[in theOtherBaseCells];
+			if (theOtherBaseCellsDigitsMask != baseCellsDigitsMask)
+			{
+				// The other side of base cells should hold same digits.
+				continue;
+			}
+
+			// Try to calculate the target cells.
+			var theOtherTargetCells = (Chutes[chuteIndex].Cells & housesEmptyCells & EmptyCells) - theOtherBaseCells.PeerIntersection;
+			var theOtherTargetCellsDigitsMask = grid[in theOtherTargetCells];
+
+			// Check whether all digits appeared in base cells can be filled in target empty cells.
+			if ((theOtherTargetCellsDigitsMask & baseCellsDigitsMask) != baseCellsDigitsMask)
+			{
+				// They are out of relation.
+				continue;
+			}
+
+			if (targetCells & theOtherTargetCells)
+			{
+				// Two target cells pair cannot intersect with each other.
+				continue;
+			}
+
+			// A Double JE is found. Now check for eliminations.
+			if (CheckDoubleBase(
+				ref context, grid, in baseCells, in targetCells, in theOtherBaseCells, in theOtherTargetCells, in crossline,
+				baseCellsDigitsMask, housesMask
+			) is { } doubleBaseTypeStep)
+			{
+				return doubleBaseTypeStep;
+			}
+		}
+
 		return null;
 	}
 
@@ -2611,6 +2665,97 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			in baseCells,
 			in targetCells,
 			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static DoubleExocetBaseStep? CheckDoubleBase(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap theOtherBaseCells,
+		scoped ref readonly CellMap theOtherTargetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask
+	)
+	{
+		if (!context.OnlyFindOne)
+		{
+			// If the current accumulator has already collected for the same-cell steps, we won't add it.
+			var alreadyContain = false;
+			foreach (var s in context.Accumulator)
+			{
+				if (s is DoubleExocetBaseStep d)
+				{
+					var a = d.BaseCells | d.BaseCellsTheOther | d.TargetCells | d.TargetCellsTheOther;
+					var b = baseCells | theOtherBaseCells | targetCells | theOtherTargetCells;
+					if (a == b)
+					{
+						alreadyContain = true;
+					}
+				}
+			}
+			if (alreadyContain)
+			{
+				return null;
+			}
+		}
+
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in baseCells.PeerIntersection & theOtherBaseCells.PeerIntersection)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		foreach (var cell in (targetCells | theOtherTargetCells).PeerIntersection)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new DoubleExocetBaseStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells | theOtherBaseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			in crossline,
+			in theOtherBaseCells,
+			in theOtherTargetCells
 		);
 		if (context.OnlyFindOne)
 		{

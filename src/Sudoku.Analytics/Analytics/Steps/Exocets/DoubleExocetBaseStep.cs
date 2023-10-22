@@ -7,7 +7,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Double Exocet</b> technique.
+/// Provides with a step that is a <b>Double Exocet (Base)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
 /// <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
-public sealed partial class DoubleExocetStep(
+public sealed partial class DoubleExocetBaseStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
