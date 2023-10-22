@@ -45,6 +45,15 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// <item>Lame Weak Exocet</item>
 /// </list>
 /// </item>
+/// <item>
+/// Double Exocets:
+/// <list type="bullet">
+/// <item>Standard Double Exocet</item>
+/// <item>Double Exocet (Uni-Fish Pattern)</item>
+/// <item>Double Exocet (Multi-Fish Pattern)</item>
+/// </list>
+/// </item>
+/// <item>Pattern-Locked Quadruple</item>
 /// </list>
 /// </item>
 /// <item>
