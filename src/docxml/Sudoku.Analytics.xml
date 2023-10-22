@@ -2899,7 +2899,7 @@ if (student is (name: var name, age: >= 18))
             Indicates double exocet.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DoubleExocetUniFish">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DoubleExocetGeneralizedFish">
             <summary>
             Indicates double exocet uni-fish pattern.
             </summary>
@@ -12894,6 +12894,50 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>targetCellsTheOther</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep">
+            <summary>
+            Provides with a step that is a <b>Double Exocet (Fish)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Double Exocet (Fish)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.BaseCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>baseCellsTheOther</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.TargetCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>targetCellsTheOther</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetBaseStep">
             <summary>
             Provides with a step that is an <b>Exocet (Base)</b> technique.
@@ -16406,6 +16450,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.DoubleExocet">
             <summary>
               Looks up a localized string similar to Double Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.DoubleExocetGeneralizedFish">
+            <summary>
+              Looks up a localized string similar to Double Exocet (Fish).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.DoublyLinkedAlmostLockedSetsXzRule">

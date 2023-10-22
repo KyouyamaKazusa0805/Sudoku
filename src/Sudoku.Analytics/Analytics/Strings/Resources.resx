@@ -2412,4 +2412,7 @@
   <data name="PatternLockedQuadruple" xml:space="preserve">
     <value>Pattern-Locked Quadruple</value>
   </data>
+  <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
+    <value>Double Exocet (Fish)</value>
+  </data>
 </root>

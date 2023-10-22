@@ -2571,4 +2571,8 @@
     <value>结构限定四数组</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
+    <value>双飞鱼・鱼</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -71,8 +71,8 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
 	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirror,
 	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
-	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetUniFish,
-	Technique.DoubleExocetMultiFish, Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
+	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
+	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
 	Technique.MutantSeniorExocet, Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
@@ -898,7 +898,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
 	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
-	private static DoubleExocetBaseStep? CollectDoubleExocets(
+	private static ExocetStep? CollectDoubleExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -970,6 +970,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
+			// If the current accumulator has already collected for the same-cell steps, we won't add it.
+			if (!context.OnlyFindOne)
+			{
+				var alreadyContain = false;
+				foreach (var s in context.Accumulator)
+				{
+					if (s is not (DoubleExocetBaseStep or DoubleExocetGeneralizedFishStep))
+					{
+						continue;
+					}
+
+					var d = (dynamic)s;
+					var a = (CellMap)d.BaseCells | (CellMap)d.BaseCellsTheOther | (CellMap)d.TargetCells | (CellMap)d.TargetCellsTheOther;
+					var b = baseCells | theOtherBaseCells | targetCells | theOtherTargetCells;
+					if (a == b)
+					{
+						alreadyContain = true;
+					}
+				}
+				if (alreadyContain)
+				{
+					return null;
+				}
+			}
+
 			// A Double JE is found. Now check for eliminations.
 			if (CheckDoubleBase(
 				ref context, grid, in baseCells, in targetCells, in theOtherBaseCells, in theOtherTargetCells, in crossline,
@@ -977,6 +1002,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			) is { } doubleBaseTypeStep)
 			{
 				return doubleBaseTypeStep;
+			}
+
+			if (CheckDoubleGeneralizedFish(
+				ref context, grid, in baseCells, in targetCells, in theOtherBaseCells, in theOtherTargetCells, in crossline,
+				size, isRow, baseCellsDigitsMask, housesMask
+			) is { } unifishTypeStep)
+			{
+				return unifishTypeStep;
 			}
 		}
 
@@ -2697,28 +2730,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask housesMask
 	)
 	{
-		if (!context.OnlyFindOne)
-		{
-			// If the current accumulator has already collected for the same-cell steps, we won't add it.
-			var alreadyContain = false;
-			foreach (var s in context.Accumulator)
-			{
-				if (s is DoubleExocetBaseStep d)
-				{
-					var a = d.BaseCells | d.BaseCellsTheOther | d.TargetCells | d.TargetCellsTheOther;
-					var b = baseCells | theOtherBaseCells | targetCells | theOtherTargetCells;
-					if (a == b)
-					{
-						alreadyContain = true;
-					}
-				}
-			}
-			if (alreadyContain)
-			{
-				return null;
-			}
-		}
-
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in baseCells.PeerIntersection & theOtherBaseCells.PeerIntersection)
 		{
@@ -2756,6 +2767,93 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			in crossline,
+			in theOtherBaseCells,
+			in theOtherTargetCells
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static DoubleExocetGeneralizedFishStep? CheckDoubleGeneralizedFish(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap theOtherBaseCells,
+		scoped ref readonly CellMap theOtherTargetCells,
+		scoped ref readonly CellMap crossline,
+		Count size,
+		bool isRow,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		var lockedDigitsMask = (Mask)0;
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			var digitDistribution = CandidatesMap[digit] & crossline;
+			if (PopCount((uint)(isRow ? digitDistribution.ColumnMask : digitDistribution.RowMask)) != size - 1)
+			{
+				// Cannot form a generalized fish.
+				continue;
+			}
+
+			foreach (var line in isRow ? digitDistribution.ColumnMask << 18 : digitDistribution.RowMask << 9)
+			{
+				var cells = (HousesMap[line] & CandidatesMap[digit]) - crossline;
+				if (!cells)
+				{
+					continue;
+				}
+
+				lockedDigitsMask |= (Mask)(1 << digit);
+				foreach (var cell in cells)
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new DoubleExocetGeneralizedFishStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells | theOtherBaseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in targetCells | theOtherTargetCells
+					from d in grid.GetCandidates(cell)
+					where (lockedDigitsMask >> d & 1) != 0
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					let colorIdentifier = (lockedDigitsMask >> d & 1) != 0 ? WellKnownColorIdentifier.Auxiliary3 : WellKnownColorIdentifier.Auxiliary2
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],

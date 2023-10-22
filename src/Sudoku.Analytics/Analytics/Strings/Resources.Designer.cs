@@ -970,6 +970,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double Exocet (Fish).
+        /// </summary>
+        public static string DoubleExocetGeneralizedFish {
+            get {
+                return ResourceManager.GetString("DoubleExocetGeneralizedFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Doubly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
         public static string DoublyLinkedAlmostLockedSetsXzRule {

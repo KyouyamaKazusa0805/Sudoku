@@ -2998,7 +2998,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	DoubleExocetUniFish,
+	DoubleExocetGeneralizedFish,
 
 	/// <summary>
 	/// Indicates double exocet multi-fish pattern.
