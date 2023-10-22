@@ -765,7 +765,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check whether the missing-value cell has a value, and they are same.
-		if (grid.GetDigit(missingValueCell) is var missingValueCellDigit and not -1 && missingValueCellDigit != grid.GetDigit(valueDigitCell))
+		if (valueDigitCell != -1 && grid.GetDigit(missingValueCell) is var missingValueCellDigit and not -1
+			&& missingValueCellDigit != grid.GetDigit(valueDigitCell))
 		{
 			return null;
 		}
