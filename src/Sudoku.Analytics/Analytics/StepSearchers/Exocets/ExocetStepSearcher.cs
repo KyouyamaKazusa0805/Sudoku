@@ -219,7 +219,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									{
 										case -1:
 										{
-											if (CheckSenior(
+											if (CollectSeniorExocets(
 												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 												in housesCells, in chuteCells, baseCellsDigitsMask, housesMask, isRow, size, delta, i
 											) is { } seniorTypeStep)
@@ -231,7 +231,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 										case 0:
 										{
-											if (CheckWeak(
+											if (CollectWeakExocets(
 												ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
 												housesMask, isRow, size, i
 											) is { } weakTypeStep)
@@ -239,7 +239,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return weakTypeStep;
 											}
 
-											if (CheckJunior(
+											if (CollectJuniorExocets(
 												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, delta, i
 											) is { } juniorTypeStep)
@@ -247,7 +247,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return juniorTypeStep;
 											}
 
-											if (CheckDouble(
+											if (CollectDoubleExocets(
 												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 												in housesEmptyCells, baseCellsDigitsMask, housesMask, isRow, size, delta, i
 											) is { } doubleTypeStep)
@@ -293,7 +293,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="delta">The delta value. The value can be 0, -1 and -2.</param>
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
-	private static ExocetStep? CheckJunior(
+	private static ExocetStep? CollectJuniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -469,8 +469,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Senior Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
-	private static ExocetStep? CheckSenior(
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
+	private static ExocetStep? CollectSeniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -607,8 +607,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Weak Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
-	private static ExocetStep? CheckWeak(
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
+	private static ExocetStep? CollectWeakExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -887,8 +887,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
-	private static DoubleExocetBaseStep? CheckDouble(
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
+	private static DoubleExocetBaseStep? CollectDoubleExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
