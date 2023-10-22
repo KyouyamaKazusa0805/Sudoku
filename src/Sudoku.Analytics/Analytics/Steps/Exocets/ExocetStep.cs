@@ -58,7 +58,4 @@ public abstract partial class ExocetStep(
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => Delta switch { -2 or -1 => 9.6M, 0 => 9.4M, 1 or 2 => 9.5M };
-
-	/// <inheritdoc/>
-	public abstract override Technique Code { get; }
 }
