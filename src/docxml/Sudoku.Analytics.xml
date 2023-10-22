@@ -7761,6 +7761,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckJunior(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckDouble(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            The core method to check for Double Exocet sub-types.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckJunior(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetMirrorCells(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get the mirror cells for the specified target cell at the specified index of the chute.
@@ -12827,6 +12833,47 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DoubleExocetStep">
+            <summary>
+            Provides with a step that is a <b>Double Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DoubleExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Double Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetStep.BaseCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>baseCellsTheOther</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetStep.TargetCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>targetCellsTheOther</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetBaseStep">
             <summary>

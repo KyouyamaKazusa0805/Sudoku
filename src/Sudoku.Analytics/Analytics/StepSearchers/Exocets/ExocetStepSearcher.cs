@@ -215,8 +215,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Get the count delta (target group by block.count - base.count).
-									var delta = groupsOfTargetCells.Length - baseCells.Count;
-
 									// Delta can be -2, -1 or 0. In fact the possible values can be [-2, 2], but 1 and 2 are invalid. Details:
 									//
 									//   delta < 0:
@@ -228,9 +226,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//      The base has same number of cells with the target, a standard junior exocet will be formed.
 									//
 									// Therefore, I just check for the value on -2, -1 and 0.
+									// Note: Today we should only consider the cases on delta = 0 or -1.
+									var delta = groupsOfTargetCells.Length - baseCells.Count;
 									switch (delta)
 									{
-										case -1: // Note: Today we should only consider the cases on delta != -2.
+										case -1:
 										{
 											if (CheckSenior(
 												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
@@ -258,6 +258,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											) is { } juniorTypeStep)
 											{
 												return juniorTypeStep;
+											}
+
+											if (CheckDouble(
+												ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+												baseCellsDigitsMask, housesMask, isRow, size, delta, i
+											) is { } doubleTypeStep)
+											{
+												return doubleTypeStep;
 											}
 
 											break;
@@ -380,13 +388,29 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			{
 				if (CheckJeLockedMember(
 					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-					lockedMembers, chuteIndex, groupsOfTargetCells, out _
+					lockedMembers, chuteIndex, groupsOfTargetCells, out _, out var lockedDigitsMask
 				) is { } lockedMemberTypeStep)
 				{
 					return lockedMemberTypeStep;
 				}
 
-				goto FallThrough;
+				// Check whether the locked members are really used.
+				// If not, we should check for them, whether they are appeared in cross-line cells in (size - 1) times.
+				var lockedMembersAreSatisfySizeMinusOneRule = true;
+				foreach (var digit in lockedDigitsMask)
+				{
+					if (!grid.ExactlyAppearingTimesWith(digit, in crossline, size - 1))
+					{
+						// The current digit can be filled in cross-line cells at most (size - 1) times.
+						lockedMembersAreSatisfySizeMinusOneRule = false;
+						break;
+					}
+				}
+				if (lockedMembersAreSatisfySizeMinusOneRule)
+				{
+					goto FallThrough;
+				}
+				break;
 			}
 #pragma warning disable format
 			case 0: FallThrough:
@@ -870,6 +894,28 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return bzRectangleTypeStep;
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// The core method to check for Double Exocet sub-types.
+	/// </summary>
+	/// <inheritdoc cref="CheckJunior(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset, Offset)"/>
+	private static DoubleExocetStep? CheckDouble(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		bool isRow,
+		Count size,
+		Offset delta,
+		Offset chuteIndex
+	)
+	{
 		return null;
 	}
 
@@ -1855,21 +1901,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
 		Offset chuteIndex,
 		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
-		out Mask inferredLastTargetDigitsMask
+		out Mask inferredLastTargetDigitsMask,
+		out Mask lockedDigitsMask
 	)
 	{
 		// Same-side target cells cannot be used in this case, because locked member will check for mirror cells,
 		// invalid for mirror checking on same-side cells.
 		if (targetCells.InOneHouse(out _))
 		{
-			inferredLastTargetDigitsMask = 0;
+			(inferredLastTargetDigitsMask, lockedDigitsMask) = (0, 0);
 			return null;
 		}
 
 		if (baseCells.Count != 2)
 		{
 			// No conclusions when the number of base cells is not 2.
-			inferredLastTargetDigitsMask = 0;
+			(inferredLastTargetDigitsMask, lockedDigitsMask) = (0, 0);
 			return null;
 		}
 
@@ -1891,7 +1938,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var (cellOffsets, candidateOffsets, houseOffsets) = (new List<CellViewNode>(4), new List<CandidateViewNode>(), new List<HouseViewNode>(2));
-		(var lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = ((Mask)0, 0, new List<Conclusion>());
+		(lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = (0, 0, new List<Conclusion>());
 
 		// Collect eliminations via mirror cells.
 		// For each locked member, we should check for its mirror cells,
@@ -1966,6 +2013,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			goto AssignBaseMaskByDefault;
 		}
 
+		var ld = lockedDigitsMask;
 		var step = new ExocetLockedMemberStep(
 			[.. conclusions],
 			[
@@ -1978,7 +2026,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = (lockedDigitsMask >> d & 1) != 0 ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
+					let colorIdentifier = (ld >> d & 1) != 0 ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crossline
@@ -2006,7 +2054,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 
 	AssignBaseMaskByDefault:
-		inferredLastTargetDigitsMask = baseCellsDigitsMask;
+		(inferredLastTargetDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
 		return null;
 	}
 
