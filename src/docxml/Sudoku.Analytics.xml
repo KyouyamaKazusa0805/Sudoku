@@ -13016,9 +13016,9 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>lockedMemberDigitsMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetMirrorStep">
+        <member name="T:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep">
             <summary>
-            Provides with a step that is an <b>Exocet (Mirror)</b> technique.
+            Provides with a step that is an <b>Exocet (Mirror Conjugate Pair)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13030,9 +13030,9 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetMirrorStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
+        <member name="M:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
             <summary>
-            Provides with a step that is an <b>Exocet (Mirror)</b> technique.
+            Provides with a step that is an <b>Exocet (Mirror Conjugate Pair)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13044,13 +13044,13 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorStep.ConjugatePairs">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ConjugatePairs">
             <summary>
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>

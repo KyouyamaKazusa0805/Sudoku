@@ -420,7 +420,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					return baseTypeStep;
 				}
 
-				if (CheckMirror(
+				if (CheckMirrorConjugatePair(
 					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 					isRow, chuteIndex, housesMask
 				) is { } mirrorTypeStep)
@@ -1190,7 +1190,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetMirrorStep? CheckMirror(
+	private static ExocetMirrorConjugatePairStep? CheckMirrorConjugatePair(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -1203,7 +1203,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// Mirror conjugate pair cannot be used for same-side target cells.
-		if (targetCells.InOneHouse(out _))
+		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
 		{
 			return null;
 		}
@@ -1267,7 +1267,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ExocetMirrorStep(
+		var step = new ExocetMirrorConjugatePairStep(
 			[.. conclusions],
 			[
 				[
