@@ -1670,9 +1670,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
@@ -2155,9 +2152,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Remove(System.Int32)">
@@ -5471,12 +5465,6 @@ if (student is (name: var name, age: >= 18))
             Adds a new offset into the current collection.
             </summary>
             <param name="offset">The offset.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.AddRange(System.Collections.Generic.IEnumerable{`1})">
-            <summary>
-            Set the specified offsets as <see langword="true"/> value.
-            </summary>
-            <param name="offsets">The offsets to add.</param>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.Remove(`1)">
             <summary>

@@ -117,12 +117,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public new abstract bool Add(TElement offset);
 
 	/// <summary>
-	/// Set the specified offsets as <see langword="true"/> value.
-	/// </summary>
-	/// <param name="offsets">The offsets to add.</param>
-	public abstract void AddRange(IEnumerable<TElement> offsets);
-
-	/// <summary>
 	/// Set the specified offset as <see langword="false"/> value.
 	/// </summary>
 	/// <param name="offset">The offset.</param>

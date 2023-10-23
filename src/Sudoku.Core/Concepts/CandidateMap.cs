@@ -489,16 +489,6 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void AddRange(IEnumerable<Candidate> offsets)
-	{
-		foreach (var element in offsets)
-		{
-			Add(element);
-		}
-	}
-
-	/// <inheritdoc/>
 	public void RemoveRange(IEnumerable<Candidate> offsets)
 	{
 		foreach (var element in offsets)
@@ -669,52 +659,55 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, Candidate offset)
 	{
-		var copied = collection;
-		copied.Add(offset);
+		var result = collection;
+		result.Add(offset);
 
-		return copied;
+		return result;
 	}
 
 	/// <inheritdoc cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, scoped ValueList<Candidate> offsets)
 	{
-		var copied = collection;
+		var result = collection;
 		foreach (var element in offsets)
 		{
-			copied.Add(element);
+			result.Add(element);
 		}
 
-		return copied;
+		return result;
 	}
 
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
 	{
-		var copied = collection;
-		copied.AddRange(offsets);
+		var result = collection;
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
 
-		return copied;
+		return result;
 	}
 
 	/// <inheritdoc/>
 	public static CandidateMap operator -(scoped in CandidateMap collection, Candidate offset)
 	{
-		var copied = collection;
-		copied.Remove(offset);
+		var result = collection;
+		result.Remove(offset);
 
-		return copied;
+		return result;
 	}
 
 	/// <inheritdoc/>
 	public static CandidateMap operator -(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
 	{
-		var copied = collection;
+		var result = collection;
 		foreach (var element in offsets)
 		{
-			copied.Remove(element);
+			result.Remove(element);
 		}
 
-		return copied;
+		return result;
 	}
 
 	/// <inheritdoc/>
@@ -722,22 +715,22 @@ public partial struct CandidateMap :
 	public static CandidateMap operator &(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;
-		var copied = left;
-		finalCount += PopCount((ulong)(copied._bits[0] &= right._bits[0]));
-		finalCount += PopCount((ulong)(copied._bits[1] &= right._bits[1]));
-		finalCount += PopCount((ulong)(copied._bits[2] &= right._bits[2]));
-		finalCount += PopCount((ulong)(copied._bits[3] &= right._bits[3]));
-		finalCount += PopCount((ulong)(copied._bits[4] &= right._bits[4]));
-		finalCount += PopCount((ulong)(copied._bits[5] &= right._bits[5]));
-		finalCount += PopCount((ulong)(copied._bits[6] &= right._bits[6]));
-		finalCount += PopCount((ulong)(copied._bits[7] &= right._bits[7]));
-		finalCount += PopCount((ulong)(copied._bits[8] &= right._bits[8]));
-		finalCount += PopCount((ulong)(copied._bits[9] &= right._bits[9]));
-		finalCount += PopCount((ulong)(copied._bits[10] &= right._bits[10]));
-		finalCount += PopCount((ulong)(copied._bits[11] &= right._bits[11]));
+		var result = left;
+		finalCount += PopCount((ulong)(result._bits[0] &= right._bits[0]));
+		finalCount += PopCount((ulong)(result._bits[1] &= right._bits[1]));
+		finalCount += PopCount((ulong)(result._bits[2] &= right._bits[2]));
+		finalCount += PopCount((ulong)(result._bits[3] &= right._bits[3]));
+		finalCount += PopCount((ulong)(result._bits[4] &= right._bits[4]));
+		finalCount += PopCount((ulong)(result._bits[5] &= right._bits[5]));
+		finalCount += PopCount((ulong)(result._bits[6] &= right._bits[6]));
+		finalCount += PopCount((ulong)(result._bits[7] &= right._bits[7]));
+		finalCount += PopCount((ulong)(result._bits[8] &= right._bits[8]));
+		finalCount += PopCount((ulong)(result._bits[9] &= right._bits[9]));
+		finalCount += PopCount((ulong)(result._bits[10] &= right._bits[10]));
+		finalCount += PopCount((ulong)(result._bits[11] &= right._bits[11]));
 
-		copied._count = finalCount;
-		return copied;
+		result._count = finalCount;
+		return result;
 	}
 
 	/// <inheritdoc/>
@@ -745,22 +738,22 @@ public partial struct CandidateMap :
 	public static CandidateMap operator |(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;
-		var copied = left;
-		finalCount += PopCount((ulong)(copied._bits[0] |= right._bits[0]));
-		finalCount += PopCount((ulong)(copied._bits[1] |= right._bits[1]));
-		finalCount += PopCount((ulong)(copied._bits[2] |= right._bits[2]));
-		finalCount += PopCount((ulong)(copied._bits[3] |= right._bits[3]));
-		finalCount += PopCount((ulong)(copied._bits[4] |= right._bits[4]));
-		finalCount += PopCount((ulong)(copied._bits[5] |= right._bits[5]));
-		finalCount += PopCount((ulong)(copied._bits[6] |= right._bits[6]));
-		finalCount += PopCount((ulong)(copied._bits[7] |= right._bits[7]));
-		finalCount += PopCount((ulong)(copied._bits[8] |= right._bits[8]));
-		finalCount += PopCount((ulong)(copied._bits[9] |= right._bits[9]));
-		finalCount += PopCount((ulong)(copied._bits[10] |= right._bits[10]));
-		finalCount += PopCount((ulong)(copied._bits[11] |= right._bits[11]));
+		var result = left;
+		finalCount += PopCount((ulong)(result._bits[0] |= right._bits[0]));
+		finalCount += PopCount((ulong)(result._bits[1] |= right._bits[1]));
+		finalCount += PopCount((ulong)(result._bits[2] |= right._bits[2]));
+		finalCount += PopCount((ulong)(result._bits[3] |= right._bits[3]));
+		finalCount += PopCount((ulong)(result._bits[4] |= right._bits[4]));
+		finalCount += PopCount((ulong)(result._bits[5] |= right._bits[5]));
+		finalCount += PopCount((ulong)(result._bits[6] |= right._bits[6]));
+		finalCount += PopCount((ulong)(result._bits[7] |= right._bits[7]));
+		finalCount += PopCount((ulong)(result._bits[8] |= right._bits[8]));
+		finalCount += PopCount((ulong)(result._bits[9] |= right._bits[9]));
+		finalCount += PopCount((ulong)(result._bits[10] |= right._bits[10]));
+		finalCount += PopCount((ulong)(result._bits[11] |= right._bits[11]));
 
-		copied._count = finalCount;
-		return copied;
+		result._count = finalCount;
+		return result;
 	}
 
 	/// <inheritdoc/>
@@ -768,22 +761,22 @@ public partial struct CandidateMap :
 	public static CandidateMap operator ^(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;
-		var copied = left;
-		finalCount += PopCount((ulong)(copied._bits[0] ^= right._bits[0]));
-		finalCount += PopCount((ulong)(copied._bits[1] ^= right._bits[1]));
-		finalCount += PopCount((ulong)(copied._bits[2] ^= right._bits[2]));
-		finalCount += PopCount((ulong)(copied._bits[3] ^= right._bits[3]));
-		finalCount += PopCount((ulong)(copied._bits[4] ^= right._bits[4]));
-		finalCount += PopCount((ulong)(copied._bits[5] ^= right._bits[5]));
-		finalCount += PopCount((ulong)(copied._bits[6] ^= right._bits[6]));
-		finalCount += PopCount((ulong)(copied._bits[7] ^= right._bits[7]));
-		finalCount += PopCount((ulong)(copied._bits[8] ^= right._bits[8]));
-		finalCount += PopCount((ulong)(copied._bits[9] ^= right._bits[9]));
-		finalCount += PopCount((ulong)(copied._bits[10] ^= right._bits[10]));
-		finalCount += PopCount((ulong)(copied._bits[11] ^= right._bits[11]));
+		var result = left;
+		finalCount += PopCount((ulong)(result._bits[0] ^= right._bits[0]));
+		finalCount += PopCount((ulong)(result._bits[1] ^= right._bits[1]));
+		finalCount += PopCount((ulong)(result._bits[2] ^= right._bits[2]));
+		finalCount += PopCount((ulong)(result._bits[3] ^= right._bits[3]));
+		finalCount += PopCount((ulong)(result._bits[4] ^= right._bits[4]));
+		finalCount += PopCount((ulong)(result._bits[5] ^= right._bits[5]));
+		finalCount += PopCount((ulong)(result._bits[6] ^= right._bits[6]));
+		finalCount += PopCount((ulong)(result._bits[7] ^= right._bits[7]));
+		finalCount += PopCount((ulong)(result._bits[8] ^= right._bits[8]));
+		finalCount += PopCount((ulong)(result._bits[9] ^= right._bits[9]));
+		finalCount += PopCount((ulong)(result._bits[10] ^= right._bits[10]));
+		finalCount += PopCount((ulong)(result._bits[11] ^= right._bits[11]));
 
-		copied._count = finalCount;
-		return copied;
+		result._count = finalCount;
+		return result;
 	}
 
 	/// <inheritdoc/>
@@ -791,22 +784,22 @@ public partial struct CandidateMap :
 	public static CandidateMap operator -(scoped in CandidateMap left, scoped in CandidateMap right)
 	{
 		var finalCount = 0;
-		var copied = left;
-		finalCount += PopCount((ulong)(copied._bits[0] &= ~right._bits[0]));
-		finalCount += PopCount((ulong)(copied._bits[1] &= ~right._bits[1]));
-		finalCount += PopCount((ulong)(copied._bits[2] &= ~right._bits[2]));
-		finalCount += PopCount((ulong)(copied._bits[3] &= ~right._bits[3]));
-		finalCount += PopCount((ulong)(copied._bits[4] &= ~right._bits[4]));
-		finalCount += PopCount((ulong)(copied._bits[5] &= ~right._bits[5]));
-		finalCount += PopCount((ulong)(copied._bits[6] &= ~right._bits[6]));
-		finalCount += PopCount((ulong)(copied._bits[7] &= ~right._bits[7]));
-		finalCount += PopCount((ulong)(copied._bits[8] &= ~right._bits[8]));
-		finalCount += PopCount((ulong)(copied._bits[9] &= ~right._bits[9]));
-		finalCount += PopCount((ulong)(copied._bits[10] &= ~right._bits[10]));
-		finalCount += PopCount((ulong)(copied._bits[11] &= ~right._bits[11]));
+		var result = left;
+		finalCount += PopCount((ulong)(result._bits[0] &= ~right._bits[0]));
+		finalCount += PopCount((ulong)(result._bits[1] &= ~right._bits[1]));
+		finalCount += PopCount((ulong)(result._bits[2] &= ~right._bits[2]));
+		finalCount += PopCount((ulong)(result._bits[3] &= ~right._bits[3]));
+		finalCount += PopCount((ulong)(result._bits[4] &= ~right._bits[4]));
+		finalCount += PopCount((ulong)(result._bits[5] &= ~right._bits[5]));
+		finalCount += PopCount((ulong)(result._bits[6] &= ~right._bits[6]));
+		finalCount += PopCount((ulong)(result._bits[7] &= ~right._bits[7]));
+		finalCount += PopCount((ulong)(result._bits[8] &= ~right._bits[8]));
+		finalCount += PopCount((ulong)(result._bits[9] &= ~right._bits[9]));
+		finalCount += PopCount((ulong)(result._bits[10] &= ~right._bits[10]));
+		finalCount += PopCount((ulong)(result._bits[11] &= ~right._bits[11]));
 
-		copied._count = finalCount;
-		return copied;
+		result._count = finalCount;
+		return result;
 	}
 
 	/// <summary>

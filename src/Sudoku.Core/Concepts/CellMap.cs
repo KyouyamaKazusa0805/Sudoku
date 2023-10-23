@@ -826,16 +826,6 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public void AddRange(IEnumerable<Cell> offsets)
-	{
-		foreach (var offset in offsets)
-		{
-			Add(offset);
-		}
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Cell offset)
 	{
@@ -1030,11 +1020,13 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator +(scoped in CellMap collection, IEnumerable<Cell> offsets)
 	{
 		var result = collection;
-		result.AddRange(offsets);
+		foreach (var offset in offsets)
+		{
+			result.Add(offset);
+		}
 
 		return result;
 	}
