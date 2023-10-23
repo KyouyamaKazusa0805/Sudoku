@@ -547,7 +547,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 				foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 				{
-					if (grid.ExactlyAppearingTimesWith(digit, in crossline, size - 1))
+					if (!grid.ExactlyAppearingTimesWith(digit, in crossline, size - 1))
 					{
 						allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 						break;
