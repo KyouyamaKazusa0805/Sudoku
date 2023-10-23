@@ -5597,15 +5597,16 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <remarks>
             For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-            and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-            will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+            and the argument <paramref name="subsetSize"/> is 2,
+            the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.GetAllSubsets">
             <summary>
-            Equivalent to <c>GetAllSubsets(Count)</c>.
+            Equivalent to calling <see cref="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.GetSubsets(System.Int32)"/> with argument <see cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`2.Count"/>.
             </summary>
             <returns>All subsets of the current instance.</returns>
+            <seealso cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`2.Count"/>
             <seealso cref="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.GetAllSubsets(System.Int32)">

@@ -267,15 +267,16 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </exception>
 	/// <remarks>
 	/// For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-	/// and the argument <paramref name="subsetSize"/> is 2, the expression <c><![CDATA[cells & 2]]></c>
-	/// will be an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+	/// and the argument <paramref name="subsetSize"/> is 2,
+	/// the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
 	public abstract TSelf[] GetSubsets(int subsetSize);
 
 	/// <summary>
-	/// Equivalent to <c>GetAllSubsets(Count)</c>.
+	/// Equivalent to calling <see cref="GetSubsets(int)"/> with argument <see cref="Count"/>.
 	/// </summary>
 	/// <returns>All subsets of the current instance.</returns>
+	/// <seealso cref="Count"/>
 	/// <seealso cref="GetAllSubsets(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual TSelf[] GetAllSubsets() => GetAllSubsets(Count);
