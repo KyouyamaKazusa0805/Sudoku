@@ -1104,7 +1104,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 							foreach (var coveredLine in cellsInThisBlock.CoveredHouses)
 							{
-								var thisPairContainsConjugatePair = false;
 								foreach (var conjugatePairDigit in digitsMask)
 								{
 									if ((HousesMap[coveredLine] & CandidatesMap[conjugatePairDigit]) != cellsInThisBlock)
@@ -1122,22 +1121,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									conjugatePairs.Add(new(in cellsInThisBlock, conjugatePairDigit));
-									thisPairContainsConjugatePair = true;
 									break;
 								}
-								if (!thisPairContainsConjugatePair)
-								{
-									// No eliminations will be found because this pair of target cells don't form a valid relation.
-									inferredTargetConjugatePairs = [];
-									return null;
-								}
 							}
+
 							break;
 						}
 					}
 				}
 				break;
 			}
+		}
+
+		// Check for the number of target cells and their bound conjugate pairs.
+		if ((targetCells.Count, conjugatePairs.Count) switch { (2, 0) or (3, 1) or (4, 2) => false, _ => true })
+		{
+			inferredTargetConjugatePairs = [];
+			return null;
 		}
 
 		// Try to get conjugate pairs in target cells.
