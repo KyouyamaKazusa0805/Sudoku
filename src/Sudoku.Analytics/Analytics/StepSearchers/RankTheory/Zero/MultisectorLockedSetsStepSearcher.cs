@@ -23,12 +23,6 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the total number of multi-sector locked sets possible templates.
-	/// </summary>
-	public const int MultisectorLockedSetsTemplatesCount = 74601;
-
-
-	/// <summary>
 	/// Indicates the list initialized with the static constructor.
 	/// </summary>
 	private static readonly CellMap[] Patterns;
@@ -40,7 +34,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 		const HouseMask a = ~7, b = ~56, c = ~448;
 		var sizeList = (int[][])[[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
 		var z = (int[])[0, 1, 2, 3, 4, 5, 6, 7, 8];
-		var result = new CellMap[MultisectorLockedSetsTemplatesCount];
+		var result = new CellMap[74601];
 		var n = 0;
 		for (var i = 0; i < sizeList.Length >> 1; i++)
 		{
