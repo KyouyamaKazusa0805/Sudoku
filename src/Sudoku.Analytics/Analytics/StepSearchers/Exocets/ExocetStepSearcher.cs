@@ -206,19 +206,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									// Get the count delta (target group by block.count - base.count).
-									// Delta can be -2, -1 or 0. In fact the possible values can be [-2, 2], but 1 and 2 are invalid. Details:
-									//
-									//   delta < 0:
-									//      The base contain more cells than the target, meaning the pattern may be a senior exocet;
-									//   delta > 0:
-									//      The target contain more cells than the base, meaning the pattern contains more group
-									//      than the number of base cells, to lead to no conclusion;
-									//   delta == 0:
-									//      The base has same number of cells with the target, a standard junior exocet will be formed.
-									//
-									// Therefore, I just check for the value on -2, -1 and 0.
-									// Note: Today we should only consider the cases on delta = 0 or -1.
+									// Collect exocets by types.
 									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
 										if (CollectSeniorExocets(
@@ -1431,11 +1419,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		inferredTargetPairMask = 0;
-
-		// This rule can only apply for the case on such conditions:
-		//   1) The number of base cells must be 2.
-		//   2) The delta value must be 0 (i.e. a standard JE).
-		//   3) The cross-line cells contain at least one cell filled with digits appeared in base cells.
 
 		if (digitsMaskAppearedInCrossline != 0)
 		{
