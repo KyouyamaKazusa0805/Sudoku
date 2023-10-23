@@ -117,7 +117,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) 
 			static bool expandCode(string? original, [NotNullWhen(true)] out string? result)
 			{
 				// We must the string code holds 8 ','s and is with no ':' or '+'.
-				if (original is null || original.Contains(':') || original.Contains('+') || original.Count(',') != 8)
+				if (original is null || original.Contains(':') || original.Contains('+') || original.AsSpan().Count(',') != 8)
 				{
 					result = null;
 					return false;
@@ -136,7 +136,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) 
 				for (var i = 0; i < 9; i++)
 				{
 					var line = lines[i];
-					switch (line.Count('*'))
+					switch (line.AsSpan().Count('*'))
 					{
 						case 1 when (9 + 1 - line.Length, 0, 0) is var (empties, j, k):
 						{

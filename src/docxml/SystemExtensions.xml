@@ -2050,14 +2050,6 @@ fixed (short* ptr = instance)
             Indicates the exception that will be thrown when a certain regular expression is invalid.
             </summary>
         </member>
-        <member name="M:System.StringExtensions.Count(System.String,System.Char)">
-            <summary>
-            Count how many specified characters are in the current string.
-            </summary>
-            <param name="this">The current string.</param>
-            <param name="character">The character to count.</param>
-            <returns>The number of characters found.</returns>
-        </member>
         <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
             <summary>
             Check whether the specified string instance is satisfied
