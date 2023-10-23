@@ -22,6 +22,12 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Concepts;
 
+using unsafe CellMapPredicateFunc = delegate*<ref readonly Grid, Cell, Digit, bool>;
+using unsafe CellPredicateFunc = delegate*<ref readonly Grid, Cell, bool>;
+using unsafe MaskMergingFunc = delegate*<ref Mask, ref readonly Grid, Cell, void>;
+using unsafe RefreshingCandidatesHandler = delegate*<ref Grid, void>;
+using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
+
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
@@ -85,12 +91,12 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	public static readonly void* ValueChanged = (delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)&OnValueChanged;
+	public static readonly void* ValueChanged = (ValueChangedHandler)(&OnValueChanged);
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	public static readonly void* RefreshingCandidates = (delegate*<ref Grid, void>)&OnRefreshingCandidates;
+	public static readonly void* RefreshingCandidates = (RefreshingCandidatesHandler)(&OnRefreshingCandidates);
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
@@ -676,7 +682,7 @@ public unsafe partial struct Grid :
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
 				GridMaskMergingMethod.Or => &or,
-				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
+				_ => default(MaskMergingFunc)
 			};
 
 			foreach (var cell in cells)
@@ -1117,7 +1123,7 @@ public unsafe partial struct Grid :
 		var copied = mask;
 		mask = (Mask)((int)state << 9 | mask & MaxCandidatesMask);
 
-		((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, mask, -1);
+		((ValueChangedHandler)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -1132,7 +1138,7 @@ public unsafe partial struct Grid :
 		var originalMask = newMask;
 		newMask = mask;
 
-		((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, originalMask, newMask, -1);
+		((ValueChangedHandler)ValueChanged)(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <summary>
@@ -1161,7 +1167,7 @@ public unsafe partial struct Grid :
 				// Note that reset candidates may not trigger the event.
 				this[cell] = DefaultMask;
 
-				((delegate*<ref Grid, void>)RefreshingCandidates)(ref this);
+				((RefreshingCandidatesHandler)RefreshingCandidates)(ref this);
 
 				break;
 			}
@@ -1174,7 +1180,7 @@ public unsafe partial struct Grid :
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, result, digit);
+				((ValueChangedHandler)ValueChanged)(ref this, cell, copied, result, digit);
 
 				break;
 			}
@@ -1206,7 +1212,7 @@ public unsafe partial struct Grid :
 			}
 
 			// To trigger the event.
-			((delegate*<ref Grid, Cell, Mask, Mask, Digit, void>)ValueChanged)(ref this, cell, copied, this[cell], -1);
+			((ValueChangedHandler)ValueChanged)(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
@@ -1225,7 +1231,7 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetMap(delegate*<ref readonly Grid, Cell, bool> predicate)
+	private readonly CellMap GetMap(CellPredicateFunc predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
@@ -1247,7 +1253,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMaps(delegate*<ref readonly Grid, Cell, Digit, bool> predicate)
+	private readonly CellMap[] GetMaps(CellMapPredicateFunc predicate)
 	{
 		var result = new CellMap[9];
 		for (var digit = 0; digit < 9; digit++)

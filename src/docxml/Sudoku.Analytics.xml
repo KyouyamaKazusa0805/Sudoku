@@ -8677,11 +8677,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.MultisectorLockedSetsTemplatesCount">
-            <summary>
-            Indicates the total number of multi-sector locked sets possible templates.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Patterns">
             <summary>
             Indicates the list initialized with the static constructor.
