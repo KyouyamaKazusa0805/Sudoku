@@ -7743,6 +7743,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect_NoExtraHousesIncluded(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Collects for the basic type - no extra houses will be included.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.Collect_ExtraHousesIncluded(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Collects for the extended type - extra houses will be included.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)">
             <summary>
             The core method to check for Junior Exocet sub-types.
@@ -7811,6 +7823,11 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">The target cells.</param>
             <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.Collector">
+            <summary>
+            Represents a method that creates an <see cref="T:Sudoku.Analytics.Steps.ExocetStep"/> instance using the specified data.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
