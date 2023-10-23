@@ -94,23 +94,18 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		var pairs = stackalloc Mask[8];
-		var tempLink = stackalloc Mask[8];
-		var linkHouse = stackalloc House[8];
+		scoped var pairs = (stackalloc Mask[8]);
+		scoped var tempLink = (stackalloc Mask[8]);
+		scoped var linkHouse = (stackalloc House[8]);
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var cells in SkLoopTable)
 		{
 			// Initialize the elements.
-			var n = 0;
-			var candidateCount = 0;
-			var i = 0;
-			for (i = 0; i < 8; i++)
-			{
-				pairs[i] = default;
-				linkHouse[i] = default;
-			}
+			var (n, i, candidateCount) = (0, 0, 0);
+			pairs.Clear();
+			linkHouse.Clear();
 
 			// Get the values count ('n') and pairs list ('pairs').
 			for (i = 0; i < 8; i++)
@@ -147,8 +142,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				continue;
 			}
 
-			var candidateMask = (Mask)(pairs[0] & pairs[1]);
-			if (candidateMask == 0)
+			if ((Mask)(pairs[0] & pairs[1]) is not (var candidateMask and not 0))
 			{
 				continue;
 			}
@@ -163,10 +157,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				for (var p = 0; p < 8; p++)
-				{
-					tempLink[p] = default;
-				}
+				tempLink.Clear();
 
 				// Check the associativity:
 				// Each pair should find the digits that can combine with the next pair.
@@ -215,10 +206,9 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 					foreach (var cell in elimMap)
 					{
-						var cands = (Mask)(grid.GetCandidates(cell) & tempLink[k]);
-						if (cands != 0)
+						if ((Mask)(grid.GetCandidates(cell) & tempLink[k]) is var digits and not 0)
 						{
-							foreach (var digit in cands)
+							foreach (var digit in digits)
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -250,7 +240,12 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									(k & 3) switch { 0 => WellKnownColorIdentifier.Auxiliary1, 1 => WellKnownColorIdentifier.Auxiliary2, _ => WellKnownColorIdentifier.Normal },
+									(k & 3) switch
+									{
+										0 => WellKnownColorIdentifier.Auxiliary1,
+										1 => WellKnownColorIdentifier.Auxiliary2,
+										_ => WellKnownColorIdentifier.Normal
+									},
 									cell * 9 + digit
 								)
 							);
