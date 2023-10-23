@@ -34,12 +34,12 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
 	/// </summary>
-	public const Count BdpTemplatesSize3Count = 14580;
+	public const int BdpTemplatesSize3Count = 14580;
 
 	/// <summary>
 	/// Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
 	/// </summary>
-	public const Count BdpTemplatesSize4Count = 11664;
+	public const int BdpTemplatesSize4Count = 11664;
 
 
 	/// <summary>
@@ -54,7 +54,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BorescoperDeadlyPatternStepSearcher()
 	{
-		var quads = (Offset[][])[[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7], [4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8], [0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]];
+		var quads = (int[][])[[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7], [4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8], [0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]];
 		var count = 0;
 		for (var block = 0; block < 9; block++)
 		{
@@ -74,14 +74,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		}
 
 
-		static void collectHeptagonPatterns(House block, Offset i, Cell[] quad, scoped ref Count count)
+		static void collectHeptagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var q1, var q2, var q3, var q4])
 			{
 				return;
 			}
 
-			var triplets = (Offset[][])[
+			var triplets = (int[][])[
 				[q1, q2, q3], // (0, 1) and (0, 2) is same house.
 				[q2, q1, q4], // (0, 1) and (1, 3) is same house.
 				[q3, q1, q4], // (0, 2) and (2, 3) is same house.
@@ -142,7 +142,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void collectOctagonPatterns(House block, Offset i, Cell[] quad, scoped ref Count count)
+		static void collectOctagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
 		{
 			if (quad is not [var t1, var t2, var t3, _])
 			{
@@ -189,7 +189,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void r(House block, House houseIndex, Cell[,] pair, Offset increment, Offset index)
+		static void r(House block, House houseIndex, Cell[,] pair, int increment, int index)
 		{
 			for (var (i, cur) = (0, 0); i < 9; i++)
 			{

@@ -8,7 +8,7 @@ partial class BitOperationsExtensions
 	/// <param name="this">The value.</param>
 	/// <param name="index">The index.</param>
 	/// <returns>The index.</returns>
-	public static partial Offset GetNextSet(this byte @this, Offset index)
+	public static partial int GetNextSet(this byte @this, int index)
 	{
 		for (var i = index + 1; i < 8; i++)
 		{
@@ -21,8 +21,8 @@ partial class BitOperationsExtensions
 		return -1;
 	}
 
-	/// <inheritdoc cref="GetNextSet(byte, Offset)"/>
-	public static partial Offset GetNextSet(this short @this, Offset index)
+	/// <inheritdoc cref="GetNextSet(byte, int)"/>
+	public static partial int GetNextSet(this short @this, int index)
 	{
 		for (var i = index + 1; i < 16; i++)
 		{
@@ -35,8 +35,8 @@ partial class BitOperationsExtensions
 		return -1;
 	}
 
-	/// <inheritdoc cref="GetNextSet(byte, Offset)"/>
-	public static partial Offset GetNextSet(this int @this, Offset index)
+	/// <inheritdoc cref="GetNextSet(byte, int)"/>
+	public static partial int GetNextSet(this int @this, int index)
 	{
 		for (var i = index + 1; i < 32; i++)
 		{
@@ -49,8 +49,8 @@ partial class BitOperationsExtensions
 		return -1;
 	}
 
-	/// <inheritdoc cref="GetNextSet(byte, Offset)"/>
-	public static partial Offset GetNextSet(this long @this, Offset index)
+	/// <inheritdoc cref="GetNextSet(byte, int)"/>
+	public static partial int GetNextSet(this long @this, int index)
 	{
 		for (var i = index + 1; i < 64; i++)
 		{

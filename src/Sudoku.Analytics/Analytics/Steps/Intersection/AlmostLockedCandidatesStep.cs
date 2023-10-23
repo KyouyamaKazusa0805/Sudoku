@@ -35,14 +35,14 @@ public sealed partial class AlmostLockedCandidatesStep(
 	/// <summary>
 	/// Indicates the number of digits used.
 	/// </summary>
-	public Count Size => PopCount((uint)DigitsMask);
+	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
 	public override Technique Code
 		=> HasValueCell switch
 		{
 			true => Size switch { 3 => Technique.AlmostLockedTripleValueType, 4 => Technique.AlmostLockedQuadrupleValueType },
-			_ => (Technique)((Offset)Technique.AlmostLockedPair + Size - 2)
+			_ => (Technique)((int)Technique.AlmostLockedPair + Size - 2)
 		};
 
 	/// <inheritdoc/>

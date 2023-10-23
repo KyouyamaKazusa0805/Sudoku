@@ -41,7 +41,7 @@ public abstract partial class FishStep(
 	/// </list>
 	/// Other fishes of sizes not appearing in above don't have well-known names.
 	/// </remarks>
-	public Count Size => PopCount((uint)BaseSetsMask);
+	public int Size => PopCount((uint)BaseSetsMask);
 
 	/// <summary>
 	/// The internal notation.

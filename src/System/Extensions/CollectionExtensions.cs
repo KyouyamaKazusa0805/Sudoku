@@ -8,7 +8,7 @@ namespace System.Collections.ObjectModel;
 /// <seealso cref="Collection{T}"/>
 public static class CollectionExtensions
 {
-	/// <inheritdoc cref="Collection{T}.Insert(Offset, T)"/>
+	/// <inheritdoc cref="Collection{T}.Insert(int, T)"/>
 	/// <param name="this">The current collection.</param>
 	/// <param name="index"/>
 	/// <param name="item"/>

@@ -30,7 +30,7 @@ public sealed partial class UniqueRectangleType2Step(
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	[DataMember] Digit extraDigit,
-	Offset absoluteOffset
+	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

@@ -58,7 +58,7 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 	{
 		get
 		{
-			const Count length = 28;
+			const int length = 28;
 
 			var (ox, oy) = FirstCellTopLeftPosition;
 			var (cw, ch) = CandidateSize;

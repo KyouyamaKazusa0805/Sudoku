@@ -83,7 +83,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// The value is same as the length of field <see cref="UniqueRectanglePatterns"/>.
 	/// </summary>
 	/// <seealso cref="UniqueRectanglePatterns"/>
-	private const Count CountOfPatterns = 486;
+	private const int CountOfPatterns = 486;
 
 
 #pragma warning disable format
@@ -407,7 +407,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		// Get the summary mask.
@@ -502,7 +502,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		// Get the summary mask.
@@ -610,7 +610,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		var notSatisfiedType3 = false;
@@ -763,7 +763,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
@@ -886,7 +886,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -989,7 +989,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
@@ -1113,7 +1113,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		var cells = (CellMap)urCells;
@@ -1249,7 +1249,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
@@ -1383,7 +1383,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
@@ -1562,7 +1562,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
@@ -1736,7 +1736,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -1877,7 +1877,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -2003,7 +2003,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -2135,7 +2135,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -2261,7 +2261,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Digit d2,
 		Cell cornerCell,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
@@ -2389,7 +2389,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
@@ -2543,7 +2543,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		var link1Map = CellsMap[corner1] + corner2;
@@ -2699,7 +2699,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index,
+		int index,
 		bool areCornerCellsAligned
 	)
 	{
@@ -2931,7 +2931,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
@@ -3081,7 +3081,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		var notSatisfiedType3 = false;
@@ -3237,9 +3237,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			scoped ref readonly CellMap currentLineMap,
 			scoped ref readonly CellMap currentBlockMap,
 			scoped ref readonly CellMap currentInterMap,
-			Offset i,
-			Offset j,
-			Offset index
+			int i,
+			int j,
+			int index
 		)
 		{
 			var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
@@ -3411,7 +3411,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index
+		int index
 	)
 	{
 		checkType1(in grid, ref context);
@@ -3716,7 +3716,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell[] urCells,
 		Digit d1,
 		Digit d2,
-		Offset index,
+		int index,
 		bool arMode
 	)
 	{
@@ -3841,7 +3841,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index,
+		int index,
 		bool arMode
 	)
 	{
@@ -4023,7 +4023,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index,
+		int index,
 		bool arMode
 	)
 	{
@@ -4197,7 +4197,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index
+		int index
 	)
 	{
 		var cells = (CellMap)urCells;
@@ -4403,7 +4403,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index
+		int index
 	)
 	{
 		// Collect all digits that all bi-value cells in the current grid used.
@@ -4626,7 +4626,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index,
+		int index,
 		bool arMode
 	)
 	{
@@ -4941,7 +4941,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Mask comparer,
 		Digit d1,
 		Digit d2,
-		Offset index,
+		int index,
 		bool arMode
 	)
 	{
@@ -5130,7 +5130,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		Cell corner1,
 		Cell corner2,
 		scoped ref readonly CellMap otherCellsMap,
-		Offset index
+		int index
 	)
 	{
 		if (grid.GetState(corner1) != CellState.Modifiable || grid.GetState(corner2) != CellState.Modifiable

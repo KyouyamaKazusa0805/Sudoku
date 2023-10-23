@@ -17,14 +17,14 @@ namespace SudokuStudio.Views.Pages;
 /// Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
 /// </summary>
 [DependencyProperty<bool>("IsRunning", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the game is running.")]
-[DependencyProperty<Offset>("SelectedMode", DefaultValue = -1)]
-[DependencyProperty<Count>("TestedPuzzlesCount", DefaultValue = 10)]
+[DependencyProperty<int>("SelectedMode", DefaultValue = -1)]
+[DependencyProperty<int>("TestedPuzzlesCount", DefaultValue = 10)]
 public sealed partial class SingleCountingPracticingPage : Page
 {
 	/// <summary>
 	/// Indicates the maximum possible supported number of puzzles.
 	/// </summary>
-	private const Count MaxPuzzlesCountSupported = 100;
+	private const int MaxPuzzlesCountSupported = 100;
 
 
 	/// <summary>
@@ -41,7 +41,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// <summary>
 	/// Indicates the puzzles last.
 	/// </summary>
-	private volatile Offset _currentPuzzleIndex = -1;
+	private volatile int _currentPuzzleIndex = -1;
 
 	/// <summary>
 	/// Indicates the target result data.
@@ -187,8 +187,8 @@ file static class Extensions
 	/// <param name="other">The other collection.</param>
 	/// <param name="predicate">The condition.</param>
 	/// <param name="count">The number of elements.</param>
-	/// <returns>An <see cref="Count"/> result.</returns>
-	public static Count CountWithSameIndex<T1, T2>(this List<T1?> @this, List<T2?> other, Func<T1?, T2?, bool> predicate, Count count)
+	/// <returns>An <see cref="int"/> result.</returns>
+	public static int CountWithSameIndex<T1, T2>(this List<T1?> @this, List<T2?> other, Func<T1?, T2?, bool> predicate, int count)
 		where T1 : notnull
 		where T2 : notnull
 	{
@@ -212,7 +212,7 @@ file static class Extensions
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The collection.</param>
 	/// <param name="count">The number of elements to be created.</param>
-	public static void Refresh<T>(this List<T?> @this, Count count) where T : notnull
+	public static void Refresh<T>(this List<T?> @this, int count) where T : notnull
 	{
 		@this.Clear();
 		for (var i = 0; i < count; i++)

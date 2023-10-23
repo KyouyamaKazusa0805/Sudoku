@@ -49,7 +49,7 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Indicates the number of techniques included in this solution.
 	/// </summary>
-	private static readonly Count TechniquesCount = Enum.GetValues<Technique>().Length;
+	private static readonly int TechniquesCount = Enum.GetValues<Technique>().Length;
 
 
 	/// <summary>
@@ -96,7 +96,7 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Indicates the length of the technique.
 	/// </summary>
-	public readonly Count Count => _techniqueBits.GetCardinality();
+	public readonly int Count => _techniqueBits.GetCardinality();
 
 	/// <summary>
 	/// Indicates the range of difficulty that the current collection containss.
@@ -136,7 +136,7 @@ public partial struct TechniqueSet :
 	/// <param name="index">The index to be checked.</param>
 	/// <returns>The found <see cref="Technique"/> instance.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public readonly Technique this[Offset index]
+	public readonly Technique this[int index]
 	{
 		get
 		{
@@ -158,7 +158,7 @@ public partial struct TechniqueSet :
 	/// </summary>
 	/// <param name="technique">The technique to be checked.</param>
 	/// <returns>The index that the technique is at. If none found, -1.</returns>
-	public readonly Offset this[Technique technique]
+	public readonly int this[Technique technique]
 	{
 		get
 		{
@@ -203,7 +203,7 @@ public partial struct TechniqueSet :
 	/// <param name="item">The technique.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(Technique item) => _techniqueBits[(Offset)item];
+	public readonly bool Contains(Technique item) => _techniqueBits[(int)item];
 
 	/// <inheritdoc/>
 	public override readonly int GetHashCode()
@@ -212,7 +212,7 @@ public partial struct TechniqueSet :
 		var flag = false;
 		foreach (var technique in this)
 		{
-			var target = (int)technique.GetGroup() * 1000000 + (Offset)technique;
+			var target = (int)technique.GetGroup() * 1000000 + (int)technique;
 			result |= flag ? target >> 10 : target;
 			result += flag ? 7 : 31;
 
@@ -253,13 +253,13 @@ public partial struct TechniqueSet :
 	/// <summary>
 	/// Forms a slice out of the current collection starting at a specified index for a specified length.
 	/// </summary>
-	/// <param name="start"><inheritdoc cref="ReadOnlySpan{T}.Slice(Offset)" path="/param[@name='start']"/></param>
-	/// <param name="count"><inheritdoc cref="ReadOnlySpan{T}.Slice(Offset, Count)" path="/param[@name='length']"/></param>
+	/// <param name="start"><inheritdoc cref="ReadOnlySpan{T}.Slice(int)" path="/param[@name='start']"/></param>
+	/// <param name="count"><inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)" path="/param[@name='length']"/></param>
 	/// <returns>
 	/// A new <see cref="TechniqueSet"/> that consists of all elements of the current collection
 	/// from <paramref name="start"/> to the end of the slicing, given by <paramref name="count"/>.
 	/// </returns>
-	public readonly TechniqueSet Slice(Offset start, Count count)
+	public readonly TechniqueSet Slice(int start, int count)
 	{
 		var result = new TechniqueSet();
 		var i = start - 1;
@@ -300,12 +300,12 @@ public partial struct TechniqueSet :
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
 	public bool Add(Technique item)
 	{
-		if (_techniqueBits[(Offset)item])
+		if (_techniqueBits[(int)item])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((Offset)item, true);
+		_techniqueBits.Set((int)item, true);
 		return true;
 	}
 
@@ -318,12 +318,12 @@ public partial struct TechniqueSet :
 	[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
 	public bool Remove(Technique item)
 	{
-		if (!_techniqueBits[(Offset)item])
+		if (!_techniqueBits[(int)item])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((Offset)item, false);
+		_techniqueBits.Set((int)item, false);
 		return true;
 	}
 
@@ -336,7 +336,7 @@ public partial struct TechniqueSet :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly void ICollection<Technique>.CopyTo(Technique[] array, Offset arrayIndex)
+	readonly void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
 		=> Array.Copy(this[arrayIndex..].ToArray(), array, Count - arrayIndex);
 
 	/// <inheritdoc/>

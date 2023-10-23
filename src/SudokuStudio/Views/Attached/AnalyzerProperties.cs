@@ -30,12 +30,12 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.DisableFinnedOrSashimiXWing, DefaultValue = true)]
-[AttachedProperty<Count>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
-[AttachedProperty<Count>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
-[AttachedProperty<Count>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
-[AttachedProperty<Count>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
+[AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
+[AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
+[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
+[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
 [AttachedProperty<bool>(RuntimeIdentifier.TemplateDeleteOnly)]
-[AttachedProperty<Count>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
+[AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckValueTypes)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
@@ -168,11 +168,11 @@ public static partial class AnalyzerProperties
 
 	[Callback]
 	private static void MaxSizeOfRegularWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<RegularWingStepSearcher>(d, s => s.MaxSearchingPivotsCount = (Count)e.NewValue);
+		=> A<RegularWingStepSearcher>(d, s => s.MaxSearchingPivotsCount = (int)e.NewValue);
 
 	[Callback]
 	private static void MaxSizeOfComplexFishPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<ComplexFishStepSearcher>(d, s => s.MaxSize = (Count)e.NewValue);
+		=> A<ComplexFishStepSearcher>(d, s => s.MaxSize = (int)e.NewValue);
 
 	[Callback]
 	private static void TemplateDeleteOnlyPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -180,7 +180,7 @@ public static partial class AnalyzerProperties
 
 	[Callback]
 	private static void BowmanBingoMaxLengthPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<BowmanBingoStepSearcher>(d, s => s.MaxLength = (Count)e.NewValue);
+		=> A<BowmanBingoStepSearcher>(d, s => s.MaxLength = (int)e.NewValue);
 
 	[Callback]
 	private static void CheckAlmostLockedQuadruplePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -200,11 +200,11 @@ public static partial class AnalyzerProperties
 
 	[Callback]
 	private static void ReverseBugMaxSearchingEmptyCellsCountPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<ReverseBivalueUniversalGraveStepSearcher>(d, s => s.MaxSearchingEmptyCellsCount = (Count)e.NewValue);
+		=> A<ReverseBivalueUniversalGraveStepSearcher>(d, s => s.MaxSearchingEmptyCellsCount = (int)e.NewValue);
 
 	[Callback]
 	private static void AlignedExclusionMaxSearchingSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<AlignedExclusionStepSearcher>(d, s => s.MaxSearchingSize = (Count)e.NewValue);
+		=> A<AlignedExclusionStepSearcher>(d, s => s.MaxSearchingSize = (int)e.NewValue);
 
 	[Callback]
 	private static void LogicalSolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

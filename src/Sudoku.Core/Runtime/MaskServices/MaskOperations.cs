@@ -105,7 +105,7 @@ public static class MaskOperations
 	/// <param name="value">The mask.</param>
 	/// <param name="size">The size.</param>
 	/// <returns>The result list.</returns>
-	public static Mask[] GetMaskSubsets(Mask value, Count size)
+	public static Mask[] GetMaskSubsets(Mask value, int size)
 	{
 		var listToIterate = value.GetAllSets().GetSubsets(size);
 		var (result, index) = (new Mask[listToIterate.Length], 0);

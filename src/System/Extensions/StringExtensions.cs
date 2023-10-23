@@ -27,7 +27,7 @@ public static partial class StringExtensions
 	/// <param name="this">The current string.</param>
 	/// <param name="character">The character to count.</param>
 	/// <returns>The number of characters found.</returns>
-	public static unsafe Count Count(this string @this, char character)
+	public static unsafe int Count(this string @this, char character)
 	{
 		var count = 0;
 		fixed (char* pThis = @this)

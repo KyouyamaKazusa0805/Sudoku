@@ -36,7 +36,7 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	/// Indicates the number of values.
 	/// </summary>
 	[JsonIgnore]
-	public Count Count => _doubles.Count;
+	public int Count => _doubles.Count;
 
 	[JsonIgnore]
 	[StringMember]

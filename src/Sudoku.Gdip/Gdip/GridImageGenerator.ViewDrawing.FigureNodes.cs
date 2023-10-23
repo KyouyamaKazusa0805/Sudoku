@@ -158,7 +158,7 @@ partial class GridImageGenerator
 
 					PointF[] getPoints()
 					{
-						const Count maxTrialTimes = 360;
+						const int maxTrialTimes = 360;
 
 						var (centerX, centerY) = center;
 						var result = new PointF[maxTrialTimes];

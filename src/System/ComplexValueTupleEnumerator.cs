@@ -19,7 +19,7 @@ public ref struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T
 	/// <summary>
 	/// Indicates the index.
 	/// </summary>
-	private Offset _index = -1;
+	private int _index = -1;
 
 
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>

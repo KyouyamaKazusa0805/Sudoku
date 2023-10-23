@@ -14,7 +14,7 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] Offset chuteIndex) :
+public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] int chuteIndex) :
 	BasicViewNode(identifier)
 {
 	/// <summary>
@@ -39,7 +39,7 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [DataMembe
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ColorIdentifier identifier, out Offset chute) => (identifier, chute) = (Identifier, ChuteIndex);
+	public void Deconstruct(out ColorIdentifier identifier, out int chute) => (identifier, chute) = (Identifier, ChuteIndex);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

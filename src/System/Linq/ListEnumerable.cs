@@ -7,7 +7,7 @@ namespace System.Linq;
 public static class ListEnumerable
 {
 	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
-	public static Count Count<T>(this List<T> @this, Func<T, bool> predicate)
+	public static int Count<T>(this List<T> @this, Func<T, bool> predicate)
 	{
 		var result = 0;
 		foreach (var element in @this)

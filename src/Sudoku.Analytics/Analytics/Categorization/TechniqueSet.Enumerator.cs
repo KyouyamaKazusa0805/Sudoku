@@ -18,12 +18,12 @@ partial struct TechniqueSet
 		/// <summary>
 		/// The total length.
 		/// </summary>
-		private readonly Count _length = bits.Length;
+		private readonly int _length = bits.Length;
 
 		/// <summary>
 		/// The current index.
 		/// </summary>
-		private Offset _currentIndex = -1;
+		private int _currentIndex = -1;
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>

@@ -304,7 +304,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the number of total candidates.
 	/// </summary>
-	public readonly Count CandidatesCount
+	public readonly int CandidatesCount
 	{
 		get
 		{
@@ -324,7 +324,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the total number of given cells.
 	/// </summary>
-	public readonly Count GivensCount
+	public readonly int GivensCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GivenCells.Count;
@@ -333,7 +333,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the total number of modifiable cells.
 	/// </summary>
-	public readonly Count ModifiablesCount
+	public readonly int ModifiablesCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ModifiableCells.Count;
@@ -342,7 +342,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the total number of empty cells.
 	/// </summary>
-	public readonly Count EmptiesCount
+	public readonly int EmptiesCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EmptyCells.Count;
@@ -571,7 +571,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <inheritdoc/>
-	readonly Count IReadOnlyCollection<Digit>.Count => 81;
+	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -908,7 +908,7 @@ public unsafe partial struct Grid :
 	/// <param name="cells">The cells to be checked.</param>
 	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
-	public readonly bool ExactlyAppearingTimesWith(Digit digit, scoped ref readonly CellMap cells, Count limitCount)
+	public readonly bool ExactlyAppearingTimesWith(Digit digit, scoped ref readonly CellMap cells, int limitCount)
 	{
 		var activeCells = CandidatesMap[digit] & cells;
 		var inactiveCells = ValuesMap[digit] & cells;

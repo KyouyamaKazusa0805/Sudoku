@@ -19,7 +19,7 @@ public sealed class DancingLinksSolver : ISolver
 	/// <summary>
 	/// indicates the number of all found solutions.
 	/// </summary>
-	private Count _solutionCount;
+	private int _solutionCount;
 
 	/// <summary>
 	/// Indicates the found solution.
@@ -151,7 +151,7 @@ public sealed class DancingLinksSolver : ISolver
 	/// </exception>
 	private void RecordSolution(Stack<DancingLinkNode> answer, out Grid result)
 	{
-		var idList = new List<Offset>(from k in answer select k.Id);
+		var idList = new List<int>(from k in answer select k.Id);
 		idList.Sort();
 		var gridArray = (Digit[])[.. from id in idList select id % 9 + 1];
 		var grid = Grid.Create(gridArray, GridCreatingOption.MinusOne);
@@ -167,7 +167,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		Debug.Assert(_root is not null);
 
-		var size = Count.MaxValue;
+		var size = int.MaxValue;
 		var nextColumn = new ColumnNode(-1);
 		var j = _root.Right.Column;
 		while (j != _root)
@@ -276,7 +276,7 @@ file sealed class DancingLink(ColumnNode root)
 	/// <param name="y">The current column index.</param>
 	/// <param name="d">The current digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void FormLinks(List<ColumnNode> columns, Offset x, Offset y, Digit d)
+	private void FormLinks(List<ColumnNode> columns, int x, int y, Digit d)
 	{
 		var cell = new DancingLinkNode(x * 81 + y * 9 + d, columns[x * 9 + y]);
 		var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);

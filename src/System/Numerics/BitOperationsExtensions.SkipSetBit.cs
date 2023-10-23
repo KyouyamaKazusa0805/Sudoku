@@ -20,7 +20,7 @@ partial class BitOperationsExtensions
 	/// You will get 3 and 5, because all set bit positions are 0, 1, 2 and 4, and we have skipped
 	/// two of them, so the result set bit positions to iterate on are only 2 and 4.
 	/// </remarks>
-	public static partial byte SkipSetBit(this byte @this, Count setBitPosCount)
+	public static partial byte SkipSetBit(this byte @this, int setBitPosCount)
 	{
 		var result = @this;
 		for (var (i, count) = (0, 0); i < 8; i++)
@@ -39,8 +39,8 @@ partial class BitOperationsExtensions
 		return result;
 	}
 
-	/// <inheritdoc cref="SkipSetBit(byte, Count)"/>
-	public static partial short SkipSetBit(this short @this, Count setBitPosCount)
+	/// <inheritdoc cref="SkipSetBit(byte, int)"/>
+	public static partial short SkipSetBit(this short @this, int setBitPosCount)
 	{
 		var result = @this;
 		for (var (i, count) = (0, 0); i < 16; i++)
@@ -59,8 +59,8 @@ partial class BitOperationsExtensions
 		return result;
 	}
 
-	/// <inheritdoc cref="SkipSetBit(byte, Count)"/>
-	public static partial int SkipSetBit(this int @this, Count setBitPosCount)
+	/// <inheritdoc cref="SkipSetBit(byte, int)"/>
+	public static partial int SkipSetBit(this int @this, int setBitPosCount)
 	{
 		var result = @this;
 		for (var (i, count) = (0, 0); i < 32; i++)
@@ -79,8 +79,8 @@ partial class BitOperationsExtensions
 		return result;
 	}
 
-	/// <inheritdoc cref="SkipSetBit(byte, Count)"/>
-	public static partial long SkipSetBit(this long @this, Count setBitPosCount)
+	/// <inheritdoc cref="SkipSetBit(byte, int)"/>
+	public static partial long SkipSetBit(this long @this, int setBitPosCount)
 	{
 		var result = @this;
 		for (var (i, count) = (0, 0); i < 64; i++)

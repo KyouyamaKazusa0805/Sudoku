@@ -24,7 +24,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
-	public Count MaxStepsGathered { get; internal set; } = 1000;
+	public int MaxStepsGathered { get; internal set; } = 1000;
 
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.

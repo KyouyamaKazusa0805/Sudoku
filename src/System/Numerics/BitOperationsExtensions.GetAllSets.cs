@@ -9,7 +9,7 @@ partial class BitOperationsExtensions
 	/// </summary>
 	/// <param name="this">The value.</param>
 	/// <returns>All offsets.</returns>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this sbyte @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this sbyte @this)
 	{
 		if (@this == 0)
 		{
@@ -17,7 +17,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount((uint)@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(sbyte) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -30,7 +30,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this byte @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this byte @this)
 	{
 		if (@this == 0)
 		{
@@ -38,7 +38,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount(@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(byte) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -51,7 +51,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this short @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this short @this)
 	{
 		if (@this == 0)
 		{
@@ -59,7 +59,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount((uint)@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(short) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -72,7 +72,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this ushort @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this ushort @this)
 	{
 		if (@this == 0)
 		{
@@ -80,7 +80,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount(@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(ushort) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -93,7 +93,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this int @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this int @this)
 	{
 		if (@this == 0)
 		{
@@ -101,7 +101,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount((uint)@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(int) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -114,7 +114,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this uint @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this uint @this)
 	{
 		if (@this == 0)
 		{
@@ -122,7 +122,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount(@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(uint) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -135,7 +135,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this long @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this long @this)
 	{
 		if (@this == 0)
 		{
@@ -143,7 +143,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount((ulong)@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(long) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -156,7 +156,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<Offset> GetAllSets(this ulong @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this)
 	{
 		if (@this == 0)
 		{
@@ -164,7 +164,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount(@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(ulong) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -177,7 +177,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial ReadOnlySpan<Offset> GetAllSets(this nint @this)
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nint @this)
 	{
 		if (@this == 0)
 		{
@@ -185,7 +185,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount((nuint)@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(nint) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)
@@ -198,7 +198,7 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial ReadOnlySpan<Offset> GetAllSets(this nuint @this)
+	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nuint @this)
 	{
 		if (@this == 0)
 		{
@@ -206,7 +206,7 @@ partial class BitOperationsExtensions
 		}
 
 		var length = PopCount(@this);
-		var result = new Offset[length];
+		var result = new int[length];
 		for (byte i = 0, p = 0; i < sizeof(nuint) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0)

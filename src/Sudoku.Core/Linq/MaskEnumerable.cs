@@ -18,7 +18,7 @@ public static class MaskEnumerable
 	/// <param name="this">A mask instance.</param>
 	/// <param name="selector">The selector method to be converted.</param>
 	/// <returns>A list of converted result, encapsulated by a <see cref="ReadOnlySpan{T}"/> type.</returns>
-	public static ReadOnlySpan<T> Select<T>(this Mask @this, Func<Offset, T> selector)
+	public static ReadOnlySpan<T> Select<T>(this Mask @this, Func<int, T> selector)
 	{
 		var (result, i) = (new T[PopCount((uint)@this)], 0);
 		foreach (var bit in @this)
@@ -66,7 +66,7 @@ public static class MaskEnumerable
 	/// <param name="this">The mask type of bits.</param>
 	/// <param name="predicate">The condition that filters bits, removing bits not satisfying the condition.</param>
 	/// <returns>A new <see cref="Mask"/> result.</returns>
-	public static Mask Where(this Mask @this, Func<Offset, bool> predicate)
+	public static Mask Where(this Mask @this, Func<int, bool> predicate)
 	{
 		var result = (Mask)0;
 		foreach (var bitPos in @this)

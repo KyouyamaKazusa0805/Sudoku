@@ -80,7 +80,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		scoped var chuteIndexBox = (stackalloc Count[3]);
+		scoped var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
 		{
 			// Iterate by size of houses to be iterated.
@@ -287,8 +287,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
-		Count size,
-		Offset chuteIndex
+		int size,
+		int chuteIndex
 	)
 	{
 		// Check for maximum times can be appeared in cross-line cells,
@@ -452,7 +452,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Senior Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset)"/>
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
 	private static ExocetStep? CollectSeniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -463,8 +463,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
-		Count size,
-		Offset chuteIndex
+		int size,
+		int chuteIndex
 	)
 	{
 		// Try to fetch all possible endo-target cells if worth.
@@ -585,7 +585,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Weak Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset)"/>
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
 	private static ExocetStep? CollectWeakExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -595,8 +595,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
-		Count size,
-		Offset chuteIndex
+		int size,
+		int chuteIndex
 	)
 	{
 		// See following links to learn more information about this technique:
@@ -865,7 +865,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <summary>
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, Count, Offset)"/>
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
 	private static ExocetStep? CollectDoubleExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -877,8 +877,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		bool isRow,
-		Count size,
-		Offset chuteIndex
+		int size,
+		int chuteIndex
 	)
 	{
 		// Before the checking we have a normal JE pattern. Now we should check for the other one, to form a double JE.
@@ -1180,7 +1180,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		Offset chuteIndex,
+		int chuteIndex,
 		HouseMask housesMask
 	)
 	{
@@ -1297,7 +1297,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		Offset chuteIndex,
+		int chuteIndex,
 		HouseMask housesMask
 	)
 	{
@@ -1822,7 +1822,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		bool isRow,
 		HouseMask housesMask,
-		Offset chuteIndex
+		int chuteIndex
 	)
 	{
 		// AHS cannot be used on same-side target cells.
@@ -1958,7 +1958,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
-		Offset chuteIndex,
+		int chuteIndex,
 		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		out Mask inferredLastTargetDigitsMask,
 		out Mask lockedDigitsMask
@@ -2231,7 +2231,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
-		Offset chuteIndex,
+		int chuteIndex,
 		Mask digitsMaskAppearedInCrossline
 	)
 	{
@@ -2425,7 +2425,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Cell valueDigitCell,
 		Cell missingValueCell,
 		Mask baseCellsDigitsMask,
-		Offset chuteIndex
+		int chuteIndex
 	)
 	{
 		if (valueDigitCell == -1)
@@ -2511,7 +2511,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Cell missingValueCell,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		Offset chuteIndex,
+		int chuteIndex,
 		out CellMap cellsCanBeEliminated
 	)
 	{
@@ -2613,7 +2613,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Cell missingValueCell,
 		Mask baseCellsDigitsMask,
 		bool isRow,
-		Offset chuteIndex
+		int chuteIndex
 	)
 	{
 		if (valueDigitCell == -1)
@@ -2757,7 +2757,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap theOtherBaseCells,
 		scoped ref readonly CellMap theOtherTargetCells,
 		scoped ref readonly CellMap crossline,
-		Count size,
+		int size,
 		bool isRow,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask
@@ -2843,7 +2843,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="targetCell">The target cell.</param>
 	/// <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
 	/// <returns>The mirror cells that may contain non-empty cells.</returns>
-	private static CellMap GetMirrorCells(Cell targetCell, Offset chuteIndex, out CellMap miniline)
+	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap miniline)
 	{
 		Unsafe.SkipInit(out miniline);
 		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())

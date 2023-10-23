@@ -166,7 +166,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		Count size,
+		int size,
 		House** r,
 		House** c,
 		bool withFin,

@@ -78,7 +78,7 @@ public sealed partial class ForcingChainStep(
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOnPotentials(Offset viewIndex)
+	protected override CandidateMap GetOnPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
@@ -95,7 +95,7 @@ public sealed partial class ForcingChainStep(
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOffPotentials(Offset viewIndex)
+	protected override CandidateMap GetOffPotentials(int viewIndex)
 	{
 		if (viewIndex >= FlatViewsCount)
 		{
@@ -112,7 +112,7 @@ public sealed partial class ForcingChainStep(
 	}
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(Offset viewIndex) => viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Target);
+	protected override List<LinkViewNode> GetLinks(int viewIndex) => viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(Target);
 
 	/// <summary>
 	/// Gets all colored candidates with the specified state.

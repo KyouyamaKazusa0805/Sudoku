@@ -46,7 +46,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// The maximum value is 4, and recommend value is 2. This value cannot be negative. The default value is 4.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount)]
-	public Count MaxSearchingEmptyCellsCount { get; set; } = 4;
+	public int MaxSearchingEmptyCellsCount { get; set; } = 4;
 
 
 	/// <inheritdoc/>

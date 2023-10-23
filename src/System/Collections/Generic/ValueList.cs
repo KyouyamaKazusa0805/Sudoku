@@ -66,7 +66,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	/// <seealso cref="Count"/>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	public readonly Count Length
+	public readonly int Length
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _length;

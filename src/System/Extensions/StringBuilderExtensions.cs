@@ -15,7 +15,7 @@ public static class StringBuilderExtensions
 	/// <param name="startIndex">The start index.</param>
 	/// <returns>The reference of the current instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static StringBuilder RemoveFrom(this StringBuilder @this, Offset startIndex) => @this.Remove(startIndex, @this.Length - startIndex);
+	public static StringBuilder RemoveFrom(this StringBuilder @this, int startIndex) => @this.Remove(startIndex, @this.Length - startIndex);
 
 	/// <summary>
 	/// Remove all characters behind the character whose index is specified.

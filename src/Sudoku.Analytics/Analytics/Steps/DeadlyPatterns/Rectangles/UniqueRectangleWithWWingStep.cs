@@ -35,7 +35,7 @@ public sealed partial class UniqueRectangleWithWWingStep(
 	[DataMember] Digit wDigit,
 	[DataMember] scoped ref readonly CellMap connectors,
 	[DataMember] scoped ref readonly CellMap endCells,
-	Offset absoluteOffset
+	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

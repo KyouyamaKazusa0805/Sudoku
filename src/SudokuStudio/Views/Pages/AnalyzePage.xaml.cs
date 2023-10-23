@@ -51,8 +51,8 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("IsGathererLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
 [DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is launched.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<Offset>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"global::Sudoku.Rendering.IRenderable.Views\"/> displayed.")]
-[DependencyProperty<Offset>("SelectedColorIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected color index.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"global::Sudoku.Rendering.IRenderable.Views\"/> displayed.")]
+[DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected color index.")]
 [DependencyProperty<string>("BabaGroupNameInput", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
 [DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
 [DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = Accessibility.Internal, DocSummary = "Indicates the link type.")]
@@ -702,7 +702,7 @@ public sealed partial class AnalyzePage : Page
 	/// Skips to the specified index of the view.
 	/// </summary>
 	/// <param name="viewIndex">The view index.</param>
-	private void SkipToSpecifiedViewIndex(Offset viewIndex)
+	private void SkipToSpecifiedViewIndex(int viewIndex)
 	{
 		if (VisualUnit is not { Views.Length: var length } || length <= viewIndex)
 		{
@@ -839,7 +839,7 @@ public sealed partial class AnalyzePage : Page
 		return true;
 	}
 
-	private bool CheckChuteNode(Offset index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	private bool CheckChuteNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		switch (e)
 		{
@@ -942,7 +942,7 @@ public sealed partial class AnalyzePage : Page
 		return true;
 	}
 
-	private bool CheckBabaGroupingNode(Offset index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		TextBlock wrongHintControl() => ((Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
 		switch (BabaGroupNameInput, e, view)
@@ -1017,7 +1017,7 @@ public sealed partial class AnalyzePage : Page
 	/// <param name="page">The triggering page.</param>
 	/// <param name="value">The index value set.</param>
 	/// <seealso cref="CurrentViewIndex"/>
-	private static void ChangeCurrentViewIndex(AnalyzePage page, Offset value)
+	private static void ChangeCurrentViewIndex(AnalyzePage page, int value)
 	{
 		var visualUnit = page.VisualUnit;
 
@@ -1038,7 +1038,7 @@ public sealed partial class AnalyzePage : Page
 	[Callback]
 	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (AnalyzePage page, { NewValue: Offset value }))
+		if ((d, e) is not (AnalyzePage page, { NewValue: int value }))
 		{
 			return;
 		}
@@ -1296,7 +1296,7 @@ public sealed partial class AnalyzePage : Page
 
 	private void CopyKindButton_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: Offset rawFormatFlag })
+		if (sender is not MenuFlyoutItem { Tag: int rawFormatFlag })
 		{
 			return;
 		}

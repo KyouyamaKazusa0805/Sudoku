@@ -5,12 +5,12 @@ using SudokuStudio.Rendering;
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
-/// Defines a converter that converts an <see cref="Offset"/> value into a <see cref="EliminationDisplayMode"/> field.
+/// Defines a converter that converts an <see cref="int"/> value into a <see cref="EliminationDisplayMode"/> field.
 /// </summary>
 public sealed class Int32ToEliminationDisplayModeConverter : IValueConverter
 {
 	/// <inheritdoc/>
-	public object Convert(object value, Type targetType, object parameter, string language) => (EliminationDisplayMode)(Offset)value;
+	public object Convert(object value, Type targetType, object parameter, string language) => (EliminationDisplayMode)(int)value;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

@@ -55,7 +55,7 @@ internal readonly struct Range(Index start, Index end) : IEquatable<Range>
 	/// We validate the range is inside the length scope though.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public (int Offset, int Length) GetOffsetAndLength(int length)
+	public (int Count, int Length) GetOffsetAndLength(int length)
 	{
 		var startIndex = Start;
 		var start = startIndex.IsFromEnd ? length - startIndex.Value : startIndex.Value;

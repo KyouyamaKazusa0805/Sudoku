@@ -17,12 +17,12 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// The buffer length of a solution puzzle.
 	/// </summary>
-	private const Count BufferLength = 82;
+	private const int BufferLength = 82;
 
 	/// <summary>
 	/// All pencil marks set - 27 bits per band.
 	/// </summary>
-	private const Offset BitSet27 = 0x7FFFFFF;
+	private const int BitSet27 = 0x7FFFFFF;
 
 
 #pragma warning disable format
@@ -406,7 +406,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(char* puzzle, char* solution, Count limit)
+	public long Solve(char* puzzle, char* solution, int limit)
 	{
 		ArgumentNullException.ThrowIfNull(puzzle);
 
@@ -429,7 +429,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(string puzzle, char* solution, Count limit)
+	public long Solve(string puzzle, char* solution, int limit)
 	{
 		ClearStack();
 
@@ -455,7 +455,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="limit">The limit.</param>
 	/// <returns>The number of all solutions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(string puzzle, out string solution, Count limit)
+	public long Solve(string puzzle, out string solution, int limit)
 	{
 		ClearStack();
 
@@ -1083,7 +1083,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
-	private long InternalSolve(char* puzzle, char* solutionPtr, Count limit)
+	private long InternalSolve(char* puzzle, char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
 		_limitSolutions = limit;
@@ -1318,7 +1318,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <see cref="char"/>[], they ends with the terminator symbol <c>'\0'</c>.
 	/// However, C# not.
 	/// </remarks>
-	private static Count StringLengthOf(char* ptr)
+	private static int StringLengthOf(char* ptr)
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 

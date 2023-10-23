@@ -589,7 +589,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		scoped ref CellMap loopMap,
 		HashSet<Pattern> result,
 		Mask extraDigits = Grid.MaxCandidatesMask,
-		Count allowedEx = 2,
+		int allowedEx = 2,
 		HouseType lastHouseType = unchecked((HouseType)(-1))
 	)
 	{

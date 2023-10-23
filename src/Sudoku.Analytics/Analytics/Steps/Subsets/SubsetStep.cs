@@ -31,5 +31,5 @@ public abstract partial class SubsetStep(
 	/// Indicates the number of cells used.
 	/// Due to the technique logic, you can also treat the result value of this property as the number of digits used.
 	/// </summary>
-	public Count Size => PopCount((uint)DigitsMask);
+	public int Size => PopCount((uint)DigitsMask);
 }

@@ -30,7 +30,7 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	scoped ref readonly CellMap cells,
 	[DataMember] scoped ref readonly CellMap guardianCells,
 	[DataMember] bool isIncomplete,
-	Offset absoluteOffset
+	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

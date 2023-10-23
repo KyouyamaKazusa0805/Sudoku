@@ -11,7 +11,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class TechniqueConversion
 {
-	public static Offset GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
+	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
 
 	public static string GetStringResourceViaFeature(TechniqueFeature feature)
 		=> feature switch

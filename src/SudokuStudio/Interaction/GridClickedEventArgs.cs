@@ -29,7 +29,7 @@ public sealed partial class GridClickedEventArgs([DataMember] MouseButton mouseB
 	/// <summary>
 	/// Indicates the chutes the current cell lines in.
 	/// </summary>
-	public (Offset Megarow, Offset Megacolumn) Chutes => GetChute(Candidate);
+	public (int Megarow, int Megacolumn) Chutes => GetChute(Candidate);
 
 
 	/// <summary>
@@ -54,7 +54,7 @@ public sealed partial class GridClickedEventArgs([DataMember] MouseButton mouseB
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
 	/// <returns>A pair of two values indicating chute indices in a mega-row and mega-column.</returns>
-	public static (Offset Megarow, Offset Megacolumn) GetChute(Candidate candidate)
+	public static (int Megarow, int Megacolumn) GetChute(Candidate candidate)
 	{
 		var cell = candidate / 9;
 		return ((cell.ToHouseIndex(HouseType.Row) - 9) / 3, (cell.ToHouseIndex(HouseType.Column) - 18) / 3);

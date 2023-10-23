@@ -79,7 +79,7 @@ public sealed class BacktrackingSolver : ISolver
 		}
 
 
-		static void solve(scoped ref Count solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, Count finishedCellsCount)
+		static void solve(scoped ref int solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{

@@ -35,11 +35,11 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 	/// Indicates the number of values stored in <see cref="Values"/>, i.e. the shorthand of expression <c>Values.Count</c>.
 	/// </summary>
 	/// <seealso cref="Values"/>
-	public Count Count => Values.Count;
+	public int Count => Values.Count;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.this[Offset]"/>
-	public TElement this[Offset index] => Values[index];
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.this[int]"/>
+	public TElement this[int index] => Values[index];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

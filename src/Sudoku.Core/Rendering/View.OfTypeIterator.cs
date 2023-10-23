@@ -15,7 +15,7 @@ partial class View
 		/// <summary>
 		/// The total number of elements.
 		/// </summary>
-		private readonly Count _count = view.Count;
+		private readonly int _count = view.Count;
 
 		/// <summary>
 		/// The internal enumerator.

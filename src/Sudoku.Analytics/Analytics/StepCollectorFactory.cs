@@ -14,7 +14,7 @@ public static class StepCollectorFactory
 	/// <param name="this">The collector instance.</param>
 	/// <param name="count">The number of maximum value.</param>
 	/// <returns>The reference same as <see cref="StepCollector"/>.</returns>
-	public static StepCollector WithMaxSteps(this StepCollector @this, Count count)
+	public static StepCollector WithMaxSteps(this StepCollector @this, int count)
 	{
 		@this.MaxStepsGathered = count;
 		return @this;

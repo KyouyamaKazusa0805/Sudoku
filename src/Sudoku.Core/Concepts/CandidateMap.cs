@@ -106,7 +106,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public readonly Count Count
+	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count;
@@ -173,7 +173,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	readonly Count IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
+	readonly int IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
 	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate>.Offsets => Offsets;
@@ -219,7 +219,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[IndexerName("CandidateIndex")]
-	public readonly Candidate this[Offset index]
+	public readonly Candidate this[int index]
 	{
 		get
 		{
@@ -243,7 +243,7 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(Candidate* arr, Count length)
+	public readonly unsafe void CopyTo(Candidate* arr, int length)
 	{
 		if (length < 729)
 		{
@@ -296,11 +296,11 @@ public partial struct CandidateMap :
 	public readonly ReadOnlySpan<Candidate>.Enumerator GetEnumerator() => ((ReadOnlySpan<Candidate>)Offsets).GetEnumerator();
 
 	/// <inheritdoc/>
-	public readonly CandidateMap Slice(Offset start, Count count)
+	public readonly CandidateMap Slice(int start, int count)
 	{
 		var result = Empty;
 		var offsets = Offsets;
-		for (Offset i = start, end = start + count; i < end; i++)
+		for (int i = start, end = start + count; i < end; i++)
 		{
 			result.Add(offsets[i]);
 		}
@@ -310,7 +310,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe CandidateMap[] GetSubsets(Count subsetSize)
+	public readonly unsafe CandidateMap[] GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
@@ -323,7 +323,7 @@ public partial struct CandidateMap :
 		}
 
 		var n = _count;
-		var buffer = stackalloc Offset[subsetSize];
+		var buffer = stackalloc int[subsetSize];
 		if (n <= 30 && subsetSize <= 30)
 		{
 			// Optimization: Use table to get the total number of result elements.
@@ -333,7 +333,7 @@ public partial struct CandidateMap :
 			return result;
 
 
-			void enumerateWithLimit(Count size, Offset last, Offset index, Candidate[] offsets)
+			void enumerateWithLimit(int size, int last, int index, Candidate[] offsets)
 			{
 				for (var i = last; i >= index; i--)
 				{
@@ -366,7 +366,7 @@ public partial struct CandidateMap :
 			return [.. result];
 
 
-			void enumerateWithoutLimit(Count size, Offset last, Offset index, Candidate[] offsets)
+			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
 			{
 				for (var i = last; i >= index; i--)
 				{
@@ -395,7 +395,7 @@ public partial struct CandidateMap :
 	public readonly CandidateMap[] GetAllSubsets() => GetAllSubsets(_count);
 
 	/// <inheritdoc/>
-	public readonly CandidateMap[] GetAllSubsets(Count limitSubsetSize)
+	public readonly CandidateMap[] GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{

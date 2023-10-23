@@ -26,7 +26,7 @@ public sealed class HiddenUniqueRectangleStep(
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
-	Offset absoluteOffset
+	int absoluteOffset
 ) : UniqueRectangleWithConjugatePairStep(
 	conclusions,
 	views,

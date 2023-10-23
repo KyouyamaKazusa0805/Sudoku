@@ -129,7 +129,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 				new() { Content = GetString("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
 				new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.All }
 			],
-			SelectedIndex = (Offset)((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern
+			SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern
 		};
 
 	private static TechniqueSelector TechniqueMustIncludedControlCreator()

@@ -42,7 +42,7 @@ public static class MemberInfoExtensions
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Offset p(string s) => s.IndexOf('`');
+		static int p(string s) => s.IndexOf('`');
 	}
 
 	/// <summary>
@@ -68,7 +68,7 @@ public static class MemberInfoExtensions
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Offset p(string s) => s.IndexOf('`');
+		static int p(string s) => s.IndexOf('`');
 	}
 
 	/// <summary>

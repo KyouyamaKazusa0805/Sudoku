@@ -14,12 +14,12 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <summary>
 	/// Indicates the block factor.
 	/// </summary>
-	private static readonly Offset[] BlockFactor = [0, 6, 54, 60, 3, 27, 33, 57, 30];
+	private static readonly int[] BlockFactor = [0, 6, 54, 60, 3, 27, 33, 57, 30];
 
 	/// <summary>
 	/// Indicates the swapping factor.
 	/// </summary>
-	private static readonly Offset[][] SwappingFactor = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+	private static readonly int[][] SwappingFactor = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 
 	/// <summary>
@@ -134,7 +134,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	{
 		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
-			var n = (Offset)(_rng.NextDouble() * 6);
+			var n = (int)(_rng.NextDouble() * 6);
 			for (var j = 0; j < 3; j++)
 			{
 				for (var k = 0; k < 3; k++)
@@ -154,7 +154,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	private void RecreatePattern(Cell* pattern)
 	{
 #if true
-		scoped var target = (ReadOnlySpan<(Offset, Offset, Offset)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
+		scoped var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
 		for (var index = 0; index < 4; index++)
 		{
 			var (initial, boundary, delta) = target[index];

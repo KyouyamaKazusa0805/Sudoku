@@ -7,7 +7,7 @@ namespace Sudoku.Runtime.MaskServices;
 /// </summary>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct MaskCombinationEnumerator(Count bitCount, Count oneCount)
+public ref struct MaskCombinationEnumerator(int bitCount, int oneCount)
 {
 	/// <summary>
 	/// The mask.

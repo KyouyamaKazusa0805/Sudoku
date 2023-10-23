@@ -65,15 +65,15 @@ public sealed partial class RegionForcingChainsStep(
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOnPotentials(Offset viewIndex)
+	protected override CandidateMap GetOnPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), true, true);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOffPotentials(Offset viewIndex)
+	protected override CandidateMap GetOffPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOffPotentials(viewIndex) : GetColorCandidates(GetPotentialAt(viewIndex), false, false);
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(Offset viewIndex)
+	protected override List<LinkViewNode> GetLinks(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(GetPotentialAt(viewIndex));
 
 	/// <summary>
@@ -82,5 +82,5 @@ public sealed partial class RegionForcingChainsStep(
 	/// <param name="viewIndex">The view index.</param>
 	/// <returns>The view index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private ChainNode GetPotentialAt(Offset viewIndex) => Chains[viewIndex].Potential;
+	private ChainNode GetPotentialAt(int viewIndex) => Chains[viewIndex].Potential;
 }

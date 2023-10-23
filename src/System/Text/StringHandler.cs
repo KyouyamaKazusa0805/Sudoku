@@ -89,7 +89,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	/// <seealso cref="string.Format(string, object?[])"/>
 #endif
-	private const Count GuessedLengthPerHole =
+	private const int GuessedLengthPerHole =
 #if USE_NEWER_CONSTANT_VALUES
 		8;
 #else
@@ -103,19 +103,19 @@ public unsafe ref partial struct StringHandler
 	/// Same as stack-allocation size used today by <see cref="string.Format(string, object?[])"/>.
 	/// </remarks>
 	/// <seealso cref="string.Format(string, object?[])"/>
-	private const Count MinimumArrayPoolLength = 256;
+	private const int MinimumArrayPoolLength = 256;
 
 
 #if !DISCARD_INTERPOLATION_INFO
 	/// <summary>
 	/// The number of constant characters outside of interpolation expressions in the interpolated string.
 	/// </summary>
-	private readonly Count _literalLength = 0;
+	private readonly int _literalLength = 0;
 
 	/// <summary>
 	/// The number of interpolation expressions in the interpolated string.
 	/// </summary>
-	private readonly Count _holeCount = 0;
+	private readonly int _holeCount = 0;
 #endif
 
 	/// <summary>
@@ -148,7 +148,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="initialCapacity">The number of constant characters as the default memory to initialize.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(Count initialCapacity) => _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
+	public StringHandler(int initialCapacity) => _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(initialCapacity);
 
 	/// <summary>
 	/// Creates a handler used to translate an interpolated string into a <see cref="string"/>.
@@ -163,10 +163,10 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(Count literalLength, Count holeCount)
+	public StringHandler(int literalLength, int holeCount)
 		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
-			(Count)RoundUpToPowerOf2((uint)(literalLength + holeCount * GuessedLengthPerHole))
+			(int)RoundUpToPowerOf2((uint)(literalLength + holeCount * GuessedLengthPerHole))
 #else
 			Math.Max(MinimumArrayPoolLength, literalLength + holeCount * GuessedLengthPerHole)
 #endif
@@ -189,7 +189,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StringHandler(Count literalLength, Count holeCount, Span<char> initialBuffer)
+	public StringHandler(int literalLength, int holeCount, Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO
 		(_literalLength, _holeCount) = (literalLength, holeCount);
@@ -220,7 +220,7 @@ public unsafe ref partial struct StringHandler
 	/// <summary>
 	/// Position at which to write the next character.
 	/// </summary>
-	public Count Length { get; private set; } = 0;
+	public int Length { get; private set; } = 0;
 
 	/// <summary>
 	/// Gets a span of the written characters thus far.
@@ -236,7 +236,7 @@ public unsafe ref partial struct StringHandler
 	/// <remarks>
 	/// <include file='../../global-doc-comments.xml' path='g/csharp7/feature[@name="ref-returns"]/target[@name="indexer-return"]' />
 	/// </remarks>
-	public readonly ref char this[Offset index] => ref _chars[index];
+	public readonly ref char this[int index] => ref _chars[index];
 
 
 	/// <summary>
@@ -371,9 +371,9 @@ public unsafe ref partial struct StringHandler
 		}
 	}
 
-	/// <inheritdoc cref="AppendFormatted(object?, Offset, string?)"/>
+	/// <inheritdoc cref="AppendFormatted(object?, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(object? value, Offset alignment = 0, string? format = null) => AppendFormatted<object?>(value, alignment, format);
+	public void Append(object? value, int alignment = 0, string? format = null) => AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
 	/// Append a character at the tail of the collection.
@@ -401,7 +401,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="c">The character.</param>
 	/// <param name="count">The number of the character you want to append.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(char c, Count count)
+	public void Append(char c, int count)
 	{
 		if (Length > _chars.Length - count)
 		{
@@ -425,7 +425,7 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="value"/> is <see langword="null"/>.
 	/// </exception>
-	public void Append(char* value, Count length)
+	public void Append(char* value, int length)
 	{
 		ArgumentNullException.ThrowIfNull(value);
 
@@ -448,33 +448,33 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(string value) => AppendFormatted<string>(value);
 
-	/// <inheritdoc cref="AppendFormatted(string?, Offset, string?)"/>
+	/// <inheritdoc cref="AppendFormatted(string?, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(string value, Offset alignment, string? format = null) => AppendFormatted<string>(value, alignment, format);
+	public void Append(string value, int alignment, string? format = null) => AppendFormatted<string>(value, alignment, format);
 
 	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append(scoped ReadOnlySpan<char> value) => AppendFormatted(value);
 
-	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char}, Offset, string?)"/>
+	/// <inheritdoc cref="AppendFormatted(ReadOnlySpan{char}, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append(scoped ReadOnlySpan<char> value, Offset alignment, string? format = null) => AppendFormatted(value, alignment, format);
+	public void Append(scoped ReadOnlySpan<char> value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
 
 	/// <inheritdoc cref="AppendFormatted{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append<T>(T value) => AppendFormatted(value);
 
-	/// <inheritdoc cref="AppendFormatted{T}(T, Offset)"/>
+	/// <inheritdoc cref="AppendFormatted{T}(T, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append<T>(T value, Offset alignment) => AppendFormatted(value, alignment);
+	public void Append<T>(T value, int alignment) => AppendFormatted(value, alignment);
 
 	/// <inheritdoc cref="AppendFormatted{T}(T, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Append<T>(T value, string? format) => AppendFormatted(value, format);
 
-	/// <inheritdoc cref="AppendFormatted{T}(T, Offset, string?)"/>
+	/// <inheritdoc cref="AppendFormatted{T}(T, int, string?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Append<T>(T value, Offset alignment, string? format = null) => AppendFormatted(value, alignment, format);
+	public void Append<T>(T value, int alignment, string? format = null) => AppendFormatted(value, alignment, format);
 
 	/// <summary>
 	/// Append a new line string <see cref="Environment.NewLine"/>.
@@ -625,7 +625,7 @@ public unsafe ref partial struct StringHandler
 	/// Throws when the argument <paramref name="list"/> or <paramref name="converter"/>
 	/// is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<T>(T* list, Count length, delegate*<T, string?> converter, string separator)
+	public void AppendRangeWithSeparatorRef<T>(T* list, int length, delegate*<T, string?> converter, string separator)
 	{
 		ArgumentNullException.ThrowIfNull(list);
 		ArgumentNullException.ThrowIfNull(converter);
@@ -654,7 +654,7 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<T>(T* list, Count length, Func<T, string?> converter, string separator)
+	public void AppendRangeWithSeparatorRef<T>(T* list, int length, Func<T, string?> converter, string separator)
 	{
 		ArgumentNullException.ThrowIfNull(list);
 
@@ -687,7 +687,7 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<T>(
 		scoped ref readonly T list,
-		Count length,
+		int length,
 		delegate*<ref readonly T, string?> converter,
 		string separator
 	)
@@ -719,7 +719,7 @@ public unsafe ref partial struct StringHandler
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="list"/> is <see langword="null"/>.
 	/// </exception>
-	public void AppendRangeWithSeparatorRef<T>(scoped ref readonly T list, Count length, StringHandlerRefAppender<T> converter, string separator)
+	public void AppendRangeWithSeparatorRef<T>(scoped ref readonly T list, int length, StringHandlerRefAppender<T> converter, string separator)
 	{
 		ArgumentNullRefException.ThrowIfNullRef(in list);
 
@@ -759,7 +759,7 @@ public unsafe ref partial struct StringHandler
 		{
 			case ISpanFormattable spanFormattable:
 			{
-				Count charsWritten;
+				int charsWritten;
 
 				// Constrained call avoiding boxing for value types.
 				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
@@ -804,7 +804,7 @@ public unsafe ref partial struct StringHandler
 		{
 			case ISpanFormattable spanFormattable:
 			{
-				Count charsWritten;
+				int charsWritten;
 
 				// Constrained call avoiding boxing for value types.
 				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
@@ -846,7 +846,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, Offset alignment)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, int alignment)
 	{
 		var startingPos = Length;
 		AppendFormatted(value);
@@ -866,7 +866,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, Offset alignment, string? format)
+	public void AppendLargeObjectFormatted<T>(scoped ref readonly T value, int alignment, string? format)
 	{
 		var startingPos = Length;
 		AppendFormatted(value, format);
@@ -897,7 +897,7 @@ public unsafe ref partial struct StringHandler
 	/// </list>
 	/// It exists purely to help make cases from (b) compile. Just delegate to the <c>T</c>-based implementation.
 	/// </remarks>
-	public void AppendFormatted(object? value, Offset alignment = 0, string? format = null) => AppendFormatted<object?>(value, alignment, format);
+	public void AppendFormatted(object? value, int alignment = 0, string? format = null) => AppendFormatted<object?>(value, alignment, format);
 
 	/// <summary>
 	/// Writes the specified value to the handler.
@@ -932,7 +932,7 @@ public unsafe ref partial struct StringHandler
 	/// as <see cref="string"/> is implicitly convertible to both.
 	/// Just delegate to the <c>T</c>-based implementation.
 	/// </remarks>
-	public void AppendFormatted(string? value, Offset alignment = 0, string? format = null) => AppendFormatted<string?>(value, alignment, format);
+	public void AppendFormatted(string? value, int alignment = 0, string? format = null) => AppendFormatted<string?>(value, alignment, format);
 
 	/// <summary>
 	/// Writes the specified character span to the handler.
@@ -960,7 +960,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <param name="format">The format string.</param>
-	public void AppendFormatted(scoped ReadOnlySpan<char> value, Offset alignment = 0, string? format = null)
+	public void AppendFormatted(scoped ReadOnlySpan<char> value, int alignment = 0, string? format = null)
 	{
 		(var leftAlign, alignment) = alignment < 0 ? (true, -alignment) : (false, alignment);
 
@@ -1019,7 +1019,7 @@ public unsafe ref partial struct StringHandler
 		{
 			case ISpanFormattable spanFormattable:
 			{
-				Count charsWritten;
+				int charsWritten;
 
 				// Constrained call avoiding boxing for value types.
 				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, null, null))
@@ -1064,7 +1064,7 @@ public unsafe ref partial struct StringHandler
 		{
 			case ISpanFormattable spanFormattable:
 			{
-				Count charsWritten;
+				int charsWritten;
 
 				// Constrained call avoiding boxing for value types.
 				while (!spanFormattable.TryFormat(_chars[Length..], out charsWritten, format, null))
@@ -1106,7 +1106,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendFormatted<T>(T value, Offset alignment)
+	public void AppendFormatted<T>(T value, int alignment)
 	{
 		var startingPos = Length;
 		AppendFormatted(value);
@@ -1126,7 +1126,7 @@ public unsafe ref partial struct StringHandler
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
 	/// <typeparam name="T">The type of the value to write.</typeparam>
-	public void AppendFormatted<T>(T value, Offset alignment, string? format)
+	public void AppendFormatted<T>(T value, int alignment, string? format)
 	{
 		var startingPos = Length;
 		AppendFormatted(value, format);
@@ -1157,7 +1157,7 @@ public unsafe ref partial struct StringHandler
 	/// <param name="index">The index.</param>
 	/// <param name="value">The character you want to insert into the collection.</param>
 	/// <param name="count">The number.</param>
-	public void Insert(Offset index, char value, Count count)
+	public void Insert(int index, char value, int count)
 	{
 		if (Length > _chars.Length - count)
 		{
@@ -1174,7 +1174,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="index">The index you want to insert.</param>
 	/// <param name="s">The string you want to insert.</param>
-	public void Insert(Offset index, string s)
+	public void Insert(int index, string s)
 	{
 		var count = s.Length;
 		if (Length > _chars.Length - count)
@@ -1195,7 +1195,7 @@ public unsafe ref partial struct StringHandler
 	/// <remarks>
 	/// This method will be costly (move a lot of elements), so you shouldn't call this method usually.
 	/// </remarks>
-	public void Remove(Offset startIndex, Count length)
+	public void Remove(int startIndex, int length)
 	{
 		fixed (char* pThis = _chars)
 		{
@@ -1236,7 +1236,7 @@ public unsafe ref partial struct StringHandler
 	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void RemoveFromEnd(Count length) => Length -= length;
+	public void RemoveFromEnd(int length) => Length -= length;
 
 	/// <summary>
 	/// Gets the built <see cref="string"/> and clears the handler.
@@ -1321,7 +1321,7 @@ public unsafe ref partial struct StringHandler
 	/// Non-zero minimum number of characters that should be written for this value.
 	/// If the value is negative, it indicates left-aligned and the required minimum is the absolute value.
 	/// </param>
-	private void AppendOrInsertAlignmentIfNeeded(Offset startingPos, Offset alignment)
+	private void AppendOrInsertAlignmentIfNeeded(int startingPos, int alignment)
 	{
 		Debug.Assert(startingPos >= 0 && startingPos <= Length);
 		Debug.Assert(alignment != 0);
@@ -1351,7 +1351,7 @@ public unsafe ref partial struct StringHandler
 	/// beyond <see cref="Length"/>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void EnsureCapacityForAdditionalChars(Count additionalChars)
+	private void EnsureCapacityForAdditionalChars(int additionalChars)
 	{
 		if (_chars.Length - Length < additionalChars)
 		{
@@ -1397,7 +1397,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	/// <seealso cref="GrowCore(uint)"/>
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	private void Grow(Count additionalChars)
+	private void Grow(int additionalChars)
 	{
 		Debug.Assert(additionalChars > _chars.Length - Length);
 
@@ -1427,7 +1427,7 @@ public unsafe ref partial struct StringHandler
 	/// beyond the max allowed length). We also want to avoid asking for small arrays,
 	/// to reduce the number of times we need to grow, and since we're working with unsigned integers
 	/// that could technically overflow if someone tried to, for example, append a huge string
-	/// to a huge string, we also clamp to <see cref="Count.MaxValue"/>. Even if the array creation
+	/// to a huge string, we also clamp to <see cref="int.MaxValue"/>. Even if the array creation
 	/// fails in such a case, we may later fail in <see cref="ToStringAndClear"/>.
 	/// </para>
 	/// </remarks>
@@ -1435,7 +1435,7 @@ public unsafe ref partial struct StringHandler
 	private void GrowCore(uint requiredMinCapacity)
 	{
 		var newCapacity = Math.Max(requiredMinCapacity, Math.Min((uint)_chars.Length * 2, 0x3FFFFFDF)); // 0x3FFFFFDF: string.MaxLength
-		var arraySize = (Count)Math.Clamp(newCapacity, MinimumArrayPoolLength, Count.MaxValue);
+		var arraySize = (int)Math.Clamp(newCapacity, MinimumArrayPoolLength, int.MaxValue);
 
 		var newArray = ArrayPool<char>.Shared.Rent(arraySize);
 		_chars[..Length].CopyTo(newArray);
@@ -1472,9 +1472,9 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	/// <remarks>
 	/// You can put this method as the argument into the method invocation
-	/// <see cref="AppendRangeWithSeparatorRef{T}(T*, Count, Func{T, string?}, string)"/>.
+	/// <see cref="AppendRangeWithSeparatorRef{T}(T*, int, Func{T, string?}, string)"/>.
 	/// </remarks>
-	/// <seealso cref="AppendRangeWithSeparatorRef{T}(T*, Count, Func{T, string?}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorRef{T}(T*, int, Func{T, string?}, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
@@ -1492,9 +1492,9 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	/// <remarks>
 	/// You can put this method as the argument into the method invocation
-	/// <see cref="AppendRangeWithSeparatorRef{T}(ref readonly T, Count, StringHandlerRefAppender{T}, string)"/>.
+	/// <see cref="AppendRangeWithSeparatorRef{T}(ref readonly T, int, StringHandlerRefAppender{T}, string)"/>.
 	/// </remarks>
-	/// <seealso cref="AppendRangeWithSeparatorRef{T}(ref readonly T, Count, StringHandlerRefAppender{T}, string)"/>
+	/// <seealso cref="AppendRangeWithSeparatorRef{T}(ref readonly T, int, StringHandlerRefAppender{T}, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(scoped ref readonly T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");

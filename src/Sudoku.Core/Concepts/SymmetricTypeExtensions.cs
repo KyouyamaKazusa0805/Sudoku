@@ -18,7 +18,7 @@ public static class SymmetricTypeExtensions
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Count GetAxisDimension(this SymmetricType @this)
+	public static int GetAxisDimension(this SymmetricType @this)
 		=> @this switch
 		{
 			SymmetricType.None => -1,

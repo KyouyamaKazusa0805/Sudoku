@@ -43,7 +43,7 @@ internal static class IdentifierConversion
 		};
 
 
-		bool getValueById(Offset idValue, out Color result)
+		bool getValueById(int idValue, out Color result)
 		{
 			var palette = uiPref.UserDefinedColorPalette;
 			return (result = palette.Count > idValue ? palette[idValue] : Colors.Transparent) != Colors.Transparent;

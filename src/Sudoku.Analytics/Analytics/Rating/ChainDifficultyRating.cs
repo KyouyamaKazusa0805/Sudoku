@@ -10,7 +10,7 @@ public static class ChainDifficultyRating
 	/// </summary>
 	/// <param name="length">The length.</param>
 	/// <returns>The difficulty.</returns>
-	public static decimal GetExtraDifficultyByLength(Count length)
+	public static decimal GetExtraDifficultyByLength(int length)
 	{
 		var result = 0M;
 		for (var (isOdd, ceil) = (false, 4); length > ceil; isOdd = !isOdd)

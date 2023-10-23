@@ -93,15 +93,15 @@ public sealed partial class BinaryForcingChainsStep(
 
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOnPotentials(Offset viewIndex)
+	protected override CandidateMap GetOnPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOnPotentials(viewIndex) : GetColorCandidates(viewIndex, true);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOffPotentials(Offset viewIndex)
+	protected override CandidateMap GetOffPotentials(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedOffPotentials(viewIndex) : GetColorCandidates(viewIndex, false);
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(Offset viewIndex)
+	protected override List<LinkViewNode> GetLinks(int viewIndex)
 		=> viewIndex >= FlatViewsCount ? GetNestedLinks(viewIndex) : GetLinks(viewIndex == 0 ? FromOnPotential : FromOffPotential);
 
 	/// <summary>
@@ -111,6 +111,6 @@ public sealed partial class BinaryForcingChainsStep(
 	/// <param name="state">The state of the candidate you want to color.</param>
 	/// <returns>All colored candidates with a same state.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private CandidateMap GetColorCandidates(Offset viewIndex, bool state)
+	private CandidateMap GetColorCandidates(int viewIndex, bool state)
 		=> GetColorCandidates(viewIndex == 0 ? FromOnPotential : FromOffPotential, state, state);
 }

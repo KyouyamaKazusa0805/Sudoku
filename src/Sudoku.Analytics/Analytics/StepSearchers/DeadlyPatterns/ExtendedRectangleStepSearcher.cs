@@ -49,14 +49,14 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, Count Size)> RawPatternData;
+	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, int Size)> RawPatternData;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
 #pragma warning disable format
-		var houses = (Offset[][])[
+		var houses = (int[][])[
 			[9, 10], [9, 11], [10, 11],
 			[12, 13], [12, 14], [13, 14],
 			[15, 16], [15, 17], [16, 17],
@@ -64,7 +64,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[21, 22], [21, 23], [22, 23],
 			[24, 25], [24, 26], [25, 26]
 		];
-		var fitTableRow = (Offset[][])[
+		var fitTableRow = (int[][])[
 			[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8],
 			[1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
 			[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8],
@@ -72,7 +72,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[4, 6], [4, 7], [4, 8],
 			[5, 6], [5, 7], [5, 8]
 		];
-		var fitTableColumn = (Offset[][])[
+		var fitTableColumn = (int[][])[
 			[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72],
 			[9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
 			[18, 27], [18, 36], [18, 45], [18, 54], [18, 63], [18, 72],

@@ -22,7 +22,7 @@ public ref struct ArrayPairEnumerator<T, TFirst, TSecond>(T[] array) where T : n
 	/// <summary>
 	/// Indicates the index.
 	/// </summary>
-	private Offset _index = -2;
+	private int _index = -2;
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>

@@ -22,7 +22,7 @@ internal sealed partial class SummaryViewBindableSource(
 	[DataMember(Accessibility = "public required", SetterExpression = "set")] DifficultyLevel difficultyLevel,
 	[DataMember(Accessibility = "public required", SetterExpression = "set")] decimal totalDifficulty,
 	[DataMember(Accessibility = "public required", SetterExpression = "set")] decimal maximumDifficulty,
-	[DataMember(Accessibility = "public required", SetterExpression = "set")] Count countOfSteps
+	[DataMember(Accessibility = "public required", SetterExpression = "set")] int countOfSteps
 )
 {
 	/// <summary>

@@ -155,7 +155,7 @@ partial class GridImageGenerator
 		using var pg = new Pen(gridLineColor, gridLineWidth);
 		using var pb = new Pen(blockLineColor, blockLineWidth);
 
-		const Count length = PointCalculator.AnchorsCount + 1;
+		const int length = PointCalculator.AnchorsCount + 1;
 		for (var i = 0; i < length; i += PointCalculator.AnchorsCount / 9)
 		{
 			g.DrawLine(pg, pts[i, 0], pts[i, PointCalculator.AnchorsCount]);

@@ -72,11 +72,11 @@ public sealed partial class BidirectionalCycleStep(
 	}
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOnPotentials(Offset viewIndex) => GetColorCandidates(DestinationOn, true, false);
+	protected override CandidateMap GetOnPotentials(int viewIndex) => GetColorCandidates(DestinationOn, true, false);
 
 	/// <inheritdoc/>
-	protected override CandidateMap GetOffPotentials(Offset viewIndex) => GetColorCandidates(DestinationOn, false, true);
+	protected override CandidateMap GetOffPotentials(int viewIndex) => GetColorCandidates(DestinationOn, false, true);
 
 	/// <inheritdoc/>
-	protected override List<LinkViewNode> GetLinks(Offset viewIndex) => GetLinks(DestinationOn);
+	protected override List<LinkViewNode> GetLinks(int viewIndex) => GetLinks(DestinationOn);
 }

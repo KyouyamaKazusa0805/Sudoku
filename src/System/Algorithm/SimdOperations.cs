@@ -19,7 +19,7 @@ public static unsafe class SimdOperations
 	/// <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
 	/// Iterating over set bits quickly (SIMD edition)
 	/// </seealso>
-	public static Count IterateBits(long* array, Count length, Offset* outBuffer)
+	public static int IterateBits(long* array, int length, int* outBuffer)
 	{
 		var baseVector = Vector256.Create(-1); // _mm256_set1_epi32
 		var steppingVector = Vector256.Create(64); // _mm256_set1_epi32
@@ -46,7 +46,7 @@ public static unsafe class SimdOperations
 						continue;
 					}
 
-					fixed (Count* pByteA = Constants.BitPosTable[byteA], pByteB = Constants.BitPosTable[byteB])
+					fixed (int* pByteA = Constants.BitPosTable[byteA], pByteB = Constants.BitPosTable[byteB])
 					{
 						var vectorA = Vector256.Load(pByteA); // _mm256_load_si256
 						var vectorB = Vector256.Load(pByteB); // _mm256_load_si256
@@ -72,7 +72,7 @@ public static unsafe class SimdOperations
 			}
 		}
 
-		return (Offset)(outBuffer - initOut);
+		return (int)(outBuffer - initOut);
 	}
 }
 
@@ -82,7 +82,7 @@ file static class Constants
 	/// <summary>
 	/// The length table. Indicates how many bits are set in the specified integer.
 	/// </summary>
-	public static readonly Count[] LengthTable = [
+	public static readonly int[] LengthTable = [
 		0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4,
 		1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
 		1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5,
@@ -105,7 +105,7 @@ file static class Constants
 	/// The bit position table. In other words, <c>BitPosTable[n]</c> means the n-th integer's (i.e. <c>n</c>'s) set bit positions
 	/// represented as indices.
 	/// </summary>
-	public static readonly Count[][] BitPosTable = [
+	public static readonly int[][] BitPosTable = [
 		[0, 0, 0, 0, 0, 0, 0, 0],
 		[1, 0, 0, 0, 0, 0, 0, 0],
 		[2, 0, 0, 0, 0, 0, 0, 0],

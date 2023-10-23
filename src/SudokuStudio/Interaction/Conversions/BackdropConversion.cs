@@ -9,7 +9,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class BackdropConversion
 {
-	public static Offset GetSelectedIndex(ComboBox comboBox)
+	public static int GetSelectedIndex(ComboBox comboBox)
 	{
 		var backdropKind = ((App)Application.Current).Preference.UIPreferences.Backdrop;
 		var i = 0;

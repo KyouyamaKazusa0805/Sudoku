@@ -7,4 +7,4 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="capacity">The capacity.</param>
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public sealed class ChainNodeListWithHeadCandidate(Count capacity) : Dictionary<ChainNode, Candidate>(capacity);
+public sealed class ChainNodeListWithHeadCandidate(int capacity) : Dictionary<ChainNode, Candidate>(capacity);

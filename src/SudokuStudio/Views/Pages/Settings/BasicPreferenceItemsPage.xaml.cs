@@ -52,7 +52,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void ConceptNotationModeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: Offset rawValue } })
+		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int rawValue } })
 		{
 			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
 		}

@@ -10,7 +10,7 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class SelectedCellConversion
 {
-	public static Offset SelectedCellToGridRow_Block(Cell selectedCell)
+	public static int SelectedCellToGridRow_Block(Cell selectedCell)
 		=> selectedCell switch
 		{
 			-1 => 2,
@@ -22,7 +22,7 @@ internal static class SelectedCellConversion
 			}
 		};
 
-	public static Offset SelectedCellToGridColumn_Block(Cell selectedCell)
+	public static int SelectedCellToGridColumn_Block(Cell selectedCell)
 		=> selectedCell switch
 		{
 			-1 => 2,
@@ -34,10 +34,10 @@ internal static class SelectedCellConversion
 			}
 		};
 
-	public static Offset SelectedCellToGridRow_Row(Cell selectedCell)
+	public static int SelectedCellToGridRow_Row(Cell selectedCell)
 		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Row) - 9 + 2;
 
-	public static Offset SelectedCellToGridColumn_Column(Cell selectedCell)
+	public static int SelectedCellToGridColumn_Column(Cell selectedCell)
 		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Column) - 18 + 2;
 
 	public static Visibility SelectedCellToVisibility(Cell selectedCell, bool displayCursors)

@@ -34,7 +34,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	[DataMember] AlmostLockedSet almostLockedSet,
 	[DataMember] bool isIncomplete,
 	bool isAvoidable,
-	Offset absoluteOffset
+	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,

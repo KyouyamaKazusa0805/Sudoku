@@ -17,12 +17,12 @@ partial struct StringHandler
 		/// <summary>
 		/// Indicates the length.
 		/// </summary>
-		private readonly Count _length;
+		private readonly int _length;
 
 		/// <summary>
 		/// Indicates whether 
 		/// </summary>
-		private Offset _index;
+		private int _index;
 
 		/// <summary>
 		/// Indicates the pointer that points to the current character.
