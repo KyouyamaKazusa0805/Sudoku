@@ -143,7 +143,7 @@ public sealed class IttoryuPathFinder
 
 		void hiddenSingles(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
-			var candidatesMap = grid.CandidatesMap;
+			scoped var candidatesMap = grid.CandidatesMap;
 			for (var house = 0; house < 27; house++)
 			{
 				var houseCode = house.ToHouseType() switch

@@ -35,7 +35,7 @@ public static class IttoryuExtensions
 
 		// Try to replace digits.
 		var result = Grid.Empty;
-		var valuesMap = @this.ValuesMap;
+		scoped var valuesMap = @this.ValuesMap;
 		for (var digit = 0; digit < ittoryuPath.Digits.Length; digit++)
 		{
 			scoped ref readonly var valueMap = ref valuesMap[ittoryuPath.Digits[digit]];

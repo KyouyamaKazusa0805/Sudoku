@@ -432,7 +432,7 @@ public unsafe partial struct Grid :
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly CellMap[] CandidatesMap => GetMaps(&GridCellPredicates.CandidatesMap);
+	public readonly ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&GridCellPredicates.CandidatesMap);
 
 	/// <summary>
 	/// <para>
@@ -445,7 +445,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly CellMap[] DigitsMap => GetMaps(&GridCellPredicates.DigitsMap);
+	public readonly ReadOnlySpan<CellMap> DigitsMap => GetMaps(&GridCellPredicates.DigitsMap);
 
 	/// <summary>
 	/// <para>
@@ -458,7 +458,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly CellMap[] ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
+	public readonly ReadOnlySpan<CellMap> ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
 
 	/// <summary>
 	/// Indicates all possible candidates in the current grid.
@@ -485,12 +485,13 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
 	/// </summary>
-	public readonly Conjugate[] ConjugatePairs
+	public readonly ReadOnlySpan<Conjugate> ConjugatePairs
 	{
 		get
 		{
 			var conjugatePairs = new List<Conjugate>();
-			for (var (digit, candidatesMap) = (0, CandidatesMap); digit < 9; digit++)
+			scoped var candidatesMap = CandidatesMap;
+			for (var digit = 0; digit < 9; digit++)
 			{
 				scoped ref readonly var cellsMap = ref candidatesMap[digit];
 				foreach (var houseMap in HousesMap)
@@ -502,7 +503,7 @@ public unsafe partial struct Grid :
 				}
 			}
 
-			return [.. conjugatePairs];
+			return conjugatePairs.ToArray();
 		}
 	}
 

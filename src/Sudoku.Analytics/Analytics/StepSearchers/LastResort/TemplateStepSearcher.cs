@@ -30,7 +30,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Iterate on each digit.
-		var distributedMapsByDigit = Solution.ValuesMap;
+		scoped var distributedMapsByDigit = Solution.ValuesMap;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (!TemplateDeleteOnly)

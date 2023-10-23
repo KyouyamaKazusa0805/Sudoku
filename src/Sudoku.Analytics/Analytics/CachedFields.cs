@@ -95,9 +95,9 @@ public static class CachedFields
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;
-		CandidatesMap = g.CandidatesMap;
-		DigitsMap = g.DigitsMap;
-		ValuesMap = g.ValuesMap;
+		CandidatesMap = [.. g.CandidatesMap];
+		DigitsMap = [.. g.DigitsMap];
+		ValuesMap = [.. g.ValuesMap];
 		Solution = s;
 	}
 }

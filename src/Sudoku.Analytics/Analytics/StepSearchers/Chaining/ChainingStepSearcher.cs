@@ -133,7 +133,7 @@ public abstract class ChainingStepSearcher(
 		if (isX)
 		{
 			// Second rule: if there is only two positions for this potential, the other one gets on.
-			var candMaps = allowDynamic ? grid.CandidatesMap[digit] : CandidatesMap[digit];
+			scoped ref readonly var candMaps = ref allowDynamic ? ref grid.CandidatesMap[digit] : ref CandidatesMap[digit];
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
