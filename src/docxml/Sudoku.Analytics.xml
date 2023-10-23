@@ -13137,6 +13137,11 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>crosslineCells</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.IDoubleExocetStepBaseOverrides">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Adjacent Target)</b> technique.

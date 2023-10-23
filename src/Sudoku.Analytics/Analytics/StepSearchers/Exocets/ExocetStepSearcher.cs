@@ -976,15 +976,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var alreadyContain = false;
 				foreach (var s in context.Accumulator)
 				{
-					if (s is not (DoubleExocetBaseStep or DoubleExocetGeneralizedFishStep))
-					{
-						continue;
-					}
-
-					var d = (dynamic)s;
-					var a = (CellMap)d.BaseCells | (CellMap)d.BaseCellsTheOther | (CellMap)d.TargetCells | (CellMap)d.TargetCellsTheOther;
-					var b = baseCells | theOtherBaseCells | targetCells | theOtherTargetCells;
-					if (a == b)
+					if (s is IDoubleExocetStepBaseOverrides d
+						&& (d.BaseCells | d.BaseCellsTheOther | d.TargetCells | d.TargetCellsTheOther) is var a
+						&& (baseCells | theOtherBaseCells | targetCells | theOtherTargetCells) is var b
+						&& a == b)
 					{
 						alreadyContain = true;
 					}
