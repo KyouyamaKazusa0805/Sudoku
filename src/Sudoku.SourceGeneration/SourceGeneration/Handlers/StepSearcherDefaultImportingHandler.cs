@@ -32,10 +32,10 @@ internal static class StepSearcherDefaultImportingHandler
 		}
 
 		var runningAreaTypeSymbol = compilation.GetTypeByMetadataName(StepSearcherRunningAreaTypeName)!;
-		var runningAreasFields = new Dictionary<byte, string>();
+		var runningAreasFields = new Dictionary<int, string>();
 		foreach (var fieldSymbol in runningAreaTypeSymbol.GetMembers().OfType<IFieldSymbol>())
 		{
-			if (fieldSymbol is { ConstantValue: byte value, Name: var fieldName })
+			if (fieldSymbol is { ConstantValue: int value, Name: var fieldName })
 			{
 				runningAreasFields.Add(value, fieldName);
 			}
@@ -95,12 +95,12 @@ internal static class StepSearcherDefaultImportingHandler
 		foreach (var (_, baseType, priority, level, name, namedArguments, isPolymorphism) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
-			var nullableRunningArea = default(byte?);
+			var nullableRunningArea = default(int?);
 			if (namedArguments is not [])
 			{
 				foreach (var (k, v) in namedArguments)
 				{
-					if (k == AreasPropertyName && v is { Value: byte value })
+					if (k == AreasPropertyName && v is { Value: int value })
 					{
 						nullableRunningArea = value;
 					}
@@ -177,9 +177,9 @@ internal static class StepSearcherDefaultImportingHandler
 		);
 
 
-		static string createRunningAreasExpression(byte field, IDictionary<byte, string> runningAreasFields)
+		static string createRunningAreasExpression(int field, IDictionary<int, string> runningAreasFields)
 		{
-			var l = (int)field;
+			var l = field;
 			if (l == 0)
 			{
 				return "0";
@@ -190,7 +190,7 @@ internal static class StepSearcherDefaultImportingHandler
 			{
 				if ((temp & 1) != 0)
 				{
-					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[(byte)(1 << i)]}");
+					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[1 << i]}");
 				}
 			}
 
