@@ -1104,6 +1104,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 							foreach (var coveredLine in cellsInThisBlock.CoveredHouses)
 							{
+								var thisPairContainsConjugatePair = false;
 								foreach (var conjugatePairDigit in digitsMask)
 								{
 									if ((HousesMap[coveredLine] & CandidatesMap[conjugatePairDigit]) != cellsInThisBlock)
@@ -1121,7 +1122,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									conjugatePairs.Add(new(in cellsInThisBlock, conjugatePairDigit));
+									thisPairContainsConjugatePair = true;
 									break;
+								}
+								if (!thisPairContainsConjugatePair)
+								{
+									// No eliminations will be found because this pair of target cells don't form a valid relation.
+									inferredTargetConjugatePairs = [];
+									return null;
 								}
 							}
 							break;
@@ -1866,6 +1874,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// AHS cannot be used on same-side target cells.
 		if (targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
+		// If one side of target holds 2 cells, we won't check for it.
+		if (targetCells.Count >= 3)
 		{
 			return null;
 		}
