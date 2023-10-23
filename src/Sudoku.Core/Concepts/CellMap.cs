@@ -121,7 +121,7 @@ public partial struct CellMap :
 				case 2: { return InOneHouse(out _); }
 				default:
 				{
-					foreach (ref readonly var pair in GetSubsets(2).AsReadOnlySpan())
+					foreach (ref readonly var pair in GetSubsets(2))
 					{
 						if (pair.InOneHouse(out _))
 						{
@@ -649,7 +649,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe CellMap[] GetSubsets(int subsetSize)
+	public readonly unsafe ReadOnlySpan<CellMap> GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
@@ -658,7 +658,7 @@ public partial struct CellMap :
 
 		if (subsetSize == _count)
 		{
-			return [this];
+			return (CellMap[])[this];
 		}
 
 		var n = _count;
@@ -702,7 +702,7 @@ public partial struct CellMap :
 			}
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return [.. result];
+			return result.ToArray();
 
 
 			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
@@ -731,10 +731,10 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellMap[] GetAllSubsets() => GetAllSubsets(_count);
+	public readonly ReadOnlySpan<CellMap> GetAllSubsets() => GetAllSubsets(_count);
 
 	/// <inheritdoc/>
-	public readonly CellMap[] GetAllSubsets(int limitSubsetSize)
+	public readonly ReadOnlySpan<CellMap> GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
@@ -751,10 +751,10 @@ public partial struct CellMap :
 		var result = new List<CellMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i).AsReadOnlySpan());
+			result.AddRange(GetSubsets(i));
 		}
 
-		return [.. result];
+		return result.ToArray();
 	}
 
 	/// <inheritdoc/>

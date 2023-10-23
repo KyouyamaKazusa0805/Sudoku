@@ -310,7 +310,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe CandidateMap[] GetSubsets(int subsetSize)
+	public readonly unsafe ReadOnlySpan<CandidateMap> GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
 		{
@@ -319,7 +319,7 @@ public partial struct CandidateMap :
 
 		if (subsetSize == _count)
 		{
-			return [this];
+			return (CandidateMap[])[this];
 		}
 
 		var n = _count;
@@ -363,7 +363,7 @@ public partial struct CandidateMap :
 			}
 			var result = new List<CandidateMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return [.. result];
+			return result.ToArray();
 
 
 			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
@@ -392,10 +392,10 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateMap[] GetAllSubsets() => GetAllSubsets(_count);
+	public readonly ReadOnlySpan<CandidateMap> GetAllSubsets() => GetAllSubsets(_count);
 
 	/// <inheritdoc/>
-	public readonly CandidateMap[] GetAllSubsets(int limitSubsetSize)
+	public readonly ReadOnlySpan<CandidateMap> GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
@@ -412,10 +412,10 @@ public partial struct CandidateMap :
 		var result = new List<CandidateMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i).AsReadOnlySpan());
+			result.AddRange(GetSubsets(i));
 		}
 
-		return [.. result];
+		return result.ToArray();
 	}
 
 	/// <inheritdoc/>

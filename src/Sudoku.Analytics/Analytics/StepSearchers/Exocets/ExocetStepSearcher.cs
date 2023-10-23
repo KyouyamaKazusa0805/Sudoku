@@ -136,7 +136,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								}
 
 								// Iterate on each miniline, to get all possible cases.
-								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(baseSize).AsReadOnlySpan())
+								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated.GetSubsets(baseSize))
 								{
 									if (housesEmptyCells & baseCells)
 									{
@@ -1923,7 +1923,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				for (var size = 2; size <= otherCells.Count - 1; size++)
 				{
-					foreach (ref readonly var extraCells in otherCells.GetSubsets(size - 1).AsReadOnlySpan())
+					foreach (ref readonly var extraCells in otherCells.GetSubsets(size - 1))
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
 						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))

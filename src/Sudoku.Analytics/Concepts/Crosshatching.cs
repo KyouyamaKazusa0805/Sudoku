@@ -34,7 +34,7 @@ public static class Crosshatching
 		}
 
 		var nullableCombination = default(CellMap?);
-		foreach (var valueCombination in values.GetAllSubsets())
+		foreach (ref readonly var valueCombination in values.GetAllSubsets())
 		{
 			if ((valueCombination.ExpandedPeers & houseCells & emptyCells) - cells == emptyCellsShouldBeCovered - emptyCellsNotNeedToBeCovered)
 			{

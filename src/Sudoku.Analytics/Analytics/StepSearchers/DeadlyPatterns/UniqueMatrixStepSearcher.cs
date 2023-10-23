@@ -29,15 +29,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the total number of unique matrix patterns.
-	/// </summary>
-	public const int UniqueMatrixTemplatesCount = 162;
-
-
-	/// <summary>
 	/// Indicates the patterns.
 	/// </summary>
-	private static readonly CellMap[] Patterns = new CellMap[UniqueMatrixTemplatesCount];
+	private static readonly CellMap[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -51,6 +45,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		];
 #pragma warning restore format
 
+		var result = new CellMap[162];
 		var length = chuteIteratorValues.Length / 3;
 		var n = 0;
 		for (var i = 0; i < 3; i++)
@@ -60,7 +55,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var a = chuteIteratorValues[j][0] + i * 27;
 				var b = chuteIteratorValues[j][1] + i * 27;
 				var c = chuteIteratorValues[j][2] + i * 27;
-				Patterns[n++] = [a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18];
+				result[n++] = [a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18];
 			}
 		}
 
@@ -71,7 +66,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var a = chuteIteratorValues[j][0] * 9;
 				var b = chuteIteratorValues[j][1] * 9;
 				var c = chuteIteratorValues[j][2] * 9;
-				Patterns[n++] = [
+				result[n++] = [
 					a + 3 * i,
 					b + 3 * i,
 					c + 3 * i,
@@ -84,6 +79,8 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				];
 			}
 		}
+
+		Patterns = result;
 	}
 
 
@@ -272,7 +269,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var allCells = (HousesMap[house] & EmptyCells) - pattern;
 				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
-					foreach (ref readonly var cells in allCells.GetSubsets(size).AsReadOnlySpan())
+					foreach (ref readonly var cells in allCells.GetSubsets(size))
 					{
 						var tempMask = grid[in cells];
 						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)

@@ -335,7 +335,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			var otherCells = (HousesMap[house] & EmptyCells) - loop;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
-				foreach (ref readonly var cells in otherCells.GetSubsets(size).AsReadOnlySpan())
+				foreach (ref readonly var cells in otherCells.GetSubsets(size))
 				{
 					var mask = grid[in cells];
 					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)

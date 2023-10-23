@@ -58,8 +58,11 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	private static CellMap[] GetInvalidPos(scoped ref readonly Grid grid)
 	{
 		var result = new CellMap[9];
-		var invalidPos = new CellMap[9];
-		var mustPos = new CellMap[9];
+		scoped var invalidPos = (stackalloc CellMap[9]);
+		scoped var mustPos = (stackalloc CellMap[9]);
+		
+		invalidPos.Clear();
+		mustPos.Clear();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var cell = 0; cell < 81; cell++)

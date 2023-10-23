@@ -264,7 +264,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// and the argument <paramref name="subsetSize"/> is 2,
 	/// the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
-	public abstract TSelf[] GetSubsets(int subsetSize);
+	public abstract ReadOnlySpan<TSelf> GetSubsets(int subsetSize);
 
 	/// <summary>
 	/// Equivalent to calling <see cref="GetSubsets(int)"/> with argument <see cref="Count"/>.
@@ -273,7 +273,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <seealso cref="Count"/>
 	/// <seealso cref="GetAllSubsets(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual TSelf[] GetAllSubsets() => GetAllSubsets(Count);
+	public virtual ReadOnlySpan<TSelf> GetAllSubsets() => GetAllSubsets(Count);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -297,7 +297,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </item>
 	/// </list>
 	/// </returns>
-	public virtual TSelf[] GetAllSubsets(int limitSubsetSize)
+	public virtual ReadOnlySpan<TSelf> GetAllSubsets(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || Count == 0)
 		{
@@ -315,10 +315,10 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		var result = new List<TSelf>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i).AsReadOnlySpan());
+			result.AddRange(GetSubsets(i));
 		}
 
-		return [.. result];
+		return result.ToArray();
 	}
 
 	/// <summary>

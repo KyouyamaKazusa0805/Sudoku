@@ -68,7 +68,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 				}
 
 				// Iterate on each cell combination.
-				foreach (ref readonly var cells in map.GetSubsets(size - 1).AsReadOnlySpan())
+				foreach (ref readonly var cells in map.GetSubsets(size - 1))
 				{
 					// Check duplicate.
 					// If two cells contain same candidates, the wing can't be formed.
