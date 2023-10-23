@@ -77,7 +77,7 @@ public static class TrueCandidatesSearcher
 			mask = grid.GetCandidates(multivalueCells[i]);
 
 			// e.g. [[2, 4], [4, 6], [2, 6]] ([10, 40, 34])
-			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
+			scoped var pairList = MaskOperations.GetMaskSubsets(mask, 2);
 
 			// e.g. pairs[i, ..] = [3, [2, 4], [4, 6], [2, 6]] ([3, 10, 40, 34])
 			pairs[i, 0] = (Mask)pairList.Length;
