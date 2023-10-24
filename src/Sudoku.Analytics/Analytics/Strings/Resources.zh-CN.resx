@@ -2579,16 +2579,32 @@
     <value>宫内初级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="FrankenJuniorExocetTargetSync" xml:space="preserve">
+    <value>宫内初级飞鱼・T 格同步</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="FrankenSeniorExocetIncompatiblePair" xml:space="preserve">
     <value>宫内高级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="FrankenSeniorExocetTargetSync" xml:space="preserve">
+    <value>宫内高级飞鱼・T 格同步</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="MutantJuniorExocetIncompatiblePair" xml:space="preserve">
-    <value>高内初级飞鱼・兼容性测试</value>
+    <value>交叉初级飞鱼・兼容性测试</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantJuniorExocetTargetSync" xml:space="preserve">
+    <value>交叉初级飞鱼・T 格同步</value>
     <comment>Technique Name</comment>
   </data>
   <data name="MutantSeniorExocetIncompatiblePair" xml:space="preserve">
-    <value>高内高级飞鱼・兼容性测试</value>
+    <value>交叉高级飞鱼・兼容性测试</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantSeniorExocetTargetSync" xml:space="preserve">
+    <value>交叉高级飞鱼・T 格同步</value>
     <comment>Technique Name</comment>
   </data>
 </root>

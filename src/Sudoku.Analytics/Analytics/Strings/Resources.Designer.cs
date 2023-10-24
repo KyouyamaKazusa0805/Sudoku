@@ -1735,6 +1735,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Franken Junior Exocet (Target Sync).
+        /// </summary>
+        public static string FrankenJuniorExocetTargetSync {
+            get {
+                return ResourceManager.GetString("FrankenJuniorExocetTargetSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Franken Leviathan.
         /// </summary>
         public static string FrankenLeviathan {
@@ -1758,6 +1767,15 @@ namespace Sudoku.Analytics.Strings {
         public static string FrankenSeniorExocetIncompatiblePair {
             get {
                 return ResourceManager.GetString("FrankenSeniorExocetIncompatiblePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Senior Exocet (Target Sync).
+        /// </summary>
+        public static string FrankenSeniorExocetTargetSync {
+            get {
+                return ResourceManager.GetString("FrankenSeniorExocetTargetSync", resourceCulture);
             }
         }
         
@@ -2428,6 +2446,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mutant Junior Exocet (Target Sync).
+        /// </summary>
+        public static string MutantJuniorExocetTargetSync {
+            get {
+                return ResourceManager.GetString("MutantJuniorExocetTargetSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mutant Leviathan.
         /// </summary>
         public static string MutantLeviathan {
@@ -2451,6 +2478,15 @@ namespace Sudoku.Analytics.Strings {
         public static string MutantSeniorExocetIncompatiblePair {
             get {
                 return ResourceManager.GetString("MutantSeniorExocetIncompatiblePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Senior Exocet (Target Sync).
+        /// </summary>
+        public static string MutantSeniorExocetTargetSync {
+            get {
+                return ResourceManager.GetString("MutantSeniorExocetTargetSync", resourceCulture);
             }
         }
         

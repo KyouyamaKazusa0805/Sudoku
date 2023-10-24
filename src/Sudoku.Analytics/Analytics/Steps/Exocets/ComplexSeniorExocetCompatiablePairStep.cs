@@ -31,7 +31,9 @@ public sealed partial class ComplexSeniorExocetCompatiablePairStep(
 	scoped ref readonly CellMap crosslineCells,
 	[DataMember] HouseMask crosslineHousesMask,
 	[DataMember] HouseMask extraHousesMask
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
+) :
+	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
+	IComplexSeniorExocetStepBaseOverrides
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
@@ -46,9 +48,9 @@ public sealed partial class ComplexSeniorExocetCompatiablePairStep(
 	public override Technique Code
 		=> this.GetShapeKind() switch
 		{
-			ExocetShapeKind.Franken => Technique.FrankenSeniorExocet,
-			ExocetShapeKind.Mutant => Technique.MutantSeniorExocet,
-			ExocetShapeKind.Basic => Technique.SeniorExocet
+			ExocetShapeKind.Franken => Technique.FrankenSeniorExocetIncompatiblePair,
+			ExocetShapeKind.Mutant => Technique.MutantSeniorExocetIncompatiblePair,
+			//ExocetShapeKind.Basic => Technique.SeniorExocetIncompatiblePair
 		};
 
 	/// <inheritdoc/>

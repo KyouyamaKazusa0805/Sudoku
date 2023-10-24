@@ -651,12 +651,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (CheckComplexSeniorIncompatiblePair(
+				// Check for eliminations.
+				if (CheckComplexSeniorBase(
 					ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
-					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrossline, in expandedCrosslineIncludingTarget
+					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrossline
 				) is { } complexSeniorTypeStep)
 				{
 					return complexSeniorTypeStep;
+				}
+
+				if (CheckComplexSeniorIncompatiblePair(
+					ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrossline, in expandedCrosslineIncludingTarget,
+					out var inferredTargetDigitsMask
+				) is { } complexSeniorIncompatiblePairTypeStep)
+				{
+					return complexSeniorIncompatiblePairTypeStep;
+				}
+
+				if (CheckComplexSeniorTargetSync(
+					ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrossline, in expandedCrosslineIncludingTarget,
+					inferredTargetDigitsMask
+				) is { } complexSeniorTargetSyncTypeStep)
+				{
+					return complexSeniorTargetSyncTypeStep;
 				}
 			}
 		}
@@ -2914,7 +2933,75 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorIncompatiblePair(
+	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorBase(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		int size,
+		scoped ref readonly CellMap expandedCrossline
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in targetCells + endoTargetCell)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ComplexSeniorExocetBaseStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in expandedCrossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in targetCells + endoTargetCell
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in expandedCrossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[endoTargetCell],
+			in crossline,
+			housesMask,
+			extraHousesMask
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ComplexSeniorExocetCompatiablePairStep? CheckComplexSeniorIncompatiblePair(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -2926,7 +3013,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask extraHousesMask,
 		int size,
 		scoped ref readonly CellMap expandedCrossline,
-		scoped ref readonly CellMap expandedCrosslineIncludingTarget
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
+		out Mask inferredTargetDigitsMask
 	)
 	{
 		var baseDigitsPairs = (Digit[][])[[.. grid.GetCandidates(baseCells[0]).GetAllSets()], [.. grid.GetCandidates(baseCells[1]).GetAllSets()]];
@@ -2979,6 +3067,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 		}
 
+		inferredTargetDigitsMask = grid[in baseCells];
+
 		// Check for invalid cases. If one candidate corresponds to digits making the other base cell empty,
 		// the candidate will be invalid.
 		var conclusions = new List<Conclusion>();
@@ -2997,7 +3087,86 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ComplexSeniorExocetBaseStep(
+		// Check for inferred target digits mask.
+		foreach (var digit in from conclusion in conclusions select conclusion.Digit)
+		{
+			if (conclusions.Count(conclusion => conclusion.Digit == digit) == 2)
+			{
+				inferredTargetDigitsMask &= (Mask)~(1 << digit);
+			}
+		}
+
+		var step = new ComplexSeniorExocetCompatiablePairStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in expandedCrossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in targetCells + endoTargetCell
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in expandedCrossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[endoTargetCell],
+			in crossline,
+			housesMask,
+			extraHousesMask
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ComplexSeniorExocetTargetSyncStep? CheckComplexSeniorTargetSync(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		int size,
+		scoped ref readonly CellMap expandedCrossline,
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
+		Mask inferredTargetDigitsMask
+	)
+	{
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in baseCells + targetCells + endoTargetCell)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ComplexSeniorExocetTargetSyncStep(
 			[.. conclusions],
 			[
 				[
