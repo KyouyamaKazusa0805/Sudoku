@@ -2966,11 +2966,25 @@ public enum Technique
 	FrankenJuniorExocet,
 
 	/// <summary>
+	/// Indicates franken junior exocet (incompatible pair).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenJuniorExocetIncompatiblePair,
+
+	/// <summary>
 	/// Indicates mutant junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocet,
+
+	/// <summary>
+	/// Indicates mutant junior exocet (incompatible pair).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantJuniorExocetIncompatiblePair,
 
 	/// <summary>
 	/// Indicates franken senior exocet.
@@ -2980,11 +2994,25 @@ public enum Technique
 	FrankenSeniorExocet,
 
 	/// <summary>
+	/// Indicates franken senior exocet (incompatible pair).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenSeniorExocetIncompatiblePair,
+
+	/// <summary>
 	/// Indicates mutant senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSeniorExocet,
+
+	/// <summary>
+	/// Indicates mutant senior exocet (incompatible pair).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantSeniorExocetIncompatiblePair,
 
 	/// <summary>
 	/// Indicates double exocet.

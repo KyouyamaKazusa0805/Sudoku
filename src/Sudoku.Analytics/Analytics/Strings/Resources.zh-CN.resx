@@ -2483,7 +2483,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
-    <value>初级飞鱼・同宫定理</value>
+    <value>初级飞鱼・X 定则</value>
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetTargetPair" xml:space="preserve">
@@ -2573,6 +2573,22 @@
   </data>
   <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
     <value>双飞鱼・鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FrankenJuniorExocetIncompatiblePair" xml:space="preserve">
+    <value>宫内初级飞鱼・兼容性测试</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FrankenSeniorExocetIncompatiblePair" xml:space="preserve">
+    <value>宫内高级飞鱼・兼容性测试</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantJuniorExocetIncompatiblePair" xml:space="preserve">
+    <value>高内初级飞鱼・兼容性测试</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantSeniorExocetIncompatiblePair" xml:space="preserve">
+    <value>高内高级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
 </root>

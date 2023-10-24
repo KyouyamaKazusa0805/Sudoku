@@ -2415,4 +2415,16 @@
   <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
     <value>Double Exocet (Fish)</value>
   </data>
+  <data name="FrankenJuniorExocetIncompatiblePair" xml:space="preserve">
+    <value>Franken Junior Exocet (Incompatible Pair)</value>
+  </data>
+  <data name="FrankenSeniorExocetIncompatiblePair" xml:space="preserve">
+    <value>Franken Senior Exocet (Incompatible Pair)</value>
+  </data>
+  <data name="MutantJuniorExocetIncompatiblePair" xml:space="preserve">
+    <value>Mutant Junior Exocet (Incompatible Pair)</value>
+  </data>
+  <data name="MutantSeniorExocetIncompatiblePair" xml:space="preserve">
+    <value>Mutant Senior Exocet (Incompatible Pair)</value>
+  </data>
 </root>
