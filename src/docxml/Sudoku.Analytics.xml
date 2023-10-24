@@ -7717,8 +7717,7 @@ if (student is (name: var name, age: >= 18))
             Double Exocets:
             <list type="bullet">
             <item>Standard Double Exocet</item>
-            <item>Double Exocet (Uni-Fish Pattern)</item>
-            <item>Double Exocet (Multi-Fish Pattern)</item>
+            <item>Double Exocet (Generalized Fish)</item>
             </list>
             </item>
             <item>Pattern-Locked Quadruple</item>
