@@ -909,36 +909,6 @@ public unsafe partial struct Grid :
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
 	/// <summary>
-	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
-	/// </summary>
-	/// <param name="digit">The digit to be checked.</param>
-	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
-	public readonly bool ExactAppearingTimesOf(Digit digit, scoped ref readonly CellMap cells, int limitCount)
-	{
-		var activeCells = CandidatesMap[digit] & cells;
-		var inactiveCells = ValuesMap[digit] & cells;
-		if (!activeCells && limitCount == inactiveCells.Count)
-		{
-			return true;
-		}
-
-		for (var i = activeCells.Count; i >= 1; i--)
-		{
-			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i))
-			{
-				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
-				{
-					return i + inactiveCells.Count == limitCount;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
 	/// <returns>

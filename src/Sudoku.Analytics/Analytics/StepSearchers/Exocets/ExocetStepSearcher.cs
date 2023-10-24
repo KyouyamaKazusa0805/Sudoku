@@ -364,7 +364,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var (digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.ExactAppearingTimesOf(digit, in crossline, size - 1))
+			if (grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
@@ -427,7 +427,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var lockedMembersAreSatisfySizeMinusOneRule = true;
 				foreach (var digit in lockedDigitsMask)
 				{
-					if (!grid.ExactAppearingTimesOf(digit, in crossline, size - 1))
+					if (!grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
 					{
 						// The current digit can be filled in cross-line cells at most (size - 1) times.
 						lockedMembersAreSatisfySizeMinusOneRule = false;
@@ -565,7 +565,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 					foreach (var digit in baseCellsDigitsMask)
 					{
-						if (!grid.ExactAppearingTimesOf(digit, crossline - cell, size - 1))
+						if (!grid.IsExactAppearingTimesOf(digit, crossline - cell, size - 1))
 						{
 							allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 							break;
@@ -605,7 +605,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 				foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
 				{
-					if (!grid.ExactAppearingTimesOf(digit, in crossline, size - 1))
+					if (!grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
 					{
 						allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 						break;
@@ -825,7 +825,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.ExactAppearingTimesOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
+			if (grid.IsExactAppearingTimesOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				sizeMinusOneRule = false;
@@ -2995,3 +2995,43 @@ file delegate ExocetStep? Collector(
 	int baseSize,
 	int chuteIndex
 );
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
+	/// </summary>
+	/// <param name="this">The grid to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
+	public static bool IsExactAppearingTimesOf(
+		this scoped ref readonly Grid @this,
+		Digit digit,
+		scoped ref readonly CellMap cells,
+		int limitCount
+	)
+	{
+		var activeCells = CandidatesMap[digit] & cells;
+		var inactiveCells = ValuesMap[digit] & cells;
+		if (!activeCells && limitCount == inactiveCells.Count)
+		{
+			return true;
+		}
+
+		for (var i = activeCells.Count; i >= 1; i--)
+		{
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i))
+			{
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
+				{
+					return i + inactiveCells.Count == limitCount;
+				}
+			}
+		}
+
+		return false;
+	}
+}
