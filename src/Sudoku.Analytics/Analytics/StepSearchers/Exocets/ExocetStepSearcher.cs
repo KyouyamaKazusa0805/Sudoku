@@ -1170,11 +1170,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check for the number of target cells and their bound conjugate pairs.
-		if ((targetCells.Count, conjugatePairs.Count, endoTargetCell) switch
-		{
-			(_, _, not -1) or (2, 0, _) or (3, 1, _) or (4, 2, _) => false,
-			_ => true
-		})
+		if ((targetCells.Count, conjugatePairs.Count, endoTargetCell) is not ((_, _, not -1) or (2, 0, _) or (3, 1, _) or (4, 2, _)))
 		{
 			inferredTargetConjugatePairs = [];
 			return null;
