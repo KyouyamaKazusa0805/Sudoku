@@ -6882,9 +6882,6 @@ if (student is (name: var name, age: >= 18))
             on each element of the current instance.
             </returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#IEquatable{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey}}#Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -6917,6 +6914,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#IEquatable{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TKey}}#Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGroupEnumerable">
