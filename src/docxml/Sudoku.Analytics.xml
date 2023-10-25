@@ -5781,16 +5781,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.BdpTemplatesSize3Count">
-            <summary>
-            Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.BdpTemplatesSize4Count">
-            <summary>
-            Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.Patterns">
             <summary>
             Indicates all possible patterns to iterate.
@@ -6864,13 +6854,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CountOfPatterns">
-            <summary>
-            Indicates the number of all total possible UR patterns.
-            The value is same as the length of field <see cref="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns"/>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns">
             <summary>
@@ -8134,16 +8117,6 @@ if (student is (name: var name, age: >= 18))
             <item>Firework Triple</item>
             <item>Firework Quadruple</item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.FireworkSubsetCount">
-            <summary>
-            Indicates the total number of firework subset patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.PairFireworksCount">
-            <summary>
-            Indicates the total number of pair fireworks.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Patterns">

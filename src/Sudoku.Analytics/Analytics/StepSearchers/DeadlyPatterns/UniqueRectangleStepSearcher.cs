@@ -78,14 +78,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Flags = ConditionalFlags.Standard)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the number of all total possible UR patterns.
-	/// The value is same as the length of field <see cref="UniqueRectanglePatterns"/>.
-	/// </summary>
-	/// <seealso cref="UniqueRectanglePatterns"/>
-	private const int CountOfPatterns = 486;
-
-
 #pragma warning disable format
 	/// <summary>
 	/// The table of all <b>Unique Rectangle</b> cells.
@@ -219,7 +211,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(in grid);
 
 		// Iterate on each possible UR pattern.
-		for (var index = 0; index < CountOfPatterns; index++)
+		for (var index = 0; index < UniqueRectanglePatterns.Length; index++)
 		{
 			var urCells = UniqueRectanglePatterns[index];
 

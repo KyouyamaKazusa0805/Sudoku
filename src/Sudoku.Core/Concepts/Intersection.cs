@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.Numerics;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -28,7 +29,7 @@ internal static class Intersection
 	/// In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly IReadOnlyDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;
+	public static readonly FrozenDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -67,7 +68,7 @@ internal static class Intersection
 
 		scoped var r = (ReadOnlySpan<byte>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		scoped var c = (ReadOnlySpan<byte>)[0, 3, 6, 1, 4, 7, 2, 5, 8];
-		var dic = new Dictionary<IntersectionBase, IntersectionResult>(new EqualityComparer());
+		var dic = new Dictionary<IntersectionBase, IntersectionResult>();
 		for (var bs = (byte)9; bs < 27; bs++)
 		{
 			for (var j = (byte)0; j < 3; j++)
@@ -80,7 +81,7 @@ internal static class Intersection
 			}
 		}
 
-		IntersectionMaps = dic;
+		IntersectionMaps = dic.ToFrozenDictionary(new EqualityComparer());
 	}
 }
 

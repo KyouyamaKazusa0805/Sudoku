@@ -26,13 +26,15 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// The position table of all SK-loops.
 	/// </summary>
-	private static readonly Cell[][] SkLoopTable = new Cell[729][];
+	private static readonly Cell[][] SkLoopTable;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static DominoLoopStepSearcher()
 	{
 		// Initialize for SK-loop table.
+		SkLoopTable = new Cell[729][];
+
 		scoped var s = (stackalloc int[4]);
 		for (var (a, n) = (9, 0); a < 18; a++)
 		{

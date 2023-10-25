@@ -32,23 +32,12 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the total number of Unique Polygon (Heptagon) possible templates of size 3.
-	/// </summary>
-	public const int BdpTemplatesSize3Count = 14580;
-
-	/// <summary>
-	/// Indicates the total number of Unique Polygon (Octagon) possible templates of size 4.
-	/// </summary>
-	public const int BdpTemplatesSize4Count = 11664;
-
-
-	/// <summary>
 	/// Indicates all possible patterns to iterate.
 	/// </summary>
 	/// <remarks>
 	/// Please note that all possible heptagons and octagons are in here.
 	/// </remarks>
-	private static readonly Pattern[] Patterns = new Pattern[BdpTemplatesSize3Count];
+	private static readonly Pattern[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -56,6 +45,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	{
 		var quads = (int[][])[[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7], [4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8], [0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]];
 		var count = 0;
+
+		Patterns = new Pattern[14580];
 		for (var block = 0; block < 9; block++)
 		{
 			for (var i = 0; i < 9; i++) // 9 cases.
@@ -223,7 +214,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		for (var i = 0; i < (EmptyCells.Count == 7 ? BdpTemplatesSize3Count : BdpTemplatesSize4Count); i++)
+		for (var i = 0; i < (EmptyCells.Count == 7 ? 14580 : 11664); i++)
 		{
 			var pattern = Patterns[i];
 			if ((EmptyCells & pattern.Map) != pattern.Map)
