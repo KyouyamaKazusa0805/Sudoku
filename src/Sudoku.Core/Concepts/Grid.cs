@@ -292,6 +292,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly bool IsValid
 	{
+		//[MethodImpl(MethodImplOptions.Synchronized)]
 		get
 		{
 			lock (PuzzleSolvingSynchronizer)
@@ -553,6 +554,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="Undefined"/>
 	public readonly Grid SolutionGrid
 	{
+		//[MethodImpl(MethodImplOptions.Synchronized)]
 		get
 		{
 			lock (PuzzleSolvingSynchronizer)
@@ -766,7 +768,7 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[MethodImpl(MethodImplOptions.AggressiveInlining/* | MethodImplOptions.Synchronized*/)]
 	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
 		Unsafe.SkipInit(out solutionIfValid);
