@@ -622,6 +622,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap housesCells
 	)
 	{
+		// Here contain some possible bugs to be fixed.
+		return null;
+
 		var extraHousesMask = AllHousesMask
 			& ~(isRow ? AllRowsMask : AllColumnsMask) // Not same-kind houses with cross-line.
 			& ~baseCells.CoveredHouses // Not a house that both base cells can see.
