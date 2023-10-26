@@ -119,6 +119,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
         * SE (Senior Exocet)
         * Double Exocet
         * WE (Weak Excocet)
+        * Complex Exocet
+          * Complex Senior Exocet
       * MSLS (Multi-Sector Locked Sets)
     * Negative Rank Logics
       * Guardian
