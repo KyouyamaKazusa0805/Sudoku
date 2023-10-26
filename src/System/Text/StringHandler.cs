@@ -163,6 +163,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[DebuggerStepThrough]
 	public StringHandler(int literalLength, int holeCount)
 		=> _chars = _arrayToReturnToPool = ArrayPool<char>.Shared.Rent(
 #if DECREASE_INITIALIZATION_MEMORY_ALLOCATION
@@ -189,6 +190,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[DebuggerStepThrough]
 	public StringHandler(int literalLength, int holeCount, Span<char> initialBuffer)
 	{
 #if !DISCARD_INTERPOLATION_INFO
@@ -267,6 +269,7 @@ public unsafe ref partial struct StringHandler
 	/// </param>
 	/// <seealso cref="Length"/>
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerStepThrough]
 	public ref readonly char GetPinnableReference(bool withTerminate)
 	{
 		if (withTerminate)
@@ -313,6 +316,7 @@ public unsafe ref partial struct StringHandler
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerStepThrough]
 	public void AppendLiteral([ConstantExpected] string? value)
 	{
 		if (value is null)

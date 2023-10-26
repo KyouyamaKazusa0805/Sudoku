@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace Sudoku.Concepts.Primitive;
@@ -18,6 +19,7 @@ public static class BitStatusMapCreator
 	/// <typeparam name="TElement"><inheritdoc cref="IBitStatusMap{TSelf, TElement}" path="/typeparam[@name='TElement']"/></typeparam>
 	/// <param name="offsets">The offsets.</param>
 	/// <returns>A <see cref="IBitStatusMap{TSelf, TElement}"/> instance.</returns>
+	[DebuggerStepThrough]
 	public static TSelf Create<TSelf, TElement>(scoped ReadOnlySpan<TElement> offsets)
 		where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
 		where TElement : unmanaged, IBinaryInteger<TElement>

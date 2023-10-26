@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace System.Collections.Generic;
@@ -26,6 +27,7 @@ public static class KeyValuePairExtensions
 	/// <typeparam name="TValue">The type of the value.</typeparam>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerStepThrough]
 	public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> @this, out TKey key, out TValue value)
 		=> (key, value) = (@this.Key, @this.Value);
 }

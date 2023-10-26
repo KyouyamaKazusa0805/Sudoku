@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -137,6 +138,7 @@ public struct BestTriplet
 	/// <returns>A valid <see cref="BestTriplet"/> result.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[DebuggerStepThrough]
 	public static BestTriplet Create(scoped ReadOnlySpan<int> values)
 		=> values switch
 		{

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -903,6 +904,7 @@ public partial struct CellMap :
 	/// <param name="cells">The cells.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerStepThrough]
 	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
 	{
 		var result = Empty;

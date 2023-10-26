@@ -1289,6 +1289,7 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A <see cref="Grid"/> result.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[DebuggerStepThrough]
 	public static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
 	{
 		switch (rawMaskValues.Length)

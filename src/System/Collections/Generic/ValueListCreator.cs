@@ -1,5 +1,6 @@
 #pragma warning disable IDE0032, IDE0044
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace System.Collections.Generic;
 
@@ -28,6 +29,7 @@ public static class ValueListCreator
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the specified collection contains at least 257 elements that will make the collection failed to be initialized.
 	/// </exception>
+	[DebuggerStepThrough]
 	public static ValueList<T> Create<T>(scoped ReadOnlySpan<T> values) where T : notnull
 	{
 		if (values.Length >= byte.MaxValue)
