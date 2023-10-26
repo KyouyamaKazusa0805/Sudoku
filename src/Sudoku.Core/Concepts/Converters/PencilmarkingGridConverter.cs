@@ -163,7 +163,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			unsafe void defaultPrinting(scoped ref StringHandler sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)
+			void defaultPrinting(scoped ref StringHandler sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)
 			{
 				sb.Append(c1);
 				printValues(ref sb, valuesByRow, 0, 2, maxLengths);
@@ -175,7 +175,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 				sb.AppendLine();
 			}
 
-			unsafe void printValues(scoped ref StringHandler sb, IList<Mask> valuesByRow, int start, int end, int* maxLengths)
+			void printValues(scoped ref StringHandler sb, IList<Mask> valuesByRow, int start, int end, int* maxLengths)
 			{
 				sb.Append(' ');
 				for (var i = start; i <= end; i++)
@@ -212,7 +212,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static unsafe void printTabLines(scoped ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
+			static void printTabLines(scoped ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
 			{
 				sb.Append(c1);
 				sb.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
