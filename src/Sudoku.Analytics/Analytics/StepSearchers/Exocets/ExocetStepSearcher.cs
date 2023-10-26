@@ -72,7 +72,9 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
-	Technique.MutantSeniorExocet, Technique.PatternLockedQuadruple)]
+	Technique.MutantSeniorExocet, Technique.PatternLockedQuadruple,
+	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember,
+	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -324,43 +326,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// We should treat the digit as a non-locked member.
 
-		var (digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = ((Mask)0, (Mask)0);
-		foreach (var digit in baseCellsDigitsMask)
-		{
-			if (grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
-			{
-				// The current digit can be filled in cross-line cells at most (size - 1) times.
-				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
-			}
-
-			foreach (var cell in crossline)
-			{
-				if (grid.GetDigit(cell) == digit)
-				{
-					digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
-					break;
-				}
-			}
-		}
-
-		var lockedMemberDigitsMask = baseCellsDigitsMask;
-
-		// Filters the digits they may not be locked members
-		// when they matches exactly appeared (size - 1) times.
-		scoped var lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
-
-		// Check whether at least one digit appeared in base cells isn't locked
-		// and doesn't satisfy the (size - 1) rule.
-		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
-		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
-		{
-			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
-			{
-				atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
-				break;
-			}
-		}
-		if (atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule)
+		if (!InitialCheckValidityAndLockedMembers(
+			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline, size - 1,
+			out _, out var digitsMaskAppearedInCrossline, out var lockedMembers, out var lockedMemberDigitsMask))
 		{
 			return null;
 		}
@@ -514,7 +482,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Endo-target cells must contain at least one digit appeared in base cells.
+					// Endo-target cells must contain at least one of all digits appeared in base cells.
 					if ((grid.GetCandidates(endoTargetCell) & baseCellsDigitsMask) == 0)
 					{
 						continue;
@@ -622,9 +590,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap housesCells
 	)
 	{
-		// Here contain some possible bugs to be fixed.
-		return null;
-
 		var extraHousesMask = AllHousesMask
 			& ~(isRow ? AllRowsMask : AllColumnsMask) // Not same-kind houses with cross-line.
 			& ~baseCells.CoveredHouses // Not a house that both base cells can see.
@@ -641,44 +606,108 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Create a map that contains both cross-line cells and extra houses cells.
 			var expandedCrossline = crossline | HousesMap[extraHouse];
 			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) - baseCells.PeerIntersection;
+			var intersectedCellsBase = (crossline & HousesMap[extraHouse]) - targetCell;
 
 			// Iterate on each empty cells in the above map, to get the other target cell.
-			foreach (var endoTargetCell in (expandedCrossline & EmptyCells) - baseCells.PeerIntersection - PeersMap[targetCell])
+			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				var expandedCrosslineIntersectedEmptyCells = expandedCrosslineIncludingTarget - expandedCrossline & EmptyCells;
-				if (expandedCrosslineIntersectedEmptyCells.Count != 1
-					|| !expandedCrosslineIntersectedEmptyCells.Contains(endoTargetCell)
-					&& !expandedCrosslineIntersectedEmptyCells.Contains(targetCell))
+				if ((grid.GetCandidates(endoTargetCell) & baseCellsDigitsMask) == 0)
 				{
-					// Expanded cross-line must intersected with either target cell or endo-target cell.
+					// Endo-target cell should also contain all possible digits appeared in base.
 					continue;
 				}
 
-				// Check for internal types.
-				if (CheckComplexSeniorBase(
-					ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
-				) is { } complexSeniorTypeStep)
+				// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
+				// except endo-target cells.
+				var intersectedCellsContainEmpty = false;
+				foreach (var cell in intersectedCellsBase - endoTargetCell)
 				{
-					return complexSeniorTypeStep;
+					if (grid.GetState(cell) == CellState.Empty)
+					{
+						intersectedCellsContainEmpty = true;
+						break;
+					}
+				}
+				if (intersectedCellsContainEmpty)
+				{
+					continue;
 				}
 
-				if (CheckComplexSeniorIncompatiblePair(
-					ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
-					out var inferredTargetDigitsMask
-				) is { } complexSeniorIncompatiblePairTypeStep)
+				// Check for maximum times can be appeared in cross-line cells,
+				// and collect all possible digits can be filled in cross-line for (size + 1 - 1, i.e. size) times at most.
+				if (!InitialCheckValidityAndLockedMembers(
+					in grid, baseCellsDigitsMask, in baseCells, [targetCell], expandedCrossline - endoTargetCell, size,
+					out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
+					out var lockedMembers, out var lockedMemberDigitsMask))
 				{
-					return complexSeniorIncompatiblePairTypeStep;
+					continue;
 				}
 
-				if (CheckComplexSeniorTargetSync(
-					ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-					baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
-					inferredTargetDigitsMask
-				) is { } complexSeniorTargetSyncTypeStep)
+				// Check for locked members and determine the next step.
+				switch (PopCount((uint)lockedMemberDigitsMask))
 				{
-					return complexSeniorTargetSyncTypeStep;
+					case 1:
+					{
+						if (CheckComplexSeniorLockedMember(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline, baseCellsDigitsMask,
+							housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget, lockedMembers, chuteIndex,
+							out var inferredLastTargetDigitsMask, out var lockedDigitsMask
+						) is { } complexSeniorLockedMemberTypeStep)
+						{
+							return complexSeniorLockedMemberTypeStep;
+						}
+
+#if false
+						if (CheckComplexSeniorIncompatiblePair(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
+							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
+							out var inferredTargetDigitsMask
+						) is { } complexSeniorIncompatiblePairTypeStep)
+						{
+							return complexSeniorIncompatiblePairTypeStep;
+						}
+
+						if (CheckComplexSeniorTargetSync(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
+							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
+							inferredTargetDigitsMask
+						) is { } complexSeniorTargetSyncTypeStep)
+						{
+							return complexSeniorTargetSyncTypeStep;
+						}
+#endif
+
+						// Check whether the locked members are really used.
+						// If not, we should check for them, whether they are appeared in cross-line cells in (size) times.
+						var lockedMembersAreSatisfySizeMinusOneRule = true;
+						foreach (var digit in lockedDigitsMask)
+						{
+							if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - endoTargetCell, size))
+							{
+								// The current digit can be filled in cross-line cells at most (size) times.
+								lockedMembersAreSatisfySizeMinusOneRule = false;
+								break;
+							}
+						}
+						if (lockedMembersAreSatisfySizeMinusOneRule)
+						{
+							goto FallThrough;
+						}
+						break;
+					}
+#pragma warning disable format
+					case 0: FallThrough:
+					{
+						if (CheckComplexSeniorBase(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
+							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
+						) is { } complexSeniorTypeStep)
+						{
+							return complexSeniorTypeStep;
+						}
+						break;
+					}
+#pragma warning restore format
 				}
 			}
 		}
@@ -2936,6 +2965,131 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
+	private static ComplexSeniorExocetLockedMemberStep? CheckComplexSeniorLockedMember(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		Cell targetCell,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		int size,
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
+		scoped ReadOnlySpan<LockedMember?> lockedMembers,
+		int chuteIndex,
+		out Mask lockedDigitsMask,
+		out Mask inferredLastTargetDigitsMask
+	)
+	{
+		if (baseCells.Count != 2)
+		{
+			// No conclusions when the number of base cells is not 2.
+			(inferredLastTargetDigitsMask, lockedDigitsMask) = (0, 0);
+			return null;
+		}
+
+		// Check whether the digit is a real locked member.
+		if (lockedMembers.IsEmpty)
+		{
+			goto AssignBaseMaskByDefault;
+		}
+
+		var (cellOffsets, candidateOffsets, houseOffsets) = (new List<CellViewNode>(4), new List<CandidateViewNode>(), new List<HouseViewNode>(2));
+		(lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = (0, 0, new List<Conclusion>());
+
+		// Collect eliminations via mirror cells.
+		// For each locked member, we should check for its mirror cells,
+		// determining whether the mirror cells can make this target cell and the other target cell any conclusions.
+		// Rule:
+		//
+		//   1)
+		//   If all mirror cells of a target cell are non-empty, check its containing values and determine
+		//   whether one of the digits is concluded as a locked member.
+		//   If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
+		//   all digits non-fixed can be removed.
+		//
+		//   2)
+		//   If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
+		//   If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
+		//   they are possible candidates in the other side of target cell. Other digits can be removed.
+		foreach (var lockedDigit in baseCellsDigitsMask)
+		{
+			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock) && HousesMap[lockedBlock].Contains(targetCell))
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+				{
+					conclusions.Add(new(Elimination, endoTargetCell, digit));
+				}
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, targetCell, digit));
+				}
+
+				candidateOffsets.AddRange(
+					from cell in lockedMemberMap
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+				);
+				houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
+
+				lockedDigitsMask |= (Mask)(1 << lockedDigit);
+				inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ComplexSeniorExocetLockedMemberStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. cellOffsets,
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in CellsMap[targetCell] + endoTargetCell
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in expandedCrosslineIncludingTarget
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. candidateOffsets,
+					.. houseOffsets
+				//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			[targetCell],
+			[endoTargetCell],
+			in crossline,
+			housesMask,
+			extraHousesMask
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+
+	AssignBaseMaskByDefault:
+		(inferredLastTargetDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
+		return null;
+	}
+
 	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3307,6 +3461,71 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		(var @return, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
 		return @return;
+	}
+
+	/// <summary>
+	/// Try to fetch locked members in the pattern, and verify validity of the pattern.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
+	/// <param name="baseCells">The base cells.</param>
+	/// <param name="targetCells">The target cells.</param>
+	/// <param name="fullCrossline">The cross-line cells. The value can cover extra houses on complex exocets.</param>
+	/// <param name="times">The desired times of appearing of digits <paramref name="baseCellsDigitsMask"/>.</param>
+	/// <param name="digitsMaskExactlySizeMinusOneTimes">The digits that appeared exactly (<paramref name="times"/>) times.</param>
+	/// <param name="digitsMaskAppearedInCrossline">The digits whose value representations are appeared in cross-line cells.</param>
+	/// <param name="lockedMembers">The locked members returned.</param>
+	/// <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid.</returns>
+	private static bool InitialCheckValidityAndLockedMembers(
+		scoped ref readonly Grid grid,
+		Mask baseCellsDigitsMask,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap fullCrossline,
+		int times,
+		out Mask digitsMaskExactlySizeMinusOneTimes,
+		out Mask digitsMaskAppearedInCrossline,
+		out ReadOnlySpan<LockedMember?> lockedMembers,
+		out Mask lockedMemberDigitsMask
+	)
+	{
+		(digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = (0, 0);
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			if (grid.IsExactAppearingTimesOf(digit, in fullCrossline, times))
+			{
+				// The current digit can be filled in cross-line cells at most (size) times.
+				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
+			}
+
+			foreach (var cell in fullCrossline)
+			{
+				if (grid.GetDigit(cell) == digit)
+				{
+					digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+					break;
+				}
+			}
+		}
+
+		lockedMemberDigitsMask = baseCellsDigitsMask;
+
+		// Filters the digits they may not be locked members when they matches exactly appeared (size) times.
+		lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
+
+		// Check whether at least one digit appeared in base cells isn't locked and doesn't satisfy the (size) rule.
+		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
+		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
+		{
+			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
+			{
+				atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
+				break;
+			}
+		}
+
+		return !atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule;
 	}
 }
 

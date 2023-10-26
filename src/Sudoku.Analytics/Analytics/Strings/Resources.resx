@@ -2439,4 +2439,16 @@
   <data name="MutantSeniorExocetTargetSync" xml:space="preserve">
     <value>Mutant Senior Exocet (Target Sync)</value>
   </data>
+  <data name="FrankenJuniorExocetLockedMember" xml:space="preserve">
+    <value>Franken Junior Exocet (Locked Member)</value>
+  </data>
+  <data name="FrankenSeniorExocetLockedMember" xml:space="preserve">
+    <value>Franken Senior Exocet (Locked Member)</value>
+  </data>
+  <data name="MutantJuniorExocetLockedMember" xml:space="preserve">
+    <value>Mutant Junior Exocet (Locked Member)</value>
+  </data>
+  <data name="MutantSeniorExocetLockedMember" xml:space="preserve">
+    <value>Mutant Senior Exocet (Locked Member)</value>
+  </data>
 </root>

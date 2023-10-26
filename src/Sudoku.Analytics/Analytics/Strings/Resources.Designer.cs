@@ -1735,6 +1735,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Franken Junior Exocet (Locked Member).
+        /// </summary>
+        public static string FrankenJuniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("FrankenJuniorExocetLockedMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Franken Junior Exocet (Target Sync).
         /// </summary>
         public static string FrankenJuniorExocetTargetSync {
@@ -1767,6 +1776,15 @@ namespace Sudoku.Analytics.Strings {
         public static string FrankenSeniorExocetIncompatiblePair {
             get {
                 return ResourceManager.GetString("FrankenSeniorExocetIncompatiblePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Franken Senior Exocet (Locked Member).
+        /// </summary>
+        public static string FrankenSeniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("FrankenSeniorExocetLockedMember", resourceCulture);
             }
         }
         
@@ -2446,6 +2464,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mutant Junior Exocet (Locked Member).
+        /// </summary>
+        public static string MutantJuniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("MutantJuniorExocetLockedMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mutant Junior Exocet (Target Sync).
         /// </summary>
         public static string MutantJuniorExocetTargetSync {
@@ -2478,6 +2505,15 @@ namespace Sudoku.Analytics.Strings {
         public static string MutantSeniorExocetIncompatiblePair {
             get {
                 return ResourceManager.GetString("MutantSeniorExocetIncompatiblePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Senior Exocet (Locked Member).
+        /// </summary>
+        public static string MutantSeniorExocetLockedMember {
+            get {
+                return ResourceManager.GetString("MutantSeniorExocetLockedMember", resourceCulture);
             }
         }
         

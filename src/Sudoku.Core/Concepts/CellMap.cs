@@ -40,6 +40,7 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
+[DebuggerStepThrough]
 [LargeStructure]
 [Equals]
 [GetHashCode]

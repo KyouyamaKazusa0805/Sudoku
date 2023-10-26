@@ -2879,6 +2879,11 @@ if (student is (name: var name, age: >= 18))
             Indicates franken junior exocet.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetLockedMember">
+            <summary>
+            Indicates franken junior exocet locked member.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetIncompatiblePair">
             <summary>
             Indicates franken junior exocet (incompatible pair).
@@ -2892,6 +2897,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocet">
             <summary>
             Indicates mutant junior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetLockedMember">
+            <summary>
+            Indicates mutant junior exocet locked member.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetIncompatiblePair">
@@ -2909,6 +2919,11 @@ if (student is (name: var name, age: >= 18))
             Indicates franken senior exocet.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetLockedMember">
+            <summary>
+            Indicates franken senior exocet locked member.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetIncompatiblePair">
             <summary>
             Indicates franken senior exocet (incompatible pair).
@@ -2922,6 +2937,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocet">
             <summary>
             Indicates mutant senior exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetLockedMember">
+            <summary>
+            Indicates mutant senior exocet locked member.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetIncompatiblePair">
@@ -7834,6 +7854,22 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">The target cells.</param>
             <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.InitialCheckValidityAndLockedMembers(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{System.Nullable{System.ValueTuple{Sudoku.Concepts.CellMap,System.Int32}}}@,System.Int16@)">
+            <summary>
+            Try to fetch locked members in the pattern, and verify validity of the pattern.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
+            <param name="baseCells">The base cells.</param>
+            <param name="targetCells">The target cells.</param>
+            <param name="fullCrossline">The cross-line cells. The value can cover extra houses on complex exocets.</param>
+            <param name="times">The desired times of appearing of digits <paramref name="baseCellsDigitsMask"/>.</param>
+            <param name="digitsMaskExactlySizeMinusOneTimes">The digits that appeared exactly (<paramref name="times"/>) times.</param>
+            <param name="digitsMaskAppearedInCrossline">The digits whose value representations are appeared in cross-line cells.</param>
+            <param name="lockedMembers">The locked members returned.</param>
+            <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the pattern is valid.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Extensions">
             <target name="class" when="extension">
@@ -12972,6 +13008,55 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep">
+            <summary>
+            Provides with a step that is a <b>Complex Senior Exocet (Locked Member)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Complex Senior Exocet (Locked Member)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.CrosslineHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>crosslineHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetLockedMemberStep.ExtraHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>extraHousesMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetSyncStep">
             <summary>
             Provides with a step that is a <b>Complex Senior Exocet (Target Sync)</b> technique.
@@ -17084,6 +17169,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Junior Exocet (Incompatible Pair).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Franken Junior Exocet (Locked Member).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetTargetSync">
             <summary>
               Looks up a localized string similar to Franken Junior Exocet (Target Sync).
@@ -17102,6 +17192,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetIncompatiblePair">
             <summary>
               Looks up a localized string similar to Franken Senior Exocet (Incompatible Pair).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Franken Senior Exocet (Locked Member).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetTargetSync">
@@ -17479,6 +17574,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mutant Junior Exocet (Incompatible Pair).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Mutant Junior Exocet (Locked Member).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetTargetSync">
             <summary>
               Looks up a localized string similar to Mutant Junior Exocet (Target Sync).
@@ -17497,6 +17597,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetIncompatiblePair">
             <summary>
               Looks up a localized string similar to Mutant Senior Exocet (Incompatible Pair).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetLockedMember">
+            <summary>
+              Looks up a localized string similar to Mutant Senior Exocet (Locked Member).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetTargetSync">
