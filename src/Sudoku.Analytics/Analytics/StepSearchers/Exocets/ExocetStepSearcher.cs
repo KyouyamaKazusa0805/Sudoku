@@ -3320,6 +3320,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask inferredTargetDigitsMask
 	)
 	{
+		if (inferredTargetDigitsMask == baseCellsDigitsMask)
+		{
+			// Inferred result doesn't change.
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in baseCells + targetCell + endoTargetCell)
 		{
