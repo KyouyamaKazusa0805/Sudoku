@@ -3189,8 +3189,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			if (digitPair[0] == digitPair[1])
 			{
 				// We cannot fetch same digits from both base cells.
-				appendWrongCase(baseCandidate1, digitPair[1]);
-				appendWrongCase(baseCandidate2, digitPair[0]);
+				appendWrongCase(baseCandidate1, baseCandidate2 % 9);
+				appendWrongCase(baseCandidate2, baseCandidate1 % 9);
 				continue;
 			}
 
@@ -3200,11 +3200,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// can be appeared in the map at most (size + 1 - 1, i.e. size) times.
 			// Here we should remove the endo-target cell and then check.
 			var allDigitsAppearedInBaseShouldAppearSizeTimes = true;
-			foreach (var digit in baseCellsDigitsMask)
+			foreach (var digit in digitPair)
 			{
-				var cellsToBeChecked = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
-				var limitCount = (baseCombinationMask >> digit & 1) != 0 ? size : size - 1;
-				if (!grid.IsExactAppearingTimesOf(digit, in cellsToBeChecked, limitCount))
+				if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell, size))
 				{
 					allDigitsAppearedInBaseShouldAppearSizeTimes = false;
 					break;
@@ -3213,8 +3211,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			if (!allDigitsAppearedInBaseShouldAppearSizeTimes)
 			{
 				// This combination need one of two combination digits appearing (size) times, but (size - 1) times, invalid.
-				appendWrongCase(baseCandidate1, digitPair[1]);
-				appendWrongCase(baseCandidate2, digitPair[0]);
+				appendWrongCase(baseCandidate1, baseCandidate2 % 9);
+				appendWrongCase(baseCandidate2, baseCandidate1 % 9);
 			}
 
 
