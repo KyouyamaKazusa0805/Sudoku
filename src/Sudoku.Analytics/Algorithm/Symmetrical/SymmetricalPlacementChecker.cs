@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics;
@@ -20,7 +19,7 @@ public static class SymmetricalPlacementChecker
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly unsafe delegate*<ref readonly Grid, out SymmetricType, out Digit?[]?, out Mask, bool>[] Checkers = [
+	private static readonly unsafe delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>[] Checkers = [
 		&Diagonal,
 		&AntiDiagonal,
 		&Central
@@ -43,7 +42,7 @@ public static class SymmetricalPlacementChecker
 	public static unsafe bool IsSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		SymmetricType symmetricType,
-		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
 	)
 	{
@@ -52,10 +51,10 @@ public static class SymmetricalPlacementChecker
 			throw new ArgumentOutOfRangeException(nameof(symmetricType));
 		}
 
-#nullable disable
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
+#pragma warning disable CS9088
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
-#nullable restore
+#pragma warning restore CS9088
 	}
 
 	/// <summary>
@@ -69,11 +68,11 @@ public static class SymmetricalPlacementChecker
 	public static unsafe bool GetSymmetricalPlacementType(
 		this scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
-		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
 	)
 	{
-#nullable disable
+#pragma warning disable CS9088
 		foreach (var functionPointer in Checkers)
 		{
 			if (functionPointer(in grid, out symmetricType, out mappingDigits, out selfPairedDigitsMask))
@@ -81,7 +80,7 @@ public static class SymmetricalPlacementChecker
 				return true;
 			}
 		}
-#nullable restore
+#pragma warning restore CS9088
 
 		symmetricType = SymmetricType.None;
 		mappingDigits = null;
@@ -119,7 +118,7 @@ public static class SymmetricalPlacementChecker
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void GetHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped Span<Digit?> mapping)
+	private static void GetHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped ReadOnlySpan<Digit?> mapping)
 	{
 		scoped var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
@@ -161,12 +160,11 @@ public static class SymmetricalPlacementChecker
 	private static bool Diagonal(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
-		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
 	)
 	{
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
+		var mapping = new Digit?[9];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < i; j++)
@@ -227,7 +225,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		symmetricType = SymmetricType.Diagonal;
-		mappingDigits = [.. mapping];
+		mappingDigits = mapping;
 		selfPairedDigitsMask = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -259,12 +257,11 @@ public static class SymmetricalPlacementChecker
 	private static bool AntiDiagonal(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
-		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
 	)
 	{
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
+		var mapping = new Digit?[9];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 8 - i; j++)
@@ -325,7 +322,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		symmetricType = SymmetricType.AntiDiagonal;
-		mappingDigits = [.. mapping];
+		mappingDigits = mapping;
 		selfPairedDigitsMask = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -357,12 +354,11 @@ public static class SymmetricalPlacementChecker
 	private static bool Central(
 		scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
-		[NotNullWhen(true)] out Digit?[]? mappingDigits,
+		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
 	)
 	{
-		scoped var mapping = (stackalloc Digit?[9]);
-		mapping.Clear();
+		var mapping = new Digit?[9];
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;
@@ -419,7 +415,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		symmetricType = SymmetricType.Central;
-		mappingDigits = [.. mapping];
+		mappingDigits = mapping;
 		selfPairedDigitsMask = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{

@@ -134,7 +134,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			bool isSukaku,
 			AnalyzerResult resultBase,
 			SymmetricType symmetricType,
-			Digit?[]? mappingDigits,
+			scoped ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<AnalyzerProgress>? progress = null,
 			CancellationToken cancellationToken = default
@@ -149,10 +149,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
 
 			// Determine whether the grid is a GSP pattern. If so, check eliminations.
-			if ((symmetricType, mappingDigits, selfPairedDigitsMask) is (not SymmetricType.None, not null, not 0))
+			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
 			{
-				context.InferredGurthSymmetricalPlacementPattern = symmetricType;
-				context.MappingRelations = mappingDigits;
+				(context.InferredGurthSymmetricalPlacementPattern, context.MappingRelations) = (symmetricType, [.. mappingDigits]);
 
 				if (SymmetricalPlacementChecker.GetStep(in playground, Options) is { } step)
 				{
@@ -170,7 +169,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				}
 			}
 
-		Again:
+		FindNextStep:
 			Initialize(in playground, in solution);
 			foreach (var searcher in stepSearchers)
 			{
@@ -217,7 +216,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 						// The puzzle has not been finished, we should turn to the first step finder
 						// to continue solving puzzle.
-						goto SetAnalyzerProgress;
+						goto AssignProgress;
 					}
 					default:
 					{
@@ -245,15 +244,15 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 								// The puzzle has not been finished, we should turn to the first step finder
 								// to continue solving puzzle.
-								goto SetAnalyzerProgress;
+								goto AssignProgress;
 							}
 						}
 					}
 				}
 
-			SetAnalyzerProgress:
+			AssignProgress:
 				progressedStepSearcherName = searcher.ToString();
-				goto ReportStateAndSkipToTryAgain;
+				goto ReportStateAndTryToFindNextStep;
 			}
 
 			// All solver can't finish the puzzle... :(
@@ -265,9 +264,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				StepGrids = [.. stepGrids]
 			};
 
-		ReportStateAndSkipToTryAgain:
+		ReportStateAndTryToFindNextStep:
 			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
-			goto Again;
+			goto FindNextStep;
 
 
 			static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
