@@ -613,7 +613,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Create a map that contains both cross-line cells and extra houses cells.
 			var expandedCrossline = crossline | HousesMap[extraHouse];
 			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) - baseCells.PeerIntersection;
-			var intersectedCellsBase = (crossline & HousesMap[extraHouse]) - targetCell;
+			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCell;
 
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
@@ -664,7 +664,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							return complexSeniorLockedMemberTypeStep;
 						}
 
-#if false
 						if (CheckComplexSeniorIncompatiblePair(
 							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
 							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
@@ -682,7 +681,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						{
 							return complexSeniorTargetSyncTypeStep;
 						}
-#endif
 
 						// Check whether the locked members are really used.
 						// If not, we should check for them, whether they are appeared in cross-line cells in (size) times.
@@ -3253,7 +3251,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check for inferred target digits mask.
 		foreach (var digit in from conclusion in conclusions select conclusion.Digit)
 		{
-			if (conclusions.Count(conclusion => conclusion.Digit == digit) == 2)
+			var map = CellMap.Empty;
+			foreach (var conclusion in conclusions)
+			{
+				if (conclusion.Digit == digit)
+				{
+					map.Add(conclusion.Cell);
+				}
+			}
+
+			if (map == baseCells)
 			{
 				inferredTargetDigitsMask &= (Mask)~(1 << digit);
 			}
