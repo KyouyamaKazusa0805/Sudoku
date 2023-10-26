@@ -7774,6 +7774,13 @@ if (student is (name: var name, age: >= 18))
             <item>Senior Exocet (Locked Member)</item>
             </list>
             </item>
+            <item>
+            Complex Exocets:
+            <list type="bullet">
+            <!--<item>Complex Junior Exocet</item>-->
+            <item>Complex Senior Exocet</item>
+            </list>
+            </item>
             </list>
             </summary>
         </member>

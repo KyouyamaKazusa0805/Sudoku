@@ -63,6 +63,13 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// <item>Senior Exocet (Locked Member)</item>
 /// </list>
 /// </item>
+/// <item>
+/// Complex Exocets:
+/// <list type="bullet">
+/// <!--<item>Complex Junior Exocet</item>-->
+/// <item>Complex Senior Exocet</item>
+/// </list>
+/// </item>
 /// </list>
 /// </summary>
 [StepSearcher(
@@ -3104,20 +3111,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap expandedCrosslineIncludingTarget
 	)
 	{
-		var allDigitsAppearedInBaseShouldAppearSizeTimes = true;
-		foreach (var digit in baseCellsDigitsMask)
-		{
-			if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell, size - 1))
-			{
-				allDigitsAppearedInBaseShouldAppearSizeTimes = false;
-				break;
-			}
-		}
-		if (!allDigitsAppearedInBaseShouldAppearSizeTimes)
-		{
-			return null;
-		}
-
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in CellsMap[targetCell] + endoTargetCell)
 		{
