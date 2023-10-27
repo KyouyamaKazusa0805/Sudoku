@@ -78,10 +78,12 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirror,
 	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
-	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
-	Technique.MutantSeniorExocet, Technique.PatternLockedQuadruple,
-	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember,
-	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember)]
+	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
+	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
+	Technique.MutantSeniorExocetLockedMember, Technique.FrankenJuniorExocetIncompatiblePair, Technique.MutantJuniorExocetIncompatiblePair,
+	Technique.FrankenSeniorExocetIncompatiblePair, Technique.MutantSeniorExocetIncompatiblePair, Technique.FrankenJuniorExocetTargetSync,
+	Technique.MutantJuniorExocetTargetSync, Technique.FrankenSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetSync,
+	Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
