@@ -237,7 +237,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											}
 										}
 									}
-									else if (baseCells.Count == 2 && targetCells.Count == 1)
+
+									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
 										if (CollectSeniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
@@ -247,7 +248,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return seniorExocet;
 										}
 									}
-									else if (groupsOfTargetCells.Length == baseSize)
+
+									if (groupsOfTargetCells.Length == baseSize)
 									{
 										if (CollectWeakExocets(
 											ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
@@ -271,6 +273,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										) is { } doubleExocet)
 										{
 											return doubleExocet;
+										}
+
+										if (CollectComplexJuniorExocets(
+											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+											baseCellsDigitsMask, housesMask, isRow, size, i
+										) is { } complexJuniorExocet)
+										{
+											return complexJuniorExocet;
 										}
 									}
 								}
@@ -575,6 +585,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			//}
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// The core method to check for Complex Junior Exocet sub-types.
+	/// </summary>
+	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	private static ExocetStep? CollectComplexJuniorExocets(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		bool isRow,
+		int size,
+		int chuteIndex
+	)
+	{
 		return null;
 	}
 

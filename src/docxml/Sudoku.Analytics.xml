@@ -7817,6 +7817,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectComplexJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            The core method to check for Complex Junior Exocet sub-types.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectComplexSeniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             The core method to check for Complex Senior Exocet sub-types.
