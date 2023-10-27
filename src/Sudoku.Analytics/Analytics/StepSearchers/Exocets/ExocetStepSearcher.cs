@@ -154,24 +154,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var chuteEmptyCells = chuteCells & EmptyCells;
 									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
-									var targetCellsDigitsMask = grid[in targetCells];
-
-									// Check whether all digits appeared in base cells can be filled in target empty cells.
 									var baseCellsDigitsMask = grid[in baseCells];
-									var allTargetCellsMustContainAllBaseDigits = true;
-									foreach (var cell in targetCells)
-									{
-										if ((grid.GetCandidates(cell) & baseCellsDigitsMask) != baseCellsDigitsMask)
-										{
-											allTargetCellsMustContainAllBaseDigits = false;
-											break;
-										}
-									}
-									if (!allTargetCellsMustContainAllBaseDigits)
-									{
-										// All target cells should contain all digits appeared in base cells.
-										continue;
-									}
+									var targetCellsDigitsMask = grid[in targetCells];
 
 									// Check whether all cross-line lines contains at least one digit appeared in base cells.
 									var crossline = housesCells - chuteCells;
@@ -223,11 +207,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Collect exocets by types.
-									if (baseCells.Count == 2
-										&& (targetCells.Count == 1 || targetCells.Count == 2 && !targetCells.InOneHouse(out _)))
+									if (baseCells.Count == 2 && (targetCells.Count == 1 || targetCells.Count == 2 && !targetCells.InOneHouse(out _)))
 									{
 										foreach (var targetCell in targetCells)
 										{
+											if (!CheckTargetCellsValidity(in grid, [targetCell], baseCellsDigitsMask))
+											{
+												continue;
+											}
+
 											if (CollectComplexSeniorExocets(
 												ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
@@ -240,6 +228,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
+										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
+										{
+											continue;
+										}
+
 										if (CollectSeniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -251,6 +244,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									if (groupsOfTargetCells.Length == baseSize)
 									{
+										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
+										{
+											continue;
+										}
+
 										if (CollectWeakExocets(
 											ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
 											housesMask, isRow, size, i
@@ -500,7 +498,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 
 					// Endo-target cells must contain at least one of all digits appeared in base cells.
-					if ((grid.GetCandidates(endoTargetCell) & baseCellsDigitsMask) == 0)
+					if (!CheckTargetCellsValidity(in grid, [endoTargetCell], baseCellsDigitsMask, false))
 					{
 						continue;
 					}
@@ -649,9 +647,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				if ((grid.GetCandidates(endoTargetCell) & baseCellsDigitsMask) == 0)
+				if (!CheckTargetCellsValidity(in grid, [endoTargetCell], baseCellsDigitsMask, false))
 				{
-					// Endo-target cell should also contain all possible digits appeared in base.
 					continue;
 				}
 
@@ -3409,6 +3406,36 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		context.Accumulator.Add(step);
 		return null;
+	}
+
+	/// <summary>
+	/// Check whether all digits appeared in base cells can be filled in target empty cells.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="targetCellsToBeChecked">The target cells to be checked.</param>
+	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
+	/// <param name="isExoTargetCell">Indicates whether the cells specified are an exo-target cells.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	private static bool CheckTargetCellsValidity(
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap targetCellsToBeChecked,
+		Mask baseCellsDigitsMask,
+		bool isExoTargetCell = true
+	)
+	{
+		foreach (var cell in targetCellsToBeChecked)
+		{
+			switch (isExoTargetCell)
+			{
+				case true when (grid.GetCandidates(cell) & baseCellsDigitsMask) != baseCellsDigitsMask:
+				case false when (grid.GetCandidates(cell) & baseCellsDigitsMask) == 0:
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/// <summary>

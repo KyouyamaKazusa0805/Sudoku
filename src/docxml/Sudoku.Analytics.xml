@@ -7841,6 +7841,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CollectJuniorExocets(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,System.Int32}},Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckTargetCellsValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Check whether all digits appeared in base cells can be filled in target empty cells.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="targetCellsToBeChecked">The target cells to be checked.</param>
+            <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
+            <param name="isExoTargetCell">Indicates whether the cells specified are an exo-target cells.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetMirrorCells(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get the mirror cells for the specified target cell at the specified index of the chute.
