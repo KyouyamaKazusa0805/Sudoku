@@ -34,7 +34,7 @@ public static class Enumerable2
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
 	{
-		if (!@this.Any())
+		if (@this.None())
 		{
 			return false;
 		}
