@@ -16,12 +16,12 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-[StructLayout(LayoutKind.Auto)]
 [LargeStructure]
 [Equals]
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[StructLayout(LayoutKind.Auto)]
 [method: JsonConstructor]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LockedTarget(

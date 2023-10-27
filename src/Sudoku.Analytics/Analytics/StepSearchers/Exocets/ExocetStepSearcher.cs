@@ -3500,8 +3500,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var realLockedDigitsMask = (Mask)0;
 		foreach (var lockedDigit in lockedDigitsMask)
 		{
-			var lockedMemberMap = CellMap.Empty;
-			var lockedBlock = -1;
+			var (lockedMemberMap, lockedBlock) = (CellMap.Empty, -1);
 			foreach (var block in targetCells.BlockMask)
 			{
 				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
