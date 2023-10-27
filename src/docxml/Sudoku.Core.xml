@@ -8553,6 +8553,13 @@ if (student is (name: var name, age: >= 18))
             <param name="size">The size.</param>
             <returns>The result list.</returns>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.SplitMask(System.Int16)">
+            <summary>
+            Try to split a mask into 3 parts, 3-bit as a unit.
+            </summary>
+            <param name="this">The mask instance to be split.</param>
+            <returns>A triplet of values.</returns>
+        </member>
         <member name="T:Sudoku.SolutionWideReadOnlyFields">
             <summary>
             Provides with solution-wide read-only fields used.

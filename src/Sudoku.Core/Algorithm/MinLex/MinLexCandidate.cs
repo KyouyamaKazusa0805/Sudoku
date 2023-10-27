@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Sudoku.Runtime.MaskServices;
 
 namespace Sudoku.Algorithm.MinLex;
 
@@ -91,9 +92,7 @@ public unsafe struct MinLexCandidate
 		MinLexCandidate* res;
 		for (var stackPerm = 0; stackPerm < 6; stackPerm++)
 		{
-			toTriplets[Perm[stackPerm][0]] = rowGivens >> 6 & 7;
-			toTriplets[Perm[stackPerm][1]] = rowGivens >> 3 & 7;
-			toTriplets[Perm[stackPerm][2]] = rowGivens & 7;
+			(toTriplets[Perm[stackPerm][0]], toTriplets[Perm[stackPerm][1]], toTriplets[Perm[stackPerm][2]]) = ((Mask)rowGivens).SplitMask();
 
 			fixed (BestTriplet* bt0 = &BestTriplet.BestTripletPermutations[toTriplets[0]][63])
 			fixed (BestTriplet* bt1 = &BestTriplet.BestTripletPermutations[toTriplets[1]][63])
@@ -222,10 +221,8 @@ public unsafe struct MinLexCandidate
 						continue;
 					}
 
-					var rowGivens = pPair[old->_isTransposed ? 1 : 0].Rows[fromRow];
-					toTriplets[Perm[old->_stacksPerm][0]] = rowGivens >> 6 & 7;
-					toTriplets[Perm[old->_stacksPerm][1]] = rowGivens >> 3 & 7;
-					toTriplets[Perm[old->_stacksPerm][2]] = rowGivens & 7;
+					(toTriplets[Perm[old->_stacksPerm][0]], toTriplets[Perm[old->_stacksPerm][1]], toTriplets[Perm[old->_stacksPerm][2]]) =
+						((Mask)pPair[old->_isTransposed ? 1 : 0].Rows[fromRow]).SplitMask();
 
 					fixed (BestTriplet* bt0 = &BestTriplet.BestTripletPermutations[toTriplets[0]][old->_colsPermMask[0]])
 					fixed (BestTriplet* bt1 = &BestTriplet.BestTripletPermutations[toTriplets[1]][old->_colsPermMask[1]])

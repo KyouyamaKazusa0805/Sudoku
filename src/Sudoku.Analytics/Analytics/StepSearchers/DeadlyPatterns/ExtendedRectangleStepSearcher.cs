@@ -117,17 +117,16 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		{
 			for (var i = 0; i < houses.Length >> 1; i++)
 			{
-				var house1 = houses[i][0];
-				var house2 = houses[i][1];
+				var (house1, house2) = (houses[i][0], houses[i][1]);
 				foreach (Mask mask in new MaskCombinationsGenerator(9, size))
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
-					if (size == 3 && (mask >> 6 == 7 || (mask >> 3 & 7) == 7 || (mask & 7) == 7))
+					if (size == 3 && mask.SplitMask() is not (not 7, not 7, not 7))
 					{
 						continue;
 					}
 
-					var (map, pairs) = (CellMap.Empty, new List<(Cell, Cell)>());
+					var (map, pairs) = (CellMap.Empty, (List<(Cell, Cell)>)[]);
 					foreach (var pos in mask)
 					{
 						var (cell1, cell2) = (HouseCells[house1][pos], HouseCells[house2][pos]);

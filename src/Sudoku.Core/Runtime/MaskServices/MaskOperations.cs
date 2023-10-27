@@ -121,4 +121,12 @@ public static class MaskOperations
 
 		return result;
 	}
+
+	/// <summary>
+	/// Try to split a mask into 3 parts, 3-bit as a unit.
+	/// </summary>
+	/// <param name="this">The mask instance to be split.</param>
+	/// <returns>A triplet of values.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static (int High, int Mid, int Low) SplitMask(this Mask @this) => (@this >> 6 & 7, @this >> 3 & 7, @this & 7);
 }
