@@ -241,9 +241,9 @@ public partial struct CellMap :
 
 	/// <summary>
 	/// Indicates all houses covered. This property is used to check all houses that all cells
-	/// of this instance covered. For example, if the cells are <c>{ 0, 1 }</c>, the property
+	/// of this instance covered. For example, if the cells are <c>[0, 1]</c>, the property
 	/// <see cref="CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
-	/// however, if cells spanned two houses or more (e.g. cells <c>{ 0, 1, 27 }</c>),
+	/// however, if cells spanned two houses or more (e.g. cells <c>[0, 1, 27]</c>),
 	/// this property won't contain any houses.
 	/// </summary>
 	/// <remarks>
@@ -292,7 +292,7 @@ public partial struct CellMap :
 
 	/// <summary>
 	/// All houses that the map spanned. This property is used to check all houses that all cells of
-	/// this instance spanned. For example, if the cells are <c>{ 0, 1 }</c>, the property
+	/// this instance spanned. For example, if the cells are <c>[0, 1]</c>, the property
 	/// <see cref="Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
 	/// and 19 (column 2).
 	/// </summary>
