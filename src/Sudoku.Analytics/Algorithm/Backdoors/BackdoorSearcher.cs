@@ -1,6 +1,7 @@
 using System.Numerics;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Algorithm.Backdoors;
@@ -22,7 +23,7 @@ public static class BackdoorSearcher
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A list of backdoors.</returns>
 	/// <exception cref="ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
-	public static Conclusion[] GetBackdoors(scoped ref readonly Grid grid)
+	public static ReadOnlySpan<Conclusion> GetBackdoors(scoped ref readonly Grid grid)
 	{
 		switch (grid, SstsChecker.Analyze(in grid))
 		{
@@ -33,13 +34,11 @@ public static class BackdoorSearcher
 			case (_, { IsSolved: true }):
 			{
 				var solution = grid.SolutionGrid;
-				return [
-					..
+				return
 					from candidate in grid
 					let digit = solution.GetDigit(candidate / 9)
 					where digit != -1
-					select new Conclusion(digit == candidate % 9 ? Assignment : Elimination, candidate)
-				];
+					select new Conclusion(digit == candidate % 9 ? Assignment : Elimination, candidate);
 			}
 			default:
 			{
@@ -68,7 +67,7 @@ public static class BackdoorSearcher
 					}
 				}
 
-				return [.. assignment, .. elimination];
+				return (Conclusion[])[.. assignment, .. elimination];
 			}
 		}
 	}
