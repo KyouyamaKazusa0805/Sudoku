@@ -388,20 +388,18 @@ public static class ArrayEnumerable
 	/// </code>
 	/// 24 cases.
 	/// </returns>
-	public static unsafe T[][] GetExtractedCombinations<T>(this T[][] @this)
+	public static T[][] GetExtractedCombinations<T>(this T[][] @this)
 	{
 		var length = @this.Length;
 		var resultCount = 1;
-		var tempArray = stackalloc int[length];
+		scoped var tempArray = (stackalloc int[length]);
 		for (var i = 0; i < length; i++)
 		{
 			tempArray[i] = -1;
 			resultCount *= @this[i].Length;
 		}
 
-		var result = new T[resultCount][];
-		var m = -1;
-		var n = -1;
+		var (result, m, n) = (new T[resultCount][], -1, -1);
 		do
 		{
 			if (m < length - 1)
@@ -409,11 +407,11 @@ public static class ArrayEnumerable
 				m++;
 			}
 
-			var value = tempArray + m;
-			(*value)++;
-			if (*value > @this[m].Length - 1)
+			scoped ref var value = ref tempArray[m];
+			value++;
+			if (value > @this[m].Length - 1)
 			{
-				*value = -1;
+				value = -1;
 				m -= 2; // Backtrack.
 			}
 
