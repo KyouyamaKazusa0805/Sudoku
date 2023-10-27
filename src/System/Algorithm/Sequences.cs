@@ -19,7 +19,7 @@ public static class Sequences
 	/// <param name="index"><inheritdoc cref="Sequences" path="//shared-comments/para[1]"/></param>
 	/// <returns>The result value at the specified index.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int A000217(int index) => index * (index - 1) / 2;
+	public static int A000217(int index) => index * (index - 1) >> 1;
 
 	/// <summary>
 	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A002024">A002024</see>
