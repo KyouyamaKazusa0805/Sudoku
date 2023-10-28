@@ -156,8 +156,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			}
 
 			// Check each pair.
-			// Ensures all pairs should contains same digits
-			// and the kind of digits must be greater than 2.
+			// Ensures all pairs should contains same digits and the kind of digits must be greater than 2.
 			var checkKindsFlag = true;
 			foreach (var (l, r) in pairs)
 			{
@@ -209,8 +208,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 			if (PopCount((uint)resultMask) == size + 1)
 			{
-				// Possible type 1 or 2 found.
-				// Now check extra cells.
+				// Possible type 1 or 2 found. Now check extra cells.
 				var extraDigit = TrailingZeroCount(extraDigits);
 				var extraCellsMap = allCellsMap & CandidatesMap[extraDigit];
 				if (!extraCellsMap)
