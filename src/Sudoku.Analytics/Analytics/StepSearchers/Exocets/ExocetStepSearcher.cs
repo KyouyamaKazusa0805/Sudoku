@@ -565,11 +565,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				break;
 			}
-			//case 2:
-			//{
-			//	// TODO: Fixed base digits due to fixed target cell digits.
-			//	break;
-			//}
 		}
 
 		return null;
@@ -2275,99 +2270,92 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Digit lockedDigit
 	)
 	{
-		switch (targetCells)
+		if (targetCells is not [var targetCell])
 		{
-			case [var targetCell]:
-			{
-				// Check whether the endo-target cell only holds one.
-				var endoTargetCell = -1;
-				var multipleEndoTargetCellsFound = false;
-				foreach (var cell in crossline)
-				{
-					if (grid.GetDigit(cell) == lockedDigit)
-					{
-						if (endoTargetCell != -1)
-						{
-							// Multiple endo-target cells found.
-							multipleEndoTargetCellsFound = true;
-							break;
-						}
-
-						endoTargetCell = cell;
-					}
-				}
-				if (multipleEndoTargetCellsFound)
-				{
-					// Invalid.
-					break;
-				}
-
-				var conclusions = new List<Conclusion>();
-
-				// First, check for elimination on target cell.
-				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
-				{
-					conclusions.Add(new(Elimination, targetCell, digit));
-				}
-
-				// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
-				foreach (var cell in baseCells % CandidatesMap[lockedDigit])
-				{
-					conclusions.Add(new(Elimination, cell, lockedDigit));
-				}
-
-				if (conclusions.Count == 0)
-				{
-					// No eliminations found.
-					break;
-				}
-
-				var step = new ExocetLockedMemberStep(
-					[.. conclusions],
-					[
-						[
-							.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-							.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-							.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-							..
-							from cell in baseCells
-							from d in grid.GetCandidates(cell)
-							let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
-							select new CandidateViewNode(colorIdentifier, cell * 9 + d),
-							..
-							from cell in crossline - EmptyCells
-							where grid.GetDigit(cell) == lockedDigit
-							select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-							..
-							from cell in crossline
-							where grid.GetState(cell) == CellState.Empty
-							from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-							select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-							//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
-						]
-					],
-					context.PredefinedOptions,
-					baseCellsDigitsMask,
-					(Mask)(1 << lockedDigit),
-					in baseCells,
-					in targetCells,
-					[endoTargetCell],
-					in crossline
-				);
-				if (context.OnlyFindOne)
-				{
-					return step;
-				}
-
-				context.Accumulator.Add(step);
-				return null;
-			}
-			//case { Count: 2 }:
-			//{
-			//	// TODO: May be conjugate pair or AHS.
-			//}
+			// TODO: Today we don't handle the case on AHS or conjugate pair.
+			return null;
 		}
 
+		// Check whether the endo-target cell only holds one.
+		var endoTargetCell = -1;
+		var multipleEndoTargetCellsFound = false;
+		foreach (var cell in crossline)
+		{
+			if (grid.GetDigit(cell) == lockedDigit)
+			{
+				if (endoTargetCell != -1)
+				{
+					// Multiple endo-target cells found.
+					multipleEndoTargetCellsFound = true;
+					break;
+				}
+
+				endoTargetCell = cell;
+			}
+		}
+		if (multipleEndoTargetCellsFound)
+		{
+			// Invalid.
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+
+		// First, check for elimination on target cell.
+		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+		{
+			conclusions.Add(new(Elimination, targetCell, digit));
+		}
+
+		// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
+		foreach (var cell in baseCells % CandidatesMap[lockedDigit])
+		{
+			conclusions.Add(new(Elimination, cell, lockedDigit));
+		}
+
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ExocetLockedMemberStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+					..
+					from cell in crossline - EmptyCells
+					where grid.GetDigit(cell) == lockedDigit
+					select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			(Mask)(1 << lockedDigit),
+			in baseCells,
+			in targetCells,
+			[endoTargetCell],
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
 		return null;
 	}
 
