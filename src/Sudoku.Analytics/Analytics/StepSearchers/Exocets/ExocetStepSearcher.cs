@@ -477,16 +477,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether cross-line non-empty cells contains digits appeared in base cells.
 		// If so, they will be endo-target cells.
 		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-		var lockedDigitsMask = (Mask)0;
-		foreach (var cell in crossline)
-		{
-			var digit = grid.GetDigit(cell);
-			if ((baseCellsDigitsMask >> digit & 1) != 0)
-			{
-				lockedDigitsMask |= (Mask)(1 << digit);
-			}
-		}
-
+		var lockedDigitsMask = GetValueDigitsAppearedInCrossline(in grid, in crossline, baseCellsDigitsMask);
 		switch (PopCount((uint)lockedDigitsMask))
 		{
 			case 0:
@@ -3478,6 +3469,28 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		return result.AsReadOnlySpan()[..i];
+	}
+
+	/// <summary>
+	/// Try to get all possible digits as value representation in cross-line cells.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="crossline">The cross-line cells to be checked.</param>
+	/// <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
+	/// <returns>A list of digits appeared in cross-line cells as value representation.</returns>
+	private static Mask GetValueDigitsAppearedInCrossline(scoped ref readonly Grid grid, scoped ref readonly CellMap crossline, Mask baseCellsDigitsMask)
+	{
+		var result = (Mask)0;
+		foreach (var cell in crossline)
+		{
+			var digit = grid.GetDigit(cell);
+			if ((baseCellsDigitsMask >> digit & 1) != 0)
+			{
+				result |= (Mask)(1 << digit);
+			}
+		}
+
+		return result;
 	}
 
 	/// <summary>
