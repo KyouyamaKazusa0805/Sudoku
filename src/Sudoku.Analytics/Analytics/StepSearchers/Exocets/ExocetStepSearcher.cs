@@ -1049,6 +1049,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			lastCells -= HousesMap[line];
 		}
 
+		// Now we have a possible double JE. However, we haven't checked for validity. Now check for it.
+		// We should only check for one base cell because the other one is ensured to be correct.
+		if (!InitialCheckValidityAndLockedMembers(
+			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline,
+			size - 1, out _, out _, out _, out _))
+		{
+			// The pattern does not satisfy basic (size - 1) rule.
+			return null;
+		}
+
 		// Iterate on each intersection to get the other side of base cells.
 		foreach (ref readonly var intersection in MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
 		{
