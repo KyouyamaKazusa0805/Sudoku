@@ -12986,7 +12986,7 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep">
+        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep">
             <summary>
             Provides with a step that is a <b>Complex Senior Exocet (Incompatible Pair)</b> technique.
             </summary>
@@ -13001,7 +13001,7 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Complex Senior Exocet (Incompatible Pair)</b> technique.
             </summary>
@@ -13016,21 +13016,21 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.CrosslineHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.CrosslineHousesMask">
             <summary>
             The generated property declaration for parameter <c>crosslineHousesMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiablePairStep.ExtraHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.ExtraHousesMask">
             <summary>
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
