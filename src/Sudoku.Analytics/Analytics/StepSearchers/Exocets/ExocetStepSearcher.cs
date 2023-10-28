@@ -3458,8 +3458,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <returns>A list of <see cref="CellMap"/> grouped, representing as a <see cref="TargetCellsGroup"/>.</returns>
 	private static ReadOnlySpan<TargetCellsGroup> GroupTargets(scoped ref readonly CellMap targetCells, HouseMask houses)
 	{
-		var result = new TargetCellsGroup[PopCount((uint)houses)];
-		var i = 0;
+		var (result, i) = (new TargetCellsGroup[PopCount((uint)houses)], 0);
 		foreach (var house in houses)
 		{
 			if ((targetCells & HousesMap[house]) is var map and not [])
@@ -3483,8 +3482,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var result = (Mask)0;
 		foreach (var cell in crossline)
 		{
-			var digit = grid.GetDigit(cell);
-			if ((baseCellsDigitsMask >> digit & 1) != 0)
+			if (grid.GetDigit(cell) is var digit && (baseCellsDigitsMask >> digit & 1) != 0)
 			{
 				result |= (Mask)(1 << digit);
 			}
@@ -3507,9 +3505,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref Mask lockedDigitsMask
 	)
 	{
-		var flag = false;
-		var r = new LockedMember?[9];
-		var realLockedDigitsMask = (Mask)0;
+		var (flag, r, realLockedDigitsMask) = (false, new LockedMember?[9], (Mask)0);
 		foreach (var lockedDigit in lockedDigitsMask)
 		{
 			var (lockedMemberMap, lockedBlock) = (CellMap.Empty, -1);
@@ -3532,8 +3528,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			flag = true;
 		}
 
-		(var @return, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
-		return @return;
+		(var result, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
+		return result;
 	}
 
 	/// <summary>
@@ -3620,8 +3616,7 @@ file static class Extensions
 		int limitCount
 	)
 	{
-		var activeCells = CandidatesMap[digit] & cells;
-		var inactiveCells = ValuesMap[digit] & cells;
+		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		if (!activeCells && limitCount == inactiveCells.Count)
 		{
 			return true;
