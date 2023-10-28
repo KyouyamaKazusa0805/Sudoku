@@ -3190,7 +3190,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ComplexSeniorExocetCompatiablePairStep? CheckComplexSeniorIncompatiblePair(
+	private static ComplexSeniorExocetIncompatiablePairStep? CheckComplexSeniorIncompatiblePair(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -3291,7 +3291,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 		}
 
-		var step = new ComplexSeniorExocetCompatiablePairStep(
+		var step = new ComplexSeniorExocetIncompatiablePairStep(
 			[.. conclusions],
 			[
 				[

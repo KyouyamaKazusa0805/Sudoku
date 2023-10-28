@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-public sealed partial class ComplexSeniorExocetCompatiablePairStep(
+public sealed partial class ComplexSeniorExocetIncompatiablePairStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
