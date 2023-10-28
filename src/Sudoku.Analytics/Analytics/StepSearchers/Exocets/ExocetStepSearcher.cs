@@ -80,8 +80,8 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
 	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
-	Technique.MutantSeniorExocetLockedMember, Technique.FrankenJuniorExocetIncompatiblePair, Technique.MutantJuniorExocetIncompatiblePair,
-	Technique.FrankenSeniorExocetIncompatiblePair, Technique.MutantSeniorExocetIncompatiblePair, Technique.FrankenJuniorExocetTargetSync,
+	Technique.MutantSeniorExocetLockedMember, Technique.FrankenJuniorExocetCompatibilityTest, Technique.MutantJuniorExocetCompatibilityTest,
+	Technique.FrankenSeniorExocetCompatibilityTest, Technique.MutantSeniorExocetCompatibilityTest, Technique.FrankenJuniorExocetTargetSync,
 	Technique.MutantJuniorExocetTargetSync, Technique.FrankenSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetSync,
 	Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
@@ -676,13 +676,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							return complexSeniorLockedMemberTypeStep;
 						}
 
-						if (CheckComplexSeniorIncompatiblePair(
-							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
-							out var inferredTargetDigitsMask
-						) is { } complexSeniorIncompatiblePairTypeStep)
+						if (CheckComplexSeniorCompatibilityTest(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline, baseCellsDigitsMask, housesMask,
+							1 << extraHouse, size, lockedMemberDigitsMask, in expandedCrosslineIncludingTarget, out var inferredTargetDigitsMask
+						) is { } complexSeniorCompatibilityTestTypeStep)
 						{
-							return complexSeniorIncompatiblePairTypeStep;
+							return complexSeniorCompatibilityTestTypeStep;
 						}
 
 						if (CheckComplexSeniorTargetSync(
@@ -3165,7 +3164,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ComplexSeniorExocetIncompatiblePairStep? CheckComplexSeniorIncompatiblePair(
+	private static ComplexSeniorExocetCompatibilityTestStep? CheckComplexSeniorCompatibilityTest(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -3176,97 +3175,53 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
 		int size,
+		Mask lockedMemberDigitsMask,
 		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
 		out Mask inferredTargetDigitsMask
 	)
 	{
-		var baseDigitsPairs = (Digit[][])[[.. grid.GetCandidates(baseCells[0]).GetAllSets()], [.. grid.GetCandidates(baseCells[1]).GetAllSets()]];
-		var wrongCases = new Dictionary<Candidate, Mask>();
-
-		// Iterate on each combination of pairs.
-		foreach (var digitPair in baseDigitsPairs.GetExtractedCombinations())
+		if (lockedMemberDigitsMask == 0)
 		{
-			var baseCandidate1 = baseCells[0] * 9 + digitPair[0];
-			var baseCandidate2 = baseCells[1] * 9 + digitPair[1];
-			if (digitPair[0] == digitPair[1])
+			inferredTargetDigitsMask = 0;
+			return null;
+		}
+
+		// The main idea of this type is trying to find for a locked member, and suppose for it, then check for any confliction for rank = -1.
+		// Suppose if the digit is correct in base cells, then we should use locked candidates to make a target cell to be it.
+		// Then check for cross-line cells, find all possible valid cases of filling with that digit.
+		// If the number of the filled digit is less than the number of cross-line houses,
+		// we can conclude that this digit will lead to an confliction.
+		// Therefore, the digit is wrong, and we can remove it from both base cells.
+		var digitsToBeIterated = inferredTargetDigitsMask = lockedMemberDigitsMask;
+		var conclusions = new List<Conclusion>();
+		foreach (var digit in lockedMemberDigitsMask)
+		{
+			// We have a locked member, meaning the digit can be filled into a target cell directly
+			// via supposing on filling that digit in base cells.
+			// Now check for rank = -1 rule.
+			var cellsToCheck = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
+			if (!grid.IsExactAppearingTimesOf(digit, in cellsToCheck, size - 1))
 			{
-				// We cannot fetch same digits from both base cells.
-				appendWrongCase(baseCandidate1, baseCandidate2 % 9);
-				appendWrongCase(baseCandidate2, baseCandidate1 % 9);
 				continue;
 			}
 
-			var baseCombinationMask = MaskOperations.Create(digitPair);
-
-			// Calculate the times of the digits appeared in base cells, determining whether all digits in base cells
-			// can be appeared in the map at most (size + 1 - 1, i.e. size) times.
-			// Here we should remove the endo-target cell and then check.
-			var allDigitsAppearedInBaseShouldAppearSizeTimes = true;
-			foreach (var digit in digitPair)
+			// The value is satisfy rank = -1 rule. No check for eliminations and update mask.
+			inferredTargetDigitsMask &= (Mask)~(1 << digit);
+			foreach (var cell in baseCells)
 			{
-				if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell, size))
+				if ((grid.GetCandidates(cell) >> digit & 1) != 0)
 				{
-					allDigitsAppearedInBaseShouldAppearSizeTimes = false;
-					break;
-				}
-			}
-			if (!allDigitsAppearedInBaseShouldAppearSizeTimes)
-			{
-				// This combination need one of two combination digits appearing (size) times, but (size - 1) times, invalid.
-				appendWrongCase(baseCandidate1, baseCandidate2 % 9);
-				appendWrongCase(baseCandidate2, baseCandidate1 % 9);
-			}
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void appendWrongCase(Candidate candidate, Digit digit)
-			{
-				if (!wrongCases.TryAdd(candidate, (Mask)(1 << digit)))
-				{
-					wrongCases[candidate] |= (Mask)(1 << digit);
-				}
-			}
-		}
-
-		inferredTargetDigitsMask = grid[in baseCells];
-
-		// Check for invalid cases. If one candidate corresponds to digits making the other base cell empty,
-		// the candidate will be invalid.
-		var conclusions = new List<Conclusion>();
-		foreach (var candidate in wrongCases.Keys)
-		{
-			foreach (var baseCell in baseCells)
-			{
-				if (baseCell != candidate / 9 && wrongCases[candidate] == grid.GetCandidates(baseCell))
-				{
-					conclusions.Add(new(Elimination, candidate));
+					conclusions.Add(new(Elimination, cell, digit));
 				}
 			}
 		}
 		if (conclusions.Count == 0)
 		{
+			inferredTargetDigitsMask = baseCellsDigitsMask;
 			return null;
 		}
 
-		// Check for inferred target digits mask.
-		foreach (var digit in from conclusion in conclusions select conclusion.Digit)
-		{
-			var map = CellMap.Empty;
-			foreach (var conclusion in conclusions)
-			{
-				if (conclusion.Digit == digit)
-				{
-					map.Add(conclusion.Cell);
-				}
-			}
-
-			if (map == baseCells)
-			{
-				inferredTargetDigitsMask &= (Mask)~(1 << digit);
-			}
-		}
-
-		var step = new ComplexSeniorExocetIncompatiblePairStep(
+		var step = new ComplexSeniorExocetCompatibilityTestStep(
 			[.. conclusions],
 			[
 				[

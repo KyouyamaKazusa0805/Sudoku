@@ -2973,11 +2973,11 @@ public enum Technique
 	FrankenJuniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates franken junior exocet (incompatible pair).
+	/// Indicates franken junior exocet (compatibility test).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenJuniorExocetIncompatiblePair,
+	FrankenJuniorExocetCompatibilityTest,
 
 	/// <summary>
 	/// Indicates franken junior exocet (target sync).
@@ -3001,11 +3001,11 @@ public enum Technique
 	MutantJuniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates mutant junior exocet (incompatible pair).
+	/// Indicates mutant junior exocet (compatibility test).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantJuniorExocetIncompatiblePair,
+	MutantJuniorExocetCompatibilityTest,
 
 	/// <summary>
 	/// Indicates mutant junior exocet (target sync).
@@ -3029,11 +3029,11 @@ public enum Technique
 	FrankenSeniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates franken senior exocet (incompatible pair).
+	/// Indicates franken senior exocet (compatibility test).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenSeniorExocetIncompatiblePair,
+	FrankenSeniorExocetCompatibilityTest,
 
 	/// <summary>
 	/// Indicates franken senior exocet (target sync).
@@ -3057,11 +3057,11 @@ public enum Technique
 	MutantSeniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates mutant senior exocet (incompatible pair).
+	/// Indicates mutant senior exocet (compatibility test).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantSeniorExocetIncompatiblePair,
+	MutantSeniorExocetCompatibilityTest,
 
 	/// <summary>
 	/// Indicates mutant senior exocet (target sync).

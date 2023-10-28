@@ -2884,9 +2884,9 @@ if (student is (name: var name, age: >= 18))
             Indicates franken junior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetIncompatiblePair">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetCompatibilityTest">
             <summary>
-            Indicates franken junior exocet (incompatible pair).
+            Indicates franken junior exocet (compatibility test).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetTargetSync">
@@ -2904,9 +2904,9 @@ if (student is (name: var name, age: >= 18))
             Indicates mutant junior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetIncompatiblePair">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetCompatibilityTest">
             <summary>
-            Indicates mutant junior exocet (incompatible pair).
+            Indicates mutant junior exocet (compatibility test).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetTargetSync">
@@ -2924,9 +2924,9 @@ if (student is (name: var name, age: >= 18))
             Indicates franken senior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetIncompatiblePair">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetCompatibilityTest">
             <summary>
-            Indicates franken senior exocet (incompatible pair).
+            Indicates franken senior exocet (compatibility test).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetTargetSync">
@@ -2944,9 +2944,9 @@ if (student is (name: var name, age: >= 18))
             Indicates mutant senior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetIncompatiblePair">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetCompatibilityTest">
             <summary>
-            Indicates mutant senior exocet (incompatible pair).
+            Indicates mutant senior exocet (compatibility test).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetTargetSync">
@@ -12986,9 +12986,9 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep">
+        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep">
             <summary>
-            Provides with a step that is a <b>Complex Senior Exocet (Incompatible Pair)</b> technique.
+            Provides with a step that is a <b>Complex Senior Exocet (Compatibility Test)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13001,9 +13001,9 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Complex Senior Exocet (Incompatible Pair)</b> technique.
+            Provides with a step that is a <b>Complex Senior Exocet (Compatibility Test)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13016,21 +13016,21 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.ExtraDifficultyCases">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.CrosslineHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.CrosslineHousesMask">
             <summary>
             The generated property declaration for parameter <c>crosslineHousesMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetIncompatiblePairStep.ExtraHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetCompatibilityTestStep.ExtraHousesMask">
             <summary>
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
@@ -17191,9 +17191,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Junior Exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetIncompatiblePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetCompatibilityTest">
             <summary>
-              Looks up a localized string similar to Franken Junior Exocet (Incompatible Pair).
+              Looks up a localized string similar to Franken Junior Exocet (Compatibility Test).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetLockedMember">
@@ -17216,9 +17216,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Senior Exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetIncompatiblePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetCompatibilityTest">
             <summary>
-              Looks up a localized string similar to Franken Senior Exocet (Incompatible Pair).
+              Looks up a localized string similar to Franken Senior Exocet (Compatibility Test).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenSeniorExocetLockedMember">
@@ -17596,9 +17596,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mutant Junior Exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetIncompatiblePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetCompatibilityTest">
             <summary>
-              Looks up a localized string similar to Mutant Junior Exocet (Incompatible Pair).
+              Looks up a localized string similar to Mutant Junior Exocet (Compatibility Test).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetLockedMember">
@@ -17621,9 +17621,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mutant Senior Exocet.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetIncompatiblePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetCompatibilityTest">
             <summary>
-              Looks up a localized string similar to Mutant Senior Exocet (Incompatible Pair).
+              Looks up a localized string similar to Mutant Senior Exocet (Compatibility Test).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetLockedMember">

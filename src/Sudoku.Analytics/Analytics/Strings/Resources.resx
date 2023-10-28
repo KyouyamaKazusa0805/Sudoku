@@ -2415,26 +2415,26 @@
   <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
     <value>Double Exocet (Fish)</value>
   </data>
-  <data name="FrankenJuniorExocetIncompatiblePair" xml:space="preserve">
-    <value>Franken Junior Exocet (Incompatible Pair)</value>
+  <data name="FrankenJuniorExocetCompatibilityTest" xml:space="preserve">
+    <value>Franken Junior Exocet (Compatibility Test)</value>
   </data>
   <data name="FrankenJuniorExocetTargetSync" xml:space="preserve">
     <value>Franken Junior Exocet (Target Sync)</value>
   </data>
-  <data name="FrankenSeniorExocetIncompatiblePair" xml:space="preserve">
-    <value>Franken Senior Exocet (Incompatible Pair)</value>
+  <data name="FrankenSeniorExocetCompatibilityTest" xml:space="preserve">
+    <value>Franken Senior Exocet (Compatibility Test)</value>
   </data>
   <data name="FrankenSeniorExocetTargetSync" xml:space="preserve">
     <value>Franken Senior Exocet (Target Sync)</value>
   </data>
-  <data name="MutantJuniorExocetIncompatiblePair" xml:space="preserve">
-    <value>Mutant Junior Exocet (Incompatible Pair)</value>
+  <data name="MutantJuniorExocetCompatibilityTest" xml:space="preserve">
+    <value>Mutant Junior Exocet (Compatibility Test)</value>
   </data>
   <data name="MutantJuniorExocetTargetSync" xml:space="preserve">
     <value>Mutant Junior Exocet (Target Sync)</value>
   </data>
-  <data name="MutantSeniorExocetIncompatiblePair" xml:space="preserve">
-    <value>Mutant Senior Exocet (Incompatible Pair)</value>
+  <data name="MutantSeniorExocetCompatibilityTest" xml:space="preserve">
+    <value>Mutant Senior Exocet (Compatibility Test)</value>
   </data>
   <data name="MutantSeniorExocetTargetSync" xml:space="preserve">
     <value>Mutant Senior Exocet (Target Sync)</value>

@@ -2575,7 +2575,7 @@
     <value>双飞鱼・鱼</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="FrankenJuniorExocetIncompatiblePair" xml:space="preserve">
+  <data name="FrankenJuniorExocetCompatibilityTest" xml:space="preserve">
     <value>宫内初级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
@@ -2583,7 +2583,7 @@
     <value>宫内初级飞鱼・T 格同步</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="FrankenSeniorExocetIncompatiblePair" xml:space="preserve">
+  <data name="FrankenSeniorExocetCompatibilityTest" xml:space="preserve">
     <value>宫内高级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
@@ -2591,7 +2591,7 @@
     <value>宫内高级飞鱼・T 格同步</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="MutantJuniorExocetIncompatiblePair" xml:space="preserve">
+  <data name="MutantJuniorExocetCompatibilityTest" xml:space="preserve">
     <value>交叉初级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>
@@ -2599,7 +2599,7 @@
     <value>交叉初级飞鱼・T 格同步</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="MutantSeniorExocetIncompatiblePair" xml:space="preserve">
+  <data name="MutantSeniorExocetCompatibilityTest" xml:space="preserve">
     <value>交叉高级飞鱼・兼容性测试</value>
     <comment>Technique Name</comment>
   </data>

@@ -1726,11 +1726,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Junior Exocet (Incompatible Pair).
+        ///   Looks up a localized string similar to Franken Junior Exocet (Compatibility Test).
         /// </summary>
-        public static string FrankenJuniorExocetIncompatiblePair {
+        public static string FrankenJuniorExocetCompatibilityTest {
             get {
-                return ResourceManager.GetString("FrankenJuniorExocetIncompatiblePair", resourceCulture);
+                return ResourceManager.GetString("FrankenJuniorExocetCompatibilityTest", resourceCulture);
             }
         }
         
@@ -1771,11 +1771,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Franken Senior Exocet (Incompatible Pair).
+        ///   Looks up a localized string similar to Franken Senior Exocet (Compatibility Test).
         /// </summary>
-        public static string FrankenSeniorExocetIncompatiblePair {
+        public static string FrankenSeniorExocetCompatibilityTest {
             get {
-                return ResourceManager.GetString("FrankenSeniorExocetIncompatiblePair", resourceCulture);
+                return ResourceManager.GetString("FrankenSeniorExocetCompatibilityTest", resourceCulture);
             }
         }
         
@@ -2455,11 +2455,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Junior Exocet (Incompatible Pair).
+        ///   Looks up a localized string similar to Mutant Junior Exocet (Compatibility Test).
         /// </summary>
-        public static string MutantJuniorExocetIncompatiblePair {
+        public static string MutantJuniorExocetCompatibilityTest {
             get {
-                return ResourceManager.GetString("MutantJuniorExocetIncompatiblePair", resourceCulture);
+                return ResourceManager.GetString("MutantJuniorExocetCompatibilityTest", resourceCulture);
             }
         }
         
@@ -2500,11 +2500,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mutant Senior Exocet (Incompatible Pair).
+        ///   Looks up a localized string similar to Mutant Senior Exocet (Compatibility Test).
         /// </summary>
-        public static string MutantSeniorExocetIncompatiblePair {
+        public static string MutantSeniorExocetCompatibilityTest {
             get {
-                return ResourceManager.GetString("MutantSeniorExocetIncompatiblePair", resourceCulture);
+                return ResourceManager.GetString("MutantSeniorExocetCompatibilityTest", resourceCulture);
             }
         }
         

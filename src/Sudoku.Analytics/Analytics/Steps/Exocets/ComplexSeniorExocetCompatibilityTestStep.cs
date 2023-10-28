@@ -8,7 +8,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Complex Senior Exocet (Incompatible Pair)</b> technique.
+/// Provides with a step that is a <b>Complex Senior Exocet (Compatibility Test)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-public sealed partial class ComplexSeniorExocetIncompatiblePairStep(
+public sealed partial class ComplexSeniorExocetCompatibilityTestStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -48,9 +48,8 @@ public sealed partial class ComplexSeniorExocetIncompatiblePairStep(
 	public override Technique Code
 		=> this.GetShapeKind() switch
 		{
-			ExocetShapeKind.Franken => Technique.FrankenSeniorExocetIncompatiblePair,
-			ExocetShapeKind.Mutant => Technique.MutantSeniorExocetIncompatiblePair,
-			//ExocetShapeKind.Basic => Technique.SeniorExocetIncompatiblePair
+			ExocetShapeKind.Franken => Technique.FrankenSeniorExocetCompatibilityTest,
+			ExocetShapeKind.Mutant => Technique.MutantSeniorExocetCompatibilityTest
 		};
 
 	/// <inheritdoc/>
