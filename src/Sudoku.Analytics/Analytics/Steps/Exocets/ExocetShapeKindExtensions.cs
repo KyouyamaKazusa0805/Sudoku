@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Sudoku.Runtime.MaskServices;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.Steps;
@@ -17,7 +18,11 @@ internal static class ExocetShapeKindExtensions
 	public static ExocetShapeKind GetShapeKind(this IComplexSeniorExocetStepBaseOverrides @this)
 	{
 		var finalMask = @this.CrosslineHousesMask | @this.ExtraHousesMask;
-		return (finalMask & AllBlocksMask, finalMask & AllRowsMask, finalMask & AllColumnsMask) switch
+		return (
+			finalMask & HouseMaskOperations.AllBlocksMask,
+			finalMask & HouseMaskOperations.AllRowsMask,
+			finalMask & HouseMaskOperations.AllColumnsMask
+		) switch
 		{
 			(_, not 0, not 0) => ExocetShapeKind.Mutant,
 			(not 0, _, _) => ExocetShapeKind.Franken,

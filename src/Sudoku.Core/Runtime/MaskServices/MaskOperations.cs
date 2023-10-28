@@ -39,22 +39,6 @@ public static class MaskOperations
 	}
 
 	/// <summary>
-	/// Creates for a <see cref="HouseMask"/> instance via the specified houses.
-	/// </summary>
-	/// <param name="houses">The houses.</param>
-	/// <returns>A <see cref="HouseMask"/> instance.</returns>
-	public static HouseMask CreateHouse(scoped ReadOnlySpan<House> houses)
-	{
-		var result = 0;
-		foreach (var house in houses)
-		{
-			result |= 1 << house;
-		}
-
-		return result;
-	}
-
-	/// <summary>
 	/// To get the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
 	/// </summary>
 	/// <param name="digitMask">The digit mask.</param>

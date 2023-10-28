@@ -5,6 +5,7 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -58,7 +59,7 @@ public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 						foreach (var xDigit in (digit1, digit2))
 						{
 							// Gets the target house that can place root cells.
-							foreach (var house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
+							foreach (var house in (HouseMaskOperations.AllRowsMask | HouseMaskOperations.AllColumnsMask) & ~cells.Houses)
 							{
 								var crosshatchingHouseType = house >= 18 ? HouseType.Row : HouseType.Column;
 								var emptyCellsInThisHouse = HousesMap[house] & CandidatesMap[xDigit];

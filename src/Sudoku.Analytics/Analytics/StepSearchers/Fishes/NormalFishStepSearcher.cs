@@ -274,8 +274,8 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 						],
 						context.PredefinedOptions,
 						digit,
-						MaskOperations.CreateHouse(bs),
-						MaskOperations.CreateHouse(cs),
+						HouseMaskOperations.Create(bs),
+						HouseMaskOperations.Create(cs),
 						in fins,
 						IsSashimi(bs, in fins, digit)
 					);

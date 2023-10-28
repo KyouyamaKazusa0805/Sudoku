@@ -4,6 +4,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -229,7 +230,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 		List<BlossomLoopStep> result
 	)
 	{
-		var (housesAllBranchesContain, digitsAllBranchesContain) = (AllHousesMask, Grid.MaxCandidatesMask);
+		var (housesAllBranchesContain, digitsAllBranchesContain) = (HouseMaskOperations.AllHousesMask, Grid.MaxCandidatesMask);
 		foreach (var (_, nodes) in posToOn)
 		{
 			var (tempHouseMask, tempDigitsMask) = (0, (Mask)0);

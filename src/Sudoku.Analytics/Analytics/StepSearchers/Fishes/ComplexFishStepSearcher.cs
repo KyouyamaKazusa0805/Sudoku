@@ -7,6 +7,7 @@ using Sudoku.Concepts;
 using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -166,7 +167,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 						}
 
 						// Franken fishes doesn't contain both row and column two house types.
-						if (!checkMutant && (baseSetsMask & AllRowsMask) != 0 && (baseSetsMask & AllColumnsMask) != 0)
+						if (!checkMutant && (baseSetsMask & HouseMaskOperations.AllRowsMask) != 0 && (baseSetsMask & HouseMaskOperations.AllColumnsMask) != 0)
 						{
 							continue;
 						}
@@ -202,11 +203,11 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 						if (checkMutant)
 						{
 							baseHouseTypes = HouseType.Block;
-							if ((baseSetsMask & AllRowsMask) != 0)
+							if ((baseSetsMask & HouseMaskOperations.AllRowsMask) != 0)
 							{
 								baseHouseTypes |= HouseType.Row;
 							}
-							if ((baseSetsMask & AllColumnsMask) != 0)
+							if ((baseSetsMask & HouseMaskOperations.AllColumnsMask) != 0)
 							{
 								baseHouseTypes |= HouseType.Column;
 							}
@@ -225,7 +226,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 						baseMap &= possibleMap;
 
 						// Now check the possible cover sets to iterate.
-						if ((baseMap.Houses & ~usedInBaseSets & AllHousesMask) is not (var z and not 0))
+						if ((baseMap.Houses & ~usedInBaseSets & HouseMaskOperations.AllHousesMask) is not (var z and not 0))
 						{
 							continue;
 						}
@@ -283,11 +284,11 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 								if (checkMutant)
 								{
 									coverHouseTypes = HouseType.Block;
-									if ((usedInCoverSets & AllRowsMask) != 0)
+									if ((usedInCoverSets & HouseMaskOperations.AllRowsMask) != 0)
 									{
 										coverHouseTypes |= HouseType.Row;
 									}
-									if ((usedInCoverSets & AllColumnsMask) != 0)
+									if ((usedInCoverSets & HouseMaskOperations.AllColumnsMask) != 0)
 									{
 										coverHouseTypes |= HouseType.Column;
 									}
@@ -296,14 +297,17 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 								// Now check whether the current fish is normal ones,
 								// or neither base sets nor cover sets of the mutant fish
 								// contain both row and column houses.
-								if ((usedInBaseSets & AllRowsMask) == usedInBaseSets && (usedInCoverSets & AllColumnsMask) == usedInCoverSets
-									|| (usedInBaseSets & AllColumnsMask) == usedInBaseSets && (usedInCoverSets & AllRowsMask) == usedInCoverSets)
+								if ((usedInBaseSets & HouseMaskOperations.AllRowsMask) == usedInBaseSets
+									&& (usedInCoverSets & HouseMaskOperations.AllColumnsMask) == usedInCoverSets
+									|| (usedInBaseSets & HouseMaskOperations.AllColumnsMask) == usedInBaseSets
+									&& (usedInCoverSets & HouseMaskOperations.AllRowsMask) == usedInCoverSets)
 								{
 									// Normal fish.
 									goto BacktrackValue;
 								}
 
-								if (!checkMutant && (usedInCoverSets & AllRowsMask) != 0 && (usedInCoverSets & AllColumnsMask) != 0)
+								if (!checkMutant && (usedInCoverSets & HouseMaskOperations.AllRowsMask) != 0
+									&& (usedInCoverSets & HouseMaskOperations.AllColumnsMask) != 0)
 								{
 									// Mutant fish but checking Franken now.
 									goto BacktrackValue;

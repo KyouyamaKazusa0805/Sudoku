@@ -39,26 +39,6 @@ public static class SolutionWideReadOnlyFields
 	public const int InvalidTrailingZeroCountMethodFallbackLong = 64;
 
 	/// <summary>
-	/// Indicates the mask that means all blocks.
-	/// </summary>
-	public const HouseMask AllBlocksMask = 511;
-
-	/// <summary>
-	/// Indicates the mask that means all rows.
-	/// </summary>
-	public const HouseMask AllRowsMask = 511 << 9;
-
-	/// <summary>
-	/// Indicates the mask that means all columns.
-	/// </summary>
-	public const HouseMask AllColumnsMask = 511 << 18;
-
-	/// <summary>
-	/// Indicates the mask that means all houses.
-	/// </summary>
-	public const HouseMask AllHousesMask = (1 << 27) - 1;
-
-	/// <summary>
 	/// Indicates the first cell offset for each house.
 	/// </summary>
 	public static readonly Cell[] HouseFirst = [0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 9, 18, 27, 36, 45, 54, 63, 72, 0, 1, 2, 3, 4, 5, 6, 7, 8];

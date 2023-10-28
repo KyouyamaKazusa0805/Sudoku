@@ -97,9 +97,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			for (var size = 3; size <= 4; size++)
 			{
 				// Iterate on all possible rows and columns on size 3 or 4.
-				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).GetAllSets().GetSubsets(size))
+				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
-					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, MaskOperations.CreateHouse(houses));
+					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, HouseMaskOperations.Create(houses));
 					foreach (var house in houses)
 					{
 						housesEmptyCells |= HousesMap[house] & EmptyCells;
@@ -610,8 +610,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap housesCells
 	)
 	{
-		var extraHousesMask = AllHousesMask
-			& ~(isRow ? AllRowsMask : AllColumnsMask) // Not same-kind houses with cross-line.
+		var extraHousesMask = HouseMaskOperations.AllHousesMask
+			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask) // Not same-kind houses with cross-line.
 			& ~baseCells.CoveredHouses // Not a house that both base cells can see.
 			& ~Chutes[chuteIndex].Cells.BlockMask; // Not the blocks the chute cells covered.
 		if (extraHousesMask == 0)
@@ -1037,7 +1037,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check for the other pair of base cells.
-		var blocksMask = AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
+		var blocksMask = HouseMaskOperations.AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
 		var lastCells = CellMap.Empty;
 		foreach (var block in blocksMask)
 		{

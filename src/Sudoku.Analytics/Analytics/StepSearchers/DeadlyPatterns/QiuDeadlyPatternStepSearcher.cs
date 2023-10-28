@@ -6,6 +6,7 @@ using Sudoku.Concepts;
 using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -61,7 +62,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var patternsForCase1 = new List<Pattern1>();
 		foreach (var isRow in (true, false))
 		{
-			var (@base, fullHousesMask) = isRow ? (9, AllRowsMask) : (18, AllColumnsMask);
+			var (@base, fullHousesMask) = isRow ? (9, HouseMaskOperations.AllRowsMask) : (18, HouseMaskOperations.AllColumnsMask);
 			foreach (var lineOffsetPair in lineOffsets)
 			{
 				var (l1, l2, l3) = (lineOffsetPair[0] + @base, lineOffsetPair[1] + @base, lineOffsetPair[2] + @base);
@@ -79,8 +80,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		// Case 2: 2 rows + 2 columns.
 		var patternsForCase2 = new List<Pattern2>();
-		scoped var rows = AllRowsMask.GetAllSets();
-		scoped var columns = AllColumnsMask.GetAllSets();
+		scoped var rows = HouseMaskOperations.AllRowsMask.GetAllSets();
+		scoped var columns = HouseMaskOperations.AllColumnsMask.GetAllSets();
 		foreach (var lineOffsetPairRow in lineOffsets)
 		{
 			var rowsMask = 1 << rows[lineOffsetPairRow[0]] | 1 << rows[lineOffsetPairRow[1]];
