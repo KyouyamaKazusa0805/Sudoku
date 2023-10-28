@@ -99,9 +99,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Iterate on all possible rows and columns on size 3 or 4.
 				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
-					var housesEmptyCells = CellMap.Empty;
-					var housesCells = CellMap.Empty;
-					var housesMask = MaskOperations.CreateHouse(houses);
+					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, MaskOperations.CreateHouse(houses));
 					foreach (var house in houses)
 					{
 						housesEmptyCells |= HousesMap[house] & EmptyCells;
@@ -136,8 +134,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
 							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].AsReadOnlySpan())
 							{
-								var baseEmptyCellsToBeIterated = minilineBaseCells & EmptyCells;
-								if (!baseEmptyCellsToBeIterated)
+								if ((minilineBaseCells & EmptyCells) is not (var baseEmptyCellsToBeIterated and not []))
 								{
 									// No cells can be iterated.
 									continue;
@@ -156,8 +153,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var chuteEmptyCells = chuteCells & EmptyCells;
 									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
-									var baseCellsDigitsMask = grid[in baseCells];
-									var targetCellsDigitsMask = grid[in targetCells];
+									var (baseCellsDigitsMask, targetCellsDigitsMask) = (grid[in baseCells], grid[in targetCells]);
 
 									// Check whether all cross-line lines contains at least one digit appeared in base cells.
 									var crossline = housesCells - chuteCells;
