@@ -3085,13 +3085,6 @@ public enum Technique
 	DoubleExocetGeneralizedFish,
 
 	/// <summary>
-	/// Indicates double exocet multi-fish pattern.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	DoubleExocetMultiFish,
-
-	/// <summary>
 	/// Indicates pattern-locked quadruple. This quadruple is a special quadruple: it can only be concluded after both JE and SK-Loop are formed.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

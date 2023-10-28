@@ -2964,11 +2964,6 @@ if (student is (name: var name, age: >= 18))
             Indicates double exocet uni-fish pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DoubleExocetMultiFish">
-            <summary>
-            Indicates double exocet multi-fish pattern.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.PatternLockedQuadruple">
             <summary>
             Indicates pattern-locked quadruple. This quadruple is a special quadruple: it can only be concluded after both JE and SK-Loop are formed.
