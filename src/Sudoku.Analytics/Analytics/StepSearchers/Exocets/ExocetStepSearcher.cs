@@ -804,6 +804,25 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Try to get cross-line cells, count up the positions of the value cells in the cross-line cells.
+		// This will miss some weak exocets. One exception is:
+		//
+		//   98.7..6..7...5..9...4+9....73..2.9....1..3.......5...3.2...9..1..7...5..4..6...8..:967
+		//   ,-------------------,----------------------,----------------------,
+		//   | 9     8     1235  | 7      124    1234   | 6      245     1235  |
+		//   | 7     236   123   | 13468  5      123468 | 1234   9       1238  |
+		//   | 156   2356  4     | 9      1268   12368  | 1235   258     7     |
+		//   :-------------------+----------------------+----------------------:
+		//   | 3     456   578   | 2      14678  9      | 1457   45678   1568  |
+		//   | 4568  1     25789 | 468    3      4678   | 24579  245678  25689 |
+		//   | 468   2469  2789  | 5      14678  14678  | 1247   3       12689 |
+		//   :-------------------+----------------------+----------------------:
+		//   | 2     345   358   | 3468   9      34678  | 357    1       356   |
+		//   | 18    7     1389  | 1368   1268   5      | 239    26      4     |
+		//   | 145   3459  6     | 134    1247   12347  | 8      257     2359  |
+		//   '-------------------'----------------------'----------------------'
+		//
+		// r1c1 has a value digit that will make cross-line c158 to be 7 values, failed to be checked.
+		// Today I don't know which, where and how values influence the elimination, so I don't allow for this.
 		if (crossline - EmptyCells is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
 		{
 			return null;
