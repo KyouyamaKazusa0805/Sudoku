@@ -688,7 +688,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						var lockedMembersAreSatisfySizeMinusOneRule = true;
 						foreach (var digit in lockedDigitsMask)
 						{
-							if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - endoTargetCell, size))
+							var lastMap = expandedCrosslineIncludingTarget - endoTargetCell;
+							if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size))
 							{
 								// The current digit can be filled in cross-line cells at most (size) times.
 								lockedMembersAreSatisfySizeMinusOneRule = false;
@@ -3129,6 +3130,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap expandedCrosslineIncludingTarget
 	)
 	{
+		// Check whether the number of digits appeared in base cells should be satisfied (size) rule.
+		var allDigitsSatisfySizeRule = true;
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			var lastMap = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
+			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size))
+			{
+				allDigitsSatisfySizeRule = false;
+				break;
+			}
+		}
+		if (!allDigitsSatisfySizeRule)
+		{
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in CellsMap[targetCell] + endoTargetCell)
 		{
@@ -3218,8 +3235,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// We have a locked member, meaning the digit can be filled into a target cell directly
 			// via supposing on filling that digit in base cells.
 			// Now check for rank = -1 rule.
-			var cellsToCheck = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
-			if (!grid.IsExactAppearingTimesOf(digit, in cellsToCheck, size - 1))
+			var lastMap = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
+			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size - 1))
 			{
 				continue;
 			}
@@ -3556,18 +3573,29 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <inheritdoc cref="IsExactAppearingTimesOf(ref readonly Grid, int, ref readonly CellMap, ref readonly CellMap, int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsExactAppearingTimesOf(
+		this scoped ref readonly Grid @this,
+		Digit digit,
+		scoped ref readonly CellMap cells,
+		int limitCount
+	) => @this.IsExactAppearingTimesOf(digit, in cells, [], limitCount);
+
 	/// <summary>
 	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="targetCells">The target cells.</param>
 	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
 	public static bool IsExactAppearingTimesOf(
 		this scoped ref readonly Grid @this,
 		Digit digit,
 		scoped ref readonly CellMap cells,
+		scoped ref readonly CellMap targetCells,
 		int limitCount
 	)
 	{
@@ -3581,7 +3609,8 @@ file static class Extensions
 		{
 			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i))
 			{
-				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells
+					&& (!targetCells || (targetCells - (cellsCombination.ExpandedPeers & targetCells)).Count == 1))
 				{
 					return i + inactiveCells.Count == limitCount;
 				}
