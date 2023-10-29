@@ -627,11 +627,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 
 				// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
-				// except endo-target cells.
+				// except endo-target cells; and cannot be of value appeared in base cells.
 				var intersectedCellsContainEmpty = false;
 				foreach (var cell in intersectedCellsBase - endoTargetCell)
 				{
-					if (grid.GetState(cell) == CellState.Empty)
+					if (grid.GetDigit(cell) is not (var valueDigit and not -1) || (baseCellsDigitsMask >> valueDigit & 1) != 0)
 					{
 						intersectedCellsContainEmpty = true;
 						break;
