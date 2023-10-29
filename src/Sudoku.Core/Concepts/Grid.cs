@@ -1,6 +1,8 @@
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #define TARGET_64BIT
+#define IMPL_INTERFACE_MIN_MAX_VALUE
+
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -54,7 +56,9 @@ public unsafe partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
+#if IMPL_INTERFACE_MIN_MAX_VALUE
 	IMinMaxValue<Grid>,
+#endif
 	IReadOnlyCollection<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>
@@ -605,6 +609,7 @@ public unsafe partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => 81;
 
+#if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
 	/// </summary>
@@ -622,6 +627,7 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+#endif
 
 
 	/// <summary>
