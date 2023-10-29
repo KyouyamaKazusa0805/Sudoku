@@ -1,3 +1,5 @@
+#undef SYNC_ROOT_VIA_METHODIMPL
+#define SYNC_ROOT_VIA_OBJECT
 #define TARGET_64BIT
 using System.Collections;
 using System.ComponentModel;
@@ -115,6 +117,7 @@ public unsafe partial struct Grid :
 	/// </remarks>
 	public static readonly Grid Undefined;
 
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 	/// <summary>
 	/// The internal field that can be used for making threads run in order while using <see cref="Solver"/>,
 	/// keeping the type being thread-safe.
@@ -123,6 +126,15 @@ public unsafe partial struct Grid :
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly object PuzzleSolvingSynchronizer = new();
+#elif SYNC_ROOT_VIA_METHODIMPL && SYNC_ROOT_VIA_OBJECT
+#line 1 "Grid.cs"
+#error Don't set both symbols 'SYNC_ROOT_VIA_METHODIMPL' and 'SYNC_ROOT_VIA_OBJECT'.
+#line default
+#elif !SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+#line 1 "Grid.cs"
+#warning No sync-root mode is selected, meaning we cannot use this type in multi-threading (i.e. this type becomes thread-unsafe) because some members will rely on pointers and shared memory, which is unsafe. You can ONLY use property 'IsValid', 'SolutionGrid' and method 'ExactlyValidate' in this type inside a lock statement.
+#line default
+#endif
 
 	/// <summary>
 	/// Indicates the backing solver.
@@ -292,7 +304,10 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly bool IsValid
 	{
-		//[MethodImpl(MethodImplOptions.Synchronized)]
+#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
+		get => Solver.CheckValidity(ToString());
+#elif SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 		get
 		{
 			lock (PuzzleSolvingSynchronizer)
@@ -300,6 +315,10 @@ public unsafe partial struct Grid :
 				return Solver.CheckValidity(ToString());
 			}
 		}
+#else
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Solver.CheckValidity(ToString());
+#endif
 	}
 
 	/// <summary>
@@ -554,10 +573,14 @@ public unsafe partial struct Grid :
 	/// <seealso cref="Undefined"/>
 	public readonly Grid SolutionGrid
 	{
-		//[MethodImpl(MethodImplOptions.Synchronized)]
+#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
+#endif
 		get
 		{
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 			lock (PuzzleSolvingSynchronizer)
+#endif
 			{
 				return Solver.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
 			}
@@ -768,12 +791,18 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <seealso cref="Undefined"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining/* | MethodImplOptions.Synchronized*/)]
+#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+	[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
+#else
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
 	{
 		Unsafe.SkipInit(out solutionIfValid);
 
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 		lock (PuzzleSolvingSynchronizer)
+#endif
 		{
 			if (Solver.CheckValidity(ToString(), out var solution))
 			{
