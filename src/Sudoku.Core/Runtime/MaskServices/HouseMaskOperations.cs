@@ -1,3 +1,5 @@
+using Sudoku.Concepts;
+
 namespace Sudoku.Runtime.MaskServices;
 
 /// <summary>
@@ -9,17 +11,17 @@ public static class HouseMaskOperations
 	/// <summary>
 	/// Indicates the mask that means all blocks.
 	/// </summary>
-	public const HouseMask AllBlocksMask = 511;
+	public const HouseMask AllBlocksMask = Grid.MaxCandidatesMask;
 
 	/// <summary>
 	/// Indicates the mask that means all rows.
 	/// </summary>
-	public const HouseMask AllRowsMask = 511 << 9;
+	public const HouseMask AllRowsMask = Grid.MaxCandidatesMask << 9;
 
 	/// <summary>
 	/// Indicates the mask that means all columns.
 	/// </summary>
-	public const HouseMask AllColumnsMask = 511 << 18;
+	public const HouseMask AllColumnsMask = Grid.MaxCandidatesMask << 18;
 
 	/// <summary>
 	/// Indicates the mask that means all houses.

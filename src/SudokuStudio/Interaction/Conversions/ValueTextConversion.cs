@@ -12,7 +12,7 @@ namespace SudokuStudio.Interaction.Conversions;
 internal static class ValueTextConversion
 {
 	public static string GetText(CellState cellState, Mask candidatesMask)
-		=> cellState == CellState.Empty || candidatesMask is not (>= 0 and < 511)
+		=> cellState == CellState.Empty || candidatesMask is not (>= 0 and < Grid.MaxCandidatesMask)
 			? string.Empty
 			: (TrailingZeroCount((uint)candidatesMask) + 1).ToString();
 

@@ -228,7 +228,7 @@ public partial struct CellMap :
 	public readonly House CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TrailingZeroCount(CoveredHouses & ~511);
+		get => TrailingZeroCount(CoveredHouses & ~Grid.MaxCandidatesMask);
 	}
 
 	/// <inheritdoc/>
