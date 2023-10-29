@@ -209,11 +209,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									{
 										foreach (var targetCell in targetCells)
 										{
-											if (!CheckTargetCellsValidity(in grid, [targetCell], baseCellsDigitsMask))
-											{
-												continue;
-											}
-
 											if (CollectComplexSeniorExocets(
 												ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
@@ -226,13 +221,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
-										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
-										{
-											continue;
-										}
-
 										if (CollectSeniorExocets(
-											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+											ref context, in grid, in baseCells, targetCells[0], groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
 										) is { } seniorExocet)
 										{
@@ -459,7 +449,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		Cell targetCell,
 		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
@@ -487,7 +477,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 
 					// Endo-target cells must contain at least one of all digits appeared in base cells.
-					if (!CheckTargetCellsValidity(in grid, [endoTargetCell], baseCellsDigitsMask, false))
+					if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
 					{
 						continue;
 					}
@@ -524,7 +514,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				foreach (var endoTargetCell in endoTargetCells)
 				{
 					if (CheckBaseJeOrSe(
-						ref context, grid, in baseCells, in targetCells, endoTargetCell, in crossline,
+						ref context, grid, in baseCells, [targetCell], endoTargetCell, in crossline,
 						baseCellsDigitsMask, housesMask, out _
 					) is { } baseTypeStep)
 					{
@@ -556,7 +546,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 
 				if (CheckLockedMemberSe(
-					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+					ref context, grid, in baseCells, [targetCell], in crossline, baseCellsDigitsMask,
 					TrailingZeroCount(lockedDigitsMask)
 				) is { } lockedMemberTypeStep)
 				{
@@ -631,7 +621,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				if (!CheckTargetCellsValidity(in grid, [endoTargetCell], baseCellsDigitsMask, false))
+				if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
 				{
 					continue;
 				}
@@ -3372,26 +3362,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="targetCellsToBeChecked">The target cells to be checked.</param>
 	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
-	/// <param name="singleStrictCheck">
-	/// Indicates whether argument <paramref name="targetCellsToBeChecked"/> only holds one cell to be checked,
-	/// and use strict mode to be check for equality to <paramref name="baseCellsDigitsMask"/>.
-	/// The value is useless if <paramref name="targetCellsToBeChecked"/> holds at least 2 cells.
-	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	private static bool CheckTargetCellsValidity(
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap targetCellsToBeChecked,
-		Mask baseCellsDigitsMask,
-		bool singleStrictCheck = true
+		Mask baseCellsDigitsMask
 	) => targetCellsToBeChecked switch
 	{
-		// If the selected target only contains one valid cell, we should check for mode and determine what the next step will be.
-		[var c] => singleStrictCheck switch
-		{
-			true => (grid.GetCandidates(c) & baseCellsDigitsMask) != baseCellsDigitsMask,
-			_ => (grid.GetCandidates(c) & baseCellsDigitsMask) == 0
-		},
-
 		// If the selected target contains two valid cells, we should check for its intersected value and union value,
 		// determining whether the union value contains all digits from base cells,
 		// and intersected value contain at least 2 kinds of digits appeared from base cells.
