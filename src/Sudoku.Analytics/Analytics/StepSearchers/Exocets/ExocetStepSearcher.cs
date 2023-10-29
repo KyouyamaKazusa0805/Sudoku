@@ -3353,29 +3353,32 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="targetCellsToBeChecked">The target cells to be checked.</param>
 	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
-	/// <param name="isExoTargetCell">Indicates whether the cells specified are an exo-target cells.</param>
+	/// <param name="singleStrictCheck">
+	/// Indicates whether argument <paramref name="targetCellsToBeChecked"/> only holds one cell to be checked,
+	/// and use strict mode to be check for equality to <paramref name="baseCellsDigitsMask"/>.
+	/// The value is useless if <paramref name="targetCellsToBeChecked"/> holds at least 2 cells.
+	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	private static bool CheckTargetCellsValidity(
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap targetCellsToBeChecked,
 		Mask baseCellsDigitsMask,
-		bool isExoTargetCell = true
-	)
+		bool singleStrictCheck = true
+	) => targetCellsToBeChecked switch
 	{
-		foreach (var cell in targetCellsToBeChecked)
+		[var c] => singleStrictCheck switch
 		{
-			switch (isExoTargetCell)
-			{
-				case true when (grid.GetCandidates(cell) & baseCellsDigitsMask) != baseCellsDigitsMask:
-				case false when (grid.GetCandidates(cell) & baseCellsDigitsMask) == 0:
-				{
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
+			true => (grid.GetCandidates(c) & baseCellsDigitsMask) != baseCellsDigitsMask,
+			_ => (grid.GetCandidates(c) & baseCellsDigitsMask) == 0
+		},
+		{ Count: 2 } when (
+			(Mask)(grid[in targetCellsToBeChecked] & baseCellsDigitsMask),
+			(Mask)(grid[in targetCellsToBeChecked, false, GridMaskMergingMethod.And] & baseCellsDigitsMask)
+		) is var (u, i) => u == baseCellsDigitsMask && PopCount((uint)i) >= 2,
+		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
+		// Today we don't check for it.
+		_ => false
+	};
 
 	/// <summary>
 	/// Try to get the mirror cells for the specified target cell at the specified index of the chute.

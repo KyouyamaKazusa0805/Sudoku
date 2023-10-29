@@ -7843,7 +7843,11 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid to be checked.</param>
             <param name="targetCellsToBeChecked">The target cells to be checked.</param>
             <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
-            <param name="isExoTargetCell">Indicates whether the cells specified are an exo-target cells.</param>
+            <param name="singleStrictCheck">
+            Indicates whether argument <paramref name="targetCellsToBeChecked"/> only holds one cell to be checked,
+            and use strict mode to be check for equality to <paramref name="baseCellsDigitsMask"/>.
+            The value is useless if <paramref name="targetCellsToBeChecked"/> holds at least 2 cells.
+            </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetMirrorCells(System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
