@@ -3366,15 +3366,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		bool singleStrictCheck = true
 	) => targetCellsToBeChecked switch
 	{
+		// If the selected target only contains one valid cell, we should check for mode and determine what the next step will be.
 		[var c] => singleStrictCheck switch
 		{
 			true => (grid.GetCandidates(c) & baseCellsDigitsMask) != baseCellsDigitsMask,
 			_ => (grid.GetCandidates(c) & baseCellsDigitsMask) == 0
 		},
+
+		// If the selected target contains two valid cells, we should check for its intersected value and union value,
+		// determining whether the union value contains all digits from base cells,
+		// and intersected value contain at least 2 kinds of digits appeared from base cells.
+		// Why is 2? Because the target cells should be filled two different digits appeared from base cells.
 		{ Count: 2 } when (
 			(Mask)(grid[in targetCellsToBeChecked] & baseCellsDigitsMask),
 			(Mask)(grid[in targetCellsToBeChecked, false, GridMaskMergingMethod.And] & baseCellsDigitsMask)
 		) is var (u, i) => u == baseCellsDigitsMask && PopCount((uint)i) >= 2,
+
 		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
 		// Today we don't check for it.
 		_ => false
