@@ -94,7 +94,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var isRow in (true, false))
 		{
 			// Iterate by size of houses to be iterated.
-			for (var size = 3; size <= 4; size++)
+			for (var size = 2; size <= 4; size++)
 			{
 				// Iterate on all possible rows and columns on size 3 or 4.
 				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).GetAllSets().GetSubsets(size))
