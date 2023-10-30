@@ -204,8 +204,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
+									// Check whether target cells don't share a same block.
+									if (!(targetCells.Count == 1 || targetCells.Count == 2 && !IsPow2(targetCells.BlockMask)))
+									{
+										continue;
+									}
+
 									// Collect exocets by types.
-									if (baseCells.Count == 2 && (targetCells.Count == 1 || targetCells.Count == 2 && !targetCells.InOneHouse(out _)))
+									if (baseCells.Count == 2)
 									{
 										foreach (var targetCell in targetCells)
 										{
@@ -238,8 +244,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 
 										if (CollectWeakExocets(
-											ref context, in grid, in baseCells, groupsOfTargetCells, in crossline, baseCellsDigitsMask,
-											housesMask, isRow, size, i
+											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
+											baseCellsDigitsMask, housesMask, isRow, size, i
 										) is { } weakExocet)
 										{
 											return weakExocet;
@@ -330,8 +336,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// We should treat the digit as a non-locked member.
 
 		if (!InitialCheckValidityAndLockedMembers(
-			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline, size - 1,
-			out _, out var digitsMaskAppearedInCrossline, out var lockedMembers, out var lockedMemberDigitsMask))
+			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline, size - 1, out var digitsMaskExactlySizeMinusOneTimes,
+			out var digitsMaskAppearedInCrossline, out var lockedMembers, out var lockedMemberDigitsMask))
+		{
+			return null;
+		}
+
+		// Check whether locked members and normal digits satisfied the (size - 1) rule equal to base cells digits mask.
+		if ((Mask)(digitsMaskExactlySizeMinusOneTimes | lockedMemberDigitsMask) != baseCellsDigitsMask)
 		{
 			return null;
 		}
@@ -601,9 +613,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		var extraHousesMask = HouseMaskOperations.AllHousesMask
-			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask) // Not same-kind houses with cross-line.
-			& ~baseCells.CoveredHouses // Not a house that both base cells can see.
-			& ~Chutes[chuteIndex].Cells.BlockMask; // Not the blocks the chute cells covered.
+			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask)
+			& ~baseCells.CoveredHouses;
 		if (extraHousesMask == 0)
 		{
 			// No houses will be iterated.
@@ -614,13 +625,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var extraHouse in extraHousesMask.GetAllSets())
 		{
 			// Create a map that contains both cross-line cells and extra houses cells.
-			var expandedCrossline = crossline | HousesMap[extraHouse];
+			var expandedCrossline = (crossline | HousesMap[extraHouse]) - baseCells.PeerIntersection;
 			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) - baseCells.PeerIntersection;
-			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCell;
+			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCell - baseCells.PeerIntersection;
 
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
+				if (IsPow2((CellMap.Empty + targetCell + endoTargetCell).BlockMask))
+				{
+					// The target selected endo-target cell cannot share a same block with target cell.
+					continue;
+				}
+
 				if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
 				{
 					continue;
@@ -645,9 +662,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Check for maximum times can be appeared in cross-line cells,
 				// and collect all possible digits can be filled in cross-line for (size + 1 - 1, i.e. size) times at most.
 				if (!InitialCheckValidityAndLockedMembers(
-					in grid, baseCellsDigitsMask, in baseCells, [targetCell], expandedCrossline - endoTargetCell, size,
+					in grid, baseCellsDigitsMask, in baseCells, [targetCell], expandedCrosslineIncludingTarget - targetCell - endoTargetCell, size,
 					out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
 					out var lockedMembers, out var lockedMemberDigitsMask))
+				{
+					continue;
+				}
+
+				// Check whether the satisfied digits and locked member digits are strictly equal to base cells digits mask.
+				if ((Mask)(digitsMaskExactlySizeMinusOneTimes | lockedMemberDigitsMask) != baseCellsDigitsMask)
 				{
 					continue;
 				}
@@ -688,8 +711,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						var lockedMembersAreSatisfySizeMinusOneRule = true;
 						foreach (var digit in lockedDigitsMask)
 						{
-							var lastMap = expandedCrosslineIncludingTarget - endoTargetCell;
-							if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size))
+							if (!grid.IsExactAppearingTimesOf(digit, expandedCrosslineIncludingTarget - endoTargetCell, size))
 							{
 								// The current digit can be filled in cross-line cells at most (size) times.
 								lockedMembersAreSatisfySizeMinusOneRule = false;
@@ -730,6 +752,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
 		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
@@ -923,7 +946,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var exceptionDigit = valueDigitCell == -1 ? -1 : grid.GetDigit(valueDigitCell);
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			if (grid.IsExactAppearingTimesOf(digit, crossline - missingValueCell, exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size))
+			var limitCount = exceptionDigit != -1 && exceptionDigit == digit ? size - 1 : size;
+			if (grid.IsExactAppearingTimesOf(digit, crossline - missingValueCell, limitCount))
 			{
 				// The current digit can be filled in cross-line cells at most (size - 1) times.
 				sizeMinusOneRule = false;
@@ -3135,7 +3159,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var digit in baseCellsDigitsMask)
 		{
 			var lastMap = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
-			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size))
+			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size))
 			{
 				allDigitsSatisfySizeRule = false;
 				break;
@@ -3236,7 +3260,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// via supposing on filling that digit in base cells.
 			// Now check for rank = -1 rule.
 			var lastMap = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
-			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, [targetCell, endoTargetCell], size - 1))
+			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size - 1))
 			{
 				continue;
 			}
@@ -3393,7 +3417,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{ Count: 2 } when (
 			(Mask)(grid[in targetCellsToBeChecked] & baseCellsDigitsMask),
 			(Mask)(grid[in targetCellsToBeChecked, false, GridMaskMergingMethod.And] & baseCellsDigitsMask)
-		) is var (u, i) => u == baseCellsDigitsMask && PopCount((uint)i) >= 2,
+		) is var (u, i) => u == baseCellsDigitsMask && i != 0,
 
 		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
 		// Today we don't check for it.
@@ -3573,29 +3597,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
-	/// <inheritdoc cref="IsExactAppearingTimesOf(ref readonly Grid, int, ref readonly CellMap, ref readonly CellMap, int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsExactAppearingTimesOf(
-		this scoped ref readonly Grid @this,
-		Digit digit,
-		scoped ref readonly CellMap cells,
-		int limitCount
-	) => @this.IsExactAppearingTimesOf(digit, in cells, [], limitCount);
-
 	/// <summary>
 	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="targetCells">The target cells.</param>
 	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
 	public static bool IsExactAppearingTimesOf(
 		this scoped ref readonly Grid @this,
 		Digit digit,
 		scoped ref readonly CellMap cells,
-		scoped ref readonly CellMap targetCells,
 		int limitCount
 	)
 	{
@@ -3605,12 +3618,11 @@ file static class Extensions
 			return true;
 		}
 
-		for (var i = activeCells.Count; i >= 1; i--)
+		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
 		{
 			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i))
 			{
-				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells
-					&& (!targetCells || (targetCells - (cellsCombination.ExpandedPeers & targetCells)).Count == 1))
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{
 					return i + inactiveCells.Count == limitCount;
 				}
