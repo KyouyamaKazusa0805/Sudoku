@@ -93,10 +93,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
 		{
-			// Iterate by size of houses to be iterated.
+			// Iterate by size of houses to be iterated. The possible values should be 3 or 4,
+			// but we can allow on size = 2 for Complex Senior Exocets.
 			for (var size = 2; size <= 4; size++)
 			{
-				// Iterate on all possible rows and columns on size 3 or 4.
+				// Iterate on each combination of houses as basic cross-line cells used.
 				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
 					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, HouseMaskOperations.Create(houses));
