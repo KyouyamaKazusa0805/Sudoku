@@ -662,8 +662,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Check for maximum times can be appeared in cross-line cells,
 				// and collect all possible digits can be filled in cross-line for (size + 1 - 1, i.e. size) times at most.
 				if (!InitialCheckValidityAndLockedMembers(
-					in grid, baseCellsDigitsMask, in baseCells, [targetCell], expandedCrosslineIncludingTarget - targetCell - endoTargetCell, size,
-					out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
+					in grid, baseCellsDigitsMask, in baseCells, [targetCell], expandedCrosslineIncludingTarget - targetCell - endoTargetCell,
+					size, out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
 					out var lockedMembers, out var lockedMemberDigitsMask))
 				{
 					continue;
