@@ -212,6 +212,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Collect exocets by types.
+									// We separate exocets with 3 parts:
+									//
+									//   * Junior Exocet, Double Exocet, Weak Exocet, Complex Junior Exocet
+									//   * Senior Exocet
+									//   * Complex Senior Exocet
+									//
+									// because the pre-condition are not same with each other.
+
+									// COMPLEX SENIOR EXOCET
 									if (baseCells.Count == 2)
 									{
 										foreach (var targetCell in targetCells)
@@ -226,6 +235,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 									}
 
+									// SENIOR EXOCET
 									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
 										if (CollectSeniorExocets(
@@ -237,6 +247,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 									}
 
+									// WEAK, JUNIOR, DOUBLE EXOCET, COMPLEX JUNIOR EXOCET (Not impl'ed)
 									if (groupsOfTargetCells.Length == baseSize)
 									{
 										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
