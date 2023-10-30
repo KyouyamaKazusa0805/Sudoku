@@ -678,6 +678,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					size, out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
 					out var lockedMembers, out var lockedMemberDigitsMask))
 				{
+					// If not, check for the conjugate pair or AHS type.
+					if (CheckComplexSeniorTargetAlmostHiddenSet(
+						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
+						baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
+					) is { } complexSeniorTypeStep)
+					{
+						return complexSeniorTypeStep;
+					}
+
 					continue;
 				}
 
@@ -3233,6 +3242,200 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorTargetAlmostHiddenSet(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		Cell targetCell,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		int size,
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget
+	)
+	{
+		// Check whether target cell and endo-target cell cannot share with a same house.
+		if ((CellMap.Empty + endoTargetCell + targetCell).InOneHouse(out _))
+		{
+			return null;
+		}
+
+		// Check whether any of extra digits exists.
+		if ((Mask)(grid.GetCandidates(endoTargetCell) & ~baseCellsDigitsMask) is not (var extraDigitsToCheck and not 0))
+		{
+			// No digits will be checked.
+			return null;
+		}
+
+		var cellsInCrossline = PeersMap[endoTargetCell] + endoTargetCell & crossline & EmptyCells;
+		if (!cellsInCrossline)
+		{
+			// No cells to be iterated.
+			return null;
+		}
+
+		// Iterate on each house type, to get cells in cross-line and to be an AHS or a conjugate pair.
+		foreach (var houseType in HouseTypes)
+		{
+			var house = endoTargetCell.ToHouseIndex(houseType);
+			var lastCellsToCheck = cellsInCrossline & HousesMap[house];
+			if (!lastCellsToCheck)
+			{
+				// No cells will be selected.
+				continue;
+			}
+
+			// Iterate on each digit of extra digits set, to find any conjugate pairs or AHSes.
+			var collectedDigitsMask = (Mask)0; // Used for remove duplicated items.
+			foreach (var extraDigit in extraDigitsToCheck)
+			{
+				if ((collectedDigitsMask >> extraDigit & 1) != 0)
+				{
+					// The value has already been checked.
+					continue;
+				}
+
+				var ahsCells = lastCellsToCheck & CandidatesMap[extraDigit];
+
+				// Check whether we remove such AHS cells, the pattern will be formed or not.
+				var allDigitsSatisfySizeRuleAhsRule = true;
+				foreach (var digit in baseCellsDigitsMask)
+				{
+					var lastMap = expandedCrosslineIncludingTarget - targetCell - ahsCells;
+					if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size))
+					{
+						allDigitsSatisfySizeRuleAhsRule = false;
+						break;
+					}
+				}
+				if (!allDigitsSatisfySizeRuleAhsRule)
+				{
+					continue;
+				}
+
+				var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
+				switch (ahsCells.Count)
+				{
+					case 2 when (HousesMap[house] & CandidatesMap[extraDigit]) == ahsCells:
+					{
+						// A possible conjugate pair will be formed.
+						foreach (var cell in ahsCells)
+						{
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask & ~(1 << extraDigit)))
+							{
+								conclusions.Add(new(Elimination, cell, digit));
+							}
+
+							if (grid.Exists(cell, extraDigit) is true)
+							{
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
+							}
+						}
+						foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+						{
+							conclusions.Add(new(Elimination, targetCell, digit));
+						}
+
+						collectedDigitsMask |= (Mask)(1 << extraDigit);
+						break;
+					}
+					case var ahsCellsCount and > 2:
+					{
+						// Check digits for these cells to collect extra digits appeared in such cells.
+						var ahsDigitsMask = (Mask)(grid[in ahsCells] & ~baseCellsDigitsMask);
+						if (PopCount((uint)ahsDigitsMask) != ahsCellsCount - 1)
+						{
+							break;
+						}
+
+						// Check whether all AHS digits only appears in such cells.
+						var unionMap = CellMap.Empty;
+						foreach (var digit in ahsDigitsMask)
+						{
+							unionMap |= CandidatesMap[digit];
+						}
+						if (unionMap != ahsCells)
+						{
+							break;
+						}
+
+						// A possible AHS will be formed.
+						foreach (var cell in ahsCells)
+						{
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask & ~ahsDigitsMask))
+							{
+								conclusions.Add(new(Elimination, cell, digit));
+							}
+
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ahsDigitsMask))
+							{
+								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+							}
+						}
+						foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+						{
+							conclusions.Add(new(Elimination, targetCell, digit));
+						}
+
+						collectedDigitsMask |= ahsDigitsMask;
+						break;
+					}
+				}
+
+				if (conclusions.Count == 0)
+				{
+					return null;
+				}
+
+				var step = new ComplexSeniorExocetBaseStep(
+					[.. conclusions],
+					[
+						[
+							.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+							.. from cell in ahsCells + targetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+							..
+							from cell in expandedCrosslineIncludingTarget
+							select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+							.. candidateOffsets,
+							..
+							from cell in baseCells
+							from d in grid.GetCandidates(cell)
+							select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+							..
+							from cell in ahsCells + targetCell
+							from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+							select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+							..
+							from cell in expandedCrosslineIncludingTarget
+							where grid.GetState(cell) == CellState.Empty
+							from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+							select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+							//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+						]
+					],
+					context.PredefinedOptions,
+					baseCellsDigitsMask,
+					in baseCells,
+					[targetCell],
+					in ahsCells,
+					in crossline,
+					housesMask,
+					extraHousesMask
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+
 		return null;
 	}
 
