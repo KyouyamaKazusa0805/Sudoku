@@ -3354,6 +3354,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 				}
 
+				// Cannibalism rule:
+				// If the maximum appearing times of the digit is less than the minimum possible limit,
+				// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
+				// We can safely remove it from base cells.
+				if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell - endoTargetCells) < size)
+				{
+					foreach (var cell in (baseCells | endoTargetCells) + targetCell & CandidatesMap[lockedDigit])
+					{
+						conclusions.Add(new(Elimination, cell, lockedDigit));
+					}
+				}
+
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
@@ -3788,6 +3800,71 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	};
 
 	/// <summary>
+	/// Try to fetch locked members in the pattern, and verify validity of the pattern.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
+	/// <param name="baseCells">The base cells.</param>
+	/// <param name="targetCells">The target cells.</param>
+	/// <param name="fullCrossline">The cross-line cells. The value can cover extra houses on complex exocets.</param>
+	/// <param name="times">The desired times of appearing of digits <paramref name="baseCellsDigitsMask"/>.</param>
+	/// <param name="digitsMaskExactlySizeMinusOneTimes">The digits that appeared exactly (<paramref name="times"/>) times.</param>
+	/// <param name="digitsMaskAppearedInCrossline">The digits whose value representations are appeared in cross-line cells.</param>
+	/// <param name="lockedMembers">The locked members returned.</param>
+	/// <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid.</returns>
+	private static bool InitialCheckValidityAndLockedMembers(
+		scoped ref readonly Grid grid,
+		Mask baseCellsDigitsMask,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap fullCrossline,
+		int times,
+		out Mask digitsMaskExactlySizeMinusOneTimes,
+		out Mask digitsMaskAppearedInCrossline,
+		out ReadOnlySpan<LockedMember?> lockedMembers,
+		out Mask lockedMemberDigitsMask
+	)
+	{
+		(digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = (0, 0);
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			if (grid.IsExactAppearingTimesOf(digit, in fullCrossline, times))
+			{
+				// The current digit can be filled in cross-line cells at most (size) times.
+				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
+			}
+
+			foreach (var cell in fullCrossline)
+			{
+				if (grid.GetDigit(cell) == digit)
+				{
+					digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
+					break;
+				}
+			}
+		}
+
+		lockedMemberDigitsMask = baseCellsDigitsMask;
+
+		// Filters the digits they may not be locked members when they matches exactly appeared (size) times.
+		lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
+
+		// Check whether at least one digit appeared in base cells isn't locked and doesn't satisfy the (size) rule.
+		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
+		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
+		{
+			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
+			{
+				atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
+				break;
+			}
+		}
+
+		return !atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule;
+	}
+
+	/// <summary>
 	/// Try to get the mirror cells for the specified target cell at the specified index of the chute.
 	/// </summary>
 	/// <param name="chuteIndex">The chute index (in range 0..6).</param>
@@ -3890,76 +3967,35 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		(var result, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
 		return result;
 	}
-
-	/// <summary>
-	/// Try to fetch locked members in the pattern, and verify validity of the pattern.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
-	/// <param name="baseCells">The base cells.</param>
-	/// <param name="targetCells">The target cells.</param>
-	/// <param name="fullCrossline">The cross-line cells. The value can cover extra houses on complex exocets.</param>
-	/// <param name="times">The desired times of appearing of digits <paramref name="baseCellsDigitsMask"/>.</param>
-	/// <param name="digitsMaskExactlySizeMinusOneTimes">The digits that appeared exactly (<paramref name="times"/>) times.</param>
-	/// <param name="digitsMaskAppearedInCrossline">The digits whose value representations are appeared in cross-line cells.</param>
-	/// <param name="lockedMembers">The locked members returned.</param>
-	/// <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid.</returns>
-	private static bool InitialCheckValidityAndLockedMembers(
-		scoped ref readonly Grid grid,
-		Mask baseCellsDigitsMask,
-		scoped ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
-		scoped ref readonly CellMap fullCrossline,
-		int times,
-		out Mask digitsMaskExactlySizeMinusOneTimes,
-		out Mask digitsMaskAppearedInCrossline,
-		out ReadOnlySpan<LockedMember?> lockedMembers,
-		out Mask lockedMemberDigitsMask
-	)
-	{
-		(digitsMaskExactlySizeMinusOneTimes, digitsMaskAppearedInCrossline) = (0, 0);
-		foreach (var digit in baseCellsDigitsMask)
-		{
-			if (grid.IsExactAppearingTimesOf(digit, in fullCrossline, times))
-			{
-				// The current digit can be filled in cross-line cells at most (size) times.
-				digitsMaskExactlySizeMinusOneTimes |= (Mask)(1 << digit);
-			}
-
-			foreach (var cell in fullCrossline)
-			{
-				if (grid.GetDigit(cell) == digit)
-				{
-					digitsMaskAppearedInCrossline |= (Mask)(1 << digit);
-					break;
-				}
-			}
-		}
-
-		lockedMemberDigitsMask = baseCellsDigitsMask;
-
-		// Filters the digits they may not be locked members when they matches exactly appeared (size) times.
-		lockedMembers = GetLockedMembers(in baseCells, in targetCells, ref lockedMemberDigitsMask);
-
-		// Check whether at least one digit appeared in base cells isn't locked and doesn't satisfy the (size) rule.
-		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
-		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
-		{
-			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
-			{
-				atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = true;
-				break;
-			}
-		}
-
-		return !atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule;
-	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <summary>
+	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
+	/// </summary>
+	/// <param name="this">The grid to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <returns>The maximum possible times of the appearing.</returns>
+	public static int AppearingTimesOf(this scoped ref readonly Grid @this, Digit digit, scoped ref readonly CellMap cells)
+	{
+		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
+		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
+		{
+			foreach (ref readonly var cellsCombination in activeCells.GetSubsets(i))
+			{
+				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
+				{
+					return i + inactiveCells.Count;
+				}
+			}
+		}
+
+		return 0;
+	}
+
 	/// <summary>
 	/// Try to get the maximum times that the specified digit, describing it can be filled with the specified houses in maximal case.
 	/// </summary>
