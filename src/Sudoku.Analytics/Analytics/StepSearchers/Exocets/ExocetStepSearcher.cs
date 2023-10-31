@@ -678,15 +678,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					size, out var digitsMaskExactlySizeMinusOneTimes, out var digitsMaskAppearedInCrossline,
 					out var lockedMembers, out var lockedMemberDigitsMask))
 				{
-					// If not, check for the conjugate pair or AHS type.
-					if (CheckComplexSeniorTargetAlmostHiddenSet(
-						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-						baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
-					) is { } complexSeniorTypeStep)
-					{
-						return complexSeniorTypeStep;
-					}
-
 					continue;
 				}
 
@@ -725,6 +716,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						) is { } complexSeniorTargetSyncTypeStep)
 						{
 							return complexSeniorTargetSyncTypeStep;
+						}
+
+						if (CheckComplexSeniorTargetAlmostHiddenSet(
+							ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
+							baseCellsDigitsMask, inferredTargetDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
+						) is { } complexSeniorAhsTypeStep)
+						{
+							return complexSeniorAhsTypeStep;
 						}
 
 						// Check whether the locked members are really used.
@@ -3253,6 +3252,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Cell endoTargetCell,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
+		Mask inferredTargetDigitsMask,
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
 		int size,
@@ -3304,7 +3304,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				// Check whether we remove such AHS cells, the pattern will be formed or not.
 				var allDigitsSatisfySizeRuleAhsRule = true;
-				foreach (var digit in baseCellsDigitsMask)
+				foreach (var digit in inferredTargetDigitsMask)
 				{
 					var lastMap = expandedCrosslineIncludingTarget - targetCell - ahsCells;
 					if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size))
