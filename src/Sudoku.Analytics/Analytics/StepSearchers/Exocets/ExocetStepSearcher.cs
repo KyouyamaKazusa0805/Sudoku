@@ -369,7 +369,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			case 1 or 2:
 			{
-				if (CheckJeLockedMember(
+				if (CheckJuniorLockedMember(
 					ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 					lockedMembers, chuteIndex, groupsOfTargetCells, out _, out var lockedDigitsMask
 				) is { } lockedMemberTypeStep)
@@ -484,8 +484,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether cross-line non-empty cells contains digits appeared in base cells.
 		// If so, they will be endo-target cells.
 		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-		var lockedDigitsMask = GetValueDigitsAppearedInCrossline(in grid, in crossline, baseCellsDigitsMask);
-		switch (PopCount((uint)lockedDigitsMask))
+		var endoTargetValueDigitsMask = GetValueDigitsAppearedInCrossline(in grid, in crossline, baseCellsDigitsMask);
+		switch (PopCount((uint)endoTargetValueDigitsMask))
 		{
 			case 0:
 			{
@@ -549,7 +549,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Check for maximum times can be appeared in cross-line cells.
 				// Due to consideration on locked members, we may not handle for them.
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-				foreach (var digit in (Mask)(baseCellsDigitsMask & ~lockedDigitsMask))
+				foreach (var digit in (Mask)(baseCellsDigitsMask & ~endoTargetValueDigitsMask))
 				{
 					if (!grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
 					{
@@ -566,9 +566,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					return null;
 				}
 
-				if (CheckLockedMemberSe(
+				if (CheckSeniorLockedMember(
 					ref context, grid, in baseCells, [targetCell], in crossline, baseCellsDigitsMask,
-					TrailingZeroCount(lockedDigitsMask)
+					TrailingZeroCount(endoTargetValueDigitsMask)
 				) is { } lockedMemberTypeStep)
 				{
 					return lockedMemberTypeStep;
@@ -2276,7 +2276,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetLockedMemberStep? CheckJeLockedMember(
+	private static ExocetLockedMemberStep? CheckJuniorLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -2443,7 +2443,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetLockedMemberStep? CheckLockedMemberSe(
+	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
