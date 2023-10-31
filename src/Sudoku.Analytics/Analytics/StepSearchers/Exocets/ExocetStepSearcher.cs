@@ -361,7 +361,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #pragma warning disable format
 			case 0: FallThrough:
 			{
-				if (CheckBaseJeOrSe(
+				if (CheckJuniorOrSeniorBase(
 					ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
 					housesMask, out var inferredTargetConjugatePairs
 				) is { } baseTypeStep)
@@ -452,58 +452,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			case 0:
 			{
-				var endoTargetCells = CellMap.Empty;
-				foreach (var endoTargetCell in crossline)
+				if (CheckSeniorEndoTargetMustBeTrue(
+					ref context, in grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask, housesMask, size
+				) is { } endoTargetMustBeTrueTypeStep)
 				{
-					if (grid.GetState(endoTargetCell) != CellState.Empty)
-					{
-						continue;
-					}
-
-					// Endo-target cells must contain at least one of all digits appeared in base cells.
-					if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
-					{
-						continue;
-					}
-
-					// Check if the current cell is filled with the digit not appeared in base cells,
-					// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
-					// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-					// If greater (times > size - 1), an exocet cannot be formed;
-					// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-					var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-					foreach (var digit in baseCellsDigitsMask)
-					{
-						if (!grid.IsExactAppearingTimesOf(digit, crossline - endoTargetCell, size - 1))
-						{
-							allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-							break;
-						}
-					}
-					if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-					{
-						// All digits should strictly appear (size - 1) times at most in cross-line cells.
-						continue;
-					}
-
-					endoTargetCells.Add(endoTargetCell);
-				}
-
-				if (!endoTargetCells)
-				{
-					// No possible endo-target cells are found.
-					return null;
-				}
-
-				foreach (var endoTargetCell in endoTargetCells)
-				{
-					if (CheckBaseJeOrSe(
-						ref context, grid, in baseCells, [targetCell], endoTargetCell, in crossline,
-						baseCellsDigitsMask, housesMask, out _
-					) is { } baseTypeStep)
-					{
-						return baseTypeStep;
-					}
+					return endoTargetMustBeTrueTypeStep;
 				}
 				break;
 			}
@@ -1271,7 +1224,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetBaseStep? CheckBaseJeOrSe(
+	private static ExocetBaseStep? CheckJuniorOrSeniorBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -1458,6 +1411,74 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+	}
+
+	private static ExocetBaseStep? CheckSeniorEndoTargetMustBeTrue(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap baseCells,
+		Cell targetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		HouseMask housesMask,
+		int size
+	)
+	{
+		var endoTargetCells = CellMap.Empty;
+		foreach (var endoTargetCell in crossline)
+		{
+			if (grid.GetState(endoTargetCell) != CellState.Empty)
+			{
+				continue;
+			}
+
+			// Endo-target cells must contain at least one of all digits appeared in base cells.
+			if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
+			{
+				continue;
+			}
+
+			// Check if the current cell is filled with the digit not appeared in base cells,
+			// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
+			// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
+			// If greater (times > size - 1), an exocet cannot be formed;
+			// and if less (times < size - 1), we cannot conclude which digits are the target cells.
+			var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
+			foreach (var digit in baseCellsDigitsMask)
+			{
+				if (!grid.IsExactAppearingTimesOf(digit, crossline - endoTargetCell, size - 1))
+				{
+					allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
+					break;
+				}
+			}
+			if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
+			{
+				// All digits should strictly appear (size - 1) times at most in cross-line cells.
+				continue;
+			}
+
+			endoTargetCells.Add(endoTargetCell);
+		}
+
+		if (!endoTargetCells)
+		{
+			// No possible endo-target cells are found.
+			return null;
+		}
+
+		foreach (var endoTargetCell in endoTargetCells)
+		{
+			if (CheckJuniorOrSeniorBase(
+				ref context, grid, in baseCells, [targetCell], endoTargetCell, in crossline,
+				baseCellsDigitsMask, housesMask, out _
+			) is { } baseTypeStep)
+			{
+				return baseTypeStep;
+			}
+		}
+
 		return null;
 	}
 
