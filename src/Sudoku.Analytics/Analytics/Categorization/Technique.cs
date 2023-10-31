@@ -3001,11 +3001,11 @@ public enum Technique
 	FrankenSeniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates franken senior exocet (target external AHS).
+	/// Indicates advanced franken senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenSeniorExocetTargetExternalAlmostHiddenSet,
+	AdvancedFrankenSeniorExocet,
 
 	/// <summary>
 	/// Indicates mutant senior exocet.
@@ -3022,11 +3022,11 @@ public enum Technique
 	MutantSeniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates mutant senior exocet (target external AHS).
+	/// Indicates advanced mutant senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantSeniorExocetTargetExternalAlmostHiddenSet,
+	AdvancedMutantSeniorExocet,
 
 	/// <summary>
 	/// Indicates double exocet.

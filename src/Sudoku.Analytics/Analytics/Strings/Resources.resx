@@ -2430,7 +2430,10 @@
   <data name="FrankenSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
     <value>Franken Senior Exocet (External Target AHS)</value>
   </data>
-  <data name="MutantSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
-    <value>Mutant Senior Exocet (External Target AHS)</value>
+  <data name="AdvancedMutantSeniorExocet" xml:space="preserve">
+    <value>Advanced Mutant Senior Exocet</value>
+  </data>
+  <data name="AdvancedFrankenSeniorExocet" xml:space="preserve">
+    <value>Advanced Franken Senior Exocet</value>
   </data>
 </root>

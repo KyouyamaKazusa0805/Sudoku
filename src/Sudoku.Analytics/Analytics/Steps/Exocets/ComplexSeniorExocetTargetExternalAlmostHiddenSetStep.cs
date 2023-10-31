@@ -7,7 +7,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Complex Senior Exocet (Target Sync)</b> technique.
+/// Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
 /// <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
-public sealed partial class ComplexSeniorExocetTargetExternalAlmostHiddenSetStep(
+public sealed partial class AdvancedComplexSeniorExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -49,7 +49,7 @@ public sealed partial class ComplexSeniorExocetTargetExternalAlmostHiddenSetStep
 	public override Technique Code
 		=> this.GetShapeKind() switch
 		{
-			ExocetShapeKind.Franken => Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet,
-			ExocetShapeKind.Mutant => Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet
+			ExocetShapeKind.Franken => Technique.AdvancedFrankenSeniorExocet,
+			ExocetShapeKind.Mutant => Technique.AdvancedMutantSeniorExocet
 		};
 }

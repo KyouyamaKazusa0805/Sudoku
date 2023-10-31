@@ -23,52 +23,15 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// Provides with an <b>Exocet</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>
-/// Junior Exocets:
-/// <list type="bullet">
-/// <item>Standard Junior Exocet</item>
-/// <item>Junior Exocet (Target &amp; Mirror Conjugate Pair)</item>
-/// <item>Junior Exocet (Adjacent Target)</item>
-/// <item>Junior Exocet (Incompatible Pair)</item>
-/// <item>Junior Exocet (Target Pair)</item>
-/// <item>Junior Exocet (Generalized Fish)</item>
-/// <item>Junior Exocet (Mirror AHS)</item>
-/// <item>Junior Exocet (Locked Member)</item>
-/// <item>
-/// Weak Exocets:
-/// <list type="bullet">
-/// <item>Standard Weak Exocet</item>
-/// <item>Weak Exocet (Adjacent Target)</item>
-/// <item>Weak Exocet (Slash)</item>
-/// <item>Weak Exocet (BZ Rectangle)</item>
-/// <item>Lame Weak Exocet</item>
-/// </list>
-/// </item>
-/// <item>
-/// Double Exocets:
-/// <list type="bullet">
-/// <item>Standard Double Exocet</item>
-/// <item>Double Exocet (Generalized Fish)</item>
-/// </list>
-/// </item>
-/// <item>Pattern-Locked Quadruple</item>
-/// </list>
-/// </item>
-/// <item>
-/// Senior Exocets:
-/// <list type="bullet">
-/// <item>Standard Senior Exocet</item>
-/// <item>Senior Exocet (Mirror)</item>
-/// <item>Senior Exocet (Locked Member)</item>
-/// </list>
-/// </item>
-/// <item>
-/// Complex Exocets:
-/// <list type="bullet">
+/// <item>Junior Exocet</item>
+/// <item>Weak Exocet</item>
+/// <item>Double Exocet</item>
+/// <item>Senior Exocet</item>
 /// <!--<item>Complex Junior Exocet</item>-->
 /// <item>Complex Senior Exocet</item>
-/// </list>
-/// </item>
+/// <!--<item>Advanced Complex Junior Exocet</item>-->
+/// <item>Advanced Complex Senior Exocet</item>
+/// <!--<item>Pattern-Locked Quadruple</item>-->
 /// </list>
 /// </summary>
 [StepSearcher(
@@ -79,8 +42,8 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
 	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
-	Technique.MutantSeniorExocetLockedMember, Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet,
-	Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet, Technique.PatternLockedQuadruple)]
+	Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet, Technique.AdvancedMutantSeniorExocet,
+	Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -797,7 +760,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										return complexSeniorLockedMemberTypeStep;
 									}
 
-									if (CheckComplexSeniorTargetAlmostHiddenSet(
+									if (CheckAdvancedComplexSenior(
 										ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 										baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
 										(Mask)(1 << selectedDigit), in expandedCrosslineIncludingTarget
@@ -861,7 +824,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return complexSeniorLockedMemberTypeStep;
 										}
 
-										if (CheckComplexSeniorTargetAlmostHiddenSet(
+										if (CheckAdvancedComplexSenior(
 											ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 											baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
 											currentDigitsMask, in expandedCrosslineIncludingTarget
@@ -3509,7 +3472,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ComplexSeniorExocetTargetExternalAlmostHiddenSetStep? CheckComplexSeniorTargetAlmostHiddenSet(
+	private static AdvancedComplexSeniorExocetStep? CheckAdvancedComplexSenior(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -3542,7 +3505,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ComplexSeniorExocetTargetExternalAlmostHiddenSetStep(
+		var step = new AdvancedComplexSeniorExocetStep(
 			[.. conclusions],
 			[
 				[

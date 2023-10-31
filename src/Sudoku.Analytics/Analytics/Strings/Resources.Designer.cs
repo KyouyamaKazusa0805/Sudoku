@@ -70,6 +70,24 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced Franken Senior Exocet.
+        /// </summary>
+        public static string AdvancedFrankenSeniorExocet {
+            get {
+                return ResourceManager.GetString("AdvancedFrankenSeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Mutant Senior Exocet.
+        /// </summary>
+        public static string AdvancedMutantSeniorExocet {
+            get {
+                return ResourceManager.GetString("AdvancedMutantSeniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aligned Pair Exclusion.
         /// </summary>
         public static string AlignedPairExclusion {
@@ -2460,15 +2478,6 @@ namespace Sudoku.Analytics.Strings {
         public static string MutantSeniorExocetLockedMember {
             get {
                 return ResourceManager.GetString("MutantSeniorExocetLockedMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mutant Senior Exocet (External Target AHS).
-        /// </summary>
-        public static string MutantSeniorExocetTargetExternalAlmostHiddenSet {
-            get {
-                return ResourceManager.GetString("MutantSeniorExocetTargetExternalAlmostHiddenSet", resourceCulture);
             }
         }
         

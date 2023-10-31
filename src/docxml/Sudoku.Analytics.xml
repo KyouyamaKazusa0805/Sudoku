@@ -2904,9 +2904,9 @@ if (student is (name: var name, age: >= 18))
             Indicates franken senior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AdvancedFrankenSeniorExocet">
             <summary>
-            Indicates franken senior exocet (target external AHS).
+            Indicates advanced franken senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocet">
@@ -2919,9 +2919,9 @@ if (student is (name: var name, age: >= 18))
             Indicates mutant senior exocet locked member.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AdvancedMutantSeniorExocet">
             <summary>
-            Indicates mutant senior exocet (target external AHS).
+            Indicates advanced mutant senior exocet.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.DoubleExocet">
@@ -7699,52 +7699,15 @@ if (student is (name: var name, age: >= 18))
             Provides with an <b>Exocet</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>
-            Junior Exocets:
-            <list type="bullet">
-            <item>Standard Junior Exocet</item>
-            <item>Junior Exocet (Target &amp; Mirror Conjugate Pair)</item>
-            <item>Junior Exocet (Adjacent Target)</item>
-            <item>Junior Exocet (Incompatible Pair)</item>
-            <item>Junior Exocet (Target Pair)</item>
-            <item>Junior Exocet (Generalized Fish)</item>
-            <item>Junior Exocet (Mirror AHS)</item>
-            <item>Junior Exocet (Locked Member)</item>
-            <item>
-            Weak Exocets:
-            <list type="bullet">
-            <item>Standard Weak Exocet</item>
-            <item>Weak Exocet (Adjacent Target)</item>
-            <item>Weak Exocet (Slash)</item>
-            <item>Weak Exocet (BZ Rectangle)</item>
-            <item>Lame Weak Exocet</item>
-            </list>
-            </item>
-            <item>
-            Double Exocets:
-            <list type="bullet">
-            <item>Standard Double Exocet</item>
-            <item>Double Exocet (Generalized Fish)</item>
-            </list>
-            </item>
-            <item>Pattern-Locked Quadruple</item>
-            </list>
-            </item>
-            <item>
-            Senior Exocets:
-            <list type="bullet">
-            <item>Standard Senior Exocet</item>
-            <item>Senior Exocet (Mirror)</item>
-            <item>Senior Exocet (Locked Member)</item>
-            </list>
-            </item>
-            <item>
-            Complex Exocets:
-            <list type="bullet">
+            <item>Junior Exocet</item>
+            <item>Weak Exocet</item>
+            <item>Double Exocet</item>
+            <item>Senior Exocet</item>
             <!--<item>Complex Junior Exocet</item>-->
             <item>Complex Senior Exocet</item>
-            </list>
-            </item>
+            <!--<item>Advanced Complex Junior Exocet</item>-->
+            <item>Advanced Complex Senior Exocet</item>
+            <!--<item>Pattern-Locked Quadruple</item>-->
             </list>
             </summary>
         </member>
@@ -13012,9 +12975,9 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep">
+        <member name="T:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep">
             <summary>
-            Provides with a step that is a <b>Complex Senior Exocet (Target Sync)</b> technique.
+            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13028,9 +12991,9 @@ if (student is (name: var name, age: >= 18))
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
             <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
-            Provides with a step that is a <b>Complex Senior Exocet (Target Sync)</b> technique.
+            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13044,23 +13007,23 @@ if (student is (name: var name, age: >= 18))
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
             <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.CrosslineHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.CrosslineHousesMask">
             <summary>
             The generated property declaration for parameter <c>crosslineHousesMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.ExtraHousesMask">
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.ExtraHousesMask">
             <summary>
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSeniorExocetTargetExternalAlmostHiddenSetStep.AlmostHiddenSetMask">
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.AlmostHiddenSetMask">
             <summary>
             The generated property declaration for parameter <c>almostHiddenSetMask</c>.
             </summary>
@@ -16206,6 +16169,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AdvancedFrankenSeniorExocet">
+            <summary>
+              Looks up a localized string similar to Advanced Franken Senior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.AdvancedMutantSeniorExocet">
+            <summary>
+              Looks up a localized string similar to Advanced Mutant Senior Exocet.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.AlignedPairExclusion">
             <summary>
               Looks up a localized string similar to Aligned Pair Exclusion.
@@ -17534,11 +17507,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetLockedMember">
             <summary>
               Looks up a localized string similar to Mutant Senior Exocet (Locked Member).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.MutantSeniorExocetTargetExternalAlmostHiddenSet">
-            <summary>
-              Looks up a localized string similar to Mutant Senior Exocet (External Target AHS).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantSquirmbag">

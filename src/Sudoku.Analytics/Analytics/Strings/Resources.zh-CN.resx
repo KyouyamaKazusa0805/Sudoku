@@ -2595,8 +2595,12 @@
     <value>宫内高级飞鱼・T 格待定隐性数组</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="MutantSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
-    <value>交叉高级飞鱼・T 格待定隐性数组</value>
+  <data name="AdvancedMutantSeniorExocet" xml:space="preserve">
+    <value>拓展交叉高级飞鱼</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AdvancedFrankenSeniorExocet" xml:space="preserve">
+    <value>拓展宫内高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
 </root>
