@@ -1789,6 +1789,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Franken Senior Exocet (External Target AHS).
+        /// </summary>
+        public static string FrankenSeniorExocetTargetExternalAlmostHiddenSet {
+            get {
+                return ResourceManager.GetString("FrankenSeniorExocetTargetExternalAlmostHiddenSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Franken Senior Exocet (Target Sync).
         /// </summary>
         public static string FrankenSeniorExocetTargetSync {
@@ -2514,6 +2523,15 @@ namespace Sudoku.Analytics.Strings {
         public static string MutantSeniorExocetLockedMember {
             get {
                 return ResourceManager.GetString("MutantSeniorExocetLockedMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Senior Exocet (External Target AHS).
+        /// </summary>
+        public static string MutantSeniorExocetTargetExternalAlmostHiddenSet {
+            get {
+                return ResourceManager.GetString("MutantSeniorExocetTargetExternalAlmostHiddenSet", resourceCulture);
             }
         }
         

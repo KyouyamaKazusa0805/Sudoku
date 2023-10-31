@@ -27,8 +27,7 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// Junior Exocets:
 /// <list type="bullet">
 /// <item>Standard Junior Exocet</item>
-/// <item>Junior Exocet (Target Conjugate Pair)</item>
-/// <item>Junior Exocet (Mirror Conjugate Pair)</item>
+/// <item>Junior Exocet (Target &amp; Mirror Conjugate Pair)</item>
 /// <item>Junior Exocet (Adjacent Target)</item>
 /// <item>Junior Exocet (Incompatible Pair)</item>
 /// <item>Junior Exocet (Target Pair)</item>
@@ -82,7 +81,8 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
 	Technique.MutantSeniorExocetLockedMember, Technique.FrankenJuniorExocetCompatibilityTest, Technique.MutantJuniorExocetCompatibilityTest,
 	Technique.FrankenSeniorExocetCompatibilityTest, Technique.MutantSeniorExocetCompatibilityTest, Technique.FrankenJuniorExocetTargetSync,
-	Technique.MutantJuniorExocetTargetSync, Technique.FrankenSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetSync,
+	Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet, Technique.MutantJuniorExocetTargetSync,
+	Technique.FrankenSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet,
 	Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
@@ -3505,7 +3505,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorTargetAlmostHiddenSet(
+	private static ComplexSeniorExocetTargetExternalAlmostHiddenSetStep? CheckComplexSeniorTargetAlmostHiddenSet(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -3517,14 +3517,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
 		int size,
-		Mask ahsDigitsMask,
+		Mask almostHiddenSetMask,
 		scoped ref readonly CellMap expandedCrosslineIncludingTarget
 	)
 	{
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in endoTargetCellsGroup)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredBaseDigitsMask & ~ahsDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredBaseDigitsMask & ~almostHiddenSetMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
@@ -3538,7 +3538,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ComplexSeniorExocetBaseStep(
+		var step = new ComplexSeniorExocetTargetExternalAlmostHiddenSetStep(
 			[.. conclusions],
 			[
 				[
@@ -3549,7 +3549,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in endoTargetCellsGroup
-					from digit in (Mask)(grid.GetCandidates(cell) & ahsDigitsMask)
+					from digit in (Mask)(grid.GetCandidates(cell) & almostHiddenSetMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit),
 					..
 					from cell in baseCells
@@ -3574,7 +3574,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			in endoTargetCellsGroup,
 			in crossline,
 			housesMask,
-			extraHousesMask
+			extraHousesMask,
+			almostHiddenSetMask
 		);
 		if (context.OnlyFindOne)
 		{

@@ -2623,4 +2623,12 @@
     <value>交叉高级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="FrankenSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
+    <value>宫内高级飞鱼・T 格待定隐性数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
+    <value>交叉高级飞鱼・T 格待定隐性数组</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

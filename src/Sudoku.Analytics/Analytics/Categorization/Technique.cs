@@ -3043,6 +3043,13 @@ public enum Technique
 	FrankenSeniorExocetTargetSync,
 
 	/// <summary>
+	/// Indicates franken senior exocet (target external AHS).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenSeniorExocetTargetExternalAlmostHiddenSet,
+
+	/// <summary>
 	/// Indicates mutant senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -3069,6 +3076,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSeniorExocetTargetSync,
+
+	/// <summary>
+	/// Indicates mutant senior exocet (target external AHS).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantSeniorExocetTargetExternalAlmostHiddenSet,
 
 	/// <summary>
 	/// Indicates double exocet.
