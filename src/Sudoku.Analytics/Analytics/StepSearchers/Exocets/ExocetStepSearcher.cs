@@ -482,8 +482,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					return null;
 				}
 
-				if (CheckSeniorLockedMember(
-					ref context, grid, in baseCells, [targetCell], in crossline, baseCellsDigitsMask,
+				if (CheckSeniorBaseLockedMember(
+					ref context, grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask,
 					TrailingZeroCount(endoTargetValueDigitsMask)
 				) is { } lockedMemberTypeStep)
 				{
@@ -2427,22 +2427,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
+	private static ExocetLockedMemberStep? CheckSeniorBaseLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		Cell targetCell,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		Digit lockedDigit
 	)
 	{
-		if (targetCells is not [var targetCell])
-		{
-			// TODO: Today we don't handle the case on AHS or conjugate pair.
-			return null;
-		}
-
 		// Check whether the endo-target cell only holds one.
 		var endoTargetCell = -1;
 		var multipleEndoTargetCellsFound = false;
@@ -2490,7 +2484,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell),
 					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
@@ -2513,7 +2507,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			baseCellsDigitsMask,
 			(Mask)(1 << lockedDigit),
 			in baseCells,
-			in targetCells,
+			[targetCell],
 			[endoTargetCell],
 			in crossline
 		);
