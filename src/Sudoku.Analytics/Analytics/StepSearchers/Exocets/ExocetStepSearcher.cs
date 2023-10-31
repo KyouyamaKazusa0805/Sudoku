@@ -887,7 +887,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										}
 #endif
 
-
 										collectedDigitsMask |= currentDigitsMask;
 									}
 									break;
