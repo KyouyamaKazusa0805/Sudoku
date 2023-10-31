@@ -2973,20 +2973,6 @@ public enum Technique
 	FrankenJuniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates franken junior exocet (compatibility test).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenJuniorExocetCompatibilityTest,
-
-	/// <summary>
-	/// Indicates franken junior exocet (target sync).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenJuniorExocetTargetSync,
-
-	/// <summary>
 	/// Indicates mutant junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -3001,20 +2987,6 @@ public enum Technique
 	MutantJuniorExocetLockedMember,
 
 	/// <summary>
-	/// Indicates mutant junior exocet (compatibility test).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantJuniorExocetCompatibilityTest,
-
-	/// <summary>
-	/// Indicates mutant junior exocet (target sync).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantJuniorExocetTargetSync,
-
-	/// <summary>
 	/// Indicates franken senior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -3027,20 +2999,6 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenSeniorExocetLockedMember,
-
-	/// <summary>
-	/// Indicates franken senior exocet (compatibility test).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenSeniorExocetCompatibilityTest,
-
-	/// <summary>
-	/// Indicates franken senior exocet (target sync).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	FrankenSeniorExocetTargetSync,
 
 	/// <summary>
 	/// Indicates franken senior exocet (target external AHS).
@@ -3062,20 +3020,6 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSeniorExocetLockedMember,
-
-	/// <summary>
-	/// Indicates mutant senior exocet (compatibility test).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantSeniorExocetCompatibilityTest,
-
-	/// <summary>
-	/// Indicates mutant senior exocet (target sync).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	MutantSeniorExocetTargetSync,
 
 	/// <summary>
 	/// Indicates mutant senior exocet (target external AHS).

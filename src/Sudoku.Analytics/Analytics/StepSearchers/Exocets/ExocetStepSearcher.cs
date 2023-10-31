@@ -79,11 +79,8 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
 	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
-	Technique.MutantSeniorExocetLockedMember, Technique.FrankenJuniorExocetCompatibilityTest, Technique.MutantJuniorExocetCompatibilityTest,
-	Technique.FrankenSeniorExocetCompatibilityTest, Technique.MutantSeniorExocetCompatibilityTest, Technique.FrankenJuniorExocetTargetSync,
-	Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet, Technique.MutantJuniorExocetTargetSync,
-	Technique.FrankenSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetSync, Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet,
-	Technique.PatternLockedQuadruple)]
+	Technique.MutantSeniorExocetLockedMember, Technique.FrankenSeniorExocetTargetExternalAlmostHiddenSet,
+	Technique.MutantSeniorExocetTargetExternalAlmostHiddenSet, Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -689,23 +686,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				if ((Mask)(lockedMemberDigitsMask | digitsMaskExactlySizeMinusOneTimes) == baseCellsDigitsMask)
 				{
 					// Check for basic cases here.
-					if (CheckComplexSeniorCompatibilityTest(
-						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline, baseCellsDigitsMask, housesMask,
-						1 << extraHouse, size, lockedMemberDigitsMask, in expandedCrosslineIncludingTarget, out var inferredBaseDigitsMask
-					) is { } complexSeniorCompatibilityTestTypeStep)
-					{
-						return complexSeniorCompatibilityTestTypeStep;
-					}
-
-					if (CheckComplexSeniorTargetSync(
-						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
-						baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget,
-						inferredBaseDigitsMask
-					) is { } complexSeniorTargetSyncTypeStep)
-					{
-						return complexSeniorTargetSyncTypeStep;
-					}
-
 					// Check for locked members and determine the next step.
 					switch (PopCount((uint)lockedMemberDigitsMask))
 					{
@@ -3237,6 +3217,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					conclusions.Add(new(Elimination, targetCell, digit));
 				}
 
+				// Cannibalism rule:
+				// If the maximum appearing times of the digit is less than the minimum possible limit,
+				// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
+				// We can safely remove it from base cells.
+				if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell) < size)
+				{
+					foreach (var cell in baseCells + endoTargetCell + targetCell & CandidatesMap[lockedDigit])
+					{
+						conclusions.Add(new(Elimination, cell, lockedDigit));
+					}
+				}
+
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
@@ -3596,179 +3588,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		context.Accumulator.Add(step);
 
-		return null;
-	}
-
-	private static ComplexSeniorExocetCompatibilityTestStep? CheckComplexSeniorCompatibilityTest(
-		scoped ref AnalysisContext context,
-		Grid grid,
-		scoped ref readonly CellMap baseCells,
-		Cell targetCell,
-		Cell endoTargetCell,
-		scoped ref readonly CellMap crossline,
-		Mask baseCellsDigitsMask,
-		HouseMask housesMask,
-		HouseMask extraHousesMask,
-		int size,
-		Mask lockedMemberDigitsMask,
-		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
-		out Mask inferredBaseDigitsMask
-	)
-	{
-		if (lockedMemberDigitsMask == 0)
-		{
-			inferredBaseDigitsMask = 0;
-			return null;
-		}
-
-		// The main idea of this type is trying to find for a locked member, and suppose for it, then check for any confliction for rank = -1.
-		// Suppose if the digit is correct in base cells, then we should use locked candidates to make a target cell to be it.
-		// Then check for cross-line cells, find all possible valid cases of filling with that digit.
-		// If the number of the filled digit is less than the number of cross-line houses,
-		// we can conclude that this digit will lead to an confliction.
-		// Therefore, the digit is wrong, and we can remove it from both base cells.
-		var digitsToBeIterated = inferredBaseDigitsMask = lockedMemberDigitsMask;
-		var conclusions = new List<Conclusion>();
-		foreach (var digit in lockedMemberDigitsMask)
-		{
-			// We have a locked member, meaning the digit can be filled into a target cell directly
-			// via supposing on filling that digit in base cells.
-			// Now check for rank = -1 rule.
-			var lastMap = expandedCrosslineIncludingTarget - targetCell - endoTargetCell;
-			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size - 1))
-			{
-				continue;
-			}
-
-			// The value is satisfy rank = -1 rule. No check for eliminations and update mask.
-			inferredBaseDigitsMask &= (Mask)~(1 << digit);
-			foreach (var cell in baseCells)
-			{
-				if ((grid.GetCandidates(cell) >> digit & 1) != 0)
-				{
-					conclusions.Add(new(Elimination, cell, digit));
-				}
-			}
-		}
-		if (conclusions.Count == 0)
-		{
-			inferredBaseDigitsMask = baseCellsDigitsMask;
-			return null;
-		}
-
-		var step = new ComplexSeniorExocetCompatibilityTestStep(
-			[.. conclusions],
-			[
-				[
-					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					..
-					from cell in baseCells
-					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
-					..
-					from cell in CellsMap[targetCell] + endoTargetCell
-					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
-					..
-					from cell in expandedCrosslineIncludingTarget
-					where grid.GetState(cell) == CellState.Empty
-					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
-				]
-			],
-			context.PredefinedOptions,
-			baseCellsDigitsMask,
-			in baseCells,
-			[targetCell],
-			[endoTargetCell],
-			in crossline,
-			housesMask,
-			extraHousesMask
-		);
-		if (context.OnlyFindOne)
-		{
-			return step;
-		}
-
-		context.Accumulator.Add(step);
-		return null;
-	}
-
-	private static ComplexSeniorExocetTargetSyncStep? CheckComplexSeniorTargetSync(
-		scoped ref AnalysisContext context,
-		Grid grid,
-		scoped ref readonly CellMap baseCells,
-		Cell targetCell,
-		Cell endoTargetCell,
-		scoped ref readonly CellMap crossline,
-		Mask baseCellsDigitsMask,
-		HouseMask housesMask,
-		HouseMask extraHousesMask,
-		int size,
-		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
-		Mask inferredTargetDigitsMask
-	)
-	{
-		if (inferredTargetDigitsMask == baseCellsDigitsMask)
-		{
-			// Inferred result doesn't change.
-			return null;
-		}
-
-		var conclusions = new List<Conclusion>();
-		foreach (var cell in baseCells + targetCell + endoTargetCell)
-		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetDigitsMask))
-			{
-				conclusions.Add(new(Elimination, cell, digit));
-			}
-		}
-		if (conclusions.Count == 0)
-		{
-			return null;
-		}
-
-		var step = new ComplexSeniorExocetTargetSyncStep(
-			[.. conclusions],
-			[
-				[
-					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					..
-					from cell in baseCells
-					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
-					..
-					from cell in CellsMap[targetCell] + endoTargetCell
-					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
-					..
-					from cell in expandedCrosslineIncludingTarget
-					where grid.GetState(cell) == CellState.Empty
-					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
-				]
-			],
-			context.PredefinedOptions,
-			baseCellsDigitsMask,
-			in baseCells,
-			[targetCell],
-			[endoTargetCell],
-			in crossline,
-			housesMask,
-			extraHousesMask
-		);
-		if (context.OnlyFindOne)
-		{
-			return step;
-		}
-
-		context.Accumulator.Add(step);
 		return null;
 	}
 
