@@ -1,3 +1,26 @@
+#define SEARCH_JUNIOR_EXOCET
+#define SEARCH_SENIOR_EXOCET
+#define SEARCH_WEAK_EXOCET
+#define SEARCH_DOUBLE_EXOCET
+#define SEARCH_COMPLEX
+#define SEARCH_COMPLEX_JUNIOR_EXOCET
+#define SEARCH_COMPLEX_SENIOR_EXOCET
+#define SEARCH_ADVANCED
+#define SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET
+#define SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
+#undef SIZE_ONLY_THREE
+#undef BASE_SIZE_ONLY_TWO
+#if (SEARCH_COMPLEX_JUNIOR_EXOCET || SEARCH_COMPLEX_SENIOR_EXOCET) && !SEARCH_COMPLEX
+#line 1 "ExocetStepSearcher.cs"
+#warning 'SEARCH_COMPLEX' should be set if 'SEARCH_COMPLEX_JUNIOR_EXOCET' or 'SEARCH_COMPLEX_SENIOR_EXOCET' is set.
+#line default
+#endif
+#if (SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET || SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET) && !SEARCH_ADVANCED
+#line 1 "ExocetStepSearcher.cs"
+#warning 'SEARCH_ADVANCED' should be set if 'SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET' or 'SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET' is set.
+#line default
+#endif
+
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
@@ -53,10 +76,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
 		{
+#if !SIZE_ONLY_THREE && (SEARCH_COMPLEX_SENIOR_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET)
 			// Iterate by size of houses to be iterated. The possible values should be 3 or 4,
 			// but we can allow on size = 2 for Complex Senior Exocets.
 			for (var size = 2; size <= 4; size++)
+#endif
 			{
+#if SIZE_ONLY_THREE
+				const int size = 3;
+#endif
 				// Iterate on each combination of houses as basic cross-line cells used.
 				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
@@ -90,8 +118,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						//   ..64.....1....39.7.5.............3..2....1.89....59....4......83....2....126...7.
 						//
 						// For digits 4 & 5 in houses r258, with base cell r9c7 and target cell r2c8 => r2c8 must be 4 or 5.
+#if !BASE_SIZE_ONLY_TWO
 						for (var baseSize = 1; baseSize <= 2; baseSize++)
+#endif
 						{
+#if BASE_SIZE_ONLY_TWO
+							const int baseSize = 2;
+#endif
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
 							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].AsReadOnlySpan())
 							{
@@ -174,19 +207,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Collect exocets by types.
 									// We separate exocets with 3 parts:
 									//
-									//   * Junior Exocet, Double Exocet, Weak Exocet, Complex Junior Exocet
+									//   * Junior Exocet, Double Exocet, Weak Exocet, Complex Junior Exocet & Advanced Complex Junior Exocet
 									//   * Senior Exocet
-									//   * Complex Senior Exocet
+									//   * Complex Senior Exocet & Advanced Complex Senior Exocet
 									//
 									// because the pre-condition are not same with each other.
 
-									// COMPLEX SENIOR EXOCET
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 									if (baseCells.Count == 2)
 									{
 										foreach (var targetCell in targetCells)
 										{
 											if (CollectComplexSeniorExocets(
-												ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline,
+												ref context, in grid, in baseCells, targetCell, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
 											) is { } complexSeniorExocet)
 											{
@@ -194,20 +227,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											}
 										}
 									}
+#endif
 
-									// SENIOR EXOCET
+#if SEARCH_SENIOR_EXOCET
 									if (baseCells.Count == 2 && targetCells.Count == 1)
 									{
 										if (CollectSeniorExocets(
-											ref context, in grid, in baseCells, targetCells[0], groupsOfTargetCells, in crossline,
+											ref context, in grid, in baseCells, targetCells[0], in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
 										) is { } seniorExocet)
 										{
 											return seniorExocet;
 										}
 									}
+#endif
 
-									// WEAK, JUNIOR, DOUBLE EXOCET, COMPLEX JUNIOR EXOCET (Not impl'ed)
+#if SEARCH_WEAK_EXOCET || SEARCH_JUNIOR_EXOCET || SEARCH_DOUBLE_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET
 									if (groupsOfTargetCells.Length == baseSize)
 									{
 										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
@@ -215,6 +250,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											continue;
 										}
 
+#if SEARCH_WEAK_EXOCET
 										if (CollectWeakExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -222,7 +258,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return weakExocet;
 										}
-
+#endif
+#if SEARCH_JUNIOR_EXOCET
 										if (CollectJuniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -230,7 +267,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return juniorExocet;
 										}
-
+#endif
+#if SEARCH_DOUBLE_EXOCET
 										if (CollectDoubleExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											in housesEmptyCells, baseCellsDigitsMask, housesMask, isRow, size, i
@@ -238,7 +276,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return doubleExocet;
 										}
-
+#endif
+#if SEARCH_COMPLEX_JUNIOR_EXOCET
 										if (CollectComplexJuniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -246,7 +285,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return complexJuniorExocet;
 										}
+#endif
 									}
+#endif
 								}
 							}
 						}
@@ -258,7 +299,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		return null;
 	}
 
-
+	//
+	// Sub-type Entry
+	//
+#if SEARCH_JUNIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Junior Exocet sub-types.
 	/// </summary>
@@ -424,17 +468,33 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_SENIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Senior Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCell">The cell of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectSeniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -496,11 +556,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_JUNIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Complex Junior Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCells">The cells of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="groupsOfTargetCells">
+	/// The grouped cells for the argument <paramref name="targetCells"/>, by is containing crossline house.
+	/// </param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectComplexJuniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -517,17 +597,34 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Complex Senior Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCell">The cell of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <param name="housesCells">The houses cells to be used for the base houses.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectComplexSeniorExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -713,6 +810,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										return complexSeniorLockedMemberTypeStep;
 									}
 
+#if SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
 									if (CheckAdvancedComplexSenior(
 										ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 										baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
@@ -721,6 +819,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									{
 										return complexSeniorAhsTypeStep;
 									}
+#endif
 
 									collectedDigitsMask |= (Mask)(1 << selectedDigit);
 									break;
@@ -777,6 +876,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return complexSeniorLockedMemberTypeStep;
 										}
 
+#if SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
 										if (CheckAdvancedComplexSenior(
 											ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 											baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
@@ -785,6 +885,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 											return complexSeniorAhsTypeStep;
 										}
+#endif
+
 
 										collectedDigitsMask |= currentDigitsMask;
 									}
@@ -799,11 +901,31 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_WEAK_EXOCET
 	/// <summary>
 	/// The core method to check for Weak Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCells">The cells of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="groupsOfTargetCells">
+	/// The grouped cells for the argument <paramref name="targetCells"/>, by is containing crossline house.
+	/// </param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectWeakExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -1097,11 +1219,32 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_DOUBLE_EXOCET
 	/// <summary>
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
-	/// <inheritdoc cref="CollectJuniorExocets(ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ref readonly CellMap, ReadOnlySpan{TargetCellsGroup}, ref readonly CellMap, Mask, HouseMask, bool, int, int)"/>
+	/// <param name="context">The analysis context to be used for accumulate steps.</param>
+	/// <param name="grid">The grid as the candidate referencing object.</param>
+	/// <param name="baseCells">The cells of the base.</param>
+	/// <param name="targetCells">The cells of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="groupsOfTargetCells">
+	/// The grouped cells for the argument <paramref name="targetCells"/>, by is containing crossline house.
+	/// </param>
+	/// <param name="crossline">
+	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
+	/// </param>
+	/// <param name="housesEmptyCells">The empty cells in the houses.</param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits that are appeared in base cells.</param>
+	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
+	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
+	/// <param name="size">
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
+	/// because I don't know. :(
+	/// </param>
+	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
+	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectDoubleExocets(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -1223,7 +1366,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET || SEARCH_SENIOR_EXOCET
 	private static ExocetBaseStep? CheckJuniorOrSeniorBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -1413,7 +1558,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_SENIOR_EXOCET
 	private static ExocetBaseStep? CheckSeniorEndoTargetMustBeTrue(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
@@ -1481,7 +1628,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+	//
+	// Sub-type Declaration
+	//
+#if SEARCH_JUNIOR_EXOCET
 	private static ExocetMirrorConjugatePairStep? CheckMirrorConjugatePair(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -1598,7 +1750,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetAdjacentTargetStep? CheckAdjacentTarget(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -1715,7 +1869,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetIncompatiblePairStep? CheckIncompatiblePair(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -1915,7 +2071,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetTargetPairStep? CheckTargetPair(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2031,7 +2189,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetGeneralizedFishStepConclusion? CheckGeneralizedFish(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2122,7 +2282,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetMirrorAlmostHiddenSetStep? CheckMirrorAlmostHiddenSet(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2259,7 +2421,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
+#if SEARCH_JUNIOR_EXOCET
 	private static ExocetLockedMemberStep? CheckJuniorLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2426,100 +2590,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		(inferredLastTargetDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
 		return null;
 	}
+#endif
 
-	private static ExocetLockedMemberStep? CheckSeniorBaseLockedMember(
-		scoped ref AnalysisContext context,
-		Grid grid,
-		scoped ref readonly CellMap baseCells,
-		Cell targetCell,
-		scoped ref readonly CellMap crossline,
-		Mask baseCellsDigitsMask,
-		Digit lockedDigit
-	)
-	{
-		// Check whether the endo-target cell only holds one.
-		var endoTargetCell = -1;
-		var multipleEndoTargetCellsFound = false;
-		foreach (var cell in crossline)
-		{
-			if (grid.GetDigit(cell) == lockedDigit)
-			{
-				if (endoTargetCell != -1)
-				{
-					// Multiple endo-target cells found.
-					multipleEndoTargetCellsFound = true;
-					break;
-				}
-
-				endoTargetCell = cell;
-			}
-		}
-		if (multipleEndoTargetCellsFound)
-		{
-			// Invalid.
-			return null;
-		}
-
-		var conclusions = new List<Conclusion>();
-
-		// First, check for elimination on target cell.
-		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
-		{
-			conclusions.Add(new(Elimination, targetCell, digit));
-		}
-
-		// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
-		foreach (var cell in baseCells % CandidatesMap[lockedDigit])
-		{
-			conclusions.Add(new(Elimination, cell, lockedDigit));
-		}
-
-		if (conclusions.Count == 0)
-		{
-			return null;
-		}
-
-		var step = new ExocetLockedMemberStep(
-			[.. conclusions],
-			[
-				[
-					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-					new CellViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell),
-					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-					..
-					from cell in baseCells
-					from d in grid.GetCandidates(cell)
-					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
-					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
-					..
-					from cell in crossline - EmptyCells
-					where grid.GetDigit(cell) == lockedDigit
-					select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-					..
-					from cell in crossline
-					where grid.GetState(cell) == CellState.Empty
-					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
-				]
-			],
-			context.PredefinedOptions,
-			baseCellsDigitsMask,
-			(Mask)(1 << lockedDigit),
-			in baseCells,
-			[targetCell],
-			[endoTargetCell],
-			in crossline
-		);
-		if (context.OnlyFindOne)
-		{
-			return step;
-		}
-
-		context.Accumulator.Add(step);
-		return null;
-	}
-
+#if SEARCH_JUNIOR_EXOCET
 	private static JuniorExocetMirrorSyncStep? CheckMirrorSync(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2641,7 +2714,104 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 		}
 	}
+#endif
 
+#if SEARCH_SENIOR_EXOCET
+	private static ExocetLockedMemberStep? CheckSeniorBaseLockedMember(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		Cell targetCell,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask,
+		Digit lockedDigit
+	)
+	{
+		// Check whether the endo-target cell only holds one.
+		var endoTargetCell = -1;
+		var multipleEndoTargetCellsFound = false;
+		foreach (var cell in crossline)
+		{
+			if (grid.GetDigit(cell) == lockedDigit)
+			{
+				if (endoTargetCell != -1)
+				{
+					// Multiple endo-target cells found.
+					multipleEndoTargetCellsFound = true;
+					break;
+				}
+
+				endoTargetCell = cell;
+			}
+		}
+		if (multipleEndoTargetCellsFound)
+		{
+			// Invalid.
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+
+		// First, check for elimination on target cell.
+		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+		{
+			conclusions.Add(new(Elimination, targetCell, digit));
+		}
+
+		// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
+		foreach (var cell in baseCells % CandidatesMap[lockedDigit])
+		{
+			conclusions.Add(new(Elimination, cell, lockedDigit));
+		}
+
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ExocetLockedMemberStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					new CellViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell),
+					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+					..
+					from cell in crossline - EmptyCells
+					where grid.GetDigit(cell) == lockedDigit
+					select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			(Mask)(1 << lockedDigit),
+			in baseCells,
+			[targetCell],
+			[endoTargetCell],
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+#endif
+
+#if SEARCH_WEAK_EXOCET
 	private static WeakExocetStep? CheckBaseWeak(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2712,7 +2882,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_WEAK_EXOCET
 	private static WeakExocetAdjacentTargetStep? CheckWeakAdjacentTarget(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2796,7 +2968,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_WEAK_EXOCET
 	private static WeakExocetSlashStep? CheckWeakExocetSlash(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2897,7 +3071,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_WEAK_EXOCET
 	private static WeakExocetBzRectangleStep? CheckWeakExocetBzRectangle(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -2976,7 +3152,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_DOUBLE_EXOCET
 	private static DoubleExocetBaseStep? CheckDoubleBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3045,7 +3223,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_DOUBLE_EXOCET
 	private static DoubleExocetGeneralizedFishStep? CheckDoubleGeneralizedFish(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3132,7 +3312,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 	private static ComplexSeniorExocetLockedMemberStep? CheckComplexSeniorLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3269,7 +3451,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		(inferredLastTargetDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 	private static ComplexSeniorExocetLockedMemberStep? CheckComplexSeniorLockedMemberGrouped(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3402,7 +3586,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		(inferredBaseDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 	private static ComplexSeniorExocetBaseStep? CheckComplexSeniorBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3486,7 +3672,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		context.Accumulator.Add(step);
 		return null;
 	}
+#endif
 
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 	private static AdvancedComplexSeniorExocetStep? CheckAdvancedComplexSenior(
 		scoped ref AnalysisContext context,
 		Grid grid,
@@ -3568,6 +3756,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		return null;
 	}
+#endif
 
 	/// <summary>
 	/// Check whether all digits appeared in base cells can be filled in target empty cells.
