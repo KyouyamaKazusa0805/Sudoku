@@ -2973,6 +2973,13 @@ public enum Technique
 	FrankenJuniorExocetLockedMember,
 
 	/// <summary>
+	/// Indicates franken junior exocet adjacent target.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenJuniorExocetAdjacentTarget,
+
+	/// <summary>
 	/// Indicates mutant junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -2985,6 +2992,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocetLockedMember,
+
+	/// <summary>
+	/// Indicates mutant junior exocet adjacent target.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantJuniorExocetAdjacentTarget,
 
 	/// <summary>
 	/// Indicates franken senior exocet.

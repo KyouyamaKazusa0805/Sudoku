@@ -68,7 +68,7 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
 	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
 	Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet, Technique.AdvancedMutantSeniorExocet,
-	Technique.PatternLockedQuadruple)]
+	Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget, Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -652,9 +652,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
 							housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget, lockedMembers, chuteIndex,
 							groupsOfTargetCells, out _, out var lockedDigitsMask
-						) is { } complexSeniorLockedMemberTypeStep)
+						) is { } complexJuniorLockedMemberTypeStep)
 						{
-							return complexSeniorLockedMemberTypeStep;
+							return complexJuniorLockedMemberTypeStep;
 						}
 
 						// Check whether the locked members are really used.
@@ -681,9 +681,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						if (CheckComplexJuniorBase(
 							ref context, grid, in baseCells, in targetCells, in crossline,
 							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
-						) is { } complexSeniorTypeStep)
+						) is { } complexJuniorTypeStep)
 						{
-							return complexSeniorTypeStep;
+							return complexJuniorTypeStep;
+						}
+
+						if (CheckComplexJuniorAdjacentTarget(
+							ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
+							baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
+						) is { } complexJuniorAdjacentTargetTypeStep)
+						{
+							return complexJuniorAdjacentTargetTypeStep;
 						}
 						break;
 					}
@@ -1909,48 +1917,48 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				singleMirrors.Add(theOnlyMirrorCell);
 			}
-			if (conclusions.Count == 0 || !singleMirrors)
-			{
-				// No eliminations found.
-				return null;
-			}
-
-			var step = new JuniorExocetAdjacentTargetStep(
-				[.. conclusions],
-				[
-					[
-						.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-						.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
-						.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
-						.. from cell in singleMirrors select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
-						..
-						from cell in baseCells
-						from d in grid.GetCandidates(cell)
-						select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
-						..
-						from cell in crossline
-						where grid.GetState(cell) == CellState.Empty
-						from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-						select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
-						//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
-					]
-				],
-				context.PredefinedOptions,
-				baseCellsDigitsMask,
-				in baseCells,
-				in targetCells,
-				[],
-				in crossline,
-				in singleMirrors
-			);
-			if (context.OnlyFindOne)
-			{
-				return step;
-			}
-
-			context.Accumulator.Add(step);
 		}
 
+		if (conclusions.Count == 0 || !singleMirrors)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new JuniorExocetAdjacentTargetStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in singleMirrors select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in crossline
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[],
+			in crossline,
+			in singleMirrors
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
 		return null;
 	}
 #endif
@@ -4062,6 +4070,129 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		context.Accumulator.Add(step);
 
+		return null;
+	}
+#endif
+
+#if SEARCH_COMPLEX_JUNIOR_EXOCET
+	private static ComplexJuniorExocetAdjacentTargetStep? CheckComplexJuniorAdjacentTarget(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
+	)
+	{
+		// Adjacent target cannot be used for same-side target cells.
+		if (targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
+		var (conclusions, singleMirrors) = (new List<Conclusion>(), CellMap.Empty);
+		foreach (ref readonly var cellGroup in groupsOfTargetCells)
+		{
+			if (cellGroup.Count == 2)
+			{
+				// This side contain 2 target empty cells. We cannot conclude for this case.
+				continue;
+			}
+
+			foreach (var targetCell in cellGroup)
+			{
+				var mirrorCells = GetMirrorCells(targetCell, chuteIndex, out _);
+				if ((mirrorCells & EmptyCells) is not [var theOnlyMirrorCell])
+				{
+					// The mirror cells contain not 1 cell, it may not be included in this type.
+					continue;
+				}
+
+				// Try to get the target cell that is not share with a same block with this mirror cell.
+				var theOtherTargetCells = targetCells - targetCell;
+				if (theOtherTargetCells is not [var theOtherTargetCell])
+				{
+					// The number of the other side of target cell is not 1, we cannot conclude for that.
+					continue;
+				}
+
+				// Check for the only mirror cell, determining whether the cell contains an arbitrary extra digits.
+				var digitsInMirrorCell = grid.GetCandidates(theOnlyMirrorCell);
+				var elimDigitsFromTheOnlyMirrorCell = (Mask)(digitsInMirrorCell & ~baseCellsDigitsMask);
+
+				// Check for the containing digits in mirror cells, and fetch which digits are appeared in base cells.
+				// Such digits will be sync'ed with the other target cell.
+				var containedDigitsAppearedInBaseCellsInMirror = (Mask)(digitsInMirrorCell & baseCellsDigitsMask);
+				var elimDigitsFromTheOtherTargetCell = (Mask)(grid.GetCandidates(theOtherTargetCell) & ~containedDigitsAppearedInBaseCellsInMirror);
+
+				// Try to fetch eliminations.
+				if (elimDigitsFromTheOnlyMirrorCell != 0)
+				{
+					foreach (var elimDigit in elimDigitsFromTheOnlyMirrorCell)
+					{
+						conclusions.Add(new(Elimination, theOnlyMirrorCell, elimDigit));
+					}
+				}
+				if (elimDigitsFromTheOtherTargetCell != 0)
+				{
+					foreach (var elimDigit in elimDigitsFromTheOtherTargetCell)
+					{
+						conclusions.Add(new(Elimination, theOtherTargetCell, elimDigit));
+					}
+				}
+
+				singleMirrors.Add(theOnlyMirrorCell);
+			}
+		}
+
+		if (conclusions.Count == 0 || !singleMirrors)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ComplexJuniorExocetAdjacentTargetStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					..
+					from cell in expandedCrosslineIncludingTarget - targetCells
+					select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in singleMirrors select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in expandedCrosslineIncludingTarget - targetCells
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			in expandedCrosslineIncludingTarget,
+			housesMask,
+			extraHousesMask,
+			in singleMirrors
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
 		return null;
 	}
 #endif

@@ -1744,6 +1744,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Franken Junior Exocet (Adjacent Target).
+        /// </summary>
+        public static string FrankenJuniorExocetAdjacentTarget {
+            get {
+                return ResourceManager.GetString("FrankenJuniorExocetAdjacentTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Franken Junior Exocet (Locked Member).
         /// </summary>
         public static string FrankenJuniorExocetLockedMember {
@@ -2442,6 +2451,15 @@ namespace Sudoku.Analytics.Strings {
         public static string MutantJuniorExocet {
             get {
                 return ResourceManager.GetString("MutantJuniorExocet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mutant Junior Exocet (Adjacent Target).
+        /// </summary>
+        public static string MutantJuniorExocetAdjacentTarget {
+            get {
+                return ResourceManager.GetString("MutantJuniorExocetAdjacentTarget", resourceCulture);
             }
         }
         

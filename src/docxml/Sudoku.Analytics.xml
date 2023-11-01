@@ -2884,6 +2884,11 @@ if (student is (name: var name, age: >= 18))
             Indicates franken junior exocet locked member.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetAdjacentTarget">
+            <summary>
+            Indicates franken junior exocet adjacent target.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocet">
             <summary>
             Indicates mutant junior exocet.
@@ -2892,6 +2897,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetLockedMember">
             <summary>
             Indicates mutant junior exocet locked member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetAdjacentTarget">
+            <summary>
+            Indicates mutant junior exocet adjacent target.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocet">
@@ -13143,6 +13153,60 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>extraHousesMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet (Adjacent Target)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet (Adjacent Target)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.CrosslineHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>crosslineHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.ExtraHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>extraHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.SingleMirrors">
+            <summary>
+            The generated property declaration for parameter <c>singleMirrors</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DoubleExocetBaseStep">
             <summary>
             Provides with a step that is a <b>Double Exocet (Base)</b> technique.
@@ -17204,6 +17268,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Junior Exocet.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetAdjacentTarget">
+            <summary>
+              Looks up a localized string similar to Franken Junior Exocet (Adjacent Target).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetLockedMember">
             <summary>
               Looks up a localized string similar to Franken Junior Exocet (Locked Member).
@@ -17592,6 +17661,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocet">
             <summary>
               Looks up a localized string similar to Mutant Junior Exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetAdjacentTarget">
+            <summary>
+              Looks up a localized string similar to Mutant Junior Exocet (Adjacent Target).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetLockedMember">

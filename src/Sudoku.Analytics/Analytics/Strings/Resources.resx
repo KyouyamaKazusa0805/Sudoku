@@ -2436,4 +2436,10 @@
   <data name="AdvancedFrankenSeniorExocet" xml:space="preserve">
     <value>Advanced Franken Senior Exocet</value>
   </data>
+  <data name="FrankenJuniorExocetAdjacentTarget" xml:space="preserve">
+    <value>Franken Junior Exocet (Adjacent Target)</value>
+  </data>
+  <data name="MutantJuniorExocetAdjacentTarget" xml:space="preserve">
+    <value>Mutant Junior Exocet (Adjacent Target)</value>
+  </data>
 </root>

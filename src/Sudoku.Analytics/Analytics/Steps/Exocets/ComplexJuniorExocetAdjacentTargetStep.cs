@@ -2,13 +2,14 @@ using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.InternalAbstraction;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
+/// Provides with a step that is a <b>Complex Junior Exocet (Adjacent Target)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -16,23 +17,23 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="baseCells"><inheritdoc/></param>
 /// <param name="targetCells"><inheritdoc/></param>
-/// <param name="endoTargetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-public sealed partial class ComplexExocetBaseStep(
+/// <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
+public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
-	scoped ref readonly CellMap endoTargetCells,
 	scoped ref readonly CellMap crosslineCells,
 	[DataMember] HouseMask crosslineHousesMask,
-	[DataMember] HouseMask extraHousesMask
+	[DataMember] HouseMask extraHousesMask,
+	[DataMember] scoped ref readonly CellMap singleMirrors
 ) :
-	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
+	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
 	IComplexSeniorExocetStepBaseOverrides
 {
 	/// <inheritdoc/>
@@ -45,11 +46,12 @@ public sealed partial class ComplexExocetBaseStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> (EndoTargetCells, this.GetShapeKind()) switch
+		=> this.GetShapeKind() switch
 		{
-			([], ExocetShapeKind.Franken) => Technique.FrankenJuniorExocet,
-			(_, ExocetShapeKind.Franken) => Technique.FrankenSeniorExocet,
-			([], ExocetShapeKind.Mutant) => Technique.MutantJuniorExocet,
-			(_, ExocetShapeKind.Mutant) => Technique.MutantSeniorExocet
+			ExocetShapeKind.Franken => Technique.FrankenJuniorExocetAdjacentTarget,
+			ExocetShapeKind.Mutant => Technique.MutantJuniorExocetAdjacentTarget
 		};
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Mirror, .1M)];
 }
