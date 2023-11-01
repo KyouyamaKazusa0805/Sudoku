@@ -400,12 +400,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 				if (lockedMembersAreSatisfySizeMinusOneRule)
 				{
-					goto FallThrough;
+					goto case 0;
 				}
 				break;
 			}
-#pragma warning disable format
-			case 0: FallThrough:
+			case 0:
 			{
 				if (CheckJuniorOrSeniorBase(
 					ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
@@ -465,7 +464,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				break;
 			}
-#pragma warning restore format
 		}
 
 		return null;
@@ -671,12 +669,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						if (lockedMembersAreSatisfySizeMinusOneRule)
 						{
-							goto FallThrough;
+							goto case 0;
 						}
 						break;
 					}
-#pragma warning disable format
-					case 0: FallThrough:
+					case 0:
 					{
 						if (CheckComplexJuniorBase(
 							ref context, grid, in baseCells, in targetCells, in crossline,
@@ -695,7 +692,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						break;
 					}
-#pragma warning restore format
 				}
 			}
 		}
@@ -820,12 +816,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							}
 							if (lockedMembersAreSatisfySizeMinusOneRule)
 							{
-								goto FallThrough;
+								goto case 0;
 							}
 							break;
 						}
-#pragma warning disable format
-						case 0: FallThrough:
+						case 0:
 						{
 							if (CheckComplexSeniorBase(
 								ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline,
@@ -836,7 +831,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							}
 							break;
 						}
-#pragma warning restore format
 					}
 				}
 				else
