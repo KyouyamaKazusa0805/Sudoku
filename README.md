@@ -120,6 +120,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
         * Double Exocet
         * WE (Weak Excocet)
         * Complex Exocet
+          * Complex Junior Exocet
           * Complex Senior Exocet
       * MSLS (Multi-Sector Locked Sets)
     * Negative Rank Logics
