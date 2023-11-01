@@ -3824,6 +3824,73 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap expandedCrosslineIncludingTarget
 	)
 	{
+		// Check whether the number of digits appeared in base cells should be satisfied (size) rule.
+		var allDigitsSatisfySizeRule = true;
+		foreach (var digit in baseCellsDigitsMask)
+		{
+			var lastMap = expandedCrosslineIncludingTarget - targetCells;
+			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size))
+			{
+				allDigitsSatisfySizeRule = false;
+				break;
+			}
+		}
+		if (!allDigitsSatisfySizeRule)
+		{
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+		foreach (var cell in targetCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new ComplexExocetBaseStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in targetCells
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + d),
+					..
+					from cell in expandedCrosslineIncludingTarget
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			[],
+			in crossline,
+			housesMask,
+			extraHousesMask
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
 		return null;
 	}
 #endif
