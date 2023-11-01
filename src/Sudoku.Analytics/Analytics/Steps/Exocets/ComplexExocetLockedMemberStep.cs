@@ -8,7 +8,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Complex Senior Exocet (Locked Member)</b> technique.
+/// Provides with a step that is a <b>Complex Junior Exocet (Locked Member)</b> or <b>Complex Senior Exocet (Locked Member)</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-public sealed partial class ComplexSeniorExocetLockedMemberStep(
+public sealed partial class ComplexExocetLockedMemberStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -46,10 +46,12 @@ public sealed partial class ComplexSeniorExocetLockedMemberStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> this.GetShapeKind() switch
+		=> (EndoTargetCells, this.GetShapeKind()) switch
 		{
-			ExocetShapeKind.Franken => Technique.FrankenJuniorExocetLockedMember,
-			ExocetShapeKind.Mutant => Technique.MutantSeniorExocetLockedMember
+			([], ExocetShapeKind.Franken) => Technique.FrankenJuniorExocetLockedMember,
+			(_, ExocetShapeKind.Franken) => Technique.FrankenSeniorExocetLockedMember,
+			([], ExocetShapeKind.Mutant) => Technique.MutantJuniorExocetLockedMember,
+			(_, ExocetShapeKind.Mutant) => Technique.MutantSeniorExocetLockedMember
 		};
 
 	/// <inheritdoc/>
