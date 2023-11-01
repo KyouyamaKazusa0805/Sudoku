@@ -7885,7 +7885,7 @@ if (student is (name: var name, age: >= 18))
             <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
             <returns>A valid <see cref="T:Sudoku.Analytics.Steps.ExocetStep"/> instance calculated and found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckTargetCellsValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckTargetCellsDigitsValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Check whether all digits appeared in base cells can be filled in target empty cells.
             </summary>
@@ -7894,7 +7894,7 @@ if (student is (name: var name, age: >= 18))
             <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckCrossLineIntersectedCellsLeaveEmpty(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckCrossLineIntersectionLeaveEmpty(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
             and cannot be of value appeared in base cells.
@@ -7904,7 +7904,7 @@ if (student is (name: var name, age: >= 18))
             <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.InitialCheckValidityAndLockedMembers(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{System.Nullable{System.ValueTuple{Sudoku.Concepts.CellMap,System.Int32}}}@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{System.Nullable{System.ValueTuple{Sudoku.Concepts.CellMap,System.Int32}}}@,System.Int16@)">
             <summary>
             Try to fetch locked members in the pattern, and verify validity of the pattern.
             </summary>

@@ -247,7 +247,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #if SEARCH_WEAK_EXOCET || SEARCH_JUNIOR_EXOCET || SEARCH_DOUBLE_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET
 									if (groupsOfTargetCells.Length == baseSize)
 									{
-										if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
+										if (!CheckTargetCellsDigitsValidity(in grid, in targetCells, baseCellsDigitsMask))
 										{
 											continue;
 										}
@@ -353,7 +353,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// We should treat the digit as a non-locked member.
 
-		if (!InitialCheckValidityAndLockedMembers(
+		if (!CheckValidityAndLockedMembersExistence(
 			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline, size - 1, out var digitsMaskExactlySizeMinusOneTimes,
 			out var digitsMaskAppearedInCrossline, out var lockedMembers, out var lockedMemberDigitsMask))
 		{
@@ -603,7 +603,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		if (!CheckTargetCellsValidity(in grid, in targetCells, baseCellsDigitsMask))
+		if (!CheckTargetCellsDigitsValidity(in grid, in targetCells, baseCellsDigitsMask))
 		{
 			// The target cells don't contain enough candidates that can match base cells.
 			return null;
@@ -618,13 +618,13 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
 			// except endo-target cells; and cannot be of value appeared in base cells.
-			if (CheckCrossLineIntersectedCellsLeaveEmpty(in grid, in intersectedCellsBase, baseCellsDigitsMask))
+			if (CheckCrossLineIntersectionLeaveEmpty(in grid, in intersectedCellsBase, baseCellsDigitsMask))
 			{
 				continue;
 			}
 
 			// Check for locked members.
-			InitialCheckValidityAndLockedMembers(
+			CheckValidityAndLockedMembersExistence(
 				in grid,
 				baseCellsDigitsMask,
 				in baseCells,
@@ -766,20 +766,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
+				if (!CheckTargetCellsDigitsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
 				{
 					continue;
 				}
 
 				// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
 				// except endo-target cells; and cannot be of value appeared in base cells.
-				if (CheckCrossLineIntersectedCellsLeaveEmpty(in grid, intersectedCellsBase - endoTargetCell, baseCellsDigitsMask))
+				if (CheckCrossLineIntersectionLeaveEmpty(in grid, intersectedCellsBase - endoTargetCell, baseCellsDigitsMask))
 				{
 					continue;
 				}
 
 				// Check for locked members.
-				InitialCheckValidityAndLockedMembers(
+				CheckValidityAndLockedMembersExistence(
 					in grid,
 					baseCellsDigitsMask,
 					in baseCells,
@@ -878,7 +878,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									// Because we have already modified the endo-target cells to a list of cells,
 									// we should re-check here.
-									InitialCheckValidityAndLockedMembers(
+									CheckValidityAndLockedMembersExistence(
 										in grid,
 										baseCellsDigitsMask,
 										in baseCells,
@@ -943,7 +943,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											continue;
 										}
 
-										InitialCheckValidityAndLockedMembers(
+										CheckValidityAndLockedMembersExistence(
 											in grid,
 											baseCellsDigitsMask,
 											in baseCells,
@@ -1378,7 +1378,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Now we have a possible double JE. However, we haven't checked for validity. Now check for it.
 		// We should only check for one base cell because the other one is ensured to be correct.
-		if (!InitialCheckValidityAndLockedMembers(
+		if (!CheckValidityAndLockedMembersExistence(
 			in grid, baseCellsDigitsMask, in baseCells, in targetCells, in crossline,
 			size - 1, out _, out _, out _, out _))
 		{
@@ -1675,7 +1675,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Endo-target cells must contain at least one of all digits appeared in base cells.
-			if (!CheckTargetCellsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
+			if (!CheckTargetCellsDigitsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
 			{
 				continue;
 			}
@@ -4332,7 +4332,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool CheckTargetCellsValidity(
+	private static bool CheckTargetCellsDigitsValidity(
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap targetCellsToBeChecked,
 		Mask baseCellsDigitsMask
@@ -4360,7 +4360,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="crossline">The cross-line cells.</param>
 	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool CheckCrossLineIntersectedCellsLeaveEmpty(scoped ref readonly Grid grid, scoped ref readonly CellMap crossline, Mask baseCellsDigitsMask)
+	private static bool CheckCrossLineIntersectionLeaveEmpty(scoped ref readonly Grid grid, scoped ref readonly CellMap crossline, Mask baseCellsDigitsMask)
 	{
 		foreach (var cell in crossline)
 		{
@@ -4387,7 +4387,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="lockedMembers">The locked members returned.</param>
 	/// <param name="lockedMemberDigitsMask">The found digits as locked members.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the pattern is valid.</returns>
-	private static bool InitialCheckValidityAndLockedMembers(
+	private static bool CheckValidityAndLockedMembersExistence(
 		scoped ref readonly Grid grid,
 		Mask baseCellsDigitsMask,
 		scoped ref readonly CellMap baseCells,
