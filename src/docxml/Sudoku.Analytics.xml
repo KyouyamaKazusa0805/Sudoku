@@ -3757,6 +3757,16 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.InternalAbstraction.IComplexSeniorExocetStepBaseOverrides">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.InternalAbstraction.IDoubleExocetStepBaseOverrides">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -12985,6 +12995,59 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep">
+            <summary>
+            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.CrosslineHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>crosslineHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.ExtraHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>extraHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.AlmostHiddenSetMask">
+            <summary>
+            The generated property declaration for parameter <c>almostHiddenSetMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexExocetBaseStep">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
@@ -13078,59 +13141,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.ExtraHousesMask">
             <summary>
             The generated property declaration for parameter <c>extraHousesMask</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep">
-            <summary>
-            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
-            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-            <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
-            <summary>
-            Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
-            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-            <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.CrosslineHousesMask">
-            <summary>
-            The generated property declaration for parameter <c>crosslineHousesMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.ExtraHousesMask">
-            <summary>
-            The generated property declaration for parameter <c>extraHousesMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.AlmostHiddenSetMask">
-            <summary>
-            The generated property declaration for parameter <c>almostHiddenSetMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DoubleExocetBaseStep">
@@ -13360,7 +13370,7 @@ if (student is (name: var name, age: >= 18))
             Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.Steps.IComplexSeniorExocetStepBaseOverrides)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.InternalAbstraction.IComplexSeniorExocetStepBaseOverrides)">
             <summary>
             Try to get shape kind via the houses.
             </summary>
@@ -13447,16 +13457,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetStep.CrosslineCells">
             <summary>
             The generated property declaration for parameter <c>crosslineCells</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.IComplexSeniorExocetStepBaseOverrides">
-            <summary>
-            The base overrides for complex senior exocet steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.IDoubleExocetStepBaseOverrides">
-            <summary>
-            The base overrides for double exocet steps.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep">

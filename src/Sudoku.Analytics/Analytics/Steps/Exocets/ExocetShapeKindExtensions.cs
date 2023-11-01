@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
+using Sudoku.Analytics.InternalAbstraction;
 using Sudoku.Runtime.MaskServices;
-using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.Steps;
 

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.InternalAbstraction;
 
 /// <summary>
 /// The base overrides for complex senior exocet steps.

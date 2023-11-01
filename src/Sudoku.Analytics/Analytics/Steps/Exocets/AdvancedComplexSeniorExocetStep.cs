@@ -1,6 +1,7 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.InternalAbstraction;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 

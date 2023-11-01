@@ -25,6 +25,7 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.InternalAbstraction;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
