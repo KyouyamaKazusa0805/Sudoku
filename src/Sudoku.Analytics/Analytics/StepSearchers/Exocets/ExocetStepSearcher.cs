@@ -60,9 +60,9 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 /// </list>
 /// </summary>
 [StepSearcher(
-	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirror, Technique.JuniorExocetAdjacentTarget,
+	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirrorConjugatePair, Technique.JuniorExocetAdjacentTarget,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
-	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirror,
+	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirrorConjugatePair,
 	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
 	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
 	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
@@ -689,6 +689,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						) is { } complexJuniorAdjacentTargetTypeStep)
 						{
 							return complexJuniorAdjacentTargetTypeStep;
+						}
+
+						if (CheckComplexJuniorMirrorConjugatePair(
+							ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
+							baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
+						) is { } complexJuniorMirrorConjugatePairTypeStep)
+						{
+							return complexJuniorMirrorConjugatePairTypeStep;
 						}
 						break;
 					}
@@ -1771,7 +1779,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					foreach (var digit in otherCellsDigitsMask)
 					{
 						var cellsContainingDigit = (CandidatesMap[digit] & HousesMap[house]) - targetCell;
-						if (cellsContainingDigit != theOtherEmptyCells)
+						if ((theOtherEmptyCells & cellsContainingDigit) != cellsContainingDigit)
 						{
 							continue;
 						}
@@ -1816,6 +1824,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
+					where grid.GetState(cell) == CellState.Empty && (grid.GetCandidates(cell) >> conjugatePair.Digit & 1) != 0
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit),
 					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
@@ -4180,6 +4189,130 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			housesMask,
 			extraHousesMask,
 			in singleMirrors
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+#endif
+
+#if SEARCH_COMPLEX_JUNIOR_EXOCET
+	private static ComplexJuniorExocetMirrorConjugatePairStep? CheckComplexJuniorMirrorConjugatePair(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		scoped ref readonly CellMap targetCells,
+		scoped ref readonly CellMap expandedCrosslineIncludingTarget,
+		Mask baseCellsDigitsMask,
+		bool isRow,
+		int chuteIndex,
+		HouseMask housesMask,
+		HouseMask extraHousesMask,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
+	)
+	{
+		// Mirror conjugate pair cannot be used for same-side target cells.
+		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
+		{
+			return null;
+		}
+
+		var conclusions = new List<Conclusion>();
+		var conjugatePairs = new List<Conjugate>(2);
+		if (groupsOfTargetCells.Length != 2)
+		{
+			return null;
+		}
+
+		foreach (ref readonly var cellGroup in groupsOfTargetCells)
+		{
+			if (cellGroup.Count == 2)
+			{
+				// If the number of target cells in one side is 2, we cannot determine which one is correct.
+				continue;
+			}
+
+			foreach (var targetCell in cellGroup)
+			{
+				var theOtherTwoCells = GetMirrorCells(targetCell, chuteIndex, out _);
+				var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
+				if (!theOtherEmptyCells)
+				{
+					// The current miniline cannot contain any eliminations.
+					continue;
+				}
+
+				var otherCellsDigitsMask = grid[in theOtherEmptyCells];
+				foreach (var house in theOtherEmptyCells.CoveredHouses)
+				{
+					// Check whether the current house has a conjugate pair in the current cells.
+					foreach (var digit in otherCellsDigitsMask)
+					{
+						var cellsContainingDigit = (CandidatesMap[digit] & HousesMap[house]) - targetCell;
+						if ((theOtherEmptyCells & cellsContainingDigit) != cellsContainingDigit)
+						{
+							continue;
+						}
+
+						// Here a conjugate pair will be formed.
+						// Now check for eliminations.
+						foreach (var elimCell in theOtherEmptyCells)
+						{
+							foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & ~baseCellsDigitsMask & ~(1 << digit)))
+							{
+								conclusions.Add(new(Elimination, elimCell, elimDigit));
+							}
+						}
+
+						conjugatePairs.Add(new(in theOtherEmptyCells, digit));
+					}
+				}
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			return null;
+		}
+
+		var step = new ComplexJuniorExocetMirrorConjugatePairStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					..
+					from cell in expandedCrosslineIncludingTarget - targetCells
+					select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + d),
+					..
+					from cell in expandedCrosslineIncludingTarget - targetCells
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					..
+					from conjugatePair in conjugatePairs
+					from cell in conjugatePair.Map
+					where grid.GetState(cell) == CellState.Empty && (grid.GetCandidates(cell) >> conjugatePair.Digit & 1) != 0
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary3, cell * 9 + conjugatePair.Digit),
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			in baseCells,
+			in targetCells,
+			in expandedCrosslineIncludingTarget,
+			housesMask,
+			extraHousesMask,
+			[.. conjugatePairs]
 		);
 		if (context.OnlyFindOne)
 		{

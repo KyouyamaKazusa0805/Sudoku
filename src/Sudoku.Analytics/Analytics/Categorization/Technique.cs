@@ -2845,11 +2845,11 @@ public enum Technique
 	JuniorExocetConjugatePair,
 
 	/// <summary>
-	/// Indicates junior exocet mirror.
+	/// Indicates junior exocet mirror mirror conjugate pair.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	JuniorExocetMirror,
+	JuniorExocetMirrorConjugatePair,
 
 	/// <summary>
 	/// Indicates junior exocet adjacent target.
@@ -2909,11 +2909,11 @@ public enum Technique
 	SeniorExocet,
 
 	/// <summary>
-	/// Indicates senior exocet mirror.
+	/// Indicates senior exocet mirror conjugate pair.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	SeniorExocetMirror,
+	SeniorExocetMirrorConjugatePair,
 
 	/// <summary>
 	/// Indicates senior exocet locked member.
@@ -2980,6 +2980,13 @@ public enum Technique
 	FrankenJuniorExocetAdjacentTarget,
 
 	/// <summary>
+	/// Indicates franken junior exocet mirror conjugate pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	FrankenJuniorExocetMirrorConjugatePair,
+
+	/// <summary>
 	/// Indicates mutant junior exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]
@@ -2999,6 +3006,13 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocetAdjacentTarget,
+
+	/// <summary>
+	/// Indicates mutant junior exocet mirror conjugate pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	MutantJuniorExocetMirrorConjugatePair,
 
 	/// <summary>
 	/// Indicates franken senior exocet.

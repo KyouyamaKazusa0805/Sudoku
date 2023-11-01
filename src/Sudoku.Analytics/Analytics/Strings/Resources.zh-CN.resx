@@ -2466,7 +2466,7 @@
     <value>飞鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="JuniorExocetMirror" xml:space="preserve">
+  <data name="JuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
@@ -2474,8 +2474,8 @@
     <value>初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="SeniorExocetMirror" xml:space="preserve">
-    <value>高级飞鱼・Mirror 共轭对</value>
+  <data name="SeniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>高级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
   <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
@@ -2607,8 +2607,16 @@
     <value>宫内初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="FrankenJuniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>宫内初级飞鱼・M 格共轭对</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="MutantJuniorExocetAdjacentTarget" xml:space="preserve">
     <value>交叉初级飞鱼・T 邻</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>交叉初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
 </root>

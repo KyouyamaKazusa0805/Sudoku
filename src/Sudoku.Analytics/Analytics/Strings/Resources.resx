@@ -2331,14 +2331,14 @@
   <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
     <value>Exocets</value>
   </data>
-  <data name="JuniorExocetMirror" xml:space="preserve">
-    <value>Junior Exocet (Mirror)</value>
+  <data name="JuniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>Junior Exocet (Mirror Conjugate Pair)</value>
   </data>
   <data name="JuniorExocetAdjacentTarget" xml:space="preserve">
     <value>Junior Exocet (Adjacent Target)</value>
   </data>
-  <data name="SeniorExocetMirror" xml:space="preserve">
-    <value>Senior Exocet (Mirror)</value>
+  <data name="SeniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>Senior Exocet (Mirror Conjugate Pair)</value>
   </data>
   <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
     <value>Junior Exocet (Fish)</value>
@@ -2439,7 +2439,13 @@
   <data name="FrankenJuniorExocetAdjacentTarget" xml:space="preserve">
     <value>Franken Junior Exocet (Adjacent Target)</value>
   </data>
+  <data name="FrankenJuniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>Franken Junior Exocet (Mirror Conjugate Pair)</value>
+  </data>
   <data name="MutantJuniorExocetAdjacentTarget" xml:space="preserve">
     <value>Mutant Junior Exocet (Adjacent Target)</value>
+  </data>
+  <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
+    <value>Mutant Junior Exocet (Mirror Conjugate Pair)</value>
   </data>
 </root>

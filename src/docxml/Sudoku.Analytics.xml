@@ -2794,9 +2794,9 @@ if (student is (name: var name, age: >= 18))
             Indicates junior exocet with target conjugate pair.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetMirror">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetMirrorConjugatePair">
             <summary>
-            Indicates junior exocet mirror.
+            Indicates junior exocet mirror mirror conjugate pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.JuniorExocetAdjacentTarget">
@@ -2839,9 +2839,9 @@ if (student is (name: var name, age: >= 18))
             Indicates senior exocet.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetMirror">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetMirrorConjugatePair">
             <summary>
-            Indicates senior exocet mirror.
+            Indicates senior exocet mirror conjugate pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetLockedMember">
@@ -2889,6 +2889,11 @@ if (student is (name: var name, age: >= 18))
             Indicates franken junior exocet adjacent target.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJuniorExocetMirrorConjugatePair">
+            <summary>
+            Indicates franken junior exocet mirror conjugate pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocet">
             <summary>
             Indicates mutant junior exocet.
@@ -2902,6 +2907,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetAdjacentTarget">
             <summary>
             Indicates mutant junior exocet adjacent target.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.MutantJuniorExocetMirrorConjugatePair">
+            <summary>
+            Indicates mutant junior exocet mirror conjugate pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSeniorExocet">
@@ -13207,6 +13217,60 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>singleMirrors</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet (Mirror Conjugate Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.Conjugate[])">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet (Mirror Conjugate Pair)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.CrosslineHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>crosslineHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ExtraHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>extraHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ConjugatePairs">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePairs</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DoubleExocetBaseStep">
             <summary>
             Provides with a step that is a <b>Double Exocet (Base)</b> technique.
@@ -17278,6 +17342,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Franken Junior Exocet (Locked Member).
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.FrankenJuniorExocetMirrorConjugatePair">
+            <summary>
+              Looks up a localized string similar to Franken Junior Exocet (Mirror Conjugate Pair).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.FrankenLeviathan">
             <summary>
               Looks up a localized string similar to Franken Leviathan.
@@ -17558,14 +17627,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Junior Exocet (Locked Member).
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirror">
-            <summary>
-              Looks up a localized string similar to Junior Exocet (Mirror).
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorAlmostHiddenSet">
             <summary>
               Looks up a localized string similar to Junior Exocet (Mirror Alomst Hidden Set).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorConjugatePair">
+            <summary>
+              Looks up a localized string similar to Junior Exocet (Mirror Conjugate Pair).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.JuniorExocetMirrorSync">
@@ -17671,6 +17740,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetLockedMember">
             <summary>
               Looks up a localized string similar to Mutant Junior Exocet (Locked Member).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.MutantJuniorExocetMirrorConjugatePair">
+            <summary>
+              Looks up a localized string similar to Mutant Junior Exocet (Mirror Conjugate Pair).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.MutantLeviathan">
@@ -18003,9 +18077,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Senior Exocet (Locked Member).
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetMirror">
+        <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetMirrorConjugatePair">
             <summary>
-              Looks up a localized string similar to Senior Exocet (Mirror).
+              Looks up a localized string similar to Senior Exocet (Mirror Conjugate Pair).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseFinnedFrankenJellyfish">
