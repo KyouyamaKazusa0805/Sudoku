@@ -2,6 +2,15 @@
 #define SYNC_ROOT_VIA_OBJECT
 #define TARGET_64BIT
 #define IMPL_INTERFACE_MIN_MAX_VALUE
+#if SYNC_ROOT_VIA_METHODIMPL && SYNC_ROOT_VIA_OBJECT
+#line 1 "Grid.cs"
+#error Don't set both symbols 'SYNC_ROOT_VIA_METHODIMPL' and 'SYNC_ROOT_VIA_OBJECT'.
+#line default
+#elif !SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+#line 1 "Grid.cs"
+#warning No sync-root mode is selected, meaning we cannot use this type in multi-threading (i.e. this type becomes thread-unsafe) because some members will rely on pointers and shared memory, which is unsafe. You can ONLY use property 'IsValid', 'SolutionGrid' and method 'ExactlyValidate' in this type inside a lock statement.
+#line default
+#endif
 
 using System.Collections;
 using System.ComponentModel;
@@ -130,14 +139,6 @@ public unsafe partial struct Grid :
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly object PuzzleSolvingSynchronizer = new();
-#elif SYNC_ROOT_VIA_METHODIMPL && SYNC_ROOT_VIA_OBJECT
-#line 1 "Grid.cs"
-#error Don't set both symbols 'SYNC_ROOT_VIA_METHODIMPL' and 'SYNC_ROOT_VIA_OBJECT'.
-#line default
-#elif !SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-#line 1 "Grid.cs"
-#warning No sync-root mode is selected, meaning we cannot use this type in multi-threading (i.e. this type becomes thread-unsafe) because some members will rely on pointers and shared memory, which is unsafe. You can ONLY use property 'IsValid', 'SolutionGrid' and method 'ExactlyValidate' in this type inside a lock statement.
-#line default
 #endif
 
 	/// <summary>
