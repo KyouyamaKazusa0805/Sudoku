@@ -4086,6 +4086,12 @@ fixed (short* ptr = instance)
         <member name="M:System.Utf8Char.op_LessThanOrEqual(System.Utf8Char,System.Utf8Char)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="T:System.JsonConverter">
+            <summary>
+            The internal JSON converter type for <see cref="T:System.Utf8Char"/>.
+            </summary>
+            <seealso cref="T:System.Utf8Char"/>
+        </member>
         <member name="M:System.JsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>

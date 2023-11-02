@@ -201,6 +201,10 @@ public readonly partial struct Utf8Char :
 	public static implicit operator Utf8Char(byte byteValue) => new(byteValue);
 }
 
+/// <summary>
+/// The internal JSON converter type for <see cref="Utf8Char"/>.
+/// </summary>
+/// <seealso cref="Utf8Char"/>
 file sealed class JsonConverter : JsonConverter<Utf8Char>
 {
 	/// <inheritdoc/>

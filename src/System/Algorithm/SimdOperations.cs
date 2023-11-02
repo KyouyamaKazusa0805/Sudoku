@@ -79,6 +79,7 @@ public static unsafe class SimdOperations
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="constant"]'/>
 file static class Constants
 {
+#pragma warning disable format
 	/// <summary>
 	/// The length table. Indicates how many bits are set in the specified integer.
 	/// </summary>
@@ -100,6 +101,7 @@ file static class Constants
 		3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
 		4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8
 	];
+#pragma warning restore format
 
 	/// <summary>
 	/// The bit position table. In other words, <c>BitPosTable[n]</c> means the n-th integer's (i.e. <c>n</c>'s) set bit positions
