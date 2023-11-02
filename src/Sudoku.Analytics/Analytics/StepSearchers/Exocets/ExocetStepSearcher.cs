@@ -22,6 +22,11 @@
 #line default
 #endif
 
+// TODO: There are some types that are not implemented.
+// * True base for Complex Senior Exocet
+// * Double Exocet the other type
+// * Advanced Senior Exocet
+
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
@@ -2709,7 +2714,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
 		{
-			// TODO: Now ignores the case on conjugate pairs and AHS.
 			return null;
 		}
 
