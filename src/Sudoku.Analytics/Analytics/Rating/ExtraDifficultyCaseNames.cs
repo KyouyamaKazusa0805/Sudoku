@@ -126,6 +126,11 @@ public static class ExtraDifficultyCaseNames
 	public const string LockedMember = nameof(LockedMember);
 
 	/// <summary>
+	/// Indicates the kind is the true base. This field is only used for senior exocets and complex senior exocets.
+	/// </summary>
+	public const string TrueBase = nameof(TrueBase);
+
+	/// <summary>
 	/// Indicates the kind is the extra house. This field is only used for complex senior exocets.
 	/// </summary>
 	public const string ExtraHouse = nameof(ExtraHouse);

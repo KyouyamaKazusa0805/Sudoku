@@ -2619,4 +2619,12 @@
     <value>交叉初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtraDifficultyCaseNames_TrueBase" xml:space="preserve">
+    <value>内 T 格明数直出</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SeniorExocetTrueBase" xml:space="preserve">
+    <value>高级飞鱼・B 格区块</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

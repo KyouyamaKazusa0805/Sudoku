@@ -67,12 +67,13 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirrorConjugatePair, Technique.JuniorExocetAdjacentTarget,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
 	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirrorConjugatePair,
-	Technique.SeniorExocetLockedMember, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash,
-	Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
-	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
-	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember, Technique.FrankenSeniorExocetLockedMember,
-	Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet, Technique.AdvancedMutantSeniorExocet,
-	Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget, Technique.PatternLockedQuadruple)]
+	Technique.SeniorExocetLockedMember, Technique.SeniorExocetTrueBase, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget,
+	Technique.WeakExocetSlash, Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet,
+	Technique.DoubleExocetGeneralizedFish, Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
+	Technique.MutantSeniorExocet, Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember,
+	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet,
+	Technique.AdvancedMutantSeniorExocet, Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget,
+	Technique.PatternLockedQuadruple)]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -516,7 +517,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			case 0:
 			{
-				if (CheckSeniorEndoTargetMustBeTrue(
+				if (CheckSeniorExocetNoValueCells(
 					ref context, in grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask, housesMask, size
 				) is { } endoTargetMustBeTrueTypeStep)
 				{
@@ -1661,7 +1662,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if SEARCH_SENIOR_EXOCET
-	private static ExocetBaseStep? CheckSeniorEndoTargetMustBeTrue(
+	private static ExocetBaseStep? CheckSeniorExocetNoValueCells(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -2817,14 +2818,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if SEARCH_SENIOR_EXOCET
-	private static ExocetLockedMemberStep? CheckSeniorBaseLockedMember(
+	private static SeniorExocetTrueBaseStep? CheckSeniorBaseLockedMember(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
-		Digit lockedDigit
+		Digit trueBaseDigit
 	)
 	{
 		// Check whether the endo-target cell only holds one.
@@ -2832,7 +2833,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var multipleEndoTargetCellsFound = false;
 		foreach (var cell in crossline)
 		{
-			if (grid.GetDigit(cell) == lockedDigit)
+			if (grid.GetDigit(cell) == trueBaseDigit)
 			{
 				if (endoTargetCell != -1)
 				{
@@ -2853,15 +2854,15 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 
 		// First, check for elimination on target cell.
-		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << trueBaseDigit))))
 		{
 			conclusions.Add(new(Elimination, targetCell, digit));
 		}
 
 		// Second, check for locked candidates for base cells - base cells form a locked candidates of digit 'lockedDigit'.
-		foreach (var cell in baseCells % CandidatesMap[lockedDigit])
+		foreach (var cell in baseCells % CandidatesMap[trueBaseDigit])
 		{
-			conclusions.Add(new(Elimination, cell, lockedDigit));
+			conclusions.Add(new(Elimination, cell, trueBaseDigit));
 		}
 
 		if (conclusions.Count == 0)
@@ -2869,7 +2870,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ExocetLockedMemberStep(
+		var step = new SeniorExocetTrueBaseStep(
 			[.. conclusions],
 			[
 				[
@@ -2879,11 +2880,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = lockedDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
+					let colorIdentifier = trueBaseDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crossline - EmptyCells
-					where grid.GetDigit(cell) == lockedDigit
+					where grid.GetDigit(cell) == trueBaseDigit
 					select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					..
 					from cell in crossline
@@ -2895,7 +2896,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			],
 			context.PredefinedOptions,
 			baseCellsDigitsMask,
-			(Mask)(1 << lockedDigit),
+			trueBaseDigit,
 			in baseCells,
 			[targetCell],
 			[endoTargetCell],

@@ -2448,4 +2448,10 @@
   <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>Mutant Junior Exocet (Mirror Conjugate Pair)</value>
   </data>
+  <data name="ExtraDifficultyCaseNames_TrueBase" xml:space="preserve">
+    <value>True base</value>
+  </data>
+  <data name="SeniorExocetTrueBase" xml:space="preserve">
+    <value>Senior Exocet (True Base)</value>
+  </data>
 </root>

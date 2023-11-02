@@ -2923,6 +2923,13 @@ public enum Technique
 	SeniorExocetLockedMember,
 
 	/// <summary>
+	/// Indicates senior exocet true base.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Exocet)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	SeniorExocetTrueBase,
+
+	/// <summary>
 	/// Indicates weak exocet.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Exocet)]

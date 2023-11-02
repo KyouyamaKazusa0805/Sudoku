@@ -1474,6 +1474,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to True base.
+        /// </summary>
+        public static string ExtraDifficultyCaseNames_TrueBase {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyCaseNames_TrueBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value logic.
         /// </summary>
         public static string ExtraDifficultyCaseNames_ValueCell {
@@ -3090,6 +3099,15 @@ namespace Sudoku.Analytics.Strings {
         public static string SeniorExocetMirrorConjugatePair {
             get {
                 return ResourceManager.GetString("SeniorExocetMirrorConjugatePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Exocet (True Base).
+        /// </summary>
+        public static string SeniorExocetTrueBase {
+            get {
+                return ResourceManager.GetString("SeniorExocetTrueBase", resourceCulture);
             }
         }
         

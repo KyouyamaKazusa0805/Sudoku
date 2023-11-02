@@ -2849,6 +2849,11 @@ if (student is (name: var name, age: >= 18))
             Indicates senior exocet locked member.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SeniorExocetTrueBase">
+            <summary>
+            Indicates senior exocet true base.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.WeakExocet">
             <summary>
             Indicates weak exocet.
@@ -4374,6 +4379,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.LockedMember">
             <summary>
             Indicates the kind is the locked member. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.TrueBase">
+            <summary>
+            Indicates the kind is the true base. This field is only used for senior exocets and complex senior exocets.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
@@ -13387,7 +13397,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetLockedMemberStep">
             <summary>
-            Provides with a step that is an <b>Exocet Locked Member</b> technique.
+            Provides with a step that is an <b>Exocet (Locked Member)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13401,7 +13411,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Steps.ExocetLockedMemberStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Provides with a step that is an <b>Exocet Locked Member</b> technique.
+            Provides with a step that is an <b>Exocet (Locked Member)</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -13767,6 +13777,45 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.TargetPairMask">
             <summary>
             The generated property declaration for parameter <c>targetPairMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet (True Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="trueBaseDigit">Indicates the target true base digit that is used for endo-target cell, as value representation.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Senior Exocet (True Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="trueBaseDigit">Indicates the target true base digit that is used for endo-target cell, as value representation.</param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.ExtraDifficultyCases">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.TrueBaseDigit">
+            <summary>
+            The generated property declaration for parameter <c>trueBaseDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep">
@@ -17177,6 +17226,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Target pair.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_TrueBase">
+            <summary>
+              Looks up a localized string similar to True base.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ValueCell">
             <summary>
               Looks up a localized string similar to Value logic.
@@ -18075,6 +18129,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetMirrorConjugatePair">
             <summary>
               Looks up a localized string similar to Senior Exocet (Mirror Conjugate Pair).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.SeniorExocetTrueBase">
+            <summary>
+              Looks up a localized string similar to Senior Exocet (True Base).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseFinnedFrankenJellyfish">
