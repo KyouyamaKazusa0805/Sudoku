@@ -208,9 +208,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Collect exocets by types.
 									// We separate exocets with 3 parts:
 									//
-									//   * Junior Exocet, Double Exocet, Weak Exocet, Complex Junior Exocet & Advanced Complex Junior Exocet
+									//   * Junior Exocet, Double Exocet, Weak Exocet, (Advanced) Complex Junior Exocet
 									//   * Senior Exocet
-									//   * Complex Senior Exocet & Advanced Complex Senior Exocet
+									//   * (Advanced) Complex Senior Exocet
 									//
 									// because the pre-condition are not same with each other.
 
