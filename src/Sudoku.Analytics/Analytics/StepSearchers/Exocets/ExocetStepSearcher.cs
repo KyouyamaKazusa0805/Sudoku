@@ -637,68 +637,70 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			);
 
 			// Check whether the satisfied digits and locked member digits are strictly equal to base cells digits mask.
-			if ((Mask)(lockedMemberDigitsMask | digitsMaskExactlySizeMinusOneTimes) == baseCellsDigitsMask)
+			if ((Mask)(lockedMemberDigitsMask | digitsMaskExactlySizeMinusOneTimes) != baseCellsDigitsMask)
 			{
-				// Check for basic cases here.
-				// Check for locked members and determine the next step.
-				switch (PopCount((uint)lockedMemberDigitsMask))
+				continue;
+			}
+
+			// Check for basic cases here.
+			// Check for locked members and determine the next step.
+			switch (PopCount((uint)lockedMemberDigitsMask))
+			{
+				case 1:
 				{
-					case 1:
+					if (CheckComplexJuniorLockedMember(
+						ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
+						housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget, lockedMembers, chuteIndex,
+						groupsOfTargetCells, out _, out var lockedDigitsMask
+					) is { } complexJuniorLockedMemberTypeStep)
 					{
-						if (CheckComplexJuniorLockedMember(
-							ref context, grid, in baseCells, in targetCells, in crossline, baseCellsDigitsMask,
-							housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget, lockedMembers, chuteIndex,
-							groupsOfTargetCells, out _, out var lockedDigitsMask
-						) is { } complexJuniorLockedMemberTypeStep)
-						{
-							return complexJuniorLockedMemberTypeStep;
-						}
-
-						// Check whether the locked members are really used.
-						// If not, we should check for them, whether they are appeared in cross-line cells in (size) times.
-						var lockedMembersAreSatisfySizeMinusOneRule = true;
-						foreach (var digit in lockedDigitsMask)
-						{
-							if (!grid.IsExactAppearingTimesOf(digit, in expandedCrosslineIncludingTarget, size))
-							{
-								// The current digit can be filled in cross-line cells at most (size) times.
-								lockedMembersAreSatisfySizeMinusOneRule = false;
-								break;
-							}
-						}
-						if (lockedMembersAreSatisfySizeMinusOneRule)
-						{
-							goto case 0;
-						}
-						break;
+						return complexJuniorLockedMemberTypeStep;
 					}
-					case 0:
+
+					// Check whether the locked members are really used.
+					// If not, we should check for them, whether they are appeared in cross-line cells in (size) times.
+					var lockedMembersAreSatisfySizeMinusOneRule = true;
+					foreach (var digit in lockedDigitsMask)
 					{
-						if (CheckComplexJuniorBase(
-							ref context, grid, in baseCells, in targetCells, in crossline,
-							baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
-						) is { } complexJuniorTypeStep)
+						if (!grid.IsExactAppearingTimesOf(digit, in expandedCrosslineIncludingTarget, size))
 						{
-							return complexJuniorTypeStep;
+							// The current digit can be filled in cross-line cells at most (size) times.
+							lockedMembersAreSatisfySizeMinusOneRule = false;
+							break;
 						}
-
-						if (CheckComplexJuniorAdjacentTarget(
-							ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
-							baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
-						) is { } complexJuniorAdjacentTargetTypeStep)
-						{
-							return complexJuniorAdjacentTargetTypeStep;
-						}
-
-						if (CheckComplexJuniorMirrorConjugatePair(
-							ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
-							baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
-						) is { } complexJuniorMirrorConjugatePairTypeStep)
-						{
-							return complexJuniorMirrorConjugatePairTypeStep;
-						}
-						break;
 					}
+					if (lockedMembersAreSatisfySizeMinusOneRule)
+					{
+						goto case 0;
+					}
+					break;
+				}
+				case 0:
+				{
+					if (CheckComplexJuniorBase(
+						ref context, grid, in baseCells, in targetCells, in crossline,
+						baseCellsDigitsMask, housesMask, 1 << extraHouse, size, in expandedCrosslineIncludingTarget
+					) is { } complexJuniorTypeStep)
+					{
+						return complexJuniorTypeStep;
+					}
+
+					if (CheckComplexJuniorAdjacentTarget(
+						ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
+						baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
+					) is { } complexJuniorAdjacentTargetTypeStep)
+					{
+						return complexJuniorAdjacentTargetTypeStep;
+					}
+
+					if (CheckComplexJuniorMirrorConjugatePair(
+						ref context, grid, in baseCells, in targetCells, in expandedCrosslineIncludingTarget,
+						baseCellsDigitsMask, isRow, chuteIndex, housesMask, 1 << extraHouse, groupsOfTargetCells
+					) is { } complexJuniorMirrorConjugatePairTypeStep)
+					{
+						return complexJuniorMirrorConjugatePairTypeStep;
+					}
+					break;
 				}
 			}
 		}
