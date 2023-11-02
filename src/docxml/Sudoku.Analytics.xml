@@ -3777,16 +3777,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.InternalAbstraction.IComplexSeniorExocetStepBaseOverrides">
-            <summary>
-            The base overrides for complex senior exocet steps.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.InternalAbstraction.IDoubleExocetStepBaseOverrides">
-            <summary>
-            The base overrides for double exocet steps.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -13473,38 +13463,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKind">
-            <summary>
-            Indicates a shape modifier that is used for a complex fish pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Basic">
-            <summary>
-            Indicates the basic exocet. This field is a reserved field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Franken">
-            <summary>
-            Indicates the franken exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Mutant">
-            <summary>
-            Indicates the mutant exocet.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKindExtensions">
-            <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.InternalAbstraction.IComplexSeniorExocetStepBaseOverrides)">
-            <summary>
-            Try to get shape kind via the houses.
-            </summary>
-            <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetStep">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
@@ -14081,6 +14039,11 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
+        <member name="F:Sudoku.Analytics.Steps.ComplexFishStep.LetterOrDigitCharacters">
+            <summary>
+            The letter or digit characters.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -14114,53 +14077,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
             <summary>
             The generated property declaration for parameter <c>isSashimi</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ShapeKind">
-            <summary>
-            Indicates a shape modifier that is used for a complex fish pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Basic">
-            <summary>
-            Indicates the basic fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Franken">
-            <summary>
-            Indicates the franken fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ShapeKind.Mutant">
-            <summary>
-            Indicates the mutant fish.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.FinKind">
-            <summary>
-            Indicates a fin modifier that is used for a complex fish pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.FinKind.Normal">
-            <summary>
-            Indicates the normal fish (i.e. no fins).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.FinKind.Finned">
-            <summary>
-            Indicates the finned fish
-            (i.e. contains fins, but the fish may be regular when the fins are removed).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.FinKind.Sashimi">
-            <summary>
-            Indicates the sashimi fish
-            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.FinKind.Siamese">
-            <summary>
-            Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">
@@ -16380,6 +16296,85 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKind">
+            <summary>
+            Indicates a shape modifier that is used for a complex fish pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Basic">
+            <summary>
+            Indicates the basic exocet. This field is a reserved field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Franken">
+            <summary>
+            Indicates the franken exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Mutant">
+            <summary>
+            Indicates the mutant exocet.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKindExtensions">
+            <summary>
+            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides)">
+            <summary>
+            Try to get shape kind via the houses.
+            </summary>
+            <param name="this">The houses provider.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FishFinKind">
+            <summary>
+            Indicates a fin modifier that is used for a complex fish pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishFinKind.Normal">
+            <summary>
+            Indicates the normal fish (i.e. no fins).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishFinKind.Finned">
+            <summary>
+            Indicates the finned fish
+            (i.e. contains fins, but the fish may be regular when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishFinKind.Sashimi">
+            <summary>
+            Indicates the sashimi fish
+            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishFinKind.Siamese">
+            <summary>
+            Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FishShapeKind">
+            <summary>
+            Indicates a shape modifier that is used for a complex fish pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishShapeKind.Basic">
+            <summary>
+            Indicates the basic fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishShapeKind.Franken">
+            <summary>
+            Indicates the franken fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.FishShapeKind.Mutant">
+            <summary>
+            Indicates the mutant fish.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Strings.Resources">
             <summary>
@@ -21134,6 +21129,46 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.FormatInterpolation.ResourcePlaceholderValues">
             <summary>The values of the interpolation.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides.CrosslineHousesMask">
+            <summary>
+            The mask that holds a list of cross-line houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides.ExtraHousesMask">
+            <summary>
+            The mask that holds a list of extra houses used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.IDoubleExocetStepBaseOverrides">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.BaseCells">
+            <summary>
+            A list of cells as the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.TargetCells">
+            <summary>
+            A list of cells as the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.BaseCellsTheOther">
+            <summary>
+            A list of cells as the other pair of base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.TargetCellsTheOther">
+            <summary>
+            A list of cells as the other pair of target cells.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>

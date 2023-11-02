@@ -62,6 +62,12 @@ public sealed partial class ComplexFishStep(
 	[DataMember] bool? isSashimi
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
+	/// <summary>
+	/// The letter or digit characters.
+	/// </summary>
+	private const string LetterOrDigitCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
 
@@ -71,37 +77,33 @@ public sealed partial class ComplexFishStep(
 		get
 		{
 			// Creates a buffer to store the characters that isn't a space or a bar.
-			var name = internalName();
-			var buffer = stackalloc char[name.Length];
+			scoped var name = internalName();
+			scoped var buffer = (stackalloc char[name.Length]);
 			var bufferLength = 0;
-			fixed (char* p = name)
+			foreach (var ch in name)
 			{
-				for (var ptr = p; *ptr != '\0'; ptr++)
+				if (ch is not ('-' or ' '))
 				{
-					if (*ptr is not ('-' or ' '))
-					{
-						buffer[bufferLength++] = *ptr;
-					}
+					buffer[bufferLength++] = ch;
 				}
 			}
 
-			// Parses via the buffer, and returns the result.
-			return Enum.Parse<Technique>(new string(PointerOperations.Slice(buffer, 0, bufferLength)));
+			return Enum.Parse<Technique>(buffer[..bufferLength]);
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			string internalName()
+			ReadOnlySpan<char> internalName()
 			{
-				var finKindStr = finKind() is var finModifier and not FinKind.Normal ? $"{finModifier} " : null;
-				var shapeKindStr = shapeKind() is var shapeModifier and not ShapeKind.Basic ? $"{shapeModifier} " : null;
+				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal ? $"{finModifier} " : null;
+				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : null;
 				return $"{finKindStr}{shapeKindStr}{TechniqueFact.GetFishEnglishName(Size)}";
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			FinKind finKind() => IsSashimi switch { true => FinKind.Sashimi, false => FinKind.Finned, _ => FinKind.Normal };
+			FishFinKind finKind() => IsSashimi switch { true => FishFinKind.Sashimi, false => FishFinKind.Finned, _ => FishFinKind.Normal };
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			ShapeKind shapeKind() => IsFranken ? ShapeKind.Franken : ShapeKind.Mutant;
+			FishShapeKind shapeKind() => IsFranken ? FishShapeKind.Franken : FishShapeKind.Mutant;
 		}
 	}
 
@@ -137,55 +139,4 @@ public sealed partial class ComplexFishStep(
 		=> left.Digit == right.Digit
 		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
 		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
-}
-
-/// <summary>
-/// Indicates a shape modifier that is used for a complex fish pattern.
-/// </summary>
-[Flags]
-file enum ShapeKind
-{
-	/// <summary>
-	/// Indicates the basic fish.
-	/// </summary>
-	Basic = 1,
-
-	/// <summary>
-	/// Indicates the franken fish.
-	/// </summary>
-	Franken = 1 << 1,
-
-	/// <summary>
-	/// Indicates the mutant fish.
-	/// </summary>
-	Mutant = 1 << 2
-}
-
-/// <summary>
-/// Indicates a fin modifier that is used for a complex fish pattern.
-/// </summary>
-[Flags]
-file enum FinKind
-{
-	/// <summary>
-	/// Indicates the normal fish (i.e. no fins).
-	/// </summary>
-	Normal = 1,
-
-	/// <summary>
-	/// Indicates the finned fish
-	/// (i.e. contains fins, but the fish may be regular when the fins are removed).
-	/// </summary>
-	Finned = 1 << 1,
-
-	/// <summary>
-	/// Indicates the sashimi fish
-	/// (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
-	/// </summary>
-	Sashimi = 1 << 2,
-
-	/// <summary>
-	/// Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
-	/// </summary>
-	Siamese = 1 << 3
 }
