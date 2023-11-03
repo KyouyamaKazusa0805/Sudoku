@@ -2619,59 +2619,22 @@ fixed (short* ptr = instance)
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
-            </summary>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='source']"/>
-            </param>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
-            </param>
             <returns>
-            An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="this"/>.
+            An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})">
             <summary>
             Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
             and invokes a result selector function on each element therein.
             </summary>
-            <typeparam name="TSource">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TSource']"/>
-            </typeparam>
-            <typeparam name="TCollection">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TCollection']"/>
-            </typeparam>
-            <typeparam name="TResult">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/typeparam[@name='TResult']"/>
-            </typeparam>
-            <param name="source">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='source']"/>
-            </param>
-            <param name="collectionSelector">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='collectionSelector']"/>
-            </param>
-            <param name="resultSelector">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
-                path="/param[@name='resultSelector']"/>
-            </param>
             <returns>
             A same type of collection whose elements are the result of invoking the one-to-many transform function
             <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequence elements
             and their corresponding source element to a result element.
             </returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
             <summary>
@@ -2689,17 +2652,9 @@ fixed (short* ptr = instance)
             Computes the sum of the sequence of <typeparamref name="TInterim"/> values that are obtained by invoking a transform function
             on each element of the input sequence.
             </summary>
-            <typeparam name="T">The type of element of <paramref name="this"/>.</typeparam>
+            <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
             <typeparam name="TInterim">The type of interim variables.</typeparam>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})" path="/param[@name='source']"/>
-            </param>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})" path="/returns"/>
-            </returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})">
             <summary>
@@ -2722,30 +2677,14 @@ fixed (short* ptr = instance)
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/summary"/>
-            </summary>
-            <typeparam name="TSource">
-            <inheritdoc
-                cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"
-                path="/typeparam[@name='TSource']"/>
-            </typeparam>
             <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
             <param name="func">
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/param[@name='func']"/>
             </param>
-            <returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/returns"/>
-            </returns>
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
             <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
-            <param name="this">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='first']"/>
-            </param>
-            <param name="other">
-            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" path="/param[@name='second']"/>
-            </param>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[])">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})"/>
@@ -2947,8 +2886,8 @@ fixed (short* ptr = instance)
             <param name="selector">The selector.</param>
             <returns>An array of <typeparamref name="TResult"/> elements.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
+        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,``1[]},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>

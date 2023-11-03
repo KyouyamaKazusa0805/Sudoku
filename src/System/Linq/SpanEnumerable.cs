@@ -27,10 +27,10 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
 		this scoped ReadOnlySpan<TSource> source,
-		Func<TSource, IEnumerable<TCollection>> collectionSelector,
+		Func<TSource, TCollection[]> collectionSelector,
 		Func<TSource, TCollection, TResult> resultSelector
 	)
 	{
@@ -39,7 +39,7 @@ public static class SpanEnumerable
 		for (var i = 0; i < length; i++)
 		{
 			var element = source[i];
-			foreach (var subElement in collectionSelector(element))
+			foreach (ref readonly var subElement in collectionSelector(element).AsReadOnlySpan())
 			{
 				result.Add(resultSelector(element, subElement));
 			}

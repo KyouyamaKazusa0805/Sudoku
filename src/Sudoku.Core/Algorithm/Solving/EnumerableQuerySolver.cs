@@ -46,7 +46,7 @@ public sealed class EnumerableQuerySolver : ISolver
 					let index = solution.IndexOf('.')
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
-					from digit in DigitCharacters
+					from digit in DigitCharacters.ToCharArray()
 					let duplicateCases =
 						// Here we cannot replace it with a read-only span (i.e. 'Digits' -> '(ReadOnlySpan<Digit>)Digits')
 						// because it will make the query expression create a new unsafe object in nested query expression,
