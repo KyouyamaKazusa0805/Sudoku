@@ -227,7 +227,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										{
 #if SEARCH_SENIOR_EXOCET
 											if (CollectSeniorExocets(
-												ref context, in grid, in baseCells, targetCell, in crossline,
+												ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i
 											) is { } seniorExocet)
 											{
@@ -410,7 +410,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			case 0:
 			{
 				if (CheckJuniorOrSeniorBase(
-					ref context, grid, in baseCells, in targetCells, -1, in crossline, baseCellsDigitsMask,
+					ref context, grid, in baseCells, in targetCells, -1, in crossline, [], baseCellsDigitsMask,
 					housesMask, out var inferredTargetConjugatePairs
 				) is { } baseTypeStep)
 				{
@@ -481,6 +481,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="grid">The grid as the candidate referencing object.</param>
 	/// <param name="baseCells">The cells of the base.</param>
 	/// <param name="targetCell">The cell of the target. The target cell only contains empty cells; non-empty ones will be ignored.</param>
+	/// <param name="groupsOfTargetCells">The grouped cells for target cells, by is containing crossline house.</param>
 	/// <param name="crossline">
 	/// The cells of cross-line. The cross-line cells contain 18 cells regardless of its state: empty or non-empty.
 	/// </param>
@@ -498,6 +499,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -506,6 +508,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
+		var crosslineIncludingTarget = CellMap.Empty;
+		foreach (var house in housesMask)
+		{
+			crosslineIncludingTarget |= HousesMap[house] - baseCells.PeerIntersection;
+		}
+
 		// Try to fetch all possible endo-target cells if worth.
 		// Check whether cross-line non-empty cells contains digits appeared in base cells.
 		// If so, they will be endo-target cells.
@@ -516,7 +524,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			case 0:
 			{
 				if (CheckSeniorExocetNoValueCells(
-					ref context, in grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask, housesMask, size
+					ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline, in crosslineIncludingTarget,
+					baseCellsDigitsMask, housesMask, size, chuteIndex
 				) is { } endoTargetMustBeTrueTypeStep)
 				{
 					return endoTargetMustBeTrueTypeStep;
@@ -546,7 +555,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 
 				if (CheckSeniorTrueBase(
-					ref context, grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask,
+					ref context, grid, in baseCells, targetCell, in crossline, in crosslineIncludingTarget, baseCellsDigitsMask,
 					TrailingZeroCount(endoTargetValueDigitsMask)
 				) is { } lockedMemberTypeStep)
 				{
@@ -1475,6 +1484,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap targetCells,
 		Cell endoTargetCell,
 		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
 		out ReadOnlySpan<Conjugate> inferredTargetConjugatePairs
@@ -1617,6 +1627,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
+		var crosslineFinal = endoTargetCell == -1 ? crossline : crosslineIncludingTarget;
 		var step = new ExocetBaseStep(
 			[.. conclusions],
 			[
@@ -1624,7 +1635,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					.. endoTargetCell != -1 ? [new CellViewNode(WellKnownColorIdentifier.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
-					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in crosslineFinal - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
@@ -1634,7 +1645,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from digit in grid.GetCandidates(cell)
 					select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
 					..
-					from cell in crossline - endoTargetCell
+					from cell in crosslineFinal - endoTargetCell
 					where grid.GetState(cell) == CellState.Empty
 					from digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit),
@@ -1660,15 +1671,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if SEARCH_SENIOR_EXOCET
-	private static ExocetBaseStep? CheckSeniorExocetNoValueCells(
+	private static ExocetStep? CheckSeniorExocetNoValueCells(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
-		int size
+		int size,
+		int chuteIndex
 	)
 	{
 		var endoTargetCells = CellMap.Empty;
@@ -1685,43 +1699,67 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Check if the current cell is filled with the digit not appeared in base cells,
-			// then all base cell digits can only fill (size - 1) times at most in cross-line cells.
-			// For example, if the size = 3, digits should only appear 2 times at most in cross-line cells.
-			// If greater (times > size - 1), an exocet cannot be formed;
-			// and if less (times < size - 1), we cannot conclude which digits are the target cells.
-			var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-			foreach (var digit in baseCellsDigitsMask)
+			CheckValidityAndLockedMembersExistence(
+				in grid,
+				baseCellsDigitsMask,
+				in baseCells,
+				[targetCell],
+				crosslineIncludingTarget - targetCell - endoTargetCell,
+				size - 1,
+				out var digitsMaskExactlySizeMinusOneTimes,
+				out _,
+				out var lockedMembers,
+				out var lockedMemberDigitsMask
+			);
+
+			if ((Mask)(lockedMemberDigitsMask | digitsMaskExactlySizeMinusOneTimes) != baseCellsDigitsMask)
 			{
-				if (!grid.IsExactAppearingTimesOf(digit, crossline - endoTargetCell, size - 1))
-				{
-					allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
-					break;
-				}
-			}
-			if (!allDigitsCanBeFilledExactlySizeMinusOneTimes)
-			{
-				// All digits should strictly appear (size - 1) times at most in cross-line cells.
 				continue;
 			}
 
-			endoTargetCells.Add(endoTargetCell);
-		}
-
-		if (!endoTargetCells)
-		{
-			// No possible endo-target cells are found.
-			return null;
-		}
-
-		foreach (var endoTargetCell in endoTargetCells)
-		{
-			if (CheckJuniorOrSeniorBase(
-				ref context, grid, in baseCells, [targetCell], endoTargetCell, in crossline,
-				baseCellsDigitsMask, housesMask, out _
-			) is { } baseTypeStep)
+			switch (PopCount((uint)lockedMemberDigitsMask))
 			{
-				return baseTypeStep;
+				case 1:
+				{
+					if (CheckSeniorLockedMember(
+						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline, in crosslineIncludingTarget,
+						baseCellsDigitsMask, lockedMembers, chuteIndex, groupsOfTargetCells, size, out var inferredLastTargetDigitsMask,
+						out var lockedDigitsMask
+					) is { } seniorLockedMemberTypeStep)
+					{
+						return seniorLockedMemberTypeStep;
+					}
+
+					// Check whether the locked members are really used.
+					// If not, we should check for them, whether they are appeared in cross-line cells in (size) times.
+					var lockedMembersAreSatisfySizeMinusOneRule = true;
+					foreach (var digit in lockedDigitsMask)
+					{
+						if (!grid.IsExactAppearingTimesOf(digit, crosslineIncludingTarget - endoTargetCell, size - 1))
+						{
+							// The current digit can be filled in cross-line cells at most (size) times.
+							lockedMembersAreSatisfySizeMinusOneRule = false;
+							break;
+						}
+					}
+					if (lockedMembersAreSatisfySizeMinusOneRule)
+					{
+						goto case 0;
+					}
+					break;
+				}
+				case 0:
+				{
+					// Check for base SE type.
+					if (CheckJuniorOrSeniorBase(
+						ref context, grid, in baseCells, [targetCell], endoTargetCell, in crossline, in crosslineIncludingTarget,
+						baseCellsDigitsMask, housesMask, out _
+					) is { } baseTypeStep)
+					{
+						return baseTypeStep;
+					}
+					break;
+				}
 			}
 		}
 
@@ -2822,6 +2860,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		scoped ref readonly CellMap baseCells,
 		Cell targetCell,
 		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
 		Digit trueBaseDigit
 	)
@@ -2874,18 +2913,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				[
 					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
 					new CellViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell),
-					.. from cell in crossline - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. from cell in crosslineIncludingTarget - endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
 					let colorIdentifier = trueBaseDigit != d ? WellKnownColorIdentifier.Normal : WellKnownColorIdentifier.Auxiliary1
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
-					from cell in crossline - EmptyCells
+					from cell in crosslineIncludingTarget - EmptyCells
 					where grid.GetDigit(cell) == trueBaseDigit
 					select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
 					..
-					from cell in crossline
+					from cell in crosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
@@ -2906,6 +2945,128 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		context.Accumulator.Add(step);
+		return null;
+	}
+#endif
+
+#if SEARCH_SENIOR_EXOCET
+	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
+		scoped ref AnalysisContext context,
+		Grid grid,
+		scoped ref readonly CellMap baseCells,
+		Cell targetCell,
+		Cell endoTargetCell,
+		scoped ref readonly CellMap crossline,
+		scoped ref readonly CellMap crosslineIncludingTarget,
+		Mask baseCellsDigitsMask,
+		scoped ReadOnlySpan<LockedMember?> lockedMembers,
+		int chuteIndex,
+		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		int size,
+		out Mask inferredLastTargetDigitsMask,
+		out Mask lockedDigitsMask
+	)
+	{
+		if (baseCells.Count != 2)
+		{
+			// No conclusions when the number of base cells is not 2.
+			(inferredLastTargetDigitsMask, lockedDigitsMask) = (0, 0);
+			return null;
+		}
+
+		// Check whether the digit is a real locked member.
+		if (lockedMembers.IsEmpty || groupsOfTargetCells is not [(_, [var targetCell1]), (_, [var targetCell2])])
+		{
+			goto AssignBaseMaskByDefault;
+		}
+
+		var (cellOffsets, candidateOffsets, houseOffsets) = (new List<CellViewNode>(4), new List<CandidateViewNode>(), new List<HouseViewNode>(2));
+		(lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = (0, 0, new List<Conclusion>());
+
+		// Collect eliminations via mirror cells.
+		foreach (var lockedDigit in baseCellsDigitsMask)
+		{
+			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock) && HousesMap[lockedBlock].Contains(targetCell))
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+				{
+					conclusions.Add(new(Elimination, endoTargetCell, digit));
+				}
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+				{
+					conclusions.Add(new(Elimination, targetCell, digit));
+				}
+
+				// Cannibalism rule:
+				// If the maximum appearing times of the digit is less than the minimum possible limit,
+				// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
+				// We can safely remove it from base cells.
+				if (grid.AppearingTimesOf(lockedDigit, crosslineIncludingTarget - targetCell - endoTargetCell) < size - 1)
+				{
+					foreach (var cell in baseCells + endoTargetCell + targetCell & CandidatesMap[lockedDigit])
+					{
+						conclusions.Add(new(Elimination, cell, lockedDigit));
+					}
+				}
+
+				candidateOffsets.AddRange(
+					from cell in lockedMemberMap
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+				);
+				houseOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, lockedBlock));
+
+				lockedDigitsMask |= (Mask)(1 << lockedDigit);
+				inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No eliminations found.
+			goto AssignBaseMaskByDefault;
+		}
+
+		var ld = lockedDigitsMask;
+		var step = new ExocetLockedMemberStep(
+			[.. conclusions],
+			[
+				[
+					.. from cell in baseCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(WellKnownColorIdentifier.Auxiliary1, cell),
+					.. from cell in crosslineIncludingTarget select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell),
+					.. cellOffsets,
+					.. candidateOffsets,
+					..
+					from cell in baseCells
+					from d in grid.GetCandidates(cell)
+					let colorIdentifier = (ld >> d & 1) != 0 ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Normal
+					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
+					..
+					from cell in crosslineIncludingTarget
+					where grid.GetState(cell) == CellState.Empty
+					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
+					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
+					.. houseOffsets,
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				]
+			],
+			context.PredefinedOptions,
+			baseCellsDigitsMask,
+			lockedDigitsMask,
+			in baseCells,
+			[targetCell],
+			[endoTargetCell],
+			in crossline
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+
+	AssignBaseMaskByDefault:
+		(inferredLastTargetDigitsMask, lockedDigitsMask) = (baseCellsDigitsMask, 0);
 		return null;
 	}
 #endif
@@ -3799,8 +3960,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + d),
 					.. candidateOffsets,
-					.. houseOffsets
-				//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+					.. houseOffsets,
+					//.. from house in housesMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
 				]
 			],
 			context.PredefinedOptions,
