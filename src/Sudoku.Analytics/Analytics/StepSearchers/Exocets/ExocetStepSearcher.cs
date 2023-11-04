@@ -518,7 +518,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether cross-line non-empty cells contains digits appeared in base cells.
 		// If so, they will be endo-target cells.
 		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-		var endoTargetValueDigitsMask = GetValueDigitsAppearedInCrossline(in grid, in crossline, baseCellsDigitsMask);
+		var endoTargetValueDigitsMask = GetValueDigitsAppearedInCrossline(in grid, crosslineIncludingTarget - targetCell, baseCellsDigitsMask);
 		switch (PopCount((uint)endoTargetValueDigitsMask))
 		{
 			case 0:
@@ -539,7 +539,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
 				foreach (var digit in (Mask)(baseCellsDigitsMask & ~endoTargetValueDigitsMask))
 				{
-					if (!grid.IsExactAppearingTimesOf(digit, in crossline, size - 1))
+					if (!grid.IsExactAppearingTimesOf(digit, crosslineIncludingTarget - targetCell, size - 1))
 					{
 						allDigitsCanBeFilledExactlySizeMinusOneTimes = false;
 						break;
