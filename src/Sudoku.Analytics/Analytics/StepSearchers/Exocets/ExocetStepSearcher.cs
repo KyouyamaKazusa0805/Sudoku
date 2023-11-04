@@ -220,11 +220,21 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//
 									// because the pre-condition are not same with each other.
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if SEARCH_SENIOR_EXOCET || SEARCH_COMPLEX_SENIOR_EXOCET
 									if (baseCells.Count == 2)
 									{
 										foreach (var targetCell in targetCells)
 										{
+#if SEARCH_SENIOR_EXOCET
+											if (CollectSeniorExocets(
+												ref context, in grid, in baseCells, targetCell, in crossline,
+												baseCellsDigitsMask, housesMask, isRow, size, i
+											) is { } seniorExocet)
+											{
+												return seniorExocet;
+											}
+#endif
+#if SEARCH_COMPLEX_SENIOR_EXOCET
 											if (CollectComplexSeniorExocets(
 												ref context, in grid, in baseCells, targetCell, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
@@ -232,19 +242,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											{
 												return complexSeniorExocet;
 											}
-										}
-									}
 #endif
-
-#if SEARCH_SENIOR_EXOCET
-									if (baseCells.Count == 2 && targetCells.Count == 1)
-									{
-										if (CollectSeniorExocets(
-											ref context, in grid, in baseCells, targetCells[0], in crossline,
-											baseCellsDigitsMask, housesMask, isRow, size, i
-										) is { } seniorExocet)
-										{
-											return seniorExocet;
 										}
 									}
 #endif
