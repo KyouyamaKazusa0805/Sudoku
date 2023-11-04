@@ -547,7 +547,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					return null;
 				}
 
-				if (CheckSeniorBaseLockedMember(
+				if (CheckSeniorTrueBase(
 					ref context, grid, in baseCells, targetCell, in crossline, baseCellsDigitsMask,
 					TrailingZeroCount(endoTargetValueDigitsMask)
 				) is { } lockedMemberTypeStep)
@@ -2818,7 +2818,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if SEARCH_SENIOR_EXOCET
-	private static SeniorExocetTrueBaseStep? CheckSeniorBaseLockedMember(
+	private static SeniorExocetTrueBaseStep? CheckSeniorTrueBase(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
