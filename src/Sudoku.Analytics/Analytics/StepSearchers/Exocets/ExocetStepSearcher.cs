@@ -26,6 +26,7 @@
 // * True base for Complex Senior Exocet
 // * Double Exocet the other type
 // * Advanced Senior Exocet
+// * Weak Exocet with some other value cells
 
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -1048,6 +1049,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
+		#region Description for Weak Exocets
 		// See following links to learn more information about this technique:
 		//
 		//   * http://forum.enjoysudoku.com/weak-exocet-t39651.html
@@ -1096,6 +1098,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//   7) The missing-value cell cannot lie in a same line with that given value digit condition 6) mentioned.
 		//
 		// A weak exocet may contain some extra eliminations that a normal JE pattern (even not containing the missing-value cell) doesn't have.
+		#endregion
 
 		// Target cells must be 2.
 		if (groupsOfTargetCells.Length != 2)
