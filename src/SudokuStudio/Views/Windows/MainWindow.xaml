@@ -57,8 +57,6 @@
 					Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
 				<NavigationViewItem x:Name="PuzzleLibraryPage" Content="{m:R Key=MainWindow_PuzzleLibraryPage}" Icon="Library" />
 				<NavigationViewItem x:Name="TechniqueGalleryPage" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
-				<NavigationViewItemHeader Content="{m:R Key=MainWindow_Experiemental}" />
-				<NavigationViewItem x:Name="OcrPage" Content="{m:R Key=MainWindow_OcrPageItem}" Icon="{ui:FontIcon Glyph=&#xEBE8;}" />
 				<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
 				<NavigationViewItem x:Name="HotkeyCheatTablePage" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
 				<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />

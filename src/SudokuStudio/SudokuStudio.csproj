@@ -108,9 +108,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Views\Pages\OcrPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\Settings\LibraryPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

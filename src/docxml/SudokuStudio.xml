@@ -11375,31 +11375,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.OcrPage">
-            <summary>
-            Represents an OCR page.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.OcrPage.#ctor">
-            <summary>
-            Initializes an <see cref="T:SudokuStudio.Views.Pages.OcrPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.OcrPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.OcrPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.OcrPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>
             Attribute checking operation page.
