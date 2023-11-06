@@ -145,7 +145,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
 			string progressedStepSearcherName;
 			scoped var stopwatch = ValueStopwatch.NewInstance;
-			var accumulator = IsFullApplying ? new List<Step>() : null;
+			var accumulator = IsFullApplying ? (List<Step>)[] : null;
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
 
 			// Determine whether the grid is a GSP pattern. If so, check eliminations.
