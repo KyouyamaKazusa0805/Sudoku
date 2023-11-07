@@ -115,15 +115,14 @@ public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCod
 		{
 			var result = new List<ChainNode>();
 			var done = new NodeSet();
-			var todo = new List<ChainNode> { this };
+			var todo = (List<ChainNode>)[this];
 			while (todo.Count > 0)
 			{
 				var next = new List<ChainNode>();
 				foreach (var p in todo)
 				{
-					if (!done.Contains(p))
+					if (!done.Add(p))
 					{
-						done.Add(p);
 						result.Add(p);
 						next.AddRange(p.Parents);
 					}
