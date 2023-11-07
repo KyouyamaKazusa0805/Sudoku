@@ -41,6 +41,7 @@ using WinRT;
 using static Sudoku.SolutionWideReadOnlyFields;
 using static SudokuStudio.ProjectWideConstants;
 using static SudokuStudio.Strings.StringsAccessor;
+using SolvingPath = SudokuStudio.Views.Pages.Analyze.SolvingPath;
 
 namespace SudokuStudio.Views.Pages;
 

@@ -21517,6 +21517,125 @@ result ^= expression;
         <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.SolvingPath">
+            <summary>
+            Represents a solving path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SolvingPath._steppingGridFirst">
+            <summary>
+            The reference to the first of stepping grids.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SolvingPath._stepsFirst">
+            <summary>
+            The reference to the first of steps.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.#ctor(Sudoku.Concepts.Grid[],Sudoku.Analytics.Step[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.SolvingPath"/> instance.
+            </summary>
+            <param name="steppingGrids">The stepping grids.</param>
+            <param name="steps">The steps.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the length of arguments are not equal.</exception>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.IsSolved">
+            <summary>
+            Indicates whether the puzzle has been solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Length">
+            <summary>
+            Indicates the number of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.SteppingGrids">
+            <summary>
+            Indicates the stepping grids.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Steps">
+            <summary>
+            Indicates the steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Pairs">
+            <summary>
+            Indicates the internal pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(System.Int32)">
+            <summary>
+            Try to fetch the pair of stepping grid and step at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the pair of stepping grid and step.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.SteppingGridAt(System.Int32)">
+            <summary>
+            Try to fetch the stepping grid at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the stepping grid at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.GetEnumerator">
+            <summary>
+            Gets an enumerator instance to iterate on each pair of stepping grids and actual step.
+            </summary>
+            <returns>An enumerator instance that iterates on each pair of stepping grid and actual step.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.EnumerateSteppingGrids">
+            <summary>
+            Try to enumerate all steps.
+            </summary>
+            <returns>An enumerator instance that iterates on each stepping grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.EnumerateSteps">
+            <summary>
+            Try to enumerate all steps.
+            </summary>
+            <returns>An enumerator instance that iterates on each steps.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.ToArray">
+            <summary>
+            Converts the current list into an array.
+            </summary>
+            <returns>An array of pairs of stepping grid and step.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.StepAt(System.Int32)">
+            <summary>
+            Try to fetch the step at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The step at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.op_Equality(Sudoku.Concepts.SolvingPath,Sudoku.Concepts.SolvingPath)">
+            <summary>
+            Compares the reference of two instances, returning a <see cref="T:System.Boolean"/> value indicating whether they reference a same memory block.
+            </summary>
+            <param name="left">The left-side value to be determined.</param>
+            <param name="right">The right-side value to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.op_Inequality(Sudoku.Concepts.SolvingPath,Sudoku.Concepts.SolvingPath)">
+            <summary>
+            Compares the reference of two instances,
+            returning a <see cref="T:System.Boolean"/> value indicating whether they don't reference a same memory block.
+            </summary>
+            <param name="left">The left-side value to be determined.</param>
+            <param name="right">The right-side value to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.

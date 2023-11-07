@@ -17,7 +17,7 @@ namespace Sudoku.Analytics;
 public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
 {
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(SolvingPath), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(PearlStep), nameof(DiamondStep))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -321,7 +321,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// the return value of the property will be always <see langword="null"/>.
 	/// </para>
 	/// </summary>
-	public (Grid SteppingGrid, Step Step)[]? SolvingPath => IsSolved ? StepGrids.Zip(Steps) : null;
+	public SolvingPath SolvingPath => IsSolved ? new(StepGrids, Steps) : default;
 
 
 	/// <summary>
