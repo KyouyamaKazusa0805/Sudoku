@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
 
 namespace Sudoku.Concepts;
 
@@ -16,12 +17,12 @@ public readonly ref partial struct SolvingPath
 	/// <summary>
 	/// The reference to the first of stepping grids.
 	/// </summary>
-	private readonly Grid[] _steppingGridFirst;
+	private readonly Grid[] _steppingGridFirst = [];
 
 	/// <summary>
 	/// The reference to the first of steps.
 	/// </summary>
-	private readonly Step[] _stepsFirst;
+	private readonly Step[] _stepsFirst = [];
 
 
 	/// <summary>
@@ -85,6 +86,139 @@ public readonly ref partial struct SolvingPath
 	/// <returns>The reference to the pair of stepping grid and step.</returns>
 	public ref readonly Pair this[int index] => ref Pairs[index];
 
+	/// <summary>
+	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+	/// </summary>
+	/// <param name="grid">The grid to be matched.</param>
+	/// <returns>The found <see cref="Step"/> instance.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the puzzle is not solved (i.e. <see cref="IsSolved"/> property returns <see langword="false"/>).
+	/// </exception>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
+	/// </exception>
+	public Step this[scoped ref readonly Grid grid]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				throw new InvalidOperationException("The puzzle must have been solved before you use this indexer.");
+			}
+
+			foreach (var (g, s) in this)
+			{
+				if (g == grid)
+				{
+					return s;
+				}
+			}
+
+			throw new ArgumentOutOfRangeException("The specified step is not found.");
+		}
+	}
+
+	/// <summary>
+	/// Gets the first found <see cref="Step"/> whose name is specified one, or nearly same as the specified one.
+	/// </summary>
+	/// <param name="techniqueName">Technique name.</param>
+	/// <returns>The first found step.</returns>
+	public Pair? this[string techniqueName]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			foreach (var pair in this)
+			{
+				var (_, step) = pair;
+
+				var name = step.Name;
+				if (nameEquality(name))
+				{
+					return pair;
+				}
+
+				var aliases = step.Code.GetAliases();
+				if (aliases is not null && Array.Exists(aliases, nameEquality))
+				{
+					return pair;
+				}
+
+				var abbr = step.Code.GetAbbreviation();
+				if (abbr is not null && nameEquality(abbr))
+				{
+					return pair;
+				}
+			}
+			return null;
+
+
+			bool nameEquality(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
+		}
+	}
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+	/// </summary>
+	/// <param name="difficultyRating">The specified difficulty rating value.</param>
+	/// <returns>
+	/// A list of <see cref="Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="IsSolved"/> returns <see langword="false"/>),
+	/// the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+	/// the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+	/// only depends on property <see cref="IsSolved"/>.
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[decimal difficultyRating] => IsSolved ? Array.FindAll([.. Steps], step => step.Difficulty == difficultyRating) : null;
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
+	/// </summary>
+	/// <param name="code">The specified technique code.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[Technique code] => IsSolved ? Array.FindAll([.. Steps], step => step.Code == code) : null;
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+	/// </summary>
+	/// <param name="difficultyLevel">The specified difficulty level.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public Step[]? this[DifficultyLevel difficultyLevel]
+		=> IsSolved ? Array.FindAll([.. Steps], step => step.DifficultyLevel == difficultyLevel) : null;
+
+
+	/// <summary>
+	/// Determine whether the analyzer result instance contains any step with specified technique.
+	/// </summary>
+	/// <param name="technique">The technique you want to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+	public bool HasTechnique(Technique technique)
+	{
+		if (!IsSolved)
+		{
+			throw new InvalidOperationException("The puzzle must be solved before call this method.");
+		}
+
+		foreach (var step in Steps)
+		{
+			if (step.Code == technique)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	/// <summary>
 	/// Try to fetch the stepping grid at the specified index.
@@ -134,26 +268,4 @@ public readonly ref partial struct SolvingPath
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 		=> $$"""{{nameof(SolvingPath)}} { {{nameof(SteppingGrids)}}.{{nameof(Array.Length)}} = {{SteppingGrids.Length}}, {{nameof(Steps)}}.{{nameof(Array.Length)}} = {{Steps.Length}} }""";
-
-
-	/// <summary>
-	/// Compares the reference of two instances, returning a <see cref="bool"/> value indicating whether they reference a same memory block.
-	/// </summary>
-	/// <param name="left">The left-side value to be determined.</param>
-	/// <param name="right">The right-side value to be determined.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator ==(SolvingPath left, SolvingPath right)
-		=> ReferenceEquals(left._steppingGridFirst, right._steppingGridFirst)
-		&& ReferenceEquals(left._stepsFirst, right._stepsFirst);
-
-	/// <summary>
-	/// Compares the reference of two instances,
-	/// returning a <see cref="bool"/> value indicating whether they don't reference a same memory block.
-	/// </summary>
-	/// <param name="left">The left-side value to be determined.</param>
-	/// <param name="right">The right-side value to be determined.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !=(SolvingPath left, SolvingPath right) => !(left == right);
 }

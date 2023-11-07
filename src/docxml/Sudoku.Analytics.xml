@@ -887,75 +887,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Analytics.Step"/> instance at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The step information.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not solved.</exception>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
-            </summary>
-            <param name="grid">The grid to be matched.</param>
-            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> property returns <see langword="false"/>).
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.String)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
-            </summary>
-            <param name="techniqueName">Technique name.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
-            </summary>
-            <param name="difficultyRating">The specified difficulty rating value.</param>
-            <returns>
-            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> returns <see langword="false"/>),
-            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
-            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
-            only depends on property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
-            </summary>
-            <param name="code">The specified technique code.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.DifficultyLevel)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
-            </summary>
-            <param name="difficultyLevel">The specified difficulty level.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Determine whether the analyzer result instance contains any step with specified technique.
-            </summary>
-            <param name="technique">The technique you want to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
-        </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>
@@ -21572,6 +21503,67 @@ result ^= expression;
             <param name="index">The desired index.</param>
             <returns>The reference to the pair of stepping grid and step.</returns>
         </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid to be matched.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/> property returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(System.String)">
+            <summary>
+            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
+            </summary>
+            <param name="techniqueName">Technique name.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(System.Decimal)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+            </summary>
+            <param name="difficultyRating">The specified difficulty rating value.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/> returns <see langword="false"/>),
+            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+            only depends on property <see cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
+            </summary>
+            <param name="code">The specified technique code.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Concepts.SolvingPath.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Item(Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+            </summary>
+            <param name="difficultyLevel">The specified difficulty level.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Concepts.SolvingPath.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.SolvingPath.IsSolved"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the analyzer result instance contains any step with specified technique.
+            </summary>
+            <param name="technique">The technique you want to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.SolvingPath.SteppingGridAt(System.Int32)">
             <summary>
             Try to fetch the stepping grid at the specified index.
@@ -21612,23 +21604,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.SolvingPath.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.SolvingPath.op_Equality(Sudoku.Concepts.SolvingPath,Sudoku.Concepts.SolvingPath)">
-            <summary>
-            Compares the reference of two instances, returning a <see cref="T:System.Boolean"/> value indicating whether they reference a same memory block.
-            </summary>
-            <param name="left">The left-side value to be determined.</param>
-            <param name="right">The right-side value to be determined.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.SolvingPath.op_Inequality(Sudoku.Concepts.SolvingPath,Sudoku.Concepts.SolvingPath)">
-            <summary>
-            Compares the reference of two instances,
-            returning a <see cref="T:System.Boolean"/> value indicating whether they don't reference a same memory block.
-            </summary>
-            <param name="left">The left-side value to be determined.</param>
-            <param name="right">The right-side value to be determined.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.SolvingPath.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

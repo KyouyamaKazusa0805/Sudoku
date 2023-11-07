@@ -199,11 +199,17 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 
 					if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-						&& analyzer.Analyze(in grid) is { IsSolved: true, IsPearl: var isPearl, DifficultyLevel: var puzzleDifficultyLevel } analyzerResult
+						&& analyzer.Analyze(in grid) is
+						{
+							IsSolved: true,
+							IsPearl: var isPearl,
+							DifficultyLevel: var puzzleDifficultyLevel,
+							SolvingPath: var p
+						}
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
 						&& (pearl && isPearl is true || !pearl)
-						&& (technique != 0 && analyzerResult.HasTechnique(technique) || technique == 0)
+						&& (technique != 0 && p.HasTechnique(technique) || technique == 0)
 						&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
 					{
 						return grid;
