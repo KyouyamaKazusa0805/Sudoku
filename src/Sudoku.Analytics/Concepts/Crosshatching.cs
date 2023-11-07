@@ -45,7 +45,7 @@ public static class Crosshatching
 
 		return (nullableCombination, emptyCellsNotNeedToBeCovered) switch
 		{
-			(null, not []) => new(in CellMap.Empty, in emptyCellsShouldBeCovered, in emptyCellsNotNeedToBeCovered),
+			(null, not []) => new([], in emptyCellsShouldBeCovered, in emptyCellsNotNeedToBeCovered),
 			({ } combination, _) => new(in combination, in emptyCellsShouldBeCovered, in emptyCellsNotNeedToBeCovered),
 			_ => null
 		};
