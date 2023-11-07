@@ -121,7 +121,7 @@ public readonly partial struct ChainNode([DataMember(MemberKinds.Field), HashCod
 				var next = new List<ChainNode>();
 				foreach (var p in todo)
 				{
-					if (!done.Add(p))
+					if (done.Add(p))
 					{
 						result.Add(p);
 						next.AddRange(p.Parents);
