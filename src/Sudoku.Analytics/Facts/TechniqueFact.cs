@@ -38,7 +38,7 @@ public static class TechniqueFact
 	/// <param name="isIncomplete">A <see cref="bool"/> value indicating whether the wing is incomplete.</param>
 	/// <returns>The real name of the regular wing.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-	public static string GetRegularWingEnglishName(int size, bool isIncomplete)
+	internal static string GetRegularWingEnglishName(int size, bool isIncomplete)
 		=> size switch
 		{
 			3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
@@ -60,7 +60,7 @@ public static class TechniqueFact
 	/// <param name="size">The size.</param>
 	/// <returns>The fish name.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-	public static string GetFishEnglishName(int size)
+	internal static string GetFishEnglishName(int size)
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),
@@ -80,7 +80,7 @@ public static class TechniqueFact
 	/// <param name="englishName">The real name of the regular wing technique.</param>
 	/// <returns>The <see cref="Technique"/> instance.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
-	public static Technique MakeRegularWingTechniqueCode(string englishName)
+	internal static Technique MakeRegularWingTechniqueCode(string englishName)
 		=> englishName switch
 		{
 			"XY-Wing" => Technique.XyWing,
