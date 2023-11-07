@@ -172,7 +172,8 @@ public readonly ref partial struct SolvingPath
 	/// only depends on property <see cref="IsSolved"/>.
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public Step[]? this[decimal difficultyRating] => IsSolved ? Array.FindAll([.. Steps], step => step.Difficulty == difficultyRating) : null;
+	public ReadOnlySpan<Step> this[decimal difficultyRating]
+		=> IsSolved ? Steps.FindAll((ref readonly Step step) => step.Difficulty == difficultyRating) : [];
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
@@ -182,7 +183,7 @@ public readonly ref partial struct SolvingPath
 	/// <inheritdoc cref="this[decimal]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public Step[]? this[Technique code] => IsSolved ? Array.FindAll([.. Steps], step => step.Code == code) : null;
+	public ReadOnlySpan<Step> this[Technique code] => IsSolved ? Steps.FindAll((ref readonly Step step) => step.Code == code) : [];
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
@@ -192,8 +193,8 @@ public readonly ref partial struct SolvingPath
 	/// <inheritdoc cref="this[decimal]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public Step[]? this[DifficultyLevel difficultyLevel]
-		=> IsSolved ? Array.FindAll([.. Steps], step => step.DifficultyLevel == difficultyLevel) : null;
+	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]
+		=> IsSolved ? Steps.FindAll((ref readonly Step step) => step.DifficultyLevel == difficultyLevel) : [];
 
 
 	/// <summary>
