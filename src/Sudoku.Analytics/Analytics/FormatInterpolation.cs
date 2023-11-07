@@ -1,7 +1,6 @@
 using System.Globalization;
-using Sudoku.Analytics;
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Defines a type that represents the resource interpolated values used by <see cref="Step.FormatInterpolationParts"/>.
