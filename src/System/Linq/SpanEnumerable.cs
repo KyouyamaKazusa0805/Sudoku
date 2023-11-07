@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace System.Linq;
 
 /// <summary>
@@ -6,6 +8,52 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
+	/// <summary>
+	/// Returns the minimum value in a generic sequence according to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <typeparam name="TKey">The type of key to compare elements by.</typeparam>
+	/// <param name="this">A sequence of values to determine the minimum value of.</param>
+	/// <param name="keySelector">A function to extract the key for each element.</param>
+	/// <returns>The value with the minimum key in the sequence.</returns>
+	public static TSource? MinBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var (resultKey, result) = (TKey.MaxValue, default(TSource));
+		foreach (ref readonly var element in @this)
+		{
+			if (keySelector(in element) <= resultKey)
+			{
+				result = element;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Returns the maximum value in a generic sequence according to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <typeparam name="TKey">The type of key to compare elements by.</typeparam>
+	/// <param name="this">A sequence of values to determine the maximum value of.</param>
+	/// <param name="keySelector">A function to extract the key for each element.</param>
+	/// <returns>The value with the maximum key in the sequence.</returns>
+	public static TSource? MaxBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var (resultKey, result) = (TKey.MinValue, default(TSource));
+		foreach (ref readonly var element in @this)
+		{
+			if (keySelector(in element) >= resultKey)
+			{
+				result = element;
+			}
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Retrieves all the elements that match the conditions defined by the specified predicate.
 	/// </summary>

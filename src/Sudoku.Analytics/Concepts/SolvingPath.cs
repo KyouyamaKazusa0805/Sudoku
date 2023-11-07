@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics;
@@ -37,15 +38,14 @@ public readonly ref partial struct SolvingPath
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(steppingGrids.Length, steps.Length);
 
-		_steppingGridFirst = steppingGrids;
-		_stepsFirst = steps;
-		(Length, IsSolved) = (steppingGrids.Length, true);
+		(_steppingGridFirst, _stepsFirst, Length, IsSolved) = (steppingGrids, steps, steppingGrids.Length, true);
 	}
 
 
 	/// <summary>
 	/// Indicates whether the puzzle has been solved.
 	/// </summary>
+	[MemberNotNullWhen(true, nameof(PearlStep), nameof(DiamondStep), nameof(Steps), nameof(SteppingGrids))]
 	public bool IsSolved { get; }
 
 	/// <summary>
@@ -97,6 +97,55 @@ public readonly ref partial struct SolvingPath
 					return null;
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the pearl step.
+	/// </summary>
+	public Step? PearlStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			for (var i = 0; i < Steps.Length; i++)
+			{
+				if (Steps[i] is SingleStep)
+				{
+					static decimal keySelector(scoped ref readonly (Step Step, decimal Difficulty) pair) => pair.Difficulty;
+					return i < 1 ? Steps[0] : (from step in Steps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
+				}
+			}
+
+			throw new InvalidOperationException("The puzzle keeps a wrong state.");
+		}
+	}
+
+	/// <summary>
+	/// Indicates the diamond step.
+	/// </summary>
+	public Step? DiamondStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			foreach (var step in Steps)
+			{
+				if (step is not SingleStep)
+				{
+					return step;
+				}
+			}
+
+			throw new InvalidOperationException("The puzzle keeps a wrong state.");
 		}
 	}
 
@@ -211,7 +260,7 @@ public readonly ref partial struct SolvingPath
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[decimal difficultyRating]
-		=> IsSolved ? Steps.FindAll((ref readonly Step step) => step.Difficulty == difficultyRating) : [];
+		=> IsSolved ? Steps.FindAll((scoped ref readonly Step step) => step.Difficulty == difficultyRating) : [];
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
@@ -221,7 +270,7 @@ public readonly ref partial struct SolvingPath
 	/// <inheritdoc cref="this[decimal]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public ReadOnlySpan<Step> this[Technique code] => IsSolved ? Steps.FindAll((ref readonly Step step) => step.Code == code) : [];
+	public ReadOnlySpan<Step> this[Technique code] => IsSolved ? Steps.FindAll((scoped ref readonly Step step) => step.Code == code) : [];
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
@@ -232,7 +281,7 @@ public readonly ref partial struct SolvingPath
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]
-		=> IsSolved ? Steps.FindAll((ref readonly Step step) => step.DifficultyLevel == difficultyLevel) : [];
+		=> IsSolved ? Steps.FindAll((scoped ref readonly Step step) => step.DifficultyLevel == difficultyLevel) : [];
 
 
 	/// <summary>

@@ -17,7 +17,7 @@ namespace Sudoku.Analytics;
 public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
 {
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -47,7 +47,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	public bool? IsPearl
 		=> this switch
 		{
-			{ IsSolved: true, PearlStep: { Difficulty: var ep } step } => ep == MaxDifficulty && step is not SingleStep,
+			{ IsSolved: true, SolvingPath.PearlStep: { Difficulty: var ep } step } => ep == MaxDifficulty && step is not SingleStep,
 			_ => null
 		};
 
@@ -79,7 +79,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	public bool? IsDiamond
 		=> this switch
 		{
-			{ IsSolved: true, PearlStep: { Difficulty: var ep } pStep, DiamondStep: { Difficulty: var ed } dStep }
+			{ IsSolved: true, SolvingPath.PearlStep: { Difficulty: var ep } pStep, SolvingPath.DiamondStep: { Difficulty: var ed } dStep }
 				=> ed == MaxDifficulty && ep == ed && (pStep, dStep) is (not SingleStep, not SingleStep),
 			_ => null
 		};
@@ -115,8 +115,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	[NotNullIfNotNull(nameof(PearlStep))]
-	public decimal? PearlDifficulty => PearlStep?.Difficulty;
+	public decimal? PearlDifficulty => SolvingPath.PearlStep?.Difficulty;
 
 	/// <summary>
 	/// <para>
@@ -128,8 +127,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// </summary>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	[NotNullIfNotNull(nameof(DiamondStep))]
-	public decimal? DiamondDifficulty => DiamondStep?.Difficulty;
+	public decimal? DiamondDifficulty => SolvingPath.DiamondStep?.Difficulty;
 
 	/// <summary>
 	/// Indicates the number of all solving steps recorded.
@@ -213,56 +211,6 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
 	public Step? WrongStep => (UnhandledException as WrongStepException)?.WrongStep;
-
-	/// <summary>
-	/// Indicates the pearl step.
-	/// </summary>
-	public Step? PearlStep
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return null;
-			}
-
-			for (var i = 0; i < Steps.Length; i++)
-			{
-				if (Steps[i] is SingleStep)
-				{
-					return i < 1
-						? Steps[0]
-						: (from step in Steps[..i] select (Step: step, step.Difficulty)).MaxBy(static pair => pair.Difficulty).Step;
-				}
-			}
-
-			throw new InvalidOperationException("The puzzle keeps a wrong state.");
-		}
-	}
-
-	/// <summary>
-	/// Indicates the diamond step.
-	/// </summary>
-	public Step? DiamondStep
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return null;
-			}
-
-			foreach (var step in Steps)
-			{
-				if (step is not SingleStep)
-				{
-					return step;
-				}
-			}
-
-			throw new InvalidOperationException("The puzzle keeps a wrong state.");
-		}
-	}
 
 	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.

@@ -843,16 +843,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlStep">
-            <summary>
-            Indicates the pearl step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondStep">
-            <summary>
-            Indicates the diamond step.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
             <summary>
             Indicates all solving steps that the solver has recorded.
@@ -21490,6 +21480,16 @@ result ^= expression;
             Returns <see langword="null"/> if the property <see cref="P:Sudoku.Concepts.SolvingPath.Steps"/> is default case (i.e. empty).
             </summary>
             <seealso cref="P:Sudoku.Concepts.SolvingPath.Steps"/>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.PearlStep">
+            <summary>
+            Indicates the pearl step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.DiamondStep">
+            <summary>
+            Indicates the diamond step.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.SolvingPath.Pairs">
             <summary>
