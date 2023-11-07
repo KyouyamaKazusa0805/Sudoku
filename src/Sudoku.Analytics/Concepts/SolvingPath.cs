@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
+using Sudoku.Analytics.Steps;
 
 namespace Sudoku.Concepts;
 
@@ -61,6 +62,43 @@ public readonly ref partial struct SolvingPath
 	/// Indicates the steps.
 	/// </summary>
 	public ReadOnlySpan<Step> Steps => _stepsFirst;
+
+	/// <summary>
+	/// Gets the bottleneck during the whole grid solving.
+	/// Returns <see langword="null"/> if the property <see cref="Steps"/> is default case (i.e. empty).
+	/// </summary>
+	/// <seealso cref="Steps"/>
+	public Step? Bottleneck
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			switch (Steps)
+			{
+				case [var firstStep, ..]:
+				{
+					foreach (var step in new ReverseEnumerator<Step>(Steps))
+					{
+						if (step is not SingleStep)
+						{
+							return step;
+						}
+					}
+
+					// If code goes to here, all steps are more difficult than single techniques. Get the first one.
+					return firstStep;
+				}
+				default:
+				{
+					return null;
+				}
+			}
+		}
+	}
 
 	/// <summary>
 	/// Indicates the internal pairs.

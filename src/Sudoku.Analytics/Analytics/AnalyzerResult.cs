@@ -17,7 +17,7 @@ namespace Sudoku.Analytics;
 public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
 {
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(StepGrids), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(PearlStep), nameof(DiamondStep))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -177,7 +177,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// Indicates a list, whose element is the intermediate grid for each step.
 	/// </summary>
 	/// <seealso cref="Steps"/>
-	public Grid[]? StepGrids { get; init; }
+	public Grid[]? SteppingGrids { get; init; }
 
 	/// <summary>
 	/// <para>
@@ -213,38 +213,6 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
 	public Step? WrongStep => (UnhandledException as WrongStepException)?.WrongStep;
-
-	/// <summary>
-	/// Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
-	/// <see cref="Steps"/> is default case (not initialized or empty).
-	/// </summary>
-	/// <seealso cref="Steps"/>
-	public Step? Bottleneck
-	{
-		get
-		{
-			switch (Steps)
-			{
-				default:
-				{
-					return null;
-				}
-				case [var firstStep, ..]:
-				{
-					foreach (var step in Steps.EnumerateReversely())
-					{
-						if (step is not SingleStep)
-						{
-							return step;
-						}
-					}
-
-					// If code goes to here, all steps are more difficult than single techniques. Get the first one.
-					return firstStep;
-				}
-			}
-		}
-	}
 
 	/// <summary>
 	/// Indicates the pearl step.
@@ -299,7 +267,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.
 	/// </summary>
-	/// <seealso cref="StepGrids"/>
+	/// <seealso cref="SteppingGrids"/>
 	public Step[]? Steps { get; init; }
 
 	/// <summary>
@@ -321,7 +289,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// the return value of the property will be always <see langword="null"/>.
 	/// </para>
 	/// </summary>
-	public SolvingPath SolvingPath => IsSolved ? new(StepGrids, Steps) : default;
+	public SolvingPath SolvingPath => IsSolved ? new(SteppingGrids, Steps) : default;
 
 
 	/// <inheritdoc/>

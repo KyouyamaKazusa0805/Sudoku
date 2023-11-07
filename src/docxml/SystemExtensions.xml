@@ -269,7 +269,7 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="array">The internal array.</param>
         </member>
-        <member name="M:System.Collections.Generic.ReverseEnumerator`1.#ctor(`0[])">
+        <member name="M:System.Collections.Generic.ReverseEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
             <summary>
             Represents a reverse enumerator.
             </summary>

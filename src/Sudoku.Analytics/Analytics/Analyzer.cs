@@ -261,7 +261,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,
 				ElapsedTime = stopwatch.ElapsedTime,
 				Steps = [.. recordedSteps],
-				StepGrids = [.. stepGrids]
+				SteppingGrids = [.. stepGrids]
 			};
 
 		ReportStateAndTryToFindNextStep:
@@ -289,7 +289,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				scoped ref readonly AnalysisContext context,
 				scoped ref Grid playground,
 				scoped ref readonly ValueStopwatch stopwatch,
-				List<Grid> stepGrids,
+				List<Grid> steppingGrids,
 				AnalyzerResult resultBase,
 				CancellationToken cancellationToken,
 				[NotNullWhen(true)] out AnalyzerResult? result
@@ -331,7 +331,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			FinalCheck:
 				if (atLeastOneConclusionIsWorth)
 				{
-					stepGrids.Add(playground);
+					steppingGrids.Add(playground);
 					playground.Apply(step);
 					steps.Add(step);
 
@@ -343,7 +343,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							Solution = playground,
 							ElapsedTime = stopwatch.ElapsedTime,
 							Steps = [.. steps],
-							StepGrids = [.. stepGrids]
+							SteppingGrids = [.. steppingGrids]
 						};
 						return true;
 					}

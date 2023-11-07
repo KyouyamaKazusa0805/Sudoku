@@ -802,7 +802,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.AnalyzerResult.ElapsedTime">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.StepGrids">
+        <member name="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids">
             <summary>
             Indicates a list, whose element is the intermediate grid for each step.
             </summary>
@@ -843,13 +843,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Bottleneck">
-            <summary>
-            Gets the bottleneck during the whole grid solving. Returns <see langword="null"/> if the property
-            <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is default case (not initialized or empty).
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
-        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.PearlStep">
             <summary>
             Indicates the pearl step.
@@ -864,7 +857,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates all solving steps that the solver has recorded.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.StepGrids"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
             <summary>
@@ -21490,6 +21483,13 @@ result ^= expression;
             <summary>
             Indicates the steps.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SolvingPath.Bottleneck">
+            <summary>
+            Gets the bottleneck during the whole grid solving.
+            Returns <see langword="null"/> if the property <see cref="P:Sudoku.Concepts.SolvingPath.Steps"/> is default case (i.e. empty).
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.SolvingPath.Steps"/>
         </member>
         <member name="P:Sudoku.Concepts.SolvingPath.Pairs">
             <summary>
