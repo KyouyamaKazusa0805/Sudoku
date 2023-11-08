@@ -12,6 +12,7 @@ public sealed class Generator : IIncrementalGenerator
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		// Elementary generators
+		ActionExtension(context);
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
 		DuckTyping(context);
@@ -22,6 +23,12 @@ public sealed class Generator : IIncrementalGenerator
 		StepSearcherImports(context);
 		SudokuStudioXamlBindings(context);
 	}
+
+	private void ActionExtension(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.CompilationProvider,
+			static (spc, c) => { if (c.AssemblyName == "SystemExtensions") { ActionExtensionHandler.Generate(spc); } }
+		);
 
 	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
@@ -130,7 +137,7 @@ public sealed class Generator : IIncrementalGenerator
 	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
 			context.CompilationProvider,
-			(spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { StepSearcherDefaultImportingHandler.Output(spc, c); } }
+			static (spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { StepSearcherDefaultImportingHandler.Output(spc, c); } }
 		);
 
 	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)

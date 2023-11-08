@@ -4,16 +4,6 @@
         <name>SystemExtensions</name>
     </assembly>
     <members>
-        <member name="T:System.ActionRef`1">
-            <summary>
-            Indicates a callback method that is used by for-each methods, iterating on each reference instead of instance.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="arg">The reference to the element.</param>
-        </member>
-        <member name="T:System.ActionRefReadOnly`1">
-            <inheritdoc cref="T:System.ActionRef`1"/>
-        </member>
         <member name="T:System.Algorithm.Sequences">
             <summary>
             Defines some sequences that has been recorded in the
@@ -2481,17 +2471,6 @@ fixed (short* ptr = instance)
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:System.FuncRef`2">
-            <summary>
-            Indicates a callback method that is used by for-each methods, iterating on each reference instead of instance.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <typeparam name="TResult">The type of result.</typeparam>
-            <param name="arg">The reference to the element.</param>
-        </member>
-        <member name="T:System.FuncRefReadOnly`2">
-            <inheritdoc cref="T:System.FuncRef`2"/>
-        </member>
         <member name="T:System.ICloneable`1">
             <summary>
             <inheritdoc cref="T:System.ICloneable" path="/summary"/>
@@ -4466,6 +4445,326 @@ fixed (short* ptr = instance)
             <typeparam name="TRest">The type that encapsulates a list of rest elements.</typeparam>
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
+        </member>
+        <member name="T:System.ActionRef`1">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`1">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`2">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`2">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`2">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`2">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`3">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`3">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`3">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`3">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`4">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`4">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`4">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`4">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`5">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`5">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`5">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`5">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`6">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`6">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`6">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`6">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`7">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`7">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`7">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`7">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`8">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`8">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`8">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`8">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`9">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`9">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`9">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`9">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`10">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`10">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`10">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`10">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`11">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`11">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`11">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`11">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`12">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`12">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`12">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`12">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`13">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`13">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`13">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`13">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`14">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`14">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`14">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`14">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`15">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`15">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`15">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`15">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`16">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`16">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRef`16">
+            <summary>
+            Encapsulates a method that returns void but pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.ActionRefReadOnly`16">
+            <summary>
+            Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRef`17">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
+            </summary>
+        </member>
+        <member name="T:System.FuncRefReadOnly`17">
+            <summary>
+            Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
+            </summary>
         </member>
     </members>
 </doc>
