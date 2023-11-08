@@ -1,8 +1,10 @@
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -26,11 +28,20 @@ public sealed partial class XyzRingStep(
 	[DataMember] Cell leafCell2,
 	[DataMember] Conjugate conjugatePair,
 	[DataMember] bool isType2
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<XyzRingStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => IsType2 ? 5.0M : 5.2M;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsType2 ? Technique.XyzRingType2 : Technique.XyzRingType1;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEquatableStep<XyzRingStep>.operator ==(XyzRingStep left, XyzRingStep right)
+		=> left.Pivot == right.Pivot
+		&& CellsMap[left.LeafCell1] + left.LeafCell2 == [right.LeafCell1, right.LeafCell2]
+		&& left.ConjugatePair == right.ConjugatePair
+		&& left.Code == right.Code;
 }

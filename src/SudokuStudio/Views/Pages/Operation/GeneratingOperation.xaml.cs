@@ -118,10 +118,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			_ => HodokuPuzzleGenerator.AutoClues
 		};
 		var ittoryuLength = preferences.IttoryuLength;
-		var analyzer = ((App)Application.Current).Analyzer
-			.WithStepSearchers(((App)Application.Current).GetStepSearchers(), difficultyLevel)
-			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
-			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
+		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, preferences.GeneratorDifficultyLevel);
 		var ittoryuPathFinder = new IttoryuPathFinder
 		{
 			SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]
@@ -131,7 +128,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		try
 		{
-			var grid = await Task.Run(() => gridCreator(analyzer, ittoryuPathFinder, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)));
+			Grid function() => gridCreator(analyzer, ittoryuPathFinder, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength));
+			var grid = await Task.Run(function);
 			if (grid.IsUndefined)
 			{
 				return;

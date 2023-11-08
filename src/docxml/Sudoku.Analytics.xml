@@ -608,6 +608,16 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithActionIfMatch(Sudoku.Analytics.Analyzer,System.Boolean,System.Action{Sudoku.Analytics.Analyzer},System.Action{Sudoku.Analytics.Analyzer})">
+            <summary>
+            Operate an arbitary by checking the specified condition.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="condition">The condition to be checked.</param>
+            <param name="trueMatch">The action will be handled when <paramref name="condition"/> is <see langword="true"/>.</param>
+            <param name="falseMatch">The action will be handled when <paramref name="condition"/> is <see langword="false"/>.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.Categorization.DifficultyLevel)">
             <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)"/>
         </member>
@@ -2643,6 +2653,16 @@ if (student is (name: var name, age: >= 18))
             Indicates aligned quintuple exclusion.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
+            <summary>
+            Indicates XYZ-Ring (type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
+            <summary>
+            Indicates XYZ-Ring (type 2).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
             Indicates singly linked ALS-XZ.
@@ -2666,16 +2686,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedSetsChain">
             <summary>
             Indicates ALS chain.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
-            <summary>
-            Indicates XYZ-Ring (type 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
-            <summary>
-            Indicates XYZ-Ring (type 2).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangleIntersectionPair">
@@ -9541,6 +9551,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#XyzRingStep}#op_Equality(Sudoku.Analytics.Steps.XyzRingStep,Sudoku.Analytics.Steps.XyzRingStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">

@@ -62,6 +62,8 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 			}
 		}
 
+		var foundSteps = new List<XyzRingStep>();
+
 		// Iterate on each pivot cell to get all possible results.
 		foreach (var pivot in trivalueCells)
 		{
@@ -186,45 +188,41 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 										continue;
 									}
 
-									var step = new XyzRingStep(
-										[.. conclusions],
-										[
+									foundSteps.Add(
+										new XyzRingStep(
+											[.. conclusions],
 											[
-												..
-												from digit in digitsMaskPivot
-												let colorIdentifier = digit == intersectedDigit
-													? WellKnownColorIdentifier.Auxiliary1
-													: WellKnownColorIdentifier.Normal
-												select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
-												..
-												from digit in digitsMask1
-												let colorIdentifier = digit == intersectedDigit
-													? WellKnownColorIdentifier.Auxiliary1
-													: WellKnownColorIdentifier.Normal
-												select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
-												..
-												from digit in digitsMask2
-												let colorIdentifier = digit == intersectedDigit
-													? WellKnownColorIdentifier.Auxiliary1
-													: WellKnownColorIdentifier.Normal
-												select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
-												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, start * 9 + intersectedDigit),
-												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, end * 9 + intersectedDigit),
-											]
-										],
-										context.PredefinedOptions,
-										pivot,
-										leafCell1,
-										leafCell2,
-										new(start, end, intersectedDigit),
-										isType2
+												[
+													..
+													from digit in digitsMaskPivot
+													let colorIdentifier = digit == intersectedDigit
+														? WellKnownColorIdentifier.Auxiliary1
+														: WellKnownColorIdentifier.Normal
+													select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
+													..
+													from digit in digitsMask1
+													let colorIdentifier = digit == intersectedDigit
+														? WellKnownColorIdentifier.Auxiliary1
+														: WellKnownColorIdentifier.Normal
+													select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
+													..
+													from digit in digitsMask2
+													let colorIdentifier = digit == intersectedDigit
+														? WellKnownColorIdentifier.Auxiliary1
+														: WellKnownColorIdentifier.Normal
+													select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
+													new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, start * 9 + intersectedDigit),
+													new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, end * 9 + intersectedDigit),
+												]
+											],
+											context.PredefinedOptions,
+											pivot,
+											leafCell1,
+											leafCell2,
+											new(start, end, intersectedDigit),
+											isType2
+										)
 									);
-									if (context.OnlyFindOne)
-									{
-										return step;
-									}
-
-									context.Accumulator.Add(step);
 								}
 							}
 						}
@@ -233,6 +231,18 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 			}
 		}
 
+		if (foundSteps.Count == 0)
+		{
+			return null;
+		}
+
+		var resultSteps = foundSteps.Distinct();
+		if (context.OnlyFindOne)
+		{
+			return resultSteps.First();
+		}
+
+		context.Accumulator.AddRange(resultSteps);
 		return null;
 	}
 }

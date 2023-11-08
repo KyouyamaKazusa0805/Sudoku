@@ -25,7 +25,6 @@ using SudokuStudio.Input;
 using SudokuStudio.Interaction;
 using SudokuStudio.Rendering;
 using SudokuStudio.Storage;
-using SudokuStudio.Views.Attached;
 using SudokuStudio.Views.Controls;
 using SudokuStudio.Views.Pages.Analyze;
 using SudokuStudio.Views.Pages.ContentDialogs;
@@ -1117,15 +1116,8 @@ public sealed partial class AnalyzePage : Page
 		IsAnalyzerLaunched = true;
 
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
-		var disallowHighTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
-		var disallowSpaceTimeComplexity = ((App)Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
 		using var cts = new CancellationTokenSource();
-		var analyzer = ((App)Application.Current)
-			.Analyzer
-			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
-			.WithRuntimeIdentifierSetters(SudokuPane)
-			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
-			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
+		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
 		_ctsForAnalyzingRelatedOperations = cts;
 
 		try

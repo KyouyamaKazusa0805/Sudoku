@@ -1,11 +1,14 @@
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Sudoku.Analytics;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
 using Sudoku.Concepts.Converters;
 using SudokuStudio.Configuration;
 using SudokuStudio.Storage;
+using SudokuStudio.Views.Attached;
+using SudokuStudio.Views.Controls;
 using SudokuStudio.Views.Windows;
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
@@ -89,6 +92,29 @@ public partial class App : Application
 	/// </summary>
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
+
+	/// <summary>
+	/// Try to fetch an <see cref="Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="SudokuPane"/>.
+	/// </summary>
+	/// <param name="sudokuPane">The sudoku pane.</param>
+	/// <param name="difficultyLevel">
+	/// The limit difficulty level. Step searchers hard than it will be filtered and not be used in the analysis.
+	/// </param>
+	/// <returns>The final <see cref="Sudoku.Analytics.Analyzer"/> instance.</returns>
+	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = default)
+	{
+		var disallowHighTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
+		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
+		return Analyzer
+			.WithActionIfMatch(
+				difficultyLevel != DifficultyLevel.Unknown,
+				static a => a.WithStepSearchers(((App)Current).GetStepSearchers()),
+				a => a.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
+			)
+			.WithRuntimeIdentifierSetters(sudokuPane)
+			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
+			.WithUserDefinedOptions(CreateStepSearcherOptions());
+	}
 
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)

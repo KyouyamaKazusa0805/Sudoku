@@ -68,6 +68,20 @@ public static class AnalyzerFactory
 		return @this;
 	}
 
+	/// <summary>
+	/// Operate an arbitary by checking the specified condition.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="condition">The condition to be checked.</param>
+	/// <param name="trueMatch">The action will be handled when <paramref name="condition"/> is <see langword="true"/>.</param>
+	/// <param name="falseMatch">The action will be handled when <paramref name="condition"/> is <see langword="false"/>.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer WithActionIfMatch(this Analyzer @this, bool condition, Action<Analyzer> trueMatch, Action<Analyzer> falseMatch)
+	{
+		(condition ? trueMatch : falseMatch)(@this);
+		return @this;
+	}
+
 	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[], DifficultyLevel)"/>
 	public static Analyzer WithStepSearchers(this Analyzer @this, IEnumerable<StepSearcher> stepSearchers, DifficultyLevel level = default)
 		=> @this.WithStepSearchers([.. stepSearchers], level);

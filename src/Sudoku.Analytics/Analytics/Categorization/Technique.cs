@@ -2708,6 +2708,20 @@ public enum Technique
 	//
 	#region Almost Locked Sets
 	/// <summary>
+	/// Indicates XYZ-Ring (type 1).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	XyzRingType1,
+
+	/// <summary>
+	/// Indicates XYZ-Ring (type 2).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	XyzRingType2,
+
+	/// <summary>
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
 	[HodokuTechniquePrefix("0901")]
@@ -2757,20 +2771,6 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlmostLockedSetsChain,
-
-	/// <summary>
-	/// Indicates XYZ-Ring (type 1).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzRingType1,
-
-	/// <summary>
-	/// Indicates XYZ-Ring (type 2).
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzRingType2,
 	#endregion
 
 	//
