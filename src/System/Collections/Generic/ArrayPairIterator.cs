@@ -1,3 +1,5 @@
+using System.SourceGeneration;
+
 namespace System.Collections.Generic;
 
 /// <summary>
@@ -12,7 +14,13 @@ namespace System.Collections.Generic;
 /// </typeparam>
 /// <param name="array">The array value.</param>
 /// <exception cref="ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
-public ref struct ArrayPairEnumerator<T, TFirst, TSecond>(T[] array) where T : notnull where TFirst : notnull, T where TSecond : notnull, T
+[Equals]
+[GetHashCode]
+[ToString]
+public ref partial struct ArrayPairIterator<T, TFirst, TSecond>(T[] array)
+	where T : notnull
+	where TFirst : notnull, T
+	where TSecond : notnull, T
 {
 	/// <summary>
 	/// Indicates the internal array to be iterated.
@@ -30,7 +38,7 @@ public ref struct ArrayPairEnumerator<T, TFirst, TSecond>(T[] array) where T : n
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	public readonly ArrayPairEnumerator<T, TFirst, TSecond> GetEnumerator() => this;
+	public readonly ArrayPairIterator<T, TFirst, TSecond> GetEnumerator() => this;
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext() => (_index += 2) < _array.Length - 1;

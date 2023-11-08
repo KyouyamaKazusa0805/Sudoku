@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 
 namespace Sudoku.Runtime.MaskServices;
 
@@ -7,7 +8,10 @@ namespace Sudoku.Runtime.MaskServices;
 /// </summary>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct MaskCombinationEnumerator(int bitCount, int oneCount)
+[Equals]
+[GetHashCode]
+[ToString]
+public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 {
 	/// <summary>
 	/// The mask.

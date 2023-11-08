@@ -8181,56 +8181,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.View.Clone">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Rendering.View.OfTypeEnumerator`1">
-            <summary>
-            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
-            </summary>
-            <typeparam name="T">The type of the element node.</typeparam>
-            <param name="view">The internal nodes.</param>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.#ctor(Sudoku.Rendering.View)">
-            <summary>
-            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
-            </summary>
-            <typeparam name="T">The type of the element node.</typeparam>
-            <param name="view">The internal nodes.</param>
-        </member>
-        <member name="F:Sudoku.Rendering.View.OfTypeEnumerator`1._count">
-            <summary>
-            The total number of elements.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Rendering.View.OfTypeEnumerator`1._enumerator">
-            <summary>
-            The internal enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.View.OfTypeEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.Any(System.Predicate{`0})">
-            <summary>
-            Determines whether the collection of elements of type <typeparamref name="T"/> contains at least one element
-            satisfying the specified condition.
-            </summary>
-            <param name="predicate">The condition.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Rendering.View.OfTypeEnumerator`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Rendering.View.OfTypeEnumerator`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.ToArray">
-            <summary>
-            Casts the iterator, enumerating all elements and converting into an array.
-            </summary>
-            <returns>An array of elements.</returns>
-        </member>
-        <member name="M:Sudoku.Rendering.View.OfTypeEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
         <member name="T:Sudoku.Rendering.ViewNode">
             <summary>
             Defines a view node.
@@ -8279,6 +8229,46 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.op_Inequality(Sudoku.Rendering.ViewNode,Sudoku.Rendering.ViewNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Rendering.ViewNodeIterator`1">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+            <param name="enumerator">The enumerator.</param>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.#ctor(System.Collections.Generic.HashSet{Sudoku.Rendering.ViewNode}.Enumerator)">
+            <summary>
+            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
+            </summary>
+            <typeparam name="T">The type of the element node.</typeparam>
+            <param name="enumerator">The enumerator.</param>
+        </member>
+        <member name="P:Sudoku.Rendering.ViewNodeIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.GetEnumerator">
+            <summary>
+            Creates an <see cref="T:Sudoku.Rendering.ViewNodeIterator`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Rendering.ViewNodeIterator`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ViewNodeIterator`1._enumerator">
+            <summary>
+            The generated field declaration for parameter <c>enumerator</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifier">
             <summary>
@@ -8502,6 +8492,15 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.MoveNext">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator">
             <summary>

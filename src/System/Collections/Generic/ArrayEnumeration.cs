@@ -32,10 +32,10 @@ public static class ArrayEnumeration
 
 	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>.
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReverseEnumerator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
+	public static ReverseIterator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
 
 	/// <summary>
-	/// Creates a <see cref="ArrayPairEnumerator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
+	/// Creates a <see cref="ArrayPairIterator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
 	/// </summary>
 	/// <typeparam name="T">The type of the array elements.</typeparam>
 	/// <typeparam name="TFirst">The first element returned.</typeparam>
@@ -43,6 +43,6 @@ public static class ArrayEnumeration
 	/// <param name="this">The array.</param>
 	/// <returns>An enumerable collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ArrayPairEnumerator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
+	public static ArrayPairIterator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
 		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
 }

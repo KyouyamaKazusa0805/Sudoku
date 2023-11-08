@@ -9,6 +9,9 @@ namespace System.Runtime.CompilerServices;
 /// </summary>
 /// <param name="tuple">A tuple instance.</param>
 [StructLayout(LayoutKind.Auto)]
+[Equals]
+[GetHashCode]
+[ToString]
 public ref partial struct TupleEnumerator([DataMember(MemberKinds.Field)] ITuple tuple)
 {
 	/// <summary>

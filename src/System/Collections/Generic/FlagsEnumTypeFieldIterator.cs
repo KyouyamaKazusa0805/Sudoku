@@ -11,7 +11,8 @@ namespace System.Collections.Generic;
 /// <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="FlagsAttribute"/>.</typeparam>
 [Equals]
 [GetHashCode]
-public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, Enum
+[ToString]
+public ref partial struct FlagsEnumTypeFieldIterator<T> where T : unmanaged, Enum
 {
 	/// <summary>
 	/// Indicates the fields of the type to iterate.
@@ -30,7 +31,7 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 
 
 	/// <summary>
-	/// Initializes a <see cref="FlagsEnumTypeFieldEnumerator{T}"/> instance via the type argument,
+	/// Initializes a <see cref="FlagsEnumTypeFieldIterator{T}"/> instance via the type argument,
 	/// and the base field.
 	/// </summary>
 	/// <param name="base">The base field to iterate.</param>
@@ -38,7 +39,7 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 	/// Throws when the type <typeparamref name="T"/> is not marked <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal FlagsEnumTypeFieldEnumerator(T @base)
+	internal FlagsEnumTypeFieldIterator(T @base)
 		=> (_base, _fields) = typeof(T).IsDefined(typeof(FlagsAttribute))
 			? (@base, Enum.GetValues<T>())
 			: throw new InvalidOperationException($"Cannot operate because the type '{typeof(T).Name}' isn't applied attribute type '{nameof(FlagsAttribute)}'.");
@@ -74,5 +75,5 @@ public ref partial struct FlagsEnumTypeFieldEnumerator<T> where T : unmanaged, E
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly FlagsEnumTypeFieldEnumerator<T> GetEnumerator() => this;
+	public readonly FlagsEnumTypeFieldIterator<T> GetEnumerator() => this;
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 
 namespace System;
 
@@ -9,6 +10,9 @@ namespace System;
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
 /// <param name="tuple">The tuple.</param>
+[Equals]
+[GetHashCode]
+[ToString]
 public ref struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) where TRest : struct
 {
 	/// <summary>

@@ -19,5 +19,5 @@ public static class EnumFlagEnumeration
 	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldEnumerator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
+	public static FlagsEnumTypeFieldIterator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
 }

@@ -12,12 +12,12 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
 	/// </summary>
-	public OfTypeEnumerator<BasicViewNode> BasicNodes => this.OfType<BasicViewNode>();
+	public ViewNodeIterator<BasicViewNode> BasicNodes => this.OfType<BasicViewNode>();
 
 	/// <summary>
 	/// Indicates icon nodes that the current data type stores.
 	/// </summary>
-	public OfTypeEnumerator<IconViewNode> FigureNodes => this.OfType<IconViewNode>();
+	public ViewNodeIterator<IconViewNode> FigureNodes => this.OfType<IconViewNode>();
 
 
 	/// <summary>

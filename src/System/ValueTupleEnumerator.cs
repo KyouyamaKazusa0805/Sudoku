@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 
 namespace System;
 
@@ -7,7 +8,10 @@ namespace System;
 /// Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
 /// </summary>
 /// <typeparam name="T">The uniform type of a pair of instances.</typeparam>
-public ref struct ValueTupleEnumerator<T>
+[Equals]
+[GetHashCode]
+[ToString]
+public ref partial struct ValueTupleEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the maximum number of values to be iterated.

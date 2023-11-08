@@ -15,5 +15,5 @@ public static class ViewEnumerable
 	/// <typeparam name="T">The type of the node.</typeparam>
 	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static View.OfTypeEnumerator<T> OfType<T>(this View @this) where T : ViewNode => new(@this);
+	public static ViewNodeIterator<T> OfType<T>(this View @this) where T : ViewNode => new(@this.GetEnumerator());
 }

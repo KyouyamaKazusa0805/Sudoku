@@ -81,7 +81,7 @@ public readonly ref partial struct SolvingPath
 			{
 				case [var firstStep, ..]:
 				{
-					foreach (var step in new ReverseEnumerator<Step>(Steps))
+					foreach (var step in new ReverseIterator<Step>(Steps))
 					{
 						if (step is not SingleStep)
 						{

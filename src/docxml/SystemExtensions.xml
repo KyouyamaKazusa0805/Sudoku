@@ -133,7 +133,7 @@
         </member>
         <member name="M:System.Collections.Generic.ArrayEnumeration.EnumerateAsPair``3(``0[])">
             <summary>
-            Creates a <see cref="T:System.Collections.Generic.ArrayPairEnumerator`3"/> instance that iterates on each element of pair elements.
+            Creates a <see cref="T:System.Collections.Generic.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
             </summary>
             <typeparam name="T">The type of the array elements.</typeparam>
             <typeparam name="TFirst">The first element returned.</typeparam>
@@ -141,7 +141,7 @@
             <param name="this">The array.</param>
             <returns>An enumerable collection.</returns>
         </member>
-        <member name="T:System.Collections.Generic.ArrayPairEnumerator`3">
+        <member name="T:System.Collections.Generic.ArrayPairIterator`3">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
             </summary>
@@ -155,7 +155,7 @@
             <param name="array">The array value.</param>
             <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.#ctor(`0[])">
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.#ctor(`0[])">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
             </summary>
@@ -169,24 +169,33 @@
             <param name="array">The array value.</param>
             <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
         </member>
-        <member name="F:System.Collections.Generic.ArrayPairEnumerator`3._array">
+        <member name="F:System.Collections.Generic.ArrayPairIterator`3._array">
             <summary>
             Indicates the internal array to be iterated.
             </summary>
         </member>
-        <member name="F:System.Collections.Generic.ArrayPairEnumerator`3._index">
+        <member name="F:System.Collections.Generic.ArrayPairIterator`3._index">
             <summary>
             Indicates the index.
             </summary>
         </member>
-        <member name="P:System.Collections.Generic.ArrayPairEnumerator`3.Current">
+        <member name="P:System.Collections.Generic.ArrayPairIterator`3.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.GetEnumerator">
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairEnumerator`3.MoveNext">
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayPairIterator`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Collections.Generic.EnumFlagEnumeration">
             <summary>
@@ -206,30 +215,30 @@
             Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
-        <member name="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1">
+        <member name="T:System.Collections.Generic.FlagsEnumTypeFieldIterator`1">
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
             </summary>
             <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.</typeparam>
         </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._fields">
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._fields">
             <summary>
             Indicates the fields of the type to iterate.
             </summary>
         </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._base">
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._base">
             <summary>
             Indicates the base field.
             </summary>
         </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1._index">
+        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._index">
             <summary>
             Indicates the current index being iterated.
             </summary>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.#ctor(`0)">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
             <summary>
-            Initializes a <see cref="T:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1"/> instance via the type argument,
+            Initializes a <see cref="T:System.Collections.Generic.FlagsEnumTypeFieldIterator`1"/> instance via the type argument,
             and the base field.
             </summary>
             <param name="base">The base field to iterate.</param>
@@ -237,53 +246,65 @@
             Throws when the type <typeparamref name="T"/> is not marked <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
-        <member name="P:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Current">
+        <member name="P:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.MoveNext">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetEnumerator">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.Equals(System.Object)">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldEnumerator`1.GetHashCode">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="T:System.Collections.Generic.ReverseEnumerator`1">
+        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.Collections.Generic.ReverseIterator`1">
             <summary>
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
             <param name="array">The internal array.</param>
         </member>
-        <member name="M:System.Collections.Generic.ReverseEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+        <member name="M:System.Collections.Generic.ReverseIterator`1.#ctor(System.ReadOnlySpan{`0})">
             <summary>
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
             <param name="array">The internal array.</param>
         </member>
-        <member name="F:System.Collections.Generic.ReverseEnumerator`1._index">
+        <member name="F:System.Collections.Generic.ReverseIterator`1._index">
             <summary>
             Indicates the current index.
             </summary>
         </member>
-        <member name="P:System.Collections.Generic.ReverseEnumerator`1.Current">
+        <member name="P:System.Collections.Generic.ReverseIterator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.ReverseEnumerator`1.GetEnumerator">
+        <member name="M:System.Collections.Generic.ReverseIterator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:System.Collections.Generic.ReverseEnumerator`1.MoveNext">
+        <member name="M:System.Collections.Generic.ReverseIterator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.Collections.Generic.ReverseEnumerator`1._array">
+        <member name="F:System.Collections.Generic.ReverseIterator`1._array">
             <summary>
             The generated field declaration for parameter <c>array</c>.
             </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseIterator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseIterator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Collections.Generic.ReverseIterator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Collections.Generic.ValueList`1">
             <summary>
@@ -2333,6 +2354,15 @@ fixed (short* ptr = instance)
             The generated field declaration for parameter <c>tuple</c>.
             </summary>
         </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Utf8String"/>.
@@ -4376,6 +4406,15 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.ValueTupleEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.ValueTupleEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.ValueTupleExtensions">
             <summary>
