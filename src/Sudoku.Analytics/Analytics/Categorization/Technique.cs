@@ -2757,6 +2757,20 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlmostLockedSetsChain,
+
+	/// <summary>
+	/// Indicates XYZ-Ring (type 1).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	XyzRingType1,
+
+	/// <summary>
+	/// Indicates XYZ-Ring (type 2).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	XyzRingType2,
 	#endregion
 
 	//

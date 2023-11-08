@@ -31,6 +31,7 @@ using Sudoku.Analytics.StepSearchers;
 [assembly: StepSearcherImport<GurthSymmetricalPlacementStepSearcher>(0)]
 [assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(2)]
 [assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(1)]
+[assembly: StepSearcherImport<XyzRingStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedSetsXyWingStepSearcher>(1)]
 [assembly: StepSearcherImport<AlignedExclusionStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedSetsWWingStepSearcher>(1)]

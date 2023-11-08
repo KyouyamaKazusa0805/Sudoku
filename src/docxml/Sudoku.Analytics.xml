@@ -2668,6 +2668,16 @@ if (student is (name: var name, age: >= 18))
             Indicates ALS chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
+            <summary>
+            Indicates XYZ-Ring (type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
+            <summary>
+            Indicates XYZ-Ring (type 2).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.EmptyRectangleIntersectionPair">
             <summary>
             Indicates empty rectangle intersection pair.
@@ -5032,6 +5042,46 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
+            <summary>
+            Provides with an <b>XYZ-Ring</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>XYZ-Ring Type 1</item>
+            <item>XYZ-Ring Type 2</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            The pattern is nearly equals an XYZ-Wing + a conjugate pair.
+            <code><![CDATA[
+            abc.  .  | ab .  .
+            .  .  .  | .  .  .
+            .  .  .  | .  .  .
+            ---------+--------
+            ac .  .  | .  .  .
+            .  .  .  | .  .  .
+            .  .  a  | a  .  . ← conjugate pair of 'a'
+            ]]></code>
+            Or
+            <code><![CDATA[
+            abc.  .  | ab .  .
+            .  .  .  | .  .  .
+            .  .  .  | .  .  .
+            ---------+--------
+            ac .  .  | .  .  .
+            .  .  .  | .  .  .
+            a  .  .  | a  .  . ← conjugate pair of 'a'
+            ]]></code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
             <summary>
@@ -9459,6 +9509,63 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>
             The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
+            <summary>
+            Provides with a step that is an <b>XYZ-Ring</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
+            <param name="isType2">Indicates whether the type is type 2.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Conjugate,System.Boolean)">
+            <summary>
+            Provides with a step that is an <b>XYZ-Ring</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="conjugatePair">Indicates the conjugate pair used.</param>
+            <param name="isType2">Indicates whether the type is type 2.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell1">
+            <summary>
+            The generated property declaration for parameter <c>leafCell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell2">
+            <summary>
+            The generated property declaration for parameter <c>leafCell2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugatePair">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePair</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsType2">
+            <summary>
+            The generated property declaration for parameter <c>isType2</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -18515,6 +18622,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to W-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_XyzRingStepSearcher">
+            <summary>
+              Looks up a localized string similar to XYZ-Ring.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StuvwxyzWing">
             <summary>
               Looks up a localized string similar to STUVWXYZ-Wing.
@@ -20263,6 +20375,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.XyXChain">
             <summary>
               Looks up a localized string similar to XY-X-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.XyzRingType1">
+            <summary>
+              Looks up a localized string similar to XYZ-Ring Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.XyzRingType2">
+            <summary>
+              Looks up a localized string similar to XYZ-Ring Type 2.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.XyzWing">

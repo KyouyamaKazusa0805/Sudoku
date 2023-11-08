@@ -2627,4 +2627,16 @@
     <value>高级飞鱼・B 格区块</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="XyzRingType1" xml:space="preserve">
+    <value>XYZ-环类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="XyzRingType2" xml:space="preserve">
+    <value>XYZ-环类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
+    <value>XYZ-环</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

@@ -2454,4 +2454,13 @@
   <data name="SeniorExocetTrueBase" xml:space="preserve">
     <value>Senior Exocet (True Base)</value>
   </data>
+  <data name="XyzRingType1" xml:space="preserve">
+    <value>XYZ-Ring Type 1</value>
+  </data>
+  <data name="XyzRingType2" xml:space="preserve">
+    <value>XYZ-Ring Type 2</value>
+  </data>
+  <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
+    <value>XYZ-Ring</value>
+  </data>
 </root>

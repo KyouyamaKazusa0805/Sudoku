@@ -3895,6 +3895,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XYZ-Ring.
+        /// </summary>
+        public static string StepSearcherName_XyzRingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_XyzRingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to STUVWXYZ-Wing.
         /// </summary>
         public static string StuvwxyzWing {
@@ -7041,6 +7050,24 @@ namespace Sudoku.Analytics.Strings {
         public static string XyXChain {
             get {
                 return ResourceManager.GetString("XyXChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XYZ-Ring Type 1.
+        /// </summary>
+        public static string XyzRingType1 {
+            get {
+                return ResourceManager.GetString("XyzRingType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XYZ-Ring Type 2.
+        /// </summary>
+        public static string XyzRingType2 {
+            get {
+                return ResourceManager.GetString("XyzRingType2", resourceCulture);
             }
         }
         
