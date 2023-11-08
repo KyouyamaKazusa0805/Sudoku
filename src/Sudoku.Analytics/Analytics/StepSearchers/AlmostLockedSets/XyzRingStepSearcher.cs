@@ -110,27 +110,21 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						var leafCellContainingDigit2 = (digitsMask2 >> theOtherDigit2 & 1) != 0 ? leafCell2 : leafCell1;
 
 						// Iterate houses that can form a conjugate pair of digit 'a'.
-						var housesMaskToBeIterated = 1 << leafCell1.ToHouseIndex(HouseType.Block)
-							| 1 << leafCell1.ToHouseIndex(HouseType.Row)
-							| 1 << leafCell1.ToHouseIndex(HouseType.Column)
-							| 1 << leafCell2.ToHouseIndex(HouseType.Block)
-							| 1 << leafCell2.ToHouseIndex(HouseType.Row)
-							| 1 << leafCell2.ToHouseIndex(HouseType.Column);
-						foreach (var houseLinkedWithConjugatePair in housesMaskToBeIterated)
+						foreach (var (houseLinkedWithConjugatePair, touchedLeaf, untouchedLeaf) in (
+							(leafCell1.ToHouseIndex(HouseType.Block), leafCell1, leafCell2),
+							(leafCell1.ToHouseIndex(HouseType.Row), leafCell1, leafCell2),
+							(leafCell1.ToHouseIndex(HouseType.Column), leafCell1, leafCell2),
+							(leafCell2.ToHouseIndex(HouseType.Block), leafCell2, leafCell1),
+							(leafCell2.ToHouseIndex(HouseType.Row), leafCell2, leafCell1),
+							(leafCell2.ToHouseIndex(HouseType.Column), leafCell2, leafCell1)
+						))
 						{
-							// Filters the case when the house contain pivot cells. (Overlapped links).
-							if (HousesMap[houseLinkedWithConjugatePair].Contains(pivot))
-							{
-								continue;
-							}
-
-							var conjugatePairTouchedLeafCell = HousesMap[houseLinkedWithConjugatePair].Contains(leafCell1) ? leafCell1 : leafCell2;
-							var conjugatePairUntouchedLeafCell = conjugatePairTouchedLeafCell == leafCell1 ? leafCell2 : leafCell1;
-							foreach (var conjugatePairStartCell in CandidatesMap[intersectedDigit] & HousesMap[houseLinkedWithConjugatePair])
+							foreach (var start in
+								(CandidatesMap[intersectedDigit] & HousesMap[houseLinkedWithConjugatePair]) - touchedLeaf - pivot)
 							{
 								foreach (var conjugatePairHouseType in HouseTypes)
 								{
-									var conjugatePairHouse = conjugatePairStartCell.ToHouseIndex(conjugatePairHouseType);
+									var conjugatePairHouse = start.ToHouseIndex(conjugatePairHouseType);
 									if (conjugatePairHouse == coveringHouseForDigit1 || conjugatePairHouse == coveringHouseForDigit2)
 									{
 										continue;
@@ -138,57 +132,50 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 
 									var conjugatePairCells = CandidatesMap[intersectedDigit] & HousesMap[conjugatePairHouse];
 									if (conjugatePairCells.Count != 2
-										|| !conjugatePairCells.Contains(conjugatePairStartCell)
-										|| conjugatePairCells.Contains(leafCell1)
-										|| conjugatePairCells.Contains(leafCell2))
+										|| conjugatePairCells.Contains(leafCell1) || conjugatePairCells.Contains(leafCell2))
 									{
 										continue;
 									}
 
 									// A conjugate pair is formed. Now check for the other cell (end cell),
 									// to determine whether the cell shares with a same house with the other cell defined in XYZ-Wing pattern.
-									var conjugatePairEndCell = (conjugatePairCells - conjugatePairStartCell)[0];
-									if (!(CellsMap[conjugatePairUntouchedLeafCell] + conjugatePairEndCell).InOneHouse(out var untouchedHouse))
+									var end = (conjugatePairCells - start)[0];
+									if (!(CellsMap[untouchedLeaf] + end).InOneHouse(out var untouchedHouse))
 									{
 										continue;
 									}
 
 									// Now a ring is formed. Now check for eliminations.
-									var isType2 = false;
-									(CellsMap[pivot] + conjugatePairTouchedLeafCell).InOneHouse(out var pivotAndTouchedCellHouse);
-									if (HousesMap[pivotAndTouchedCellHouse].Contains(conjugatePairStartCell)
-										|| HousesMap[untouchedHouse].Contains(conjugatePairEndCell))
-									{
-										isType2 = true;
-									}
-
 									var conclusions = new List<Conclusion>();
 									foreach (var cell in (HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1])
-										- pivot - leafCellContainingDigit1 - conjugatePairStartCell - conjugatePairEndCell)
+										- pivot - leafCellContainingDigit1 - start - end)
 									{
 										conclusions.Add(new(Elimination, cell, theOtherDigit1));
 									}
 									foreach (var cell in (HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2])
-										- pivot - leafCellContainingDigit2 - conjugatePairStartCell - conjugatePairEndCell)
+										- pivot - leafCellContainingDigit2 - start - end)
 									{
 										conclusions.Add(new(Elimination, cell, theOtherDigit2));
 									}
-									foreach (var cell in (HousesMap[pivotAndTouchedCellHouse] & HousesMap[houseLinkedWithConjugatePair] & EmptyCells)
-										- leafCell1 - leafCell2 - conjugatePairStartCell - conjugatePairEndCell)
+
+									(CellsMap[pivot] + touchedLeaf).InOneHouse(out var pivotAndTouchedCellHouse);
+									foreach (var cell in (HousesMap[pivotAndTouchedCellHouse] & HousesMap[houseLinkedWithConjugatePair] & CandidatesMap[intersectedDigit])
+										- pivot - leafCell1 - leafCell2 - start - end)
 									{
 										conclusions.Add(new(Elimination, cell, intersectedDigit));
 									}
 
-									if (isType2)
+									bool isType2;
+									if (isType2 = (CellsMap[pivot] + touchedLeaf + start).InOneHouse(out _))
 									{
 										// Extra eliminations will be appended.
 										foreach (var cell in (HousesMap[houseLinkedWithConjugatePair] & CandidatesMap[intersectedDigit])
-											- pivot - leafCell1 - leafCell2 - conjugatePairStartCell - conjugatePairEndCell)
+											- pivot - leafCell1 - leafCell2 - start - end)
 										{
 											conclusions.Add(new(Elimination, cell, intersectedDigit));
 										}
 										foreach (var cell in (HousesMap[untouchedHouse] & CandidatesMap[intersectedDigit])
-											- pivot - leafCell1 - leafCell2 - conjugatePairStartCell - conjugatePairEndCell)
+											- pivot - leafCell1 - leafCell2 - start - end)
 										{
 											conclusions.Add(new(Elimination, cell, intersectedDigit));
 										}
@@ -221,15 +208,15 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 													? WellKnownColorIdentifier.Auxiliary1
 													: WellKnownColorIdentifier.Normal
 												select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
-												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, conjugatePairStartCell * 9 + intersectedDigit),
-												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, conjugatePairEndCell * 9 + intersectedDigit),
+												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, start * 9 + intersectedDigit),
+												new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, end * 9 + intersectedDigit),
 											]
 										],
 										context.PredefinedOptions,
 										pivot,
 										leafCell1,
 										leafCell2,
-										new(conjugatePairStartCell, conjugatePairEndCell, intersectedDigit),
+										new(start, end, intersectedDigit),
 										isType2
 									);
 									if (context.OnlyFindOne)
