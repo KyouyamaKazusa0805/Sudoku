@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Defines a type that stores some fields as shared one.
 /// </summary>
-internal static class Intersection
+public static class Intersection
 {
 	/// <summary>
 	/// Indicates the mini-lines to be iterated, grouped by chute index.
