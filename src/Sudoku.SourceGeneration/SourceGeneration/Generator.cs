@@ -142,42 +142,40 @@ public sealed class Generator : IIncrementalGenerator
 
 	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)
 	{
-		const string projectName = "SudokuStudio";
-
 		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"SudokuStudio.ComponentModel.DependencyPropertyAttribute`1",
-					static (n, _) => n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword),
-					DependencyPropertyHandler.Transform
-				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Combine(context.CompilationProvider)
-				.Where(static pair => pair.Right.AssemblyName == projectName)
-				.Select(static (pair, _) => pair.Left)
-				.Collect(),
-			DependencyPropertyHandler.Output
+			context.CompilationProvider
+				.Combine(
+					context.SyntaxProvider
+						.ForAttributeWithMetadataName(
+							"SudokuStudio.ComponentModel.DependencyPropertyAttribute`1",
+							static (n, _) => n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword),
+							DependencyPropertyHandler.Transform
+						)
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+				),
+			static (spc, c) => { if (c.Left.AssemblyName == "SudokuStudio") { DependencyPropertyHandler.Output(spc, c.Right); } }
 		);
 
 		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"SudokuStudio.ComponentModel.AttachedPropertyAttribute`1",
-					static (n, _) => n is ClassDeclarationSyntax
-					{
-						TypeParameterList: null,
-						Modifiers: var m and not []
-					} && m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-					AttachedPropertyHandler.Transform
-				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Combine(context.CompilationProvider)
-				.Where(static pair => pair.Right.AssemblyName == projectName)
-				.Select(static (pair, _) => pair.Left)
-				.Collect(),
-			AttachedPropertyHandler.Output
+			context.CompilationProvider
+				.Combine(
+					context.SyntaxProvider
+						.ForAttributeWithMetadataName(
+							"SudokuStudio.ComponentModel.AttachedPropertyAttribute`1",
+							static (n, _) => n is ClassDeclarationSyntax
+							{
+								TypeParameterList: null,
+								Modifiers: var m and not []
+							} && m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+							AttachedPropertyHandler.Transform
+						)
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+				),
+			static (spc, c) => { if (c.Left.AssemblyName == "SudokuStudio") { AttachedPropertyHandler.Output(spc, c.Right); } }
 		);
 	}
 }
