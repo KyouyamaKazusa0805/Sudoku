@@ -2711,28 +2711,28 @@ public enum Technique
 	/// Indicates XYZ-Ring (type 1).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyzRingType1,
 
 	/// <summary>
 	/// Indicates XYZ-Ring (type 2).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyzRingType2,
 
 	/// <summary>
 	/// Indicates grouped XYZ-Ring (type 1).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyzRingType1,
 
 	/// <summary>
 	/// Indicates grouped XYZ-Ring (type 2).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyzRingType2,
 
 	/// <summary>
