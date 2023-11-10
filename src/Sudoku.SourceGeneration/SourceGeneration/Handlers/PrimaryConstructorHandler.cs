@@ -129,12 +129,16 @@ internal static class PrimaryConstructorHandler
 				=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
 
 			static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField, bool setterIsEmpty)
-				=> (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField, setterIsEmpty) switch
+				=> (!namedArgs.TryGetValueOrDefault<bool>("IsImplicitlyReadOnly", out var a) || a) switch
 				{
-					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _, true) => "readonly ",
-					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _, true) => "readonly ",
-					(_, _, TypeKind.Struct, _, _, true, true) => "readonly ",
-					(_, _, TypeKind.Struct, false, _, _, true) => "readonly ",
+					true => (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField, setterIsEmpty) switch
+					{
+						(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _, true) => "readonly ",
+						(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _, true) => "readonly ",
+						(_, _, TypeKind.Struct, _, _, true, true) => "readonly ",
+						(_, _, TypeKind.Struct, false, _, _, true) => "readonly ",
+						_ => string.Empty
+					},
 					_ => string.Empty
 				};
 

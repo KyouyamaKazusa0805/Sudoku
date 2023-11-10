@@ -2663,6 +2663,16 @@ if (student is (name: var name, age: >= 18))
             Indicates XYZ-Ring (type 2).
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType1">
+            <summary>
+            Indicates grouped XYZ-Ring (type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType2">
+            <summary>
+            Indicates grouped XYZ-Ring (type 2).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
             Indicates singly linked ALS-XZ.
@@ -9531,10 +9541,11 @@ if (student is (name: var name, age: >= 18))
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugatePair">Indicates the conjugate pair used.</param>
+            <param name="conjugateHouse">Indicates the conjugate house used.</param>
             <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.Conjugate,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is an <b>XYZ-Ring</b> technique.
             </summary>
@@ -9544,16 +9555,14 @@ if (student is (name: var name, age: >= 18))
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugatePair">Indicates the conjugate pair used.</param>
+            <param name="conjugateHouse">Indicates the conjugate house used.</param>
             <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#XyzRingStep}#op_Equality(Sudoku.Analytics.Steps.XyzRingStep,Sudoku.Analytics.Steps.XyzRingStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">
@@ -9571,14 +9580,19 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>leafCell2</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugatePair">
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHouse">
             <summary>
-            The generated property declaration for parameter <c>conjugatePair</c>.
+            The generated property declaration for parameter <c>conjugateHouse</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsType2">
             <summary>
             The generated property declaration for parameter <c>isType2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsGrouped">
+            <summary>
+            The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -17598,6 +17612,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyXChain">
             <summary>
               Looks up a localized string similar to Grouped XY-X-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzRingType1">
+            <summary>
+              Looks up a localized string similar to Grouped XYZ-Ring Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzRingType2">
+            <summary>
+              Looks up a localized string similar to Grouped XYZ-Ring Type 2.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.GuardianPlural">

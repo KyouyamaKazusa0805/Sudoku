@@ -2032,6 +2032,24 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped XYZ-Ring Type 1.
+        /// </summary>
+        public static string GroupedXyzRingType1 {
+            get {
+                return ResourceManager.GetString("GroupedXyzRingType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped XYZ-Ring Type 2.
+        /// </summary>
+        public static string GroupedXyzRingType2 {
+            get {
+                return ResourceManager.GetString("GroupedXyzRingType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to guardians.
         /// </summary>
         public static string GuardianPlural {

@@ -2463,4 +2463,10 @@
   <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
     <value>XYZ-Ring</value>
   </data>
+  <data name="GroupedXyzRingType1" xml:space="preserve">
+    <value>Grouped XYZ-Ring Type 1</value>
+  </data>
+  <data name="GroupedXyzRingType2" xml:space="preserve">
+    <value>Grouped XYZ-Ring Type 2</value>
+  </data>
 </root>

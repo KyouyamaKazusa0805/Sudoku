@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
@@ -21,7 +22,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>XYZ-Ring Type 2</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.XyzRingType1, Technique.XyzRingType2)]
+[StepSearcher(Technique.XyzRingType1, Technique.XyzRingType2, Technique.GroupedXyzRingType1, Technique.GroupedXyzRingType2)]
 public sealed partial class XyzRingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -111,138 +112,132 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						var leafCellContainingDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? leafCell1 : leafCell2;
 						var leafCellContainingDigit2 = (digitsMask2 >> theOtherDigit2 & 1) != 0 ? leafCell2 : leafCell1;
 
-						// Iterate houses that can form a conjugate pair of digit 'a'.
-						foreach (var (houseLinkedWithConjugatePair, touchedLeaf, untouchedLeaf) in (
-							(leafCell1.ToHouseIndex(HouseType.Block), leafCell1, leafCell2),
-							(leafCell1.ToHouseIndex(HouseType.Row), leafCell1, leafCell2),
-							(leafCell1.ToHouseIndex(HouseType.Column), leafCell1, leafCell2),
-							(leafCell2.ToHouseIndex(HouseType.Block), leafCell2, leafCell1),
-							(leafCell2.ToHouseIndex(HouseType.Row), leafCell2, leafCell1),
-							(leafCell2.ToHouseIndex(HouseType.Column), leafCell2, leafCell1)
-						))
+						// Iterate on all houses, determining whether two leaf cells can make the house
+						// out of filling with intersected digit.
+						for (var conflictedHouse = 0; conflictedHouse < 27; conflictedHouse++)
 						{
-							foreach (var start in
-								(CandidatesMap[intersectedDigit] & HousesMap[houseLinkedWithConjugatePair]) - touchedLeaf - pivot)
+							var cellsShouldBeCovered = HousesMap[conflictedHouse] & CandidatesMap[intersectedDigit];
+							if (!cellsShouldBeCovered || !!(cellsShouldBeCovered & (CellsMap[pivot] + leafCell1 + leafCell2)))
 							{
-								foreach (var conjugatePairHouseType in HouseTypes)
+								continue;
+							}
+
+							if (((CellsMap[leafCell1] + leafCell2).ExpandedPeers & cellsShouldBeCovered) != cellsShouldBeCovered)
+							{
+								continue;
+							}
+
+							// An XYZ-Ring is formed. Now check for eliminations.
+							var patternCells = cellsShouldBeCovered + pivot + leafCell1 + leafCell2;
+							var conclusions = new List<Conclusion>();
+
+							// Elim zone 1: Sharing house for pivot and leaf cell 1 -> eliminate digit they both hold (not intersected digit).
+							foreach (var cell in (HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1]) - patternCells - cellsShouldBeCovered)
+							{
+								conclusions.Add(new(Elimination, cell, theOtherDigit1));
+							}
+
+							// Elim zone 2: Sharing house for pivot and leaf cell 2 -> eliminate digit they both hold (not intersected digit).
+							foreach (var cell in (HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2]) - patternCells - cellsShouldBeCovered)
+							{
+								conclusions.Add(new(Elimination, cell, theOtherDigit2));
+							}
+
+							var isType2 = false;
+							foreach (var (leaf, theOtherLeaf) in ((leafCell1, leafCell2), (leafCell2, leafCell1)))
+							{
+								var linkCellsIntersected = cellsShouldBeCovered & PeersMap[leaf];
+								foreach (var linkCellHouse in linkCellsIntersected.CoveredHouses)
 								{
-									var conjugatePairHouse = start.ToHouseIndex(conjugatePairHouseType);
-									if (conjugatePairHouse == coveringHouseForDigit1 || conjugatePairHouse == coveringHouseForDigit2)
+									foreach (var leafCellHouse in (CellsMap[pivot] + leaf).CoveredHouses)
 									{
-										continue;
-									}
-
-									var conjugatePairCells = CandidatesMap[intersectedDigit] & HousesMap[conjugatePairHouse];
-									if (conjugatePairCells.Count != 2
-										|| conjugatePairCells.Contains(leafCell1) || conjugatePairCells.Contains(leafCell2))
-									{
-										continue;
-									}
-
-									// A conjugate pair is formed. Now check for the other cell (end cell),
-									// to determine whether the cell shares with a same house with the other cell defined in XYZ-Wing pattern.
-									var end = (conjugatePairCells - start)[0];
-									if (!(CellsMap[untouchedLeaf] + end).InOneHouse(out var untouchedHouse))
-									{
-										continue;
-									}
-
-									// Now a ring is formed. Now check for eliminations.
-									var conclusions = new List<Conclusion>();
-									foreach (var cell in (HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1])
-										- pivot - leafCellContainingDigit1 - start - end)
-									{
-										conclusions.Add(new(Elimination, cell, theOtherDigit1));
-									}
-									foreach (var cell in (HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2])
-										- pivot - leafCellContainingDigit2 - start - end)
-									{
-										conclusions.Add(new(Elimination, cell, theOtherDigit2));
-									}
-
-									(CellsMap[pivot] + touchedLeaf).InOneHouse(out var pivotAndTouchedCellHouse);
-									foreach (var cell in (HousesMap[pivotAndTouchedCellHouse] & HousesMap[houseLinkedWithConjugatePair] & CandidatesMap[intersectedDigit])
-										- pivot - leafCell1 - leafCell2 - start - end)
-									{
-										conclusions.Add(new(Elimination, cell, intersectedDigit));
-									}
-
-									bool isType2;
-									if (isType2 = (CellsMap[pivot] + touchedLeaf + start).InOneHouse(out _))
-									{
-										// Extra eliminations will be appended.
-										foreach (var cell in (HousesMap[houseLinkedWithConjugatePair] & CandidatesMap[intersectedDigit])
-											- pivot - leafCell1 - leafCell2 - start - end)
+										if (linkCellHouse.ToHouseType() == HouseType.Block ^ leafCellHouse.ToHouseType() == HouseType.Block
+											&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)
 										{
-											conclusions.Add(new(Elimination, cell, intersectedDigit));
+											// Elim zone 3: Intersected cell for the leaf and one grouped node of cells in (grouped) strong link
+											// that they shares in a same mini-line -> eliminate intersected digit.
+											foreach (var cell in (i & CandidatesMap[intersectedDigit]) - patternCells - cellsShouldBeCovered)
+											{
+												conclusions.Add(new(Elimination, cell, intersectedDigit));
+											}
 										}
-										foreach (var cell in (HousesMap[untouchedHouse] & CandidatesMap[intersectedDigit])
-											- pivot - leafCell1 - leafCell2 - start - end)
+
+										if ((HousesMap[leafCellHouse] & linkCellsIntersected) == linkCellsIntersected)
 										{
-											conclusions.Add(new(Elimination, cell, intersectedDigit));
+											// Type 2 is checked.
+											isType2 = true;
+
+											// Elim zone 4 and 5: shared houses for leaf and (grouped) strong link nodes.
+											foreach (var cell in (HousesMap[leafCellHouse] & CandidatesMap[intersectedDigit])
+												- pivot - cellsShouldBeCovered - leaf)
+											{
+												conclusions.Add(new(Elimination, cell, intersectedDigit));
+											}
+
+											var lastCellsToCheck = cellsShouldBeCovered - linkCellsIntersected + theOtherLeaf;
+											foreach (var house in lastCellsToCheck.CoveredHouses)
+											{
+												foreach (var cell in HousesMap[house] & CandidatesMap[intersectedDigit] - lastCellsToCheck)
+												{
+													conclusions.Add(new(Elimination, cell, intersectedDigit));
+												}
+											}
 										}
 									}
-
-									if (conclusions.Count == 0)
-									{
-										continue;
-									}
-
-									foundSteps.Add(
-										new XyzRingStep(
-											[.. conclusions],
-											[
-												[
-													..
-													from digit in digitsMaskPivot
-													let colorIdentifier = digit == intersectedDigit
-														? WellKnownColorIdentifier.Auxiliary1
-														: WellKnownColorIdentifier.Normal
-													select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
-													..
-													from digit in digitsMask1
-													let colorIdentifier = digit == intersectedDigit
-														? WellKnownColorIdentifier.Auxiliary1
-														: WellKnownColorIdentifier.Normal
-													select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
-													..
-													from digit in digitsMask2
-													let colorIdentifier = digit == intersectedDigit
-														? WellKnownColorIdentifier.Auxiliary1
-														: WellKnownColorIdentifier.Normal
-													select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
-													new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, start * 9 + intersectedDigit),
-													new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, end * 9 + intersectedDigit),
-												]
-											],
-											context.PredefinedOptions,
-											pivot,
-											leafCell1,
-											leafCell2,
-											new(start, end, intersectedDigit),
-											isType2
-										)
-									);
 								}
 							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							var step = new XyzRingStep(
+								[.. conclusions],
+								[
+									[
+										..
+										from digit in digitsMaskPivot
+										let colorIdentifier = digit == intersectedDigit
+											? WellKnownColorIdentifier.Auxiliary1
+											: WellKnownColorIdentifier.Normal
+										select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
+										..
+										from digit in digitsMask1
+										let colorIdentifier = digit == intersectedDigit
+											? WellKnownColorIdentifier.Auxiliary1
+											: WellKnownColorIdentifier.Normal
+										select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
+										..
+										from digit in digitsMask2
+										let colorIdentifier = digit == intersectedDigit
+											? WellKnownColorIdentifier.Auxiliary1
+											: WellKnownColorIdentifier.Normal
+										select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
+										..
+										from cell in cellsShouldBeCovered
+										select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
+									]
+								],
+								context.PredefinedOptions,
+								pivot,
+								leafCell1,
+								leafCell2,
+								conflictedHouse,
+								isType2,
+								cellsShouldBeCovered.Count > 2
+							);
+							if (context.OnlyFindOne)
+							{
+								return step;
+							}
+
+							context.Accumulator.Add(step);
 						}
 					}
 				}
 			}
 		}
 
-		if (foundSteps.Count == 0)
-		{
-			return null;
-		}
-
-		var resultSteps = foundSteps.Distinct();
-		if (context.OnlyFindOne)
-		{
-			return resultSteps.First();
-		}
-
-		context.Accumulator.AddRange(resultSteps);
 		return null;
 	}
 }

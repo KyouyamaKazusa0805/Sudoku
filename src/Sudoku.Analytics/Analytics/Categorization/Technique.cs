@@ -2722,6 +2722,20 @@ public enum Technique
 	XyzRingType2,
 
 	/// <summary>
+	/// Indicates grouped XYZ-Ring (type 1).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedXyzRingType1,
+
+	/// <summary>
+	/// Indicates grouped XYZ-Ring (type 2).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedXyzRingType2,
+
+	/// <summary>
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
 	[HodokuTechniquePrefix("0901")]

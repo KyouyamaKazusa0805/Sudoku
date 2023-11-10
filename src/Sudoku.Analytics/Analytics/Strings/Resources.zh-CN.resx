@@ -2639,4 +2639,12 @@
     <value>XYZ-环</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="GroupedXyzRingType1" xml:space="preserve">
+    <value>结构 XYZ-环类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="GroupedXyzRingType2" xml:space="preserve">
+    <value>结构 XYZ-环类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>
