@@ -5063,46 +5063,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
-            <summary>
-            Provides with an <b>XYZ-Ring</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>XYZ-Ring Type 1</item>
-            <item>XYZ-Ring Type 2</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            The pattern is nearly equals an XYZ-Wing + a conjugate pair.
-            <code><![CDATA[
-            abc.  .  | ab .  .
-            .  .  .  | .  .  .
-            .  .  .  | .  .  .
-            ---------+--------
-            ac .  .  | .  .  .
-            .  .  .  | .  .  .
-            .  .  a  | a  .  . ← conjugate pair of 'a'
-            ]]></code>
-            Or
-            <code><![CDATA[
-            abc.  .  | ab .  .
-            .  .  .  | .  .  .
-            .  .  .  | .  .  .
-            ---------+--------
-            ac .  .  | .  .  .
-            .  .  .  | .  .  .
-            a  .  .  | a  .  . ← conjugate pair of 'a'
-            ]]></code>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
@@ -9251,6 +9211,48 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
+            <summary>
+            Provides with an <b>XYZ-Ring</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>XYZ-Ring Type 1</item>
+            <item>XYZ-Ring Type 2</item>
+            <item>Grouped XYZ-Ring Type 1</item>
+            <item>Grouped XYZ-Ring Type 2</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            The pattern is nearly equals an XYZ-Wing + a conjugate pair.
+            <code><![CDATA[
+            abc.  .  | ab .  .
+            .  .  .  | .  .  .
+            .  .  .  | .  .  .
+            ---------+--------
+            ac .  .  | .  .  .
+            .  .  .  | .  .  .
+            .  .  a  | a  .  . ← conjugate pair of 'a'
+            ]]></code>
+            Or
+            <code><![CDATA[
+            abc.  .  | ab .  .
+            .  .  .  | .  .  .
+            .  .  .  | .  .  .
+            ---------+--------
+            ac .  .  | .  .  .
+            .  .  .  | .  .  .
+            a  .  .  | a  .  . ← conjugate pair of 'a'
+            ]]></code>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsStep">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
@@ -9529,70 +9531,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>
             The generated property declaration for parameter <c>digit2</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
-            <summary>
-            Provides with a step that is an <b>XYZ-Ring</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pivot">Indicates the pivot cell.</param>
-            <param name="leafCell1">Indicates the leaf cell 1.</param>
-            <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugateHouse">Indicates the conjugate house used.</param>
-            <param name="isType2">Indicates whether the type is type 2.</param>
-            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Provides with a step that is an <b>XYZ-Ring</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pivot">Indicates the pivot cell.</param>
-            <param name="leafCell1">Indicates the leaf cell 1.</param>
-            <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugateHouse">Indicates the conjugate house used.</param>
-            <param name="isType2">Indicates whether the type is type 2.</param>
-            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">
-            <summary>
-            The generated property declaration for parameter <c>pivot</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell1">
-            <summary>
-            The generated property declaration for parameter <c>leafCell1</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell2">
-            <summary>
-            The generated property declaration for parameter <c>leafCell2</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHouse">
-            <summary>
-            The generated property declaration for parameter <c>conjugateHouse</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsType2">
-            <summary>
-            The generated property declaration for parameter <c>isType2</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsGrouped">
-            <summary>
-            The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -16423,6 +16361,70 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
+            <summary>
+            Provides with a step that is an <b>XYZ-Ring</b> or <b>Grouped XYZ-Ring</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="conjugateHouse">Indicates the conjugate house used.</param>
+            <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Provides with a step that is an <b>XYZ-Ring</b> or <b>Grouped XYZ-Ring</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="conjugateHouse">Indicates the conjugate house used.</param>
+            <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell1">
+            <summary>
+            The generated property declaration for parameter <c>leafCell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell2">
+            <summary>
+            The generated property declaration for parameter <c>leafCell2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHouse">
+            <summary>
+            The generated property declaration for parameter <c>conjugateHouse</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsType2">
+            <summary>
+            The generated property declaration for parameter <c>isType2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsGrouped">
+            <summary>
+            The generated property declaration for parameter <c>isGrouped</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetShapeKind">
             <summary>

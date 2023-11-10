@@ -6,7 +6,7 @@ using Sudoku.Rendering;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is an <b>XYZ-Ring</b> technique.
+/// Provides with a step that is an <b>XYZ-Ring</b> or <b>Grouped XYZ-Ring</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -27,7 +27,7 @@ public sealed partial class XyzRingStep(
 	[DataMember] House conjugateHouse,
 	[DataMember] bool isType2,
 	[DataMember] bool isGrouped
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : WingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => IsType2 ? 5.0M : 5.2M;

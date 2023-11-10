@@ -20,6 +20,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>XYZ-Ring Type 1</item>
 /// <item>XYZ-Ring Type 2</item>
+/// <item>Grouped XYZ-Ring Type 1</item>
+/// <item>Grouped XYZ-Ring Type 2</item>
 /// </list>
 /// </summary>
 [StepSearcher(Technique.XyzRingType1, Technique.XyzRingType2, Technique.GroupedXyzRingType1, Technique.GroupedXyzRingType2)]
