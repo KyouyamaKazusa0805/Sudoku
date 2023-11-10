@@ -1893,6 +1893,26 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped hybrid wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
+            <summary>
+            Indicates XYZ-Ring (type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
+            <summary>
+            Indicates XYZ-Ring (type 2).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType1">
+            <summary>
+            Indicates grouped XYZ-Ring (type 1).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType2">
+            <summary>
+            Indicates grouped XYZ-Ring (type 2).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType1">
             <summary>
             Indicates unique rectangle type 1.
@@ -2651,26 +2671,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedQuintupleExclusion">
             <summary>
             Indicates aligned quintuple exclusion.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
-            <summary>
-            Indicates XYZ-Ring (type 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
-            <summary>
-            Indicates XYZ-Ring (type 2).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType1">
-            <summary>
-            Indicates grouped XYZ-Ring (type 1).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType2">
-            <summary>
-            Indicates grouped XYZ-Ring (type 2).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
