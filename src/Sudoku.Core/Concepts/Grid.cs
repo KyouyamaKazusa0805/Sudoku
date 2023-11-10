@@ -1,7 +1,8 @@
+#undef EMPTY_GRID_STRING_CONSTANT
+#define IMPL_INTERFACE_MIN_MAX_VALUE
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #define TARGET_64BIT
-#define IMPL_INTERFACE_MIN_MAX_VALUE
 #if SYNC_ROOT_VIA_METHODIMPL && SYNC_ROOT_VIA_OBJECT
 #line 1 "Grid.cs"
 #error Don't set both symbols 'SYNC_ROOT_VIA_METHODIMPL' and 'SYNC_ROOT_VIA_OBJECT'.
@@ -97,11 +98,20 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public const Mask GivenMask = (Mask)CellState.Given << 9;
 
+#if EMPTY_GRID_STRING_CONSTANT
+	/// <summary>
+	/// Indicates the empty grid string.
+	/// </summary>
+	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+#endif
 
+
+#if !EMPTY_GRID_STRING_CONSTANT
 	/// <summary>
 	/// Indicates the empty grid string.
 	/// </summary>
 	public static readonly string EmptyString = new('0', 81);
+#endif
 
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
