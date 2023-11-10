@@ -361,26 +361,16 @@
         </member>
         <member name="P:System.Collections.Generic.ValueList`1.Count">
             <summary>
-            Indicates the length of the list.
+            Indicates the number of elements stored in the list.
             </summary>
         </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Length">
-            <summary>
-            Indicates the length of the list. The property is same as <see cref="P:System.Collections.Generic.ValueList`1.Count"/>, but the property is used
-            by slicing and list patterns.
-            </summary>
-            <seealso cref="P:System.Collections.Generic.ValueList`1.Count"/>
-        </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Byte)">
+        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Int32)">
             <summary>
             Gets the element from the current list, or sets the element to the current list,
             with the specified index.
             </summary>
             <param name="index">The index.</param>
             <returns>The reference to the element at the specified index.</returns>
-        </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Index)">
-            <inheritdoc cref="P:System.Collections.Generic.ValueList`1.Item(System.Byte)"/>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
             <summary>
@@ -413,15 +403,6 @@
             This method should be called when the constructor <see cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/> is called.
             </i></remarks>
             <seealso cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Contains(`0,)">
-            <summary>
-            Determines whether the specified element is in the current collection
-            using the specified equality comparing method to define whether two instances are considered equal.
-            </summary>
-            <param name="instance">The instance to be determined.</param>
-            <param name="predicate">A method that defines whether two instances are considered equal.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="M:System.Collections.Generic.ValueList`1.ToString(System.String)">
             <summary>

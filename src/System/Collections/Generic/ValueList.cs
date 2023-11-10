@@ -1,6 +1,4 @@
 #pragma warning disable IDE0032
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
@@ -38,7 +36,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	/// <summary>
 	/// Indicates the pointer that points to the first element.
 	/// </summary>
-	private T?* _startPtr = (T?*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
+	private T* _startPtr = (T*)NativeMemory.Alloc((nuint)sizeof(T) * capacity);
 
 
 	/// <summary>
@@ -51,22 +49,9 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 
 
 	/// <summary>
-	/// Indicates the length of the list.
+	/// Indicates the number of elements stored in the list.
 	/// </summary>
-	public readonly byte Count
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _length;
-	}
-
-	/// <summary>
-	/// Indicates the length of the list. The property is same as <see cref="Count"/>, but the property is used
-	/// by slicing and list patterns.
-	/// </summary>
-	/// <seealso cref="Count"/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	public readonly int Length
+	public readonly int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _length;
@@ -79,19 +64,10 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	/// </summary>
 	/// <param name="index">The index.</param>
 	/// <returns>The reference to the element at the specified index.</returns>
-	public readonly ref T this[byte index]
+	public readonly ref T this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ref _startPtr[index];
-	}
-
-	/// <inheritdoc cref="this[byte]"/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	public readonly ref T this[Index index]
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ref _startPtr[index.GetOffset(_length)];
 	}
 
 
@@ -151,26 +127,6 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	}
 
 	/// <summary>
-	/// Determines whether the specified element is in the current collection
-	/// using the specified equality comparing method to define whether two instances are considered equal.
-	/// </summary>
-	/// <param name="instance">The instance to be determined.</param>
-	/// <param name="predicate">A method that defines whether two instances are considered equal.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public readonly bool Contains(T instance, delegate*<T, T, bool> predicate)
-	{
-		foreach (var element in this)
-		{
-			if (predicate(element, instance))
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/// <summary>
 	/// Returns a string that represents the current object with the custom format string.
 	/// </summary>
 	/// <param name="format">The format.</param>
@@ -181,7 +137,7 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	{
 		return format switch
 		{
-			null or "L" or "l" => $"ValueList<{typeof(T).Name}> {{ Count = {_length}, Capacity = {_capacity} }}",
+			null or "L" or "l" => $"ValueList<{typeof(T).Name}> {{ {nameof(Count)} = {_length}, Capacity = {_capacity} }}",
 			"C" or "c" => toContentString(in this),
 			"S" or "s" => $"ValueList<{typeof(T).Name}> {{ Size = {sizeof(T) * _length} }}",
 			_ => throw new FormatException("The specified format doesn't support.")
@@ -212,10 +168,10 @@ public unsafe ref partial struct ValueList<T>([DataMember(MemberKinds.Field)] by
 	/// </summary>
 	/// <returns>The array of elements of type <typeparamref name="T"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly T?[] ToArray()
+	public readonly T[] ToArray()
 	{
-		var result = new T?[_length];
-		Unsafe.CopyBlock(ref Unsafe.As<T?, byte>(ref result[0]), in Unsafe.As<T?, byte>(ref _startPtr[0]), (uint)(sizeof(T) * _length));
+		var result = new T[_length];
+		Unsafe.CopyBlock(ref Unsafe.As<T, byte>(ref result[0]), in Unsafe.As<T, byte>(ref _startPtr[0]), (uint)(sizeof(T) * _length));
 		return result;
 	}
 }
