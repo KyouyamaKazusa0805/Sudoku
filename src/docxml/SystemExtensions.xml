@@ -306,193 +306,21 @@
         <member name="M:System.Collections.Generic.ReverseIterator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:System.Collections.Generic.ValueList`1">
+        <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
-            Defines a value-type sequence list, using unmanaged pointer types to describe the sequence memory.
+            Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <param name="capacity">Indicates the length of the list.</param>
-            <remarks>
-            We recommend you use this type like:
-            <code><![CDATA[
-            static int[] Example()
-            {
-                using scoped var list = new ValueList<int>(10);
-                list.Add(3);
-                list.Add(6);
-                return [.. list];
-            }
-            ]]></code>
-            </remarks>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
-        <member name="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)">
+        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
             <summary>
-            Defines a value-type sequence list, using unmanaged pointer types to describe the sequence memory.
+            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
-            <typeparam name="T">The element type.</typeparam>
-            <param name="capacity">Indicates the length of the list.</param>
-            <remarks>
-            We recommend you use this type like:
-            <code><![CDATA[
-            static int[] Example()
-            {
-                using scoped var list = new ValueList<int>(10);
-                list.Add(3);
-                list.Add(6);
-                return [.. list];
-            }
-            ]]></code>
-            </remarks>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list to be modified.</param>
         </member>
-        <member name="F:System.Collections.Generic.ValueList`1._length">
-            <summary>
-            Indicates the current length.
-            </summary>
-        </member>
-        <member name="F:System.Collections.Generic.ValueList`1._startPtr">
-            <summary>
-            Indicates the pointer that points to the first element.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the default capacity 255.
-            </summary>
-        </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Count">
-            <summary>
-            Indicates the number of elements stored in the list.
-            </summary>
-        </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Item(System.Int32)">
-            <summary>
-            Gets the element from the current list, or sets the element to the current list,
-            with the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>The reference to the element at the specified index.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Add(`0)">
-            <summary>
-            Adds the element to the current list.
-            </summary>
-            <param name="element">The element.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.TryAdd(`0)">
-            <summary>
-            Try to add the element into the current list, and return <see langword="false"/> if the collection is full.
-            </summary>
-            <param name="element">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Remove">
-            <summary>
-            Removes the last element from the collection.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Clear">
-            <summary>
-            Removes all elements in this collection.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Dispose">
-            <summary>
-            To dispose the current list.
-            </summary>
-            <remarks><i>
-            This method should be called when the constructor <see cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/> is called.
-            </i></remarks>
-            <seealso cref="M:System.Collections.Generic.ValueList`1.#ctor(System.Byte)"/>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToString(System.String)">
-            <summary>
-            Returns a string that represents the current object with the custom format string.
-            </summary>
-            <param name="format">The format.</param>
-            <returns>The string that represents the current object.</returns>
-            <exception cref="T:System.FormatException">Throws when the specified format is invalid.</exception>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToArray">
-            <summary>
-            Converts the current instance into an array of type <typeparamref name="T"/>.
-            </summary>
-            <returns>The array of elements of type <typeparamref name="T"/>.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.ValueList`1.Enumerator">
-            <summary>
-            Defines the enumerator of this type.
-            </summary>
-        </member>
-        <member name="F:System.Collections.Generic.ValueList`1.Enumerator._ptr">
-            <summary>
-            Indicates the inner pointer.
-            </summary>
-            <remarks>
-            <para><i>
-            Due to the C# implementation, feature "<see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/declarations#scoped-ref"><b><see langword="ref"/> fields</b></see>"
-            does not support for native memory,
-            which means you cannot define a reference-based field that reference to native memory.
-            Therefore, here we can only use bare pointers to describe the internal data. <b>Do not change this field.</b>
-            </i></para>
-            <para><i>
-            C# 11 does not support "<see href="https://github.com/dotnet/roslyn/issues/62243"><b><see langword="ref"/> to <see langword="ref struct"/></b></see>"
-            neither.
-            </i></para>
-            </remarks>
-        </member>
-        <member name="F:System.Collections.Generic.ValueList`1.Enumerator._current">
-            <summary>
-            Indicates the current position.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.#ctor(System.Collections.Generic.ValueList{`0}@)">
-            <summary>
-            Initializes the <see cref="T:System.Collections.Generic.ValueList`1.Enumerator"/> type via the current instance.
-            </summary>
-            <param name="ptr">The pointer that points to the list.</param>
-        </member>
-        <member name="P:System.Collections.Generic.ValueList`1.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:System.Collections.Generic.ValueList`1._capacity">
-            <summary>
-            The generated field declaration for parameter <c>capacity</c>.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ValueList`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:System.Collections.Generic.ValueListCreator">
-            <summary>
-            Represents a type that can create a <see cref="T:System.Collections.Generic.ValueList`1"/> instance.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.ValueList`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.ValueListCreator.Create``1(System.ReadOnlySpan{``0})">
-            <summary>
-            Creates a <see cref="T:System.Collections.Generic.ValueList`1"/> instance via the specified list of values.
-            </summary>
-            <typeparam name="T">The type of each value.</typeparam>
-            <param name="values">The values.</param>
-            <returns>A <see cref="T:System.Collections.Generic.ValueList`1"/> instance that contains a list of values.</returns>
-            <remarks>
-            Please note that the type uses unmanaged memory, so you must use <see langword="using"/> keyword
-            to release unmanaged memory when you don't use it, such as:
-            <code><![CDATA[
-            using scoped var list = (ValueList<int>)[1, 2, 3, 4];
-            
-            // ...
-            ]]></code>
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified collection contains at least 257 elements that will make the collection failed to be initialized.
-            </exception>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
         </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>

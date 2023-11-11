@@ -417,7 +417,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		using scoped var conclusions = new ValueList<Conclusion>(2);
+		var conclusions = new List<Conclusion>(2);
 		if (d1Exists)
 		{
 			conclusions.Add(new(Elimination, cornerCell, d1));
@@ -3106,7 +3106,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var line = (byte)otherCellsMap.CoveredLine;
 		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[new(line, block)];
-		using scoped var list = new ValueList<CellMap>(4);
+		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
 		{
 			foreach (var otherBlock in d)

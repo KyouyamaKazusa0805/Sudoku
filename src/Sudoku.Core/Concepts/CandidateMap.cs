@@ -668,18 +668,6 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <inheritdoc cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>
-	public static CandidateMap operator +(scoped in CandidateMap collection, scoped ValueList<Candidate> offsets)
-	{
-		var result = collection;
-		foreach (var element in offsets)
-		{
-			result.Add(element);
-		}
-
-		return result;
-	}
-
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
 	{

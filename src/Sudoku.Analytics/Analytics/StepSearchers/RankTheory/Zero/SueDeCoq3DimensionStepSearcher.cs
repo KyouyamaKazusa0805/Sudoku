@@ -27,8 +27,8 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		using scoped var rbList = new ValueList<CellMap>(3);
-		using scoped var cbList = new ValueList<CellMap>(3);
+		var rbList = new List<CellMap>(3);
+		var cbList = new List<CellMap>(3);
 		foreach (var pivot in EmptyCells)
 		{
 			var r = pivot.ToHouseIndex(HouseType.Row);
@@ -44,8 +44,8 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 				continue;
 			}
 
-			reinitializeList(&rbList, &rbEmptyMap);
-			reinitializeList(&cbList, &cbEmptyMap);
+			reinitializeList(rbList, in rbEmptyMap);
+			reinitializeList(cbList, in cbEmptyMap);
 
 			foreach (var rbCurrentMap in rbList)
 			{
@@ -237,21 +237,21 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void reinitializeList(ValueList<CellMap>* list, CellMap* emptyMap)
+		static void reinitializeList(List<CellMap> list, scoped ref readonly CellMap emptyMap)
 		{
-			list->Clear();
-			switch (*emptyMap)
+			list.Clear();
+			switch (emptyMap)
 			{
 				case { Count: 2 }:
 				{
-					list->Add(*emptyMap);
+					list.Add(emptyMap);
 					break;
 				}
 				case [var i, var j, var k]:
 				{
-					list->Add([i, j]);
-					list->Add([i, k]);
-					list->Add([j, k]);
+					list.Add([i, j]);
+					list.Add([i, k]);
+					list.Add([j, k]);
 					break;
 				}
 			}

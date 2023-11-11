@@ -1728,9 +1728,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.ValueList{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})"/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>

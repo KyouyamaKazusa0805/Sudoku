@@ -6557,7 +6557,7 @@ if (student is (name: var name, age: >= 18))
             <para>
             <i>
             However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
+            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})"/>
             above this.
             If a pattern is like:
             </i>
@@ -6586,9 +6586,9 @@ if (student is (name: var name, age: >= 18))
             ~~~~~~~~~~~~~~~~~~~~~~~~~
             ]]></code>
             </para>
-            <para><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)" path="//remarks/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})" path="//remarks/para[2]"/></para>
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)"/>
+            <seealso cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
@@ -6667,7 +6667,7 @@ if (student is (name: var name, age: >= 18))
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.ValueList{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
             To collect all possible unique loop patterns in the current grid.
             </summary>
@@ -6684,7 +6684,7 @@ if (student is (name: var name, age: >= 18))
             <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
             <param name="lastHouseType">The last house type. This is a temporary variable.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.ValueList{System.Int32}@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})">
             <summary>
             Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
             </summary>

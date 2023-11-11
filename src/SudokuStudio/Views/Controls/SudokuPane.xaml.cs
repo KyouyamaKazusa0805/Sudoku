@@ -590,7 +590,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Check whether a house is going to be completed.
 		var housesToBeCompleted = value.FullHouses & ~_puzzle.FullHouses;
-		using scoped var lastCells = new ValueList<Cell>((byte)PopCount((uint)housesToBeCompleted));
+		var lastCells = new List<Cell>((byte)PopCount((uint)housesToBeCompleted));
 		foreach (var houseToBeCompleted in housesToBeCompleted)
 		{
 			foreach (var cell in HouseCells[houseToBeCompleted])

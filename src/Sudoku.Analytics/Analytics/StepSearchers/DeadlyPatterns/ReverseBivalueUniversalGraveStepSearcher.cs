@@ -543,7 +543,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <para>
 	/// <i>
 	/// However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{Cell})"/>
+	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopStepSearcher.IsValidLoop(List{Cell})"/>
 	/// above this.
 	/// If a pattern is like:
 	/// </i>
@@ -572,9 +572,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// ~~~~~~~~~~~~~~~~~~~~~~~~~
 	/// ]]></code>
 	/// </para>
-	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{Cell})" path="//remarks/para[2]"/></para>
+	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(List{Cell})" path="//remarks/para[2]"/></para>
 	/// </remarks>
-	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(ref readonly ValueList{Cell})"/>
+	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(List{Cell})"/>
 	private static bool IsGeneralizedUniqueLoop(scoped ref readonly CellMap loop)
 	{
 		// The length of the loop pattern must be at least 4, and an even.

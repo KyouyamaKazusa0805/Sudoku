@@ -42,8 +42,8 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					// Get all cells.
 					var (cells1, cells2) = (CellMap.Empty, CellMap.Empty);
-					using scoped var cellsList1 = new ValueList<Cell>(2);
-					using scoped var cellsList2 = new ValueList<Cell>(2);
+					var cellsList1 = new List<Cell>(2);
+					var cellsList2 = new List<Cell>(2);
 					foreach (var pos1 in mask1)
 					{
 						var cell1 = HouseCells[h1][pos1];

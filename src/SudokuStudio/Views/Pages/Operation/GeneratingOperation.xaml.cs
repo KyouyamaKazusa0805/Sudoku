@@ -189,28 +189,54 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				{
 					var grid = HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken);
 
-					// Optimize: transform the grid if worth.
-					var foundIttoryu = finder.FindPath(in grid);
-					if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
+					switch (difficultyLevel)
 					{
-						grid.MakeIttoryu(foundIttoryu);
-					}
-
-					if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-						&& analyzer.Analyze(in grid) is
+						case DifficultyLevel.Easy:
 						{
-							IsSolved: true,
-							IsPearl: var isPearl,
-							DifficultyLevel: var puzzleDifficultyLevel,
-							SolvingPath: var p
+							// Optimize: transform the grid if worth.
+							var foundIttoryu = finder.FindPath(in grid);
+							if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
+							{
+								grid.MakeIttoryu(foundIttoryu);
+							}
+
+							if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
+								&& analyzer.Analyze(in grid) is
+								{
+									IsSolved: true,
+									IsPearl: var isPearl,
+									DifficultyLevel: var puzzleDifficultyLevel,
+									SolvingPath: var p
+								}
+								&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
+								&& (minimal && grid.IsMinimal || !minimal)
+								&& (pearl && isPearl is true || !pearl)
+								&& (technique != 0 && p.HasTechnique(technique) || technique == 0)
+								&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
+							{
+								return grid;
+							}
+							break;
 						}
-						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-						&& (minimal && grid.IsMinimal || !minimal)
-						&& (pearl && isPearl is true || !pearl)
-						&& (technique != 0 && p.HasTechnique(technique) || technique == 0)
-						&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
-					{
-						return grid;
+						default:
+						{
+							if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
+								&& analyzer.Analyze(in grid) is
+								{
+									IsSolved: true,
+									IsPearl: var isPearl,
+									DifficultyLevel: var puzzleDifficultyLevel,
+									SolvingPath: var p
+								}
+								&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
+								&& (minimal && grid.IsMinimal || !minimal)
+								&& (pearl && isPearl is true || !pearl)
+								&& (technique != 0 && p.HasTechnique(technique) || technique == 0))
+							{
+								return grid;
+							}
+							break;
+						}
 					}
 				}
 			}
@@ -243,7 +269,7 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
 /// <param name="CountOfGivens">Indicates the limit of givens count.</param>
 /// <param name="IttoryuLength">Indicates the ittoryu length.</param>
-file readonly record struct GeneratingDetails(
+file sealed record GeneratingDetails(
 	DifficultyLevel DifficultyLevel,
 	SymmetricType SymmetricPattern,
 	bool ShouldBeMinimal,

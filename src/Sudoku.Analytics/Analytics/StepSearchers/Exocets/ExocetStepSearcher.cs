@@ -1198,23 +1198,25 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Now fetch the value cell outside the blocks of the missing-value cell.
 		const Cell invalidPos = -2;
 		Cell valueDigitCell;
-		using (scoped var valueDigitsPos = new ValueList<Cell>(6))
+		var valueDigitsPos = new List<Cell>(6);
+		foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
 		{
-			foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
+			foreach (var cell in HousesMap[block] - EmptyCells - crossline)
 			{
-				foreach (var cell in HousesMap[block] - EmptyCells - crossline)
+				if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell))
 				{
-					if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell)
-						&& !valueDigitsPos.TryAdd(cell))
+					if (valueDigitsPos.Count == 6)
 					{
 						// Exceeds the adding limit.
 						return null;
 					}
+
+					valueDigitsPos.Add(cell);
 				}
 			}
-
-			valueDigitCell = valueDigitsPos switch { [] => -1, [var vdc] => vdc, _ => invalidPos };
 		}
+
+		valueDigitCell = valueDigitsPos switch { [] => -1, [var vdc] => vdc, _ => invalidPos };
 		if (valueDigitCell == invalidPos)
 		{
 			// This case is invalid to be checked.

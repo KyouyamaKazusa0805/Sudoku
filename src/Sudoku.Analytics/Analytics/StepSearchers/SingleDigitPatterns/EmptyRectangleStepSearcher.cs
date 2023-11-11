@@ -81,7 +81,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 
 					// Gather all highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
-					using scoped var cpCells = new ValueList<Cell>(2);
+					var cpCells = new List<Cell>(2);
 					foreach (var cell in HousesMap[block] & CandidatesMap[digit])
 					{
 						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));

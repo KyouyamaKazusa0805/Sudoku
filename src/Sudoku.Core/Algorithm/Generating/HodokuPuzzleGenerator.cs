@@ -146,7 +146,7 @@ public ref struct HodokuPuzzleGenerator
 	{
 		// We start with the full board.
 		(var used, var usedCount, _newValidSudoku, var remainingClues) = (CellMap.Empty, 81, _newFullSudoku, 81);
-		using scoped var candidateCells = new ValueList<Cell>(8);
+		var candidateCells = new List<Cell>(8);
 
 		// Do until we have only 17 clues left or until all cells have been tried.
 		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)

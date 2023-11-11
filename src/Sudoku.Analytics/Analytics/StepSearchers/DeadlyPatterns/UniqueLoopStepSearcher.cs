@@ -47,7 +47,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var d1 = TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
 
-			using scoped var tempLoop = new ValueList<Cell>(14);
+			var tempLoop = new List<Cell>(14);
 			var loopMap = CellMap.Empty;
 			var patterns = new HashSet<Pattern>();
 			CollectUniqueLoops(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
@@ -139,7 +139,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	)
 	{
 		var extraCell = extraCellsMap[0];
-		using scoped var conclusions = new ValueList<Conclusion>(2);
+		var conclusions = new List<Conclusion>(2);
 		if (CandidatesMap[d1].Contains(extraCell))
 		{
 			conclusions.Add(new(Elimination, extraCell, d1));
@@ -515,7 +515,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 				var first = extraCellsMap[0];
 				var second = extraCellsMap[1];
-				using scoped var conclusions = new ValueList<Conclusion>(2);
+				var conclusions = new List<Conclusion>(2);
 				if (CandidatesMap[otherDigit].Contains(first))
 				{
 					conclusions.Add(new(Elimination, first, otherDigit));
@@ -585,7 +585,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		Cell cell,
 		Digit d1,
 		Digit d2,
-		scoped ValueList<Cell> loopPath,
+		List<Cell> loopPath,
 		scoped ref CellMap loopMap,
 		HashSet<Pattern> result,
 		Mask extraDigits = Grid.MaxCandidatesMask,
@@ -605,7 +605,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			foreach (var next in HousesMap[cell.ToHouseIndex(houseType)] & EmptyCells)
 			{
-				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(in loopPath))
+				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
 				{
 					// Yeah. The loop is closed.
 					result.Add(new(in loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
@@ -633,7 +633,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			}
 		}
 
-		loopPath.Remove();
+		loopPath.RemoveAt(^1);
 		loopMap.Remove(cell);
 	}
 
@@ -659,7 +659,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// can also make this method return <see langword="true"/>.
 	/// </para>
 	/// </remarks>
-	internal static bool IsValidLoop(scoped ref readonly ValueList<Cell> loopPath)
+	internal static bool IsValidLoop(List<Cell> loopPath)
 	{
 		var (visitedOdd, visitedEven, isOdd) = (0, 0, false);
 		foreach (var cell in loopPath)
