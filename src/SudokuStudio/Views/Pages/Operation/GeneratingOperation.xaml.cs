@@ -200,44 +200,32 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 								grid.MakeIttoryu(foundIttoryu);
 							}
 
-							if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-								&& analyzer.Analyze(in grid) is
-								{
-									IsSolved: true,
-									IsPearl: var isPearl,
-									DifficultyLevel: var puzzleDifficultyLevel,
-									SolvingPath: var p
-								}
-								&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-								&& (minimal && grid.IsMinimal || !minimal)
-								&& (pearl && isPearl is true || !pearl)
-								&& (technique != 0 && p.HasTechnique(technique) || technique == 0)
-								&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
+							if (basicCondition() && (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
 							{
 								return grid;
 							}
 							break;
 						}
-						default:
+						case var _ when basicCondition():
 						{
-							if ((givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-								&& analyzer.Analyze(in grid) is
-								{
-									IsSolved: true,
-									IsPearl: var isPearl,
-									DifficultyLevel: var puzzleDifficultyLevel,
-									SolvingPath: var p
-								}
-								&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-								&& (minimal && grid.IsMinimal || !minimal)
-								&& (pearl && isPearl is true || !pearl)
-								&& (technique != 0 && p.HasTechnique(technique) || technique == 0))
-							{
-								return grid;
-							}
-							break;
+							return grid;
 						}
 					}
+
+
+					bool basicCondition()
+						=> (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
+						&& analyzer.Analyze(in grid) is
+						{
+							IsSolved: true,
+							IsPearl: var isPearl,
+							DifficultyLevel: var puzzleDifficultyLevel,
+							SolvingPath: var p
+						}
+						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
+						&& (minimal && grid.IsMinimal || !minimal)
+						&& (pearl && isPearl is true || !pearl)
+						&& (technique != 0 && p.HasTechnique(technique) || technique == 0);
 				}
 			}
 			catch (OperationCanceledException)
