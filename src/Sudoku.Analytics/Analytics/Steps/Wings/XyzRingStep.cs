@@ -36,9 +36,9 @@ public sealed partial class XyzRingStep(
 	public override Technique Code
 		=> (IsGrouped, IsType2) switch
 		{
-			(true, true) => Technique.GroupedXyzRingType2,
-			(true, _) => Technique.GroupedXyzRingType1,
-			(_, true) => Technique.XyzRingType2,
-			_ => Technique.XyzRingType1
+			(true, true) => Technique.GroupedXyzNiceLoop,
+			(true, _) => Technique.GroupedXyzLoop,
+			(_, true) => Technique.XyzNiceLoop,
+			_ => Technique.XyzLoop
 		};
 }

@@ -1326,32 +1326,32 @@ public enum Technique
 	GroupedHybridWing,
 
 	/// <summary>
-	/// Indicates XYZ-Ring (type 1).
+	/// Indicates XYZ loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzRingType1,
+	XyzLoop,
 
 	/// <summary>
-	/// Indicates XYZ-Ring (type 2).
+	/// Indicates XYZ nice loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzRingType2,
+	XyzNiceLoop,
 
 	/// <summary>
-	/// Indicates grouped XYZ-Ring (type 1).
+	/// Indicates grouped XYZ loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedXyzRingType1,
+	GroupedXyzLoop,
 
 	/// <summary>
-	/// Indicates grouped XYZ-Ring (type 2).
+	/// Indicates grouped XYZ- nice loop.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedXyzRingType2,
+	GroupedXyzNiceLoop,
 	#endregion
 
 	//

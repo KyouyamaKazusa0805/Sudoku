@@ -2032,20 +2032,20 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XYZ-Ring Type 1.
+        ///   Looks up a localized string similar to Grouped XYZ-Loop.
         /// </summary>
-        public static string GroupedXyzRingType1 {
+        public static string GroupedXyzLoop {
             get {
-                return ResourceManager.GetString("GroupedXyzRingType1", resourceCulture);
+                return ResourceManager.GetString("GroupedXyzLoop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XYZ-Ring Type 2.
+        ///   Looks up a localized string similar to Grouped XYZ-Loop (Nice).
         /// </summary>
-        public static string GroupedXyzRingType2 {
+        public static string GroupedXyzNiceLoop {
             get {
-                return ResourceManager.GetString("GroupedXyzRingType2", resourceCulture);
+                return ResourceManager.GetString("GroupedXyzNiceLoop", resourceCulture);
             }
         }
         
@@ -7072,20 +7072,20 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XYZ-Ring Type 1.
+        ///   Looks up a localized string similar to XYZ Loop.
         /// </summary>
-        public static string XyzRingType1 {
+        public static string XyzLoop {
             get {
-                return ResourceManager.GetString("XyzRingType1", resourceCulture);
+                return ResourceManager.GetString("XyzLoop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XYZ-Ring Type 2.
+        ///   Looks up a localized string similar to XYZ-Loop (Nice).
         /// </summary>
-        public static string XyzRingType2 {
+        public static string XyzNiceLoop {
             get {
-                return ResourceManager.GetString("XyzRingType2", resourceCulture);
+                return ResourceManager.GetString("XyzNiceLoop", resourceCulture);
             }
         }
         

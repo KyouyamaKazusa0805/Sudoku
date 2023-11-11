@@ -1893,24 +1893,24 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped hybrid wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType1">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzLoop">
             <summary>
-            Indicates XYZ-Ring (type 1).
+            Indicates XYZ loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzRingType2">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzNiceLoop">
             <summary>
-            Indicates XYZ-Ring (type 2).
+            Indicates XYZ nice loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType1">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzLoop">
             <summary>
-            Indicates grouped XYZ-Ring (type 1).
+            Indicates grouped XYZ loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzRingType2">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzNiceLoop">
             <summary>
-            Indicates grouped XYZ-Ring (type 2).
+            Indicates grouped XYZ- nice loop.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType1">
@@ -17616,14 +17616,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Grouped XY-X-Chain.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzRingType1">
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzLoop">
             <summary>
-              Looks up a localized string similar to Grouped XYZ-Ring Type 1.
+              Looks up a localized string similar to Grouped XYZ-Loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzRingType2">
+        <member name="P:Sudoku.Analytics.Strings.Resources.GroupedXyzNiceLoop">
             <summary>
-              Looks up a localized string similar to Grouped XYZ-Ring Type 2.
+              Looks up a localized string similar to Grouped XYZ-Loop (Nice).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.GuardianPlural">
@@ -20416,14 +20416,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to XY-X-Chain.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.XyzRingType1">
+        <member name="P:Sudoku.Analytics.Strings.Resources.XyzLoop">
             <summary>
-              Looks up a localized string similar to XYZ-Ring Type 1.
+              Looks up a localized string similar to XYZ Loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.XyzRingType2">
+        <member name="P:Sudoku.Analytics.Strings.Resources.XyzNiceLoop">
             <summary>
-              Looks up a localized string similar to XYZ-Ring Type 2.
+              Looks up a localized string similar to XYZ-Loop (Nice).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.XyzWing">

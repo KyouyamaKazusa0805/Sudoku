@@ -24,7 +24,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped XYZ-Ring Type 2</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.XyzRingType1, Technique.XyzRingType2, Technique.GroupedXyzRingType1, Technique.GroupedXyzRingType2)]
+[StepSearcher(Technique.XyzLoop, Technique.XyzNiceLoop, Technique.GroupedXyzLoop, Technique.GroupedXyzNiceLoop)]
 public sealed partial class XyzRingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

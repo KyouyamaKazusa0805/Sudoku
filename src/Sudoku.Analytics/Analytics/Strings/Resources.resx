@@ -2454,19 +2454,19 @@
   <data name="SeniorExocetTrueBase" xml:space="preserve">
     <value>Senior Exocet (True Base)</value>
   </data>
-  <data name="XyzRingType1" xml:space="preserve">
-    <value>XYZ-Ring Type 1</value>
+  <data name="XyzLoop" xml:space="preserve">
+    <value>XYZ Loop</value>
   </data>
-  <data name="XyzRingType2" xml:space="preserve">
-    <value>XYZ-Ring Type 2</value>
+  <data name="XyzNiceLoop" xml:space="preserve">
+    <value>XYZ-Loop (Nice)</value>
   </data>
   <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
     <value>XYZ-Ring</value>
   </data>
-  <data name="GroupedXyzRingType1" xml:space="preserve">
-    <value>Grouped XYZ-Ring Type 1</value>
+  <data name="GroupedXyzLoop" xml:space="preserve">
+    <value>Grouped XYZ-Loop</value>
   </data>
-  <data name="GroupedXyzRingType2" xml:space="preserve">
-    <value>Grouped XYZ-Ring Type 2</value>
+  <data name="GroupedXyzNiceLoop" xml:space="preserve">
+    <value>Grouped XYZ-Loop (Nice)</value>
   </data>
 </root>

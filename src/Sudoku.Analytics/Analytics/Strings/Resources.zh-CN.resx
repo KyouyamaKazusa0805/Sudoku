@@ -2627,24 +2627,24 @@
     <value>高级飞鱼・B 格区块</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="XyzRingType1" xml:space="preserve">
-    <value>XYZ-环类型 1</value>
+  <data name="XyzLoop" xml:space="preserve">
+    <value>XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="XyzRingType2" xml:space="preserve">
-    <value>XYZ-环类型 2</value>
+  <data name="XyzNiceLoop" xml:space="preserve">
+    <value>XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
     <value>XYZ-环</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="GroupedXyzRingType1" xml:space="preserve">
-    <value>结构 XYZ-环类型 1</value>
+  <data name="GroupedXyzLoop" xml:space="preserve">
+    <value>结构 XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedXyzRingType2" xml:space="preserve">
-    <value>结构 XYZ-环类型 2</value>
+  <data name="GroupedXyzNiceLoop" xml:space="preserve">
+    <value>结构 XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
 </root>
