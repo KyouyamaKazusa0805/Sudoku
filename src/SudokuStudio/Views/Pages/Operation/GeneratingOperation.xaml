@@ -24,7 +24,7 @@
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="NewPuzzleButton_ClickAsync">
 			<ToolTipService.ToolTip>
-				<TextBlock x:Name="GeneratorStrategyTooltip" />
+				<TextBlock Margin="10" x:Name="GeneratorStrategyTooltip" TextWrapping="WrapWholeWords" />
 			</ToolTipService.ToolTip>
 		</AppBarButton>
 	</CommandBar>
