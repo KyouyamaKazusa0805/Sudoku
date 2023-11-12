@@ -9,8 +9,11 @@ using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
+using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
+using SudokuStudio.Storage;
 using SudokuStudio.Views.Attached;
+using Windows.Storage.Pickers;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.Operation;
@@ -89,8 +92,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		);
 	}
 
-
-	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
+	/// <summary>
+	/// Handle generating operation.
+	/// </summary>
+	/// <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
+	/// <param name="gridStateChanger">
+	/// The method that can change the state of the target grid. This callback method will be used for specify the grid state
+	/// when a user has set the techniques that must be appeared.
+	/// </param>
+	/// <param name="gridHandler">The grid handler.</param>
+	/// <returns>The task that holds the asynchronous operation.</returns>
+	private async Task HandleGeneratingAsync(
+		bool onlyGenerateOne,
+		GridStateChanger<(Analyzer Analyzer, Technique Technique)>? gridStateChanger,
+		ActionRefReadOnly<Grid>? gridHandler = null
+	)
 	{
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
@@ -109,28 +125,39 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		};
 		var ittoryuLength = preferences.IttoryuLength;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, preferences.GeneratorDifficultyLevel);
-		var ittoryuPathFinder = new IttoryuPathFinder
-		{
-			SupportedTechniques = [.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]
-		};
+		var ittoryuFinder = new IttoryuPathFinder([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
+
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
 		try
 		{
-			Grid function() => gridCreator(analyzer, ittoryuPathFinder, new(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength));
-			var grid = await Task.Run(function);
-			if (grid.IsUndefined)
+			var details = new GeneratingDetails(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength);
+			if (onlyGenerateOne)
 			{
-				return;
+				if (await Task.Run(task) is { IsUndefined: false } grid)
+				{
+					gridStateChanger?.Invoke(ref grid, (analyzer, technique));
+					gridHandler?.Invoke(ref grid);
+				}
+			}
+			else
+			{
+				while (true)
+				{
+					if (await Task.Run(task) is { IsUndefined: false } grid)
+					{
+						gridStateChanger?.Invoke(ref grid, (analyzer, technique));
+						gridHandler?.Invoke(ref grid);
+						continue;
+					}
+
+					break;
+				}
 			}
 
-			if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
-			{
-				((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
-			}
 
-			BasePage.SudokuPane.Puzzle = grid;
+			Grid task() => gridCreator(analyzer, ittoryuFinder, details);
 		}
 		catch (TaskCanceledException)
 		{
@@ -223,6 +250,66 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				return null;
 			}
 		}
+	}
+
+
+	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
+		=> await HandleGeneratingAsync(
+			true,
+			null,
+			(scoped ref readonly Grid grid) =>
+			{
+				if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				{
+					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
+				}
+
+				BasePage.SudokuPane.Puzzle = grid;
+			}
+		);
+
+	private async void BatchGeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (!BasePage.EnsureUnsnapped(true))
+		{
+			return;
+		}
+
+		var fsp = new FileSavePicker();
+		fsp.Initialize(this);
+		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fsp.SuggestedFileName = GetString("Sudoku");
+		fsp.AddFileFormat(FileFormats.PlainText);
+
+		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		await HandleGeneratingAsync(
+			false,
+			static (scoped ref Grid grid, (Analyzer Analyzer, Technique Technique) pair) =>
+			{
+				var (analyzer, techniuqe) = pair;
+				var analyzerResult = analyzer.Analyze(in grid);
+				if (!analyzerResult.IsSolved)
+				{
+					return;
+				}
+
+				foreach (var (g, s) in analyzerResult.SolvingPath)
+				{
+					if (s.Code == techniuqe)
+					{
+						grid = g;
+						break;
+					}
+				}
+
+				return;
+			},
+			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, grid.ToString())
+		);
 	}
 }
 

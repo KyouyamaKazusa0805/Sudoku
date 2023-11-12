@@ -362,24 +362,25 @@ public sealed partial class AnalyzePage : Page
 					filePath,
 					gridFormatters switch
 					{
-						null => [new()
-						{
-							BaseGrid = grid,
-							RenderableData = viewUnit switch
+						null => [
+							new()
 							{
-								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
-								_ => null
-							},
-							ShowCandidates = displayCandidates
-						}],
+								BaseGrid = grid,
+								RenderableData = viewUnit switch
+								{
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
+									_ => null
+								},
+								ShowCandidates = displayCandidates
+							}
+						],
 						_ => [
 							..
-							from formatter in gridFormatters
-							select ((GridConverter)formatter).Converter(in grid) into gridString
+							from GridConverter formatter in gridFormatters
 							select new GridInfo
 							{
 								BaseGrid = grid,
-								GridString = gridString,
+								GridString = formatter!.Converter(in grid),
 								RenderableData = viewUnit switch
 								{
 									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
@@ -457,14 +458,12 @@ public sealed partial class AnalyzePage : Page
 						switch (SudokuFileHandler.Read(filePath))
 						{
 							case [
-#pragma warning disable format
 								{
 									BaseGrid: var g,
 									GridString: var gridStr,
 									ShowCandidates: var showCandidates,
 									RenderableData: var nullableRenderableData
 								}
-#pragma warning restore format
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;

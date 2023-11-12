@@ -98,7 +98,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		}
 
 		var techniqueSet = (TechniqueSet)([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
-		var finder = new IttoryuPathFinder { SupportedTechniques = techniqueSet };
+		var finder = new IttoryuPathFinder(techniqueSet);
 		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) =
 			finder.FindPath(in puzzle) is { Digits.Length: not 0 } path
 				? (string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), path.ToString()), true)

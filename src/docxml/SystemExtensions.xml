@@ -2581,6 +2581,9 @@ fixed (short* ptr = instance)
             </summary>
             <seealso cref="T:System.Collections.ArrayList"/>
         </member>
+        <member name="M:System.Linq.ArrayListEnumerable.Cast``1(System.Collections.ArrayList)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
         <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>

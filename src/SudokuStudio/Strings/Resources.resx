@@ -390,6 +390,9 @@
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>If any one given in a puzzle cannot be removed, the puzzle will be minimal.</value>
   </data>
+  <data name="AnalyzePage_GeneratingPuzzlesAndSaveThem" xml:space="preserve">
+    <value>Batch generating...</value>
+  </data>
   <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
     <value>Active strategy: Main</value>
   </data>

@@ -1096,6 +1096,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Batch generating....
+        /// </summary>
+        internal static string AnalyzePage_GeneratingPuzzlesAndSaveThem {
+            get {
+                return ResourceManager.GetString("AnalyzePage_GeneratingPuzzlesAndSaveThem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active strategy: Main.
         /// </summary>
         internal static string AnalyzePage_GeneratingStrategySelected {

@@ -2969,6 +2969,13 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.Clicked"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.GridStateChanger`1">
+            <summary>
+            Represents for a grid state changer callback method.
+            </summary>
+            <param name="grid">The grid to be changed.</param>
+            <param name="obj">An extra object to be used.</param>
+        </member>
         <member name="T:SudokuStudio.Interaction.GridUpdatedBehavior">
             <summary>
             Represents a kind that describes which behavior the grid is updated.
@@ -5368,6 +5375,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GenerateForMinimalPuzzleTooltip">
             <summary>
               Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratingPuzzlesAndSaveThem">
+            <summary>
+              Looks up a localized string similar to Batch generating....
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratingStrategySelected">
@@ -11546,6 +11558,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Update control selection via user configuration.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.Technique}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
+            <summary>
+            Handle generating operation.
+            </summary>
+            <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
+            <param name="gridStateChanger">
+            The method that can change the state of the target grid. This callback method will be used for specify the grid state
+            when a user has set the techniques that must be appeared.
+            </param>
+            <param name="gridHandler">The grid handler.</param>
+            <returns>The task that holds the asynchronous operation.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.InitializeComponent">
             <summary>

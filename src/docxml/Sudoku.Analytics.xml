@@ -170,10 +170,18 @@
             Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
             This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
             </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
         </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
             <summary>
-            Indicates the supported techniques. By default, all singles are included.
+            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.FindPath(Sudoku.Concepts.Grid@)">
@@ -184,6 +192,11 @@
             <returns>
             The target digit path. If none found, a longest path will be returned.
             </returns>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
+            <summary>
+            The generated property declaration for parameter <c>supportedTechniques</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
             <summary>

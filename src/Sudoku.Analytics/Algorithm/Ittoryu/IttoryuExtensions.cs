@@ -91,7 +91,7 @@ public static class IttoryuExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DigitPath? path)
 	{
-		var pathFinder = new IttoryuPathFinder { SupportedTechniques = techniques };
+		var pathFinder = new IttoryuPathFinder(techniques);
 		var foundPath = pathFinder.FindPath(in @this);
 		if (foundPath.IsComplete)
 		{

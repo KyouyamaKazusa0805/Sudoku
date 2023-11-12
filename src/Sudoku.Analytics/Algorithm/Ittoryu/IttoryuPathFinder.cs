@@ -1,4 +1,6 @@
 using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
 using Sudoku.Runtime.MaskServices;
@@ -11,12 +13,16 @@ namespace Sudoku.Algorithm.Ittoryu;
 /// Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
 /// This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
 /// </summary>
-public sealed class IttoryuPathFinder
+/// <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+public sealed partial class IttoryuPathFinder([DataMember] TechniqueSet supportedTechniques)
 {
 	/// <summary>
-	/// Indicates the supported techniques. By default, all singles are included.
+	/// Initializes an <see cref="IttoryuPathFinder"/> instance.
 	/// </summary>
-	public TechniqueSet SupportedTechniques { get; init; } = TechniqueSets.IttoryuTechniques;
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public IttoryuPathFinder() : this(TechniqueSets.IttoryuTechniques)
+	{
+	}
 
 
 	/// <summary>
