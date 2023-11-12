@@ -379,7 +379,7 @@
     <value>Generate date:</value>
   </data>
   <data name="AnalyzePage_GeneratedPuzzleGivensIs" xml:space="preserve">
-    <value>{0} givens</value>
+    <value>Givens: {0}{1}</value>
   </data>
   <data name="AnalyzePage_GeneratedPuzzleGivensNoRestriction" xml:space="preserve">
     <value>Any number of givens</value>
@@ -455,6 +455,9 @@
   </data>
   <data name="AnalyzePage_None" xml:space="preserve">
     <value>None</value>
+  </data>
+  <data name="AnalyzePage_NumberOfGivens" xml:space="preserve">
+    <value> givens</value>
   </data>
   <data name="AnalyzePage_Okay" xml:space="preserve">
     <value>OK</value>
@@ -581,6 +584,24 @@
   </data>
   <data name="AnalyzePage_SelectDrawingMode" xml:space="preserve">
     <value>Mode: </value>
+  </data>
+  <data name="AnalyzePage_SelectedDiamondRuleIs" xml:space="preserve">
+    <value>Diamond Rule: {0}</value>
+  </data>
+  <data name="AnalyzePage_SelectedDifficultyLevelIs" xml:space="preserve">
+    <value>Difficulty Level: {0}</value>
+  </data>
+  <data name="AnalyzePage_SelectedIttoryuIs" xml:space="preserve">
+    <value>Ittoryu Length: {0}</value>
+  </data>
+  <data name="AnalyzePage_SelectedMinimalRuleIs" xml:space="preserve">
+    <value>Minimal Rule: {0}</value>
+  </data>
+  <data name="AnalyzePage_SelectedSymmetricTypeIs" xml:space="preserve">
+    <value>Symmetric Type: {0}</value>
+  </data>
+  <data name="AnalyzePage_SelectedTechniqueIs" xml:space="preserve">
+    <value>Technique: {0}</value>
   </data>
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>Step Description:</value>

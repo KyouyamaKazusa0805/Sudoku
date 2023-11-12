@@ -5352,7 +5352,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratedPuzzleGivensIs">
             <summary>
-              Looks up a localized string similar to {0} givens.
+              Looks up a localized string similar to Givens: {0}{1}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_GeneratedPuzzleGivensNoRestriction">
@@ -5478,6 +5478,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_None">
             <summary>
               Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_NumberOfGivens">
+            <summary>
+              Looks up a localized string similar to  givens.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_Okay">
@@ -5688,6 +5693,36 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectDrawingMode">
             <summary>
               Looks up a localized string similar to Mode: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedDiamondRuleIs">
+            <summary>
+              Looks up a localized string similar to Diamond Rule: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedDifficultyLevelIs">
+            <summary>
+              Looks up a localized string similar to Difficulty Level: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedIttoryuIs">
+            <summary>
+              Looks up a localized string similar to Ittoryu Length: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedMinimalRuleIs">
+            <summary>
+              Looks up a localized string similar to Minimal Rule: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedSymmetricTypeIs">
+            <summary>
+              Looks up a localized string similar to Symmetric Type: {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SelectedTechniqueIs">
+            <summary>
+              Looks up a localized string similar to Technique: {0}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SimpleDescription">
@@ -11588,6 +11623,56 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.IttoryuLength">
             <summary>Indicates the ittoryu length.</summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.RunExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Documents.Run"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.RunExtensions.WithText(Microsoft.UI.Xaml.Documents.Run,SudokuStudio.Views.Pages.Operation.FormatHandler@)">
+            <summary>
+            Sets with <see cref="P:Microsoft.UI.Xaml.Documents.Run.Text"/> property, reducing indenting.
+            </summary>
+            <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
+            <param name="text">The text to be initialized.</param>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Operation.FormatHandler">
+            <summary>
+            The internal format handler type.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.#ctor(System.Int32,System.Int32)">
+            <summary>
+            The internal format handler type.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._">
+            <summary>
+            The inforamtion for character length and hole count.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler.__">
+            <summary>
+            The inforamtion for character length and hole count.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._format">
+            <summary>
+            The internal format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._content">
+            <summary>
+            The internal content.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.InvalidOperationException">Throws when the value is not initialized.</exception>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.AppendFormatted(System.Object,System.String)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted``1(``0,System.String)"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

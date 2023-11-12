@@ -2095,6 +2095,13 @@ fixed (short* ptr = instance)
             </summary>
             <seealso cref="T:System.Runtime.CompilerServices.ITuple"/>
         </member>
+        <member name="M:System.Runtime.CompilerServices.TupleExtensions.ToArray(System.Runtime.CompilerServices.ITuple)">
+            <summary>
+            Converts the <see cref="T:System.Runtime.CompilerServices.ITuple"/> instance into an array of objects.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The array of elements.</returns>
+        </member>
         <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator(System.Runtime.CompilerServices.ITuple)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>

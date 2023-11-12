@@ -1060,7 +1060,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} givens.
+        ///   Looks up a localized string similar to Givens: {0}{1}.
         /// </summary>
         internal static string AnalyzePage_GeneratedPuzzleGivensIs {
             get {
@@ -1290,6 +1290,15 @@ namespace SudokuStudio.Strings {
         internal static string AnalyzePage_None {
             get {
                 return ResourceManager.GetString("AnalyzePage_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  givens.
+        /// </summary>
+        internal static string AnalyzePage_NumberOfGivens {
+            get {
+                return ResourceManager.GetString("AnalyzePage_NumberOfGivens", resourceCulture);
             }
         }
         
@@ -1668,6 +1677,60 @@ namespace SudokuStudio.Strings {
         internal static string AnalyzePage_SelectDrawingMode {
             get {
                 return ResourceManager.GetString("AnalyzePage_SelectDrawingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diamond Rule: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedDiamondRuleIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedDiamondRuleIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedDifficultyLevelIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedDifficultyLevelIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ittoryu Length: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedIttoryuIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedIttoryuIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimal Rule: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedMinimalRuleIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedMinimalRuleIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetric Type: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedSymmetricTypeIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedSymmetricTypeIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique: {0}.
+        /// </summary>
+        internal static string AnalyzePage_SelectedTechniqueIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SelectedTechniqueIs", resourceCulture);
             }
         }
         

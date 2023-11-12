@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
@@ -42,59 +44,47 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var openBrace = GetString("_Token_OpenBrace");
 		var closedBrace = GetString("_Token_ClosedBrace");
 		TextBlockBindable.SetInlines(
-			GeneratingStrategyDisplayer,
+			GeneratorStrategyTooltip,
 			[
-				new Run { Text = GetString("AnalyzePage_GeneratingStrategySelected") },
-				new Run { Text = openBrace },
-				new Run
+				new Run().WithText($"{null:AnalyzePage_GeneratingStrategySelected}"),
+				new LineBreak(),
+				new Run().WithText($"{(uiPref.CanRestrictGeneratingGivensCount, uiPref.GeneratedPuzzleGivensCount) switch
 				{
-					Text = (uiPref.CanRestrictGeneratingGivensCount, uiPref.GeneratedPuzzleGivensCount) switch
-					{
-						(false, _) or (_, -1) => GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction"),
-						_ => string.Format(GetString("AnalyzePage_GeneratedPuzzleGivensIs"), uiPref.GeneratedPuzzleGivensCount)
-					}
-				}.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run
+					(false, _) or (_, -1) => (GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction"), string.Empty),
+					_ => (uiPref.GeneratedPuzzleGivensCount, GetString("AnalyzePage_NumberOfGivens"))
+				}:AnalyzePage_GeneratedPuzzleGivensIs}"),
+				new LineBreak(),
+				new Run().WithText($"{DifficultyLevelConversion.GetNameWithDefault(
+					uiPref.GeneratorDifficultyLevel,
+					GetString("DifficultyLevel_None")
+				):AnalyzePage_SelectedDifficultyLevelIs}"),
+				new LineBreak(),
+				new Run().WithText($"{GetString($"SymmetricType_{uiPref.GeneratorSymmetricPattern}"):AnalyzePage_SelectedSymmetricTypeIs}"),
+				new LineBreak(),
+				new Run().WithText($"{uiPref.SelectedTechnique switch
 				{
-					Text = DifficultyLevelConversion.GetNameWithDefault(uiPref.GeneratorDifficultyLevel, GetString("DifficultyLevel_None"))
-				}.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run { Text = GetString($"SymmetricType_{uiPref.GeneratorSymmetricPattern}") }.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run
+					var t and not 0 => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}",
+					_ => GetString("TechniqueSelector_NoTechniqueSelected"),
+				}:AnalyzePage_SelectedTechniqueIs}"),
+				new LineBreak(),
+				new Run().WithText($"{(
+				uiPref.GeneratedPuzzleShouldBeMinimal
+					? GetString("AnalyzePage_IsAMinimal")
+					: GetString("AnalyzePage_IsNotMinimal")
+				):AnalyzePage_SelectedMinimalRuleIs}"),
+				new LineBreak(),
+				new Run().WithText($"{uiPref.GeneratedPuzzleShouldBePearl switch
 				{
-					Text = uiPref.SelectedTechnique switch
-					{
-						Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
-						var t => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}"
-					}
-				}.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run
+					true => GetString("GeneratingStrategyPage_PearlPuzzle"),
+					false => GetString("GeneratingStrategyPage_NormalPuzzle"),
+					//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+				}:AnalyzePage_SelectedDiamondRuleIs}"),
+				new LineBreak(),
+				new Run().WithText($"{uiPref.GeneratorDifficultyLevel switch
 				{
-					Text = uiPref.GeneratedPuzzleShouldBeMinimal ? GetString("AnalyzePage_IsAMinimal") : GetString("AnalyzePage_IsNotMinimal")
-				}.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run
-				{
-					Text = uiPref.GeneratedPuzzleShouldBePearl switch
-					{
-						true => GetString("GeneratingStrategyPage_PearlPuzzle"),
-						false => GetString("GeneratingStrategyPage_NormalPuzzle"),
-						//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
-					}
-				}.SingletonSpan<Bold>(),
-				new Run { Text = comma },
-				new Run
-				{
-					Text = uiPref.GeneratorDifficultyLevel switch
-					{
-						DifficultyLevel.Easy => string.Format(GetString("AnalyzePage_IttoryuLength"), uiPref.IttoryuLength),
-						_ => GetString("AnalyzePage_IttoryuPathIsNotLimited")
-					}
-				}.SingletonSpan<Bold>(),
-				new Run { Text = closedBrace }
+					DifficultyLevel.Easy => string.Format(GetString("AnalyzePage_IttoryuLength"), uiPref.IttoryuLength),
+					_ => GetString("AnalyzePage_IttoryuPathIsNotLimited")
+				}:AnalyzePage_SelectedIttoryuIs}")
 			]
 		);
 	}
@@ -105,7 +95,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
 
-		var processingText = GetString("AnalyzePage_GeneratorIsProcessing")!;
+		var processingText = GetString("AnalyzePage_GeneratorIsProcessing");
 		var preferences = ((App)Application.Current).Preference.UIPreferences;
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
@@ -266,3 +256,64 @@ file sealed record GeneratingDetails(
 	int CountOfGivens,
 	int IttoryuLength
 );
+
+/// <summary>
+/// Provides with extension methods on <see cref="Run"/>.
+/// </summary>
+/// <seealso cref="Run"/>
+file static class RunExtensions
+{
+	/// <summary>
+	/// Sets with <see cref="Run.Text"/> property, reducing indenting.
+	/// </summary>
+	/// <param name="this">The <see cref="Run"/> instance.</param>
+	/// <param name="text">The text to be initialized.</param>
+	public static Run WithText(this Run @this, [InterpolatedStringHandlerArgument] scoped ref FormatHandler text)
+	{
+		@this.Text = text.ToString();
+		return @this;
+	}
+}
+
+/// <summary>
+/// The internal format handler type.
+/// </summary>
+[InterpolatedStringHandler]
+file ref struct FormatHandler(int _, int __)
+{
+	/// <summary>
+	/// The inforamtion for character length and hole count.
+	/// </summary>
+	[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
+	private readonly int _ = _, __ = __;
+
+	/// <summary>
+	/// The internal format.
+	/// </summary>
+	private string? _format;
+
+	/// <summary>
+	/// The internal content.
+	/// </summary>
+	private object? _content;
+
+
+	/// <inheritdoc cref="object.ToString"/>
+	/// <exception cref="InvalidOperationException">Throws when the value is not initialized.</exception>
+	public override readonly string ToString()
+		=> _format switch
+		{
+			not null => _content switch
+			{
+				var (a, b, c) => string.Format(GetString(_format), a, b, c),
+				var (a, b) => string.Format(GetString(_format), a, b),
+				ITuple tuple => string.Format(GetString(_format), tuple.ToArray()),
+				object => string.Format(GetString(_format), _content),
+				_ => GetString(_format)
+			},
+			_ => throw new InvalidOperationException("The format cannot be null.")
+		};
+
+	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted{T}(T, string?)"/>
+	public void AppendFormatted(object? content, string format) => (_format, _content) = (format, content);
+}

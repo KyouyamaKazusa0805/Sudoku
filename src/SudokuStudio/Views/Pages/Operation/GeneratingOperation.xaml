@@ -22,10 +22,10 @@
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_NewPuzzle}"
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="NewPuzzleButton_ClickAsync" />
-		<AppBarSeparator />
-		<AppBarElementContainer>
-			<TextBlock x:Name="GeneratingStrategyDisplayer" VerticalAlignment="Center" />
-		</AppBarElementContainer>
+			Click="NewPuzzleButton_ClickAsync">
+			<ToolTipService.ToolTip>
+				<TextBlock x:Name="GeneratorStrategyTooltip" />
+			</ToolTipService.ToolTip>
+		</AppBarButton>
 	</CommandBar>
 </Page>
