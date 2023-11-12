@@ -305,10 +305,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						break;
 					}
 				}
-
-				return;
 			},
-			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, grid.ToString())
+			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, grid.ToString("#"))
 		);
 	}
 }
