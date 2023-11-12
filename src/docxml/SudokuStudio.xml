@@ -11546,6 +11546,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the generating operation command bar.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.GeneratingOperation._generatingCount">
+            <summary>
+            The fields for core usages on counting puzzles.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Operation.GeneratingOperation._generatingFilteredCount">
+            <summary>
+            The fields for core usages on counting puzzles.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Operation.GeneratingOperation"/> instance.
@@ -11559,10 +11569,11 @@ if (student is (name: var name, age: >= 18))
             Update control selection via user configuration.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.Technique}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.Technique}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
             <summary>
             Handle generating operation.
             </summary>
+            <typeparam name="T">The type of the progress data provider.</typeparam>
             <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
             <param name="gridStateChanger">
             The method that can change the state of the target grid. This callback method will be used for specify the grid state

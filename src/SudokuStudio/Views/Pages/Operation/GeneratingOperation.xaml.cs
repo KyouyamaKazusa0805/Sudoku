@@ -24,6 +24,12 @@ namespace SudokuStudio.Views.Pages.Operation;
 public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 {
 	/// <summary>
+	/// The fields for core usages on counting puzzles.
+	/// </summary>
+	private int _generatingCount, _generatingFilteredCount;
+
+
+	/// <summary>
 	/// Initializes a <see cref="GeneratingOperation"/> instance.
 	/// </summary>
 	public GeneratingOperation()
@@ -95,6 +101,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <summary>
 	/// Handle generating operation.
 	/// </summary>
+	/// <typeparam name="T">The type of the progress data provider.</typeparam>
 	/// <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
 	/// <param name="gridStateChanger">
 	/// The method that can change the state of the target grid. This callback method will be used for specify the grid state
@@ -102,11 +109,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// </param>
 	/// <param name="gridHandler">The grid handler.</param>
 	/// <returns>The task that holds the asynchronous operation.</returns>
-	private async Task HandleGeneratingAsync(
+	private async Task HandleGeneratingAsync<T>(
 		bool onlyGenerateOne,
 		GridStateChanger<(Analyzer Analyzer, Technique Technique)>? gridStateChanger,
 		ActionRefReadOnly<Grid>? gridHandler = null
-	)
+	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 	{
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
@@ -132,6 +139,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		try
 		{
+			(_generatingCount, _generatingFilteredCount) = (0, 0);
 			var details = new GeneratingDetails(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength);
 			if (onlyGenerateOne)
 			{
@@ -149,6 +157,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					{
 						gridStateChanger?.Invoke(ref grid, (analyzer, technique));
 						gridHandler?.Invoke(ref grid);
+
+						_generatingFilteredCount++;
 						continue;
 					}
 
@@ -175,9 +185,25 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				return generatePuzzleCore(progress => DispatcherQueue.TryEnqueue(() =>
 				{
-					var count = progress.Count;
-					BasePage.AnalyzeProgressLabel.Text = processingText;
-					BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+					switch (progress)
+					{
+						case GeneratorProgress(var count):
+						{
+							BasePage.AnalyzeProgressLabel.Text = processingText;
+							BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
+							break;
+						}
+						case FilteredGeneratorProgress(var count, var succeeded) { Percentage: var percentage }:
+						{
+							BasePage.AnalyzeProgressLabel.Text = processingText;
+							BasePage.AnalyzeStepSearcherNameLabel.Text = $"{succeeded}/{count} ({percentage:P2})";
+							break;
+						}
+						default:
+						{
+							throw new InvalidOperationException($"The argument '{nameof(progress)}' must contains a valid type.");
+						}
+					}
 				}), details, cts.Token, analyzer, finder) ?? Grid.Undefined;
 			}
 			catch (TaskCanceledException)
@@ -186,8 +212,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			}
 		}
 
-		static Grid? generatePuzzleCore(
-			Action<GeneratorProgress> reportingAction,
+		Grid? generatePuzzleCore(
+			Action<T> reportingAction,
 			GeneratingDetails details,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
@@ -197,11 +223,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			try
 			{
 				for (
-					var (count, progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)) = (
-						0,
-						new SelfReportingProgress<GeneratorProgress>(reportingAction),
+					var (progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)) = (
+						new SelfReportingProgress<T>(reportingAction),
 						details
-					); ; count++, progress.Report(new(count)), cancellationToken.ThrowIfCancellationRequested()
+					); ; _generatingCount++, progress.Report(T.Create(_generatingCount, _generatingFilteredCount)), cancellationToken.ThrowIfCancellationRequested()
 				)
 				{
 					var grid = HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken);
@@ -254,7 +279,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
-		=> await HandleGeneratingAsync(
+		=> await HandleGeneratingAsync<GeneratorProgress>(
 			true,
 			null,
 			(scoped ref readonly Grid grid) =>
@@ -286,7 +311,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			return;
 		}
 
-		await HandleGeneratingAsync(
+		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
 			static (scoped ref Grid grid, (Analyzer Analyzer, Technique Technique) pair) =>
 			{

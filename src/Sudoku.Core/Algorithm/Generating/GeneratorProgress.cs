@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
@@ -5,4 +7,9 @@ namespace Sudoku.Algorithm.Generating;
 /// </summary>
 /// <param name="Count">The number of puzzles generated currently.</param>
 /// <seealso cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)"/>
-public readonly record struct GeneratorProgress(int Count);
+public readonly record struct GeneratorProgress(int Count) : IProgressDataProvider<GeneratorProgress>
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static GeneratorProgress IProgressDataProvider<GeneratorProgress>.Create(int count, int succeeded) => new(count);
+}

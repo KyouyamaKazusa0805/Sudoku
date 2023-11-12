@@ -4,6 +4,36 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Algorithm.Generating.FilteredGeneratorProgress">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Count">
+            <summary>The number of checked puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Succeeded">
+            <summary>The number of succeeded puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Percentage">
+            <summary>
+            Indicates the percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.GeneratorProgress">
             <summary>
             Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
@@ -20,6 +50,9 @@
         </member>
         <member name="P:Sudoku.Algorithm.Generating.GeneratorProgress.Count">
             <summary>The number of puzzles generated currently.</summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator">
             <summary>
@@ -209,6 +242,25 @@
             <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
             <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
             <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Algorithm.Generating.IProgressDataProvider`1">
+            <summary>
+            Indicates the data provider type,
+            </summary>
+            <typeparam name="T">The type of the implementation data provider.</typeparam>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.IProgressDataProvider`1.Count">
+            <summary>
+            Indicates the number of puzzles having been generated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
+            <summary>
+            Try to create a <typeparamref name="T"/> instance.
+            </summary>
+            <param name="count">The number of puzzles generated.</param>
+            <param name="succeeded">The number of puzzles has passed the checking.</param>
+            <returns>A <typeparamref name="T"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.IPuzzleGenerator">
             <summary>
