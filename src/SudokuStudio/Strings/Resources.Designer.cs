@@ -3571,6 +3571,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also saves for batch-generated puzzles into history.
+        /// </summary>
+        internal static string SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory {
+            get {
+                return ResourceManager.GetString("SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving &amp; Analysis.
         /// </summary>
         internal static string SettingsPage_Analysis {
@@ -4307,6 +4316,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle {
             get {
                 return ResourceManager.GetString("SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string SettingsPage_History {
+            get {
+                return ResourceManager.GetString("SettingsPage_History", resourceCulture);
             }
         }
         

@@ -1200,6 +1200,9 @@
   <data name="SettingsPage_AlsoDisplayEnglishNameOfTheStep" xml:space="preserve">
     <value>Also display English name of the step</value>
   </data>
+  <data name="SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory" xml:space="preserve">
+    <value>Also saves for batch-generated puzzles into history</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>Solving &amp; Analysis</value>
   </data>
@@ -1447,6 +1450,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle" xml:space="preserve">
     <value>Scale of highlighted candidate background circles</value>
+  </data>
+  <data name="SettingsPage_History" xml:space="preserve">
+    <value>History</value>
   </data>
   <data name="SettingsPage_HollowCircle" xml:space="preserve">
     <value>Hollow circle</value>

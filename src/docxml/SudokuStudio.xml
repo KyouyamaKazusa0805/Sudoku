@@ -1561,6 +1561,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistoryProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacterProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>.
@@ -1988,6 +1994,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation">
             <summary>
             Indicates whether UI makes houses display its capital letters.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory">
+            <summary>
+            Indicates whether the program also save for batch generated puzzles into history.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
@@ -6825,6 +6836,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Also display English name of the step.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory">
+            <summary>
+              Looks up a localized string similar to Also saves for batch-generated puzzles into history.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Analysis">
             <summary>
               Looks up a localized string similar to Solving &amp; Analysis.
@@ -7235,6 +7251,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle">
             <summary>
               Looks up a localized string similar to Scale of highlighted candidate background circles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_History">
+            <summary>
+              Looks up a localized string similar to History.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_HollowCircle">

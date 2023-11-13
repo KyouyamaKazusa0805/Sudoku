@@ -37,6 +37,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<bool>("MakeLettersUpperCaseInExcelNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.")]
 [DependencyProperty<bool>("MakeDigitBeforeCellInRxCyNotation", DocSummary = "Indicates whether UI makes digits displaying before cells.")]
 [DependencyProperty<bool>("HouseNotationOnlyDisplayCapitalsInRxCyNotation", DocSummary = "Indicates whether UI makes houses display its capital letters.")]
+[DependencyProperty<bool>("AlsoSaveBatchGeneratedPuzzlesIntoHistory", DocSummary = "Indicates whether the program also save for batch generated puzzles into history.")]
 [DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
 [DependencyProperty<char>("FinalRowLetterInK9Notation", DefaultValue = 'I', DocSummary = "Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.")]
 [DependencyProperty<decimal>("HighlightedPencilmarkBackgroundEllipseScale", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]

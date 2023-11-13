@@ -175,14 +175,25 @@
 			</w:SettingsCard>
 
 			<!--
-			SettingsPage_MiscellaneousBehaviors
+			SettingsPage_History
 			-->
-			<TextBlock Text="{m:R Key=SettingsPage_MiscellaneousBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<TextBlock Text="{m:R Key=SettingsPage_History}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_SavePuzzleGeneratingHistory}"
 				Description="{m:R Key=SettingsPage_SavePuzzleGeneratingHistoryDescription}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory}"
+				IsEnabled="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=OneWay}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory,Mode=TwoWay}" />
+			</w:SettingsCard>
+
+			<!--
+			SettingsPage_MiscellaneousBehaviors
+			-->
+			<TextBlock Text="{m:R Key=SettingsPage_MiscellaneousBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}">
 				<ComboBox
 					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"

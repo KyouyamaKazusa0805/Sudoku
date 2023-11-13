@@ -1203,6 +1203,9 @@
   <data name="SettingsPage_AlsoDisplayEnglishNameOfTheStep" xml:space="preserve">
     <value>同时显示分析后的步骤的技巧英文名</value>
   </data>
+  <data name="SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory" xml:space="preserve">
+    <value>将批量生成的题目也追加到历史记录中</value>
+  </data>
   <data name="SettingsPage_Analysis" xml:space="preserve">
     <value>解题与分析</value>
   </data>
@@ -1450,6 +1453,9 @@
   </data>
   <data name="SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle" xml:space="preserve">
     <value>候选数视图节点的缩放比例</value>
+  </data>
+  <data name="SettingsPage_History" xml:space="preserve">
+    <value>历史记录</value>
   </data>
   <data name="SettingsPage_HollowCircle" xml:space="preserve">
     <value>空心圆</value>

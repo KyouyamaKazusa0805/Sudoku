@@ -316,7 +316,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 			},
-			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, $"{grid:#}{Environment.NewLine}")
+			(scoped ref readonly Grid grid) =>
+			{
+				File.AppendAllText(filePath, $"{grid:#}{Environment.NewLine}");
+
+				if (((App)Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
+					&& ((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				{
+					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
+				}
+			}
 		);
 	}
 }
