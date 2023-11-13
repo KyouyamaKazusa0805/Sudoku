@@ -1,11 +1,13 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Navigation;
 using Sudoku.Algorithm.Generating;
 using Sudoku.Algorithm.Ittoryu;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
+using SudokuStudio.BindableSource;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
@@ -31,21 +33,27 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <summary>
 	/// Initializes a <see cref="GeneratingOperation"/> instance.
 	/// </summary>
-	public GeneratingOperation()
-	{
-		InitializeComponent();
-		SetMemoryOptions();
-	}
+	public GeneratingOperation() => InitializeComponent();
 
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
 
 
+	/// <inheritdoc/>
+	protected override void OnNavigatedTo(NavigationEventArgs e)
+	{
+		if (e.Parameter is AnalyzePage p)
+		{
+			SetMemoryOptions(p);
+		}
+	}
+
 	/// <summary>
 	/// Update control selection via user configuration.
 	/// </summary>
-	private void SetMemoryOptions()
+	/// <param name="basePage">The base page.</param>
+	private void SetMemoryOptions(AnalyzePage basePage)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var comma = GetString("_Token_Comma");
@@ -95,6 +103,22 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}:AnalyzePage_SelectedIttoryuIs}")
 			]
 		);
+
+		if (basePage._puzzleLibraries is { } libs)
+		{
+			PuzzleLibraryChoser.ItemsSource = libs;
+			var fileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
+			var foundElementCorrespondingIndex = -1;
+			for (var i = 0; i < libs.Count; i++)
+			{
+				if (libs[i] is { FileId: var fileIdToCheck } && fileIdToCheck == fileId)
+				{
+					foundElementCorrespondingIndex = i;
+					break;
+				}
+			}
+			PuzzleLibraryChoser.SelectedIndex = foundElementCorrespondingIndex == -1 ? 0 : foundElementCorrespondingIndex;
+		}
 	}
 
 	/// <summary>
@@ -277,6 +301,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				BasePage.SudokuPane.Puzzle = grid;
 			}
 		);
+
+	private void FetchInPuzzleLibraryButton_Click(object sender, RoutedEventArgs e)
+	{
+		var source = (PuzzleLibraryBindableSource)PuzzleLibraryChoser.SelectedValue;
+		var i = Random.Shared.Next(0, source.Puzzles.Length);
+
+		BasePage.SudokuPane.Puzzle = source.Puzzles[i];
+		BasePage.ClearAnalyzeTabsData();
+	}
+
+	private void PuzzleLibraryChoser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		var source = (PuzzleLibraryBindableSource)PuzzleLibraryChoser.SelectedValue;
+		((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
+	}
 
 	private async void BatchGeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{

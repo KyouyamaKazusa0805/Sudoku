@@ -86,6 +86,11 @@ public sealed partial class AnalyzePage : Page
 	internal ViewUnitBindableSource? _localView = new([], []);
 
 	/// <summary>
+	/// The internal puzzle libraries.
+	/// </summary>
+	internal ObservableCollection<PuzzleLibraryBindableSource>? _puzzleLibraries;
+
+	/// <summary>
 	/// Indicates the tab routing data.
 	/// </summary>
 	private List<AnalyzeTabPageBindableSource> _tabsRoutingData;
@@ -526,7 +531,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
 	/// <seealso cref="_navigatingData"/>
-	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData))]
+	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData), nameof(_puzzleLibraries))]
 	private void InitializeFields()
 	{
 		var thickness = new Thickness(10);
@@ -580,6 +585,8 @@ public sealed partial class AnalyzePage : Page
 			(container => container == ShuffleOperationBar, typeof(ShuffleOperation)),
 			(container => container == GeneratingOperationBar, typeof(GeneratingOperation))
 		];
+
+		_puzzleLibraries = PuzzleLibraryBindableSource.LocalPuzzleLibraries(false);
 	}
 
 	/// <summary>

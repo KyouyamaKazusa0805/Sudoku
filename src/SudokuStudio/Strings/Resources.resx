@@ -357,6 +357,9 @@
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>Failed</value>
   </data>
+  <data name="AnalyzePage_FetchPuzzleFromLibrary" xml:space="preserve">
+    <value>Fetch from library</value>
+  </data>
   <data name="AnalyzePage_FilterGatheredSteps" xml:space="preserve">
     <value>Filter gathered steps</value>
   </data>

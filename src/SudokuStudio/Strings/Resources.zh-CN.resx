@@ -360,6 +360,9 @@
   <data name="AnalyzePage_FailedToOpenFilePicker" xml:space="preserve">
     <value>失败</value>
   </data>
+  <data name="AnalyzePage_FetchPuzzleFromLibrary" xml:space="preserve">
+    <value>题库抽题</value>
+  </data>
   <data name="AnalyzePage_FilterGatheredSteps" xml:space="preserve">
     <value>过滤</value>
   </data>

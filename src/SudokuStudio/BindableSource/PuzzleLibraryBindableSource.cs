@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Storage;
 using static SudokuStudio.Strings.StringsAccessor;
 
@@ -80,6 +81,12 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 	public string FilePath => $@"{CommonPaths.PuzzleLibrariesFolder}\{FileId}{FileExtensions.PuzzleLibrary}";
 
 	/// <summary>
+	/// Indicates the path of display name.
+	/// </summary>
+	[JsonIgnore]
+	public string DisplayName => PuzzleLibraryConversion.GetLibraryName(Name, FileId!);
+
+	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
 	public string[] Tags { get; set; } = [];
@@ -93,6 +100,10 @@ public sealed partial class PuzzleLibraryBindableSource([DataMember] bool isAddi
 	/// <summary>
 	/// Try to fetch all puzzle libraries stored in the local path.
 	/// </summary>
+	/// <param name="autoAdding">
+	/// Indicates whether the returned result contains a page that supports adding operation.
+	/// This parameter should only be used in puzzle library page; otherwise, passing with <see langword="false"/>.
+	/// </param>
 	/// <returns>
 	/// All puzzle libraies, having been converted into <see cref="PuzzleLibraryBindableSource"/> instances to be used and replaced.
 	/// </returns>

@@ -997,6 +997,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fetch from library.
+        /// </summary>
+        internal static string AnalyzePage_FetchPuzzleFromLibrary {
+            get {
+                return ResourceManager.GetString("AnalyzePage_FetchPuzzleFromLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter gathered steps.
         /// </summary>
         internal static string AnalyzePage_FilterGatheredSteps {

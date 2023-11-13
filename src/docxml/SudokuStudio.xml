@@ -226,6 +226,11 @@
             Indicates the path of the library storage file.
             </summary>
         </member>
+        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.DisplayName">
+            <summary>
+            Indicates the path of display name.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Tags">
             <summary>
             Indicates the tags of the library.
@@ -240,6 +245,10 @@
             <summary>
             Try to fetch all puzzle libraries stored in the local path.
             </summary>
+            <param name="autoAdding">
+            Indicates whether the returned result contains a page that supports adding operation.
+            This parameter should only be used in puzzle library page; otherwise, passing with <see langword="false"/>.
+            </param>
             <returns>
             All puzzle libraies, having been converted into <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instances to be used and replaced.
             </returns>
@@ -1705,6 +1714,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibraryProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop"/>.
@@ -2113,6 +2128,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation">
             <summary>
             Indicates the default digit separators for displaying digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary">
+            <summary>
+            Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
@@ -5404,6 +5424,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_FailedToOpenFilePicker">
             <summary>
               Looks up a localized string similar to Failed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_FetchPuzzleFromLibrary">
+            <summary>
+              Looks up a localized string similar to Fetch from library.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_FilterGatheredSteps">
@@ -10479,6 +10504,11 @@ if (student is (name: var name, age: >= 18))
             Defines a local view.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._puzzleLibraries">
+            <summary>
+            The internal puzzle libraries.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._tabsRoutingData">
             <summary>
             Indicates the tab routing data.
@@ -11658,10 +11688,14 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingOperation.BasePage">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetMemoryOptions">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetMemoryOptions(SudokuStudio.Views.Pages.AnalyzePage)">
             <summary>
             Update control selection via user configuration.
             </summary>
+            <param name="basePage">The base page.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.Technique}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
             <summary>
