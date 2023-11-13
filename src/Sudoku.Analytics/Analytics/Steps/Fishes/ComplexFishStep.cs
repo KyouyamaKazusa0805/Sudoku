@@ -49,6 +49,7 @@ namespace Sudoku.Analytics.Steps;
 /// </list>
 /// </para>
 /// </param>
+/// <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
 public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -59,7 +60,8 @@ public sealed partial class ComplexFishStep(
 	[DataMember] scoped ref readonly CellMap exofins,
 	[DataMember] scoped ref readonly CellMap endofins,
 	[DataMember] bool isFranken,
-	[DataMember] bool? isSashimi
+	[DataMember] bool? isSashimi,
+	[DataMember] bool isCannibalism
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
 	/// <summary>
@@ -125,7 +127,8 @@ public sealed partial class ComplexFishStep(
 				IsFranken
 					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }
 					: Size switch { 2 => 0, 3 or 4 => 1.4M, 5 or 6 => 1.6M, 7 => 1.7M, _ => 2.0M }
-			)
+			),
+			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalism ? .3M : 0)
 		];
 
 	/// <inheritdoc/>

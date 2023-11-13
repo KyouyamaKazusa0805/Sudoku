@@ -14075,8 +14075,9 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             </param>
+            <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean},System.Boolean)">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -14116,6 +14117,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </para>
             </param>
+            <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
         </member>
         <member name="F:Sudoku.Analytics.Steps.ComplexFishStep.LetterOrDigitCharacters">
             <summary>
@@ -14155,6 +14157,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
             <summary>
             The generated property declaration for parameter <c>isSashimi</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsCannibalism">
+            <summary>
+            The generated property declaration for parameter <c>isCannibalism</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FishStep">

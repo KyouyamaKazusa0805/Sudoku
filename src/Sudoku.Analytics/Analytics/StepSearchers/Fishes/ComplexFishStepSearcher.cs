@@ -380,12 +380,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									elimMap &= fins.PeerIntersection & CandidatesMap[digit];
 								}
 
-								// Check whether the elimination exists.
-								if (!elimMap)
-								{
-									goto BacktrackValue;
-								}
-
+								// Cannibalism rule: If a cell is on the intersection of 2 cover sets and a base set, it'll be a cannibalism.
+								// A cannibalism will remove the cell that is in a base set.
 								// Gather step information.
 								// Don't forget the extra cover set. Add it into the list now.
 								var actualCoverSets = new House[size];
@@ -394,6 +390,33 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									actualCoverSets[p] = coverSets[p];
 								}
 								actualCoverSets[^1] = houseIndex;
+
+								var cannibal = false;
+								if (!exofins && !endofins)
+								{
+									foreach (var cannibalism in actualBaseMap)
+									{
+										var coverSetCounter = 0;
+										foreach (var coverSet in actualCoverSets)
+										{
+											if (HousesMap[coverSet].Contains(cannibalism))
+											{
+												coverSetCounter++;
+											}
+										}
+										if (coverSetCounter == 2)
+										{
+											elimMap.Add(cannibalism);
+											cannibal = true;
+										}
+									}
+								}
+
+								// Check whether the elimination exists.
+								if (!elimMap)
+								{
+									goto BacktrackValue;
+								}
 
 								// Collect highlighting houses.
 								var coverSetsMask = 0;
@@ -432,7 +455,8 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									in exofins,
 									in endofins,
 									!checkMutant,
-									IsSashimi(baseSets, in fins, digit)
+									IsSashimi(baseSets, in fins, digit),
+									cannibal
 								);
 								if (onlyFindOne)
 								{
