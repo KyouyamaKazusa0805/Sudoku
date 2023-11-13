@@ -364,7 +364,7 @@ file static class RunExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Run"/> instance.</param>
 	/// <param name="text">The text to be initialized.</param>
-	public static Run WithText(this Run @this, [InterpolatedStringHandlerArgument] scoped ref FormatHandler text)
+	public static Run WithText(this Run @this, scoped ref FormatHandler text)
 	{
 		@this.Text = text.ToString();
 		return @this;
