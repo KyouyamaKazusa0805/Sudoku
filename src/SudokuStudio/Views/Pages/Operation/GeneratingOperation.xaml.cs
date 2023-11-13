@@ -111,7 +111,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <returns>The task that holds the asynchronous operation.</returns>
 	private async Task HandleGeneratingAsync<T>(
 		bool onlyGenerateOne,
-		GridStateChanger<(Analyzer Analyzer, Technique Technique)>? gridStateChanger,
+		GridStateChanger<(Analyzer Analyzer, Technique Technique)>? gridStateChanger = null,
 		ActionRefReadOnly<Grid>? gridHandler = null
 	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 	{
@@ -268,8 +268,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 		=> await HandleGeneratingAsync<GeneratorProgress>(
 			true,
-			null,
-			(scoped ref readonly Grid grid) =>
+			gridHandler: (scoped ref readonly Grid grid) =>
 			{
 				if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
