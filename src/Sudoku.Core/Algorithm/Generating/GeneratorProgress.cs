@@ -11,5 +11,10 @@ public readonly record struct GeneratorProgress(int Count) : IProgressDataProvid
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	string IProgressDataProvider<GeneratorProgress>.ToDisplayString() => Count.ToString();
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static GeneratorProgress IProgressDataProvider<GeneratorProgress>.Create(int count, int succeeded) => new(count);
 }

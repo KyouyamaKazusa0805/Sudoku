@@ -183,28 +183,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				return generatePuzzleCore(progress => DispatcherQueue.TryEnqueue(() =>
-				{
-					switch (progress)
-					{
-						case GeneratorProgress(var count):
+				return generatePuzzleCore(
+					progress => DispatcherQueue.TryEnqueue(
+						() =>
 						{
 							BasePage.AnalyzeProgressLabel.Text = processingText;
-							BasePage.AnalyzeStepSearcherNameLabel.Text = count.ToString();
-							break;
+							BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
 						}
-						case FilteredGeneratorProgress(var count, var succeeded) { Percentage: var percentage }:
-						{
-							BasePage.AnalyzeProgressLabel.Text = processingText;
-							BasePage.AnalyzeStepSearcherNameLabel.Text = $"{succeeded}/{count} ({percentage:P2})";
-							break;
-						}
-						default:
-						{
-							throw new InvalidOperationException($"The argument '{nameof(progress)}' must contains a valid type.");
-						}
-					}
-				}), details, cts.Token, analyzer, finder) ?? Grid.Undefined;
+					), details, cts.Token, analyzer, finder
+				) ?? Grid.Undefined;
 			}
 			catch (TaskCanceledException)
 			{
@@ -341,7 +328,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 /// </summary>
 /// <param name="handler"><inheritdoc cref="Progress{T}.Progress(Action{T})" path="/param[@name='handler']"/></param>
 /// <typeparam name="T"><inheritdoc cref="Progress{T}" path="/typeparam[@name='T']"/></typeparam>
-file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(handler)
+file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(handler) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 {
 	/// <inheritdoc cref="Progress{T}.OnReport(T)"/>
 	public void Report(T value) => OnReport(value);

@@ -13,6 +13,12 @@ public interface IProgressDataProvider<T> where T : struct, IEquatable<T>, IProg
 
 
 	/// <summary>
+	/// Try to fetch display string for the current instance.
+	/// </summary>
+	/// <returns>The display string.</returns>
+	public abstract string ToDisplayString();
+
+	/// <summary>
 	/// Try to create a <typeparamref name="T"/> instance.
 	/// </summary>
 	/// <param name="count">The number of puzzles generated.</param>

@@ -31,6 +31,9 @@
             Indicates the percentage.
             </summary>
         </member>
+        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -50,6 +53,9 @@
         </member>
         <member name="P:Sudoku.Algorithm.Generating.GeneratorProgress.Count">
             <summary>The number of puzzles generated currently.</summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
@@ -253,6 +259,12 @@
             <summary>
             Indicates the number of puzzles having been generated.
             </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.IProgressDataProvider`1.ToDisplayString">
+            <summary>
+            Try to fetch display string for the current instance.
+            </summary>
+            <returns>The display string.</returns>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
             <summary>
