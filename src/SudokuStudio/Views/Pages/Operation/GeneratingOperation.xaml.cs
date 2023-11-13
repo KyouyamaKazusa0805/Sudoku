@@ -405,7 +405,7 @@ file ref struct FormatHandler(int _, int __)
 				var (a, b, c) => string.Format(GetString(_format), a, b, c),
 				var (a, b) => string.Format(GetString(_format), a, b),
 				ITuple tuple => string.Format(GetString(_format), tuple.ToArray()),
-				object => string.Format(GetString(_format), _content),
+				not null => string.Format(GetString(_format), _content),
 				_ => GetString(_format)
 			},
 			_ => throw new InvalidOperationException("The format cannot be null.")
