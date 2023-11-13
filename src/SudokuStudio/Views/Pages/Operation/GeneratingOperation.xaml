@@ -33,7 +33,7 @@
 		<AppBarButton Icon="NewWindow" Label="{m:R Key=AnalyzePage_FetchPuzzleFromLibrary}" Click="FetchInPuzzleLibraryButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton
-			Icon="Save" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"
+			Icon="NewWindow" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="BatchGeneratingButton_ClickAsync" />
 	</CommandBar>
