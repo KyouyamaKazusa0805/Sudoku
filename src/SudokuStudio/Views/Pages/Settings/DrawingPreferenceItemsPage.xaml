@@ -29,7 +29,7 @@
 	<Grid ColumnDefinitions="*,Auto" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 		<!--Preference items-->
 		<ScrollViewer>
-			<StackPanel Margin="0,0,30,0">
+			<StackPanel Margin="0,0,30,0" Spacing="6">
 				<!--
 				SettingsPage_Deltas
 				-->

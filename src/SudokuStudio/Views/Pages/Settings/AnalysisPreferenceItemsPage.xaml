@@ -30,7 +30,7 @@
 	</Page.Resources>
 
 	<ScrollViewer>
-		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 			<!--
 			SettingsPage_SinglesGroup
 			-->
