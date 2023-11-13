@@ -52,7 +52,7 @@
 	<StackPanel Spacing="24">
 		<TextBlock Text="{m:R Key=AddToLibraryContent_Title}" FontWeight="Bold" FontSize="24" />
 		<ListView
-			IsItemClickEnabled="True" SelectionMode="Single" ItemsSource="{x:Bind _puzzleLibraries,Mode=OneWay}"
+			IsItemClickEnabled="True" SelectionMode="Single" ItemsSource="{x:Bind PuzzleLibraries,Mode=OneWay}"
 			SelectedItem="{x:Bind SelectedLibrary,Mode=TwoWay}">
 			<ListView.ItemTemplate>
 				<DataTemplate x:DataType="bs:PuzzleLibraryBindableSource">

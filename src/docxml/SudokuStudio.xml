@@ -11044,14 +11044,14 @@ if (student is (name: var name, age: >= 18))
             Represents with a dialog content "add a puzzle to the library" from analyze page.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent._puzzleLibraries">
-            <summary>
-            Indicates the puzzle libraries.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.#ctor">
             <summary>
             Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.PuzzleLibraries">
+            <summary>
+            The property that can assign the internal field with the initialized value.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.InitializeComponent">

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.SourceGeneration;
@@ -1341,13 +1342,15 @@ public sealed partial class AnalyzePage : Page
 
 	private async void SavePuzzleToLibraryAppBarButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
+		Debug.Assert(_puzzleLibraries is not null);
+
 		var contentDialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
 			CloseButtonText = GetString("LibraryPage_Close"),
-			Content = new AddToLibraryContent(),
+			Content = new AddToLibraryContent { PuzzleLibraries = _puzzleLibraries },
 			DefaultButton = ContentDialogButton.Primary,
 			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
 		};
@@ -1363,16 +1366,16 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		var index = content._puzzleLibraries.FindIndex(lib => lib.FileId == selectedFileId);
+		var index = _puzzleLibraries.FindIndex(lib => lib.FileId == selectedFileId);
 		if (index == -1)
 		{
 			return;
 		}
 
-		var instance = content._puzzleLibraries[index];
+		var instance = _puzzleLibraries[index];
 		var newInstance = new PuzzleLibraryBindableSource(instance, [.. instance.Puzzles, SudokuPane.Puzzle]);
 
-		content._puzzleLibraries[index] = newInstance;
+		_puzzleLibraries[index] = newInstance;
 
 		var json = JsonSerializer.Serialize(newInstance, LibraryPage.SerializerOptions);
 		await File.WriteAllTextAsync(newInstance.FilePath, json);

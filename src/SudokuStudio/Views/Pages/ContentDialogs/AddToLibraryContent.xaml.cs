@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -24,15 +25,16 @@ public sealed partial class AddToLibraryContent : Page
 
 
 	/// <summary>
-	/// Indicates the puzzle libraries.
-	/// </summary>
-	internal readonly ObservableCollection<PuzzleLibraryBindableSource> _puzzleLibraries = PuzzleLibraryBindableSource.LocalPuzzleLibraries(false);
-
-
-	/// <summary>
 	/// Initializes an <see cref="AddToLibraryContent"/> instance.
 	/// </summary>
 	public AddToLibraryContent() => InitializeComponent();
+
+
+	/// <summary>
+	/// The property that can assign the internal field with the initialized value.
+	/// </summary>
+	[DisallowNull]
+	internal ObservableCollection<PuzzleLibraryBindableSource>? PuzzleLibraries { get; set; } = PuzzleLibraryBindableSource.LocalPuzzleLibraries(false);
 
 
 	private async void ApplyButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -85,7 +87,7 @@ public sealed partial class AddToLibraryContent : Page
 			return;
 		}
 
-		_puzzleLibraries.Add(instance);
+		PuzzleLibraries!.Add(instance);
 
 		var json = JsonSerializer.Serialize(instance, LibraryPage.SerializerOptions);
 		await File.WriteAllTextAsync(instance.FilePath, json);
