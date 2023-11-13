@@ -4786,6 +4786,79 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Storage.SudokuPlainTextFileHandler.Write(System.String,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Strings.ResourceFetcher">
+            <summary>
+            Represents a mechanism that allows you using interpolated string syntax to fetch resource text.
+            </summary>
+            <param name="literalLength">Indicates the whole length of the interpolated string.</param>
+            <param name="formattedCount">Indicates the number of the interpolated holes.</param>
+            <remarks>
+            Usage:
+            <code><![CDATA[
+            scoped ResourceFetcher expr = $"{value:ResourceKeyName}";
+            string s = expr.ToString();
+            ]]></code>
+            Here <c>value</c> will be inserted into the resource, whose related key value is specified as <c>ResourceKeyName</c> after colon token.
+            Its equivalent value is
+            <code><![CDATA[
+            string s = string.Format(GetString("ResourceKeyName"), value);
+            ]]></code>
+            This type is implemented via an interpolated string handler pattern, same as <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>,
+            marked with <see cref="T:System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute"/>.
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>
+            <seealso cref="T:System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute"/>
+        </member>
+        <member name="M:SudokuStudio.Strings.ResourceFetcher.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a mechanism that allows you using interpolated string syntax to fetch resource text.
+            </summary>
+            <param name="literalLength">Indicates the whole length of the interpolated string.</param>
+            <param name="formattedCount">Indicates the number of the interpolated holes.</param>
+            <remarks>
+            Usage:
+            <code><![CDATA[
+            scoped ResourceFetcher expr = $"{value:ResourceKeyName}";
+            string s = expr.ToString();
+            ]]></code>
+            Here <c>value</c> will be inserted into the resource, whose related key value is specified as <c>ResourceKeyName</c> after colon token.
+            Its equivalent value is
+            <code><![CDATA[
+            string s = string.Format(GetString("ResourceKeyName"), value);
+            ]]></code>
+            This type is implemented via an interpolated string handler pattern, same as <see cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>,
+            marked with <see cref="T:System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute"/>.
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler"/>
+            <seealso cref="T:System.Runtime.CompilerServices.InterpolatedStringHandlerAttribute"/>
+        </member>
+        <member name="F:SudokuStudio.Strings.ResourceFetcher._format">
+            <summary>
+            The internal format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Strings.ResourceFetcher._content">
+            <summary>
+            The internal content.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Strings.ResourceFetcher.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <exception cref="T:System.InvalidOperationException">Throws when the value is not initialized.</exception>
+        </member>
+        <member name="M:SudokuStudio.Strings.ResourceFetcher.AppendFormatted(System.Object,System.String)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted``1(``0,System.String)"/>
+        </member>
+        <member name="F:SudokuStudio.Strings.ResourceFetcher._literalLength">
+            <summary>
+            The generated field declaration for parameter <c>literalLength</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Strings.ResourceFetcher._formattedCount">
+            <summary>
+            The generated field declaration for parameter <c>formattedCount</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Strings.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -11665,49 +11738,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Documents.Run"/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.RunExtensions.WithText(Microsoft.UI.Xaml.Documents.Run,SudokuStudio.Views.Pages.Operation.FormatHandler@)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.RunExtensions.WithText(Microsoft.UI.Xaml.Documents.Run,SudokuStudio.Strings.ResourceFetcher@)">
             <summary>
             Sets with <see cref="P:Microsoft.UI.Xaml.Documents.Run.Text"/> property, reducing indenting.
             </summary>
             <param name="this">The <see cref="T:Microsoft.UI.Xaml.Documents.Run"/> instance.</param>
             <param name="text">The text to be initialized.</param>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.FormatHandler">
-            <summary>
-            The internal format handler type.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.#ctor(System.Int32,System.Int32)">
-            <summary>
-            The internal format handler type.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._">
-            <summary>
-            The inforamtion for character length and hole count.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler.__">
-            <summary>
-            The inforamtion for character length and hole count.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._format">
-            <summary>
-            The internal format.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Operation.FormatHandler._content">
-            <summary>
-            The internal content.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <exception cref="T:System.InvalidOperationException">Throws when the value is not initialized.</exception>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.FormatHandler.AppendFormatted(System.Object,System.String)">
-            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted``1(``0,System.String)"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
@@ -12,6 +10,7 @@ using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Storage;
+using SudokuStudio.Strings;
 using SudokuStudio.Views.Attached;
 using Windows.Storage.Pickers;
 using static SudokuStudio.Strings.StringsAccessor;
@@ -364,52 +363,9 @@ file static class RunExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Run"/> instance.</param>
 	/// <param name="text">The text to be initialized.</param>
-	public static Run WithText(this Run @this, scoped ref FormatHandler text)
+	public static Run WithText(this Run @this, scoped ref ResourceFetcher text)
 	{
 		@this.Text = text.ToString();
 		return @this;
 	}
-}
-
-/// <summary>
-/// The internal format handler type.
-/// </summary>
-[InterpolatedStringHandler]
-file ref struct FormatHandler(int _, int __)
-{
-	/// <summary>
-	/// The inforamtion for character length and hole count.
-	/// </summary>
-	[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
-	private readonly int _ = _, __ = __;
-
-	/// <summary>
-	/// The internal format.
-	/// </summary>
-	private string? _format;
-
-	/// <summary>
-	/// The internal content.
-	/// </summary>
-	private object? _content;
-
-
-	/// <inheritdoc cref="object.ToString"/>
-	/// <exception cref="InvalidOperationException">Throws when the value is not initialized.</exception>
-	public override readonly string ToString()
-		=> _format switch
-		{
-			not null => _content switch
-			{
-				var (a, b, c) => string.Format(GetString(_format), a, b, c),
-				var (a, b) => string.Format(GetString(_format), a, b),
-				ITuple tuple => string.Format(GetString(_format), tuple.ToArray()),
-				not null => string.Format(GetString(_format), _content),
-				_ => GetString(_format)
-			},
-			_ => throw new InvalidOperationException("The format cannot be null.")
-		};
-
-	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted{T}(T, string?)"/>
-	public void AppendFormatted(object? content, string format) => (_format, _content) = (format, content);
 }
