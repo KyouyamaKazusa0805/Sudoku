@@ -316,7 +316,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 			},
-			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, grid.ToString("#") + Environment.NewLine)
+			(scoped ref readonly Grid grid) => File.AppendAllText(filePath, $"{grid:#}{Environment.NewLine}")
 		);
 	}
 }

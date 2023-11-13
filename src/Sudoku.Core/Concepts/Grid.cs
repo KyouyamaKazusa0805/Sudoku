@@ -1,5 +1,6 @@
 #undef EMPTY_GRID_STRING_CONSTANT
 #define IMPL_INTERFACE_MIN_MAX_VALUE
+#define IMPL_INTERFACE_FORMATTABLE
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #define TARGET_64BIT
@@ -66,6 +67,9 @@ public unsafe partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
+#if IMPL_INTERFACE_FORMATTABLE
+	IFormattable,
+#endif
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	IMinMaxValue<Grid>,
 #endif
@@ -1009,6 +1013,21 @@ public unsafe partial struct Grid :
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
 			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this) ?? throw new FormatException("The specified format is invalid.")
 		};
+
+#if IMPL_INTERFACE_FORMATTABLE
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(string? format, IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			null => ToString(format),
+			_ => formatProvider.GetFormat(typeof(ICustomFormatter)) switch
+			{
+				ICustomFormatter formatter => formatter.Format(format, this, formatProvider),
+				_ => ToString(format)
+			}
+		};
+#endif
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

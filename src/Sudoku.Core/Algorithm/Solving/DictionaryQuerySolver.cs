@@ -95,7 +95,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	{
 		Unsafe.SkipInit(out result);
 
-		var rawResult = Search(ParseGrid(grid.ToString("0")));
+		var rawResult = Search(ParseGrid($"{grid:0}"));
 		if (rawResult is null)
 		{
 			return null;

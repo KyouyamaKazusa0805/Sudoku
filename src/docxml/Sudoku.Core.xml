@@ -3628,6 +3628,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.SudokuGrid.GridConverter)">
             <inheritdoc/>
         </member>
