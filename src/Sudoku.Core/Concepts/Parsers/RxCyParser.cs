@@ -16,267 +16,276 @@ namespace Sudoku.Concepts.Parsers;
 public sealed partial record RxCyParser : CoordinateParser
 {
 	/// <inheritdoc/>
-	public override Func<string, CellMap> CellParser
-		=> static str =>
+	public override Func<string, CellMap> CellParser => OnCellParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, CandidateMap> CandidateParser => OnCandidateParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, HouseMask> HouseParser => OnHouseParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, Conclusion[]> ConclusionParser => OnConclusionParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, Mask> DigitParser => OnDigitParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, (IntersectionBase Base, IntersectionResult Result)[]> IntersectionParser => OnIntersectionParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, Chute[]> ChuteParser => OnChuteParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
+
+
+	private static CellMap OnCellParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
 		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
+			return [];
+		}
 
-			if (UnitCellGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
+		if (UnitCellGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
 
-			var result = CellMap.Empty;
-			foreach (var match in matches.Cast<Match>())
+		var result = CellMap.Empty;
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
+			var rowDigits = s[1..indexOfColumnLabel];
+			var columnDigits = s[(indexOfColumnLabel + 1)..];
+			foreach (var row in rowDigits)
 			{
-				var s = match.Value;
+				foreach (var column in columnDigits)
+				{
+					result.Add((row - '1') * 9 + column - '1');
+				}
+			}
+		}
+
+		return result;
+	}
+
+	private static CandidateMap OnCandidateParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
+		{
+			return [];
+		}
+
+		if (UnitCandidateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
+
+		var result = CandidateMap.Empty;
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			if (s.Contains('('))
+			{
 				var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
+				var indexOfOpenBraceLabel = s.IndexOf('(');
 				var rowDigits = s[1..indexOfColumnLabel];
+				var columnDigits = s[(indexOfColumnLabel + 1)..indexOfOpenBraceLabel];
+				var digitDigits = s[(indexOfOpenBraceLabel + 1)..^1];
+				foreach (var row in rowDigits)
+				{
+					foreach (var column in columnDigits)
+					{
+						foreach (var digit in digitDigits)
+						{
+							result.Add(((row - '1') * 9 + column - '1') * 9 + digit - '1');
+						}
+					}
+				}
+			}
+			else
+			{
+				var indexOfRowLabel = s.IndexOfAny(['R', 'r']);
+				var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
+				var digitDigits = s[..indexOfRowLabel];
+				var rowDigits = s[(indexOfRowLabel + 1)..indexOfColumnLabel];
 				var columnDigits = s[(indexOfColumnLabel + 1)..];
 				foreach (var row in rowDigits)
 				{
 					foreach (var column in columnDigits)
 					{
-						result.Add((row - '1') * 9 + column - '1');
-					}
-				}
-			}
-
-			return result;
-		};
-
-	/// <inheritdoc/>
-	public override Func<string, CandidateMap> CandidateParser
-		=> static str =>
-		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
-
-			if (UnitCandidateGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
-
-			var result = CandidateMap.Empty;
-			foreach (var match in matches.Cast<Match>())
-			{
-				var s = match.Value;
-				if (s.Contains('('))
-				{
-					var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
-					var indexOfOpenBraceLabel = s.IndexOf('(');
-					var rowDigits = s[1..indexOfColumnLabel];
-					var columnDigits = s[(indexOfColumnLabel + 1)..indexOfOpenBraceLabel];
-					var digitDigits = s[(indexOfOpenBraceLabel + 1)..^1];
-					foreach (var row in rowDigits)
-					{
-						foreach (var column in columnDigits)
+						foreach (var digit in digitDigits)
 						{
-							foreach (var digit in digitDigits)
-							{
-								result.Add(((row - '1') * 9 + column - '1') * 9 + digit - '1');
-							}
-						}
-					}
-				}
-				else
-				{
-					var indexOfRowLabel = s.IndexOfAny(['R', 'r']);
-					var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
-					var digitDigits = s[..indexOfRowLabel];
-					var rowDigits = s[(indexOfRowLabel + 1)..indexOfColumnLabel];
-					var columnDigits = s[(indexOfColumnLabel + 1)..];
-					foreach (var row in rowDigits)
-					{
-						foreach (var column in columnDigits)
-						{
-							foreach (var digit in digitDigits)
-							{
-								result.Add(((row - '1') * 9 + column - '1') * 9 + digit - '1');
-							}
+							result.Add(((row - '1') * 9 + column - '1') * 9 + digit - '1');
 						}
 					}
 				}
 			}
+		}
 
-			return result;
-		};
+		return result;
+	}
 
-	/// <inheritdoc/>
-	public override Func<string, HouseMask> HouseParser
-		=> static str =>
+	private static HouseMask OnHouseParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
 		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return 0;
-			}
+			return 0;
+		}
 
-			if (UnitHousePattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return 0;
-			}
+		if (UnitHousePattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return 0;
+		}
 
-			var result = 0;
-			foreach (var match in matches.Cast<Match>())
+		var result = 0;
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var label = s[0];
+			foreach (var house in from digit in s[1..] select digit - '1')
 			{
-				var s = match.Value;
-				var label = s[0];
-				foreach (var house in from digit in s[1..] select digit - '1')
+				result |= 1 << label switch { 'R' or 'r' => 9, 'C' or 'c' => 18, _ => 0 } + house;
+			}
+		}
+
+		return result;
+	}
+
+	private Conclusion[] OnConclusionParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
+		{
+			return [];
+		}
+
+		if (UnitConclusionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
+
+		var result = new List<Conclusion>();
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var indexOfEqualityOperatorCharacters = s.Split((string[])["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			var cells = CellParser(indexOfEqualityOperatorCharacters[0]);
+			var digits = MaskOperations.Create(from character in indexOfEqualityOperatorCharacters[1] select character - '1');
+			var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? ConclusionType.Assignment : ConclusionType.Elimination;
+			foreach (var cell in cells)
+			{
+				foreach (var digit in digits)
 				{
-					result |= 1 << label switch { 'R' or 'r' => 9, 'C' or 'c' => 18, _ => 0 } + house;
+					result.Add(new(conclusionType, cell, digit));
 				}
 			}
+		}
 
-			return result;
-		};
+		return [.. result];
+	}
 
-	/// <inheritdoc/>
-	public override Func<string, Conclusion[]> ConclusionParser
-		=> str =>
-		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
-
-			if (UnitConclusionGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
-
-			var result = new List<Conclusion>();
-			foreach (var match in matches.Cast<Match>())
-			{
-				var s = match.Value;
-				var indexOfEqualityOperatorCharacters = s.Split((string[])["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-				var cells = CellParser(indexOfEqualityOperatorCharacters[0]);
-				var digits = MaskOperations.Create(from character in indexOfEqualityOperatorCharacters[1] select character - '1');
-				var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? ConclusionType.Assignment : ConclusionType.Elimination;
-				foreach (var cell in cells)
-				{
-					foreach (var digit in digits)
-					{
-						result.Add(new(conclusionType, cell, digit));
-					}
-				}
-			}
-
-			return [.. result];
-		};
-
-	/// <inheritdoc/>
-	public override Func<string, Mask> DigitParser
-		=> static str => str.MatchAll("""\d""") is { Length: <= 9 } matches
+	private static Mask OnDigitParsing(string str)
+		=> str.MatchAll("""\d""") is { Length: <= 9 } matches
 			? MaskOperations.Create(from digitString in matches select digitString[0] - '1')
 			: throw new InvalidOperationException("There exists duplicate values.");
 
-	/// <inheritdoc/>
-	public override Func<string, (IntersectionBase Base, IntersectionResult Result)[]> IntersectionParser
-		=> static str =>
+	private static (IntersectionBase Base, IntersectionResult Result)[] OnIntersectionParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
 		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
+			return [];
+		}
 
-			if (UnitIntersectionGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
+		if (UnitIntersectionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
 
-			var result = new List<(IntersectionBase, IntersectionResult)>();
-			foreach (var match in matches.Cast<Match>())
+		var result = new List<(IntersectionBase, IntersectionResult)>();
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var indexOfBlockLabel = s.IndexOfAny(['B', 'b']);
+			var lineLabel = s[0];
+			var lines = s[1..indexOfBlockLabel];
+			var blocks = s[(indexOfBlockLabel + 1)..];
+			foreach (var line in lines)
 			{
-				var s = match.Value;
-				var indexOfBlockLabel = s.IndexOfAny(['B', 'b']);
-				var lineLabel = s[0];
-				var lines = s[1..indexOfBlockLabel];
-				var blocks = s[(indexOfBlockLabel + 1)..];
-				foreach (var line in lines)
+				foreach (var block in blocks)
 				{
-					foreach (var block in blocks)
-					{
-						var @base = new IntersectionBase(
-							(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
-							(byte)(block - '1')
-						);
-						result.Add((@base, IntersectionMaps[@base]));
-					}
+					var @base = new IntersectionBase(
+						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
+						(byte)(block - '1')
+					);
+					result.Add((@base, IntersectionMaps[@base]));
 				}
 			}
+		}
 
-			return [.. result];
-		};
+		return [.. result];
+	}
 
-	/// <inheritdoc/>
-	public override Func<string, Chute[]> ChuteParser
-		=> static str =>
+	private static Chute[] OnChuteParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
 		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
+			return [];
+		}
 
-			if (UnitMegaLineGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
+		if (UnitMegaLineGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
 
-			var result = new List<Chute>(6);
-			foreach (var match in matches.Cast<Match>())
+		var result = new List<Chute>(6);
+		foreach (var match in matches.Cast<Match>())
+		{
+			switch (match.Value)
 			{
-				switch (match.Value)
+				case [_, 'R' or 'r', var r and >= '1' and <= '3']:
 				{
-					case [_, 'R' or 'r', var r and >= '1' and <= '3']:
-					{
-						result.Add(Chutes[r - '1']);
-						break;
-					}
-					case [_, 'C' or 'c', var c and >= '1' and <= '3']:
-					{
-						result.Add(Chutes[c + 3 - '1']);
-						break;
-					}
+					result.Add(Chutes[r - '1']);
+					break;
+				}
+				case [_, 'C' or 'c', var c and >= '1' and <= '3']:
+				{
+					result.Add(Chutes[c + 3 - '1']);
+					break;
 				}
 			}
+		}
 
-			return [.. result];
-		};
+		return [.. result];
+	}
 
-	/// <inheritdoc/>
-	public override Func<string, Conjugate[]> ConjuagteParser
-		=> str =>
+	private Conjugate[] OnConjugateParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
 		{
-			if (string.IsNullOrWhiteSpace(str))
-			{
-				return [];
-			}
+			return [];
+		}
 
-			if (UnitConjugateGroupPattern().Matches(str) is not { Count: not 0 } matches)
-			{
-				return [];
-			}
+		if (UnitConjugateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
 
-			var result = new List<Conjugate>();
-			foreach (var match in matches.Cast<Match>())
-			{
-				var s = match.Value;
-				var split = s.Split("==", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-				var leftCell = CellParser(split[0])[0];
-				var rightCellAndDigit = CandidateParser(split[1])[0];
-				var rightCell = rightCellAndDigit / 9;
-				var digit = rightCellAndDigit % 9;
-				result.Add(new(leftCell, rightCell, digit));
-			}
+		var result = new List<Conjugate>();
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var split = s.Split("==", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			var leftCell = CellParser(split[0])[0];
+			var rightCellAndDigit = CandidateParser(split[1])[0];
+			var rightCell = rightCellAndDigit / 9;
+			var digit = rightCellAndDigit % 9;
+			result.Add(new(leftCell, rightCell, digit));
+		}
 
-			return [.. result];
-		};
-
+		return [.. result];
+	}
 
 	[GeneratedRegex("""r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitCellGroupPattern();

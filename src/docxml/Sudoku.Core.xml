@@ -4833,6 +4833,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
+        <member name="F:Sudoku.Concepts.Parsers.CoordinateParser.DeprecatedInfo_NotSupported">
+            <summary>
+            The not supported information for property implemented.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.CellParser">
             <summary>
             The parser method that can creates a <see cref="T:Sudoku.Concepts.CellMap"/> via the specified text to be parsed.
@@ -5314,10 +5319,6 @@ if (student is (name: var name, age: >= 18))
             <param name="SingleLine">
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
         </member>
         <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.#ctor(System.Boolean)">
@@ -5327,20 +5328,12 @@ if (student is (name: var name, age: >= 18))
             <param name="SingleLine">
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </param>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.SingleLine">
             <summary>
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            
-            Indicates whether the parser will change the execution order of PM grid.
-            If the value is <see langword="true"/>, the parser will check compatible one
-            first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.Parser">

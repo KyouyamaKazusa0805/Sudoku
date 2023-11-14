@@ -8,10 +8,6 @@ namespace Sudoku.Concepts.Parsers;
 /// <param name="SingleLine">
 /// Indicates whether the parser use single-line logic to parse the string text.
 /// The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-/// 
-/// Indicates whether the parser will change the execution order of PM grid.
-/// If the value is <see langword="true"/>, the parser will check compatible one
-/// first, and then check recommended parsing plan ('<c><![CDATA[<d>]]></c>' and '<c>*d*</c>').
 /// </param>
 public sealed partial record SukakuGridParser(bool SingleLine = false) : GridParser
 {
