@@ -1152,7 +1152,7 @@ public sealed partial class AnalyzePage : Page
 				case
 				{
 					WrongStep: { Views: var views, Conclusions: var conclusions } wrongStep,
-					FailedReason: AnalyzerFailedReason.WrongStep,
+					FailedReason: FailedReason.WrongStep,
 					UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
 				}:
 				{
@@ -1173,7 +1173,7 @@ public sealed partial class AnalyzePage : Page
 
 					break;
 				}
-				case { FailedReason: AnalyzerFailedReason.ExceptionThrown, UnhandledException: { } ex }:
+				case { FailedReason: FailedReason.ExceptionThrown, UnhandledException: { } ex }:
 				{
 					await new ContentDialog
 					{

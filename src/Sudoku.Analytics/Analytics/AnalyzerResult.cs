@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -93,7 +94,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	public unsafe decimal MaxDifficulty => Evaluator(&Max<Step>, 20.0M);
+	public unsafe decimal MaxDifficulty => StepRatingHelper.Evaluator(Steps, &StepRatingHelper.Max<Step>, 20.0M);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -105,7 +106,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => Evaluator(&Sum<Step>, 0);
+	public unsafe decimal TotalDifficulty => StepRatingHelper.Evaluator(Steps, &StepRatingHelper.Sum<Step>, 0);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -139,7 +140,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// This property is meaningless when <see cref="IsSolved"/> keeps the <see langword="true"/> value.
 	/// </summary>
 	/// <seealso cref="IsSolved"/>
-	public AnalyzerFailedReason FailedReason { get; init; }
+	public FailedReason FailedReason { get; init; }
 
 	/// <summary>
 	/// Indicates the difficulty level of the puzzle.
@@ -223,11 +224,11 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// </summary>
 	/// <remarks>
 	/// You can visit the property value if the property <see cref="FailedReason"/>
-	/// is <see cref="AnalyzerFailedReason.ExceptionThrown"/> or <see cref="AnalyzerFailedReason.WrongStep"/>.
+	/// is <see cref="FailedReason.ExceptionThrown"/> or <see cref="FailedReason.WrongStep"/>.
 	/// </remarks>
 	/// <seealso cref="FailedReason"/>
-	/// <seealso cref="AnalyzerFailedReason.ExceptionThrown"/>
-	/// <seealso cref="AnalyzerFailedReason.WrongStep"/>
+	/// <seealso cref="FailedReason.ExceptionThrown"/>
+	/// <seealso cref="FailedReason.WrongStep"/>
 	public Exception? UnhandledException { get; init; }
 
 	/// <summary>
@@ -486,48 +487,4 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)SolvingPath.Steps.ToArray()).GetEnumerator();
-
-	/// <summary>
-	/// The inner executor to get the difficulty value (total, average).
-	/// </summary>
-	/// <param name="executor">The execute method.</param>
-	/// <param name="d">
-	/// The default value as the return value when <see cref="Steps"/> is <see langword="null"/> or empty.
-	/// </param>
-	/// <returns>The result.</returns>
-	/// <seealso cref="Steps"/>
-	private unsafe decimal Evaluator(delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
-	{
-		static decimal f(Step step) => step.Difficulty;
-		return Steps is null ? d : executor(Steps, &f);
-	}
-
-
-	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
-	private static unsafe decimal Max<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
-	{
-		var result = decimal.MinValue;
-		foreach (var element in collection)
-		{
-			var converted = selector(element);
-			if (converted >= result)
-			{
-				result = converted;
-			}
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
-	private static unsafe decimal Sum<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
-	{
-		var result = 0M;
-		foreach (var element in collection)
-		{
-			result += selector(element);
-		}
-
-		return result;
-	}
 }

@@ -113,19 +113,19 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				return ex switch
 				{
 					NotImplementedException or NotSupportedException
-						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.NotImplemented },
+						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
 					WrongStepException
-						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.WrongStep, UnhandledException = ex },
+						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = ex },
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
-						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.UserCancelled },
+						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
 					_ when ex.GetType().IsGenericAssignableTo(typeof(StepSearcherProcessException<>))
-						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid },
+						=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid },
 					_
-						=> result with { IsSolved = false, FailedReason = AnalyzerFailedReason.ExceptionThrown, UnhandledException = ex }
+						=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
-		return result with { IsSolved = false, FailedReason = AnalyzerFailedReason.PuzzleIsInvalid };
+		return result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
 
 
 		AnalyzerResult analyzeInternal(
@@ -258,7 +258,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			// All solver can't finish the puzzle... :(
 			return resultBase with
 			{
-				FailedReason = AnalyzerFailedReason.PuzzleIsTooHard,
+				FailedReason = FailedReason.PuzzleIsTooHard,
 				ElapsedTime = stopwatch.ElapsedTime,
 				Steps = [.. recordedSteps],
 				SteppingGrids = [.. stepGrids]

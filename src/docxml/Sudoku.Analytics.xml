@@ -878,11 +878,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
-            is <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep"/>.
+            is <see cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown"/>
-            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingPath">
             <summary>
@@ -914,23 +914,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Evaluator(,System.Decimal)">
-            <summary>
-            The inner executor to get the difficulty value (total, average).
-            </summary>
-            <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/> is <see langword="null"/> or empty.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Max``1(System.Collections.Generic.IEnumerable{``0},)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult.FormattingOptions">
             <summary>
@@ -3768,72 +3751,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.FormatInterpolation.ResourcePlaceholderValues">
             <summary>The values of the interpolation.</summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.AnalyzerFailedReason">
-            <summary>
-            Defines a reason why the puzzle is failed to be analyzed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.Nothing">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleIsInvalid">
-            <summary>
-            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
-            <para>
-            Different with <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution"/>,
-            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
-            before solving, we should use this field.
-            </para>
-            </summary>
-            <remarks>
-            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution"/>
-            <seealso cref="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasNoSolution">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleHasMultipleSolutions">
-            <summary>
-            Indicates the failed reason is that the puzzle contains multiple valid solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.UserCancelled">
-            <summary>
-            Indicates the failed reason is that the user has canceled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.NotImplemented">
-            <summary>
-            Indicates the failed reason is that the solver or some searching module isn't implemented.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.ExceptionThrown">
-            <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve
-            that will cause an exception thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.WrongStep">
-            <summary>
-            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.AnalyzerFailedReason.PuzzleIsTooHard">
-            <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
-            </summary>
-            <remarks><i>
-            This option becomes deprecated at present because we has already implemented a step searcher
-            that always produces a valid step, guaranteeing that the solver will never give up at all time.
-            </i></remarks>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.ConditionalFlags">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
@@ -3875,6 +3792,72 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the reserved field. This field may be used for future considerations.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.FailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleIsInvalid">
+            <summary>
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
+            Different with <see cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </para>
+            </summary>
+            <remarks>
+            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasMultipleSolutions"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleIsTooHard">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            </summary>
+            <remarks><i>
+            This option becomes deprecated at present because we has already implemented a step searcher
+            that always produces a valid step, guaranteeing that the solver will never give up at all time.
+            </i></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifier">
             <summary>
@@ -4391,6 +4374,30 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
+            <summary>
+            The helper type that calculates for <see cref="T:Sudoku.Analytics.Step"/> instances.
+            </summary>
+            <see cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Evaluator(Sudoku.Analytics.Step[],,System.Decimal)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="steps">The steps to be calculated.</param>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="N:Sudoku.Analytics.Steps"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
