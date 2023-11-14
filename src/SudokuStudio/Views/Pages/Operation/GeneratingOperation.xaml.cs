@@ -106,18 +106,33 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		if (basePage._puzzleLibraries is { } libs)
 		{
-			PuzzleLibraryChoser.ItemsSource = libs;
-			var fileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
-			var foundElementCorrespondingIndex = -1;
-			for (var i = 0; i < libs.Count; i++)
+			switch (libs.Count)
 			{
-				if (libs[i] is { FileId: var fileIdToCheck } && fileIdToCheck == fileId)
+				case 0:
 				{
-					foundElementCorrespondingIndex = i;
+					PuzzleLibraryChoser.Visibility = Visibility.Collapsed;
+					FetchInPuzzleLibraryButton.Visibility = Visibility.Collapsed;
+					break;
+				}
+				default:
+				{
+					PuzzleLibraryChoser.Visibility = Visibility.Visible;
+					FetchInPuzzleLibraryButton.Visibility = Visibility.Visible;
+					PuzzleLibraryChoser.ItemsSource = libs;
+					var fileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
+					var foundElementCorrespondingIndex = -1;
+					for (var i = 0; i < libs.Count; i++)
+					{
+						if (libs[i] is { FileId: var fileIdToCheck } && fileIdToCheck == fileId)
+						{
+							foundElementCorrespondingIndex = i;
+							break;
+						}
+					}
+					PuzzleLibraryChoser.SelectedIndex = foundElementCorrespondingIndex == -1 ? 0 : foundElementCorrespondingIndex;
 					break;
 				}
 			}
-			PuzzleLibraryChoser.SelectedIndex = foundElementCorrespondingIndex == -1 ? 0 : foundElementCorrespondingIndex;
 		}
 	}
 
@@ -305,9 +320,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void FetchInPuzzleLibraryButton_Click(object sender, RoutedEventArgs e)
 	{
 		var source = (PuzzleLibraryBindableSource)PuzzleLibraryChoser.SelectedValue;
-		var i = Random.Shared.Next(0, source.Puzzles.Length);
+		if (source.Puzzles.Length == 0)
+		{
+			// No puzzles in this library.
+			return;
+		}
 
-		BasePage.SudokuPane.Puzzle = source.Puzzles[i];
+		BasePage.SudokuPane.Puzzle = source.Puzzles[Random.Shared.Next(0, source.Puzzles.Length)];
 		BasePage.ClearAnalyzeTabsData();
 	}
 
