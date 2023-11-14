@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Categorization;
 /// </summary>
 /// <remarks><b><i>
 /// Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
-/// but they are reserved ones. In the future I'll implement the searching logic on those fields. ( Maybe or maybe not :D )
+/// but they are reserved ones. In the future I'll implement the searching logic on those fields. Maybe or maybe not :D
 /// </i></b></remarks>
 public enum Technique
 {
