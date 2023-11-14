@@ -11,6 +11,8 @@ using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Algorithm.Symmetrical;
 
+using unsafe Checker = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
+
 /// <summary>
 /// Represents a checker type that checks for technique Gurth's symmetrical placement.
 /// </summary>
@@ -19,11 +21,7 @@ public static class SymmetricalPlacementChecker
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly unsafe delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>[] Checkers = [
-		&Diagonal,
-		&AntiDiagonal,
-		&Central
-	];
+	private static readonly unsafe Checker[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
 	/// <summary>

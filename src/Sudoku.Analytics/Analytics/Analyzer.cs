@@ -143,10 +143,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
-			string progressedStepSearcherName;
 			scoped var stopwatch = ValueStopwatch.NewInstance;
-			var accumulator = IsFullApplying ? (List<Step>)[] : null;
+			var accumulator = IsFullApplying ? [] : default(List<Step>);
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
+			string progressedStepSearcherName;
 
 			// Determine whether the grid is a GSP pattern. If so, check eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
@@ -157,7 +157,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				{
 					if (verifyConclusionValidity(in solution, step))
 					{
-						if (recordingStep(recordedSteps, step, in context, ref playground, in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+						if (onCollectingSteps(recordedSteps, step, in context, ref playground, in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -201,7 +201,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 						{
 							if (verifyConclusionValidity(in solution, foundStep))
 							{
-								if (recordingStep(
+								if (onCollectingSteps(
 									recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
@@ -230,7 +230,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							{
 								if (verifyConclusionValidity(in solution, foundStep))
 								{
-									if (recordingStep(
+									if (onCollectingSteps(
 										recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
@@ -283,7 +283,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				return true;
 			}
 
-			static bool recordingStep(
+			static bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
 				scoped ref readonly AnalysisContext context,
