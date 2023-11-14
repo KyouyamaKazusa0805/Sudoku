@@ -9,8 +9,13 @@ namespace Sudoku.Algorithm.Solving;
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
 /// </summary>
 /// <remarks>
+/// <para>
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is more efficient.
+/// </para>
+/// <para><b><i>
+/// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
+/// </i></b></para>
 /// </remarks>
 public sealed unsafe class BitwiseSolver : ISolver
 {
