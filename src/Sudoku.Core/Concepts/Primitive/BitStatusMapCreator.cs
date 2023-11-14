@@ -10,6 +10,7 @@ namespace Sudoku.Concepts.Primitive;
 /// </summary>
 /// <seealso cref="IBitStatusMap{TSelf, TElement}"/>
 [EditorBrowsable(EditorBrowsableState.Never)]
+[DebuggerStepThrough]
 public static class BitStatusMapCreator
 {
 	/// <summary>
@@ -19,7 +20,6 @@ public static class BitStatusMapCreator
 	/// <typeparam name="TElement"><inheritdoc cref="IBitStatusMap{TSelf, TElement}" path="/typeparam[@name='TElement']"/></typeparam>
 	/// <param name="offsets">The offsets.</param>
 	/// <returns>A <see cref="IBitStatusMap{TSelf, TElement}"/> instance.</returns>
-	[DebuggerStepThrough]
 	public static TSelf Create<TSelf, TElement>(scoped ReadOnlySpan<TElement> offsets)
 		where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
 		where TElement : unmanaged, IBinaryInteger<TElement>

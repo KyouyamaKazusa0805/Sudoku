@@ -905,7 +905,6 @@ public partial struct CellMap :
 	/// <param name="cells">The cells.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	[DebuggerStepThrough]
 	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
 	{
 		var result = Empty;

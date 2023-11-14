@@ -58,6 +58,7 @@ using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, 
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
+[DebuggerStepThrough]
 [LargeStructure]
 [Equals]
 [ToString]
@@ -1354,7 +1355,6 @@ public unsafe partial struct Grid :
 	/// </param>
 	/// <returns>A <see cref="Grid"/> result.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	[DebuggerStepThrough]
 	public static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
 	{
 		switch (rawMaskValues.Length)

@@ -558,7 +558,6 @@ public partial struct CandidateMap :
 	/// <param name="candidates">The candidates.</param>
 	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	[DebuggerStepThrough]
 	public static CandidateMap Create(scoped ReadOnlySpan<Candidate> candidates)
 	{
 		var result = Empty;
