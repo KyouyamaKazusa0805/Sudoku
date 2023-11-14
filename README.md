@@ -92,6 +92,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Split-Wing
       * Hybrid-Wing
       * Purple Cow
+    * XYZ-Loops (Non-nice, Nice)
   * Uniqueness
     * UR (Unique Rectangle)
     * UL (Unique Loop)
@@ -109,25 +110,24 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
-    * XYZ-Loops (Non-nice, Nice)
   * Rank Logics
     * Positive or 0 -Rank Logics
       * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)
       * 3D SDC (3-Dimensional Sue de Coq)
       * DL (Domino Loop)
-      * Exocets
-        * JE (Junior Exocet)
-        * SE (Senior Exocet)
-        * Double JE
-        * WE (Weak Excocet)
-        * Complex Exocet
-          * Complex JE
-          * Complex SE
       * MSLS (Multi-Sector Locked Sets)
     * Negative Rank Logics
       * Guardian
       * Bi-value Oddagon
       * Chromatic Pattern (i.e. Tri-value Oddagon)
+  * Exocets
+    * JE (Junior Exocet)
+    * SE (Senior Exocet)
+    * Double JE (Double Junior Exocet)
+    * WE (Weak Excocet)
+    * Complex Exocet
+      * Complex JE (Complex Junior Exocet)
+      * Complex SE (Complex Senior Exocet)
   * Symmetrical Placements
     * GSP (Gurth's Symmetrical Placements, Normal & Anti Type)
   * Permutations
