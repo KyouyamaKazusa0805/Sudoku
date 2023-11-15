@@ -67,4 +67,29 @@ public static class PredefinedAnalyzers
 				s.HiddenSinglesInBlockFirst = true;
 				s.UseIttoryuMode = false;
 			});
+
+	/// <summary>
+	/// Indicates an <see cref="Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
+	/// </summary>
+	public static Analyzer SudokuExplainer
+		=> Default
+			.WithStepSearchers([
+				new SingleStepSearcher(),
+				new LockedSubsetStepSearcher(),
+				new LockedCandidatesStepSearcher(),
+				new NormalSubsetStepSearcher(),
+				new RegularWingStepSearcher(),
+				new UniqueRectangleStepSearcher(),
+				new UniqueLoopStepSearcher(),
+				new BivalueUniversalGraveStepSearcher(),
+				new AlignedExclusionStepSearcher(),
+				new NonMultipleChainingStepSearcher(),
+				new MultipleChainingStepSearcher()
+			])
+			.WithAlgorithmLimits(false, false)
+			.WithStepSearcherSetters<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.UseIttoryuMode = false; })
+			.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = false; s.SearchForExtendedUniqueRectangles = false; })
+			.WithStepSearcherSetters<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = false)
+			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 3)
+			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);
 }

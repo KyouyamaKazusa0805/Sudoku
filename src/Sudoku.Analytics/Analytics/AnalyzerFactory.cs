@@ -1,5 +1,6 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Concepts;
 
 namespace Sudoku.Analytics;
 
@@ -29,7 +30,14 @@ public static class AnalyzerFactory
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="applyAll">The value to be set. The value will be assigned to property <see cref="Analyzer.IsFullApplying"/>.</param>
 	/// <returns>The result.</returns>
+	/// <remarks>
+	/// This will also be used in searching for randomized steps. If you call method
+	/// <see cref="Analyzer.Analyze(ref readonly Grid, bool, IProgress{AnalyzerProgress}?, CancellationToken)"/>,
+	/// and pass the second parameter a <see langword="true"/> value, please ensure property <see cref="Analyzer.IsFullApplying"/>
+	/// is being set <see langword="true"/>.
+	/// </remarks>
 	/// <seealso cref="Analyzer.IsFullApplying"/>
+	/// <seealso cref="Analyzer.Analyze(ref readonly Grid, bool, IProgress{AnalyzerProgress}?, CancellationToken)"/>
 	public static Analyzer WithApplyAll(this Analyzer @this, bool applyAll)
 	{
 		@this.IsFullApplying = applyAll;

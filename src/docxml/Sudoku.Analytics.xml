@@ -526,6 +526,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
+        <member name="F:Sudoku.Analytics.Analyzer._random">
+            <summary>
+            The random number generator.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
             <summary>
             Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
@@ -569,6 +574,23 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+            <summary>
+            Analyze the specified puzzle, and return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance indicating the analyzed result.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <param name="randomizedSelectOne">
+            Indicates whether the found steps will be randomized-handled, meaning the found steps for each stepped grid
+            will beselected and applied, in random. This argument will change the final collected steps.
+            <b>
+            If <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> is set <see langword="false"/>, the operation will take no random effects
+            because the method won't check for all found steps.
+            </b>
+            </param>
+            <param name="progress">A <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+            <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
         <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
             <summary>
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
@@ -597,7 +619,14 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="applyAll">The value to be set. The value will be assigned to property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>.</param>
             <returns>The result.</returns>
+            <remarks>
+            This will also be used in searching for randomized steps. If you call method
+            <see cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>,
+            and pass the second parameter a <see langword="true"/> value, please ensure property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+            is being set <see langword="true"/>.
+            </remarks>
             <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+            <seealso cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
@@ -4183,6 +4212,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SudokuExplainer">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
             <summary>

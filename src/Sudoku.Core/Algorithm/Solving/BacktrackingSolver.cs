@@ -66,6 +66,7 @@ public sealed class BacktrackingSolver : ISolver
 
 			if (resultArray is null)
 			{
+				result = default;
 				return null;
 			}
 

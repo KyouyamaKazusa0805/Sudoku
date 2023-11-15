@@ -8,6 +8,8 @@ using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe Checker = delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>;
+
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -22,7 +24,7 @@ public sealed partial class GurthSymmetricalPlacementStepSearcher : StepSearcher
 	/// <summary>
 	/// Anti types.
 	/// </summary>
-	private static readonly unsafe delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>[] AntiTypeCheckers = [
+	private static readonly unsafe Checker[] AntiTypeCheckers = [
 		&CheckDiagonal_Anti,
 		&CheckAntiDiagonal_Anti,
 		&CheckXAxis_Anti,

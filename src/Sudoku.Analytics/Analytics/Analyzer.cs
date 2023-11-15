@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Timers;
 using Sudoku.Algorithm.Symmetrical;
@@ -28,6 +29,12 @@ namespace Sudoku.Analytics;
 /// <completionlist cref="PredefinedAnalyzers"/>
 public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
 {
+	/// <summary>
+	/// The random number generator.
+	/// </summary>
+	private readonly Random _random = new();
+
+
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
 	/// If the value is <see langword="true"/>, the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
@@ -81,7 +88,32 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+		=> Analyze(in puzzle, false, progress, cancellationToken);
+
+	/// <summary>
+	/// Analyze the specified puzzle, and return an <see cref="AnalyzerResult"/> instance indicating the analyzed result.
+	/// </summary>
+	/// <param name="puzzle">The puzzle to be analyzed.</param>
+	/// <param name="randomizedSelectOne">
+	/// Indicates whether the found steps will be randomized-handled, meaning the found steps for each stepped grid
+	/// will beselected and applied, in random. This argument will change the final collected steps.
+	/// <b>
+	/// If <see cref="IsFullApplying"/> is set <see langword="false"/>, the operation will take no random effects
+	/// because the method won't check for all found steps.
+	/// </b>
+	/// </param>
+	/// <param name="progress">A <see cref="IProgress{T}"/> instance that is used for reporting the state.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+	/// <returns>The solver result that provides the information after analyzing.</returns>
+	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
+	public AnalyzerResult Analyze(
+		scoped ref readonly Grid puzzle,
+		bool randomizedSelectOne,
+		IProgress<AnalyzerProgress>? progress = null,
+		CancellationToken cancellationToken = default
+	)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -99,6 +131,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				return analyzeInternal(
 					in puzzle,
 					in solution,
+					randomizedSelectOne,
 					isSukaku,
 					result,
 					symmetricType,
@@ -131,6 +164,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		AnalyzerResult analyzeInternal(
 			scoped ref readonly Grid puzzle,
 			scoped ref readonly Grid solution,
+			bool randomizedSelectOne,
 			bool isSukaku,
 			AnalyzerResult resultBase,
 			SymmetricType symmetricType,
@@ -197,20 +231,44 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							continue;
 						}
 
-						foreach (var foundStep in accumulator)
+						if (randomizedSelectOne)
 						{
-							if (verifyConclusionValidity(in solution, foundStep))
+							var invalidStep = default(Step);
+							foreach (var step in accumulator)
 							{
+								if (!verifyConclusionValidity(in solution, step))
+								{
+									invalidStep = step;
+									break;
+								}
+							}
+							if (invalidStep is not null)
+							{
+								throw new WrongStepException(in playground, invalidStep);
+							}
+
+							if (onCollectingSteps(
+								recordedSteps, accumulator[_random.Next(0, accumulator.Count)], in context, ref playground,
+								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+							{
+								return result;
+							}
+						}
+						else
+						{
+							foreach (var foundStep in accumulator)
+							{
+								if (!verifyConclusionValidity(in solution, foundStep))
+								{
+									throw new WrongStepException(in playground, foundStep);
+								}
+
 								if (onCollectingSteps(
 									recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
-							}
-							else
-							{
-								throw new WrongStepException(in playground, foundStep);
 							}
 						}
 
