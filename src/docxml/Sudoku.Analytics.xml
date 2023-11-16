@@ -4120,7 +4120,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             The default value of this property is both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/>
-            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Level">
@@ -4143,9 +4143,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is normal searching.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering">
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting">
             <summary>
-            Indicates the mode is gathering.
+            Indicates the mode is collecting.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute">
@@ -4753,7 +4753,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
             <para>
             By default, the step searcher will support
-            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
             </para>
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
@@ -4785,7 +4785,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
             <para>
             By default, the step searcher will support
-            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering"/>.
+            both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/> and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
             </para>
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>

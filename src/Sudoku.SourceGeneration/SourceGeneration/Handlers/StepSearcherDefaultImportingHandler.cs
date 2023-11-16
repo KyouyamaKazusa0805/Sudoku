@@ -153,7 +153,7 @@ internal static class StepSearcherDefaultImportingHandler
 						public {{name}}(
 							int priority,
 							int level,
-							global::Sudoku.Analytics.Metadata.StepSearcherRunningArea runningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching | global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Gathering
+							global::Sudoku.Analytics.Metadata.StepSearcherRunningArea runningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching | global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting
 						) : base(priority, level, runningArea)
 						{
 						}
@@ -170,6 +170,7 @@ internal static class StepSearcherDefaultImportingHandler
 
 			#pragma warning disable CS1591
 			#nullable enable
+
 			namespace {{namespaceUsed.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..]}};
 			
 			{{string.Join("\r\n\r\n", generatedCodeSnippets)}}

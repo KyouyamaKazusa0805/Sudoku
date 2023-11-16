@@ -26,7 +26,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public abstract class SubsetStepSearcher(
 	int priority,
 	int level,
-	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
+	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
 ) : StepSearcher(priority, level, runningArea)
 {
 	/// <summary>

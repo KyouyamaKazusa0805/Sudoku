@@ -19,7 +19,7 @@ public sealed partial class StepSearcherImportAttribute<T>([DataMember] int leve
 	/// </summary>
 	/// <remarks>
 	/// The default value of this property is both <see cref="StepSearcherRunningArea.Searching"/>
-	/// and <see cref="StepSearcherRunningArea.Gathering"/>.
+	/// and <see cref="StepSearcherRunningArea.Collecting"/>.
 	/// </remarks>
-	public StepSearcherRunningArea Areas { get; init; } = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering;
+	public StepSearcherRunningArea Areas { get; init; } = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting;
 }

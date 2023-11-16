@@ -34,7 +34,7 @@ namespace Sudoku.Analytics;
 /// <para>Indicates the running area which describes a function where the current step searcher can be invoked.</para>
 /// <para>
 /// By default, the step searcher will support
-/// both <see cref="StepSearcherRunningArea.Searching"/> and <see cref="StepSearcherRunningArea.Gathering"/>.
+/// both <see cref="StepSearcherRunningArea.Searching"/> and <see cref="StepSearcherRunningArea.Collecting"/>.
 /// </para>
 /// </param>
 /// <seealso cref="Step"/>
@@ -44,7 +44,7 @@ namespace Sudoku.Analytics;
 public abstract partial class StepSearcher(
 	[DataMember] int priority,
 	[DataMember] int level,
-	[DataMember] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Gathering
+	[DataMember] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
 ) : IEquatable<StepSearcher>
 {
 	/// <summary>

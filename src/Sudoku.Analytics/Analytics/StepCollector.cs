@@ -41,13 +41,13 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	{
 		get => _stepSearchers;
 
-		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Gathering);
+		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
 	}
 
 	/// <inheritdoc/>
 	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
 		from searcher in StepSearcherPool.Default()
-		where searcher.RunningArea.Flags(StepSearcherRunningArea.Gathering)
+		where searcher.RunningArea.Flags(StepSearcherRunningArea.Collecting)
 		select searcher;
 
 	/// <inheritdoc/>
@@ -111,7 +111,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 			{
 				switch (searcher)
 				{
-					case { RunningArea: var runningArea } when !runningArea.Flags(StepSearcherRunningArea.Gathering):
+					case { RunningArea: var runningArea } when !runningArea.Flags(StepSearcherRunningArea.Collecting):
 					case { IsNotSupportedForSukaku: true } when sukaku:
 					{
 						goto ReportProgress;
