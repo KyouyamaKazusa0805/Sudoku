@@ -3065,6 +3065,53 @@ fixed (short* ptr = instance)
             </remarks>
             <seealso cref="M:System.PointerOperations.Slice``1(``0*,System.Int32,System.Int32)"/>
         </member>
+        <member name="T:System.Ref">
+            <summary>
+            Represents a list of methods that can check for the concept "References" defined in C#.
+            </summary>
+        </member>
+        <member name="M:System.Ref.Swap``1(``0@,``0@)">
+            <summary>
+            Swaps for two elements.
+            </summary>
+            <typeparam name="T">The type of both two arguments.</typeparam>
+            <param name="left">The first element to be swapped.</param>
+            <param name="right">The second element to be swapped.</param>
+        </member>
+        <member name="M:System.Ref.IsNullReference``1(``0@)">
+            <summary>
+            Determines whether the current reference points to <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the referenced element.</typeparam>
+            <param name="reference">The reference to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Ref.MemoryLocationAreSame``1(``0@,``0@)">
+            <summary>
+            Check whether two references point to a same memory location.
+            </summary>
+            <typeparam name="T">The type of both two arguments.</typeparam>
+            <param name="left">The first element to be checked.</param>
+            <param name="right">The second element to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Ref.MakeNullReference``1">
+            <summary>
+            Returns a reference that points to <see langword="null"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the element the reference points to if this reference were not <see langword="null"/>.
+            </typeparam>
+            <returns>A read-only reference that points to <see langword="null"/>.</returns>
+        </member>
+        <member name="M:System.Ref.ThrowIfNullRef``1(``0@)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullRefException"/> if the argument points to <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the referenced element.</typeparam>
+            <param name="reference">The reference to the target element, or maybe a <see langword="null"/> reference.</param>
+            <exception cref="T:System.ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
+        </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>
             Defines a kind of accessibility being defined in C#.

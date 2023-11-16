@@ -160,7 +160,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				PointerOperations.Swap(pattern + i, pattern + boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble()));
+				PointerOperations.Swap(pattern + i, pattern + (boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble())));
 			}
 		}
 #else
