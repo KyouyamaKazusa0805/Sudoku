@@ -79,14 +79,10 @@ public readonly partial struct Conjugate([DataMember(MemberKinds.Field)] Conjuga
 	[HashCodeMember]
 	public CellMap Map => [From, To];
 
-	private Candidate FromCandidate => From * 9 + Digit;
-
-	private Candidate ToCandidate => To * 9 + Digit;
-
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (FromCandidate, ToCandidate);
+	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (From * 9 + Digit, To * 9 + Digit);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
