@@ -144,8 +144,8 @@ public sealed partial class Analyzer :
 			SymmetricType symmetricType,
 			scoped ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
-			IProgress<AnalyzerProgress>? progress = null,
-			CancellationToken cancellationToken = default
+			IProgress<AnalyzerProgress>? progress,
+			CancellationToken cancellationToken
 		)
 		{
 			var playground = puzzle;
