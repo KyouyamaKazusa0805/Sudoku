@@ -80,7 +80,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
+				Ref.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
 			}
 		}
 
@@ -102,7 +102,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
+				Ref.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
 			}
 		}
 
@@ -124,7 +124,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
+				Ref.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
 			}
 		}
 
@@ -158,7 +158,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
+				Ref.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
 			}
 		}
 
@@ -280,7 +280,7 @@ public static unsafe class GridTransformations
 
 		for (var i = 0; i < 9; i++)
 		{
-			Swap(ref @this[HouseCells[houseIndex1][i]], ref @this[HouseCells[houseIndex2][i]]);
+			Ref.Swap(ref @this[HouseCells[houseIndex1][i]], ref @this[HouseCells[houseIndex2][i]]);
 		}
 
 		return ref @this;
@@ -288,12 +288,4 @@ public static unsafe class GridTransformations
 
 		bool houseIndexChecker((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
-
-	/// <summary>
-	/// Swaps the two elements.
-	/// </summary>
-	/// <typeparam name="T">The type of two elements.</typeparam>
-	/// <param name="left">The left-side instance to be swapped.</param>
-	/// <param name="right">The right-side instance to be swapped.</param>
-	private static void Swap<T>(scoped ref T left, scoped ref T right) => (left, right) = (right, left);
 }

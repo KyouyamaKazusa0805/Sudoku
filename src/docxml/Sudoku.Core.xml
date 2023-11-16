@@ -4442,14 +4442,6 @@ if (student is (name: var name, age: >= 18))
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.GridTransformations.Swap``1(``0@,``0@)">
-            <summary>
-            Swaps the two elements.
-            </summary>
-            <typeparam name="T">The type of two elements.</typeparam>
-            <param name="left">The left-side instance to be swapped.</param>
-            <param name="right">The right-side instance to be swapped.</param>
-        </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.

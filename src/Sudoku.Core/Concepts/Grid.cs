@@ -230,7 +230,7 @@ public unsafe partial struct Grid :
 	/// </exception>
 	private Grid(scoped ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(in firstElement);
+		Ref.ThrowIfNullRef(in firstElement);
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
@@ -1643,7 +1643,7 @@ public unsafe partial struct Grid :
 #endif
 	Longer:
 		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
-		if (!Unsafe.AreSame(in first, in second))
+		if (!Ref.MemoryLocationAreSame(in first, in second))
 		{
 			// C# compiler inverts this test, making the outer goto the conditional jmp.
 			goto Vector;

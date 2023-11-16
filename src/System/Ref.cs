@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace System;
@@ -16,14 +17,12 @@ public static class Ref
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<T>(scoped ref T left, scoped ref T right)
 	{
-		if (MemoryLocationAreSame(in left, in right))
+		if (!MemoryLocationAreSame(in left, in right))
 		{
-			return;
+			var temp = left;
+			left = right;
+			right = temp;
 		}
-
-		var temp = left;
-		left = right;
-		right = temp;
 	}
 
 	/// <summary>
@@ -60,10 +59,25 @@ public static class Ref
 	/// Throws an <see cref="ArgumentNullRefException"/> if the argument points to <see langword="null"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the referenced element.</typeparam>
-	/// <param name="reference">The reference to the target element, or maybe a <see langword="null"/> reference.</param>
+	/// <param name="reference">
+	/// <para>The reference to the target element, or maybe a <see langword="null"/> reference.</para>
+	/// <para><i>
+	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
+	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
+	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
+	/// where the only argument is passed by <see langword="ref"/>.
+	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
+	/// </i></para>
+	/// </param>
+	/// <param name="paramName">
+	/// The parameter name. <b>This argument needn't to be assigned because it will be replaced with a new value by compiler.</b>
+	/// </param>
 	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(scoped ref readonly T reference)
+	public static void ThrowIfNullRef<T>(
+		scoped ref readonly T reference,
+		[ConstantExpected, CallerArgumentExpression(nameof(reference))] string? paramName = null
+	)
 	{
 		if (IsNullReference(in reference))
 		{

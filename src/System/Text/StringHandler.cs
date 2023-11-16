@@ -697,7 +697,7 @@ public unsafe ref partial struct StringHandler
 		string separator
 	)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(in list);
+		Ref.ThrowIfNullRef(in list);
 		ArgumentNullException.ThrowIfNull(converter);
 
 		for (var i = 0; i < length; i++)
@@ -726,7 +726,7 @@ public unsafe ref partial struct StringHandler
 	/// </exception>
 	public void AppendRangeWithSeparatorRef<T>(scoped ref readonly T list, int length, StringHandlerRefAppender<T> converter, string separator)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(in list);
+		Ref.ThrowIfNullRef(in list);
 
 		for (var i = 0; i < length; i++)
 		{
@@ -1147,12 +1147,9 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	public readonly void Reverse()
 	{
-		fixed (char* p = _chars)
+		for (var i = 0; i < Length >> 1; i++)
 		{
-			for (var i = 0; i < Length >> 1; i++)
-			{
-				PointerOperations.Swap(p + i, p + (Length - 1 - i));
-			}
+			Ref.Swap(ref _chars[i], ref _chars[Length - 1 - i]);
 		}
 	}
 

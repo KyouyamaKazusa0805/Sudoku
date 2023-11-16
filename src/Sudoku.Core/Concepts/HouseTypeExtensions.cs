@@ -25,7 +25,7 @@ public static class HouseTypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void CopyHouseInfo(this Cell cell, scoped ref House reference)
 	{
-		ArgumentNullRefException.ThrowIfNullRef(in reference);
+		Ref.ThrowIfNullRef(in reference);
 
 		reference = BlockTable[cell];
 		Unsafe.AddByteOffset(ref reference, sizeof(House)) = RowTable[cell];
