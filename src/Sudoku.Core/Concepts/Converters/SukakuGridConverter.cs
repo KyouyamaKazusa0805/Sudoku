@@ -109,7 +109,7 @@ public sealed partial record SukakuGridConverter(bool Multiline = false) : GridC
 
 				for (var i = 0; i < 729; i++)
 				{
-					if (!grid.GetCandidateIsOn(i / 9, i % 9))
+					if (!grid.GetExistence(i / 9, i % 9))
 					{
 						sb[i] = Placeholder;
 					}

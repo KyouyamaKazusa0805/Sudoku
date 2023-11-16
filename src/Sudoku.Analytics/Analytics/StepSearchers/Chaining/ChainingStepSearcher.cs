@@ -256,7 +256,7 @@ public abstract class ChainingStepSearcher(
 				if (allowDynamic)
 				{
 					// Memorize the shut down potentials.
-					grid.SetCandidateIsOn(p.Cell, p.Digit, false);
+					grid.SetExistence(p.Cell, p.Digit, false);
 				}
 
 				foreach (var pOn in makeOn)

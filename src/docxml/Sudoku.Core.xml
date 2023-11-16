@@ -3536,13 +3536,12 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.GetExistence(System.Int32,System.Int32)">
             <summary>
             Sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
             </summary>
-            <param name="cell"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='cell']"/></param>
-            <param name="digit"><inheritdoc cref="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)" path="/param[@name='digit']"/></param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.SetExistence(System.Int32,System.Int32,System.Boolean)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Exists(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.Exists(System.Int32,System.Int32)"/>
@@ -3588,11 +3587,11 @@ if (student is (name: var name, age: >= 18))
             </para>
             <para>
             In addition, because the type is <see cref="T:System.Boolean"/>? rather than <see cref="T:System.Boolean"/>,
-            the result case will be more precisely than the indexer <see cref="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)"/>,
+            the result case will be more precisely than the indexer <see cref="M:Sudoku.Concepts.Grid.GetExistence(System.Int32,System.Int32)"/>,
             which is the main difference between this method and that indexer.
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.GetCandidateIsOn(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetExistence(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -3720,7 +3719,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.SetCandidateIsOn(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Grid.SetExistence(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Sets the target candidate state.
             </summary>

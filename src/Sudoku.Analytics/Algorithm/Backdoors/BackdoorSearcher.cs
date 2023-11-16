@@ -57,7 +57,7 @@ public static class BackdoorSearcher
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution.GetDigit(cell))))
 						{
 							var case2Playground = grid;
-							case2Playground.SetCandidateIsOn(cell, digit, false);
+							case2Playground.SetExistence(cell, digit, false);
 
 							if (SstsChecker.Analyze(in case2Playground).IsSolved)
 							{

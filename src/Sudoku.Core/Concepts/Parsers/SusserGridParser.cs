@@ -108,7 +108,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) 
 				foreach (var candidate in new HodokuTripletParser().Parser(elimMatch))
 				{
 					// Set the candidate with false to eliminate the candidate.
-					result.SetCandidateIsOn(candidate / 9, candidate % 9, false);
+					result.SetExistence(candidate / 9, candidate % 9, false);
 				}
 			}
 			return result;

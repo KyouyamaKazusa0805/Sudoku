@@ -64,7 +64,7 @@ internal sealed class InternalServiceProvider : IDisposable
 				{
 					var cell = x * 9 + y;
 					var digit = recognizedResult - 1;
-					if (!result.GetCandidateIsOn(cell, digit))
+					if (!result.GetExistence(cell, digit))
 					{
 						throw new FailedToFillValueException(cell, digit);
 					}

@@ -930,7 +930,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			case ((false, true, false, false), var cell, _, var digit) when Puzzle.Exists(cell, digit) is true:
 			{
 				var modified = Puzzle;
-				modified.SetCandidateIsOn(cell, digit, false);
+				modified.SetExistence(cell, digit, false);
 
 				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
 

@@ -138,7 +138,7 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 					// with only givens and modifiables.
 					foreach (var i in (Mask)(originalGrid[c] & Grid.MaxCandidatesMask))
 					{
-						if (!grid.GetCandidateIsOn(c, i))
+						if (!grid.GetExistence(c, i))
 						{
 							// The value is 'false', which means the digit has already been deleted.
 							eliminatedCandidates.Add(c * 9 + i);

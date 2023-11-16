@@ -33,7 +33,7 @@ public sealed partial record SukakuGridParser(bool SingleLine = false) : GridPar
 
 					if (c is '0' or '.')
 					{
-						result.SetCandidateIsOn(i / 9, i % 9, false);
+						result.SetExistence(i / 9, i % 9, false);
 					}
 				}
 
@@ -70,7 +70,7 @@ public sealed partial record SukakuGridParser(bool SingleLine = false) : GridPar
 
 					for (var digit = 0; digit < 9; digit++)
 					{
-						result.SetCandidateIsOn(offset, digit, (mask >> digit & 1) != 0);
+						result.SetExistence(offset, digit, (mask >> digit & 1) != 0);
 					}
 				}
 

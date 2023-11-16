@@ -100,7 +100,7 @@ public sealed partial record PencilmarkingGridParser : GridParser
 					{
 						for (var digit = 0; digit < 9; digit++)
 						{
-							result.SetCandidateIsOn(cell, digit, (mask >> digit & 1) != 0);
+							result.SetExistence(cell, digit, (mask >> digit & 1) != 0);
 						}
 					}
 				}

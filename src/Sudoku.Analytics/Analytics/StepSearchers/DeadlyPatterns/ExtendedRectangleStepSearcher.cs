@@ -236,7 +236,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				{
 					foreach (var digit in extraDigits)
 					{
-						if (grid.GetCandidateIsOn(cell, digit))
+						if (grid.GetExistence(cell, digit))
 						{
 							extraCellsMap.Add(cell);
 							break;
