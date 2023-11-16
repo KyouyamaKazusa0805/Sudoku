@@ -78,6 +78,7 @@ public static class PredefinedAnalyzers
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher(),
+				new NormalFishStepSearcher(),
 				new RegularWingStepSearcher(),
 				new UniqueRectangleStepSearcher(),
 				new UniqueLoopStepSearcher(),
