@@ -153,34 +153,15 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
 	private void RecreatePattern(Cell* pattern)
 	{
-#if true
 		scoped var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
 		for (var index = 0; index < 4; index++)
 		{
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				PointerOperations.Swap(pattern + i, pattern + (boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble())));
+				Ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble())]);
 			}
 		}
-#else
-		for (var i = 23; i >= 0; i--)
-		{
-			PointerOperations.Swap(pattern + i, pattern + (Cell)((i + 1) * _random.NextDouble()));
-		}
-		for (var i = 47; i >= 24; i--)
-		{
-			PointerOperations.Swap(pattern + i, pattern + 24 + (Cell)((i - 23) * _random.NextDouble()));
-		}
-		for (var i = 53; i >= 48; i--)
-		{
-			PointerOperations.Swap(pattern + i, pattern + 48 + (Cell)((i - 47) * _random.NextDouble()));
-		}
-		for (var i = 80; i >= 54; i--)
-		{
-			PointerOperations.Swap(pattern + i, pattern + 54 + (Cell)(27 * _random.NextDouble()));
-		}
-#endif
 	}
 
 
