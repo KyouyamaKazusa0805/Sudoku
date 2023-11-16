@@ -531,17 +531,11 @@ if (student is (name: var name, age: >= 18))
             The random number generator.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.RandomizedChoosing">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.IsFullApplying">
-            <summary>
-            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
-            If the value is <see langword="true"/>, the third argument of <see cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
-            will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
-            and all steps will be applied at the same time.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
@@ -570,26 +564,12 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Analyzer.Options">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
-            <summary>
-            Analyze the specified puzzle, and return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance indicating the analyzed result.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <param name="randomizedSelectOne">
-            Indicates whether the found steps will be randomized-handled, meaning the found steps for each stepped grid
-            will beselected and applied, in random. This argument will change the final collected steps.
-            <b>
-            If <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> is set <see langword="false"/>, the operation will take no random effects
-            because the method won't check for all found steps.
-            </b>
-            </param>
-            <param name="progress">A <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
-            <returns>The solver result that provides the information after analyzing.</returns>
         </member>
         <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
             <summary>
@@ -602,6 +582,14 @@ if (student is (name: var name, age: >= 18))
             Represents a factory for construction of type <see cref="T:Sudoku.Analytics.Analyzer"/>, with extra configuration.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithRandomizedChoosing(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Try to set randomized choosing.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="randomizedChoosing">Indicates whether the analyzer will adopt randomized algorithm to choose a step.</param>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithAlgorithmLimits(Sudoku.Analytics.Analyzer,System.Boolean,System.Boolean)">
             <summary>
@@ -619,14 +607,7 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="applyAll">The value to be set. The value will be assigned to property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>.</param>
             <returns>The result.</returns>
-            <remarks>
-            This will also be used in searching for randomized steps. If you call method
-            <see cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>,
-            and pass the second parameter a <see langword="true"/> value, please ensure property <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
-            is being set <see langword="true"/>.
-            </remarks>
             <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
-            <seealso cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Boolean,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithUserDefinedOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>

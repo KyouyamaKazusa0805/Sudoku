@@ -3,13 +3,22 @@ using Sudoku.Concepts;
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents with an analyzer, which can solve a puzzle, and return not only a <see cref="Grid"/> as its solution,
-/// but a <typeparamref name="TResult"/> instance encapsulating all possible state of the analysis.
+/// Represents an analyzer, which can solve a puzzle and return not a solution <see cref="Grid"/>.
+/// The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+/// produced in the whole analysis time-cycle.
 /// </summary>
 /// <typeparam name="TSelf">The type of the solver itself.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
-public interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf, TResult> where TResult : IAnalyzerResult<TSelf, TResult>
+public interface IAnalyzer<in TSelf, out TResult>
+	where TSelf : IAnalyzer<TSelf, TResult>
+	where TResult : IAnalyzerResult<TSelf, TResult>
 {
+	/// <summary>
+	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+	/// </summary>
+	public abstract bool IsFullApplying { get; }
+
+
 	/// <summary>
 	/// Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
 	/// </summary>

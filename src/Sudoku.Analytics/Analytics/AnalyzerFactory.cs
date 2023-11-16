@@ -11,6 +11,18 @@ namespace Sudoku.Analytics;
 public static class AnalyzerFactory
 {
 	/// <summary>
+	/// Try to set randomized choosing.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="randomizedChoosing">Indicates whether the analyzer will adopt randomized algorithm to choose a step.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer WithRandomizedChoosing(this Analyzer @this, bool randomizedChoosing)
+	{
+		@this.RandomizedChoosing = randomizedChoosing;
+		return @this;
+	}
+
+	/// <summary>
 	/// Try to set algorithm limits.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
@@ -30,14 +42,7 @@ public static class AnalyzerFactory
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="applyAll">The value to be set. The value will be assigned to property <see cref="Analyzer.IsFullApplying"/>.</param>
 	/// <returns>The result.</returns>
-	/// <remarks>
-	/// This will also be used in searching for randomized steps. If you call method
-	/// <see cref="Analyzer.Analyze(ref readonly Grid, bool, IProgress{AnalyzerProgress}?, CancellationToken)"/>,
-	/// and pass the second parameter a <see langword="true"/> value, please ensure property <see cref="Analyzer.IsFullApplying"/>
-	/// is being set <see langword="true"/>.
-	/// </remarks>
 	/// <seealso cref="Analyzer.IsFullApplying"/>
-	/// <seealso cref="Analyzer.Analyze(ref readonly Grid, bool, IProgress{AnalyzerProgress}?, CancellationToken)"/>
 	public static Analyzer WithApplyAll(this Analyzer @this, bool applyAll)
 	{
 		@this.IsFullApplying = applyAll;

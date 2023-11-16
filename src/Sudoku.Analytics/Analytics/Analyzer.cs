@@ -27,7 +27,10 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>
+public sealed partial class Analyzer :
+	AnalyzerOrCollector,
+	IAnalyzer<Analyzer, AnalyzerResult>,
+	IRandomizedAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
 	/// The random number generator.
@@ -35,16 +38,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	private readonly Random _random = new();
 
 
-	/// <summary>
-	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
-	/// If the value is <see langword="true"/>, the third argument of <see cref="StepSearcher.Collect(ref AnalysisContext)"/>
-	/// will be set <see langword="false"/> value, in order to find all possible steps in a step searcher,
-	/// and all steps will be applied at the same time.
-	/// </summary>
-	/// <remarks>
-	/// The default value is <see langword="false"/>.
-	/// </remarks>
-	/// <seealso cref="StepSearcher.Collect(ref AnalysisContext)"/>
+	/// <inheritdoc/>
+	public bool RandomizedChoosing { get; set; }
+
+	/// <inheritdoc/>
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -84,36 +81,15 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <inheritdoc/>
 	public override StepSearcherOptions Options { get; protected internal set; } = StepSearcherOptions.Default;
 
+	/// <inheritdoc/>
+	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
+
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
-		=> Analyze(in puzzle, false, progress, cancellationToken);
-
-	/// <summary>
-	/// Analyze the specified puzzle, and return an <see cref="AnalyzerResult"/> instance indicating the analyzed result.
-	/// </summary>
-	/// <param name="puzzle">The puzzle to be analyzed.</param>
-	/// <param name="randomizedSelectOne">
-	/// Indicates whether the found steps will be randomized-handled, meaning the found steps for each stepped grid
-	/// will beselected and applied, in random. This argument will change the final collected steps.
-	/// <b>
-	/// If <see cref="IsFullApplying"/> is set <see langword="false"/>, the operation will take no random effects
-	/// because the method won't check for all found steps.
-	/// </b>
-	/// </param>
-	/// <param name="progress">A <see cref="IProgress{T}"/> instance that is used for reporting the state.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
-	/// <returns>The solver result that provides the information after analyzing.</returns>
-	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
-	public AnalyzerResult Analyze(
-		scoped ref readonly Grid puzzle,
-		bool randomizedSelectOne,
-		IProgress<AnalyzerProgress>? progress = null,
-		CancellationToken cancellationToken = default
-	)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -131,7 +107,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				return analyzeInternal(
 					in puzzle,
 					in solution,
-					randomizedSelectOne,
 					isSukaku,
 					result,
 					symmetricType,
@@ -164,7 +139,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		AnalyzerResult analyzeInternal(
 			scoped ref readonly Grid puzzle,
 			scoped ref readonly Grid solution,
-			bool randomizedSelectOne,
 			bool isSukaku,
 			AnalyzerResult resultBase,
 			SymmetricType symmetricType,
@@ -176,13 +150,13 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		{
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
-			var (recordedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
+			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator = IsFullApplying ? [] : default(List<Step>);
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying, Options);
 			string progressedStepSearcherName;
 
-			// Determine whether the grid is a GSP pattern. If so, check eliminations.
+			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
 			{
 				(context.InferredGurthSymmetricalPlacementPattern, context.MappingRelations) = (symmetricType, [.. mappingDigits]);
@@ -191,7 +165,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				{
 					if (verifyConclusionValidity(in solution, step))
 					{
-						if (onCollectingSteps(recordedSteps, step, in context, ref playground, in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+						if (onCollectingSteps(
+							collectedSteps, step, in context, ref playground, in stopwatch,
+							stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -221,7 +197,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 						// 4. If the searcher is configured as high-allocation.
 						continue;
 					}
-					case (_, not BruteForceStepSearcher, { IsFullApplying: true }):
+					case (_, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();
 
@@ -231,7 +207,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							continue;
 						}
 
-						if (randomizedSelectOne)
+						if (RandomizedChoosing)
 						{
 							var invalidStep = default(Step);
 							foreach (var step in accumulator)
@@ -248,7 +224,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							}
 
 							if (onCollectingSteps(
-								recordedSteps, accumulator[_random.Next(0, accumulator.Count)], in context, ref playground,
+								collectedSteps, accumulator[_random.Next(0, accumulator.Count)], in context, ref playground,
 								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
@@ -264,7 +240,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 								}
 
 								if (onCollectingSteps(
-									recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
+									collectedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -289,7 +265,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 								if (verifyConclusionValidity(in solution, foundStep))
 								{
 									if (onCollectingSteps(
-										recordedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
+										collectedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
 										return result;
@@ -318,7 +294,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			{
 				FailedReason = FailedReason.PuzzleIsTooHard,
 				ElapsedTime = stopwatch.ElapsedTime,
-				Steps = [.. recordedSteps],
+				Steps = [.. collectedSteps],
 				SteppingGrids = [.. stepGrids]
 			};
 

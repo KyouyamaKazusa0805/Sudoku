@@ -1490,11 +1490,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.IAnalyzer`2">
             <summary>
-            Represents with an analyzer, which can solve a puzzle, and return not only a <see cref="T:Sudoku.Concepts.Grid"/> as its solution,
-            but a <typeparamref name="TResult"/> instance encapsulating all possible state of the analysis.
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
+            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle.
             </summary>
             <typeparam name="TSelf">The type of the solver itself.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzer`2.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
@@ -1594,6 +1600,25 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="self">The current conclusion instance to be negated.</param>
             <returns>The negation.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.IRandomizedAnalyzer`2">
+            <summary>
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>,
+            The result is a <typeparamref name="TSelf"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle, with randomized chosing.
+            </summary>
+            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomizedChoosing">
+            <summary>
+            Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomNumberGenerator">
+            <summary>
+            The internal <see cref="T:System.Random"/> instance to be used.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
