@@ -4718,6 +4718,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
             <inheritdoc cref="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearcherSetters``1(Sudoku.Analytics.StepCollector,System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepCollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepCollectorDifficultyLevelMode)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> with the target value.
