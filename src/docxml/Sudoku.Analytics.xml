@@ -4951,6 +4951,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the current assembly.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers">
+            <summary>
+            Try to fetch a list of built-in step searchers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchersExpanded">
+            <summary>
+            Try to fetch a list of built-in step searchers, with expanded.
+            All step searcher types marked <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/> will be separate with multiple instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)">
             <summary>
             Indicates an array of all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s that are defined in this assembly.

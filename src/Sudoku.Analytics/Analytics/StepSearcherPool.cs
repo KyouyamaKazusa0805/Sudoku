@@ -18,6 +18,19 @@ public abstract class StepSearcherPool
 
 
 	/// <summary>
+	/// Try to fetch a list of built-in step searchers.
+	/// </summary>
+	public static StepSearcher[] BuiltInStepSearchers => Default(false);
+
+	/// <summary>
+	/// Try to fetch a list of built-in step searchers, with expanded.
+	/// All step searcher types marked <see cref="SplitStepSearcherAttribute"/> will be separate with multiple instances.
+	/// </summary>
+	/// <seealso cref="SplitStepSearcherAttribute"/>
+	public static StepSearcher[] BuiltInStepSearchersExpanded => Default(true);
+
+
+	/// <summary>
 	/// Indicates an array of all built-in <see cref="StepSearcher"/>s that are defined in this assembly.
 	/// </summary>
 	/// <param name="expandSplitStepSearchers">

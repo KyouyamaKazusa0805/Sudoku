@@ -74,7 +74,7 @@ public sealed partial class Analyzer :
 
 	/// <inheritdoc/>
 	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
-		from searcher in StepSearcherPool.Default()
+		from searcher in StepSearcherPool.BuiltInStepSearchersExpanded
 		where searcher.RunningArea.Flags(StepSearcherRunningArea.Searching)
 		select searcher;
 
