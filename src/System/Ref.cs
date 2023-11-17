@@ -43,8 +43,7 @@ public static class Ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right)
-		=> AreSame(in left, in right);
+	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right) => AreSame(in left, in right);
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
