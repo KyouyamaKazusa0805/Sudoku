@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using static System.Runtime.CompilerServices.Unsafe;
 
 namespace System;
 
@@ -32,7 +33,7 @@ public static class Ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullReference<T>(scoped ref readonly T reference) => Unsafe.IsNullRef(in reference);
+	public static bool IsNullReference<T>(scoped ref readonly T reference) => IsNullRef(in reference);
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -43,7 +44,7 @@ public static class Ref
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right)
-		=> Unsafe.AreSame(in left, in right);
+		=> AreSame(in left, in right);
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
@@ -53,7 +54,7 @@ public static class Ref
 	/// </typeparam>
 	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T MakeNullReference<T>() => ref Unsafe.NullRef<T>();
+	public static ref readonly T MakeNullReference<T>() => ref NullRef<T>();
 
 	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
@@ -73,7 +74,7 @@ public static class Ref
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = Unsafe.AddByteOffset(ref Unsafe.AsRef(in memorySpan), sizeof(T) * i);
+			result[i - start] = AddByteOffset(ref AsRef(in memorySpan), sizeof(T) * i);
 		}
 
 		return result;
@@ -167,7 +168,7 @@ public static class Ref
 	/// <para><i>
 	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
 	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
-	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
+	/// However, the method will invoke <see cref="IsNullRef{T}(ref readonly T)"/>,
 	/// where the only argument is passed by <see langword="ref"/>.
 	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
 	/// </i></para>
