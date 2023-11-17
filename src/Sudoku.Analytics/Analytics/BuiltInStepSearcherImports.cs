@@ -28,7 +28,7 @@ using Sudoku.Analytics.StepSearchers;
 [assembly: StepSearcherImport<ReverseBivalueUniversalGraveStepSearcher>(2)]
 [assembly: StepSearcherImport<EmptyRectangleIntersectionPairStepSearcher>(1)]
 [assembly: StepSearcherImport<FireworkStepSearcher>(1)]
-[assembly: StepSearcherImport<GurthSymmetricalPlacementStepSearcher>(0)]
+[assembly: StepSearcherImport<AntiGurthSymmetricalPlacementStepSearcher>(0)]
 [assembly: StepSearcherImport<NonMultipleChainingStepSearcher>(2)]
 [assembly: StepSearcherImport<XyzRingStepSearcher>(1)]
 [assembly: StepSearcherImport<AlmostLockedSetsXzStepSearcher>(1)]

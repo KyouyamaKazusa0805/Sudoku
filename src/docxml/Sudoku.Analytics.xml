@@ -455,9 +455,9 @@ if (student is (name: var name, age: >= 18))
             If satisfying, what kind of symmetry the pattern will be.
             </summary>
             <remarks>
-            This value will only be set in <see cref="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
+            This value will only be set in <see cref="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
@@ -9131,7 +9131,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher">
             <summary>
             Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
             The step searcher will include the following techniques:
@@ -9141,15 +9141,15 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.AntiTypeCheckers">
+        <member name="F:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.AntiTypeCheckers">
             <summary>
             Anti types.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
             <summary>
             Records all possible highlight cells.
             </summary>
@@ -9157,7 +9157,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cellOffsets">The target collection.</param>
             <param name="mapping">The mapping relation.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.CheckDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for diagonal symmetry steps, anti-GSP type.
             </summary>
@@ -9165,7 +9165,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.CheckAntiDiagonal_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for diagonal symmetry steps, anti-GSP type.
             </summary>
@@ -9173,7 +9173,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckXAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.CheckXAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for X-axis symmetry steps, anti-GSP type.
             </summary>
@@ -9181,7 +9181,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckYAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.CheckYAxis_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for Y-axis symmetry steps, anti-GSP type.
             </summary>
@@ -9189,7 +9189,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.GurthSymmetricalPlacementStepSearcher.CheckCentral_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.CheckCentral_Anti(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
             <summary>
             Checks for central symmetry steps, anti-GSP type.
             </summary>

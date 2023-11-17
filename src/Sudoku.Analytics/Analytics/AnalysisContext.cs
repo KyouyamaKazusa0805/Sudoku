@@ -39,9 +39,9 @@ public ref partial struct AnalysisContext(
 	/// If satisfying, what kind of symmetry the pattern will be.
 	/// </summary>
 	/// <remarks>
-	/// This value will only be set in <see cref="GurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
+	/// This value will only be set in <see cref="AntiGurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
 	/// </remarks>
-	/// <seealso cref="GurthSymmetricalPlacementStepSearcher"/>
+	/// <seealso cref="AntiGurthSymmetricalPlacementStepSearcher"/>
 	[DisallowNull]
 	[NotNullIfNotNull(nameof(MappingRelations))]
 	public SymmetricType? InferredGurthSymmetricalPlacementPattern { get; internal set; }
