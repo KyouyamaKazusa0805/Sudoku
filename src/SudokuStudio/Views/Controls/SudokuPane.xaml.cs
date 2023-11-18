@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using Sudoku.Runtime.CompilerServices;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
@@ -987,7 +988,7 @@ file static class Extensions
 
 					if (map)
 					{
-						result.Add(map);
+						result.AddRef(in map);
 						continue;
 					}
 
@@ -1014,7 +1015,7 @@ file static class Extensions
 
 					if (map)
 					{
-						result.Add(map);
+						result.AddRef(in map);
 						continue;
 					}
 

@@ -3,6 +3,7 @@ using System.Text.Json;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Sudoku.Runtime.CompilerServices;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Interaction;
 using SudokuStudio.Storage;
@@ -124,7 +125,7 @@ public sealed partial class LibraryPage : Page
 			{
 				if (fileExtension is FileExtensions.PlainText or FileExtensions.CommaSeparated && Grid.TryParse(line, out var grid))
 				{
-					validPuzzles.Add(grid);
+					validPuzzles.AddRef(in grid);
 				}
 			}
 
@@ -265,7 +266,7 @@ public sealed partial class LibraryPage : Page
 				{
 					if (Grid.TryParse(line, out var puzzle))
 					{
-						newPuzzles.Add(puzzle);
+						newPuzzles.AddRef(in puzzle);
 					}
 				}
 
@@ -358,7 +359,7 @@ public sealed partial class LibraryPage : Page
 		}
 
 		var origianlInstance = _puzzleLibraries[index];
-		var newInstance = new PuzzleLibraryBindableSource(origianlInstance, [.. getValidGrids(origianlInstance.Puzzles)]);
+		var newInstance = new PuzzleLibraryBindableSource(origianlInstance, getValidGrids(origianlInstance.Puzzles));
 		var resultJson = JsonSerializer.Serialize(newInstance, SerializerOptions);
 		await File.WriteAllTextAsync(filePath, resultJson);
 
@@ -372,7 +373,7 @@ public sealed partial class LibraryPage : Page
 			{
 				if (puzzle.IsValid)
 				{
-					newPuzzles.Add(puzzle);
+					newPuzzles.AddRef(in puzzle);
 				}
 			}
 

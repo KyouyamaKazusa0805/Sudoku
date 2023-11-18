@@ -6,6 +6,7 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -244,14 +245,14 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 			{
 				case { Count: 2 }:
 				{
-					list.Add(emptyMap);
+					list.AddRef(in emptyMap);
 					break;
 				}
 				case [var i, var j, var k]:
 				{
-					list.Add([i, j]);
-					list.Add([i, k]);
-					list.Add([j, k]);
+					list.AddRef([i, j]);
+					list.AddRef([i, k]);
+					list.AddRef([j, k]);
 					break;
 				}
 			}

@@ -1,5 +1,6 @@
 using System.Numerics;
 using Sudoku.Concepts;
+using Sudoku.Runtime.CompilerServices;
 using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Algorithm.DeadlyPattern;
@@ -91,7 +92,7 @@ public static class DeadlyPatternChecker
 		{
 			if (currentCell == 81)
 			{
-				solutions.Add(grid);
+				solutions.AddRef(in grid);
 				return;
 			}
 

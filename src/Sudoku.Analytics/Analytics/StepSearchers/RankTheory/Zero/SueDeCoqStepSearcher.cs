@@ -5,6 +5,7 @@ using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -55,15 +56,15 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				{
 					case { Count: 2 }:
 					{
-						list.Add(emptyCellsInInterMap);
+						list.AddRef(in emptyCellsInInterMap);
 						break;
 					}
 					case [var i, var j, var k]:
 					{
-						list.Add([i, j]);
-						list.Add([j, k]);
-						list.Add([i, k]);
-						list.Add(emptyCellsInInterMap);
+						list.AddRef([i, j]);
+						list.AddRef([j, k]);
+						list.AddRef([i, k]);
+						list.AddRef(in emptyCellsInInterMap);
 						break;
 					}
 				}

@@ -11,6 +11,7 @@ using Sudoku.Concepts.Converters;
 using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
+using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -753,7 +754,7 @@ public partial struct CellMap :
 		var result = new List<CellMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRange(GetSubsets(i));
+			result.AddRangeRef(GetSubsets(i));
 		}
 
 		return result.ToArray();
