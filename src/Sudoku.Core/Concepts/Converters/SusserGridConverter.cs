@@ -206,8 +206,8 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 						{
 							// Can't find any simplifications.
 							Unsafe.CopyBlock(
-								ref Unsafe2.AsByteRef(ref Unsafe.AsRef(in resultSpan[characterIndexStart])),
-								in Unsafe2.AsReadOnlyByteRef(in sliced.GetRef()),
+								ref Ref.AsByteRef(ref resultSpan[characterIndexStart]),
+								in Ref.AsReadOnlyByteRef(in sliced.GetRef()),
 								sizeof(char) * 9
 							);
 							spanIndex += 9;

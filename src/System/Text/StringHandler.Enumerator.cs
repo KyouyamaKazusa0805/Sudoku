@@ -65,7 +65,7 @@ partial struct StringHandler
 				return false;
 			}
 
-			Unsafe2.RefMoveNext(ref _ptr);
+			Ref.MoveNext(ref _ptr);
 			return true;
 		}
 	}

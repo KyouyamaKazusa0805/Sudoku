@@ -211,8 +211,8 @@ public unsafe ref partial struct StringHandler
 	public StringHandler(string initialString)
 	{
 		Unsafe.CopyBlock(
-			ref Unsafe2.AsByteRef(ref _chars[0]),
-			in Unsafe2.AsReadOnlyByteRef(in initialString.GetRef()),
+			ref Ref.AsByteRef(ref _chars[0]),
+			in Ref.AsReadOnlyByteRef(in initialString.GetRef()),
 			(uint)(sizeof(char) * initialString.Length)
 		);
 
@@ -247,7 +247,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-		=> Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref handler._chars[0]), in Unsafe2.AsByteRef(ref _chars[0]), (uint)(sizeof(char) * Length));
+		=> Unsafe.CopyBlock(ref Ref.AsByteRef(ref handler._chars[0]), in Ref.AsReadOnlyByteRef(in _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
@@ -354,8 +354,8 @@ public unsafe ref partial struct StringHandler
 				if ((uint)pos < chars.Length - 1)
 				{
 					Unsafe.WriteUnaligned(
-						ref Unsafe2.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
-						Unsafe.ReadUnaligned<int>(in Unsafe2.AsReadOnlyByteRef(in value.GetRef()))
+						ref Ref.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
+						Unsafe.ReadUnaligned<int>(in Ref.AsReadOnlyByteRef(in value.GetRef()))
 					);
 
 					Length = pos + 2;

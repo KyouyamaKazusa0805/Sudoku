@@ -770,7 +770,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(scoped ref readonly Grid other)
-		=> InternalEqualsByRef(in Unsafe2.AsReadOnlyByteRef(in this[0]), in Unsafe2.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount);
+		=> InternalEqualsByRef(in Ref.AsReadOnlyByteRef(in this[0]), in Ref.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -1901,7 +1901,7 @@ public unsafe partial struct Grid :
 	public static explicit operator Grid(Mask[] maskArray)
 	{
 		var result = Empty;
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
 
 		return result;
 	}
@@ -1923,7 +1923,7 @@ public unsafe partial struct Grid :
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), sizeof(Mask) * CellsCount);
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
 
 		return result;
 	}

@@ -27,6 +27,41 @@ public static class Ref
 	}
 
 	/// <summary>
+	/// Moves the reference to the next position. Simply calls <see cref="AddByteOffset{T}(ref T, nint)"/> with arguments
+	/// <paramref name="ref"/> and 1.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	/// <param name="ref">The reference.</param>
+	/// <seealso cref="AddByteOffset{T}(ref T, nint)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe void MoveNext<T>(scoped ref T @ref) => AddByteOffset(ref @ref, sizeof(T));
+
+	/// <summary>
+	/// Moves the reference to the previous position. Simply calls <see cref="SubtractByteOffset{T}(ref T, nint)"/> with arguments
+	/// <paramref name="ref"/> and 1.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	/// <param name="ref">The reference.</param>
+	/// <seealso cref="SubtractByteOffset{T}(ref T, nint)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe void MovePrevious<T>(scoped ref T @ref) => SubtractByteOffset(ref @ref, sizeof(T));
+
+	/// <summary>
+	/// Simply invokes the method <see cref="As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
+	/// </summary>
+	/// <typeparam name="T">The base type that is converted from.</typeparam>
+	/// <param name="ref">
+	/// The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+	/// using <see langword="ref readonly"/> as a combined parameter modifier.
+	/// </param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref byte AsByteRef<T>(ref T @ref) => ref As<T, byte>(ref @ref);
+
+	/// <inheritdoc cref="AsByteRef{T}(ref T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly byte AsReadOnlyByteRef<T>(ref readonly T @ref) => ref As<T, byte>(ref AsRef(in @ref));
+
+	/// <summary>
 	/// Determines whether the current reference points to <see langword="null"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the referenced element.</typeparam>
@@ -54,6 +89,15 @@ public static class Ref
 	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly T MakeNullReference<T>() => ref NullRef<T>();
+
+	/// <summary>
+	/// Re-interpret the read-only reference to non-read-only reference.
+	/// </summary>
+	/// <typeparam name="T">The type of the referenced item.</typeparam>
+	/// <param name="ref">The read-only reference.</param>
+	/// <returns>The non-read-only reference.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref T AsMutableRef<T>(ref readonly T @ref) => ref AsRef(in @ref);
 
 	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.

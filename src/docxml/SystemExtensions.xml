@@ -2084,43 +2084,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator(System.Runtime.CompilerServices.ITuple)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="T:System.Runtime.CompilerServices.Unsafe2">
-            <summary>
-            Provides extra methods that is an extension of type <see cref="T:System.Runtime.CompilerServices.Unsafe"/>.
-            </summary>
-            <seealso cref="T:System.Runtime.CompilerServices.Unsafe"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMoveNext``1(``0@)">
-            <summary>
-            Moves the reference to the next position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/> with arguments
-            <paramref name="ref"/> and 1.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="ref">The reference.</param>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.RefMovePrevious``1(``0@)">
-            <summary>
-            Moves the reference to the previous position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/> with arguments
-            <paramref name="ref"/> and 1.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="ref">The reference.</param>
-            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)">
-            <summary>
-            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
-            </summary>
-            <typeparam name="T">The base type that is converted from.</typeparam>
-            <param name="ref">
-            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
-            using <see langword="ref readonly"/> as a combined parameter modifier.
-            </param>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.Unsafe2.AsReadOnlyByteRef``1(``0@)">
-            <inheritdoc cref="M:System.Runtime.CompilerServices.Unsafe2.AsByteRef``1(``0@)"/>
-        </member>
         <member name="T:System.Runtime.CompilerServices.TupleEnumerator">
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
@@ -3005,6 +2968,37 @@ fixed (short* ptr = instance)
             <param name="left">The first element to be swapped.</param>
             <param name="right">The second element to be swapped.</param>
         </member>
+        <member name="M:System.Ref.MoveNext``1(``0@)">
+            <summary>
+            Moves the reference to the next position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.AddByteOffset``1(``0@,System.IntPtr)"/>
+        </member>
+        <member name="M:System.Ref.MovePrevious``1(``0@)">
+            <summary>
+            Moves the reference to the previous position. Simply calls <see cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/> with arguments
+            <paramref name="ref"/> and 1.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="ref">The reference.</param>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.SubtractByteOffset``1(``0@,System.IntPtr)"/>
+        </member>
+        <member name="M:System.Ref.AsByteRef``1(``0@)">
+            <summary>
+            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
+            </summary>
+            <typeparam name="T">The base type that is converted from.</typeparam>
+            <param name="ref">
+            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+            using <see langword="ref readonly"/> as a combined parameter modifier.
+            </param>
+        </member>
+        <member name="M:System.Ref.AsReadOnlyByteRef``1(``0@)">
+            <inheritdoc cref="M:System.Ref.AsByteRef``1(``0@)"/>
+        </member>
         <member name="M:System.Ref.IsNullReference``1(``0@)">
             <summary>
             Determines whether the current reference points to <see langword="null"/>.
@@ -3030,6 +3024,14 @@ fixed (short* ptr = instance)
             The type of the element the reference points to if this reference were not <see langword="null"/>.
             </typeparam>
             <returns>A read-only reference that points to <see langword="null"/>.</returns>
+        </member>
+        <member name="M:System.Ref.AsMutableRef``1(``0@)">
+            <summary>
+            Re-interpret the read-only reference to non-read-only reference.
+            </summary>
+            <typeparam name="T">The type of the referenced item.</typeparam>
+            <param name="ref">The read-only reference.</param>
+            <returns>The non-read-only reference.</returns>
         </member>
         <member name="M:System.Ref.Slice``1(``0@,System.Int32,System.Int32)">
             <summary>
