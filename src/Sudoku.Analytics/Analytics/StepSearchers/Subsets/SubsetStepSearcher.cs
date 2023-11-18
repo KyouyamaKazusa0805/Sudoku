@@ -49,6 +49,15 @@ public abstract class SubsetStepSearcher(
 					continue;
 				}
 
+				// Remove cells that only contain 1 candidate (Naked Singles).
+				foreach (var cell in HousesMap[house] & EmptyCells)
+				{
+					if (IsPow2(grid.GetCandidates(cell)))
+					{
+						currentEmptyMap.Remove(cell);
+					}
+				}
+
 				// Iterate on each combination.
 				foreach (ref readonly var cells in currentEmptyMap.GetSubsets(size))
 				{
