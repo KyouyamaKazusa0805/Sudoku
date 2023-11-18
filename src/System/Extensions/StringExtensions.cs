@@ -60,14 +60,6 @@ public static partial class StringExtensions
 		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
 
 	/// <summary>
-	/// Try to fetch the reference to the first character, with read-only state.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The reference to the first character, with read-only state.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly char GetRef(this string @this) => ref @this.AsSpan()[0];
-
-	/// <summary>
 	/// Removes all specified characters.
 	/// </summary>
 	/// <param name="this">The string value.</param>
