@@ -209,22 +209,28 @@ public sealed partial class Analyzer :
 
 						if (RandomizedChoosing)
 						{
-							var invalidStep = default(Step);
-							foreach (var step in accumulator)
+							// Here will fetch a correct step to be applied.
+							var containsOneCorrectStep = false;
+							foreach (var s in accumulator)
 							{
-								if (!verifyConclusionValidity(in solution, step))
+								if (verifyConclusionValidity(in solution, s))
 								{
-									invalidStep = step;
+									containsOneCorrectStep = true;
 									break;
 								}
 							}
-							if (invalidStep is not null)
+							if (!containsOneCorrectStep)
 							{
-								throw new WrongStepException(in playground, invalidStep);
+								throw new WrongStepException(in playground, accumulator[0]);
 							}
 
+							Step step;
+							do
+							{
+								step = accumulator[_random.Next(0, accumulator.Count)];
+							} while (!verifyConclusionValidity(in solution, step));
 							if (onCollectingSteps(
-								collectedSteps, accumulator[_random.Next(0, accumulator.Count)], in context, ref playground,
+								collectedSteps, step, in context, ref playground,
 								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;

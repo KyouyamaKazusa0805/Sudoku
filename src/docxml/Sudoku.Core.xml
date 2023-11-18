@@ -3198,6 +3198,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the given mask.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.CellsCount">
+            <summary>
+            Indicates the number of cells of a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.CellCandidatesCount">
+            <summary>
+            Indicates the number of candidates appeared in a cell.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.EmptyString">
             <summary>
             Indicates the empty grid string.

@@ -56,7 +56,7 @@ using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, 
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[InlineArray(81)]
+[InlineArray(CellsCount)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [LargeStructure]
@@ -86,22 +86,32 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the maximum candidate mask that used.
 	/// </summary>
-	public const Mask MaxCandidatesMask = (1 << 9) - 1;
+	public const Mask MaxCandidatesMask = (1 << CellCandidatesCount) - 1;
 
 	/// <summary>
 	/// Indicates the empty mask, modifiable mask and given mask.
 	/// </summary>
-	public const Mask EmptyMask = (Mask)CellState.Empty << 9;
+	public const Mask EmptyMask = (Mask)CellState.Empty << CellCandidatesCount;
 
 	/// <summary>
 	/// Indicates the modifiable mask.
 	/// </summary>
-	public const Mask ModifiableMask = (Mask)CellState.Modifiable << 9;
+	public const Mask ModifiableMask = (Mask)CellState.Modifiable << CellCandidatesCount;
 
 	/// <summary>
 	/// Indicates the given mask.
 	/// </summary>
-	public const Mask GivenMask = (Mask)CellState.Given << 9;
+	public const Mask GivenMask = (Mask)CellState.Given << CellCandidatesCount;
+
+	/// <summary>
+	/// Indicates the number of cells of a sudoku grid.
+	/// </summary>
+	public const int CellsCount = 81;
+
+	/// <summary>
+	/// Indicates the number of candidates appeared in a cell.
+	/// </summary>
+	public const int CellCandidatesCount = 9;
 
 #if EMPTY_GRID_STRING_CONSTANT
 	/// <summary>
@@ -115,7 +125,7 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the empty grid string.
 	/// </summary>
-	public static readonly string EmptyString = new('0', 81);
+	public static readonly string EmptyString = new('0', CellsCount);
 #endif
 
 	/// <summary>
@@ -237,7 +247,7 @@ public unsafe partial struct Grid :
 
 		// Then traverse the array (span, pointer or etc.), to get refresh the values.
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
-		for (var i = 0; i < 81; i++)
+		for (var i = 0; i < CellsCount; i++)
 		{
 			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(in firstElement), (nuint)(i * sizeof(Digit)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
@@ -259,7 +269,7 @@ public unsafe partial struct Grid :
 	{
 		get
 		{
-			for (var i = 0; i < 81; i++)
+			for (var i = 0; i < CellsCount; i++)
 			{
 				if (GetState(i) == CellState.Empty)
 				{
@@ -267,7 +277,7 @@ public unsafe partial struct Grid :
 				}
 			}
 
-			for (var i = 0; i < 81; i++)
+			for (var i = 0; i < CellsCount; i++)
 			{
 				switch (GetState(i))
 				{
@@ -355,7 +365,7 @@ public unsafe partial struct Grid :
 		get
 		{
 			var count = 0;
-			for (var i = 0; i < 81; i++)
+			for (var i = 0; i < CellsCount; i++)
 			{
 				if (GetState(i) == CellState.Empty)
 				{
@@ -514,13 +524,13 @@ public unsafe partial struct Grid :
 		get
 		{
 			var candidates = new Candidate[CandidatesCount];
-			for (var (cell, i) = (0, 0); cell < 81; cell++)
+			for (var (cell, i) = (0, 0); cell < CellsCount; cell++)
 			{
 				if (GetState(cell) == CellState.Empty)
 				{
 					foreach (var digit in GetCandidates(cell))
 					{
-						candidates[i++] = cell * 9 + digit;
+						candidates[i++] = cell * CellCandidatesCount + digit;
 					}
 				}
 			}
@@ -537,7 +547,7 @@ public unsafe partial struct Grid :
 		{
 			var conjugatePairs = new List<Conjugate>();
 			scoped var candidatesMap = CandidatesMap;
-			for (var digit = 0; digit < 9; digit++)
+			for (var digit = 0; digit < CellCandidatesCount; digit++)
 			{
 				scoped ref readonly var cellsMap = ref candidatesMap[digit];
 				foreach (var houseMap in HousesMap)
@@ -623,7 +633,7 @@ public unsafe partial struct Grid :
 	}
 
 	/// <inheritdoc/>
-	readonly int IReadOnlyCollection<Digit>.Count => 81;
+	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;
 
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>
@@ -760,7 +770,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(scoped ref readonly Grid other)
-		=> InternalEqualsByRef(in Unsafe2.AsReadOnlyByteRef(in this[0]), in Unsafe2.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * 81);
+		=> InternalEqualsByRef(in Unsafe2.AsReadOnlyByteRef(in this[0]), in Unsafe2.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -866,7 +876,7 @@ public unsafe partial struct Grid :
 			{
 				throw new InvalidOperationException("The puzzle is not unique.");
 			}
-			case { IsSolved: true, GivenCells.Count: 81 }:
+			case { IsSolved: true, GivenCells.Count: CellsCount }:
 			{
 				// Very special case: all cells are givens.
 				// The puzzle is considered not a minimal puzzle, because any digit in the grid can be removed.
@@ -884,7 +894,7 @@ public unsafe partial struct Grid :
 
 					if (newGrid.IsValid)
 					{
-						firstCandidateMakePuzzleNotMinimal = cell * 9 + GetDigit(cell);
+						firstCandidateMakePuzzleNotMinimal = cell * CellCandidatesCount + GetDigit(cell);
 						return false;
 					}
 				}
@@ -905,7 +915,7 @@ public unsafe partial struct Grid :
 
 	/// <inheritdoc cref="Exists(Cell, Digit)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
+	public readonly bool? Exists(Candidate candidate) => Exists(candidate / CellCandidatesCount, candidate % CellCandidatesCount);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.
@@ -968,8 +978,8 @@ public unsafe partial struct Grid :
 	/// </returns>
 	public readonly Digit[] ToArray()
 	{
-		var result = new Digit[81];
-		for (var i = 0; i < 81; i++)
+		var result = new Digit[CellsCount];
+		for (var i = 0; i < CellsCount; i++)
 		{
 			// -1..8 -> 0..9
 			result[i] = GetDigit(i) + 1;
@@ -1069,7 +1079,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void Reset()
 	{
-		for (var i = 0; i < 81; i++)
+		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
 			{
@@ -1083,7 +1093,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void Fix()
 	{
-		for (var i = 0; i < 81; i++)
+		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
 			{
@@ -1097,7 +1107,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public void Unfix()
 	{
-		for (var i = 0; i < 81; i++)
+		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Given)
 			{
@@ -1158,7 +1168,7 @@ public unsafe partial struct Grid :
 	{
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
-		mask = (Mask)((int)state << 9 | mask & MaxCandidatesMask);
+		mask = (Mask)((int)state << CellCandidatesCount | mask & MaxCandidatesMask);
 
 		((ValueChangedHandler)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
@@ -1208,7 +1218,7 @@ public unsafe partial struct Grid :
 
 				break;
 			}
-			case >= 0 and < 9:
+			case >= 0 and < CellCandidatesCount:
 			{
 				scoped ref var result = ref this[cell];
 				var copied = result;
@@ -1236,7 +1246,7 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
-		if (cell is >= 0 and < 81 && digit is >= 0 and < 9)
+		if (cell is >= 0 and < CellsCount && digit is >= 0 and < CellCandidatesCount)
 		{
 			var copied = this[cell];
 			if (isOn)
@@ -1271,7 +1281,7 @@ public unsafe partial struct Grid :
 	private readonly CellMap GetMap(CellPredicateFunc predicate)
 	{
 		var result = CellMap.Empty;
-		for (var cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < CellsCount; cell++)
 		{
 			if (predicate(in this, cell))
 			{
@@ -1292,11 +1302,11 @@ public unsafe partial struct Grid :
 	/// <seealso cref="ValuesMap"/>
 	private readonly CellMap[] GetMaps(CellMapPredicateFunc predicate)
 	{
-		var result = new CellMap[9];
-		for (var digit = 0; digit < 9; digit++)
+		var result = new CellMap[CellCandidatesCount];
+		for (var digit = 0; digit < CellCandidatesCount; digit++)
 		{
 			scoped ref var map = ref result[digit];
-			for (var cell = 0; cell < 81; cell++)
+			for (var cell = 0; cell < CellsCount; cell++)
 			{
 				if (predicate(in this, cell, digit))
 				{
@@ -1366,16 +1376,16 @@ public unsafe partial struct Grid :
 			{
 				var result = Undefined;
 				var uniformValue = rawMaskValues[0];
-				for (var cell = 0; cell < 81; cell++)
+				for (var cell = 0; cell < CellsCount; cell++)
 				{
 					result[cell] = uniformValue;
 				}
 				return result;
 			}
-			case 81:
+			case CellsCount:
 			{
 				var result = Undefined;
-				for (var cell = 0; cell < 81; cell++)
+				for (var cell = 0; cell < CellsCount; cell++)
 				{
 					result[cell] = rawMaskValues[cell];
 				}
@@ -1383,7 +1393,7 @@ public unsafe partial struct Grid :
 			}
 			default:
 			{
-				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain 81 elements.");
+				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain {CellsCount} elements.");
 			}
 		}
 	}
@@ -1863,7 +1873,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="RefreshingCandidates"/>
 	private static void OnRefreshingCandidates(scoped ref Grid @this)
 	{
-		for (var i = 0; i < 81; i++)
+		for (var i = 0; i < CellsCount; i++)
 		{
 			if (@this.GetState(i) == CellState.Empty)
 			{
@@ -1908,12 +1918,12 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator checked Grid(Mask[] maskArray)
 	{
-		static bool maskMatcher(Mask element) => element >> 9 is 0 or 1 or 2 or 4;
-		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, 81);
+		static bool maskMatcher(Mask element) => element >> CellCandidatesCount is 0 or 1 or 2 or 4;
+		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, CellsCount);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), sizeof(Mask) * 81);
+		Unsafe.CopyBlock(ref Unsafe2.AsByteRef(ref result[0]), in Unsafe2.AsByteRef(ref maskArray[0]), sizeof(Mask) * CellsCount);
 
 		return result;
 	}

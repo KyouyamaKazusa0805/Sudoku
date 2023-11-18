@@ -14,6 +14,15 @@ public static class TechniqueSets
 	public static TechniqueSet All => [.. Enum.GetValues<Technique>()];
 
 	/// <summary>
+	/// Indicates all assignment techniques.
+	/// </summary>
+	public static TechniqueSet Assignments
+		=> [
+			Technique.FullHouse, Technique.LastDigit, Technique.HiddenSingleBlock,
+			Technique.HiddenSingleRow, Technique.HiddenSingleColumn, Technique.NakedSingle
+		];
+
+	/// <summary>
 	/// Indicates the techniques that ittoryu path finder will use.
 	/// </summary>
 	/// <seealso cref="IttoryuPathFinder"/>

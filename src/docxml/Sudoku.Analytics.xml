@@ -3665,6 +3665,11 @@ if (student is (name: var name, age: >= 18))
             Indicates all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields included.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.Assignments">
+            <summary>
+            Indicates all assignment techniques.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuTechniques">
             <summary>
             Indicates the techniques that ittoryu path finder will use.

@@ -259,6 +259,79 @@ public static class ArrayEnumerable
 		return true;
 	}
 
+	/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static T[] DistinctBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector)
+		where TKey : notnull, IEqualityOperators<TKey, TKey, bool>
+	{
+		var result = new T[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			if (i == 0)
+			{
+				result[i++] = element;
+			}
+			else
+			{
+				var elementKey = keySelector(element);
+				var contains = false;
+				foreach (var recordedElement in result)
+				{
+					var recordedElementKey = keySelector(recordedElement);
+					if (elementKey == recordedElementKey)
+					{
+						contains = true;
+						break;
+					}
+				}
+				if (!contains)
+				{
+					result[i++] = element;
+				}
+			}
+		}
+
+		return result[..i];
+	}
+
+	/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey})"/>
+	public static T[] DistinctBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector, IEqualityComparer<TKey> equalityComparer)
+		where TKey : notnull
+	{
+		var result = new T[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			if (i == 0)
+			{
+				result[i++] = element;
+			}
+			else
+			{
+				var elementKey = keySelector(element);
+				var hashCodeThis = equalityComparer.GetHashCode(elementKey);
+
+				var contains = false;
+				foreach (ref readonly var recordedElement in result.AsReadOnlySpan()[..i])
+				{
+					var recordedElementKey = keySelector(recordedElement);
+					var hashCodeOther = equalityComparer.GetHashCode(recordedElementKey);
+					if (hashCodeThis == hashCodeOther && equalityComparer.Equals(elementKey, recordedElementKey))
+					{
+						contains = true;
+						break;
+					}
+				}
+				if (!contains)
+				{
+					result[i++] = element;
+				}
+			}
+		}
+
+		return result[..i];
+	}
+
 	/// <summary>
 	/// Get all subsets from the specified number of the values to take.
 	/// </summary>
