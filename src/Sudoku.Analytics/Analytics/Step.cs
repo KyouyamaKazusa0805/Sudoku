@@ -180,20 +180,21 @@ public abstract partial class Step(
 			return false;
 		}
 
-		const BindingFlags staticMethodFlag = BindingFlags.NonPublic | BindingFlags.Static;
-		var (equalityContract, currentTypeEqualityContract) = (GetType(), typeof(Step));
+		var equalityContract = GetType();
 		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
 		{
-			return (bool)currentTypeEqualityContract.GetMethod(nameof(EquatableStepEntry), staticMethodFlag)!
-				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])!;
+			var factType = typeof(IEquatableStep<>).MakeGenericType([equalityContract]);
+			var @this = (dynamic)Convert.ChangeType(this, factType)!;
+			var other = (dynamic)Convert.ChangeType(obj, factType)!;
+			return EquatableStepEntry(@this, other);
 		}
 
 		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
 		{
-			return (int)currentTypeEqualityContract.GetMethod(nameof(ComparableStepEntry), staticMethodFlag)!
-				.MakeGenericMethod(equalityContract)
-				.Invoke(null, [this, obj])! == 0;
+			var factType = typeof(IComparableStep<>).MakeGenericType([equalityContract]);
+			var @this = Convert.ChangeType(this, factType)!;
+			var other = Convert.ChangeType(obj, factType)!;
+			return (int)factType.GetMethod("Compare")!.Invoke(null, [this, obj])! == 0;
 		}
 
 		return false;
