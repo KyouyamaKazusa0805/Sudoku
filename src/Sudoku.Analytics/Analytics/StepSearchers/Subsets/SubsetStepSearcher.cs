@@ -95,25 +95,27 @@ public abstract class SubsetStepSearcher(
 						: lockedDigitsMask == digitsMask && size != 4
 							? true
 							: lockedDigitsMask != 0 ? false : default(bool?);
-					if (isLocked is true && OnlySearchingForLocked || !OnlySearchingForLocked)
+					if ((isLocked, OnlySearchingForLocked) is not ((true, true) or (not true, false)))
 					{
-						var step = new NakedSubsetStep(
-							[.. conclusions],
-							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
-							context.PredefinedOptions,
-							house,
-							in cells,
-							digitsMask,
-							isLocked
-						);
-
-						if (context.OnlyFindOne)
-						{
-							return step;
-						}
-
-						context.Accumulator.Add(step);
+						continue;
 					}
+
+					var step = new NakedSubsetStep(
+						[.. conclusions],
+						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						context.PredefinedOptions,
+						house,
+						in cells,
+						digitsMask,
+						isLocked
+					);
+
+					if (context.OnlyFindOne)
+					{
+						return step;
+					}
+
+					context.Accumulator.Add(step);
 				}
 			}
 
