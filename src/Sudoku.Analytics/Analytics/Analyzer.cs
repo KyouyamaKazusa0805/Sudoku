@@ -33,6 +33,12 @@ public sealed partial class Analyzer :
 	IRandomizedAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
+	/// Indicates the default steps capacity.
+	/// </summary>
+	private const int DefaultStepsCapacity = 54;
+
+
+	/// <summary>
 	/// The random number generator.
 	/// </summary>
 	private readonly Random _random = new();
@@ -150,7 +156,7 @@ public sealed partial class Analyzer :
 		{
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
-			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(100), new List<Grid>(100), ResultStepSearchers);
+			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator = IsFullApplying || RandomizedChoosing ? [] : default(List<Step>);
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying && !RandomizedChoosing, Options);

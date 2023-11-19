@@ -526,6 +526,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.PredefinedAnalyzers"/>
         </member>
+        <member name="F:Sudoku.Analytics.Analyzer.DefaultStepsCapacity">
+            <summary>
+            Indicates the default steps capacity.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Analyzer._random">
             <summary>
             The random number generator.
