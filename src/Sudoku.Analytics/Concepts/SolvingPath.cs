@@ -12,8 +12,8 @@ using Pair = (Grid SteppingGrid, Step Step);
 /// <summary>
 /// Represents a solving path.
 /// </summary>
-[Equals(EqualsBehavior.ThrowNotSupportedException)]
-[GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
+[Equals]
+[GetHashCode]
 public readonly ref partial struct SolvingPath
 {
 	/// <summary>
