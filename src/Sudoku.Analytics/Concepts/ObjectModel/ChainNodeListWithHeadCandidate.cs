@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Represents a chain node list with head candidate.

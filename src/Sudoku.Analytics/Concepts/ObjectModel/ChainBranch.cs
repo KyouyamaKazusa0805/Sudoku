@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Represents a chain branch.

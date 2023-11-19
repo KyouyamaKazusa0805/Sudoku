@@ -1,6 +1,7 @@
 using System.Numerics;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Concepts;
+using Sudoku.Concepts.ObjectModel;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.SolutionWideReadOnlyFields;

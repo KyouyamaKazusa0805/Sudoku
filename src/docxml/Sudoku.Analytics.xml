@@ -5200,10 +5200,10 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet)">
             <summary>
             Get all non-trivial implications (involving fished, naked/hidden sets, etc).
             </summary>
@@ -5211,7 +5211,7 @@ if (student is (name: var name, age: >= 18))
             <param name="original">Indicates the original grid state.</param>
             <param name="offPotentials">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
+                cref="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
                 path="/param[@name='toOff']"/>
             </param>
             <returns>Found <see cref="T:Sudoku.Concepts.ChainNode"/> instances.</returns>
@@ -5226,12 +5226,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -5256,7 +5256,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>The hints found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep},System.Byte,System.Byte,Sudoku.Concepts.NodeSet)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep},System.Byte,System.Byte,Sudoku.Concepts.ObjectModel.NodeSet)">
             <summary>
             Search for region (house) forcing chains.
             </summary>
@@ -5274,22 +5274,22 @@ if (student is (name: var name, age: >= 18))
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
             <remarks>
             This method is nearly same with
-            <see cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)"/>,
+            <see cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)"/>,
             with variables <c>houseToOn</c> and <c>houseToOff</c> removed.
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)"/>
+            <seealso cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(Sudoku.Concepts.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(Sudoku.Concepts.ObjectModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for cell-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(Sudoku.Concepts.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(Sudoku.Concepts.ObjectModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for house-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(Sudoku.Concepts.NodeList,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.ChainNodeListWithHeadCandidate@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.IsOneToOneRelationBetweenStartAndEndNodes(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate@)">
             <summary>
             Determine whether one target node corresponds to one base node begins the branch, and vice versa.
             </summary>
@@ -5299,7 +5299,7 @@ if (student is (name: var name, age: >= 18))
             <param name="projectedStartNodes">The projected starting nodes, which can be used if return value is <see langword="true"/>.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CollectLoopEliminations(Sudoku.Concepts.ChainNodeListWithHeadCandidate,Sudoku.Concepts.Grid@,System.Byte)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CollectLoopEliminations(Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate,Sudoku.Concepts.Grid@,System.Byte)">
             <summary>
             Try to collect all possible eliminations for each branch.
             </summary>
@@ -5308,7 +5308,7 @@ if (student is (name: var name, age: >= 18))
             <param name="baseDigit">The base digit.</param>
             <returns>All possible eliminations. If none found, an empty list.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNodeListWithHeadCandidate,System.Byte,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepCellType(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate,System.Byte,System.Int16)">
             <summary>
             Try to create a hint, for a cell type.
             </summary>
@@ -5320,7 +5320,7 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
             <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepHouseType(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNodeListWithHeadCandidate,Sudoku.Concepts.CellMap@,System.Byte)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CreateStepHouseType(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate,Sudoku.Concepts.CellMap@,System.Byte)">
             <summary>
             Try to create a hint, for a house type.
             </summary>
@@ -5384,7 +5384,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
             (i.e. if its value is the correct one for the cell).
@@ -5395,7 +5395,7 @@ if (student is (name: var name, age: >= 18))
             <param name="p">The potential that is assumed to be "off"</param>
             <param name="source">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)"
+                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)"
                 path="/param[@name='source']"/>
             </param>
             <param name="offPotentials">Indicates the <see cref="T:Sudoku.Concepts.ChainNode"/> instances that are already set "off".</param>
@@ -5408,7 +5408,7 @@ if (student is (name: var name, age: >= 18))
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>The set of potentials that must be "off".</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)">
             <summary>
             Given the initial sets of potentials that are assumed to be "on" and "off",
             complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
@@ -5422,7 +5422,7 @@ if (student is (name: var name, age: >= 18))
             <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
             <returns>If success, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeList,Sudoku.Concepts.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Handles on advanced chaining cases.
             </summary>
@@ -5514,7 +5514,7 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>The hints found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)">
             <summary>
             <para>From the potential <c>p</c>, compute the consequences from both states.</para>
             <para>
@@ -5568,7 +5568,7 @@ if (student is (name: var name, age: >= 18))
             <param name="doReduction"></param>
             <param name="doContradiction"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)">
             <summary>
             Search for region (house) forcing chains.
             </summary>
@@ -5585,12 +5585,12 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"></param>
             <param name="onToOn">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean)"
+                cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)"
                 path="/param[@name='onToOn']"/>
             </param>
             <param name="onToOff">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean)"
+                cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoBinaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)"
                 path="/param[@name='onToOff']"/>
             </param>
         </member>
@@ -5604,12 +5604,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -5677,7 +5677,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
             <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)">
             <summary>
             Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
             </summary>
@@ -5692,29 +5692,29 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="source">The source node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)">
             <summary>
             Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
             In other words, this method does find for AICs.
             </summary>
             <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
             <param name="toOn">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOn']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOn']"/>
             </param>
             <param name="toOff">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOff']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOff']"/>
             </param>
             <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
             <param name="chains">
             <para>All found chains, represented as their final <see cref="T:Sudoku.Concepts.ChainNode"/> node.</para>
             <para>
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)"
+                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)"
                 path="//param[@name='cycles']/para[2]"/>
             </para>
             </param>
             <param name="source">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='source']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='source']"/>
             </param>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
@@ -5728,10 +5728,10 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <param name="dstOn">Indicates the destination node that is at the state "on".</param>
             <param name="isX">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isX']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isX']"/>
             </param>
             <param name="isY">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isY']"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isY']"/>
             </param>
             <returns>
             A valid <see cref="T:Sudoku.Analytics.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
@@ -21045,11 +21045,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>possibleEliminationMap</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ChainBranch">
-            <summary>
-            Represents a chain branch.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.ChainNode">
             <summary>
             Defines a node used in chaining.
@@ -21274,18 +21269,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.ChainNode.op_Inequality(Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ChainNodeListWithHeadCandidate">
-            <summary>
-            Represents a chain node list with head candidate.
-            </summary>
-            <param name="capacity">The capacity.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.ChainNodeListWithHeadCandidate.#ctor(System.Int32)">
-            <summary>
-            Represents a chain node list with head candidate.
-            </summary>
-            <param name="capacity">The capacity.</param>
-        </member>
         <member name="T:Sudoku.Concepts.Crosshatching">
             <summary>
             Represents a list of methods that operates with single techniques, in order to get crosshatching information.
@@ -21366,6 +21349,211 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A list of cells as the other pair of target cells.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.ChainBranch">
+            <summary>
+            Represents a chain branch.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate">
+            <summary>
+            Represents a chain node list with head candidate.
+            </summary>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate.#ctor(System.Int32)">
+            <summary>
+            Represents a chain node list with head candidate.
+            </summary>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.NodeList">
+            <summary>
+            Defines a list of <see cref="T:Sudoku.Concepts.ChainNode"/> using doubly linked list as the backing algorithm.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeList.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.ObjectModel.NodeList"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeList.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Concepts.ChainNode})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.ObjectModel.NodeList"/> instance via the specified <see cref="T:Sudoku.Concepts.ChainNode"/> instances.
+            </summary>
+            <param name="potentials">The base <see cref="T:Sudoku.Concepts.ChainNode"/> values.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeList.RemoveFirst">
+            <summary>
+            <inheritdoc cref="M:System.Collections.Generic.LinkedList`1.RemoveFirst" path="/summary"/>
+            </summary>
+            <returns>The value of the first node removed.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.NodeSet">
+            <summary>
+            Defines a <see cref="T:Sudoku.Concepts.ChainNode"/> collection using <see cref="T:System.Collections.Generic.HashSet`1"/> as backing implementation.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.ObjectModel.NodeSet"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.#ctor(Sudoku.Concepts.ObjectModel.NodeSet)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.ObjectModel.NodeSet"/> instance via the specified <see cref="T:Sudoku.Concepts.ChainNode"/> collection to be added.
+            </summary>
+            <param name="base">The collection of <see cref="T:Sudoku.Concepts.ChainNode"/> instances.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ObjectModel.NodeSet.Get(Sudoku.Concepts.ChainNode)">
+            <summary>
+            Try to get the target <see cref="T:Sudoku.Concepts.ChainNode"/> instance whose internal value
+            (i.e. properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>) are same as
+            the specified one.
+            </summary>
+            <param name="node">The value to be checked.</param>
+            <returns>
+            The found value whose value is equal to <paramref name="node"/>; without checking for property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/>.
+            </returns>
+            <remarks><i>
+            Please note that this method will return an instance inside the current collection
+            whose value equals to the specified one; however, property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/> may not be equal.
+            </i></remarks>
+            <exception cref="T:System.InvalidOperationException">Throws when the result is <see langword="null"/>.</exception>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.Contains(Sudoku.Concepts.ChainNode)">
+            <summary>
+            Determines whether a <see cref="T:Sudoku.Concepts.ObjectModel.NodeSet"/> object contains the specified element,
+            comparing for properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>.
+            </summary>
+            <param name="base">The element to locate in the <see cref="T:Sudoku.Concepts.ObjectModel.NodeSet"/> object.</param>
+            <returns>
+            <see langword="true"/> if the <see cref="T:Sudoku.Concepts.ObjectModel.NodeSet"/> object contains the specified element; otherwise, <see langword="false"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.GetNullable(Sudoku.Concepts.ChainNode)">
+            <summary>
+            <para>
+            Try to get the target <see cref="T:Sudoku.Concepts.ChainNode"/> instance whose internal value
+            (i.e. properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>) are same as
+            the specified one.
+            </para>
+            <para>
+            Please note that this method will return an instance inside the current collection
+            whose value equals to the specified one; however, property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/> may not be equal.
+            </para>
+            </summary>
+            <param name="base">The value to be checked.</param>
+            <returns>
+            <para>
+            The found value whose value is equal to <paramref name="base"/>; without checking for property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/>.
+            </para>
+            <para>If none found, <see langword="null"/> will be returned.</para>
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
+            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.op_BitwiseAnd(Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that both <paramref name="left" /> and <paramref name="right" /> contain,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.op_BitwiseOr(Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that comes from both collections <paramref name="left" /> and <paramref name="right" />,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NodeSet.op_ExclusiveOr(Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that only one collection in <paramref name="left" /> and <paramref name="right" /> contains,
+            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
+            then returns it.
+            </summary>
+            <param name="left">The first collection to be participated in merging operation.</param>
+            <param name="right">The second collection to be participated in merging operation.</param>
+            <returns>Modified collection <paramref name="left" />.</returns>
+            <remarks>
+            <requires-compound-invocation>
+		<para>
+			<b>
+				<i>
+					This operator can only be used as compound one. For example:
+				</i>
+			</b>
+			<code>
+<![CDATA[
+result &= expression;
+result |= expression;
+result ^= expression;
+]]>
+			</code>
+		</para>
+	</requires-compound-invocation>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.EqualityComparer">
+            <summary>
+            Defines an equality comparer that compares to <see cref="T:Sudoku.Concepts.ChainNode"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.EqualityComparer.Equals(Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
@@ -21464,194 +21652,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.NodeList">
-            <summary>
-            Defines a list of <see cref="T:Sudoku.Concepts.ChainNode"/> using doubly linked list as the backing algorithm.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeList.#ctor">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.NodeList"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeList.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Concepts.ChainNode})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.NodeList"/> instance via the specified <see cref="T:Sudoku.Concepts.ChainNode"/> instances.
-            </summary>
-            <param name="potentials">The base <see cref="T:Sudoku.Concepts.ChainNode"/> values.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeList.RemoveFirst">
-            <summary>
-            <inheritdoc cref="M:System.Collections.Generic.LinkedList`1.RemoveFirst" path="/summary"/>
-            </summary>
-            <returns>The value of the first node removed.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.NodeSet">
-            <summary>
-            Defines a <see cref="T:Sudoku.Concepts.ChainNode"/> collection using <see cref="T:System.Collections.Generic.HashSet`1"/> as backing implementation.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.NodeSet"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.#ctor(Sudoku.Concepts.NodeSet)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.NodeSet"/> instance via the specified <see cref="T:Sudoku.Concepts.ChainNode"/> collection to be added.
-            </summary>
-            <param name="base">The collection of <see cref="T:Sudoku.Concepts.ChainNode"/> instances.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.NodeSet.Get(Sudoku.Concepts.ChainNode)">
-            <summary>
-            Try to get the target <see cref="T:Sudoku.Concepts.ChainNode"/> instance whose internal value
-            (i.e. properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>) are same as
-            the specified one.
-            </summary>
-            <param name="node">The value to be checked.</param>
-            <returns>
-            The found value whose value is equal to <paramref name="node"/>; without checking for property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/>.
-            </returns>
-            <remarks><i>
-            Please note that this method will return an instance inside the current collection
-            whose value equals to the specified one; however, property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/> may not be equal.
-            </i></remarks>
-            <exception cref="T:System.InvalidOperationException">Throws when the result is <see langword="null"/>.</exception>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.Contains(Sudoku.Concepts.ChainNode)">
-            <summary>
-            Determines whether a <see cref="T:Sudoku.Concepts.NodeSet"/> object contains the specified element,
-            comparing for properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>.
-            </summary>
-            <param name="base">The element to locate in the <see cref="T:Sudoku.Concepts.NodeSet"/> object.</param>
-            <returns>
-            <see langword="true"/> if the <see cref="T:Sudoku.Concepts.NodeSet"/> object contains the specified element; otherwise, <see langword="false"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.GetNullable(Sudoku.Concepts.ChainNode)">
-            <summary>
-            <para>
-            Try to get the target <see cref="T:Sudoku.Concepts.ChainNode"/> instance whose internal value
-            (i.e. properties <see cref="P:Sudoku.Concepts.ChainNode.Candidate"/> and <see cref="P:Sudoku.Concepts.ChainNode.IsOn"/>) are same as
-            the specified one.
-            </para>
-            <para>
-            Please note that this method will return an instance inside the current collection
-            whose value equals to the specified one; however, property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/> may not be equal.
-            </para>
-            </summary>
-            <param name="base">The value to be checked.</param>
-            <returns>
-            <para>
-            The found value whose value is equal to <paramref name="base"/>; without checking for property <see cref="P:Sudoku.Concepts.ChainNode.Parents"/>.
-            </para>
-            <para>If none found, <see langword="null"/> will be returned.</para>
-            </returns>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.Candidate"/>
-            <seealso cref="P:Sudoku.Concepts.ChainNode.IsOn"/>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.op_BitwiseAnd(Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that both <paramref name="left" /> and <paramref name="right" /> contain,
-            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
-            then returns it.
-            </summary>
-            <param name="left">The first collection to be participated in merging operation.</param>
-            <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left" />.</returns>
-            <remarks>
-            <requires-compound-invocation>
-		<para>
-			<b>
-				<i>
-					This operator can only be used as compound one. For example:
-				</i>
-			</b>
-			<code>
-<![CDATA[
-result &= expression;
-result |= expression;
-result ^= expression;
-]]>
-			</code>
-		</para>
-	</requires-compound-invocation>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.op_BitwiseOr(Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that comes from both collections <paramref name="left" /> and <paramref name="right" />,
-            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
-            then returns it.
-            </summary>
-            <param name="left">The first collection to be participated in merging operation.</param>
-            <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left" />.</returns>
-            <remarks>
-            <requires-compound-invocation>
-		<para>
-			<b>
-				<i>
-					This operator can only be used as compound one. For example:
-				</i>
-			</b>
-			<code>
-<![CDATA[
-result &= expression;
-result |= expression;
-result ^= expression;
-]]>
-			</code>
-		</para>
-	</requires-compound-invocation>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.NodeSet.op_ExclusiveOr(Sudoku.Concepts.NodeSet,Sudoku.Concepts.NodeSet)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Concepts.ChainNode" /> instances that only one collection in <paramref name="left" /> and <paramref name="right" /> contains,
-            and modifies the argument <paramref name="left" />, replacing it with <see cref="T:Sudoku.Concepts.ChainNode" />s mentioned above,
-            then returns it.
-            </summary>
-            <param name="left">The first collection to be participated in merging operation.</param>
-            <param name="right">The second collection to be participated in merging operation.</param>
-            <returns>Modified collection <paramref name="left" />.</returns>
-            <remarks>
-            <requires-compound-invocation>
-		<para>
-			<b>
-				<i>
-					This operator can only be used as compound one. For example:
-				</i>
-			</b>
-			<code>
-<![CDATA[
-result &= expression;
-result |= expression;
-result ^= expression;
-]]>
-			</code>
-		</para>
-	</requires-compound-invocation>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.EqualityComparer">
-            <summary>
-            Defines an equality comparer that compares to <see cref="T:Sudoku.Concepts.ChainNode"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.EqualityComparer.Equals(Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.SolvingPath">

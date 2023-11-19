@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Defines a <see cref="ChainNode"/> collection using <see cref="HashSet{T}"/> as backing implementation.

@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Defines a list of <see cref="ChainNode"/> using doubly linked list as the backing algorithm.
