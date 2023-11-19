@@ -176,7 +176,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 		if (!EnableFullHouse)
 		{
-			goto CheckHiddenSingle;
+			goto CheckForHiddenSingle;
 		}
 
 		for (var house = 0; house < 27; house++)
@@ -216,7 +216,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			context.Accumulator.Add(step);
 		}
 
-	CheckHiddenSingle:
+	CheckForHiddenSingle:
 		if (HiddenSinglesInBlockFirst)
 		{
 			// If block first, we'll extract all blocks and iterate on them firstly.
@@ -329,7 +329,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(scoped ref readonly Grid grid, scoped ref AnalysisContext context, Digit digit, House house)
+	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		Digit digit,
+		House house
+	)
 	{
 		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
@@ -370,21 +375,25 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			enableAndIsLastDigit = digitCount == 8;
 		}
 
-		return new(
-			[new(Assignment, resultCell, digit)],
-			[
+		return (enableAndIsLastDigit, house) switch
+		{
+			(true, >= 9) => null,
+			_ => new(
+				[new(Assignment, resultCell, digit)],
 				[
-					.. enableAndIsLastDigit ? cellOffsets : [],
-					.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell),
-					.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-				]
-			],
-			context.PredefinedOptions,
-			resultCell,
-			digit,
-			house,
-			enableAndIsLastDigit
-		);
+					[
+						.. enableAndIsLastDigit ? cellOffsets : [],
+						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell),
+						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+					]
+				],
+				context.PredefinedOptions,
+				resultCell,
+				digit,
+				house,
+				enableAndIsLastDigit
+			)
+		};
 	}
 
 	/// <summary>

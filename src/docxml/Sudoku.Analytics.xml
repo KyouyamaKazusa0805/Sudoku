@@ -15841,9 +15841,6 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">Indicates the cell used.</param>
             <param name="digit">Indicates the digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#SingleStep}#op_Equality(Sudoku.Analytics.Steps.SingleStep,Sudoku.Analytics.Steps.SingleStep)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
             <summary>
             The generated property declaration for parameter <c>cell</c>.

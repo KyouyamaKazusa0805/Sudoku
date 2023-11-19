@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Rendering;
@@ -19,10 +18,4 @@ public abstract partial class SingleStep(
 	StepSearcherOptions options,
 	[DataMember] Cell cell,
 	[DataMember] Digit digit
-) : Step(conclusions, views, options), IEquatableStep<SingleStep>
-{
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<SingleStep>.operator ==(SingleStep left, SingleStep right)
-		=> left.Cell == right.Cell && left.Digit == right.Digit && left.Code == right.Code;
-}
+) : Step(conclusions, views, options);
