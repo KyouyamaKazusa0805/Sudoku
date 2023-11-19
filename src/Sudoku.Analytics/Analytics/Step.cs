@@ -186,7 +186,7 @@ public abstract partial class Step(
 			var factType = typeof(IEquatableStep<>).MakeGenericType([equalityContract]);
 			var @this = (dynamic)Convert.ChangeType(this, factType)!;
 			var other = (dynamic)Convert.ChangeType(obj, factType)!;
-			return EquatableStepEntry(@this, other);
+			return @this == other;
 		}
 
 		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
@@ -224,15 +224,4 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString() => $"{Name} => {ConclusionText}";
-
-
-	/// <summary>
-	/// The entry method to visit operators defined in type <see cref="IEquatableStep{TSelf}"/>.
-	/// </summary>
-	private static bool EquatableStepEntry<T>(T left, T right) where T : Step, IEquatableStep<T> => left == right;
-
-	/// <summary>
-	/// The entry method to visit methods defined in type <see cref="IComparableStep{TSelf}"/>.
-	/// </summary>
-	private static int ComparableStepEntry<T>(T left, T right) where T : Step, IComparableStep<T> => T.Compare(left, right);
 }
