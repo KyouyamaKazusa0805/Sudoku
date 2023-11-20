@@ -179,6 +179,15 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	public Grid[]? SteppingGrids { get; init; }
 
 	/// <summary>
+	/// <para>Indicates a list of pairs of information about each step.</para>
+	/// <para>
+	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
+	/// the return value of the property will be always <see langword="null"/>.
+	/// </para>
+	/// </summary>
+	public SolvingPath SolvingPath => IsSolved ? new(SteppingGrids, Steps) : default;
+
+	/// <summary>
 	/// <para>
 	/// Indicates the wrong step found. In general cases, if the property <see cref="IsSolved"/> keeps
 	/// <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
@@ -230,15 +239,6 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 	/// <seealso cref="FailedReason.ExceptionThrown"/>
 	/// <seealso cref="FailedReason.WrongStep"/>
 	public Exception? UnhandledException { get; init; }
-
-	/// <summary>
-	/// <para>Indicates a list of pairs of information about each step.</para>
-	/// <para>
-	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
-	/// the return value of the property will be always <see langword="null"/>.
-	/// </para>
-	/// </summary>
-	public SolvingPath SolvingPath => IsSolved ? new(SteppingGrids, Steps) : default;
 
 
 	/// <inheritdoc/>
