@@ -1,9 +1,9 @@
 namespace System.SourceGeneration;
 
 /// <summary>
-/// Indicates a member kind.
+/// Indicates a data member kind.
 /// </summary>
-public static class MemberKinds
+public static class DataMemberKinds
 {
 	/// <summary>
 	/// Indicates the member kind is field.

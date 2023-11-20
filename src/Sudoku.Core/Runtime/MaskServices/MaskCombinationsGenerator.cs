@@ -9,8 +9,8 @@ namespace Sudoku.Runtime.MaskServices;
 /// <param name="bitCount">Indicates the number of bits.</param>
 /// <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
 public readonly ref partial struct MaskCombinationsGenerator(
-	[Data(MemberKinds.Field)] int bitCount,
-	[Data(MemberKinds.Field)] int oneCount
+	[Data(DataMemberKinds.Field)] int bitCount,
+	[Data(DataMemberKinds.Field)] int oneCount
 )
 {
 	/// <summary>

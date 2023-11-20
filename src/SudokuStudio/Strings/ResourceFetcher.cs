@@ -29,8 +29,8 @@ namespace SudokuStudio.Strings;
 [InterpolatedStringHandler]
 [StructLayout(LayoutKind.Auto)]
 internal ref partial struct ResourceFetcher(
-	[Data(MemberKinds.Field)] int literalLength,
-	[Data(MemberKinds.Field)] int formattedCount
+	[Data(DataMemberKinds.Field)] int literalLength,
+	[Data(DataMemberKinds.Field)] int formattedCount
 )
 {
 	/// <summary>

@@ -3171,7 +3171,7 @@ fixed (short* ptr = instance)
             telling the source generator that it should generate a property that references this parameter.
             </summary>
             <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.MemberKinds"/>.
+            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.DataMemberKinds"/>.
             </param>
             <remarks>
             <para>
@@ -3207,7 +3207,7 @@ fixed (short* ptr = instance)
             telling the source generator that it should generate a property that references this parameter.
             </summary>
             <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.MemberKinds"/>.
+            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.DataMemberKinds"/>.
             </param>
             <remarks>
             <para>
@@ -3377,6 +3377,21 @@ fixed (short* ptr = instance)
         <member name="P:System.SourceGeneration.DataAttribute.MemberKind">
             <summary>
             The generated property declaration for parameter <c>memberKind</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.DataMemberKinds">
+            <summary>
+            Indicates a data member kind.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.DataMemberKinds.Field">
+            <summary>
+            Indicates the member kind is field.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.DataMemberKinds.Property">
+            <summary>
+            Indicates the member kind is property.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.DuckTypingAttribute">
@@ -3613,21 +3628,6 @@ fixed (short* ptr = instance)
             Please note that the type can be also consumed by interfaces. Such cases mean the target structure types implemented is a large structure.
             However, if the interface types having marked this attribute have been implemented by class types, it'll be meaningless.
             </remarks>
-        </member>
-        <member name="T:System.SourceGeneration.MemberKinds">
-            <summary>
-            Indicates a member kind.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.MemberKinds.Field">
-            <summary>
-            Indicates the member kind is field.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.MemberKinds.Property">
-            <summary>
-            Indicates the member kind is property.
-            </summary>
         </member>
         <member name="T:System.SourceGeneration.NullabilityPrefer">
             <summary>

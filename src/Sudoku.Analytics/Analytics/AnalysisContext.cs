@@ -29,7 +29,7 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
 	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
-	[Data(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
+	[Data(DataMemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
 	[Data(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
 	[Data] StepSearcherOptions predefinedOptions
 )

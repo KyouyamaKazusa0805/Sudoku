@@ -12,7 +12,7 @@ namespace System.Runtime.CompilerServices;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct TupleEnumerator([Data(MemberKinds.Field)] ITuple tuple)
+public ref partial struct TupleEnumerator([Data(DataMemberKinds.Field)] ITuple tuple)
 {
 	/// <summary>
 	/// The current index.
