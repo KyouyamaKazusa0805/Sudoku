@@ -1,49 +1,36 @@
 using System.Numerics;
-using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Concepts.ObjectModel;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearcherModules;
 
 /// <summary>
-/// Represents a <see cref="StepSearcher"/> as base type of the chaining step searcher types.
+/// Represents a chaining module.
 /// </summary>
-/// <param name="priority">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='priority']"/>
-/// </param>
-/// <param name="level">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='level']"/>
-/// </param>
-/// <param name="runningArea">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-/// </param>
 /// <remarks>
 /// The type is special: it uses source code from another project called Sudoku Explainer.
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-public abstract class ChainingStepSearcher(
-	int priority,
-	int level,
-	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : StepSearcher(priority, level, runningArea)
+internal class ChainingModule : IStepSearcherModule<ChainingModule>
 {
+	/// <inheritdoc/>
+	static Type[] IStepSearcherModule<ChainingModule>.SupportedTypes => [typeof(NonMultipleChainingStepSearcher), typeof(MultipleChainingStepSearcher)];
+
+
 	/// <summary>
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
-	/// </param>
+	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="p">The potential that is assumed to be "on"</param>
-	/// <param name="isY">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/>
-	/// </param>
+	/// <param name="isY">Indicates whether the same-cell strong links are enabled.</param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	protected NodeSet GetOnToOff(scoped ref readonly Grid grid, ChainNode p, bool isY)
+	public static NodeSet GetOnToOff(scoped ref readonly Grid grid, ChainNode p, bool isY)
 	{
 		var result = new NodeSet();
 		var cell = p.Cell;
@@ -83,25 +70,15 @@ public abstract class ChainingStepSearcher(
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).
 	/// </summary>
-	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
-	/// </param>
+	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="p">The potential that is assumed to be "off"</param>
-	/// <param name="source">
-	/// <inheritdoc
-	///     cref="NonMultipleChainingStepSearcher.DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)"
-	///     path="/param[@name='source']"/>
-	/// </param>
+	/// <param name="source">The source grid to be used as a cache.</param>
 	/// <param name="offPotentials">Indicates the <see cref="ChainNode"/> instances that are already set "off".</param>
-	/// <param name="isX">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isX']"/>
-	/// </param>
-	/// <param name="isY">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/>
-	/// </param>
-	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+	/// <param name="isX">Indicates whether the same-digit strong links are enabled.</param>
+	/// <param name="isY">Indicates whether the same-cell strong links are enabled.</param>
+	/// <param name="allowDynamic">Indicates whether the dynamic chaining rules are enabled.</param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	protected NodeSet GetOffToOn(
+	public static NodeSet GetOffToOn(
 		scoped ref readonly Grid grid,
 		ChainNode p,
 		scoped in Grid? source,
@@ -216,15 +193,15 @@ public abstract class ChainingStepSearcher(
 	/// Given the initial sets of potentials that are assumed to be "on" and "off",
 	/// complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
 	/// </summary>
-	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
-	/// </param>
+	/// <param name="stepSearcher">The step searcher.</param>
+	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="toOn">The potentials that are assumed to be "on".</param>
 	/// <param name="toOff">The potentials that are assumed to be "off".</param>
-	/// <param name="allowNishio"><inheritdoc cref="MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
-	/// <param name="allowDynamic"><inheritdoc cref="MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
+	/// <param name="allowNishio">Indicates whether the Nishio chaining rules are enabled.</param>
+	/// <param name="allowDynamic">Indicates whether the dynamic chaining rules are enabled.</param>
 	/// <returns>If success, <see langword="null"/>.</returns>
-	protected (ChainNode On, ChainNode Off)? DoChaining(Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
+	public static (ChainNode On, ChainNode Off)? DoChaining<T>(T stepSearcher, Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
+		where T : StepSearcher
 	{
 		scoped ref readonly var originalGrid = ref grid;
 		var (pendingOn, pendingOff) = (new NodeList(toOn), new NodeList(toOff));
@@ -277,7 +254,7 @@ public abstract class ChainingStepSearcher(
 				}
 			}
 
-			OnAdvanced(pendingOn, pendingOff, toOff, in grid, in originalGrid);
+			OnAdvanced(stepSearcher, pendingOn, pendingOff, toOff, in grid, in originalGrid);
 		}
 
 		return null;
@@ -286,20 +263,20 @@ public abstract class ChainingStepSearcher(
 	/// <summary>
 	/// Handles on advanced chaining cases.
 	/// </summary>
+	/// <param name="stepSearcher">The step searcher.</param>
 	/// <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
 	/// <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
 	/// <param name="toOff">The original potentials that are assumed to be "off".</param>
-	/// <param name="grid">
-	/// <inheritdoc cref="NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
-	/// </param>
+	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="original">Indicates the original grid.</param>
-	protected virtual void OnAdvanced(
+	public static void OnAdvanced<T>(
+		T stepSearcher,
 		NodeList pendingOn,
 		NodeList pendingOff,
 		NodeSet toOff,
 		scoped ref readonly Grid grid,
 		scoped ref readonly Grid original
-	)
+	) where T : StepSearcher
 	{
 		return;
 	}

@@ -2,6 +2,7 @@ using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;
@@ -21,7 +22,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.SinglyLinkedAlmostLockedSetsXzRule, Technique.DoublyLinkedAlmostLockedSetsXzRule, Technique.ExtendedSubsetPrinciple)]
-public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsStepSearcher
+public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
@@ -49,9 +50,10 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : AlmostLockedSetsSte
 	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in context);
+
 		var house = (stackalloc House[2]);
-		var alses = GatherAlmostLockedSets(in grid);
+		scoped ref readonly var grid = ref context.Grid;
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

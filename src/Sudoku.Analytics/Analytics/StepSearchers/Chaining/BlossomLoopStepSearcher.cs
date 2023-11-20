@@ -3,6 +3,7 @@ using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Concepts.ObjectModel;
 using Sudoku.Runtime.MaskServices;
@@ -21,7 +22,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.BlossomLoop)]
-public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
+public sealed partial class BlossomLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
@@ -64,7 +65,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 				foreach (byte digit in mask)
 				{
 					var onToOn = (NodeSet)([new(cell, digit, true)]);
-					DoChaining(grid, onToOn, [], false, false);
+					ChainingModule.DoChaining(this, grid, onToOn, [], false, false);
 
 					// Do house chaining.
 					DoHouseChaining(in grid, ref context, result, cell, digit, onToOn);
@@ -128,7 +129,7 @@ public sealed partial class BlossomLoopStepSearcher : ChainingStepSearcher
 					else
 					{
 						var otherToOn = (NodeSet)([new(otherCell, baseDigit, true)]);
-						DoChaining(grid, otherToOn, [], false, false);
+						ChainingModule.DoChaining(this, grid, otherToOn, [], false, false);
 
 						posToOn.Add(otherCell, otherToOn);
 					}

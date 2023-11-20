@@ -56,7 +56,7 @@ public abstract class StepSearcherPool
 
 			foreach (var stepSearcher in GetStepSearchers(type, expandSplitStepSearchers))
 			{
-				result.Add(stepSearcher.Priority << 4 | stepSearcher.Metadata.SplitPriority, stepSearcher);
+				result.Add(stepSearcher.PriorityId, stepSearcher);
 			}
 		}
 
@@ -104,10 +104,10 @@ public abstract class StepSearcherPool
 				splitAttributes.SortBy(static s => s.Priority);
 
 				// Then assign property values via reflection.
-				foreach (var separatedAttribute in splitAttributes)
+				foreach (var a in splitAttributes)
 				{
-					var instance = (StepSearcher)Activator.CreateInstance(type)!;
-					foreach (var (name, value) in separatedAttribute.PropertyNamesAndValues.EnumerateAsPair<object, string, object>())
+					var inst = (StepSearcher)Activator.CreateInstance(type)!;
+					foreach (var (name, value) in a.PropertyNamesAndValues.EnumerateAsPair<object, string, object>())
 					{
 						if (type.GetProperty(name) is { CanRead: true, CanWrite: true } propertyInfo)
 						{
@@ -115,16 +115,14 @@ public abstract class StepSearcherPool
 							// Please note that C# 9 feature "init-only" property is a compiler feature, rather than runtime one,
 							// which means we can use reflection to set value to that property
 							// no matter what the setter keyword is 'get' or 'init'.
-							propertyInfo.SetValue(instance, value);
+							propertyInfo.SetValue(inst, value);
 						}
 					}
 
 					// Sets the split priority value.
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
-					type.GetProperty(nameof(instance.Metadata.SplitPriority))!
-						.GetInitMethod(true)!
-						.Invoke(instance, [separatedAttribute.Priority]);
-					stepSearcherArray[i++] = instance;
+					type.GetProperty(nameof(inst.SplitPriority))!.GetInitMethod(true)!.Invoke(inst, [a.Priority]);
+					stepSearcherArray[i++] = inst;
 				}
 
 				return stepSearcherArray;

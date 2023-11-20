@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Linq;
 using Sudoku.Rendering;
@@ -57,7 +58,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseSashimiMutantXWing, Technique.SiameseSashimiMutantSwordfish, Technique.SiameseSashimiMutantJellyfish,
 	Technique.SiameseSashimiMutantSquirmbag, Technique.SiameseSashimiMutantWhale, Technique.SiameseSashimiMutantLeviathan,
 	Flags = ConditionalFlags.TimeComplexity)]
-public sealed partial class ComplexFishStepSearcher : FishStepSearcher
+public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// The internal <see cref="StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
@@ -455,7 +456,7 @@ public sealed partial class ComplexFishStepSearcher : FishStepSearcher
 									in exofins,
 									in endofins,
 									!checkMutant,
-									IsSashimi(baseSets, in fins, digit),
+									FishModule.IsSashimi(baseSets, in fins, digit),
 									cannibal
 								);
 								if (onlyFindOne)

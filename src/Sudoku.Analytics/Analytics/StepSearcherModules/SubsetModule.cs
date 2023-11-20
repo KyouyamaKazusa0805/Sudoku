@@ -1,6 +1,6 @@
 using System.Numerics;
-using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -9,37 +9,27 @@ using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Analytics.StepSearcherModules;
 
 /// <summary>
-/// Provides with a <b>Subset</b> step searcher.
+/// Represents a subset module.
 /// </summary>
-/// <param name="priority">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='priority']"/>
-/// </param>
-/// <param name="level">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='level']"/>
-/// </param>
-/// <param name="runningArea">
-/// <inheritdoc cref="StepSearcher(int, int, StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-/// </param>
-public abstract class SubsetStepSearcher(
-	int priority,
-	int level,
-	StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : StepSearcher(priority, level, runningArea)
+internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 {
-	/// <summary>
-	/// Indicates whether the step searcher only searches for locked subsets.
-	/// </summary>
-	public abstract bool OnlySearchingForLocked { get; }
-
-
 	/// <inheritdoc/>
-	protected internal sealed override Step? Collect(scoped ref AnalysisContext context)
+	static Type[] IStepSearcherModule<SubsetModule>.SupportedTypes => [typeof(LockedSubsetStepSearcher), typeof(NormalSubsetStepSearcher)];
+
+
+	/// <summary>
+	/// The internal method to create subset steps.
+	/// </summary>
+	/// <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+	/// <param name="context">The context.</param>
+	/// <returns>The collected steps.</returns>
+	public static Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		for (var size = 2; size <= (OnlySearchingForLocked ? 3 : 4); size++)
+		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
 			// Naked subsets.
 			for (var house = 0; house < 27; house++)
@@ -95,7 +85,7 @@ public abstract class SubsetStepSearcher(
 						: lockedDigitsMask == digitsMask && size != 4
 							? true
 							: lockedDigitsMask != 0 ? false : default(bool?);
-					if ((isLocked, OnlySearchingForLocked) is not ((true, true) or (not true, false)))
+					if ((isLocked, searchingForLocked) is not ((true, true) or (not true, false)))
 					{
 						continue;
 					}
@@ -166,7 +156,7 @@ public abstract class SubsetStepSearcher(
 					}
 
 					var isLocked = map.IsInIntersection;
-					if (!OnlySearchingForLocked || isLocked && OnlySearchingForLocked)
+					if (!searchingForLocked || isLocked && searchingForLocked)
 					{
 						var containsExtraEliminations = false;
 						if (isLocked)
@@ -187,8 +177,8 @@ public abstract class SubsetStepSearcher(
 							}
 						}
 
-						if (OnlySearchingForLocked && isLocked && !containsExtraEliminations
-							|| !OnlySearchingForLocked && isLocked && containsExtraEliminations)
+						if (searchingForLocked && isLocked && !containsExtraEliminations
+							|| !searchingForLocked && isLocked && containsExtraEliminations)
 						{
 							// This is a locked hidden subset. We cannot handle this as a normal hidden subset.
 							continue;
@@ -226,7 +216,7 @@ public abstract class SubsetStepSearcher(
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
+	private static CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))

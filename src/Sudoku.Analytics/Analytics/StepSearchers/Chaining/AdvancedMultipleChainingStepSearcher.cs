@@ -38,11 +38,6 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-/// <remarks>
-/// The type is special: it uses source code from another project called Sudoku Explainer.
-/// However unfortunately, I cannot find any sites available of the project.
-/// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-/// </remarks>
 [StepSearcher(
 	Technique.DynamicCellForcingChains, Technique.DynamicRegionForcingChains,
 	Technique.DynamicContradictionForcingChains, Technique.DynamicDoubleForcingChains)]
@@ -56,7 +51,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// <summary>
 	/// Indicates the advanced step searchers.
 	/// </summary>
-	private List<(int Priority, StepSearcher[] StepSearchersInThisLevel)>? _otherStepSearchers;
+	internal List<(int Priority, StepSearcher[] StepSearchersInThisLevel)>? _otherStepSearchers;
 
 
 	/// <summary>
@@ -98,50 +93,6 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// <seealso cref="LockedCandidatesStepSearcher"/>
 	public int DynamicNestingLevel { get; init; }
 
-
-	/// <inheritdoc/>
-	protected override void OnAdvanced(NodeList pendingOn, NodeList pendingOff, NodeSet toOff, scoped ref readonly Grid grid, scoped ref readonly Grid original)
-	{
-		if (pendingOn.Count == 0 && pendingOff.Count == 0 && DynamicNestingLevel > 0)
-		{
-			foreach (var pOff in GetAdvancedPotentials(in grid, in original, toOff))
-			{
-				if (toOff.Add(pOff))
-				{
-					// Not processed yet.
-					pendingOff.AddLast(pOff);
-				}
-			}
-		}
-	}
-
-	/// <summary>
-	/// Get all non-trivial implications (involving fished, naked/hidden sets, etc).
-	/// </summary>
-	/// <param name="grid">Indicates the current grid state.</param>
-	/// <param name="original">Indicates the original grid state.</param>
-	/// <param name="offPotentials">
-	/// <inheritdoc
-	///     cref="ChainingStepSearcher.OnAdvanced(NodeList, NodeList, NodeSet, ref readonly Grid, ref readonly Grid)"
-	///     path="/param[@name='toOff']"/>
-	/// </param>
-	/// <returns>Found <see cref="ChainNode"/> instances.</returns>
-	[MemberNotNull(nameof(_otherStepSearchers))]
-	[SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private NodeList GetAdvancedPotentials(scoped ref readonly Grid grid, scoped ref readonly Grid original, NodeSet offPotentials)
-	{
-		_otherStepSearchers ??= [
-			(1, [new LockedCandidatesStepSearcher(), new LockedSubsetStepSearcher(), new NormalFishStepSearcher(), new NormalSubsetStepSearcher()]),
-			(2, [new NonMultipleChainingStepSearcher()]),
-			(3, [new MultipleChainingStepSearcher { AllowMultiple = true }]),
-			(4, [new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true }]),
-			(5, [new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = DynamicNestingLevel - 3 }])
-		];
-
-		var result = new NodeList();
-		return result;
-	}
 
 	/// <summary>
 	/// Try to create a binary forcing chain hint on "on" state.

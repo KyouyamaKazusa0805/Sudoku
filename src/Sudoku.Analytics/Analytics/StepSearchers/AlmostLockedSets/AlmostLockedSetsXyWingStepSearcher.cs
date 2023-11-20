@@ -2,6 +2,7 @@ using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -19,7 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.AlmostLockedSetsXyWing)]
-public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSetsStepSearcher
+public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
@@ -31,11 +32,11 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : AlmostLockedSet
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
-		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
-		var alses = GatherAlmostLockedSets(in grid);
+		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in context);
 
 		// Gather all RCCs.
+		scoped ref readonly var grid = ref context.Grid;
+		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

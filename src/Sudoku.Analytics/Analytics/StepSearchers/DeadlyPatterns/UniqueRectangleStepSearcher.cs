@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -209,7 +210,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
-		var alses = AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(in grid);
+		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in context);
 
 		// Iterate on each possible UR pattern.
 		for (var index = 0; index < UniqueRectanglePatterns.Length; index++)
@@ -4930,7 +4931,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		Cell[] urCells,
-		AlmostLockedSet[] alses,
+		scoped ReadOnlySpan<AlmostLockedSet> alses,
 		Mask comparer,
 		Digit d1,
 		Digit d2,

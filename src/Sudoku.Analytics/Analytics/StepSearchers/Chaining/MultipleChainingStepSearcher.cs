@@ -2,6 +2,7 @@ using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Concepts.ObjectModel;
 using static System.Numerics.BitOperations;
@@ -33,11 +34,6 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </item>
 /// </list>
 /// </summary>
-/// <remarks>
-/// The type is special: it uses source code from another project called Sudoku Explainer.
-/// However unfortunately, I cannot find any sites available of the project.
-/// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-/// </remarks>
 [StepSearcher(
 	Technique.CellForcingChains, Technique.RegionForcingChains, Technique.NishioForcingChains,
 	Technique.DynamicCellForcingChains, Technique.DynamicRegionForcingChains,
@@ -46,7 +42,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [SplitStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SplitStepSearcher(1, nameof(AllowMultiple), true)]
 [SplitStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
-public partial class MultipleChainingStepSearcher : ChainingStepSearcher
+public partial class MultipleChainingStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether the step searcher allows nishio forcing chains, which is equivalent to a dynamic forcing chains
@@ -280,7 +276,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 
 		// Test p = "on".
 		onToOn.Add(pOn);
-		var pair = DoChaining(grid, onToOn, onToOff, AllowNishio, AllowDynamic);
+		var pair = ChainingModule.DoChaining(this, grid, onToOn, onToOff, AllowNishio, AllowDynamic);
 		if (doContradiction && pair is var (absurdOn1, absurdOff1))
 		{
 			// p cannot hold its value, because else it would lead to a contradiction.
@@ -289,7 +285,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 
 		// Test p = "off".
 		offToOff.Add(pOff);
-		pair = DoChaining(grid, offToOn, offToOff, AllowNishio, AllowDynamic);
+		pair = ChainingModule.DoChaining(this, grid, offToOn, offToOff, AllowNishio, AllowDynamic);
 		if (doContradiction && pair is var (absurdOn2, absurdOff2))
 		{
 			// p must hold its value, because else it would lead to a contradiction.
@@ -381,7 +377,7 @@ public partial class MultipleChainingStepSearcher : ChainingStepSearcher
 							var otherToOn = new NodeSet { new(otherCell, digit, true) };
 							var otherToOff = new NodeSet();
 
-							DoChaining(grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);
+							ChainingModule.DoChaining(this, grid, otherToOn, otherToOff, AllowNishio, AllowDynamic);
 
 							posToOn.Add(otherCell, otherToOn);
 							posToOff.Add(otherCell, otherToOff);

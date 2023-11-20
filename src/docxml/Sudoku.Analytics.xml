@@ -3766,6 +3766,17 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.FormatInterpolation.ResourcePlaceholderValues">
             <summary>The values of the interpolation.</summary>
         </member>
+        <member name="T:Sudoku.Analytics.IStepSearcherModule`1">
+            <summary>
+            Represents for a step searcher module. The module is used for extracting logic, without defining base and derived type hierarchy.
+            </summary>
+            <typeparam name="TSelf">The type of the module.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IStepSearcherModule`1.SupportedTypes">
+            <summary>
+            Indicates the supported types.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.ConditionalFlags">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
@@ -4184,21 +4195,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.PriorityId">
-            <summary>
-            Indicates the final priority value ID of the step searcher. This property is used as comparison.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority">
-            <summary>
-            Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>.
-            </summary>
-            <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.Name">
             <summary>
             Returns the real name of this instance.
@@ -4228,12 +4224,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated field declaration for parameter <c>stepSearcherAttribute</c>.
             </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._splitPriority">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">
             <summary>
@@ -4898,6 +4888,21 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.PriorityId">
+            <summary>
+            Indicates the final priority value ID of the step searcher. This property is used as comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.SplitPriority">
+            <summary>
+            Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>.
+            </summary>
+            <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Name">
             <summary>
             Returns the real name of this instance.
@@ -4964,6 +4969,163 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule">
+            <summary>
+            Represents the advanced dynamic chaining module.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#AdvancedDynamicChainingModule}#SupportedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule.OnAdvanced(Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.OnAdvanced``1(``0,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule.GetAdvancedPotentials(Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet)">
+            <summary>
+            Get all non-trivial implications (involving fished, naked/hidden sets, etc).
+            </summary>
+            <param name="stepSearcher">The step searcher.</param>
+            <param name="grid">Indicates the current grid state.</param>
+            <param name="original">Indicates the original grid state.</param>
+            <param name="offPotentials">The candidates marked "off".</param>
+            <returns>Found <see cref="T:Sudoku.Concepts.ChainNode"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule">
+            <summary>
+            Represents for the module that will be used for searching for almost locked sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#AlmostLockedSetsModule}#SupportedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            Try to collect all possible ALSes in the specified grid.
+            </summary>
+            <param name="context">The grid to be used.</param>
+            <returns>A list of ALSes.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectConjugatePairs">
+            <summary>
+            Collect possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.ChainingModule">
+            <summary>
+            Represents a chaining module.
+            </summary>
+            <remarks>
+            The type is special: it uses source code from another project called Sudoku Explainer.
+            However unfortunately, I cannot find any sites available of the project.
+            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherModules.ChainingModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#ChainingModule}#SupportedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Boolean)">
+            <summary>
+            Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
+            (i.e. if its value is the correct one for the cell).
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="p">The potential that is assumed to be "on"</param>
+            <param name="isY">Indicates whether the same-cell strong links are enabled.</param>
+            <returns>The set of potentials that must be "off".</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
+            (i.e. if its value is the correct one for the cell).
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="p">The potential that is assumed to be "off"</param>
+            <param name="source">The source grid to be used as a cache.</param>
+            <param name="offPotentials">Indicates the <see cref="T:Sudoku.Concepts.ChainNode"/> instances that are already set "off".</param>
+            <param name="isX">Indicates whether the same-digit strong links are enabled.</param>
+            <param name="isY">Indicates whether the same-cell strong links are enabled.</param>
+            <param name="allowDynamic">Indicates whether the dynamic chaining rules are enabled.</param>
+            <returns>The set of potentials that must be "off".</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.DoChaining``1(``0,Sudoku.Concepts.Grid,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)">
+            <summary>
+            Given the initial sets of potentials that are assumed to be "on" and "off",
+            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
+            </summary>
+            <param name="stepSearcher">The step searcher.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="toOn">The potentials that are assumed to be "on".</param>
+            <param name="toOff">The potentials that are assumed to be "off".</param>
+            <param name="allowNishio">Indicates whether the Nishio chaining rules are enabled.</param>
+            <param name="allowDynamic">Indicates whether the dynamic chaining rules are enabled.</param>
+            <returns>If success, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.OnAdvanced``1(``0,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Handles on advanced chaining cases.
+            </summary>
+            <param name="stepSearcher">The step searcher.</param>
+            <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
+            <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
+            <param name="toOff">The original potentials that are assumed to be "off".</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="original">Indicates the original grid.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
+            <summary>
+            Represents a fish module.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherModules.FishModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#FishModule}#SupportedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
+            <summary>
+            Represents a subset module.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearcherModules.SubsetModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#SubsetModule}#SupportedTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            The internal method to create subset steps.
+            </summary>
+            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+            <param name="context">The context.</param>
+            <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
             Represents a provider type that can find built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -5027,39 +5189,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher">
-            <summary>
-            Provides with an <b>Almost Locked Sets</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
-            <summary>
-            Provides with an <b>Almost Locked Sets</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsStepSearcher.GatherAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)"/>
-            <remarks><b>This method uses <see cref="T:Sudoku.Analytics.CachedFields"/>.</b></remarks>
-            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>
             Provides with an <b>Almost Locked Sets W-Wing</b> step searcher.
@@ -5071,12 +5200,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.CollectConjugatePairs">
-            <summary>
-            Collect possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher">
             <summary>
@@ -5174,11 +5297,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </summary>
-            <remarks>
-            The type is special: it uses source code from another project called Sudoku Explainer.
-            However unfortunately, I cannot find any sites available of the project.
-            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-            </remarks>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher._otherStepSearchers">
             <summary>
@@ -5223,22 +5341,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.GetAdvancedPotentials(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet)">
-            <summary>
-            Get all non-trivial implications (involving fished, naked/hidden sets, etc).
-            </summary>
-            <param name="grid">Indicates the current grid state.</param>
-            <param name="original">Indicates the original grid state.</param>
-            <param name="offPotentials">
-            <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"
-                path="/param[@name='toOff']"/>
-            </param>
-            <returns>Found <see cref="T:Sudoku.Concepts.ChainNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateChainingOnStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Boolean)">
             <summary>
@@ -5356,108 +5458,6 @@ if (student is (name: var name, age: >= 18))
             <param name="elimCells">Indicates cells can be eliminated in the target house.</param>
             <param name="targetDigit">Indicates the target digit.</param>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.ChainingStepSearcher">
-            <summary>
-            Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-            <remarks>
-            The type is special: it uses source code from another project called Sudoku Explainer.
-            However unfortunately, I cannot find any sites available of the project.
-            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
-            <summary>
-            Represents a <see cref="T:Sudoku.Analytics.StepSearcher"/> as base type of the chaining step searcher types.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-            <remarks>
-            The type is special: it uses source code from another project called Sudoku Explainer.
-            However unfortunately, I cannot find any sites available of the project.
-            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Boolean)">
-            <summary>
-            Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
-            (i.e. if its value is the correct one for the cell).
-            </summary>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="p">The potential that is assumed to be "on"</param>
-            <param name="isY">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/>
-            </param>
-            <returns>The set of potentials that must be "off".</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.GetOffToOn(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Nullable{Sudoku.Concepts.Grid}@,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Get the set of all <see cref="T:Sudoku.Concepts.ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
-            (i.e. if its value is the correct one for the cell).
-            </summary>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="p">The potential that is assumed to be "off"</param>
-            <param name="source">
-            <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)"
-                path="/param[@name='source']"/>
-            </param>
-            <param name="offPotentials">Indicates the <see cref="T:Sudoku.Concepts.ChainNode"/> instances that are already set "off".</param>
-            <param name="isX">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/>
-            </param>
-            <param name="isY">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/>
-            </param>
-            <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
-            <returns>The set of potentials that must be "off".</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.DoChaining(Sudoku.Concepts.Grid,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean)">
-            <summary>
-            Given the initial sets of potentials that are assumed to be "on" and "off",
-            complete the sets with all other potentials that must be "on" or "off" as a result of the assumption.
-            </summary>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <param name="allowNishio"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowNishio" path="/summary"/></param>
-            <param name="allowDynamic"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowDynamic" path="/summary"/></param>
-            <returns>If success, <see langword="null"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainingStepSearcher.OnAdvanced(Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            Handles on advanced chaining cases.
-            </summary>
-            <param name="pendingOn">The pending potentials that are assumed to be "on".</param>
-            <param name="pendingOff">The pending potentials that are assumed to be "off".</param>
-            <param name="toOff">The original potentials that are assumed to be "off".</param>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="original">Indicates the original grid.</param>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
@@ -5481,11 +5481,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </summary>
-            <remarks>
-            The type is special: it uses source code from another project called Sudoku Explainer.
-            However unfortunately, I cannot find any sites available of the project.
-            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.AllowNishio">
             <summary>
@@ -5663,11 +5658,6 @@ if (student is (name: var name, age: >= 18))
             <item>Alternating Inference Chains (Cycles)</item>
             </list>
             </summary>
-            <remarks>
-            The type is special: it uses source code from another project called Sudoku Explainer.
-            However unfortunately, I cannot find any sites available of the project.
-            One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
@@ -7662,7 +7652,7 @@ if (student is (name: var name, age: >= 18))
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],Sudoku.Concepts.AlmostLockedSet[],System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check UR/AR + Guardian, with external ALS-XZ rule.
             </summary>
@@ -8100,48 +8090,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.FishStepSearcher">
-            <summary>
-            Provides with a <b>Fish</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FishStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
-            <summary>
-            Provides with a <b>Fish</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FishStepSearcher.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher">
             <summary>
@@ -9095,7 +9043,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher.OnlySearchingForLocked">
+        <member name="M:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher">
@@ -9129,54 +9077,8 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.OnlySearchingForLocked">
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SubsetStepSearcher">
-            <summary>
-            Provides with a <b>Subset</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
-            <summary>
-            Provides with a <b>Subset</b> step searcher.
-            </summary>
-            <param name="priority">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='priority']"/>
-            </param>
-            <param name="level">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='level']"/>
-            </param>
-            <param name="runningArea">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)" path="/param[@name='runningArea']"/>
-            </param>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.OnlySearchingForLocked">
-            <summary>
-            Indicates whether the step searcher only searches for locked subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SubsetStepSearcher.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher">
             <summary>
@@ -22164,6 +22066,19 @@ result ^= expression;
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.CompilerServices.ListAlmostLockedSetsExtensions">
+            <summary>
+            Represents a list of extension methods that is used by <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.AlmostLockedSet"/>
+        </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListAlmostLockedSetsExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.AlmostLockedSet})">
+            <summary>
+            Try to fetch the span of internal array, cut the trailing zeros.
+            </summary>
+            <param name="this">The instance.</param>
+            <returns>The span of <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances, having cut the trailing zeros.</returns>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>

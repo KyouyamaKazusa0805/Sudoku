@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -58,7 +59,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseFinnedSquirmbag, Technique.SiameseFinnedWhale, Technique.SiameseFinnedLeviathan,
 	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish,
 	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
-public sealed partial class NormalFishStepSearcher : FishStepSearcher
+public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates whether Finned X-Wing and Sashimi X-Wing should be disabled.
@@ -277,7 +278,7 @@ public sealed partial class NormalFishStepSearcher : FishStepSearcher
 						HouseMaskOperations.Create(bs),
 						HouseMaskOperations.Create(cs),
 						in fins,
-						IsSashimi(bs, in fins, digit)
+						FishModule.IsSashimi(bs, in fins, digit)
 					);
 
 					if (onlyFindOne)

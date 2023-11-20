@@ -1,5 +1,6 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.StepSearcherModules;
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -15,8 +16,8 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.LockedPair, Technique.LockedTriple, Technique.LockedHiddenPair, Technique.LockedHiddenTriple,
 	Technique.NakedPairPlus, Technique.NakedTriplePlus, Technique.NakedQuadruplePlus)]
-public sealed partial class LockedSubsetStepSearcher : SubsetStepSearcher
+public sealed partial class LockedSubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	public override bool OnlySearchingForLocked => true;
+	protected internal override Step? Collect(scoped ref AnalysisContext context) => SubsetModule.CollectCore(true, ref context);
 }

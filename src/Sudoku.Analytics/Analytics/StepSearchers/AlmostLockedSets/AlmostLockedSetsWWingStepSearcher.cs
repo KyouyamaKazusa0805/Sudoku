@@ -2,13 +2,12 @@ using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
-using Sudoku.Concepts;
+using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -20,18 +19,18 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.AlmostLockedSetsWWing)]
-public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSetsStepSearcher
+public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
-		var alses = GatherAlmostLockedSets(in grid);
+		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in context);
 
 		// Gather all conjugate pairs.
-		var conjugatePairs = CollectConjugatePairs();
+		var conjugatePairs = AlmostLockedSetsModule.CollectConjugatePairs();
 
 		// Iterate on each ALS.
+		scoped ref readonly var grid = ref context.Grid;
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];
@@ -198,26 +197,5 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : AlmostLockedSets
 		}
 
 		return null;
-	}
-
-	/// <summary>
-	/// Collect possible conjugate pairs grouped by digit.
-	/// </summary>
-	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	private static List<Conjugate>?[] CollectConjugatePairs()
-	{
-		var conjugatePairs = new List<Conjugate>?[9];
-		for (var digit = 0; digit < 9; digit++)
-		{
-			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
-			{
-				if ((HousesMap[houseIndex] & CandidatesMap[digit]) is { Count: 2 } temp)
-				{
-					(conjugatePairs[digit] ??= []).Add(new(in temp, digit));
-				}
-			}
-		}
-
-		return conjugatePairs;
 	}
 }
