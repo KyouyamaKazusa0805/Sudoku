@@ -37,6 +37,22 @@ public static class ListBitStatusMapExtensions
 	public static extern ref CandidateMap[] GetItems(this List<CandidateMap> @this);
 
 	/// <summary>
+	/// Try to get a <see cref="ReadOnlySpan{T}"/> instance of the current instance, with same elements but without any copying.
+	/// </summary>
+	/// <param name="this">The list.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<CellMap> GetSpan(this List<CellMap> @this) => @this.GetItems().AsSpan()[..@this.Count];
+
+	/// <summary>
+	/// Try to get a <see cref="ReadOnlySpan{T}"/> instance of the current instance, with same elements but without any copying.
+	/// </summary>
+	/// <param name="this">The list.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<CandidateMap> GetSpan(this List<CandidateMap> @this) => @this.GetItems().AsSpan()[..@this.Count];
+
+	/// <summary>
 	/// Adds the given object to the end of this list.
 	/// </summary>
 	/// <param name="this">The list.</param>
@@ -105,11 +121,11 @@ public static class ListBitStatusMapExtensions
 	/// <param name="cells">The <see cref="CellMap"/> to be added.</param>
 	private static void AddWithResize(this List<CellMap> @this, scoped ref readonly CellMap cells)
 	{
-		Debug.Assert(GetSize(@this) == @this.Capacity);
-
+		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 		var size = GetSize(@this);
-		@this.Capacity = GetNewCapacity(@this, ++GetSize(@this));
-		@this.GetItems().AsSpan()[size] = cells;
+		@this.Capacity = GetNewCapacity(@this, size + 1);
+		GetSize(@this) = size + 1;
+		@this.GetItems()[size] = cells;
 	}
 
 	/// <summary>
@@ -119,11 +135,11 @@ public static class ListBitStatusMapExtensions
 	/// <param name="candidates">The <see cref="CandidateMap"/> to be added.</param>
 	private static void AddWithResize(this List<CandidateMap> @this, scoped ref readonly CandidateMap candidates)
 	{
-		Debug.Assert(GetSize(@this) == @this.Capacity);
-
+		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 		var size = GetSize(@this);
-		@this.Capacity = GetNewCapacity(@this, ++GetSize(@this));
-		@this.GetItems().AsSpan()[size] = candidates;
+		@this.Capacity = GetNewCapacity(@this, size + 1);
+		GetSize(@this) = size + 1;
+		@this.GetItems()[size] = candidates;
 	}
 
 	/// <summary>
@@ -132,12 +148,20 @@ public static class ListBitStatusMapExtensions
 	/// <param name="this">The collection.</param>
 	/// <param name="capacity">The desired capacity to be set.</param>
 	/// <returns>The result value to be set.</returns>
-	[UnsafeAccessor(UnsafeAccessorKind.Method)]
-	private static extern int GetNewCapacity(List<CellMap> @this, int capacity);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int GetNewCapacity(List<CellMap> @this, int capacity)
+	{
+		Debug.Assert(@this.GetItems().Length < capacity);
+		return @this.GetItems().Length == 0 ? 4 : @this.GetItems().Length << 1;
+	}
 
 	/// <inheritdoc cref="GetNewCapacity(List{CellMap}, int)"/>
-	[UnsafeAccessor(UnsafeAccessorKind.Method)]
-	private static extern int GetNewCapacity(List<CandidateMap> @this, int capacity);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int GetNewCapacity(List<CandidateMap> @this, int capacity)
+	{
+		Debug.Assert(@this.GetItems().Length < capacity);
+		return @this.GetItems().Length == 0 ? 4 : @this.GetItems().Length << 1;
+	}
 
 	/// <summary>
 	/// Try to fetch the internal field <c>_size</c> in type <see cref="List{T}"/>.

@@ -8547,6 +8547,20 @@ if (student is (name: var name, age: >= 18))
             but this doesn't mean you can use its reference and re-assign it.
             </i></b></remarks>
         </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.CellMap})">
+            <summary>
+            Try to get a <see cref="T:System.ReadOnlySpan`1"/> instance of the current instance, with same elements but without any copying.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.CandidateMap})">
+            <summary>
+            Try to get a <see cref="T:System.ReadOnlySpan`1"/> instance of the current instance, with same elements but without any copying.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
+        </member>
         <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.AddRef(System.Collections.Generic.List{Sudoku.Concepts.CellMap},Sudoku.Concepts.CellMap@)">
             <summary>
             Adds the given object to the end of this list.
