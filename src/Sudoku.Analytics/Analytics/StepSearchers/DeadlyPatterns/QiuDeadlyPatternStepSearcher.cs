@@ -187,7 +187,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Check whether both two lines are finished.
 		if (((HousesMap[l1] | HousesMap[l2]) - EmptyCells).Count == 18)
 		{
-			goto FastReturn;
+			return null;
 		}
 
 		var alignedPosMask = (Mask)0;
@@ -208,7 +208,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if (PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(PopCount((uint)l1AlignedMask), PopCount((uint)l2AlignedMask)))
 		{
 			// Distinction is not 1.
-			goto FastReturn;
+			return null;
 		}
 
 		// Check whether the paired cells contain at least 2 empty cells and not in a block.
@@ -227,7 +227,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if (emptyCellsInPairedCells.Count >= 2)
 		{
 			// Distinction is not 1.
-			goto FastReturn;
+			return null;
 		}
 
 		// Check whether the digits contain only 1 digit different.
@@ -235,14 +235,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var nonEmptyCellsDigitsMaskForLine2 = grid[valueCellsInBothLines & HousesMap[l2]];
 		if (PopCount((uint)(nonEmptyCellsDigitsMaskForLine1 ^ nonEmptyCellsDigitsMaskForLine2)) >= 2)
 		{
-			goto FastReturn;
+			return null;
 		}
 
 		// Check whether at least 2 cells is empty in cross-line.
 		var crossline = pattern.Crossline;
 		if ((crossline - EmptyCells).Count >= 3)
 		{
-			goto FastReturn;
+			return null;
 		}
 
 		// Check whether the number of locked digits appeared in cross-line is at least 2.
@@ -252,7 +252,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
 		if (PopCount((uint)cornerLockedDigitsMask) < 2)
 		{
-			goto FastReturn;
+			return null;
 		}
 
 		var corner = pattern.Corner;
@@ -264,7 +264,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var cornerDigitsMaskIntersected = grid[in corner, false, GridMaskMergingMethod.And];
 		if (cornerDigitsMaskIntersected == 0)
 		{
-			goto FastReturn;
+			return null;
 		}
 
 		var cornerDigitsMask = grid[in corner];
@@ -341,7 +341,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-	FastReturn:
 		// No valid steps found. Return null.
 		return null;
 	}
