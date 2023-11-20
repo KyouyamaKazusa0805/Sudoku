@@ -5371,7 +5371,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It is proved that a same conclusion - {0} being {1} can be found no matter what state the candidate {2} now is.
+        ///   Looks up a localized string similar to It is proved that a same conclusion {0} being {2}, no matter which state the candidate {1} is.
         /// </summary>
         public static string TechniqueFormat_DoubleForcingChainsStep {
             get {

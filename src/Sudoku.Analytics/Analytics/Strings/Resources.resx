@@ -1528,7 +1528,7 @@
     <value>It is proved that the candidate {0} is {1}, both true and false states of candidate {2} can be found, leading to a contradiction</value>
   </data>
   <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
-    <value>It is proved that a same conclusion - {0} being {1} can be found no matter what state the candidate {2} now is</value>
+    <value>It is proved that a same conclusion {0} being {2}, no matter which state the candidate {1} is</value>
   </data>
   <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
     <value>It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction</value>

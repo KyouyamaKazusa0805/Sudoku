@@ -1835,7 +1835,7 @@
     <value>如果 {0} 为{1}，那么候选数 {2} 的真假两种状态都成立，这是不可能的</value>
   </data>
   <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
-    <value>不论 {0} 是真是假，都可以得到 {1} 为 {2} 的结论</value>
+    <value>不论 {1} 是真是假，都可以得到 {0} 为{2}的结论</value>
   </data>
   <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
     <value>如果 {0} 为{1}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾</value>

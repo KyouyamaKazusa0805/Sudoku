@@ -19535,7 +19535,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DoubleForcingChainsStep">
             <summary>
-              Looks up a localized string similar to It is proved that a same conclusion - {0} being {1} can be found no matter what state the candidate {2} now is.
+              Looks up a localized string similar to It is proved that a same conclusion {0} being {2}, no matter which state the candidate {1} is.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_EmptyRectangleIntersectionPairStep">
