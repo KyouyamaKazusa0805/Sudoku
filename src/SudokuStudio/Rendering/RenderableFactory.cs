@@ -214,7 +214,7 @@ internal static class RenderableFactory
 
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
-#pragma warning disable IDE0055
+#pragma warning disable format
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
 			case (
 				false,
@@ -229,14 +229,15 @@ internal static class RenderableFactory
 					}
 				}
 			):
-#pragma warning restore IDE0055
+#pragma warning restore format
 			{
 				var control = new Border
 				{
 					BorderThickness = new(0),
 					Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
 					Opacity = 0,
-					Background = new SolidColorBrush(IdentifierConversion.GetColor(id))
+					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+					CornerRadius = new(8)
 				};
 
 				GridLayout.SetRowSpan(control, 3);
@@ -623,14 +624,13 @@ internal static class RenderableFactory
 
 		var control = new Border
 		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			BorderThickness = new(0),
 			Tag = $"{nameof(RenderableFactory)}: baba group {new RxCyConverter().CellConverter([cell])}, {@char}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
 				Text = @char.ToString(),
-				FontSize = PencilmarkTextConversion.GetFontSizeSimple(sudokuPane.ApproximateCellWidth, sudokuPane.BabaGroupLabelFontScale),
+				FontSize = PencilmarkTextConversion.GetFontSizeSimple(sudokuPane.ApproximateCellWidth, sudokuPane.BabaGroupLabelFontScale) * 1.618,
 				FontFamily = sudokuPane.BabaGroupLabelFont,
 				Foreground = new SolidColorBrush(sudokuPane.BabaGroupLabelColor),
 				FontWeight = FontWeights.Bold,
@@ -644,14 +644,14 @@ internal static class RenderableFactory
 
 		GridLayout.SetRowSpan(control, 3);
 		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -2);
+		Canvas.SetZIndex(control, -1);
 
 		if (sudokuPane.EnableAnimationFeedback)
 		{
 			control.OpacityTransition = new();
 		}
 
-		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
+		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
 	}
 
 	/// <summary>
