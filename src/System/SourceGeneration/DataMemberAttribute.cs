@@ -170,10 +170,10 @@ public sealed partial class DataMemberAttribute([DataMember] string memberKind =
 	/// <item><see langword="in"/></item>
 	/// <item><see langword="scoped ref"/></item>
 	/// <item><see langword="scoped ref readonly"/> (Supported for C# 12)</item>
-	/// <item><see langword="scoped ref readonly"/></item>
-	/// <item><see langword="scoped ref readonly scoped"/> (May not be supported for C# 12)</item>
-	/// <item><see langword="scoped ref scoped"/> (May not be supported for C# 12)</item>
-	/// <item><see langword="scoped ref readonly scoped"/> (May not be supported for C# 12)</item>
+	/// <item><see langword="scoped in"/></item>
+	/// <item><see langword="ref scoped"/> (May not be supported for C# 12)</item>
+	/// <item><see langword="ref readonly scoped"/> (May not be supported for C# 12)</item>
+	/// <item><see langword="in scoped"/> (May not be supported for C# 12)</item>
 	/// </list>
 	/// the generated member will automatically include a <see langword="ref"/> modifier if the modifiers don't include <see langword="scoped"/>;
 	/// otherwise, no <see langword="ref"/> modifiers.
