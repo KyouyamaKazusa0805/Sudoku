@@ -1783,6 +1783,20 @@ fixed (short* ptr = instance)
             <param name="c">The third value.</param>
             <returns>Which is the maximum value.</returns>
         </member>
+        <member name="T:System.ObjectExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Object"/>.
+            </summary>
+            <seealso cref="T:System.Object"/>
+        </member>
+        <member name="M:System.ObjectExtensions.DynamicCastTo(System.Object,System.Type)">
+            <summary>
+            Try to cast an object to the specified type.
+            </summary>
+            <param name="this">The object to be casted.</param>
+            <param name="targetType">The type that the current instance will be converted into.</param>
+            <returns>The converted result.</returns>
+        </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.

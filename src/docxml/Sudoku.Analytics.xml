@@ -4662,9 +4662,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
             <summary>
             Returns a string that only contains the name and the basic description.

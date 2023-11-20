@@ -1,12 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
-using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.Strings;
 using Sudoku.Rendering;
 using Sudoku.Strings;
@@ -169,36 +166,6 @@ public abstract partial class Step(
 	/// </summary>
 	private protected string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
-	public sealed override bool Equals([NotNullWhen(true)] object? obj)
-	{
-		if (obj is not Step)
-		{
-			return false;
-		}
-
-		var equalityContract = GetType();
-		if (equalityContract.IsGenericAssignableTo(typeof(IEquatableStep<>)))
-		{
-			var factType = typeof(IEquatableStep<>).MakeGenericType([equalityContract]);
-			var @this = (dynamic)Convert.ChangeType(this, factType)!;
-			var other = (dynamic)Convert.ChangeType(obj, factType)!;
-			return @this == other;
-		}
-
-		if (equalityContract.IsGenericAssignableTo(typeof(IComparableStep<>)))
-		{
-			var factType = typeof(IComparableStep<>).MakeGenericType([equalityContract]);
-			var @this = Convert.ChangeType(this, factType)!;
-			var other = Convert.ChangeType(obj, factType)!;
-			return (int)factType.GetMethod("Compare")!.Invoke(null, [this, obj])! == 0;
-		}
-
-		return false;
-	}
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
