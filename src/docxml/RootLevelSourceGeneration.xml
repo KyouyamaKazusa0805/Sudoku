@@ -159,43 +159,6 @@
             <inheritdoc cref="M:Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsKeywordKind(Microsoft.CodeAnalysis.CSharp.SyntaxKind)"/>
             <param name="this">The string.</param>
         </member>
-        <member name="T:System.Collections.Generic.EnumerableExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
-            <summary>
-            The method to replace with <see langword="foreach"/> loop.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection to iterate.</param>
-            <param name="action">The action that is executed while iterating.</param>
-        </member>
-        <member name="T:System.Collections.Generic.KeyValuePairExtensions">
-            <summary>
-            Provides with the extension methods on type <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
-        </member>
-        <member name="M:System.Collections.Generic.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
-            <summary>
-            Deconstruct the instance of type <see cref="T:System.Collections.Generic.KeyValuePair`2"/> into two values:
-            <list type="table">
-            <item>
-            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Key"/></term>
-            <description>The key.</description>
-            </item>
-            <item>
-            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Value"/></term>
-            <description>The value.</description>
-            </item>
-            </list>
-            </summary>
-            <typeparam name="TKey">The type of the key.</typeparam>
-            <typeparam name="TValue">The type of the value.</typeparam>
-        </member>
         <member name="T:System.Collections.Immutable.ImmutableArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Immutable.ImmutableArray`1"/>.
@@ -227,6 +190,29 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array to be casted.</param>
             <returns>The casted array.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.KeyValuePairExtensions">
+            <summary>
+            Provides with the extension methods on type <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairExtensions.Deconstruct``2(System.Collections.Generic.KeyValuePair{``0,``1},``0@,``1@)">
+            <summary>
+            Deconstruct the instance of type <see cref="T:System.Collections.Generic.KeyValuePair`2"/> into two values:
+            <list type="table">
+            <item>
+            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Key"/></term>
+            <description>The key.</description>
+            </item>
+            <item>
+            <term><see cref="P:System.Collections.Generic.KeyValuePair`2.Value"/></term>
+            <description>The value.</description>
+            </item>
+            </list>
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
         </member>
         <member name="T:System.Xml.XmlDocumentExtensions">
             <summary>
