@@ -29,7 +29,7 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
 	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
-	[Data(MemberKinds.Field)] ref readonly Grid grid,
+	[Data(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
 	[Data(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
 	[Data] StepSearcherOptions predefinedOptions
 )
@@ -45,11 +45,6 @@ public ref partial struct AnalysisContext(
 	[DisallowNull]
 	[NotNullIfNotNull(nameof(MappingRelations))]
 	public SymmetricType? InferredGurthSymmetricalPlacementPattern { get; internal set; }
-
-	/// <summary>
-	/// Indicates the puzzle to be solved and analyzed.
-	/// </summary>
-	public readonly ref readonly Grid Grid => ref _grid;
 
 	/// <summary>
 	/// Indicates the previously set digit.

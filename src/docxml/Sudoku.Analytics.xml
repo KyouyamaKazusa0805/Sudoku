@@ -459,11 +459,6 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.Grid">
-            <summary>
-            Indicates the puzzle to be solved and analyzed.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
             <summary>
             Indicates the previously set digit.
@@ -491,7 +486,7 @@ if (student is (name: var name, age: >= 18))
             </b></remarks>
             <seealso cref="P:Sudoku.Analytics.AnalysisContext.InferredGurthSymmetricalPlacementPattern"/>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisContext._grid">
+        <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
             </summary>
@@ -4044,7 +4039,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.OnlyUsesCachedFields">
             <summary>
             Indicates the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.CachedFields"/>,
-            which means it can conclude result without using field <see cref="P:Sudoku.Analytics.AnalysisContext.Grid"/>.
+            which means it can conclude result without using field <see cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.CachedFields"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
@@ -6937,7 +6932,7 @@ if (student is (name: var name, age: >= 18))
             Get all possible hints from the grid.
             </summary>
             <param name="gathered"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
-            <param name="grid"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
             <param name="context">
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/>
             </param>
