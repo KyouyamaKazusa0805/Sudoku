@@ -20,9 +20,9 @@ public sealed partial class GroupedWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] Cell startCell,
-	[DataMember] Cell endCell,
-	[DataMember] scoped ref readonly CellMap bridge
+	[Data] Cell startCell,
+	[Data] Cell endCell,
+	[Data] scoped ref readonly CellMap bridge
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

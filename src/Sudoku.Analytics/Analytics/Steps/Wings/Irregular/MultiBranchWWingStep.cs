@@ -21,9 +21,9 @@ public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] scoped ref readonly CellMap leaves,
-	[DataMember] scoped ref readonly CellMap root,
-	[DataMember] House house
+	[Data] scoped ref readonly CellMap leaves,
+	[Data] scoped ref readonly CellMap root,
+	[Data] House house
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <summary>

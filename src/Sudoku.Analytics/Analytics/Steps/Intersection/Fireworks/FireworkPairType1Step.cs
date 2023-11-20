@@ -21,10 +21,10 @@ public sealed partial class FireworkPairType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] scoped ref readonly CellMap cells,
-	[DataMember] Mask digitsMask,
-	[DataMember] Cell extraCell1,
-	[DataMember] Cell extraCell2
+	[Data] scoped ref readonly CellMap cells,
+	[Data] Mask digitsMask,
+	[Data] Cell extraCell1,
+	[Data] Cell extraCell2
 ) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

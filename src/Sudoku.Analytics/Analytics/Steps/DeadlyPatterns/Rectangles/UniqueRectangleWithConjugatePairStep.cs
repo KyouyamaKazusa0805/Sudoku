@@ -30,7 +30,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	[DataMember] Conjugate[] conjugatePairs,
+	[Data] Conjugate[] conjugatePairs,
 	int absoluteOffset
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {

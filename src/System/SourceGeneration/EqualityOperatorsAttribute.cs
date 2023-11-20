@@ -6,7 +6,7 @@ namespace System.SourceGeneration;
 /// <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface)]
 public sealed partial class EqualityOperatorsAttribute(
-	[DataMember] EqualityOperatorsBehavior behavior = EqualityOperatorsBehavior.Intelligent
+	[Data] EqualityOperatorsBehavior behavior = EqualityOperatorsBehavior.Intelligent
 ) : DuckTypingAttribute
 {
 	/// <summary>

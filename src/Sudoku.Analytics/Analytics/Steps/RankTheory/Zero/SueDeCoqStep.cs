@@ -31,16 +31,16 @@ public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] House block,
-	[DataMember] House line,
-	[DataMember] Mask blockMask,
-	[DataMember] Mask lineMask,
-	[DataMember] Mask intersectionMask,
-	[DataMember] bool isCannibalistic,
-	[DataMember] Mask isolatedDigitsMask,
-	[DataMember] scoped ref readonly CellMap blockCells,
-	[DataMember] scoped ref readonly CellMap lineCells,
-	[DataMember] scoped ref readonly CellMap intersectionCells
+	[Data] House block,
+	[Data] House line,
+	[Data] Mask blockMask,
+	[Data] Mask lineMask,
+	[Data] Mask intersectionMask,
+	[Data] bool isCannibalistic,
+	[Data] Mask isolatedDigitsMask,
+	[Data] scoped ref readonly CellMap blockCells,
+	[Data] scoped ref readonly CellMap lineCells,
+	[Data] scoped ref readonly CellMap intersectionCells
 ) : ZeroRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

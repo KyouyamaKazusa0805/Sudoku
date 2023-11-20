@@ -23,12 +23,12 @@ public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] Mask rowDigitsMask,
-	[DataMember] Mask columnDigitsMask,
-	[DataMember] Mask blockDigitsMask,
-	[DataMember] scoped ref readonly CellMap rowCells,
-	[DataMember] scoped ref readonly CellMap columnCells,
-	[DataMember] scoped ref readonly CellMap blockCells
+	[Data] Mask rowDigitsMask,
+	[Data] Mask columnDigitsMask,
+	[Data] Mask blockDigitsMask,
+	[Data] scoped ref readonly CellMap rowCells,
+	[Data] scoped ref readonly CellMap columnCells,
+	[Data] scoped ref readonly CellMap blockCells
 ) : ZeroRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

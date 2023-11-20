@@ -23,7 +23,7 @@ public sealed partial class JuniorExocetGeneralizedFishStepConclusion(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[DataMember] Mask targetPairMask,
+	[Data] Mask targetPairMask,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells

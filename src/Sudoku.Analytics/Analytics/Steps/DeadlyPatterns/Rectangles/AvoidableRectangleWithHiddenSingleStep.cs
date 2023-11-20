@@ -27,9 +27,9 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
-	[DataMember] Cell baseCell,
-	[DataMember] Cell targetCell,
-	[DataMember] House house,
+	[Data] Cell baseCell,
+	[Data] Cell targetCell,
+	[Data] House house,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

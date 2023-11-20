@@ -9,5 +9,5 @@ namespace SudokuStudio.Interaction;
 /// <param name="house">Indicates the house finished.</param>
 /// <param name="method">Indicates a method kind that makes a house be completed.</param>
 /// <seealso cref="HouseCompletedEventHandler"/>
-public sealed partial class HouseCompletedEventArgs([DataMember] Cell lastCell, [DataMember] House house, [DataMember] PuzzleUpdatingMethod method) :
+public sealed partial class HouseCompletedEventArgs([Data] Cell lastCell, [Data] House house, [Data] PuzzleUpdatingMethod method) :
 	EventArgs;

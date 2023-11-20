@@ -18,8 +18,8 @@ public abstract partial class UniqueMatrixStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] scoped ref readonly CellMap cells,
-	[DataMember] Mask digitsMask
+	[Data] scoped ref readonly CellMap cells,
+	[Data] Mask digitsMask
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

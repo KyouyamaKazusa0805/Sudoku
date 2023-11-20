@@ -41,7 +41,7 @@ public sealed partial class NakedSubsetStep(
 	House house,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[DataMember] bool? isLocked
+	[Data] bool? isLocked
 ) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>

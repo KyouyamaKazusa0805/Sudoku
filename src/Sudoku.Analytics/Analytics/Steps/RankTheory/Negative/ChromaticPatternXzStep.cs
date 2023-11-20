@@ -26,10 +26,10 @@ public sealed partial class ChromaticPatternXzStep(
 	StepSearcherOptions options,
 	House[] blocks,
 	scoped ref readonly CellMap pattern,
-	[DataMember] scoped ref readonly CellMap cells,
-	[DataMember] Cell extraCell,
+	[Data] scoped ref readonly CellMap cells,
+	[Data] Cell extraCell,
 	Mask digitsMask,
-	[DataMember] Mask extraDigitsMask
+	[Data] Mask extraDigitsMask
 ) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>

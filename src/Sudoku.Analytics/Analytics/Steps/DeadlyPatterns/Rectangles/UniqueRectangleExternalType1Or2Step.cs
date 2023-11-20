@@ -30,9 +30,9 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
-	[DataMember] scoped ref readonly CellMap guardianCells,
-	[DataMember] Digit guardianDigit,
-	[DataMember] bool isIncomplete,
+	[Data] scoped ref readonly CellMap guardianCells,
+	[Data] Digit guardianDigit,
+	[Data] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

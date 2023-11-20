@@ -8,4 +8,4 @@ namespace System.SourceGeneration;
 /// By default the value is <see langword="null"/>, which means no conversion will be existing here.
 /// </param>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter, Inherited = false)]
-public sealed partial class StringMemberAttribute([DataMember] string? displayName = null) : Attribute;
+public sealed partial class StringMemberAttribute([Data] string? displayName = null) : Attribute;

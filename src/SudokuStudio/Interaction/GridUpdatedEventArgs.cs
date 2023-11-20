@@ -55,4 +55,4 @@ namespace SudokuStudio.Interaction;
 /// </para>
 /// </param>
 /// <seealso cref="GridUpdatedEventHandler"/>
-public sealed partial class GridUpdatedEventArgs([DataMember] GridUpdatedBehavior behavior, [DataMember] object newValue) : EventArgs;
+public sealed partial class GridUpdatedEventArgs([Data] GridUpdatedBehavior behavior, [Data] object newValue) : EventArgs;

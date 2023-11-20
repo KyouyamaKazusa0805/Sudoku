@@ -23,12 +23,12 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[DataMember(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
-	[DataMember(GeneratedMemberName = "BridgeAls")] AlmostLockedSet bridge,
-	[DataMember] Mask xDigitsMask,
-	[DataMember] Mask yDigitsMask,
-	[DataMember] Mask zDigitsMask
+	[Data(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[Data(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[Data(GeneratedMemberName = "BridgeAls")] AlmostLockedSet bridge,
+	[Data] Mask xDigitsMask,
+	[Data] Mask yDigitsMask,
+	[Data] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

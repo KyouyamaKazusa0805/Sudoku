@@ -29,10 +29,10 @@ public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] ChainNode sourcePotential,
-	[DataMember] ChainNode fromOnPotential,
-	[DataMember] ChainNode fromOffPotential,
-	[DataMember] bool isAbsurd,
+	[Data] ChainNode sourcePotential,
+	[Data] ChainNode fromOnPotential,
+	[Data] ChainNode fromOffPotential,
+	[Data] bool isAbsurd,
 	bool isNishio,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)

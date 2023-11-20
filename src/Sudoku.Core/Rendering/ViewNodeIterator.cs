@@ -14,7 +14,7 @@ namespace Sudoku.Rendering;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct ViewNodeIterator<T>([DataMember(MemberKinds.Field, IsImplicitlyReadOnly = false)] View.Enumerator enumerator)
+public ref partial struct ViewNodeIterator<T>([Data(MemberKinds.Field, IsImplicitlyReadOnly = false)] View.Enumerator enumerator)
 	where T : ViewNode
 {
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>

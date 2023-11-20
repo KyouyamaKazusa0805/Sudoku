@@ -18,7 +18,7 @@ public sealed partial class DominoLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] scoped ref readonly CellMap cells
+	[Data] scoped ref readonly CellMap cells
 ) : ZeroRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

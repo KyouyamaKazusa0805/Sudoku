@@ -10,4 +10,4 @@ namespace SudokuStudio.Interaction;
 /// <remarks>
 /// Initializes an <see cref="SaveFileFailedEventArgs"/> instance via the specified reason.
 /// </remarks>
-public sealed partial class SaveFileFailedEventArgs([DataMember] SaveFileFailedReason reason) : EventArgs;
+public sealed partial class SaveFileFailedEventArgs([Data] SaveFileFailedReason reason) : EventArgs;

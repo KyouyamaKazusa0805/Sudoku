@@ -25,7 +25,7 @@ public sealed partial class ExocetLockedMemberStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[DataMember] Mask lockedMemberDigitsMask,
+	[Data] Mask lockedMemberDigitsMask,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap endoTargetCells,

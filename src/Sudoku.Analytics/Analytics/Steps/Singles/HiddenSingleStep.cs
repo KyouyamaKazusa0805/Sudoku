@@ -25,8 +25,8 @@ public sealed partial class HiddenSingleStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	[DataMember] House house,
-	[DataMember] bool enableAndIsLastDigit
+	[Data] House house,
+	[Data] bool enableAndIsLastDigit
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>

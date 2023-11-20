@@ -34,11 +34,11 @@ public abstract partial class UniqueRectangleStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Technique code,
-	[DataMember] Digit digit1,
-	[DataMember] Digit digit2,
-	[DataMember] scoped ref readonly CellMap cells,
-	[DataMember] bool isAvoidable,
-	[DataMember] int absoluteOffset
+	[Data] Digit digit1,
+	[Data] Digit digit2,
+	[Data] scoped ref readonly CellMap cells,
+	[Data] bool isAvoidable,
+	[Data] int absoluteOffset
 ) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>

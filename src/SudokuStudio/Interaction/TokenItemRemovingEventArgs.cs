@@ -12,4 +12,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <param name="item">Item being removed.</param>
 /// <param name="tokenItem"><see cref="TokenItem"/> container being closed.</param>
-public partial class TokenItemRemovingEventArgs([DataMember] object item, [DataMember] TokenItem tokenItem) : EventArgs;
+public partial class TokenItemRemovingEventArgs([Data] object item, [Data] TokenItem tokenItem) : EventArgs;

@@ -1,9 +1,9 @@
 namespace Sudoku.SourceGeneration.Handlers;
 
 /// <summary>
-/// The generator handler for primary constructor parameters.
+/// The generator handler for primary constructor member parameters.
 /// </summary>
-internal static class PrimaryConstructorHandler
+internal static class PrimaryConstructorMemberHandler
 {
 	/// <inheritdoc/>
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
@@ -50,7 +50,7 @@ internal static class PrimaryConstructorHandler
 							/// <summary>
 									{docComments ?? $"/// The generated field declaration for parameter <c>{parameterName}</c>."}
 									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(PrimaryConstructorHandler).FullName}", "{Value}")]
+									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(PrimaryConstructorMemberHandler).FullName}", "{Value}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 							{pragmaWarningDisable}{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
 							"""
@@ -88,7 +88,7 @@ internal static class PrimaryConstructorHandler
 							/// <summary>
 									{{docComments ?? $"/// The generated property declaration for parameter <c>{parameterName}</c>."}}
 									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorHandler).FullName}}", "{{Value}}")]
+									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorMemberHandler).FullName}}", "{{Value}}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get;{{setter}} } = {{assigning}};
 							"""
@@ -237,9 +237,9 @@ internal static class PrimaryConstructorHandler
 
 
 	/// <summary>
-	/// Indicates the data collected via <see cref="PrimaryConstructorHandler"/>.
+	/// Indicates the data collected via <see cref="PrimaryConstructorMemberHandler"/>.
 	/// </summary>
-	/// <seealso cref="PrimaryConstructorHandler"/>
+	/// <seealso cref="PrimaryConstructorMemberHandler"/>
 	internal sealed record CollectedResult(
 		string ParameterName,
 		TypeKind TypeKind,

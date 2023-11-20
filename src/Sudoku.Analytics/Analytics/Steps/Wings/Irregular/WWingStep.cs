@@ -20,9 +20,9 @@ public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] Cell startCell,
-	[DataMember] Cell endCell,
-	[DataMember] scoped ref readonly Conjugate conjugatePair
+	[Data] Cell startCell,
+	[Data] Cell endCell,
+	[Data] scoped ref readonly Conjugate conjugatePair
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -17,7 +17,7 @@ public sealed partial class TemplateStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] bool isTemplateDeletion
+	[Data] bool isTemplateDeletion
 ) : LastResortStep(conclusions, views, options)
 {
 	/// <summary>

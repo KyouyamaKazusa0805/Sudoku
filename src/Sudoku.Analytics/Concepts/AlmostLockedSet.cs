@@ -22,9 +22,9 @@ namespace Sudoku.Concepts;
 /// The special case is a bi-value cell.
 /// </remarks>
 public sealed partial class AlmostLockedSet(
-	[DataMember] Mask digitsMask,
-	[DataMember] scoped ref readonly CellMap cells,
-	[DataMember] scoped ref readonly CellMap possibleEliminationMap
+	[Data] Mask digitsMask,
+	[Data] scoped ref readonly CellMap cells,
+	[Data] scoped ref readonly CellMap possibleEliminationMap
 ) : ICoordinateObject<AlmostLockedSet>
 {
 	/// <summary>

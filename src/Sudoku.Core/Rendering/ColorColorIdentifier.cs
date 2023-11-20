@@ -16,10 +16,10 @@ namespace Sudoku.Rendering;
 [ToString]
 [method: JsonConstructor]
 public sealed partial class ColorColorIdentifier(
-	[DataMember, StringMember] byte a,
-	[DataMember, StringMember] byte r,
-	[DataMember, StringMember] byte g,
-	[DataMember, StringMember] byte b
+	[Data, StringMember] byte a,
+	[Data, StringMember] byte r,
+	[Data, StringMember] byte g,
+	[Data, StringMember] byte b
 ) : ColorIdentifier
 {
 	/// <summary>

@@ -28,10 +28,10 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct AnalysisContext(
-	[DataMember(SetterExpression = "internal set")] List<Step>? accumulator,
-	[DataMember(MemberKinds.Field)] ref readonly Grid grid,
-	[DataMember(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
-	[DataMember] StepSearcherOptions predefinedOptions
+	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
+	[Data(MemberKinds.Field)] ref readonly Grid grid,
+	[Data(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
+	[Data] StepSearcherOptions predefinedOptions
 )
 {
 	/// <summary>

@@ -12,4 +12,4 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Metadata.RuntimeIdentifier"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed partial class RuntimeIdentifierAttribute([DataMember] string runtimeIdentifier) : Attribute;
+public sealed partial class RuntimeIdentifierAttribute([Data] string runtimeIdentifier) : Attribute;

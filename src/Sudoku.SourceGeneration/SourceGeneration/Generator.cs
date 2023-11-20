@@ -34,14 +34,14 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.DataMemberAttribute",
+					"System.SourceGeneration.DataAttribute",
 					SyntaxNodeTypePredicate<ParameterSyntax>,
-					PrimaryConstructorHandler.Transform
+					PrimaryConstructorMemberHandler.Transform
 				)
 				.Where(NotNullPredicate)
 				.Select(NotNullSelector)
 				.Collect(),
-			PrimaryConstructorHandler.Output
+			PrimaryConstructorMemberHandler.Output
 		);
 
 	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)

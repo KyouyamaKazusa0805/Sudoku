@@ -31,9 +31,9 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	[DataMember] Digit xDigit,
-	[DataMember] Digit yDigit,
-	[DataMember] Cell xyCell,
+	[Data] Digit xDigit,
+	[Data] Digit yDigit,
+	[Data] Cell xyCell,
 	int absoluteOffset
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {

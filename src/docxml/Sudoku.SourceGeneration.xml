@@ -315,28 +315,28 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler">
+        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler">
             <summary>
-            The generator handler for primary constructor parameters.
+            The generator handler for primary constructor member parameters.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult})">
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler.CollectedResult})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult">
+        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler.CollectedResult">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>.
             </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler.CollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler.CollectedResult.#ctor(System.String,Microsoft.CodeAnalysis.TypeKind,Microsoft.CodeAnalysis.RefKind,Microsoft.CodeAnalysis.ScopedKind,Microsoft.CodeAnalysis.NullableAnnotation,Microsoft.CodeAnalysis.ITypeSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean,System.String,System.String,System.Boolean,Microsoft.CodeAnalysis.AttributeData[],System.String)">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>.
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>.
             </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorHandler"/>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
             <summary>

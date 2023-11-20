@@ -12,7 +12,7 @@ namespace Sudoku.Rendering;
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class PaletteIdColorIdentifier([DataMember, HashCodeMember, StringMember] int value) : ColorIdentifier
+public sealed partial class PaletteIdColorIdentifier([Data, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

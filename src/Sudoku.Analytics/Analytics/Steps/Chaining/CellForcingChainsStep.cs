@@ -22,8 +22,8 @@ public sealed partial class CellForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] byte sourceCell,
-	[DataMember] MultipleForcingChains chains,
+	[Data] byte sourceCell,
+	[Data] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)

@@ -7,4 +7,4 @@ namespace Sudoku.Analytics.Categorization;
 /// </summary>
 /// <param name="abbr">Indicates the abbreviation.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class AbbreviationAttribute([DataMember(GeneratedMemberName = "Abbreviation")] string abbr) : Attribute;
+public sealed partial class AbbreviationAttribute([Data(GeneratedMemberName = "Abbreviation")] string abbr) : Attribute;

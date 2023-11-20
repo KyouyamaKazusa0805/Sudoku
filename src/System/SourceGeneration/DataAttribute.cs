@@ -31,14 +31,14 @@ namespace System.SourceGeneration;
 /// <para>
 /// Via this attribute type, we can simplify the code:
 /// <code><![CDATA[
-/// public readonly partial struct Color([DataMember] byte a, [DataMember] byte r, [DataMember] byte g, [DataMember] byte b);
+/// public readonly partial struct Color([Data] byte a, [Data] byte r, [Data] byte g, [Data] byte b);
 /// ]]></code>
 /// Such code is equivalent to the original one.
 /// </para>
 /// <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed partial class DataMemberAttribute([DataMember] string memberKind = MemberKinds.Property) : Attribute
+public sealed partial class DataAttribute([Data] string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the generated field or property is implicitly read-only.

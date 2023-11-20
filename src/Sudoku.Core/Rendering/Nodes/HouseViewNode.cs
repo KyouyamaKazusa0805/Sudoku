@@ -13,7 +13,7 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class HouseViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember, StringMember] House house) :
+public sealed partial class HouseViewNode(ColorIdentifier identifier, [Data, HashCodeMember, StringMember] House house) :
 	BasicViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

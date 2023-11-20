@@ -8,7 +8,7 @@ namespace SudokuStudio.Interaction;
 /// <param name="cell">Indicates the cell that raises the event triggered.</param>
 /// <param name="newDigitInput">Indicates the digit input that raises the event triggered. -1 is for clear the cell.</param>
 /// <seealso cref="DigitInputEventHandler"/>
-public sealed partial class DigitInputEventArgs([DataMember] Cell cell, [DataMember(GeneratedMemberName = "DigitInput")] Digit newDigitInput) :
+public sealed partial class DigitInputEventArgs([Data] Cell cell, [Data(GeneratedMemberName = "DigitInput")] Digit newDigitInput) :
 	EventArgs
 {
 	/// <summary>

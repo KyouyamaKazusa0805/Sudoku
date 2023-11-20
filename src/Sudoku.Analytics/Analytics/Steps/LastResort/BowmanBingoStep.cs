@@ -18,7 +18,7 @@ public sealed partial class BowmanBingoStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[DataMember] Conclusion[] contradictionLinks
+	[Data] Conclusion[] contradictionLinks
 ) : LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

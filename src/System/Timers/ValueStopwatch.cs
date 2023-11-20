@@ -15,7 +15,7 @@ namespace System.Timers;
 [Equals]
 [GetHashCode]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly ref partial struct ValueStopwatch([DataMember(MemberKinds.Field)] long startTimestamp)
+public readonly ref partial struct ValueStopwatch([Data(MemberKinds.Field)] long startTimestamp)
 {
 	/// <summary>
 	/// The error information describing the type is uninitialized.

@@ -25,9 +25,9 @@ namespace Sudoku.Analytics;
 /// </param>
 [GetHashCode(OtherModifiers = "sealed")]
 public abstract partial class Step(
-	[DataMember(SetterExpression = "internal set")] Conclusion[] conclusions,
-	[DataMember] View[]? views,
-	[DataMember] StepSearcherOptions options
+	[Data(SetterExpression = "internal set")] Conclusion[] conclusions,
+	[Data] View[]? views,
+	[Data] StepSearcherOptions options
 ) : IRenderable
 {
 	/// <summary>

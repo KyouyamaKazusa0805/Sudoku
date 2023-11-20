@@ -14,7 +14,7 @@ namespace Sudoku.Algorithm.Ittoryu;
 /// This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
 /// </summary>
 /// <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-public sealed partial class IttoryuPathFinder([DataMember] TechniqueSet supportedTechniques)
+public sealed partial class IttoryuPathFinder([Data] TechniqueSet supportedTechniques)
 {
 	/// <summary>
 	/// Initializes an <see cref="IttoryuPathFinder"/> instance.

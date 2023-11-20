@@ -25,7 +25,7 @@ public sealed partial class QiuDeadlyPatternType2Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[DataMember] Digit targetDigit
+	[Data] Digit targetDigit
 ) : QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

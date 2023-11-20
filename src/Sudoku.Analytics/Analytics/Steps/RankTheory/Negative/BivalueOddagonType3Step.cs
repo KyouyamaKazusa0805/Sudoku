@@ -25,8 +25,8 @@ public sealed partial class BivalueOddagonType3Step(
 	scoped ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
-	[DataMember] scoped ref readonly CellMap extraCells,
-	[DataMember] Mask extraDigitsMask
+	[Data] scoped ref readonly CellMap extraCells,
+	[Data] Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2)
 {
 	/// <inheritdoc/>

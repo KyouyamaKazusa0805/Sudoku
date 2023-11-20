@@ -14,7 +14,7 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class CandidateViewNode(ColorIdentifier identifier, [DataMember, HashCodeMember] Candidate candidate) :
+public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Data, HashCodeMember] Candidate candidate) :
 	BasicViewNode(identifier)
 {
 	/// <summary>

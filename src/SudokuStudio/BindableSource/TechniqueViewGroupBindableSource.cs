@@ -12,8 +12,8 @@ namespace SudokuStudio.BindableSource;
 /// <seealso cref="Technique"/>
 [method: SetsRequiredMembers]
 public sealed partial class TechniqueViewGroupBindableSource(
-	[DataMember(SetterExpression = "init", Accessibility = "public required")] TechniqueGroup group,
-	[DataMember(SetterExpression = "init", Accessibility = "public required")] TechniqueViewBindableSource[] items
+	[Data(SetterExpression = "init", Accessibility = "public required")] TechniqueGroup group,
+	[Data(SetterExpression = "init", Accessibility = "public required")] TechniqueViewBindableSource[] items
 )
 {
 	/// <summary>

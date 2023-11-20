@@ -3165,7 +3165,7 @@ fixed (short* ptr = instance)
             Represents an attribute type that allows source generators generating for comparison operators if the specified types marked this attribute.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.DataMemberAttribute">
+        <member name="T:System.SourceGeneration.DataAttribute">
             <summary>
             Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
             telling the source generator that it should generate a property that references this parameter.
@@ -3194,14 +3194,14 @@ fixed (short* ptr = instance)
             <para>
             Via this attribute type, we can simplify the code:
             <code><![CDATA[
-            public readonly partial struct Color([DataMember] byte a, [DataMember] byte r, [DataMember] byte g, [DataMember] byte b);
+            public readonly partial struct Color([Data] byte a, [Data] byte r, [Data] byte g, [Data] byte b);
             ]]></code>
             Such code is equivalent to the original one.
             </para>
             <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
             </remarks>
         </member>
-        <member name="M:System.SourceGeneration.DataMemberAttribute.#ctor(System.String)">
+        <member name="M:System.SourceGeneration.DataAttribute.#ctor(System.String)">
             <summary>
             Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
             telling the source generator that it should generate a property that references this parameter.
@@ -3230,14 +3230,14 @@ fixed (short* ptr = instance)
             <para>
             Via this attribute type, we can simplify the code:
             <code><![CDATA[
-            public readonly partial struct Color([DataMember] byte a, [DataMember] byte r, [DataMember] byte g, [DataMember] byte b);
+            public readonly partial struct Color([Data] byte a, [Data] byte r, [Data] byte g, [Data] byte b);
             ]]></code>
             Such code is equivalent to the original one.
             </para>
             <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
             </remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.IsImplicitlyReadOnly">
+        <member name="P:System.SourceGeneration.DataAttribute.IsImplicitlyReadOnly">
             <summary>
             Indicates whether the generated field or property is implicitly read-only.
             If the property is <see langword="true"/>, the generated data member (auto-impl'ed propertys or fields) will be modified
@@ -3256,7 +3256,7 @@ fixed (short* ptr = instance)
             </summary>
             <remarks>This property is <see langword="true"/> by default.</remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.SetterExpression">
+        <member name="P:System.SourceGeneration.DataAttribute.SetterExpression">
             <summary>
             Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.
             For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
@@ -3264,7 +3264,7 @@ fixed (short* ptr = instance)
             which means the target property does not contain a setter.
             </summary>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.NamingRule">
+        <member name="P:System.SourceGeneration.DataAttribute.NamingRule">
             <summary>
             Indicates the naming rule of the generated member name.
             </summary>
@@ -3300,7 +3300,7 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.MembersNotNull">
+        <member name="P:System.SourceGeneration.DataAttribute.MembersNotNull">
             <summary>
             Indicates the member names becoming not <see langword="null"/>
             when this generated member is <see langword="true"/> or <see langword="false"/>.
@@ -3320,12 +3320,12 @@ fixed (short* ptr = instance)
             where <c>property1</c> and <c>property2</c> are supposed to be two parameters marked this attribute.
             </remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.GeneratedMemberName">
+        <member name="P:System.SourceGeneration.DataAttribute.GeneratedMemberName">
             <summary>
             Indicates the name of the generated member.
             </summary>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.Accessibility">
+        <member name="P:System.SourceGeneration.DataAttribute.Accessibility">
             <summary>
             Indicates the accessibility of the generated member.
             </summary>
@@ -3341,7 +3341,7 @@ fixed (short* ptr = instance)
             <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
             </remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.RefKind">
+        <member name="P:System.SourceGeneration.DataAttribute.RefKind">
             <summary>
             Indicates the <see langword="ref"/> kind of the generated member.
             </summary>
@@ -3374,7 +3374,7 @@ fixed (short* ptr = instance)
             </para>
             </remarks>
         </member>
-        <member name="P:System.SourceGeneration.DataMemberAttribute.MemberKind">
+        <member name="P:System.SourceGeneration.DataAttribute.MemberKind">
             <summary>
             The generated property declaration for parameter <c>memberKind</c>.
             </summary>

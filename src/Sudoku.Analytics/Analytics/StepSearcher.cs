@@ -42,9 +42,9 @@ namespace Sudoku.Analytics;
 [GetHashCode]
 [ToString(OtherModifiers = "sealed")]
 public abstract partial class StepSearcher(
-	[DataMember] int priority,
-	[DataMember] int level,
-	[DataMember] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
+	[Data] int priority,
+	[Data] int level,
+	[Data] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
 ) : IEquatable<StepSearcher>
 {
 	/// <summary>

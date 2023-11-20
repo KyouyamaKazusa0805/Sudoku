@@ -11,9 +11,9 @@ namespace Sudoku.Gdip;
 /// <param name="extraHeight">Indicates the extra height.</param>
 /// <param name="stringFormat">Indicates the string format.</param>
 internal sealed partial class TextRenderingData(
-	[DataMember] Font font,
-	[DataMember] float extraHeight,
-	[DataMember] StringFormat stringFormat
+	[Data] Font font,
+	[Data] float extraHeight,
+	[Data] StringFormat stringFormat
 ) : IDisposable
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

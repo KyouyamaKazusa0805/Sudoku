@@ -7,4 +7,4 @@ namespace Sudoku.Compatibility.Hodoku;
 /// </summary>
 /// <param name="prefix">Indicates the prefix value.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class HodokuTechniquePrefixAttribute([DataMember] string prefix) : Attribute;
+public sealed partial class HodokuTechniquePrefixAttribute([Data] string prefix) : Attribute;

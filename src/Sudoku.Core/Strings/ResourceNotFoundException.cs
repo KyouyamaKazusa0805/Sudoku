@@ -8,7 +8,7 @@ namespace Sudoku.Strings;
 /// </summary>
 /// <param name="resourceKey">Indicates the resource key that causes this error.</param>
 /// <param name="assembly">Indicates the assembly where this error is thrown.</param>
-public sealed partial class ResourceNotFoundException([DataMember] string resourceKey, [DataMember] Assembly assembly) : Exception
+public sealed partial class ResourceNotFoundException([Data] string resourceKey, [Data] Assembly assembly) : Exception
 {
 	/// <inheritdoc/>
 	public override string Message => $"Specified resource not found. Resource key: '{ResourceKey}', assembly: '{Assembly}'.";

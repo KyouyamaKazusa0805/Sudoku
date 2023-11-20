@@ -7,7 +7,7 @@ namespace SudokuStudio.ComponentModel;
 /// </summary>
 /// <typeparam name="T">The type of the property.</typeparam>
 /// <param name="propertyName">The property name.</param>
-public abstract partial class XamlBindingAttribute<T>([DataMember] string propertyName) : Attribute
+public abstract partial class XamlBindingAttribute<T>([Data] string propertyName) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.

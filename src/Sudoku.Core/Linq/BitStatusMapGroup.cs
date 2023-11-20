@@ -20,8 +20,8 @@ namespace Sudoku.Linq;
 [EqualityOperators]
 [LargeStructure]
 public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
-	[DataMember] TKey key,
-	[DataMember, HashCodeMember] scoped ref readonly TMap values
+	[Data] TKey key,
+	[Data, HashCodeMember] scoped ref readonly TMap values
 ) :
 	IEnumerable<TElement>,
 	IEquatable<BitStatusMapGroup<TMap, TElement, TKey>>,
