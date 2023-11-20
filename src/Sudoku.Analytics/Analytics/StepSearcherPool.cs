@@ -56,7 +56,7 @@ public abstract class StepSearcherPool
 
 			foreach (var stepSearcher in GetStepSearchers(type, expandSplitStepSearchers))
 			{
-				result.Add(stepSearcher.Priority << 4 | stepSearcher.SplitPriority, stepSearcher);
+				result.Add(stepSearcher.Priority << 4 | stepSearcher.Metadata.SplitPriority, stepSearcher);
 			}
 		}
 
@@ -121,7 +121,9 @@ public abstract class StepSearcherPool
 
 					// Sets the split priority value.
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
-					type.GetProperty(nameof(instance.SplitPriority))!.GetInitMethod(true)!.Invoke(instance, [separatedAttribute.Priority]);
+					type.GetProperty(nameof(instance.Metadata.SplitPriority))!
+						.GetInitMethod(true)!
+						.Invoke(instance, [separatedAttribute.Priority]);
 					stepSearcherArray[i++] = instance;
 				}
 

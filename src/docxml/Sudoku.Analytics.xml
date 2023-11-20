@@ -4133,6 +4133,108 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo">
+            <summary>
+            Represents the metadata implementation details for a <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            </summary>
+            <param name="stepSearcher">The step searcher instance.</param>
+            <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.#ctor(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.Metadata.StepSearcherAttribute)">
+            <summary>
+            Represents the metadata implementation details for a <see cref="T:Sudoku.Analytics.StepSearcher"/>.
+            </summary>
+            <param name="stepSearcher">The step searcher instance.</param>
+            <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsSplit">
+            <summary>
+            Determines whether the current step searcher contains split configuration,
+            meaning it can be created as multiple instances in a same step searchers collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsPure">
+            <summary>
+            Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsFixed">
+            <summary>
+            Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsNotSupportedForSukaku">
+            <summary>
+            Determines whether the current step searcher is not supported for sukaku solving mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredSlow">
+            <summary>
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/> being configured.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredHighAllocation">
+            <summary>
+            Determines whether the current step searcher is disabled
+            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/> being configured.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.PriorityId">
+            <summary>
+            Indicates the final priority value ID of the step searcher. This property is used as comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority">
+            <summary>
+            Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>.
+            </summary>
+            <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.Name">
+            <summary>
+            Returns the real name of this instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportedTechniques">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.DifficultyLevelRange">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetFor(Sudoku.Analytics.StepSearcher)">
+            <summary>
+            Fetch the the implementation details for the specified <see cref="T:Sudoku.Analytics.StepSearcher"/> instance.
+            </summary>
+            <param name="stepSearcher">The step searcher instance.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcher">
+            <summary>
+            The generated field declaration for parameter <c>stepSearcher</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcherAttribute">
+            <summary>
+            The generated field declaration for parameter <c>stepSearcherAttribute</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._splitPriority">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SplitPriority"/>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">
             <summary>
             Represents a mode that describes an area where a step searcher can be invoked.
@@ -4796,76 +4898,15 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsSplit">
-            <summary>
-            Determines whether the current step searcher contains split configuration,
-            meaning it can be created as multiple instances in a same step searchers collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsPure">
-            <summary>
-            Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsFixed">
-            <summary>
-            Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsNotSupportedForSukaku">
-            <summary>
-            Determines whether the current step searcher is not supported for sukaku solving mode.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredSlow">
-            <summary>
-            Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/> being configured.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.TimeComplexity"/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.IsConfiguredHighAllocation">
-            <summary>
-            Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/> being configured.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.SplitPriority">
-            <summary>
-            Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>.
-            </summary>
-            <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Name">
             <summary>
             Returns the real name of this instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.SupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.DifficultyLevelRange">
+        <member name="P:Sudoku.Analytics.StepSearcher.Metadata">
             <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            Indicates the implementation details of the current step searcher instance.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.PriorityId">
-            <summary>
-            Indicates the final priority value ID of the step searcher. This property is used as comparison.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.StepSearcherMetadataInfo">
-            <summary>
-            The internal information for the current step searcher instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
@@ -4920,20 +4961,8 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>runningArea</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>

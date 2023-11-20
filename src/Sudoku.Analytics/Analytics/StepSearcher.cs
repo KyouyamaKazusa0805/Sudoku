@@ -1,10 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.SourceGeneration;
-using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
-using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics;
 
@@ -38,97 +33,24 @@ namespace Sudoku.Analytics;
 /// </para>
 /// </param>
 /// <seealso cref="Step"/>
-[Equals]
-[GetHashCode]
 [ToString(OtherModifiers = "sealed")]
 public abstract partial class StepSearcher(
 	[Data] int priority,
 	[Data] int level,
 	[Data] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : IEquatable<StepSearcher>
+)
 {
-	/// <summary>
-	/// Determines whether the current step searcher contains split configuration,
-	/// meaning it can be created as multiple instances in a same step searchers collection.
-	/// </summary>
-	public bool IsSplit => GetType().GetCustomAttribute<SplitStepSearcherAttribute>() is not null;
-
-	/// <summary>
-	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
-	/// </summary>
-	public bool IsPure => StepSearcherMetadataInfo.IsPure;
-
-	/// <summary>
-	/// Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
-	/// </summary>
-	public bool IsFixed => StepSearcherMetadataInfo.IsFixed;
-
-	/// <summary>
-	/// Determines whether the current step searcher is not supported for sukaku solving mode.
-	/// </summary>
-	public bool IsNotSupportedForSukaku => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.Standard);
-
-	/// <summary>
-	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalFlags.TimeComplexity"/> being configured.
-	/// </summary>
-	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
-	public bool IsConfiguredSlow => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.TimeComplexity);
-
-	/// <summary>
-	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalFlags.SpaceComplexity"/> being configured.
-	/// </summary>
-	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => StepSearcherMetadataInfo.Flags is var cases && cases.Flags(ConditionalFlags.SpaceComplexity);
-
-	/// <summary>
-	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.
-	/// </summary>
-	/// <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
-	/// </exception>
-	/// <seealso cref="SplitStepSearcherAttribute"/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public int SplitPriority
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _splitPriority;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[RequiresUnreferencedCode("This setter can only be invoked by reflection.")]
-		internal init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
-	}
-
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	[StringMember]
-	public string Name => GetType().Name switch { var rawTypeName => GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName };
-
-	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
-	public TechniqueSet SupportedTechniques => [.. StepSearcherMetadataInfo.SupportedTechniques];
+	public string Name => Metadata.Name;
 
 	/// <summary>
-	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+	/// Indicates the implementation details of the current step searcher instance.
 	/// </summary>
-	public DifficultyLevel[] DifficultyLevelRange => StepSearcherMetadataInfo.DifficultyLevels.GetAllFlags();
+	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
 
-	/// <summary>
-	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
-	/// </summary>
-	[HashCodeMember]
-	private int PriorityId => Priority << 4 | SplitPriority;
-
-	/// <summary>
-	/// The internal information for the current step searcher instance.
-	/// </summary>
-	private StepSearcherAttribute StepSearcherMetadataInfo => GetType().GetCustomAttribute<StepSearcherAttribute>()!;
-
-
-	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && PriorityId == other.PriorityId;
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

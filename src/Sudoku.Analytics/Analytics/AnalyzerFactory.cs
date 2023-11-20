@@ -74,9 +74,14 @@ public static class AnalyzerFactory
 	/// <seealso cref="StepSearcher"/>
 	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers, DifficultyLevel level = default)
 	{
-		@this.StepSearchers = level == 0
-			? stepSearchers
-			: from stepSearcher in stepSearchers where Array.Exists(stepSearcher.DifficultyLevelRange, l => l <= level) select stepSearcher;
+		@this.StepSearchers = level switch
+		{
+			0 => stepSearchers,
+			_ =>
+			from stepSearcher in stepSearchers
+			where Array.Exists(stepSearcher.Metadata.DifficultyLevelRange, l => l <= level)
+			select stepSearcher
+		};
 		return @this;
 	}
 

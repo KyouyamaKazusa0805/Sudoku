@@ -56,7 +56,7 @@ public sealed partial class StepSearcherListView : UserControl
 
 		var def = e.GetDeferral();
 		if (JsonSerializer.Deserialize<StepSearcherInfo>(await e.DataView.GetTextAsync()) is not { TypeName: var typeName } instance
-			|| StepSearcherPool.GetStepSearchers(typeName, false)[0].IsFixed)
+			|| StepSearcherPool.GetStepSearchers(typeName, false)[0].Metadata.IsFixed)
 		{
 			return;
 		}

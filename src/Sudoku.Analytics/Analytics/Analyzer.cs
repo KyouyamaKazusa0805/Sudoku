@@ -191,10 +191,10 @@ public sealed partial class Analyzer :
 			{
 				switch (isSukaku, searcher, this)
 				{
-					case (true, { IsNotSupportedForSukaku: true }, _):
+					case (true, { Metadata.IsNotSupportedForSukaku: true }, _):
 					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
-					case (_, { IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
-					case (_, { IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
+					case (_, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
+					case (_, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".

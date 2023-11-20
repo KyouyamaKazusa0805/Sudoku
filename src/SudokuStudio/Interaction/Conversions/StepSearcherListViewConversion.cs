@@ -14,10 +14,10 @@ namespace SudokuStudio.Interaction.Conversions;
 internal static class StepSearcherListViewConversion
 {
 	public static object? GetStepSearcherSupportedDifficultyLevelCollection(StepSearcherInfo? info)
-		=> info is null ? null : GetMatchedStepSearcher(info).DifficultyLevelRange;
+		=> info is null ? null : GetMatchedStepSearcher(info).Metadata.DifficultyLevelRange;
 
 	public static object? GetStepSearcherSupportedTechniqueCollection(StepSearcherInfo? info)
-		=> info is null ? null : from t in GetMatchedStepSearcher(info).SupportedTechniques orderby t.GetDifficultyLevel() select t;
+		=> info is null ? null : from t in GetMatchedStepSearcher(info).Metadata.SupportedTechniques orderby t.GetDifficultyLevel() select t;
 
 	public static string GetStepSearcherName(StepSearcherInfo? info) => info is null ? string.Empty : GetMatchedStepSearcher(info).Name;
 

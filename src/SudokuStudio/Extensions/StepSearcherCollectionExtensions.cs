@@ -22,8 +22,8 @@ public static class StepSearcherCollectionExtensions
 			where data.IsEnabled
 			select data.CreateStepSearchers() into stepSearchers
 			from s in stepSearchers
-			let timeFlag = s.IsConfiguredSlow
-			let spaceFlag = s.IsConfiguredHighAllocation
+			let timeFlag = s.Metadata.IsConfiguredSlow
+			let spaceFlag = s.Metadata.IsConfiguredHighAllocation
 			where !timeFlag || timeFlag && !disallowHighTimeComplexity || !spaceFlag || spaceFlag && !disallowSpaceTimeComplexity
 			select s
 		];
