@@ -4597,11 +4597,6 @@ if (student is (name: var name, age: >= 18))
             This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
             </param>
         </member>
-        <member name="F:Sudoku.Analytics.Step.HashCodeDefaultValue">
-            <summary>
-            The placeholder of the hash code.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Step.ErrorInfo_TechniqueLevelCannotBeDetermined">
             <summary>
             The error information for difficulty level cannot be determined.
@@ -4767,9 +4762,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>options</c>.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Analytics.StepCollector">
             <summary>

@@ -20,20 +20,12 @@ namespace Sudoku.Analytics;
 /// Indicates an optional instance that provides with extra information for a step searcher.
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
-[GetHashCode(OtherModifiers = "sealed")]
 public abstract partial class Step(
 	[Data(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[Data] View[]? views,
 	[Data] StepSearcherOptions options
 ) : IRenderable
 {
-	/// <summary>
-	/// The placeholder of the hash code.
-	/// </summary>
-	[HashCodeMember]
-	private const int HashCodeDefaultValue = 0;
-
-
 	/// <summary>
 	/// The error information for difficulty level cannot be determined.
 	/// </summary>
