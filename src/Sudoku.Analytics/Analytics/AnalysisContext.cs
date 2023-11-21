@@ -27,6 +27,7 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
+[LargeStructure]
 public ref partial struct AnalysisContext(
 	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
 	[Data(DataMemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
