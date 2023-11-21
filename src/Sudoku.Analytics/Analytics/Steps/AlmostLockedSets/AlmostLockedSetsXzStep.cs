@@ -80,6 +80,5 @@ public sealed partial class AlmostLockedSetsXzStep(
 
 	private string XStr => Options.Converter.DigitConverter(XDigitsMask);
 
-	private string ZResultStr
-		=> ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
+	private string ZResultStr => ZDigitsMask == 0 ? string.Empty : $"{GetString("Comma")!}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
 }
