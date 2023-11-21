@@ -237,7 +237,8 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-					CornerRadius = new(8)
+					CornerRadius = new(6),
+					Margin = new(6)
 				};
 
 				GridLayout.SetRowSpan(control, 3);
