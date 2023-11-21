@@ -67,8 +67,7 @@ public sealed partial class BinaryForcingChainsStep(
 
 
 	/// <inheritdoc/>
-	public override string Format
-		=> (IsAbsurd ? GetString("TechniqueFormat_ContradictionForcingChainsStep") : GetString("TechniqueFormat_DoubleForcingChainsStep"))!;
+	public override ResourceFormat Format => $"{(IsAbsurd ? "ContradictionForcingChainsStep" : "DoubleForcingChainsStep")}";
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

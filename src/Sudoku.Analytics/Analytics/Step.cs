@@ -62,49 +62,6 @@ public abstract partial class Step(
 	public virtual string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
 
 	/// <summary>
-	/// Gets the format of the current instance.
-	/// </summary>
-	/// <returns>
-	/// Returns a <see cref="string"/> result. If the resource dictionary doesn't contain
-	/// any valid formats here, the result value will be <see langword="null"/>.
-	/// </returns>
-	/// <remarks>
-	/// <para>
-	/// A <b>format</b> is the better way to format the result text of this technique information instance.
-	/// It'll be represented by the normal characters and the placeholders, e.g.
-	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
-	/// </para>
-	/// <para>
-	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolationParts"/>.
-	/// You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
-	/// </para>
-	/// <para>
-	/// The recommended implementation pattern is:
-	/// <code><![CDATA[
-	/// private string CellsStr => Cells.ToString();
-	/// private string DigitsStr => Digits.ToString(", ");
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// And then fill the blank via property <see cref="FormatInterpolationParts"/>:
-	/// <code><![CDATA[
-	/// public override FormatInterpolation FormatInterpolationParts
-	///     => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
-	/// ]]></code>
-	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
-	/// </para>
-	/// <para>
-	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
-	/// <code><![CDATA[
-	/// public override string Format => GetString("TheKeyYouWantToSearch");
-	/// ]]></code>
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="FormatInterpolationParts"/>
-	/// <seealso cref="GetString(string)"/>
-	public virtual string? Format => GetString($"TechniqueFormat_{GetType().Name}");
-
-	/// <summary>
 	/// Indicates the difficulty of this technique step.
 	/// </summary>
 	/// <remarks>
@@ -148,6 +105,50 @@ public abstract partial class Step(
 			: throw new InvalidOperationException(ErrorInfo_TechniqueLevelCannotBeDetermined);
 
 	/// <summary>
+	/// Gets the format of the current instance.
+	/// </summary>
+	/// <returns>
+	/// Returns a <see cref="string"/> result. If the resource dictionary doesn't contain
+	/// any valid formats here, the result value will be <see langword="null"/>.
+	/// </returns>
+	/// <remarks>
+	/// <para>
+	/// A <b>format</b> is the better way to format the result text of this technique information instance.
+	/// It'll be represented by the normal characters and the placeholders, e.g.
+	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
+	/// </para>
+	/// <para>
+	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolationParts"/>.
+	/// You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
+	/// </para>
+	/// <para>
+	/// The recommended implementation pattern is:
+	/// <code><![CDATA[
+	/// private string CellsStr => Cells.ToString();
+	/// private string DigitsStr => Digits.ToString(", ");
+	/// ]]></code>
+	/// </para>
+	/// <para>
+	/// And then fill the blank via property <see cref="FormatInterpolationParts"/>:
+	/// <code><![CDATA[
+	/// public override FormatInterpolation FormatInterpolationParts
+	///     => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
+	/// ]]></code>
+	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
+	/// </para>
+	/// <para>
+	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
+	/// <code><![CDATA[
+	/// // $"{TheKeyYouWantToSearch}" -> GetString("TechniqueFormat_TheKeyYouWantToSearch")
+	/// public override ResourceFormat Format => $"{TheKeyYouWantToSearch}";
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="FormatInterpolationParts"/>
+	/// <seealso cref="GetString(string)"/>
+	public virtual ResourceFormat Format => $"{GetType().Name}";
+
+	/// <summary>
 	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
 	/// this property will keep <see langword="null"/> value.
 	/// </summary>
@@ -179,9 +180,9 @@ public abstract partial class Step(
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
-			(null, _) => ToSimpleString(),
+			({ Format: null }, _) => ToSimpleString(),
 			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
-			var (_, formatArgs) => $"{Name}{colonToken}{string.Format(Format, formatArgs)} => {ConclusionText}"
+			var (_, formatArgs) => $"{Name}{colonToken}{Format.ToString(formatArgs)} => {ConclusionText}"
 		};
 	}
 

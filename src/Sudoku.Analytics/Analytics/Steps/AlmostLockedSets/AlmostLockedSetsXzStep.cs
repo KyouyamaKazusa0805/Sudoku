@@ -40,15 +40,13 @@ public sealed partial class AlmostLockedSetsXzStep(
 	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
-	public override string? Format
-		=> GetString(
-			(IsDoublyLinked, ZDigitsMask) switch
-			{
-				(null, 0) => "TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate",
-				(null, _) => "TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate",
-				_ => "TechniqueFormat_AlmostLockedSetsXzRule"
-			}
-		);
+	public override ResourceFormat Format
+		=> $"{(IsDoublyLinked, ZDigitsMask) switch
+		{
+			(null, 0) => "ExtendedSubsetPrincipleWithoutDuplicate",
+			(null, _) => "ExtendedSubsetPrincipleWithDuplicate",
+			_ => "AlmostLockedSetsXzRule"
+		}}";
 
 	/// <inheritdoc/>
 	public override Technique Code
