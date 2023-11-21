@@ -113,39 +113,53 @@ public abstract partial class Step(
 	/// </returns>
 	/// <remarks>
 	/// <para>
-	/// A <b>format</b> is the better way to format the result text of this technique information instance.
-	/// It'll be represented by the normal characters and the placeholders, e.g.
+	/// A <b>format</b> is a way to describe the details to a technique usage (i.e. <see cref="Step"/>).
+	/// A format text will be combined with two parts: literals and placeholders. Here is an example:
 	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
 	/// </para>
 	/// <para>
-	/// Here the placeholder <c>{0}</c>, and <c>{1}</c> must be provided by property <see cref="FormatInterpolationParts"/>.
-	/// You should create 2 values that can be replaced with the placeholder <c>{0}</c> and <c>{1}</c>.
+	/// The placeholders <c>{0}</c> and <c>{1}</c> will use normal characters '<c>{</c>', digit characters '<c>0</c>' or '<c>1</c>'
+	/// and '<c>}</c>'. The internal values will be offered by another property called <see cref="FormatInterpolationParts"/>.
+	/// In that property, the value (an array) will contain 2 elements
+	/// that can fill with the placeholders <c>{0}</c> and <c>{1}</c> respectively.
 	/// </para>
 	/// <para>
-	/// The recommended implementation pattern is:
+	/// The recommended implementation pattern is to declare with properties in the target type derived from <see cref="Step"/> instance like:
 	/// <code><![CDATA[
 	/// private string CellsStr => Cells.ToString();
 	/// private string DigitsStr => Digits.ToString(", ");
 	/// ]]></code>
 	/// </para>
 	/// <para>
-	/// And then fill the blank via property <see cref="FormatInterpolationParts"/>:
+	/// And then override the property <see cref="FormatInterpolationParts"/> like:
 	/// <code><![CDATA[
 	/// public override FormatInterpolation FormatInterpolationParts
 	///     => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
 	/// ]]></code>
-	/// If you cannot decide the real name of the culture name, just use suffix instead like <c>"en"</c> and <c>"zh"</c>, ignoring cases.
+	/// The culture name "<c>en-US</c>" and "<c>zh-CN</c>" stands for the target country or region is English and China (Mainland) respectively.
+	/// If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
 	/// </para>
 	/// <para>
-	/// If you want to use the values in the resource dictionary, you can just use method <see cref="GetString(string)"/>, for example:
+	/// Please note the type of this property is <see cref="Analytics.Format"/>, which is not a plain string text.
+	/// However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
+	/// where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
+	/// The format text will be expanded to this expression in runtime:
 	/// <code><![CDATA[
-	/// // $"{TheKeyYouWantToSearch}" -> GetString("TechniqueFormat_TheKeyYouWantToSearch")
-	/// public override ResourceFormat Format => $"{TheKeyYouWantToSearch}";
+	/// var formatText = StringAccessor.GetString($"TechniqueFormat_UniqueRectangle{Type}Step");
 	/// ]]></code>
+	/// You can use this value to get the final text:
+	/// <code><![CDATA[
+	/// var culture = ...; // The culture string.
+	/// var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
+	/// var description = Format.ToString(formatArguments);
+	/// ]]></code>
+	/// See the documentation documents defined in method <see cref="ToString"/> to learn more information.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="GetString(string)"/>
+	/// <seealso cref="Analytics.Format"/>
+	/// <seealso cref="ToString"/>
 	public virtual Format Format => $"{GetType().Name}";
 
 	/// <summary>
