@@ -24,6 +24,15 @@ public static class ListGridExtensions
 	public static extern ref Grid[] GetItems(this List<Grid> @this);
 
 	/// <summary>
+	/// Try to get the <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> to represents same data as the parameter <paramref name="this"/>,
+	/// without any copying operation.
+	/// </summary>
+	/// <param name="this">The list of grids.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> instances.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<Grid> GetSpan(this List<Grid> @this) => @this.GetItems().AsSpan()[..@this.Count];
+
+	/// <summary>
 	/// Adds the given object to the end of this list.
 	/// </summary>
 	/// <param name="this">The list.</param>
