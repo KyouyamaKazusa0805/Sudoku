@@ -146,13 +146,7 @@ public abstract partial class Step(
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="GetString(string)"/>
-	public virtual ResourceFormat Format => $"{GetType().Name}";
-
-	/// <summary>
-	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
-	/// this property will keep <see langword="null"/> value.
-	/// </summary>
-	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
+	public virtual Format Format => $"{GetType().Name}";
 
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.
@@ -161,6 +155,12 @@ public abstract partial class Step(
 	/// <seealso cref="Format"/>
 	/// <seealso cref="FormatInterpolation"/>
 	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
+
+	/// <summary>
+	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
+	/// this property will keep <see langword="null"/> value.
+	/// </summary>
+	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
@@ -180,7 +180,7 @@ public abstract partial class Step(
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
-			({ Format: null }, _) => ToSimpleString(),
+			({ TargetFormat: null }, _) => ToSimpleString(),
 			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
 			var (_, formatArgs) => $"{Name}{colonToken}{Format.ToString(formatArgs)} => {ConclusionText}"
 		};

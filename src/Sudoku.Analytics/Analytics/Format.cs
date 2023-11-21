@@ -22,8 +22,14 @@ namespace Sudoku.Analytics;
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
-public partial struct ResourceFormat([Data(DataMemberKinds.Field)] int literalLength, [Data(DataMemberKinds.Field)] int holeCount)
+public partial struct Format([Data(DataMemberKinds.Field)] int literalLength, [Data(DataMemberKinds.Field)] int holeCount)
 {
+	/// <summary>
+	/// The format prefix.
+	/// </summary>
+	internal const string FormatPrefix = "TechniqueFormat";
+
+
 	/// <summary>
 	/// The suffix of the format.
 	/// </summary>
@@ -33,7 +39,7 @@ public partial struct ResourceFormat([Data(DataMemberKinds.Field)] int literalLe
 	/// <summary>
 	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
 	/// </summary>
-	public readonly string? Format => _formatSuffix is null ? null : GetString($"TechniqueFormat_{_formatSuffix}");
+	public readonly string? TargetFormat => _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}");
 
 
 	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted(string?)"/>
@@ -49,7 +55,7 @@ public partial struct ResourceFormat([Data(DataMemberKinds.Field)] int literalLe
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(params string[] formatArguments)
-		=> Format is not null
-			? string.Format(Format, formatArguments)
-			: throw new ResourceNotFoundException($"TechniqueFormat_{_formatSuffix}", typeof(ResourceFormat).Assembly);
+		=> TargetFormat is not null
+			? string.Format(TargetFormat, formatArguments)
+			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(Format).Assembly);
 }

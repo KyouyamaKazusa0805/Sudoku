@@ -40,7 +40,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
-	public override ResourceFormat Format
+	public override Format Format
 		=> $"{(IsDoublyLinked, ZDigitsMask) switch
 		{
 			(null, 0) => "ExtendedSubsetPrincipleWithoutDuplicate",
