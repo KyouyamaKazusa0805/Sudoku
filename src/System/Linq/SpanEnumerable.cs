@@ -8,6 +8,23 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
+	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
+	public static TKey Min<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var resultKey = TKey.MaxValue;
+		foreach (ref readonly var element in @this)
+		{
+			var key = keySelector(in element);
+			if (key <= resultKey)
+			{
+				resultKey = key;
+			}
+		}
+
+		return resultKey;
+	}
+
 	/// <summary>
 	/// Returns the minimum value in a generic sequence according to a specified key selector function.
 	/// </summary>
@@ -31,6 +48,23 @@ public static class SpanEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
+	public static TKey? Max<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
+	{
+		var resultKey = TKey.MinValue;
+		foreach (ref readonly var element in @this)
+		{
+			var key = keySelector(in element);
+			if (key >= resultKey)
+			{
+				resultKey = key;
+			}
+		}
+
+		return resultKey;
+	}
+
 	/// <summary>
 	/// Returns the maximum value in a generic sequence according to a specified key selector function.
 	/// </summary>
@@ -48,6 +82,47 @@ public static class SpanEnumerable
 			if (keySelector(in element) >= resultKey)
 			{
 				result = element;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <typeparam name="TKey">The type of key to add up.</typeparam>
+	/// <param name="this">A sequence of values to determine the sum value of.</param>
+	/// <param name="keySelector">A function to extract the key for each element.</param>
+	/// <returns>The value with the sum key in the sequence.</returns>
+	public static TKey Sum<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+		where TKey : IMinMaxValue<TKey>?, IAdditionOperators<TKey, TKey, TKey>?
+	{
+		var result = TKey.MinValue;
+		foreach (ref readonly var element in @this)
+		{
+			result += keySelector(in element);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Totals up how many elements stored in the specified sequence satisfy the specified condition.
+	/// </summary>
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="this">A sequence of values to be determined.</param>
+	/// <param name="condition">The condition.</param>
+	/// <returns>The number of elements satisfying the specified condition.</returns>
+	public static int Count<TSource>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, bool> condition)
+	{
+		var result = 0;
+		foreach (ref readonly var element in @this)
+		{
+			if (condition(in element))
+			{
+				result++;
 			}
 		}
 
