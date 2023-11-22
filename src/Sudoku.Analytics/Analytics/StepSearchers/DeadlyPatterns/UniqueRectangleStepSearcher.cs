@@ -42,10 +42,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Unique Rectangle + Guardian (This program call it "Unique Rectangle External Types"):
 /// <list type="bullet">
 /// <item>Unique Rectangle External Type 1-4</item>
-/// <item>Unique Rectangle External Type with XY-Wing</item>
-/// <item>Unique Rectangle External Type with W-Wing</item>
-/// <item>Unique Rectangle External Type with ALS-XZ</item>
-/// <item>Unique Rectangle External Type with Turbot Fish</item>
+/// <item>Unique Rectangle External XY-Wing</item>
+/// <item>Unique Rectangle External W-Wing</item>
+/// <item>Unique Rectangle External ALS-XZ</item>
+/// <item>Unique Rectangle External Turbot Fish</item>
 /// </list>
 /// </item>
 /// <item>Avoidable Rectangle + Guardian (Sub-types are same like above)</item>
