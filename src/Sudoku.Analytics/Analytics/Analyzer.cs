@@ -203,6 +203,32 @@ public sealed partial class Analyzer :
 						// 4. If the searcher is configured as high-allocation.
 						continue;
 					}
+					case (_, BruteForceStepSearcher, { RandomizedChoosing: true }):
+					{
+						accumulator!.Clear();
+
+						searcher.Collect(ref context);
+						if (accumulator.Count == 0)
+						{
+							continue;
+						}
+
+						// Here will fetch a correct step to be applied.
+						var chosenStep = accumulator[_random.Next(0, accumulator.Count)];
+						if (!verifyConclusionValidity(in solution, chosenStep))
+						{
+							throw new WrongStepException(in playground, chosenStep);
+						}
+
+						if (onCollectingSteps(
+							collectedSteps, chosenStep, in context, ref playground,
+							in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+						{
+							return result;
+						}
+
+						goto AssignProgress;
+					}
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();
