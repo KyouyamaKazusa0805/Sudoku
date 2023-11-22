@@ -27,26 +27,6 @@ public static class Ref
 	}
 
 	/// <summary>
-	/// Moves the reference to the next position. Simply calls <see cref="AddByteOffset{T}(ref T, nint)"/> with arguments
-	/// <paramref name="ref"/> and 1.
-	/// </summary>
-	/// <typeparam name="T">The type of the element.</typeparam>
-	/// <param name="ref">The reference.</param>
-	/// <seealso cref="AddByteOffset{T}(ref T, nint)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void MoveNext<T>(scoped ref T @ref) => AddByteOffset(ref @ref, sizeof(T));
-
-	/// <summary>
-	/// Moves the reference to the previous position. Simply calls <see cref="SubtractByteOffset{T}(ref T, nint)"/> with arguments
-	/// <paramref name="ref"/> and 1.
-	/// </summary>
-	/// <typeparam name="T">The type of the element.</typeparam>
-	/// <param name="ref">The reference.</param>
-	/// <seealso cref="SubtractByteOffset{T}(ref T, nint)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe void MovePrevious<T>(scoped ref T @ref) => SubtractByteOffset(ref @ref, sizeof(T));
-
-	/// <summary>
 	/// Simply invokes the method <see cref="As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
 	/// </summary>
 	/// <typeparam name="T">The base type that is converted from.</typeparam>
@@ -126,96 +106,17 @@ public static class Ref
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
 	/// </exception>
-	public static unsafe ReadOnlySpan<T> Slice<T>(scoped ref readonly T memorySpan, int start, int count)
+	public static ReadOnlySpan<T> Slice<T>(scoped ref readonly T memorySpan, int start, int count)
 	{
 		ThrowIfNullRef(in memorySpan);
 
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = AddByteOffset(ref AsRef(in memorySpan), sizeof(T) * i);
+			result[i - start] = Add(ref AsRef(in memorySpan), i);
 		}
 
 		return result;
-	}
-
-	/// <summary>
-	/// Get the new array from the pointer, with the specified start index.
-	/// </summary>
-	/// <typeparam name="T">The type of the pointer element.</typeparam>
-	/// <param name="ptr">The pointer.</param>
-	/// <param name="index">The start index that you want to pick from.</param>
-	/// <param name="length">The length of the array that pointer points to.</param>
-	/// <returns>The array of elements.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-	/// </exception>
-	/// <remarks>
-	/// For example, the pointer is the address of the first element in an array <c>[0, 1, 3, 6, 10]</c>,
-	/// if parameter <paramref name="index"/> is 2, the return array will be <c>[3, 6, 10]</c>. Note that
-	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
-	/// 5 elements in this case.
-	/// </remarks>
-	public static unsafe ReadOnlySpan<T> Slice<T>(T* ptr, int index, int length)
-	{
-		ArgumentNullException.ThrowIfNull(ptr);
-
-		var result = new T[length - index];
-		for (var i = index; i < length; i++)
-		{
-			result[i - index] = ptr[i];
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Get the new array from the pointer, with the specified start index.
-	/// </summary>
-	/// <param name="ptr">The pointer.</param>
-	/// <param name="length">The length of the array that pointer points to.</param>
-	/// <param name="index">The start index that you want to pick from.</param>
-	/// <param name="removeTrailingZeros">
-	/// Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
-	/// the method will be same as <see cref="Slice{T}(T*, int, int)"/>.
-	/// </param>
-	/// <returns>The array of elements.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-	/// </exception>
-	/// <remarks>
-	/// For example, the pointer is the address of the first element in an array <c>[0, 1, 3, 6, 10]</c>,
-	/// if parameter <paramref name="index"/> is 2, the return array will be <c>[3, 6, 10]</c>. Note that
-	/// the parameter <paramref name="length"/> should keep the value 5 because the array contains
-	/// 5 elements in this case.
-	/// </remarks>
-	/// <seealso cref="Slice{T}(T*, int, int)"/>
-	public static unsafe ReadOnlySpan<int> Slice(int* ptr, int length, int index, bool removeTrailingZeros)
-	{
-		ArgumentNullException.ThrowIfNull(ptr);
-
-		if (removeTrailingZeros)
-		{
-			var count = 0;
-			var p = ptr + length - 1;
-			for (var i = length - 1; i >= 0; i--, p--, count++)
-			{
-				if (*p != 0)
-				{
-					break;
-				}
-			}
-
-			var result = new int[length - count - index];
-			for (var i = index; i < length - count; i++)
-			{
-				result[i - index] = ptr[i];
-			}
-
-			return result;
-		}
-
-		return Slice(ptr, index, length);
 	}
 
 	/// <summary>
