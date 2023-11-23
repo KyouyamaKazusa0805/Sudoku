@@ -18,19 +18,18 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 			typeof(AlmostLockedSetsXzStepSearcher),
 			typeof(AlmostLockedSetsXyWingStepSearcher),
 			typeof(AlmostLockedSetsWWingStepSearcher),
-			typeof(EmptyRectangleIntersectionPairStepSearcher)
+			typeof(EmptyRectangleIntersectionPairStepSearcher),
+			typeof(DeathBlossomStepSearcher)
 		];
 
 
 	/// <summary>
 	/// Try to collect all possible ALSes in the specified grid.
 	/// </summary>
-	/// <param name="context">The grid to be used.</param>
+	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of ALSes.</returns>
-	public static ReadOnlySpan<AlmostLockedSet> CollectAlmostLockedSets(scoped ref readonly AnalysisContext context)
+	public static ReadOnlySpan<AlmostLockedSet> CollectAlmostLockedSets(scoped ref readonly Grid grid)
 	{
-		scoped ref readonly var grid = ref context.Grid;
-
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in BivalueCells)

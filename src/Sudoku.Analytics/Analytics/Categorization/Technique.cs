@@ -2805,23 +2805,14 @@ public enum Technique
 	//
 	#region Death Blossom
 	/// <summary>
-	/// Indicates death blossom cell type.
+	/// Indicates death blossom.
 	/// </summary>
 	[HodokuTechniquePrefix("0904")]
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
-	[HodokuAliasedNames("Death Blossom")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	DeathBlossomCellType,
-
-	/// <summary>
-	/// Indicates death blossom house type.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Nightmare)]
-	DeathBlossomHouseType,
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[Abbreviation("DB")]
+	DeathBlossom,
 	#endregion
 
 	//

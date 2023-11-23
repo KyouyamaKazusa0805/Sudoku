@@ -24,13 +24,13 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in context);
+		scoped ref readonly var grid = ref context.Grid;
+		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
 		// Gather all conjugate pairs.
 		var conjugatePairs = AlmostLockedSetsModule.CollectConjugatePairs();
 
 		// Iterate on each ALS.
-		scoped ref readonly var grid = ref context.Grid;
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

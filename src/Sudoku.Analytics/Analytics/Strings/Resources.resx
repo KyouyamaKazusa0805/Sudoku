@@ -1257,8 +1257,8 @@
   <data name="AlmostLockedSetsWWing" xml:space="preserve">
     <value>Almost Locked Sets W-Wing</value>
   </data>
-  <data name="DeathBlossomCellType" xml:space="preserve">
-    <value>Cell Death Blossom</value>
+  <data name="DeathBlossom" xml:space="preserve">
+    <value>Death Blossom</value>
   </data>
   <data name="GurthSymmetricalPlacement" xml:space="preserve">
     <value>Gurth's Symmetrical Placement</value>
@@ -2126,9 +2126,6 @@
   </data>
   <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
     <value>Locked Subsets</value>
-  </data>
-  <data name="DeathBlossomHouseType" xml:space="preserve">
-    <value>Death Blossom House Type</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalWWingStep" xml:space="preserve">
     <value>Digits {0} and {1} in {2} with a guardian in cells {3}, with external W-Wing, with cell pair {4}</value>

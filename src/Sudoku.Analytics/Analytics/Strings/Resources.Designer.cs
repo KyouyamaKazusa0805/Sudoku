@@ -925,20 +925,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell Death Blossom.
+        ///   Looks up a localized string similar to Death Blossom.
         /// </summary>
-        public static string DeathBlossomCellType {
+        public static string DeathBlossom {
             get {
-                return ResourceManager.GetString("DeathBlossomCellType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Death Blossom House Type.
-        /// </summary>
-        public static string DeathBlossomHouseType {
-            get {
-                return ResourceManager.GetString("DeathBlossomHouseType", resourceCulture);
+                return ResourceManager.GetString("DeathBlossom", resourceCulture);
             }
         }
         

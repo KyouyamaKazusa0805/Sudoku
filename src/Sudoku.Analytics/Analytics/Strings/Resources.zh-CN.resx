@@ -1516,8 +1516,8 @@
     <value>待定数组・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="DeathBlossomCellType" xml:space="preserve">
-    <value>单元格死亡绽放</value>
+  <data name="DeathBlossom" xml:space="preserve">
+    <value>死亡绽放</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GurthSymmetricalPlacement" xml:space="preserve">
@@ -2247,10 +2247,6 @@
   <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
     <value>死锁数组</value>
     <comment>Step Searcher Name</comment>
-  </data>
-  <data name="DeathBlossomHouseType" xml:space="preserve">
-    <value>死亡绽放・区域类型</value>
-    <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalWWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，W-Wing 结构，外侧单元格对为 {4}</value>

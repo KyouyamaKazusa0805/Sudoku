@@ -1,6 +1,3 @@
-// This file stores built-in 'StepSearcher' instances,
-// in order to create default collection of member 'StepSearcherPool.Default'.
-
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.StepSearchers;
 
@@ -39,6 +36,7 @@ using Sudoku.Analytics.StepSearchers;
 [assembly: StepSearcherImport<ComplexFishStepSearcher>(2)]
 [assembly: StepSearcherImport<BivalueOddagonStepSearcher>(1)]
 [assembly: StepSearcherImport<ChromaticPatternStepSearcher>(2)]
+[assembly: StepSearcherImport<DeathBlossomStepSearcher>(2)]
 [assembly: StepSearcherImport<BlossomLoopStepSearcher>(3)]
 [assembly: StepSearcherImport<MultipleChainingStepSearcher>(3)]
 [assembly: StepSearcherImport<BowmanBingoStepSearcher>(3, Areas = 0)]

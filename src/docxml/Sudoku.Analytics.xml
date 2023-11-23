@@ -2709,14 +2709,9 @@ if (student is (name: var name, age: >= 18))
             Indicates empty rectangle intersection pair.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomCellType">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossom">
             <summary>
-            Indicates death blossom cell type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DeathBlossomHouseType">
-            <summary>
-            Indicates death blossom house type.
+            Indicates death blossom.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GurthSymmetricalPlacement">
@@ -5072,11 +5067,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#AlmostLockedSetsModule}#SupportedTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
             <summary>
             Try to collect all possible ALSes in the specified grid.
             </summary>
-            <param name="context">The grid to be used.</param>
+            <param name="grid">The grid to be used.</param>
             <returns>A list of ALSes.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectConjugatePairs">
@@ -5323,6 +5318,18 @@ if (student is (name: var name, age: >= 18))
             will tell you what is it.
             </para>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher">
+            <summary>
+            Provides with a <b>Death Blossom</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Death Blossom</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
             <summary>
@@ -17104,14 +17111,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Continuous Nice Loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.DeathBlossomCellType">
+        <member name="P:Sudoku.Analytics.Strings.Resources.DeathBlossom">
             <summary>
-              Looks up a localized string similar to Cell Death Blossom.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.DeathBlossomHouseType">
-            <summary>
-              Looks up a localized string similar to Death Blossom House Type.
+              Looks up a localized string similar to Death Blossom.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.DiagonalSymmetry">
