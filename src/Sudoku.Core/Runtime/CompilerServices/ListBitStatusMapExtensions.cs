@@ -13,30 +13,6 @@ namespace Sudoku.Runtime.CompilerServices;
 public static class ListBitStatusMapExtensions
 {
 	/// <summary>
-	/// Try to fetch the internal reference to the first element of type <see cref="CellMap"/> in a <see cref="List{T}"/>.
-	/// </summary>
-	/// <param name="this">The list of <see cref="CellMap"/> instances.</param>
-	/// <returns>The reference to the first element of type <see cref="CellMap"/>.</returns>
-	/// <remarks><b><i>
-	/// Please note that this method will return the reference to the internal field,
-	/// but this doesn't mean you can use its reference and re-assign it.
-	/// </i></b></remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
-	public static extern ref CellMap[] GetItems(this List<CellMap> @this);
-
-	/// <summary>
-	/// Try to fetch the internal reference to the first element of type <see cref="CandidateMap"/> in a <see cref="List{T}"/>.
-	/// </summary>
-	/// <param name="this">The list of <see cref="CandidateMap"/> instances.</param>
-	/// <returns>The reference to the first element of type <see cref="CandidateMap"/>.</returns>
-	/// <remarks><b><i>
-	/// Please note that this method will return the reference to the internal field,
-	/// but this doesn't mean you can use its reference and re-assign it.
-	/// </i></b></remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
-	public static extern ref CandidateMap[] GetItems(this List<CandidateMap> @this);
-
-	/// <summary>
 	/// Try to get a <see cref="ReadOnlySpan{T}"/> instance of the current instance, with same elements but without any copying.
 	/// </summary>
 	/// <param name="this">The list.</param>
@@ -186,4 +162,28 @@ public static class ListBitStatusMapExtensions
 	/// <inheritdoc cref="GetVersion(List{CellMap})"/>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_version")]
 	private static extern ref int GetVersion(List<CandidateMap> @this);
+
+	/// <summary>
+	/// Try to fetch the internal reference to the first element of type <see cref="CellMap"/> in a <see cref="List{T}"/>.
+	/// </summary>
+	/// <param name="this">The list of <see cref="CellMap"/> instances.</param>
+	/// <returns>The reference to the first element of type <see cref="CellMap"/>.</returns>
+	/// <remarks><b><i>
+	/// Please note that this method will return the reference to the internal field,
+	/// but this doesn't mean you can use its reference and re-assign it.
+	/// </i></b></remarks>
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
+	private static extern ref CellMap[] GetItems(this List<CellMap> @this);
+
+	/// <summary>
+	/// Try to fetch the internal reference to the first element of type <see cref="CandidateMap"/> in a <see cref="List{T}"/>.
+	/// </summary>
+	/// <param name="this">The list of <see cref="CandidateMap"/> instances.</param>
+	/// <returns>The reference to the first element of type <see cref="CandidateMap"/>.</returns>
+	/// <remarks><b><i>
+	/// Please note that this method will return the reference to the internal field,
+	/// but this doesn't mean you can use its reference and re-assign it.
+	/// </i></b></remarks>
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
+	private static extern ref CandidateMap[] GetItems(this List<CandidateMap> @this);
 }

@@ -8525,28 +8525,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:System.Collections.Generic.List`1"/>
             <seealso cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`2"/>
         </member>
-        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.CellMap})">
-            <summary>
-            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.CellMap"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <param name="this">The list of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</param>
-            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.CellMap"/>.</returns>
-            <remarks><b><i>
-            Please note that this method will return the reference to the internal field,
-            but this doesn't mean you can use its reference and re-assign it.
-            </i></b></remarks>
-        </member>
-        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.CandidateMap})">
-            <summary>
-            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.CandidateMap"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <param name="this">The list of <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.</param>
-            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
-            <remarks><b><i>
-            Please note that this method will return the reference to the internal field,
-            but this doesn't mean you can use its reference and re-assign it.
-            </i></b></remarks>
-        </member>
         <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.CellMap})">
             <summary>
             Try to get a <see cref="T:System.ReadOnlySpan`1"/> instance of the current instance, with same elements but without any copying.
@@ -8625,6 +8603,28 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetVersion(System.Collections.Generic.List{Sudoku.Concepts.CandidateMap})">
             <inheritdoc cref="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetVersion(System.Collections.Generic.List{Sudoku.Concepts.CellMap})"/>
+        </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.CellMap})">
+            <summary>
+            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.CellMap"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="this">The list of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</param>
+            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.CellMap"/>.</returns>
+            <remarks><b><i>
+            Please note that this method will return the reference to the internal field,
+            but this doesn't mean you can use its reference and re-assign it.
+            </i></b></remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.CandidateMap})">
+            <summary>
+            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.CandidateMap"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="this">The list of <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.</param>
+            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
+            <remarks><b><i>
+            Please note that this method will return the reference to the internal field,
+            but this doesn't mean you can use its reference and re-assign it.
+            </i></b></remarks>
         </member>
         <member name="T:Sudoku.Runtime.CompilerServices.ListGridExtensions">
             <summary>
