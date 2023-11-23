@@ -146,13 +146,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var step = new NakedSingleStep(
-					[new(Assignment, cell, digit)],
-					[[.. GetNakedSingleExcluders(in grid, cell, digit)]],
-					context.PredefinedOptions,
-					cell,
-					digit
-				);
+				var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out var excluderHouses);
+				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit, excluderHouses);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -296,13 +291,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var step = new NakedSingleStep(
-				[new(Assignment, cell, digit)],
-				[[.. GetNakedSingleExcluders(in grid, cell, digit)]],
-				context.PredefinedOptions,
-				cell,
-				digit
-			);
+			var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out var excluderHouses);
+			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit, excluderHouses);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -364,16 +354,42 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			// Sum up the number of appearing in the grid of 'digit'.
 			var digitCount = 0;
-			for (var i = 0; i < 81; i++)
+			for (var cell = 0; cell < 81; cell++)
 			{
-				if (grid.GetDigit(i) == digit)
+				if (grid.GetDigit(cell) == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, i) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
+					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
 				}
 			}
 
 			enableAndIsLastDigit = digitCount == 8;
+		}
+
+		var cellOffsets2 = GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells);
+		var eliminatedCellsCount = new int[chosenCells.Count];
+		var eliminatedHouses = new House[chosenCells.Count];
+		var i = 0;
+		foreach (var chosenCell in chosenCells)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				var final = CellMap.Empty;
+				foreach (var cell in PeersMap[chosenCell] & HousesMap[chosenCell.ToHouseIndex(houseType)] & HousesMap[house])
+				{
+					if (grid.GetState(cell) == CellState.Empty)
+					{
+						final.Add(cell);
+					}
+				}
+				if (final)
+				{
+					(final + chosenCell).InOneHouse(out eliminatedHouses[i]);
+					eliminatedCellsCount[i] = final.Count;
+				}
+			}
+
+			i++;
 		}
 
 		return (enableAndIsLastDigit, house) switch
@@ -384,7 +400,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				[
 					[
 						.. enableAndIsLastDigit ? cellOffsets : [],
-						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell),
+						.. enableAndIsLastDigit ? [] : cellOffsets2,
 						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 					]
 				],
@@ -392,7 +408,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				resultCell,
 				digit,
 				house,
-				enableAndIsLastDigit
+				enableAndIsLastDigit,
+				eliminatedCellsCount,
+				eliminatedHouses
 			)
 		};
 	}
@@ -404,21 +422,27 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="digit">The digit.</param>
 	/// <param name="house">The house.</param>
 	/// <param name="cell">The cell.</param>
+	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetHiddenSingleExcluders(scoped ref readonly Grid grid, Digit digit, House house, Cell cell)
-		=> Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) switch
+	private CellViewNode[] GetHiddenSingleExcluders(scoped ref readonly Grid grid, Digit digit, House house, Cell cell, out CellMap chosenCells)
+	{
+		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) is { } info)
 		{
-			var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered) => [
+			(chosenCells, var covered, var excluded) = info;
+			return [
 				..
-				from c in combination
+				from c in chosenCells
 				select new CellViewNode(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly },
 				..
-				from c in emptyCellsShouldBeCovered
-				let p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1
+				from c in covered
+				let p = excluded.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1
 				select new CellViewNode(p, c) { RenderingMode = RenderingMode.DirectModeOnly }
-			],
-			_ => []
-		};
+			];
+		}
+
+		chosenCells = [];
+		return [];
+	}
 
 	/// <summary>
 	/// Get all <see cref="CellViewNode"/>s that represents as excluders.
@@ -426,17 +450,21 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
+	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit)
+	private CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
-		var (result, i) = (new CellViewNode[8], 0);
+		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
 		{
 			foreach (var otherCell in Peers[cell])
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
-					result[i++] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
+					result[i] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
+					(CellMap.Empty + cell + otherCell).InOneHouse(out excluderHouses[i]);
+
+					i++;
 					break;
 				}
 			}

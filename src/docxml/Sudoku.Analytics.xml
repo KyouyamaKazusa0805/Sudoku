@@ -4437,21 +4437,21 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
             </summary>
-            <param name="Name">The name of extra difficulty rating factor name.</param>
-            <param name="Value">The factor value.</param>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.#ctor(System.String,System.Decimal)">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
             </summary>
-            <param name="Name">The name of extra difficulty rating factor name.</param>
-            <param name="Value">The factor value.</param>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Name">
-            <summary>The name of extra difficulty rating factor name.</summary>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.FactorName">
+            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></summary>
         </member>
         <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Value">
-            <summary>The factor value.</summary>
+            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></summary>
         </member>
         <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -4606,30 +4606,87 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Rating.HotSpot">
+            <summary>
+            The hotspot data.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.HotSpot.HotSpotTable">
+            <summary>
+            The internal table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.HotSpot.GetHotSpot(System.Int32)">
+            <summary>
+            Try to get the hotspot of the house.
+            </summary>
+            <param name="house">The house.</param>
+            <returns>The hotspot value.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.IRatingDataProvider">
+            <summary>
+            Represents a rating data provider.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName">
+            <summary>
+            Indicates the factor name that describes the difficulty of this factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value">
+            <summary>
+            Indicates the factor value that describes how difficult the factor is.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.LocatingDifficultyFactor">
             <summary>
             Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
             </summary>
-            <param name="FactorName">Indicates the factor name.</param>
-            <param name="MeasureExpression">Indicates the formula that measures the difficulty of the current factor.</param>
-            <param name="VariableDescriptions">The variable descriptions.</param>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.LocatingDifficultyFactor.#ctor(System.String,System.Linq.Expressions.Expression,Sudoku.Analytics.Rating.VariableDescriptor[])">
+        <member name="M:Sudoku.Analytics.Rating.LocatingDifficultyFactor.#ctor(System.String,System.Decimal)">
             <summary>
             Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
             </summary>
-            <param name="FactorName">Indicates the factor name.</param>
-            <param name="MeasureExpression">Indicates the formula that measures the difficulty of the current factor.</param>
-            <param name="VariableDescriptions">The variable descriptions.</param>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.FactorName">
-            <summary>Indicates the factor name.</summary>
+            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></summary>
         </member>
-        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.MeasureExpression">
-            <summary>Indicates the formula that measures the difficulty of the current factor.</summary>
+        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.Value">
+            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></summary>
         </member>
-        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.VariableDescriptions">
-            <summary>The variable descriptions.</summary>
+        <member name="T:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames">
+            <summary>
+            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step on locating.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HouseType">
+            <summary>
+            Indicates the factor is house type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HousePosition">
+            <summary>
+            Indicates the factor is house position.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Digit">
+            <summary>
+            Indicates the factor is digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HiddenSingleExcluder">
+            <summary>
+            Indicates the factor is hidden single excluder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.NakedSingleExcluder">
+            <summary>
+            Indicates the factor is naked single excluder.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
             <summary>
@@ -4654,26 +4711,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
             <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.VariableDescriptor">
-            <summary>
-            Represents a variable description.
-            </summary>
-            <param name="Variable">The variable expression.</param>
-            <param name="Description">The variable description.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.VariableDescriptor.#ctor(System.Linq.Expressions.ParameterExpression,System.String)">
-            <summary>
-            Represents a variable description.
-            </summary>
-            <param name="Variable">The variable expression.</param>
-            <param name="Description">The variable description.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.VariableDescriptor.Variable">
-            <summary>The variable expression.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.VariableDescriptor.Description">
-            <summary>The variable description.</summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
@@ -4729,6 +4766,11 @@ if (student is (name: var name, age: >= 18))
             as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.BaseLocatingDifficulty">
+            <summary>
+            Indicates the difficulty of this technique step on locating.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.Difficulty">
             <summary>
@@ -9246,7 +9288,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
             </summary>
@@ -9254,15 +9296,17 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
             Get all <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s that represents as excluders.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher">
@@ -15891,7 +15935,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseLocatingDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.LocatingDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
@@ -15912,8 +15962,10 @@ if (student is (name: var name, age: >= 18))
             <param name="enableAndIsLastDigit">
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             </param>
+            <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedHouses">The total eliminated houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[])">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
             </summary>
@@ -15926,8 +15978,13 @@ if (student is (name: var name, age: >= 18))
             <param name="enableAndIsLastDigit">
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             </param>
+            <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedHouses">The total eliminated houses.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Format">
@@ -15938,6 +15995,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.FormatInterpolationParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.HiddenSingleStep._eliminatedCellsCount">
+            <summary>
+            The generated field declaration for parameter <c>eliminatedCellsCount</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.HiddenSingleStep._eliminatedHouses">
+            <summary>
+            The generated field declaration for parameter <c>eliminatedHouses</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
             <summary>
@@ -15958,8 +16028,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="excluderHouses">Indicates the excluder houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -15968,12 +16039,24 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="excluderHouses">Indicates the excluder houses.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseLocatingDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.NakedSingleStep._excluderHouses">
+            <summary>
+            The generated field declaration for parameter <c>excluderHouses</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>

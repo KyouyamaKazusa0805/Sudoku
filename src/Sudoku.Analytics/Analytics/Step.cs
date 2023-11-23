@@ -65,6 +65,11 @@ public abstract partial class Step(
 	public abstract decimal BaseDifficulty { get; }
 
 	/// <summary>
+	/// Indicates the difficulty of this technique step on locating.
+	/// </summary>
+	public virtual decimal BaseLocatingDifficulty { get; }
+
+	/// <summary>
 	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
 	/// <see cref="BaseDifficulty"/> and <see cref="ExtraDifficultyFactors"/>. For property <see cref="ExtraDifficultyFactors"/>,
 	/// the result is to sum all values up of inner property <see cref="ExtraDifficultyFactor.Value"/>.

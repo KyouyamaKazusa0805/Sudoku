@@ -207,7 +207,7 @@ public static class ArrayEnumerable
 		=> Array.Sort(@this, (a, b) => keySelector(a).CompareTo(keySelector(b)));
 
 	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
-	public static (TFirst, TSecond)[] Zip<TFirst, TSecond>(this TFirst[] first, TSecond[] second)
+	public static (TFirst Left, TSecond Right)[] Zip<TFirst, TSecond>(this TFirst[] first, TSecond[] second)
 	{
 		if (first.Length != second.Length)
 		{
