@@ -27,10 +27,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed partial class Analyzer :
-	AnalyzerOrCollector,
-	IAnalyzer<Analyzer, AnalyzerResult>,
-	IRandomizedAnalyzer<Analyzer, AnalyzerResult>
+public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerResult>, IRandomizedAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
