@@ -18,7 +18,7 @@ namespace Sudoku.Analytics;
 [Equals(EqualsBehavior.ThrowNotSupportedException)]
 [GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
 [ToString(ToStringBehavior.ThrowNotSupportedException)]
-[EqualityOperators(EqualityOperatorsBehavior.Intelligent)]
+[EqualityOperators]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
