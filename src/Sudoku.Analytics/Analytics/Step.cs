@@ -132,7 +132,7 @@ public abstract partial class Step(
 	/// If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
 	/// </para>
 	/// <para>
-	/// Please note the type of this property is <see cref="Analytics.Format"/>, which is not a plain string text.
+	/// Please note the type of this property is <see cref="TechniqueFormat"/>, which is not a plain string text.
 	/// However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
 	/// where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
 	/// The format text will be expanded to this expression in runtime:
@@ -150,9 +150,9 @@ public abstract partial class Step(
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="GetString(string)"/>
-	/// <seealso cref="Analytics.Format"/>
+	/// <seealso cref="TechniqueFormat"/>
 	/// <seealso cref="ToString"/>
-	public virtual Format Format => $"{GetType().Name}";
+	public virtual TechniqueFormat Format => $"{GetType().Name}";
 
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.

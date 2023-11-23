@@ -3732,70 +3732,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.Format">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Format.FormatPrefix">
-            <summary>
-            The format prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Format._formatSuffix">
-            <summary>
-            The suffix of the format.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Format.TargetFormat">
-            <summary>
-            Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.AppendFormatted(System.String)">
-            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.ToString(System.String[])">
-            <summary>
-            Get the format string for the current instance.
-            </summary>
-            <param name="formatArguments">The format arguments.</param>
-            <returns>The final result.</returns>
-        </member>
-        <member name="F:Sudoku.Analytics.Format._literalLength">
-            <summary>
-            The generated field declaration for parameter <c>literalLength</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Format._holeCount">
-            <summary>
-            The generated field declaration for parameter <c>holeCount</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.op_Equality(Sudoku.Analytics.Format,Sudoku.Analytics.Format)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Format.op_Inequality(Sudoku.Analytics.Format,Sudoku.Analytics.Format)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Analytics.FormatInterpolation">
             <summary>
             Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
@@ -4714,7 +4650,7 @@ if (student is (name: var name, age: >= 18))
             If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
             </para>
             <para>
-            Please note the type of this property is <see cref="T:Sudoku.Analytics.Format"/>, which is not a plain string text.
+            Please note the type of this property is <see cref="T:Sudoku.Analytics.TechniqueFormat"/>, which is not a plain string text.
             However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
             where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
             The format text will be expanded to this expression in runtime:
@@ -4732,7 +4668,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
             <seealso cref="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String)"/>
-            <seealso cref="T:Sudoku.Analytics.Format"/>
+            <seealso cref="T:Sudoku.Analytics.TechniqueFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolationParts">
@@ -20590,6 +20526,70 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="key">The resource key.</param>
             <returns>The value. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.TechniqueFormat">
+            <summary>
+            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
+            stored in resource dictionary.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
+            stored in resource dictionary.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="F:Sudoku.Analytics.TechniqueFormat.FormatPrefix">
+            <summary>
+            The format prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.TechniqueFormat._formatSuffix">
+            <summary>
+            The suffix of the format.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.TechniqueFormat.TargetFormat">
+            <summary>
+            Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.AppendFormatted(System.String)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString(System.String[])">
+            <summary>
+            Get the format string for the current instance.
+            </summary>
+            <param name="formatArguments">The format arguments.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="F:Sudoku.Analytics.TechniqueFormat._literalLength">
+            <summary>
+            The generated field declaration for parameter <c>literalLength</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.TechniqueFormat._holeCount">
+            <summary>
+            The generated field declaration for parameter <c>holeCount</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Equality(Sudoku.Analytics.TechniqueFormat,Sudoku.Analytics.TechniqueFormat)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Inequality(Sudoku.Analytics.TechniqueFormat,Sudoku.Analytics.TechniqueFormat)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>

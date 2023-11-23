@@ -22,7 +22,7 @@ namespace Sudoku.Analytics;
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
-public partial struct Format([Data(DataMemberKinds.Field)] int literalLength, [Data(DataMemberKinds.Field)] int holeCount)
+public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalLength, [Data(DataMemberKinds.Field)] int holeCount)
 {
 	/// <summary>
 	/// The format prefix.
@@ -57,5 +57,5 @@ public partial struct Format([Data(DataMemberKinds.Field)] int literalLength, [D
 	public readonly string ToString(params string[] formatArguments)
 		=> TargetFormat is not null
 			? string.Format(TargetFormat, formatArguments)
-			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(Format).Assembly);
+			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(TechniqueFormat).Assembly);
 }

@@ -31,7 +31,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Format Format => $"{$"UniquePolygonType{Type}Step"}";
+	public sealed override TechniqueFormat Format => $"{$"UniquePolygonType{Type}Step"}";
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BorescoperDeadlyPatternType{Type}");

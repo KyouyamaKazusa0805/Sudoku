@@ -33,7 +33,7 @@ public sealed partial class HiddenSingleStep(
 	public override decimal BaseDifficulty => this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
 
 	/// <inheritdoc/>
-	public override Format Format => $"{(EnableAndIsLastDigit ? "LastDigit" : "HiddenSingle")}";
+	public override TechniqueFormat Format => $"{(EnableAndIsLastDigit ? "LastDigit" : "HiddenSingle")}";
 
 	/// <inheritdoc/>
 	public override Technique Code
