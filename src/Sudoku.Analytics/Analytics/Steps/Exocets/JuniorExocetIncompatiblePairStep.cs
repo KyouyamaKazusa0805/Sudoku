@@ -33,5 +33,5 @@ public sealed partial class JuniorExocetIncompatiblePairStep(
 	public override Technique Code => Technique.JuniorExocetIncompatiblePair;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.IncompatiblePair, .3M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IncompatiblePair, .3M)];
 }

@@ -2011,73 +2011,73 @@
     <value>W-Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_Avoidable" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
     <value>可规避逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_BiBiPattern" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
     <value>X 致命逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Cannibalism" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
     <value>自噬逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ConjugatePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ConjugatePair" xml:space="preserve">
     <value>共轭对逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ExtraDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraDigit" xml:space="preserve">
     <value>额外数字</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ExtraHouse" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraHouse" xml:space="preserve">
     <value>额外区域</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_FishShape" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_FishShape" xml:space="preserve">
     <value>鱼的形状</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_GeneralizedFish" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_GeneralizedFish" xml:space="preserve">
     <value>鱼</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Guardian" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Guardian" xml:space="preserve">
     <value>守护者逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Hidden" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Hidden" xml:space="preserve">
     <value>隐性思维</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Incompleteness" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Incompleteness" xml:space="preserve">
     <value>残缺逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Isolated" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Isolated" xml:space="preserve">
     <value>孤立逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Length" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Length" xml:space="preserve">
     <value>结构长度</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Locked" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Locked" xml:space="preserve">
     <value>死锁结构</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_LockedDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedDigit" xml:space="preserve">
     <value>锁死的数字</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Mirror" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Mirror" xml:space="preserve">
     <value>Mirror 共轭对</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Petals" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Petals" xml:space="preserve">
     <value>花瓣数量</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Sashimi" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Sashimi" xml:space="preserve">
     <value>退化逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Size" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Size" xml:space="preserve">
     <value>结构规格</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_TargetPair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TargetPair" xml:space="preserve">
     <value>Target 数对</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ValueCell" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ValueCell" xml:space="preserve">
     <value>明数逻辑</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_WingSize" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
     <value>Wing 的分支数量</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_IncompatiblePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
     <value>同宫定理</value>
   </data>
   <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
@@ -2486,7 +2486,7 @@
     <value>初级飞鱼・T 格数对</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_AlmostHiddenSet" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_AlmostHiddenSet" xml:space="preserve">
     <value>隐性待定数组</value>
   </data>
   <data name="JuniorExocetConjugatePair" xml:space="preserve">
@@ -2497,7 +2497,7 @@
     <value>初级飞鱼・M 格隐性待定数组</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_LockedMember" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedMember" xml:space="preserve">
     <value>死锁成员</value>
   </data>
   <data name="JuniorExocetLockedMember" xml:space="preserve">
@@ -2520,11 +2520,11 @@
     <value>衰弱飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_BzRectangle" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_BzRectangle" xml:space="preserve">
     <value>BZ 矩形删数</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_SlashElimination" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_SlashElimination" xml:space="preserve">
     <value>斜杠删数</value>
     <comment>Technique Name</comment>
   </data>
@@ -2536,7 +2536,7 @@
     <value>衰弱飞鱼・斜杠模式</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_MissingStabilityBalancer" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_MissingStabilityBalancer" xml:space="preserve">
     <value>“强心针”单元格缺失</value>
   </data>
   <data name="LameWeakExocet" xml:space="preserve">
@@ -2615,7 +2615,7 @@
     <value>交叉初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyCaseNames_TrueBase" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TrueBase" xml:space="preserve">
     <value>内 T 格明数直出</value>
     <comment>Technique Name</comment>
   </data>

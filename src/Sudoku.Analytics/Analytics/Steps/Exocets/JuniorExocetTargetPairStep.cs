@@ -33,5 +33,5 @@ public sealed partial class JuniorExocetTargetPairStep(
 	public override Technique Code => Technique.JuniorExocetTargetPair;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.TargetPair, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.TargetPair, .2M)];
 }

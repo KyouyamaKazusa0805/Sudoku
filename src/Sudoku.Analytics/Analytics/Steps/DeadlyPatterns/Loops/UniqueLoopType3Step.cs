@@ -34,8 +34,8 @@ public sealed partial class UniqueLoopType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [.. base.ExtraDifficultyCases, new(ExtraDifficultyCaseNames.Size, SubsetCells.Count * .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [.. base.ExtraDifficultyFactors, new(ExtraDifficultyFactorNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

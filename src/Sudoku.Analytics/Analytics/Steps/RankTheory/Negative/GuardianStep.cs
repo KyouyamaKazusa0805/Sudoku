@@ -35,8 +35,8 @@ public sealed partial class GuardianStep(
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.Size, Sequences.A004526(LoopCells.Count + Sequences.A004526(Guardians.Count)) * .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [new(ExtraDifficultyFactorNames.Size, Sequences.A004526(LoopCells.Count + Sequences.A004526(Guardians.Count)) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

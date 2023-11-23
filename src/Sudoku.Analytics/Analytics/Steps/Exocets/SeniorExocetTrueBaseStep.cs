@@ -35,5 +35,5 @@ public sealed partial class SeniorExocetTrueBaseStep(
 	public override Technique Code => Technique.SeniorExocetTrueBase;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.TrueBase, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.TrueBase, .2M)];
 }

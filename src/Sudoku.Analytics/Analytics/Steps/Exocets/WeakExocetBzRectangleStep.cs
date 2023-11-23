@@ -38,5 +38,5 @@ public sealed partial class WeakExocetBzRectangleStep(
 	public override Technique Code => Technique.WeakExocetBzRectangle;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.BzRectangle, .4M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.BzRectangle, .4M)];
 }

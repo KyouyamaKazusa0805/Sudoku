@@ -33,7 +33,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override int Type => 5;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.LockedDigit, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.LockedDigit, .2M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

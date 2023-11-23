@@ -4433,181 +4433,175 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Rating.Distance.op_LessThanOrEqual(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCase">
+        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
             </summary>
-            <param name="Name">
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </param>
-            <param name="Value">The rating value.</param>
+            <param name="Name">The name of extra difficulty rating factor name.</param>
+            <param name="Value">The factor value.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyCase.#ctor(System.String,System.Decimal)">
+        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.#ctor(System.String,System.Decimal)">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
             </summary>
-            <param name="Name">
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </param>
-            <param name="Value">The rating value.</param>
+            <param name="Name">The name of extra difficulty rating factor name.</param>
+            <param name="Value">The factor value.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Name">
-            <summary>
-            <completionlist cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames"/>
-            The name of extra difficulty rating item.
-            </summary>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Name">
+            <summary>The name of extra difficulty rating factor name.</summary>
         </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value">
-            <summary>The rating value.</summary>
+        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Value">
+            <summary>The factor value.</summary>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames">
+        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames">
             <summary>
             Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Size">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Size">
             <summary>
             Indicates the kind is the size. This field is used for sized techniques,
             such as deadly patterns of type 3, naked or hidden subsets, fishes.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraDigit">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ExtraDigit">
             <summary>
             Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Sashimi">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Sashimi">
             <summary>
             Indicates the kind is the sashimi. This field is only used for fishes.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.FishShape">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.FishShape">
             <summary>
             Indicates the kind is the fish shape. This field is only used for complex fishes.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Hidden">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Hidden">
             <summary>
             Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Locked">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Locked">
             <summary>
             Indicates the kind is the locked. This field is only used for naked subsets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.LockedDigit">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.LockedDigit">
             <summary>
             Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Length">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Length">
             <summary>
             Indicates the kind is the length. This field is used for variable-length chaining techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ConjugatePair">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ConjugatePair">
             <summary>
             Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
             or advanced Unique Rectangle techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Guardian">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Guardian">
             <summary>
             Indicates the kind is the guardian. This field is used for some guardian-related techniques,
             such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Petals">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Petals">
             <summary>
             Indicates the number of petals used in death blossom.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ValueCell">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ValueCell">
             <summary>
             Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Incompleteness">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Incompleteness">
             <summary>
             Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Avoidable">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Avoidable">
             <summary>
             Indicates the kind is the avoidable. This field is used for avoidable rectangles.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.WingSize">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.WingSize">
             <summary>
             Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
             or Regular Wing technique itself.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Isolated">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Isolated">
             <summary>
             Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
             or Unique Rectangle + Sue de Coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Cannibalism">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Cannibalism">
             <summary>
             Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.Mirror">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Mirror">
             <summary>
             Indicates the kind is the mirror eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.IncompatiblePair">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.IncompatiblePair">
             <summary>
             Indicates the kind is the incompatible pair eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.TargetPair">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.TargetPair">
             <summary>
             Indicates the kind is the target pair eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.GeneralizedFish">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.GeneralizedFish">
             <summary>
             Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.AlmostHiddenSet">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.AlmostHiddenSet">
             <summary>
             Indicates the kind is the almost hidden set. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.LockedMember">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.LockedMember">
             <summary>
             Indicates the kind is the locked member. This field is only used for exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.TrueBase">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.TrueBase">
             <summary>
             Indicates the kind is the true base. This field is only used for senior exocets and complex senior exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.ExtraHouse">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ExtraHouse">
             <summary>
             Indicates the kind is the extra house. This field is only used for complex senior exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.SlashElimination">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.SlashElimination">
             <summary>
             Indicates the kind is the slash pattern elimination. This field is only used for weak exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.BzRectangle">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.BzRectangle">
             <summary>
             Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyCaseNames.MissingStabilityBalancer">
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.MissingStabilityBalancer">
             <summary>
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
@@ -4732,19 +4726,19 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             Generally this property holds the default and basic difficulty of the step.
             If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>.
+            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Difficulty">
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-            <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>,
-            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyCase.Value"/>.
+            <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>,
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Value"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
-            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyCase"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
@@ -4831,16 +4825,16 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.Step.Format"/>
             <seealso cref="T:Sudoku.Analytics.FormatInterpolation"/>
         </member>
-        <member name="P:Sudoku.Analytics.Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Step.ExtraDifficultyFactors">
             <summary>
-            <para>Indicates the extra difficulty cases of the technique step.</para>
+            <para>Indicates the extra difficulty factors of the technique step.</para>
             <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.LocatingDifficultyFactors">
             <summary>
             <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
-            <para><inheritdoc cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases" path="//summary/para[2]"/></para>
+            <para><inheritdoc cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors" path="//summary/para[2]"/></para>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
@@ -9907,7 +9901,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.FormatInterpolationParts">
@@ -10056,7 +10050,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.SortKey">
@@ -10496,7 +10490,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.FormatInterpolationParts">
@@ -10571,7 +10565,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.FormatInterpolationParts">
@@ -10614,7 +10608,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.FormatInterpolationParts">
@@ -10670,7 +10664,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.FormatInterpolationParts">
@@ -10716,7 +10710,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.FormatInterpolationParts">
@@ -10870,7 +10864,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.FormatInterpolationParts">
@@ -10976,7 +10970,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
@@ -11040,7 +11034,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.FormatInterpolationParts">
@@ -11080,7 +11074,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolationParts">
@@ -11126,7 +11120,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.FormatInterpolationParts">
@@ -11170,7 +11164,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueLoopStep}#op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
@@ -11286,7 +11280,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolationParts">
@@ -11439,7 +11433,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.FormatInterpolationParts">
@@ -11477,7 +11471,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.FormatInterpolationParts">
@@ -11687,7 +11681,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.FormatInterpolationParts">
@@ -11843,7 +11837,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.FormatInterpolationParts">
@@ -11887,7 +11881,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.FormatInterpolationParts">
@@ -11937,7 +11931,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.FormatInterpolationParts">
@@ -12114,7 +12108,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.FormatInterpolationParts">
@@ -12166,7 +12160,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.FormatInterpolationParts">
@@ -12214,7 +12208,7 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.FormatInterpolationParts">
@@ -12272,7 +12266,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.FormatInterpolationParts">
@@ -12333,7 +12327,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.FormatInterpolationParts">
@@ -12389,7 +12383,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.FormatInterpolationParts">
@@ -12445,7 +12439,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.FormatInterpolationParts">
@@ -12659,7 +12653,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolationParts">
@@ -12762,7 +12756,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolationParts">
@@ -12826,7 +12820,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolationParts">
@@ -12916,7 +12910,7 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolationParts">
@@ -12971,7 +12965,7 @@ if (student is (name: var name, age: >= 18))
             <param name="endCells">Indicates the end cells.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.FormatInterpolationParts">
@@ -13032,7 +13026,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.PatternNonEmptyCells">
@@ -13122,7 +13116,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.FormatInterpolationParts">
@@ -13209,7 +13203,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.FormatInterpolationParts">
@@ -13389,7 +13383,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.CrosslineHousesMask">
@@ -13438,7 +13432,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.CrosslineHousesMask">
@@ -13492,7 +13486,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.CrosslineHousesMask">
@@ -13582,7 +13576,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.BaseCellsTheOther">
@@ -13626,7 +13620,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ConjugatePairs">
@@ -13665,7 +13659,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.LockedMemberDigitsMask">
@@ -13704,7 +13698,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ConjugatePairs">
@@ -13825,7 +13819,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.SingleMirrors">
@@ -13862,7 +13856,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.TargetPairMask">
@@ -13899,7 +13893,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.IncompatibleCandidates">
@@ -13938,7 +13932,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraCells">
@@ -13978,7 +13972,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep">
@@ -14010,7 +14004,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.TargetPairMask">
@@ -14049,7 +14043,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.TrueBaseDigit">
@@ -14091,7 +14085,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.StabilityBalancer">
@@ -14138,7 +14132,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.StabilityBalancer">
@@ -14185,7 +14179,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.StabilityBalancer">
@@ -14232,7 +14226,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.StabilityBalancer">
@@ -14340,7 +14334,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
@@ -14498,7 +14492,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Code">
@@ -14608,7 +14602,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.FormatInterpolationParts">
@@ -14977,7 +14971,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Code">
@@ -15193,7 +15187,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#BivalueOddagonStep}#op_Equality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
@@ -15241,7 +15235,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType2Step.FormatInterpolationParts">
@@ -15281,7 +15275,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.FormatInterpolationParts">
@@ -15403,7 +15397,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChromaticPatternXzStep.FormatInterpolationParts">
@@ -15452,7 +15446,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolationParts">
@@ -15564,7 +15558,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.FormatInterpolationParts">
@@ -15688,7 +15682,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolationParts">
@@ -16065,7 +16059,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolationParts">
@@ -16135,7 +16129,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolationParts">
@@ -16407,7 +16401,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolationParts">
@@ -16547,7 +16541,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyCases">
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolationParts">
@@ -17403,142 +17397,142 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_AlmostHiddenSet">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_AlmostHiddenSet">
             <summary>
               Looks up a localized string similar to Almost Hidden Set (AHS) logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Avoidable">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Avoidable">
             <summary>
               Looks up a localized string similar to Avoidable logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_BzRectangle">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_BzRectangle">
             <summary>
               Looks up a localized string similar to B-Z rectangle.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Cannibalism">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Cannibalism">
             <summary>
               Looks up a localized string similar to Cannibalism.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ConjugatePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_ConjugatePair">
             <summary>
               Looks up a localized string similar to Conjugate pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ExtraDigit">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_ExtraDigit">
             <summary>
               Looks up a localized string similar to Extra digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ExtraHouse">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_ExtraHouse">
             <summary>
               Looks up a localized string similar to Extra house.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_FishShape">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_FishShape">
             <summary>
               Looks up a localized string similar to Fish shape.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_GeneralizedFish">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_GeneralizedFish">
             <summary>
               Looks up a localized string similar to Fish.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Guardian">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Guardian">
             <summary>
               Looks up a localized string similar to Guardian logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Hidden">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Hidden">
             <summary>
               Looks up a localized string similar to Hidden logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_IncompatiblePair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_IncompatiblePair">
             <summary>
               Looks up a localized string similar to Incompatible pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Incompleteness">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Incompleteness">
             <summary>
               Looks up a localized string similar to Incompleteness logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Isolated">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Isolated">
             <summary>
               Looks up a localized string similar to Isolated logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Length">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Length">
             <summary>
               Looks up a localized string similar to Length.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Locked">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Locked">
             <summary>
               Looks up a localized string similar to Locked logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_LockedDigit">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_LockedDigit">
             <summary>
               Looks up a localized string similar to Locked digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_LockedMember">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_LockedMember">
             <summary>
               Looks up a localized string similar to Locked member logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Mirror">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Mirror">
             <summary>
               Looks up a localized string similar to Mirror eliminations.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_MissingStabilityBalancer">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_MissingStabilityBalancer">
             <summary>
               Looks up a localized string similar to Missing stability balancer.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Petals">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Petals">
             <summary>
               Looks up a localized string similar to Petal.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Sashimi">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Sashimi">
             <summary>
               Looks up a localized string similar to Sashimi logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_Size">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_Size">
             <summary>
               Looks up a localized string similar to Size.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_SlashElimination">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_SlashElimination">
             <summary>
               Looks up a localized string similar to Slash pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_TargetPair">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_TargetPair">
             <summary>
               Looks up a localized string similar to Target pair.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_TrueBase">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_TrueBase">
             <summary>
               Looks up a localized string similar to True base.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_ValueCell">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_ValueCell">
             <summary>
               Looks up a localized string similar to Value logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyCaseNames_WingSize">
+        <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_WingSize">
             <summary>
               Looks up a localized string similar to Wing branches.
             </summary>

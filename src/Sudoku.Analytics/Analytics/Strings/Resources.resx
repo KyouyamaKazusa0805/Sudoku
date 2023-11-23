@@ -1662,70 +1662,70 @@
   <data name="StepSearcherName_WWingStepSearcher" xml:space="preserve">
     <value>W-Wing</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Avoidable" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
     <value>Avoidable logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_IncompatiblePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
     <value>Incompatible pair</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Cannibalism" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
     <value>Cannibalism</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ConjugatePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ConjugatePair" xml:space="preserve">
     <value>Conjugate pair</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ExtraDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraDigit" xml:space="preserve">
     <value>Extra digit</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ExtraHouse" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraHouse" xml:space="preserve">
     <value>Extra house</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_FishShape" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_FishShape" xml:space="preserve">
     <value>Fish shape</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_GeneralizedFish" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_GeneralizedFish" xml:space="preserve">
     <value>Fish</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Guardian" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Guardian" xml:space="preserve">
     <value>Guardian logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Hidden" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Hidden" xml:space="preserve">
     <value>Hidden logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Incompleteness" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Incompleteness" xml:space="preserve">
     <value>Incompleteness logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Isolated" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Isolated" xml:space="preserve">
     <value>Isolated logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Length" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Length" xml:space="preserve">
     <value>Length</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Locked" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Locked" xml:space="preserve">
     <value>Locked logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_LockedDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedDigit" xml:space="preserve">
     <value>Locked digit</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Mirror" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Mirror" xml:space="preserve">
     <value>Mirror eliminations</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Petals" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Petals" xml:space="preserve">
     <value>Petal</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Sashimi" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Sashimi" xml:space="preserve">
     <value>Sashimi logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_Size" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Size" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_TargetPair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TargetPair" xml:space="preserve">
     <value>Target pair</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_ValueCell" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ValueCell" xml:space="preserve">
     <value>Value logic</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_WingSize" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
     <value>Wing branches</value>
   </data>
   <data name="TechniqueAbbr_AlmostLockedPair" xml:space="preserve">
@@ -2346,7 +2346,7 @@
   <data name="JuniorExocetTargetPair" xml:space="preserve">
     <value>Junior Exocet (Target Pair)</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_AlmostHiddenSet" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_AlmostHiddenSet" xml:space="preserve">
     <value>Almost Hidden Set (AHS) logic</value>
   </data>
   <data name="JuniorExocetConjugatePair" xml:space="preserve">
@@ -2355,7 +2355,7 @@
   <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
     <value>Junior Exocet (Mirror Alomst Hidden Set)</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_LockedMember" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedMember" xml:space="preserve">
     <value>Locked member logic</value>
   </data>
   <data name="JuniorExocetLockedMember" xml:space="preserve">
@@ -2373,10 +2373,10 @@
   <data name="WeakExocetAdjacentTarget" xml:space="preserve">
     <value>Weak Exocet (Adjacent Target)</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_BzRectangle" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_BzRectangle" xml:space="preserve">
     <value>B-Z rectangle</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_SlashElimination" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_SlashElimination" xml:space="preserve">
     <value>Slash pattern</value>
   </data>
   <data name="WeakExocetBzRectangle" xml:space="preserve">
@@ -2385,7 +2385,7 @@
   <data name="WeakExocetSlash" xml:space="preserve">
     <value>Weak Exocet (Slash)</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_MissingStabilityBalancer" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_MissingStabilityBalancer" xml:space="preserve">
     <value>Missing stability balancer</value>
   </data>
   <data name="LameWeakExocet" xml:space="preserve">
@@ -2445,7 +2445,7 @@
   <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>Mutant Junior Exocet (Mirror Conjugate Pair)</value>
   </data>
-  <data name="ExtraDifficultyCaseNames_TrueBase" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TrueBase" xml:space="preserve">
     <value>True base</value>
   </data>
   <data name="SeniorExocetTrueBase" xml:space="preserve">

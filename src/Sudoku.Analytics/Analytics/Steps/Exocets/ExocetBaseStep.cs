@@ -41,5 +41,5 @@ public sealed partial class ExocetBaseStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[]? ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.ConjugatePair, ConjugatePairs.Length * .1M)];
+	public override ExtraDifficultyFactor[]? ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ConjugatePair, ConjugatePairs.Length * .1M)];
 }

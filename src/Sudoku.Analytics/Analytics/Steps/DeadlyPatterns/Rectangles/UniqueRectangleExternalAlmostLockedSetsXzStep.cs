@@ -48,11 +48,11 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 )
 {
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Guardian, Sequences.A004526(GuardianCells.Count) * .1M),
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			new(ExtraDifficultyFactorNames.Guardian, Sequences.A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

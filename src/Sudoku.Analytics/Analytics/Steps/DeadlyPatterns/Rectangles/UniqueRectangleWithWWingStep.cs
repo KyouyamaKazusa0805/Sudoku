@@ -49,7 +49,7 @@ public sealed partial class UniqueRectangleWithWWingStep(
 )
 {
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

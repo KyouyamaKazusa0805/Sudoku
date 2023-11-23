@@ -37,9 +37,9 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	public override Technique Code => Technique.JuniorExocetMirrorAlmostHiddenSet;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[]? ExtraDifficultyCases
+	public override ExtraDifficultyFactor[]? ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.AlmostHiddenSet, .2M),
-			new(ExtraDifficultyCaseNames.Size, Sequences.A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
+			new(ExtraDifficultyFactorNames.AlmostHiddenSet, .2M),
+			new(ExtraDifficultyFactorNames.Size, Sequences.A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
 		];
 }

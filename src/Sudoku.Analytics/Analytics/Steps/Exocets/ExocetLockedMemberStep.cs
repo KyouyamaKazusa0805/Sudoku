@@ -36,6 +36,6 @@ public sealed partial class ExocetLockedMemberStep(
 	public override Technique Code => Delta < 0 ? Technique.SeniorExocetLockedMember : Technique.JuniorExocetLockedMember;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.LockedMember, PopCount((uint)LockedMemberDigitsMask) switch { 1 => .2M, 2 => .3M })];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [new(ExtraDifficultyFactorNames.LockedMember, PopCount((uint)LockedMemberDigitsMask) switch { 1 => .2M, 2 => .3M })];
 }

@@ -46,8 +46,8 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (short)(Type - 1);
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
-		=> [new(ExtraDifficultyCaseNames.Length, Sequences.A002024(CompletePattern.Count) * .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [new(ExtraDifficultyFactorNames.Length, Sequences.A002024(CompletePattern.Count) * .1M)];
 
 	/// <summary>
 	/// Indicates the last cells used that are not empty.

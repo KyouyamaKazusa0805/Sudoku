@@ -55,10 +55,10 @@ public sealed partial class HiddenSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
-			new(ExtraDifficultyCaseNames.Locked, IsLocked switch { true => Size switch { 2 => -1.2M, 3 => -1.3M }, _ => 0 })
+			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
+			new(ExtraDifficultyFactorNames.Locked, IsLocked switch { true => Size switch { 2 => -1.2M, 3 => -1.3M }, _ => 0 })
 		];
 
 	/// <inheritdoc/>

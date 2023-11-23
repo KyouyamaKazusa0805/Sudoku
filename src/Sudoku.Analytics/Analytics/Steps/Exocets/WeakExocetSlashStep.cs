@@ -38,5 +38,5 @@ public sealed partial class WeakExocetSlashStep(
 	public override Technique Code => Technique.WeakExocetSlash;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.SlashElimination, .5M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.SlashElimination, .5M)];
 }

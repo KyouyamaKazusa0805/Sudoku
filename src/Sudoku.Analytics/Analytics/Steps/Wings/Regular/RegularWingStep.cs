@@ -80,14 +80,14 @@ public sealed partial class RegularWingStep(
 	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
 			new(
-				ExtraDifficultyCaseNames.WingSize,
+				ExtraDifficultyFactorNames.WingSize,
 				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
 			),
 			new(
-				ExtraDifficultyCaseNames.Incompleteness,
+				ExtraDifficultyFactorNames.Incompleteness,
 				(Code, IsIncomplete) switch { (Technique.XyWing, _) => 0, (Technique.XyzWing, _) => .2M, (_, true) => .1M, _ => 0 }
 			)
 		];

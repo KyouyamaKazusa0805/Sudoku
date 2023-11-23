@@ -44,5 +44,5 @@ public sealed partial class ExocetMirrorConjugatePairStep(
 	public override Technique Code => Delta < 0 ? Technique.SeniorExocetMirrorConjugatePair : Technique.JuniorExocetMirrorConjugatePair;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Mirror, .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Mirror, .1M)];
 }

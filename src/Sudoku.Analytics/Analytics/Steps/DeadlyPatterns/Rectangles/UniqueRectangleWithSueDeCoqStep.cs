@@ -66,12 +66,12 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Size, (LineCells | BlockCells).Count * .1M),
-			new(ExtraDifficultyCaseNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalistic ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0)
+			new(ExtraDifficultyFactorNames.Size, (LineCells | BlockCells).Count * .1M),
+			new(ExtraDifficultyFactorNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
+			new(ExtraDifficultyFactorNames.Cannibalism, IsCannibalistic ? .1M : 0),
+			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

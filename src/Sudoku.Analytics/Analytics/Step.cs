@@ -59,20 +59,20 @@ public abstract partial class Step(
 	/// <remarks>
 	/// Generally this property holds the default and basic difficulty of the step.
 	/// If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-	/// as elementary and default rating value; other factors will be given in the other property <see cref="ExtraDifficultyCases"/>.
+	/// as elementary and default rating value; other factors will be given in the other property <see cref="ExtraDifficultyFactors"/>.
 	/// </remarks>
-	/// <seealso cref="ExtraDifficultyCases"/>
+	/// <seealso cref="ExtraDifficultyFactors"/>
 	public abstract decimal BaseDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-	/// <see cref="BaseDifficulty"/> and <see cref="ExtraDifficultyCases"/>. For property <see cref="ExtraDifficultyCases"/>,
-	/// the result is to sum all values up of inner property <see cref="ExtraDifficultyCase.Value"/>.
+	/// <see cref="BaseDifficulty"/> and <see cref="ExtraDifficultyFactors"/>. For property <see cref="ExtraDifficultyFactors"/>,
+	/// the result is to sum all values up of inner property <see cref="ExtraDifficultyFactor.Value"/>.
 	/// </summary>
 	/// <seealso cref="BaseDifficulty"/>
-	/// <seealso cref="ExtraDifficultyCases"/>
-	/// <seealso cref="ExtraDifficultyCase"/>
-	public decimal Difficulty => BaseDifficulty + (ExtraDifficultyCases?.Sum(static @case => @case.Value) ?? 0);
+	/// <seealso cref="ExtraDifficultyFactors"/>
+	/// <seealso cref="ExtraDifficultyFactor"/>
+	public decimal Difficulty => BaseDifficulty + (ExtraDifficultyFactors?.Sum(static @case => @case.Value) ?? 0);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -163,14 +163,14 @@ public abstract partial class Step(
 	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
 
 	/// <summary>
-	/// <para>Indicates the extra difficulty cases of the technique step.</para>
+	/// <para>Indicates the extra difficulty factors of the technique step.</para>
 	/// <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
 	/// </summary>
-	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
+	public virtual ExtraDifficultyFactor[]? ExtraDifficultyFactors => null;
 
 	/// <summary>
 	/// <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
-	/// <para><inheritdoc cref="ExtraDifficultyCases" path="//summary/para[2]"/></para>
+	/// <para><inheritdoc cref="ExtraDifficultyFactors" path="//summary/para[2]"/></para>
 	/// </summary>
 	public virtual LocatingDifficultyFactor[]? LocatingDifficultyFactors => null;
 

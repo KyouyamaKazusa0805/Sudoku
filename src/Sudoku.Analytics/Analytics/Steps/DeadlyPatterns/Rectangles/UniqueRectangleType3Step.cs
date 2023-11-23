@@ -52,10 +52,10 @@ public sealed partial class UniqueRectangleType3Step(
 )
 {
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Hidden, IsNaked ? 0 : .1M),
-			new(ExtraDifficultyCaseNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
+			new(ExtraDifficultyFactorNames.Hidden, IsNaked ? 0 : .1M),
+			new(ExtraDifficultyFactorNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
 		];
 
 	/// <inheritdoc/>

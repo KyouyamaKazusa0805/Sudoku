@@ -33,7 +33,7 @@ public sealed partial class BivalueOddagonType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.Size, (ExtraCells.Count >> 1) * .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, (ExtraCells.Count >> 1) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

@@ -50,10 +50,10 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

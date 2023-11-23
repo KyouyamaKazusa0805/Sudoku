@@ -53,11 +53,11 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	public override decimal BaseDifficulty => 4.6M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Size, PopCount((uint)SubsetDigitsMask) * .1M),
-			new(ExtraDifficultyCaseNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyCaseNames.Incompleteness, IsIncomplete ? .1M : 0)
+			new(ExtraDifficultyFactorNames.Size, PopCount((uint)SubsetDigitsMask) * .1M),
+			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
+			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];
 
 	/// <inheritdoc/>

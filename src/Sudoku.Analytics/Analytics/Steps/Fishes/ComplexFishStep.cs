@@ -110,11 +110,11 @@ public sealed partial class ComplexFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
+			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
 			new(
-				ExtraDifficultyCaseNames.Sashimi,
+				ExtraDifficultyFactorNames.Sashimi,
 				IsSashimi switch
 				{
 					false => Size switch { 2 or 3 or 4 => .2M, 5 or 6 or 7 => .3M, _ => .4M },
@@ -123,12 +123,12 @@ public sealed partial class ComplexFishStep(
 				}
 			),
 			new(
-				ExtraDifficultyCaseNames.FishShape,
+				ExtraDifficultyFactorNames.FishShape,
 				IsFranken
 					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }
 					: Size switch { 2 => 0, 3 or 4 => 1.4M, 5 or 6 => 1.6M, 7 => 1.7M, _ => 2.0M }
 			),
-			new(ExtraDifficultyCaseNames.Cannibalism, IsCannibalism ? .3M : 0)
+			new(ExtraDifficultyFactorNames.Cannibalism, IsCannibalism ? .3M : 0)
 		];
 
 	/// <inheritdoc/>

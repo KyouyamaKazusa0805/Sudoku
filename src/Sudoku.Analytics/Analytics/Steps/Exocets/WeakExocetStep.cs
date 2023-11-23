@@ -38,5 +38,5 @@ public sealed partial class WeakExocetStep(
 	public override Technique Code => StabilityBalancer != -1 ? Technique.WeakExocet : Technique.LameWeakExocet;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.MissingStabilityBalancer, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.MissingStabilityBalancer, .2M)];
 }

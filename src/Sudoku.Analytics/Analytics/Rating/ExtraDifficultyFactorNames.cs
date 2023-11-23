@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Rating;
 /// <summary>
 /// Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
 /// </summary>
-public static class ExtraDifficultyCaseNames
+public static class ExtraDifficultyFactorNames
 {
 	/// <summary>
 	/// Indicates the kind is the size. This field is used for sized techniques,

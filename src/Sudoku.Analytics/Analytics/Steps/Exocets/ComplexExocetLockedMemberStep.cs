@@ -55,5 +55,5 @@ public sealed partial class ComplexExocetLockedMemberStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.LockedMember, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.LockedMember, .2M)];
 }

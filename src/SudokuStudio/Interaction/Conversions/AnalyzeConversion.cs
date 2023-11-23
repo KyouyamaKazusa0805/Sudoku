@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Documents;
 using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Rating;
-using Sudoku.Analytics.Strings;
 using Sudoku.Compatibility.Hodoku;
 using Sudoku.Compatibility.SudokuExplainer;
 using Sudoku.Rendering;
@@ -96,8 +95,7 @@ internal static class AnalyzeConversion
 					Code: var technique,
 					BaseDifficulty: var baseDifficulty,
 					Difficulty: var difficulty,
-					ExtraDifficultyCases: var cases,
-					Options: var options
+					ExtraDifficultyFactors: var cases
 				} step
 			})
 		{
@@ -169,7 +167,7 @@ internal static class AnalyzeConversion
 				{
 					result.Add(new Run { Text = $"{GetString("AnalyzePage_BaseDifficulty")}{baseDifficulty:0.0}" });
 					result.Add(new LineBreak());
-					result.AddRange(appendExtraDifficultyCases(cases));
+					result.AddRange(appendExtraDifficultyFactors(cases));
 
 					break;
 				}
@@ -194,15 +192,15 @@ internal static class AnalyzeConversion
 		return result;
 
 
-		static IEnumerable<Inline> appendExtraDifficultyCases(ExtraDifficultyCase[] cases)
+		static IEnumerable<Inline> appendExtraDifficultyFactors(ExtraDifficultyFactor[] factors)
 		{
-			for (var i = 0; i < cases.Length; i++)
+			for (var i = 0; i < factors.Length; i++)
 			{
-				var (name, value) = cases[i];
-				var extraDifficultyName = StringsAccessor.GetString($"{nameof(ExtraDifficultyCaseNames)}_{name}");
-				yield return new Run { Text = $"{extraDifficultyName}{Token("Colon")}+{value:0.0}" };
+				var factor = factors[i];
+				var extraDifficultyName = factor.ToString();
+				yield return new Run { Text = $"{extraDifficultyName}{Token("Colon")}+{factor.Value:0.0}" };
 
-				if (i != cases.Length - 1)
+				if (i != factors.Length - 1)
 				{
 					yield return new LineBreak();
 				}

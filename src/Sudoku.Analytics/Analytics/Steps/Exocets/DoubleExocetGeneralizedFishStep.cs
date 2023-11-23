@@ -35,5 +35,5 @@ public sealed partial class DoubleExocetGeneralizedFishStep(
 	public override Technique Code => Technique.DoubleExocetGeneralizedFish;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases => [new(ExtraDifficultyCaseNames.GeneralizedFish, .2M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.GeneralizedFish, .2M)];
 }

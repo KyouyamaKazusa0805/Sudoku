@@ -46,10 +46,10 @@ public sealed partial class AlmostLockedCandidatesStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyCase[] ExtraDifficultyCases
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyCaseNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
-			new(ExtraDifficultyCaseNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
+			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .7M, 4 => 1.2M }),
+			new(ExtraDifficultyFactorNames.ValueCell, HasValueCell ? Size switch { 2 or 3 => .1M, 4 => .2M } : 0)
 		];
 
 	/// <inheritdoc/>
