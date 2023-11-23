@@ -163,10 +163,16 @@ public abstract partial class Step(
 	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
 
 	/// <summary>
-	/// Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
-	/// this property will keep <see langword="null"/> value.
+	/// <para>Indicates the extra difficulty cases of the technique step.</para>
+	/// <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
 	/// </summary>
 	public virtual ExtraDifficultyCase[]? ExtraDifficultyCases => null;
+
+	/// <summary>
+	/// <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
+	/// <para><inheritdoc cref="ExtraDifficultyCases" path="//summary/para[2]"/></para>
+	/// </summary>
+	public virtual LocatingDifficultyFactor[]? LocatingDifficultyFactors => null;
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.

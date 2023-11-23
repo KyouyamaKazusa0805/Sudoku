@@ -4612,6 +4612,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Rating.LocatingDifficultyFactor">
+            <summary>
+            Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
+            </summary>
+            <param name="FactorName">Indicates the factor name.</param>
+            <param name="MeasureExpression">Indicates the formula that measures the difficulty of the current factor.</param>
+            <param name="VariableDescriptions">The variable descriptions.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.LocatingDifficultyFactor.#ctor(System.String,System.Linq.Expressions.Expression,Sudoku.Analytics.Rating.VariableDescriptor[])">
+            <summary>
+            Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
+            </summary>
+            <param name="FactorName">Indicates the factor name.</param>
+            <param name="MeasureExpression">Indicates the formula that measures the difficulty of the current factor.</param>
+            <param name="VariableDescriptions">The variable descriptions.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.FactorName">
+            <summary>Indicates the factor name.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.MeasureExpression">
+            <summary>Indicates the formula that measures the difficulty of the current factor.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.VariableDescriptions">
+            <summary>The variable descriptions.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
             <summary>
             The helper type that calculates for <see cref="T:Sudoku.Analytics.Step"/> instances.
@@ -4635,6 +4660,26 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
             <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Rating.VariableDescriptor">
+            <summary>
+            Represents a variable description.
+            </summary>
+            <param name="Variable">The variable expression.</param>
+            <param name="Description">The variable description.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.VariableDescriptor.#ctor(System.Linq.Expressions.ParameterExpression,System.String)">
+            <summary>
+            Represents a variable description.
+            </summary>
+            <param name="Variable">The variable expression.</param>
+            <param name="Description">The variable description.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.VariableDescriptor.Variable">
+            <summary>The variable expression.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.VariableDescriptor.Description">
+            <summary>The variable description.</summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
@@ -4788,8 +4833,14 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Step.ExtraDifficultyCases">
             <summary>
-            Indicates the extra difficulty cases of the technique step. If the step does not contain such cases,
-            this property will keep <see langword="null"/> value.
+            <para>Indicates the extra difficulty cases of the technique step.</para>
+            <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.LocatingDifficultyFactors">
+            <summary>
+            <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
+            <para><inheritdoc cref="P:Sudoku.Analytics.Step.ExtraDifficultyCases" path="//summary/para[2]"/></para>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
