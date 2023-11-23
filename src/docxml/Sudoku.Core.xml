@@ -8648,6 +8648,9 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The list.</param>
             <param name="grid">The item to be added.</param>
         </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListGridExtensions.AddRangeRef(System.Collections.Generic.List{Sudoku.Concepts.Grid},System.ReadOnlySpan{Sudoku.Concepts.Grid})">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.AddRange(System.Collections.Generic.IEnumerable{`0})"/>
+        </member>
         <member name="M:Sudoku.Runtime.CompilerServices.ListGridExtensions.AddWithResize(System.Collections.Generic.List{Sudoku.Concepts.Grid},Sudoku.Concepts.Grid@)">
             <summary>
             Add an item and resize the <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.Grid"/>.

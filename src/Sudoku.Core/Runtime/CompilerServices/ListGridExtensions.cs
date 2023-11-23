@@ -42,6 +42,15 @@ public static class ListGridExtensions
 		}
 	}
 
+	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
+	public static void AddRangeRef(this List<Grid> @this, scoped ReadOnlySpan<Grid> collection)
+	{
+		foreach (ref readonly var cells in collection)
+		{
+			@this.AddRef(in cells);
+		}
+	}
+
 	/// <summary>
 	/// Add an item and resize the <see cref="List{T}"/> of <see cref="Grid"/>.
 	/// </summary>
@@ -49,11 +58,12 @@ public static class ListGridExtensions
 	/// <param name="grid">The grid to be added.</param>
 	private static void AddWithResize(this List<Grid> @this, scoped ref readonly Grid grid)
 	{
-		Debug.Assert(GetSize(@this) == @this.Capacity);
+		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 
 		var size = GetSize(@this);
-		@this.Capacity = GetNewCapacity(@this, ++GetSize(@this));
-		@this.GetItems().AsSpan()[size] = grid;
+		@this.Capacity = GetNewCapacity(@this, size + 1);
+		GetSize(@this) = size + 1;
+		@this.GetItems()[size] = grid;
 	}
 
 	/// <summary>
