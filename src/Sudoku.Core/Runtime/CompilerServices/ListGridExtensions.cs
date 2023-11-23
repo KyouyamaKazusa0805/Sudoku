@@ -12,18 +12,6 @@ namespace Sudoku.Runtime.CompilerServices;
 public static class ListGridExtensions
 {
 	/// <summary>
-	/// Try to fetch the internal reference to the first element of type <see cref="Grid"/> in a <see cref="List{T}"/>.
-	/// </summary>
-	/// <param name="this">The list of grids.</param>
-	/// <returns>The reference to the first element of type <see cref="Grid"/>.</returns>
-	/// <remarks><b><i>
-	/// Please note that this method will return the reference to the internal field,
-	/// but this doesn't mean you can use its reference and re-assign it.
-	/// </i></b></remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
-	public static extern ref Grid[] GetItems(this List<Grid> @this);
-
-	/// <summary>
 	/// Try to get the <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> to represents same data as the parameter <paramref name="this"/>,
 	/// without any copying operation.
 	/// </summary>
@@ -92,4 +80,16 @@ public static class ListGridExtensions
 	/// <returns>The reference to the internal field.</returns>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_version")]
 	private static extern ref int GetVersion(List<Grid> @this);
+
+	/// <summary>
+	/// Try to fetch the internal reference to the first element of type <see cref="Grid"/> in a <see cref="List{T}"/>.
+	/// </summary>
+	/// <param name="this">The list of grids.</param>
+	/// <returns>The reference to the first element of type <see cref="Grid"/>.</returns>
+	/// <remarks><b><i>
+	/// Please note that this method will return the reference to the internal field,
+	/// but this doesn't mean you can use its reference and re-assign it.
+	/// </i></b></remarks>
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
+	private static extern ref Grid[] GetItems(this List<Grid> @this);
 }

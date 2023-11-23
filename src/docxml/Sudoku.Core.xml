@@ -8633,17 +8633,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:System.Collections.Generic.List`1"/>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Runtime.CompilerServices.ListGridExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.Grid})">
-            <summary>
-            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.Grid"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <param name="this">The list of grids.</param>
-            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.Grid"/>.</returns>
-            <remarks><b><i>
-            Please note that this method will return the reference to the internal field,
-            but this doesn't mean you can use its reference and re-assign it.
-            </i></b></remarks>
-        </member>
         <member name="M:Sudoku.Runtime.CompilerServices.ListGridExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.Grid})">
             <summary>
             Try to get the <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> to represents same data as the parameter <paramref name="this"/>,
@@ -8687,6 +8676,17 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The list.</param>
             <returns>The reference to the internal field.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.CompilerServices.ListGridExtensions.GetItems(System.Collections.Generic.List{Sudoku.Concepts.Grid})">
+            <summary>
+            Try to fetch the internal reference to the first element of type <see cref="T:Sudoku.Concepts.Grid"/> in a <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="this">The list of grids.</param>
+            <returns>The reference to the first element of type <see cref="T:Sudoku.Concepts.Grid"/>.</returns>
+            <remarks><b><i>
+            Please note that this method will return the reference to the internal field,
+            but this doesn't mean you can use its reference and re-assign it.
+            </i></b></remarks>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.HouseMaskOperations">
             <summary>
