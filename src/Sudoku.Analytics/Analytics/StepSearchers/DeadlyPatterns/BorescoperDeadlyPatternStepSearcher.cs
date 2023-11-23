@@ -29,6 +29,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.BorescoperDeadlyPatternType1, Technique.BorescoperDeadlyPatternType2,
 	Technique.BorescoperDeadlyPatternType3, Technique.BorescoperDeadlyPatternType4,
 	Flags = ConditionalFlags.Standard)]
+[StepSearcherRuntimeName("StepSearcherName_BorescoperDeadlyPatternStepSearcher")]
 public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>

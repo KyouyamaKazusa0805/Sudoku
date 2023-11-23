@@ -20,6 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.MultiBranchWWing)]
+[StepSearcherRuntimeName("StepSearcherName_MultiBranchWWingStepSearcher")]
 public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -17,6 +17,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.TemplateDelete, Technique.TemplateSet, OnlyUsesCachedFields = true)]
+[StepSearcherRuntimeName("StepSearcherName_TemplateStepSearcher")]
 public sealed partial class TemplateStepSearcher : StepSearcher
 {
 	/// <summary>

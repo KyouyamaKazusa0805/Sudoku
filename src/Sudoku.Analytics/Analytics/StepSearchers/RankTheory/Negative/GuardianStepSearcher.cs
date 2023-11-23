@@ -20,6 +20,7 @@ using unsafe CollectorPredicateFunc = delegate*<ref readonly CellMap, bool>;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.BrokenWing, Flags = ConditionalFlags.TimeComplexity | ConditionalFlags.SpaceComplexity)]
+[StepSearcherRuntimeName("StepSearcherName_GuardianStepSearcher")]
 public sealed partial class GuardianStepSearcher : StepSearcher
 {
 	/// <summary>

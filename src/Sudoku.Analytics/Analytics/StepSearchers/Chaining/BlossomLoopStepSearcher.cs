@@ -22,6 +22,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.BlossomLoop)]
+[StepSearcherRuntimeName("StepSearcherName_BlossomLoopStepSearcher")]
 public sealed partial class BlossomLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

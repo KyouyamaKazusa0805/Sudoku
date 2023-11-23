@@ -4304,6 +4304,29 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is collecting.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute">
+            <summary>
+            Represents the runtime step searcher name to be used and displayed in UI.
+            </summary>
+            <param name="resourceKey">The resource key to fetch the target name.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.#ctor(System.String)">
+            <summary>
+            Represents the runtime step searcher name to be used and displayed in UI.
+            </summary>
+            <param name="resourceKey">The resource key to fetch the target name.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.FactName">
+            <summary>
+            Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
+            <see langword="null"/> will be returned.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.ResourceKey">
+            <summary>
+            The generated property declaration for parameter <c>resourceKey</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute">
             <summary>
             Represents an attribute type that can be detected by source generator, controlling for the generation behavior.

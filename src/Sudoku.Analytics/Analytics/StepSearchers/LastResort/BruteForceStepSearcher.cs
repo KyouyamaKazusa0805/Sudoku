@@ -17,6 +17,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.BruteForce, IsPure = true, IsFixed = true)]
+[StepSearcherRuntimeName("StepSearcherName_BruteForceStepSearcher")]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 #pragma warning disable format

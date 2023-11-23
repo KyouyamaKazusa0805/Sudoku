@@ -78,6 +78,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
 	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing,
 	Flags = ConditionalFlags.Standard)]
+[StepSearcherRuntimeName("StepSearcherName_UniqueRectangleStepSearcher")]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 #pragma warning disable format

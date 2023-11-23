@@ -19,6 +19,7 @@ using unsafe Checker = delegate*<ref readonly Grid, ref AnalysisContext, AntiGur
 /// </list>
 /// </summary>
 [StepSearcher(Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement, IsPure = true)]
+[StepSearcherRuntimeName("StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher")]
 public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>

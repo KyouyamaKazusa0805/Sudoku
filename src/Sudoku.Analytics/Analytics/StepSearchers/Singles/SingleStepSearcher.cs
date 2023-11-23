@@ -24,6 +24,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.LastDigit, Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow,
 	Technique.HiddenSingleColumn, Technique.NakedSingle,
 	IsPure = true, IsFixed = true)]
+[StepSearcherRuntimeName("StepSearcherName_SingleStepSearcher")]
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>

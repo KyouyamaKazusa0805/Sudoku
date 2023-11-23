@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.DominoLoop)]
+[StepSearcherRuntimeName("StepSearcherName_DominoLoopStepSearcher")]
 public sealed partial class DominoLoopStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -26,6 +26,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2, Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
 	Flags = ConditionalFlags.Standard)]
+[StepSearcherRuntimeName("StepSearcherName_ExtendedRectangleStepSearcher")]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

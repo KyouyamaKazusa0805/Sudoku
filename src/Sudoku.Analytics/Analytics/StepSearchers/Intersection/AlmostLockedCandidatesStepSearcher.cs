@@ -36,6 +36,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.AlmostLockedPair, Technique.AlmostLockedTriple, Technique.AlmostLockedQuadruple,
 	Technique.AlmostLockedTripleValueType, Technique.AlmostLockedQuadrupleValueType)]
+[StepSearcherRuntimeName("StepSearcherName_AlmostLockedCandidatesStepSearcher")]
 public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 {
 	/// <summary>

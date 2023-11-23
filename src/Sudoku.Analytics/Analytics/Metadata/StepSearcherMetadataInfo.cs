@@ -55,7 +55,15 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
-	public string Name => _stepSearcher.GetType().Name switch { var rawTypeName => GetString($"StepSearcherName_{rawTypeName}") ?? rawTypeName };
+	public string Name
+		=> _stepSearcher.GetType() switch
+		{
+			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherRuntimeNameAttribute>() switch
+			{
+				{ FactName: { } factName } => factName,
+				_ => GetString($"StepSearcherName_{typeName}") ?? typeName
+			}
+		};
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => [.. _stepSearcherAttribute.SupportedTechniques];

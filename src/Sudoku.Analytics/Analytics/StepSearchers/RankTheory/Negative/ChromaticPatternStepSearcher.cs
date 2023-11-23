@@ -45,6 +45,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.ChromaticPatternType1, Technique.ChromaticPatternType2, Technique.ChromaticPatternType3, Technique.ChromaticPatternType4,
 	Technique.ChromaticPatternXzRule)]
+[StepSearcherRuntimeName("StepSearcherName_ChromaticPatternStepSearcher")]
 public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 {
 	/// <summary>

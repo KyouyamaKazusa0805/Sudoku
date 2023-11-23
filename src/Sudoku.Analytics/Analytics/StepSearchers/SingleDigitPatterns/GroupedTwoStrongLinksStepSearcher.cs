@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.GroupedSkyscraper, Technique.GroupedTwoStringKite, Technique.GroupedTurbotFish, OnlyUsesCachedFields = true)]
+[StepSearcherRuntimeName("StepSearcherName_GroupedTwoStrongLinksStepSearcher")]
 public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.WWing, Technique.GroupedWWing)]
+[StepSearcherRuntimeName("StepSearcherName_WWingStepSearcher")]
 public sealed partial class WWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

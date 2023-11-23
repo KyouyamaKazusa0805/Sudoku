@@ -31,6 +31,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UvwxyzWing, Technique.TuvwxyzWing, Technique.StuvwxyzWing, Technique.RstuvwxyzWing,
 	Technique.IncompleteWxyzWing, Technique.IncompleteVwxyzWing, Technique.IncompleteUvwxyzWing,
 	Technique.IncompleteTuvwxyzWing, Technique.IncompleteStuvwxyzWing, Technique.IncompleteRstuvwxyzWing)]
+[StepSearcherRuntimeName("StepSearcherName_RegularWingStepSearcher")]
 public sealed partial class RegularWingStepSearcher : StepSearcher
 {
 	/// <summary>

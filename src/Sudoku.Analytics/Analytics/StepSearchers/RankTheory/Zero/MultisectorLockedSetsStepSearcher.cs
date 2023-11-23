@@ -20,6 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.MultisectorLockedSets)]
+[StepSearcherRuntimeName("StepSearcherName_MultisectorLockedSetsStepSearcher")]
 public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 {
 	/// <summary>

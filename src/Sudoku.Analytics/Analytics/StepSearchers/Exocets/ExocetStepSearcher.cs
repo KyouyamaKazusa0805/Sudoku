@@ -75,6 +75,7 @@ using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet,
 	Technique.AdvancedMutantSeniorExocet, Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget,
 	Technique.PatternLockedQuadruple)]
+[StepSearcherRuntimeName("StepSearcherName_ExocetStepSearcher")]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

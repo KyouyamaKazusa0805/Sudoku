@@ -24,6 +24,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.SueDeCoq, Technique.SueDeCoqIsolated, Technique.SueDeCoqCannibalism)]
+[StepSearcherRuntimeName("StepSearcherName_SueDeCoqStepSearcher")]
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -19,6 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.EmptyRectangle)]
+[StepSearcherRuntimeName("StepSearcherName_EmptyRectangleStepSearcher")]
 public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

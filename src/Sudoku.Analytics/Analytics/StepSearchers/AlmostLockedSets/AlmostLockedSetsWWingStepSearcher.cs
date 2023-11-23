@@ -19,6 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.AlmostLockedSetsWWing)]
+[StepSearcherRuntimeName("StepSearcherName_AlmostLockedSetsWWingStepSearcher")]
 public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

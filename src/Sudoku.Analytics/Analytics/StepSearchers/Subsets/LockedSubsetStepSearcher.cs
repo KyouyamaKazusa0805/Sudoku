@@ -16,6 +16,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	Technique.LockedPair, Technique.LockedTriple, Technique.LockedHiddenPair, Technique.LockedHiddenTriple,
 	Technique.NakedPairPlus, Technique.NakedTriplePlus, Technique.NakedQuadruplePlus)]
+[StepSearcherRuntimeName("StepSearcherName_LockedSubsetStepSearcher")]
 public sealed partial class LockedSubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

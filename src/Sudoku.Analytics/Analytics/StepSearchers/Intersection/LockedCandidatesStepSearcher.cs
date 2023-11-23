@@ -20,6 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.Pointing, Technique.Claiming)]
+[StepSearcherRuntimeName("StepSearcherName_LockedCandidatesStepSearcher")]
 public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
