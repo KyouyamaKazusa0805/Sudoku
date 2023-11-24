@@ -1729,7 +1729,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				{
 					if (CheckSeniorLockedMember(
 						ref context, grid, in baseCells, targetCell, endoTargetCell, in crossline, in crosslineIncludingTarget,
-						baseCellsDigitsMask, lockedMembers, chuteIndex, groupsOfTargetCells, size, out var inferredLastTargetDigitsMask,
+						baseCellsDigitsMask, lockedMembers, chuteIndex, groupsOfTargetCells, size, out _,
 						out var lockedDigitsMask
 					) is { } seniorLockedMemberTypeStep)
 					{
