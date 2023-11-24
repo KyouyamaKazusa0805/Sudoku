@@ -58,6 +58,10 @@ public sealed partial class LockedCandidatesStep(
 			]
 		};
 
+	/// <inheritdoc/>
+	public override Formula LocatingDifficultyFormula
+		=> new(a => Code == Technique.Pointing ? (a[0] + a[1]) * a[2] : (a[0] + a[1] + a[2]) * a[3]);
+
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 
 	private string BaseSetStr => Options.Converter.HouseConverter(1 << BaseSet);

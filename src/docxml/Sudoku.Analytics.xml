@@ -4606,6 +4606,25 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Rating.Formula">
+            <summary>
+            Represents a formula. The formula can help you calculate the target expression.
+            </summary>
+            <param name="expression">Indicates the expression to combine multiple values.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.Formula.#ctor(System.Linq.Expressions.Expression{System.Func{System.Decimal[],System.Decimal}})">
+            <summary>
+            Represents a formula. The formula can help you calculate the target expression.
+            </summary>
+            <param name="expression">Indicates the expression to combine multiple values.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.Formula.GetScore(System.Decimal[])">
+            <summary>
+            Try to calculate the final score via the specified arguments.
+            </summary>
+            <param name="arguments">The arguments passed in.</param>
+            <returns>The final score.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.HotSpot">
             <summary>
             The hotspot data.
@@ -4883,6 +4902,12 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
             <para><inheritdoc cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors" path="//summary/para[2]"/></para>
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.LocatingDifficultyFormula">
+            <summary>
+            Indicates the formula that calculates and combines with arguments stored in <see cref="P:Sudoku.Analytics.Step.LocatingDifficultyFactors"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Step.LocatingDifficultyFactors"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
             <summary>
@@ -14987,6 +15012,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.LocatingDifficultyFormula">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Steps.LockedCandidatesStep._lockedCandidatesCellsCount">

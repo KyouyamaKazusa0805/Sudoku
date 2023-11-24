@@ -180,6 +180,12 @@ public abstract partial class Step(
 	public virtual LocatingDifficultyFactor[]? LocatingDifficultyFactors => null;
 
 	/// <summary>
+	/// Indicates the formula that calculates and combines with arguments stored in <see cref="LocatingDifficultyFactors"/>.
+	/// </summary>
+	/// <seealso cref="LocatingDifficultyFactors"/>
+	public virtual Formula LocatingDifficultyFormula => new(a => (from element in LocatingDifficultyFactors select element.Value).Sum());
+
+	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	private protected string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
