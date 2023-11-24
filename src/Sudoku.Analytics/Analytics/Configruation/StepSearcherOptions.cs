@@ -10,6 +10,11 @@ namespace Sudoku.Analytics.Configuration;
 /// </summary>
 public sealed record StepSearcherOptions
 {
+	/// <summary>
+	/// Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
+	/// </summary>
+	public bool IsDirectMode { get; init; } = false;
+
 	/// <inheritdoc cref="CoordinateConverter"/>
 	public CoordinateConverter Converter { get; init; } = new RxCyConverter();
 

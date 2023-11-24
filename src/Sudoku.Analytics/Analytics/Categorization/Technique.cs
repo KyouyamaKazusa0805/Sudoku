@@ -22,7 +22,7 @@ public enum Technique
 	//
 	#region Singles
 	/// <summary>
-	/// Indicates full house.
+	/// Indicates full house. This technique is the most elementary technique to be used in the candidate view mode.
 	/// </summary>
 	[HodokuTechniquePrefix("0000")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
@@ -79,6 +79,43 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	NakedSingle,
+	#endregion
+
+	//
+	// Direct Singles
+	//
+	#region Direct Singles
+	/// <summary>
+	/// Indicates single. This technique is the most elementary technique to be used in the direct view mode.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
+	Single,
+
+	/// <summary>
+	/// Indicates crosshatching in block.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
+	CrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in row.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
+	CrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in column.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Easy)]
+	CrosshatchingColumn,
 	#endregion
 
 	//

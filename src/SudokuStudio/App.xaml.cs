@@ -232,7 +232,8 @@ public partial class App : Application
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation
 				)
-			}
+			},
+			IsDirectMode = !uiPref.DisplayCandidates
 		};
 	}
 }

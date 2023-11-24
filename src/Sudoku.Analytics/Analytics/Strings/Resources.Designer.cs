@@ -925,6 +925,33 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crosshatching in Block.
+        /// </summary>
+        public static string CrosshatchingBlock {
+            get {
+                return ResourceManager.GetString("CrosshatchingBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crosshatching in Column.
+        /// </summary>
+        public static string CrosshatchingColumn {
+            get {
+                return ResourceManager.GetString("CrosshatchingColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crosshatching in Row.
+        /// </summary>
+        public static string CrosshatchingRow {
+            get {
+                return ResourceManager.GetString("CrosshatchingRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Death Blossom.
         /// </summary>
         public static string DeathBlossom {
@@ -3441,6 +3468,15 @@ namespace Sudoku.Analytics.Strings {
         public static string SiameseSashimiXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single.
+        /// </summary>
+        public static string Single {
+            get {
+                return ResourceManager.GetString("Single", resourceCulture);
             }
         }
         

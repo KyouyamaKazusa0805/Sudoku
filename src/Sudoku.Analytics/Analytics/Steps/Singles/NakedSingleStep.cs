@@ -26,13 +26,13 @@ public sealed partial class NakedSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 2.3M;
+	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;
 
 	/// <inheritdoc/>
 	public override decimal BaseLocatingDifficulty => 162;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.NakedSingle;
+	public override Technique Code => Options.IsDirectMode ? Technique.NakedSingle : Technique.Single;
 
 	/// <inheritdoc/>
 	public override LocatingDifficultyFactor[] LocatingDifficultyFactors

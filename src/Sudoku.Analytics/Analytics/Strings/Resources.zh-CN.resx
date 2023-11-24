@@ -501,15 +501,15 @@
     <comment>Technique Name</comment>
   </data>
   <data name="HiddenSingleBlock" xml:space="preserve">
-    <value>宫排除</value>
+    <value>宫隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="HiddenSingleRow" xml:space="preserve">
-    <value>行排除</value>
+    <value>行隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="HiddenSingleColumn" xml:space="preserve">
-    <value>列排除</value>
+    <value>列隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="NakedSingle" xml:space="preserve">
@@ -2641,6 +2641,22 @@
   </data>
   <data name="GroupedXyzNiceLoop" xml:space="preserve">
     <value>结构 XYZ 全环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="CrosshatchingBlock" xml:space="preserve">
+    <value>宫排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="CrosshatchingColumn" xml:space="preserve">
+    <value>列排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="CrosshatchingRow" xml:space="preserve">
+    <value>行排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>显性唯一</value>
     <comment>Technique Name</comment>
   </data>
 </root>

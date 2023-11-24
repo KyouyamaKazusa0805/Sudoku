@@ -1163,7 +1163,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FullHouse">
             <summary>
-            Indicates full house.
+            Indicates full house. This technique is the most elementary technique to be used in the candidate view mode.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.LastDigit">
@@ -1189,6 +1189,26 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.NakedSingle">
             <summary>
             Indicates naked single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Single">
+            <summary>
+            Indicates single. This technique is the most elementary technique to be used in the direct view mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock">
+            <summary>
+            Indicates crosshatching in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow">
+            <summary>
+            Indicates crosshatching in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn">
+            <summary>
+            Indicates crosshatching in column.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">
@@ -3067,6 +3087,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the current technique hasn't implemented by author.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.DirectTechniques">
+            <summary>
+            Indicates the current technique only appears in direct views, i.e. candidates are not displayed.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
             <summary>
             Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
@@ -3692,6 +3717,11 @@ if (student is (name: var name, age: >= 18))
             Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode">
+            <summary>
+            Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
@@ -17324,6 +17354,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Continuous Nice Loop.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.CrosshatchingBlock">
+            <summary>
+              Looks up a localized string similar to Crosshatching in Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.CrosshatchingColumn">
+            <summary>
+              Looks up a localized string similar to Crosshatching in Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.CrosshatchingRow">
+            <summary>
+              Looks up a localized string similar to Crosshatching in Row.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.DeathBlossom">
             <summary>
               Looks up a localized string similar to Death Blossom.
@@ -18722,6 +18767,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.SiameseSashimiXWing">
             <summary>
               Looks up a localized string similar to Siamese Sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.Single">
+            <summary>
+              Looks up a localized string similar to Single.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SinglyLinkedAlmostLockedSetsXzRule">

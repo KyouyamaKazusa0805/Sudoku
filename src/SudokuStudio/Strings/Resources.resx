@@ -1856,6 +1856,12 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SymmetricType_YAxis" xml:space="preserve">
     <value>Y axis</value>
   </data>
+  <data name="TechniqueFeature_DirectTechniques" xml:space="preserve">
+    <value>This technique only appears in direct view mode, i.e. no candidates displayed.</value>
+  </data>
+  <data name="TechniqueFeature_DirectTechniquesShort" xml:space="preserve">
+    <value>Direct Techniques</value>
+  </data>
   <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
     <value>This technique cannot be generated or is extremely hard to be generated.</value>
   </data>

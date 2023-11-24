@@ -29,5 +29,10 @@ public enum TechniqueFeature
 	/// <summary>
 	/// Indicates the current technique hasn't implemented by author.
 	/// </summary>
-	NotImplemented = 1 << 3
+	NotImplemented = 1 << 3,
+
+	/// <summary>
+	/// Indicates the current technique only appears in direct views, i.e. candidates are not displayed.
+	/// </summary>
+	DirectTechniques = 1 << 4
 }

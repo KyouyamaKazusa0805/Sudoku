@@ -1859,6 +1859,12 @@
   <data name="SymmetricType_YAxis" xml:space="preserve">
     <value>纵轴对称</value>
   </data>
+  <data name="TechniqueFeature_DirectTechniques" xml:space="preserve">
+    <value>该技巧只存在于直观层面，即不呈现候选数的状态下。</value>
+  </data>
+  <data name="TechniqueFeature_DirectTechniquesShort" xml:space="preserve">
+    <value>直观技巧</value>
+  </data>
   <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
     <value>该技巧不能或几乎不可能通过生成功能出出来。</value>
   </data>

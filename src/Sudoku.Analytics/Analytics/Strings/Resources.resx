@@ -2466,4 +2466,16 @@
   <data name="GroupedXyzNiceLoop" xml:space="preserve">
     <value>Grouped XYZ-Loop (Nice)</value>
   </data>
+  <data name="CrosshatchingBlock" xml:space="preserve">
+    <value>Crosshatching in Block</value>
+  </data>
+  <data name="CrosshatchingColumn" xml:space="preserve">
+    <value>Crosshatching in Column</value>
+  </data>
+  <data name="CrosshatchingRow" xml:space="preserve">
+    <value>Crosshatching in Row</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Single</value>
+  </data>
 </root>

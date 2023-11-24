@@ -5478,6 +5478,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This technique only appears in direct view mode, i.e. no candidates displayed..
+        /// </summary>
+        internal static string TechniqueFeature_DirectTechniques {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_DirectTechniques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Techniques.
+        /// </summary>
+        internal static string TechniqueFeature_DirectTechniquesShort {
+            get {
+                return ResourceManager.GetString("TechniqueFeature_DirectTechniquesShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..
         /// </summary>
         internal static string TechniqueFeature_HardToBeGenerated {

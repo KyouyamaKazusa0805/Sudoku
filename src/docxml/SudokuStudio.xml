@@ -7919,6 +7919,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Y axis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_DirectTechniques">
+            <summary>
+              Looks up a localized string similar to This technique only appears in direct view mode, i.e. no candidates displayed..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_DirectTechniquesShort">
+            <summary>
+              Looks up a localized string similar to Direct Techniques.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_HardToBeGenerated">
             <summary>
               Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..

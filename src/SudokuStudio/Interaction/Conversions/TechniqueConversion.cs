@@ -20,6 +20,7 @@ internal static class TechniqueConversion
 			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechniqueShort"),
 			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheoryShort"),
 			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplementedShort"),
+			TechniqueFeature.DirectTechniques => GetString("TechniqueFeature_DirectTechniquesShort"),
 			_ => string.Empty
 		};
 
@@ -30,6 +31,7 @@ internal static class TechniqueConversion
 			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechnique"),
 			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheory"),
 			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplemented"),
+			TechniqueFeature.DirectTechniques => GetString("TechniqueFeature_DirectTechniques"),
 			_ => null
 		};
 
