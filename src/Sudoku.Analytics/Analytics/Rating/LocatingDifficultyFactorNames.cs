@@ -29,4 +29,9 @@ public static class LocatingDifficultyFactorNames
 	/// Indicates the factor is naked single excluder.
 	/// </summary>
 	public const string NakedSingleExcluder = nameof(NakedSingleExcluder);
+
+	/// <summary>
+	/// Indicates the factor is locked candidates cells count.
+	/// </summary>
+	public const string LockedCandidatesCellsCount = nameof(LockedCandidatesCellsCount);
 }

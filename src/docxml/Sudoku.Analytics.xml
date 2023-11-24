@@ -4688,6 +4688,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the factor is naked single excluder.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.LockedCandidatesCellsCount">
+            <summary>
+            Indicates the factor is locked candidates cells count.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
             <summary>
             The helper type that calculates for <see cref="T:Sudoku.Analytics.Step"/> instances.
@@ -14958,8 +14963,9 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
+            <param name="lockedCandidatesCellsCount">The number of cells of the locked candidates used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -14969,6 +14975,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
+            <param name="lockedCandidatesCellsCount">The number of cells of the locked candidates used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -14978,6 +14985,14 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolationParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.LockedCandidatesStep._lockedCandidatesCellsCount">
+            <summary>
+            The generated field declaration for parameter <c>lockedCandidatesCellsCount</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
             <summary>
