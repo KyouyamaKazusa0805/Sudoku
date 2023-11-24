@@ -39,10 +39,13 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> HasValueCell switch
+		=> (HasValueCell, Size) switch
 		{
-			true => Size switch { 3 => Technique.AlmostLockedTripleValueType, 4 => Technique.AlmostLockedQuadrupleValueType },
-			_ => (Technique)((int)Technique.AlmostLockedPair + Size - 2)
+			(_, 2) => Technique.AlmostLockedPair,
+			(true, 3) => Technique.AlmostLockedTripleValueType,
+			(_, 3) => Technique.AlmostLockedTriple,
+			(true, 4) => Technique.AlmostLockedQuadrupleValueType,
+			(_, 4) => Technique.AlmostLockedQuadruple
 		};
 
 	/// <inheritdoc/>
