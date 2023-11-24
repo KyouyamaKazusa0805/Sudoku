@@ -3693,33 +3693,9 @@ if (student is (name: var name, age: >= 18))
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
             </summary>
-            <param name="Converter">
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor(Sudoku.Concepts.Converters.CoordinateConverter)">
-            <summary>
-            Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
-            Some options may not relate to a real <see cref="T:Sudoku.Analytics.StepSearcher"/> instance directly, but relate to a <see cref="T:Sudoku.Analytics.Step"/>
-            that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
-            For example, setting notation to the coordinates.
-            </summary>
-            <param name="Converter">
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
-            </param>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
-            <summary>
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/summary"/></para>
-            <para><inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter" path="/remarks"/></para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.StepSearcherOptions.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Configuration.StepSearcherOptions"/> instance.
-            </summary>
+            <inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <summary>

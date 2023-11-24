@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Sudoku.Concepts.Converters;
 
 namespace Sudoku.Analytics.Configuration;
@@ -9,19 +8,10 @@ namespace Sudoku.Analytics.Configuration;
 /// that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
 /// </summary>
-/// <param name="Converter">
-/// <para><inheritdoc cref="CoordinateConverter" path="/summary"/></para>
-/// <para><inheritdoc cref="CoordinateConverter" path="/remarks"/></para>
-/// </param>
-public sealed record StepSearcherOptions(CoordinateConverter Converter)
+public sealed record StepSearcherOptions
 {
-	/// <summary>
-	/// Initializes a <see cref="StepSearcherOptions"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StepSearcherOptions() : this(new RxCyConverter())
-	{
-	}
+	/// <inheritdoc cref="CoordinateConverter"/>
+	public CoordinateConverter Converter { get; init; } = new RxCyConverter();
 
 
 	/// <summary>
