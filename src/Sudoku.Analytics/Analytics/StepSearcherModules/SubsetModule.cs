@@ -1,4 +1,5 @@
 using System.Numerics;
+using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
@@ -90,6 +91,15 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 						continue;
 					}
 
+					var distanceMax = new Distance();
+					foreach (ref readonly var cellCombination in cells.GetSubsets(2))
+					{
+						if (Distance.GetDistance(in cellCombination) is var p && p >= distanceMax)
+						{
+							distanceMax = p;
+						}
+					}
+
 					var step = new NakedSubsetStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
@@ -97,7 +107,9 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 						house,
 						in cells,
 						digitsMask,
-						isLocked
+						isLocked,
+						(BivalueCells & cells) == cells,
+						(decimal)distanceMax.RawValue
 					);
 
 					if (context.OnlyFindOne)
@@ -117,14 +129,14 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 				var mask = grid[in traversingMap];
 				foreach (var digits in mask.GetAllSets().GetSubsets(size))
 				{
-					var (tempMask, digitsMask, map) = (mask, (Mask)0, CellMap.Empty);
+					var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
 					foreach (var digit in digits)
 					{
 						tempMask &= (Mask)~(1 << digit);
 						digitsMask |= (Mask)(1 << digit);
-						map |= currentHouseCells & CandidatesMap[digit];
+						cells |= currentHouseCells & CandidatesMap[digit];
 					}
-					if (map.Count != size)
+					if (cells.Count != size)
 					{
 						continue;
 					}
@@ -133,7 +145,7 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 					var conclusions = new List<Conclusion>();
 					foreach (var digit in tempMask)
 					{
-						foreach (var cell in map & CandidatesMap[digit])
+						foreach (var cell in cells & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -147,15 +159,15 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 					var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
 					foreach (var digit in digits)
 					{
-						foreach (var cell in map & CandidatesMap[digit])
+						foreach (var cell in cells & CandidatesMap[digit])
 						{
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 						}
 
-						cellOffsets.AddRange(GetCrosshatchBaseCells(in grid, digit, house, in map));
+						cellOffsets.AddRange(GetCrosshatchBaseCells(in grid, digit, house, in cells));
 					}
 
-					var isLocked = map.IsInIntersection;
+					var isLocked = cells.IsInIntersection;
 					if (!searchingForLocked || isLocked && searchingForLocked)
 					{
 						var containsExtraEliminations = false;
@@ -163,8 +175,8 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 						{
 							// A potential locked hidden subset found. Extra eliminations should be checked.
 							// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
-							var eliminatingHouse = TrailingZeroCount(map.CoveredHouses & ~(1 << house));
-							foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - map)
+							var eliminatingHouse = TrailingZeroCount(cells.CoveredHouses & ~(1 << house));
+							foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - cells)
 							{
 								foreach (var digit in digitsMask)
 								{
@@ -184,14 +196,31 @@ internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
 							continue;
 						}
 
+						var distanceMax = new Distance();
+						foreach (ref readonly var cellCombination in cells.GetSubsets(2))
+						{
+							if (Distance.GetDistance(in cellCombination) is var p && p >= distanceMax)
+							{
+								distanceMax = p;
+							}
+						}
+
+						var interferersCount = 0;
+						foreach (var cell in cells)
+						{
+							interferersCount += PopCount((uint)(Mask)(grid.GetCandidates(cell) & ~digitsMask));
+						}
+
 						var step = new HiddenSubsetStep(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
 							context.PredefinedOptions,
 							house,
-							in map,
+							in cells,
 							digitsMask,
-							isLocked && containsExtraEliminations
+							isLocked && containsExtraEliminations,
+							(decimal)distanceMax.RawValue,
+							interferersCount
 						);
 
 						if (context.OnlyFindOne)

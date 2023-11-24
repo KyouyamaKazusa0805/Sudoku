@@ -4394,12 +4394,19 @@ if (student is (name: var name, age: >= 18))
             For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.GetDistanceFor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)">
             <summary>
             Try to fetch the distance for the two cells.
             </summary>
             <param name="cell1">The first cell to be compared.</param>
             <param name="cell2">The second cell to be compared.</param>
+            <returns>The distance result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to fetch the distance for two cells stored in a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
             <returns>The distance result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Rating.Distance.SimplifyRootPart(System.Int32@)">
@@ -4716,6 +4723,21 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.LockedCandidatesCellsCount">
             <summary>
             Indicates the factor is locked candidates cells count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Size">
+            <summary>
+            Indicates the factor is size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Distance">
+            <summary>
+            Indicates the factor is distance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Interferer">
+            <summary>
+            Indicates the factor is interferer.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
@@ -16160,8 +16182,10 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
+            <param name="distance">The distance for the two cells farest away from each other.</param>
+            <param name="interferersCount">The number of interferer candidates that makes the pattern more difficult to be found.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Decimal,System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -16184,6 +16208,8 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
+            <param name="distance">The distance for the two cells farest away from each other.</param>
+            <param name="interferersCount">The number of interferer candidates that makes the pattern more difficult to be found.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -16196,6 +16222,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.LocatingDifficultyFormula">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.HiddenSubsetStep._distance">
+            <summary>
+            The generated field declaration for parameter <c>distance</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.HiddenSubsetStep._interferersCount">
+            <summary>
+            The generated field declaration for parameter <c>interferersCount</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
             <summary>
@@ -16229,8 +16271,10 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
+            <param name="isBivalueSubset">Indicates whether the cells form a bi-value subset.</param>
+            <param name="distance">The distance for the two cells farest away from each other.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean},System.Boolean,System.Decimal)">
             <summary>
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
@@ -16257,6 +16301,8 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
+            <param name="isBivalueSubset">Indicates whether the cells form a bi-value subset.</param>
+            <param name="distance">The distance for the two cells farest away from each other.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
             <inheritdoc/>
@@ -16266,6 +16312,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.LocatingDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.LocatingDifficultyFormula">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.NakedSubsetStep._isBivalueSubset">
+            <summary>
+            The generated field declaration for parameter <c>isBivalueSubset</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.NakedSubsetStep._distance">
+            <summary>
+            The generated field declaration for parameter <c>distance</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
             <summary>

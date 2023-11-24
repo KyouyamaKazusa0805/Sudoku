@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
+using Sudoku.Concepts;
 
 namespace Sudoku.Analytics.Rating;
 
@@ -83,11 +84,23 @@ public readonly ref partial struct Distance(int p, int q)
 	/// <param name="cell2">The second cell to be compared.</param>
 	/// <returns>The distance result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Distance GetDistanceFor(Cell cell1, Cell cell2)
+	public static Distance GetDistance(Cell cell1, Cell cell2)
 	{
 		var (x1, y1) = (cell1 / 9, cell1 % 9);
 		var (x2, y2) = (cell2 / 9, cell2 % 9);
 		return new((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+	}
+
+	/// <summary>
+	/// Try to fetch the distance for two cells stored in a <see cref="CellMap"/> instance.
+	/// </summary>
+	/// <param name="cells">The <see cref="CellMap"/> instance storing two cells.</param>
+	/// <returns>The distance result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Distance GetDistance(scoped ref readonly CellMap cells)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(cells.Count, 2);
+		return GetDistance(cells[0], cells[1]);
 	}
 
 	/// <summary>

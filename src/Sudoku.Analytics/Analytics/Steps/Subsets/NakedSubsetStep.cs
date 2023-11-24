@@ -34,6 +34,8 @@ namespace Sudoku.Analytics.Steps;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="isBivalueSubset">Indicates whether the cells form a bi-value subset.</param>
+/// <param name="distance">The distance for the two cells farest away from each other.</param>
 public sealed partial class NakedSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -41,7 +43,9 @@ public sealed partial class NakedSubsetStep(
 	House house,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[Data] bool? isLocked
+	[Data] bool? isLocked,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] bool isBivalueSubset,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] decimal distance
 ) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>
@@ -68,6 +72,55 @@ public sealed partial class NakedSubsetStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName])];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> Options.IsDirectMode switch
+		{
+			false => (IsLocked, _isBivalueSubset, House.ToHouseType(), HotSpot.GetHotSpot(House), Cells.Count, _distance) switch
+			{
+				(true, _, _, var hotspot, var count, var dist) => [
+					new(LocatingDifficultyFactorNames.HousePosition, hotspot * 9),
+					new(LocatingDifficultyFactorNames.Size, count)
+				],
+				(_, true, _, var hotspot, var count, var dist) => [
+					new(LocatingDifficultyFactorNames.HousePosition, hotspot * 9),
+					new(LocatingDifficultyFactorNames.Distance, dist * 3),
+					new(LocatingDifficultyFactorNames.Size, count)
+				],
+				var (_, _, type, hotspot, count, dist) => [
+					new(
+						LocatingDifficultyFactorNames.HouseType,
+						type switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 } * 27
+					),
+					new(LocatingDifficultyFactorNames.HousePosition, hotspot * 9),
+					new(LocatingDifficultyFactorNames.Distance, dist * 3),
+					new(LocatingDifficultyFactorNames.Size, count)
+				]
+			},
+			_ => [
+				new(
+					LocatingDifficultyFactorNames.HouseType,
+					House.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 } * 27
+				),
+				new(LocatingDifficultyFactorNames.HousePosition, HotSpot.GetHotSpot(House) * 9),
+				new(LocatingDifficultyFactorNames.Size, Cells.Count),
+				new(LocatingDifficultyFactorNames.Distance, Math.Round(_distance, 2))
+			]
+		};
+
+	/// <inheritdoc/>
+	public override Formula LocatingDifficultyFormula
+		=> Options.IsDirectMode switch
+		{
+			false => (IsLocked, _isBivalueSubset) switch
+			{
+				(true, _) => new(a => a[0] * a[1]),
+				(_, true) => new(a => (a[0] + a[1]) * a[2]),
+				_ => new(a => (a[0] + a[1] + a[2]) * a[3])
+			},
+			_ => new(a => (a[0] + a[1]) * a[2] + a[3] * 2)
+		};
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
