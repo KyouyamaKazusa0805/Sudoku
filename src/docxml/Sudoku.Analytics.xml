@@ -9340,25 +9340,26 @@ if (student is (name: var name, age: >= 18))
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>
             Check for full houses.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckHiddenSingle(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>
             Check for hidden singles.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckNakedSingle(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>
             Check for naked singles.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckForHiddenSingleAndLastDigit(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckForHiddenSingleAndLastDigit(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32)">
             <summary>
             Checks for existence of hidden single and last digit conclusion in the specified house.
             </summary>
+            <param name="this">The current instance.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <param name="digit">The digit used.</param>

@@ -11,6 +11,8 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe Handler = delegate*<SingleStepSearcher, ref AnalysisContext, ref readonly Grid, Step?>;
+
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
@@ -113,7 +115,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		CheckForHiddenSingle:
 			for (var house = 0; house < 27; house++)
 			{
-				if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
+				if (CheckForHiddenSingleAndLastDigit(this, in grid, ref context, digit, house) is not { } step)
 				{
 					continue;
 				}
@@ -174,18 +176,21 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
 		// we should start with a naked single because they are "direct" in such mode.
-		var a = CheckFullHouse;
-		var b = CheckHiddenSingle;
-		var c = CheckNakedSingle;
-		foreach (var searcher in ((EnableFullHouse, isFullyMarkedMode) switch
+		var a = (Handler)(&CheckFullHouse);
+		var b = (Handler)(&CheckHiddenSingle);
+		var c = (Handler)(&CheckNakedSingle);
+		scoped var searchers = (ReadOnlySpan<nint>)(
+			(EnableFullHouse, isFullyMarkedMode) switch
+			{
+				(true, true) => [(nint)a, (nint)c, (nint)b],
+				(true, _) => [(nint)a, (nint)b, (nint)c],
+				(_, true) => [(nint)c, (nint)b],
+				_ => [(nint)b, (nint)c]
+			}
+		);
+		foreach (Handler searcher in searchers)
 		{
-			(true, true) => a + c + b,
-			(true, _) => a + b + c,
-			(_, true) => c + b,
-			_ => b + c
-		}).GetInvocations())
-		{
-			if (searcher(ref context, in grid) is { } step)
+			if (searcher(this, ref context, in grid) is { } step)
 			{
 				return step;
 			}
@@ -197,7 +202,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for full houses.
 	/// </summary>
-	private Step? CheckFullHouse(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
 	{
 		for (var house = 0; house < 27; house++)
 		{
@@ -242,16 +247,16 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden singles.
 	/// </summary>
-	private Step? CheckHiddenSingle(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
 	{
-		if (HiddenSinglesInBlockFirst)
+		if (@this.HiddenSinglesInBlockFirst)
 		{
 			// If block first, we'll extract all blocks and iterate on them firstly.
 			for (var house = 0; house < 9; house++)
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -270,7 +275,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -293,7 +298,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				for (var house = 0; house < 27; house++)
 				{
-					if (CheckForHiddenSingleAndLastDigit(in grid, ref context, digit, house) is not { } step)
+					if (CheckForHiddenSingleAndLastDigit(@this, in grid, ref context, digit, house) is not { } step)
 					{
 						continue;
 					}
@@ -314,7 +319,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked singles.
 	/// </summary>
-	private Step? CheckNakedSingle(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
 	{
 		for (var cell = 0; cell < 81; cell++)
 		{
@@ -346,6 +351,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for existence of hidden single and last digit conclusion in the specified house.
 	/// </summary>
+	/// <param name="this">The current instance.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="digit">The digit used.</param>
@@ -359,7 +365,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
+	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
+		SingleStepSearcher @this,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		Digit digit,
@@ -389,7 +396,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		// The digit is a hidden single.
 		// Now collect information (especially for rendering & text) from the current found step.
 		var (enableAndIsLastDigit, cellOffsets) = (false, new List<CellViewNode>());
-		if (EnableLastDigit)
+		if (@this.EnableLastDigit)
 		{
 			// Sum up the number of appearing in the grid of 'digit'.
 			var digitCount = 0;
@@ -463,7 +470,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetHiddenSingleExcluders(scoped ref readonly Grid grid, Digit digit, House house, Cell cell, out CellMap chosenCells)
+	private static CellViewNode[] GetHiddenSingleExcluders(
+		scoped ref readonly Grid grid,
+		Digit digit,
+		House house,
+		Cell cell,
+		out CellMap chosenCells
+	)
 	{
 		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) is { } info)
 		{
@@ -491,7 +504,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	private static CellViewNode[] GetNakedSingleExcluders(
+		scoped ref readonly Grid grid,
+		Cell cell,
+		Digit digit,
+		out House[] excluderHouses
+	)
 	{
 		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
