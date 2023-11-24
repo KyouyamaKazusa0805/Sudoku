@@ -4048,6 +4048,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distinct direct and indirect modes.
+        /// </summary>
+        internal static string SettingsPage_DistinctDirectAndIndirectModes {
+            get {
+                return ResourceManager.GetString("SettingsPage_DistinctDirectAndIndirectModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the case whether the program will display candidates. If all candidates are displayed, we can re-order the searching logic (making naked singles before hidden singles) to make the solving and analysis experience better. Hidden subsets will be also re-arranged in this option. However, this option will not take any effect if ittoryu settings are enabled (because ittoryu modes are used in ONLY direct views)..
+        /// </summary>
+        internal static string SettingsPage_DistinctDirectAndIndirectModesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DistinctDirectAndIndirectModesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In a puzzle with a unique solution, the program can check whether the digits input (deleted) is correct. If this option is on, the program will use another color to display wrong conclusions..
         /// </summary>
         internal static string SettingsPage_DistinctWithDeltaDigitsDescription {

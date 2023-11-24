@@ -3719,6 +3719,12 @@ if (student is (name: var name, age: >= 18))
             For example, setting notation to the coordinates.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode">
+            <summary>
+            Indicates whether the step searchers will adjust the searching order to distinct two modes on displaying candidates,
+            making the experience better.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode">
             <summary>
             Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
@@ -5389,6 +5395,16 @@ if (student is (name: var name, age: >= 18))
             <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
             <param name="context">The context.</param>
             <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -9323,6 +9339,21 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Check for full houses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Check for hidden singles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Check for naked singles.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckForHiddenSingleAndLastDigit(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32)">
             <summary>

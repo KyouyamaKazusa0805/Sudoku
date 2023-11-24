@@ -1104,6 +1104,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainer"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -1210,6 +1216,11 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForSudokuExplainer">
             <summary>
             Indicates whether the step will be displayed its corresponding rating defined in program Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes">
+            <summary>
+            Indicates whether the step searchers will distinct for direct and indirect views, in order to re-order the step searchers' calculation, to make the experience better.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
@@ -7119,6 +7130,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DisplayCursorsTitle">
             <summary>
               Looks up a localized string similar to Display for cursors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DistinctDirectAndIndirectModes">
+            <summary>
+              Looks up a localized string similar to Distinct direct and indirect modes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DistinctDirectAndIndirectModesDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the case whether the program will display candidates. If all candidates are displayed, we can re-order the searching logic (making naked singles before hidden singles) to make the solving and analysis experience better. Hidden subsets will be also re-arranged in this option. However, this option will not take any effect if ittoryu settings are enabled (because ittoryu modes are used in ONLY direct views)..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DistinctWithDeltaDigitsDescription">

@@ -1359,6 +1359,12 @@
   <data name="SettingsPage_DisplayCursorsTitle" xml:space="preserve">
     <value>Display for cursors</value>
   </data>
+  <data name="SettingsPage_DistinctDirectAndIndirectModes" xml:space="preserve">
+    <value>Distinct direct and indirect modes</value>
+  </data>
+  <data name="SettingsPage_DistinctDirectAndIndirectModesDescription" xml:space="preserve">
+    <value>This option controls the case whether the program will display candidates. If all candidates are displayed, we can re-order the searching logic (making naked singles before hidden singles) to make the solving and analysis experience better. Hidden subsets will be also re-arranged in this option. However, this option will not take any effect if ittoryu settings are enabled (because ittoryu modes are used in ONLY direct views).</value>
+  </data>
   <data name="SettingsPage_DistinctWithDeltaDigitsDescription" xml:space="preserve">
     <value>In a puzzle with a unique solution, the program can check whether the digits input (deleted) is correct. If this option is on, the program will use another color to display wrong conclusions.</value>
   </data>

@@ -1362,6 +1362,12 @@
   <data name="SettingsPage_DisplayCursorsTitle" xml:space="preserve">
     <value>显示光标</value>
   </data>
+  <data name="SettingsPage_DistinctDirectAndIndirectModes" xml:space="preserve">
+    <value>让程序区分直观和全标模式</value>
+  </data>
+  <data name="SettingsPage_DistinctDirectAndIndirectModesDescription" xml:space="preserve">
+    <value>该选项控制的是程序是否区分直观和全标模式。在全标环境下，排除就比唯余要难看一些，因此可设置该选项，让程序提前唯余的计算次序（放在排除之前），以得到一个更好的分析体验。隐性数组也会因为此设置项而被提前。但是，开启了一刀流相关选项后，该选项会失效，因为一刀流本身就仅用于直观层面。</value>
+  </data>
   <data name="SettingsPage_DistinctWithDeltaDigitsDescription" xml:space="preserve">
     <value>程序在唯一解题目的情况下可以确定某个数字填入进去（或删除掉）是否为正确结论。如果该设置项打开后，程序会使用另外的颜色来表示出错误结论，以区别于正确的填数。</value>
   </data>

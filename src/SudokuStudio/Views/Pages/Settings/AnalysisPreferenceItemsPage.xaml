@@ -234,6 +234,12 @@
 			SettingsPage_StepSearcherBehaviors
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_StepSearcherBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DistinctDirectAndIndirectModes}"
+				Description="{m:R Key=SettingsPage_DistinctDirectAndIndirectModesDescription}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DistinctDirectAndIndirectModes,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsExpander
 				Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
 				Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">

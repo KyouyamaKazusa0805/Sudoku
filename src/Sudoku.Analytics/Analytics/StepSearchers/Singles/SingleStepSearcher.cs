@@ -166,15 +166,39 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? Collect_NonIttoryuMode(scoped ref AnalysisContext context)
+	private unsafe Step? Collect_NonIttoryuMode(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
+		var isFullyMarkedMode = !context.PredefinedOptions.DistinctDirectMode || !context.PredefinedOptions.IsDirectMode;
 
-		if (!EnableFullHouse)
+		// Please note that, by default we should start with hidden singles. However, if a user has set the option
+		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
+		// we should start with a naked single because they are "direct" in such mode.
+		var a = CheckFullHouse;
+		var b = CheckHiddenSingle;
+		var c = CheckNakedSingle;
+		foreach (var searcher in ((EnableFullHouse, isFullyMarkedMode) switch
 		{
-			goto CheckForHiddenSingle;
+			(true, true) => a + c + b,
+			(true, _) => a + b + c,
+			(_, true) => c + b,
+			_ => b + c
+		}).GetInvocations())
+		{
+			if (searcher(ref context, in grid) is { } step)
+			{
+				return step;
+			}
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// Check for full houses.
+	/// </summary>
+	private Step? CheckFullHouse(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	{
 		for (var house = 0; house < 27; house++)
 		{
 			var (count, resultCell, flag) = (0, -1, true);
@@ -212,7 +236,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			context.Accumulator.Add(step);
 		}
 
-	CheckForHiddenSingle:
+		return null;
+	}
+
+	/// <summary>
+	/// Check for hidden singles.
+	/// </summary>
+	private Step? CheckHiddenSingle(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	{
 		if (HiddenSinglesInBlockFirst)
 		{
 			// If block first, we'll extract all blocks and iterate on them firstly.
@@ -277,6 +308,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// Check for naked singles.
+	/// </summary>
+	private Step? CheckNakedSingle(scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	{
 		for (var cell = 0; cell < 81; cell++)
 		{
 			if (grid.GetState(cell) != CellState.Empty)

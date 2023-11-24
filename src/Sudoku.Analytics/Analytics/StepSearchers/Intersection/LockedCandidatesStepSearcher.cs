@@ -109,7 +109,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					digit,
 					realBaseSet,
 					realCoverSet,
-					(c & candidatesMap).Count
+					intersection.Count
 				);
 
 				if (context.OnlyFindOne)

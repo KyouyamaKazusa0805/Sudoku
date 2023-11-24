@@ -11,6 +11,12 @@ namespace Sudoku.Analytics.Configuration;
 public sealed record StepSearcherOptions
 {
 	/// <summary>
+	/// Indicates whether the step searchers will adjust the searching order to distinct two modes on displaying candidates,
+	/// making the experience better.
+	/// </summary>
+	public bool DistinctDirectMode { get; init; } = false;
+
+	/// <summary>
 	/// Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
 	/// </summary>
 	public bool IsDirectMode { get; init; } = false;

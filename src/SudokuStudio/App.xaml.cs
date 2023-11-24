@@ -206,6 +206,7 @@ public partial class App : Application
 	internal static StepSearcherOptions CreateStepSearcherOptions()
 	{
 		var uiPref = ((App)Current).Preference.UIPreferences;
+		var analysisPref = ((App)Current).Preference.AnalysisPreferences;
 		return StepSearcherOptions.Default with
 		{
 			Converter = uiPref.ConceptNotationBasedKind switch
@@ -233,7 +234,8 @@ public partial class App : Application
 					uiPref.DigitsSeparatorInNotation
 				)
 			},
-			IsDirectMode = !uiPref.DisplayCandidates
+			IsDirectMode = !uiPref.DisplayCandidates,
+			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes
 		};
 	}
 }
