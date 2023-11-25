@@ -44,5 +44,11 @@ public enum ConditionalFlags
 	/// Indicates the <see cref="StepSearcher"/> will only produce direct techniques,
 	/// which won't be used in indirect views, i.e. all candidates are shown.
 	/// </summary>
-	DirectTechniquesOnly = 1 << 3
+	DirectTechniquesOnly = 1 << 3,
+
+	/// <summary>
+	/// Indicates the <see cref="StepSearcher"/> will only produce indirect techniques,
+	/// which won't be used in direct views, i.e. all candidates aren't shown.
+	/// </summary>
+	IndirectTechniquesOnly = 1 << 4
 }

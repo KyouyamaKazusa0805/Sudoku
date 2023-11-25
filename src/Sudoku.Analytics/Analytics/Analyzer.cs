@@ -157,7 +157,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator = IsFullApplying || RandomizedChoosing ? [] : default(List<Step>);
 			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying && !RandomizedChoosing, Options);
-			string progressedStepSearcherName;
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
@@ -184,6 +183,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 		FindNextStep:
 			Initialize(in playground, in solution);
+			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)
 			{
 				switch (isSukaku, searcher, this)
@@ -193,13 +193,15 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
 					case (_, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
 					case (_, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
+					case (_, { Metadata.IsOnlyRunForIndirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: true } }):
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
 						// 2. If the searcher is currently disabled.
 						// 3. If the searcher is configured as slow.
 						// 4. If the searcher is configured as high-allocation.
-						// 5. If the searcher is only run for direct view, and the current state is indirect view.
+						// 5. If the searcher is only run for direct view, and the current is indirect view.
+						// 6. If the searcher is only run for indirect view, and the current is direct view.
 						continue;
 					}
 					case (_, BruteForceStepSearcher, { RandomizedChoosing: true }):
@@ -226,7 +228,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 							return result;
 						}
 
-						goto AssignProgress;
+						goto MakeProgress;
 					}
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
 					{
@@ -274,7 +276,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 						// The puzzle has not been finished, we should turn to the first step finder
 						// to continue solving puzzle.
-						goto AssignProgress;
+						goto MakeProgress;
 					}
 					default:
 					{
@@ -302,15 +304,15 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 								// The puzzle has not been finished, we should turn to the first step finder
 								// to continue solving puzzle.
-								goto AssignProgress;
+								goto MakeProgress;
 							}
 						}
 					}
 				}
 
-			AssignProgress:
+			MakeProgress:
 				progressedStepSearcherName = searcher.ToString();
-				goto ReportStateAndTryToFindNextStep;
+				goto ReportStateAndTryNextStep;
 			}
 
 			// All solver can't finish the puzzle... :(
@@ -322,7 +324,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				SteppingGrids = [.. stepGrids]
 			};
 
-		ReportStateAndTryToFindNextStep:
+		ReportStateAndTryNextStep:
 			progress?.Report(new(progressedStepSearcherName, (double)(totalCandidatesCount - playground.CandidatesCount) / totalCandidatesCount));
 			goto FindNextStep;
 

@@ -58,6 +58,11 @@ public sealed partial class StepSearcherMetadataInfo(
 	public bool IsOnlyRunForDirectViews => _stepSearcherAttribute.Flags is var cases && cases.Flags(ConditionalFlags.DirectTechniquesOnly);
 
 	/// <summary>
+	/// Determines whether the current step searcher is only run for indirect view.
+	/// </summary>
+	public bool IsOnlyRunForIndirectViews => _stepSearcherAttribute.Flags is var cases && cases.Flags(ConditionalFlags.IndirectTechniquesOnly);
+
+	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	public string Name

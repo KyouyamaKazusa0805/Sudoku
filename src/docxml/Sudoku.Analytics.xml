@@ -3832,6 +3832,12 @@ if (student is (name: var name, age: >= 18))
             which won't be used in indirect views, i.e. all candidates are shown.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.IndirectTechniquesOnly">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce indirect techniques,
+            which won't be used in direct views, i.e. all candidates aren't shown.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -4214,6 +4220,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsOnlyRunForDirectViews">
             <summary>
             Determines whether the current step searcher is only run for direct view.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsOnlyRunForIndirectViews">
+            <summary>
+            Determines whether the current step searcher is only run for indirect view.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.Name">
