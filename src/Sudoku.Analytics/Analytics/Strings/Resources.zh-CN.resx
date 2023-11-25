@@ -2659,4 +2659,7 @@
     <value>显性唯一</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
+    <value>拐点 {0}，每个分支：{1}</value>
+  </data>
 </root>

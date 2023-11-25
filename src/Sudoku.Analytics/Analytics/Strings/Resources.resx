@@ -2478,4 +2478,7 @@
   <data name="Single" xml:space="preserve">
     <value>Single</value>
   </data>
+  <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
+    <value>Pivot: {0}, Branches: {1}</value>
+  </data>
 </root>

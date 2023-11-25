@@ -9847,7 +9847,7 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="pivot">Indicates the pivot cell.</param>
-            <param name="leaves">Indicates the leaves.</param>
+            <param name="branches">Indicates the branches.</param>
             <param name="endDigitsMask">Indicates the end-point digits mask.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranch,System.Int16)">
@@ -9858,7 +9858,7 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="pivot">Indicates the pivot cell.</param>
-            <param name="leaves">Indicates the leaves.</param>
+            <param name="branches">Indicates the branches.</param>
             <param name="endDigitsMask">Indicates the end-point digits mask.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.BaseDifficulty">
@@ -9867,14 +9867,17 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
             <summary>
             The generated property declaration for parameter <c>pivot</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Leaves">
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Branches">
             <summary>
-            The generated property declaration for parameter <c>leaves</c>.
+            The generated property declaration for parameter <c>branches</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.EndDigitsMask">
@@ -19984,6 +19987,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DeathBlossomCellTypeStep">
             <summary>
               Looks up a localized string similar to No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DeathBlossomStep">
+            <summary>
+              Looks up a localized string similar to Pivot: {0}, Branches: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DominoLoopStep">

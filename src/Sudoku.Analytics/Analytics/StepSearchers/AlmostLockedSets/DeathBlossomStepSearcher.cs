@@ -193,19 +193,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 
 								context.Accumulator.Add(step);
-
-								if (!SearchExtendedTypes)
-								{
-									goto CheckAdvancedType;
-								}
 							}
 						}
 					}
 				}
 			}
 		}
-
-	CheckAdvancedType:
 
 		return null;
 	}

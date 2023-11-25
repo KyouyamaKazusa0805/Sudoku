@@ -5389,6 +5389,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pivot: {0}, Branches: {1}.
+        /// </summary>
+        public static string TechniqueFormat_DeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DeathBlossomStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} cells {1}.
         /// </summary>
         public static string TechniqueFormat_DominoLoopStep {
