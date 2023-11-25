@@ -35,7 +35,8 @@ public sealed partial class HiddenSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => this switch { { EnableAndIsLastDigit: true } => 1.1M, { House: < 9 } => 1.2M, _ => 1.5M };
+	public override decimal BaseDifficulty
+		=> EnableAndIsLastDigit ? 1.1M : House < 9 ? Options.IsDirectMode ? 1.2M : 2.2M : Options.IsDirectMode ? 1.5M : 2.3M;
 
 	/// <inheritdoc/>
 	public override decimal BaseLocatingDifficulty
