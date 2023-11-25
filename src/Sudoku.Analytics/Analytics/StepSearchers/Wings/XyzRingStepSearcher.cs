@@ -18,10 +18,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with an <b>XYZ-Ring</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>XYZ-Ring Type 1</item>
-/// <item>XYZ-Ring Type 2</item>
-/// <item>Grouped XYZ-Ring Type 1</item>
-/// <item>Grouped XYZ-Ring Type 2</item>
+/// <item>Non-Nice XYZ-Ring</item>
+/// <item>Nice XYZ-Ring</item>
+/// <item>Grouped Non-Nice XYZ-Ring</item>
+/// <item>Grouped Nice XYZ-Ring</item>
 /// </list>
 /// </summary>
 [StepSearcher(Technique.XyzLoop, Technique.XyzNiceLoop, Technique.GroupedXyzLoop, Technique.GroupedXyzNiceLoop)]
