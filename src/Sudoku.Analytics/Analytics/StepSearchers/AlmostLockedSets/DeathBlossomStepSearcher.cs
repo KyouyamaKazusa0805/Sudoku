@@ -200,6 +200,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			}
 		}
 
+		if (!SearchExtendedTypes)
+		{
+			return null;
+		}
+
+		// Search for extended types.
+
+
 		return null;
 	}
 }
