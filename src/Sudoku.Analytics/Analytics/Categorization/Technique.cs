@@ -143,6 +143,15 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	Claiming,
+
+	/// <summary>
+	/// Indicates law of leftover.
+	/// </summary>
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[Abbreviation("LoL")]
+	LawOfLeftover,
 	#endregion
 
 	//

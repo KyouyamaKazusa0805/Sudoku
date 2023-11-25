@@ -69,6 +69,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
 * Candidate-Related Techniques
   * Locked Candidates Family
     * LC (Locked Candidates)
+    * LoL (Law of Leftover)
     * ALC (Almost Locked Candidates)
     * Firework Subsets (Hanabi)
   * Subsets

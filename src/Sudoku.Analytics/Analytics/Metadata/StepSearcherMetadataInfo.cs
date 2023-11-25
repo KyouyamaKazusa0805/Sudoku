@@ -53,6 +53,11 @@ public sealed partial class StepSearcherMetadataInfo(
 	public bool IsConfiguredHighAllocation => _stepSearcherAttribute.Flags is var cases && cases.Flags(ConditionalFlags.SpaceComplexity);
 
 	/// <summary>
+	/// Determines whether the current step searcher is only run for direct view.
+	/// </summary>
+	public bool IsOnlyRunForDirectViews => _stepSearcherAttribute.Flags is var cases && cases.Flags(ConditionalFlags.DirectTechniquesOnly);
+
+	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	public string Name

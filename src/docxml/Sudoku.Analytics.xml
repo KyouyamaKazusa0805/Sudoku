@@ -1221,6 +1221,11 @@ if (student is (name: var name, age: >= 18))
             Indicates claiming.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LawOfLeftover">
+            <summary>
+            Indicates law of leftover.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AlmostLockedPair">
             <summary>
             Indicates almost locked pair.
@@ -3821,9 +3826,10 @@ if (student is (name: var name, age: >= 18))
             meaning it will be disabled if a user want to disable high space-complexity algorithms.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.Advanced">
+        <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.DirectTechniquesOnly">
             <summary>
-            Indicates the reserved field. This field may be used for future considerations.
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce direct techniques,
+            which won't be used in indirect views, i.e. all candidates are shown.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
@@ -4204,6 +4210,11 @@ if (student is (name: var name, age: >= 18))
             by option <see cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/> being configured.
             </summary>
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsOnlyRunForDirectViews">
+            <summary>
+            Determines whether the current step searcher is only run for direct view.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.Name">
             <summary>
@@ -8730,6 +8741,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern.Pivot">
             <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.LawOfLeftoverStepSearcher">
+            <summary>
+            Provides with an <b>Law of Leftover</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Law of leftover</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LawOfLeftoverStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher">
             <summary>
@@ -15102,6 +15125,59 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.LawOfLeftoverStep">
+            <summary>
+            Provides with a step that is a <b>Law of Leftover</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="set1House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1"/>.</param>
+            <param name="set2House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2"/>.</param>
+            <param name="set1">Indicates the first set.</param>
+            <param name="set2">Indicates the second set.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LawOfLeftoverStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Law of Leftover</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="set1House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1"/>.</param>
+            <param name="set2House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2"/>.</param>
+            <param name="set1">Indicates the first set.</param>
+            <param name="set2">Indicates the second set.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1House">
+            <summary>
+            The generated property declaration for parameter <c>set1House</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2House">
+            <summary>
+            The generated property declaration for parameter <c>set2House</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1">
+            <summary>
+            The generated property declaration for parameter <c>set1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2">
+            <summary>
+            The generated property declaration for parameter <c>set2</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.LockedCandidatesStep">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
@@ -18327,6 +18403,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Last Digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.LawOfLeftover">
+            <summary>
+              Looks up a localized string similar to Law of Leftover.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.Leviathan">
             <summary>
               Looks up a localized string similar to Leviathan.
@@ -19070,6 +19151,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GurthSymmetricalPlacementStepSearcher">
             <summary>
               Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_LawOfLeftoverStepSearcher">
+            <summary>
+              Looks up a localized string similar to Law of Leftover.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_LockedCandidatesStepSearcher">
@@ -20115,6 +20201,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_LastDigit">
             <summary>
               Looks up a localized string similar to This is final digit {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_LawOfLeftoverStep">
+            <summary>
+              Looks up a localized string similar to The filling digits from set {0} is equal to {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_LockedCandidatesStep">

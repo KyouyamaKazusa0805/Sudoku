@@ -41,7 +41,8 @@ public enum ConditionalFlags
 	SpaceComplexity = 1 << 2,
 
 	/// <summary>
-	/// Indicates the reserved field. This field may be used for future considerations.
+	/// Indicates the <see cref="StepSearcher"/> will only produce direct techniques,
+	/// which won't be used in indirect views, i.e. all candidates are shown.
 	/// </summary>
-	Advanced = 1 << 3
+	DirectTechniquesOnly = 1 << 3
 }

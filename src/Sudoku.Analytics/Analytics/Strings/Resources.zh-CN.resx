@@ -2662,4 +2662,15 @@
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>拐点 {0}，每个分支：{1}</value>
   </data>
+  <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
+    <value>割补</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="LawOfLeftover" xml:space="preserve">
+    <value>割补</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
+    <value>单元格 {0} 和单元格 {1} 填数一致</value>
+  </data>
 </root>

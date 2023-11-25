@@ -2392,6 +2392,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Law of Leftover.
+        /// </summary>
+        public static string LawOfLeftover {
+            get {
+                return ResourceManager.GetString("LawOfLeftover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Leviathan.
         /// </summary>
         public static string Leviathan {
@@ -3729,6 +3738,15 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GurthSymmetricalPlacementStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Law of Leftover.
+        /// </summary>
+        public static string StepSearcherName_LawOfLeftoverStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_LawOfLeftoverStepSearcher", resourceCulture);
             }
         }
         
@@ -5610,6 +5628,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueFormat_LastDigit {
             get {
                 return ResourceManager.GetString("TechniqueFormat_LastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The filling digits from set {0} is equal to {1}.
+        /// </summary>
+        public static string TechniqueFormat_LawOfLeftoverStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_LawOfLeftoverStep", resourceCulture);
             }
         }
         

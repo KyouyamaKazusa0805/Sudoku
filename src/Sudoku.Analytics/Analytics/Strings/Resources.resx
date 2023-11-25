@@ -2481,4 +2481,13 @@
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}, Branches: {1}</value>
   </data>
+  <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
+    <value>Law of Leftover</value>
+  </data>
+  <data name="LawOfLeftover" xml:space="preserve">
+    <value>Law of Leftover</value>
+  </data>
+  <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
+    <value>The filling digits from set {0} is equal to {1}</value>
+  </data>
 </root>

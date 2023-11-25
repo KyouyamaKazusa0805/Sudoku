@@ -4,6 +4,7 @@ using Sudoku.Analytics.StepSearchers;
 [assembly: StepSearcherImport<SingleStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedSubsetStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(0)]
+[assembly: StepSearcherImport<LawOfLeftoverStepSearcher>(0)]
 [assembly: StepSearcherImport<NormalSubsetStepSearcher>(0)]
 [assembly: StepSearcherImport<NormalFishStepSearcher>(1)]
 [assembly: StepSearcherImport<TwoStrongLinksStepSearcher>(1)]

@@ -192,12 +192,14 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
 					case (_, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
 					case (_, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
+					case (_, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
 						// 2. If the searcher is currently disabled.
 						// 3. If the searcher is configured as slow.
 						// 4. If the searcher is configured as high-allocation.
+						// 5. If the searcher is only run for direct view, and the current state is indirect view.
 						continue;
 					}
 					case (_, BruteForceStepSearcher, { RandomizedChoosing: true }):
