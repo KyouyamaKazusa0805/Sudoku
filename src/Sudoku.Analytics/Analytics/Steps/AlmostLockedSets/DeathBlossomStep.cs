@@ -1,9 +1,11 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts.ObjectModel;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
+using static System.Algorithm.Sequences;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -26,7 +28,7 @@ public partial class DeathBlossomStep(
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.3M;
+	public override decimal BaseDifficulty => 8.2M;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DeathBlossom;
@@ -34,6 +36,10 @@ public partial class DeathBlossomStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PivotStr, BranchesStr]), new(ChineseLanguage, [PivotStr, BranchesStr])];
+
+	/// <inheritdoc/>
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [new(ExtraDifficultyFactorNames.Petals, A002024(Branches.Count) * .1M)];
 
 	private string PivotStr => Options.Converter.CellConverter([Pivot]);
 

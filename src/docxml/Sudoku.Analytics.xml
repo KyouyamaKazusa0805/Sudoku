@@ -9870,6 +9870,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
             <summary>
             The generated property declaration for parameter <c>pivot</c>.
