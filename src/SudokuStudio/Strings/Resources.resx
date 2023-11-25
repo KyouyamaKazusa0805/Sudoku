@@ -1631,6 +1631,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>Allow searching for extended types of Bi-value Universal Grave</value>
   </data>
+  <data name="SettingsPage_SearchExtendedDeathBlossomTypes" xml:space="preserve">
+    <value>Allow searching for Complex Death Blossom</value>
+  </data>
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>Allow searching for extended types of Unique Rectangle</value>
   </data>

@@ -36,6 +36,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
 [AttachedProperty<bool>(RuntimeIdentifier.TemplateDeleteOnly)]
 [AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
+[AttachedProperty<bool>(RuntimeIdentifier.SearchExtendedDeathBlossomTypes)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckValueTypes)]
 [AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
 [AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
@@ -205,6 +206,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AlignedExclusionMaxSearchingSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlignedExclusionStepSearcher>(d, s => s.MaxSearchingSize = (int)e.NewValue);
+
+	[Callback]
+	private static void SearchExtendedDeathBlossomTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DeathBlossomStepSearcher>(d, s => s.SearchExtendedTypes = (bool)e.NewValue);
 
 	[Callback]
 	private static void LogicalSolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

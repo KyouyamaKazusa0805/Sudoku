@@ -1634,6 +1634,9 @@
   <data name="SettingsPage_SearchExtendedBivalueUniversalGraveTypes" xml:space="preserve">
     <value>允许搜索全双值格致死解法的各种拓展构型</value>
   </data>
+  <data name="SettingsPage_SearchExtendedDeathBlossomTypes" xml:space="preserve">
+    <value>搜索复杂死亡绽放</value>
+  </data>
   <data name="SettingsPage_SearchForExtendedUniqueRectangles" xml:space="preserve">
     <value>允许搜索唯一矩形的各种拓展构型</value>
   </data>

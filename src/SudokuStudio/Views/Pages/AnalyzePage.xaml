@@ -225,6 +225,7 @@
 							a:AnalyzerProperties.LogicalSolverIgnoresHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 							a:AnalyzerProperties.TemplateDeleteOnly="False"
 							a:AnalyzerProperties.BowmanBingoMaxLength="64"
+							a:AnalyzerProperties.SearchExtendedDeathBlossomTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedDeathBlossomTypes,Mode=OneWay}"
 							a:AnalyzerProperties.CheckValueTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckValueTypes,Mode=OneWay}"
 							a:AnalyzerProperties.CheckAlmostLockedQuadruple="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckAlmostLockedQuadruple,Mode=OneWay}"
 							a:AnalyzerProperties.IttoryuSupportedTechniques="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=OneWay}"

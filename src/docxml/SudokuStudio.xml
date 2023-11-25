@@ -1086,6 +1086,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableFinnedOrSashimiXWing"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedDeathBlossomTypesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedDeathBlossomTypes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedDeathBlossomTypes"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStepProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep"/>.
@@ -1202,6 +1208,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.SearchExtendedDeathBlossomTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AlsoDisplayEnglishNameOfStep">
             <summary>
@@ -7584,6 +7593,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow searching for extended types of Bi-value Universal Grave.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SearchExtendedDeathBlossomTypes">
+            <summary>
+              Looks up a localized string similar to Allow searching for Complex Death Blossom.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SearchForExtendedUniqueRectangles">
             <summary>
               Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
@@ -8210,6 +8224,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>BowmanBingoMaxLength</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>SearchExtendedDeathBlossomTypes</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>CheckValueTypes</c>.
@@ -8455,6 +8474,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckValueTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

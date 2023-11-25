@@ -120,6 +120,10 @@
 					Minimum="3" Maximum="9" LargeChange="2"
 					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_SearchExtendedDeathBlossomTypes}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedDeathBlossomTypes,Mode=TwoWay}"/>
+			</w:SettingsCard>
 
 			<!--
 			SettingsPage_PermutationsGroup	

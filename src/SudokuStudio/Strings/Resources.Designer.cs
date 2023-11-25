@@ -4860,6 +4860,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow searching for Complex Death Blossom.
+        /// </summary>
+        internal static string SettingsPage_SearchExtendedDeathBlossomTypes {
+            get {
+                return ResourceManager.GetString("SettingsPage_SearchExtendedDeathBlossomTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow searching for extended types of Unique Rectangle.
         /// </summary>
         internal static string SettingsPage_SearchForExtendedUniqueRectangles {
