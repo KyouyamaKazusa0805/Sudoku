@@ -16,6 +16,10 @@ namespace Sudoku.Concepts;
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+/// <param name="eliminationMap">
+/// The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+/// that can be eliminated for the corresponding digit, and the last element is the merged cells.
+/// </param>
 /// <remarks>
 /// An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
@@ -24,7 +28,8 @@ namespace Sudoku.Concepts;
 public sealed partial class AlmostLockedSet(
 	[Data] Mask digitsMask,
 	[Data] scoped ref readonly CellMap cells,
-	[Data] scoped ref readonly CellMap possibleEliminationMap
+	[Data] scoped ref readonly CellMap possibleEliminationMap,
+	[Data] CellMap[] eliminationMap
 ) : ICoordinateObject<AlmostLockedSet>
 {
 	/// <summary>
@@ -43,7 +48,7 @@ public sealed partial class AlmostLockedSet(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			_ = Cells.InOneHouse(out var houseIndex);
+			Cells.InOneHouse(out var houseIndex);
 			return houseIndex;
 		}
 	}
@@ -80,26 +85,14 @@ public sealed partial class AlmostLockedSet(
 	}
 
 
-	/// <summary>
-	/// Indicates whether the specified grid contains the digit.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="result">The result.</param>
-	/// <returns>A <see cref="bool"/> value.</returns>
-	public bool ContainsDigit(scoped ref readonly Grid grid, Digit digit, out CellMap result)
-	{
-		result = CellMap.Empty;
-		foreach (var cell in Cells)
-		{
-			if ((grid.GetCandidates(cell) >> digit & 1) != 0)
-			{
-				result.Add(cell);
-			}
-		}
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Mask digitsMask, out CellMap cells) => (digitsMask, cells) = (DigitsMask, Cells);
 
-		return !!result;
-	}
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Mask digitsMask, out CellMap cells, out CellMap possibleEliminationMap)
+		=> ((digitsMask, cells), possibleEliminationMap) = (this, PossibleEliminationMap);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -128,7 +121,7 @@ public sealed partial class AlmostLockedSet(
 			throw new FormatException("Missing cells or target house.");
 		}
 
-		return new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), []); // Elimination map cannot be known :(
+		return new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], []); // Elimination map cannot be known :(
 	}
 
 	/// <summary>
@@ -138,13 +131,21 @@ public sealed partial class AlmostLockedSet(
 	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
 	public static AlmostLockedSet[] Gather(scoped ref readonly Grid grid)
 	{
-		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap };
+		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
 
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in bivalueMap)
 		{
-			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & emptyMap));
+			var eliminationMap = new CellMap[10];
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				var z = PeersMap[cell] & candidatesMap[digit];
+				eliminationMap[digit] = z;
+				eliminationMap[^1] |= z;
+			}
+
+			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & emptyMap, eliminationMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
@@ -174,6 +175,14 @@ public sealed partial class AlmostLockedSet(
 						continue;
 					}
 
+					var eliminationMap = new CellMap[10];
+					foreach (var digit in digitsMask)
+					{
+						var z = map % candidatesMap[digit];
+						eliminationMap[digit] = z;
+						eliminationMap[^1] |= z;
+					}
+
 					var coveredLine = map.CoveredLine;
 					result.Add(
 						new(
@@ -181,7 +190,8 @@ public sealed partial class AlmostLockedSet(
 							in map,
 							house < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
 								? ((HousesMap[house] | HousesMap[coveredLine]) & emptyMap) - map
-								: tempMap - map
+								: tempMap - map,
+							eliminationMap
 						)
 					);
 				}

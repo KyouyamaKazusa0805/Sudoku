@@ -3639,6 +3639,14 @@ if (student is (name: var name, age: >= 18))
             This array. All elements are between 0 and 9, where 0 means the cell is <see cref="F:Sudoku.Concepts.CellState.Empty"/> now.
             </returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToCandidateMaskArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are the raw masks that between 0 and 511.
+            </returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
             <summary>
             Get the candidate mask part of the specified cell.

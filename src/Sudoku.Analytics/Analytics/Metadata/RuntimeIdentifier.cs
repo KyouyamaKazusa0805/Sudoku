@@ -73,6 +73,9 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
 	public const string CheckValueTypes = nameof(CheckValueTypes);
 
+	/// <inheritdoc cref="DeathBlossomStepSearcher.SearchExtendedTypes"/>
+	public const string SearchExtendedDeathBlossomTypes = nameof(SearchExtendedDeathBlossomTypes);
+
 	//
 	// Analyzer & Collector property names
 	//

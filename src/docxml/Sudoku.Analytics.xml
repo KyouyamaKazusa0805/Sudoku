@@ -3959,6 +3959,9 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckValueTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.SearchExtendedDeathBlossomTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes"/>
+        </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIsFullApplying">
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
@@ -5291,6 +5294,13 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid to be used.</param>
             <returns>A list of ALSes.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.GetColor(System.Int32)">
+            <summary>
+            Try to fetch the ALS color.
+            </summary>
+            <param name="index">The index of the target ALS.</param>
+            <returns>The color identifier.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectConjugatePairs">
             <summary>
             Collect possible conjugate pairs grouped by digit.
@@ -5553,6 +5563,11 @@ if (student is (name: var name, age: >= 18))
             <list type="bullet">
             <item>Death Blossom</item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes">
+            <summary>
+            Indicates whether the step searcher searches for extended types.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
@@ -9822,6 +9837,49 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.IsDoublyLinked">
             <summary>
             The generated property declaration for parameter <c>isDoublyLinked</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leaves">Indicates the leaves.</param>
+            <param name="endDigitsMask">Indicates the end-point digits mask.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranch,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leaves">Indicates the leaves.</param>
+            <param name="endDigitsMask">Indicates the end-point digits mask.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Leaves">
+            <summary>
+            The generated property declaration for parameter <c>leaves</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.EndDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>endDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">
@@ -21427,19 +21485,27 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
             <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
             <remarks>
             An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
             <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
             The special case is a bi-value cell.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[])">
             <summary>
             Defines a data pattern that describes an ALS.
             </summary>
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
             <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
             <remarks>
             An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
             <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
@@ -21469,14 +21535,99 @@ if (student is (name: var name, age: >= 18))
             The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ContainsDigit(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Indicates whether the specified grid contains the digit.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="result">The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+{
+    name = Name;
+    age = Age;
+}
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+// Use explicitly typed variables to get a deconstruction.
+(string name, int age) = student;
+
+// Or use the type inferring to omit the type of each variable having been deconstructed.
+var (name, age) = student;
+
+// Of course, you can also use the invocation to get values.
+student.Deconstruct(out string name, out int age);
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
@@ -21507,6 +21658,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.AlmostLockedSet.PossibleEliminationMap">
             <summary>
             The generated property declaration for parameter <c>possibleEliminationMap</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.EliminationMap">
+            <summary>
+            The generated property declaration for parameter <c>eliminationMap</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.ChainNode">
@@ -21812,6 +21968,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.TargetCellsTheOther">
             <summary>
             A list of cells as the other pair of target cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.BlossomBranch">
+            <summary>
+            Represents for a blossom branch.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranch">

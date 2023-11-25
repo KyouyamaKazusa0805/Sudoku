@@ -989,6 +989,23 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Serializes this instance to an array, where all digit value will be stored.
+	/// </summary>
+	/// <returns>
+	/// This array. All elements are the raw masks that between 0 and 511.
+	/// </returns>
+	public readonly Mask[] ToCandidateMaskArray()
+	{
+		var result = new Mask[CellsCount];
+		for (var cell = 0; cell < 81; cell++)
+		{
+			result[cell] = (Mask)(this[cell] & MaxCandidatesMask);
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Get the candidate mask part of the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell offset you want to get.</param>

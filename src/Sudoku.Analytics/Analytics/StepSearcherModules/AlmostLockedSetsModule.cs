@@ -1,5 +1,8 @@
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
+using Sudoku.Rendering;
 using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
@@ -34,7 +37,15 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in BivalueCells)
 		{
-			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & EmptyCells));
+			var eliminationMap = new CellMap[10];
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				var z = PeersMap[cell] & CandidatesMap[digit];
+				eliminationMap[digit] = z;
+				eliminationMap[^1] |= z;
+			}
+
+			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & EmptyCells, eliminationMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
@@ -67,6 +78,14 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 						continue;
 					}
 
+					var eliminationMap = new CellMap[10];
+					foreach (var digit in digitsMask)
+					{
+						var z = map % CandidatesMap[digit];
+						eliminationMap[digit] = z;
+						eliminationMap[^1] |= z;
+					}
+
 					var coveredLine = map.CoveredLine;
 					result.Add(
 						new(
@@ -74,7 +93,8 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 							in map,
 							houseIndex < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
 								? ((HousesMap[houseIndex] | HousesMap[coveredLine]) & EmptyCells) - map
-								: tempMap - map
+								: tempMap - map,
+							eliminationMap
 						)
 					);
 				}
@@ -83,6 +103,22 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 
 		return result.GetSpan();
 	}
+
+	/// <summary>
+	/// Try to fetch the ALS color.
+	/// </summary>
+	/// <param name="index">The index of the target ALS.</param>
+	/// <returns>The color identifier.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static ColorIdentifier GetColor(int index)
+		=> (index % 5) switch
+		{
+			0 => WellKnownColorIdentifier.AlmostLockedSet1,
+			1 => WellKnownColorIdentifier.AlmostLockedSet2,
+			2 => WellKnownColorIdentifier.AlmostLockedSet3,
+			3 => WellKnownColorIdentifier.AlmostLockedSet4,
+			4 => WellKnownColorIdentifier.AlmostLockedSet5
+		};
 
 	/// <summary>
 	/// Collect possible conjugate pairs grouped by digit.
