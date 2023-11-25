@@ -40,9 +40,10 @@ public partial class DeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			GetString("Comma"),
-			from pair in Branches
-			let digit = pair.Key
-			let branch = pair.Value
-			select $"{Options.Converter.DigitConverter((Mask)(1 << digit))} - {branch}"
+			[
+				..
+				from branch in Branches
+				select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"
+			]
 		);
 }

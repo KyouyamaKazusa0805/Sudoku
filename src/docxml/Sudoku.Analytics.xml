@@ -21983,6 +21983,14 @@ if (student is (name: var name, age: >= 18))
             Represents for a blossom branch.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranch">
             <summary>
             Represents a chain branch.
