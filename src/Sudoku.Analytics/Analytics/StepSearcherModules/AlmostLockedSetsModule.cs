@@ -37,12 +37,10 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in BivalueCells)
 		{
-			var eliminationMap = new CellMap[10];
+			var eliminationMap = new CellMap[9];
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				var z = PeersMap[cell] & CandidatesMap[digit];
-				eliminationMap[digit] = z;
-				eliminationMap[^1] |= z;
+				eliminationMap[digit] = PeersMap[cell] & CandidatesMap[digit];
 			}
 
 			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & EmptyCells, eliminationMap));
@@ -78,12 +76,10 @@ internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedS
 						continue;
 					}
 
-					var eliminationMap = new CellMap[10];
+					var eliminationMap = new CellMap[9];
 					foreach (var digit in digitsMask)
 					{
-						var z = map % CandidatesMap[digit];
-						eliminationMap[digit] = z;
-						eliminationMap[^1] |= z;
+						eliminationMap[digit] = map % CandidatesMap[digit];
 					}
 
 					var coveredLine = map.CoveredLine;

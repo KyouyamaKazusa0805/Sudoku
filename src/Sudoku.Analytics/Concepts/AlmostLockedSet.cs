@@ -137,12 +137,10 @@ public sealed partial class AlmostLockedSet(
 		var result = new List<AlmostLockedSet>();
 		foreach (var cell in bivalueMap)
 		{
-			var eliminationMap = new CellMap[10];
+			var eliminationMap = new CellMap[9];
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				var z = PeersMap[cell] & candidatesMap[digit];
-				eliminationMap[digit] = z;
-				eliminationMap[^1] |= z;
+				eliminationMap[digit] = PeersMap[cell] & candidatesMap[digit];
 			}
 
 			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & emptyMap, eliminationMap));
@@ -175,12 +173,10 @@ public sealed partial class AlmostLockedSet(
 						continue;
 					}
 
-					var eliminationMap = new CellMap[10];
+					var eliminationMap = new CellMap[9];
 					foreach (var digit in digitsMask)
 					{
-						var z = map % candidatesMap[digit];
-						eliminationMap[digit] = z;
-						eliminationMap[^1] |= z;
+						eliminationMap[digit] = map % candidatesMap[digit];
 					}
 
 					var coveredLine = map.CoveredLine;
