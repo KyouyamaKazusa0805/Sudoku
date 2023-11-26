@@ -489,12 +489,15 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				}
 				case (0, _):
 				{
+					accumulatorComplex.Order();
 					context.Accumulator.AddRange(accumulatorComplex.Distinct());
 					break;
 				}
 				default:
 				{
 					context.Accumulator.AddRange(accumulatorNormal);
+
+					accumulatorComplex.Order();
 					context.Accumulator.AddRange(accumulatorComplex.Distinct());
 					break;
 				}

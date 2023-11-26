@@ -10023,6 +10023,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#NTimesAlmostLockedSetDeathBlossomStep}#Compare(Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep,Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#NTimesAlmostLockedSetDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep,Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep)">
             <inheritdoc/>
         </member>
@@ -21861,6 +21864,10 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(Sudoku.Concepts.AlmostLockedSet)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.CompareTo(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
@@ -21908,6 +21915,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Inequality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ChainNode">
             <summary>

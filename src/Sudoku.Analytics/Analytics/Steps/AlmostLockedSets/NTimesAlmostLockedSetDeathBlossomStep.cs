@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -29,7 +30,10 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	[Data] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
 	[Data] BlossomBranch branches,
 	[Data] int freedomDegree
-) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>
+) :
+	AlmostLockedSetsStep(conclusions, views, options),
+	IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>,
+	IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.7M;
@@ -63,6 +67,51 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 				select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"
 			]
 		);
+
+
+	/// <inheritdoc/>
+	static int IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>.Compare(NTimesAlmostLockedSetDeathBlossomStep left, NTimesAlmostLockedSetDeathBlossomStep right)
+	{
+		if (left.Branches.Count.CompareTo(right.Branches.Count) is var comparisonResult1 and not 0)
+		{
+			return comparisonResult1;
+		}
+
+		var leftCellsCount = left.Branches.Values.Sum(alsCellsCountSelector);
+		var rightCellsCount = right.Branches.Values.Sum(alsCellsCountSelector);
+		if (leftCellsCount.CompareTo(rightCellsCount) is var comparisonResult2 and not 0)
+		{
+			return comparisonResult2;
+		}
+
+		if (left.Conclusions.Length.CompareTo(right.Conclusions.Length) is var comparisonResult3 and not 0)
+		{
+			return comparisonResult3;
+		}
+
+		if (left.NTimesAlmostLockedSetCells.CompareTo(right.NTimesAlmostLockedSetCells) is var comparisonResult4 and not 0)
+		{
+			return comparisonResult4;
+		}
+
+		if (left.NTimesAlmostLockedSetDigitsMask.CompareTo(right.NTimesAlmostLockedSetDigitsMask) is var comparisonResult5 and not 0)
+		{
+			return comparisonResult5;
+		}
+
+		foreach (var digit in left.NTimesAlmostLockedSetDigitsMask)
+		{
+			if (left.Branches[digit].CompareTo(right.Branches[digit]) is var comparisonResult6 and not 0)
+			{
+				return comparisonResult6;
+			}
+		}
+
+		return 0;
+
+
+		static int alsCellsCountSelector(AlmostLockedSet s) => s.Cells.Count;
+	}
 
 
 	/// <inheritdoc/>

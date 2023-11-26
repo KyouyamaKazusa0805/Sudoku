@@ -28,6 +28,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [Equals]
 [GetHashCode]
+[ComparisonOperators]
 [EqualityOperators]
 public sealed partial class AlmostLockedSet(
 	[Data, HashCodeMember] Mask digitsMask,
@@ -35,6 +36,8 @@ public sealed partial class AlmostLockedSet(
 	[Data] scoped ref readonly CellMap possibleEliminationMap,
 	[Data] CellMap[] eliminationMap
 ) :
+	IComparable<AlmostLockedSet>,
+	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
 	ICoordinateObject<AlmostLockedSet>,
 	IEquatable<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
@@ -110,6 +113,14 @@ public sealed partial class AlmostLockedSet(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
 		=> other is not null && DigitsMask == other.DigitsMask && Cells == other.Cells;
+
+	/// <inheritdoc/>
+	/// <exception cref="ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int CompareTo(AlmostLockedSet? other)
+		=> other is null
+			? throw new ArgumentNullException(nameof(other))
+			: Cells.Count.CompareTo(other.Cells.Count) is var p and not 0 ? p : Cells.CompareTo(other.Cells);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
