@@ -1723,9 +1723,6 @@
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
     <value>从 {0} 到 {1}，使用单元格 {2} 关联起来</value>
   </data>
-  <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
-    <value>不论单元格 {0} 填什么数字，相关的 ALS {1} 至少会保证有一个 {2} 填入</value>
-  </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>该技巧必须保证对称性，否则题目会无解。对称规则：{0}，对称映射关系：{1}</value>
   </data>
@@ -2673,8 +2670,11 @@
   <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>单元格 {0} 和单元格 {1} 填数一致</value>
   </data>
-  <data name="ComplexDeathBlossom" xml:space="preserve">
-    <value>复杂死亡绽放</value>
+  <data name="NTimesAlmostLockedSetDeathBlossom" xml:space="preserve">
+    <value>死亡绽放・ALS 绽放</value>
     <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
+    <value>拐点为 {0} 次待定数组（单元格：{1}，数字 {2}）；分支为 {3}</value>
   </data>
 </root>

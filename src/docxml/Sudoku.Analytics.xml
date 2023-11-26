@@ -2739,7 +2739,7 @@ if (student is (name: var name, age: >= 18))
             Indicates death blossom.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexDeathBlossom">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NTimesAlmostLockedSetDeathBlossom">
             <summary>
             Indicates complex death blossom.
             </summary>
@@ -9878,28 +9878,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>isDoublyLinked</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexDeathBlossomStep">
-            <summary>
-            Provides with a step that is a <b>Complex Death Blossom</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
-            <summary>
-            Provides with a step that is a <b>Complex Death Blossom</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.Code">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.DeathBlossomStep">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
@@ -10007,6 +9985,62 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>
             The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="nTimesAlmostLockedSetDigitsMask">Indicates the digits A^nLS used.</param>
+            <param name="nTimesAlmostLockedSetCells">Indicates the A^nLS cells used.</param>
+            <param name="branches">Indicates the detail branches.</param>
+            <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.BlossomBranch,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="nTimesAlmostLockedSetDigitsMask">Indicates the digits A^nLS used.</param>
+            <param name="nTimesAlmostLockedSetCells">Indicates the A^nLS cells used.</param>
+            <param name="branches">Indicates the detail branches.</param>
+            <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>nTimesAlmostLockedSetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetCells">
+            <summary>
+            The generated property declaration for parameter <c>nTimesAlmostLockedSetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Branches">
+            <summary>
+            The generated property declaration for parameter <c>branches</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FreedomDegree">
+            <summary>
+            The generated property declaration for parameter <c>freedomDegree</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -17621,11 +17655,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to , .
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ComplexDeathBlossom">
-            <summary>
-              Looks up a localized string similar to Complex Death Blossom.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ContinuousNiceLoop">
             <summary>
               Looks up a localized string similar to Continuous Nice Loop.
@@ -18664,6 +18693,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.NormalChains">
             <summary>
               Looks up a localized string similar to AICs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.NTimesAlmostLockedSetDeathBlossom">
+            <summary>
+              Looks up a localized string similar to Death Blossom (ALS Blooming).
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.OrKeywordWithSpaces">
@@ -20116,11 +20150,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to It is proved that the candidate {0} is {1}, both true and false states of candidate {2} can be found, leading to a contradiction.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DeathBlossomCellTypeStep">
-            <summary>
-              Looks up a localized string similar to No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_DeathBlossomStep">
             <summary>
               Looks up a localized string similar to Pivot: {0}, Branches: {1}.
@@ -20274,6 +20303,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_NormalFishStep">
             <summary>
               Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep">
+            <summary>
+              Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_PatternOverlayStep">

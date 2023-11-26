@@ -1425,9 +1425,6 @@
   <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
     <value>{0} to {1} with bridge cells {2}</value>
   </data>
-  <data name="TechniqueFormat_DeathBlossomCellTypeStep" xml:space="preserve">
-    <value>No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true</value>
-  </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {0}, mapping relations: {1}</value>
   </data>
@@ -2490,7 +2487,10 @@
   <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>The filling digits from set {0} is equal to {1}</value>
   </data>
-  <data name="ComplexDeathBlossom" xml:space="preserve">
-    <value>Complex Death Blossom</value>
+  <data name="NTimesAlmostLockedSetDeathBlossom" xml:space="preserve">
+    <value>Death Blossom (ALS Blooming)</value>
+  </data>
+  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
+    <value>Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}</value>
   </data>
 </root>

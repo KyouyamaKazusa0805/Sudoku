@@ -2865,7 +2865,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	ComplexDeathBlossom,
+	NTimesAlmostLockedSetDeathBlossom,
 	#endregion
 
 	//

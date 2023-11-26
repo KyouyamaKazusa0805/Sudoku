@@ -916,15 +916,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complex Death Blossom.
-        /// </summary>
-        public static string ComplexDeathBlossom {
-            get {
-                return ResourceManager.GetString("ComplexDeathBlossom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
         public static string ContinuousNiceLoop {
@@ -2793,6 +2784,15 @@ namespace Sudoku.Analytics.Strings {
         public static string NormalChains {
             get {
                 return ResourceManager.GetString("NormalChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death Blossom (ALS Blooming).
+        /// </summary>
+        public static string NTimesAlmostLockedSetDeathBlossom {
+            get {
+                return ResourceManager.GetString("NTimesAlmostLockedSetDeathBlossom", resourceCulture);
             }
         }
         
@@ -5407,15 +5407,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No matter what digit will be filled in cell {0}, the related ALSes {1} will keep at least one digit {2} being true.
-        /// </summary>
-        public static string TechniqueFormat_DeathBlossomCellTypeStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_DeathBlossomCellTypeStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Pivot: {0}, Branches: {1}.
         /// </summary>
         public static string TechniqueFormat_DeathBlossomStep {
@@ -5691,6 +5682,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueFormat_NormalFishStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NormalFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
+        /// </summary>
+        public static string TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep", resourceCulture);
             }
         }
         

@@ -421,10 +421,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					var alsIndex = 0;
 					var detailViews = new List<View>(9);
+					var branches = new BlossomBranch();
+					var nTimesAlsDigitsMask = (Mask)0;
+					var nTimesAlsCells = CellMap.Empty;
 					for (var usedAlsIndex = 1; usedAlsIndex <= numOfUse; usedAlsIndex++)
 					{
 						var rcc = (Mask)0;
 						var view = new View();
+						var branchDigit = -1;
 						for (var currentDigit = 0; currentDigit < 9; currentDigit++)
 						{
 							if (!usedAls[usedAlsIndex, currentDigit])
@@ -432,6 +436,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								continue;
 							}
 
+							nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
+							branchDigit = currentDigit;
 							rcc |= (Mask)(1 << currentDigit);
 							foreach (var cell in usedAls[usedAlsIndex, currentDigit])
 							{
@@ -446,12 +452,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								view.Add(node);
 								cellOffsets.Add(node);
 								clrCands[cell] &= (Mask)~tCand;
+
+								nTimesAlsCells.Add(cell);
 							}
 						}
 
 						allAls |= alses[indexUsed2All[usedAlsIndex]].Cells;
-
-						foreach (var cell in alses[indexUsed2All[usedAlsIndex]].Cells)
+						var targetAls = alses[indexUsed2All[usedAlsIndex]];
+						foreach (var cell in targetAls.Cells)
 						{
 							var cellNode = new CellViewNode(AlmostLockedSetsModule.GetColor(alsIndex), cell);
 							view.Add(cellNode);
@@ -470,6 +478,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							}
 						}
 
+						branches.TryAdd(branchDigit, targetAls);
 						detailViews.Add(view);
 						alsIndex++;
 					}
@@ -507,10 +516,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						continue;
 					}
 
-					var step = new ComplexDeathBlossomStep(
+					var step = new NTimesAlmostLockedSetDeathBlossomStep(
 						[.. conclusions],
 						[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-						context.PredefinedOptions
+						context.PredefinedOptions,
+						nTimesAlsDigitsMask,
+						in nTimesAlsCells,
+						branches,
+						PopCount((uint)(grid[in nTimesAlsCells] & ~nTimesAlsDigitsMask)) + 1
 					);
 					if (context.OnlyFindOne)
 					{
