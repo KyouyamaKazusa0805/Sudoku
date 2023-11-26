@@ -1912,7 +1912,7 @@
     <value>守护者</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_GurthSymmetricalPlacementStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher" xml:space="preserve">
     <value>宇宙法</value>
     <comment>Step Searcher Name</comment>
   </data>

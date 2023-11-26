@@ -19140,6 +19140,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Almost Locked Sets XZ.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher">
+            <summary>
+              Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_BivalueOddagonStepSearcher">
             <summary>
               Looks up a localized string similar to Bivalue Oddagon.
@@ -19223,11 +19228,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GuardianStepSearcher">
             <summary>
               Looks up a localized string similar to Guardian.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_GurthSymmetricalPlacementStepSearcher">
-            <summary>
-              Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_LawOfLeftoverStepSearcher">

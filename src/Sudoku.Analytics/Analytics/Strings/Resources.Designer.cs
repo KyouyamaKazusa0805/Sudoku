@@ -3589,6 +3589,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+        /// </summary>
+        public static string StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bivalue Oddagon.
         /// </summary>
         public static string StepSearcherName_BivalueOddagonStepSearcher {
@@ -3738,15 +3747,6 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_GuardianStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GuardianStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
-        /// </summary>
-        public static string StepSearcherName_GurthSymmetricalPlacementStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_GurthSymmetricalPlacementStepSearcher", resourceCulture);
             }
         }
         
