@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
@@ -41,315 +42,264 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
-
-		var indexUsed2All = new int[10];
-		var usedAls = new CellMap[10, 9];
+		var alsesUsed = new CellMap[10, 9];
 		var usedIndex = new int[729];
-		var ckIndex = new int[729];
-		Array.Fill(ckIndex, -1);
+		var alsReferenceTable = new int[729];
+		Array.Fill(alsReferenceTable, -1);
 
 		// Iterate on each cell to collect cell-blossom type.
-		var cachedCands = grid.ToCandidateMaskArray();
-		foreach (var i in EmptyCells)
+		var playgroundCached = grid.ToCandidateMaskArray();
+		foreach (var entryElimCell in EmptyCells)
 		{
-			if (PopCount((uint)cachedCands[i]) < 2)
+			if (PopCount((uint)playgroundCached[entryElimCell]) < 2)
 			{
+				// If the cell only contain one candidate (i.e. a Naked Single), the cell won't produce any possible eliminations.
+				// Just skip it.
 				continue;
 			}
 
-			var bCands = (Mask)(cachedCands[i] & ~(1 << Solution.GetDigit(i)));
-			for (var j = 0; j < PopCount((uint)bCands); j++)
+			var wrongDigitsMask = (Mask)(playgroundCached[entryElimCell] & ~(1 << Solution.GetDigit(entryElimCell)));
+			foreach (var wrongDigit in wrongDigitsMask)
 			{
-				int sz;
-				var vCand = bCands.SetAt(j);
-				var psbCells = CellMap.Empty;
-				var ckCands = grid.ToCandidateMaskArray();
-				for (var k1 = 0; k1 < alses.Length; k1++)
+				int satisfiedSize;
+				var availablePivots = CellMap.Empty;
+				var playground = grid.ToCandidateMaskArray();
+				for (var alsCurrentIndex = 0; alsCurrentIndex < alses.Length; alsCurrentIndex++)
 				{
-					if ((alses[k1].DigitsMask >> vCand & 1) != 0 && alses[k1].EliminationMap[vCand].Contains(i))
-					{
-						var cands = (Mask)(alses[k1].DigitsMask & ~(1 << vCand));
-						for (var k2 = 0; k2 < PopCount((uint)cands); k2++)
-						{
-							scoped ref readonly var t = ref alses[k1].EliminationMap[cands.SetAt(k2)];
-							for (var a = 0; a < t.Count; a++)
-							{
-								if ((ckCands[t[a]] >> cands.SetAt(k2) & 1) == 0)
-								{
-									continue;
-								}
-
-								ckCands[t[a]] &= (Mask)~(1 << cands.SetAt(k2));
-								ckIndex[t[a] * 9 + cands.SetAt(k2)] = k1;
-								psbCells.Add(t[a]);
-
-								if (ckCands[t[a]] != 0)
-								{
-									continue;
-								}
-
-								var delCands = (Mask)0;
-								var branches = new BlossomBranch();
-								for (var b = 0; b < PopCount((uint)grid.GetCandidates(t[a])); b++)
-								{
-									var branch = alses[ckIndex[t[a] * 9 + grid.GetCandidates(t[a]).SetAt(b)]];
-									branches.Add(grid.GetCandidates(t[a]).SetAt(b), branch);
-
-									if (b == 0)
-									{
-										delCands = branch.DigitsMask;
-									}
-									else
-									{
-										delCands &= branch.DigitsMask;
-									}
-								}
-
-								delCands &= (Mask)~grid.GetCandidates(t[a]);
-
-								var temp = CellMap.Empty;
-								for (var b = 0; b < PopCount((uint)delCands); b++)
-								{
-									var digit = delCands.SetAt(b);
-									foreach (var branch in branches.Values)
-									{
-										temp |= branch.Cells & CandidatesMap[digit];
-									}
-								}
-
-								var zz = (Mask)0;
-								var conclusions = new List<Conclusion>();
-								for (var b = 0; b < PopCount((uint)delCands); b++)
-								{
-									var delMap = temp % CandidatesMap[delCands.SetAt(b)];
-									if (!delMap)
-									{
-										continue;
-									}
-
-									zz |= (Mask)(1 << delCands.SetAt(b));
-									for (var c = 0; c < delMap.Count; c++)
-									{
-										conclusions.Add(new(Elimination, delMap[c], delCands.SetAt(b)));
-
-										if (SearchExtendedTypes)
-										{
-											cachedCands[delMap[c]] &= (Mask)~delCands.SetAt(b);
-										}
-									}
-								}
-
-								var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, t[a]) };
-								var candidateOffsets = new List<CandidateViewNode>();
-								var detailViews = new View[branches.Count];
-								foreach (ref var view in detailViews.AsSpan())
-								{
-									view = [new CellViewNode(WellKnownColorIdentifier.Normal, t[a])];
-								}
-
-								var indexOfAls = 0;
-								foreach (var digit in grid.GetCandidates(t[a]))
-								{
-									var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, t[a] * 9 + digit);
-									candidateOffsets.Add(node);
-
-									detailViews[indexOfAls++].Add(node);
-								}
-
-								indexOfAls = 0;
-								foreach (var (branchDigit, (_, alsCells)) in branches)
-								{
-									foreach (var alsCell in alsCells)
-									{
-										var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
-										foreach (var digit in grid.GetCandidates(alsCell))
-										{
-											var node = new CandidateViewNode(
-												branchDigit == digit
-													? WellKnownColorIdentifier.Auxiliary2
-													: (delCands >> digit & 1) != 0
-														? WellKnownColorIdentifier.Auxiliary1
-														: alsColor,
-												alsCell * 9 + digit
-											);
-											candidateOffsets.Add(node);
-
-											detailViews[indexOfAls].Add(node);
-										}
-
-										var cellNode = new CellViewNode(alsColor, alsCell);
-										cellOffsets.Add(cellNode);
-
-										detailViews[indexOfAls].Add(cellNode);
-									}
-
-									indexOfAls++;
-								}
-
-								var step = new DeathBlossomStep(
-									[.. conclusions],
-									[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-									context.PredefinedOptions,
-									t[a],
-									branches,
-									zz
-								);
-								if (context.OnlyFindOne)
-								{
-									return step;
-								}
-
-								accumulatorNormal.Add(step);
-							}
-						}
-					}
-				}
-
-				if (!SearchExtendedTypes || !psbCells)
-				{
-					return null;
-				}
-
-				var ttt = PeersMap[i] & CandidatesMap[vCand];
-				for (var a = 0; a < ttt.Count; a++)
-				{
-					ckCands[ttt[a]] &= (Mask)~(1 << vCand);
-				}
-
-				var fCell = new int[9];
-				var xCand = new int[9];
-				var xAls = new int[9];
-				foreach (var un in psbCells.Houses)
-				{
-					if ((HousesMap[un] & psbCells) is not (var fMap and not []))
+					var (alsDigitsMask, _, _, alsElimMap) = alses[alsCurrentIndex];
+					if ((alsDigitsMask >> wrongDigit & 1) == 0 || !alsElimMap[wrongDigit].Contains(entryElimCell))
 					{
 						continue;
 					}
 
-					var preDelCnt = -1;
-					for (var a = 0; a < fMap.Count; a++)
+					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & ~(1 << wrongDigit)))
 					{
-						if (ckCands[fMap[a]] == 0)
+						foreach (var pivot in alsElimMap[currentSelectedDigit])
 						{
-							continue;
-						}
-
-						fCell[++preDelCnt] = fMap[a];
-					}
-
-					fMap = (HousesMap[un] & EmptyCells) - fMap;
-					var tCnt = preDelCnt;
-					if (fMap)
-					{
-						for (var a = 0; a < fMap.Count; a++)
-						{
-							if (PopCount((uint)ckCands[fMap[a]]) < 2)
+							if ((playground[pivot] >> currentSelectedDigit & 1) == 0)
 							{
 								continue;
 							}
 
-							fCell[++tCnt] = fMap[a];
-						}
-					}
+							playground[pivot] &= (Mask)~(1 << currentSelectedDigit);
+							alsReferenceTable[pivot * 9 + currentSelectedDigit] = alsCurrentIndex;
+							availablePivots.Add(pivot);
 
-					for (sz = 2; sz <= 8; sz++)
-					{
-						for (var a = 0; a <= preDelCnt; a++)
-						{
-							xCand[0] = ckCands[fCell[a]];
-							xAls[0] = fCell[a];
-							for (var b = a + 1; b <= tCnt; b++)
+							// We should ensure the target cell should be empty.
+							if (playground[pivot] != 0)
 							{
-								xCand[1] = xCand[0] | (int)ckCands[fCell[b]];
-								xAls[1] = fCell[b];
-								if (PopCount((uint)xCand[1]) < 2)
-								{
-									goto AlmostAlmostLockedSetDeletion;
-								}
+								continue;
+							}
 
-								if (sz < 3)
+							var zDigitsMask = (Mask)0;
+							var branches = new BlossomBranch();
+							var pivotDigitsMask = grid.GetCandidates(pivot);
+							var isFirstEncountered = true;
+							foreach (var pivotDigit in pivotDigitsMask)
+							{
+								var branch = alses[alsReferenceTable[pivot * 9 + pivotDigit]];
+								branches.Add(pivotDigit, branch);
+
+								if (isFirstEncountered)
+								{
+									zDigitsMask = branch.DigitsMask;
+									isFirstEncountered = false;
+								}
+								else
+								{
+									zDigitsMask &= branch.DigitsMask;
+								}
+							}
+							zDigitsMask &= (Mask)~pivotDigitsMask;
+
+							var branchCellsContainingZ = CellMap.Empty;
+							foreach (var digit in zDigitsMask)
+							{
+								foreach (var (_, branchCells) in branches.Values)
+								{
+									branchCellsContainingZ |= branchCells & CandidatesMap[digit];
+								}
+							}
+
+							var validZ = (Mask)0;
+							var conclusions = new List<Conclusion>();
+							foreach (var zDigit in zDigitsMask)
+							{
+								if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
 								{
 									continue;
 								}
 
-								for (var c = b + 1; c <= tCnt; c++)
+								validZ |= (Mask)(1 << zDigit);
+								foreach (var c in elimMap)
 								{
-									xCand[2] = xCand[1] | (int)ckCands[fCell[c]];
-									xAls[2] = fCell[c];
-									if (PopCount((uint)xCand[2]) < 3)
+									conclusions.Add(new(Elimination, c, zDigit));
+
+									if (SearchExtendedTypes)
 									{
-										goto AlmostAlmostLockedSetDeletion;
+										playgroundCached[c] &= (Mask)~zDigit;
+									}
+								}
+							}
+
+							var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, pivot) };
+							var candidateOffsets = new List<CandidateViewNode>();
+							var detailViews = new View[branches.Count];
+							foreach (ref var view in detailViews.AsSpan())
+							{
+								view = [new CellViewNode(WellKnownColorIdentifier.Normal, pivot)];
+							}
+
+							var indexOfAls = 0;
+							foreach (var digit in grid.GetCandidates(pivot))
+							{
+								var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, pivot * 9 + digit);
+								candidateOffsets.Add(node);
+								detailViews[indexOfAls++].Add(node);
+							}
+
+							indexOfAls = 0;
+							foreach (var (branchDigit, (_, alsCells)) in branches)
+							{
+								foreach (var alsCell in alsCells)
+								{
+									var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+									foreach (var digit in grid.GetCandidates(alsCell))
+									{
+										var node = new CandidateViewNode(
+											branchDigit == digit
+												? WellKnownColorIdentifier.Auxiliary2
+												: (zDigitsMask >> digit & 1) != 0
+													? WellKnownColorIdentifier.Auxiliary1
+													: alsColor,
+											alsCell * 9 + digit
+										);
+										candidateOffsets.Add(node);
+										detailViews[indexOfAls].Add(node);
 									}
 
-									if (sz < 4)
+									var cellNode = new CellViewNode(alsColor, alsCell);
+									cellOffsets.Add(cellNode);
+									detailViews[indexOfAls].Add(cellNode);
+								}
+
+								indexOfAls++;
+							}
+
+							var step = new DeathBlossomStep(
+								[.. conclusions],
+								[[.. cellOffsets, .. candidateOffsets], .. detailViews],
+								context.PredefinedOptions,
+								pivot,
+								branches,
+								validZ
+							);
+							if (context.OnlyFindOne)
+							{
+								return step;
+							}
+
+							accumulatorNormal.Add(step);
+						}
+					}
+				}
+
+				if (!SearchExtendedTypes || !availablePivots)
+				{
+					return null;
+				}
+
+				// Try to search for advanced type.
+				// The main idea of the type is to suppose the ALSes can make a subset to form an invalid state
+				// (i.e. n cells only contain at most (n - 1) kinds of digits).
+
+				// Try to suppose for the target wrong digit, removing from its peer cells.
+				foreach (var deletionCell in PeersMap[entryElimCell] & CandidatesMap[wrongDigit])
+				{
+					playground[deletionCell] &= (Mask)~(1 << wrongDigit);
+				}
+
+				var finalCells = new int[9];
+				var selectedCellDigitsMask = new Mask[9];
+				var selectedAlsEntryCell = new int[9];
+				foreach (var availablePivotHouse in availablePivots.Houses)
+				{
+					if ((HousesMap[availablePivotHouse] & availablePivots) is not (var pivotsLyingInHouse and not []))
+					{
+						continue;
+					}
+
+					var preeliminationsCount = -1;
+					foreach (var cell in pivotsLyingInHouse)
+					{
+						if (playground[cell] != 0)
+						{
+							finalCells[++preeliminationsCount] = cell;
+						}
+					}
+
+					var tempCount = preeliminationsCount;
+					foreach (var cell in (HousesMap[availablePivotHouse] & EmptyCells) - pivotsLyingInHouse)
+					{
+						if (PopCount((uint)playground[cell]) >= 2)
+						{
+							finalCells[++tempCount] = cell;
+						}
+					}
+
+					for (satisfiedSize = 2; satisfiedSize <= 8; satisfiedSize++)
+					{
+						for (var a = 0; a <= preeliminationsCount; a++)
+						{
+							selectedCellDigitsMask[0] = playground[finalCells[a]];
+							selectedAlsEntryCell[0] = finalCells[a];
+							for (var b = a + 1; b <= tempCount; b++)
+							{
+								selectedCellDigitsMask[1] = (Mask)(selectedCellDigitsMask[0] | playground[finalCells[b]]);
+								selectedAlsEntryCell[1] = finalCells[b];
+								if (PopCount((uint)selectedCellDigitsMask[1]) < 2) { goto AlmostAlmostLockedSetDeletion; }
+								if (satisfiedSize < 3) { continue; }
+
+								for (var c = b + 1; c <= tempCount; c++)
+								{
+									selectedCellDigitsMask[2] = (Mask)(selectedCellDigitsMask[1] | playground[finalCells[c]]);
+									selectedAlsEntryCell[2] = finalCells[c];
+									if (PopCount((uint)selectedCellDigitsMask[2]) < 3) { goto AlmostAlmostLockedSetDeletion; }
+									if (satisfiedSize < 4) { continue; }
+
+									for (var d = c + 1; d <= tempCount; d++)
 									{
-										continue;
-									}
+										selectedCellDigitsMask[3] = (Mask)(selectedCellDigitsMask[2] | playground[finalCells[d]]);
+										selectedAlsEntryCell[3] = finalCells[d];
+										if (PopCount((uint)selectedCellDigitsMask[3]) < 4) { goto AlmostAlmostLockedSetDeletion; }
+										if (satisfiedSize < 5) { continue; }
 
-									for (var d = c + 1; d <= tCnt; d++)
-									{
-										xCand[3] = xCand[2] | (int)ckCands[fCell[d]];
-										xAls[3] = fCell[d];
-										if (PopCount((uint)xCand[3]) < 4)
+										for (var e = d + 1; e <= tempCount; e++)
 										{
-											goto AlmostAlmostLockedSetDeletion;
-										}
+											selectedCellDigitsMask[4] = (Mask)(selectedCellDigitsMask[3] | playground[finalCells[e]]);
+											selectedAlsEntryCell[4] = finalCells[e];
+											if (PopCount((uint)selectedCellDigitsMask[4]) < 5) { goto AlmostAlmostLockedSetDeletion; }
+											if (satisfiedSize < 6) { continue; }
 
-										if (sz < 5)
-										{
-											continue;
-										}
-
-										for (var e = d + 1; e <= tCnt; e++)
-										{
-											xCand[4] = xCand[3] | (int)ckCands[fCell[e]];
-											xAls[4] = fCell[e];
-											if (PopCount((uint)xCand[4]) < 5)
+											for (var f = e + 1; f <= tempCount; f++)
 											{
-												goto AlmostAlmostLockedSetDeletion;
-											}
+												selectedCellDigitsMask[5] = (Mask)(selectedCellDigitsMask[4] | playground[finalCells[f]]);
+												selectedAlsEntryCell[5] = finalCells[f];
+												if (PopCount((uint)selectedCellDigitsMask[5]) < 6) { goto AlmostAlmostLockedSetDeletion; }
+												if (satisfiedSize < 7) { continue; }
 
-											if (sz < 6)
-											{
-												continue;
-											}
-
-											for (var f = e + 1; f <= tCnt; f++)
-											{
-												xCand[5] = xCand[4] | (int)ckCands[fCell[f]];
-												xAls[5] = fCell[f];
-												if (PopCount((uint)xCand[5]) < 6)
+												for (var g = f + 1; g <= tempCount; g++)
 												{
-													goto AlmostAlmostLockedSetDeletion;
-												}
+													selectedCellDigitsMask[6] = (Mask)(selectedCellDigitsMask[5] | playground[finalCells[g]]);
+													selectedAlsEntryCell[6] = finalCells[g];
+													if (PopCount((uint)selectedCellDigitsMask[6]) < 7) { goto AlmostAlmostLockedSetDeletion; }
+													if (satisfiedSize < 8) { continue; }
 
-												if (sz < 7)
-												{
-													continue;
-												}
-
-												for (var g = f + 1; g <= tCnt; g++)
-												{
-													xCand[6] = xCand[5] | (int)ckCands[fCell[g]];
-													xAls[6] = fCell[g];
-													if (PopCount((uint)xCand[6]) < 7)
+													for (var h = g + 1; h <= tempCount; h++)
 													{
-														goto AlmostAlmostLockedSetDeletion;
-													}
-
-													if (sz < 8)
-													{
-														continue;
-													}
-
-													for (var h = g + 1; h <= tCnt; h++)
-													{
-														xCand[7] = xCand[6] | (int)ckCands[fCell[h]];
-														xAls[7] = fCell[h];
-														if (PopCount((uint)xCand[7]) < 8)
-														{
-															goto AlmostAlmostLockedSetDeletion;
-														}
+														selectedCellDigitsMask[7] = (Mask)(selectedCellDigitsMask[6] | playground[finalCells[h]]);
+														selectedAlsEntryCell[7] = finalCells[h];
+														if (PopCount((uint)selectedCellDigitsMask[7]) < 8) { goto AlmostAlmostLockedSetDeletion; }
 													}
 												}
 											}
@@ -365,59 +315,50 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 			AlmostAlmostLockedSetDeletion:
 				{
-					var zz = (Mask)0;
-					var numOfUse = 0;
-					Array.Clear(usedAls);
+					Array.Clear(alsesUsed);
 					Array.Clear(usedIndex);
-					var setCands = (Mask)0;
-					var allAls = CellMap.Empty;
-					var tCand = (Mask)0;
-					var clrCands = grid.ToCandidateMaskArray();
 
-					for (var ll = 0; ll < sz; ll++)
+					//var clrCands = grid.ToCandidateMaskArray();
+					var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
+					foreach (var cell in selectedAlsEntryCell.AsReadOnlySpan()[..satisfiedSize])
 					{
-						setCands |= grid.GetCandidates(xAls[ll]);
-						tCand = (Mask)(grid.GetCandidates(xAls[ll]) & ~(xCand[sz - 1] | 1 << vCand));
-						if (tCand == 0)
+						var currentCellDigitsMask = grid.GetCandidates(cell);
+						entryCellDigitsMask |= currentCellDigitsMask;
+						foreach (var digit in tCand = (Mask)(
+							currentCellDigitsMask
+								& ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit))
+						))
 						{
-							continue;
-						}
-
-						for (var ab = 0; ab < PopCount((uint)tCand); ab++)
-						{
-							if (usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]] == 0)
+							var candidate = cell * 9 + digit;
+							scoped ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
+							if (currentUsedIndex == 0)
 							{
-								usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]] = ++numOfUse;
-								indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]] = ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)];
+								currentUsedIndex = ++usedAlsesCount;
+								indexUsed2All[currentUsedIndex] = alsReferenceTable[candidate];
 							}
 
-							if (numOfUse > 10)
-							{
-								throw new InvalidOperationException("There's a special case that more than 10 branches found.");
-							}
+							Debug.Assert(usedAlsesCount <= 10, "There's a special case that more than 10 branches found.");
 
-							usedAls[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]], tCand.SetAt(ab)].Add(xAls[ll]);
-							if (zz == 0)
+							alsesUsed[currentUsedIndex, digit].Add(cell);
+							if (zDigitsMask == 0)
 							{
-								zz = (Mask)(
-									alses[indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]]].DigitsMask
-										& ~(1 << tCand.SetAt(ab))
-								);
+								zDigitsMask = (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
 							}
 							else
 							{
-								zz &= (Mask)(
-									alses[indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]]].DigitsMask
-										& ~(1 << tCand.SetAt(ab))
-								);
+								zDigitsMask &= (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
 							}
 						}
 					}
 
-					var complexType = (setCands >> vCand & 1) != 0 && (xCand[sz - 1] >> vCand & 1) == 0 ? 1 : 2;
+					var complexType = (
+						entryCellDigitsMask >> wrongDigit & 1,
+						selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1
+					) switch
+					{ (not 0, 0) => 1, _ => 2 };
 					if (complexType == 1)
 					{
-						zz &= (Mask)(xCand[sz - 1] | 1 << vCand);
+						zDigitsMask &= (Mask)(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit));
 					}
 
 					var cellOffsets = new List<CellViewNode>();
@@ -427,14 +368,15 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					var branches = new BlossomBranch();
 					var nTimesAlsDigitsMask = (Mask)0;
 					var nTimesAlsCells = CellMap.Empty;
-					for (var usedAlsIndex = 1; usedAlsIndex <= numOfUse; usedAlsIndex++)
+					var cellsAllAlsesUsed = CellMap.Empty;
+					for (var usedAlsIndex = 1; usedAlsIndex <= usedAlsesCount; usedAlsIndex++)
 					{
 						var rcc = (Mask)0;
 						var view = new View();
 						var branchDigit = -1;
 						for (var currentDigit = 0; currentDigit < 9; currentDigit++)
 						{
-							if (!usedAls[usedAlsIndex, currentDigit])
+							if (!alsesUsed[usedAlsIndex, currentDigit])
 							{
 								continue;
 							}
@@ -442,7 +384,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
 							branchDigit = currentDigit;
 							rcc |= (Mask)(1 << currentDigit);
-							foreach (var cell in usedAls[usedAlsIndex, currentDigit])
+							foreach (var cell in alsesUsed[usedAlsIndex, currentDigit])
 							{
 								if (grid.Exists(cell, currentDigit) is true)
 								{
@@ -454,13 +396,13 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
 								view.Add(node);
 								cellOffsets.Add(node);
-								clrCands[cell] &= (Mask)~tCand;
+								//clrCands[cell] &= (Mask)~tCand;
 
 								nTimesAlsCells.Add(cell);
 							}
 						}
 
-						allAls |= alses[indexUsed2All[usedAlsIndex]].Cells;
+						cellsAllAlsesUsed |= alses[indexUsed2All[usedAlsIndex]].Cells;
 						var targetAls = alses[indexUsed2All[usedAlsIndex]];
 						foreach (var cell in targetAls.Cells)
 						{
@@ -472,7 +414,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							{
 								var colorIdentifier = (rcc >> digit & 1) != 0
 									? WellKnownColorIdentifier.Auxiliary2
-									: (zz >> digit & 1) != 0
+									: (zDigitsMask >> digit & 1) != 0
 										? WellKnownColorIdentifier.Auxiliary1
 										: AlmostLockedSetsModule.GetColor(alsIndex);
 								var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
@@ -486,32 +428,26 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						alsIndex++;
 					}
 
-					var temp = (CellMap)xAls[..sz];
 					//var rank0 = false;
+					var temp = (CellMap)([.. selectedAlsEntryCell.AsSpan()[..satisfiedSize]]);
 					var conclusions = new List<Conclusion>();
-					for (var ll = 0; ll < PopCount((uint)zz); ll++)
+					foreach (var digit in zDigitsMask)
 					{
-						var delMap = allAls;
+						var elimMap = cellsAllAlsesUsed;
 						if (complexType == 1)
 						{
-							delMap |= temp;
+							elimMap |= temp;
 						}
 
-						delMap &= CandidatesMap[zz.SetAt(ll)];
-						//if (((allAls | temp) & CandidatesMap[zz.SetAt(ll)]).InOneHouse(out _))
+						elimMap &= CandidatesMap[digit];
+						//if (((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).InOneHouse(out _))
 						//{
 						//	rank0 = true;
 						//}
 
-						delMap = delMap.PeerIntersection & CandidatesMap[zz.SetAt(ll)];
-						if (!delMap)
+						foreach (var cell in elimMap.PeerIntersection & CandidatesMap[digit])
 						{
-							continue;
-						}
-
-						for (var ii = 0; ii < delMap.Count; ii++)
-						{
-							conclusions.Add(new(Elimination, delMap[ii], zz.SetAt(ll)));
+							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
 					if (conclusions.Count == 0)

@@ -101,6 +101,11 @@ public sealed partial class AlmostLockedSet(
 	public void Deconstruct(out Mask digitsMask, out CellMap cells, out CellMap possibleEliminationMap)
 		=> ((digitsMask, cells), possibleEliminationMap) = (this, PossibleEliminationMap);
 
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out Mask digitsMask, out CellMap cells, out CellMap possibleEliminationMap, out CellMap[] eliminationMap)
+		=> ((digitsMask, cells, possibleEliminationMap), eliminationMap) = (this, EliminationMap);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
