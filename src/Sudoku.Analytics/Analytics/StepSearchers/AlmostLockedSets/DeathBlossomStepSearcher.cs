@@ -39,6 +39,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
+		var accumulatorNormal = new List<DeathBlossomStep>();
+		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
+
 		var indexUsed2All = new int[10];
 		var usedAls = new CellMap[10, 9];
 		var usedIndex = new int[729];
@@ -196,7 +199,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 									return step;
 								}
 
-								context.Accumulator.Add(step);
+								accumulatorNormal.Add(step);
 							}
 						}
 					}
@@ -523,14 +526,41 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						nTimesAlsDigitsMask,
 						in nTimesAlsCells,
 						branches,
-						PopCount((uint)(grid[in nTimesAlsCells] & ~nTimesAlsDigitsMask)) + 1
+						PopCount((uint)grid[in nTimesAlsCells]) - nTimesAlsCells.Count
 					);
 					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					context.Accumulator.Add(step);
+					accumulatorComplex.Add(step);
+				}
+			}
+		}
+
+		if (!context.OnlyFindOne)
+		{
+			switch (accumulatorNormal.Count, accumulatorComplex.Count)
+			{
+				case (0, 0):
+				{
+					break;
+				}
+				case (_, 0):
+				{
+					context.Accumulator.AddRange(accumulatorNormal);
+					break;
+				}
+				case (0, _):
+				{
+					context.Accumulator.AddRange(accumulatorComplex.Distinct());
+					break;
+				}
+				default:
+				{
+					context.Accumulator.AddRange(accumulatorNormal);
+					context.Accumulator.AddRange(accumulatorComplex.Distinct());
+					break;
 				}
 			}
 		}

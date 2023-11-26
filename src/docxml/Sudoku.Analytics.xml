@@ -10023,6 +10023,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#NTimesAlmostLockedSetDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep,Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetDigitsMask">
             <summary>
             The generated property declaration for parameter <c>nTimesAlmostLockedSetDigitsMask</c>.
@@ -21808,6 +21811,9 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
@@ -21843,6 +21849,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>eliminationMap</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Equality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Inequality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ChainNode">
             <summary>
@@ -22154,6 +22172,12 @@ if (student is (name: var name, age: >= 18))
             Represents for a blossom branch.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Equals(Sudoku.Concepts.ObjectModel.BlossomBranch)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
             <summary>
             Transforms the current collection into another representation, using the specified function to transform.
@@ -22161,6 +22185,15 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TResult">The type of the results.</typeparam>
             <param name="selector">The selector to tranform elements.</param>
             <returns>The results.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.op_Equality(Sudoku.Concepts.ObjectModel.BlossomBranch,Sudoku.Concepts.ObjectModel.BlossomBranch)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.op_Inequality(Sudoku.Concepts.ObjectModel.BlossomBranch,Sudoku.Concepts.ObjectModel.BlossomBranch)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranch">
             <summary>

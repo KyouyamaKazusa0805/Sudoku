@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -28,7 +29,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	[Data] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
 	[Data] BlossomBranch branches,
 	[Data] int freedomDegree
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.7M;
@@ -62,4 +63,11 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 				select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"
 			]
 		);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>.operator ==(NTimesAlmostLockedSetDeathBlossomStep left, NTimesAlmostLockedSetDeathBlossomStep right)
+		=> (left.NTimesAlmostLockedSetCells, left.NTimesAlmostLockedSetDigitsMask, left.Branches)
+		== (right.NTimesAlmostLockedSetCells, right.NTimesAlmostLockedSetDigitsMask, right.Branches);
 }

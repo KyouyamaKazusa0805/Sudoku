@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
@@ -25,12 +26,18 @@ namespace Sudoku.Concepts;
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
+[Equals]
+[GetHashCode]
+[EqualityOperators]
 public sealed partial class AlmostLockedSet(
-	[Data] Mask digitsMask,
-	[Data] scoped ref readonly CellMap cells,
+	[Data, HashCodeMember] Mask digitsMask,
+	[Data, HashCodeMember] scoped ref readonly CellMap cells,
 	[Data] scoped ref readonly CellMap possibleEliminationMap,
 	[Data] CellMap[] eliminationMap
-) : ICoordinateObject<AlmostLockedSet>
+) :
+	ICoordinateObject<AlmostLockedSet>,
+	IEquatable<AlmostLockedSet>,
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -93,6 +100,11 @@ public sealed partial class AlmostLockedSet(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out Mask digitsMask, out CellMap cells, out CellMap possibleEliminationMap)
 		=> ((digitsMask, cells), possibleEliminationMap) = (this, PossibleEliminationMap);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
+		=> other is not null && DigitsMask == other.DigitsMask && Cells == other.Cells;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
