@@ -2859,6 +2859,13 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[Abbreviation("DB")]
 	DeathBlossom,
+
+	/// <summary>
+	/// Indicates complex death blossom.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	ComplexDeathBlossom,
 	#endregion
 
 	//

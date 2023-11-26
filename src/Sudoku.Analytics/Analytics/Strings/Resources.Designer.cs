@@ -916,6 +916,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex Death Blossom.
+        /// </summary>
+        public static string ComplexDeathBlossom {
+            get {
+                return ResourceManager.GetString("ComplexDeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
         public static string ContinuousNiceLoop {

@@ -11,6 +11,7 @@ using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -38,6 +39,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
+		var indexUsed2All = new int[10];
+		var usedAls = new CellMap[10, 9];
+		var usedIndex = new int[729];
 		var ckIndex = new int[729];
 		Array.Fill(ckIndex, -1);
 
@@ -53,6 +57,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			var bCands = (Mask)(cachedCands[i] & ~(1 << Solution.GetDigit(i)));
 			for (var j = 0; j < PopCount((uint)bCands); j++)
 			{
+				int sz;
 				var vCand = bCands.SetAt(j);
 				var psbCells = CellMap.Empty;
 				var ckCands = grid.ToCandidateMaskArray();
@@ -119,15 +124,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 										continue;
 									}
 
-									var ttt = delMap.ToArray();
 									zz |= (Mask)(1 << delCands.SetAt(b));
-									for (var c = 0; c < ttt.Length; c++)
+									for (var c = 0; c < delMap.Count; c++)
 									{
-										conclusions.Add(new(Elimination, ttt[c], delCands.SetAt(b)));
+										conclusions.Add(new(Elimination, delMap[c], delCands.SetAt(b)));
 
 										if (SearchExtendedTypes)
 										{
-											cachedCands[ttt[c]] &= (Mask)~delCands.SetAt(b);
+											cachedCands[delMap[c]] &= (Mask)~delCands.SetAt(b);
 										}
 									}
 								}
@@ -197,16 +201,326 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						}
 					}
 				}
+
+				if (!SearchExtendedTypes || !psbCells)
+				{
+					return null;
+				}
+
+				var ttt = PeersMap[i] & CandidatesMap[vCand];
+				for (var a = 0; a < ttt.Count; a++)
+				{
+					ckCands[ttt[a]] &= (Mask)~(1 << vCand);
+				}
+
+				var fCell = new int[9];
+				var xCand = new int[9];
+				var xAls = new int[9];
+				foreach (var un in psbCells.Houses)
+				{
+					if ((HousesMap[un] & psbCells) is not (var fMap and not []))
+					{
+						continue;
+					}
+
+					var preDelCnt = -1;
+					for (var a = 0; a < fMap.Count; a++)
+					{
+						if (ckCands[fMap[a]] == 0)
+						{
+							continue;
+						}
+
+						fCell[++preDelCnt] = fMap[a];
+					}
+
+					fMap = (HousesMap[un] & EmptyCells) - fMap;
+					var tCnt = preDelCnt;
+					if (fMap)
+					{
+						for (var a = 0; a < fMap.Count; a++)
+						{
+							if (PopCount((uint)ckCands[fMap[a]]) < 2)
+							{
+								continue;
+							}
+
+							fCell[++tCnt] = fMap[a];
+						}
+					}
+
+					for (sz = 2; sz <= 8; sz++)
+					{
+						for (var a = 0; a <= preDelCnt; a++)
+						{
+							xCand[0] = ckCands[fCell[a]];
+							xAls[0] = fCell[a];
+							for (var b = a + 1; b <= tCnt; b++)
+							{
+								xCand[1] = xCand[0] | (int)ckCands[fCell[b]];
+								xAls[1] = fCell[b];
+								if (PopCount((uint)xCand[1]) < 2)
+								{
+									goto AlmostAlmostLockedSetDeletion;
+								}
+
+								if (sz < 3)
+								{
+									continue;
+								}
+
+								for (var c = b + 1; c <= tCnt; c++)
+								{
+									xCand[2] = xCand[1] | (int)ckCands[fCell[c]];
+									xAls[2] = fCell[c];
+									if (PopCount((uint)xCand[2]) < 3)
+									{
+										goto AlmostAlmostLockedSetDeletion;
+									}
+
+									if (sz < 4)
+									{
+										continue;
+									}
+
+									for (var d = c + 1; d <= tCnt; d++)
+									{
+										xCand[3] = xCand[2] | (int)ckCands[fCell[d]];
+										xAls[3] = fCell[d];
+										if (PopCount((uint)xCand[3]) < 4)
+										{
+											goto AlmostAlmostLockedSetDeletion;
+										}
+
+										if (sz < 5)
+										{
+											continue;
+										}
+
+										for (var e = d + 1; e <= tCnt; e++)
+										{
+											xCand[4] = xCand[3] | (int)ckCands[fCell[e]];
+											xAls[4] = fCell[e];
+											if (PopCount((uint)xCand[4]) < 5)
+											{
+												goto AlmostAlmostLockedSetDeletion;
+											}
+
+											if (sz < 6)
+											{
+												continue;
+											}
+
+											for (var f = e + 1; f <= tCnt; f++)
+											{
+												xCand[5] = xCand[4] | (int)ckCands[fCell[f]];
+												xAls[5] = fCell[f];
+												if (PopCount((uint)xCand[5]) < 6)
+												{
+													goto AlmostAlmostLockedSetDeletion;
+												}
+
+												if (sz < 7)
+												{
+													continue;
+												}
+
+												for (var g = f + 1; g <= tCnt; g++)
+												{
+													xCand[6] = xCand[5] | (int)ckCands[fCell[g]];
+													xAls[6] = fCell[g];
+													if (PopCount((uint)xCand[6]) < 7)
+													{
+														goto AlmostAlmostLockedSetDeletion;
+													}
+
+													if (sz < 8)
+													{
+														continue;
+													}
+
+													for (var h = g + 1; h <= tCnt; h++)
+													{
+														xCand[7] = xCand[6] | (int)ckCands[fCell[h]];
+														xAls[7] = fCell[h];
+														if (PopCount((uint)xCand[7]) < 8)
+														{
+															goto AlmostAlmostLockedSetDeletion;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				continue;
+
+			AlmostAlmostLockedSetDeletion:
+				{
+					var zz = (Mask)0;
+					var numOfUse = 0;
+					Array.Clear(usedAls);
+					Array.Clear(usedIndex);
+					var setCands = (Mask)0;
+					var allAls = CellMap.Empty;
+					var tCand = (Mask)0;
+					var clrCands = grid.ToCandidateMaskArray();
+
+					for (var ll = 0; ll < sz; ll++)
+					{
+						setCands |= grid.GetCandidates(xAls[ll]);
+						tCand = (Mask)(grid.GetCandidates(xAls[ll]) & ~(xCand[sz - 1] | 1 << vCand));
+						if (tCand == 0)
+						{
+							continue;
+						}
+
+						for (var ab = 0; ab < PopCount((uint)tCand); ab++)
+						{
+							if (usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]] == 0)
+							{
+								usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]] = ++numOfUse;
+								indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]] = ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)];
+							}
+
+							if (numOfUse > 10)
+							{
+								throw new InvalidOperationException("There's a special case that more than 10 branches found.");
+							}
+
+							usedAls[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]], tCand.SetAt(ab)].Add(xAls[ll]);
+							if (zz == 0)
+							{
+								zz = (Mask)(
+									alses[indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]]].DigitsMask
+										& ~(1 << tCand.SetAt(ab))
+								);
+							}
+							else
+							{
+								zz &= (Mask)(
+									alses[indexUsed2All[usedIndex[ckIndex[xAls[ll] * 9 + tCand.SetAt(ab)]]]].DigitsMask
+										& ~(1 << tCand.SetAt(ab))
+								);
+							}
+						}
+					}
+
+					var complexType = (setCands >> vCand & 1) != 0 && (xCand[sz - 1] >> vCand & 1) == 0 ? 1 : 2;
+					if (complexType == 1)
+					{
+						zz &= (Mask)(xCand[sz - 1] | 1 << vCand);
+					}
+
+					var cellOffsets = new List<CellViewNode>();
+					var candidateOffsets = new List<CandidateViewNode>();
+					var alsIndex = 0;
+					var detailViews = new List<View>(9);
+					for (var usedAlsIndex = 1; usedAlsIndex <= numOfUse; usedAlsIndex++)
+					{
+						var rcc = (Mask)0;
+						var view = new View();
+						for (var currentDigit = 0; currentDigit < 9; currentDigit++)
+						{
+							if (!usedAls[usedAlsIndex, currentDigit])
+							{
+								continue;
+							}
+
+							rcc |= (Mask)(1 << currentDigit);
+							foreach (var cell in usedAls[usedAlsIndex, currentDigit])
+							{
+								if (grid.Exists(cell, currentDigit) is true)
+								{
+									var candidateNode = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
+									view.Add(candidateNode);
+									candidateOffsets.Add(candidateNode);
+								}
+
+								var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
+								view.Add(node);
+								cellOffsets.Add(node);
+								clrCands[cell] &= (Mask)~tCand;
+							}
+						}
+
+						allAls |= alses[indexUsed2All[usedAlsIndex]].Cells;
+
+						foreach (var cell in alses[indexUsed2All[usedAlsIndex]].Cells)
+						{
+							var cellNode = new CellViewNode(AlmostLockedSetsModule.GetColor(alsIndex), cell);
+							view.Add(cellNode);
+							cellOffsets.Add(cellNode);
+
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								var colorIdentifier = (rcc >> digit & 1) != 0
+									? WellKnownColorIdentifier.Auxiliary2
+									: (zz >> digit & 1) != 0
+										? WellKnownColorIdentifier.Auxiliary1
+										: AlmostLockedSetsModule.GetColor(alsIndex);
+								var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
+								view.Add(candidateNode);
+								candidateOffsets.Add(candidateNode);
+							}
+						}
+
+						detailViews.Add(view);
+						alsIndex++;
+					}
+
+					var temp = (CellMap)xAls[..sz];
+					//var rank0 = false;
+					var conclusions = new List<Conclusion>();
+					for (var ll = 0; ll < PopCount((uint)zz); ll++)
+					{
+						var delMap = allAls;
+						if (complexType == 1)
+						{
+							delMap |= temp;
+						}
+
+						delMap &= CandidatesMap[zz.SetAt(ll)];
+						//if (((allAls | temp) & CandidatesMap[zz.SetAt(ll)]).InOneHouse(out _))
+						//{
+						//	rank0 = true;
+						//}
+
+						delMap = delMap.PeerIntersection & CandidatesMap[zz.SetAt(ll)];
+						if (!delMap)
+						{
+							continue;
+						}
+
+						for (var ii = 0; ii < delMap.Count; ii++)
+						{
+							conclusions.Add(new(Elimination, delMap[ii], zz.SetAt(ll)));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var step = new ComplexDeathBlossomStep(
+						[.. conclusions],
+						[[.. cellOffsets, .. candidateOffsets], .. detailViews],
+						context.PredefinedOptions
+					);
+					if (context.OnlyFindOne)
+					{
+						return step;
+					}
+
+					context.Accumulator.Add(step);
+				}
 			}
 		}
-
-		if (!SearchExtendedTypes)
-		{
-			return null;
-		}
-
-		// Search for extended types.
-
 
 		return null;
 	}

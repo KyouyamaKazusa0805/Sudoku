@@ -112,6 +112,9 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
     * Death Blossom
+      * Standard Type (Blossom Cell)
+      * Complex Death Blossom
+        * Blossom A^n^LS
   * Rank Logics
     * Positive or 0 -Rank Logics
       * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)

@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pivot">Indicates the pivot cell.</param>
 /// <param name="branches">Indicates the branches.</param>
 /// <param name="endDigitsMask">Indicates the end-point digits mask.</param>
-public partial class DeathBlossomStep(
+public sealed partial class DeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

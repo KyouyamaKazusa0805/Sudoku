@@ -2490,4 +2490,7 @@
   <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>The filling digits from set {0} is equal to {1}</value>
   </data>
+  <data name="ComplexDeathBlossom" xml:space="preserve">
+    <value>Complex Death Blossom</value>
+  </data>
 </root>

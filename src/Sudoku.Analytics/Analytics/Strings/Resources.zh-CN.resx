@@ -2673,4 +2673,8 @@
   <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>单元格 {0} 和单元格 {1} 填数一致</value>
   </data>
+  <data name="ComplexDeathBlossom" xml:space="preserve">
+    <value>复杂死亡绽放</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -2739,6 +2739,11 @@ if (student is (name: var name, age: >= 18))
             Indicates death blossom.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexDeathBlossom">
+            <summary>
+            Indicates complex death blossom.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GurthSymmetricalPlacement">
             <summary>
             Indicates Gurth's symmetrical placement.
@@ -9872,6 +9877,28 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>isDoublyLinked</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexDeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Complex Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Provides with a step that is a <b>Complex Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexDeathBlossomStep.Code">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DeathBlossomStep">
             <summary>
@@ -17592,6 +17619,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.Comma">
             <summary>
               Looks up a localized string similar to , .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.ComplexDeathBlossom">
+            <summary>
+              Looks up a localized string similar to Complex Death Blossom.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ContinuousNiceLoop">
