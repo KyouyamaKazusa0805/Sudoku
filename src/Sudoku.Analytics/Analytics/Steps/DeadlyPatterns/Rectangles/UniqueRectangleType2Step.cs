@@ -1,8 +1,11 @@
+using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
+using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -20,6 +23,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
+/// <param name="extraCells">Indicates the extra cells.</param>
+/// <param name="emptyCellsCount">The number of empty cells.</param>
 public sealed partial class UniqueRectangleType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -30,7 +35,9 @@ public sealed partial class UniqueRectangleType2Step(
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
 	[Data] Digit extraDigit,
-	int absoluteOffset
+	int absoluteOffset,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] scoped ref readonly CellMap extraCells,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
@@ -47,11 +54,36 @@ public sealed partial class UniqueRectangleType2Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
+	public override decimal BaseLocatingDifficulty => 54;
+
+	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
 		];
 
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+	{
+		get
+		{
+			var blocks = Cells.BlockMask.GetAllSets();
+			return [
+				new(LocatingDifficultyFactorNames.HousePosition, (HotSpot.GetHotSpot(blocks[0]) + HotSpot.GetHotSpot(blocks[1])) * 9),
+				new(LocatingDifficultyFactorNames.Incompleteness, 60),
+				new(LocatingDifficultyFactorNames.ExtraDigit, 9 * GetHouseScore(_extraCells.Houses & ~HouseMaskOperations.AllBlocksMask)),
+				new(LocatingDifficultyFactorNames.AvoidableRectangle, _emptyCellsCount * 60)
+			];
+		}
+	}
+
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
+
+
+	/// <summary>
+	/// Try to get the score for houses.
+	/// </summary>
+	private int GetHouseScore(HouseMask houses)
+		=> houses.GetAllSets().Sum(static (scoped ref readonly House house) => HotSpot.GetHotSpot(house));
 }

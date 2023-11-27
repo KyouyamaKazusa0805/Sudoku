@@ -457,7 +457,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				d2,
 				[.. urCells],
 				arMode,
-				index
+				index,
+				PopCount((uint)grid.GetCandidates(cornerCell)) - conclusions.Count,
+				urCells.Count(EmptyCells.Contains)
 			)
 		);
 	}
@@ -524,6 +526,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
+		var extraCells = CellMap.Empty;
 		foreach (var cell in urCells)
 		{
 			if (grid.GetState(cell) == CellState.Empty)
@@ -536,6 +539,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							cell * 9 + digit
 						)
 					);
+				}
+
+				if (CandidatesMap[extraDigit].Contains(cell))
+				{
+					extraCells.Add(cell);
 				}
 			}
 		}
@@ -563,7 +571,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				[.. urCells],
 				arMode,
 				extraDigit,
-				index
+				index,
+				in extraCells,
+				urCells.Count(EmptyCells.Contains)
 			)
 		);
 	}
@@ -713,6 +723,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							otherDigitsMask,
 							houseIndex,
 							arMode,
+							urCells.Count(EmptyCells.Contains),
 							index
 						)
 					);
@@ -915,6 +926,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(16);
+		var extraCells = CellMap.Empty;
 		foreach (var cell in urCells)
 		{
 			if (grid.GetState(cell) != CellState.Empty)
@@ -925,6 +937,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
+			}
+
+			if (CandidatesMap[extraDigit].Contains(cell))
+			{
+				extraCells.Add(cell);
 			}
 		}
 		if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
@@ -943,7 +960,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				[.. urCells],
 				arMode,
 				extraDigit,
-				index
+				index,
+				in extraCells,
+				urCells.Count(EmptyCells.Contains)
 			)
 		);
 	}

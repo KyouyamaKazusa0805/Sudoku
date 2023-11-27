@@ -20,6 +20,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
 /// <param name="digitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="petals">Indicates the petals used.</param>
+/// <param name="distanceValueSumFromPetals">The total distinct value from all petals to the pivot.</param>
 public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -27,7 +28,8 @@ public sealed partial class RegularWingStep(
 	[Data] Cell pivot,
 	[Data] int pivotCandidatesCount,
 	[Data] Mask digitsMask,
-	[Data] scoped ref readonly CellMap petals
+	[Data] scoped ref readonly CellMap petals,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] double distanceValueSumFromPetals
 ) : WingStep(conclusions, views, options)
 {
 	/// <summary>
@@ -37,6 +39,9 @@ public sealed partial class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.2M;
+
+	/// <inheritdoc/>
+	public override decimal BaseLocatingDifficulty => 420;
 
 	/// <summary>
 	/// Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
@@ -90,6 +95,14 @@ public sealed partial class RegularWingStep(
 				ExtraDifficultyFactorNames.Incompleteness,
 				(Code, IsIncomplete) switch { (Technique.XyWing, _) => 0, (Technique.XyzWing, _) => .2M, (_, true) => .1M, _ => 0 }
 			)
+		];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> [
+			new(LocatingDifficultyFactorNames.Petals, Petals.Count * 20),
+			new(LocatingDifficultyFactorNames.Size, PivotCandidatesCount * 20),
+			new(LocatingDifficultyFactorNames.Distance, (decimal)Math.Round(_distanceValueSumFromPetals * 6, 2))
 		];
 
 	/// <inheritdoc/>

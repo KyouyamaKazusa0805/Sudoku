@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -36,6 +37,16 @@ public sealed partial class ForcingChainStep(
 	{
 	}
 
+
+	/// <inheritdoc/>
+	public override decimal BaseLocatingDifficulty => 400;
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> [
+			new(LocatingDifficultyFactorNames.Size, Target.ChainPotentials.Length * 9),
+			new(LocatingDifficultyFactorNames.DigitVariance, new HashSet<byte>(from node in Target.ChainPotentials select node.Digit).Count * 3)
+		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

@@ -99,9 +99,9 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 						context.PredefinedOptions,
 						digit,
 						block,
-						new(cpCells[0], cpCells[1], digit)
+						new(cpCells[0], cpCells[1], digit),
+						(CandidatesMap[digit] & HousesMap[block]).Count
 					);
-
 					if (context.OnlyFindOne)
 					{
 						return step;

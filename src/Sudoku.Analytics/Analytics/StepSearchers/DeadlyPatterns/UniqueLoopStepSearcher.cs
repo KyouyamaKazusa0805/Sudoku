@@ -167,7 +167,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			context.PredefinedOptions,
 			d1,
 			d2,
-			in loop
+			in loop,
+			path
 		);
 		if (onlyFindOne)
 		{
@@ -236,7 +237,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			d1,
 			d2,
 			in loop,
-			extraDigit
+			extraDigit,
+			path,
+			in extraCellsMap
 		);
 
 		if (onlyFindOne)
@@ -376,7 +379,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							d2,
 							in loop,
 							in cells,
-							mask
+							mask,
+							path
 						);
 
 						if (onlyFindOne)
@@ -457,7 +461,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						d2,
 						in loop,
 						in cells,
-						mask
+						mask,
+						path
 					);
 					if (onlyFindOne)
 					{
@@ -550,7 +555,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					d1,
 					d2,
 					in loop,
-					new(first, second, digit)
+					new(first, second, digit),
+					path
 				);
 
 				if (onlyFindOne)

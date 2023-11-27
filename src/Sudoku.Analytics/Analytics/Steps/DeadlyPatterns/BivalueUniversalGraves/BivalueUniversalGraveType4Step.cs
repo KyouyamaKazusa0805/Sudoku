@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -16,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 /// <param name="cells">Indicates the cells used.</param>
+/// <param name="emptyCellsCount">The number of empty cells.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class BivalueUniversalGraveType4Step(
 	Conclusion[] conclusions,
@@ -23,6 +25,7 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	StepSearcherOptions options,
 	[Data] Mask digitsMask,
 	[Data] scoped ref readonly CellMap cells,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount,
 	[Data] scoped ref readonly Conjugate conjugatePair
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
@@ -31,6 +34,17 @@ public sealed partial class BivalueUniversalGraveType4Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ConjugatePair, .1M)];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> [
+			new(LocatingDifficultyFactorNames.EmptyCell, 560 * Math.Round(_emptyCellsCount / 11M, 2)),
+			new(LocatingDifficultyFactorNames.TrueCandidate, Cells.Count * 60),
+			new(
+				LocatingDifficultyFactorNames.ConjugatePair,
+				9 * ConjugatePair.Houses.SetAt(0).ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 }
+			)
+		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

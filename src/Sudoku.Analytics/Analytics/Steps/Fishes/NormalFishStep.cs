@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -35,6 +36,7 @@ namespace Sudoku.Analytics.Steps;
 /// </item>
 /// </list>
 /// </param>
+/// <param name="bodyCellsCount">Indicates the number of body cells.</param>
 public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -43,11 +45,21 @@ public sealed partial class NormalFishStep(
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
 	[Data] scoped ref readonly CellMap fins,
-	[Data] bool? isSashimi
+	[Data] bool? isSashimi,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int bodyCellsCount
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask)
 {
+	/// <summary>
+	/// The body cells count, squared.
+	/// </summary>
+	private readonly int _bodyCellsCountSquared = bodyCellsCount * bodyCellsCount;
+
+
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
+
+	/// <inheritdoc/>
+	public override decimal BaseLocatingDifficulty => Size switch { 2 => 320, 3 => 380, 4 => 520 };
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
@@ -78,6 +90,24 @@ public sealed partial class NormalFishStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+	{
+		get
+		{
+			var result = (LocatingDifficultyFactor[])[
+				new(
+					LocatingDifficultyFactorNames.HousePosition,
+					BaseSetsMask.GetAllSets().Sum(static (scoped ref readonly House house) => HotSpot.GetHotSpot(house) * 9)
+				),
+				new(LocatingDifficultyFactorNames.Digit, Digit * 3),
+				new(LocatingDifficultyFactorNames.Fin, Fins.Count * 10),
+				new(LocatingDifficultyFactorNames.Incompleteness, (_bodyCellsCountSquared - _bodyCellsCount) * 30)
+			];
+			return IsSashimi is true ? [.. result, new(LocatingDifficultyFactorNames.Sashimi, 60)] : result;
+		}
+	}
 
 	/// <summary>
 	/// Indicates the internal name.

@@ -1,4 +1,5 @@
 using Sudoku.Analytics.Configuration;
+using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -14,14 +15,16 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit1"><inheritdoc/></param>
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="loop"><inheritdoc/></param>
+/// <param name="loopPath"><inheritdoc/></param>
 public sealed class UniqueLoopType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap loop
-) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop)
+	scoped ref readonly CellMap loop,
+	Cell[] loopPath
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
@@ -29,4 +32,22 @@ public sealed class UniqueLoopType1Step(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr])];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+	{
+		get
+		{
+			var (houseTypeScore, housePositionScore) = GetLoopPathScore();
+			return [
+				new(LocatingDifficultyFactorNames.HouseType, 27 * houseTypeScore),
+				new(LocatingDifficultyFactorNames.HousePosition, 9 * housePositionScore),
+				new(LocatingDifficultyFactorNames.Size, Loop.Count)
+			];
+		}
+	}
+
+	/// <inheritdoc/>
+	public override Formula LocatingDifficultyFormula
+		=> new(a => (decimal)Math.Round(Math.Log((double)a[2], 4) * (double)(a[0] + a[1]), 2));
 }

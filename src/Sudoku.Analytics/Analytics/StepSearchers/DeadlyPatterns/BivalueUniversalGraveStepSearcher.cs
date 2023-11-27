@@ -102,7 +102,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var step = new BivalueUniversalGraveType1Step(
 					[new(Assignment, trueCandidate)],
 					[[new CandidateViewNode(WellKnownColorIdentifier.Normal, trueCandidate)]],
-					context.PredefinedOptions
+					context.PredefinedOptions,
+					EmptyCells.Count
 				);
 				if (context.OnlyFindOne)
 				{
@@ -287,6 +288,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			[[.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)]],
 			context.PredefinedOptions,
 			digit,
+			EmptyCells.Count,
 			in cellsMap
 		);
 		if (onlyFindOne)
@@ -385,6 +387,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 						in trueCandidates,
 						digitsMask,
 						in cells,
+						EmptyCells.Count,
 						true
 					);
 					if (onlyFindOne)
@@ -513,6 +516,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					context.PredefinedOptions,
 					MaskOperations.Create(digits),
 					[.. cells],
+					EmptyCells.Count,
 					new(c1, c2, conjugatePairDigit)
 				);
 				if (onlyFindOne)

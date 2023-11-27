@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -38,11 +39,41 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	public sealed override decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
+	public sealed override decimal BaseLocatingDifficulty => 54;
+
+	/// <inheritdoc/>
 	public sealed override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
 			new(ExtraDifficultyFactorNames.ConjugatePair, ConjugatePairs.Length * .2M),
 			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .2M : 0)
 		];
+
+	/// <inheritdoc/>
+	public sealed override LocatingDifficultyFactor[] LocatingDifficultyFactors
+	{
+		get
+		{
+			var blocks = Cells.BlockMask.GetAllSets();
+			return [
+				new(
+					LocatingDifficultyFactorNames.HousePosition,
+					(HotSpot.GetHotSpot(blocks[0]) + HotSpot.GetHotSpot(blocks[1])) * 9
+				),
+				new(
+					LocatingDifficultyFactorNames.ConjugatePair,
+					27 * ConjugatePairs.Sum(
+						static conj => conj.Houses.SetAt(0).ToHouseType() switch
+						{
+							HouseType.Block => 1,
+							HouseType.Row => 3,
+							HouseType.Column => 6
+						}
+					) + 9 * ConjugatePairs.Sum(static conj => HotSpot.GetHotSpot(conj.Houses.SetAt(0)))
+				),
+				new(LocatingDifficultyFactorNames.Incompleteness, 60)
+			];
+		}
+	}
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

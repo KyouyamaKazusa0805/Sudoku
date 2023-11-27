@@ -1,4 +1,5 @@
 using System.Algorithm;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -6,6 +7,7 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
+using static System.Algorithm.Sequences;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -32,11 +34,24 @@ public sealed partial class GuardianStep(
 	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
+	public override decimal BaseLocatingDifficulty => 600;
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, Sequences.A004526(LoopCells.Count + Sequences.A004526(Guardians.Count)) * .1M)];
+		=> [new(ExtraDifficultyFactorNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> [
+			new(LocatingDifficultyFactorNames.Digit, Digit * 3),
+			new(
+				LocatingDifficultyFactorNames.HousePosition,
+				9 * LoopCells.Houses.GetAllSets().Sum(static (scoped ref readonly House house) => HotSpot.GetHotSpot(house))
+			)
+		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

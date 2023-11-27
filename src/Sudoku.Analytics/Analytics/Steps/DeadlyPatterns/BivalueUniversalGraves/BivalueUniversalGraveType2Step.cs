@@ -16,12 +16,14 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="digit">Indicates the extra digit.</param>
+/// <param name="emptyCellsCount">The number of empty cells.</param>
 /// <param name="cells">Indicates the cells used.</param>
 public sealed partial class BivalueUniversalGraveType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[Data(GeneratedMemberName = "ExtraDigit")] Digit digit,
+	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount,
 	[Data] scoped ref readonly CellMap cells
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
@@ -30,6 +32,13 @@ public sealed partial class BivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ExtraDigit, Sequences.A002024(Cells.Count) * .1M)];
+
+	/// <inheritdoc/>
+	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
+		=> [
+			new(LocatingDifficultyFactorNames.EmptyCell, 560 * Math.Round(_emptyCellsCount / 11M, 2)),
+			new(LocatingDifficultyFactorNames.TrueCandidate, Cells.Count * 60)
+		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

@@ -18,13 +18,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 /// <param name="loop">Indicates the whole loop of cells used.</param>
+/// <param name="loopPath">Indicates the loop path.</param>
 public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[Data] Digit digit1,
 	[Data] Digit digit2,
-	[Data] scoped ref readonly CellMap loop
+	[Data] scoped ref readonly CellMap loop,
+	[Data] Cell[] loopPath
 ) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
@@ -46,6 +48,26 @@ public abstract partial class UniqueLoopStep(
 	private protected string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
 	private protected string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
+
+
+	/// <summary>
+	/// Try to get the loop path score.
+	/// </summary>
+	private protected (int HouseTypeScore, int HousePositionScore) GetLoopPathScore()
+	{
+		var result = (HouseTypeScore: 0, HousePositionScore: 0);
+		for (var i = 0; i < LoopPath.Length - 1; i++)
+		{
+			var a = LoopPath[i];
+			var b = LoopPath[i + 1];
+			(CellMap.Empty + a + b).InOneHouse(out var house);
+
+			result.HouseTypeScore += HotSpot.GetHotSpot(house);
+			result.HousePositionScore += house.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 };
+		}
+
+		return result;
+	}
 
 
 	/// <inheritdoc/>
