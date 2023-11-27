@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Death Blossom</item>
+/// <item>Death Blossom (Blooming ALS)</item>
 /// </list>
 /// </summary>
 [StepSearcher(Technique.DeathBlossom)]
@@ -72,12 +73,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 		scoped var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
 		scoped var usedIndex = (stackalloc int[729]);
-		scoped var alsReferenceTable = (stackalloc int[729]);
+		scoped var alsReferenceTable = (stackalloc Candidate[729]);
 		alsReferenceTable.Fill(-1);
 
-		scoped var finalCells = (stackalloc int[9]);
+		scoped var finalCells = (stackalloc Cell[9]);
 		scoped var selectedCellDigitsMask = (stackalloc Mask[9]);
-		scoped var selectedAlsEntryCell = (stackalloc int[9]);
+		scoped var selectedAlsEntryCell = (stackalloc Cell[9]);
 
 		// Iterate on each cell to collect cell-blossom type.
 		var playgroundCached = grid.ToCandidateMaskArray();
