@@ -5702,6 +5702,11 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CollectBloomingNTimesAls(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
+            <summary>
+            Search for A^nLS blooming type.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
             <summary>
             Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.

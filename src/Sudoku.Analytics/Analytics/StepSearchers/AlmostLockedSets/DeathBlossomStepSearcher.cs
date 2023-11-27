@@ -68,19 +68,17 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
-
-		var accumulatorNormal = new List<DeathBlossomStep>();
-		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 		scoped var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
 		scoped var usedIndex = (stackalloc int[729]);
-		scoped var alsReferenceTable = (stackalloc Candidate[729]);
-		alsReferenceTable.Fill(-1);
-
 		scoped var finalCells = (stackalloc Cell[9]);
 		scoped var selectedCellDigitsMask = (stackalloc Mask[9]);
 		scoped var selectedAlsEntryCell = (stackalloc Cell[9]);
+		scoped var alsReferenceTable = (stackalloc Candidate[729]);
+		alsReferenceTable.Fill(-1);
+		var accumulatorNormal = new List<DeathBlossomStep>();
+		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 
-		// Iterate on each cell to collect cell-blossom type.
+		// Iterate on each cell to collect cell-blooming type.
 		var playgroundCached = grid.ToCandidateMaskArray();
 		foreach (var entryElimCell in EmptyCells)
 		{
@@ -380,165 +378,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				continue;
 
 			AlmostAlmostLockedSetDeletion:
+				if (CollectBloomingNTimesAls(
+					ref context, in grid, alses, alsesUsed, usedIndex, selectedAlsEntryCell, satisfiedSize,
+					selectedCellDigitsMask, wrongDigit, alsReferenceTable, accumulatorComplex
+				) is { } anlsBloomingTypeStep)
 				{
-					alsesUsed[9..].Clear();
-					usedIndex.Clear();
-
-					// Check for Z digits.
-					//var clrCands = grid.ToCandidateMaskArray();
-					var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
-					foreach (var cell in selectedAlsEntryCell[..satisfiedSize])
-					{
-						var currentCellDigitsMask = grid.GetCandidates(cell);
-						entryCellDigitsMask |= currentCellDigitsMask;
-
-						tCand = (Mask)(currentCellDigitsMask & ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit)));
-						foreach (var digit in tCand)
-						{
-							var candidate = cell * 9 + digit;
-							scoped ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
-							if (currentUsedIndex == 0)
-							{
-								currentUsedIndex = ++usedAlsesCount;
-								indexUsed2All[currentUsedIndex] = alsReferenceTable[candidate];
-							}
-
-							Debug.Assert(usedAlsesCount <= 10, "There's a special case that more than 10 branches found.");
-
-							alsesUsed[currentUsedIndex * 9 + digit].Add(cell);
-							if (zDigitsMask == 0)
-							{
-								zDigitsMask = (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
-							}
-							else
-							{
-								zDigitsMask &= (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
-							}
-						}
-					}
-
-					// Check for the complex type. I don't implement the fully check, e.g. A 0-rank pattern checking.
-					// I just reserve the code and implement in the future.
-					var complexType = (entryCellDigitsMask >> wrongDigit & 1, selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1) switch
-					{
-						(not 0, 0) => 1,
-						_ => 2
-					};
-					if (complexType == 1)
-					{
-						zDigitsMask &= (Mask)(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit));
-					}
-
-					// Collect for view nodes.
-					var cellOffsets = new List<CellViewNode>();
-					var candidateOffsets = new List<CandidateViewNode>();
-					var alsIndex = 0;
-					var detailViews = new List<View>(9);
-					var branches = new BlossomBranchCollection();
-					var nTimesAlsDigitsMask = (Mask)0;
-					var nTimesAlsCells = CellMap.Empty;
-					var cellsAllAlsesUsed = CellMap.Empty;
-					for (var usedAlsIndex = 1; usedAlsIndex <= usedAlsesCount; usedAlsIndex++)
-					{
-						var rcc = (Mask)0;
-						var view = new View();
-						var branchDigit = -1;
-						for (var currentDigit = 0; currentDigit < 9; currentDigit++)
-						{
-							if (!alsesUsed[usedAlsIndex * 9 + currentDigit])
-							{
-								continue;
-							}
-
-							nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
-							branchDigit = currentDigit;
-							rcc |= (Mask)(1 << currentDigit);
-							foreach (var cell in alsesUsed[usedAlsIndex * 9 + currentDigit])
-							{
-								if (grid.Exists(cell, currentDigit) is true)
-								{
-									var candidateNode = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
-									view.Add(candidateNode);
-									candidateOffsets.Add(candidateNode);
-								}
-
-								var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
-								view.Add(node);
-								cellOffsets.Add(node);
-								//clrCands[cell] &= (Mask)~tCand;
-
-								nTimesAlsCells.Add(cell);
-							}
-						}
-
-						cellsAllAlsesUsed |= alses[indexUsed2All[usedAlsIndex]].Cells;
-						var targetAls = alses[indexUsed2All[usedAlsIndex]];
-						foreach (var cell in targetAls.Cells)
-						{
-							var cellNode = new CellViewNode(AlmostLockedSetsModule.GetColor(alsIndex), cell);
-							view.Add(cellNode);
-							cellOffsets.Add(cellNode);
-
-							foreach (var digit in grid.GetCandidates(cell))
-							{
-								var colorIdentifier = (rcc >> digit & 1) != 0
-									? WellKnownColorIdentifier.Auxiliary2
-									: (zDigitsMask >> digit & 1) != 0
-										? WellKnownColorIdentifier.Auxiliary1
-										: AlmostLockedSetsModule.GetColor(alsIndex);
-								var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
-								view.Add(candidateNode);
-								candidateOffsets.Add(candidateNode);
-							}
-						}
-
-						branches.TryAdd(branchDigit, targetAls);
-						detailViews.Add(view);
-						alsIndex++;
-					}
-
-					// Collect for eliminations.
-					//var rank0 = false;
-					var temp = (CellMap)([.. selectedAlsEntryCell[..satisfiedSize]]);
-					var conclusions = new List<Conclusion>();
-					foreach (var digit in zDigitsMask)
-					{
-						var elimMap = cellsAllAlsesUsed;
-						if (complexType == 1)
-						{
-							elimMap |= temp;
-						}
-
-						//if (((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).InOneHouse(out _))
-						//{
-						//	rank0 = true;
-						//}
-
-						foreach (var cell in elimMap % CandidatesMap[digit])
-						{
-							conclusions.Add(new(Elimination, cell, digit));
-						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					var step = new NTimesAlmostLockedSetDeathBlossomStep(
-						[.. conclusions],
-						[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-						context.PredefinedOptions,
-						nTimesAlsDigitsMask,
-						in nTimesAlsCells,
-						branches,
-						PopCount((uint)grid[in nTimesAlsCells]) - nTimesAlsCells.Count
-					);
-					if (context.OnlyFindOne)
-					{
-						return step;
-					}
-
-					accumulatorComplex.Add(step);
+					return anlsBloomingTypeStep;
 				}
 			}
 		}
@@ -573,6 +418,184 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			}
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// Search for A^nLS blooming type.
+	/// </summary>
+	private NTimesAlmostLockedSetDeathBlossomStep? CollectBloomingNTimesAls(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		scoped Span<CellMap> alsesUsed,
+		scoped Span<Cell> usedIndex,
+		scoped Span<Cell> selectedAlsEntryCell,
+		int satisfiedSize,
+		scoped Span<Mask> selectedCellDigitsMask,
+		Digit wrongDigit,
+		scoped Span<Candidate> alsReferenceTable,
+		List<NTimesAlmostLockedSetDeathBlossomStep> accumulatorComplex
+	)
+	{
+		alsesUsed[9..].Clear();
+		usedIndex.Clear();
+
+		// Check for Z digits.
+		//var clrCands = grid.ToCandidateMaskArray();
+		var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
+		foreach (var cell in selectedAlsEntryCell[..satisfiedSize])
+		{
+			var currentCellDigitsMask = grid.GetCandidates(cell);
+			entryCellDigitsMask |= currentCellDigitsMask;
+
+			tCand = (Mask)(currentCellDigitsMask & ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit)));
+			foreach (var digit in tCand)
+			{
+				var candidate = cell * 9 + digit;
+				scoped ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
+				if (currentUsedIndex == 0)
+				{
+					currentUsedIndex = ++usedAlsesCount;
+					indexUsed2All[currentUsedIndex] = alsReferenceTable[candidate];
+				}
+
+				Debug.Assert(usedAlsesCount <= 10, "There's a special case that more than 10 branches found.");
+
+				alsesUsed[currentUsedIndex * 9 + digit].Add(cell);
+				if (zDigitsMask == 0)
+				{
+					zDigitsMask = (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
+				}
+				else
+				{
+					zDigitsMask &= (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
+				}
+			}
+		}
+
+		// Check for the complex type. I don't implement the fully check, e.g. A 0-rank pattern checking.
+		// I just reserve the code and implement in the future.
+		var complexType = (entryCellDigitsMask >> wrongDigit & 1, selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1) switch
+		{
+			(not 0, 0) => 1,
+			_ => 2
+		};
+		if (complexType == 1)
+		{
+			zDigitsMask &= (Mask)(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit));
+		}
+
+		// Collect for view nodes.
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = new List<CandidateViewNode>();
+		var alsIndex = 0;
+		var detailViews = new List<View>(9);
+		var branches = new BlossomBranchCollection();
+		var nTimesAlsDigitsMask = (Mask)0;
+		var nTimesAlsCells = CellMap.Empty;
+		var cellsAllAlsesUsed = CellMap.Empty;
+		for (var usedAlsIndex = 1; usedAlsIndex <= usedAlsesCount; usedAlsIndex++)
+		{
+			var rcc = (Mask)0;
+			var view = new View();
+			var branchDigit = -1;
+			for (var currentDigit = 0; currentDigit < 9; currentDigit++)
+			{
+				if (!alsesUsed[usedAlsIndex * 9 + currentDigit])
+				{
+					continue;
+				}
+
+				nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
+				branchDigit = currentDigit;
+				rcc |= (Mask)(1 << currentDigit);
+				foreach (var cell in alsesUsed[usedAlsIndex * 9 + currentDigit])
+				{
+					if (grid.Exists(cell, currentDigit) is true)
+					{
+						var candidateNode = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
+						view.Add(candidateNode);
+						candidateOffsets.Add(candidateNode);
+					}
+
+					var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
+					view.Add(node);
+					cellOffsets.Add(node);
+					//clrCands[cell] &= (Mask)~tCand;
+
+					nTimesAlsCells.Add(cell);
+				}
+			}
+
+			cellsAllAlsesUsed |= alses[indexUsed2All[usedAlsIndex]].Cells;
+			var targetAls = alses[indexUsed2All[usedAlsIndex]];
+			foreach (var cell in targetAls.Cells)
+			{
+				var cellNode = new CellViewNode(AlmostLockedSetsModule.GetColor(alsIndex), cell);
+				view.Add(cellNode);
+				cellOffsets.Add(cellNode);
+
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					var colorIdentifier = (rcc >> digit & 1) != 0
+						? WellKnownColorIdentifier.Auxiliary2
+						: (zDigitsMask >> digit & 1) != 0
+							? WellKnownColorIdentifier.Auxiliary1
+							: AlmostLockedSetsModule.GetColor(alsIndex);
+					var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
+					view.Add(candidateNode);
+					candidateOffsets.Add(candidateNode);
+				}
+			}
+
+			branches.TryAdd(branchDigit, targetAls);
+			detailViews.Add(view);
+			alsIndex++;
+		}
+
+		// Collect for eliminations.
+		//var rank0 = false;
+		var temp = (CellMap)([.. selectedAlsEntryCell[..satisfiedSize]]);
+		var conclusions = new List<Conclusion>();
+		foreach (var digit in zDigitsMask)
+		{
+			var elimMap = cellsAllAlsesUsed;
+			if (complexType == 1)
+			{
+				elimMap |= temp;
+			}
+
+			//if (((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).InOneHouse(out _))
+			//{
+			//	rank0 = true;
+			//}
+
+			foreach (var cell in elimMap % CandidatesMap[digit])
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			return null;
+		}
+
+		var step = new NTimesAlmostLockedSetDeathBlossomStep(
+			[.. conclusions],
+			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
+			context.PredefinedOptions,
+			nTimesAlsDigitsMask,
+			in nTimesAlsCells,
+			branches,
+			PopCount((uint)grid[in nTimesAlsCells]) - nTimesAlsCells.Count
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		accumulatorComplex.Add(step);
 		return null;
 	}
 }
