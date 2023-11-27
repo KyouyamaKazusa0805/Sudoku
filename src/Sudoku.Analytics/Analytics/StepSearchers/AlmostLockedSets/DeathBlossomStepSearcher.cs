@@ -125,8 +125,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 							}
 
-							var validZ = (Mask)0;
-							var conclusions = new List<Conclusion>();
+							var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
 							foreach (var zDigit in zDigitsMask)
 							{
 								if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
@@ -215,7 +214,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 				// Try to search for advanced type.
 				// The main idea of the type is to suppose the ALSes can make a subset to form an invalid state
-				// (i.e. n cells only contain at most (n - 1) kinds of digits).
+				// (i.e. (n) cells only contain at most (n - 1) kinds of digits).
 
 				// Try to suppose for the target wrong digit, removing from its peer cells.
 				foreach (var deletionCell in PeersMap[entryElimCell] & CandidatesMap[wrongDigit])
@@ -328,10 +327,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					{
 						var currentCellDigitsMask = grid.GetCandidates(cell);
 						entryCellDigitsMask |= currentCellDigitsMask;
-						foreach (var digit in tCand = (Mask)(
-							currentCellDigitsMask
-								& ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit))
-						))
+
+						tCand = (Mask)(currentCellDigitsMask & ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit)));
+						foreach (var digit in tCand)
 						{
 							var candidate = cell * 9 + digit;
 							scoped ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
@@ -355,11 +353,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						}
 					}
 
-					var complexType = (
-						entryCellDigitsMask >> wrongDigit & 1,
-						selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1
-					) switch
-					{ (not 0, 0) => 1, _ => 2 };
+					var complexType = (entryCellDigitsMask >> wrongDigit & 1, selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1) switch
+					{
+						(not 0, 0) => 1,
+						_ => 2
+					};
 					if (complexType == 1)
 					{
 						zDigitsMask &= (Mask)(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit));
