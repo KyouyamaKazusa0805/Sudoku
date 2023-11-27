@@ -10,7 +10,7 @@ public static class ComparableStep
 {
 	/// <inheritdoc cref="Order{TSelf}(List{TSelf})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Order<TSelf>(this TSelf[] @this) where TSelf : Step, IComparableStep<TSelf> => Array.Sort(@this, TSelf.Compare);
+	public static void Order<TSelf>(TSelf[] @this) where TSelf : Step, IComparableStep<TSelf> => Array.Sort(@this, TSelf.Compare);
 
 	/// <summary>
 	/// Try to order the <typeparamref name="TSelf"/> collection via the specified comparison rule,
@@ -21,5 +21,5 @@ public static class ComparableStep
 	/// <seealso cref="Step"/>
 	/// <seealso cref="IComparableStep{TSelf}"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Order<TSelf>(this List<TSelf> @this) where TSelf : Step, IComparableStep<TSelf> => @this.Sort(TSelf.Compare);
+	public static void Order<TSelf>(List<TSelf> @this) where TSelf : Step, IComparableStep<TSelf> => @this.Sort(TSelf.Compare);
 }

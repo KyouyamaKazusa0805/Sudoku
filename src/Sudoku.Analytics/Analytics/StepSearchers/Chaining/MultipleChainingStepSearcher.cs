@@ -98,7 +98,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 			return null;
 		}
 
-		result.Order();
+		ComparableStep.Order(result);
 
 		if (context.OnlyFindOne)
 		{

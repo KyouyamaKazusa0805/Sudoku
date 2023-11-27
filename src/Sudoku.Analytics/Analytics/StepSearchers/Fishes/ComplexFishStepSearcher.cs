@@ -109,7 +109,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			return tempList is [var firstFoundStep, ..] ? firstFoundStep : null;
 		}
 
-		context.Accumulator.AddRange(tempList.Distinct());
+		context.Accumulator.AddRange(EquatableStep.Distinct(tempList));
 		return null;
 	}
 

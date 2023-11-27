@@ -325,7 +325,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 		if (tempAccumulator.Count != 0)
 		{
-			context.Accumulator!.AddRange(tempAccumulator.Distinct());
+			context.Accumulator!.AddRange(EquatableStep.Distinct(tempAccumulator));
 		}
 
 		return null;

@@ -97,7 +97,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		resultList = from step in resultAccumulator.Distinct() orderby step.LoopCells.Count, step.Code select step;
+		resultList = from step in EquatableStep.Distinct(resultAccumulator) orderby step.LoopCells.Count, step.Code select step;
 		if (context.OnlyFindOne)
 		{
 			return resultList.First();

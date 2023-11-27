@@ -184,7 +184,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 		if (accumulator.Count != 0 && !context.OnlyFindOne)
 		{
-			context.Accumulator.AddRange(accumulator.Distinct());
+			context.Accumulator.AddRange(EquatableStep.Distinct(accumulator));
 		}
 
 		return null;

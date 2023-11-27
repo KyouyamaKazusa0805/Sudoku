@@ -20,7 +20,7 @@ public static class EquatableStep
 	/// </remarks>
 	/// <seealso cref="IEquatableStep{TSelf}.op_Equality(TSelf, TSelf)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IEnumerable<TSelf> Distinct<TSelf>(this List<TSelf> steps) where TSelf : Step, IEquatableStep<TSelf>
+	public static IEnumerable<TSelf> Distinct<TSelf>(List<TSelf> steps) where TSelf : Step, IEquatableStep<TSelf>
 		=> steps switch
 		{
 			[] => [],
