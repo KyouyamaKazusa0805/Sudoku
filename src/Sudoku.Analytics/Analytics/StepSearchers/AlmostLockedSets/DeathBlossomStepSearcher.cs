@@ -35,6 +35,34 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
+	/// <para>
+	/// This searcher uses a trick that starts with eliminations. From the solution, we can learn which candidates can be removed
+	/// from the grid in fact.
+	/// </para>
+	/// <para>
+	/// Just suppose one of them is correct, and this case will lead to a confliction if some ALSes related to that supposed digit
+	/// can lead to a same cell to be null (i.e. no digits can be filled).
+	/// Therefore, we can remove the supposed digit from the containing cell.
+	/// </para>
+	/// <para>
+	/// This algorithm just makes the calculation simplified, in order to avoid complex searching on ALSes
+	/// and a same-deletion leading.
+	/// </para>
+	/// <para>
+	/// Test example:
+	/// <code><![CDATA[
+	/// # Normal Blossom
+	/// 8+7+14..6..5+42...7..+93+6+8+57+42+1.28.7.+3.....3.6+2....+3+21.54..1.7..+93.+3.9...8+72.+87..3+1.4:
+	///   915 919 924 929 641 946 948 958 959 669 475 675 476 584 694
+	/// 
+	/// # A^nLS Blossom
+	/// 65.9....4..2.......18..63...957.........6......+6..125..+643..59.+5.+1+6..7..3+7+9..2.86:
+	///   129 239 845 847 751 352 856 465 865 869 288
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
@@ -62,39 +90,54 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				continue;
 			}
 
+			// Iterate on each wrong digit, to find any confliction.
 			var wrongDigitsMask = (Mask)(playgroundCached[entryElimCell] & ~(1 << Solution.GetDigit(entryElimCell)));
 			foreach (var wrongDigit in wrongDigitsMask)
 			{
 				int satisfiedSize;
 				var availablePivots = CellMap.Empty;
 				var playground = grid.ToCandidateMaskArray();
+
+				// Iterate on each ALS, to find related ALSes.
 				for (var alsCurrentIndex = 0; alsCurrentIndex < alses.Length; alsCurrentIndex++)
 				{
 					var (alsDigitsMask, _, _, alsElimMap) = alses[alsCurrentIndex];
+
+					// Determine whether the ALS current iterated contain the wrong digit (that will make the link work).
+					// Also, the ALS should see the entry elimination cell.
 					if ((alsDigitsMask >> wrongDigit & 1) == 0 || !alsElimMap[wrongDigit].Contains(entryElimCell))
 					{
 						continue;
 					}
 
+					// If the found ALS is valid, iterate on each digits from the ALS, as selected one.
 					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & ~(1 << wrongDigit)))
 					{
+						// Iterate on each pivot cells that contains the selected digit.
 						foreach (var pivot in alsElimMap[currentSelectedDigit])
 						{
+							// Determine whether the playground (a copy from the current grid) doesn't contain the digit
+							// from the selected cell. If so, the digit won't work.
 							if ((playground[pivot] >> currentSelectedDigit & 1) == 0)
 							{
 								continue;
 							}
 
+							// Try to delete it from playground, and check for whether the target cell has no possible candidates.
 							playground[pivot] &= (Mask)~(1 << currentSelectedDigit);
 							alsReferenceTable[pivot * 9 + currentSelectedDigit] = alsCurrentIndex;
 							availablePivots.Add(pivot);
 
-							// We should ensure the target cell should be empty.
+							// Check for the pivot cell.
 							if (playground[pivot] != 0)
 							{
 								continue;
 							}
 
+							// A normal death blossom is found. Now check for eliminations.
+							// A "Z Digit" is a digit as the target digit for the target eliminations.
+							// Due to the flexibility of the technique, "Z digit" may not only hold one.
+							// Therefore, here 'zDigitsMask' is not a digit, but a 'Mask' instance.
 							var zDigitsMask = (Mask)0;
 							var branches = new BlossomBranchCollection();
 							var pivotDigitsMask = grid.GetCandidates(pivot);
@@ -114,8 +157,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 									zDigitsMask &= branch.DigitsMask;
 								}
 							}
+
+							// Delete invalid digits.
 							zDigitsMask &= (Mask)~pivotDigitsMask;
 
+							// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
 							var branchCellsContainingZ = CellMap.Empty;
 							foreach (var digit in zDigitsMask)
 							{
@@ -125,6 +171,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 							}
 
+							// Check for eliminations.
 							var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
 							foreach (var zDigit in zDigitsMask)
 							{
@@ -145,6 +192,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 							}
 
+							// Collect for view nodes.
 							var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, pivot) };
 							var candidateOffsets = new List<CandidateViewNode>();
 							var detailViews = new View[branches.Count];
@@ -207,12 +255,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					}
 				}
 
+				// We should check for whether a user allowed searching for complex types at first.
 				if (!SearchExtendedTypes || !availablePivots)
 				{
 					return null;
 				}
 
 				// Try to search for advanced type.
+				// Here is a very complex case:
 				// The main idea of the type is to suppose the ALSes can make a subset to form an invalid state
 				// (i.e. (n) cells only contain at most (n - 1) kinds of digits).
 
@@ -225,13 +275,21 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				finalCells.Clear();
 				selectedCellDigitsMask.Clear();
 				selectedAlsEntryCell.Clear();
+
+				// Check for available pivots collected before, and iterate on each house that available pivot cells lie in.
+				// This will help the following logic collect A^nLSes.
+				// A "A^nLS" is a "n-Times ALS" (The sign '^' means the exponent, i.e. multiple A's),
+				// meaning a pattern uses (m) cells, but contain (m + n) kinds of digits.
 				foreach (var availablePivotHouse in availablePivots.Houses)
 				{
+					// If the current house don't contain enough empty cells to form a A^nLS, skip for it.
 					if ((HousesMap[availablePivotHouse] & availablePivots) is not (var pivotsLyingInHouse and not []))
 					{
 						continue;
 					}
 
+					// Check for pre-eliminations if any possible digits appeared in the cell.
+					// This will be used to form a weak link (a connection).
 					var preeliminationsCount = -1;
 					foreach (var cell in pivotsLyingInHouse)
 					{
@@ -241,6 +299,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						}
 					}
 
+					// Add empty cells also.
 					var tempCount = preeliminationsCount;
 					foreach (var cell in (HousesMap[availablePivotHouse] & EmptyCells) - pivotsLyingInHouse)
 					{
@@ -250,6 +309,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						}
 					}
 
+					// Iterate on them, to form a A^nLS. Here I use a very tricky way to check,
+					// because a sudoku grid must contain at most 9 cells, and an ALS or A^nLS at most use 8 of 9 cells.
+					// Just iterate them using a for-loop to get them.
 					for (satisfiedSize = 2; satisfiedSize <= 8; satisfiedSize++)
 					{
 						for (var a = 0; a <= preeliminationsCount; a++)
@@ -321,6 +383,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					alsesUsed[9..].Clear();
 					usedIndex.Clear();
 
+					// Check for Z digits.
 					//var clrCands = grid.ToCandidateMaskArray();
 					var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
 					foreach (var cell in selectedAlsEntryCell[..satisfiedSize])
@@ -353,6 +416,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						}
 					}
 
+					// Check for the complex type. I don't implement the fully check, e.g. A 0-rank pattern checking.
+					// I just reserve the code and implement in the future.
 					var complexType = (entryCellDigitsMask >> wrongDigit & 1, selectedCellDigitsMask[satisfiedSize - 1] >> wrongDigit & 1) switch
 					{
 						(not 0, 0) => 1,
@@ -363,6 +428,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						zDigitsMask &= (Mask)(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit));
 					}
 
+					// Collect for view nodes.
 					var cellOffsets = new List<CellViewNode>();
 					var candidateOffsets = new List<CandidateViewNode>();
 					var alsIndex = 0;
@@ -430,6 +496,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						alsIndex++;
 					}
 
+					// Collect for eliminations.
 					//var rank0 = false;
 					var temp = (CellMap)([.. selectedAlsEntryCell[..satisfiedSize]]);
 					var conclusions = new List<Conclusion>();
