@@ -5765,12 +5765,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranchCollection)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranchCollection)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -5818,12 +5818,12 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.DoHouseChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Byte,System.Byte,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(Sudoku.Concepts.ObjectModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForCellTargetType(Sudoku.Concepts.ObjectModel.ChainBranchCollection,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for cell-target type.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(Sudoku.Concepts.ObjectModel.ChainBranch,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.CheckForHouseTargetType(Sudoku.Concepts.ObjectModel.ChainBranchCollection,Sudoku.Concepts.CellMap@,System.Byte,Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             Check for house-target type.
             </summary>
@@ -6036,12 +6036,12 @@ if (student is (name: var name, age: >= 18))
             Try to create a binary forcing chain hint on "off" state.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateCellForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranchCollection)">
             <summary>
             Try to create a cell forcing chain hint.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranch)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleChainingStepSearcher.CreateHouseForcingStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Byte,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ObjectModel.ChainBranchCollection)">
             <summary>
             Try to create a region (house) forcing chain hint.
             </summary>
@@ -9958,7 +9958,7 @@ if (student is (name: var name, age: >= 18))
             <param name="branches">Indicates the branches.</param>
             <param name="endDigitsMask">Indicates the end-point digits mask.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranch,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -10068,7 +10068,7 @@ if (student is (name: var name, age: >= 18))
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.BlossomBranch,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
@@ -22550,18 +22550,18 @@ if (student is (name: var name, age: >= 18))
             A list of cells as the other pair of target cells.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.BlossomBranch">
+        <member name="T:Sudoku.Concepts.ObjectModel.BlossomBranchCollection">
             <summary>
-            Represents for a blossom branch.
+            Represents for a blossom branch collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Equals(Sudoku.Concepts.ObjectModel.BlossomBranch)">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.GetHashCode">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
             <summary>
             Transforms the current collection into another representation, using the specified function to transform.
             </summary>
@@ -22569,18 +22569,18 @@ if (student is (name: var name, age: >= 18))
             <param name="selector">The selector to tranform elements.</param>
             <returns>The results.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.op_Equality(Sudoku.Concepts.ObjectModel.BlossomBranch,Sudoku.Concepts.ObjectModel.BlossomBranch)">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.BlossomBranchCollection,Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranch.op_Inequality(Sudoku.Concepts.ObjectModel.BlossomBranch,Sudoku.Concepts.ObjectModel.BlossomBranch)">
+        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.BlossomBranchCollection,Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.ChainBranch">
+        <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
-            Represents a chain branch.
+            Represents a chain branch collection.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainNodeListWithHeadCandidate">

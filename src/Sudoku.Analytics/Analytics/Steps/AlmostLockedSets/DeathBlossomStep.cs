@@ -23,7 +23,7 @@ public sealed partial class DeathBlossomStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[Data] Cell pivot,
-	[Data] BlossomBranch branches,
+	[Data] BlossomBranchCollection branches,
 	[Data] Mask endDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {

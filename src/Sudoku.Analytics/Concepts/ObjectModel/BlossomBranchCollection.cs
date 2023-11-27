@@ -5,17 +5,17 @@ using System.SourceGeneration;
 namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
-/// Represents for a blossom branch.
+/// Represents for a blossom branch collection.
 /// </summary>
 [Equals]
 [EqualityOperators]
-public sealed partial class BlossomBranch :
+public sealed partial class BlossomBranchCollection :
 	Dictionary<Digit, AlmostLockedSet>,
-	IEquatable<BlossomBranch>,
-	IEqualityOperators<BlossomBranch, BlossomBranch, bool>
+	IEquatable<BlossomBranchCollection>,
+	IEqualityOperators<BlossomBranchCollection, BlossomBranchCollection, bool>
 {
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] BlossomBranch? other)
+	public bool Equals([NotNullWhen(true)] BlossomBranchCollection? other)
 	{
 		if (other is null)
 		{

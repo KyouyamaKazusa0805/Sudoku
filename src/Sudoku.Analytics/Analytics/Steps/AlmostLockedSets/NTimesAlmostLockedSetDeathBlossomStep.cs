@@ -28,7 +28,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	StepSearcherOptions options,
 	[Data] Mask nTimesAlmostLockedSetDigitsMask,
 	[Data] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
-	[Data] BlossomBranch branches,
+	[Data] BlossomBranchCollection branches,
 	[Data] int freedomDegree
 ) :
 	AlmostLockedSetsStep(conclusions, views, options),

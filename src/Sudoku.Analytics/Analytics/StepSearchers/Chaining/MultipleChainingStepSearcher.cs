@@ -128,8 +128,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 			if (count > 2 || count > 1 && AllowDynamic)
 			{
 				// Prepare storage and accumulator for "Cell Reduction".
-				var digitToOn = new ChainBranch();
-				var digitToOff = new ChainBranch();
+				var digitToOn = new ChainBranchCollection();
+				var digitToOff = new ChainBranchCollection();
 				var cellToOn = default(NodeSet);
 				var cellToOff = default(NodeSet);
 
@@ -358,8 +358,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 				// Do we meet region for the first time?
 				if (potentialPositions[0] == cell)
 				{
-					var posToOn = new ChainBranch();
-					var posToOff = new ChainBranch();
+					var posToOn = new ChainBranchCollection();
+					var posToOff = new ChainBranchCollection();
 					var houseToOn = new NodeSet();
 					var houseToOff = new NodeSet();
 
@@ -445,7 +445,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		byte srcCell,
 		ChainNode target,
-		ChainBranch outcomes
+		ChainBranchCollection outcomes
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
@@ -475,7 +475,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 		House houseIndex,
 		byte digit,
 		ChainNode target,
-		ChainBranch outcomes
+		ChainBranchCollection outcomes
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;

@@ -117,7 +117,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 
 				// Different with normal forcing chains, here we may not use 'posToOff' to record relations
 				// because this type is not defined by this technique.
-				var posToOn = new ChainBranch();
+				var posToOn = new ChainBranchCollection();
 				//var posToOff = new ChainBranch();
 
 				// Iterate on potential positions within the house.
@@ -147,7 +147,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// Check for cell-target type.
 	/// </summary>
 	private void CheckForCellTargetType(
-		ChainBranch posToOn,
+		ChainBranchCollection posToOn,
 		scoped ref readonly CellMap potentialPositions,
 		byte baseDigit,
 		scoped ref readonly Grid grid,
@@ -224,7 +224,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// Check for house-target type.
 	/// </summary>
 	private void CheckForHouseTargetType(
-		ChainBranch posToOn,
+		ChainBranchCollection posToOn,
 		scoped ref readonly CellMap potentialPositions,
 		byte baseDigit,
 		scoped ref readonly Grid grid,

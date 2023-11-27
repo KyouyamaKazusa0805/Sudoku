@@ -92,7 +92,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							}
 
 							var zDigitsMask = (Mask)0;
-							var branches = new BlossomBranch();
+							var branches = new BlossomBranchCollection();
 							var pivotDigitsMask = grid.GetCandidates(pivot);
 							var isFirstEncountered = true;
 							foreach (var pivotDigit in pivotDigitsMask)
@@ -365,7 +365,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					var alsIndex = 0;
 					var detailViews = new List<View>(9);
-					var branches = new BlossomBranch();
+					var branches = new BlossomBranchCollection();
 					var nTimesAlsDigitsMask = (Mask)0;
 					var nTimesAlsCells = CellMap.Empty;
 					var cellsAllAlsesUsed = CellMap.Empty;

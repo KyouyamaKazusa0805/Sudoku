@@ -142,7 +142,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		scoped ref AnalysisContext context,
 		byte srcCell,
 		ChainNode target,
-		ChainBranch outcomes
+		ChainBranchCollection outcomes
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
@@ -173,7 +173,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 		House houseIndex,
 		byte digit,
 		ChainNode target,
-		ChainBranch outcomes
+		ChainBranchCollection outcomes
 	)
 	{
 		var (targetCell, targetDigit, targetIsOn) = target;
