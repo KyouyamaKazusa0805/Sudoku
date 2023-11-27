@@ -441,13 +441,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							elimMap |= temp;
 						}
 
-						elimMap &= CandidatesMap[digit];
 						//if (((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).InOneHouse(out _))
 						//{
 						//	rank0 = true;
 						//}
 
-						foreach (var cell in elimMap.PeerIntersection & CandidatesMap[digit])
+						foreach (var cell in elimMap % CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
