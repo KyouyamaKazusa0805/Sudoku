@@ -1307,23 +1307,14 @@
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -1354,23 +1345,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -2634,23 +2616,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -4789,23 +4762,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -6913,23 +6877,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7248,23 +7203,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7295,23 +7241,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7450,23 +7387,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7497,23 +7425,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7602,23 +7521,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7691,23 +7601,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7786,23 +7687,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7915,23 +7807,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -7993,23 +7876,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
@@ -8072,23 +7946,14 @@ if (student is (name: var name, age: >= 18))
 						<code>
 <![CDATA[
 public static void Deconstruct(out string name, out int age)
-{
-    name = Name;
-    age = Age;
-}
+    => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
 <![CDATA[
-// Use explicitly typed variables to get a deconstruction.
-(string name, int age) = student;
-
-// Or use the type inferring to omit the type of each variable having been deconstructed.
-var (name, age) = student;
-
-// Of course, you can also use the invocation to get values.
-student.Deconstruct(out string name, out int age);
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
 ]]>
 						</code>
 					</para>
