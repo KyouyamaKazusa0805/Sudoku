@@ -42,10 +42,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
-		var alsesUsed = new CellMap[10, 9];
-		var usedIndex = new int[729];
-		var alsReferenceTable = new int[729];
-		Array.Fill(alsReferenceTable, -1);
+		scoped var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
+		scoped var usedIndex = (stackalloc int[729]);
+		scoped var alsReferenceTable = (stackalloc int[729]);
+		alsReferenceTable.Fill(-1);
+
+		scoped var finalCells = (stackalloc int[9]);
+		scoped var selectedCellDigitsMask = (stackalloc Mask[9]);
+		scoped var selectedAlsEntryCell = (stackalloc int[9]);
 
 		// Iterate on each cell to collect cell-blossom type.
 		var playgroundCached = grid.ToCandidateMaskArray();
@@ -219,9 +223,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					playground[deletionCell] &= (Mask)~(1 << wrongDigit);
 				}
 
-				var finalCells = new int[9];
-				var selectedCellDigitsMask = new Mask[9];
-				var selectedAlsEntryCell = new int[9];
+				finalCells.Clear();
+				selectedCellDigitsMask.Clear();
+				selectedAlsEntryCell.Clear();
 				foreach (var availablePivotHouse in availablePivots.Houses)
 				{
 					if ((HousesMap[availablePivotHouse] & availablePivots) is not (var pivotsLyingInHouse and not []))
@@ -315,12 +319,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 			AlmostAlmostLockedSetDeletion:
 				{
-					Array.Clear(alsesUsed);
-					Array.Clear(usedIndex);
+					alsesUsed[9..].Clear();
+					usedIndex.Clear();
 
 					//var clrCands = grid.ToCandidateMaskArray();
 					var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
-					foreach (var cell in selectedAlsEntryCell.AsReadOnlySpan()[..satisfiedSize])
+					foreach (var cell in selectedAlsEntryCell[..satisfiedSize])
 					{
 						var currentCellDigitsMask = grid.GetCandidates(cell);
 						entryCellDigitsMask |= currentCellDigitsMask;
@@ -339,7 +343,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 							Debug.Assert(usedAlsesCount <= 10, "There's a special case that more than 10 branches found.");
 
-							alsesUsed[currentUsedIndex, digit].Add(cell);
+							alsesUsed[currentUsedIndex * 9 + digit].Add(cell);
 							if (zDigitsMask == 0)
 							{
 								zDigitsMask = (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
@@ -376,7 +380,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						var branchDigit = -1;
 						for (var currentDigit = 0; currentDigit < 9; currentDigit++)
 						{
-							if (!alsesUsed[usedAlsIndex, currentDigit])
+							if (!alsesUsed[usedAlsIndex * 9 + currentDigit])
 							{
 								continue;
 							}
@@ -384,7 +388,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
 							branchDigit = currentDigit;
 							rcc |= (Mask)(1 << currentDigit);
-							foreach (var cell in alsesUsed[usedAlsIndex, currentDigit])
+							foreach (var cell in alsesUsed[usedAlsIndex * 9 + currentDigit])
 							{
 								if (grid.Exists(cell, currentDigit) is true)
 								{
@@ -429,7 +433,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					}
 
 					//var rank0 = false;
-					var temp = (CellMap)([.. selectedAlsEntryCell.AsSpan()[..satisfiedSize]]);
+					var temp = (CellMap)([.. selectedAlsEntryCell[..satisfiedSize]]);
 					var conclusions = new List<Conclusion>();
 					foreach (var digit in zDigitsMask)
 					{
