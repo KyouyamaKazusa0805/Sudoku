@@ -108,6 +108,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\Shapes\Star.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\LibraryPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

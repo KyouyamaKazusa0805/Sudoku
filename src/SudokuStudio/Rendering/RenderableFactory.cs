@@ -262,7 +262,11 @@ internal static class RenderableFactory
 			}
 			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				var control = cellNode.Identifier == WellKnownColorIdentifier.Normal ? create<CircleRing>() : create<Cross>();
+				var control = cellNode.Identifier == WellKnownColorIdentifier.Normal
+					? create<CircleRing>()
+					: cellNode.Identifier == WellKnownColorIdentifier.Auxiliary1
+						? create<Cross>()
+						: create<Star>();
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
