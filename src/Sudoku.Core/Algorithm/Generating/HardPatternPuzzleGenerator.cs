@@ -45,12 +45,12 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 		{
 			Unsafe.CopyBlock(
 				ref Ref.AsByteRef(ref puzzle[0]),
-				in Ref.AsReadOnlyByteRef(in Grid.EmptyString.GetPinnableReference()),
+				in Ref.AsReadOnlyByteRef(in Ref.GetRefFirstChar(Grid.EmptyString)),
 				sizeof(char) * 81
 			);
 			Unsafe.CopyBlock(
 				ref Ref.AsByteRef(ref solution[0]),
-				in Ref.AsReadOnlyByteRef(in Grid.EmptyString.GetPinnableReference()),
+				in Ref.AsReadOnlyByteRef(in Ref.GetRefFirstChar(Grid.EmptyString)),
 				sizeof(char) * 81
 			);
 

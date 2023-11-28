@@ -103,22 +103,22 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public const Mask GivenMask = (Mask)CellState.Given << CellCandidatesCount;
 
-	/// <summary>
-	/// Indicates the number of cells of a sudoku grid.
-	/// </summary>
-	public const int CellsCount = 81;
-
-	/// <summary>
-	/// Indicates the number of candidates appeared in a cell.
-	/// </summary>
-	public const int CellCandidatesCount = 9;
-
 #if EMPTY_GRID_STRING_CONSTANT
 	/// <summary>
 	/// Indicates the empty grid string.
 	/// </summary>
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
+
+	/// <summary>
+	/// Indicates the number of cells of a sudoku grid.
+	/// </summary>
+	private const int CellsCount = 81;
+
+	/// <summary>
+	/// Indicates the number of candidates appeared in a cell.
+	/// </summary>
+	private const int CellCandidatesCount = 9;
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
