@@ -213,14 +213,10 @@ public sealed record RxCyConverter(
 			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
 			{
 				var conclusions = new Conclusion[c.Length];
-				Unsafe.CopyBlock(
-					ref Unsafe.As<Conclusion, byte>(ref conclusions[0]),
-					in Unsafe.As<Conclusion, byte>(ref Unsafe.AsRef(in c[0])),
-					(uint)(sizeof(Conclusion) * c.Length)
-				);
+				Unsafe.CopyBlock(ref Ref.AsByteRef(ref conclusions[0]), in Ref.AsReadOnlyByteRef(in c[0]), (uint)(sizeof(Conclusion) * c.Length));
 
 				scoped var sb = new StringHandler(50);
-				conclusions.Sort(&cmp);
+				conclusions.SortUnsafe(&cmp);
 
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.HasOnlyOneElement();

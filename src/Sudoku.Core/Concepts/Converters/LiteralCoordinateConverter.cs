@@ -105,7 +105,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				);
 
 				scoped var sb = new StringHandler(50);
-				conclusions.Sort(&cmp);
+				conclusions.SortUnsafe(&cmp);
 
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.HasOnlyOneElement();

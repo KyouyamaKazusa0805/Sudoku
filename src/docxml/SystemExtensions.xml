@@ -511,19 +511,15 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
-        <member name="M:System.ArrayExtensions.Sort``1(``0[],)">
+        <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],)">
             <summary>
             Sort the specified array by quick sort.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
-            <remarks>
-            If you want to use this method, please call the other method <see cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/> instead.
-            </remarks>
-            <seealso cref="!:Sort&lt;T&gt;(T[], delegate*&lt;T, T, int&gt;, int, int)"/>
         </member>
-        <member name="M:System.ArrayExtensions.Sort``1(``0[],,System.Int32,System.Int32)">
+        <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],,System.Int32,System.Int32)">
             <summary>
             Sort the specified array by quick sort.
             </summary>
