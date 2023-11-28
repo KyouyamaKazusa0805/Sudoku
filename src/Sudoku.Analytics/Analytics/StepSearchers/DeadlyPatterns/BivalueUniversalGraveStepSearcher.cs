@@ -595,54 +595,54 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			return null;
 		}
 
-		var c1 = cand1 / 9;
-		var c2 = cand2 / 9;
-		var d1 = cand1 % 9;
-		var d2 = cand2 % 9;
+		var (c1, d1, c2, d2) = (cand1 / 9, cand1 % 9, cand2 / 9, cand2 % 9);
 		var mask = (Mask)(1 << d1 | 1 << d2);
-		foreach (var cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
+		foreach (var (thisCell, otherCell, thisDigit, otherDigit) in ((c1, c2, d1, d2), (c2, c1, d2, d1)))
 		{
-			if (grid.GetCandidates(cell) != mask)
+			foreach (var cell in (PeersMap[thisCell] | PeersMap[otherCell]) & BivalueCells)
 			{
-				continue;
-			}
-
-			// BUG-XZ found.
-			var conclusions = new List<Conclusion>();
-			var condition = (CellsMap[c1] + cell).InOneHouse(out _);
-			var anotherCell = condition ? c2 : c1;
-			var anotherDigit = condition ? d2 : d1;
-			foreach (var peer in (CellsMap[cell] + anotherCell).PeerIntersection)
-			{
-				if (CandidatesMap[anotherDigit].Contains(peer))
+				if (grid.GetCandidates(cell) != mask)
 				{
-					conclusions.Add(new(Elimination, peer, anotherDigit));
+					continue;
 				}
-			}
-			if (conclusions.Count == 0)
-			{
-				continue;
-			}
 
-			var step = new BivalueUniversalGraveXzStep(
-				[.. conclusions],
-				[
+				// BUG-XZ found.
+				var conclusions = new List<Conclusion>();
+				var condition = (CellsMap[c1] + cell).InOneHouse(out _);
+				var anotherCell = condition ? otherCell : thisCell;
+				var anotherDigit = condition ? otherDigit : thisDigit;
+				foreach (var peer in (CellsMap[cell] + anotherCell).PeerIntersection)
+				{
+					if (CandidatesMap[anotherDigit].Contains(peer))
+					{
+						conclusions.Add(new(Elimination, peer, anotherDigit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var step = new BivalueUniversalGraveXzStep(
+					[.. conclusions],
 					[
-						new CellViewNode(WellKnownColorIdentifier.Normal, cell),
-						.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)
-					]
-				],
-				context.PredefinedOptions,
-				mask,
-				[c1, c2],
-				cell
-			);
-			if (onlyFindOne)
-			{
-				return step;
-			}
+						[
+							new CellViewNode(WellKnownColorIdentifier.Normal, cell),
+							.. from candidate in trueCandidates select new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)
+						]
+					],
+					context.PredefinedOptions,
+					mask,
+					[thisCell, otherCell],
+					cell
+				);
+				if (onlyFindOne)
+				{
+					return step;
+				}
 
-			accumulator.Add(step);
+				accumulator.Add(step);
+			}
 		}
 
 		return null;
