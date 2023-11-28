@@ -62,8 +62,8 @@ public readonly unsafe partial struct Utf8String :
 		var length = StringLengthOf(value);
 		_value = new Utf8Char[length];
 		Unsafe.CopyBlock(
-			ref Unsafe.As<Utf8Char, byte>(ref _value[0]),
-			in Unsafe.As<Utf8Char, byte>(ref value[0]),
+			ref Ref.AsByteRef(ref _value[0]),
+			in Ref.AsReadOnlyByteRef(in value[0]),
 			(uint)(sizeof(Utf8Char) * length)
 		);
 	}
@@ -355,13 +355,13 @@ public readonly unsafe partial struct Utf8String :
 			var totalLength = left._value.Length + right._value.Length;
 			targetBuffer = ArrayPool<Utf8Char>.Shared.Rent(totalLength);
 			Unsafe.CopyBlock(
-				ref Unsafe.As<Utf8Char, byte>(ref targetBuffer[0]),
-				in Unsafe.As<Utf8Char, byte>(ref left._value[0]),
+				ref Ref.AsByteRef(ref targetBuffer[0]),
+				in Ref.AsReadOnlyByteRef(in left._value[0]),
 				(uint)(sizeof(byte) * left._value.Length)
 			);
 			Unsafe.CopyBlock(
-				ref Unsafe.As<Utf8Char, byte>(ref targetBuffer[left._value.Length]),
-				in Unsafe.As<Utf8Char, byte>(ref right._value[0]),
+				ref Ref.AsByteRef(ref targetBuffer[left._value.Length]),
+				in Ref.AsReadOnlyByteRef(in right._value[0]),
 				(uint)(sizeof(byte) * right._value.Length)
 			);
 

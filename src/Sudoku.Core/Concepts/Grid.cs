@@ -249,7 +249,7 @@ public unsafe partial struct Grid :
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < CellsCount; i++)
 		{
-			var value = Unsafe.AddByteOffset(ref Unsafe.AsRef(in firstElement), (nuint)(i * sizeof(Digit)));
+			var value = Unsafe.AddByteOffset(ref Ref.AsMutableRef(in firstElement), (nuint)(i * sizeof(Digit)));
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -1650,7 +1650,8 @@ public unsafe partial struct Grid :
 			}
 			if ((length & 1) != 0)
 			{
-				differentBits |= (uint)Unsafe.AddByteOffset(ref Unsafe.AsRef(in first), offset) - Unsafe.AddByteOffset(ref Unsafe.AsRef(in second), offset);
+				differentBits |= (uint)Unsafe.AddByteOffset(ref Ref.AsMutableRef(in first), offset)
+					- Unsafe.AddByteOffset(ref Ref.AsMutableRef(in second), offset);
 			}
 
 			result = differentBits == 0;
@@ -1839,7 +1840,7 @@ public unsafe partial struct Grid :
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static uint loadUint2(scoped ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
+			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
@@ -1847,11 +1848,11 @@ public unsafe partial struct Grid :
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint2(scoped ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
+			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static Vector<byte> loadVector(scoped ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref Unsafe.AsRef(in start), offset));
+			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 	}
 
 	/// <summary>

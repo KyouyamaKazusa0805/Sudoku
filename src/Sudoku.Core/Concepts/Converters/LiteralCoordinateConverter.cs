@@ -99,8 +99,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(
-					ref Unsafe.As<Conclusion, byte>(ref conclusions[0]),
-					in Unsafe.As<Conclusion, byte>(ref Unsafe.AsRef(in c[0])),
+					ref Ref.AsByteRef(ref conclusions[0]),
+					in Ref.AsReadOnlyByteRef(in c[0]),
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 

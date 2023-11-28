@@ -702,7 +702,7 @@ public unsafe ref partial struct StringHandler
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Unsafe.Add(ref Unsafe.AsRef(in list), i);
+			scoped ref readonly var element = ref Unsafe.Add(ref Ref.AsMutableRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
@@ -730,7 +730,7 @@ public unsafe ref partial struct StringHandler
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Unsafe.Add(ref Unsafe.AsRef(in list), i);
+			scoped ref readonly var element = ref Unsafe.Add(ref Ref.AsMutableRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}

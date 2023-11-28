@@ -48,7 +48,7 @@ public static class EnumExtensions
 
 		// Returns the instance and copy the values.
 		var result = new T[i];
-		Unsafe.CopyBlock(ref Unsafe.As<T, byte>(ref result[0]), in Unsafe.As<T, byte>(ref buffer[0]), (uint)(sizeof(T) * i));
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in buffer[0]), (uint)(sizeof(T) * i));
 
 		// Returns the value.
 		return [.. result.Distinct()];

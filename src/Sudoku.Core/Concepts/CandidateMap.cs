@@ -253,11 +253,7 @@ public partial struct CandidateMap :
 			return;
 		}
 
-		Unsafe.CopyBlock(
-			ref Unsafe.As<Candidate, byte>(ref arr[0]),
-			in Unsafe.As<Candidate, byte>(ref Offsets[0]),
-			(uint)(sizeof(Candidate) * length)
-		);
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref arr[0]), in Ref.AsReadOnlyByteRef(in Offsets[0]), (uint)(sizeof(Candidate) * length));
 	}
 
 	/// <inheritdoc/>
