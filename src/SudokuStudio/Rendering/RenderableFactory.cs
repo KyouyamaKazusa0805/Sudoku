@@ -21,6 +21,7 @@ using Windows.UI;
 using Windows.UI.Text;
 using WinRT;
 using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.SolutionWideReadOnlyFields;
 using Geometry = Microsoft.UI.Xaml.Media.Geometry;
 using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 using LineGeometry = Microsoft.UI.Xaml.Media.LineGeometry;
@@ -581,7 +582,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: chute m{(chute < 3 ? 'r' : 'c')}{chute % 3 + 1}",
+			Tag = $"{nameof(RenderableFactory)}: chute {new RxCyConverter().ChuteConverter([Chutes[chute]])}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
 			CornerRadius = new(18),
