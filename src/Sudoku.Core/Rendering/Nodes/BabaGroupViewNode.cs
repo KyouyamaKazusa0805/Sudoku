@@ -24,6 +24,17 @@ public sealed partial class BabaGroupViewNode(
 ) : BasicViewNode(identifier)
 {
 	/// <summary>
+	/// Initializes a <see cref="BabaGroupViewNode"/> instance via the specified values.
+	/// </summary>
+	/// <inheritdoc cref="BabaGroupViewNode(ColorIdentifier, Cell, Utf8Char, Mask)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public BabaGroupViewNode(Cell cell, Utf8Char unknownValueChar, Mask digitsMask) :
+		this(WellKnownColorIdentifier.Normal, cell, unknownValueChar, digitsMask)
+	{
+	}
+
+
+	/// <summary>
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]

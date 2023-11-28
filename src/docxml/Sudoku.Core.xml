@@ -7372,6 +7372,12 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates a mask that hold digits used.</param>
             <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
         </member>
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(System.Int32,System.Utf8Char,System.Int16)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/> instance via the specified values.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Utf8Char,System.Int16)"/>
+        </member>
         <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.CellString">
             <summary>
             Indicates the cell string.

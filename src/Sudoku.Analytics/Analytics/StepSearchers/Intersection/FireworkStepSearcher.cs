@@ -365,13 +365,13 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						select new CellViewNode(WellKnownColorIdentifier.Elimination, house2CellExcluded),
 						..
 						from cell in (HousesMap[(CellsMap[cell1] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'y', currentDigitsMask),
+						select new BabaGroupViewNode(cell, (Utf8Char)'y', currentDigitsMask),
 						..
 						from cell in (HousesMap[(CellsMap[cell2] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell, (Utf8Char)'x', currentDigitsMask),
-						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
-						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
-						new BabaGroupViewNode(WellKnownColorIdentifier.Normal, cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
+						select new BabaGroupViewNode(cell, (Utf8Char)'x', currentDigitsMask),
+						new BabaGroupViewNode(pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+						new BabaGroupViewNode(cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+						new BabaGroupViewNode(cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 					]
 				],
 				context.PredefinedOptions,
