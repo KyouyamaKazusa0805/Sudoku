@@ -7,7 +7,10 @@ namespace Sudoku.Analytics.Rating;
 /// Represents a formula. The formula can help you calculate the target expression.
 /// </summary>
 /// <param name="expression">Indicates the expression to combine multiple values.</param>
-/// <param name="expressionString">Indicates the detail string text of the argument <paramref name="expression"/>.</param>
+/// <param name="expressionString">
+/// <para>Indicates the detail string text of the argument <paramref name="expression"/>.</para>
+/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
+/// </param>
 public sealed partial class Formula(
 	Func<decimal[], decimal> expression,
 	[Data, CallerArgumentExpression(nameof(expression))] string expressionString = null!

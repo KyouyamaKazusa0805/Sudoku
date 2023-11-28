@@ -134,7 +134,8 @@ public static class Ref
 	/// </i></para>
 	/// </param>
 	/// <param name="paramName">
-	/// The parameter name. <b>This argument needn't to be assigned because it will be replaced with a new value by compiler.</b>
+	/// <para>The parameter name.</para>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
 	/// </param>
 	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

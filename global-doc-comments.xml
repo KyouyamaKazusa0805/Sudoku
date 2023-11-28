@@ -263,6 +263,13 @@ fixed (short* ptr = instance)
 			</b>
 		</feature>
 	</csharp9>
+	<csharp10>
+		<feature name="caller-argument-expression">
+			<para>
+				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
+			</para>
+		</feature>
+	</csharp10>
 	<csharp11>
 		<feature name="file-local">
 			<target name="class" when="constant">

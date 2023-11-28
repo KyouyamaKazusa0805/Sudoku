@@ -4651,14 +4651,28 @@ if (student is (name: var name, age: >= 18))
             Represents a formula. The formula can help you calculate the target expression.
             </summary>
             <param name="expression">Indicates the expression to combine multiple values.</param>
-            <param name="expressionString">Indicates the detail string text of the argument <paramref name="expression"/>.</param>
+            <param name="expressionString">
+            <para>Indicates the detail string text of the argument <paramref name="expression" />.</para>
+            <feature name="caller-argument-expression">
+			<para>
+				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
+			</para>
+		</feature>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Rating.Formula.#ctor(System.Func{System.Decimal[],System.Decimal},System.String)">
             <summary>
             Represents a formula. The formula can help you calculate the target expression.
             </summary>
             <param name="expression">Indicates the expression to combine multiple values.</param>
-            <param name="expressionString">Indicates the detail string text of the argument <paramref name="expression"/>.</param>
+            <param name="expressionString">
+            <para>Indicates the detail string text of the argument <paramref name="expression" />.</para>
+            <feature name="caller-argument-expression">
+			<para>
+				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
+			</para>
+		</feature>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Rating.Formula.GetScore(System.Decimal[])">
             <summary>
