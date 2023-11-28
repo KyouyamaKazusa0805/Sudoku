@@ -1291,9 +1291,6 @@
             otherwise, a candidate will be removed.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Conclusion.Sudoku#Analytics#IConclusion{Sudoku#Analytics#Conclusion,System#Int16}#Mask">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Conclusion.Deconstruct(Sudoku.Analytics.ConclusionType@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -1531,57 +1528,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the unhandled exception thrown.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.IConclusion`2">
-            <summary>
-            Represents a role that describes for a conclusion.
-            </summary>
-            <typeparam name="TSelf">Indicates the type of the implementation.</typeparam>
-            <typeparam name="TMask">Indicates the type of the mask.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.IConclusion`2.Mask">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IConclusion`2.Cell">
-            <summary>
-            Indicates the cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IConclusion`2.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IConclusion`2.ConclusionType">
-            <summary>
-            The conclusion type to control the action of applying.
-            If the type is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IConclusion`2.Candidate">
-            <summary>
-            Indicates the candidate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.IConclusion`2.System#IEquatable{TSelf}#Equals(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.IConclusion`2.System#IComparable{TSelf}#CompareTo(`0)">
-            <inheritdoc/>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="other"/> is <see langword="null"/>
-            when target type <typeparamref name="TSelf"/> is a nullable one.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.IConclusion`2.op_OnesComplement(`0)">
-            <summary>
-            Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
-            or from <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
-            </summary>
-            <param name="self">The current conclusion instance to be negated.</param>
-            <returns>The negation.</returns>
         </member>
         <member name="T:Sudoku.Analytics.IRandomizedAnalyzer`2">
             <summary>

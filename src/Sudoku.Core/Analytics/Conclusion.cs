@@ -42,7 +42,6 @@ namespace Sudoku.Analytics;
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([Data(DataMemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
-	IConclusion<Conclusion, Mask>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
 	ISimpleParsable<Conclusion>,
@@ -113,9 +112,6 @@ public readonly partial struct Conclusion([Data(DataMemberKinds.Field), HashCode
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (ConclusionType)(_mask >> 10 & 1);
 	}
-
-	/// <inheritdoc/>
-	Mask IConclusion<Conclusion, Mask>.Mask => _mask;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
