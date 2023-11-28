@@ -9134,31 +9134,45 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Star.StrokeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Star.Stroke"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Star.Stroke"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Star.FillProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Star.Fill"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Star.Fill"/>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness">
             <summary>
             Indicates the stroke thickness for the star.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.Shapes.Star.Stroke">
+        <member name="T:SudokuStudio.Views.Controls.Shapes.Triangle">
             <summary>
-            Indicates the stroke color for the star.
+            Represents a triangle control.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.Shapes.Star.Fill">
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Triangle.#ctor">
             <summary>
-            Indicates the fill color for the star.
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.Triangle"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Triangle.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Triangle.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Triangle.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness">
+            <summary>
+            Indicates the stroke thickness for the star.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">

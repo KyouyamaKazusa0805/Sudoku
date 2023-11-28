@@ -266,7 +266,9 @@ internal static class RenderableFactory
 					? create<CircleRing>()
 					: cellNode.Identifier == WellKnownColorIdentifier.Auxiliary1
 						? create<Cross>()
-						: create<Star>();
+						: cellNode.Identifier == WellKnownColorIdentifier.Auxiliary2
+							? create<Triangle>()
+							: create<Star>();
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);

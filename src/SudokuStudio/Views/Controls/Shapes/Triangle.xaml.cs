@@ -1,29 +1,28 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using SudokuStudio.ComponentModel;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace SudokuStudio.Views.Controls.Shapes;
 
 /// <summary>
-/// Represents a star mark.
+/// Represents a triangle control.
 /// </summary>
 [DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness for the star.")]
-public sealed partial class Star : UserControl
+public sealed partial class Triangle : UserControl
 {
 	[Default]
 	private static readonly double StrokeThicknessDefaultValue = 6;
 
 
 	/// <summary>
-	/// Initializes a <see cref="Star"/> instance.
+	/// Initializes a <see cref="Triangle"/> instance.
 	/// </summary>
-	public Star() => InitializeComponent();
+	public Triangle() => InitializeComponent();
 
 
 	private void ParentViewBox_SizeChanged(object sender, SizeChangedEventArgs e)
-		=> PathPresenter.StrokeThickness = StrokeThicknessDefaultValue * 250 / ParentViewBox.ActualWidth;
+		=> PathPresenter.StrokeThickness = StrokeThicknessDefaultValue * 20 / ParentViewBox.ActualWidth;
 
 
 	[Callback]

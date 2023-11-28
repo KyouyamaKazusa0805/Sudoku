@@ -1,0 +1,15 @@
+<UserControl
+	x:Class="SudokuStudio.Views.Controls.Shapes.Triangle"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:Triangle}">
+	<Viewbox x:Name="ParentViewBox" Stretch="Uniform" SizeChanged="ParentViewBox_SizeChanged">
+		<Path
+			x:Name="PathPresenter" Data="M10,2 L20,19.320508 L0,19.320508 Z" Stroke="{x:Bind Background,Mode=OneWay}"
+			StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}"
+			Width="20" Height="20" />
+	</Viewbox>
+</UserControl>
