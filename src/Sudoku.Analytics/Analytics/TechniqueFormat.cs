@@ -17,7 +17,6 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 [Equals(EqualsBehavior.ThrowNotSupportedException)]
 [GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
-[ToString(ToStringBehavior.ThrowNotSupportedException)]
 [EqualityOperators]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -47,6 +46,10 @@ public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalL
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
 	public void AppendFormatted(string formatSuffix) => _formatSuffix = formatSuffix;
+
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => TargetFormat ?? "<Unspecified>";
 
 	/// <summary>
 	/// Get the format string for the current instance.

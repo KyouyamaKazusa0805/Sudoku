@@ -4681,6 +4681,14 @@ if (student is (name: var name, age: >= 18))
             <param name="arguments">The arguments passed in.</param>
             <returns>The final score.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Rating.Formula.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Rating.Formula.Expression">
+            <summary>
+            The generated property declaration for parameter <c>expression</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Rating.Formula.ExpressionString">
             <summary>
             The generated property declaration for parameter <c>expressionString</c>.

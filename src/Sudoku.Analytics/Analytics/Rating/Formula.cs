@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Rating;
 /// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
 /// </param>
 public sealed partial class Formula(
-	Func<decimal[], decimal> expression,
+	[Data] Func<decimal[], decimal> expression,
 	[Data, CallerArgumentExpression(nameof(expression))] string expressionString = null!
 )
 {
@@ -22,5 +22,10 @@ public sealed partial class Formula(
 	/// <param name="arguments">The arguments passed in.</param>
 	/// <returns>The final score.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public decimal GetScore(decimal[] arguments) => expression(arguments);
+	public decimal GetScore(decimal[] arguments) => Expression(arguments);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => ExpressionString;
 }
