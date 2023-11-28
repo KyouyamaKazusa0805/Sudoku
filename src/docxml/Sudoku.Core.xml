@@ -6933,6 +6933,14 @@ if (student is (name: var name, age: >= 18))
             on each element of the current instance.
             </returns>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.CreateMapByKeys(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{`0,`1,System.Int32}})">
+            <summary>
+            Makes a <see cref="T:Sudoku.Concepts.CellMap"/> instance that is concatenated by a list of groups
+            of type <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>, adding their keys.
+            </summary>
+            <param name="groups">The groups.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>

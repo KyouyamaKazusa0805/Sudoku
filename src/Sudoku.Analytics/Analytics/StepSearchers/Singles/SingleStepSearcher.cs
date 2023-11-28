@@ -519,7 +519,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
-					(CellMap.Empty + cell + otherCell).InOneHouse(out excluderHouses[i]);
+					(CellsMap[cell] + otherCell).InOneHouse(out excluderHouses[i]);
 
 					i++;
 					break;

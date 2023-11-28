@@ -103,6 +103,23 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>(
 		return result;
 	}
 
+	/// <summary>
+	/// Makes a <see cref="CellMap"/> instance that is concatenated by a list of groups
+	/// of type <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/>, adding their keys.
+	/// </summary>
+	/// <param name="groups">The groups.</param>
+	/// <returns>A <see cref="CellMap"/> instance.</returns>
+	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGroup<TMap, TElement, Cell>> groups)
+	{
+		var result = CellMap.Empty;
+		foreach (ref readonly var group in groups)
+		{
+			result.Add(group.Key);
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();

@@ -776,7 +776,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				if (IsPow2((CellMap.Empty + targetCell + endoTargetCell).BlockMask))
+				if (IsPow2((CellsMap[targetCell] + endoTargetCell).BlockMask))
 				{
 					// The target selected endo-target cell cannot share a same block with target cell.
 					continue;

@@ -5,6 +5,7 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Runtime.MaskServices;
@@ -313,7 +314,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = (CellMap)(from c in trueCandidates group c by c / 9 into z select z.Key);
+		var map = BitStatusMapGroup<CandidateMap, Candidate, Cell>.CreateMapByKeys(from c in trueCandidates group c by c / 9);
 		if (!map.InOneHouse(out _))
 		{
 			return null;
@@ -421,13 +422,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// Check two cell has same house.
-		var cells = new List<Cell>();
-		foreach (var candGroupByCell in candsGroupByCell)
-		{
-			cells.Add(candGroupByCell.Key);
-		}
-
-		var houses = (CellMap.Empty + cells).CoveredHouses;
+		var cells = BitStatusMapGroup<CandidateMap, Candidate, Cell>.CreateMapByKeys(candsGroupByCell);
+		var houses = cells.CoveredHouses;
 		if (houses != 0)
 		{
 			return null;

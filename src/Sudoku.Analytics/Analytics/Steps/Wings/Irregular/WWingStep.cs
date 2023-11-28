@@ -7,6 +7,7 @@ using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
+using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -84,12 +85,12 @@ public sealed partial class WWingStep(
 			throw new InvalidOperationException("The conjugate pair map is invalid.");
 		}
 
-		if ((CellMap.Empty + a + startOrEndCell).InOneHouse(out house))
+		if ((CellsMap[a] + startOrEndCell).InOneHouse(out house))
 		{
 			return a;
 		}
 
-		if ((CellMap.Empty + b + startOrEndCell).InOneHouse(out house))
+		if ((CellsMap[b] + startOrEndCell).InOneHouse(out house))
 		{
 			return b;
 		}
