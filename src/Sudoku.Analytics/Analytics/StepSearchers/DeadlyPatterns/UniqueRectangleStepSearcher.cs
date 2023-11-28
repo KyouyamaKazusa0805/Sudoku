@@ -3398,9 +3398,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="d2">The digit 2.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
-	/// <para>The structures:</para>
-	/// <para>
-	/// Subtype 1:
+	/// The pattern:
 	/// <code><![CDATA[
 	///      ↓urCellInSameBlock
 	/// ab  abc      abc  ←anotherCell
@@ -3410,17 +3408,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	///      ↑targetCell
 	/// ]]></code>
 	/// Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
-	/// </para>
-	/// <para>
-	/// Subtype 2:
-	/// <code><![CDATA[
-	/// abcx   | ab  abc
-	///  |     |
-	///  | c   |
-	///  |     |
-	/// abcy   |     abc
-	/// ]]></code>
-	/// </para>
 	/// </remarks>
 	private void CheckBabaGroupingUnique(
 		List<UniqueRectangleStep> accumulator,
@@ -3433,285 +3420,284 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		checkType1(in grid, ref context);
-#if IMPLEMENTED
-		checkType2(in grid, ref context);
-#endif
+		var cells = (CellMap)urCells;
 
-
-		void checkType1(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+		// Check all cells are empty.
+		var containsValueCells = false;
+		foreach (var cell in cells)
 		{
-			var cells = (CellMap)urCells;
-
-			// Check all cells are empty.
-			var containsValueCells = false;
-			foreach (var cell in cells)
+			if (grid.GetState(cell) != CellState.Empty)
 			{
-				if (grid.GetState(cell) != CellState.Empty)
-				{
-					containsValueCells = true;
-					break;
-				}
+				containsValueCells = true;
+				break;
 			}
-			if (containsValueCells)
+		}
+		if (containsValueCells)
+		{
+			return;
+		}
+
+		// Iterate on each cell.
+		foreach (var targetCell in cells)
+		{
+			var block = targetCell.ToHouseIndex(HouseType.Block);
+			var bivalueCellsToCheck = (PeersMap[targetCell] & HousesMap[block] & BivalueCells) - cells;
+			if (!bivalueCellsToCheck)
 			{
-				return;
+				continue;
 			}
 
-			// Iterate on each cell.
-			foreach (var targetCell in cells)
+			// Check all bi-value cells.
+			foreach (var bivalueCellToCheck in bivalueCellsToCheck)
 			{
-				var block = targetCell.ToHouseIndex(HouseType.Block);
-				var bivalueCellsToCheck = (PeersMap[targetCell] & HousesMap[block] & BivalueCells) - cells;
-				if (!bivalueCellsToCheck)
+				if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != InvalidTrailingZeroCountMethodFallback)
 				{
+					// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 					continue;
 				}
 
-				// Check all bi-value cells.
-				foreach (var bivalueCellToCheck in bivalueCellsToCheck)
+				if (grid.GetCandidates(bivalueCellToCheck) != comparer)
 				{
-					if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != InvalidTrailingZeroCountMethodFallback)
+					// 'bivalueCell' must contain both 'd1' and 'd2'.
+					continue;
+				}
+
+				var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
+				var coveredLine = (CellsMap[bivalueCellToCheck] + urCellInSameBlock).CoveredLine;
+				if (coveredLine == InvalidTrailingZeroCountMethodFallback)
+				{
+					// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
+					// as 'urCellInSameBlock'.
+					continue;
+				}
+
+				var anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
+				foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & ~comparer))
+				{
+					var abcMask = (Mask)(comparer | (Mask)(1 << extraDigit));
+					if (grid.GetCandidates(anotherCell) != abcMask)
 					{
-						// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 						continue;
 					}
 
-					if (grid.GetCandidates(bivalueCellToCheck) != comparer)
+					// Check the conjugate pair of the extra digit.
+					var resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
+					var map = CellsMap[targetCell] + resultCell;
+					var line = map.CoveredLine;
+					if (!IsConjugatePair(extraDigit, in map, line))
 					{
-						// 'bivalueCell' must contain both 'd1' and 'd2'.
 						continue;
 					}
 
-					var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
-					var coveredLine = (CellsMap[bivalueCellToCheck] + urCellInSameBlock).CoveredLine;
-					if (coveredLine == InvalidTrailingZeroCountMethodFallback)
+					if (grid.GetCandidates(urCellInSameBlock) != abcMask)
 					{
-						// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
-						// as 'urCellInSameBlock'.
-						continue;
+						goto SubType2;
 					}
 
-					var anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
-					foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & ~comparer))
+					// Here, is the basic sub-type having passed the checking.
+					// Gather conclusions.
+					var conclusions = new List<Conclusion>();
+					foreach (var digit in grid.GetCandidates(targetCell))
 					{
-						var abcMask = (Mask)(comparer | (Mask)(1 << extraDigit));
-						if (grid.GetCandidates(anotherCell) != abcMask)
+						if (digit == d1 || digit == d2)
 						{
-							continue;
+							conclusions.Add(new(Elimination, targetCell, digit));
 						}
+					}
+					if (conclusions.Count == 0)
+					{
+						goto SubType2;
+					}
 
-						// Check the conjugate pair of the extra digit.
-						var resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
-						var map = CellsMap[targetCell] + resultCell;
-						var line = map.CoveredLine;
-						if (!IsConjugatePair(extraDigit, in map, line))
-						{
-							continue;
-						}
+					// Gather views.
+					var candidateOffsets = (List<CandidateViewNode>)[new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)];
+					var candidateOffsets2 = (List<CandidateViewNode>)[
+						new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
+						new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit),
+					];
+					if (CandidatesMap[d1].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
+					}
+					if (CandidatesMap[d2].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
+					}
+					if (CandidatesMap[extraDigit].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
+					}
 
-						if (grid.GetCandidates(urCellInSameBlock) != abcMask)
+					foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
+					{
+						if (digit == extraDigit)
 						{
-							goto SubType2;
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
+							candidateOffsets2.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
 						}
-
-						// Here, is the basic sub-type having passed the checking.
-						// Gather conclusions.
-						var conclusions = new List<Conclusion>();
-						foreach (var digit in grid.GetCandidates(targetCell))
-						{
-							if (digit == d1 || digit == d2)
-							{
-								conclusions.Add(new(Elimination, targetCell, digit));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							goto SubType2;
-						}
-
-						// Gather views.
-						var candidateOffsets = new List<CandidateViewNode> { new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit) };
-						if (CandidatesMap[d1].Contains(resultCell))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
-						}
-						if (CandidatesMap[d2].Contains(resultCell))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
-						}
-						if (CandidatesMap[extraDigit].Contains(resultCell))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
-						}
-
-						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
+						else
 						{
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCellInSameBlock * 9 + digit));
 						}
-						foreach (var digit in grid.GetCandidates(anotherCell))
+					}
+					foreach (var digit in grid.GetCandidates(anotherCell))
+					{
+						if (digit == extraDigit)
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
+							candidateOffsets2.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
+						}
+						else
 						{
 							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, anotherCell * 9 + digit));
 						}
-						var _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
-						foreach (var digit in _xOr_yMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
-						}
-
-						// Add into the list.
-						var extraDigitId = (byte)(char)(extraDigit + '1');
-						var extraDigitMask = (Mask)(1 << extraDigit);
-						accumulator.Add(
-							new UniqueRectangleWithBabaGroupingStep(
-								[.. conclusions],
-								[
-									[
-										new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
-										.. candidateOffsets,
-										new HouseViewNode(WellKnownColorIdentifier.Normal, block),
-										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line)
-									],
-									[
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
-									]
-								],
-								context.PredefinedOptions,
-								d1,
-								d2,
-								[.. urCells],
-								targetCell,
-								extraDigit,
-								index
-							)
-						);
-
-					SubType2:
-						// Sub-type 2.
-						// The extra digit should form a conjugate pair in that line.
-						var anotherMap = CellsMap[urCellInSameBlock] + anotherCell;
-						var anotherLine = anotherMap.CoveredLine;
-						if (!IsConjugatePair(extraDigit, in anotherMap, anotherLine))
-						{
-							continue;
-						}
-
-						// Gather conclusions.
-						var conclusionsAnotherSubType = new List<Conclusion>();
-						foreach (var digit in grid.GetCandidates(targetCell))
-						{
-							if (digit == d1 || digit == d2)
-							{
-								conclusionsAnotherSubType.Add(new(Elimination, targetCell, digit));
-							}
-						}
-						if (conclusionsAnotherSubType.Count == 0)
-						{
-							continue;
-						}
-
-						// Gather views.
-						var candidateOffsetsAnotherSubtype = new List<CandidateViewNode>
-						{
-							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
-						};
-						if (CandidatesMap[d1].Contains(resultCell))
-						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
-						}
-						if (CandidatesMap[d2].Contains(resultCell))
-						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
-						}
-						if (CandidatesMap[extraDigit].Contains(resultCell))
-						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
-						}
-
-						var candidateOffsetsAnotherSubtypeLighter = new List<CandidateViewNode>
-						{
-							new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
-							new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
-						};
-						foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
-						{
-							if (digit == extraDigit)
-							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
-							}
-							else
-							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, urCellInSameBlock * 9 + digit));
-							}
-						}
-						foreach (var digit in grid.GetCandidates(anotherCell))
-						{
-							if (digit == extraDigit)
-							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
-								candidateOffsetsAnotherSubtypeLighter.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
-							}
-							else
-							{
-								candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Normal, anotherCell * 9 + digit));
-							}
-						}
-						var _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
-						foreach (var digit in _xOr_yMask2)
-						{
-							candidateOffsetsAnotherSubtype.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
-						}
-
-						// Add into the list.
-						var extraDigitId2 = (Utf8Char)(char)(extraDigit + '1');
-						var extraDigitMask2 = (Mask)(1 << extraDigit);
-						accumulator.Add(
-							new UniqueRectangleWithBabaGroupingStep(
-								[.. conclusionsAnotherSubType],
-								[
-									[
-										new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
-										.. candidateOffsetsAnotherSubtype,
-										new HouseViewNode(WellKnownColorIdentifier.Normal, block),
-										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line),
-										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, anotherLine)
-									],
-									[
-										.. candidateOffsetsAnotherSubtypeLighter,
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (Utf8Char)'y', _xOr_yMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (Utf8Char)'x', _xOr_yMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (Utf8Char)'x', _xOr_yMask2),
-										new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
-									]
-								],
-								context.PredefinedOptions,
-								d1,
-								d2,
-								[.. urCells],
-								targetCell,
-								extraDigit,
-								index
-							)
-						);
 					}
+					var _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
+					foreach (var digit in _xOr_yMask)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
+					}
+
+					// Add into the list.
+					var extraDigitId = (Utf8Char)(char)(extraDigit + '1');
+					var extraDigitMask = (Mask)(1 << extraDigit);
+					accumulator.Add(
+						new UniqueRectangleWithBabaGroupingStep(
+							[.. conclusions],
+							[
+								[
+									new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, block),
+									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line)
+								],
+								[
+									.. candidateOffsets2,
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (byte)'y', _xOr_yMask),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (byte)'x', _xOr_yMask),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId, extraDigitMask),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (byte)'x', _xOr_yMask),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId, extraDigitMask)
+								]
+							],
+							context.PredefinedOptions,
+							d1,
+							d2,
+							[.. urCells],
+							targetCell,
+							extraDigit,
+							index
+						)
+					);
+
+				SubType2:
+					// Sub-type 2.
+					// The extra digit should form a conjugate pair in that line.
+					var anotherMap = CellsMap[urCellInSameBlock] + anotherCell;
+					var anotherLine = anotherMap.CoveredLine;
+					if (!IsConjugatePair(extraDigit, in anotherMap, anotherLine))
+					{
+						continue;
+					}
+
+					// Gather conclusions.
+					var conclusionsAnotherSubType = new List<Conclusion>();
+					foreach (var digit in grid.GetCandidates(targetCell))
+					{
+						if (digit == d1 || digit == d2)
+						{
+							conclusionsAnotherSubType.Add(new(Elimination, targetCell, digit));
+						}
+					}
+					if (conclusionsAnotherSubType.Count == 0)
+					{
+						continue;
+					}
+
+					// Gather views.
+					candidateOffsets = [new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)];
+					candidateOffsets2 = [
+						new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
+						new(WellKnownColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
+					];
+					if (CandidatesMap[d1].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d1));
+					}
+					if (CandidatesMap[d2].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, resultCell * 9 + d2));
+					}
+					if (CandidatesMap[extraDigit].Contains(resultCell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit));
+					}
+
+					foreach (var digit in (Mask)(grid.GetCandidates(urCellInSameBlock) & abcMask))
+					{
+						if (digit == extraDigit)
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
+							candidateOffsets2.Add(new(WellKnownColorIdentifier.Auxiliary1, urCellInSameBlock * 9 + digit));
+						}
+						else
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCellInSameBlock * 9 + digit));
+						}
+					}
+					foreach (var digit in grid.GetCandidates(anotherCell))
+					{
+						if (digit == extraDigit)
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
+							candidateOffsets2.Add(new(WellKnownColorIdentifier.Auxiliary1, anotherCell * 9 + digit));
+						}
+						else
+						{
+							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, anotherCell * 9 + digit));
+						}
+					}
+					var _xOr_yMask2 = grid.GetCandidates(bivalueCellToCheck);
+					foreach (var digit in _xOr_yMask2)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
+					}
+
+					// Add into the list.
+					var extraDigitId2 = (Utf8Char)(char)(extraDigit + '1');
+					var extraDigitMask2 = (Mask)(1 << extraDigit);
+					accumulator.Add(
+						new UniqueRectangleWithBabaGroupingStep(
+							[.. conclusionsAnotherSubType],
+							[
+								[
+									new CellViewNode(WellKnownColorIdentifier.Normal, targetCell),
+									.. candidateOffsets,
+									new HouseViewNode(WellKnownColorIdentifier.Normal, block),
+									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, line),
+									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, anotherLine)
+								],
+								[
+									.. candidateOffsets2,
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, bivalueCellToCheck, (Utf8Char)'y', _xOr_yMask2),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, targetCell, (Utf8Char)'x', _xOr_yMask2),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, urCellInSameBlock, extraDigitId2, extraDigitMask2),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, anotherCell, (Utf8Char)'x', _xOr_yMask2),
+									new BabaGroupViewNode(WellKnownColorIdentifier.Normal, resultCell, extraDigitId2, extraDigitMask2)
+								]
+							],
+							context.PredefinedOptions,
+							d1,
+							d2,
+							[.. urCells],
+							targetCell,
+							extraDigit,
+							index
+						)
+					);
 				}
 			}
 		}
-
-#if false
-		void checkType2(scoped ref readonly Grid grid)
-		{
-			// TODO: Check type 2.
-		}
-#endif
 	}
 
 	/// <summary>

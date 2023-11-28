@@ -6,7 +6,7 @@ namespace System.Drawing;
 /// Provides extension methods on <see cref="SizeF"/>.
 /// </summary>
 /// <seealso cref="SizeF"/>
-internal static class SizeFExtensions
+public static class SizeFExtensions
 {
 	/// <summary>
 	/// To truncate the size.

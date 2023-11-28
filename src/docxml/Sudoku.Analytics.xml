@@ -7997,9 +7997,7 @@ if (student is (name: var name, age: >= 18))
              <param name="d2">The digit 2.</param>
              <param name="index">The index.</param>
              <remarks>
-             <para>The structures:</para>
-             <para>
-             Subtype 1:
+             The pattern:
              <code><![CDATA[
                   ↓urCellInSameBlock
              ab  abc      abc  ←anotherCell
@@ -8009,17 +8007,6 @@ if (student is (name: var name, age: >= 18))
                   ↑targetCell
              ]]></code>
              Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
-             </para>
-             <para>
-             Subtype 2:
-             <code><![CDATA[
-             abcx   | ab  abc
-              |     |
-              | c   |
-              |     |
-             abcy   |     abc
-             ]]></code>
-             </para>
              </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
