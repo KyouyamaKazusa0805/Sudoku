@@ -21553,6 +21553,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.TechniqueFormat.AppendFormatted(System.String)">
             <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
         </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.ToString(System.String[])">
             <summary>
             Get the format string for the current instance.
@@ -21575,9 +21578,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.op_Equality(Sudoku.Analytics.TechniqueFormat,Sudoku.Analytics.TechniqueFormat)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

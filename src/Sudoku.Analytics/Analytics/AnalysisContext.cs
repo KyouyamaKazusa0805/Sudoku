@@ -44,7 +44,6 @@ public ref partial struct AnalysisContext(
 	/// </remarks>
 	/// <seealso cref="AntiGurthSymmetricalPlacementStepSearcher"/>
 	[DisallowNull]
-	[NotNullIfNotNull(nameof(MappingRelations))]
 	public SymmetricType? InferredGurthSymmetricalPlacementPattern { get; internal set; }
 
 	/// <summary>
@@ -72,7 +71,5 @@ public ref partial struct AnalysisContext(
 	/// </para>
 	/// </b></remarks>
 	/// <seealso cref="InferredGurthSymmetricalPlacementPattern"/>
-	[DisallowNull]
-	[NotNullIfNotNull(nameof(InferredGurthSymmetricalPlacementPattern))]
-	public Digit?[]? MappingRelations { get; internal set; }
+	public ReadOnlySpan<Digit?> MappingRelations { get; internal set; }
 }

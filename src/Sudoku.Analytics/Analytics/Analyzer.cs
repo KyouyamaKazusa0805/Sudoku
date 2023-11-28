@@ -161,7 +161,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
 			{
-				(context.InferredGurthSymmetricalPlacementPattern, context.MappingRelations) = (symmetricType, [.. mappingDigits]);
+				context.InferredGurthSymmetricalPlacementPattern = symmetricType;
+				context.MappingRelations = mappingDigits;
 
 				if (SymmetricalPlacementChecker.GetStep(in playground, Options) is { } step)
 				{
@@ -356,21 +357,21 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			)
 			{
 				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.
-				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType, MappingRelations: { } mappingRelations }
-					&& step is not GurthSymmetricalPlacementStep)
+				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType } && step is not GurthSymmetricalPlacementStep)
 				{
-					var copied = playground;
+					scoped var mappingRelations = context.MappingRelations;
 					var originalConclusions = step.Conclusions;
-					step.Conclusions = [
-						.. originalConclusions,
-						..
-						from conclusion in originalConclusions
-						let newConclusion = conclusion.GetSymmetricConclusion(symmetricType, mappingRelations[conclusion.Digit] ?? -1)
-						where newConclusion != conclusion
-							&& copied.GetState(newConclusion.Cell) == CellState.Empty
-							&& (copied.GetCandidates(newConclusion.Cell) >> newConclusion.Digit & 1) != 0
-						select newConclusion
-					];
+					var newConclusions = new List<Conclusion>();
+					foreach (var conclusion in originalConclusions)
+					{
+						var newConclusion = conclusion.GetSymmetricConclusion(symmetricType, mappingRelations[conclusion.Digit] ?? -1);
+						if (newConclusion != conclusion && playground.Exists(newConclusion.Cell, newConclusion.Digit) is true)
+						{
+							newConclusions.Add(newConclusion);
+						}
+					}
+
+					step.Conclusions = [.. originalConclusions, .. newConclusions];
 				}
 
 				var atLeastOneConclusionIsWorth = false;
