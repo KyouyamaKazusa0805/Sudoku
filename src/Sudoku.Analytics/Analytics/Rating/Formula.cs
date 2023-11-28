@@ -1,5 +1,5 @@
-using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 
 namespace Sudoku.Analytics.Rating;
 
@@ -7,7 +7,11 @@ namespace Sudoku.Analytics.Rating;
 /// Represents a formula. The formula can help you calculate the target expression.
 /// </summary>
 /// <param name="expression">Indicates the expression to combine multiple values.</param>
-public sealed class Formula(Expression<Func<decimal[], decimal>> expression)
+/// <param name="expressionString">Indicates the detail string text of the argument <paramref name="expression"/>.</param>
+public sealed partial class Formula(
+	Func<decimal[], decimal> expression,
+	[Data, CallerArgumentExpression(nameof(expression))] string expressionString = null!
+)
 {
 	/// <summary>
 	/// Try to calculate the final score via the specified arguments.
@@ -15,5 +19,5 @@ public sealed class Formula(Expression<Func<decimal[], decimal>> expression)
 	/// <param name="arguments">The arguments passed in.</param>
 	/// <returns>The final score.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public decimal GetScore(decimal[] arguments) => expression.Compile()(arguments);
+	public decimal GetScore(decimal[] arguments) => expression(arguments);
 }
