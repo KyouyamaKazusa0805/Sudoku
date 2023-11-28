@@ -3900,6 +3900,58 @@ if (student is (name: var name, age: >= 18))
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.MissingDifficultyLevelException">
+            <summary>
+            Represents an exception that describes for a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for difficulty level attribute.
+            </summary>
+            <param name="memberName">The field name.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.#ctor(System.String)">
+            <summary>
+            Represents an exception that describes for a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for difficulty level attribute.
+            </summary>
+            <param name="memberName">The field name.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.MemberName">
+            <summary>
+            The generated property declaration for parameter <c>memberName</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.MissingTechniqueGroupException">
+            <summary>
+            Reprsents an exception thrown when a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for technique group attribute.
+            </summary>
+            <param name="memberName">Indicates the field name.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.#ctor(System.String)">
+            <summary>
+            Reprsents an exception thrown when a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for technique group attribute.
+            </summary>
+            <param name="memberName">Indicates the field name.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.MemberName">
+            <summary>
+            The generated property declaration for parameter <c>memberName</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifier">
             <summary>
             Represents a list of <see cref="T:System.String"/>s indicating the runtime identifier recognized by UI,

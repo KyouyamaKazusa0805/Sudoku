@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Strings;
 using Sudoku.Strings;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -96,7 +97,8 @@ public static class TechniqueExtensions
 	/// Throws when the specified <see cref="Technique"/> does not belong to any <see cref="TechniqueGroup"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueGroup GetGroup(this Technique @this) => @this.TryGetGroup() ?? throw new ArgumentOutOfRangeException(nameof(@this));
+	public static TechniqueGroup GetGroup(this Technique @this)
+		=> @this.TryGetGroup() ?? throw new MissingTechniqueGroupException(@this.ToString());
 
 	/// <summary>
 	/// Try to get its static difficulty level for the specified technique.
@@ -114,7 +116,7 @@ public static class TechniqueExtensions
 		{
 			({ Features: var feature }, _) when feature.Flags(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
 			(_, { Level: var level }) => level,
-			_ => throw new InvalidOperationException("The state is invalid for the current technique field.")
+			_ => throw new MissingDifficultyLevelException(@this.ToString())
 		};
 	}
 
