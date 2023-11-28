@@ -1678,7 +1678,7 @@
     <value>，</value>
   </data>
   <data name="TechniqueFormat_UniquenessClueCoverStep" xml:space="preserve">
-    <value>枚举第 {0} 个并排三宫（即 {1} 这些区域的单元格）的全部非致命结构的填数情况，发现仍有数字无法覆盖</value>
+    <value>枚举大行列 {0}（即 {1} 这些区域的单元格）的全部非致命结构的填数情况，发现仍有数字无法覆盖</value>
   </data>
   <data name="UniquenessClueCover" xml:space="preserve">
     <value>唯一性确定值覆盖</value>

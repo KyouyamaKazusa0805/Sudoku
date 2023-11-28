@@ -293,7 +293,7 @@ public sealed record RxCyConverter(
 				sb.Append(MakeLettersUpperCase ? "MR" : "mr");
 				foreach (var megaRow in megaRows)
 				{
-					sb.Append(megaRow);
+					sb.Append(megaRow + 1);
 				}
 
 				sb.Append(DefaultSeparator);
@@ -303,7 +303,7 @@ public sealed record RxCyConverter(
 				sb.Append(MakeLettersUpperCase ? "MC" : "mc");
 				foreach (var megaColumn in megaColumns)
 				{
-					sb.Append(megaColumn);
+					sb.Append(megaColumn + 1);
 				}
 			}
 

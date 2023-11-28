@@ -200,8 +200,8 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -323,7 +323,7 @@ public sealed record K9Converter(
 				sb.Append(MakeLettersUpperCase ? "Mega Row" : "mega row");
 				foreach (var megaRow in megaRows)
 				{
-					sb.Append(megaRow);
+					sb.Append(megaRow + 1);
 				}
 
 				sb.Append(DefaultSeparator);
@@ -333,7 +333,7 @@ public sealed record K9Converter(
 				sb.Append(MakeLettersUpperCase ? "Mega Column" : "mega column");
 				foreach (var megaColumn in megaColumns)
 				{
-					sb.Append(megaColumn);
+					sb.Append(megaColumn + 1);
 				}
 			}
 
