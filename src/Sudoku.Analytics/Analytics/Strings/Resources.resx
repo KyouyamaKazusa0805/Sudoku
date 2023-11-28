@@ -1386,11 +1386,11 @@
   <data name="Comma" xml:space="preserve">
     <value>, </value>
   </data>
-  <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniquenessClueCoverStep" xml:space="preserve">
     <value>Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover</value>
   </data>
-  <data name="UniquenessClueCoverType2" xml:space="preserve">
-    <value>Uniqueness Clue Cover Type 2</value>
+  <data name="UniquenessClueCover" xml:space="preserve">
+    <value>Uniqueness Clue Cover</value>
   </data>
   <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
     <value>Reverse Bivalue Universal Grave Type 1</value>

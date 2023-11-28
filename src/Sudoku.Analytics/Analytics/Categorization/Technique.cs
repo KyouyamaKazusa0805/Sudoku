@@ -2076,11 +2076,12 @@ public enum Technique
 	//
 	#region Uniqueness Clue Cover
 	/// <summary>
-	/// Indicates uniqueness clue cover type 2.
+	/// Indicates uniqueness clue cover.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	UniquenessClueCoverType2,
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	UniquenessClueCover,
 	#endregion
 
 	//

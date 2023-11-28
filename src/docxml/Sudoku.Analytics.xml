@@ -2340,9 +2340,9 @@ if (student is (name: var name, age: >= 18))
             Indicates reverse bi-value universal grave type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquenessClueCoverType2">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniquenessClueCover">
             <summary>
-            Indicates uniqueness clue cover type 2.
+            Indicates uniqueness clue cover.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.RwDeadlyPattern">
@@ -7332,6 +7332,27 @@ if (student is (name: var name, age: >= 18))
             Searches for type 4.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.UniquenessClueCoverStepSearcher">
+            <summary>
+            Provides with a <b>Uniqueness Clue Cover</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Uniqueness Clue Cover</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniquenessClueCoverStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            The technique is very complex that I cannot enumerate all possible cases.
+            See <see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">this link</see> to learn about this technique.
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher">
             <summary>
             Provides with a <b>Unique Rectangle</b> step searcher.
@@ -11376,6 +11397,55 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.ExtraDigitsMask">
             <summary>
             The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep">
+            <summary>
+            Provides with a step that is a <b>Uniqueness Clue Cover</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells.</param>
+            <param name="extraDigits">Indicates the extra digits.</param>
+            <param name="chuteIndex">Indicates the chute index.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniquenessClueCoverStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Uniqueness Clue Cover</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells.</param>
+            <param name="extraDigits">Indicates the extra digits.</param>
+            <param name="chuteIndex">Indicates the chute index.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraCells">
+            <summary>
+            The generated property declaration for parameter <c>extraCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraDigits">
+            <summary>
+            The generated property declaration for parameter <c>extraDigits</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ChuteIndex">
+            <summary>
+            The generated property declaration for parameter <c>chuteIndex</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
@@ -20814,7 +20884,7 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Digits {0} in cells {1} can avoid to form a deadly pattern if and only if the conjugate house {2} can&apos;t set the digit neither {3} nor {4}.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniquenessClueCoverType2Step">
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_UniquenessClueCoverStep">
             <summary>
               Looks up a localized string similar to Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover.
             </summary>
@@ -21209,9 +21279,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Unique Matrix Type 4.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.UniquenessClueCoverType2">
+        <member name="P:Sudoku.Analytics.Strings.Resources.UniquenessClueCover">
             <summary>
-              Looks up a localized string similar to Uniqueness Clue Cover Type 2.
+              Looks up a localized string similar to Uniqueness Clue Cover.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.UniqueRectangle2B1">

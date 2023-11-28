@@ -103,6 +103,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Unique Matrix
     * BUG (Bivalue Universal Grave)
     * Reverse BUG (Reverse Bivalue Universal Grave)
+    * Uniqueness Clue Cover (2-Digit)
   * Chains
     * Forcing Chains / Bidirectional Cycles
     * Multiple Forcing Chains

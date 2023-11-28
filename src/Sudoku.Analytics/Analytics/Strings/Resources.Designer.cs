@@ -5958,9 +5958,9 @@ namespace Sudoku.Analytics.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover.
         /// </summary>
-        public static string TechniqueFormat_UniquenessClueCoverType2Step {
+        public static string TechniqueFormat_UniquenessClueCoverStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverType2Step", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverStep", resourceCulture);
             }
         }
         
@@ -6667,11 +6667,11 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uniqueness Clue Cover Type 2.
+        ///   Looks up a localized string similar to Uniqueness Clue Cover.
         /// </summary>
-        public static string UniquenessClueCoverType2 {
+        public static string UniquenessClueCover {
             get {
-                return ResourceManager.GetString("UniquenessClueCoverType2", resourceCulture);
+                return ResourceManager.GetString("UniquenessClueCover", resourceCulture);
             }
         }
         

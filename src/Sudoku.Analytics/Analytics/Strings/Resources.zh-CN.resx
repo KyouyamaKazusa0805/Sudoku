@@ -1677,11 +1677,11 @@
   <data name="Comma" xml:space="preserve">
     <value>，</value>
   </data>
-  <data name="TechniqueFormat_UniquenessClueCoverType2Step" xml:space="preserve">
-    <value>列举第 {0} 并排三宫（即 {1} 这些区域的单元格）的全部填数情况，可以发现仍有两个数字无法覆盖</value>
+  <data name="TechniqueFormat_UniquenessClueCoverStep" xml:space="preserve">
+    <value>枚举第 {0} 个并排三宫（即 {1} 这些区域的单元格）的全部非致命结构的填数情况，发现仍有数字无法覆盖</value>
   </data>
-  <data name="UniquenessClueCoverType2" xml:space="preserve">
-    <value>唯一性确定值覆盖类型 2</value>
+  <data name="UniquenessClueCover" xml:space="preserve">
+    <value>唯一性确定值覆盖</value>
     <comment>Technique Name</comment>
   </data>
   <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
