@@ -6,10 +6,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:Triangle}">
-	<Viewbox x:Name="ParentViewBox" Stretch="Uniform" SizeChanged="ParentViewBox_SizeChanged">
+	<Viewbox x:Name="ParentViewBox" Stretch="Uniform" Margin="6" SizeChanged="ParentViewBox_SizeChanged">
 		<Path
 			x:Name="PathPresenter" Data="M10,2 L20,19.320508 L0,19.320508 Z" Stroke="{x:Bind Background,Mode=OneWay}"
-			StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}"
-			Width="20" Height="20" />
+			StrokeThickness="{x:Bind StrokeThickness,Mode=OneWay}" />
 	</Viewbox>
 </UserControl>

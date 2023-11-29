@@ -28,11 +28,11 @@ public sealed partial class Triangle : UserControl
 	[Callback]
 	private static void StrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (d is not Path { Parent: Viewbox { ActualWidth: var aw }, ActualWidth: var paw } pathControl)
+		if (d is not Path { Parent: Viewbox { ActualWidth: var aw } } pathControl)
 		{
 			return;
 		}
 
-		pathControl.StrokeThickness = (double)e.NewValue * aw / paw;
+		pathControl.StrokeThickness = (double)e.NewValue * 20 / aw;
 	}
 }

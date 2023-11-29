@@ -5,14 +5,10 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:s="using:SudokuStudio.Views.Controls.Shapes"
-	mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-	d:DataContext="{d:DesignInstance Type=s:Star}">
-	<Grid>
-		<Viewbox x:Name="ParentViewBox" Stretch="Uniform" SizeChanged="ParentViewBox_SizeChanged">
-			<Path
-				x:Name="PathPresenter"
-				Data="F1 M 126.578613,11.297852 L 162.373535,83.825684 L 242.412598,95.456055 L 184.495605,151.911133 L 198.167480,231.626953 L 126.578613,193.990234 L 54.988770,231.626953 L 68.661621,151.911133 L 10.744629,95.456055 L 90.783691,83.825684 L 126.578613,11.297852 Z"
-				Stroke="{x:Bind Background,Mode=OneWay}" Width="250" Height="250" />
-		</Viewbox>
-	</Grid>
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=s:Star}">
+	<Viewbox x:Name="ParentViewBox" Stretch="Uniform" Margin="6" SizeChanged="ParentViewBox_SizeChanged">
+		<Path
+			x:Name="PathPresenter" Stroke="{x:Bind Background,Mode=OneWay}"
+			Data="F1 M 126.578613,11.297852 L 162.373535,83.825684 L 242.412598,95.456055 L 184.495605,151.911133 L 198.167480,231.626953 L 126.578613,193.990234 L 54.988770,231.626953 L 68.661621,151.911133 L 10.744629,95.456055 L 90.783691,83.825684 L 126.578613,11.297852 Z" />
+	</Viewbox>
 </UserControl>

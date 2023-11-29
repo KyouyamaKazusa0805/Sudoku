@@ -1,6 +1,5 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using SudokuStudio.ComponentModel;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
@@ -29,11 +28,11 @@ public sealed partial class Star : UserControl
 	[Callback]
 	private static void StrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (d is not Path { Parent: Viewbox { ActualWidth: var aw }, ActualWidth: var paw } pathControl)
+		if (d is not Path { Parent: Viewbox { ActualWidth: var aw } } pathControl)
 		{
 			return;
 		}
 
-		pathControl.StrokeThickness = (double)e.NewValue * aw / paw;
+		pathControl.StrokeThickness = (double)e.NewValue * 250 / aw;
 	}
 }

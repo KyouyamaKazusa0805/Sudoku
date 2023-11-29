@@ -215,22 +215,8 @@ internal static class RenderableFactory
 
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
-#pragma warning disable format
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
-			case (
-				false,
-				{
-					RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly,
-					Identifier: WellKnownColorIdentifier
-					{
-						Kind: not (
-							WellKnownColorIdentifierKind.Normal
-							or >= WellKnownColorIdentifierKind.Auxiliary1 and <= WellKnownColorIdentifierKind.Auxiliary3
-						)
-					}
-				}
-			):
-#pragma warning restore format
+			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= WellKnownColorIdentifierKind.Normal and <= WellKnownColorIdentifierKind.Auxiliary3) } }):
 			{
 				var control = new Border
 				{
@@ -286,14 +272,21 @@ internal static class RenderableFactory
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				Control create<T>() where T : Control, new()
-					=> new T
+				{
+					var result = new T
 					{
 						BorderThickness = new(0),
 						Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-						Opacity = 0,
-						Margin = new(6)
+						Opacity = 0
 					};
+					if (typeof(T) != typeof(Star) && typeof(T) != typeof(Triangle))
+					{
+						result.Margin = new(6);
+					}
+
+					return result;
+				}
 			}
 		}
 	}
