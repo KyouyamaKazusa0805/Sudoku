@@ -1260,16 +1260,16 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check whether lines of value cells don't contain the digits appeared in base cells, of value representation.
-		var intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = false;
+		var intersectedLinesContainAnyValueCellDigitsAppearedInBaseCells = false;
 		foreach (var cell in intersectedLinesForSuchLastCells)
 		{
 			if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 			{
-				intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells = true;
+				intersectedLinesContainAnyValueCellDigitsAppearedInBaseCells = true;
 				break;
 			}
 		}
-		if (intersectedLinesContainAnyValueCellDigitsApperaedInBaseCells)
+		if (intersectedLinesContainAnyValueCellDigitsAppearedInBaseCells)
 		{
 			return null;
 		}
@@ -2647,12 +2647,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-					[] when mirrorCellsThisTarget is [var a, var b]
-						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 					[var a] when mirrorCellsThisTarget - a is [var b]
-						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-					[var a, var b]
-						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+							=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+							[var a, var b]
+							=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
 				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 				{
@@ -3177,12 +3177,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 			{
-				[] when mirrorCellsThisTarget is [var a, var b]
-					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+			[] when mirrorCellsThisTarget is [var a, var b]
+				=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 				[var a] when mirrorCellsThisTarget - a is [var b]
-					=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-				[var a, var b]
-					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+						[var a, var b]
+						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
 			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 			{
@@ -3629,12 +3629,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-					[] when mirrorCellsThisTarget is [var a, var b]
-						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 					[var a] when mirrorCellsThisTarget - a is [var b]
-						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-					[var a, var b]
-						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+							=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+							[var a, var b]
+							=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
 				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 				{
