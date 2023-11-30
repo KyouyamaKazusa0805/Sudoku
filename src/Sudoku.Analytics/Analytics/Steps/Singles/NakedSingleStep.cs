@@ -22,7 +22,7 @@ public sealed partial class NakedSingleStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] House[] excluderHouses
+	[Data] House[] excluderHouses
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
@@ -36,7 +36,7 @@ public sealed partial class NakedSingleStep(
 
 	/// <inheritdoc/>
 	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> [new(LocatingDifficultyFactorNames.NakedSingleExcluder, _excluderHouses.Sum(ExcluderValue))];
+		=> [new(LocatingDifficultyFactorNames.NakedSingleExcluder, ExcluderHouses.Sum(ExcluderValue))];
 
 
 	private int ExcluderValue(House house) => 100 * house.ToHouseType() switch { HouseType.Block => 3, HouseType.Row => 1, HouseType.Column => 2 };

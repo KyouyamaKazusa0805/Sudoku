@@ -22,6 +22,37 @@ public static class ArrayEnumerable
 	}
 
 	/// <summary>
+	/// Filters the array, removing elements not of type <typeparamref name="TResult"/>.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the target elements.</typeparam>
+	/// <param name="this">The array to be filtered.</param>
+	/// <returns>A list of <typeparamref name="TResult"/> elements.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TResult[] OfType<TResult>(this object[] @this) => (from element in @this where element is TResult select (TResult)element);
+
+	/// <summary>
+	/// Filters the array of <typeparamref name="T"/> instances, removing instances that are not of type <typeparamref name="TResult"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
+	/// <param name="this">The array to be filtered.</param>
+	/// <returns>The filtered result.</returns>
+	public static TResult[] OfType<T, TResult>(this T[] @this) where TResult : T
+	{
+		var result = new TResult[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			if (element is TResult p)
+			{
+				result[i++] = p;
+			}
+		}
+
+		return result[..i];
+	}
+
+	/// <summary>
 	/// Totals up the number of elements that satisfy the specified condition.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>

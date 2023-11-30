@@ -30,8 +30,8 @@ public sealed partial class HiddenSingleStep(
 	Digit digit,
 	[Data] House house,
 	[Data] bool enableAndIsLastDigit,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int[] eliminatedCellsCount,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] House[] eliminatedHouses
+	[Data] int[] eliminatedCellsCount,
+	[Data] House[] eliminatedHouses
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
@@ -80,7 +80,7 @@ public sealed partial class HiddenSingleStep(
 				new(LocatingDifficultyFactorNames.HousePosition, 3 * HotSpot.GetHotSpot(House)),
 				new(
 					LocatingDifficultyFactorNames.HiddenSingleExcluder,
-					_eliminatedCellsCount.Zip(_eliminatedHouses).Sum(ExcluderValueSelector)
+					EliminatedCellsCount.Zip(EliminatedHouses).Sum(ExcluderValueSelector)
 				)
 			]
 		};

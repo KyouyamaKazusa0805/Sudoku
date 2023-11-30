@@ -16,13 +16,22 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">The house to be displayed.</param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
+/// <param name="emptyCellsCountFromAllPeerHouses">
+/// Indicates the number of empty cells from all 27 houses. This will define the difficulty for the locating.
+/// </param>
+/// <param name="distanceSumForAllDigitsInHouse">
+/// Indicates the distance sum value of all pairs of adjacent digits.
+/// For example, distance between 1 and 2, plus distance between 2 and 3, 3 and 4, etc.
+/// </param>
 public sealed partial class FullHouseStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[Data] House house,
 	Cell cell,
-	Digit digit
+	Digit digit,
+	[Data] int emptyCellsCountFromAllPeerHouses,
+	[Data] double distanceSumForAllDigitsInHouse
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>

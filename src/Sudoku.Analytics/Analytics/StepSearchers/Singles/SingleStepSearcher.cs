@@ -1,6 +1,7 @@
 using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
+using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -94,13 +95,55 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
+				var emptyCellsCountFromAllPeerHouses = 0;
+				foreach (var houseType in HouseTypes)
+				{
+					var peerHouse = resultCell.ToHouseIndex(houseType);
+					foreach (var cell in HouseCells[peerHouse])
+					{
+						if (grid.GetState(cell) == CellState.Empty)
+						{
+							emptyCellsCountFromAllPeerHouses++;
+						}
+					}
+				}
+
+				var distanceSum = 0D;
+				for (var tempDigit = 0; tempDigit < 8; tempDigit++)
+				{
+					var tempDigitPlusOne = tempDigit + 1;
+					var cellIsTempDigit = -1;
+					var cellIsTempDigitPlusOne = -1;
+					foreach (var cell in HouseCells[house])
+					{
+						if (grid.GetDigit(cell) == tempDigit || cell == resultCell && digit == tempDigit)
+						{
+							cellIsTempDigit = cell;
+							break;
+						}
+					}
+
+					foreach (var cell in HouseCells[house])
+					{
+						if (grid.GetDigit(cell) == tempDigitPlusOne || cell == resultCell && digit == tempDigitPlusOne)
+						{
+							cellIsTempDigitPlusOne = cell;
+							break;
+						}
+					}
+
+					distanceSum += Distance.GetDistance(cellIsTempDigit, cellIsTempDigitPlusOne);
+				}
+
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
 					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 					context.PredefinedOptions,
 					house,
 					resultCell,
-					digit
+					digit,
+					emptyCellsCountFromAllPeerHouses,
+					distanceSum
 				);
 
 				if (context.OnlyFindOne)
@@ -225,13 +268,56 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
+
+			var emptyCellsCountFromAllPeerHouses = 0;
+			foreach (var houseType in HouseTypes)
+			{
+				var peerHouse = resultCell.ToHouseIndex(houseType);
+				foreach (var cell in HouseCells[peerHouse])
+				{
+					if (grid.GetState(cell) == CellState.Empty)
+					{
+						emptyCellsCountFromAllPeerHouses++;
+					}
+				}
+			}
+
+			var distanceSum = 0D;
+			for (var tempDigit = 0; tempDigit < 8; tempDigit++)
+			{
+				var tempDigitPlusOne = tempDigit + 1;
+				var cellIsTempDigit = -1;
+				var cellIsTempDigitPlusOne = -1;
+				foreach (var cell in HouseCells[house])
+				{
+					if (grid.GetDigit(cell) == tempDigit || cell == resultCell && digit == tempDigit)
+					{
+						cellIsTempDigit = cell;
+						break;
+					}
+				}
+
+				foreach (var cell in HouseCells[house])
+				{
+					if (grid.GetDigit(cell) == tempDigitPlusOne || cell == resultCell && digit == tempDigitPlusOne)
+					{
+						cellIsTempDigitPlusOne = cell;
+						break;
+					}
+				}
+
+				distanceSum += Distance.GetDistance(cellIsTempDigit, cellIsTempDigitPlusOne);
+			}
+
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
 				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				context.PredefinedOptions,
 				house,
 				resultCell,
-				digit
+				digit,
+				emptyCellsCountFromAllPeerHouses,
+				distanceSum
 			);
 			if (context.OnlyFindOne)
 			{

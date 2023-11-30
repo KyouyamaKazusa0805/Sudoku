@@ -2390,6 +2390,23 @@ fixed (short* ptr = instance)
         <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
             <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.OfType``1(System.Object[])">
+            <summary>
+            Filters the array, removing elements not of type <typeparamref name="TResult"/>.
+            </summary>
+            <typeparam name="TResult">The type of the target elements.</typeparam>
+            <param name="this">The array to be filtered.</param>
+            <returns>A list of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.OfType``2(``0[])">
+            <summary>
+            Filters the array of <typeparamref name="T"/> instances, removing instances that are not of type <typeparamref name="TResult"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="this">The array to be filtered.</param>
+            <returns>The filtered result.</returns>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
             <summary>
             Totals up the number of elements that satisfy the specified condition.

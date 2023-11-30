@@ -16687,8 +16687,15 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="emptyCellsCountFromAllPeerHouses">
+            Indicates the number of empty cells from all 27 houses. This will define the difficulty for the locating.
+            </param>
+            <param name="distanceSumForAllDigitsInHouse">
+            Indicates the distance sum value of all pairs of adjacent digits.
+            For example, distance between 1 and 2, plus distance between 2 and 3, 3 and 4, etc.
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -16698,6 +16705,13 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="emptyCellsCountFromAllPeerHouses">
+            Indicates the number of empty cells from all 27 houses. This will define the difficulty for the locating.
+            </param>
+            <param name="distanceSumForAllDigitsInHouse">
+            Indicates the distance sum value of all pairs of adjacent digits.
+            For example, distance between 1 and 2, plus distance between 2 and 3, 3 and 4, etc.
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -16714,6 +16728,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.EmptyCellsCountFromAllPeerHouses">
+            <summary>
+            The generated property declaration for parameter <c>emptyCellsCountFromAllPeerHouses</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.DistanceSumForAllDigitsInHouse">
+            <summary>
+            The generated property declaration for parameter <c>distanceSumForAllDigitsInHouse</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
@@ -16766,16 +16790,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.LocatingDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.HiddenSingleStep._eliminatedCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>eliminatedCellsCount</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.HiddenSingleStep._eliminatedHouses">
-            <summary>
-            The generated field declaration for parameter <c>eliminatedHouses</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
@@ -16784,6 +16798,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>
             The generated property declaration for parameter <c>enableAndIsLastDigit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>eliminatedCellsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedHouses">
+            <summary>
+            The generated property declaration for parameter <c>eliminatedHouses</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
@@ -16820,9 +16844,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.LocatingDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.NakedSingleStep._excluderHouses">
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.ExcluderHouses">
             <summary>
-            The generated field declaration for parameter <c>excluderHouses</c>.
+            The generated property declaration for parameter <c>excluderHouses</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
