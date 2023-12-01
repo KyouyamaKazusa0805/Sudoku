@@ -33,7 +33,7 @@ public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	Technique code,
+	[Data(Accessibility = "public sealed override")] Technique code,
 	[Data] Digit digit1,
 	[Data] Digit digit2,
 	[Data] scoped ref readonly CellMap cells,
@@ -43,9 +43,6 @@ public abstract partial class UniqueRectangleStep(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
-
-	/// <inheritdoc/>
-	public sealed override Technique Code => code;
 
 	private protected string D1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
@@ -57,16 +54,10 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static bool IEquatableStep<UniqueRectangleStep>.operator ==(UniqueRectangleStep left, UniqueRectangleStep right)
-	{
-		if ((left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) != (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2))
-		{
-			return false;
-		}
-
-		var l = (CandidateMap)([.. from conclusion in left.Conclusions select conclusion.Candidate]);
-		var r = (CandidateMap)([.. from conclusion in right.Conclusions select conclusion.Candidate]);
-		return l == r;
-	}
+		=> (left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) == (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2)
+		&& (CandidateMap)([.. from conclusion in left.Conclusions select conclusion.Candidate]) is var l
+		&& (CandidateMap)([.. from conclusion in right.Conclusions select conclusion.Candidate]) is var r
+		&& l == r;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

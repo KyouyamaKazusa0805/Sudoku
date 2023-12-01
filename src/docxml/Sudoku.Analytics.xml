@@ -7445,7 +7445,7 @@ if (student is (name: var name, age: >= 18))
             <item>Unique Rectangle + XY-Wing, XYZ-Wing and WXYZ-Wing</item>
             <item>Unique Rectangle + W-Wing</item>
             <item>
-            Unique Rectangle + Guardian (This program call it "Unique Rectangle External Types"):
+            Unique/Avoidable Rectangle + Guardian (This program call it "External Types"):
             <list type="bullet">
             <item>Unique Rectangle External Type 1-4</item>
             <item>Unique Rectangle External XY-Wing</item>
@@ -7454,7 +7454,6 @@ if (student is (name: var name, age: >= 18))
             <item>Unique Rectangle External Turbot Fish</item>
             </list>
             </item>
-            <item>Avoidable Rectangle + Guardian (Sub-types are same like above)</item>
             </list>
             </item>
             <item>
@@ -13165,14 +13164,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#Compare(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
+            <summary>
+            The generated property declaration for parameter <c>code</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Digit1">
             <summary>
