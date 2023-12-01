@@ -22,7 +22,7 @@ namespace Sudoku.Analytics.Steps;
 /// </param>
 /// <param name="eliminatedCellsCount">The total eliminated cells.</param>
 /// <param name="eliminatedHouses">The total eliminated houses.</param>
-public sealed partial class HiddenSingleStep(
+public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -41,9 +41,6 @@ public sealed partial class HiddenSingleStep(
 	/// <inheritdoc/>
 	public override decimal BaseLocatingDifficulty
 		=> Code switch { Technique.LastDigit => 200, Technique.HiddenSingleBlock or Technique.CrosshatchingBlock => 250, _ => 300 };
-
-	/// <inheritdoc/>
-	public override TechniqueFormat Format => $"{(EnableAndIsLastDigit ? "LastDigit" : "HiddenSingle")}";
 
 	/// <inheritdoc/>
 	public override Technique Code

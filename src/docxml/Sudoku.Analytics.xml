@@ -16778,9 +16778,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Format">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Code">
             <inheritdoc/>
         </member>
@@ -16809,6 +16806,32 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>eliminatedHouses</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
+            <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedHouses">The total eliminated houses.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
+            <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedHouses">The total eliminated houses.</param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>

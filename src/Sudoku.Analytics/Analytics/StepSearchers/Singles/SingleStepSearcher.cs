@@ -527,7 +527,23 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		return (enableAndIsLastDigit, house) switch
 		{
 			(true, >= 9) => null,
-			_ => new(
+			(true, _) => new LastDigitStep(
+				[new(Assignment, resultCell, digit)],
+				[
+					[
+						.. enableAndIsLastDigit ? cellOffsets : [],
+						.. enableAndIsLastDigit ? [] : cellOffsets2,
+						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+					]
+				],
+				context.PredefinedOptions,
+				resultCell,
+				digit,
+				house,
+				eliminatedCellsCount,
+				eliminatedHouses
+			),
+			_ => new HiddenSingleStep(
 				[new(Assignment, resultCell, digit)],
 				[
 					[
