@@ -9165,34 +9165,91 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
-            Provides with an <b>Aligned Exclusion</b> step searcher.
+            Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Aligned Pair Exclusion</item>
-            <item>Aligned Triple Exclusion</item>
-            <item>Aligned Quadruple Exclusion</item>
-            <item>Aligned Quintuple Exclusion</item>
+            <item>Domino Loop</item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize">
+        <member name="F:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.SkLoopTable">
             <summary>
-            Indicates the maximum searching size. This value must be 3, 4 or 5. The default value is 3.
+            The position table of all SK-loops.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelevantCombinationValues(System.Collections.Generic.List{System.ValueTuple{System.Int32[],System.Int32}},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
+        <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher">
             <summary>
-            Get all possible relevant combination digits.
+            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Multi-sector Locked Sets</item>
+            </list>
             </summary>
-            <param name="lockedCombinations">The all locked combinations.</param>
-            <param name="conclusions">All conclusions.</param>
-            <param name="cells">The cells used.</param>
-            <returns>A mask of digits for relevant ones.</returns>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Patterns">
+            <summary>
+            Indicates the list initialized with the static constructor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
+            <summary>
+            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>3-dimensional Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher">
+            <summary>
+            Provides with a <b>Sue de Coq</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Sue de Coq</item>
+            <item>Sue de Coq with Isolated Digit</item>
+            <item>Cannibalistic Sue de Coq</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher">
             <summary>
@@ -9395,91 +9452,34 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepSearchers.GuardianStepSearcher.Pattern.Digit">
             <summary>Indicates the digit used.</summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher">
             <summary>
-            Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
+            Provides with an <b>Aligned Exclusion</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Domino Loop</item>
+            <item>Aligned Pair Exclusion</item>
+            <item>Aligned Triple Exclusion</item>
+            <item>Aligned Quadruple Exclusion</item>
+            <item>Aligned Quintuple Exclusion</item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.SkLoopTable">
+        <member name="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize">
             <summary>
-            The position table of all SK-loops.
+            Indicates the maximum searching size. This value must be 3, 4 or 5. The default value is 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher">
+        <member name="M:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.GetRelevantCombinationValues(System.Collections.Generic.List{System.ValueTuple{System.Int32[],System.Int32}},System.Collections.Generic.List{Sudoku.Analytics.Conclusion},System.Int32[])">
             <summary>
-            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Multi-sector Locked Sets</item>
-            </list>
+            Get all possible relevant combination digits.
             </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Patterns">
-            <summary>
-            Indicates the list initialized with the static constructor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher">
-            <summary>
-            Provides with a <b>3-dimensional Sue de Coq</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>3-dimensional Sue de Coq</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoq3DimensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher">
-            <summary>
-            Provides with a <b>Sue de Coq</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Sue de Coq</item>
-            <item>Sue de Coq with Isolated Digit</item>
-            <item>Cannibalistic Sue de Coq</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
+            <param name="lockedCombinations">The all locked combinations.</param>
+            <param name="conclusions">All conclusions.</param>
+            <param name="cells">The cells used.</param>
+            <returns>A mask of digits for relevant ones.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleStepSearcher">
             <summary>
@@ -15893,68 +15893,257 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>isTemplateDeletion</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.AlignedExclusionStep">
+        <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
             <summary>
-            Provides with a step that is an <b>Aligned Exclusion</b> technique.
+            Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the target cells used in the pattern.</param>
-            <param name="lockedCombinations">Indicates all locked combinations.</param>
+            <param name="cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
             <summary>
-            Provides with a step that is an <b>Aligned Exclusion</b> technique.
+            Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the target cells used in the pattern.</param>
-            <param name="lockedCombinations">Indicates all locked combinations.</param>
+            <param name="cells">Indicates the cells used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Size">
-            <summary>
-            Indicates the size of the permutation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#AlignedExclusionStep}#op_Equality(Sudoku.Analytics.Steps.AlignedExclusionStep,Sudoku.Analytics.Steps.AlignedExclusionStep)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.LockedCombinations">
+        <member name="T:Sudoku.Analytics.Steps.LockedSetStep">
             <summary>
-            The generated property declaration for parameter <c>lockedCombinations</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.PermutationStep">
-            <summary>
-            Provides with a step that is a <b>Permutation</b> technique.
+            Provides with a step that is a <b>Locked Sets</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PermutationStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.LockedSetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
-            Provides with a step that is a <b>Permutation</b> technique.
+            Provides with a step that is a <b>Locked Sets</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used in this pattern.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
+            <summary>
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
+            <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
+            <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
+            <param name="rowCells">Indicates the cells used in this pattern in a row.</param>
+            <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
+            <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
+            <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
+            <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
+            <param name="rowCells">Indicates the cells used in this pattern in a row.</param>
+            <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
+            <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>rowDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>columnDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>blockDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowCells">
+            <summary>
+            The generated property declaration for parameter <c>rowCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnCells">
+            <summary>
+            The generated property declaration for parameter <c>columnCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockCells">
+            <summary>
+            The generated property declaration for parameter <c>blockCells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SueDeCoqStep">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="block">Indicates the block index that the current pattern used.</param>
+            <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
+            <param name="blockMask">Indicates the block mask.</param>
+            <param name="lineMask">Indicates the line mask.</param>
+            <param name="intersectionMask">Indicates the intersection mask.</param>
+            <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="isolatedDigitsMask">The isolated digits mask.</param>
+            <param name="blockCells">Indicates the cells that the current pattern used in a block.</param>
+            <param name="lineCells">Indicates the cells that the current pattern used in a line (row or column).</param>
+            <param name="intersectionCells">
+            Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="block">Indicates the block index that the current pattern used.</param>
+            <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
+            <param name="blockMask">Indicates the block mask.</param>
+            <param name="lineMask">Indicates the line mask.</param>
+            <param name="intersectionMask">Indicates the intersection mask.</param>
+            <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
+            <param name="isolatedDigitsMask">The isolated digits mask.</param>
+            <param name="blockCells">Indicates the cells that the current pattern used in a block.</param>
+            <param name="lineCells">Indicates the cells that the current pattern used in a line (row or column).</param>
+            <param name="intersectionCells">
+            Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Block">
+            <summary>
+            The generated property declaration for parameter <c>block</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Line">
+            <summary>
+            The generated property declaration for parameter <c>line</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockMask">
+            <summary>
+            The generated property declaration for parameter <c>blockMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineMask">
+            <summary>
+            The generated property declaration for parameter <c>lineMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionMask">
+            <summary>
+            The generated property declaration for parameter <c>intersectionMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsCannibalistic">
+            <summary>
+            The generated property declaration for parameter <c>isCannibalistic</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsolatedDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>isolatedDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells">
+            <summary>
+            The generated property declaration for parameter <c>blockCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells">
+            <summary>
+            The generated property declaration for parameter <c>lineCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionCells">
+            <summary>
+            The generated property declaration for parameter <c>intersectionCells</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueOddagonStep">
             <summary>
@@ -16294,269 +16483,64 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.RankTheoryStep">
+        <member name="T:Sudoku.Analytics.Steps.AlignedExclusionStep">
             <summary>
-            Provides with a step that is a <b>Rank Theory</b> technique.
+            Provides with a step that is an <b>Aligned Exclusion</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RankTheoryStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
             <summary>
-            Provides with a step that is a <b>Rank Theory</b> technique.
+            Provides with a step that is an <b>Aligned Exclusion</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
-            <summary>
-            Provides with a step that is a <b>Domino Loop</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Domino Loop</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Size">
+            <summary>
+            Indicates the size of the permutation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Cells">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#AlignedExclusionStep}#op_Equality(Sudoku.Analytics.Steps.AlignedExclusionStep,Sudoku.Analytics.Steps.AlignedExclusionStep)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep">
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.LockedCombinations">
             <summary>
-            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used in this pattern.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used in this pattern.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
+            The generated property declaration for parameter <c>lockedCombinations</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
+        <member name="T:Sudoku.Analytics.Steps.PermutationStep">
             <summary>
-            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
-            <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
-            <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
-            <param name="rowCells">Indicates the cells used in this pattern in a row.</param>
-            <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
-            <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="rowDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a row.</param>
-            <param name="columnDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a column.</param>
-            <param name="blockDigitsMask">Indicates the digits mask that describes which digits are used in this pattern in a block.</param>
-            <param name="rowCells">Indicates the cells used in this pattern in a row.</param>
-            <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
-            <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>rowDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>columnDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>blockDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.RowCells">
-            <summary>
-            The generated property declaration for parameter <c>rowCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.ColumnCells">
-            <summary>
-            The generated property declaration for parameter <c>columnCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BlockCells">
-            <summary>
-            The generated property declaration for parameter <c>blockCells</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.SueDeCoqStep">
-            <summary>
-            Provides with a step that is a <b>Sue de Coq</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="block">Indicates the block index that the current pattern used.</param>
-            <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
-            <param name="blockMask">Indicates the block mask.</param>
-            <param name="lineMask">Indicates the line mask.</param>
-            <param name="intersectionMask">Indicates the intersection mask.</param>
-            <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="isolatedDigitsMask">The isolated digits mask.</param>
-            <param name="blockCells">Indicates the cells that the current pattern used in a block.</param>
-            <param name="lineCells">Indicates the cells that the current pattern used in a line (row or column).</param>
-            <param name="intersectionCells">
-            Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Sue de Coq</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="block">Indicates the block index that the current pattern used.</param>
-            <param name="line">Indicates the line (row or column) index that the current pattern used.</param>
-            <param name="blockMask">Indicates the block mask.</param>
-            <param name="lineMask">Indicates the line mask.</param>
-            <param name="intersectionMask">Indicates the intersection mask.</param>
-            <param name="isCannibalistic">Indicates whether the SdC is cannibalistic.</param>
-            <param name="isolatedDigitsMask">The isolated digits mask.</param>
-            <param name="blockCells">Indicates the cells that the current pattern used in a block.</param>
-            <param name="lineCells">Indicates the cells that the current pattern used in a line (row or column).</param>
-            <param name="intersectionCells">
-            Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
-            </param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Block">
-            <summary>
-            The generated property declaration for parameter <c>block</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Line">
-            <summary>
-            The generated property declaration for parameter <c>line</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockMask">
-            <summary>
-            The generated property declaration for parameter <c>blockMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineMask">
-            <summary>
-            The generated property declaration for parameter <c>lineMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionMask">
-            <summary>
-            The generated property declaration for parameter <c>intersectionMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsCannibalistic">
-            <summary>
-            The generated property declaration for parameter <c>isCannibalistic</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IsolatedDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>isolatedDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells">
-            <summary>
-            The generated property declaration for parameter <c>blockCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells">
-            <summary>
-            The generated property declaration for parameter <c>lineCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.IntersectionCells">
-            <summary>
-            The generated property declaration for parameter <c>intersectionCells</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ZeroRankStep">
-            <summary>
-            Provides with a step that is a <b>Zero Rank</b> technique.
+            Provides with a step that is a <b>Permutation</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ZeroRankStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.PermutationStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
-            Provides with a step that is a <b>Zero Rank</b> technique.
+            Provides with a step that is a <b>Permutation</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>

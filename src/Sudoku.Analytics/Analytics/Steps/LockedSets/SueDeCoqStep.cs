@@ -41,7 +41,7 @@ public sealed partial class SueDeCoqStep(
 	[Data] scoped ref readonly CellMap blockCells,
 	[Data] scoped ref readonly CellMap lineCells,
 	[Data] scoped ref readonly CellMap intersectionCells
-) : ZeroRankStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.0M;

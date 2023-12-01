@@ -19,7 +19,7 @@ public sealed partial class DominoLoopStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[Data] scoped ref readonly CellMap cells
-) : ZeroRankStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.6M;

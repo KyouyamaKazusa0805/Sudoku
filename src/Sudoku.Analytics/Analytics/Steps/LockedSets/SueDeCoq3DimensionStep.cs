@@ -29,7 +29,7 @@ public sealed partial class SueDeCoq3DimensionStep(
 	[Data] scoped ref readonly CellMap rowCells,
 	[Data] scoped ref readonly CellMap columnCells,
 	[Data] scoped ref readonly CellMap blockCells
-) : ZeroRankStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;
