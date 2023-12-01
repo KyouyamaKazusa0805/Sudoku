@@ -43,6 +43,26 @@ namespace SudokuStudio.Rendering;
 internal static class RenderableFactory
 {
 	/// <summary>
+	/// Represents a dictionary that displays the relations between <see cref="WellKnownColorIdentifier"/> and <see cref="Control"/> instances.
+	/// </summary>
+	/// <seealso cref="WellKnownColorIdentifier"/>
+	/// <seealso cref="Control"/>
+	private static readonly IReadOnlyDictionary<ColorIdentifier, Type> ShapeKindsDictionary = new Dictionary<ColorIdentifier, Type>
+	{
+		{ WellKnownColorIdentifier.Normal, typeof(CircleRing) },
+		{ WellKnownColorIdentifier.Auxiliary1, typeof(Cross) },
+		{ WellKnownColorIdentifier.Auxiliary2, typeof(Triangle) },
+		{ WellKnownColorIdentifier.Auxiliary3, typeof(Diamond) },
+		{ WellKnownColorIdentifier.Assignment, typeof(CircleRing) },
+		{ WellKnownColorIdentifier.OverlappedAssignment, typeof(CircleRing) },
+		{ WellKnownColorIdentifier.Elimination, typeof(Cross) },
+		{ WellKnownColorIdentifier.Cannibalism, typeof(Cross) },
+		{ WellKnownColorIdentifier.Exofin, typeof(Triangle) },
+		{ WellKnownColorIdentifier.Endofin, typeof(Diamond) }
+	};
+
+
+	/// <summary>
 	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="sudokuPane">The target pane.</param>
@@ -248,13 +268,7 @@ internal static class RenderableFactory
 			}
 			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				var control = cellNode.Identifier == WellKnownColorIdentifier.Normal
-					? create<CircleRing>()
-					: cellNode.Identifier == WellKnownColorIdentifier.Auxiliary1
-						? create<Cross>()
-						: cellNode.Identifier == WellKnownColorIdentifier.Auxiliary2
-							? create<Triangle>()
-							: create<Star>();
+				var control = create(ShapeKindsDictionary[cellNode.Identifier]);
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
@@ -271,16 +285,15 @@ internal static class RenderableFactory
 
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				Control create<T>() where T : Control, new()
+				Control create(Type type)
 				{
-					var result = new T
-					{
-						BorderThickness = new(0),
-						Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
-						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-						Opacity = 0
-					};
-					if (typeof(T) != typeof(Star) && typeof(T) != typeof(Triangle) && typeof(T) != typeof(Diamond))
+					var result = (Control)Activator.CreateInstance(type)!;
+					result.BorderThickness = new(0);
+					result.Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}";
+					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
+					result.Opacity = 0;
+
+					if (type != typeof(Star) && type != typeof(Triangle) && type != typeof(Diamond))
 					{
 						result.Margin = new(6);
 					}

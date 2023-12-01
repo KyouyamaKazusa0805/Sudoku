@@ -4271,6 +4271,13 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
+        <member name="F:SudokuStudio.Rendering.RenderableFactory.ShapeKindsDictionary">
+            <summary>
+            Represents a dictionary that displays the relations between <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> and <see cref="T:Microsoft.UI.Xaml.Controls.Control"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.Control"/>
+        </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
             Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
