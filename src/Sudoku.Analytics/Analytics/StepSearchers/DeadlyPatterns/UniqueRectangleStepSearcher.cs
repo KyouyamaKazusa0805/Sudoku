@@ -1,3 +1,5 @@
+#undef UNIQUE_RECTANGLE_W_WING
+
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Categorization;
@@ -311,7 +313,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							if (SearchForExtendedUniqueRectangles)
 							{
 								CheckRegularWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
-								//CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+#if UNIQUE_RECTANGLE_W_WING
+								CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+#endif
 							}
 
 							switch (c1, c2)
@@ -2897,6 +2901,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 	}
 
+#if UNIQUE_RECTANGLE_W_WING
 	/// <summary>
 	/// Check UR-W-Wing and AR-W-Wing.
 	/// </summary>
@@ -3060,6 +3065,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 		}
 	}
+#endif
 
 	/// <summary>
 	/// Check UR + SdC.

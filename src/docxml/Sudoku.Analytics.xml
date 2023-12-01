@@ -8010,48 +8010,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckWWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check UR-W-Wing and AR-W-Wing.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            <para>The structures:</para>
-            <para>
-            Subtype 1:
-            <code><![CDATA[
-                    ↓ corner1
-            xz   abx  (ab )
-                (ab )  aby   yz
-                  ↑ corner2
-            ]]></code>
-            </para>
-            <para>
-            Subtype 2:
-            <code><![CDATA[
-                  ↓ corner1
-            xz  (ab )  abx
-                 abx  (ab )  xz
-                        ↑ corner2
-            ]]></code>
-            </para>
-            <para>Please note that corner cells may be aligned as a same row or column.</para>
-            <para>
-            <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
-            </para>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckSueDeCoq(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + SdC.
@@ -13648,61 +13606,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDigitsMask">
             <summary>
             The generated property declaration for parameter <c>extraDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="code"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="isAvoidable"><inheritdoc/></param>
-            <param name="wDigit">Indicates the digit W.</param>
-            <param name="connectors">Indicates the connectors.</param>
-            <param name="endCells">Indicates the end cells.</param>
-            <param name="absoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="code"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="isAvoidable"><inheritdoc/></param>
-            <param name="wDigit">Indicates the digit W.</param>
-            <param name="connectors">Indicates the connectors.</param>
-            <param name="endCells">Indicates the end cells.</param>
-            <param name="absoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.WDigit">
-            <summary>
-            The generated property declaration for parameter <c>wDigit</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.Connectors">
-            <summary>
-            The generated property declaration for parameter <c>connectors</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWWingStep.EndCells">
-            <summary>
-            The generated property declaration for parameter <c>endCells</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep">
