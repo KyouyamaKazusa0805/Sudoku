@@ -47,18 +47,18 @@ internal static class RenderableFactory
 	/// </summary>
 	/// <seealso cref="WellKnownColorIdentifier"/>
 	/// <seealso cref="Control"/>
-	private static readonly IReadOnlyDictionary<ColorIdentifier, Type> ShapeKindsDictionary = new Dictionary<ColorIdentifier, Type>
+	private static readonly IReadOnlyDictionary<ColorIdentifier, Func<Control>> ShapeKindsDictionary = new Dictionary<ColorIdentifier, Func<Control>>
 	{
-		{ WellKnownColorIdentifier.Normal, typeof(CircleRing) },
-		{ WellKnownColorIdentifier.Auxiliary1, typeof(Cross) },
-		{ WellKnownColorIdentifier.Auxiliary2, typeof(Triangle) },
-		{ WellKnownColorIdentifier.Auxiliary3, typeof(Diamond) },
-		{ WellKnownColorIdentifier.Assignment, typeof(CircleRing) },
-		{ WellKnownColorIdentifier.OverlappedAssignment, typeof(CircleRing) },
-		{ WellKnownColorIdentifier.Elimination, typeof(Cross) },
-		{ WellKnownColorIdentifier.Cannibalism, typeof(Cross) },
-		{ WellKnownColorIdentifier.Exofin, typeof(Triangle) },
-		{ WellKnownColorIdentifier.Endofin, typeof(Diamond) }
+		{ WellKnownColorIdentifier.Normal, static () => new CircleRing() },
+		{ WellKnownColorIdentifier.Auxiliary1, static () => new Cross() },
+		{ WellKnownColorIdentifier.Auxiliary2, static () => new Triangle() },
+		{ WellKnownColorIdentifier.Auxiliary3, static () => new Diamond() },
+		{ WellKnownColorIdentifier.Assignment, static () => new CircleRing() },
+		{ WellKnownColorIdentifier.OverlappedAssignment, static () => new CircleRing() },
+		{ WellKnownColorIdentifier.Elimination, static () => new Cross() },
+		{ WellKnownColorIdentifier.Cannibalism, static () => new Cross() },
+		{ WellKnownColorIdentifier.Exofin, static () => new Triangle() },
+		{ WellKnownColorIdentifier.Endofin, static () => new Diamond() }
 	};
 
 
@@ -285,15 +285,15 @@ internal static class RenderableFactory
 
 
 				[MethodImpl(MethodImplOptions.AggressiveInlining)]
-				Control create(Type type)
+				Control create(Func<Control> instanceCreator)
 				{
-					var result = (Control)Activator.CreateInstance(type)!;
+					var result = instanceCreator();
 					result.BorderThickness = new(0);
 					result.Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
 
-					if (type != typeof(Star) && type != typeof(Triangle) && type != typeof(Diamond))
+					if (result is not (Star or Triangle or Diamond))
 					{
 						result.Margin = new(6);
 					}
