@@ -13,7 +13,7 @@ namespace System;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) where TRest : struct
+public ref partial struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) where TRest : struct
 {
 	/// <summary>
 	/// Indicates the internal values to be iterated.
