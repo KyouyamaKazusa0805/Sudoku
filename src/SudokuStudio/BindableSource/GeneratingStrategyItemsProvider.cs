@@ -239,7 +239,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			_ => throw new InvalidOperationException("The status is invalid.")
 		};
 
-		var expectedDifficultyLevel = uiPref.SelectedTechnique.GetDifficultyLevel();
+		var expectedDifficultyLevel = uiPref.SelectedTechnique != Technique.None ? uiPref.SelectedTechnique.GetDifficultyLevel() : DifficultyLevel.Unknown;
 		var condition = uiPref.GeneratorDifficultyLevel is var gdl && gdl < expectedDifficultyLevel && gdl != DifficultyLevel.Unknown;
 		t.Text = condition
 			? string.Format(
