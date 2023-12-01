@@ -9103,6 +9103,42 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the forward line is shown.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Controls.Shapes.Diamond">
+            <summary>
+            Represents a diamond shape.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Diamond.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.Diamond"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Diamond.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Diamond.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.Shapes.Diamond.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Diamond.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Diamond.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Diamond.StrokeThickness"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.Shapes.Diamond.StrokeThickness">
+            <summary>
+            Indicates the stroke thickness for the star.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.Star">
             <summary>
             Represents a star mark.

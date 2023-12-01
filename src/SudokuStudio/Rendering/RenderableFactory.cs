@@ -280,7 +280,7 @@ internal static class RenderableFactory
 						Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 						Opacity = 0
 					};
-					if (typeof(T) != typeof(Star) && typeof(T) != typeof(Triangle))
+					if (typeof(T) != typeof(Star) && typeof(T) != typeof(Triangle) && typeof(T) != typeof(Diamond))
 					{
 						result.Margin = new(6);
 					}
