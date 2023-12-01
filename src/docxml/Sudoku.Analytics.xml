@@ -13122,10 +13122,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#Compare(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#Compare(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
