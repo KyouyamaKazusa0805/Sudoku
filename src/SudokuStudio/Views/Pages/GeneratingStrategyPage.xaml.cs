@@ -140,7 +140,8 @@ public sealed partial class GeneratingStrategyPage : Page
 				continue;
 			}
 
-			router(content);
+			router(content, RunningStrategy.WarningInfoDisplayer);
+
 			presenter.Opacity = 0;
 		}
 

@@ -759,6 +759,9 @@
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>难度级别：</value>
   </data>
+  <data name="GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan" xml:space="preserve">
+    <value>该技巧设定的难度级别至少为"{0}"。</value>
+  </data>
   <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
     <value>修改</value>
   </data>

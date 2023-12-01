@@ -2194,6 +2194,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Difficulty level greater than {0} expected..
+        /// </summary>
+        internal static string GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string GeneratingStrategyPage_Edit {

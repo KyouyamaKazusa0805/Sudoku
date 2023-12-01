@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace SudokuStudio.Interaction;
 
@@ -14,5 +15,5 @@ public sealed partial class RunningStrategyUpdater(
 	[Data(SetterExpression = "set")] string titleKey,
 	[Data(SetterExpression = "set")] Func<FrameworkElement> updaterControlCreator,
 	[Data(SetterExpression = "set")] Func<string> initializedValueDisplayer,
-	[Data(SetterExpression = "set")] Action<FrameworkElement> valueRouter
+	[Data(SetterExpression = "set")] Action<FrameworkElement, TextBlock> valueRouter
 );

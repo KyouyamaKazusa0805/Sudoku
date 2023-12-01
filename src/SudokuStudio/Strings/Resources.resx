@@ -756,6 +756,9 @@
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>Difficulty Level: </value>
   </data>
+  <data name="GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan" xml:space="preserve">
+    <value>Difficulty level greater than {0} expected.</value>
+  </data>
   <data name="GeneratingStrategyPage_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>

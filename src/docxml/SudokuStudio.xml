@@ -3460,7 +3460,7 @@ if (student is (name: var name, age: >= 18))
             <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
             <param name="valueRouter">The value router that can assign the value to the distinction.</param>
         </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Func{System.String},System.Action{Microsoft.UI.Xaml.FrameworkElement})">
+        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Func{System.String},System.Action{Microsoft.UI.Xaml.FrameworkElement,Microsoft.UI.Xaml.Controls.TextBlock})">
             <summary>
             Represents a type that encapsulates a router that can route a value to the distination.
             </summary>
@@ -6098,6 +6098,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan">
+            <summary>
+              Looks up a localized string similar to Difficulty level greater than {0} expected..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Edit">

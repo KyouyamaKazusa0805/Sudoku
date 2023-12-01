@@ -222,14 +222,16 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			_ => GetString("GeneratingStrategyPage_Error")
 		};
 
-	private static void DifficultyLevelValueRouter(FrameworkElement c)
+	private static void DifficultyLevelValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel = (DifficultyLevel)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!;
 
-	private static void SymmetricTypeValueRouter(FrameworkElement c)
+	private static void SymmetricTypeValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern = (SymmetricType)((ComboBoxItem)((ComboBox)c).SelectedItem).Tag!;
 
-	private static void TechniqueMustIncludedValueRouter(FrameworkElement c)
-		=> ((App)Application.Current).Preference.UIPreferences.SelectedTechnique = c switch
+	private static void TechniqueMustIncludedValueRouter(FrameworkElement c, TextBlock t)
+	{
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		uiPref.SelectedTechnique = c switch
 		{
 			TechniqueSelector { ItemsSource: var source, SelectedIndex: var index } => index switch
 			{
@@ -239,21 +241,30 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			_ => throw new InvalidOperationException("The status is invalid.")
 		};
 
-	private static void IsMinimalValueRouter(FrameworkElement c)
+		var expectedDifficultyLevel = uiPref.SelectedTechnique.GetDifficultyLevel();
+		t.Text = uiPref.GeneratorDifficultyLevel < expectedDifficultyLevel
+			? string.Format(
+				GetString("GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan"),
+				DifficultyLevelConversion.GetName(expectedDifficultyLevel)
+			)
+			: string.Empty;
+	}
+
+	private static void IsMinimalValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBeMinimal = ((ToggleSwitch)c).IsOn;
 
-	private static void FirstAssignmentAttributeValueRouter(FrameworkElement c)
+	private static void FirstAssignmentAttributeValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl = ((ToggleSwitch)c).IsOn;
 
-	private static void CanRestrictGeneratingGivensCountValueRouter(FrameworkElement c)
+	private static void CanRestrictGeneratingGivensCountValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount = ((ToggleSwitch)c).IsOn;
 
-	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c)
+	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
 			? ((IntegerBox)c).Value
 			: -1;
 
-	private static void IttoryuLengthValueRouter(FrameworkElement c)
+	private static void IttoryuLengthValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.IttoryuLength = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy
 			? ((IntegerBox)c).Value
 			: -1;

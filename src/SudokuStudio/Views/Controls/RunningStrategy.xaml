@@ -14,7 +14,8 @@
 	</UserControl.Resources>
 
 	<StackPanel>
-		<TextBlock Text="{x:Bind StrategyName,Mode=OneWay}" FontSize="24" FontWeight="Bold" Margin="0,0,0,16" />
+		<TextBlock Text="{x:Bind StrategyName,Mode=OneWay}" FontSize="24" FontWeight="Bold" Margin="0,0,0,8" />
+		<TextBlock x:Name="WarningInfoDisplayer" x:FieldModifier="internal" MinWidth="160" Margin="0,0,20,8" Foreground="Red" FontWeight="Bold" />
 		<ListView
 			x:Name="InternalListView" x:FieldModifier="internal" SelectionMode="None"
 			ItemsSource="{x:Bind RunningStrategyItems.View,Mode=OneWay}">
