@@ -1,5 +1,7 @@
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Concepts;
 using SudokuStudio.ComponentModel;
@@ -157,9 +159,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			Maximum = 80,
 			SmallChange = 1,
 			LargeChange = 4,
-			Value = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
-				? ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount
-				: 0
+			Value = ((App)Application.Current).Preference.UIPreferences is var uiPref && uiPref.CanRestrictGeneratingGivensCount ? uiPref.GeneratedPuzzleGivensCount : 0
 		};
 
 	private static IntegerBox IttoryuLengthControlCreater()
@@ -169,9 +169,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			Maximum = 9,
 			SmallChange = 1,
 			LargeChange = 3,
-			Value = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy
-				? ((App)Application.Current).Preference.UIPreferences.IttoryuLength
-				: 0
+			Value = ((App)Application.Current).Preference.UIPreferences is var uiPref && uiPref.GeneratorDifficultyLevel == DifficultyLevel.Easy ? uiPref.IttoryuLength : 0
 		};
 
 	private static string DifficultyLevelInitializedValueDisplayer()
@@ -242,12 +240,14 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		};
 
 		var expectedDifficultyLevel = uiPref.SelectedTechnique.GetDifficultyLevel();
-		t.Text = uiPref.GeneratorDifficultyLevel < expectedDifficultyLevel
+		var condition = uiPref.GeneratorDifficultyLevel is var gdl && gdl < expectedDifficultyLevel && gdl != DifficultyLevel.Unknown;
+		t.Text = condition
 			? string.Format(
 				GetString("GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan"),
 				DifficultyLevelConversion.GetName(expectedDifficultyLevel)
 			)
 			: string.Empty;
+		t.Foreground = condition ? new SolidColorBrush(Colors.Red) : null;
 	}
 
 	private static void IsMinimalValueRouter(FrameworkElement c, TextBlock _)
@@ -259,13 +259,21 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static void CanRestrictGeneratingGivensCountValueRouter(FrameworkElement c, TextBlock _)
 		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount = ((ToggleSwitch)c).IsOn;
 
-	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c, TextBlock _)
-		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
-			? ((IntegerBox)c).Value
-			: -1;
+	private static void GeneratedPuzzleGivensCountValueRouter(FrameworkElement c, TextBlock t)
+	{
+		var condition = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount;
+		((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = condition ? ((IntegerBox)c).Value : -1;
 
-	private static void IttoryuLengthValueRouter(FrameworkElement c, TextBlock _)
-		=> ((App)Application.Current).Preference.UIPreferences.IttoryuLength = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy
-			? ((IntegerBox)c).Value
-			: -1;
+		t.Text = condition ? string.Empty : GetString("GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue");
+		t.Foreground = condition ? null : new SolidColorBrush(Colors.Orange);
+	}
+
+	private static void IttoryuLengthValueRouter(FrameworkElement c, TextBlock t)
+	{
+		var condition = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy;
+		((App)Application.Current).Preference.UIPreferences.IttoryuLength = condition ? ((IntegerBox)c).Value : -1;
+
+		t.Text = condition ? string.Empty : GetString("GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy");
+		t.Foreground = condition ? null : new SolidColorBrush(Colors.Orange);
+	}
 }

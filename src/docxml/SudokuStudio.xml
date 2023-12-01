@@ -6125,6 +6125,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Number of givens: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue">
+            <summary>
+              Looks up a localized string similar to Givens function must be enabled if the previous function is enabled..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_GivensHave">
             <summary>
               Looks up a localized string similar to {0} givens.
@@ -6143,6 +6148,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_IttoryuLength">
             <summary>
               Looks up a localized string similar to Ittoryu length: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy">
+            <summary>
+              Looks up a localized string similar to Ittroyu function must be enabled if easy difficulty is selected..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.GeneratingStrategyPage_Main">

@@ -771,6 +771,9 @@
   <data name="GeneratingStrategyPage_GeneratedPuzzleGivensCount" xml:space="preserve">
     <value>Number of givens: </value>
   </data>
+  <data name="GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue" xml:space="preserve">
+    <value>Givens function must be enabled if the previous function is enabled.</value>
+  </data>
   <data name="GeneratingStrategyPage_GivensHave" xml:space="preserve">
     <value>{0} givens</value>
   </data>
@@ -782,6 +785,9 @@
   </data>
   <data name="GeneratingStrategyPage_IttoryuLength" xml:space="preserve">
     <value>Ittoryu length: </value>
+  </data>
+  <data name="GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy" xml:space="preserve">
+    <value>Ittroyu function must be enabled if easy difficulty is selected.</value>
   </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>Main</value>

@@ -2239,6 +2239,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Givens function must be enabled if the previous function is enabled..
+        /// </summary>
+        internal static string GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} givens.
         /// </summary>
         internal static string GeneratingStrategyPage_GivensHave {
@@ -2271,6 +2280,15 @@ namespace SudokuStudio.Strings {
         internal static string GeneratingStrategyPage_IttoryuLength {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_IttoryuLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ittroyu function must be enabled if easy difficulty is selected..
+        /// </summary>
+        internal static string GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy {
+            get {
+                return ResourceManager.GetString("GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy", resourceCulture);
             }
         }
         

@@ -774,6 +774,9 @@
   <data name="GeneratingStrategyPage_GeneratedPuzzleGivensCount" xml:space="preserve">
     <value>提示数数量：</value>
   </data>
+  <data name="GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue" xml:space="preserve">
+    <value>提示数设置必须在启用前一个“允许提示数变更”启用下才可修改。</value>
+  </data>
   <data name="GeneratingStrategyPage_GivensHave" xml:space="preserve">
     <value>{0} 个提示数</value>
   </data>
@@ -785,6 +788,9 @@
   </data>
   <data name="GeneratingStrategyPage_IttoryuLength" xml:space="preserve">
     <value>一刀流长度：</value>
+  </data>
+  <data name="GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy" xml:space="preserve">
+    <value>一刀流必须在“容易”难度下才可启用。</value>
   </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>主策略</value>
