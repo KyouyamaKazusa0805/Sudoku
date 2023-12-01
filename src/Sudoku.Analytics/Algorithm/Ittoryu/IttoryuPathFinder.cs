@@ -42,7 +42,7 @@ public sealed partial class IttoryuPathFinder([Data] TechniqueSet supportedTechn
 				dfs(grid, digit, digitsStack, [], 0, true);
 			}
 		}
-		catch (InvalidOperationException)
+		catch (AlreadyFinishedException)
 		{
 			return [.. digitsStack.Reverse()];
 		}
@@ -101,7 +101,7 @@ public sealed partial class IttoryuPathFinder([Data] TechniqueSet supportedTechn
 				if (finishedDigits == Grid.MaxCandidatesMask)
 				{
 					// Just find one.
-					throw new InvalidOperationException();
+					throw new AlreadyFinishedException();
 				}
 
 				// If not, we should search for available path nodes agagin, and iterate on them.
@@ -187,3 +187,8 @@ public sealed partial class IttoryuPathFinder([Data] TechniqueSet supportedTechn
 		}
 	}
 }
+
+/// <summary>
+/// The internal exception type that reports "Already finished" information, breaking the recursion.
+/// </summary>
+file sealed class AlreadyFinishedException : Exception;

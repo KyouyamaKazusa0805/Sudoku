@@ -198,6 +198,11 @@
             The generated property declaration for parameter <c>supportedTechniques</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.AlreadyFinishedException">
+            <summary>
+            The internal exception type that reports "Already finished" information, breaking the recursion.
+            </summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
