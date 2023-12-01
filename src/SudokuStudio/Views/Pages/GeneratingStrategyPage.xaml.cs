@@ -113,7 +113,7 @@ public sealed partial class GeneratingStrategyPage : Page
 			if (itemControl is not
 				{
 					Tag: RunningStrategyItem { Updater.UpdaterControlCreator: var creator },
-					Content: StackPanel { Children: [.., ContentPresenter presenter] }
+					Content: StackPanel { Children: [.., ContentPresenter presenter, _] }
 				})
 			{
 				continue;
@@ -134,13 +134,13 @@ public sealed partial class GeneratingStrategyPage : Page
 			if (itemControl is not
 				{
 					Tag: RunningStrategyItem { Updater.ValueRouter: var router },
-					Content: StackPanel { Children: [.., ContentPresenter { Content: FrameworkElement content } presenter] }
+					Content: StackPanel { Children: [.., ContentPresenter { Content: FrameworkElement content } presenter, TextBlock t] }
 				})
 			{
 				continue;
 			}
 
-			router(content, RunningStrategy.WarningInfoDisplayer);
+			router(content, t);
 
 			presenter.Opacity = 0;
 		}

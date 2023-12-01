@@ -15,7 +15,6 @@
 
 	<StackPanel>
 		<TextBlock Text="{x:Bind StrategyName,Mode=OneWay}" FontSize="24" FontWeight="Bold" Margin="0,0,0,8" />
-		<TextBlock x:Name="WarningInfoDisplayer" x:FieldModifier="internal" MinWidth="160" Margin="0,0,20,8" Foreground="Red" FontWeight="Bold" />
 		<ListView
 			x:Name="InternalListView" x:FieldModifier="internal" SelectionMode="None"
 			ItemsSource="{x:Bind RunningStrategyItems.View,Mode=OneWay}">
@@ -29,7 +28,8 @@
 							<TextBlock
 								Text="{x:Bind Updater.InitializedValueDisplayer.Invoke()}" VerticalAlignment="Center"
 								MinWidth="160" Margin="0,0,20,0" />
-							<ContentPresenter VerticalAlignment="Center" Opacity="0" OpacityTransition="{m:ScalarTransition}" />
+							<ContentPresenter VerticalAlignment="Center" Opacity="0" OpacityTransition="{m:ScalarTransition}" Margin="0,0,20,0" />
+							<TextBlock TextWrapping="WrapWholeWords" Width="200" Foreground="Red" FontWeight="Bold" />
 						</StackPanel>
 					</ListViewItem>
 				</DataTemplate>

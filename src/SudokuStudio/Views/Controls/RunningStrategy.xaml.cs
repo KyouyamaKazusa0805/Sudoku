@@ -25,7 +25,7 @@ public sealed partial class RunningStrategy : UserControl
 	{
 		foreach (var element in InternalListView.ItemsPanelRoot.Children)
 		{
-			if (element is ListViewItem { Content: StackPanel { Children: [.., ContentPresenter presenter] } })
+			if (element is ListViewItem { Content: StackPanel { Children: [.., ContentPresenter presenter, _] } })
 			{
 				presenter.Opacity = 0;
 			}
@@ -42,7 +42,7 @@ public sealed partial class RunningStrategy : UserControl
 			if (element is ListViewItem
 				{
 					Tag: RunningStrategyItem { Updater.InitializedValueDisplayer: var displayer },
-					Content: StackPanel { Children: [_, TextBlock valuePresenter, ContentPresenter { Content: FrameworkElement control }] }
+					Content: StackPanel { Children: [_, TextBlock valuePresenter, ContentPresenter { Content: FrameworkElement control }, _] }
 				})
 			{
 				valuePresenter.Text = displayer();
