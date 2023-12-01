@@ -585,6 +585,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				distancesSumToExcluderPairs,
 				chosenCells.Count switch
 				{
+					0 => 0,
 					1 => distancesSumToExcluderPairs,
 					var c and >= 2 => distancesSumToExcluderPairs / PascalTriangle[c][2]
 				}
