@@ -9,7 +9,7 @@ using static Sudoku.Analytics.Strings.StringsAccessor;
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+/// Provides with a step that is a <b>Hidden Single</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -19,9 +19,20 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
 /// <param name="enableAndIsLastDigit">
 /// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
+/// If the technique is not a Last Digit, the value must be <see langword="false"/>.
 /// </param>
 /// <param name="eliminatedCellsCount">The total eliminated cells.</param>
+/// <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
 /// <param name="eliminatedHouses">The total eliminated houses.</param>
+/// <param name="distancesSumNearToHouseBorder">
+/// The sum value of distances from excluder digits to the nearest cell at the border of the house.
+/// </param>
+/// <param name="distancesSumFarToHouseBorder">
+/// The sum value of distances from excluder digits to the farest cell at the border of the house.
+/// </param>
+/// <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
+/// <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
+/// <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
 public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -31,7 +42,13 @@ public partial class HiddenSingleStep(
 	[Data] House house,
 	[Data] bool enableAndIsLastDigit,
 	[Data] int[] eliminatedCellsCount,
-	[Data] House[] eliminatedHouses
+	[Data] int[] eliminatedEmptyCellsCount,
+	[Data] House[] eliminatedHouses,
+	[Data] double distancesSumNearToHouseBorder,
+	[Data] double distancesSumFarToHouseBorder,
+	[Data] double distancesSumToConclusionCell,
+	[Data] double distancesSumForExcluderPairs,
+	[Data] double distanceAverageForExcluderPairs
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>

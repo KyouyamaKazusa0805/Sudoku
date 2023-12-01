@@ -265,7 +265,7 @@ public static class SolutionWideReadOnlyFields
 	/// <summary>
 	/// Indicates the Pascal Triangle (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
 	/// </summary>
-	internal static readonly int[][] PascalTriangle = [
+	public static readonly int[][] PascalTriangle = [
 		[1],
 		[2, 1],
 		[3, 3, 1],

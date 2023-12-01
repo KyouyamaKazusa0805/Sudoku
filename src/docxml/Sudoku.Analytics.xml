@@ -4433,6 +4433,22 @@ if (student is (name: var name, age: >= 18))
             This type is implemented via irrational numbers logic that only takes a square root.
             </remarks>
         </member>
+        <member name="F:Sudoku.Analytics.Rating.Distance.DistanceTable">
+            <summary>
+            The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
+            </summary>
+            <remarks>
+            <para>
+            The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
+            <c><see cref="F:Sudoku.Analytics.Rating.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
+            If the cell is inside the house, the value will be <see langword="null"/>.
+            </para>
+            <para>
+            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)"/>.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)"/>
+        </member>
         <member name="F:Sudoku.Analytics.Rating.Distance._p">
             <summary>
             The root value of P.
@@ -16742,7 +16758,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
             <summary>
-            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -16752,13 +16768,24 @@ if (student is (name: var name, age: >= 18))
             <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
             <param name="enableAndIsLastDigit">
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
+            If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
             <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
             <param name="eliminatedHouses">The total eliminated houses.</param>
+            <param name="distancesSumNearToHouseBorder">
+            The sum value of distances from excluder digits to the nearest cell at the border of the house.
+            </param>
+            <param name="distancesSumFarToHouseBorder">
+            The sum value of distances from excluder digits to the farest cell at the border of the house.
+            </param>
+            <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
+            <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
+            <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[],System.Int32[],System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
-            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -16768,9 +16795,20 @@ if (student is (name: var name, age: >= 18))
             <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
             <param name="enableAndIsLastDigit">
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
+            If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
             <param name="eliminatedCellsCount">The total eliminated cells.</param>
+            <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
             <param name="eliminatedHouses">The total eliminated houses.</param>
+            <param name="distancesSumNearToHouseBorder">
+            The sum value of distances from excluder digits to the nearest cell at the border of the house.
+            </param>
+            <param name="distancesSumFarToHouseBorder">
+            The sum value of distances from excluder digits to the farest cell at the border of the house.
+            </param>
+            <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
+            <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
+            <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -16802,36 +16840,62 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>eliminatedCellsCount</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedEmptyCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>eliminatedEmptyCellsCount</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedHouses">
             <summary>
             The generated property declaration for parameter <c>eliminatedHouses</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumNearToHouseBorder">
+            <summary>
+            The generated property declaration for parameter <c>distancesSumNearToHouseBorder</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumFarToHouseBorder">
+            <summary>
+            The generated property declaration for parameter <c>distancesSumFarToHouseBorder</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumToConclusionCell">
+            <summary>
+            The generated property declaration for parameter <c>distancesSumToConclusionCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumForExcluderPairs">
+            <summary>
+            The generated property declaration for parameter <c>distancesSumForExcluderPairs</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistanceAverageForExcluderPairs">
+            <summary>
+            The generated property declaration for parameter <c>distanceAverageForExcluderPairs</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
             <summary>
-            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            Provides with a step that is a <b>Last Digit</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
-            <param name="eliminatedCellsCount">The total eliminated cells.</param>
-            <param name="eliminatedHouses">The total eliminated houses.</param>
+            <param name="house"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32[],System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Hidden Single</b> or <b>Last Digit</b> (for special cases) technique.
+            Provides with a step that is a <b>Last Digit</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
-            <param name="eliminatedCellsCount">The total eliminated cells.</param>
-            <param name="eliminatedHouses">The total eliminated houses.</param>
+            <param name="house"><inheritdoc/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>

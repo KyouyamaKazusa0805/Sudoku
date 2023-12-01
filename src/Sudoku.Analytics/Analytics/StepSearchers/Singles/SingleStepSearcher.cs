@@ -500,65 +500,94 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 		var cellOffsets2 = GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells);
 		var eliminatedCellsCount = new int[chosenCells.Count];
+		var eliminatedEmptyCellsCount = new int[chosenCells.Count];
 		var eliminatedHouses = new House[chosenCells.Count];
+		var distancesSumNearToHouseBorder = 0D;
+		var distancesSumFarToHouseBorder = 0D;
+		var distancesSumToConclusionCell = 0D;
+		var distancesSumToExcluderPairs = 0D;
 		var i = 0;
 		foreach (var chosenCell in chosenCells)
 		{
 			foreach (var houseType in HouseTypes)
 			{
 				var final = CellMap.Empty;
+				var final2 = CellMap.Empty;
 				foreach (var cell in PeersMap[chosenCell] & HousesMap[chosenCell.ToHouseIndex(houseType)] & HousesMap[house])
 				{
 					if (grid.GetState(cell) == CellState.Empty)
 					{
 						final.Add(cell);
 					}
+
+					final2.Add(cell);
 				}
+
 				if (final)
 				{
 					(final + chosenCell).InOneHouse(out eliminatedHouses[i]);
-					eliminatedCellsCount[i] = final.Count;
+					eliminatedEmptyCellsCount[i] = final.Count;
+					eliminatedCellsCount[i] = final2.Count;
+
+					break;
 				}
 			}
 
+			if (Distance.DistanceTable[chosenCell][house] is var (nearest, farest))
+			{
+				distancesSumNearToHouseBorder += Distance.GetDistance(chosenCell, nearest);
+				distancesSumFarToHouseBorder += Distance.GetDistance(chosenCell, farest);
+			}
+
+			distancesSumToConclusionCell += Distance.GetDistance(chosenCell, resultCell);
 			i++;
 		}
+		if (chosenCells.Count >= 2)
+		{
+			foreach (ref readonly var pair in chosenCells.GetSubsets(2))
+			{
+				distancesSumToExcluderPairs += Distance.GetDistance(in pair);
+			}
+		}
 
+		var views = (View[])[
+			[
+				.. enableAndIsLastDigit ? cellOffsets : [],
+				.. enableAndIsLastDigit ? [] : cellOffsets2,
+				.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+			]
+		];
 		return (enableAndIsLastDigit, house) switch
 		{
 			(true, >= 9) => null,
 			(true, _) => new LastDigitStep(
 				[new(Assignment, resultCell, digit)],
-				[
-					[
-						.. enableAndIsLastDigit ? cellOffsets : [],
-						.. enableAndIsLastDigit ? [] : cellOffsets2,
-						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-					]
-				],
+				views,
 				context.PredefinedOptions,
 				resultCell,
 				digit,
-				house,
-				eliminatedCellsCount,
-				eliminatedHouses
+				house
 			),
 			_ => new HiddenSingleStep(
 				[new(Assignment, resultCell, digit)],
-				[
-					[
-						.. enableAndIsLastDigit ? cellOffsets : [],
-						.. enableAndIsLastDigit ? [] : cellOffsets2,
-						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-					]
-				],
+				views,
 				context.PredefinedOptions,
 				resultCell,
 				digit,
 				house,
 				enableAndIsLastDigit,
 				eliminatedCellsCount,
-				eliminatedHouses
+				eliminatedEmptyCellsCount,
+				eliminatedHouses,
+				distancesSumNearToHouseBorder,
+				distancesSumFarToHouseBorder,
+				distancesSumToConclusionCell,
+				distancesSumToExcluderPairs,
+				chosenCells.Count switch
+				{
+					1 => distancesSumToExcluderPairs,
+					var c and >= 2 => distancesSumToExcluderPairs / PascalTriangle[c][2]
+				}
 			)
 		};
 	}
