@@ -18,6 +18,7 @@ public interface IProgressDataProvider<T> where T : struct, IEquatable<T>, IProg
 	/// <returns>The display string.</returns>
 	public abstract string ToDisplayString();
 
+
 	/// <summary>
 	/// Try to create a <typeparamref name="T"/> instance.
 	/// </summary>

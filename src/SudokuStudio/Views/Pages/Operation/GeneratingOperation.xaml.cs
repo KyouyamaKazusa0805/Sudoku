@@ -45,15 +45,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	{
 		if (e.Parameter is AnalyzePage p)
 		{
-			SetMemoryOptions(p);
+			SetConfiguredOptions(p);
 		}
 	}
 
 	/// <summary>
-	/// Update control selection via user configuration.
+	/// Update control selection via user's configuration.
 	/// </summary>
 	/// <param name="basePage">The base page.</param>
-	private void SetMemoryOptions(AnalyzePage basePage)
+	private void SetConfiguredOptions(AnalyzePage basePage)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var comma = GetString("_Token_Comma");

@@ -11850,9 +11850,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetMemoryOptions(SudokuStudio.Views.Pages.AnalyzePage)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.SetConfiguredOptions(SudokuStudio.Views.Pages.AnalyzePage)">
             <summary>
-            Update control selection via user configuration.
+            Update control selection via user's configuration.
             </summary>
             <param name="basePage">The base page.</param>
         </member>

@@ -1108,6 +1108,10 @@ public sealed partial class AnalyzePage : Page
 		{
 			ClearAnalyzeTabsData();
 		}
+
+		VisualUnit = null;
+		_localView = null;
+		UpdateViewUnit();
 	}
 
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
