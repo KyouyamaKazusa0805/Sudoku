@@ -5771,6 +5771,11 @@ if (student is (name: var name, age: >= 18))
             Search for A^nLS blooming type.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NormalType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.DeathBlossomStep})">
+            <summary>
+            Create a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/> instance and add it into the accumulator.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
             <summary>
             Provides with an <b>Empty Rectangle Intersection Pair</b> step searcher.
