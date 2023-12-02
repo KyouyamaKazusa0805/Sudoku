@@ -153,11 +153,11 @@ public sealed partial class AlmostLockedSet(
 	}
 
 	/// <summary>
-	/// Gathers all possible <see cref="AlmostLockedSet"/>s in the specified grid.
+	/// Collects all possible <see cref="AlmostLockedSet"/>s in the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
-	public static AlmostLockedSet[] Gather(scoped ref readonly Grid grid)
+	public static AlmostLockedSet[] Collect(scoped ref readonly Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
 

@@ -22350,9 +22350,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.Gather(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Collect(Sudoku.Concepts.Grid@)">
             <summary>
-            Gathers all possible <see cref="T:Sudoku.Concepts.AlmostLockedSet"/>s in the specified grid.
+            Collects all possible <see cref="T:Sudoku.Concepts.AlmostLockedSet"/>s in the specified grid.
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances.</returns>
