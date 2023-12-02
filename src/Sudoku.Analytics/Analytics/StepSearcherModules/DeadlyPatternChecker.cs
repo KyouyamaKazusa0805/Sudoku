@@ -3,7 +3,7 @@ using Sudoku.Concepts;
 using Sudoku.Runtime.CompilerServices;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Algorithm.DeadlyPattern;
+namespace Sudoku.Analytics.StepSearcherModules;
 
 /// <summary>
 /// Represents a checker that checks for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),

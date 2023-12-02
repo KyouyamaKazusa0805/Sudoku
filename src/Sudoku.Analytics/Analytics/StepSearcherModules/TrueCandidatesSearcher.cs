@@ -5,7 +5,7 @@ using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Algorithm.TrueCandidates;
+namespace Sudoku.Analytics.StepSearcherModules;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.

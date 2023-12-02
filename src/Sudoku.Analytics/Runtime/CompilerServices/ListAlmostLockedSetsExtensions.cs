@@ -17,6 +17,8 @@ public static class ListAlmostLockedSetsExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<AlmostLockedSet> GetSpan(this List<AlmostLockedSet> @this)
 #if NET9_0_OR_GREATER
+		=> @this.GetItems().AsSpan()[..@this.Count];
+#else
 		// Here is a bug to be fixed in feature "Unsafe Accessor".
 		// https://github.com/dotnet/runtime/issues/92633
 		//
@@ -26,8 +28,6 @@ public static class ListAlmostLockedSetsExtensions
 		//   * struct that has class as a generic parameter (e.g. ArraySegment<string>)
 		//
 		// Wait for fixing.
-		=> @this.GetItems().AsSpan()[..@this.Count];
-#else
 		=> @this.ToArray();
 #endif
 

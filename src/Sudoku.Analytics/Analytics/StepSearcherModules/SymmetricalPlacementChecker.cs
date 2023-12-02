@@ -9,7 +9,7 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static Sudoku.Analytics.ConclusionType;
 
-namespace Sudoku.Algorithm.Symmetrical;
+namespace Sudoku.Analytics.StepSearcherModules;
 
 using unsafe Checker = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
 
