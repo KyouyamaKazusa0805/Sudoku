@@ -2185,6 +2185,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Death Blossom (House Blooming).
+        /// </summary>
+        public static string HouseDeathBlossom {
+            get {
+                return ResourceManager.GetString("HouseDeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hybrid Wing.
         /// </summary>
         public static string HybridWing {
@@ -5610,6 +5619,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueFormat_HouseChainingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_HouseChainingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House: {0}, Branches: {1}.
+        /// </summary>
+        public static string TechniqueFormat_HouseDeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HouseDeathBlossomStep", resourceCulture);
             }
         }
         

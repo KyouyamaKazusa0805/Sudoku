@@ -2590,9 +2590,14 @@ if (student is (name: var name, age: >= 18))
             Indicates death blossom.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HouseDeathBlossom">
+            <summary>
+            Indicates death blossom (house blooming).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NTimesAlmostLockedSetDeathBlossom">
             <summary>
-            Indicates complex death blossom.
+            Indicates death blossom (A^nLS blooming).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GurthSymmetricalPlacement">
@@ -5766,14 +5771,15 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CollectBloomingNTimesAls(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
-            <summary>
-            Search for A^nLS blooming type.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NormalType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.DeathBlossomStep})">
             <summary>
             Create a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/> instance and add it into the accumulator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NTimesAlsType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
+            <summary>
+            Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep"/> instance
+            and add it into the accumulator if worth.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher">
@@ -10031,7 +10037,7 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="branches">Indicates the branches.</param>
-            <param name="endDigitsMask">Indicates the end-point digits mask.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int16)">
             <summary>
@@ -10042,7 +10048,7 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="branches">Indicates the branches.</param>
-            <param name="endDigitsMask">Indicates the end-point digits mask.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.BaseDifficulty">
             <inheritdoc/>
@@ -10066,9 +10072,9 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>branches</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.EndDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.ZDigitsMask">
             <summary>
-            The generated property declaration for parameter <c>endDigitsMask</c>.
+            The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">
@@ -10129,6 +10135,62 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>
             The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.HouseDeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="house">Indicates the pivot house.</param>
+            <param name="digit">Indicates the digit.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="house">Indicates the pivot house.</param>
+            <param name="digit">Indicates the digit.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Branches">
+            <summary>
+            The generated property declaration for parameter <c>branches</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ZDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep">
@@ -18851,6 +18913,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to House Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.HouseDeathBlossom">
+            <summary>
+              Looks up a localized string similar to Death Blossom (House Blooming).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.HybridWing">
             <summary>
               Looks up a localized string similar to Hybrid Wing.
@@ -20754,6 +20821,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_HouseChainingStep">
             <summary>
               Looks up a localized string similar to {Name}: It can be proved using chains that digit {DigitStr} from {HouseStr} are false =&gt; {ElimStr}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_HouseDeathBlossomStep">
+            <summary>
+              Looks up a localized string similar to House: {0}, Branches: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_JuniorExocetStep">

@@ -2493,4 +2493,10 @@
   <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}</value>
   </data>
+  <data name="HouseDeathBlossom" xml:space="preserve">
+    <value>Death Blossom (House Blooming)</value>
+  </data>
+  <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
+    <value>House: {0}, Branches: {1}</value>
+  </data>
 </root>

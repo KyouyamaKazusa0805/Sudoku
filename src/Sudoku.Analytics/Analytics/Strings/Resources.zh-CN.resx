@@ -2677,4 +2677,11 @@
   <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
     <value>拐点为 {0} 次待定数组（单元格：{1}，数字 {2}）；分支为 {3}</value>
   </data>
+  <data name="HouseDeathBlossom" xml:space="preserve">
+    <value>死亡绽放・区域绽放</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
+    <value>区域 {0}，每个分支：{1}</value>
+  </data>
 </root>

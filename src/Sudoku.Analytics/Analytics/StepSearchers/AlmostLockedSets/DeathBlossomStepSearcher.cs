@@ -24,7 +24,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Death Blossom (Blooming ALS)</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.DeathBlossom)]
+[StepSearcher(Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.NTimesAlmostLockedSetDeathBlossom)]
 [StepSearcherRuntimeName("StepSearcherName_DeathBlossomStepSearcher")]
 public sealed partial class DeathBlossomStepSearcher : StepSearcher
 {
@@ -76,6 +76,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped var alsReferenceTable = (stackalloc Candidate[729]);
 		alsReferenceTable.Fill(-1);
 		var accumulatorNormal = new List<DeathBlossomStep>();
+		var accumulatorHouse = new List<HouseDeathBlossomStep>();
 		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 
 		// Iterate on each cell to collect cell-blooming type.
@@ -127,7 +128,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							alsReferenceTable[pivot * 9 + currentSelectedDigit] = alsCurrentIndex;
 							availablePivots.Add(pivot);
 
-							// Check for the normal types.
+							// Check for normal type.
 							if (playground[pivot] == 0
 								&& CreateStep_NormalType(ref context, in grid, pivot, alsReferenceTable, alses, playgroundCached, accumulatorNormal) is { } normalTypeStep)
 							{
@@ -261,7 +262,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				continue;
 
 			AlmostAlmostLockedSetDeletion:
-				if (CollectBloomingNTimesAls(
+				if (CreateStep_NTimesAlsType(
 					ref context, in grid, alses, alsesUsed, usedIndex, selectedAlsEntryCell, satisfiedSize,
 					selectedCellDigitsMask, wrongDigit, alsReferenceTable, accumulatorComplex
 				) is { } anlsBloomingTypeStep)
@@ -305,9 +306,143 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Search for A^nLS blooming type.
+	/// Create a <see cref="DeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
-	private NTimesAlmostLockedSetDeathBlossomStep? CollectBloomingNTimesAls(
+	private DeathBlossomStep? CreateStep_NormalType(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		Cell pivot,
+		scoped Span<int> alsReferenceTable,
+		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		Mask[] playgroundCached,
+		List<DeathBlossomStep> accumulator
+	)
+	{
+		// A normal death blossom is found. Now check for eliminations.
+		// A "Z Digit" is a digit as the target digit for the target eliminations.
+		// Due to the flexibility of the technique, "Z digit" may not only hold one.
+		// Therefore, here 'zDigitsMask' is not a digit, but a 'Mask' instance.
+		var zDigitsMask = (Mask)0;
+		var branches = new BlossomBranchCollection();
+		var pivotDigitsMask = grid.GetCandidates(pivot);
+		var isFirstEncountered = true;
+		foreach (var pivotDigit in pivotDigitsMask)
+		{
+			var branch = alses[alsReferenceTable[pivot * 9 + pivotDigit]];
+			branches.Add(pivotDigit, branch);
+
+			if (isFirstEncountered)
+			{
+				zDigitsMask = branch.DigitsMask;
+				isFirstEncountered = false;
+			}
+			else
+			{
+				zDigitsMask &= branch.DigitsMask;
+			}
+		}
+
+		// Delete invalid digits.
+		zDigitsMask &= (Mask)~pivotDigitsMask;
+
+		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
+		var branchCellsContainingZ = CellMap.Empty;
+		foreach (var digit in zDigitsMask)
+		{
+			foreach (var (_, branchCells) in branches.Values)
+			{
+				branchCellsContainingZ |= branchCells & CandidatesMap[digit];
+			}
+		}
+
+		// Check for eliminations.
+		var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
+		foreach (var zDigit in zDigitsMask)
+		{
+			if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
+			{
+				continue;
+			}
+
+			validZ |= (Mask)(1 << zDigit);
+			foreach (var c in elimMap)
+			{
+				conclusions.Add(new(Elimination, c, zDigit));
+
+				if (SearchExtendedTypes)
+				{
+					playgroundCached[c] &= (Mask)~zDigit;
+				}
+			}
+		}
+
+		// Collect for view nodes.
+		var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, pivot) };
+		var candidateOffsets = new List<CandidateViewNode>();
+		var detailViews = new View[branches.Count];
+		foreach (ref var view in detailViews.AsSpan())
+		{
+			view = [new CellViewNode(WellKnownColorIdentifier.Normal, pivot)];
+		}
+
+		var indexOfAls = 0;
+		foreach (var digit in grid.GetCandidates(pivot))
+		{
+			var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, pivot * 9 + digit);
+			candidateOffsets.Add(node);
+			detailViews[indexOfAls++].Add(node);
+		}
+
+		indexOfAls = 0;
+		foreach (var (branchDigit, (_, alsCells)) in branches)
+		{
+			foreach (var alsCell in alsCells)
+			{
+				var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+				foreach (var digit in grid.GetCandidates(alsCell))
+				{
+					var node = new CandidateViewNode(
+						branchDigit == digit
+							? WellKnownColorIdentifier.Auxiliary2
+							: (zDigitsMask >> digit & 1) != 0
+								? WellKnownColorIdentifier.Auxiliary1
+								: alsColor,
+						alsCell * 9 + digit
+					);
+					candidateOffsets.Add(node);
+					detailViews[indexOfAls].Add(node);
+				}
+
+				var cellNode = new CellViewNode(alsColor, alsCell);
+				cellOffsets.Add(cellNode);
+				detailViews[indexOfAls].Add(cellNode);
+			}
+
+			indexOfAls++;
+		}
+
+		var step = new DeathBlossomStep(
+			[.. conclusions],
+			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
+			context.PredefinedOptions,
+			pivot,
+			branches,
+			validZ
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Search for A^nLS blooming type, and create a <see cref="NTimesAlmostLockedSetDeathBlossomStep"/> instance
+	/// and add it into the accumulator if worth.
+	/// </summary>
+	private NTimesAlmostLockedSetDeathBlossomStep? CreateStep_NTimesAlsType(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		scoped ReadOnlySpan<AlmostLockedSet> alses,
@@ -318,7 +453,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped Span<Mask> selectedCellDigitsMask,
 		Digit wrongDigit,
 		scoped Span<Candidate> alsReferenceTable,
-		List<NTimesAlmostLockedSetDeathBlossomStep> accumulatorComplex
+		List<NTimesAlmostLockedSetDeathBlossomStep> accumulator
 	)
 	{
 		alsesUsed[9..].Clear();
@@ -478,140 +613,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			return step;
 		}
 
-		accumulatorComplex.Add(step);
-		return null;
-	}
-
-	/// <summary>
-	/// Create a <see cref="DeathBlossomStep"/> instance and add it into the accumulator.
-	/// </summary>
-	private DeathBlossomStep? CreateStep_NormalType(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		Cell pivot,
-		scoped Span<int> alsReferenceTable,
-		scoped ReadOnlySpan<AlmostLockedSet> alses,
-		Mask[] playgroundCached,
-		List<DeathBlossomStep> accumulatorNormal
-	)
-	{
-		// A normal death blossom is found. Now check for eliminations.
-		// A "Z Digit" is a digit as the target digit for the target eliminations.
-		// Due to the flexibility of the technique, "Z digit" may not only hold one.
-		// Therefore, here 'zDigitsMask' is not a digit, but a 'Mask' instance.
-		var zDigitsMask = (Mask)0;
-		var branches = new BlossomBranchCollection();
-		var pivotDigitsMask = grid.GetCandidates(pivot);
-		var isFirstEncountered = true;
-		foreach (var pivotDigit in pivotDigitsMask)
-		{
-			var branch = alses[alsReferenceTable[pivot * 9 + pivotDigit]];
-			branches.Add(pivotDigit, branch);
-
-			if (isFirstEncountered)
-			{
-				zDigitsMask = branch.DigitsMask;
-				isFirstEncountered = false;
-			}
-			else
-			{
-				zDigitsMask &= branch.DigitsMask;
-			}
-		}
-
-		// Delete invalid digits.
-		zDigitsMask &= (Mask)~pivotDigitsMask;
-
-		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
-		var branchCellsContainingZ = CellMap.Empty;
-		foreach (var digit in zDigitsMask)
-		{
-			foreach (var (_, branchCells) in branches.Values)
-			{
-				branchCellsContainingZ |= branchCells & CandidatesMap[digit];
-			}
-		}
-
-		// Check for eliminations.
-		var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
-		foreach (var zDigit in zDigitsMask)
-		{
-			if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
-			{
-				continue;
-			}
-
-			validZ |= (Mask)(1 << zDigit);
-			foreach (var c in elimMap)
-			{
-				conclusions.Add(new(Elimination, c, zDigit));
-
-				if (SearchExtendedTypes)
-				{
-					playgroundCached[c] &= (Mask)~zDigit;
-				}
-			}
-		}
-
-		// Collect for view nodes.
-		var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, pivot) };
-		var candidateOffsets = new List<CandidateViewNode>();
-		var detailViews = new View[branches.Count];
-		foreach (ref var view in detailViews.AsSpan())
-		{
-			view = [new CellViewNode(WellKnownColorIdentifier.Normal, pivot)];
-		}
-
-		var indexOfAls = 0;
-		foreach (var digit in grid.GetCandidates(pivot))
-		{
-			var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, pivot * 9 + digit);
-			candidateOffsets.Add(node);
-			detailViews[indexOfAls++].Add(node);
-		}
-
-		indexOfAls = 0;
-		foreach (var (branchDigit, (_, alsCells)) in branches)
-		{
-			foreach (var alsCell in alsCells)
-			{
-				var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
-				foreach (var digit in grid.GetCandidates(alsCell))
-				{
-					var node = new CandidateViewNode(
-						branchDigit == digit
-							? WellKnownColorIdentifier.Auxiliary2
-							: (zDigitsMask >> digit & 1) != 0
-								? WellKnownColorIdentifier.Auxiliary1
-								: alsColor,
-						alsCell * 9 + digit
-					);
-					candidateOffsets.Add(node);
-					detailViews[indexOfAls].Add(node);
-				}
-
-				var cellNode = new CellViewNode(alsColor, alsCell);
-				cellOffsets.Add(cellNode);
-				detailViews[indexOfAls].Add(cellNode);
-			}
-
-			indexOfAls++;
-		}
-
-		var step = new DeathBlossomStep(
-			[.. conclusions],
-			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-			context.PredefinedOptions,
-			pivot,
-			branches,
-			validZ
-		);
-		if (context.OnlyFindOne)
-		{
-			return step;
-		}
-
-		accumulatorNormal.Add(step);
+		accumulator.Add(step);
 		return null;
 	}
 }
