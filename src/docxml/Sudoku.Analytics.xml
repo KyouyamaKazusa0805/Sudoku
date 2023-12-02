@@ -9506,10 +9506,22 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
+            <item>
+            Direct techniques:
+            <list type="bullet">
             <item>Full House (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
             <item>Last Digit (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
             <item>Hidden Single</item>
             <item>Naked Single</item>
+            </list>
+            </item>
+            <item>
+            Indirect techniques:
+            <list type="bullet">
+            <item>Single</item>
+            <item>Crosshatching</item>
+            </list>
+            </item>
             </list>
             </summary>
         </member>
@@ -16665,6 +16677,10 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="eliminatedCellsCount">The total eliminated cells.</param>
             <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
+            <param name="halfDistanceValueCellsCount">
+            The total number of value cells that appears in the crosshatching rule before intersecting the target house.
+            </param>
+            <param name="emptyCellsCount">The number of empty cells in the house.</param>
             <param name="eliminatedHouses">The total eliminated houses.</param>
             <param name="distancesSumNearToHouseBorder">
             The sum value of distances from excluder digits to the nearest cell at the border of the house.
@@ -16676,7 +16692,7 @@ if (student is (name: var name, age: >= 18))
             <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
             <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[],System.Int32[],System.Double,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[],System.Int32[],System.Int32,System.Int32[],System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
@@ -16692,6 +16708,10 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="eliminatedCellsCount">The total eliminated cells.</param>
             <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
+            <param name="halfDistanceValueCellsCount">
+            The total number of value cells that appears in the crosshatching rule before intersecting the target house.
+            </param>
+            <param name="emptyCellsCount">The number of empty cells in the house.</param>
             <param name="eliminatedHouses">The total eliminated houses.</param>
             <param name="distancesSumNearToHouseBorder">
             The sum value of distances from excluder digits to the nearest cell at the border of the house.
@@ -16736,6 +16756,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedEmptyCellsCount">
             <summary>
             The generated property declaration for parameter <c>eliminatedEmptyCellsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.HalfDistanceValueCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>halfDistanceValueCellsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EmptyCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>emptyCellsCount</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedHouses">
@@ -22994,24 +23024,15 @@ result ^= expression;
             <summary>
             Represents a solving path.
             </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SolvingPath._steppingGridFirst">
-            <summary>
-            The reference to the first of stepping grids.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SolvingPath._stepsFirst">
-            <summary>
-            The reference to the first of steps.
-            </summary>
+            <param name="steppingGrids">The stepping grids.</param>
+            <param name="steps">The steps.</param>
         </member>
         <member name="M:Sudoku.Concepts.SolvingPath.#ctor(Sudoku.Concepts.Grid[],Sudoku.Analytics.Step[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.SolvingPath"/> instance.
+            Represents a solving path.
             </summary>
             <param name="steppingGrids">The stepping grids.</param>
             <param name="steps">The steps.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the length of arguments are not equal.</exception>
         </member>
         <member name="P:Sudoku.Concepts.SolvingPath.IsSolved">
             <summary>

@@ -23,6 +23,10 @@ namespace Sudoku.Analytics.Steps;
 /// </param>
 /// <param name="eliminatedCellsCount">The total eliminated cells.</param>
 /// <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
+/// <param name="halfDistanceValueCellsCount">
+/// The total number of value cells that appears in the crosshatching rule before intersecting the target house.
+/// </param>
+/// <param name="emptyCellsCount">The number of empty cells in the house.</param>
 /// <param name="eliminatedHouses">The total eliminated houses.</param>
 /// <param name="distancesSumNearToHouseBorder">
 /// The sum value of distances from excluder digits to the nearest cell at the border of the house.
@@ -43,6 +47,8 @@ public partial class HiddenSingleStep(
 	[Data] bool enableAndIsLastDigit,
 	[Data] int[] eliminatedCellsCount,
 	[Data] int[] eliminatedEmptyCellsCount,
+	[Data] int[] halfDistanceValueCellsCount,
+	[Data] int emptyCellsCount,
 	[Data] House[] eliminatedHouses,
 	[Data] double distancesSumNearToHouseBorder,
 	[Data] double distancesSumFarToHouseBorder,

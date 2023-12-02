@@ -12,56 +12,33 @@ using Pair = (Grid SteppingGrid, Step Step);
 /// <summary>
 /// Represents a solving path.
 /// </summary>
+/// <param name="steppingGrids">The stepping grids.</param>
+/// <param name="steps">The steps.</param>
 [Equals]
 [GetHashCode]
-public readonly ref partial struct SolvingPath
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] steps)
 {
-	/// <summary>
-	/// The reference to the first of stepping grids.
-	/// </summary>
-	private readonly Grid[] _steppingGridFirst = [];
-
-	/// <summary>
-	/// The reference to the first of steps.
-	/// </summary>
-	private readonly Step[] _stepsFirst = [];
-
-
-	/// <summary>
-	/// Initializes a <see cref="SolvingPath"/> instance.
-	/// </summary>
-	/// <param name="steppingGrids">The stepping grids.</param>
-	/// <param name="steps">The steps.</param>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the length of arguments are not equal.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SolvingPath(Grid[] steppingGrids, Step[] steps)
-	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(steppingGrids.Length, steps.Length);
-
-		(_steppingGridFirst, _stepsFirst, Length, IsSolved) = (steppingGrids, steps, steppingGrids.Length, true);
-	}
-
-
 	/// <summary>
 	/// Indicates whether the puzzle has been solved.
 	/// </summary>
 	[MemberNotNullWhen(true, nameof(PearlStep), nameof(DiamondStep), nameof(Steps), nameof(SteppingGrids))]
-	public bool IsSolved { get; }
+	public bool IsSolved { get; } = true;
 
 	/// <summary>
 	/// Indicates the number of elements stored in this collection.
 	/// </summary>
-	public int Length { get; }
+	public int Length { get; } = steppingGrids.Length;
 
 	/// <summary>
 	/// Indicates the stepping grids.
 	/// </summary>
-	public ReadOnlySpan<Grid> SteppingGrids => _steppingGridFirst;
+	public ReadOnlySpan<Grid> SteppingGrids => steppingGrids;
 
 	/// <summary>
 	/// Indicates the steps.
 	/// </summary>
-	public ReadOnlySpan<Step> Steps => _stepsFirst;
+	public ReadOnlySpan<Step> Steps => steps;
 
 	/// <summary>
 	/// Gets the bottleneck during the whole grid solving.

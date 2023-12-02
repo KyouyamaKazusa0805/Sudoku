@@ -17,15 +17,27 @@ using unsafe Handler = delegate*<SingleStepSearcher, ref AnalysisContext, ref re
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <item>
+/// Direct techniques:
+/// <list type="bullet">
 /// <item>Full House (If the property <see cref="EnableFullHouse"/> is <see langword="true"/>)</item>
 /// <item>Last Digit (If the property <see cref="EnableLastDigit"/> is <see langword="true"/>)</item>
 /// <item>Hidden Single</item>
 /// <item>Naked Single</item>
 /// </list>
+/// </item>
+/// <item>
+/// Indirect techniques:
+/// <list type="bullet">
+/// <item>Single</item>
+/// <item>Crosshatching</item>
+/// </list>
+/// </item>
+/// </list>
 /// </summary>
 [StepSearcher(
-	Technique.LastDigit, Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow,
-	Technique.HiddenSingleColumn, Technique.NakedSingle,
+	Technique.Single, Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn, Technique.LastDigit,
+	Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn, Technique.NakedSingle,
 	IsPure = true, IsFixed = true)]
 [StepSearcherRuntimeName("StepSearcherName_SingleStepSearcher")]
 public sealed partial class SingleStepSearcher : StepSearcher
@@ -219,10 +231,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
 		// we should start with a naked single because they are "direct" in such mode.
-		var a = (Handler)(&CheckFullHouse);
-		var b = (Handler)(&CheckHiddenSingle);
-		var c = (Handler)(&CheckNakedSingle);
-		scoped var searchers = (ReadOnlySpan<nint>)(
+		Handler a = &CheckFullHouse, b = &CheckHiddenSingle, c = &CheckNakedSingle;
+		foreach (Handler searcher in (ReadOnlySpan<nint>)(
 			(EnableFullHouse, isFullyMarkedMode) switch
 			{
 				(true, true) => [(nint)a, (nint)c, (nint)b],
@@ -230,8 +240,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				(_, true) => [(nint)c, (nint)b],
 				_ => [(nint)b, (nint)c]
 			}
-		);
-		foreach (Handler searcher in searchers)
+		))
 		{
 			if (searcher(this, ref context, in grid) is { } step)
 			{
@@ -501,6 +510,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		var cellOffsets2 = GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells);
 		var eliminatedCellsCount = new int[chosenCells.Count];
 		var eliminatedEmptyCellsCount = new int[chosenCells.Count];
+		var halfDistanceValueCellsCount = new int[chosenCells.Count];
 		var eliminatedHouses = new House[chosenCells.Count];
 		var distancesSumNearToHouseBorder = 0D;
 		var distancesSumFarToHouseBorder = 0D;
@@ -513,7 +523,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				var final = CellMap.Empty;
 				var final2 = CellMap.Empty;
-				foreach (var cell in PeersMap[chosenCell] & HousesMap[chosenCell.ToHouseIndex(houseType)] & HousesMap[house])
+				var intersectedCells = PeersMap[chosenCell] & HousesMap[chosenCell.ToHouseIndex(houseType)] & HousesMap[house];
+				foreach (var cell in intersectedCells)
 				{
 					if (grid.GetState(cell) == CellState.Empty)
 					{
@@ -526,6 +537,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (final)
 				{
 					(final + chosenCell).InOneHouse(out eliminatedHouses[i]);
+
+					foreach (var cell in intersectedCells)
+					{
+						if (grid.GetState(cell) != CellState.Empty)
+						{
+							halfDistanceValueCellsCount[i]++;
+						}
+					}
+
 					eliminatedEmptyCellsCount[i] = final.Count;
 					eliminatedCellsCount[i] = final2.Count;
 
@@ -547,6 +567,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			foreach (ref readonly var pair in chosenCells.GetSubsets(2))
 			{
 				distancesSumToExcluderPairs += Distance.GetDistance(in pair);
+			}
+		}
+
+		var emptyCellsCount = 0;
+		foreach (var cell in HouseCells[house])
+		{
+			if (grid.GetState(cell) == CellState.Empty)
+			{
+				emptyCellsCount++;
 			}
 		}
 
@@ -578,6 +607,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				enableAndIsLastDigit,
 				eliminatedCellsCount,
 				eliminatedEmptyCellsCount,
+				halfDistanceValueCellsCount,
+				emptyCellsCount,
 				eliminatedHouses,
 				distancesSumNearToHouseBorder,
 				distancesSumFarToHouseBorder,
