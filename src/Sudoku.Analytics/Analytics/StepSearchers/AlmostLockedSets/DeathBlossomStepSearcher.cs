@@ -21,7 +21,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Death Blossom</item>
-/// <item>Death Blossom (Blooming ALS)</item>
+/// <!--<item>Death Blossom (House Blooming)</item>-->
+/// <item>Death Blossom (A^nLS Blooming)</item>
 /// </list>
 /// </summary>
 [StepSearcher(Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.NTimesAlmostLockedSetDeathBlossom)]
