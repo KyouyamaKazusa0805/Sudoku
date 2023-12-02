@@ -1376,7 +1376,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.GetSymmetricConclusion(Sudoku.Concepts.SymmetricType,System.Int32)">
@@ -1397,7 +1397,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Analytics.Conclusion.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
@@ -1662,7 +1662,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
@@ -1726,7 +1726,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.CandidateMap.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#IParsable{Sudoku#Concepts#CandidateMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
@@ -2125,7 +2125,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.First(System.Func{System.Int32,System.Boolean})">
@@ -2234,7 +2234,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.CellMap.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IParsable{Sudoku#Concepts#CellMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
@@ -2477,10 +2477,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
         </member>
-        <member name="M:Sudoku.Concepts.Chute.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.Chute.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
@@ -2593,10 +2593,10 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Conjugate.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Conjugate.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.Conjugate.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conjugate.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.Conjugate.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.Conjugate._mask">
@@ -2615,436 +2615,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.CandidateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <param name="candidates">A list of candidates.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.CellNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">A list of cells.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.ChuteNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Chute"/> instance.
-            </summary>
-            <param name="chutes">A list of chutes.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="chutes"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.ConclusionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
-            </summary>
-            <param name="conclusions">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.ConjugateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conjugate"/> instance.
-            </summary>
-            <param name="conjugatePairs">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.CoordinateConverter">
-            <summary>
-            Represents an option provider for coordinates.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <remarks>
-            You can use types <see cref="T:Sudoku.Concepts.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Converters.K9Converter"/>, <see cref="T:Sudoku.Concepts.Converters.LiteralCoordinateConverter"/>
-            and <see cref="T:Sudoku.Concepts.Converters.ExcelCoordinateConverter"/>.
-            They are the derived types of the current type.
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Converters.RxCyConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.K9Converter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.LiteralCoordinateConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.ExcelCoordinateConverter"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.CoordinateConverter.#ctor(System.String,System.String)">
-            <summary>
-            Represents an option provider for coordinates.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <remarks>
-            You can use types <see cref="T:Sudoku.Concepts.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Converters.K9Converter"/>, <see cref="T:Sudoku.Concepts.Converters.LiteralCoordinateConverter"/>
-            and <see cref="T:Sudoku.Concepts.Converters.ExcelCoordinateConverter"/>.
-            They are the derived types of the current type.
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Converters.RxCyConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.K9Converter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.LiteralCoordinateConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Converters.ExcelCoordinateConverter"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.CellConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.CandidateConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.HouseConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.ConclusionConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.DigitConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.IntersectionConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.ChuteConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.CoordinateConverter.ConjugateConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.DigitNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
-            </summary>
-            <param name="digitsMask">A list of digits.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.ExcelCoordinateConverter">
-            <summary>
-            Represents for Excel coordinate-based converter.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String)">
-            <summary>
-            Represents for Excel coordinate-based converter.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.MakeLettersUpperCase">
-            <summary>
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.CellConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.CandidateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.HouseConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.ConclusionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.DigitConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.IntersectionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.ChuteConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.ExcelCoordinateConverter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.GenericConceptConverter">
-            <summary>
-            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
-            </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.GenericConceptConverter.#ctor(System.String,System.String)">
-            <summary>
-            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
-            </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.GenericConceptConverter.DefaultSeparator">
-            <summary>
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.GenericConceptConverter.DigitsSeparator">
-            <summary>
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.HodokuTripletConverter">
-            <summary>
-            Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.HodokuTripletConverter.Converter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.HouseNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
-            </summary>
-            <param name="housesMask">A list of houses.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.IntersectionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value
-            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instance.
-            </summary>
-            <param name="intersections">A list of intersections.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="intersections"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.K9Converter">
-            <summary>
-            Represents a coordinate converter using K9 notation.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="FinalRowLetter">
-            <para>
-            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
-            This option will change the last row letter if you want to change it.
-            </para>
-            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String)">
-            <summary>
-            Represents a coordinate converter using K9 notation.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="FinalRowLetter">
-            <para>
-            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
-            This option will change the last row letter if you want to change it.
-            </para>
-            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.MakeLettersUpperCase">
-            <summary>
-            <para>Indicates whether we make the letters be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.FinalRowLetter">
-            <summary>
-            <para>
-            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
-            This option will change the last row letter if you want to change it.
-            </para>
-            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.CellConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.CandidateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.HouseConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.ConclusionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.DigitConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.IntersectionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.ChuteConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.K9Converter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.LiteralCoordinateConverter">
-            <summary>
-            Represents a converter that outputs coordinates as literally-speaking representation.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.LiteralCoordinateConverter.#ctor(System.String,System.String)">
-            <summary>
-            Represents a converter that outputs coordinates as literally-speaking representation.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.CellConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.CandidateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.HouseConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.ConclusionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.DigitConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.IntersectionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.ChuteConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.LiteralCoordinateConverter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converters.RxCyConverter">
-            <summary>
-            Represents a coordinate converter using RxCy notation.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="MakeDigitBeforeCell">
-            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="HouseNotationOnlyDisplayCapitals">
-            <para>Indicates whether the houses will be displayed its capitals only.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
-            <summary>
-            Represents a coordinate converter using RxCy notation.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="MakeDigitBeforeCell">
-            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="HouseNotationOnlyDisplayCapitals">
-            <para>Indicates whether the houses will be displayed its capitals only.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.MakeLettersUpperCase">
-            <summary>
-            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.MakeDigitBeforeCell">
-            <summary>
-            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.HouseNotationOnlyDisplayCapitals">
-            <summary>
-            <para>Indicates whether the houses will be displayed its capitals only.</para>
-            <para>The value is <see langword="false"/> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.CellConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.CandidateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.HouseConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.ConclusionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.DigitConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.IntersectionConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.ChuteConverter">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Converters.RxCyConverter.ConjugateConverter">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converters.RxCyConverter.GetLabel(System.Byte)">
-            <summary>
-            Get the label of each house.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>The label.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CoordinateType">
             <summary>
@@ -3597,7 +3167,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.SudokuGrid.GridConverter)">
+        <member name="M:Sudoku.Concepts.Grid.ToString(Sudoku.Text.Converters.GridConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetState(System.Int32)">
@@ -3796,9 +3366,9 @@ if (student is (name: var name, age: >= 18))
             <param name="str">The string.</param>
             <param name="gridParsingOption">The grid parsing type.</param>
             <returns>The result instance had converted.</returns>
-            <exception cref="T:System.FormatException">Throws when the target <see cref="T:Sudoku.Concepts.Parsers.GridParser"/> instance cannot parse it.</exception>
+            <exception cref="T:System.FormatException">Throws when the target <see cref="T:Sudoku.Text.Parsers.GridParser"/> instance cannot parse it.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ParseExact(System.String,Sudoku.Concepts.Parsers.GridParser)">
+        <member name="M:Sudoku.Concepts.Grid.ParseExact(System.String,Sudoku.Text.Parsers.GridParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
@@ -4770,599 +4340,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.CoordinateParser">
-            <summary>
-            Represents for a parser instance that parses a <see cref="T:System.String"/> text,
-            converting it into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Parsers.CoordinateParser.DeprecatedInfo_NotSupported">
-            <summary>
-            The not supported information for property implemented.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.CellParser">
-            <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Concepts.CellMap"/> via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.CandidateParser">
-            <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.HouseParser">
-            <summary>
-            The parser method that can creates a <see cref="T:System.Int32"/> via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.ConclusionParser">
-            <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Analytics.Conclusion"/> list via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.DigitParser">
-            <summary>
-            The parser method that can creates a <see cref="T:System.Int16"/> via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:System.Int16"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.IntersectionParser">
-            <summary>
-            The parser method that can creates a list of pairs of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/>
-            via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
-            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.ChuteParser">
-            <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Concepts.Chute"/> list via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Chute"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.CoordinateParser.ConjuagteParser">
-            <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Concepts.Conjugate"/> list via the specified text to be parsed.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Conjugate"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.ExcelGridParser">
-            <summary>
-            Represents an Excel grid parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.ExcelGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.GenericConceptParser">
-            <summary>
-            Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.GridParser">
-            <summary>
-            Represents a parser instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.GridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.HodokuTripletParser">
-            <summary>
-            Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.HodokuTripletParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.K9Parser">
-            <summary>
-            Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[a-k]+[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                ○ Match a character in the set [1-9] greedily at least once.<br/>
-                ○ Loop greedily any number of times.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match ','.<br/>
-                        ○ Match a whitespace character atomically any number of times.<br/>
-                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 4th capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9].<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.MultipleLineGridParser">
-            <summary>
-            Represents a table parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.MultipleLineGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.MultipleLineGridParser.GridSusserDigitPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\+?\\d|\\.)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '+' atomically, optionally.<br/>
-                        ○ Match a Unicode digit.<br/>
-                    ○ Match '.'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuGridParser">
-            <summary>
-            Represents an Open-Sudoku format parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuGridParser.GridOpenSudokuPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d(\\|\\d){242}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit.<br/>
-            ○ Loop exactly 242 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match '|'.<br/>
-                    ○ Match a Unicode digit.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingGridParser">
-            <summary>
-            Represents for a pencilmarking grid parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingGridParser.GridPencilmarkingPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 3 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '&lt;'.<br/>
-                        ○ Match a Unicode digit.<br/>
-                        ○ Match '&gt;'.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '*'.<br/>
-                        ○ Match a Unicode digit.<br/>
-                        ○ Match '*'.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match a Unicode digit greedily any number of times.<br/>
-                        ○ Match a character in the set [+-] atomically, optionally.<br/>
-                        ○ Match a Unicode digit atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.RxCyParser">
-            <summary>
-            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match with 2 alternative expressions, atomically.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] greedily at least once.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitHousePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rcb][1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [BCRbcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitIntersectionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rc][1-9]+b[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Bb].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitMegaLineGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>m[rc][1-3]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Mm].<br/>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-3] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match ')'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser">
-            <summary>
-            Represents a simple multiple-line grid parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.GridSimpleMultilinePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Loop exactly 8 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a character in the set [\n\r].<br/>
-                            ○ Match the string "\r\n".<br/>
-            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SukakuGridParser">
-            <summary>
-            Represents a Sukaku grid parser.
-            </summary>
-            <param name="SingleLine">
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.#ctor(System.Boolean)">
-            <summary>
-            Represents a Sukaku grid parser.
-            </summary>
-            <param name="SingleLine">
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.SingleLine">
-            <summary>
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.GridSukakuSegmentPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d*[\\-\\+]?\\d+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit greedily any number of times.<br/>
-            ○ Match a character in the set [+-] atomically, optionally.<br/>
-            ○ Match a Unicode digit atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SusserGridParser">
-            <summary>
-            Represents a Susser format parser.
-            </summary>
-            <param name="ShortenSusserFormat">
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.#ctor(System.Boolean)">
-            <summary>
-            Represents a Susser format parser.
-            </summary>
-            <param name="ShortenSusserFormat">
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridSusserPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
-            ○ Optional (greedy).<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ':'.<br/>
-                    ○ Loop greedily any number of times.<br/>
-                        ○ 2nd capture group.<br/>
-                            ○ Match a Unicode digit exactly 3 times.<br/>
-                            ○ Match a whitespace character atomically at least once.<br/>
-                    ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridShortenedSusserPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
-            ○ Loop exactly 8 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.Primitive.BitStatusMapCreator">
             <summary>
             Represents a type that has ability to create <see cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`2"/> instances called by compiler.
@@ -5941,11 +4918,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`2.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConceptConverter">
-            <summary>
-            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Primitive.IConceptObject`3">
             <summary>
             Represents an object type that describes for an object that is defined in sudoku concepts.
@@ -5983,23 +4955,13 @@ if (student is (name: var name, age: >= 18))
             <param name="result">A parsed value of type <typeparamref name="TSelf"/>.</param>
             <returns>Indicates whether the parsing operation is successful.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConceptParser">
-            <summary>
-            Represents a parser that parses the specified text into a concept object.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.IConceptTextHandler">
-            <summary>
-            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Primitive.ICoordinateObject`1">
             <summary>
             Defines a type that supports for coordinate output rule.
             </summary>
             <typeparam name="TSelf">The type of implementation.</typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <summary>
             Formats the current instance, converting it into a <see cref="T:System.String"/> result that can describe for this object.
             The conversion rule is specified as parameter <paramref name="converter"/>.
@@ -6007,7 +4969,7 @@ if (student is (name: var name, age: >= 18))
             <param name="converter">The coordinate converter object.</param>
             <returns>A <see cref="T:System.String"/> representation of the current object.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <summary>
             Parses the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
             using the specified parsing rule.
@@ -6015,9 +4977,9 @@ if (student is (name: var name, age: >= 18))
             <param name="str">The string text to be parsed.</param>
             <param name="parser">The parser instance to be used.</param>
             <returns>A valid <typeparamref name="TSelf"/> instance parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when the <see cref="T:Sudoku.Concepts.Parsers.CoordinateParser"/> instance cannot parse it.</exception>
+            <exception cref="T:System.FormatException">Throws when the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance cannot parse it.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.TryParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser,`0@)">
+        <member name="M:Sudoku.Concepts.Primitive.ICoordinateObject`1.TryParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser,`0@)">
             <summary>
             Try to parse the specified <see cref="T:System.String"/> text and convert into a <typeparamref name="TSelf"/> instance,
             using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
@@ -6027,28 +4989,6 @@ if (student is (name: var name, age: >= 18))
             <param name="parser">The parser instance to be used.</param>
             <param name="result">A parsed value of type <typeparamref name="TSelf"/>.</param>
             <returns>Indicates whether the parsing operation is successful.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISpecifiedConceptConverter`1">
-            <summary>
-            Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T">The type of the instance to be converted.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.ISpecifiedConceptConverter`1.Converter">
-            <summary>
-            Indicates the converter that can convert a <typeparamref name="T"/> instance into an equivalent <see cref="T:System.String"/> representation.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISpecifiedConceptParser`1">
-            <summary>
-            Represents a parser that only parses into a specified concept object from a specified <see cref="T:System.String"/> text.
-            </summary>
-            <typeparam name="T">The type of return value.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.ISpecifiedConceptParser`1.Parser">
-            <summary>
-            A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricType">
             <summary>
@@ -6141,609 +5081,505 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.ExcelGridConverter">
+        <member name="T:Sudoku.Concepts.Parsers.K9Parser">
             <summary>
-            Represents with a converter that uses <c>Excel</c>-compatible <c>csv</c>-format to convert <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            Represents a parser type that uses <b>K9</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
             </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.ExcelGridConverter.Tab">
-            <summary>
-            Indicates the tab character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.ExcelGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.ExcelGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CellParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.GridConverter">
-            <summary>
-            Represents a grid converter type that can converts into a <see cref="T:System.String"/> text representing the equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.GridConverter.Converter">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.ISpecifiedConceptConverter`1.Converter"/>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.GridConverter.Sudoku#Concepts#Primitive#ISpecifiedConceptConverter{Sudoku#Concepts#Grid}#Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CandidateParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.GridNotationConverter">
-            <summary>
-            Defines a method that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance, converting it into an equivalent <see cref="T:System.String"/> value.
-            </summary>
-            <param name="Grid">The grid.</param>
-            <returns>The equivalent <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter">
-            <summary>
-            Represents a type that converts from a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
-            using Hodoku library text rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.FormatPrefix">
-            <summary>
-            Indicates the format prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.Default">
-            <summary>
-            Indicates the default instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.FormatSuffix">
-            <summary>
-            Indicates the format suffix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.HodokuLibraryGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.HouseParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MaskGridConverter">
-            <summary>
-            Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
-            </summary>
-            <param name="Separator">
-            <para>Indicates the mask separator.</para>
-            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
-            </param>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MaskGridConverter.#ctor(System.String)">
-            <summary>
-            Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
-            </summary>
-            <param name="Separator">
-            <para>Indicates the mask separator.</para>
-            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
-            </param>
-            <remarks>
-            Please note that the method cannot be called with a correct behavior using
-            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
-            doesn't print correct values when indices of this grid aren't 0. In other words,
-            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
-            can be output correctly, and other values will be incorrect: they're always 0.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MaskGridConverter.Separator">
-            <summary>
-            <para>Indicates the mask separator.</para>
-            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MaskGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConclusionParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MultipleLineGridConverter">
-            <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
-            using multiple-line formatting rule.
-            </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
-            using multiple-line formatting rule.
-            </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines">
-            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven">
-            <summary><inheritdoc cref="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Dot">
-            <summary>
-            Indicates the dot character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder">
-            <summary>
-            Indicates the placeholder of the grid text formatter.
-            </summary>
-            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
-            <returns>The placeholder text.</returns>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.DigitParser">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter._placeholder">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter">
-            <summary>
-            Represents a converter type for Open-Sudoku app format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Terminator">
-            <summary>
-            Indicates the string terminator character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Separator">
-            <summary>
-            Indicates the separator character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.One">
-            <summary>
-            Indicates the one character.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.OpenSudokuGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter">
-            <summary>
-            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
-            using pencil-marking grid formatting rule.
-            </summary>
-            <param name="SubtleGridLines">
-            <para>Indicates whether need to handle all grid outlines while outputting.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-            <param name="TreatValueAsGiven">
-            <para>
-            Indicates the output will treat modifiable values as given ones.
-            If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
-            of '<c>*digit*</c>'.
-            </para>
-            <para>
-            The value has 3 possible cases:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The formatter will tell with givens and modifiables.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
-            using a single digit to display the cell.
-            </description>
-            </item>
-            </list>
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.#ctor(System.Boolean,System.Nullable{System.Boolean})">
-            <summary>
-            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
-            using pencil-marking grid formatting rule.
-            </summary>
-            <param name="SubtleGridLines">
-            <para>Indicates whether need to handle all grid outlines while outputting.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </param>
-            <param name="TreatValueAsGiven">
-            <para>
-            Indicates the output will treat modifiable values as given ones.
-            If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
-            of '<c>*digit*</c>'.
-            </para>
-            <para>
-            The value has 3 possible cases:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The formatter will tell with givens and modifiables.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
-            using a single digit to display the cell.
-            </description>
-            </item>
-            </list>
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.SubtleGridLines">
-            <summary>
-            <para>Indicates whether need to handle all grid outlines while outputting.</para>
-            <para>The default value is <see langword="true"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.TreatValueAsGiven">
-            <summary>
-            <para>
-            Indicates the output will treat modifiable values as given ones.
-            If the output is single line, the output will remove all plus marks '+'.
-            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
-            of '<c>*digit*</c>'.
-            </para>
-            <para>
-            The value has 3 possible cases:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>
-            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
-            </description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The formatter will tell with givens and modifiables.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
-            using a single digit to display the cell.
-            </description>
-            </item>
-            </list>
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.PencilmarkingGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ChuteParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SukakuGridConverter">
-            <summary>
-            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
-            using Sukaku formatting rule.
-            </summary>
-            <param name="Multiline">
-            <para>Indicates whether the output should be multi-line.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SukakuGridConverter.#ctor(System.Boolean)">
-            <summary>
-            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
-            using Sukaku formatting rule.
-            </summary>
-            <param name="Multiline">
-            <para>Indicates whether the output should be multi-line.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline">
-            <summary>
-            <para>Indicates whether the output should be multi-line.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Dot">
-            <summary>
-            Indicates the dot character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder">
-            <summary>
-            Indicates the placeholder of the grid text formatter.
-            </summary>
-            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
-            <returns>The placeholder text.</returns>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConjuagteParser">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter._placeholder">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter">
-            <summary>
-            Represents with a Susser format, but only extracts for pre-eliminations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Converter">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.EliminationPattern">
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCellGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            <code>[a-k]+[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                ○ Match a character in the set [1-9] greedily at least once.<br/>
+                ○ Loop greedily any number of times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match ','.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                        ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 4th capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.MultipleLineGridParser">
+            <summary>
+            Represents a table parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.MultipleLineGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.MultipleLineGridParser.GridSusserDigitPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\+?\\d|\\.)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
             <code>
-            ○ Zero-width positive lookbehind.<br/>
-                ○ Match ':' right-to-left.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a Unicode digit exactly 3 times.<br/>
-                    ○ Match a whitespace character atomically at least once.<br/>
-            ○ Match a Unicode digit exactly 3 times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a Unicode digit.<br/>
+                    ○ Match '.'.<br/>
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverter">
+        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuGridParser">
             <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
-            using Susser formatting rule.
-            </summary>
-            <param name="WithCandidates">
-            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="WithModifiables">
-            <para>
-            Indicates whether the formatter will output and distinct modifiable and given digits.
-            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
-            with the real digit number (from 1 to 9).
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="ShortenSusser">
-            <para>Indicates whether the formatter will shorten the final text.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
-            using Susser formatting rule.
-            </summary>
-            <param name="WithCandidates">
-            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="WithModifiables">
-            <para>
-            Indicates whether the formatter will output and distinct modifiable and given digits.
-            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
-            with the real digit number (from 1 to 9).
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-            <param name="ShortenSusser">
-            <para>Indicates whether the formatter will shorten the final text.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates">
-            <summary>
-            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
-            <para>The default value is <see langword="false"/>.</para>
+            Represents an Open-Sudoku format parser.
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables">
-            <summary>
-            <para>
-            Indicates whether the formatter will output and distinct modifiable and given digits.
-            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
-            with the real digit number (from 1 to 9).
-            </para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser">
-            <summary>
-            <para>Indicates whether the formatter will shorten the final text.</para>
-            <para>The default value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.ModifiablePrefix">
-            <summary>
-            Indicates the modifiable prefix character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.LineLimit">
-            <summary>
-            Indicates the line separator character used by shortening Susser format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Star">
-            <summary>
-            Indicates the star character used by shortening Susser format.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Dot">
-            <summary>
-            Indicates the dot character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.PreeliminationPrefix">
-            <summary>
-            Indicates the pre-elimination prefix character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Full">
-            <summary>
-            Indicates the instance whose inner properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.FullZero">
-            <summary>
-            Indicates the instance whose inner properties are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'0'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder">
-            <summary>
-            Indicates the placeholder of the grid text formatter.
-            </summary>
-            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
-            <returns>The placeholder text.</returns>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter._placeholder">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>
+        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuGridParser.GridOpenSudokuPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d(\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match '|'.<br/>
+                    ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.EqualityComparer">
+        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingGridParser">
             <summary>
-            Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
-            </summary>
-            <seealso cref="T:System.Text.RegularExpressions.Match"/>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.EqualityComparer.Instance">
-            <summary>
-            The singleton instance.
+            Represents for a pencilmarking grid parser.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingGridParser.Parser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingGridParser.GridPencilmarkingPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '&lt;'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '&gt;'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '*'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '*'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a Unicode digit greedily any number of times.<br/>
+                        ○ Match a character in the set [+-] atomically, optionally.<br/>
+                        ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.RxCyParser">
+            <summary>
+            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CellParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens">
-            <summary>
-            Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverterTreatingValuesAsGivens.Converter">
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CandidateParser">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.GridFormatterFactory">
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.HouseParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConclusionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.DigitParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ChuteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCellGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match '('.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match ')'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] greedily at least once.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitHousePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rcb][1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [BCRbcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitIntersectionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rc][1-9]+b[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Bb].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitMegaLineGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>m[rc][1-3]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-3] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser">
             <summary>
-            Indicates the factory that creates the grid formatter.
+            Represents a simple multiple-line grid parser.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.GridFormatterFactory.GetBuiltInConverter(System.String)">
+        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.GridSimpleMultilinePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a character in the set [\n\r].<br/>
+                            ○ Match the string "\r\n".<br/>
+            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SukakuGridParser">
             <summary>
-            Get a built-in <see cref="T:Sudoku.Text.SudokuGrid.GridConverter"/> instance according to the specified format.
+            Represents a Sukaku grid parser.
             </summary>
-            <param name="format">The format.</param>
-            <returns>The grid formatter.</returns>
-            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Sukaku grid parser.
+            </summary>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.SingleLine">
+            <summary>
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.GridSukakuSegmentPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Parsers.SusserGridParser">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ':'.<br/>
+                    ○ Loop greedily any number of times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match a Unicode digit exactly 3 times.<br/>
+                            ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridShortenedSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapEnumerable">
             <summary>
@@ -8916,6 +7752,1170 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.Converters.CandidateNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="candidates">A list of candidates.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.CellNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="cells">A list of cells.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.ChuteNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Chute"/> instance.
+            </summary>
+            <param name="chutes">A list of chutes.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="chutes"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.ConclusionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
+            </summary>
+            <param name="conclusions">A list of conjugate pairs.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.ConjugateNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conjugate"/> instance.
+            </summary>
+            <param name="conjugatePairs">A list of conjugate pairs.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.CoordinateConverter">
+            <summary>
+            Represents an option provider for coordinates.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+            <remarks>
+            You can use types <see cref="T:Sudoku.Text.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>, <see cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>.
+            They are the derived types of the current type.
+            </remarks>
+            <seealso cref="T:Sudoku.Text.Converters.RxCyConverter"/>
+            <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>
+            <seealso cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>
+        </member>
+        <member name="M:Sudoku.Text.Converters.CoordinateConverter.#ctor(System.String,System.String)">
+            <summary>
+            Represents an option provider for coordinates.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+            <remarks>
+            You can use types <see cref="T:Sudoku.Text.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>, <see cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>.
+            They are the derived types of the current type.
+            </remarks>
+            <seealso cref="T:Sudoku.Text.Converters.RxCyConverter"/>
+            <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>
+            <seealso cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.CellConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.CandidateConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.HouseConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ConclusionConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.DigitConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.IntersectionConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ChuteConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ConjugateConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Converters.DigitNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
+            </summary>
+            <param name="digitsMask">A list of digits.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.ExcelCoordinateConverter">
+            <summary>
+            Represents for Excel coordinate-based converter.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String)">
+            <summary>
+            Represents for Excel coordinate-based converter.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.MakeLettersUpperCase">
+            <summary>
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.CellConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.CandidateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.HouseConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.ConclusionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.DigitConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.ChuteConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.ConjugateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.ExcelGridConverter">
+            <summary>
+            Represents with a converter that uses <c>Excel</c>-compatible <c>csv</c>-format to convert <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.ExcelGridConverter.Tab">
+            <summary>
+            Indicates the tab character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.ExcelGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.ExcelGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.GenericConceptConverter">
+            <summary>
+            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
+            </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.GenericConceptConverter.#ctor(System.String,System.String)">
+            <summary>
+            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
+            </summary>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.GenericConceptConverter.DefaultSeparator">
+            <summary>
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.GenericConceptConverter.DigitsSeparator">
+            <summary>
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Converters.GridConverter">
+            <summary>
+            Represents a grid converter type that can converts into a <see cref="T:System.String"/> text representing the equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.GridConverter.Converter">
+            <inheritdoc cref="P:Sudoku.Text.ISpecifiedConceptConverter`1.Converter"/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.GridConverter.Sudoku#Text#ISpecifiedConceptConverter{Sudoku#Concepts#Grid}#Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.GridNotationConverter">
+            <summary>
+            Defines a method that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance, converting it into an equivalent <see cref="T:System.String"/> value.
+            </summary>
+            <param name="Grid">The grid.</param>
+            <returns>The equivalent <see cref="T:System.String"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.HodokuLibraryGridConverter">
+            <summary>
+            Represents a type that converts from a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
+            using Hodoku library text rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.HodokuLibraryGridConverter.FormatPrefix">
+            <summary>
+            Indicates the format prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.HodokuLibraryGridConverter.Default">
+            <summary>
+            Indicates the default instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.HodokuLibraryGridConverter.FormatSuffix">
+            <summary>
+            Indicates the format suffix.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.HodokuLibraryGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.HodokuTripletConverter">
+            <summary>
+            Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.HodokuTripletConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.HouseNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
+            </summary>
+            <param name="housesMask">A list of houses.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.IntersectionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value
+            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instance.
+            </summary>
+            <param name="intersections">A list of intersections.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="intersections"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.K9Converter">
+            <summary>
+            Represents a coordinate converter using K9 notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="FinalRowLetter">
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String)">
+            <summary>
+            Represents a coordinate converter using K9 notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="FinalRowLetter">
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.MakeLettersUpperCase">
+            <summary>
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.FinalRowLetter">
+            <summary>
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.CellConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.CandidateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.HouseConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.ConclusionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.DigitConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.ChuteConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.K9Converter.ConjugateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.LiteralCoordinateConverter">
+            <summary>
+            Represents a converter that outputs coordinates as literally-speaking representation.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.LiteralCoordinateConverter.#ctor(System.String,System.String)">
+            <summary>
+            Represents a converter that outputs coordinates as literally-speaking representation.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.CellConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.CandidateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.HouseConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.ConclusionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.DigitConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.ChuteConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.ConjugateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.MaskGridConverter">
+            <summary>
+            Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
+            </summary>
+            <param name="Separator">
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </param>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Converters.MaskGridConverter.#ctor(System.String)">
+            <summary>
+            Represents a type that converts the grid into an equivalent <see cref="T:System.String"/> representation using mask displaying rule.
+            </summary>
+            <param name="Separator">
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </param>
+            <remarks>
+            Please note that the method cannot be called with a correct behavior using
+            <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> to output. It seems that Visual Studio
+            doesn't print correct values when indices of this grid aren't 0. In other words,
+            when we call this method using <see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
+            can be output correctly, and other values will be incorrect: they're always 0.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MaskGridConverter.Separator">
+            <summary>
+            <para>Indicates the mask separator.</para>
+            <para>The default value is a comma followed by a space: <c>", "</c>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MaskGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.OpenSudokuGridConverter">
+            <summary>
+            Represents a converter type for Open-Sudoku app format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.OpenSudokuGridConverter.Terminator">
+            <summary>
+            Indicates the string terminator character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.OpenSudokuGridConverter.Separator">
+            <summary>
+            Indicates the separator character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.OpenSudokuGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.OpenSudokuGridConverter.One">
+            <summary>
+            Indicates the one character.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.OpenSudokuGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.PencilmarkingGridConverter">
+            <summary>
+            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
+            using pencil-marking grid formatting rule.
+            </summary>
+            <param name="SubtleGridLines">
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="TreatValueAsGiven">
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.PencilmarkingGridConverter.#ctor(System.Boolean,System.Nullable{System.Boolean})">
+            <summary>
+            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
+            using pencil-marking grid formatting rule.
+            </summary>
+            <param name="SubtleGridLines">
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </param>
+            <param name="TreatValueAsGiven">
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines">
+            <summary>
+            <para>Indicates whether need to handle all grid outlines while outputting.</para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven">
+            <summary>
+            <para>
+            Indicates the output will treat modifiable values as given ones.
+            If the output is single line, the output will remove all plus marks '+'.
+            If the output is multi-line, the output will use '<c><![CDATA[<digit>]]></c>' instead
+            of '<c>*digit*</c>'.
+            </para>
+            <para>
+            The value has 3 possible cases:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>
+            The formatter will treat all value cells as given one, no matter what kind of value cell it is, given or modifiable.
+            </description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The formatter will tell with givens and modifiables.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            The formatter will <b>not</b> check its value states. It will be displayed and handled as candidate cells,
+            using a single digit to display the cell.
+            </description>
+            </item>
+            </list>
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.PencilmarkingGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.RxCyConverter">
+            <summary>
+            Represents a coordinate converter using RxCy notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="HouseNotationOnlyDisplayCapitals">
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
+            <summary>
+            Represents a coordinate converter using RxCy notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="HouseNotationOnlyDisplayCapitals">
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.MakeLettersUpperCase">
+            <summary>
+            <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.MakeDigitBeforeCell">
+            <summary>
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.HouseNotationOnlyDisplayCapitals">
+            <summary>
+            <para>Indicates whether the houses will be displayed its capitals only.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.CellConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.CandidateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.HouseConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.ConclusionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.DigitConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.ChuteConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.RxCyConverter.ConjugateConverter">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Converters.RxCyConverter.GetLabel(System.Byte)">
+            <summary>
+            Get the label of each house.
+            </summary>
+            <param name="houseIndex">The house index.</param>
+            <returns>The label.</returns>
+        </member>
+        <member name="T:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens">
+            <summary>
+            Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.MultipleLineGridConverter">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
+            using multiple-line formatting rule.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
+            using multiple-line formatting rule.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines">
+            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven">
+            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.SukakuGridConverter">
+            <summary>
+            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
+            using Sukaku formatting rule.
+            </summary>
+            <param name="Multiline">
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.SukakuGridConverter.#ctor(System.Boolean)">
+            <summary>
+            Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
+            using Sukaku formatting rule.
+            </summary>
+            <param name="Multiline">
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline">
+            <summary>
+            <para>Indicates whether the output should be multi-line.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter">
+            <summary>
+            Represents with a Susser format, but only extracts for pre-eliminations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.EliminationPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Zero-width positive lookbehind.<br/>
+                ○ Match ':' right-to-left.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverter">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
+            using Susser formatting rule.
+            </summary>
+            <param name="WithCandidates">
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="WithModifiables">
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="ShortenSusser">
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
+            using Susser formatting rule.
+            </summary>
+            <param name="WithCandidates">
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="WithModifiables">
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="ShortenSusser">
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates">
+            <summary>
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables">
+            <summary>
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser">
+            <summary>
+            <para>Indicates whether the formatter will shorten the final text.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.ModifiablePrefix">
+            <summary>
+            Indicates the modifiable prefix character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.LineLimit">
+            <summary>
+            Indicates the line separator character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Star">
+            <summary>
+            Indicates the star character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.PreeliminationPrefix">
+            <summary>
+            Indicates the pre-elimination prefix character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Full">
+            <summary>
+            Indicates the instance whose inner properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.FullZero">
+            <summary>
+            Indicates the instance whose inner properties are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'0'</c></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>
+        </member>
+        <member name="T:Sudoku.Text.SudokuGrid.EqualityComparer">
+            <summary>
+            Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.Match"/>
+        </member>
+        <member name="F:Sudoku.Text.SudokuGrid.EqualityComparer.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.GridFormatterFactory">
+            <summary>
+            Indicates the factory that creates the grid formatter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.GridFormatterFactory.GetBuiltInConverter(System.String)">
+            <summary>
+            Get a built-in <see cref="T:Sudoku.Text.Converters.GridConverter"/> instance according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Text.IConceptConverter">
+            <summary>
+            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.IConceptParser">
+            <summary>
+            Represents a parser that parses the specified text into a concept object.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.IConceptTextHandler">
+            <summary>
+            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.ISpecifiedConceptConverter`1">
+            <summary>
+            Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T">The type of the instance to be converted.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.ISpecifiedConceptConverter`1.Converter">
+            <summary>
+            Indicates the converter that can convert a <typeparamref name="T"/> instance into an equivalent <see cref="T:System.String"/> representation.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.ISpecifiedConceptParser`1">
+            <summary>
+            Represents a parser that only parses into a specified concept object from a specified <see cref="T:System.String"/> text.
+            </summary>
+            <typeparam name="T">The type of return value.</typeparam>
+        </member>
+        <member name="P:Sudoku.Text.ISpecifiedConceptParser`1.Parser">
+            <summary>
+            A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.CoordinateParser">
+            <summary>
+            Represents for a parser instance that parses a <see cref="T:System.String"/> text,
+            converting it into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
+        </member>
+        <member name="F:Sudoku.Text.Parsers.CoordinateParser.DeprecatedInfo_NotSupported">
+            <summary>
+            The not supported information for property implemented.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.CellParser">
+            <summary>
+            The parser method that can creates a <see cref="T:Sudoku.Concepts.CellMap"/> via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.CandidateParser">
+            <summary>
+            The parser method that can creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.HouseParser">
+            <summary>
+            The parser method that can creates a <see cref="T:System.Int32"/> via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.ConclusionParser">
+            <summary>
+            The parser method that can creates a <see cref="T:Sudoku.Analytics.Conclusion"/> list via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.DigitParser">
+            <summary>
+            The parser method that can creates a <see cref="T:System.Int16"/> via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:System.Int16"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.IntersectionParser">
+            <summary>
+            The parser method that can creates a list of pairs of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/>
+            via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
+            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.ChuteParser">
+            <summary>
+            The parser method that can creates a <see cref="T:Sudoku.Concepts.Chute"/> list via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Chute"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.CoordinateParser.ConjuagteParser">
+            <summary>
+            The parser method that can creates a <see cref="T:Sudoku.Concepts.Conjugate"/> list via the specified text to be parsed.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Conjugate"/>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.ExcelGridParser">
+            <summary>
+            Represents an Excel grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.ExcelGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.GenericConceptParser">
+            <summary>
+            Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.GridParser">
+            <summary>
+            Represents a parser instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.GridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.HodokuTripletParser">
+            <summary>
+            Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.HodokuTripletParser.Parser">
+            <inheritdoc/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>

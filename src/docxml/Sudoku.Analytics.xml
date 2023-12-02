@@ -3592,7 +3592,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
-            <inheritdoc cref="T:Sudoku.Concepts.Converters.CoordinateConverter"/>
+            <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <summary>
@@ -3601,7 +3601,7 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Concepts.Converters.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
             </list>
             </remarks>
         </member>
@@ -15049,10 +15049,10 @@ if (student is (name: var name, age: >= 18))
             The internal notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Concepts#Primitive#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Concepts#Primitive#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
@@ -22344,10 +22344,10 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Concepts.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ParseExact(System.String,Sudoku.Concepts.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Collect(Sudoku.Concepts.Grid@)">

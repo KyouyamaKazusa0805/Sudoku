@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Sudoku.Concepts.Converters;
-using Sudoku.Concepts.Parsers;
+using Sudoku.Text.Converters;
+using Sudoku.Text.Parsers;
 
 namespace Sudoku.Concepts.Primitive;
 

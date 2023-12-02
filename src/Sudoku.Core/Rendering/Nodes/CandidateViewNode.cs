@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text.Json.Serialization;
-using Sudoku.Concepts.Converters;
+using Sudoku.Text.Converters;
 
 namespace Sudoku.Rendering.Nodes;
 

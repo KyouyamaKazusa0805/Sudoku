@@ -3686,10 +3686,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.SudokuFormatFlagsExtensions.GetConverter(SudokuStudio.Interaction.SudokuFormatFlags)">
             <summary>
-            Try to get target <see cref="T:Sudoku.Text.SudokuGrid.GridConverter"/> instance.
+            Try to get target <see cref="T:Sudoku.Text.Converters.GridConverter"/> instance.
             </summary>
             <param name="this">The flag instance.</param>
-            <returns><see cref="T:Sudoku.Text.SudokuGrid.GridConverter"/> instance.</returns>
+            <returns><see cref="T:Sudoku.Text.Converters.GridConverter"/> instance.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
@@ -10782,7 +10782,7 @@ if (student is (name: var name, age: >= 18))
             we cannot use this type as a type argument, because APIs may not contain any implementation from this type,
             so C# compiler cannot determine which method can be called.
             Therefore, here we cannot use generic type to pass arguments
-            because here the type <see cref="T:Sudoku.Text.SudokuGrid.GridConverter"/> contains <see langword="static abstract"/> members.
+            because here the type <see cref="T:Sudoku.Text.Converters.GridConverter"/> contains <see langword="static abstract"/> members.
             </para>
             <para>
             This topic relates to the content in the following links:
@@ -10802,7 +10802,7 @@ if (student is (name: var name, age: >= 18))
             of the argument <paramref name="gridFormatters"/>.
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Text.SudokuGrid.GridConverter"/>
+            <seealso cref="T:Sudoku.Text.Converters.GridConverter"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadPuzzleCoreAsync(Windows.Storage.StorageFile)">
             <summary>

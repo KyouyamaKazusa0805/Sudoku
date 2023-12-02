@@ -1,4 +1,4 @@
-using Sudoku.Concepts.Converters;
+using Sudoku.Text.Converters;
 
 namespace Sudoku.Analytics.Configuration;
 

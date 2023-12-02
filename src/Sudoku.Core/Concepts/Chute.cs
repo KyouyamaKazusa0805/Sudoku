@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Concepts.Converters;
-using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
+using Sudoku.Text.Converters;
+using Sudoku.Text.Parsers;
 
 namespace Sudoku.Concepts;
 

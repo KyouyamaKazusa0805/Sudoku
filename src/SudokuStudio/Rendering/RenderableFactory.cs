@@ -8,7 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Concepts.Converters;
+using Sudoku.Text.Converters;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using SudokuStudio.BindableSource;

@@ -17,7 +17,7 @@ using Sudoku.Analytics.Metadata;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Text.SudokuGrid;
+using Sudoku.Text.Converters;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Sudoku.Text;
 
 namespace Sudoku.Concepts.Primitive;
 

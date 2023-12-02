@@ -4,7 +4,7 @@ using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts;
-using Sudoku.Concepts.Converters;
+using Sudoku.Text.Converters;
 using SudokuStudio.Configuration;
 using SudokuStudio.Storage;
 using SudokuStudio.Views.Attached;
