@@ -8796,11 +8796,6 @@ if (student is (name: var name, age: >= 18))
             Indicates a column list that each cell belongs to.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.PascalTriangle">
-            <summary>
-            Indicates the Pascal Triangle (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
-            </summary>
-        </member>
         <member name="F:Sudoku.SolutionWideReadOnlyFields.ChuteHouses">
             <summary>
             Indicates the chute houses.

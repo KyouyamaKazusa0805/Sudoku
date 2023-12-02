@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Parsers;
 using Sudoku.Linq;
-using static Sudoku.SolutionWideReadOnlyFields;
+using static System.Algorithm.Combinatorial;
 
 namespace Sudoku.Concepts.Primitive;
 

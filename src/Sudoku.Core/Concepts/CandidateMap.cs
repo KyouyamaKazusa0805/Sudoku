@@ -13,6 +13,7 @@ using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Linq;
 using Sudoku.Runtime.CompilerServices;
+using static System.Algorithm.Combinatorial;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
