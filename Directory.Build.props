@@ -21,10 +21,8 @@
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
 
-	<!--Enables the preview features and native AOT if the project is not the source generators.-->
+	<!--Enables the preview features if the project is not the source generators.-->
 	<PropertyGroup Condition="'$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
 		<Feature>InterceptorsPreview</Feature>
 	</PropertyGroup>
 
