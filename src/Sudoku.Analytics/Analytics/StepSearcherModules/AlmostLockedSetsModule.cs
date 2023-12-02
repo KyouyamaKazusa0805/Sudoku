@@ -1,6 +1,5 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Runtime.CompilerServices;
@@ -13,19 +12,8 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents for the module that will be used for searching for almost locked sets.
 /// </summary>
-internal sealed class AlmostLockedSetsModule : IStepSearcherModule<AlmostLockedSetsModule>
+internal sealed class AlmostLockedSetsModule
 {
-	/// <inheritdoc/>
-	static Type[] IStepSearcherModule<AlmostLockedSetsModule>.SupportedTypes
-		=> [
-			typeof(AlmostLockedSetsXzStepSearcher),
-			typeof(AlmostLockedSetsXyWingStepSearcher),
-			typeof(AlmostLockedSetsWWingStepSearcher),
-			typeof(EmptyRectangleIntersectionPairStepSearcher),
-			typeof(DeathBlossomStepSearcher)
-		];
-
-
 	/// <summary>
 	/// Try to collect all possible ALSes in the specified grid.
 	/// </summary>

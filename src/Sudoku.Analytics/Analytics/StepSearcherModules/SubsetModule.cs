@@ -1,7 +1,6 @@
 using System.Numerics;
 using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
-using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
@@ -17,12 +16,8 @@ using unsafe SubsetHandler = delegate*<ref AnalysisContext, ref readonly Grid, i
 /// <summary>
 /// Represents a subset module.
 /// </summary>
-internal sealed class SubsetModule : IStepSearcherModule<SubsetModule>
+internal sealed class SubsetModule
 {
-	/// <inheritdoc/>
-	static Type[] IStepSearcherModule<SubsetModule>.SupportedTypes => [typeof(LockedSubsetStepSearcher), typeof(NormalSubsetStepSearcher)];
-
-
 	/// <summary>
 	/// The internal method to create subset steps.
 	/// </summary>

@@ -1,5 +1,4 @@
 using Sudoku.Analytics.Steps;
-using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -9,12 +8,8 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents a fish module.
 /// </summary>
-internal sealed class FishModule : IStepSearcherModule<FishModule>
+internal sealed class FishModule
 {
-	/// <inheritdoc/>
-	static Type[] IStepSearcherModule<FishModule>.SupportedTypes => [typeof(NormalFishStepSearcher), typeof(ComplexFishStepSearcher)];
-
-
 	/// <summary>
 	/// Check whether the fish is sashimi.
 	/// </summary>

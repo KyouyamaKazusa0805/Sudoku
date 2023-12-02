@@ -1,5 +1,4 @@
 using System.Numerics;
-using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Concepts.ObjectModel;
 using static System.Numerics.BitOperations;
@@ -16,12 +15,8 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// However unfortunately, I cannot find any sites available of the project.
 /// One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
 /// </remarks>
-internal class ChainingModule : IStepSearcherModule<ChainingModule>
+internal class ChainingModule
 {
-	/// <inheritdoc/>
-	static Type[] IStepSearcherModule<ChainingModule>.SupportedTypes => [typeof(NonMultipleChainingStepSearcher), typeof(MultipleChainingStepSearcher)];
-
-
 	/// <summary>
 	/// Get the set of all <see cref="ChainNode"/>s that cannot be valid (are "off") if the given potential is "on"
 	/// (i.e. if its value is the correct one for the cell).

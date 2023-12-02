@@ -3610,17 +3610,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.IStepSearcherModule`1">
-            <summary>
-            Represents for a step searcher module. The module is used for extracting logic, without defining base and derived type hierarchy.
-            </summary>
-            <typeparam name="TSelf">The type of the module.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.IStepSearcherModule`1.SupportedTypes">
-            <summary>
-            Indicates the supported types.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.ConditionalFlags">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
@@ -5274,9 +5263,6 @@ if (student is (name: var name, age: >= 18))
             Represents the advanced dynamic chaining module.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#AdvancedDynamicChainingModule}#SupportedTypes">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.AdvancedDynamicChainingModule.OnAdvanced(Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.OnAdvanced``1(``0,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
         </member>
@@ -5294,9 +5280,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents for the module that will be used for searching for almost locked sets.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#AlmostLockedSetsModule}#SupportedTypes">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
             <summary>
@@ -5327,9 +5310,6 @@ if (student is (name: var name, age: >= 18))
             However unfortunately, I cannot find any sites available of the project.
             One of the original website is <see href="https://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">this link</see> (A broken link).
             </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcherModules.ChainingModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#ChainingModule}#SupportedTypes">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainingModule.GetOnToOff(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainNode,System.Boolean)">
             <summary>
@@ -5405,9 +5385,6 @@ if (student is (name: var name, age: >= 18))
             Represents a fish module.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcherModules.FishModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#FishModule}#SupportedTypes">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
@@ -5435,9 +5412,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a subset module.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcherModules.SubsetModule.Sudoku#Analytics#IStepSearcherModule{Sudoku#Analytics#StepSearcherModules#SubsetModule}#SupportedTypes">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.AnalysisContext@)">
             <summary>

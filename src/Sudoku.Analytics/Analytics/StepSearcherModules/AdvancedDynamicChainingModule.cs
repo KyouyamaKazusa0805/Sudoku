@@ -8,12 +8,8 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents the advanced dynamic chaining module.
 /// </summary>
-internal sealed class AdvancedDynamicChainingModule : ChainingModule, IStepSearcherModule<AdvancedDynamicChainingModule>
+internal sealed class AdvancedDynamicChainingModule : ChainingModule
 {
-	/// <inheritdoc/>
-	static Type[] IStepSearcherModule<AdvancedDynamicChainingModule>.SupportedTypes => [typeof(AdvancedMultipleChainingStepSearcher)];
-
-
 	/// <inheritdoc cref="ChainingModule.OnAdvanced{T}(T, NodeList, NodeList, NodeSet, ref readonly Grid, ref readonly Grid)"/>
 	public static void OnAdvanced(
 		AdvancedMultipleChainingStepSearcher stepSearcher,
