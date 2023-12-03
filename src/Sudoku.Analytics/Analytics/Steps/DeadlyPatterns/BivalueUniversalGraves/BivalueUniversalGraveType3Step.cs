@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -64,7 +63,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
 
-	private string SizeStr => TechniqueFact.GetSubsetName(Size);
+	private string SizeStr => TechniqueMarshal.GetSubsetName(Size);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

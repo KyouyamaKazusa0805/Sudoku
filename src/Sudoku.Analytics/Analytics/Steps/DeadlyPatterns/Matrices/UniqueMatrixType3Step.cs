@@ -1,8 +1,8 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -47,5 +47,5 @@ public sealed partial class UniqueMatrixType3Step(
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
+	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count);
 }

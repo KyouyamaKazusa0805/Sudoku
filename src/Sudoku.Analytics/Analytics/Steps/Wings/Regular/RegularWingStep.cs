@@ -3,7 +3,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -82,7 +81,7 @@ public sealed partial class RegularWingStep(
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique Code => TechniqueFact.MakeRegularWingTechniqueCode(TechniqueFact.GetRegularWingEnglishName(Size, IsIncomplete));
+	public override Technique Code => TechniqueMarshal.MakeRegularWingTechniqueCode(TechniqueMarshal.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors

@@ -1,8 +1,8 @@
 using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -53,5 +53,5 @@ public sealed partial class QiuDeadlyPatternType3Step(
 
 	private string CellsStr => Options.Converter.CellConverter(SubsetCells);
 
-	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count + 1);
+	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count + 1);
 }

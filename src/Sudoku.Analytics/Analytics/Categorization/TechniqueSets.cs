@@ -9,6 +9,11 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueSets
 {
 	/// <summary>
+	/// Indicates the number of techniques supported in this program.
+	/// </summary>
+	public static int TechniquesCount => All.Count;
+
+	/// <summary>
 	/// Indicates all <see cref="Technique"/> fields included.
 	/// </summary>
 	public static TechniqueSet All => [.. Enum.GetValues<Technique>()];

@@ -3253,6 +3253,44 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The group to be checked.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueMarshal">
+            <summary>
+            Represents a set of methods that operates with <see cref="T:Sudoku.Analytics.Categorization.Technique"/> enumeration.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueMarshal.GetSubsetName(System.Int32)">
+            <summary>
+            Try to get the real name for the specified size of subset.
+            </summary>
+            <param name="size">The number of cells used in a subset.</param>
+            <returns>The name of the subset.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueMarshal.GetRegularWingEnglishName(System.Int32,System.Boolean)">
+            <summary>
+            Make the real name of the regular wing.
+            </summary>
+            <param name="size">Indicates the size of the wing.</param>
+            <param name="isIncomplete">A <see cref="T:System.Boolean"/> value indicating whether the wing is incomplete.</param>
+            <returns>The real name of the regular wing.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueMarshal.GetFishEnglishName(System.Int32)">
+            <summary>
+            Gets the name of the fish via the specified size.
+            </summary>
+            <param name="size">The size.</param>
+            <returns>The fish name.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueMarshal.MakeRegularWingTechniqueCode(System.String)">
+            <summary>
+            Try to fetch corresponding <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance via the real name representing as a <see cref="T:System.String"/> text.
+            </summary>
+            <param name="englishName">The real name of the regular wing technique.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueSet">
             <summary>
             Represents a set of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields.
@@ -3545,6 +3583,11 @@ if (student is (name: var name, age: >= 18))
             Predefined <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.TechniquesCount">
+            <summary>
+            Indicates the number of techniques supported in this program.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.All">
             <summary>
@@ -23292,55 +23335,6 @@ result ^= expression;
             <param name="this">The sudoku painter instance.</param>
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Facts.TechniqueFact">
-            <summary>
-            Provides some methods that creates some facts for techniques.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.GetTechniquesCount">
-            <summary>
-            Try to get the number of all techniques that the current API set support.
-            </summary>
-            <returns>The number of techniques.</returns>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.GetTechniques">
-            <summary>
-            Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> values.
-            </summary>
-            <returns>All <see cref="T:Sudoku.Analytics.Categorization.Technique"/> values.</returns>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.GetSubsetName(System.Int32)">
-            <summary>
-            Try to get the real name for the specified size of subset.
-            </summary>
-            <param name="size">The number of cells used in a subset.</param>
-            <returns>The name of the subset.</returns>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.GetRegularWingEnglishName(System.Int32,System.Boolean)">
-            <summary>
-            Make the real name of the regular wing.
-            </summary>
-            <param name="size">Indicates the size of the wing.</param>
-            <param name="isIncomplete">A <see cref="T:System.Boolean"/> value indicating whether the wing is incomplete.</param>
-            <returns>The real name of the regular wing.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.GetFishEnglishName(System.Int32)">
-            <summary>
-            Gets the name of the fish via the specified size.
-            </summary>
-            <param name="size">The size.</param>
-            <returns>The fish name.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-        </member>
-        <member name="M:Sudoku.Facts.TechniqueFact.MakeRegularWingTechniqueCode(System.String)">
-            <summary>
-            Try to fetch corresponding <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance via the real name representing as a <see cref="T:System.String"/> text.
-            </summary>
-            <param name="englishName">The real name of the regular wing technique.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the argument <paramref name="englishName"/> is invalid.</exception>
         </member>
         <member name="T:Sudoku.Filtering.Expressions.ConclusionHasExpression">
             <summary>

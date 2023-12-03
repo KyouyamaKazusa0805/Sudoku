@@ -1,28 +1,14 @@
 using System.Runtime.CompilerServices;
-using Sudoku.Analytics.Categorization;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
-namespace Sudoku.Facts;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Provides some methods that creates some facts for techniques.
+/// Represents a set of methods that operates with <see cref="Technique"/> enumeration.
 /// </summary>
-public static class TechniqueFact
+/// <seealso cref="Technique"/>
+public static class TechniqueMarshal
 {
-	/// <summary>
-	/// Try to get the number of all techniques that the current API set support.
-	/// </summary>
-	/// <returns>The number of techniques.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetTechniquesCount() => GetTechniques().Count;
-
-	/// <summary>
-	/// Try to get all possible <see cref="Technique"/> values.
-	/// </summary>
-	/// <returns>All <see cref="Technique"/> values.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueSet GetTechniques() => TechniqueSets.All;
-
 	/// <summary>
 	/// Try to get the real name for the specified size of subset.
 	/// </summary>

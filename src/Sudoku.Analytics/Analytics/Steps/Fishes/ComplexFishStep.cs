@@ -4,7 +4,6 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -98,7 +97,7 @@ public sealed partial class ComplexFishStep(
 			{
 				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal ? $"{finModifier} " : null;
 				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : null;
-				return $"{finKindStr}{shapeKindStr}{TechniqueFact.GetFishEnglishName(Size)}";
+				return $"{finKindStr}{shapeKindStr}{TechniqueMarshal.GetFishEnglishName(Size)}";
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

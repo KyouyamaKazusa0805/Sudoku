@@ -1,9 +1,9 @@
 using System.Numerics;
 using System.SourceGeneration;
+using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Facts;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -71,7 +71,7 @@ public sealed partial class UniqueLoopType3Step(
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetName => TechniqueFact.GetSubsetName(SubsetCells.Count);
+	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count);
 
 
 	/// <summary>
