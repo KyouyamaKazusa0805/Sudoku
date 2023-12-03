@@ -78,7 +78,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		alsReferenceTable.Fill(-1);
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorHouse = new List<HouseDeathBlossomStep>();
-		var accumulatorComplex = new List<NTimesAlmostLockedSetDeathBlossomStep>();
+		var accumulatorNTimesAls = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 
 		// Iterate on each cell to collect cell-blooming type.
 		var playgroundCached = grid.ToCandidateMaskArray();
@@ -134,6 +134,23 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								&& CreateStep_NormalType(ref context, in grid, pivot, alsReferenceTable, alses, playgroundCached, accumulatorNormal) is { } normalTypeStep)
 							{
 								return normalTypeStep;
+							}
+
+							// Check for house type.
+							foreach (var houseType in HouseTypes)
+							{
+								var house = pivot.ToHouseIndex(houseType);
+								var disappearedDigitsMask = Grid.MaxCandidatesMask;
+								foreach (var cell in HouseCells[house])
+								{
+									disappearedDigitsMask &= (Mask)~playground[cell];
+								}
+
+								if (disappearedDigitsMask != 0
+									&& CreateStep_HouseType(ref context, in grid, house, disappearedDigitsMask, alsReferenceTable, alses, playgroundCached, accumulatorHouse) is { } houseTypeStep)
+								{
+									return houseTypeStep;
+								}
 							}
 						}
 					}
@@ -265,7 +282,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			AlmostAlmostLockedSetDeletion:
 				if (CreateStep_NTimesAlsType(
 					ref context, in grid, alses, alsesUsed, usedIndex, selectedAlsEntryCell, satisfiedSize,
-					selectedCellDigitsMask, wrongDigit, alsReferenceTable, accumulatorComplex
+					selectedCellDigitsMask, wrongDigit, alsReferenceTable, accumulatorNTimesAls
 				) is { } anlsBloomingTypeStep)
 				{
 					return anlsBloomingTypeStep;
@@ -275,31 +292,20 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		if (!context.OnlyFindOne)
 		{
-			switch (accumulatorNormal.Count, accumulatorComplex.Count)
+			if (accumulatorNormal.Count != 0)
 			{
-				case (0, 0):
-				{
-					break;
-				}
-				case (_, 0):
-				{
-					context.Accumulator.AddRange(accumulatorNormal);
-					break;
-				}
-				case (0, _):
-				{
-					ComparableStep.Order(accumulatorComplex);
-					context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorComplex));
-					break;
-				}
-				default:
-				{
-					context.Accumulator.AddRange(accumulatorNormal);
+				context.Accumulator.AddRange(accumulatorNormal);
+			}
 
-					ComparableStep.Order(accumulatorComplex);
-					context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorComplex));
-					break;
-				}
+			if (accumulatorHouse.Count != 0)
+			{
+				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorHouse));
+			}
+
+			if (accumulatorNTimesAls.Count != 0)
+			{
+				ComparableStep.Order(accumulatorNTimesAls);
+				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorNTimesAls));
 			}
 		}
 
@@ -405,9 +411,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					var node = new CandidateViewNode(
 						branchDigit == digit
 							? WellKnownColorIdentifier.Auxiliary2
-							: (zDigitsMask >> digit & 1) != 0
-								? WellKnownColorIdentifier.Auxiliary1
-								: alsColor,
+							: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
 						alsCell * 9 + digit
 					);
 					candidateOffsets.Add(node);
@@ -436,6 +440,138 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Create a <see cref="HouseDeathBlossomStep"/> instance and add it into the accumulator.
+	/// </summary>
+	private HouseDeathBlossomStep? CreateStep_HouseType(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		House house,
+		Mask disappearedDigitsMask,
+		scoped Span<int> alsReferenceTable,
+		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		Mask[] playgroundCached,
+		List<HouseDeathBlossomStep> accumulator
+	)
+	{
+		// A house death blossom is found. Now check for eliminations.
+		foreach (var disappearedDigit in disappearedDigitsMask)
+		{
+			var branches = new HouseBlossomBranchCollection();
+			var zDigitsMask = (Mask)0;
+			var targetCells = HousesMap[house] & CandidatesMap[disappearedDigit];
+			var isFirstEncountered = true;
+			foreach (var cell in targetCells)
+			{
+				var branch = alses[alsReferenceTable[cell * 9 + disappearedDigit]];
+				branches.Add(cell, branch);
+
+				if (isFirstEncountered)
+				{
+					zDigitsMask = branch.DigitsMask;
+					isFirstEncountered = false;
+				}
+				else
+				{
+					zDigitsMask &= branch.DigitsMask;
+				}
+			}
+
+			// Delete invalid digits.
+			zDigitsMask &= (Mask)~(1 << disappearedDigit);
+
+			// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
+			var branchCellsContainingZ = CellMap.Empty;
+			foreach (var digit in zDigitsMask)
+			{
+				foreach (var (_, branchCells) in branches.Values)
+				{
+					branchCellsContainingZ |= branchCells & CandidatesMap[digit];
+				}
+			}
+
+			// Check for eliminations.
+			var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
+			foreach (var zDigit in zDigitsMask)
+			{
+				if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
+				{
+					continue;
+				}
+
+				validZ |= (Mask)(1 << zDigit);
+				foreach (var c in elimMap)
+				{
+					conclusions.Add(new(Elimination, c, zDigit));
+
+					if (SearchExtendedTypes)
+					{
+						playgroundCached[c] &= (Mask)~zDigit;
+					}
+				}
+			}
+
+			// Collect for view nodes.
+			var cellOffsets = new List<CellViewNode>();
+			var candidateOffsets = (List<CandidateViewNode>)[
+				..
+				from cell in targetCells
+				select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + disappearedDigit)
+			];
+			var houseOffset = new HouseViewNode(WellKnownColorIdentifier.Normal, house);
+			var detailViews = new View[branches.Count];
+			var i = 0;
+			foreach (ref var view in detailViews.AsSpan())
+			{
+				view = [houseOffset, new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, targetCells[i++] * 9 + disappearedDigit)];
+			}
+
+			var indexOfAls = 0;
+			foreach (var (_, (_, alsCells)) in branches)
+			{
+				foreach (var alsCell in alsCells)
+				{
+					var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+					foreach (var digit in grid.GetCandidates(alsCell))
+					{
+						var node = new CandidateViewNode(
+							disappearedDigit == digit
+								? WellKnownColorIdentifier.Auxiliary2
+								: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
+							alsCell * 9 + digit
+						);
+						candidateOffsets.Add(node);
+						detailViews[indexOfAls].Add(node);
+					}
+
+					var cellNode = new CellViewNode(alsColor, alsCell);
+					cellOffsets.Add(cellNode);
+					detailViews[indexOfAls].Add(cellNode);
+				}
+
+				indexOfAls++;
+			}
+
+			var step = new HouseDeathBlossomStep(
+				[.. conclusions],
+				[[.. cellOffsets, .. candidateOffsets, houseOffset], .. detailViews],
+				context.PredefinedOptions,
+				house,
+				disappearedDigit,
+				branches,
+				validZ
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+
 		return null;
 	}
 

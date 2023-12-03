@@ -5751,6 +5751,11 @@ if (student is (name: var name, age: >= 18))
             Create a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/> instance and add it into the accumulator.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_HouseType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.HouseDeathBlossomStep})">
+            <summary>
+            Create a <see cref="T:Sudoku.Analytics.Steps.HouseDeathBlossomStep"/> instance and add it into the accumulator.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NTimesAlsType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
             <summary>
             Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep"/> instance
@@ -10124,7 +10129,7 @@ if (student is (name: var name, age: >= 18))
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
             </summary>
@@ -10146,6 +10151,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#HouseDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.HouseDeathBlossomStep,Sudoku.Analytics.Steps.HouseDeathBlossomStep)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.House">
@@ -22784,6 +22792,34 @@ if (student is (name: var name, age: >= 18))
             Represents a chain node list with head candidate.
             </summary>
             <param name="capacity">The capacity.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection">
+            <summary>
+            Represents for a house blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.NodeList">
             <summary>

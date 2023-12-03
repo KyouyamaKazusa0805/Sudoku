@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -25,9 +26,9 @@ public sealed partial class HouseDeathBlossomStep(
 	StepSearcherOptions options,
 	[Data] House house,
 	[Data] Digit digit,
-	[Data] BlossomBranchCollection branches,
+	[Data] HouseBlossomBranchCollection branches,
 	[Data] Mask zDigitsMask
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 8.3M;
@@ -46,8 +47,11 @@ public sealed partial class HouseDeathBlossomStep(
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
 	private string BranchesStr
-		=> string.Join(
-			GetString("Comma"),
-			[.. from branch in Branches select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"]
-		);
+		=> string.Join(GetString("Comma"), [.. from b in Branches select $"{Options.Converter.CellConverter([b.Cell])} - {b.AlsPattern}"]);
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static bool IEquatableStep<HouseDeathBlossomStep>.operator ==(HouseDeathBlossomStep left, HouseDeathBlossomStep right)
+		=> (left.House, left.Digit, left.Branches) == (right.House, right.Digit, right.Branches);
 }
