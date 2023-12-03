@@ -9,12 +9,8 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// by another program called
 /// <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
 /// </summary>
-public sealed class SudokuExplainerCompatibility : ICompatibilityProvider
+public static class SudokuExplainerCompatibility
 {
-	/// <inheritdoc/>
-	public static string ProgramName => "Sudoku Explainer";
-
-
 	/// <summary>
 	/// Gets all possible aliased names that are defined by Sudoku Explainer.
 	/// </summary>

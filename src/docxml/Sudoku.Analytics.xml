@@ -21890,6 +21890,82 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>aliases</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuCompatibility">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Hodoku.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuPrefix(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the prefix of the specified technique. The return value will be a four-digit value
+            represented as a <see cref="T:System.String"/> value. For more information please visit
+            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>
+            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
+            in a sudoku grid, which is defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            Please note that some technique fields are separated into multiple sub-types, but they all
+            belong to a same type of a technique supported by Hodoku. For example,
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
+            Hodoku as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
+            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
+            </para>
+            <para>
+            However, if a sub-type is not supported by Hodoku (e.g. the field
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
+            indicating the "Not supported" state.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetDifficultyRating(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
+            <summary>
+            Try to get difficulty rating of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
+            <returns>
+            <para>
+            An <see cref="T:System.Int32"/> value defined by the project Hodoku.
+            </para>
+            <para>
+            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel">
             <summary>
             The difficulty level defined by Hodoku.
@@ -21944,85 +22020,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>difficultyLevel</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatibility">
-            <summary>
-            Represents some methods that are used for get the details supported and defined
-            by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatibility.ProgramName">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets all possible aliased names that are defined by Hodoku.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatibility.GetHodokuPrefix(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the prefix of the specified technique. The return value will be a four-digit value
-            represented as a <see cref="T:System.String"/> value. For more information please visit
-            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            <para>
-            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
-            in a sudoku grid, which is defined by the project Hodoku.
-            </para>
-            <para>
-            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
-            </para>
-            </returns>
-            <remarks>
-            <para>
-            Please note that some technique fields are separated into multiple sub-types, but they all
-            belong to a same type of a technique supported by Hodoku. For example,
-            <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
-            Hodoku as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
-            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
-            </para>
-            <para>
-            However, if a sub-type is not supported by Hodoku (e.g. the field
-            <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
-            indicating the "Not supported" state.
-            </para>
-            </remarks>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuLibraryCompatibility.GetDifficultyRating(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
-            <summary>
-            Try to get difficulty rating of the specified technique.
-            </summary>
-            <param name="this">The technique.</param>
-            <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
-            <returns>
-            <para>
-            An <see cref="T:System.Int32"/> value defined by the project Hodoku.
-            </para>
-            <para>
-            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
-            </para>
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute">
             <summary>
             Defines an attribute that is applied to a field in technique, indicating a compatible prefix value defined by Hodoku.
@@ -22038,16 +22035,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.Prefix">
             <summary>
             The generated property declaration for parameter <c>prefix</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.ICompatibilityProvider">
-            <summary>
-            Provides a way to provide compatibility items (concepts, solving ways, etc.) to a program that also analyzes sudoku puzzles.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.ICompatibilityProvider.ProgramName">
-            <summary>
-            Indicates the program name of the current provider to be compatible.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult">
@@ -22097,9 +22084,6 @@ if (student is (name: var name, age: >= 18))
             by another program called
             <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
             </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.ProgramName">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
             <summary>

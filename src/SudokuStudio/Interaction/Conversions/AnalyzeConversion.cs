@@ -41,7 +41,7 @@ internal static class AnalyzeConversion
 	public static string GetDifficultyRatingText(Step step) => step.Difficulty.ToString("0.0");
 
 	public static string GetDifficultyRatingText_Hodoku(Step step)
-		=> HodokuLibraryCompatibility.GetDifficultyRating(step.Code, out _) is { } r ? r.ToString() : string.Empty;
+		=> HodokuCompatibility.GetDifficultyRating(step.Code, out _) is { } r ? r.ToString() : string.Empty;
 
 	public static string GetDifficultyRatingText_SudokuExplainer(Step step)
 		=> SudokuExplainerCompatibility.GetDifficultyRatingRange(step.Code) switch
