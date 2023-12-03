@@ -8,9 +8,9 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
-using Sudoku.Text.Converters;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Text.Converters;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Input;
 using SudokuStudio.Interaction.Conversions;
@@ -20,6 +20,7 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Text;
 using WinRT;
+using static System.Math;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
 using Geometry = Microsoft.UI.Xaml.Media.Geometry;
@@ -708,6 +709,15 @@ internal static class RenderableFactory
 		}
 	}
 
+	/// <summary>
+	/// The internal helper method that creates a <see cref="InvalidOperationException"/> instance without any other operation.
+	/// </summary>
+	/// <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
+	/// <param name="o">The object.</param>
+	/// <param name="range">The range of the argument should be.</param>
+	/// <param name="s">The caller expression for argument <paramref name="o"/>.</param>
+	/// <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
+	/// <exception cref="InvalidOperationException">Always throws.</exception>
 	[DoesNotReturn]
 	private static T? Throw<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)
 		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
@@ -725,7 +735,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	/// <summary>
 	/// Indicates the rotate angle (45 degrees).
 	/// </summary>
-	private const double RotateAngle = Math.PI / 4;
+	private const double RotateAngle = PI / 4;
 
 	/// <summary>
 	/// Indicates the square root of 2.
@@ -795,7 +805,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 					var deltaX = pt2.X - pt1.X;
 					var deltaY = pt2.Y - pt1.Y;
-					var alpha = Math.Atan2(deltaY, deltaX);
+					var alpha = Atan2(deltaY, deltaX);
 					adjust(pt1, pt2, out var p1, out _, alpha, cs);
 
 					// Check if another candidate lies in the direct line.
@@ -812,8 +822,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 						var dx2 = point.X - p1.X;
 						var dy2 = point.Y - p1.Y;
-						if (Math.Sign(dx1) == Math.Sign(dx2) && Math.Sign(dy1) == Math.Sign(dy2)
-							&& Math.Abs(dx2) <= Math.Abs(dx1) && Math.Abs(dy2) <= Math.Abs(dy1)
+						if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+							&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 							&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
 						{
 							through = true;
@@ -835,11 +845,11 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						rotate(oldPt2, ref pt2, RotateAngle);
 
 						var interim1Alpha = alpha - RotateAngle;
-						var bx1 = pt1.X + bezierLength * Math.Cos(interim1Alpha);
-						var by1 = pt1.Y + bezierLength * Math.Sin(interim1Alpha);
+						var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
+						var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
 						var interim2Alpha = alpha + RotateAngle;
-						var bx2 = pt2.X - bezierLength * Math.Cos(interim2Alpha);
-						var by2 = pt2.Y - bezierLength * Math.Sin(interim2Alpha);
+						var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
+						var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
 
 						correctOffsetOfPoint(ref pt1, ow, oh);
 						correctOffsetOfPoint(ref pt2, ow, oh);
@@ -920,7 +930,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			pt2.Y -= pt1.Y;
 
 			// Rotate.
-			var (sinAngle, cosAngle, (xAct, yAct)) = (Math.Sin(angle), Math.Cos(angle), pt2);
+			var (sinAngle, cosAngle, (xAct, yAct)) = (Sin(angle), Cos(angle), pt2);
 			pt2.X = xAct * cosAngle - yAct * sinAngle;
 			pt2.Y = xAct * sinAngle + yAct * cosAngle;
 
@@ -932,7 +942,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		static void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
 		{
 			(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
-			var (px, py) = (tempDelta * Math.Cos(alpha), tempDelta * Math.Sin(alpha));
+			var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
 
 			p1.X += px;
 			p1.Y += py;
@@ -944,8 +954,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		static void cut(scoped ref Point pt1, scoped ref Point pt2, double cs)
 		{
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
-			var slope = Math.Abs((pt2y - pt1y) / (pt2x - pt1x));
-			var (x, y) = (cs / Math.Sqrt(1 + slope * slope), cs * Math.Sqrt(slope * slope / (1 + slope * slope)));
+			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+			var (x, y) = (cs / Sqrt(1 + slope * slope), cs * Sqrt(slope * slope / (1 + slope * slope)));
 			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
 			{
 				pt1.Y -= cs / 2;
@@ -1042,13 +1052,13 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	{
 		var arrowLength = 10.0;
 		var theta = 30.0;
-		var angle = Math.Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / Math.PI;
-		var angle1 = (angle + theta) * Math.PI / 180;
-		var angle2 = (angle - theta) * Math.PI / 180;
-		var topX = arrowLength * Math.Cos(angle1);
-		var topY = arrowLength * Math.Sin(angle1);
-		var bottomX = arrowLength * Math.Cos(angle2);
-		var bottomY = arrowLength * Math.Sin(angle2);
+		var angle = Atan2(pt1.Y - pt2.Y, pt1.X - pt2.X) * 180 / PI;
+		var angle1 = (angle + theta) * PI / 180;
+		var angle2 = (angle - theta) * PI / 180;
+		var topX = arrowLength * Cos(angle1);
+		var topY = arrowLength * Sin(angle1);
+		var bottomX = arrowLength * Cos(angle2);
+		var bottomY = arrowLength * Sin(angle2);
 		return [
 			new LineGeometry { StartPoint = new(pt2.X + topX, pt2.Y + topY), EndPoint = pt2 },
 			new LineGeometry { StartPoint = new(pt2.X + bottomX, pt2.Y + bottomY), EndPoint = pt2 }
