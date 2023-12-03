@@ -23586,19 +23586,6 @@ result ^= expression;
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.CompilerServices.ListAlmostLockedSetsExtensions">
-            <summary>
-            Represents a list of extension methods that is used by <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.AlmostLockedSet"/>
-        </member>
-        <member name="M:Sudoku.Runtime.CompilerServices.ListAlmostLockedSetsExtensions.GetSpan(System.Collections.Generic.List{Sudoku.Concepts.AlmostLockedSet})">
-            <summary>
-            Try to fetch the span of internal array, cut the trailing zeros.
-            </summary>
-            <param name="this">The instance.</param>
-            <returns>The span of <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances, having cut the trailing zeros.</returns>
-        </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>
         </member>

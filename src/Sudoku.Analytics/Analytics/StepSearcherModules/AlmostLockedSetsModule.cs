@@ -1,8 +1,8 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -85,7 +85,7 @@ internal sealed class AlmostLockedSetsModule
 			}
 		}
 
-		return result.GetSpan();
+		return CollectionsMarshal.AsSpan(result);
 	}
 
 	/// <summary>

@@ -13,22 +13,6 @@ namespace Sudoku.Runtime.CompilerServices;
 public static class ListBitStatusMapExtensions
 {
 	/// <summary>
-	/// Try to get a <see cref="ReadOnlySpan{T}"/> instance of the current instance, with same elements but without any copying.
-	/// </summary>
-	/// <param name="this">The list.</param>
-	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> GetSpan(this List<CellMap> @this) => @this.GetItems().AsSpan()[..@this.Count];
-
-	/// <summary>
-	/// Try to get a <see cref="ReadOnlySpan{T}"/> instance of the current instance, with same elements but without any copying.
-	/// </summary>
-	/// <param name="this">The list.</param>
-	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CandidateMap> GetSpan(this List<CandidateMap> @this) => @this.GetItems().AsSpan()[..@this.Count];
-
-	/// <summary>
 	/// Adds the given object to the end of this list.
 	/// </summary>
 	/// <param name="this">The list.</param>
