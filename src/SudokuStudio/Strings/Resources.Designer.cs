@@ -3391,6 +3391,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorting step searchers....
+        /// </summary>
+        internal static string MainWindow_StepSearcherSorterPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_StepSearcherSorterPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Techniques Gallery.
         /// </summary>
         internal static string MainWindow_TechniqueGallery {
@@ -5240,6 +5249,15 @@ namespace SudokuStudio.Strings {
         internal static string SingleCountingPracticingPage_Start {
             get {
                 return ResourceManager.GetString("SingleCountingPracticingPage_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here displays the details of modules that searches for techniques. You can drag any one of the modules mentioned below to modify its priority of the calculation order. Please note that, some technique searchers may not be supported here but they persist being displayed. They won&apos;t take any effect..
+        /// </summary>
+        internal static string StepSearcherSorterPage_Description {
+            get {
+                return ResourceManager.GetString("StepSearcherSorterPage_Description", resourceCulture);
             }
         }
         

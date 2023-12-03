@@ -1155,6 +1155,9 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>Single Counting Practicing</value>
   </data>
+  <data name="MainWindow_StepSearcherSorterPageTitle" xml:space="preserve">
+    <value>Sorting step searchers...</value>
+  </data>
   <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>Techniques Gallery</value>
   </data>
@@ -1777,6 +1780,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="SingleCountingPracticingPage_Start" xml:space="preserve">
     <value>Start!</value>
+  </data>
+  <data name="StepSearcherSorterPage_Description" xml:space="preserve">
+    <value>Here displays the details of modules that searches for techniques. You can drag any one of the modules mentioned below to modify its priority of the calculation order. Please note that, some technique searchers may not be supported here but they persist being displayed. They won't take any effect.</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>Sudoku</value>

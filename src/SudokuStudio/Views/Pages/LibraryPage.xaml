@@ -27,8 +27,8 @@
 	</Page.Resources>
 
 	<ScrollViewer>
-		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
-			<TextBlock Text="{m:R Key=LibraryPage_Descrption}" Margin="0,10,0,0" />
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="12">
+			<TextBlock Text="{m:R Key=LibraryPage_Descrption}" />
 			<GridView
 				x:Name="PuzzleLibraiesDisplayer" ItemsSource="{x:Bind _puzzleLibraries}" IsItemClickEnabled="True"
 				ItemClick="PuzzleLibraiesDisplayer_ItemClick">

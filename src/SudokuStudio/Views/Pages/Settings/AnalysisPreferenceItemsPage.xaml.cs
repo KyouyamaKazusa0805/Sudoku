@@ -1,16 +1,11 @@
-using System.SourceGeneration;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Configuration;
-using SudokuStudio.Interaction;
-using SudokuStudio.Views.Controls;
 
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>
 /// Represents an analysis preference items page.
 /// </summary>
-[DependencyProperty<StepSearcherInfo>("CurrentSelectedStepSearcher", IsNullable = true, Accessibility = Accessibility.Internal, DocSummary = "Indicates the currently selected step searcher and its details.")]
 public sealed partial class AnalysisPreferenceItemsPage : Page
 {
 	/// <summary>
@@ -19,6 +14,6 @@ public sealed partial class AnalysisPreferenceItemsPage : Page
 	public AnalysisPreferenceItemsPage() => InitializeComponent();
 
 
-	private void StepSearcherView_ItemSelected(StepSearcherListView sender, StepSearcherListViewItemSelectedEventArgs e)
-		=> CurrentSelectedStepSearcher = e.SelectedSearcherInfo;
+	private void GoToStepSearcherSorterPageSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage<StepSearcherSorterPage>();
 }

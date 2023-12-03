@@ -1158,6 +1158,9 @@
   <data name="MainWindow_SingleCountingPracticingPageTitle" xml:space="preserve">
     <value>唯余数数练习</value>
   </data>
+  <data name="MainWindow_StepSearcherSorterPageTitle" xml:space="preserve">
+    <value>为技巧模块排序……</value>
+  </data>
   <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>技巧展览馆</value>
   </data>
@@ -1780,6 +1783,9 @@
   </data>
   <data name="SingleCountingPracticingPage_Start" xml:space="preserve">
     <value>开始！</value>
+  </data>
+  <data name="StepSearcherSorterPage_Description" xml:space="preserve">
+    <value>这个页面陈列的是所有该程序使用的技巧搜索模块。你可以通过拖动的方式调整这些技巧搜索模块的计算优先级（计算顺序）。请注意，其中有一部分的模块是尚未支持的，但他们仍然展示在里面。这些模块不论怎么操作都不会影响程序的任何计算行为。</value>
   </data>
   <data name="Sudoku" xml:space="preserve">
     <value>数独</value>

@@ -6765,6 +6765,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single Counting Practicing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_StepSearcherSorterPageTitle">
+            <summary>
+              Looks up a localized string similar to Sorting step searchers....
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGallery">
             <summary>
               Looks up a localized string similar to Techniques Gallery.
@@ -7796,6 +7801,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SingleCountingPracticingPage_Start">
             <summary>
               Looks up a localized string similar to Start!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.StepSearcherSorterPage_Description">
+            <summary>
+              Looks up a localized string similar to Here displays the details of modules that searches for techniques. You can drag any one of the modules mentioned below to modify its priority of the calculation order. Please note that, some technique searchers may not be supported here but they persist being displayed. They won&apos;t take any effect..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.Sudoku">
@@ -12123,17 +12133,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcherProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.CurrentSelectedStepSearcher">
-            <summary>
-            Indicates the currently selected step searcher and its details.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage">
             <summary>
             Represents a settings page that displays for basic preferences.
@@ -12409,6 +12408,42 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.FullHouse"/>
             <seealso cref="F:SudokuStudio.Views.Pages.GeneratingMode.NakedSingle"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.StepSearcherSorterPage">
+            <summary>
+            Represents step searcher sorter page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.StepSearcherSorterPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.StepSearcherSorterPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.StepSearcherSorterPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.StepSearcherSorterPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.StepSearcherSorterPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcherProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher">
+            <summary>
+            Indicates the currently selected step searcher and its details.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.TechniqueGalleryPage">
             <summary>

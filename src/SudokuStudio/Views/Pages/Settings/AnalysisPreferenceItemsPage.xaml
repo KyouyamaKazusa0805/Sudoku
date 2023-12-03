@@ -5,10 +5,9 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:categorization="using:Sudoku.Analytics.Categorization"
-	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -244,69 +243,10 @@
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DistinctDirectAndIndirectModes,Mode=TwoWay}" />
 			</w:SettingsCard>
-			<w:SettingsExpander
-				Header="{m:R Key=SettingsPage_StepSearcherOrdering}"
-				Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}">
-				<w:SettingsExpander.Items>
-					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-						<Grid RowDefinitions="500" ColumnDefinitions="360,24,360">
-							<ScrollViewer Grid.Row="0" Grid.Column="0">
-								<c:StepSearcherListView
-									x:Name="StepSearcherView" Margin="40,10" BorderBrush="LightGray" BorderThickness="1" CornerRadius="6"
-									StepSearchers="{x:Bind ((z:App)y:Application.Current).Preference.StepSearcherOrdering.StepSearchersOrder,Mode=TwoWay}"
-									ItemSelected="StepSearcherView_ItemSelected" />
-							</ScrollViewer>
-							<ScrollViewer
-								Grid.Row="0" Grid.Column="2" VerticalScrollBarVisibility="Auto"
-								Visibility="{x:Bind cvt:StepSearcherListViewConversion.GetDisplayerVisibility(CurrentSelectedStepSearcher),Mode=OneWay}">
-								<StackPanel
-									Orientation="Vertical" Spacing="6" CornerRadius="6" BorderBrush="LightGray"
-									BorderThickness="1" Padding="24">
-									<TextBlock
-										FontSize="24" FontWeight="Bold"
-										Text="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherName(CurrentSelectedStepSearcher),Mode=OneWay}" />
-									<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherDifficultyLevelRange}" />
-									<ItemsRepeater
-										ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedDifficultyLevelCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
-										<ItemsRepeater.ItemTemplate>
-											<DataTemplate x:DataType="categorization:DifficultyLevel">
-												<Border
-													CornerRadius="5" Padding="6"
-													Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor((categorization:DifficultyLevel))}">
-													<TextBlock
-														Text="{x:Bind cvt:DifficultyLevelConversion.GetName((categorization:DifficultyLevel))}" Margin="10,0"
-														Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor((categorization:DifficultyLevel))}" />
-												</Border>
-											</DataTemplate>
-										</ItemsRepeater.ItemTemplate>
-										<ItemsRepeater.Layout>
-											<StackLayout Orientation="Horizontal" Spacing="6" />
-										</ItemsRepeater.Layout>
-									</ItemsRepeater>
-									<TextBlock Text="{m:R Key=AnalysisPreferenceItemsPage_StepSearcherSupportedTechniques}" />
-									<ItemsRepeater
-										ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedTechniqueCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
-										<ItemsRepeater.ItemTemplate>
-											<DataTemplate x:DataType="categorization:Technique">
-												<Border
-													CornerRadius="5" Padding="6"
-													Background="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueBackground((categorization:Technique))}">
-													<TextBlock
-														Text="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueName((categorization:Technique))}" Margin="10,0"
-														Foreground="{x:Bind cvt:StepSearcherListViewConversion.GetTechniqueForeground((categorization:Technique))}" />
-												</Border>
-											</DataTemplate>
-										</ItemsRepeater.ItemTemplate>
-										<ItemsRepeater.Layout>
-											<StackLayout Orientation="Vertical" Spacing="6" />
-										</ItemsRepeater.Layout>
-									</ItemsRepeater>
-								</StackPanel>
-							</ScrollViewer>
-						</Grid>
-					</w:SettingsCard>
-				</w:SettingsExpander.Items>
-			</w:SettingsExpander>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_StepSearcherOrdering}" Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}"
+				IsClickEnabled="True"
+				Click="GoToStepSearcherSorterPageSettingsCard_Click" />
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_DifficultyLevelMode}"
 				Description="{m:R Key=SettingsPage_DifficultyLevelModeDescription}">
