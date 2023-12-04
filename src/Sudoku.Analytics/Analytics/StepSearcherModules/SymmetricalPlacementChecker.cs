@@ -1,6 +1,5 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using Sudoku.Analytics;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
