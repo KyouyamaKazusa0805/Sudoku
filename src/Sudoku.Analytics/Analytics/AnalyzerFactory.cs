@@ -1,5 +1,6 @@
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
+using Sudoku.ComponentModel;
 
 namespace Sudoku.Analytics;
 
@@ -111,7 +112,7 @@ public static class AnalyzerFactory
 	/// <typeparam name="TStepSearcher">The type of the <see cref="StepSearcher"/>.</typeparam>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="propertySetter">The method to set the target property with new value.</param>
-	/// <seealso cref="StepSearcher"/>
+	/// <returns>The result.</returns>
 	public static Analyzer WithStepSearcherSetters<TStepSearcher>(this Analyzer @this, Action<TStepSearcher> propertySetter)
 		where TStepSearcher : StepSearcher
 	{
@@ -123,6 +124,30 @@ public static class AnalyzerFactory
 			}
 		}
 
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets a new event handler for event <see cref="Analyzer.ExceptionThrown"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer AddExceptionThrownEventHandler(this Analyzer @this, ExceptionThrownEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.ExceptionThrown += handler;
+		return @this;
+	}
+
+	/// <summary>
+	/// Removes a new event handler from event <see cref="Analyzer.ExceptionThrown"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer RemoveExceptionThrownEventHandler(this Analyzer @this, ExceptionThrownEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.ExceptionThrown -= handler;
 		return @this;
 	}
 }

@@ -418,6 +418,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.Analytics.Analyzer.ExceptionThrown">
+            <summary>
+            Represents an event that is triggered when an exception is thrown while the analysis module is running.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
@@ -504,7 +509,23 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="propertySetter">The method to set the target property with new value.</param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddExceptionThrownEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.ExceptionThrownEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Sets a new event handler for event <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.RemoveExceptionThrownEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.ExceptionThrownEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Removes a new event handler from event <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
             <summary>
@@ -22249,6 +22270,32 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>max</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.ComponentModel.ExceptionThrownEventArgs">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>
+            <param name="exception">Indicates the exception having been thrown.</param>
+        </member>
+        <member name="M:Sudoku.ComponentModel.ExceptionThrownEventArgs.#ctor(System.Exception)">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>
+            <param name="exception">Indicates the exception having been thrown.</param>
+        </member>
+        <member name="P:Sudoku.ComponentModel.ExceptionThrownEventArgs.Exception">
+            <summary>
+            The generated property declaration for parameter <c>exception</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2">
+            <summary>
+            Represents a delegate type that executes a list of methods that will be triggered when an exception is thrown.
+            </summary>
+            <param name="sender">The object that triggers the execution.</param>
+            <param name="e">The event argument.</param>
         </member>
         <member name="T:Sudoku.Concepts.AlmostLockedSet">
             <summary>

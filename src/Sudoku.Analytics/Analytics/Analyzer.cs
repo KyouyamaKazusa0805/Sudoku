@@ -8,6 +8,7 @@ using Sudoku.Analytics.Metadata;
 using Sudoku.Analytics.Steps;
 using Sudoku.Analytics.StepSearcherModules;
 using Sudoku.Analytics.StepSearchers;
+using Sudoku.ComponentModel;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -88,6 +89,12 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
 
 
+	/// <summary>
+	/// Represents an event that is triggered when an exception is thrown while the analysis module is running.
+	/// </summary>
+	public event ExceptionThrownEventHandler<Analyzer, AnalyzerResult>? ExceptionThrown;
+
+
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
@@ -121,6 +128,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			}
 			catch (Exception ex)
 			{
+				ExceptionThrown?.Invoke(this, new(ex));
+
 				return ex switch
 				{
 					NotImplementedException or NotSupportedException
