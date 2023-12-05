@@ -147,7 +147,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionConverter
-		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) =>
+		=> intersections =>
 		{
 			return string.Join(
 				DefaultSeparator,

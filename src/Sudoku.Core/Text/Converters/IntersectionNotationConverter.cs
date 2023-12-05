@@ -8,4 +8,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="intersections">A list of intersections.</param>
 /// <returns>An equivalent <see cref="string"/> value to the specified argument <paramref name="intersections"/>.</returns>
-public delegate string IntersectionNotationConverter(scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections);
+public delegate string IntersectionNotationConverter(IntersectionCollection intersections);

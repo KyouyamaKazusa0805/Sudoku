@@ -4179,6 +4179,58 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.IntersectionBase.Block">
             <summary>The index of the block.</summary>
         </member>
+        <member name="T:Sudoku.Concepts.IntersectionCollection">
+            <summary>
+            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
+            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.#ctor(System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult}[])">
+            <summary>
+            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
+            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.GetEnumerator">
+            <summary>
+            Try to get the enumerator that iterates on the elements of the current collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.Select``1(System.Func{System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult},``0})">
+            <summary>
+            Projects each element into a new transform using the specified method to transform.
+            </summary>
+            <typeparam name="TResult">The type of result elements.</typeparam>
+            <param name="selector">The transform method.</param>
+            <returns>An array of <typeparamref name="TResult"/> results.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.ToArray">
+            <summary>
+            Copies the internal array into a new instance, and return it.
+            </summary>
+            <returns>An array of <see cref="T:System.ValueTuple`2"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#Generic#IEnumerable{(Sudoku#Concepts#IntersectionBaseBase,Sudoku#Concepts#IntersectionResultResult)}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.Create(System.ReadOnlySpan{System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult}})">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.IntersectionCollection"/> instance via the specified values using collection expression.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.IntersectionCollection"/> result.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.IntersectionCollection._values">
+            <summary>
+            The generated field declaration for parameter <c>values</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.IntersectionResult">
             <summary>
             Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
@@ -5103,13 +5155,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Parsers.K9Parser.DigitParser">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Parsers.K9Parser.ChuteParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCellGroupPattern">
@@ -5299,13 +5351,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Parsers.RxCyParser.DigitParser">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ChuteParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCellGroupPattern">

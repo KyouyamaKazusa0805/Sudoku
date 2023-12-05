@@ -254,7 +254,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override IntersectionNotationConverter IntersectionConverter
-		=> (scoped ReadOnlySpan<(IntersectionBase Base, IntersectionResult Result)> intersections) => DefaultSeparator switch
+		=> intersections => DefaultSeparator switch
 		{
 			null or [] => string.Concat([
 				..

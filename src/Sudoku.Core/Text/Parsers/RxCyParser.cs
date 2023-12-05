@@ -32,13 +32,13 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, Mask> DigitParser => OnDigitParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, (IntersectionBase Base, IntersectionResult Result)[]> IntersectionParser => OnIntersectionParsing;
-
-	/// <inheritdoc/>
 	public override Func<string, Chute[]> ChuteParser => OnChuteParsing;
 
 	/// <inheritdoc/>
 	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
+
+	/// <inheritdoc/>
+	public override Func<string, IntersectionCollection> IntersectionParser => OnIntersectionParsing;
 
 
 	private static CellMap OnCellParsing(string str)
@@ -192,42 +192,6 @@ public sealed partial record RxCyParser : CoordinateParser
 			? MaskOperations.Create(from digitString in matches select digitString[0] - '1')
 			: throw new InvalidOperationException("There exists duplicate values.");
 
-	private static (IntersectionBase Base, IntersectionResult Result)[] OnIntersectionParsing(string str)
-	{
-		if (string.IsNullOrWhiteSpace(str))
-		{
-			return [];
-		}
-
-		if (UnitIntersectionGroupPattern().Matches(str) is not { Count: not 0 } matches)
-		{
-			return [];
-		}
-
-		var result = new List<(IntersectionBase, IntersectionResult)>();
-		foreach (var match in matches.Cast<Match>())
-		{
-			var s = match.Value;
-			var indexOfBlockLabel = s.IndexOfAny(['B', 'b']);
-			var lineLabel = s[0];
-			var lines = s[1..indexOfBlockLabel];
-			var blocks = s[(indexOfBlockLabel + 1)..];
-			foreach (var line in lines)
-			{
-				foreach (var block in blocks)
-				{
-					var @base = new IntersectionBase(
-						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
-						(byte)(block - '1')
-					);
-					result.Add((@base, IntersectionMaps[@base]));
-				}
-			}
-		}
-
-		return [.. result];
-	}
-
 	private static Chute[] OnChuteParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
@@ -283,6 +247,42 @@ public sealed partial record RxCyParser : CoordinateParser
 			var rightCell = rightCellAndDigit / 9;
 			var digit = rightCellAndDigit % 9;
 			result.Add(new(leftCell, rightCell, digit));
+		}
+
+		return [.. result];
+	}
+
+	private static IntersectionCollection OnIntersectionParsing(string str)
+	{
+		if (string.IsNullOrWhiteSpace(str))
+		{
+			return [];
+		}
+
+		if (UnitIntersectionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		{
+			return [];
+		}
+
+		var result = new List<(IntersectionBase, IntersectionResult)>();
+		foreach (var match in matches.Cast<Match>())
+		{
+			var s = match.Value;
+			var indexOfBlockLabel = s.IndexOfAny(['B', 'b']);
+			var lineLabel = s[0];
+			var lines = s[1..indexOfBlockLabel];
+			var blocks = s[(indexOfBlockLabel + 1)..];
+			foreach (var line in lines)
+			{
+				foreach (var block in blocks)
+				{
+					var @base = new IntersectionBase(
+						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
+						(byte)(block - '1')
+					);
+					result.Add((@base, IntersectionMaps[@base]));
+				}
+			}
 		}
 
 		return [.. result];
