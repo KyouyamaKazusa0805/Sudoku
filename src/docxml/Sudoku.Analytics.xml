@@ -21799,6 +21799,25 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.AnalyzerResultExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalyzerResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalyzerResult,Sudoku.Filtering.Bottleneck.BottleneckFilter)">
+            <summary>
+            Try to get all possible bottleneck steps, and their own indices.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance to be analyzed.</param>
+            <param name="bottleneckFilters">
+            The filters of bottleneck checkers.
+            You can use <see cref="T:Sudoku.Filtering.Bottleneck.BottleneckFilter"/>.<see langword="operator"/> +(<see cref="T:Sudoku.Filtering.Bottleneck.BottleneckFilter"/>, <see cref="T:Sudoku.Filtering.Bottleneck.BottleneckFilter"/>)
+            to combine multiple filter methods.
+            </param>
+            <returns>An array of results, representing the bottlenecks.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
+        </member>
         <member name="T:Sudoku.Analytics.FormatInterpolation">
             <summary>
             Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
@@ -23366,6 +23385,14 @@ result ^= expression;
             <param name="this">The sudoku painter instance.</param>
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Filtering.Bottleneck.BottleneckFilter">
+            <summary>
+            Provides with a method that determines whether a <see cref="T:Sudoku.Analytics.Step"/> is a bottleneck.
+            </summary>
+            <param name="grid">The grid that the step will be applied to.</param>
+            <param name="step">The step to be determined.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Filtering.Expressions.ConclusionHasExpression">
             <summary>
