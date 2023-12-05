@@ -23,7 +23,7 @@ public sealed partial class DeathBlossomStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[Data] Cell pivot,
-	[Data] BlossomBranchCollection branches,
+	[Data] NormalBlossomBranchCollection branches,
 	[Data] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
@@ -46,6 +46,6 @@ public sealed partial class DeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			GetString("Comma"),
-			[.. from branch in Branches select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"]
+			[.. from branch in Branches select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Key))} - {branch.AlsPattern}"]
 		);
 }

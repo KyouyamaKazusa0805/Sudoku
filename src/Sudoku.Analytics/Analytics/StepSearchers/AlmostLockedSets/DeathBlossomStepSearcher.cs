@@ -330,7 +330,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		// Due to the flexibility of the technique, "Z digit" may not only hold one.
 		// Therefore, here 'zDigitsMask' is not a digit, but a 'Mask' instance.
 		var zDigitsMask = (Mask)0;
-		var branches = new BlossomBranchCollection();
+		var branches = new NormalBlossomBranchCollection();
 		var pivotDigitsMask = grid.GetCandidates(pivot);
 		var isFirstEncountered = true;
 		foreach (var pivotDigit in pivotDigitsMask)
@@ -646,13 +646,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var candidateOffsets = new List<CandidateViewNode>();
 		var alsIndex = 0;
 		var detailViews = new List<View>(9);
-		var branches = new BlossomBranchCollection();
+		var branches = new NTimesAlmostLockedSetsBlossomBranchCollection();
 		var nTimesAlsDigitsMask = (Mask)0;
 		var nTimesAlsCells = CellMap.Empty;
 		var cellsAllAlsesUsed = CellMap.Empty;
 		for (var usedAlsIndex = 1; usedAlsIndex <= usedAlsesCount; usedAlsIndex++)
 		{
 			var rcc = (Mask)0;
+			var branchCandidates = CandidateMap.Empty;
 			var view = new View();
 			var branchDigit = -1;
 			for (var currentDigit = 0; currentDigit < 9; currentDigit++)
@@ -672,6 +673,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 						var candidateNode = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
 						view.Add(candidateNode);
 						candidateOffsets.Add(candidateNode);
+
+						branchCandidates.Add(cell * 9 + currentDigit);
 					}
 
 					var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
@@ -704,7 +707,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				}
 			}
 
-			branches.TryAdd(branchDigit, targetAls);
+			branches.Add(branchCandidates, targetAls);
 			detailViews.Add(view);
 			alsIndex++;
 		}

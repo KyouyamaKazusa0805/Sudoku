@@ -10083,7 +10083,7 @@ if (student is (name: var name, age: >= 18))
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -10252,7 +10252,7 @@ if (student is (name: var name, age: >= 18))
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.BlossomBranchCollection,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
@@ -22841,34 +22841,6 @@ if (student is (name: var name, age: >= 18))
             A list of cells as the other pair of target cells.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.BlossomBranchCollection">
-            <summary>
-            Represents for a blossom branch collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
-            <summary>
-            Transforms the current collection into another representation, using the specified function to transform.
-            </summary>
-            <typeparam name="TResult">The type of the results.</typeparam>
-            <param name="selector">The selector to tranform elements.</param>
-            <returns>The results.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.BlossomBranchCollection,Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.BlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.BlossomBranchCollection,Sudoku.Concepts.ObjectModel.BlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
             Represents a chain branch collection.
@@ -22886,6 +22858,30 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="capacity">The capacity.</param>
         </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2">
+            <summary>
+            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Select``1(System.Func{System.ValueTuple{`1,Sudoku.Concepts.AlmostLockedSet},``0})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection">
             <summary>
             Represents for a house blossom branch collection.
@@ -22896,14 +22892,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Select``1(System.Func{System.ValueTuple{System.Int32,Sudoku.Concepts.AlmostLockedSet},``0})">
-            <summary>
-            Transforms the current collection into another representation, using the specified function to transform.
-            </summary>
-            <typeparam name="TResult">The type of the results.</typeparam>
-            <param name="selector">The selector to tranform elements.</param>
-            <returns>The results.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -23101,6 +23089,46 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection">
+            <summary>
+            Represents for a normal blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection">
+            <summary>
+            Represents for a n-times ALS blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>

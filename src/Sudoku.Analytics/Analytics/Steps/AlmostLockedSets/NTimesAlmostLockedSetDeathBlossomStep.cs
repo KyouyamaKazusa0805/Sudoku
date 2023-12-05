@@ -1,4 +1,3 @@
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -28,7 +27,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	StepSearcherOptions options,
 	[Data] Mask nTimesAlmostLockedSetDigitsMask,
 	[Data] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
-	[Data] BlossomBranchCollection branches,
+	[Data] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[Data] int freedomDegree
 ) :
 	AlmostLockedSetsStep(conclusions, views, options),
@@ -61,11 +60,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			GetString("Comma"),
-			[
-				..
-				from branch in Branches
-				select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Digit))} - {branch.AlsPattern}"
-			]
+			[.. from branch in Branches select $"{Options.Converter.CandidateConverter(branch.Key)} - {branch.AlsPattern}"]
 		);
 
 
@@ -99,9 +94,9 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 			return comparisonResult5;
 		}
 
-		foreach (var digit in left.NTimesAlmostLockedSetDigitsMask)
+		foreach (var branchCandidates in left.Branches.Keys)
 		{
-			if (left.Branches[digit].CompareTo(right.Branches[digit]) is var comparisonResult6 and not 0)
+			if (left.Branches[branchCandidates].CompareTo(right.Branches[branchCandidates]) is var comparisonResult6 and not 0)
 			{
 				return comparisonResult6;
 			}

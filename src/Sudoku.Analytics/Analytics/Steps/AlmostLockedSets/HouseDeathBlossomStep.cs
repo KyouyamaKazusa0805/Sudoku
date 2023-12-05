@@ -47,7 +47,7 @@ public sealed partial class HouseDeathBlossomStep(
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
 	private string BranchesStr
-		=> string.Join(GetString("Comma"), [.. from b in Branches select $"{Options.Converter.CellConverter([b.Cell])} - {b.AlsPattern}"]);
+		=> string.Join(GetString("Comma"), [.. from b in Branches select $"{Options.Converter.CellConverter([b.Key])} - {b.AlsPattern}"]);
 
 
 	/// <inheritdoc/>

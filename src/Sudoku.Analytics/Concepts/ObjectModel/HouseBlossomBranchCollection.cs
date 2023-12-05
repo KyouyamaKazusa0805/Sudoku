@@ -10,12 +10,11 @@ namespace Sudoku.Concepts.ObjectModel;
 [Equals]
 [EqualityOperators]
 public sealed partial class HouseBlossomBranchCollection :
-	Dictionary<Cell, AlmostLockedSet>,
-	IEquatable<HouseBlossomBranchCollection>,
+	DeathBlossomBranchCollection<HouseBlossomBranchCollection, Cell>,
 	IEqualityOperators<HouseBlossomBranchCollection, HouseBlossomBranchCollection, bool>
 {
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] HouseBlossomBranchCollection? other)
+	public override bool Equals([NotNullWhen(true)] HouseBlossomBranchCollection? other)
 	{
 		if (other is null)
 		{
@@ -53,23 +52,5 @@ public sealed partial class HouseBlossomBranchCollection :
 		}
 
 		return result.ToHashCode();
-	}
-
-	/// <summary>
-	/// Transforms the current collection into another representation, using the specified function to transform.
-	/// </summary>
-	/// <typeparam name="TResult">The type of the results.</typeparam>
-	/// <param name="selector">The selector to tranform elements.</param>
-	/// <returns>The results.</returns>
-	public ReadOnlySpan<TResult> Select<TResult>(Func<(Cell Cell, AlmostLockedSet AlsPattern), TResult> selector)
-	{
-		var result = new TResult[Count];
-		var i = 0;
-		foreach (var (key, value) in this)
-		{
-			result[i++] = selector((key, value));
-		}
-
-		return result;
 	}
 }
