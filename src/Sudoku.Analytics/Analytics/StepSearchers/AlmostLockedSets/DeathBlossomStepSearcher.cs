@@ -922,7 +922,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		// Collect for eliminations.
 		//var rank0 = false;
-		var temp = (CellMap)([.. selectedAlsEntryCell[..satisfiedSize]]);
+		var temp = (CellMap)(ReadOnlySpan<Cell>)selectedAlsEntryCell[..satisfiedSize];
 		var conclusions = new List<Conclusion>();
 		foreach (var digit in zDigitsMask)
 		{
