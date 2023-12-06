@@ -23,6 +23,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Death Blossom</item>
 /// <item>Death Blossom (House Blooming)</item>
+/// <item>Death Blossom (Rectangle Blooming)</item>
 /// <item>Death Blossom (A^nLS Blooming)</item>
 /// </list>
 /// </summary>
