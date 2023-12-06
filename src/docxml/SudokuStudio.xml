@@ -6272,6 +6272,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to 0 (Completely not Ittoryu).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.HodokuDifficultyLevel_Easy">
+            <summary>
+              Looks up a localized string similar to Easy.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HodokuDifficultyLevel_Extreme">
+            <summary>
+              Looks up a localized string similar to Extreme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HodokuDifficultyLevel_Hard">
+            <summary>
+              Looks up a localized string similar to Hard.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HodokuDifficultyLevel_Medium">
+            <summary>
+              Looks up a localized string similar to Medium.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.HodokuDifficultyLevel_Unfair">
+            <summary>
+              Looks up a localized string similar to Unfair.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.HotkeyCheatTablePage_ClearCell">
             <summary>
               Looks up a localized string similar to Clear a cell.
@@ -8148,6 +8173,101 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.TechniqueGalleryPage_UniqueRectangles3">
             <summary>
               Looks up a localized string similar to Unique Rectangles with Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_Abbreviation">
+            <summary>
+              Looks up a localized string similar to Abbreviation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_AdvancedDefined">
+            <summary>
+              Looks up a localized string similar to  (Advanced).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_Aliases">
+            <summary>
+              Looks up a localized string similar to Aliases.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_CurrentSelectedTechnique">
+            <summary>
+              Looks up a localized string similar to Currently-Selected Technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_DifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty Level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_EnglishName">
+            <summary>
+              Looks up a localized string similar to English Name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_ExtraFeatures">
+            <summary>
+              Looks up a localized string similar to Features.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_Group">
+            <summary>
+              Looks up a localized string similar to Group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_HodokuPrefix">
+            <summary>
+              Looks up a localized string similar to HoDoKu Library Prefix.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_HodokuRating">
+            <summary>
+              Looks up a localized string similar to HoDoKu Rating.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoAbbreviation">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoAliases">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoDifficultyLevel">
+            <summary>
+              Looks up a localized string similar to &lt;Undefined&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoEnglishName">
+            <summary>
+              Looks up a localized string similar to &lt;Undefined&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoExtraFeatures">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoExtraFeaturesDescription">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoHodokuPrefix">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NullDefined">
+            <summary>
+              Looks up a localized string similar to Undefined.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_SudokuExplainerRating">
+            <summary>
+              Looks up a localized string similar to Sudoku Explainer Rating.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueSelector_NoTechniqueSelected">
@@ -12590,6 +12710,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechniqueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique">
+            <summary>
+            Indicates the currently selected technique.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">

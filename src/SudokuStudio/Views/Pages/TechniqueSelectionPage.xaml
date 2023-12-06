@@ -5,14 +5,46 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueSelectionPage}"
 	Loaded="Page_Loaded">
+	<Page.Resources>
+		<Style x:Key="PropertyTitleStyle" TargetType="TextBlock">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="16" />
+		</Style>
+	</Page.Resources>
+
 	<Grid ColumnDefinitions="*,*" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 		<ScrollViewer Grid.Column="0">
 			<c:TechniqueView
 				x:Name="TechniqueCoreView" SelectionMode="Multiple"
+				CurrentSelectedTechniqueChanged="TechniqueCoreView_CurrentSelectedTechniqueChanged"
 				SelectedTechniquesChanged="TechniqueCoreView_SelectedTechniquesChanged" />
 		</ScrollViewer>
+		<StackPanel Grid.Column="1" Spacing="12" Margin="20,0,0,0">
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_CurrentSelectedTechnique}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetName(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_EnglishName}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetEnglishName(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Aliases}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAliasNames(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Abbreviation}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAbbreviation(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Group}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetGroup(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_DifficultyLevel}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetDifficultyLevel(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_SudokuExplainerRating}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetSudokuExplainerDifficultyRange(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_HodokuRating}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuDifficultyRating(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_HodokuPrefix}" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuPrefix(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ExtraFeatures}" Foreground="Red" />
+			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetFeatureDescription(CurrentSelectedTechnique),Mode=OneWay}" />
+		</StackPanel>
 	</Grid>
 </Page>

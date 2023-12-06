@@ -816,6 +816,21 @@
   <data name="GeneratingStrategyPage_ZeroIttoryu" xml:space="preserve">
     <value>0 (Completely not Ittoryu)</value>
   </data>
+  <data name="HodokuDifficultyLevel_Easy" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <data name="HodokuDifficultyLevel_Extreme" xml:space="preserve">
+    <value>Extreme</value>
+  </data>
+  <data name="HodokuDifficultyLevel_Hard" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+  <data name="HodokuDifficultyLevel_Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="HodokuDifficultyLevel_Unfair" xml:space="preserve">
+    <value>Unfair</value>
+  </data>
   <data name="HotkeyCheatTablePage_ClearCell" xml:space="preserve">
     <value>Clear a cell</value>
   </data>
@@ -1945,6 +1960,63 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="TechniqueGalleryPage_UniqueRectangles3" xml:space="preserve">
     <value>Unique Rectangles with Techniques</value>
+  </data>
+  <data name="TechniqueSelectionPage_Abbreviation" xml:space="preserve">
+    <value>Abbreviation</value>
+  </data>
+  <data name="TechniqueSelectionPage_AdvancedDefined" xml:space="preserve">
+    <value> (Advanced)</value>
+  </data>
+  <data name="TechniqueSelectionPage_Aliases" xml:space="preserve">
+    <value>Aliases</value>
+  </data>
+  <data name="TechniqueSelectionPage_CurrentSelectedTechnique" xml:space="preserve">
+    <value>Currently-Selected Technique</value>
+  </data>
+  <data name="TechniqueSelectionPage_DifficultyLevel" xml:space="preserve">
+    <value>Difficulty Level</value>
+  </data>
+  <data name="TechniqueSelectionPage_EnglishName" xml:space="preserve">
+    <value>English Name</value>
+  </data>
+  <data name="TechniqueSelectionPage_ExtraFeatures" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="TechniqueSelectionPage_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="TechniqueSelectionPage_HodokuPrefix" xml:space="preserve">
+    <value>HoDoKu Library Prefix</value>
+  </data>
+  <data name="TechniqueSelectionPage_HodokuRating" xml:space="preserve">
+    <value>HoDoKu Rating</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoAbbreviation" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoAliases" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoDifficultyLevel" xml:space="preserve">
+    <value>&lt;Undefined&gt;</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoEnglishName" xml:space="preserve">
+    <value>&lt;Undefined&gt;</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoExtraFeatures" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoExtraFeaturesDescription" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="TechniqueSelectionPage_NoHodokuPrefix" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="TechniqueSelectionPage_NullDefined" xml:space="preserve">
+    <value>Undefined</value>
+  </data>
+  <data name="TechniqueSelectionPage_SudokuExplainerRating" xml:space="preserve">
+    <value>Sudoku Explainer Rating</value>
   </data>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>No technique selected</value>

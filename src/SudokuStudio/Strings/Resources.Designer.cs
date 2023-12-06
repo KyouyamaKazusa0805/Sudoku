@@ -2374,6 +2374,51 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easy.
+        /// </summary>
+        internal static string HodokuDifficultyLevel_Easy {
+            get {
+                return ResourceManager.GetString("HodokuDifficultyLevel_Easy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extreme.
+        /// </summary>
+        internal static string HodokuDifficultyLevel_Extreme {
+            get {
+                return ResourceManager.GetString("HodokuDifficultyLevel_Extreme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard.
+        /// </summary>
+        internal static string HodokuDifficultyLevel_Hard {
+            get {
+                return ResourceManager.GetString("HodokuDifficultyLevel_Hard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        internal static string HodokuDifficultyLevel_Medium {
+            get {
+                return ResourceManager.GetString("HodokuDifficultyLevel_Medium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfair.
+        /// </summary>
+        internal static string HodokuDifficultyLevel_Unfair {
+            get {
+                return ResourceManager.GetString("HodokuDifficultyLevel_Unfair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear a cell.
         /// </summary>
         internal static string HotkeyCheatTablePage_ClearCell {
@@ -5744,6 +5789,177 @@ namespace SudokuStudio.Strings {
         internal static string TechniqueGalleryPage_UniqueRectangles3 {
             get {
                 return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbreviation.
+        /// </summary>
+        internal static string TechniqueSelectionPage_Abbreviation {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_Abbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (Advanced).
+        /// </summary>
+        internal static string TechniqueSelectionPage_AdvancedDefined {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_AdvancedDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aliases.
+        /// </summary>
+        internal static string TechniqueSelectionPage_Aliases {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_Aliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently-Selected Technique.
+        /// </summary>
+        internal static string TechniqueSelectionPage_CurrentSelectedTechnique {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_CurrentSelectedTechnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level.
+        /// </summary>
+        internal static string TechniqueSelectionPage_DifficultyLevel {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Name.
+        /// </summary>
+        internal static string TechniqueSelectionPage_EnglishName {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_EnglishName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        internal static string TechniqueSelectionPage_ExtraFeatures {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_ExtraFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        internal static string TechniqueSelectionPage_Group {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HoDoKu Library Prefix.
+        /// </summary>
+        internal static string TechniqueSelectionPage_HodokuPrefix {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_HodokuPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HoDoKu Rating.
+        /// </summary>
+        internal static string TechniqueSelectionPage_HodokuRating {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_HodokuRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoAbbreviation {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoAbbreviation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoAliases {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoAliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Undefined&gt;.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoDifficultyLevel {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoDifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Undefined&gt;.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoEnglishName {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoEnglishName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoExtraFeatures {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoExtraFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoExtraFeaturesDescription {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoExtraFeaturesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NoHodokuPrefix {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NoHodokuPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined.
+        /// </summary>
+        internal static string TechniqueSelectionPage_NullDefined {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_NullDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sudoku Explainer Rating.
+        /// </summary>
+        internal static string TechniqueSelectionPage_SudokuExplainerRating {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_SudokuExplainerRating", resourceCulture);
             }
         }
         
