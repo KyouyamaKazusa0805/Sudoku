@@ -108,6 +108,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\TechniqueSelectionPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\StepSearcherSorterPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

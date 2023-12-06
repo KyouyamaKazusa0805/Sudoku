@@ -14,6 +14,11 @@ public static class TechniqueSets
 	public static int TechniquesCount => All.Count;
 
 	/// <summary>
+	/// Indicates all techniques are not included.
+	/// </summary>
+	public static TechniqueSet None => [];
+
+	/// <summary>
 	/// Indicates all <see cref="Technique"/> fields included.
 	/// </summary>
 	public static TechniqueSet All => [.. Enum.GetValues<Technique>()];

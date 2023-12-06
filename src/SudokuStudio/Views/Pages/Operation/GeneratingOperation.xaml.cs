@@ -77,10 +77,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				new LineBreak(),
 				new Run().WithText($"{GetString($"SymmetricType_{uiPref.GeneratorSymmetricPattern}"):AnalyzePage_SelectedSymmetricTypeIs}"),
 				new LineBreak(),
-				new Run().WithText($"{uiPref.SelectedTechnique switch
+				new Run().WithText($"{uiPref.GeneratorSelectedTechniques switch
 				{
-					var t and not 0 => $"{t.GetName()}{openBrace}{t.GetEnglishName()}{closedBrace}",
-					_ => GetString("TechniqueSelector_NoTechniqueSelected"),
+					var t and [var f, ..] and { Count: var fc }
+						=> string.Format(GetString("AnalyzePage_MultipleTechniquesSelected"), f.GetName(), fc),
+					_
+						=> GetString("TechniqueSelector_NoTechniqueSelected"),
 				}:AnalyzePage_SelectedTechniqueIs}"),
 				new LineBreak(),
 				new Run().WithText($"{(
@@ -149,7 +151,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <returns>The task that holds the asynchronous operation.</returns>
 	private async Task HandleGeneratingAsync<T>(
 		bool onlyGenerateOne,
-		GridStateChanger<(Analyzer Analyzer, Technique Technique)>? gridStateChanger = null,
+		GridStateChanger<(Analyzer Analyzer, TechniqueSet Techniques)>? gridStateChanger = null,
 		ActionRefReadOnly<Grid>? gridHandler = null
 	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 	{
@@ -162,7 +164,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var symmetry = preferences.GeneratorSymmetricPattern;
 		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
 		var pearl = preferences.GeneratedPuzzleShouldBePearl;
-		var technique = preferences.SelectedTechnique;
+		var techniques = preferences.GeneratorSelectedTechniques;
 		var givensCount = preferences switch
 		{
 			{ CanRestrictGeneratingGivensCount: true, GeneratedPuzzleGivensCount: var count and not -1 } => count,
@@ -178,12 +180,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		try
 		{
 			(_generatingCount, _generatingFilteredCount) = (0, 0);
-			var details = new GeneratingDetails(difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength);
+			var details = new GeneratingDetails(difficultyLevel, symmetry, minimal, pearl, techniques, givensCount, ittoryuLength);
 			if (onlyGenerateOne)
 			{
 				if (await Task.Run(task) is { IsUndefined: false } grid)
 				{
-					gridStateChanger?.Invoke(ref grid, (analyzer, technique));
+					gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
 					gridHandler?.Invoke(ref grid);
 				}
 			}
@@ -193,7 +195,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				{
 					if (await Task.Run(task) is { IsUndefined: false } grid)
 					{
-						gridStateChanger?.Invoke(ref grid, (analyzer, technique));
+						gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
 						gridHandler?.Invoke(ref grid);
 
 						_generatingFilteredCount++;
@@ -248,7 +250,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			try
 			{
 				for (
-					var (progress, (difficultyLevel, symmetry, minimal, pearl, technique, givensCount, ittoryuLength)) = (
+					var (progress, (difficultyLevel, symmetry, minimal, pearl, techniques, givensCount, ittoryuLength)) = (
 						new SelfReportingProgress<T>(reportingAction),
 						details
 					); ; _generatingCount++, progress.Report(T.Create(_generatingCount, _generatingFilteredCount)), cancellationToken.ThrowIfCancellationRequested()
@@ -292,7 +294,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
 						&& (minimal && grid.IsMinimal || !minimal)
 						&& (pearl && isPearl is true || !pearl)
-						&& (technique != 0 && p.HasTechnique(technique) || technique == 0);
+						&& (!!(techniques && p & techniques) || !techniques);
 				}
 			}
 			catch (OperationCanceledException)
@@ -356,9 +358,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (scoped ref Grid grid, (Analyzer Analyzer, Technique Technique) pair) =>
+			static (scoped ref Grid grid, (Analyzer Analyzer, TechniqueSet Techniques) pair) =>
 			{
-				var (analyzer, techniuqe) = pair;
+				var (analyzer, techniques) = pair;
 				var analyzerResult = analyzer.Analyze(in grid);
 				if (!analyzerResult.IsSolved)
 				{
@@ -367,7 +369,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 				foreach (var (g, s) in analyzerResult.SolvingPath)
 				{
-					if (s.Code == techniuqe)
+					if (techniques.Contains(s.Code))
 					{
 						grid = g;
 						break;
@@ -406,7 +408,7 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
 /// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
 /// <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-/// <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+/// <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
 /// <param name="CountOfGivens">Indicates the limit of givens count.</param>
 /// <param name="IttoryuLength">Indicates the ittoryu length.</param>
 file sealed record GeneratingDetails(
@@ -414,7 +416,7 @@ file sealed record GeneratingDetails(
 	SymmetricType SymmetricPattern,
 	bool ShouldBeMinimal,
 	bool ShouldBePearl,
-	Technique SelectedTechnique,
+	TechniqueSet SelectedTechniques,
 	int CountOfGivens,
 	int IttoryuLength
 );

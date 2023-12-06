@@ -8,6 +8,8 @@ using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Controls;
+using SudokuStudio.Views.Pages;
+using SudokuStudio.Views.Windows;
 using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
@@ -134,12 +136,14 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 			SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern
 		};
 
-	private static TechniqueSelector TechniqueMustIncludedControlCreator()
+	private static Button TechniqueMustIncludedControlCreator()
 	{
-		var previousSelectedTechnique = ((App)Application.Current).Preference.UIPreferences.SelectedTechnique;
-		var result = new TechniqueSelector();
-		var foundIndex = Array.FindIndex(result.ItemsSource, element => element.Technique == previousSelectedTechnique);
-		result.SelectedIndex = foundIndex == -1 ? 0 : foundIndex;
+		var result = new Button { Content = new FontIcon { Glyph = "\uE8A7" } };
+		result.Click += (_, _) => ((App)Application.Current).WindowManager
+			.ActiveWindows
+			.OfType<MainWindow>()
+			.First()
+			.NavigateToPage(typeof(TechniqueSelectionPage));
 		return result;
 	}
 
@@ -182,10 +186,10 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
 
 	private static string TechniqueMustIncludedInitializedValueDisplayer()
-		=> ((App)Application.Current).Preference.UIPreferences.SelectedTechnique switch
+		=> ((App)Application.Current).Preference.UIPreferences.GeneratorSelectedTechniques switch
 		{
-			Technique.None => GetString("TechniqueSelector_NoTechniqueSelected"),
-			var n => $"{n.GetName()} ({n.GetEnglishName()})"
+			[] => GetString("TechniqueSelector_NoTechniqueSelected"),
+			var n => string.Join(", ", [.. from s in n select s.GetName()])
 		};
 
 	private static string IsMinimalInitializedValueDisplayer()
@@ -229,17 +233,9 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static void TechniqueMustIncludedValueRouter(FrameworkElement c, TextBlock t)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		uiPref.SelectedTechnique = c switch
-		{
-			TechniqueSelector { ItemsSource: var source, SelectedIndex: var index } => index switch
-			{
-				-1 => Technique.None,
-				_ => source[index].Technique
-			},
-			_ => throw new InvalidOperationException("The status is invalid.")
-		};
-
-		var expectedDifficultyLevel = uiPref.SelectedTechnique != Technique.None ? uiPref.SelectedTechnique.GetDifficultyLevel() : DifficultyLevel.Unknown;
+		var expectedDifficultyLevel = uiPref.GeneratorSelectedTechniques
+			? uiPref.GeneratorSelectedTechniques.DifficultyRange.GetAllFlags()[^1]
+			: DifficultyLevel.Unknown;
 		var condition = uiPref.GeneratorDifficultyLevel is var gdl && gdl < expectedDifficultyLevel && gdl != DifficultyLevel.Unknown;
 		t.Text = condition
 			? string.Format(

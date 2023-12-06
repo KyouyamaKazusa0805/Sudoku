@@ -333,4 +333,27 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString()
 		=> $$"""{{nameof(SolvingPath)}} { {{nameof(SteppingGrids)}}.{{nameof(Array.Length)}} = {{SteppingGrids.Length}}, {{nameof(Steps)}}.{{nameof(Array.Length)}} = {{Steps.Length}} }""";
+
+
+	/// <summary>
+	/// Intersects the used techniques and the specified technique set, and returns the found techniques in the specified path.
+	/// </summary>
+	/// <param name="path">The solving path instance.</param>
+	/// <param name="techniques">The techniques to be searched.</param>
+	/// <returns>
+	/// A new <see cref="TechniqueSet"/> instance representing the found techniques used in the path, and exists in the specified technique set.
+	/// </returns>
+	public static TechniqueSet operator &(scoped SolvingPath path, TechniqueSet techniques)
+	{
+		var result = new TechniqueSet();
+		foreach (var step in path.Steps)
+		{
+			if (techniques.Contains(step.Code))
+			{
+				result.Add(step.Code);
+			}
+		}
+
+		return result;
+	}
 }

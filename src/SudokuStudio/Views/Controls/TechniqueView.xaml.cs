@@ -17,7 +17,7 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class TechniqueView : UserControl
 {
 	[Default]
-	private static readonly TechniqueSet SelectedTechniquesDefaultValue = new();
+	private static readonly TechniqueSet SelectedTechniquesDefaultValue = [];
 
 
 	/// <summary>
@@ -53,12 +53,30 @@ public sealed partial class TechniqueView : UserControl
 		=> new([
 			..
 			from view in _tokenViews
-			from item in view.Items
+			from item in view.ItemsPanelRoot.Children
 			let tokenItem = item as TokenItem
 			where tokenItem is not null
-			let tag = (Technique)tokenItem.Tag!
-			select new KeyValuePair<Technique, TokenItem>(tag, tokenItem)
+			let content = (TechniqueViewBindableSource)tokenItem.Content
+			select new KeyValuePair<Technique, TokenItem>(content.TechniqueField, tokenItem)
 		]);
+
+
+	/// <summary>
+	/// Indicates the event triggered when selected techniques property is changed.
+	/// </summary>
+	public event TechniqueViewSelectedTechniquesChangedEventHandler? SelectedTechniquesChanged;
+
+
+	/// <summary>
+	/// Try to update all token items via selection state.
+	/// </summary>
+	private void UpdateSelection(TechniqueSet set)
+	{
+		foreach (var (technique, item) in TokenItems)
+		{
+			item.IsSelected = set.Contains(technique);
+		}
+	}
 
 
 	[Callback]
@@ -66,39 +84,63 @@ public sealed partial class TechniqueView : UserControl
 	{
 		if ((d, e) is (TechniqueView view, { NewValue: TechniqueSet set }))
 		{
-			foreach (var (technique, tokenItem) in view.TokenItems)
+			view.UpdateSelection(set);
+		}
+	}
+
+	[Callback]
+	private static void SelectionModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is (TechniqueView view, { NewValue: TechniqueViewSelectionMode mode }))
+		{
+			foreach (var tokenView in view._tokenViews)
 			{
-				if (set.Contains(technique))
+				tokenView.SelectionMode = mode switch
 				{
-					tokenItem.IsSelected = true;
-				}
+					TechniqueViewSelectionMode.None => ListViewSelectionMode.None,
+					TechniqueViewSelectionMode.Single => ListViewSelectionMode.Single,
+					TechniqueViewSelectionMode.Multiple => ListViewSelectionMode.Multiple
+				};
 			}
 		}
 	}
 
-	private void TokenView_Loaded(object sender, RoutedEventArgs e) => _tokenViews.Add((TokenView)sender);
+
+	private void TokenView_Loaded(object sender, RoutedEventArgs e)
+	{
+		var p = (TokenView)sender;
+		p.SelectionMode = SelectionMode switch
+		{
+			TechniqueViewSelectionMode.None => ListViewSelectionMode.None,
+			TechniqueViewSelectionMode.Single => ListViewSelectionMode.Single,
+			TechniqueViewSelectionMode.Multiple => ListViewSelectionMode.Multiple
+		};
+
+		_tokenViews.Add(p);
+
+		if (_tokenViews.Count == ItemsSource.Length)
+		{
+			UpdateSelection(SelectedTechniques);
+		}
+	}
 
 	private void TokenView_ItemClick(object sender, ItemClickEventArgs e)
 	{
 		if (e is
 			{
-				OriginalSource: TokenItem { Tag: Technique field, IsSelected: var isSelected },
-				ClickedItem: TechniqueViewBindableSource
-			})
-		{
-			switch (isSelected)
-			{
-				case true when !SelectedTechniques.Contains(field):
-				{
-					SelectedTechniques.Add(field);
-					break;
-				}
-				case false when SelectedTechniques.Contains(field):
-				{
-					SelectedTechniques.Remove(field);
-					break;
-				}
+				OriginalSource: TokenView { ItemsPanelRoot.Children: var children },
+				ClickedItem: TechniqueViewBindableSource { TechniqueField: var field }
 			}
+			&& children.OfType<TokenItem>().FirstOrDefault(s => lambda(s, field)) is { IsSelected: var isSelected } child)
+		{
+			var add = SelectedTechniques.Add;
+			var remove = SelectedTechniques.Remove;
+			(isSelected ? remove : add)(field);
+
+			SelectedTechniquesChanged?.Invoke(this, new(SelectedTechniques));
 		}
+
+
+		static bool lambda(TokenItem s, Technique field) => s.Content is TechniqueViewBindableSource { TechniqueField: var f } && f == field;
 	}
 }

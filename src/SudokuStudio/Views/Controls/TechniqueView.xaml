@@ -23,7 +23,7 @@
 						Loaded="TokenView_Loaded" ItemClick="TokenView_ItemClick">
 						<c:TokenView.ItemTemplate>
 							<DataTemplate x:DataType="bs:TechniqueViewBindableSource">
-								<TextBlock Text="{x:Bind TechniqueName}" Tag="{x:Bind TechniqueField}" />
+								<TextBlock Text="{x:Bind TechniqueName}" />
 							</DataTemplate>
 						</c:TokenView.ItemTemplate>
 					</c:TokenView>

@@ -33,9 +33,10 @@ public partial struct TechniqueSet :
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
+	ILogicalOperators<TechniqueSet>,
 	IReadOnlyCollection<Technique>,
-	ISet<Technique>,
 	IReadOnlySet<Technique>,
+	ISet<Technique>,
 	ISubtractionOperators<TechniqueSet, Technique, TechniqueSet>,
 	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>
 {
@@ -442,6 +443,18 @@ public partial struct TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ICollection<Technique>.Clear() => _techniqueBits.SetAll(false);
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !(TechniqueSet techniques) => techniques.Count == 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator true(TechniqueSet techniques) => techniques.Count != 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator false(TechniqueSet techniques) => techniques.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

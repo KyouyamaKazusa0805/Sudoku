@@ -23,7 +23,8 @@
           "StepSearcherListViewItemSelectedEventArgs.cs": [ "StepSearcherListViewItemSelectedEventHandler.cs" ],
           "CandidatesDisplayingToggledEventArgs.cs": [ "CandidatesDisplayingToggledEventHandler.cs" ],
           "HouseCompletedEventArgs.cs": [ "HouseCompletedEventHandler.cs" ],
-          "PuzzleCompletedEventArgs.cs": [ "PuzzleCompletedEventHandler.cs" ]
+          "PuzzleCompletedEventArgs.cs": [ "PuzzleCompletedEventHandler.cs" ],
+          "TechniqueViewSelectedTechniquesChangedEventArgs.cs": [ "TechniqueViewSelectedTechniquesChangedEventHandler.cs" ]
         }
       }
     }

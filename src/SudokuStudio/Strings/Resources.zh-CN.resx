@@ -459,6 +459,9 @@
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>多行文本盘面格式</value>
   </data>
+  <data name="AnalyzePage_MultipleTechniquesSelected" xml:space="preserve">
+    <value>{0} 等 {1} 个技巧</value>
+  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
   </data>
@@ -1166,6 +1169,9 @@
   </data>
   <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>技巧展览馆</value>
+  </data>
+  <data name="MainWindow_TechniqueSelectionPageTitle" xml:space="preserve">
+    <value>请选择你的技巧……</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>否</value>

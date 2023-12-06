@@ -66,7 +66,6 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<StepTooltipDisplayItems>("StepDisplayItems", DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating | StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display items.")]
 [DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
-[DependencyProperty<Technique>("SelectedTechnique", DefaultValue = 0, DocSummary = "Indicates the selected technique, which will be appeared in generated puzzles.")]
 [DependencyProperty<CoordinateType>("ConceptNotationBasedKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the based type for displaying a concept notation.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("ModifiableFontColor")]
@@ -91,6 +90,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
 [DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
 [DependencyProperty<Grid>("LastGridPuzzle", DocSummary = "Indicates the last opened puzzle to be loaded or saved.")]
+[DependencyProperty<TechniqueSet>("GeneratorSelectedTechniques", DocSummary = "Indicates the selected techniques used by generator module.")]
 [DependencyProperty<UserDefinedRenderable?>("LastRenderable", DocSummary = "Indicates the renderable items produced by last opened puzzle.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
@@ -191,6 +191,9 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 	[Default]
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;
+
+	[Default]
+	private static readonly TechniqueSet GeneratorSelectedTechniquesDefaultValue = TechniqueSets.None;
 
 	[Default]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = [

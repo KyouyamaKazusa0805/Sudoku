@@ -3527,6 +3527,15 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#Clear">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_True(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_False(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
@@ -3613,6 +3622,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.TechniquesCount">
             <summary>
             Indicates the number of techniques supported in this program.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.None">
+            <summary>
+            Indicates all techniques are not included.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.All">
@@ -23499,6 +23513,16 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.SolvingPath.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SolvingPath.op_BitwiseAnd(Sudoku.Concepts.SolvingPath,Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Intersects the used techniques and the specified technique set, and returns the found techniques in the specified path.
+            </summary>
+            <param name="path">The solving path instance.</param>
+            <param name="techniques">The techniques to be searched.</param>
+            <returns>
+            A new <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance representing the found techniques used in the path, and exists in the specified technique set.
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.SolvingPath.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

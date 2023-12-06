@@ -1294,6 +1294,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}, etc. ({1] techniques selected).
+        /// </summary>
+        internal static string AnalyzePage_MultipleTechniquesSelected {
+            get {
+                return ResourceManager.GetString("AnalyzePage_MultipleTechniquesSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New puzzle.
         /// </summary>
         internal static string AnalyzePage_NewPuzzle {
@@ -3414,6 +3423,15 @@ namespace SudokuStudio.Strings {
         internal static string MainWindow_TechniqueGalleryPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_TechniqueGalleryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Techniques....
+        /// </summary>
+        internal static string MainWindow_TechniqueSelectionPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueSelectionPageTitle", resourceCulture);
             }
         }
         

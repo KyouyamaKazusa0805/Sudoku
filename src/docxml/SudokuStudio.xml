@@ -1764,12 +1764,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechniqueProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKindProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind"/>.
@@ -1913,6 +1907,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniquesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderableProperty">
             <summary>
@@ -2176,11 +2176,6 @@
             Indicates the symmetric pattern for generated puzzles.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SelectedTechnique">
-            <summary>
-            Indicates the selected technique, which will be appeared in generated puzzles.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
             <summary>
             Indicates the based type for displaying a concept notation.
@@ -2270,6 +2265,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
             <summary>
             Indicates the last opened puzzle to be loaded or saved.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques">
+            <summary>
+            Indicates the selected techniques used by generator module.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
@@ -3780,6 +3780,33 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.TechniqueGroupView.StepChosen"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>.
+            </summary>
+            <param name="techniqueSet">The technique set to be assigned.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventArgs.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>.
+            </summary>
+            <param name="techniqueSet">The technique set to be assigned.</param>
+            <seealso cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventArgs.TechniqueSet">
+            <summary>
+            The generated property declaration for parameter <c>techniqueSet</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesChanged"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesChanged"/>
         </member>
         <member name="T:SudokuStudio.Interaction.TechniqueViewSelectionMode">
             <summary>
@@ -5611,6 +5638,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Multiple-line simple grid format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_MultipleTechniquesSelected">
+            <summary>
+              Looks up a localized string similar to {0}, etc. ({1] techniques selected).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_NewPuzzle">
             <summary>
               Looks up a localized string similar to New puzzle.
@@ -6789,6 +6821,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueGalleryPageTitle">
             <summary>
               Looks up a localized string similar to Techniques Gallery.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.MainWindow_TechniqueSelectionPageTitle">
+            <summary>
+              Looks up a localized string similar to Select Techniques....
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.No">
@@ -10366,6 +10403,16 @@ if (student is (name: var name, age: >= 18))
             The entry that can traverse for all tokens.
             </summary>
         </member>
+        <member name="E:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesChanged">
+            <summary>
+            Indicates the event triggered when selected techniques property is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.UpdateSelection(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Try to update all token items via selection state.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueView.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -11892,7 +11939,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="basePage">The base page.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.Technique}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.TechniqueSet}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
             <summary>
             Handle generating operation.
             </summary>
@@ -11945,11 +11992,11 @@ if (student is (name: var name, age: >= 18))
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-            <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+            <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
             <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.TechniqueSet,System.Int32,System.Int32)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
@@ -11957,7 +12004,7 @@ if (student is (name: var name, age: >= 18))
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
             <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
             <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-            <param name="SelectedTechnique">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
+            <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
             <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
@@ -11973,7 +12020,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBePearl">
             <summary>Indicates whether generated puzzles should be pearl.</summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechnique">
+        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechniques">
             <summary>Indicates the selected technique that you want it to be appeared in generated puzzles.</summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.CountOfGivens">
@@ -12477,6 +12524,31 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.TechniqueGalleryPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.TechniqueSelectionPage">
+            <summary>
+            Represents a page that can select multiple techniques.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueSelectionPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

@@ -456,6 +456,9 @@
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>Multiple-line simple grid format</value>
   </data>
+  <data name="AnalyzePage_MultipleTechniquesSelected" xml:space="preserve">
+    <value>{0}, etc. ({1] techniques selected)</value>
+  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
   </data>
@@ -1163,6 +1166,9 @@
   </data>
   <data name="MainWindow_TechniqueGalleryPageTitle" xml:space="preserve">
     <value>Techniques Gallery</value>
+  </data>
+  <data name="MainWindow_TechniqueSelectionPageTitle" xml:space="preserve">
+    <value>Select Techniques...</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
