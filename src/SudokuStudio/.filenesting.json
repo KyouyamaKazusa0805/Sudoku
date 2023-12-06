@@ -24,7 +24,8 @@
           "CandidatesDisplayingToggledEventArgs.cs": [ "CandidatesDisplayingToggledEventHandler.cs" ],
           "HouseCompletedEventArgs.cs": [ "HouseCompletedEventHandler.cs" ],
           "PuzzleCompletedEventArgs.cs": [ "PuzzleCompletedEventHandler.cs" ],
-          "TechniqueViewSelectedTechniquesChangedEventArgs.cs": [ "TechniqueViewSelectedTechniquesChangedEventHandler.cs" ]
+          "TechniqueViewSelectedTechniquesChangedEventArgs.cs": [ "TechniqueViewSelectedTechniquesChangedEventHandler.cs" ],
+          "TechniqueViewCurrentSelectedTechniqueChangedEventArgs.cs": [ "TechniqueViewCurrentSelectedTechniqueChangedEventHandler.cs" ]
         }
       }
     }

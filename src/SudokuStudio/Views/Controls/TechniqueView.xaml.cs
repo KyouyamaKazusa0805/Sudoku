@@ -66,6 +66,11 @@ public sealed partial class TechniqueView : UserControl
 	/// </summary>
 	public event TechniqueViewSelectedTechniquesChangedEventHandler? SelectedTechniquesChanged;
 
+	/// <summary>
+	/// Indicates the event triggered when the current selected technique is changed.
+	/// </summary>
+	public event TechniqueViewCurrentSelectedTechniqueChangedEventHandler? CurrentSelectedTechniqueChanged;
+
 
 	/// <summary>
 	/// Try to update all token items via selection state.
@@ -137,6 +142,7 @@ public sealed partial class TechniqueView : UserControl
 			var remove = SelectedTechniques.Remove;
 			(isSelected ? remove : add)(field);
 
+			CurrentSelectedTechniqueChanged?.Invoke(this, new(field, isSelected));
 			SelectedTechniquesChanged?.Invoke(this, new(SelectedTechniques));
 		}
 
