@@ -16,7 +16,7 @@ public sealed partial class WrongStepException(
 	/// <inheritdoc/>
 	public override string Message
 		=> $"""
-		The step: may exist bug that causes the wrong handling.
+		The step may exist bug that causes the wrong handling.
 		Current grid: '{CurrentInvalidGrid:#}'
 		Current step: '{WrongStep}'
 		""";
