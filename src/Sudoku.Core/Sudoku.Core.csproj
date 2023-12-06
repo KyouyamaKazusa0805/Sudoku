@@ -30,4 +30,30 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
+	<!--Hide some types that are not impl'ed correctly for now-->
+	<ItemGroup>
+		<Compile Remove="Algorithm\MinLex\BestTriplet.Impl.cs" />
+		<Compile Remove="Algorithm\MinLex\GridPattern.Impl.cs" />
+		<Compile Remove="Algorithm\MinLex\MinLexCandidate.Impl.cs" />
+		<Compile Remove="Algorithm\MinLex\MinLexEntry.Impl.cs" />
+	</ItemGroup>
+	<Target Name="MinLexHidden" BeforeTargets="BeforeBuild">
+		<ItemGroup>
+			<Compile Remove="Algorithm\MinLex\BestTriplet.cs" Visible="false" />
+			<Compile Include="Algorithm\MinLex\BestTriplet.Impl.cs" Visible="false" />
+		</ItemGroup>
+		<ItemGroup>
+			<Compile Remove="Algorithm\MinLex\GridPattern.cs" Visible="false" />
+			<Compile Include="Algorithm\MinLex\GridPattern.Impl.cs" Visible="false" />
+		</ItemGroup>
+		<ItemGroup>
+			<Compile Remove="Algorithm\MinLex\MinLexCandidate.cs" Visible="false" />
+			<Compile Include="Algorithm\MinLex\MinLexCandidate.Impl.cs" Visible="false" />
+		</ItemGroup>
+		<ItemGroup>
+			<Compile Remove="Algorithm\MinLex\MinLexEntry.cs" Visible="false" />
+			<Compile Include="Algorithm\MinLex\MinLexEntry.Impl.cs" Visible="false" />
+		</ItemGroup>
+	</Target>
+
 </Project>
