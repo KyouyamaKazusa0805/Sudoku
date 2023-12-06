@@ -113,9 +113,10 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Empty Rectangle Intersection Pair
     * Death Blossom
-      * Bloom Cell
-      * Bloom House
-      * Bloom $\text{A}^n\text{LS}$
+      * Cell Blooming
+      * House Blooming
+      * Unique/Avoidable Rectangle Blooming
+      * $\text{A}^n\text{LS}$ Blooming
   * Rank Logics
     * Positive or 0 -Rank Logics
       * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)

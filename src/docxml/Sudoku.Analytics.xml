@@ -2616,6 +2616,11 @@ if (student is (name: var name, age: >= 18))
             Indicates death blossom (house blooming).
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RectangleDeathBlossom">
+            <summary>
+            Indicates death blossom (rectangle blooming).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NTimesAlmostLockedSetDeathBlossom">
             <summary>
             Indicates death blossom (A^nLS blooming).
@@ -5629,6 +5634,16 @@ if (student is (name: var name, age: >= 18))
             <returns>All true candidates.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule">
+            <summary>
+            Represents a step searcher module for unique rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.PossiblePatterns">
+            <summary>
+            The table of all possible pattern cells.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
             Represents a provider type that can find built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -5765,7 +5780,7 @@ if (student is (name: var name, age: >= 18))
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Death Blossom</item>
-            <!--<item>Death Blossom (House Blooming)</item>-->
+            <item>Death Blossom (House Blooming)</item>
             <item>Death Blossom (A^nLS Blooming)</item>
             </list>
             </summary>
@@ -5818,6 +5833,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_HouseType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.HouseDeathBlossomStep})">
             <summary>
             Create a <see cref="T:Sudoku.Analytics.Steps.HouseDeathBlossomStep"/> instance and add it into the accumulator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_RectangleType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.RectangleDeathBlossomStep})">
+            <summary>
+            Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.RectangleDeathBlossomStep"/> instance
+            and add it into the accumulator if worth.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NTimesAlsType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
@@ -7494,11 +7515,6 @@ if (student is (name: var name, age: >= 18))
             </list>
             </item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.UniqueRectanglePatterns">
-            <summary>
-            The table of all <b>Unique Rectangle</b> cells.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles">
@@ -10300,6 +10316,65 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FreedomDegree">
             <summary>
             The generated property declaration for parameter <c>freedomDegree</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RectangleDeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom (Rectangle Blooming)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern used.</param>
+            <param name="isAvoidable">Indicates whether the pattern is an avoidable rectangle.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Death Blossom (Rectangle Blooming)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the pattern used.</param>
+            <param name="isAvoidable">Indicates whether the pattern is an avoidable rectangle.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#RectangleDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.RectangleDeathBlossomStep,Sudoku.Analytics.Steps.RectangleDeathBlossomStep)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.IsAvoidable">
+            <summary>
+            The generated property declaration for parameter <c>isAvoidable</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Branches">
+            <summary>
+            The generated property declaration for parameter <c>branches</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -19360,6 +19435,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Qiu&apos;s Deadly Pattern Type 4.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.RectangleDeathBlossom">
+            <summary>
+              Looks up a localized string similar to Death Blossom (Rectangle Blooming).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.RegionForcingChains">
             <summary>
               Looks up a localized string similar to Region Forcing Chains.
@@ -20958,6 +21038,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternType4Step">
             <summary>
               Looks up a localized string similar to Cells {0} will be a deadly pattern if another digit in either cells lying on the conjugate pair {1} is true.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_RectangleDeathBlossomStep">
+            <summary>
+              Looks up a localized string similar to Rectangle cells: {0}, Branches: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_RegionForcingChainsStep">
@@ -23128,6 +23213,26 @@ result ^= expression;
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection">
+            <summary>
+            Represents for a rectangle blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">

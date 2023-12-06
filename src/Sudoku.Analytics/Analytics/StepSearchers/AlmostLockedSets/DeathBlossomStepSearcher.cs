@@ -9,6 +9,7 @@ using Sudoku.Concepts;
 using Sudoku.Concepts.ObjectModel;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
+using Sudoku.Runtime.MaskServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
 using static Sudoku.Analytics.ConclusionType;
@@ -21,11 +22,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Death Blossom</item>
-/// <!--<item>Death Blossom (House Blooming)</item>-->
+/// <item>Death Blossom (House Blooming)</item>
 /// <item>Death Blossom (A^nLS Blooming)</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.NTimesAlmostLockedSetDeathBlossom)]
+[StepSearcher(
+	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.RectangleDeathBlossom,
+	Technique.NTimesAlmostLockedSetDeathBlossom)]
 [StepSearcherRuntimeName("StepSearcherName_DeathBlossomStepSearcher")]
 public sealed partial class DeathBlossomStepSearcher : StepSearcher
 {
@@ -78,6 +81,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		alsReferenceTable.Fill(-1);
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorHouse = new List<HouseDeathBlossomStep>();
+		var accumulatorRectangle = new List<RectangleDeathBlossomStep>();
 		var accumulatorNTimesAls = new List<NTimesAlmostLockedSetDeathBlossomStep>();
 
 		// Iterate on each cell to collect cell-blooming type.
@@ -136,6 +140,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								return normalTypeStep;
 							}
 
+							if (!SearchExtendedTypes)
+							{
+								continue;
+							}
+
 							// Check for house type.
 							foreach (var houseType in HouseTypes)
 							{
@@ -150,6 +159,70 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 									&& CreateStep_HouseType(ref context, in grid, house, disappearedDigitsMask, alsReferenceTable, alses, playgroundCached, accumulatorHouse) is { } houseTypeStep)
 								{
 									return houseTypeStep;
+								}
+							}
+
+							// Check for UR type.
+							foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
+							{
+								var existsGivenCellsOrMoreThan2ModifiableCells = false;
+								var (modifiableCellsCount, fixedDigitsMask, mergedDigitsMask) = (0, (Mask)0, (Mask)0);
+								foreach (var cell in urCells)
+								{
+									switch (grid.GetState(cell))
+									{
+										case CellState.Given:
+										case CellState.Modifiable when ++modifiableCellsCount >= 3:
+										{
+											existsGivenCellsOrMoreThan2ModifiableCells = true;
+											break;
+										}
+										case CellState.Modifiable when (Mask)(1 << grid.GetDigit(cell)) is var digitMask:
+										{
+											mergedDigitsMask |= digitMask;
+											fixedDigitsMask |= digitMask;
+											break;
+										}
+										case CellState.Empty:
+										{
+											mergedDigitsMask |= grid.GetCandidates(cell);
+											break;
+										}
+									}
+								}
+								if (existsGivenCellsOrMoreThan2ModifiableCells)
+								{
+									// The current pattern cells contains at least one given cell, invalid for checking for URs;
+									// or the number of modifiable cells is greater than 2, meaning the pattern must contain
+									// either three different digits, or a naked single.
+									continue;
+								}
+
+								// Iterate on each pair of UR digits, and check whether other digits are eliminated in all four cells.
+								foreach (var urDigits in ((Mask)(mergedDigitsMask & ~fixedDigitsMask)).GetAllSets().GetSubsets(2))
+								{
+									var urDigitsMask = MaskOperations.Create(urDigits);
+									var allCellsOnlyContainUrDigits = true;
+									foreach (var cell in urCells)
+									{
+										if ((urDigitsMask & playgroundCached[cell]) != playgroundCached[cell])
+										{
+											allCellsOnlyContainUrDigits = false;
+											break;
+										}
+									}
+									if (!allCellsOnlyContainUrDigits)
+									{
+										continue;
+									}
+
+									if (CreateStep_RectangleType(
+										ref context, in grid, urDigitsMask, mergedDigitsMask, in urCells, alsReferenceTable, alses,
+										playgroundCached, accumulatorRectangle
+									) is { } rectangleTypeStep)
+									{
+										return rectangleTypeStep;
+									}
 								}
 							}
 						}
@@ -300,6 +373,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			if (accumulatorHouse.Count != 0)
 			{
 				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorHouse));
+			}
+
+			if (accumulatorRectangle.Count != 0)
+			{
+				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorRectangle));
 			}
 
 			if (accumulatorNTimesAls.Count != 0)
@@ -572,6 +650,136 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			accumulator.Add(step);
 		}
 
+		return null;
+	}
+
+	/// <summary>
+	/// Search for A^nLS blooming type, and create a <see cref="RectangleDeathBlossomStep"/> instance
+	/// and add it into the accumulator if worth.
+	/// </summary>
+	private RectangleDeathBlossomStep? CreateStep_RectangleType(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		Mask urDigitsMask,
+		Mask mergedDigitsMask,
+		scoped ref readonly CellMap urCells,
+		scoped Span<int> alsReferenceTable,
+		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		Mask[] playgroundCached,
+		List<RectangleDeathBlossomStep> accumulator
+	)
+	{
+		// An invalid UR pattern is found. Now check for eliminations.
+		var branches = new RectangleBlossomBranchCollection();
+		var isFirstEncountered = true;
+		var zDigitsMask = (Mask)0;
+		var disappearedCandidates = CandidateMap.Empty;
+		foreach (var urCell in urCells)
+		{
+			foreach (var digit in (Mask)(grid.GetCandidates(urCell) & ~urDigitsMask))
+			{
+				var branch = alses[alsReferenceTable[urCell * 9 + digit]];
+				branches.Add(urCell * 9 + digit, branch);
+
+				disappearedCandidates.Add(urCell * 9 + digit);
+
+				if (isFirstEncountered)
+				{
+					zDigitsMask = branch.DigitsMask;
+					isFirstEncountered = false;
+				}
+				else
+				{
+					zDigitsMask &= branch.DigitsMask;
+				}
+			}
+		}
+
+		// Delete invalid digits.
+		zDigitsMask &= (Mask)~(Mask)(mergedDigitsMask & ~urDigitsMask);
+
+		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
+		var branchCellsContainingZ = CellMap.Empty;
+		foreach (var digit in zDigitsMask)
+		{
+			foreach (var (_, branchCells) in branches.Values)
+			{
+				branchCellsContainingZ |= branchCells & CandidatesMap[digit];
+			}
+		}
+
+		// Check for eliminations.
+		var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
+		foreach (var zDigit in zDigitsMask)
+		{
+			if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
+			{
+				continue;
+			}
+
+			validZ |= (Mask)(1 << zDigit);
+			foreach (var c in elimMap)
+			{
+				conclusions.Add(new(Elimination, c, zDigit));
+
+				if (SearchExtendedTypes)
+				{
+					playgroundCached[c] &= (Mask)~zDigit;
+				}
+			}
+		}
+
+		// Collect for view nodes.
+		var cellOffsets = new List<CellViewNode>();
+		var candidateOffsets = (List<CandidateViewNode>)[.. from c in disappearedCandidates select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, c)];
+		var detailViews = new View[branches.Count];
+		var i = 0;
+		foreach (ref var view in detailViews.AsSpan())
+		{
+			view = [new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, disappearedCandidates[i++])];
+		}
+
+		var indexOfAls = 0;
+		foreach (var (_, (_, alsCells)) in branches)
+		{
+			foreach (var alsCell in alsCells)
+			{
+				var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
+				foreach (var digit in grid.GetCandidates(alsCell))
+				{
+					var node = new CandidateViewNode(
+						disappearedCandidates.Contains(alsCell * 9 + digit)
+							? WellKnownColorIdentifier.Auxiliary2
+							: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
+						alsCell * 9 + digit
+					);
+					candidateOffsets.Add(node);
+					detailViews[indexOfAls].Add(node);
+				}
+
+				var cellNode = new CellViewNode(alsColor, alsCell);
+				cellOffsets.Add(cellNode);
+				detailViews[indexOfAls].Add(cellNode);
+			}
+
+			indexOfAls++;
+		}
+
+		var step = new RectangleDeathBlossomStep(
+			[.. conclusions],
+			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
+			context.PredefinedOptions,
+			in urCells,
+			!!(urCells - EmptyCells),
+			branches,
+			validZ
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		accumulator.Add(step);
 		return null;
 	}
 

@@ -2684,4 +2684,11 @@
   <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
     <value>区域 {0}，每个分支：{1}</value>
   </data>
+  <data name="RectangleDeathBlossom" xml:space="preserve">
+    <value>死亡绽放・矩形绽放</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
+    <value>矩形：{0}，每个分支：{1}</value>
+  </data>
 </root>

@@ -2869,6 +2869,13 @@ public enum Technique
 	HouseDeathBlossom,
 
 	/// <summary>
+	/// Indicates death blossom (rectangle blooming).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	RectangleDeathBlossom,
+
+	/// <summary>
 	/// Indicates death blossom (A^nLS blooming).
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]

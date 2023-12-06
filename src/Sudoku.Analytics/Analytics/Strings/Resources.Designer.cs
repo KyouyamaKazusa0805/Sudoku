@@ -2905,6 +2905,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Death Blossom (Rectangle Blooming).
+        /// </summary>
+        public static string RectangleDeathBlossom {
+            get {
+                return ResourceManager.GetString("RectangleDeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Region Forcing Chains.
         /// </summary>
         public static string RegionForcingChains {
@@ -5781,6 +5790,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueFormat_QiuDeadlyPatternType4Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_QiuDeadlyPatternType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle cells: {0}, Branches: {1}.
+        /// </summary>
+        public static string TechniqueFormat_RectangleDeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RectangleDeathBlossomStep", resourceCulture);
             }
         }
         

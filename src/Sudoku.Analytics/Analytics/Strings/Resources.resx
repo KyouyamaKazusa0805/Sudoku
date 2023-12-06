@@ -2499,4 +2499,10 @@
   <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
     <value>House: {0}, Branches: {1}</value>
   </data>
+  <data name="RectangleDeathBlossom" xml:space="preserve">
+    <value>Death Blossom (Rectangle Blooming)</value>
+  </data>
+  <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
+    <value>Rectangle cells: {0}, Branches: {1}</value>
+  </data>
 </root>
