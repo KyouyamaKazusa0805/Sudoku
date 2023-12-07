@@ -5937,6 +5937,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Step Description:.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_SingleTechniquesSelected">
+            <summary>
+              Looks up a localized string similar to {0}.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.AnalyzePage_StepDetail">
             <summary>
               Looks up a localized string similar to Solving Path.

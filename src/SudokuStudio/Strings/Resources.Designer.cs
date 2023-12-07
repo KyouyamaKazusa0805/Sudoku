@@ -1771,6 +1771,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        internal static string AnalyzePage_SingleTechniquesSelected {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SingleTechniquesSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Solving Path.
         /// </summary>
         internal static string AnalyzePage_StepDetail {

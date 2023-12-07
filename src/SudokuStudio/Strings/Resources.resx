@@ -615,6 +615,9 @@
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>Step Description:</value>
   </data>
+  <data name="AnalyzePage_SingleTechniquesSelected" xml:space="preserve">
+    <value>{0}</value>
+  </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>Solving Path</value>
   </data>
