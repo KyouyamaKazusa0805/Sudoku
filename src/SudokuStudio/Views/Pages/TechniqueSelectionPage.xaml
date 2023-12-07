@@ -29,20 +29,8 @@
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetName(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_EnglishName}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetEnglishName(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Aliases}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAliasNames(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Abbreviation}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAbbreviation(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Group}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetGroup(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_DifficultyLevel}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetDifficultyLevel(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_SudokuExplainerRating}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetSudokuExplainerDifficultyRange(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_HodokuRating}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuDifficultyRating(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_HodokuPrefix}" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuPrefix(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock
 				Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ExtraFeatures}" Foreground="Red"
 				Visibility="{x:Bind cvt:TechniqueConversion.GetFeatureVisibility(CurrentSelectedTechnique),Mode=OneWay}" />

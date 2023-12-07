@@ -5883,6 +5883,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Introduction Topic.
+        /// </summary>
+        internal static string TechniqueSelectionPage_IntroductionTopics {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_IntroductionTopics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         internal static string TechniqueSelectionPage_NoAbbreviation {

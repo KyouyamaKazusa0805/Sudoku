@@ -1994,6 +1994,9 @@
   <data name="TechniqueSelectionPage_HodokuRating" xml:space="preserve">
     <value>Hodoku 难度分</value>
   </data>
+  <data name="TechniqueSelectionPage_IntroductionTopics" xml:space="preserve">
+    <value>介绍帖子</value>
+  </data>
   <data name="TechniqueSelectionPage_NoAbbreviation" xml:space="preserve">
     <value>无</value>
   </data>

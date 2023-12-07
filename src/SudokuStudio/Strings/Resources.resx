@@ -1991,6 +1991,9 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelectionPage_HodokuRating" xml:space="preserve">
     <value>HoDoKu Rating</value>
   </data>
+  <data name="TechniqueSelectionPage_IntroductionTopics" xml:space="preserve">
+    <value>Introduction Topic</value>
+  </data>
   <data name="TechniqueSelectionPage_NoAbbreviation" xml:space="preserve">
     <value>None</value>
   </data>

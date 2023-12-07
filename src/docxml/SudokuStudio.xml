@@ -8225,6 +8225,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to HoDoKu Rating.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_IntroductionTopics">
+            <summary>
+              Looks up a localized string similar to Introduction Topic.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueSelectionPage_NoAbbreviation">
             <summary>
               Looks up a localized string similar to None.

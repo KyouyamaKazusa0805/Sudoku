@@ -47,6 +47,16 @@
 			<TextBlock
 				Text="{x:Bind cvt:TechniqueConversion.GetFeatureDescription(CurrentSelectedTechnique),Mode=OneWay}"
 				Visibility="{x:Bind cvt:TechniqueConversion.GetFeatureVisibility(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_IntroductionTopics}" />
+			<ListView
+				SelectionMode="None" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+				ItemsSource="{x:Bind cvt:TechniqueConversion.GetIntroductionLinks(CurrentSelectedTechnique),Mode=OneWay}">
+				<ListView.ItemTemplate>
+					<DataTemplate x:DataType="x:String">
+						<HyperlinkButton NavigateUri="{x:Bind}" Content="{x:Bind}" Foreground="Blue" />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 		</StackPanel>
 	</Grid>
 </Page>
