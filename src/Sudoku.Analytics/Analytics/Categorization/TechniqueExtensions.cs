@@ -84,9 +84,9 @@ public static class TechniqueExtensions
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>All configured links.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] GetEnjoySudokuLinks(this Technique @this)
+	public static string[] GetIntroductionHyperlinks(this Technique @this)
 		=>
-		from attr in (EnjoySudokuLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<EnjoySudokuLinkAttribute>()
+		from attr in (IntroductionHyperlinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<IntroductionHyperlinkAttribute>()
 		select attr.Link;
 
 	/// <summary>

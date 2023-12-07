@@ -24,7 +24,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates full house. This technique is the most elementary technique to be used in the candidate view mode.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Full_House.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Full_House.html")]
 	[HodokuTechniquePrefix("0000")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.0)]
@@ -36,7 +36,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates last digit.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Last_Digit.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Last_Digit.html")]
 	[HodokuTechniquePrefix("0001")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -45,7 +45,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in block).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.2)]
@@ -56,7 +56,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in row).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
@@ -67,7 +67,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in column).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(1.5)]
@@ -78,7 +78,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked single.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
 	[HodokuTechniquePrefix("0003")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
 	[SudokuExplainerDifficultyRating(2.3)]
@@ -94,8 +94,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates single. This technique is the most elementary technique to be used in the direct view mode.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Full_House.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Full_House.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -104,7 +104,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates crosshatching in block.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -113,7 +113,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates crosshatching in row.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -122,7 +122,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates crosshatching in column.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -136,7 +136,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates pointing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Locked_Candidates.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Locked_Candidates.html")]
 	[HodokuTechniquePrefix("0100")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 1")]
@@ -148,7 +148,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates claiming.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Locked_Candidates.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Locked_Candidates.html")]
 	[HodokuTechniquePrefix("0101")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 2")]
@@ -160,7 +160,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates law of leftover.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Law_of_Leftovers.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Law_of_Leftovers.html")]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
@@ -175,8 +175,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates almost locked pair.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALP")]
@@ -186,8 +186,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates almost locked triple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALT")]
@@ -198,8 +198,8 @@ public enum Technique
 	/// Indicates almost locked quadruple.
 	/// The technique may not be useful because it'll be replaced with Sue de Coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALQ")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
@@ -210,8 +210,8 @@ public enum Technique
 	/// Indicates almost locked triple value type.
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedTripleValueType,
@@ -220,8 +220,8 @@ public enum Technique
 	/// Indicates almost locked quadruple value type.
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AlmostLockedQuadrupleValueType,
@@ -234,7 +234,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates firework pair type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType1,
@@ -242,7 +242,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates firework pair type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType2,
@@ -250,7 +250,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates firework pair type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkPairType3,
@@ -258,7 +258,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates firework triple.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkTriple,
@@ -266,7 +266,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates firework quadruple.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	FireworkQuadruple,
@@ -279,7 +279,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked pair.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
 	[HodokuTechniquePrefix("0200")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.0)]
@@ -290,7 +290,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked pair plus (naked pair (+)).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedPairPlus,
@@ -298,7 +298,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates locked pair.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Locked_Pair.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Locked_Pair.html")]
 	[HodokuTechniquePrefix("0110-1")]
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
@@ -312,7 +312,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden pair.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Pair.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Pair.html")]
 	[HodokuTechniquePrefix("0210")]
 	[HodokuDifficultyRating(70, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.4)]
@@ -331,7 +331,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked triple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
 	[HodokuTechniquePrefix("0201")]
 	[HodokuDifficultyRating(80, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(3.6)]
@@ -343,7 +343,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked triple plus (naked triple (+)).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedTriplePlus,
@@ -351,7 +351,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates locked triple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Locked_Triple.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Locked_Triple.html")]
 	[HodokuTechniquePrefix("0111-1")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
@@ -365,7 +365,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden triple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Triple.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Triple.html")]
 	[HodokuTechniquePrefix("0211")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Medium)]
 	[SudokuExplainerDifficultyRating(4.0)]
@@ -385,7 +385,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked quadruple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
 	[HodokuTechniquePrefix("0202")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.0)]
@@ -397,7 +397,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked quadruple plus (naked quadruple (+)).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedQuadruplePlus,
@@ -405,7 +405,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden quadruple.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Hidden_Quad.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Hidden_Quad.html")]
 	[HodokuTechniquePrefix("0212")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.4)]
@@ -422,8 +422,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/X-Wing.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/X-Wing.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[HodokuTechniquePrefix("0300")]
 	[HodokuDifficultyRating(140, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.2)]
@@ -434,10 +434,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_X-Wing.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_X-Wing.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0310")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.4, IsAdvancedDefined = true)]
@@ -448,9 +448,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_X-Wing.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_X-Wing.html")]
 	[HodokuTechniquePrefix("0320")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.5, IsAdvancedDefined = true)]
@@ -461,8 +461,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -471,7 +471,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -480,8 +480,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0330")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -491,9 +491,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0340")]
 	[HodokuDifficultyRating(390, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -503,8 +503,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiFrankenXWing,
@@ -512,9 +512,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -523,7 +523,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -532,8 +532,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0350")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -543,9 +543,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0360")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -555,8 +555,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SashimiMutantXWing,
@@ -564,9 +564,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -575,8 +575,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant X-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -585,8 +585,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Swordfish.html")]
 	[HodokuTechniquePrefix("0301")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(3.8)]
@@ -597,10 +597,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Swordfish.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0311")]
 	[HodokuDifficultyRating(200, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.0, IsAdvancedDefined = true)]
@@ -611,9 +611,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Swordfish.html")]
 	[HodokuTechniquePrefix("0321")]
 	[HodokuDifficultyRating(240, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(4.1, IsAdvancedDefined = true)]
@@ -624,8 +624,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -634,7 +634,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -643,10 +643,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[HodokuTechniquePrefix("0331")]
 	[HodokuDifficultyRating(350, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -656,10 +656,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[HodokuTechniquePrefix("0341")]
 	[HodokuDifficultyRating(410, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -669,9 +669,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiFrankenSwordfish,
@@ -679,10 +679,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -691,9 +691,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenSwordfish,
@@ -701,9 +701,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[HodokuTechniquePrefix("0351")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -713,10 +713,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[HodokuTechniquePrefix("0361")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -726,9 +726,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiMutantSwordfish,
@@ -736,10 +736,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -748,9 +748,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant swordfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -759,8 +759,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Jellyfish.html")]
 	[HodokuTechniquePrefix("0302")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(5.2)]
@@ -771,10 +771,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Jellyfish.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0312")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.4, IsAdvancedDefined = true)]
@@ -785,9 +785,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Jellyfish.html")]
 	[HodokuTechniquePrefix("0322")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.6, IsAdvancedDefined = true)]
@@ -798,8 +798,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -808,7 +808,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -817,9 +817,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[HodokuTechniquePrefix("0332")]
 	[HodokuDifficultyRating(370, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -829,10 +829,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[HodokuTechniquePrefix("0342")]
 	[HodokuDifficultyRating(430, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -842,9 +842,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiFrankenJellyfish,
@@ -852,10 +852,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -864,9 +864,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -875,9 +875,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[HodokuTechniquePrefix("0352")]
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -887,10 +887,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[HodokuTechniquePrefix("0362")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -900,9 +900,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SashimiMutantJellyfish,
@@ -910,10 +910,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -922,9 +922,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant jellyfish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -933,7 +933,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[HodokuTechniquePrefix("0303")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -944,9 +944,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0313")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -957,8 +957,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
 	[HodokuTechniquePrefix("0323")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -969,8 +969,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -979,7 +979,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -988,8 +988,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0333")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1000,9 +1000,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0343")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1012,8 +1012,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenSquirmbag,
@@ -1021,9 +1021,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1032,8 +1032,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1042,8 +1042,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0353")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1054,9 +1054,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0363")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1066,8 +1066,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantSquirmbag,
@@ -1075,9 +1075,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1086,8 +1086,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant squirmbag.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1096,7 +1096,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[HodokuTechniquePrefix("0304")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1107,9 +1107,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0314")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1120,8 +1120,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
 	[HodokuTechniquePrefix("0324")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1132,8 +1132,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -1142,7 +1142,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -1151,8 +1151,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0334")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1163,9 +1163,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0344")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1175,8 +1175,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenWhale,
@@ -1184,9 +1184,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1195,8 +1195,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1205,8 +1205,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0354")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1217,9 +1217,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0364")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1229,8 +1229,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantWhale,
@@ -1238,9 +1238,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantWhale,
@@ -1248,8 +1248,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant whale.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantWhale,
@@ -1257,7 +1257,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[HodokuTechniquePrefix("0305")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1268,9 +1268,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Finned_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[HodokuTechniquePrefix("0315")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1281,8 +1281,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sashimi_Fish.html")]
 	[HodokuTechniquePrefix("0325")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
@@ -1293,8 +1293,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -1303,7 +1303,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -1312,8 +1312,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0335")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1324,9 +1324,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[HodokuTechniquePrefix("0345")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1336,8 +1336,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi franken leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiFrankenLeviathan,
@@ -1345,9 +1345,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned franken leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1356,8 +1356,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi franken leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1366,8 +1366,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0355")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1378,9 +1378,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[HodokuTechniquePrefix("0365")]
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
@@ -1390,8 +1390,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi mutant leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SashimiMutantLeviathan,
@@ -1399,9 +1399,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese finned mutant leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1410,8 +1410,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates Siamese sashimi mutant leviathan.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -1425,7 +1425,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/XY-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/XY-Wing.html")]
 	[HodokuTechniquePrefix("0800")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.2)]
@@ -1436,7 +1436,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/XYZ-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/XYZ-Wing.html")]
 	[HodokuTechniquePrefix("0801")]
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4)]
@@ -1447,7 +1447,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates WXYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[HodokuTechniquePrefix("0802")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.Wing)]
@@ -1502,7 +1502,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates incomplete WXYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	IncompleteWxyzWing,
@@ -1549,7 +1549,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[HodokuTechniquePrefix("0803")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
@@ -1560,7 +1560,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Multi-Branch W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	MultiBranchWWing,
@@ -1608,7 +1608,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedWWing,
@@ -1648,7 +1648,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XYZ loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyzLoop,
@@ -1656,7 +1656,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XYZ nice loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	XyzNiceLoop,
@@ -1664,7 +1664,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped XYZ loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyzLoop,
@@ -1672,7 +1672,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped XYZ- nice loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedXyzNiceLoop,
@@ -1685,10 +1685,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0600")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 1")]
@@ -1700,10 +1700,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0601")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 2")]
@@ -1716,10 +1716,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0602")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 3")]
@@ -1732,10 +1732,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0603")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 4")]
@@ -1748,9 +1748,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 5.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0604")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 5")]
@@ -1762,9 +1762,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 6.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0605")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Uniqueness Test 6")]
@@ -1776,9 +1776,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden unique rectangle.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[HodokuTechniquePrefix("0606")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Hidden Rectangle")]
@@ -1791,9 +1791,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 2D.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1802,9 +1802,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 2B / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle2B1,
@@ -1812,9 +1812,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 2D / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle2D1,
@@ -1822,9 +1822,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3X.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1833,9 +1833,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3x / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X1L,
@@ -1843,9 +1843,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X1U,
@@ -1853,9 +1853,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3X2,
@@ -1863,9 +1863,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3N / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3N2,
@@ -1873,9 +1873,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3U / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3U2,
@@ -1883,9 +1883,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 3E / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle3E2,
@@ -1893,9 +1893,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X1L,
@@ -1903,9 +1903,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 1SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X1U,
@@ -1913,9 +1913,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X2L,
@@ -1923,9 +1923,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 2SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X2U,
@@ -1933,9 +1933,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 3SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4X3,
@@ -1943,9 +1943,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle + 4C / 3SL.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangle4C3,
@@ -1953,9 +1953,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle-XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleXyWing,
@@ -1963,9 +1963,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle-XYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleXyzWing,
@@ -1973,9 +1973,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle-WXYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleWxyzWing,
@@ -1983,9 +1983,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	UniqueRectangleWWing,
@@ -1993,9 +1993,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle sue de coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleSueDeCoq,
@@ -2003,9 +2003,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle baba grouping.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleBabaGrouping,
@@ -2013,9 +2013,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType1,
@@ -2023,9 +2023,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType2,
@@ -2033,9 +2033,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType3,
@@ -2043,9 +2043,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalType4,
@@ -2053,9 +2053,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external turbot fish.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalTurbotFish,
@@ -2063,9 +2063,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalWWing,
@@ -2073,9 +2073,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalXyWing,
@@ -2083,9 +2083,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle external almost locked sets XZ rule.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UniqueRectangleExternalAlmostLockedSetsXz,
@@ -2098,7 +2098,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[HodokuTechniquePrefix("0607")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
@@ -2109,7 +2109,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[HodokuTechniquePrefix("0608")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
@@ -2120,7 +2120,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType3,
@@ -2128,7 +2128,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 5.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleType5,
@@ -2136,7 +2136,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden avoidable rectangle.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[Abbreviation("HAR")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2145,7 +2145,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle + 2D.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2154,7 +2154,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle + 3X.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2163,7 +2163,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleXyWing,
@@ -2171,7 +2171,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle XYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleXyzWing,
@@ -2179,7 +2179,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle WXYZ-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleWxyzWing,
@@ -2187,7 +2187,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleWWing,
@@ -2195,7 +2195,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle sue de coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleSueDeCoq,
@@ -2203,7 +2203,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle guardian.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleBrokenWing,
@@ -2211,7 +2211,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleBlock,
@@ -2219,7 +2219,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in row.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleRow,
@@ -2227,7 +2227,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in column.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	AvoidableRectangleHiddenSingleColumn,
@@ -2235,7 +2235,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType1,
@@ -2243,7 +2243,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType2,
@@ -2251,7 +2251,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType3,
@@ -2259,7 +2259,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalType4,
@@ -2267,7 +2267,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalXyWing,
@@ -2275,7 +2275,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external W-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
@@ -2284,7 +2284,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle external almost locked sets XZ rule.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
@@ -2297,7 +2297,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2306,7 +2306,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2316,7 +2316,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2326,7 +2326,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2386,8 +2386,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[HodokuTechniquePrefix("0610")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
@@ -2399,8 +2399,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2409,8 +2409,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[SudokuExplainerDifficultyRating(5.8, 6.1)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2419,8 +2419,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2429,8 +2429,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave + n.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG + n")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2439,8 +2439,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave false candidate type.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	BivalueUniversalGraveFalseCandidateType,
@@ -2448,8 +2448,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave + n with forcing chains.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
@@ -2458,8 +2458,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave XZ rule.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG-XZ")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2468,8 +2468,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG-XY-Wing")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2483,8 +2483,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType1,
@@ -2492,8 +2492,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType2,
@@ -2501,8 +2501,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType3,
@@ -2510,8 +2510,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates reverse bi-value universal grave type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Reverse_BUG.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	ReverseBivalueUniversalGraveType4,
@@ -2524,8 +2524,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates uniqueness clue cover.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html")]
 	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2539,7 +2539,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates RW's deadly pattern.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html")]
 	[TechniqueGroup(TechniqueGroup.RwDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	RwDeadlyPattern,
@@ -2585,7 +2585,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2594,7 +2594,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2603,7 +2603,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2612,7 +2612,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2621,7 +2621,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates locked Qiu's deadly pattern.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2630,7 +2630,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern external type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2639,7 +2639,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Qiu's deadly pattern external type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2690,9 +2690,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/benchmark-sudoku-list-t3834-15.html#p43170")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/benchmark-sudoku-list-t3834-15.html#p43170")]
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
@@ -2704,9 +2704,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq with isolated digit.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/benchmark-sudoku-list-t3834-15.html#p43170")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/benchmark-sudoku-list-t3834-15.html#p43170")]
 	[HodokuTechniquePrefix("1101")]
 	[HodokuDifficultyRating(250, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
@@ -2717,7 +2717,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates 3-dimensional sue de coq.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoq3Dimension,
@@ -2725,7 +2725,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq cannibalism.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoqCannibalism,
@@ -2738,7 +2738,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates broken wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Broken_Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Broken_Wing.html")]
 	[HodokuTechniquePrefix("0705")]
 	[TechniqueGroup(TechniqueGroup.BrokenWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2752,7 +2752,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value oddagon type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BivalueOddagonType2,
@@ -2760,7 +2760,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value oddagon type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	BivalueOddagonType3,
@@ -2773,8 +2773,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 1.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2783,8 +2783,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 2.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2793,8 +2793,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 3.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2803,8 +2803,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates chromatic pattern (tri-value oddagon) type 4.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/chromatic-patterns-t39885.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html")]
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2826,7 +2826,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates skyscraper.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
 	[HodokuTechniquePrefix("0400")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
@@ -2840,7 +2840,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates two-string kite.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
 	[HodokuTechniquePrefix("0401")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
@@ -2854,7 +2854,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates turbot fish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
 	[HodokuTechniquePrefix("0403")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(6.6)]
@@ -2865,7 +2865,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped skyscraper.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedSkyscraper,
@@ -2873,7 +2873,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped two-string kite.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedTwoStringKite,
@@ -2881,7 +2881,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped turbot fish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedTurbotFish,
@@ -2894,7 +2894,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates empty rectangle.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Empty_Rectangle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Empty_Rectangle.html")]
 	[HodokuTechniquePrefix("0402")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
 	[TechniqueGroup(TechniqueGroup.EmptyRectangle)]
@@ -2910,7 +2910,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates X-Chain.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/X-Chain.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/X-Chain.html")]
 	[HodokuTechniquePrefix("0701")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(6.6, 6.9)]
@@ -2933,7 +2933,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates fishy cycle (X-Cycle).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Fishy_Cycle.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Fishy_Cycle.html")]
 	[HodokuTechniquePrefix("0704")]
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
 	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
@@ -2945,7 +2945,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Chain.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/XY-Chain.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/XY-Chain.html")]
 	[HodokuTechniquePrefix("0702")]
 	[HodokuDifficultyRating(260, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
@@ -2991,7 +2991,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates discontinuous nice loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=2859")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=2859")]
 	[HodokuTechniquePrefix("0707")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.6)]
@@ -3005,7 +3005,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates continuous nice loop.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Nice_Loop.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Nice_Loop.html")]
 	[HodokuTechniquePrefix("0706")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.3)]
@@ -3018,8 +3018,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates alternating inference chain.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Alternating_Inference_Chain.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=3865")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Alternating_Inference_Chain.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=3865")]
 	[HodokuTechniquePrefix("0708")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.6)]
@@ -3122,7 +3122,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates nishio forcing chains.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Nishio.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Nishio.html")]
 	[SudokuExplainerDifficultyRating(7.6, 8.1)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3207,7 +3207,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates blossom loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/blossom-loop-t42270.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/blossom-loop-t42270.html")]
 	[TechniqueGroup(TechniqueGroup.BlossomLoop)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
@@ -3221,8 +3221,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates extended subset principle.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
 	[HodokuTechniquePrefix("1102")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[Abbreviation("ESP")]
@@ -3237,9 +3237,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned pair exclusion.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Aligned_Pair_Exclusion.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?t=3882")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Aligned_Pair_Exclusion.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?t=3882")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("APE")]
 	[SudokuExplainerDifficultyRating(6.2)]
@@ -3250,8 +3250,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned triple exclusion.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Aligned_Triple_Exclusion.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Aligned_Triple_Exclusion.html")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("ATE")]
 	[SudokuExplainerDifficultyRating(7.5)]
@@ -3262,7 +3262,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned quadruple exclusion.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3271,7 +3271,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned quintuple exclusion.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Subset_Exclusion.html")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3285,7 +3285,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/ALS-XZ.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/ALS-XZ.html")]
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
@@ -3297,7 +3297,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates doubly linked ALS-XZ.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/ALS-XZ.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/ALS-XZ.html")]
 	[HodokuTechniquePrefix("0901")]
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.5, IsAdvancedDefined = true)]
@@ -3309,7 +3309,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates ALS-XY-Wing.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/ALS-XY-Wing.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/ALS-XY-Wing.html")]
 	[HodokuTechniquePrefix("0902")]
 	[HodokuDifficultyRating(320, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(8.0, IsAdvancedDefined = true)]
@@ -3329,7 +3329,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates ALS chain.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html")]
 	[HodokuTechniquePrefix("0903")]
 	[HodokuDifficultyRating(340, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
@@ -3345,7 +3345,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates empty rectangle intersection pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/post288015.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/post288015.html")]
 	[TechniqueGroup(TechniqueGroup.EmptyRectangleIntersectionPair)]
 	[Abbreviation("ERIP")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3359,7 +3359,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates death blossom.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[HodokuTechniquePrefix("0904")]
 	[HodokuDifficultyRating(360, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
@@ -3370,7 +3370,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates death blossom (house blooming).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	HouseDeathBlossom,
@@ -3378,7 +3378,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates death blossom (rectangle blooming).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RectangleDeathBlossom,
@@ -3386,7 +3386,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates death blossom (A^nLS blooming).
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	NTimesAlmostLockedSetDeathBlossom,
@@ -3399,7 +3399,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Gurth's symmetrical placement.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/viewtopic.php?p=32842#p32842")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/viewtopic.php?p=32842#p32842")]
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[Abbreviation("GSP")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
@@ -3417,7 +3417,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Anti-GSP (Anti- Gurth's Symmetrical Placement).
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/new-type-of-gsp-t40470.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/new-type-of-gsp-t40470.html")]
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AntiGurthSymmetricalPlacement,
@@ -3430,7 +3430,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("JE")]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3439,7 +3439,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet with target conjugate pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetConjugatePair,
@@ -3447,7 +3447,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet mirror mirror conjugate pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetMirrorConjugatePair,
@@ -3455,7 +3455,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet adjacent target.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetAdjacentTarget,
@@ -3463,7 +3463,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet incompatible pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetIncompatiblePair,
@@ -3471,7 +3471,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet target pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetTargetPair,
@@ -3479,7 +3479,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet generalized fish.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetGeneralizedFish,
@@ -3487,7 +3487,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet mirror almost hidden set.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetMirrorAlmostHiddenSet,
@@ -3495,7 +3495,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetLockedMember,
@@ -3503,7 +3503,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates junior exocet mirror sync.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	JuniorExocetMirrorSync,
@@ -3511,7 +3511,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates senior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("SE")]
@@ -3520,7 +3520,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates senior exocet mirror conjugate pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetMirrorConjugatePair,
@@ -3528,7 +3528,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates senior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetLockedMember,
@@ -3536,7 +3536,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates senior exocet true base.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SeniorExocetTrueBase,
@@ -3544,8 +3544,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates weak exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("WE")]
@@ -3554,8 +3554,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates weak exocet adjacent target.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	WeakExocetAdjacentTarget,
@@ -3563,8 +3563,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates weak exocet slash.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	WeakExocetSlash,
@@ -3572,8 +3572,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates weak exocet BZ rectangle.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	WeakExocetBzRectangle,
@@ -3581,8 +3581,8 @@ public enum Technique
 	/// <summary>
 	/// Indicates lame weak exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	LameWeakExocet,
@@ -3590,7 +3590,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken junior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenJuniorExocet,
@@ -3598,7 +3598,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken junior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenJuniorExocetLockedMember,
@@ -3606,7 +3606,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken junior exocet adjacent target.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenJuniorExocetAdjacentTarget,
@@ -3614,7 +3614,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken junior exocet mirror conjugate pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenJuniorExocetMirrorConjugatePair,
@@ -3622,7 +3622,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant junior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocet,
@@ -3630,7 +3630,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant junior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocetLockedMember,
@@ -3638,7 +3638,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant junior exocet adjacent target.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocetAdjacentTarget,
@@ -3646,7 +3646,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant junior exocet mirror conjugate pair.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantJuniorExocetMirrorConjugatePair,
@@ -3654,7 +3654,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken senior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenSeniorExocet,
@@ -3662,7 +3662,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken senior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	FrankenSeniorExocetLockedMember,
@@ -3670,7 +3670,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates advanced franken senior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	AdvancedFrankenSeniorExocet,
@@ -3678,7 +3678,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant senior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSeniorExocet,
@@ -3686,7 +3686,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant senior exocet locked member.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	MutantSeniorExocetLockedMember,
@@ -3694,7 +3694,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates advanced mutant senior exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	AdvancedMutantSeniorExocet,
@@ -3702,7 +3702,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates double exocet.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DoubleExocet,
@@ -3710,7 +3710,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates double exocet uni-fish pattern.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	DoubleExocetGeneralizedFish,
@@ -3718,7 +3718,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates pattern-locked quadruple. This quadruple is a special quadruple: it can only be concluded after both JE and SK-Loop are formed.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("PLQ")]
@@ -3732,7 +3732,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates domino loop.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/domino-loops-sk-loops-beyond-t32789.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/domino-loops-sk-loops-beyond-t32789.html")]
 	[TechniqueGroup(TechniqueGroup.DominoLoop)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3746,7 +3746,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates multi-sector locked sets.
 	/// </summary>
-	[EnjoySudokuLink("http://forum.enjoysudoku.com/exotic-patterns-a-resume-t30508-270.html")]
+	[IntroductionHyperlink("http://forum.enjoysudoku.com/exotic-patterns-a-resume-t30508-270.html")]
 	[TechniqueGroup(TechniqueGroup.MultisectorLockedSets)]
 	[Abbreviation("MSLS")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
@@ -3761,7 +3761,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates pattern overlay method.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Pattern_Overlay_Method.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Pattern_Overlay_Method.html")]
 	[TechniqueGroup(TechniqueGroup.PatternOverlay)]
 	[Abbreviation("POM")]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
@@ -3776,7 +3776,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates template set.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Templating.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Templating.html")]
 	[HodokuTechniquePrefix("1201")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
@@ -3787,7 +3787,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates template delete.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Templating.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Templating.html")]
 	[HodokuTechniquePrefix("1202")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.Templating)]
@@ -3803,7 +3803,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bowman's bingo.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Bowman_Bingo.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Bowman_Bingo.html")]
 	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
@@ -3817,7 +3817,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates brute force.
 	/// </summary>
-	[EnjoySudokuLink("http://sudopedia.enjoysudoku.com/Trial_%26_Error.html")]
+	[IntroductionHyperlink("http://sudopedia.enjoysudoku.com/Trial_%26_Error.html")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerAliasedNames("Try & Error")]
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
