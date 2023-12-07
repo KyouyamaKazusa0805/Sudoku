@@ -90,6 +90,8 @@ internal static class TechniqueConversion
 	public static Visibility GetExtraDescriptionVisibility(TechniqueFeature feature)
 		=> feature == TechniqueFeature.None ? Visibility.Collapsed : Visibility.Visible;
 
+	public static Visibility GetFeatureVisibility(Technique technique) => GetExtraDescriptionVisibility(technique.GetFeature());
+
 	public static Brush GetBrush(TechniqueFeature feature)
 		=> new SolidColorBrush(feature == TechniqueFeature.None ? Colors.Black : Colors.LightGray);
 }

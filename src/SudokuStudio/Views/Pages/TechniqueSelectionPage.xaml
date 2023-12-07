@@ -43,8 +43,12 @@
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuDifficultyRating(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_HodokuPrefix}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetHodokuPrefix(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ExtraFeatures}" Foreground="Red" />
-			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetFeatureDescription(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock
+				Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ExtraFeatures}" Foreground="Red"
+				Visibility="{x:Bind cvt:TechniqueConversion.GetFeatureVisibility(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock
+				Text="{x:Bind cvt:TechniqueConversion.GetFeatureDescription(CurrentSelectedTechnique),Mode=OneWay}"
+				Visibility="{x:Bind cvt:TechniqueConversion.GetFeatureVisibility(CurrentSelectedTechnique),Mode=OneWay}" />
 		</StackPanel>
 	</Grid>
 </Page>
