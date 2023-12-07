@@ -60,7 +60,7 @@ dotnet_style_parentheses_in_other_operators = never_if_unnecessary:suggestion
 dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion
 
 # Modifier preferences
-dotnet_style_require_accessibility_modifiers = for_non_interface_members:none
+dotnet_style_require_accessibility_modifiers = always:suggestion
 
 # Expression-level preferences
 dotnet_style_coalesce_expression = true:suggestion
