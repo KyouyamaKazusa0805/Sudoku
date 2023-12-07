@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace System.Linq;
 
 /// <summary>
@@ -21,6 +23,21 @@ public static class ListEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+	public static int CountLargeStruct<T>(this List<T> @this, FuncRefReadOnly<T, bool> predicate) where T : struct
+	{
+		var result = 0;
+		foreach (ref readonly var element in CollectionsMarshal.AsSpan(@this))
+		{
+			if (predicate(in element))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static ReadOnlySpan<TSource> Where<TSource>(this List<TSource> source, Func<TSource, bool> condition)
 	{
@@ -33,7 +50,7 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return CollectionsMarshal.AsSpan(result);
 	}
 
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
@@ -65,6 +82,6 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return CollectionsMarshal.AsSpan(result);
 	}
 }
