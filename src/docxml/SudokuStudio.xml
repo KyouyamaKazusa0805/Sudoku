@@ -12687,6 +12687,17 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechniqueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechnique"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechnique"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechnique">
+            <summary>
+            Indicates the currently selected technique.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.TechniqueSelectionPage">
             <summary>
             Represents a page that can select multiple techniques.

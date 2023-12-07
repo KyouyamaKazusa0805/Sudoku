@@ -17,7 +17,7 @@
 		</Style>
 	</Page.Resources>
 
-	<Grid ColumnDefinitions="*,*" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+	<Grid ColumnDefinitions="2*,*" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 		<ScrollViewer Grid.Column="0">
 			<c:TechniqueView
 				x:Name="TechniqueCoreView" SelectionMode="Multiple"

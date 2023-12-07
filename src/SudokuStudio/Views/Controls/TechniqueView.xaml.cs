@@ -133,7 +133,7 @@ public sealed partial class TechniqueView : UserControl
 	{
 		if (e is
 			{
-				OriginalSource: TokenView { ItemsPanelRoot.Children: var children },
+				OriginalSource: TokenView { ItemsPanelRoot.Children: var children } p,
 				ClickedItem: TechniqueViewBindableSource { TechniqueField: var field }
 			}
 			&& children.OfType<TokenItem>().FirstOrDefault(s => lambda(s, field)) is { IsSelected: var isSelected } child)
@@ -144,6 +144,24 @@ public sealed partial class TechniqueView : UserControl
 
 			CurrentSelectedTechniqueChanged?.Invoke(this, new(field, isSelected));
 			SelectedTechniquesChanged?.Invoke(this, new(SelectedTechniques));
+
+			if (SelectionMode == TechniqueViewSelectionMode.Single)
+			{
+				// Special case: If the selection mode is "Single", we should remove all the other enabled token items.
+				foreach (var q in _tokenViews)
+				{
+					if (!ReferenceEquals(p, q))
+					{
+						foreach (var element in q.ItemsPanelRoot.Children.OfType<TokenItem>())
+						{
+							if (element.IsSelected)
+							{
+								element.IsSelected = false;
+							}
+						}
+					}
+				}
+			}
 		}
 
 
