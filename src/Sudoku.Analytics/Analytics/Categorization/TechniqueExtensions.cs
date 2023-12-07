@@ -86,7 +86,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetIntroductionHyperlinks(this Technique @this)
 		=>
-		from attr in (IntroductionHyperlinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<IntroductionHyperlinkAttribute>()
+		from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>()
 		select attr.Link;
 
 	/// <summary>
