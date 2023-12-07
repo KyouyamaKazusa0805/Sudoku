@@ -1019,6 +1019,25 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.EnjoySudokuLinkAttribute">
+            <summary>
+            Represents links the current technique is linked to
+            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
+            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.EnjoySudokuLinkAttribute.#ctor(System.String)">
+            <summary>
+            Represents links the current technique is linked to
+            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
+            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.EnjoySudokuLinkAttribute.Link">
+            <summary>
+            The generated property declaration for parameter <c>link</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.
@@ -2913,6 +2932,13 @@ if (student is (name: var name, age: >= 18))
             All possible aliases of the current technique.
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
             </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnjoySudokuLinks(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get all configured links to EnjoySudoku forum describing the current technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>All configured links.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
             <summary>

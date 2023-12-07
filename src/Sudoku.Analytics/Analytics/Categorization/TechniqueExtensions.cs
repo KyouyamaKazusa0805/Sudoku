@@ -79,6 +79,17 @@ public static class TechniqueExtensions
 	public static string[]? GetAliases(this Technique @this) => GetString($"TechniqueAlias_{@this}")?.SplitBy([';']);
 
 	/// <summary>
+	/// Try to get all configured links to EnjoySudoku forum describing the current technique.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>All configured links.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string[] GetEnjoySudokuLinks(this Technique @this)
+		=>
+		from attr in (EnjoySudokuLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<EnjoySudokuLinkAttribute>()
+		select attr.Link;
+
+	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to. If a technique doesn't contain a corresponding group,
 	/// this method will return <see langword="null"/>. No exception will be thrown.
 	/// </summary>
