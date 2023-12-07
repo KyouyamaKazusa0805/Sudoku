@@ -106,16 +106,13 @@ public static class MemberInfoExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static MethodInfo? GetInitMethod(this PropertyInfo @this, bool nonPublic)
 	{
-		if (@this.GetSetMethod(nonPublic) is not { ReturnParameter: var returnParam } initAccessor)
+		return @this.GetSetMethod(nonPublic) switch
 		{
-			return null;
-		}
+			{ ReturnParameter: var r } i when Array.Exists(r.GetRequiredCustomModifiers(), match) => i,
+			_ => null
+		};
 
-		if (!Array.Exists(returnParam.GetRequiredCustomModifiers(), static modreq => modreq == typeof(IsExternalInit)))
-		{
-			return null;
-		}
 
-		return initAccessor;
+		static bool match(Type modreq) => modreq == typeof(IsExternalInit);
 	}
 }
