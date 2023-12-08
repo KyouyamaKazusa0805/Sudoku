@@ -48,7 +48,7 @@ internal static class RenderableFactory
 	/// </summary>
 	/// <seealso cref="WellKnownColorIdentifier"/>
 	/// <seealso cref="Control"/>
-	private static readonly IReadOnlyDictionary<ColorIdentifier, Func<Control>> ShapeKindsDictionary = new Dictionary<ColorIdentifier, Func<Control>>
+	private static readonly Dictionary<ColorIdentifier, Func<Control>> ShapeKindsDictionary = new()
 	{
 		{ WellKnownColorIdentifier.Normal, static () => new CircleRing() },
 		{ WellKnownColorIdentifier.Auxiliary1, static () => new Cross() },
