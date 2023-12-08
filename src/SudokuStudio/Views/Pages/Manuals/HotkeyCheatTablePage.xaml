@@ -13,7 +13,7 @@
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="36">
 			<TextBlock Text="{m:R Key=HotkeyCheatTablePage_Description}" />
-			<StackPanel>
+			<StackPanel Spacing="4">
 				<StackPanel.Resources>
 					<Style TargetType="TextBlock">
 						<Setter Property="FontFamily" Value="Consolas" />
