@@ -7,7 +7,7 @@ namespace Sudoku.Rendering;
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
+public sealed partial class View : HashSet<ViewNode>
 {
 	/// <summary>
 	/// Indicates the basic nodes that the current data type stores.
@@ -72,7 +72,10 @@ public sealed partial class View : HashSet<ViewNode>, ICloneable<View>
 		return false;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.
+	/// </summary>
+	/// <returns>A new <see cref="View"/> instance with same values as the current instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public View Clone() => Count == 0 ? [] : [.. from node in this select node.Clone()];
 }

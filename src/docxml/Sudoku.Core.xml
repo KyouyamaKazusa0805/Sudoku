@@ -6988,7 +6988,10 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
         <member name="M:Sudoku.Rendering.View.Clone">
-            <inheritdoc/>
+            <summary>
+            Creates a new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance, with independency.
+            </summary>
+            <returns>A new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance.</returns>
         </member>
         <member name="T:Sudoku.Rendering.ViewNode">
             <summary>
@@ -7028,7 +7031,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.Clone">
-            <inheritdoc/>
+            <summary>
+            Creates a new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance, with independency.
+            </summary>
+            <returns>A new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance.</returns>
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

@@ -19,10 +19,7 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(LinkViewNode), 5)]
 [Equals]
 [EqualityOperators]
-public abstract partial class ViewNode(ColorIdentifier identifier) :
-	ICloneable<ViewNode>,
-	IEquatable<ViewNode>,
-	IEqualityOperators<ViewNode, ViewNode, bool>
+public abstract partial class ViewNode(ColorIdentifier identifier) : IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
 {
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
@@ -53,6 +50,9 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// <inheritdoc/>
 	public abstract override string ToString();
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.
+	/// </summary>
+	/// <returns>A new <see cref="View"/> instance with same values as the current instance.</returns>
 	public abstract ViewNode Clone();
 }

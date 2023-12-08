@@ -2320,20 +2320,6 @@ fixed (short* ptr = instance)
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:System.ICloneable`1">
-            <summary>
-            <inheritdoc cref="T:System.ICloneable" path="/summary"/>
-            </summary>
-            <typeparam name="TSelf">The type of the instance.</typeparam>
-        </member>
-        <member name="M:System.ICloneable`1.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
-        </member>
-        <member name="M:System.ICloneable`1.System#ICloneable#Clone">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when method <see cref="M:System.ICloneable`1.Clone"/> returns <see langword="null"/>.</exception>
-            <seealso cref="M:System.ICloneable`1.Clone"/>
-        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Represents for an abstraction unit that supports for boolean logical operators
