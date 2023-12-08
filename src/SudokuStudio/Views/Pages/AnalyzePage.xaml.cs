@@ -35,7 +35,6 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.System;
-using Windows.UI;
 using Windows.UI.ViewManagement;
 using WinRT;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -868,7 +867,6 @@ public sealed partial class AnalyzePage : Page
 					}
 
 					UpdateViewUnit();
-
 					break;
 				}
 
@@ -884,7 +882,6 @@ public sealed partial class AnalyzePage : Page
 					}
 
 					UpdateViewUnit();
-
 					break;
 				}
 
