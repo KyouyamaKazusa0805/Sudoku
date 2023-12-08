@@ -1071,6 +1071,15 @@ public sealed partial class AnalyzePage : Page
 		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}
 
+	[Callback]
+	private static void SelectedColorIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is (AnalyzePage page, { NewValue: int value }))
+		{
+			page.SudokuPane.CurrentPaneMode = value == -1 ? PaneMode.Normal : PaneMode.Drawing;
+		}
+	}
+
 
 	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
 		=> SwitchingPage(args.InvokedItemContainer);
@@ -1214,35 +1223,35 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
-		switch (e)
+		switch (this, sender, e)
 		{
-			case { MouseButton: MouseButton.Left } when _localView is { } tempView:
+			case ({ _localView: { } tempView, SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
 			{
-				if (this switch
+				var condition = (selectionMode, index) switch
 				{
-					{ SelectedMode: DrawingMode.Cell, SelectedColorIndex: var index and not -1 } => CheckCellNode(index, e, tempView),
-					{ SelectedMode: DrawingMode.Candidate, SelectedColorIndex: var index and not -1 } => CheckCandidateNode(index, e, tempView),
-					{ SelectedMode: DrawingMode.House, SelectedColorIndex: var index and not -1 } => CheckHouseNode(index, e, tempView),
-					{ SelectedMode: DrawingMode.Chute, SelectedColorIndex: var index and not -1 } => CheckChuteNode(index, e, tempView),
-					{ SelectedMode: DrawingMode.Link } => CheckLinkNode(e, tempView),
-					{ SelectedMode: DrawingMode.BabaGrouping, SelectedColorIndex: var index } => CheckBabaGroupingNode(index, e, tempView),
+					(DrawingMode.Cell, not -1) => CheckCellNode(index, e, tempView),
+					(DrawingMode.Candidate, not -1) => CheckCandidateNode(index, e, tempView),
+					(DrawingMode.House, not -1) => CheckHouseNode(index, e, tempView),
+					(DrawingMode.Chute, not -1) => CheckChuteNode(index, e, tempView),
+					(DrawingMode.Link, _) => CheckLinkNode(e, tempView),
+					(DrawingMode.BabaGrouping, _) => CheckBabaGroupingNode(index, e, tempView),
 					_ => true
-				})
+				};
+				if (condition)
 				{
 					_previousSelectedCandidate = null;
 				}
-
 				break;
 			}
-			case { MouseButton: MouseButton.Right, Cell: var cell } when SudokuPane is { DisableFlyout: false, Puzzle: var puzzle }:
+			case ({ SudokuPane: { DisableFlyout: false, Puzzle: var puzzle } }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Right, Cell: var cell }):
 			{
-				static IEnumerable<AppBarButton> getAppBarButtons(CommandBarFlyout flyout) => flyout.SecondaryCommands.OfType<AppBarButton>();
+				var appBarButtons = MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>();
 				switch (puzzle.GetState(cell))
 				{
 					case CellState.Empty:
 					{
 						SudokuPane._temporarySelectedCell = cell;
-						foreach (var element in getAppBarButtons(MainMenuFlyout))
+						foreach (var element in appBarButtons)
 						{
 							element.IsEnabled = (puzzle.GetCandidates(cell) >> Math.Abs((Digit)element.Tag) - 1 & 1) != 0;
 						}
@@ -1253,7 +1262,7 @@ public sealed partial class AnalyzePage : Page
 					case CellState.Given or CellState.Modifiable:
 					{
 						SudokuPane._temporarySelectedCell = cell;
-						foreach (var element in getAppBarButtons(MainMenuFlyout))
+						foreach (var element in appBarButtons)
 						{
 							element.IsEnabled = false;
 						}
@@ -1262,6 +1271,12 @@ public sealed partial class AnalyzePage : Page
 						break;
 					}
 				}
+				break;
+			}
+			default:
+			{
+				// Bug fix: Manually set focus for pane because user clicked a candidate, which is a text block, making the pane unfocused.
+				SudokuPane.Focus(FocusState.Programmatic);
 				break;
 			}
 		}

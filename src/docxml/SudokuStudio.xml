@@ -3380,6 +3380,21 @@ if (student is (name: var name, age: >= 18))
             Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.PaneMode">
+            <summary>
+            Represents a mode that describes which mode a sudoku pane is running.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PaneMode.Normal">
+            <summary>
+            Indicates the mode is normal.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PaneMode.Drawing">
+            <summary>
+            Indicates the mode is drawing.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.PuzzleCompletedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>.
@@ -9850,6 +9865,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>.
@@ -10175,6 +10196,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind">
             <summary>
             Indicates the displaying kind of coordinate labels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode">
+            <summary>
+            Indicates the mode that the current pane uses.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">

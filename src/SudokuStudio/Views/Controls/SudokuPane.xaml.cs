@@ -54,6 +54,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
+[DependencyProperty<PaneMode>("CurrentPaneMode", Accessibility = Accessibility.Internal, DefaultValue = PaneMode.Normal, DocSummary = "Indicates the mode that the current pane uses.")]
 [DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayMode\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplayNode>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplayNode.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
 [DependencyProperty<EliminationDisplayMode>("EliminationDisplayMode", DefaultValue = EliminationDisplayMode.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
@@ -672,10 +673,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
-	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
-	private static void NormalColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+	private static void NormalColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
 	private static void AssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -694,10 +697,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
-	private static void ExofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+	private static void ExofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
-	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e) => ((SudokuPane)d).UpdateViewUnit();
+	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> ((SudokuPane)d).UpdateViewUnit();
 
 	[Callback]
 	private static void BabaGroupLabelFontPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
