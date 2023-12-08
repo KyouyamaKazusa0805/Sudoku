@@ -2474,6 +2474,17 @@ fixed (short* ptr = instance)
             <param name="predicate">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.FuncRefReadOnly{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Sum``1(``0[])">
+            <summary>
+            Sum all elements up and return the result.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array that contains a list of elements to be calculated.</param>
+            <returns>A <typeparamref name="T"/> instance as the result.</returns>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
             <returns>
             An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="source"/>.

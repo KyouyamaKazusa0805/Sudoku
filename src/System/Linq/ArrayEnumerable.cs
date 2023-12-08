@@ -73,6 +73,38 @@ public static class ArrayEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Count{T}(T[], Func{T, bool})"/>
+	public static int Count<T>(this T[] @this, FuncRefReadOnly<T, bool> predicate) where T : struct
+	{
+		var result = 0;
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			if (predicate(in element))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Sum all elements up and return the result.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The array that contains a list of elements to be calculated.</param>
+	/// <returns>A <typeparamref name="T"/> instance as the result.</returns>
+	public static T Sum<T>(this T[] @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	{
+		var result = T.AdditiveIdentity;
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			result += element;
+		}
+
+		return result;
+	}
+
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> instances being the result of invoking the transform function on each element of <paramref name="source"/>.
 	/// </returns>
