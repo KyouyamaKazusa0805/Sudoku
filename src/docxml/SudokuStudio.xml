@@ -2879,59 +2879,6 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput"/>
         </member>
-        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
-            </summary>
-            <param name="reason">The failed reason.</param>
-            <remarks>
-            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
-            </remarks>
-            <seealso cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.#ctor(SudokuStudio.Interaction.FailedReceivedDroppedFileReason)">
-            <summary>
-            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>.
-            </summary>
-            <param name="reason">The failed reason.</param>
-            <remarks>
-            Initializes a <see cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs"/> instance via the specified reason.
-            </remarks>
-            <seealso cref="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler"/>
-        </member>
-        <member name="P:SudokuStudio.Interaction.FailedReceivedDroppedFileEventArgs.Reason">
-            <summary>
-            The generated property declaration for parameter <c>reason</c>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileEventHandler">
-            <summary>
-            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>.
-            </summary>
-            <param name="sender">An object which triggers the event.</param>
-            <param name="e">The event data provided.</param>
-            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile"/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.FailedReceivedDroppedFileReason">
-            <summary>
-            Defines an enumeration type that describes reasons why failed to drag a file.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileIsEmpty">
-            <summary>
-            Indicates the failed reason is that the file is empty.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileIsTooLarge">
-            <summary>
-            Indicates the failed reason is that the file is too large (more than 1MB).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.FailedReceivedDroppedFileReason.FileCannotBeParsed">
-            <summary>
-            Indicates the failed reason is that the file cannot be parsed.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.GridUpdatedEventHandler"/>.
@@ -3440,6 +3387,59 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Interaction.PuzzleUpdatingMethod.Programmatic">
             <summary>
             Indicates the method is by program.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventHandler"/>.
+            </summary>
+            <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventArgs.#ctor(SudokuStudio.Interaction.ReceivedDroppedFileFailedReason)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventHandler"/>.
+            </summary>
+            <param name="reason">The failed reason.</param>
+            <remarks>
+            Initializes a <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventArgs.Reason">
+            <summary>
+            The generated property declaration for parameter <c>reason</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileFailed"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileFailed"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileFailedReason">
+            <summary>
+            Defines an enumeration type that describes reasons why failed to drag a file.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.ReceivedDroppedFileFailedReason.FileIsEmpty">
+            <summary>
+            Indicates the failed reason is that the file is empty.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.ReceivedDroppedFileFailedReason.FileIsTooLarge">
+            <summary>
+            Indicates the failed reason is that the file is too large (more than 1MB).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.ReceivedDroppedFileFailedReason.FileCannotBeParsed">
+            <summary>
+            Indicates the failed reason is that the file cannot be parsed.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventArgs">
@@ -9609,7 +9609,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the event that is triggered when a file is successfully to be received via dropped file.
             </summary>
         </member>
-        <member name="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile">
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileFailed">
             <summary>
             Indicates the event that is triggered when a file is failed to be received via dropped file.
             </summary>

@@ -341,7 +341,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the event that is triggered when a file is failed to be received via dropped file.
 	/// </summary>
-	public event FailedReceivedDroppedFileEventHandler? FailedReceivedDroppedFile;
+	public event ReceivedDroppedFileFailedEventHandler? ReceivedDroppedFileFailed;
 
 	/// <summary>
 	/// Indicates the event that is triggered when a digit is input (that cause a change in a cell).
@@ -843,12 +843,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			{
 				case 0:
 				{
-					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+					ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileIsEmpty));
 					return;
 				}
 				case > 1024 * 64:
 				{
-					FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsTooLarge));
+					ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileIsTooLarge));
 					return;
 				}
 				default:
@@ -860,13 +860,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 							var content = await FileIO.ReadTextAsync(file);
 							if (string.IsNullOrWhiteSpace(content))
 							{
-								FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileIsEmpty));
+								ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileIsEmpty));
 								return;
 							}
 
 							if (!Grid.TryParse(content, out var g))
 							{
-								FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
+								ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed));
 								return;
 							}
 
@@ -877,8 +877,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
-								_ => () => FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed))
+							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 
 							eventHandler();

@@ -3,7 +3,7 @@ namespace SudokuStudio.Interaction;
 /// <summary>
 /// Defines an enumeration type that describes reasons why failed to drag a file.
 /// </summary>
-public enum FailedReceivedDroppedFileReason
+public enum ReceivedDroppedFileFailedReason
 {
 	/// <summary>
 	/// Indicates the failed reason is that the file is empty.
