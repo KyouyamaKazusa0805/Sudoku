@@ -49,7 +49,7 @@ This repository is created for the following kinds of users:
 
 ### Main Page
 
-![](docs/pic/winui.png)
+![](docs/pic/ui.png)
 
 ### Puzzle Library Page
 

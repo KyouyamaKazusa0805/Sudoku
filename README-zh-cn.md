@@ -45,7 +45,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ### 主页
 
-![](docs/pic/winui.png)
+![](docs/pic/ui.png)
 
 ### 题库
 
