@@ -3442,6 +3442,40 @@ if (student is (name: var name, age: >= 18))
             Indicates the method is by program.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventHandler"/>.
+            </summary>
+            <param name="filePath">The path of the dropped file.</param>
+            <param name="gridInfo">The loaded grid info.</param>
+            <seealso cref="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventHandler"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventArgs.#ctor(System.String,SudokuStudio.Configuration.GridInfo)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventHandler"/>.
+            </summary>
+            <param name="filePath">The path of the dropped file.</param>
+            <param name="gridInfo">The loaded grid info.</param>
+            <seealso cref="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventHandler"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventArgs.FilePath">
+            <summary>
+            The generated property declaration for parameter <c>filePath</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventArgs.GridInfo">
+            <summary>
+            The generated property declaration for parameter <c>gridInfo</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ReceivedDroppedFileSuccessfullyEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileSuccessfully"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileSuccessfully"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.RunningStrategyItem">
             <summary>
             Represents a type that describes for a running strategy item.
@@ -9569,6 +9603,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.PropertyChanged">
             <inheritdoc/>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileSuccessfully">
+            <summary>
+            Indicates the event that is triggered when a file is successfully to be received via dropped file.
+            </summary>
         </member>
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.FailedReceivedDroppedFile">
             <summary>

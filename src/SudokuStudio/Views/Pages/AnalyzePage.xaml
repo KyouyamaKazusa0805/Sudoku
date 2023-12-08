@@ -232,6 +232,7 @@
 							a:GathererProperties.DifficultyLevelMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
 							Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
+							ReceivedDroppedFileSuccessfully="SudokuPane_ReceivedDroppedFileSuccessfully"
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"
 						/>
 					</Viewbox>

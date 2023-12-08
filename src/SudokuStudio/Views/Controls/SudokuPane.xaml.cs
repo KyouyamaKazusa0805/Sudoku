@@ -334,6 +334,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	/// <summary>
+	/// Indicates the event that is triggered when a file is successfully to be received via dropped file.
+	/// </summary>
+	public event ReceivedDroppedFileSuccessfullyEventHandler? ReceivedDroppedFileSuccessfully;
+
+	/// <summary>
 	/// Indicates the event that is triggered when a file is failed to be received via dropped file.
 	/// </summary>
 	public event FailedReceivedDroppedFileEventHandler? FailedReceivedDroppedFile;
@@ -820,13 +825,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				await handleSudokuFileAsync(file);
-
 				break;
 			}
 			case [StorageFile { FileType: FileExtensions.Text or FileExtensions.PlainText } file]:
 			{
 				await handleSudokuFileAsync(file);
-
 				break;
 			}
 		}
@@ -867,25 +870,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 								return;
 							}
 
-							Puzzle = g;
+							ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, new() { BaseGrid = g }));
 							break;
 						}
 						case FileExtensions.Text:
 						{
-							switch (SudokuFileHandler.Read(filePath))
+							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								case [{ BaseGrid: var g }]:
-								{
-									Puzzle = g;
-									break;
-								}
-								default:
-								{
-									FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed));
-									return;
-								}
-							}
+								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+								_ => () => FailedReceivedDroppedFile?.Invoke(this, new(FailedReceivedDroppedFileReason.FileCannotBeParsed))
+							};
 
+							eventHandler();
 							break;
 						}
 					}

@@ -473,13 +473,12 @@ public sealed partial class AnalyzePage : Page
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
+								SudokuPane.DisplayCandidates = showCandidates;
 
 								if (nullableRenderableData is { } renderableData)
 								{
 									VisualUnit = renderableData;
 								}
-
-								SudokuPane.DisplayCandidates = showCandidates;
 
 								break;
 							}
@@ -1121,6 +1120,30 @@ public sealed partial class AnalyzePage : Page
 		VisualUnit = null;
 		_localView = null;
 		UpdateViewUnit();
+	}
+
+	private void SudokuPane_ReceivedDroppedFileSuccessfully(SudokuPane sender, ReceivedDroppedFileSuccessfullyEventArgs e)
+	{
+		if (e is not { FilePath: var filePath, GridInfo: var gridInfo })
+		{
+			return;
+		}
+
+		switch (Path.GetExtension(filePath), gridInfo)
+		{
+			case (FileExtensions.PlainText, { BaseGrid: var g }):
+			{
+				SudokuPane.Puzzle = g;
+				break;
+			}
+			case (FileExtensions.Text, { BaseGrid: var g, RenderableData: { } visualUnit, ShowCandidates: var showCandidates }):
+			{
+				SudokuPane.Puzzle = g;
+				SudokuPane.DisplayCandidates = showCandidates;
+				VisualUnit = visualUnit;
+				break;
+			}
+		}
 	}
 
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
