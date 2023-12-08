@@ -146,7 +146,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Templating
       * Brute Force
 
-Some other techniques will be implemented later, such as senior exocets, baba grouping, death blossom, forcing chains and dynamic chains.
+Some other techniques will be implemented later, such as baba grouping and chains. Today I use algorithm from Sudoku Explainer to implement, because I'm not good at writing chaining algorithms by myself.
 
 ## Forks & PRs (Pull Requests) for This Repo
 
