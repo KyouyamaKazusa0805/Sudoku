@@ -269,7 +269,15 @@ internal static class RenderableFactory
 			}
 			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				var control = create(ShapeKindsDictionary[cellNode.Identifier]);
+				if (!ShapeKindsDictionary.TryGetValue(cellNode.Identifier, out var controlCreator))
+				{
+					// Bug fix: If a cell is colorized by a color, but the color is not an element stored in the dictionary,
+					// it will throw a KeyNotFoundException.
+					// For example, if we color a cell, and toggle the candiate displaying, the bug reproduced.
+					break;
+				}
+
+				var control = create(controlCreator);
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
@@ -281,7 +289,6 @@ internal static class RenderableFactory
 				}
 
 				animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
-
 				break;
 
 
