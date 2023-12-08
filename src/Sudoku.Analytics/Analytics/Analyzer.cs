@@ -90,6 +90,18 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 
 	/// <summary>
+	/// Represents an event that is triggered when a user has set <see cref="IsFullApplying"/> <see langword="true"/>,
+	/// and an analyzer will apply a list of steps.
+	/// </summary>
+	public event FullApplyingEventHandler<Analyzer, AnalyzerResult>? StepApplying;
+
+	/// <summary>
+	/// Represents an event that is triggered when a user has set <see cref="IsFullApplying"/> <see langword="true"/>,
+	/// and an analyzer has already applied a list of steps.
+	/// </summary>
+	public event FullAppliedEventHandler<Analyzer, AnalyzerResult>? StepApplied;
+
+	/// <summary>
 	/// Represents an event that is triggered when an exception is thrown while the analysis module is running.
 	/// </summary>
 	public event ExceptionThrownEventHandler<Analyzer, AnalyzerResult>? ExceptionThrown;
@@ -268,6 +280,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 						}
 						else
 						{
+							StepApplying?.Invoke(this, new([.. accumulator]));
+
 							foreach (var foundStep in accumulator)
 							{
 								if (!verifyConclusionValidity(in solution, foundStep))
@@ -282,6 +296,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 									return result;
 								}
 							}
+
+							StepApplied?.Invoke(this, new([.. accumulator]));
 						}
 
 						// The puzzle has not been finished, we should turn to the first step finder

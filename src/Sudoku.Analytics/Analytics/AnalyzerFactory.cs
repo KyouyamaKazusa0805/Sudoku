@@ -143,11 +143,59 @@ public static class AnalyzerFactory
 	/// Removes a new event handler from event <see cref="Analyzer.ExceptionThrown"/>.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+	/// <param name="handler">The handler you want to be removed when an exception is thrown.</param>
 	/// <returns>The result.</returns>
 	public static Analyzer RemoveExceptionThrownEventHandler(this Analyzer @this, ExceptionThrownEventHandler<Analyzer, AnalyzerResult> handler)
 	{
 		@this.ExceptionThrown -= handler;
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets a new event handler for event <see cref="Analyzer.StepApplying"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be executed when steps are applying.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer AddFullApplyingEventHandler(this Analyzer @this, FullApplyingEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.StepApplying += handler;
+		return @this;
+	}
+
+	/// <summary>
+	/// Removes a new event handler from event <see cref="Analyzer.StepApplying"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be removed when steps are applying.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer RemoveFullApplyingEventHandler(this Analyzer @this, FullApplyingEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.StepApplying -= handler;
+		return @this;
+	}
+
+	/// <summary>
+	/// Sets a new event handler for event <see cref="Analyzer.StepApplied"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be executed when steps are applied.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer AddFullAppliedEventHandler(this Analyzer @this, FullAppliedEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.StepApplied += handler;
+		return @this;
+	}
+
+	/// <summary>
+	/// Removes a new event handler from event <see cref="Analyzer.StepApplied"/>.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="handler">The handler you want to be removed when steps are applied.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer RemoveFullAppliedEventHandler(this Analyzer @this, FullAppliedEventHandler<Analyzer, AnalyzerResult> handler)
+	{
+		@this.StepApplied -= handler;
 		return @this;
 	}
 }

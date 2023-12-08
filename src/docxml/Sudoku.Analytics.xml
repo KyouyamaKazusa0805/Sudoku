@@ -418,6 +418,18 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
+        <member name="E:Sudoku.Analytics.Analyzer.StepApplying">
+            <summary>
+            Represents an event that is triggered when a user has set <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> <see langword="true"/>,
+            and an analyzer will apply a list of steps.
+            </summary>
+        </member>
+        <member name="E:Sudoku.Analytics.Analyzer.StepApplied">
+            <summary>
+            Represents an event that is triggered when a user has set <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> <see langword="true"/>,
+            and an analyzer has already applied a list of steps.
+            </summary>
+        </member>
         <member name="E:Sudoku.Analytics.Analyzer.ExceptionThrown">
             <summary>
             Represents an event that is triggered when an exception is thrown while the analysis module is running.
@@ -524,7 +536,39 @@ if (student is (name: var name, age: >= 18))
             Removes a new event handler from event <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
             </summary>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="handler">The handler you want to be executed when an exception is thrown.</param>
+            <param name="handler">The handler you want to be removed when an exception is thrown.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddFullApplyingEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.FullApplyingEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Sets a new event handler for event <see cref="E:Sudoku.Analytics.Analyzer.StepApplying"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be executed when steps are applying.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.RemoveFullApplyingEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.FullApplyingEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Removes a new event handler from event <see cref="E:Sudoku.Analytics.Analyzer.StepApplying"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be removed when steps are applying.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.AddFullAppliedEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.FullAppliedEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Sets a new event handler for event <see cref="E:Sudoku.Analytics.Analyzer.StepApplied"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be executed when steps are applied.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.RemoveFullAppliedEventHandler(Sudoku.Analytics.Analyzer,Sudoku.ComponentModel.FullAppliedEventHandler{Sudoku.Analytics.Analyzer,Sudoku.Analytics.AnalyzerResult})">
+            <summary>
+            Removes a new event handler from event <see cref="E:Sudoku.Analytics.Analyzer.StepApplied"/>.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="handler">The handler you want to be removed when steps are applied.</param>
             <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
@@ -22438,6 +22482,60 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2">
             <summary>
             Represents a delegate type that executes a list of methods that will be triggered when an exception is thrown.
+            </summary>
+            <param name="sender">The object that triggers the execution.</param>
+            <param name="e">The event argument.</param>
+        </member>
+        <member name="T:Sudoku.ComponentModel.FullAppliedEventArgs">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.FullAppliedEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.FullAppliedEventHandler`2"/>
+            <param name="appliedSteps">Indicates all applied steps.</param>
+        </member>
+        <member name="M:Sudoku.ComponentModel.FullAppliedEventArgs.#ctor(Sudoku.Analytics.Step[])">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.FullAppliedEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.FullAppliedEventHandler`2"/>
+            <param name="appliedSteps">Indicates all applied steps.</param>
+        </member>
+        <member name="P:Sudoku.ComponentModel.FullAppliedEventArgs.AppliedSteps">
+            <summary>
+            The generated property declaration for parameter <c>appliedSteps</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.ComponentModel.FullAppliedEventHandler`2">
+            <summary>
+            Represents a delegate type that executes a list of methods that will be triggered when analyzer has detected all found steps,
+            and applied them.
+            </summary>
+            <param name="sender">The object that triggers the execution.</param>
+            <param name="e">The event argument.</param>
+        </member>
+        <member name="T:Sudoku.ComponentModel.FullApplyingEventArgs">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.FullApplyingEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.FullApplyingEventHandler`2"/>
+            <param name="applyingSteps">Indicates all steps to be applied at once.</param>
+        </member>
+        <member name="M:Sudoku.ComponentModel.FullApplyingEventArgs.#ctor(Sudoku.Analytics.Step[])">
+            <summary>
+            Represents data that can be used in an <see cref="T:Sudoku.ComponentModel.FullApplyingEventHandler`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.ComponentModel.FullApplyingEventHandler`2"/>
+            <param name="applyingSteps">Indicates all steps to be applied at once.</param>
+        </member>
+        <member name="P:Sudoku.ComponentModel.FullApplyingEventArgs.ApplyingSteps">
+            <summary>
+            The generated property declaration for parameter <c>applyingSteps</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.ComponentModel.FullApplyingEventHandler`2">
+            <summary>
+            Represents a delegate type that executes a list of methods that will be triggered when analyzer has detected all found steps,
+            and applied them.
             </summary>
             <param name="sender">The object that triggers the execution.</param>
             <param name="e">The event argument.</param>
