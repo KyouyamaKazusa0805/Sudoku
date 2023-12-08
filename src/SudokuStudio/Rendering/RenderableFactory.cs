@@ -59,7 +59,12 @@ internal static class RenderableFactory
 		{ WellKnownColorIdentifier.Elimination, static () => new Cross() },
 		{ WellKnownColorIdentifier.Cannibalism, static () => new Cross() },
 		{ WellKnownColorIdentifier.Exofin, static () => new Triangle() },
-		{ WellKnownColorIdentifier.Endofin, static () => new Diamond() }
+		{ WellKnownColorIdentifier.Endofin, static () => new Diamond() },
+		{ 0, static () => new CircleRing() },
+		{ 1, static () => new Cross() },
+		{ 2, static () => new Triangle() },
+		{ 3, static () => new Diamond() },
+		{ 4, static () => new Star() }
 	};
 
 

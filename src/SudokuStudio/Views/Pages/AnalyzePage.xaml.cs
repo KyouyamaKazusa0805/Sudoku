@@ -755,7 +755,7 @@ public sealed partial class AnalyzePage : Page
 		SudokuPane.ViewUnit = _localView;
 	}
 
-	private bool CheckCellNode(Cell index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	private bool CheckCellNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		switch (e)
 		{
@@ -767,8 +767,7 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var id = UserDefinedPalette[index].GetIdentifier();
-					view.View.Add(new CellViewNode(id, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
+					view.View.Add(new CellViewNode(index, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
 				}
 
 				UpdateViewUnit();
@@ -780,7 +779,7 @@ public sealed partial class AnalyzePage : Page
 		return true;
 	}
 
-	private bool CheckCandidateNode(Candidate index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	private bool CheckCandidateNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		switch (e)
 		{
@@ -792,8 +791,7 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var id = UserDefinedPalette[index].GetIdentifier();
-					view.View.Add(new CandidateViewNode(id, candidate));
+					view.View.Add(new CandidateViewNode(index, candidate));
 				}
 
 				UpdateViewUnit();
@@ -805,7 +803,7 @@ public sealed partial class AnalyzePage : Page
 		return true;
 	}
 
-	private bool CheckHouseNode(House index, GridClickedEventArgs e, ViewUnitBindableSource view)
+	private bool CheckHouseNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		switch (e)
 		{
@@ -832,8 +830,7 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var id = UserDefinedPalette[index].GetIdentifier();
-					view.View.Add(new HouseViewNode(id, house));
+					view.View.Add(new HouseViewNode(index, house));
 				}
 
 				UpdateViewUnit();
@@ -867,8 +864,7 @@ public sealed partial class AnalyzePage : Page
 					}
 					else
 					{
-						var id = UserDefinedPalette[index].GetIdentifier();
-						view.View.Add(new ChuteViewNode(id, mr1));
+						view.View.Add(new ChuteViewNode(index, mr1));
 					}
 
 					UpdateViewUnit();
@@ -884,8 +880,7 @@ public sealed partial class AnalyzePage : Page
 					}
 					else
 					{
-						var id = UserDefinedPalette[index].GetIdentifier();
-						view.View.Add(new ChuteViewNode(id, mc1 + 3));
+						view.View.Add(new ChuteViewNode(index, mc1 + 3));
 					}
 
 					UpdateViewUnit();
@@ -966,7 +961,7 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var id = index != -1 ? UserDefinedPalette[index].GetIdentifier() : new ColorColorIdentifier(0, 255, 255, 255);
+					var id = index != -1 ? (ColorIdentifier)index : new ColorColorIdentifier(0, 255, 255, 255);
 					v.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
 				}
 
