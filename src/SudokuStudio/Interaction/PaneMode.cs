@@ -3,7 +3,7 @@ namespace SudokuStudio.Interaction;
 /// <summary>
 /// Represents a mode that describes which mode a sudoku pane is running.
 /// </summary>
-public enum PaneMode
+internal enum PaneMode
 {
 	/// <summary>
 	/// Indicates the mode is normal.
