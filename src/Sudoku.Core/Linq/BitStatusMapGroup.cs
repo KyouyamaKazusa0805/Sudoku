@@ -15,6 +15,8 @@ namespace Sudoku.Linq;
 /// <typeparam name="TKey">The type of the key in the group.</typeparam>
 /// <param name="key">Indicates the key used.</param>
 /// <param name="values">Indicates the candidates.</param>
+/// <seealso cref="CellMap"/>
+/// <seealso cref="CandidateMap"/>
 [Equals]
 [GetHashCode]
 [EqualityOperators]
