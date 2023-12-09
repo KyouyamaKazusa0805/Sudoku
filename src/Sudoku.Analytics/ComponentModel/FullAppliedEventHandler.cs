@@ -8,6 +8,7 @@ namespace Sudoku.ComponentModel;
 /// </summary>
 /// <param name="sender">The object that triggers the execution.</param>
 /// <param name="e">The event argument.</param>
+/// <inheritdoc cref="ExceptionThrownEventHandler{TSelf, TResult}"/>
 public delegate void FullAppliedEventHandler<in TSelf, out TResult>(TSelf sender, FullAppliedEventArgs e)
 	where TSelf : IAnalyzer<TSelf, TResult>
 	where TResult : IAnalyzerResult<TSelf, TResult>;

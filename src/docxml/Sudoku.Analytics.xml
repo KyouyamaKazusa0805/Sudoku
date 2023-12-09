@@ -22483,6 +22483,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a delegate type that executes a list of methods that will be triggered when an exception is thrown.
             </summary>
+            <typeparam name="TSelf">Indicates the type of the analyzer.</typeparam>
+            <typeparam name="TResult">Indicates the type of the result after a puzzle analyzed.</typeparam>
             <param name="sender">The object that triggers the execution.</param>
             <param name="e">The event argument.</param>
         </member>
@@ -22512,6 +22514,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="sender">The object that triggers the execution.</param>
             <param name="e">The event argument.</param>
+            <inheritdoc cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>
         </member>
         <member name="T:Sudoku.ComponentModel.FullApplyingEventArgs">
             <summary>
@@ -22539,6 +22542,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="sender">The object that triggers the execution.</param>
             <param name="e">The event argument.</param>
+            <inheritdoc cref="T:Sudoku.ComponentModel.ExceptionThrownEventHandler`2"/>
         </member>
         <member name="T:Sudoku.Concepts.AlmostLockedSet">
             <summary>
