@@ -15,41 +15,74 @@ internal static class TechniqueConversion
 {
 	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
 
-	public static string GetName(Technique technique) => technique == Technique.None ? "" : technique.GetName();
+	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName();
 
-	public static string GetEnglishName(Technique technique) => technique == Technique.None ? "" : technique.GetEnglishName() ?? GetString("TechniqueSelectionPage_NoEnglishName");
+	public static string GetEnglishName(Technique technique)
+		=> technique == Technique.None ? string.Empty : technique.GetEnglishName() ?? GetString("TechniqueSelectionPage_NoEnglishName");
 
 	public static string GetDifficultyLevel(Technique technique)
-		=> technique == Technique.None ? "" : DifficultyLevelConversion.GetNameWithDefault(technique.GetDifficultyLevel(), GetString("TechniqueSelectionPage_NoDifficultyLevel"));
+		=> technique == Technique.None
+			? string.Empty
+			: DifficultyLevelConversion.GetNameWithDefault(technique.GetDifficultyLevel(), GetString("TechniqueSelectionPage_NoDifficultyLevel"));
 
 	public static string GetAliasNames(Technique technique)
-		=> technique == Technique.None ? "" : technique.GetAliases() is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
+		=> technique == Technique.None
+			? string.Empty
+			: technique.GetAliases() is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
 
 	public static string GetAbbreviation(Technique technique)
-		=> technique == Technique.None ? "" : technique.GetAbbreviation() ?? GetString("TechniqueSelectionPage_NoAbbreviation");
+		=> technique == Technique.None
+			? string.Empty
+			: technique.GetAbbreviation() ?? GetString("TechniqueSelectionPage_NoAbbreviation");
 
-	public static string GetGroup(Technique technique) => technique == Technique.None ? "" : technique.GetGroup().GetName();
+	public static string GetGroup(Technique technique) => technique == Technique.None ? string.Empty : technique.GetGroup().GetName();
 
-	public static string GetGroupShortenedName(Technique technique) => technique == Technique.None ? "" : technique.GetGroup().GetShortenedName();
+	public static string GetGroupShortenedName(Technique technique)
+		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetShortenedName();
 
 	public static string GetFeature(Technique technique)
-		=> technique == Technique.None ? "" : GetStringResourceViaFeature(technique.GetFeature()) is var p and not "" ? p : GetString("TechniqueSelectionPage_NoExtraFeatures");
+		=> technique == Technique.None
+			? string.Empty
+			: GetStringResourceViaFeature(technique.GetFeature()) is var p and not "" ? p : GetString("TechniqueSelectionPage_NoExtraFeatures");
 
 	public static string GetFeatureDescription(Technique technique)
-		=> technique == Technique.None ? "" : GetStringTooltipViaFeature(technique.GetFeature()) is { Length: not 0 } p ? p : GetString("TechniqueSelectionPage_NoExtraFeaturesDescription");
+		=> technique == Technique.None
+			? string.Empty
+			: GetStringTooltipViaFeature(technique.GetFeature()) is { Length: not 0 } p ? p : GetString("TechniqueSelectionPage_NoExtraFeaturesDescription");
 
 	public static string GetSudokuExplainerDifficultyRange(Technique technique)
-		=> technique == Technique.None ? "" : SudokuExplainerCompatibility.GetDifficultyRatingRange(technique) switch
+	{
+		var advancedText = GetString("TechniqueSelectionPage_AdvancedDefined");
+		var nullDefinedText = GetString("TechniqueSelectionPage_NullDefined");
+		return technique switch
 		{
-			({ IsRange: false, Min: var d }, null) => $"{d:#.0}",
-			({ IsRange: true, Min: var d1, Max: var d2 }, null) => $"{d1:#.0} - {d2:#.0}",
-			(_, { IsRange: false, Min: var d }) => $"{d:#.0}{GetString("TechniqueSelectionPage_AdvancedDefined")}",
-			(_, { IsRange: true, Min: var d1, Max: var d2 }) => $"{d1:#.0} - {d2:#.0}{GetString("TechniqueSelectionPage_AdvancedDefined")}",
-			_ => GetString("TechniqueSelectionPage_NullDefined"),
+			Technique.None => string.Empty,
+			_ => SudokuExplainerCompatibility.GetDifficultyRatingRange(technique) switch
+			{
+				({ IsRange: true, Min: var d1, Max: var d2 }, { IsRange: true, Min: var d3, Max: var d4 })
+					=> $"{d1:#.0} - {d2:#.0}{Environment.NewLine}{d3:#.0} - {d4:#.0}{advancedText}",
+				({ IsRange: true, Min: var d1, Max: var d2 }, { IsRange: false, Min: var d3 })
+					=> $"{d1:#.0} - {d2:#.0}{Environment.NewLine}{d3:#.0}{advancedText}",
+				({ IsRange: false, Min: var d1 }, { IsRange: true, Min: var d3, Max: var d4 })
+					=> $"{d1:#.0}{Environment.NewLine}{d3:#.0} - {d4:#.0}{advancedText}",
+				({ Min: var d1 }, { Min: var d3 })
+					=> $"{d1:#.0}{Environment.NewLine}{d3:#.0}{advancedText}",
+				({ IsRange: false, Min: var d }, null)
+					=> $"{d:#.0}",
+				({ IsRange: true, Min: var d1, Max: var d2 }, null)
+					=> $"{d1:#.0} - {d2:#.0}",
+				(_, { IsRange: false, Min: var d })
+					=> $"{d:#.0}{advancedText}",
+				(_, { IsRange: true, Min: var d1, Max: var d2 })
+					=> $"{d1:#.0} - {d2:#.0}{advancedText}",
+				_
+					=> nullDefinedText,
+			}
 		};
+	}
 
 	public static string GetHodokuDifficultyRating(Technique technique)
-		=> technique == Technique.None ? "" : HodokuCompatibility.GetDifficultyRating(technique, out var difficultyLevel) switch
+		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetDifficultyRating(technique, out var difficultyLevel) switch
 		{
 			{ } value => $"{value}{Token("OpenBrace")}{GetString(difficultyLevel switch
 			{
@@ -63,7 +96,7 @@ internal static class TechniqueConversion
 		};
 
 	public static string GetHodokuPrefix(Technique technique)
-		=> technique == Technique.None ? "" : HodokuCompatibility.GetHodokuPrefix(technique) ?? GetString("TechniqueSelectionPage_NoHodokuPrefix");
+		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuPrefix(technique) ?? GetString("TechniqueSelectionPage_NoHodokuPrefix");
 
 	public static string GetStringResourceViaFeature(TechniqueFeature feature)
 		=> feature switch
