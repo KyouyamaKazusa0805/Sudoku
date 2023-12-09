@@ -5678,6 +5678,8 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.#ctor(`2,`0@)">
             <summary>
@@ -5688,6 +5690,8 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
             <param name="values">Indicates the candidates.</param>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
         <member name="P:Sudoku.Linq.BitStatusMapGroup`3.Count">
             <summary>
