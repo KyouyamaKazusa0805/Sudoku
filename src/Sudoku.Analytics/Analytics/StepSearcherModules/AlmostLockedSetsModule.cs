@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents for the module that will be used for searching for almost locked sets.
 /// </summary>
-internal sealed class AlmostLockedSetsModule
+internal static class AlmostLockedSetsModule
 {
 	/// <summary>
 	/// Try to collect all possible ALSes in the specified grid.

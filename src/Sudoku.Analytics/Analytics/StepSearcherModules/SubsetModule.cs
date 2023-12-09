@@ -16,7 +16,7 @@ using unsafe SubsetHandler = delegate*<ref AnalysisContext, ref readonly Grid, i
 /// <summary>
 /// Represents a subset module.
 /// </summary>
-internal sealed class SubsetModule
+internal static class SubsetModule
 {
 	/// <summary>
 	/// The internal method to create subset steps.

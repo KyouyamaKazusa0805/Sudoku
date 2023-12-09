@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents a fish module.
 /// </summary>
-internal sealed class FishModule
+internal static class FishModule
 {
 	/// <summary>
 	/// Check whether the fish is sashimi.
