@@ -902,19 +902,22 @@
             Defines a binding base attribute type.
             </summary>
             <typeparam name="T">The type of the property.</typeparam>
-            <param name="propertyName">The property name.</param>
+            <param name="propertyName">
+            The property name. Use '<c>?</c>' syntax to describe the generated property can be <see langword="null"/>.
+            For example, if a property of type <see cref="T:System.Object"/> is named <c>Property</c>, write <c>Property?</c>
+            instead of <c>Property</c>.
+            </param>
         </member>
         <member name="M:SudokuStudio.ComponentModel.XamlBindingAttribute`1.#ctor(System.String)">
             <summary>
             Defines a binding base attribute type.
             </summary>
             <typeparam name="T">The type of the property.</typeparam>
-            <param name="propertyName">The property name.</param>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.IsNullable">
-            <summary>
-            Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.
-            </summary>
+            <param name="propertyName">
+            The property name. Use '<c>?</c>' syntax to describe the generated property can be <see langword="null"/>.
+            For example, if a property of type <see cref="T:System.Object"/> is named <c>Property</c>, write <c>Property?</c>
+            instead of <c>Property</c>.
+            </param>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedMemberName">
             <summary>

@@ -12,11 +12,11 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents with a dialog content "add a puzzle to the library" from analyze page.
 /// </summary>
-[DependencyProperty<string>("LibraryName", IsNullable = true, DocSummary = "Indicates the library name configured.")]
-[DependencyProperty<string>("FileId", IsNullable = true, DocSummary = "Indicates the file ID configured.")]
-[DependencyProperty<string>("LibraryAuthor", IsNullable = true, DocSummary = "Indicates the library author configured.")]
-[DependencyProperty<string>("LibraryDescription", IsNullable = true, DocSummary = "Indicates the library description configured.")]
-[DependencyProperty<PuzzleLibraryBindableSource>("SelectedLibrary", IsNullable = true, DocSummary = "Indicates the currently-selected library.")]
+[DependencyProperty<string>("LibraryName?", DocSummary = "Indicates the library name configured.")]
+[DependencyProperty<string>("FileId?", DocSummary = "Indicates the file ID configured.")]
+[DependencyProperty<string>("LibraryAuthor?", DocSummary = "Indicates the library author configured.")]
+[DependencyProperty<string>("LibraryDescription?", DocSummary = "Indicates the library description configured.")]
+[DependencyProperty<PuzzleLibraryBindableSource>("SelectedLibrary?", DocSummary = "Indicates the currently-selected library.")]
 [DependencyProperty<ObservableCollection<string>>("LibraryTags", DocSummary = "Indicates the library description configured.")]
 public sealed partial class AddToLibraryContent : Page
 {

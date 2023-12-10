@@ -86,7 +86,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<FontFamily>("PencilmarkFont", DocSummary = "Indicates the candidate font.")]
 [DependencyProperty<FontFamily>("CoordinateLabelFont", DocSummary = "Indicates the coordinate label font.")]
 [DependencyProperty<FontFamily>("BabaGroupLabelFont", DocSummary = "Indicates the baba group label font.")]
-[DependencyProperty<ViewUnitBindableSource>("ViewUnit", IsNullable = true, DocSummary = "Indicates the view unit used.")]
+[DependencyProperty<ViewUnitBindableSource>("ViewUnit?", DocSummary = "Indicates the view unit used.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocSummary = "Indicates the auxiliary colors.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]

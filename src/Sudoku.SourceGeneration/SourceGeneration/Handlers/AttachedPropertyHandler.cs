@@ -136,7 +136,6 @@ internal static class AttachedPropertyHandler
 			var callbackMethodName = default(string);
 			var docSummary = default(string);
 			var docRemarks = default(string);
-			var isNullable = false;
 			foreach (var pair in namedArgs)
 			{
 				switch (pair)
@@ -176,11 +175,6 @@ internal static class AttachedPropertyHandler
 						docRemarks = v;
 						break;
 					}
-					case ("IsNullable", { Value: bool v }) when isReferenceType:
-					{
-						isNullable = v;
-						break;
-					}
 				}
 			}
 
@@ -192,7 +186,7 @@ internal static class AttachedPropertyHandler
 				let methodName = methodSymbol.Name
 				where methodName.EndsWith(callbackMethodSuffix)
 				let relatedPropertyName = methodName[..methodName.IndexOf(callbackMethodSuffix)]
-				where relatedPropertyName == propertyName
+				where relatedPropertyName == propertyName || $"{relatedPropertyName}?" == propertyName
 				let attributesData = methodSymbol.GetAttributes()
 				where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, callbackAttribute))
 				select methodName
@@ -206,7 +200,7 @@ internal static class AttachedPropertyHandler
 				let fieldName = fieldSymbol.Name
 				where fieldName.EndsWith(defaultValueFieldSuffix)
 				let relatedPropertyName = fieldName[..fieldName.IndexOf(defaultValueFieldSuffix)]
-				where relatedPropertyName == propertyName
+				where relatedPropertyName == propertyName || $"{relatedPropertyName}?" == propertyName
 				let attributesData = fieldSymbol.GetAttributes()
 				where attributesData.Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, defaultValueAttribute))
 				select fieldName
@@ -237,10 +231,17 @@ internal static class AttachedPropertyHandler
 				continue;
 			}
 
+			var isNullable = propertyName[^1] == '?';
 			propertiesData.Add(
 				new(
-					propertyName, propertyType, new(docSummary, docRemarks, docCref, docPath),
-					defaultValueGenerator, defaultValueGeneratorKind, defaultValue, callbackMethodName, isNullable
+					isNullable ? propertyName[..^1] : propertyName,
+					propertyType,
+					new(docSummary, docRemarks, docCref, docPath),
+					defaultValueGenerator,
+					defaultValueGeneratorKind,
+					defaultValue,
+					callbackMethodName,
+					isNullable
 				)
 			);
 		}

@@ -14,7 +14,7 @@ namespace SudokuStudio.Views.Pages;
 /// Represents with a library puzzle details page.
 /// </summary>
 [DependencyProperty<int>("CurrentPuzzleIndex", DefaultValue = -1, DocSummary = "Indicates the current page to be shown.")]
-[DependencyProperty<PuzzleLibraryBindableSource>("Source", IsNullable = true, DocSummary = "Indicates the source of the file.")]
+[DependencyProperty<PuzzleLibraryBindableSource>("Source?", DocSummary = "Indicates the source of the file.")]
 public sealed partial class LibraryPuzzleDetailsPage : Page
 {
 	/// <summary>

@@ -6,14 +6,13 @@ namespace SudokuStudio.ComponentModel;
 /// Defines a binding base attribute type.
 /// </summary>
 /// <typeparam name="T">The type of the property.</typeparam>
-/// <param name="propertyName">The property name.</param>
+/// <param name="propertyName">
+/// The property name. Use '<c>?</c>' syntax to describe the generated property can be <see langword="null"/>.
+/// For example, if a property of type <see cref="object"/> is named <c>Property</c>, write <c>Property?</c>
+/// instead of <c>Property</c>.
+/// </param>
 public abstract partial class XamlBindingAttribute<T>([Data] string propertyName) : Attribute
 {
-	/// <summary>
-	/// Indicates whether the property type is nullable if the member is reference type; for value type, this property has no effect.
-	/// </summary>
-	public bool IsNullable { get; init; }
-
 	/// <summary>
 	/// Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
 	/// </summary>

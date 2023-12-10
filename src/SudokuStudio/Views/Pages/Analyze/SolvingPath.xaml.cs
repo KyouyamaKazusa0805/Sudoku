@@ -11,7 +11,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the solving path page.
 /// </summary>
-[DependencyProperty<AnalyzerResult>("AnalysisResult", IsNullable = true, DocSummary = "Indicates the analysis result.")]
+[DependencyProperty<AnalyzerResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
 public sealed partial class SolvingPath : Page, IAnalyzeTabPage
 {
 	/// <summary>
