@@ -4,7 +4,6 @@ using System.SourceGeneration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Concepts;
-using Sudoku.Concepts.Parsers;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Text.Converters;
 using Sudoku.Text.Parsers;

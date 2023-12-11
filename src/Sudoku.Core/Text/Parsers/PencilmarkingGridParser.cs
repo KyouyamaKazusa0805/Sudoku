@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-using Sudoku.Text.Parsers;
+using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
 
-namespace Sudoku.Concepts.Parsers;
+namespace Sudoku.Text.Parsers;
 
 /// <summary>
 /// Represents for a pencilmarking grid parser.

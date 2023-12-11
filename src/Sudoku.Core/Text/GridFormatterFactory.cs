@@ -1,5 +1,4 @@
 using Sudoku.Text.Converters;
-using Sudoku.Text.SudokuGrid;
 
 namespace Sudoku.Text;
 

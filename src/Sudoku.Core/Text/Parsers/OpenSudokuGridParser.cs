@@ -1,8 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using Sudoku.Text.Parsers;
+using Sudoku.Concepts;
 
-namespace Sudoku.Concepts.Parsers;
+namespace Sudoku.Text.Parsers;
 
 /// <summary>
 /// Represents an Open-Sudoku format parser.

@@ -2,9 +2,8 @@ using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using System.Text;
 using Sudoku.Concepts;
-using Sudoku.Text.Converters;
 
-namespace Sudoku.Text.SudokuGrid;
+namespace Sudoku.Text.Converters;
 
 /// <summary>
 /// Represents a converter that converts a <see cref="Grid"/> instance into an equivalent <see cref="string"/> representation

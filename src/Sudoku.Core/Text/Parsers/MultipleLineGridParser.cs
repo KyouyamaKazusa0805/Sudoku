@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using Sudoku.Text.Parsers;
+using Sudoku.Concepts;
 
-namespace Sudoku.Concepts.Parsers;
+namespace Sudoku.Text.Parsers;
 
 /// <summary>
 /// Represents a table parser.

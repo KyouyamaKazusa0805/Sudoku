@@ -1,6 +1,5 @@
 using System.Text;
 using Sudoku.Concepts;
-using Sudoku.Text.SudokuGrid;
 
 namespace Sudoku.Text.Converters;
 

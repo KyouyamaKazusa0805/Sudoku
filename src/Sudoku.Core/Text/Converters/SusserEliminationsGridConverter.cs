@@ -1,8 +1,7 @@
 using System.Text.RegularExpressions;
 using Sudoku.Concepts;
-using Sudoku.Text.Converters;
 
-namespace Sudoku.Text.SudokuGrid;
+namespace Sudoku.Text.Converters;
 
 /// <summary>
 /// Represents with a Susser format, but only extracts for pre-eliminations.

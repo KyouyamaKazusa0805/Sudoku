@@ -5,9 +5,8 @@ using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.Concepts;
-using Sudoku.Text.Converters;
 
-namespace Sudoku.Text.SudokuGrid;
+namespace Sudoku.Text.Converters;
 
 /// <summary>
 /// Represents a converter that converts a <see cref="Grid"/> into an equivalent <see cref="string"/> representation

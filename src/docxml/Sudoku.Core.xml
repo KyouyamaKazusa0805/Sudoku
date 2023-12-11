@@ -5262,506 +5262,6 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.Parsers.K9Parser">
-            <summary>
-            Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.K9Parser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[a-k]+[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                ○ Match a character in the set [1-9] greedily at least once.<br/>
-                ○ Loop greedily any number of times.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match ','.<br/>
-                        ○ Match a whitespace character atomically any number of times.<br/>
-                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
-                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 4th capture group.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.K9Parser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match a character in the set [A-Ka-k\u212A].<br/>
-                ○ Match a character in the set [1-9].<br/>
-            ○ Match '.'.<br/>
-            ○ 3rd capture group.<br/>
-                ○ Match a character in the set [1-9].<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.MultipleLineGridParser">
-            <summary>
-            Represents a table parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.MultipleLineGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.MultipleLineGridParser.GridSusserDigitPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\+?\\d|\\.)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '+' atomically, optionally.<br/>
-                        ○ Match a Unicode digit.<br/>
-                    ○ Match '.'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.OpenSudokuGridParser">
-            <summary>
-            Represents an Open-Sudoku format parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.OpenSudokuGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.OpenSudokuGridParser.GridOpenSudokuPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d(\\|\\d){242}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit.<br/>
-            ○ Loop exactly 242 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match '|'.<br/>
-                    ○ Match a Unicode digit.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.PencilmarkingGridParser">
-            <summary>
-            Represents for a pencilmarking grid parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.PencilmarkingGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.PencilmarkingGridParser.GridPencilmarkingPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 3 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '&lt;'.<br/>
-                        ○ Match a Unicode digit.<br/>
-                        ○ Match '&gt;'.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '*'.<br/>
-                        ○ Match a Unicode digit.<br/>
-                        ○ Match '*'.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match a Unicode digit greedily any number of times.<br/>
-                        ○ Match a character in the set [+-] atomically, optionally.<br/>
-                        ○ Match a Unicode digit atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.RxCyParser">
-            <summary>
-            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CellParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.CandidateParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.HouseParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConclusionParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.DigitParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ChuteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.ConjuagteParser">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.RxCyParser.IntersectionParser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCellGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitCandidateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match with 2 alternative expressions, atomically.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConclusionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] greedily at least once.<br/>
-            ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
-                ○ Match with 3 alternative expressions.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match the string "!=".<br/>
-                    ○ Match the string "&lt;&gt;".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitHousePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rcb][1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [BCRbcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitIntersectionGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[rc][1-9]+b[1-9]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Bb].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitMegaLineGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>m[rc][1-3]+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Mm].<br/>
-            ○ Match a character in the set [CRcr].<br/>
-            ○ Match a character in the set [1-3] atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.RxCyParser.UnitConjugateGroupPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match the string "==".<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9].<br/>
-            ○ Match ')'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser">
-            <summary>
-            Represents a simple multiple-line grid parser.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SimpleMultipleLineGridParser.GridSimpleMultilinePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Loop exactly 8 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
-                    ○ 2nd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a character in the set [\n\r].<br/>
-                            ○ Match the string "\r\n".<br/>
-            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SukakuGridParser">
-            <summary>
-            Represents a Sukaku grid parser.
-            </summary>
-            <param name="SingleLine">
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.#ctor(System.Boolean)">
-            <summary>
-            Represents a Sukaku grid parser.
-            </summary>
-            <param name="SingleLine">
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.SingleLine">
-            <summary>
-            Indicates whether the parser use single-line logic to parse the string text.
-            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SukakuGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SukakuGridParser.GridSukakuSegmentPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d*[\\-\\+]?\\d+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit greedily any number of times.<br/>
-            ○ Match a character in the set [+-] atomically, optionally.<br/>
-            ○ Match a Unicode digit atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Concepts.Parsers.SusserGridParser">
-            <summary>
-            Represents a Susser format parser.
-            </summary>
-            <param name="ShortenSusserFormat">
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.#ctor(System.Boolean)">
-            <summary>
-            Represents a Susser format parser.
-            </summary>
-            <param name="ShortenSusserFormat">
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.ShortenSusserFormat">
-            <summary>
-            Indicates whether the parser will use shorten mode to parse a susser format grid.
-            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
-            <c>.</c>s or <c>0</c>s to a <c>*</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Parsers.SusserGridParser.Parser">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridSusserPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
-            ○ Optional (greedy).<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ':'.<br/>
-                    ○ Loop greedily any number of times.<br/>
-                        ○ 2nd capture group.<br/>
-                            ○ Match a Unicode digit exactly 3 times.<br/>
-                            ○ Match a whitespace character atomically at least once.<br/>
-                    ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Parsers.SusserGridParser.GridShortenedSusserPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
-            ○ Loop exactly 8 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Linq.BitStatusMapEnumerable">
             <summary>
             Represents a list of methods for iteration on <see cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`2"/>.
@@ -8367,6 +7867,64 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.Converters.MaskGridConverter.Converter">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Text.Converters.MultipleLineGridConverter">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
+            using multiple-line formatting rule.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Text.Converters.MultipleLineGridConverter.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
+            using multiple-line formatting rule.
+            </summary>
+            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
+            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MultipleLineGridConverter.SubtleGridLines">
+            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MultipleLineGridConverter.TreatValueAsGiven">
+            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.MultipleLineGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.MultipleLineGridConverter.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.MultipleLineGridConverter.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MultipleLineGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Text.Converters.MultipleLineGridConverter.Converter">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Text.Converters.MultipleLineGridConverter._placeholder">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.Placeholder"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.Placeholder"/>
+        </member>
         <member name="T:Sudoku.Text.Converters.OpenSudokuGridConverter">
             <summary>
             Represents a converter type for Open-Sudoku app format.
@@ -8606,84 +8164,7 @@ if (student is (name: var name, age: >= 18))
             <param name="houseIndex">The house index.</param>
             <returns>The label.</returns>
         </member>
-        <member name="T:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens">
-            <summary>
-            Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Converter">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.MultipleLineGridConverter">
-            <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
-            using multiple-line formatting rule.
-            </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.#ctor(System.Boolean,System.Boolean)">
-            <summary>
-            Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> representation
-            using multiple-line formatting rule.
-            </summary>
-            <param name="SubtleGridLines"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
-            <param name="TreatValueAsGiven"><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines">
-            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven">
-            <summary><inheritdoc cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Zero">
-            <summary>
-            Indicates the zero character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Dot">
-            <summary>
-            Indicates the dot character.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Default">
-            <summary>
-            Indicates the default instance. The property set are:
-            <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder">
-            <summary>
-            Indicates the placeholder of the grid text formatter.
-            </summary>
-            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
-            <returns>The placeholder text.</returns>
-        </member>
-        <member name="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Converter">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Text.SudokuGrid.MultipleLineGridConverter._placeholder">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.MultipleLineGridConverter.Placeholder"/>
-        </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SukakuGridConverter">
+        <member name="T:Sudoku.Text.Converters.SukakuGridConverter">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
             using Sukaku formatting rule.
@@ -8693,7 +8174,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SukakuGridConverter.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Text.Converters.SukakuGridConverter.#ctor(System.Boolean)">
             <summary>
             Represents a converter type that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance into an equivalent <see cref="T:System.String"/> value
             using Sukaku formatting rule.
@@ -8703,67 +8184,67 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline">
+        <member name="P:Sudoku.Text.Converters.SukakuGridConverter.Multiline">
             <summary>
             <para>Indicates whether the output should be multi-line.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Dot">
+        <member name="F:Sudoku.Text.Converters.SukakuGridConverter.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Zero">
+        <member name="F:Sudoku.Text.Converters.SukakuGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter.Default">
+        <member name="F:Sudoku.Text.Converters.SukakuGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder">
+        <member name="P:Sudoku.Text.Converters.SukakuGridConverter.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Converter">
+        <member name="P:Sudoku.Text.Converters.SukakuGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SukakuGridConverter._placeholder">
+        <member name="F:Sudoku.Text.Converters.SukakuGridConverter._placeholder">
             <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>.
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Converters.SukakuGridConverter.Placeholder"/>.
             </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SukakuGridConverter.Placeholder"/>
+            <seealso cref="P:Sudoku.Text.Converters.SukakuGridConverter.Placeholder"/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter">
+        <member name="T:Sudoku.Text.Converters.SusserEliminationsGridConverter">
             <summary>
             Represents with a Susser format, but only extracts for pre-eliminations.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Default">
+        <member name="F:Sudoku.Text.Converters.SusserEliminationsGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.Converter">
+        <member name="P:Sudoku.Text.Converters.SusserEliminationsGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserEliminationsGridConverter.EliminationPattern">
+        <member name="M:Sudoku.Text.Converters.SusserEliminationsGridConverter.EliminationPattern">
             <remarks>
             Pattern:<br/>
             <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
@@ -8781,7 +8262,7 @@ if (student is (name: var name, age: >= 18))
             </code>
             </remarks>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.SusserGridConverter">
+        <member name="T:Sudoku.Text.Converters.SusserGridConverter">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Susser formatting rule.
@@ -8803,7 +8284,7 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Text.Converters.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Susser formatting rule.
@@ -8825,13 +8306,13 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </param>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates">
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates">
             <summary>
             <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables">
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables">
             <summary>
             <para>
             Indicates whether the formatter will output and distinct modifiable and given digits.
@@ -8841,106 +8322,125 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser">
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser">
             <summary>
             <para>Indicates whether the formatter will shorten the final text.</para>
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.ModifiablePrefix">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.ModifiablePrefix">
             <summary>
             Indicates the modifiable prefix character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.LineLimit">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.LineLimit">
             <summary>
             Indicates the line separator character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Star">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.Star">
             <summary>
             Indicates the star character used by shortening Susser format.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Dot">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.Dot">
             <summary>
             Indicates the dot character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Zero">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.Zero">
             <summary>
             Indicates the zero character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.PreeliminationPrefix">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.PreeliminationPrefix">
             <summary>
             Indicates the pre-elimination prefix character.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Default">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.Default">
             <summary>
             Indicates the default instance. The property set are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.Full">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.Full">
             <summary>
             Indicates the instance whose inner properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter.FullZero">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter.FullZero">
             <summary>
             Indicates the instance whose inner properties are:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>: <c>'0'</c></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
-            <item><see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'0'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder">
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder">
             <summary>
             Indicates the placeholder of the grid text formatter.
             </summary>
             <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
             <returns>The placeholder text.</returns>
         </member>
-        <member name="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Converter">
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.SusserGridConverter._placeholder">
+        <member name="F:Sudoku.Text.Converters.SusserGridConverter._placeholder">
             <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>.
+            Indicates the backing field of property <see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>.
             </summary>
-            <seealso cref="P:Sudoku.Text.SudokuGrid.SusserGridConverter.Placeholder"/>
+            <seealso cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>
         </member>
-        <member name="T:Sudoku.Text.SudokuGrid.EqualityComparer">
+        <member name="T:Sudoku.Text.Converters.EqualityComparer">
             <summary>
             Represents a comparer instance that compares two <see cref="T:System.Text.RegularExpressions.Match"/> instances via their length.
             </summary>
             <seealso cref="T:System.Text.RegularExpressions.Match"/>
         </member>
-        <member name="F:Sudoku.Text.SudokuGrid.EqualityComparer.Instance">
+        <member name="F:Sudoku.Text.Converters.EqualityComparer.Instance">
             <summary>
             The singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
+        <member name="M:Sudoku.Text.Converters.EqualityComparer.Equals(System.Text.RegularExpressions.Match,System.Text.RegularExpressions.Match)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.SudokuGrid.EqualityComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+        <member name="M:Sudoku.Text.Converters.EqualityComparer.GetHashCode(System.Text.RegularExpressions.Match)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens">
+            <summary>
+            Represents with a Susser formatter, removing all plus mark <c>'+'</c> as modifiable distinction tokens.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Default">
+            <summary>
+            Indicates the default instance. The property set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Converter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.GridFormatterFactory">
@@ -9085,6 +8585,506 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Text.Parsers.HodokuTripletParser.Parser">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.K9Parser">
+            <summary>
+            Represents a parser type that uses <b>K9</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.CellParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.CandidateParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.HouseParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.ConclusionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.DigitParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.ChuteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.K9Parser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.K9Parser.UnitCellGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[a-k]+[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.K9Parser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.K9Parser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                ○ Match a character in the set [1-9] greedily at least once.<br/>
+                ○ Loop greedily any number of times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match ','.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                        ○ Match a character in the set [A-Ka-k\u212A] atomically at least once.<br/>
+                        ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 4th capture group.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.K9Parser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match a character in the set [A-Ka-k\u212A].<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match '.'.<br/>
+            ○ 3rd capture group.<br/>
+                ○ Match a character in the set [1-9].<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.MultipleLineGridParser">
+            <summary>
+            Represents a table parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.MultipleLineGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.MultipleLineGridParser.GridSusserDigitPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\+?\\d|\\.)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a Unicode digit.<br/>
+                    ○ Match '.'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.OpenSudokuGridParser">
+            <summary>
+            Represents an Open-Sudoku format parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.OpenSudokuGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.OpenSudokuGridParser.GridOpenSudokuPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d(\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match '|'.<br/>
+                    ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.PencilmarkingGridParser">
+            <summary>
+            Represents for a pencilmarking grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.PencilmarkingGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.PencilmarkingGridParser.GridPencilmarkingPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 3 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '&lt;'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '&gt;'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '*'.<br/>
+                        ○ Match a Unicode digit.<br/>
+                        ○ Match '*'.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match a Unicode digit greedily any number of times.<br/>
+                        ○ Match a character in the set [+-] atomically, optionally.<br/>
+                        ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.RxCyParser">
+            <summary>
+            Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
+            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Primitive.ICoordinateObject`1"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.CellParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.CandidateParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.HouseParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.ConclusionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.DigitParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.ChuteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.ConjuagteParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.RxCyParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitCellGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitCandidateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match '('.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match ')'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitConclusionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] greedily at least once.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ 2nd capture group.<br/>
+                ○ Match with 3 alternative expressions.<br/>
+                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                    ○ Match the string "!=".<br/>
+                    ○ Match the string "&lt;&gt;".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitHousePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rcb][1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [BCRbcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitIntersectionGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[rc][1-9]+b[1-9]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Bb].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitMegaLineGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>m[rc][1-3]+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [CRcr].<br/>
+            ○ Match a character in the set [1-3] atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.RxCyParser.UnitConjugateGroupPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match the string "==".<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9].<br/>
+            ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.SimpleMultipleLineGridParser">
+            <summary>
+            Represents a simple multiple-line grid parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SimpleMultipleLineGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SimpleMultipleLineGridParser.GridSimpleMultilinePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a character in the set [\n\r].<br/>
+                            ○ Match the string "\r\n".<br/>
+            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.SukakuGridParser">
+            <summary>
+            Represents a Sukaku grid parser.
+            </summary>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SukakuGridParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Sukaku grid parser.
+            </summary>
+            <param name="SingleLine">
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SukakuGridParser.SingleLine">
+            <summary>
+            Indicates whether the parser use single-line logic to parse the string text.
+            The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SukakuGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SukakuGridParser.GridSukakuSegmentPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Parsers.SusserGridParser">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean)">
+            <summary>
+            Represents a Susser format parser.
+            </summary>
+            <param name="ShortenSusserFormat">
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </param>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SusserGridParser.ShortenSusserFormat">
+            <summary>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SusserGridParser.Parser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SusserGridParser.GridSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ':'.<br/>
+                    ○ Loop greedily any number of times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match a Unicode digit exactly 3 times.<br/>
+                            ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Text.Parsers.SusserGridParser.GridShortenedSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>

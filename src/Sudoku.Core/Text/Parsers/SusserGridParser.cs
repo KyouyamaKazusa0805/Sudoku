@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Sudoku.Text.Parsers;
-using Sudoku.Text.SudokuGrid;
+using Sudoku.Concepts;
+using Sudoku.Text.Converters;
 
-namespace Sudoku.Concepts.Parsers;
+namespace Sudoku.Text.Parsers;
 
 /// <summary>
 /// Represents a Susser format parser.
