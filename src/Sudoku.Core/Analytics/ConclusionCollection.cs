@@ -6,7 +6,6 @@ using System.SourceGeneration;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Text.Converters;
 using Sudoku.Text.Parsers;
-using static Sudoku.Analytics.ConclusionType;
 
 namespace Sudoku.Analytics;
 
@@ -22,6 +21,7 @@ namespace Sudoku.Analytics;
 [Equals]
 [EqualityOperators]
 public sealed partial class ConclusionCollection :
+	IBitwiseOperators<ConclusionCollection, ConclusionCollection, ConclusionCollection>,
 	ICoordinateObject<ConclusionCollection>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionCollection>,
@@ -31,7 +31,12 @@ public sealed partial class ConclusionCollection :
 	/// <summary>
 	/// The total length of bits.
 	/// </summary>
-	private const int BitsCount = 729 << 1;
+	private const int BitsCount = AllCandidatesCount << 1;
+
+	/// <summary>
+	/// The maximum number of candidates can exist in a grid.
+	/// </summary>
+	private const int AllCandidatesCount = 729;
 
 
 	/// <summary>
@@ -88,7 +93,7 @@ public sealed partial class ConclusionCollection :
 			{
 				if (_bitArray[i] && ++p == index)
 				{
-					return new(i > 729 ? Elimination : Assignment, i % 729 / 9, i % 729 % 9);
+					return new((ConclusionType)(i / AllCandidatesCount), i % AllCandidatesCount);
 				}
 			}
 
@@ -100,12 +105,23 @@ public sealed partial class ConclusionCollection :
 	/// <summary>
 	/// Add a new element into the collection.
 	/// </summary>
+	/// <param name="index">The global collection index to be added.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Add(int index)
+	{
+		_bitArray[index] = true;
+		_conclusionsEntry.Add(new((ConclusionType)(index / AllCandidatesCount), index % AllCandidatesCount));
+	}
+
+	/// <summary>
+	/// Add a new element into the collection.
+	/// </summary>
 	/// <param name="conclusion">The conclusion to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(Conclusion conclusion)
 	{
 		var (type, cell, digit) = conclusion;
-		_bitArray[(int)type * 729 + cell * 9 + digit] = true;
+		_bitArray[(int)type * AllCandidatesCount + cell * 9 + digit] = true;
 		_conclusionsEntry.Add(conclusion);
 	}
 
@@ -168,6 +184,13 @@ public sealed partial class ConclusionCollection :
 	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter([.. _conclusionsEntry]);
 
 	/// <summary>
+	/// Try to get the conclusions.
+	/// </summary>
+	/// <returns>The conclusions.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Conclusion[] ToArray() => [.. _conclusionsEntry];
+
+	/// <summary>
 	/// Try to get an enumerator type that iterates on each conclusion.
 	/// </summary>
 	/// <returns>An enumerator type that iterates on each conclusion.</returns>
@@ -205,4 +228,77 @@ public sealed partial class ConclusionCollection :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionCollection ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
+
+
+	/// <inheritdoc/>
+	public static ConclusionCollection operator ~(ConclusionCollection value)
+	{
+		var result = new ConclusionCollection();
+		var i = 0;
+		foreach (bool bit in ((BitArray)value._bitArray.Clone()).Not())
+		{
+			if (bit)
+			{
+				result.Add(i);
+			}
+
+			i++;
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static ConclusionCollection operator &(ConclusionCollection left, ConclusionCollection right)
+	{
+		var result = new ConclusionCollection();
+		var i = 0;
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).And((BitArray)right._bitArray.Clone()))
+		{
+			if (bit)
+			{
+				result.Add(i);
+			}
+
+			i++;
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static ConclusionCollection operator |(ConclusionCollection left, ConclusionCollection right)
+	{
+		var result = new ConclusionCollection();
+		var i = 0;
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Or((BitArray)right._bitArray.Clone()))
+		{
+			if (bit)
+			{
+				result.Add(i);
+			}
+
+			i++;
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static ConclusionCollection operator ^(ConclusionCollection left, ConclusionCollection right)
+	{
+		var result = new ConclusionCollection();
+		var i = 0;
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Xor((BitArray)right._bitArray.Clone()))
+		{
+			if (bit)
+			{
+				result.Add(i);
+			}
+
+			i++;
+		}
+
+		return result;
+	}
 }

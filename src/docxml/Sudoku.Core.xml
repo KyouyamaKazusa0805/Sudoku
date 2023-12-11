@@ -1452,6 +1452,11 @@ if (student is (name: var name, age: >= 18))
             The total length of bits.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection.AllCandidatesCount">
+            <summary>
+            The maximum number of candidates can exist in a grid.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.ConclusionCollection.PrimeNumbers">
             <summary>
             The prime numbers below 100.
@@ -1486,6 +1491,12 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
             <exception cref="T:System.InvalidOperationException">Throws when the specified element is not found.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Add(System.Int32)">
+            <summary>
+            Add a new element into the collection.
+            </summary>
+            <param name="index">The global collection index to be added.</param>
+        </member>
         <member name="M:Sudoku.Analytics.ConclusionCollection.Add(Sudoku.Analytics.Conclusion)">
             <summary>
             Add a new element into the collection.
@@ -1510,6 +1521,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.ConclusionCollection.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.ToArray">
+            <summary>
+            Try to get the conclusions.
+            </summary>
+            <returns>The conclusions.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.ConclusionCollection.GetEnumerator">
             <summary>
             Try to get an enumerator type that iterates on each conclusion.
@@ -1529,6 +1546,18 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.ConclusionCollection.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_OnesComplement(Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_BitwiseAnd(Sudoku.Analytics.ConclusionCollection,Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_BitwiseOr(Sudoku.Analytics.ConclusionCollection,Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_ExclusiveOr(Sudoku.Analytics.ConclusionCollection,Sudoku.Analytics.ConclusionCollection)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.ConclusionCollection.Enumerator">
