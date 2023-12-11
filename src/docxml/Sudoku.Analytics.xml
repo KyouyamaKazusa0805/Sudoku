@@ -23658,6 +23658,61 @@ result ^= expression;
         <member name="M:Sudoku.Concepts.SolvingPath.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.Diff.GridDiff">
+            <summary>
+            Provides the method to operate with <see cref="T:Sudoku.Concepts.Grid"/> instances, checking for the diff of two <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Diff.GridDiff.StepCollector">
+            <summary>
+            The internal step collector.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Diff.StepFilter,Sudoku.Analytics.Step[]@)">
+            <summary>
+            Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
+            </summary>
+            <param name="this">The step collector.</param>
+            <param name="previous">The first sudoku grid puzzle to be checked. The value is at the previous state.</param>
+            <param name="current">The second sudoku grid puzzle to be checked. The value is at the current state.</param>
+            <param name="stepFilter">
+            A filter method that checks whether a <see cref="T:Sudoku.Analytics.Step"/> instance is valid. The value can be <see langword="null"/>
+            if you don't want to make any extra checking.
+            </param>
+            <param name="steps">
+            The found steps describing the changing making the <paramref name="previous"/> to be changed into <paramref name="current"/>.
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the operation is successful. Values are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The diff change is found.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The diff change is not found, but two grids are valid to be checked.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            Arguments <paramref name="previous"/> and <paramref name="current"/> are invalid that makes the operation failed to be checked.
+            </description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Diff.StepFilter">
+            <summary>
+            Represents a filter that checks whether a <see cref="T:Sudoku.Analytics.Step"/> is valid.
+            </summary>
+            <param name="step">A step to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.

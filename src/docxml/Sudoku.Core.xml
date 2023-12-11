@@ -1436,6 +1436,135 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.ConclusionCollection">
+            <summary>
+            Represents a collection of conclusions.
+            </summary>
+            <remarks>
+            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Analytics.Conclusion"/> instances.
+            Because the type contains a reference-typed field, the type is also a reference type.
+            </remarks>
+            <seealso cref="T:System.Collections.BitArray"/>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection.BitsCount">
+            <summary>
+            The total length of bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection.PrimeNumbers">
+            <summary>
+            The prime numbers below 100.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection._bitArray">
+            <summary>
+            The internal bit array.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection._conclusionsEntry">
+            <summary>
+            The entry point that can visit conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ConclusionCollection.Count">
+            <summary>
+            Indicates the number of bit array elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ConclusionCollection.Empty">
+            <summary>
+            An empty instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ConclusionCollection.Item(System.Int32)">
+            <summary>
+            Try to get n-th element stored in the collection.
+            </summary>
+            <param name="index">The desired index to be checked.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Conclusion"/> instance at the specified index.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified element is not found.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Add(Sudoku.Analytics.Conclusion)">
+            <summary>
+            Add a new element into the collection.
+            </summary>
+            <param name="conclusion">The conclusion to be added.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.AddRange(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
+            <summary>
+            Add a list of conclusions into the collection.
+            </summary>
+            <param name="conclusions">The conclusions to be added.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Equals(Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.GetEnumerator">
+            <summary>
+            Try to get an enumerator type that iterates on each conclusion.
+            </summary>
+            <returns>An enumerator type that iterates on each conclusion.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Conclusion}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.TryParse(System.String,Sudoku.Analytics.ConclusionCollection@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.ConclusionCollection.Enumerator">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Enumerator.#ctor(Sudoku.Analytics.ConclusionCollection)">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.ConclusionCollection.Enumerator._enumerator">
+            <summary>
+            The conclusions to be iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ConclusionCollection.Enumerator.Current">
+            <summary>
+            Indicates the current iterated element.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_Equality(Sudoku.Analytics.ConclusionCollection,Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionCollection.op_Inequality(Sudoku.Analytics.ConclusionCollection,Sudoku.Analytics.ConclusionCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Analytics.ConclusionType">
             <summary>
             Provides a conclusion type.
