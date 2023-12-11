@@ -81,9 +81,11 @@ public sealed partial class AnalyzePage : Page
 	internal CancellationTokenSource? _ctsForAnalyzingRelatedOperations;
 
 	/// <summary>
-	/// Defines a local view.
+	/// Defines a user-defined view that will be used when <see cref="SudokuPane.CurrentPaneMode"/> is <see cref="PaneMode.Drawing"/>.
 	/// </summary>
-	internal ViewUnitBindableSource? _localView = new([], []);
+	/// <seealso cref="SudokuPane.CurrentPaneMode"/>
+	/// <seealso cref="PaneMode.Drawing"/>
+	internal ViewUnitBindableSource? _userColoringView = new([], []);
 
 	/// <summary>
 	/// The internal puzzle libraries.
@@ -751,7 +753,7 @@ public sealed partial class AnalyzePage : Page
 	private void UpdateViewUnit()
 	{
 		SudokuPane.ViewUnit = null; // Change the reference to update view.
-		SudokuPane.ViewUnit = _localView;
+		SudokuPane.ViewUnit = _userColoringView;
 	}
 
 	private bool CheckCellNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
@@ -1110,7 +1112,7 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		VisualUnit = null;
-		_localView = null;
+		_userColoringView = null;
 		UpdateViewUnit();
 	}
 
@@ -1240,7 +1242,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		switch (this, sender, e)
 		{
-			case ({ _localView: { } tempView, SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
+			case ({ _userColoringView: { } tempView, SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
 			{
 				makeColoring(selectionMode, index, tempView);
 				break;

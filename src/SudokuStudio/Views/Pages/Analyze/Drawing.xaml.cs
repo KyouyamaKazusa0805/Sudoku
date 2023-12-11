@@ -54,7 +54,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 
 	private void ClearItems_Click(object sender, RoutedEventArgs e)
 	{
-		if (BasePage is not { SelectedMode: var mode and not 0, _localView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
+		if (BasePage is not { SelectedMode: var mode and not 0, _userColoringView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
 		{
 			return;
 		}
@@ -79,7 +79,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 
 	private void ClearAllViewItems_Click(object sender, RoutedEventArgs e)
 	{
-		if (BasePage is not { SelectedMode: var mode and not 0, _localView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
+		if (BasePage is not { SelectedMode: var mode and not 0, _userColoringView: { View: var view } localViewUnit } || !Enum.IsDefined(mode))
 		{
 			return;
 		}

@@ -10978,10 +10978,12 @@ if (student is (name: var name, age: >= 18))
             Indicates the cancellation token source used by analyzing-related operations.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._localView">
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._userColoringView">
             <summary>
-            Defines a local view.
+            Defines a user-defined view that will be used when <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/> is <see cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>.
             </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
+            <seealso cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._puzzleLibraries">
             <summary>
