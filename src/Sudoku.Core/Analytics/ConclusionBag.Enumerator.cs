@@ -3,13 +3,13 @@ using System.Runtime.CompilerServices;
 
 namespace Sudoku.Analytics;
 
-partial class ConclusionCollection
+partial class ConclusionBag
 {
 	/// <summary>
 	/// The internal enumerator instance.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ref struct Enumerator(ConclusionCollection collection)
+	public ref struct Enumerator(ConclusionBag collection)
 	{
 		/// <summary>
 		/// The conclusions to be iterated.
@@ -20,7 +20,11 @@ partial class ConclusionCollection
 		/// <summary>
 		/// Indicates the current iterated element.
 		/// </summary>
-		public Conclusion Current => _enumerator.Current;
+		public Conclusion Current
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => _enumerator.Current;
+		}
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

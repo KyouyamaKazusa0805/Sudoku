@@ -87,8 +87,8 @@ public static class GridDiff
 		//     2) Some disappeared candidate
 		//
 		// Otherwise, the grid is an invalid grid pattern.
-		var assignmentConclusion = default(Conclusion?);
-		var eliminationConclusions = new List<Conclusion>();
+		var assignment = default(Conclusion?);
+		var eliminations = new List<Conclusion>();
 		for (var cell = 0; cell < 81; cell++)
 		{
 			switch (previous.GetState(cell), current.GetState(cell))
@@ -102,24 +102,24 @@ public static class GridDiff
 					// Eliminations may exist here.
 					var left = previous.GetCandidates(cell);
 					var right = current.GetCandidates(cell);
-					if ((left & right) != right || assignmentConclusion is not null)
+					if ((left & right) != right || assignment is not null)
 					{
 						goto ReturnNull;
 					}
 
-					eliminationConclusions.AddRange(from digit in (Mask)(left & ~right) select new Conclusion(Elimination, cell, digit));
+					eliminations.AddRange(from digit in (Mask)(left & ~right) select new Conclusion(Elimination, cell, digit));
 					break;
 				}
 				case (CellState.Empty, CellState.Modifiable):
 				{
 					// An assignment.
 					var setDigit = current.GetDigit(cell);
-					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0 || eliminationConclusions.Count != 0)
+					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
 					{
 						goto ReturnNull;
 					}
 
-					assignmentConclusion = new(Assignment, cell, setDigit);
+					assignment = new(Assignment, cell, setDigit);
 					break;
 				}
 				default:
@@ -131,10 +131,7 @@ public static class GridDiff
 		}
 
 		// Merge conclusion to be matched.
-		var conclusions = (ConclusionCollection)([
-			.. (ReadOnlySpan<Conclusion>)(assignmentConclusion is { } c ? [c] : []),
-			.. eliminationConclusions
-		]);
+		var conclusions = (ConclusionBag)([.. (ReadOnlySpan<Conclusion>)(assignment is { } c ? [c] : []), .. eliminations]);
 		var resultSteps = new List<Step>();
 		foreach (var s in StepCollector.Collect(in previous)!)
 		{

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using Sudoku.Concepts.Primitive;
 using Sudoku.Text.Converters;
@@ -10,7 +11,7 @@ using Sudoku.Text.Parsers;
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents a collection of conclusions.
+/// Represents a list of conclusions. The collection only allows adding conclusions.
 /// </summary>
 /// <remarks>
 /// This type uses <see cref="BitArray"/> to make determining on equality for two collections of <see cref="Conclusion"/> instances.
@@ -20,23 +21,25 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Conclusion"/>
 [Equals]
 [EqualityOperators]
-public sealed partial class ConclusionCollection :
-	IBitwiseOperators<ConclusionCollection, ConclusionCollection, ConclusionCollection>,
-	ICoordinateObject<ConclusionCollection>,
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public sealed partial class ConclusionBag() :
+	IBitwiseOperators<ConclusionBag, ConclusionBag, ConclusionBag>,
+	ICoordinateObject<ConclusionBag>,
 	IEnumerable<Conclusion>,
-	IEquatable<ConclusionCollection>,
-	IEqualityOperators<ConclusionCollection, ConclusionCollection, bool>,
-	ISimpleParsable<ConclusionCollection>
+	IEquatable<ConclusionBag>,
+	IEqualityOperators<ConclusionBag, ConclusionBag, bool>,
+	ILogicalOperators<ConclusionBag>,
+	ISimpleParsable<ConclusionBag>
 {
 	/// <summary>
 	/// The total length of bits.
 	/// </summary>
-	private const int BitsCount = AllCandidatesCount << 1;
+	private const int BitsCount = HalfBitsCount << 1;
 
 	/// <summary>
 	/// The maximum number of candidates can exist in a grid.
 	/// </summary>
-	private const int AllCandidatesCount = 729;
+	private const int HalfBitsCount = 729;
 
 
 	/// <summary>
@@ -57,6 +60,52 @@ public sealed partial class ConclusionCollection :
 
 
 	/// <summary>
+	/// Initializes a <see cref="ConclusionBag"/> instance via the specified conclusions.
+	/// </summary>
+	/// <param name="conclusions">The conclusions to be added.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConclusionBag(scoped ReadOnlySpan<Conclusion> conclusions) : this() => AddRange(conclusions);
+
+
+	/// <summary>
+	/// Indicates whether the collection contains any assignment conclusions.
+	/// </summary>
+	public bool ContainsAssignment
+	{
+		get
+		{
+			for (var i = 0; i < HalfBitsCount; i++)
+			{
+				if (_bitArray[i])
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the collection contains any elimination conclusions.
+	/// </summary>
+	public bool ContainsElimination
+	{
+		get
+		{
+			for (var i = HalfBitsCount; i < BitsCount; i++)
+			{
+				if (_bitArray[i])
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the number of bit array elements.
 	/// </summary>
 	public int Count
@@ -69,7 +118,7 @@ public sealed partial class ConclusionCollection :
 	/// <summary>
 	/// An empty instance.
 	/// </summary>
-	public static ConclusionCollection Empty => [];
+	public static ConclusionBag Empty => [];
 
 
 	/// <summary>
@@ -78,28 +127,7 @@ public sealed partial class ConclusionCollection :
 	/// <param name="index">The desired index to be checked.</param>
 	/// <returns>The found <see cref="Conclusion"/> instance at the specified index.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	/// <exception cref="InvalidOperationException">Throws when the specified element is not found.</exception>
-	public Conclusion this[int index]
-	{
-		get
-		{
-			if (index < 0 || index >= Count)
-			{
-				throw new IndexOutOfRangeException();
-			}
-
-			var p = -1;
-			for (var i = 0; i < BitsCount; i++)
-			{
-				if (_bitArray[i] && ++p == index)
-				{
-					return new((ConclusionType)(i / AllCandidatesCount), i % AllCandidatesCount);
-				}
-			}
-
-			throw new InvalidOperationException("The element at the specified index is not found.");
-		}
-	}
+	public Conclusion this[int index] => index < 0 || index >= Count ? throw new IndexOutOfRangeException() : _conclusionsEntry[index];
 
 
 	/// <summary>
@@ -110,7 +138,7 @@ public sealed partial class ConclusionCollection :
 	public void Add(int index)
 	{
 		_bitArray[index] = true;
-		_conclusionsEntry.Add(new((ConclusionType)(index / AllCandidatesCount), index % AllCandidatesCount));
+		_conclusionsEntry.Add(new((ConclusionType)(index / HalfBitsCount), index % HalfBitsCount));
 	}
 
 	/// <summary>
@@ -121,7 +149,7 @@ public sealed partial class ConclusionCollection :
 	public void Add(Conclusion conclusion)
 	{
 		var (type, cell, digit) = conclusion;
-		_bitArray[(int)type * AllCandidatesCount + cell * 9 + digit] = true;
+		_bitArray[(int)type * HalfBitsCount + cell * 9 + digit] = true;
 		_conclusionsEntry.Add(conclusion);
 	}
 
@@ -139,7 +167,7 @@ public sealed partial class ConclusionCollection :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] ConclusionCollection? other)
+	public bool Equals([NotNullWhen(true)] ConclusionBag? other)
 	{
 		if (other is null)
 		{
@@ -197,6 +225,14 @@ public sealed partial class ConclusionCollection :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
 
+	/// <summary>
+	/// Slices the collection, from the specified start index and the number of the elements.
+	/// </summary>
+	/// <param name="start">The start index.</param>
+	/// <param name="length">The number of elements you want to get.</param>
+	/// <returns>The result <see cref="ConclusionBag"/> instance.</returns>
+	public ConclusionBag Slice(int start, int length) => new(CollectionsMarshal.AsSpan(_conclusionsEntry.Slice(start, length)));
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();
@@ -207,7 +243,7 @@ public sealed partial class ConclusionCollection :
 
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionCollection? result)
+	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionBag? result)
 	{
 		try
 		{
@@ -223,17 +259,29 @@ public sealed partial class ConclusionCollection :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionCollection Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
+	public static ConclusionBag Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionCollection ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
+	public static ConclusionBag ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
 
 
 	/// <inheritdoc/>
-	public static ConclusionCollection operator ~(ConclusionCollection value)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator !(ConclusionBag value) => value.Count == 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator true(ConclusionBag value) => value.Count != 0;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool operator false(ConclusionBag value) => value.Count == 0;
+
+	/// <inheritdoc/>
+	public static ConclusionBag operator ~(ConclusionBag value)
 	{
-		var result = new ConclusionCollection();
+		var result = new ConclusionBag();
 		var i = 0;
 		foreach (bool bit in ((BitArray)value._bitArray.Clone()).Not())
 		{
@@ -249,11 +297,11 @@ public sealed partial class ConclusionCollection :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionCollection operator &(ConclusionCollection left, ConclusionCollection right)
+	public static ConclusionBag operator &(ConclusionBag left, ConclusionBag right)
 	{
-		var result = new ConclusionCollection();
+		var result = new ConclusionBag();
 		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).And((BitArray)right._bitArray.Clone()))
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).And(right._bitArray))
 		{
 			if (bit)
 			{
@@ -267,11 +315,11 @@ public sealed partial class ConclusionCollection :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionCollection operator |(ConclusionCollection left, ConclusionCollection right)
+	public static ConclusionBag operator |(ConclusionBag left, ConclusionBag right)
 	{
-		var result = new ConclusionCollection();
+		var result = new ConclusionBag();
 		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Or((BitArray)right._bitArray.Clone()))
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Or(right._bitArray))
 		{
 			if (bit)
 			{
@@ -285,11 +333,11 @@ public sealed partial class ConclusionCollection :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionCollection operator ^(ConclusionCollection left, ConclusionCollection right)
+	public static ConclusionBag operator ^(ConclusionBag left, ConclusionBag right)
 	{
-		var result = new ConclusionCollection();
+		var result = new ConclusionBag();
 		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Xor((BitArray)right._bitArray.Clone()))
+		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Xor(right._bitArray))
 		{
 			if (bit)
 			{
