@@ -23663,12 +23663,7 @@ result ^= expression;
             Provides the method to operate with <see cref="T:Sudoku.Concepts.Grid"/> instances, checking for the diff of two <see cref="T:Sudoku.Concepts.Grid"/> instances.
             </summary>
         </member>
-        <member name="F:Sudoku.Diff.GridDiff.StepCollector">
-            <summary>
-            The internal step collector.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Diff.StepFilter,Sudoku.Analytics.Step[]@)">
+        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Diff.StepFilter,System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
             <summary>
             Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
             </summary>

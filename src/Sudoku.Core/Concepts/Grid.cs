@@ -359,6 +359,11 @@ public unsafe partial struct Grid :
 	public readonly bool IsMinimal => CheckMinimal(out _);
 
 	/// <summary>
+	/// Determines whether the current grid contains any missing candidates.
+	/// </summary>
+	public readonly bool ContainsAnyMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
+
+	/// <summary>
 	/// Indicates the number of total candidates.
 	/// </summary>
 	public readonly int CandidatesCount
@@ -570,10 +575,26 @@ public unsafe partial struct Grid :
 	public readonly Grid ResetGrid => Preserve(GivenCells);
 
 	/// <summary>
+	/// Gets the grid where all empty cells are filled with all possible candidates.
+	/// </summary>
+	public readonly Grid ResetCandidatesGrid
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get
+		{
+			var result = this;
+			result.ResetCandidates();
+
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
 	/// </summary>
 	public readonly Grid UnfixedGrid
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			var result = this;
@@ -588,6 +609,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	public readonly Grid FixedGrid
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			var result = this;
@@ -1093,7 +1115,7 @@ public unsafe partial struct Grid :
 		};
 
 	/// <summary>
-	/// Reset the sudoku grid, to set all modifiable values to empty ones.
+	/// Reset the sudoku grid, making all modifiable values to empty ones.
 	/// </summary>
 	public void Reset()
 	{
@@ -1104,6 +1126,17 @@ public unsafe partial struct Grid :
 				SetDigit(i, -1); // Reset the cell, and then re-compute all candidates.
 			}
 		}
+	}
+
+	/// <summary>
+	/// Reset the sudoku grid, but only making candidates to be reset to the initial state related to the current grid
+	/// from given and modifiable values.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ResetCandidates()
+	{
+		var p = ToString("#");
+		this = Parse(p[..p.IndexOf(':')]);
 	}
 
 	/// <summary>

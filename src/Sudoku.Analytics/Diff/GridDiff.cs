@@ -1,6 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using Sudoku.Analytics;
-using Sudoku.Analytics.StepSearchers;
 using Sudoku.Concepts;
 using Sudoku.Linq;
 using static Sudoku.Analytics.ConclusionType;
@@ -12,25 +11,6 @@ namespace Sudoku.Diff;
 /// </summary>
 public static class GridDiff
 {
-	/// <summary>
-	/// The internal step collector.
-	/// </summary>
-	private static readonly StepCollector StepCollector = new StepCollector()
-		.WithSameLevelConfigruation(StepCollectorDifficultyLevelMode.All)
-		.WithStepSearcherSetters<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.UseIttoryuMode = false; })
-		.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
-		.WithStepSearcherSetters<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = true)
-		.WithStepSearcherSetters<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 2; s.AllowPartiallyUsedTypes = true; })
-		.WithStepSearcherSetters<AlmostLockedSetsXzStepSearcher>(static s => { s.AllowCollision = true; s.AllowLoopedPatterns = true; })
-		.WithStepSearcherSetters<AlmostLockedSetsXyWingStepSearcher>(static s => s.AllowCollision = true)
-		.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
-		.WithStepSearcherSetters<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
-		.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => s.MaxSize = 5)
-		.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
-		.WithStepSearcherSetters<AlmostLockedCandidatesStepSearcher>(static s => s.CheckAlmostLockedQuadruple = false)
-		.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);
-
-
 	/// <summary>
 	/// Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
 	/// </summary>
@@ -67,19 +47,21 @@ public static class GridDiff
 	/// </item>
 	/// </list>
 	/// </returns>
-	[return: NotNullIfNotNull(nameof(steps))]
-	public static bool? TryGetDiffTechnique(
+	public static bool TryGetDiffTechnique(
 		this StepCollector @this,
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
 		StepFilter? stepFilter,
-		out Step[]? steps
+		out ReadOnlySpan<Step> steps
 	)
 	{
 		if (!previous.IsValid || !current.IsValid)
 		{
 			goto ReturnNull;
 		}
+
+		// If the previous grid contains any missing candidates, we should reset candidate status and use it to check for steps.
+		var temp = previous is { ContainsAnyMissingCandidates: true, ResetCandidatesGrid: var p } ? p : previous;
 
 		// Check the validity of the current grid. A valid grid can only produce changes:
 		//
@@ -91,16 +73,16 @@ public static class GridDiff
 		var eliminations = new List<Conclusion>();
 		for (var cell = 0; cell < 81; cell++)
 		{
-			switch (previous.GetState(cell), current.GetState(cell))
+			switch (temp.GetState(cell), current.GetState(cell))
 			{
-				case var (a, b) when a == b && previous[cell] == current[cell]:
+				case var _ when temp[cell] == current[cell]:
 				{
 					continue;
 				}
 				case (CellState.Empty, CellState.Empty):
 				{
 					// Eliminations may exist here.
-					var left = previous.GetCandidates(cell);
+					var left = temp.GetCandidates(cell);
 					var right = current.GetCandidates(cell);
 					if ((left & right) != right || assignment is not null)
 					{
@@ -114,7 +96,7 @@ public static class GridDiff
 				{
 					// An assignment.
 					var setDigit = current.GetDigit(cell);
-					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
+					if ((temp.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
 					{
 						goto ReturnNull;
 					}
@@ -133,19 +115,32 @@ public static class GridDiff
 		// Merge conclusion to be matched.
 		var conclusions = (ConclusionBag)([.. (ReadOnlySpan<Conclusion>)(assignment is { } c ? [c] : []), .. eliminations]);
 		var resultSteps = new List<Step>();
-		foreach (var s in StepCollector.Collect(in previous)!)
+		foreach (var s in @this.Collect(in temp)!)
 		{
-			if (conclusions == [.. s.Conclusions] && (stepFilter?.Invoke(s) ?? true))
+			if (([.. s.Conclusions] & conclusions) == conclusions && (stepFilter?.Invoke(s) ?? true))
 			{
-				resultSteps.Add(s);
+				// Check whether the conclusion has already been deleted.
+				var anyConclusionsExist = false;
+				foreach (var conclusion in conclusions)
+				{
+					if (previous.Exists(conclusion.Candidate) is true)
+					{
+						anyConclusionsExist = true;
+						break;
+					}
+				}
+				if (anyConclusionsExist)
+				{
+					resultSteps.Add(s);
+				}
 			}
 		}
 
-		steps = [.. resultSteps];
+		steps = CollectionsMarshal.AsSpan(resultSteps);
 		return true;
 
 	ReturnNull:
-		steps = null;
-		return null;
+		steps = [];
+		return false;
 	}
 }

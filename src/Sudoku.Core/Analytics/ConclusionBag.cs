@@ -352,4 +352,12 @@ public sealed partial class ConclusionBag() :
 
 		return result;
 	}
+
+
+	/// <summary>
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> of <see cref="Conclusion"/> instances to <see cref="ConclusionBag"/>.
+	/// </summary>
+	/// <param name="conclusions">Conclusions to be added.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator ConclusionBag(scoped ReadOnlySpan<Conclusion> conclusions) => [.. conclusions];
 }

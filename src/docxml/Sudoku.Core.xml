@@ -1606,6 +1606,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.ConclusionBag.op_ExclusiveOr(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.ConclusionBag.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})~Sudoku.Analytics.ConclusionBag">
+            <summary>
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Conclusion"/> instances to <see cref="T:Sudoku.Analytics.ConclusionBag"/>.
+            </summary>
+            <param name="conclusions">Conclusions to be added.</param>
+        </member>
         <member name="T:Sudoku.Analytics.ConclusionBag.Enumerator">
             <summary>
             The internal enumerator instance.
@@ -3026,6 +3032,11 @@ if (student is (name: var name, age: >= 18))
             if arbitrary one given digit will be removed from the grid.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.ContainsAnyMissingCandidates">
+            <summary>
+            Determines whether the current grid contains any missing candidates.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
             <summary>
             Indicates the number of total candidates.
@@ -3128,6 +3139,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.ResetGrid">
             <summary>
             Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.ResetCandidatesGrid">
+            <summary>
+            Gets the grid where all empty cells are filled with all possible candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.UnfixedGrid">
@@ -3393,7 +3409,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Grid.Reset">
             <summary>
-            Reset the sudoku grid, to set all modifiable values to empty ones.
+            Reset the sudoku grid, making all modifiable values to empty ones.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ResetCandidates">
+            <summary>
+            Reset the sudoku grid, but only making candidates to be reset to the initial state related to the current grid
+            from given and modifiable values.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Fix">
