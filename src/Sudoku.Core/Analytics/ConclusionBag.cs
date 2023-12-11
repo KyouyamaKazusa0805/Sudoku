@@ -131,9 +131,12 @@ public sealed partial class ConclusionBag() :
 
 
 	/// <summary>
-	/// Add a new element into the collection.
+	/// Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
 	/// </summary>
-	/// <param name="index">The global collection index to be added.</param>
+	/// <param name="index">
+	/// <para>The global index (between 0 and 1458) to be added.</para>
+	/// <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
+	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(int index)
 	{
@@ -142,7 +145,7 @@ public sealed partial class ConclusionBag() :
 	}
 
 	/// <summary>
-	/// Add a new element into the collection.
+	/// Add a new conclusion into the collection.
 	/// </summary>
 	/// <param name="conclusion">The conclusion to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
