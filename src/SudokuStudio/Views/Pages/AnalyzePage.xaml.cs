@@ -1242,59 +1242,72 @@ public sealed partial class AnalyzePage : Page
 		{
 			case ({ _localView: { } tempView, SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
 			{
-				var condition = (selectionMode, index) switch
-				{
-					(DrawingMode.Cell, not -1) => CheckCellNode(index, e, tempView),
-					(DrawingMode.Candidate, not -1) => CheckCandidateNode(index, e, tempView),
-					(DrawingMode.House, not -1) => CheckHouseNode(index, e, tempView),
-					(DrawingMode.Chute, not -1) => CheckChuteNode(index, e, tempView),
-					(DrawingMode.Link, _) => CheckLinkNode(e, tempView),
-					(DrawingMode.BabaGrouping, _) => CheckBabaGroupingNode(index, e, tempView),
-					_ => true
-				};
-				if (condition)
-				{
-					_previousSelectedCandidate = null;
-				}
+				makeColoring(selectionMode, index, tempView);
 				break;
 			}
-			case ({ SudokuPane: { DisableFlyout: false, Puzzle: var puzzle } }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Right, Cell: var cell }):
+			case ({ SudokuPane: { DisableFlyout: false, Puzzle: var puzzle } }, _, { MouseButton: MouseButton.Right, Cell: var cell }):
 			{
-				var appBarButtons = MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>();
-				switch (puzzle.GetState(cell))
-				{
-					case CellState.Empty:
-					{
-						SudokuPane._temporarySelectedCell = cell;
-						foreach (var element in appBarButtons)
-						{
-							element.IsEnabled = (puzzle.GetCandidates(cell) >> Math.Abs((Digit)element.Tag) - 1 & 1) != 0;
-						}
-
-						MainMenuFlyout.ShowAt(SudokuPane);
-						break;
-					}
-					case CellState.Given or CellState.Modifiable:
-					{
-						SudokuPane._temporarySelectedCell = cell;
-						foreach (var element in appBarButtons)
-						{
-							element.IsEnabled = false;
-						}
-
-						MainMenuFlyout.ShowAt(SudokuPane, new() { ShowMode = FlyoutShowMode.Transient });
-						break;
-					}
-				}
+				openFlyout(in puzzle, cell);
 				break;
 			}
 			default:
 			{
-				// Bug fix: Manually set focus for pane because user clicked a candidate, which is a text block, making the pane unfocused.
-				SudokuPane.Focus(FocusState.Programmatic);
+				// Manually set focus for pane because user clicked a candidate, displayed using a text block, making the pane unfocused.
+				defaultFocusToGrid();
 				break;
 			}
 		}
+
+
+		void makeColoring(DrawingMode selectionMode, int index, ViewUnitBindableSource tempView)
+		{
+			var condition = (selectionMode, index) switch
+			{
+				(DrawingMode.Cell, not -1) => CheckCellNode(index, e, tempView),
+				(DrawingMode.Candidate, not -1) => CheckCandidateNode(index, e, tempView),
+				(DrawingMode.House, not -1) => CheckHouseNode(index, e, tempView),
+				(DrawingMode.Chute, not -1) => CheckChuteNode(index, e, tempView),
+				(DrawingMode.Link, _) => CheckLinkNode(e, tempView),
+				(DrawingMode.BabaGrouping, _) => CheckBabaGroupingNode(index, e, tempView),
+				_ => true
+			};
+			if (condition)
+			{
+				_previousSelectedCandidate = null;
+			}
+		}
+
+		void openFlyout(scoped ref readonly Grid puzzle, Cell cell)
+		{
+			var appBarButtons = MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>();
+			switch (puzzle.GetState(cell))
+			{
+				case CellState.Empty:
+				{
+					SudokuPane._temporarySelectedCell = cell;
+					foreach (var element in appBarButtons)
+					{
+						element.IsEnabled = (puzzle.GetCandidates(cell) >> Math.Abs((Digit)element.Tag) - 1 & 1) != 0;
+					}
+
+					MainMenuFlyout.ShowAt(SudokuPane);
+					break;
+				}
+				case CellState.Given or CellState.Modifiable:
+				{
+					SudokuPane._temporarySelectedCell = cell;
+					foreach (var element in appBarButtons)
+					{
+						element.IsEnabled = false;
+					}
+
+					MainMenuFlyout.ShowAt(SudokuPane, new() { ShowMode = FlyoutShowMode.Transient });
+					break;
+				}
+			}
+		}
+
+		void defaultFocusToGrid() => SudokuPane.Focus(FocusState.Programmatic);
 	}
 
 	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)
