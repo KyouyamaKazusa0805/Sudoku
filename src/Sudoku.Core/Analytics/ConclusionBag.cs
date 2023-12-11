@@ -127,7 +127,7 @@ public sealed partial class ConclusionBag() :
 	/// <param name="index">The desired index to be checked.</param>
 	/// <returns>The found <see cref="Conclusion"/> instance at the specified index.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public Conclusion this[int index] => index < 0 || index >= Count ? throw new IndexOutOfRangeException() : _conclusionsEntry[index];
+	public Conclusion this[int index] => index >= 0 && index < Count ? _conclusionsEntry[index] : throw new IndexOutOfRangeException();
 
 
 	/// <summary>
