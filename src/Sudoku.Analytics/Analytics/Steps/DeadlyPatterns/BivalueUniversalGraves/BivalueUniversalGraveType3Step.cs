@@ -18,7 +18,6 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="trueCandidates">Indicates the true candidates used.</param>
 /// <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
 /// <param name="cells">Indicates the subset cells used.</param>
-/// <param name="emptyCellsCount">The number of empty cells.</param>
 /// <param name="isNaked">Indicates whether the subset is naked.</param>
 public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
@@ -27,7 +26,6 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	[Data] scoped ref readonly CandidateMap trueCandidates,
 	[Data] Mask subsetDigitsMask,
 	[Data] scoped ref readonly CellMap cells,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount,
 	[Data] bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
@@ -43,15 +41,6 @@ public sealed partial class BivalueUniversalGraveType3Step(
 		=> [
 			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr]),
 			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr])
-		];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> [
-			new(LocatingDifficultyFactorNames.EmptyCell, 560 * Math.Round(_emptyCellsCount / 11M, 2)),
-			new(LocatingDifficultyFactorNames.TrueCandidate, Cells.Count * 60),
-			new(LocatingDifficultyFactorNames.Size, Cells.Count * 9),
-			new(LocatingDifficultyFactorNames.DigitVariance, GetDigitVariance(TrueCandidates) * 27)
 		];
 
 	/// <summary>

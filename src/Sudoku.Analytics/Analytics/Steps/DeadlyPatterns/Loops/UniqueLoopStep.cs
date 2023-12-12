@@ -6,7 +6,6 @@ using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.Steps;
 
@@ -49,26 +48,6 @@ public abstract partial class UniqueLoopStep(
 	private protected string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 
 	private protected string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
-
-
-	/// <summary>
-	/// Try to get the loop path score.
-	/// </summary>
-	private protected (int HouseTypeScore, int HousePositionScore) GetLoopPathScore()
-	{
-		var result = (HouseTypeScore: 0, HousePositionScore: 0);
-		for (var i = 0; i < LoopPath.Length - 1; i++)
-		{
-			var a = LoopPath[i];
-			var b = LoopPath[i + 1];
-			(CellsMap[a] + b).InOneHouse(out var house);
-
-			result.HouseTypeScore += HotSpot.GetHotSpot(house);
-			result.HousePositionScore += house.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 };
-		}
-
-		return result;
-	}
 
 
 	/// <inheritdoc/>

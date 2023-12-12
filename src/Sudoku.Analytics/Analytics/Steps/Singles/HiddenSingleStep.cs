@@ -1,7 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -21,22 +20,6 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
 /// If the technique is not a Last Digit, the value must be <see langword="false"/>.
 /// </param>
-/// <param name="eliminatedCellsCount">The total eliminated cells.</param>
-/// <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
-/// <param name="halfDistanceValueCellsCount">
-/// The total number of value cells that appears in the crosshatching rule before intersecting the target house.
-/// </param>
-/// <param name="emptyCellsCount">The number of empty cells in the house.</param>
-/// <param name="eliminatedHouses">The total eliminated houses.</param>
-/// <param name="distancesSumNearToHouseBorder">
-/// The sum value of distances from excluder digits to the nearest cell at the border of the house.
-/// </param>
-/// <param name="distancesSumFarToHouseBorder">
-/// The sum value of distances from excluder digits to the farest cell at the border of the house.
-/// </param>
-/// <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
-/// <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
-/// <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
 public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -44,17 +27,7 @@ public partial class HiddenSingleStep(
 	Cell cell,
 	Digit digit,
 	[Data] House house,
-	[Data] bool enableAndIsLastDigit,
-	[Data] int[] eliminatedCellsCount,
-	[Data] int[] eliminatedEmptyCellsCount,
-	[Data] int[] halfDistanceValueCellsCount,
-	[Data] int emptyCellsCount,
-	[Data] House[] eliminatedHouses,
-	[Data] double distancesSumNearToHouseBorder,
-	[Data] double distancesSumFarToHouseBorder,
-	[Data] double distancesSumToConclusionCell,
-	[Data] double distancesSumForExcluderPairs,
-	[Data] double distanceAverageForExcluderPairs
+	[Data] bool enableAndIsLastDigit
 ) : SingleStep(conclusions, views, options, cell, digit)
 {
 	/// <inheritdoc/>
@@ -80,30 +53,6 @@ public partial class HiddenSingleStep(
 			new(EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
 		];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> Code switch
-		{
-			Technique.LastDigit => [
-				new(
-					LocatingDifficultyFactorNames.HouseType,
-					9 * House.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 }
-				),
-				new(LocatingDifficultyFactorNames.HousePosition, 3 * HotSpot.GetHotSpot(House))
-			],
-			_ => [
-				new(
-					LocatingDifficultyFactorNames.HouseType,
-					9 * House.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 }
-				),
-				new(LocatingDifficultyFactorNames.HousePosition, 3 * HotSpot.GetHotSpot(House)),
-				new(
-					LocatingDifficultyFactorNames.HiddenSingleExcluder,
-					EliminatedCellsCount.Zip(EliminatedHouses).Sum(ExcluderValueSelector)
-				)
-			]
-		};
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

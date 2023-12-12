@@ -1,5 +1,4 @@
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -32,22 +31,4 @@ public sealed class UniqueLoopType1Step(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr])];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-	{
-		get
-		{
-			var (houseTypeScore, housePositionScore) = GetLoopPathScore();
-			return [
-				new(LocatingDifficultyFactorNames.HouseType, 27 * houseTypeScore),
-				new(LocatingDifficultyFactorNames.HousePosition, 9 * housePositionScore),
-				new(LocatingDifficultyFactorNames.Size, Loop.Count)
-			];
-		}
-	}
-
-	/// <inheritdoc/>
-	public override Formula LocatingDifficultyFormula
-		=> new(a => (decimal)Math.Round(Math.Log((double)a[2], 4) * (double)(a[0] + a[1]), 2));
 }

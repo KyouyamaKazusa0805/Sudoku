@@ -279,8 +279,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						HouseMaskOperations.Create(bs),
 						HouseMaskOperations.Create(cs),
 						in fins,
-						FishModule.IsSashimi(bs, in fins, digit),
-						FishModule.GetBodyCellsCount(in grid, bs, digit)
+						FishModule.IsSashimi(bs, in fins, digit)
 					);
 					if (onlyFindOne)
 					{

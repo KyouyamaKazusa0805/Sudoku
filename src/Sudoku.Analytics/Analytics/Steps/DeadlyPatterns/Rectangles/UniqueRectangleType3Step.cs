@@ -1,4 +1,3 @@
-using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -24,7 +23,6 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">Indicates the house used.</param>
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-/// <param name="emptyCellsCount">The number of empty cells.</param>
 /// <param name="isNaked">
 /// Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
 /// </param>
@@ -40,7 +38,6 @@ public sealed partial class UniqueRectangleType3Step(
 	[Data] House house,
 	bool isAvoidable,
 	int absoluteOffset,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount,
 	[Data] bool isNaked = true
 ) : UniqueRectangleStep(
 	conclusions,
@@ -63,25 +60,6 @@ public sealed partial class UniqueRectangleType3Step(
 			new(ExtraDifficultyFactorNames.Hidden, IsNaked ? 0 : .1M),
 			new(ExtraDifficultyFactorNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
 		];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-	{
-		get
-		{
-			var blocks = Cells.BlockMask.GetAllSets();
-			return [
-				new(LocatingDifficultyFactorNames.HousePosition, (HotSpot.GetHotSpot(blocks[0]) + HotSpot.GetHotSpot(blocks[1])) * 9),
-				new(LocatingDifficultyFactorNames.Incompleteness, 60),
-				new(LocatingDifficultyFactorNames.Size, ExtraCells.Count * 6),
-				new(
-					LocatingDifficultyFactorNames.ExtraDigit,
-					27 * ExtraCells.CoveredLine.ToHouseType() switch { HouseType.Block => 1, HouseType.Row => 3, HouseType.Column => 6 }
-				),
-				new(LocatingDifficultyFactorNames.AvoidableRectangle, _emptyCellsCount * 60)
-			];
-		}
-	}
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

@@ -1,7 +1,6 @@
 using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
-using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -150,12 +149,6 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						candidateOffsets.Add(new(digit == zDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, pivot * 9 + digit));
 					}
 
-					var distanceValues = 0D;
-					foreach (var petal in petals)
-					{
-						distanceValues += Distance.GetDistance(petal, pivot);
-					}
-
 					var step = new RegularWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 						[[.. candidateOffsets]],
@@ -163,8 +156,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						pivot,
 						PopCount((uint)mask),
 						union,
-						in petals,
-						distanceValues
+						in petals
 					);
 					if (context.OnlyFindOne)
 					{

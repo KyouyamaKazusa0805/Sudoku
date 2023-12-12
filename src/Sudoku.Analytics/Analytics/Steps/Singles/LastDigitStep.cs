@@ -13,4 +13,4 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="house"><inheritdoc/></param>
 public sealed class LastDigitStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options, Cell cell, Digit digit, House house) :
-	HiddenSingleStep(conclusions, views, options, cell, digit, house, true, [], [], [], 0, [], 0, 0, 0, 0, 0);
+	HiddenSingleStep(conclusions, views, options, cell, digit, house, true);

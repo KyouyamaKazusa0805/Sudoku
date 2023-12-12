@@ -108,8 +108,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					context.PredefinedOptions,
 					digit,
 					realBaseSet,
-					realCoverSet,
-					intersection.Count
+					realCoverSet
 				);
 
 				if (context.OnlyFindOne)

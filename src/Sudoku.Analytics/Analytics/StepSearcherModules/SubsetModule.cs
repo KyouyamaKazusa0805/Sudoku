@@ -1,5 +1,4 @@
 using System.Numerics;
-using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
@@ -132,21 +131,6 @@ internal static class SubsetModule
 						continue;
 					}
 
-					scoped var distanceMax = new Distance();
-					foreach (ref readonly var cellCombination in cells.GetSubsets(2))
-					{
-						if (Distance.GetDistance(in cellCombination) is var p && p >= distanceMax)
-						{
-							distanceMax = p;
-						}
-					}
-
-					var interferersCount = 0;
-					foreach (var cell in cells)
-					{
-						interferersCount += PopCount((uint)(Mask)(grid.GetCandidates(cell) & ~digitsMask));
-					}
-
 					var step = new HiddenSubsetStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
@@ -154,9 +138,7 @@ internal static class SubsetModule
 						house,
 						in cells,
 						digitsMask,
-						isLocked && containsExtraEliminations,
-						(decimal)distanceMax.RawValue,
-						interferersCount
+						isLocked && containsExtraEliminations
 					);
 
 					if (context.OnlyFindOne)
@@ -240,15 +222,6 @@ internal static class SubsetModule
 					continue;
 				}
 
-				scoped var distanceMax = new Distance();
-				foreach (ref readonly var cellCombination in cells.GetSubsets(2))
-				{
-					if (Distance.GetDistance(in cellCombination) is var p && p >= distanceMax)
-					{
-						distanceMax = p;
-					}
-				}
-
 				var step = new NakedSubsetStep(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
@@ -256,9 +229,7 @@ internal static class SubsetModule
 					house,
 					in cells,
 					digitsMask,
-					isLocked,
-					(BivalueCells & cells) == cells,
-					(decimal)distanceMax.RawValue
+					isLocked
 				);
 
 				if (context.OnlyFindOne)

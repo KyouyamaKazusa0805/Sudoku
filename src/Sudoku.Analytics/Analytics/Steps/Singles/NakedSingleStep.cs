@@ -1,8 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
-using Sudoku.Concepts;
 using Sudoku.Rendering;
 
 namespace Sudoku.Analytics.Steps;
@@ -33,11 +31,4 @@ public sealed partial class NakedSingleStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Options.IsDirectMode ? Technique.NakedSingle : Technique.Single;
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> [new(LocatingDifficultyFactorNames.NakedSingleExcluder, ExcluderHouses.Sum(ExcluderValue))];
-
-
-	private int ExcluderValue(House house) => 100 * house.ToHouseType() switch { HouseType.Block => 3, HouseType.Row => 1, HouseType.Column => 2 };
 }

@@ -1,11 +1,9 @@
-using System.Numerics;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
-using Sudoku.Runtime.MaskServices;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Steps;
@@ -48,35 +46,9 @@ public sealed partial class UniqueLoopType3Step(
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, SubsetName, DigitsStr, SubsetCellsStr])
 		];
 
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-	{
-		get
-		{
-			var (houseTypeScore, housePositionScore) = GetLoopPathScore();
-			return [
-				new(LocatingDifficultyFactorNames.HouseType, 27 * houseTypeScore),
-				new(LocatingDifficultyFactorNames.HousePosition, housePositionScore * 9),
-				new(LocatingDifficultyFactorNames.ExtraDigit, 9 * GetHouseScore(SubsetCells.Houses & ~HouseMaskOperations.AllBlocksMask)),
-				new(LocatingDifficultyFactorNames.Size, Loop.Count),
-			];
-		}
-	}
-
-	/// <inheritdoc/>
-	public override Formula LocatingDifficultyFormula
-		=> new(a => (decimal)Math.Round(Math.Log((double)a[3], 4) * (double)(a[0] + a[1] + a[2]), 2));
-
 	private string SubsetCellsStr => Options.Converter.CellConverter(SubsetCells);
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count);
-
-
-	/// <summary>
-	/// Try to get the score for houses.
-	/// </summary>
-	private int GetHouseScore(HouseMask houses)
-		=> houses.GetAllSets().Sum(static (scoped ref readonly House house) => HotSpot.GetHotSpot(house));
 }

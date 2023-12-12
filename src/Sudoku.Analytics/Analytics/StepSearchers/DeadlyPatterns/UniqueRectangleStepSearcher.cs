@@ -402,9 +402,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				d2,
 				[.. urCells],
 				arMode,
-				index,
-				PopCount((uint)grid.GetCandidates(cornerCell)) - conclusions.Count,
-				urCells.Count(EmptyCells.Contains)
+				index
 			)
 		);
 	}
@@ -516,9 +514,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				[.. urCells],
 				arMode,
 				extraDigit,
-				index,
-				in extraCells,
-				urCells.Count(EmptyCells.Contains)
+				index
 			)
 		);
 	}
@@ -668,7 +664,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							otherDigitsMask,
 							houseIndex,
 							arMode,
-							urCells.Count(EmptyCells.Contains),
 							index
 						)
 					);
@@ -905,9 +900,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				[.. urCells],
 				arMode,
 				extraDigit,
-				index,
-				in extraCells,
-				urCells.Count(EmptyCells.Contains)
+				index
 			)
 		);
 	}

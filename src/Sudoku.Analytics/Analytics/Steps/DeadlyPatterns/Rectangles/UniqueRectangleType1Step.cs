@@ -1,8 +1,5 @@
-using System.Numerics;
-using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -20,8 +17,6 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-/// <param name="cornerInterfererCandidatesCount">Indicates the interferer digits appeared in corner cell.</param>
-/// <param name="emptyCellsCount">The number of empty cells.</param>
 public sealed partial class UniqueRectangleType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -30,9 +25,7 @@ public sealed partial class UniqueRectangleType1Step(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	int absoluteOffset,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int cornerInterfererCandidatesCount,
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] int emptyCellsCount
+	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
@@ -51,22 +44,4 @@ public sealed partial class UniqueRectangleType1Step(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr])];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-	{
-		get
-		{
-			var blocks = Cells.BlockMask.GetAllSets();
-			return [
-				new(
-					LocatingDifficultyFactorNames.HousePosition,
-					(HotSpot.GetHotSpot(blocks[0]) + HotSpot.GetHotSpot(blocks[1])) * 9
-				),
-				new(LocatingDifficultyFactorNames.Interferer, _cornerInterfererCandidatesCount * 3),
-				new(LocatingDifficultyFactorNames.Incompleteness, 60),
-				new(LocatingDifficultyFactorNames.AvoidableRectangle, _emptyCellsCount * 60)
-			];
-		}
-	}
 }

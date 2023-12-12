@@ -1,12 +1,10 @@
 using System.Numerics;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Metadata;
-using Sudoku.Analytics.Rating;
 using Sudoku.Analytics.Steps;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using static System.Algorithm.Combinatorial;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.ConclusionType;
 using static Sudoku.SolutionWideReadOnlyFields;
@@ -121,42 +119,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					}
 				}
 
-				var distanceSum = 0D;
-				for (var tempDigit = 0; tempDigit < 8; tempDigit++)
-				{
-					var tempDigitPlusOne = tempDigit + 1;
-					var cellIsTempDigit = -1;
-					var cellIsTempDigitPlusOne = -1;
-					foreach (var cell in HouseCells[house])
-					{
-						if (grid.GetDigit(cell) == tempDigit || cell == resultCell && digit == tempDigit)
-						{
-							cellIsTempDigit = cell;
-							break;
-						}
-					}
-
-					foreach (var cell in HouseCells[house])
-					{
-						if (grid.GetDigit(cell) == tempDigitPlusOne || cell == resultCell && digit == tempDigitPlusOne)
-						{
-							cellIsTempDigitPlusOne = cell;
-							break;
-						}
-					}
-
-					distanceSum += Distance.GetDistance(cellIsTempDigit, cellIsTempDigitPlusOne);
-				}
-
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
 					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 					context.PredefinedOptions,
 					house,
 					resultCell,
-					digit,
-					emptyCellsCountFromAllPeerHouses,
-					distanceSum
+					digit
 				);
 
 				if (context.OnlyFindOne)
@@ -278,56 +247,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
-
-			var emptyCellsCountFromAllPeerHouses = 0;
-			foreach (var houseType in HouseTypes)
-			{
-				var peerHouse = resultCell.ToHouseIndex(houseType);
-				foreach (var cell in HouseCells[peerHouse])
-				{
-					if (grid.GetState(cell) == CellState.Empty)
-					{
-						emptyCellsCountFromAllPeerHouses++;
-					}
-				}
-			}
-
-			var distanceSum = 0D;
-			for (var tempDigit = 0; tempDigit < 8; tempDigit++)
-			{
-				var tempDigitPlusOne = tempDigit + 1;
-				var cellIsTempDigit = -1;
-				var cellIsTempDigitPlusOne = -1;
-				foreach (var cell in HouseCells[house])
-				{
-					if (grid.GetDigit(cell) == tempDigit || cell == resultCell && digit == tempDigit)
-					{
-						cellIsTempDigit = cell;
-						break;
-					}
-				}
-
-				foreach (var cell in HouseCells[house])
-				{
-					if (grid.GetDigit(cell) == tempDigitPlusOne || cell == resultCell && digit == tempDigitPlusOne)
-					{
-						cellIsTempDigitPlusOne = cell;
-						break;
-					}
-				}
-
-				distanceSum += Distance.GetDistance(cellIsTempDigit, cellIsTempDigitPlusOne);
-			}
-
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
 				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
 				context.PredefinedOptions,
 				house,
 				resultCell,
-				digit,
-				emptyCellsCountFromAllPeerHouses,
-				distanceSum
+				digit
 			);
 			if (context.OnlyFindOne)
 			{
@@ -508,91 +434,18 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			enableAndIsLastDigit = digitCount == 8;
 		}
 
-		var cellOffsets2 = GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells);
-		var eliminatedCellsCount = new int[chosenCells.Count];
-		var eliminatedEmptyCellsCount = new int[chosenCells.Count];
-		var halfDistanceValueCellsCount = new int[chosenCells.Count];
-		var eliminatedHouses = new House[chosenCells.Count];
-		var distancesSumNearToHouseBorder = 0D;
-		var distancesSumFarToHouseBorder = 0D;
-		var distancesSumToConclusionCell = 0D;
-		var distancesSumToExcluderPairs = 0D;
-		var i = 0;
-		foreach (var chosenCell in chosenCells)
-		{
-			foreach (var houseType in HouseTypes)
-			{
-				var final = CellMap.Empty;
-				var final2 = CellMap.Empty;
-				var intersectedCells = PeersMap[chosenCell] & HousesMap[chosenCell.ToHouseIndex(houseType)] & HousesMap[house];
-				foreach (var cell in intersectedCells)
-				{
-					if (grid.GetState(cell) == CellState.Empty)
-					{
-						final.Add(cell);
-					}
-
-					final2.Add(cell);
-				}
-
-				if (final)
-				{
-					(final + chosenCell).InOneHouse(out eliminatedHouses[i]);
-
-					foreach (var cell in intersectedCells)
-					{
-						if (grid.GetState(cell) != CellState.Empty)
-						{
-							halfDistanceValueCellsCount[i]++;
-						}
-					}
-
-					eliminatedEmptyCellsCount[i] = final.Count;
-					eliminatedCellsCount[i] = final2.Count;
-
-					break;
-				}
-			}
-
-			if (Distance.DistanceTable[chosenCell][house] is var (nearest, farest))
-			{
-				distancesSumNearToHouseBorder += Distance.GetDistance(chosenCell, nearest);
-				distancesSumFarToHouseBorder += Distance.GetDistance(chosenCell, farest);
-			}
-
-			distancesSumToConclusionCell += Distance.GetDistance(chosenCell, resultCell);
-			i++;
-		}
-		if (chosenCells.Count >= 2)
-		{
-			foreach (ref readonly var pair in chosenCells.GetSubsets(2))
-			{
-				distancesSumToExcluderPairs += Distance.GetDistance(in pair);
-			}
-		}
-
-		var emptyCellsCount = 0;
-		foreach (var cell in HouseCells[house])
-		{
-			if (grid.GetState(cell) == CellState.Empty)
-			{
-				emptyCellsCount++;
-			}
-		}
-
-		var views = (View[])[
-			[
-				.. enableAndIsLastDigit ? cellOffsets : [],
-				.. enableAndIsLastDigit ? [] : cellOffsets2,
-				.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-			]
-		];
 		return (enableAndIsLastDigit, house) switch
 		{
 			(true, >= 9) => null,
 			(true, _) => new LastDigitStep(
 				[new(Assignment, resultCell, digit)],
-				views,
+				[
+					[
+						.. enableAndIsLastDigit ? cellOffsets : [],
+						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
+						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+					]
+				],
 				context.PredefinedOptions,
 				resultCell,
 				digit,
@@ -600,27 +453,18 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			),
 			_ => new HiddenSingleStep(
 				[new(Assignment, resultCell, digit)],
-				views,
+				[
+					[
+						.. enableAndIsLastDigit ? cellOffsets : [],
+						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
+						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+					]
+				],
 				context.PredefinedOptions,
 				resultCell,
 				digit,
 				house,
-				enableAndIsLastDigit,
-				eliminatedCellsCount,
-				eliminatedEmptyCellsCount,
-				halfDistanceValueCellsCount,
-				emptyCellsCount,
-				eliminatedHouses,
-				distancesSumNearToHouseBorder,
-				distancesSumFarToHouseBorder,
-				distancesSumToConclusionCell,
-				distancesSumToExcluderPairs,
-				chosenCells.Count switch
-				{
-					0 => 0,
-					1 => distancesSumToExcluderPairs,
-					var c and >= 2 => distancesSumToExcluderPairs / PascalTriangle[c][2]
-				}
+				enableAndIsLastDigit
 			)
 		};
 	}

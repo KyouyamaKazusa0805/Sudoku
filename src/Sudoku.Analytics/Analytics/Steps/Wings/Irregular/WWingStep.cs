@@ -1,9 +1,7 @@
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
@@ -37,25 +35,6 @@ public sealed partial class WWingStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.WWing;
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-	{
-		get
-		{
-			_ = (GetPairedCellFor(StartCell, out var startHouse), GetPairedCellFor(EndCell, out var endHouse));
-			return [
-				new(
-					LocatingDifficultyFactorNames.HouseType,
-					9 * GetHouseTypeScore(ConjugatePair.Houses.SetAt(0).ToHouseType())
-				),
-				new(
-					LocatingDifficultyFactorNames.Connector,
-					(GetHouseTypeScore(startHouse.ToHouseType()) + GetHouseTypeScore(endHouse.ToHouseType())) * 6
-				)
-			];
-		}
-	}
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

@@ -1,7 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Rating;
 using Sudoku.Rendering;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -54,13 +53,6 @@ public sealed partial class TwoStrongLinksStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr]), new(ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr])];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> [
-			new(LocatingDifficultyFactorNames.HousePosition, 9 * (HotSpot.GetHotSpot(BaseHouse) + HotSpot.GetHotSpot(TargetHouse))),
-			new(LocatingDifficultyFactorNames.Digit, Digit * 3)
-		];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

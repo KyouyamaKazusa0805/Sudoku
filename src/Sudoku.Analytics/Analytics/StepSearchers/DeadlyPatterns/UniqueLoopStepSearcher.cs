@@ -238,8 +238,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			d2,
 			in loop,
 			extraDigit,
-			path,
-			in extraCellsMap
+			path
 		);
 
 		if (onlyFindOne)

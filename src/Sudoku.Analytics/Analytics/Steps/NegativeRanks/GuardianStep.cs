@@ -1,5 +1,3 @@
-using System.Algorithm;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -42,16 +40,6 @@ public sealed partial class GuardianStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [new(ExtraDifficultyFactorNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
-
-	/// <inheritdoc/>
-	public override LocatingDifficultyFactor[] LocatingDifficultyFactors
-		=> [
-			new(LocatingDifficultyFactorNames.Digit, Digit * 3),
-			new(
-				LocatingDifficultyFactorNames.HousePosition,
-				9 * LoopCells.Houses.GetAllSets().Sum(static (scoped ref readonly House house) => HotSpot.GetHotSpot(house))
-			)
-		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

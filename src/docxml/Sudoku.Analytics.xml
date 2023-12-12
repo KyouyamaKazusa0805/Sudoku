@@ -4389,136 +4389,6 @@ if (student is (name: var name, age: >= 18))
             <param name="length">The length.</param>
             <returns>The difficulty.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.Distance">
-            <summary>
-            Represents the methods that calculates for distance.
-            </summary>
-            <param name="p">Indicates the integer part.</param>
-            <param name="q">Indicates the root part.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
-            <remarks>
-            This type is implemented via irrational numbers logic that only takes a square root.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents the methods that calculates for distance.
-            </summary>
-            <param name="p">Indicates the integer part.</param>
-            <param name="q">Indicates the root part.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
-            <remarks>
-            This type is implemented via irrational numbers logic that only takes a square root.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.Distance.DistanceTable">
-            <summary>
-            The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
-            </summary>
-            <remarks>
-            <para>
-            The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
-            <c><see cref="F:Sudoku.Analytics.Rating.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
-            If the cell is inside the house, the value will be <see langword="null"/>.
-            </para>
-            <para>
-            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)"/>.
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.Distance._p">
-            <summary>
-            The root value of P.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.Distance._q">
-            <summary>
-            The root value of Q.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Rating.Distance"/> instance via both values 1.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Rating.Distance"/> instance via the root part, with the default integer part 1.
-            <i>This value will automatically simplify the root expression, e.g. sqrt(18) -> 3sqrt(2).</i>
-            </summary>
-            <param name="q">The root value.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.Distance.RawValue">
-            <summary>
-            The raw value of the distance. The value will be ouput as a <see cref="T:System.Double"/> value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.Equals(Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.CompareTo(Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <remarks>
-            The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
-            For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.GetDistance(System.Int32,System.Int32)">
-            <summary>
-            Try to fetch the distance for the two cells.
-            </summary>
-            <param name="cell1">The first cell to be compared.</param>
-            <param name="cell2">The second cell to be compared.</param>
-            <returns>The distance result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to fetch the distance for two cells stored in a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
-            <returns>The distance result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.SimplifyRootPart(System.Int32@)">
-            <summary>
-            Simplifies for root part.
-            </summary>
-            <param name="base">The root value.</param>
-            <returns>The P value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_Implicit(Sudoku.Analytics.Rating.Distance)~System.Double">
-            <summary>
-            Implicit cast from the <see cref="T:Sudoku.Analytics.Rating.Distance"/> instance to a <see cref="T:System.Double"/>.
-            </summary>
-            <param name="distance">The distance value.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_Equality(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_Inequality(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_GreaterThan(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_LessThan(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_GreaterThanOrEqual(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Distance.op_LessThanOrEqual(Sudoku.Analytics.Rating.Distance,Sudoku.Analytics.Rating.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
@@ -4692,71 +4562,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.Formula">
-            <summary>
-            Represents a formula. The formula can help you calculate the target expression.
-            </summary>
-            <param name="expression">Indicates the expression to combine multiple values.</param>
-            <param name="expressionString">
-            <para>Indicates the detail string text of the argument <paramref name="expression" />.</para>
-            <feature name="caller-argument-expression">
-			<para>
-				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
-			</para>
-		</feature>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Formula.#ctor(System.Func{System.Decimal[],System.Decimal},System.String)">
-            <summary>
-            Represents a formula. The formula can help you calculate the target expression.
-            </summary>
-            <param name="expression">Indicates the expression to combine multiple values.</param>
-            <param name="expressionString">
-            <para>Indicates the detail string text of the argument <paramref name="expression" />.</para>
-            <feature name="caller-argument-expression">
-			<para>
-				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
-			</para>
-		</feature>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Formula.GetScore(System.Decimal[])">
-            <summary>
-            Try to calculate the final score via the specified arguments.
-            </summary>
-            <param name="arguments">The arguments passed in.</param>
-            <returns>The final score.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.Formula.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.Formula.Expression">
-            <summary>
-            The generated property declaration for parameter <c>expression</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.Formula.ExpressionString">
-            <summary>
-            The generated property declaration for parameter <c>expressionString</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.HotSpot">
-            <summary>
-            The hotspot data.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.HotSpot.HotSpotTable">
-            <summary>
-            The internal table.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.HotSpot.GetHotSpot(System.Int32)">
-            <summary>
-            Try to get the hotspot of the house.
-            </summary>
-            <param name="house">The house.</param>
-            <returns>The hotspot value.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Rating.IRatingDataProvider">
             <summary>
             Represents a rating data provider.
@@ -4770,136 +4575,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value">
             <summary>
             Indicates the factor value that describes how difficult the factor is.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.LocatingDifficultyFactor">
-            <summary>
-            Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
-            </summary>
-            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
-            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.LocatingDifficultyFactor.#ctor(System.String,System.Decimal)">
-            <summary>
-            Represents a factor that describes for a difficulty factor describing how difficult that users can locate a technique pattern.
-            </summary>
-            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
-            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.FactorName">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.LocatingDifficultyFactor.Value">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames">
-            <summary>
-            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step on locating.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HouseType">
-            <summary>
-            Indicates the factor is house type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HousePosition">
-            <summary>
-            Indicates the factor is house position.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Digit">
-            <summary>
-            Indicates the factor is digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.HiddenSingleExcluder">
-            <summary>
-            Indicates the factor is hidden single excluder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.NakedSingleExcluder">
-            <summary>
-            Indicates the factor is naked single excluder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.LockedCandidatesCellsCount">
-            <summary>
-            Indicates the factor is locked candidates cells count.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Size">
-            <summary>
-            Indicates the factor is size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Distance">
-            <summary>
-            Indicates the factor is distance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Interferer">
-            <summary>
-            Indicates the factor is interferer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Fin">
-            <summary>
-            Indicates the factor is fin.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Incompleteness">
-            <summary>
-            Indicates the factor is incompleteness.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Sashimi">
-            <summary>
-            Indicates the factor is sashimi.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Petals">
-            <summary>
-            Indicates the factor is petals.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.Connector">
-            <summary>
-            Indicates the factor is connecter.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.AvoidableRectangle">
-            <summary>
-            Indicates the factor is avoidable rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.ExtraDigit">
-            <summary>
-            Indicates the factor is extra digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.ConjugatePair">
-            <summary>
-            Indicates the factor is conjugate pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.EmptyCell">
-            <summary>
-            Indicates the factor is empty cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.TrueCandidate">
-            <summary>
-            Indicates the factor is true candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.DigitVariance">
-            <summary>
-            Indicates the factor is digit variance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.LocatingDifficultyFactorNames.EmptyRectangleCellsCount">
-            <summary>
-            Indicates the factor is empty rectangle cells count.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
@@ -5086,18 +4761,6 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the extra difficulty factors of the technique step.</para>
             <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Step.LocatingDifficultyFactors">
-            <summary>
-            <para>Indicates the factors that can measure how difficult a technique pattern can be located by sudoku players.</para>
-            <para><inheritdoc cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors" path="//summary/para[2]"/></para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Step.LocatingDifficultyFormula">
-            <summary>
-            Indicates the formula that calculates and combines with arguments stored in <see cref="P:Sudoku.Analytics.Step.LocatingDifficultyFactors"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Step.LocatingDifficultyFactors"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
             <summary>
@@ -11019,9 +10682,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -11248,27 +10908,17 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Code">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step">
             <summary>
@@ -11278,10 +10928,9 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="digit">Indicates the extra digit.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
             </summary>
@@ -11289,7 +10938,6 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="digit">Indicates the extra digit.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="cells">Indicates the cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
@@ -11298,16 +10946,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDigit">
             <summary>
@@ -11329,10 +10969,9 @@ if (student is (name: var name, age: >= 18))
             <param name="trueCandidates">Indicates the true candidates used.</param>
             <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
             <param name="cells">Indicates the subset cells used.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="isNaked">Indicates whether the subset is naked.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -11342,7 +10981,6 @@ if (student is (name: var name, age: >= 18))
             <param name="trueCandidates">Indicates the true candidates used.</param>
             <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
             <param name="cells">Indicates the subset cells used.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="isNaked">Indicates whether the subset is naked.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
@@ -11354,9 +10992,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Size">
             <summary>
             Indicates the size of the subset.
@@ -11365,11 +11000,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.GetDigitVariance(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Try to get digit variance for true candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.TrueCandidates">
@@ -11401,10 +11031,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -11413,7 +11042,6 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
             <param name="cells">Indicates the cells used.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
@@ -11422,16 +11050,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.DigitsMask">
             <summary>
@@ -11981,11 +11601,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.GetLoopPathScore">
-            <summary>
-            Try to get the loop path score.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueLoopStep}#op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
             <inheritdoc/>
         </member>
@@ -12039,12 +11654,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType1Step.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType2Step">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
@@ -12057,9 +11666,8 @@ if (student is (name: var name, age: >= 18))
             <param name="loop"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="loopPath"><inheritdoc/></param>
-            <param name="extraCells">The extra cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32[],Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -12071,7 +11679,6 @@ if (student is (name: var name, age: >= 18))
             <param name="loop"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="loopPath"><inheritdoc/></param>
-            <param name="extraCells">The extra cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.Type">
             <inheritdoc/>
@@ -12081,22 +11688,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.GetHouseScore(System.Int32)">
-            <summary>
-            Try to get the score for houses.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueLoopType2Step._extraCells">
-            <summary>
-            The generated field declaration for parameter <c>extraCells</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.ExtraDigit">
             <summary>
@@ -12139,17 +11730,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.GetHouseScore(System.Int32)">
-            <summary>
-            Try to get the score for houses.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
             <summary>
@@ -12194,12 +11774,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.LocatingDifficultyFormula">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType4Step.ConjugatePair">
@@ -13432,10 +13006,8 @@ if (student is (name: var name, age: >= 18))
             <param name="cells"><inheritdoc/></param>
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="cornerInterfererCandidatesCount">Indicates the interferer digits appeared in corner cell.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -13447,27 +13019,12 @@ if (student is (name: var name, age: >= 18))
             <param name="cells"><inheritdoc/></param>
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="cornerInterfererCandidatesCount">Indicates the interferer digits appeared in corner cell.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueRectangleType1Step._cornerInterfererCandidatesCount">
-            <summary>
-            The generated field declaration for parameter <c>cornerInterfererCandidatesCount</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueRectangleType1Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType2Step">
             <summary>
@@ -13483,10 +13040,8 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="extraCells">Indicates the extra cells.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
             </summary>
@@ -13500,8 +13055,6 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="extraCells">Indicates the extra cells.</param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.BaseDifficulty">
             <inheritdoc/>
@@ -13511,24 +13064,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.GetHouseScore(System.Int32)">
-            <summary>
-            Try to get the score for houses.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueRectangleType2Step._extraCells">
-            <summary>
-            The generated field declaration for parameter <c>extraCells</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueRectangleType2Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.ExtraDigit">
             <summary>
@@ -13550,12 +13085,11 @@ if (student is (name: var name, age: >= 18))
             <param name="house">Indicates the house used.</param>
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="isNaked">
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -13570,7 +13104,6 @@ if (student is (name: var name, age: >= 18))
             <param name="house">Indicates the house used.</param>
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
-            <param name="emptyCellsCount">The number of empty cells.</param>
             <param name="isNaked">
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
@@ -13581,16 +13114,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.UniqueRectangleType3Step._emptyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraCells">
             <summary>
@@ -13693,9 +13218,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.LocatingDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolationParts">
@@ -15343,9 +14865,8 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="bodyCellsCount">Indicates the number of body cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -15373,12 +14894,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="bodyCellsCount">Indicates the number of body cells.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.NormalFishStep._bodyCellsCountSquared">
-            <summary>
-            The body cells count, squared.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
@@ -15395,17 +14910,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.InternalName">
             <summary>
             Indicates the internal name.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.NormalFishStep._bodyCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>bodyCellsCount</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Fins">
@@ -15869,9 +15376,8 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
-            <param name="lockedCandidatesCellsCount">The number of cells of the locked candidates used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Locked Candidates</b> technique.
             </summary>
@@ -15881,7 +15387,6 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
-            <param name="lockedCandidatesCellsCount">The number of cells of the locked candidates used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -15891,17 +15396,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.LockedCandidatesStep._lockedCandidatesCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>lockedCandidatesCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
             <summary>
@@ -16609,9 +16103,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -16722,9 +16213,8 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
-            <param name="emptyRectangleCellsCount">Indicates the number of empty rectangle cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.Conjugate@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -16734,7 +16224,6 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
-            <param name="emptyRectangleCellsCount">Indicates the number of empty rectangle cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.BaseDifficulty">
             <inheritdoc/>
@@ -16745,16 +16234,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.EmptyRectangleStep._emptyRectangleCellsCount">
-            <summary>
-            The generated field declaration for parameter <c>emptyRectangleCellsCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Block">
             <summary>
@@ -16825,9 +16306,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseHouse">
             <summary>
             The generated property declaration for parameter <c>baseHouse</c>.
@@ -16853,15 +16331,8 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="emptyCellsCountFromAllPeerHouses">
-            Indicates the number of empty cells from all 27 houses. This will define the difficulty for the locating.
-            </param>
-            <param name="distanceSumForAllDigitsInHouse">
-            Indicates the distance sum value of all pairs of adjacent digits.
-            For example, distance between 1 and 2, plus distance between 2 and 3, 3 and 4, etc.
-            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Double)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -16871,13 +16342,6 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="emptyCellsCountFromAllPeerHouses">
-            Indicates the number of empty cells from all 27 houses. This will define the difficulty for the locating.
-            </param>
-            <param name="distanceSumForAllDigitsInHouse">
-            Indicates the distance sum value of all pairs of adjacent digits.
-            For example, distance between 1 and 2, plus distance between 2 and 3, 3 and 4, etc.
-            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -16888,22 +16352,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.EmptyCellsCountFromAllPeerHouses">
-            <summary>
-            The generated property declaration for parameter <c>emptyCellsCountFromAllPeerHouses</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.DistanceSumForAllDigitsInHouse">
-            <summary>
-            The generated property declaration for parameter <c>distanceSumForAllDigitsInHouse</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
@@ -16920,24 +16371,8 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="eliminatedCellsCount">The total eliminated cells.</param>
-            <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
-            <param name="halfDistanceValueCellsCount">
-            The total number of value cells that appears in the crosshatching rule before intersecting the target house.
-            </param>
-            <param name="emptyCellsCount">The number of empty cells in the house.</param>
-            <param name="eliminatedHouses">The total eliminated houses.</param>
-            <param name="distancesSumNearToHouseBorder">
-            The sum value of distances from excluder digits to the nearest cell at the border of the house.
-            </param>
-            <param name="distancesSumFarToHouseBorder">
-            The sum value of distances from excluder digits to the farest cell at the border of the house.
-            </param>
-            <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
-            <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
-            <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32[],System.Int32[],System.Int32[],System.Int32,System.Int32[],System.Double,System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
@@ -16951,22 +16386,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="eliminatedCellsCount">The total eliminated cells.</param>
-            <param name="eliminatedEmptyCellsCount">The total eliminated empty cells.</param>
-            <param name="halfDistanceValueCellsCount">
-            The total number of value cells that appears in the crosshatching rule before intersecting the target house.
-            </param>
-            <param name="emptyCellsCount">The number of empty cells in the house.</param>
-            <param name="eliminatedHouses">The total eliminated houses.</param>
-            <param name="distancesSumNearToHouseBorder">
-            The sum value of distances from excluder digits to the nearest cell at the border of the house.
-            </param>
-            <param name="distancesSumFarToHouseBorder">
-            The sum value of distances from excluder digits to the farest cell at the border of the house.
-            </param>
-            <param name="distancesSumToConclusionCell">The sum value of distances from excluder digits to the conclusion cell.</param>
-            <param name="distancesSumForExcluderPairs">The sum value of paired excluder cells' distance values.</param>
-            <param name="distanceAverageForExcluderPairs">The average value of paired excluder cells' distance values.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -16980,9 +16399,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
@@ -16991,56 +16407,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>
             The generated property declaration for parameter <c>enableAndIsLastDigit</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedCellsCount">
-            <summary>
-            The generated property declaration for parameter <c>eliminatedCellsCount</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedEmptyCellsCount">
-            <summary>
-            The generated property declaration for parameter <c>eliminatedEmptyCellsCount</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.HalfDistanceValueCellsCount">
-            <summary>
-            The generated property declaration for parameter <c>halfDistanceValueCellsCount</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EmptyCellsCount">
-            <summary>
-            The generated property declaration for parameter <c>emptyCellsCount</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EliminatedHouses">
-            <summary>
-            The generated property declaration for parameter <c>eliminatedHouses</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumNearToHouseBorder">
-            <summary>
-            The generated property declaration for parameter <c>distancesSumNearToHouseBorder</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumFarToHouseBorder">
-            <summary>
-            The generated property declaration for parameter <c>distancesSumFarToHouseBorder</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumToConclusionCell">
-            <summary>
-            The generated property declaration for parameter <c>distancesSumToConclusionCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistancesSumForExcluderPairs">
-            <summary>
-            The generated property declaration for parameter <c>distancesSumForExcluderPairs</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.DistanceAverageForExcluderPairs">
-            <summary>
-            The generated property declaration for parameter <c>distanceAverageForExcluderPairs</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
@@ -17094,9 +16460,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.LocatingDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.ExcluderHouses">
@@ -17157,10 +16520,8 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="distance">The distance for the two cells farest away from each other.</param>
-            <param name="interferersCount">The number of interferer candidates that makes the pattern more difficult to be found.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Decimal,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Hidden Subset</b> technique.
             </summary>
@@ -17183,8 +16544,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="distance">The distance for the two cells farest away from each other.</param>
-            <param name="interferersCount">The number of interferer candidates that makes the pattern more difficult to be found.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -17197,22 +16556,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.HiddenSubsetStep._distance">
-            <summary>
-            The generated field declaration for parameter <c>distance</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.HiddenSubsetStep._interferersCount">
-            <summary>
-            The generated field declaration for parameter <c>interferersCount</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
             <summary>
@@ -17246,10 +16589,8 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="isBivalueSubset">Indicates whether the cells form a bi-value subset.</param>
-            <param name="distance">The distance for the two cells farest away from each other.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean},System.Boolean,System.Decimal)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Provides with a step that is a <b>Naked Subset</b> technique.
             </summary>
@@ -17276,8 +16617,6 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </param>
-            <param name="isBivalueSubset">Indicates whether the cells form a bi-value subset.</param>
-            <param name="distance">The distance for the two cells farest away from each other.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
             <inheritdoc/>
@@ -17287,22 +16626,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.LocatingDifficultyFormula">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.NakedSubsetStep._isBivalueSubset">
-            <summary>
-            The generated field declaration for parameter <c>isBivalueSubset</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.NakedSubsetStep._distance">
-            <summary>
-            The generated field declaration for parameter <c>distance</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
             <summary>
@@ -17622,9 +16945,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -17664,9 +16984,8 @@ if (student is (name: var name, age: >= 18))
             <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
             <param name="digitsMask">Indicates a mask that contains all digits used.</param>
             <param name="petals">Indicates the petals used.</param>
-            <param name="distanceValueSumFromPetals">The total distinct value from all petals to the pivot.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,System.Double)">
+        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -17677,7 +16996,6 @@ if (student is (name: var name, age: >= 18))
             <param name="pivotCandidatesCount">Indicates the number of digits in the pivot cell.</param>
             <param name="digitsMask">Indicates a mask that contains all digits used.</param>
             <param name="petals">Indicates the petals used.</param>
-            <param name="distanceValueSumFromPetals">The total distinct value from all petals to the pivot.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.IsIncomplete">
             <summary>
@@ -17734,16 +17052,8 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.LocatingDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolationParts">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.RegularWingStep._distanceValueSumFromPetals">
-            <summary>
-            The generated field declaration for parameter <c>distanceValueSumFromPetals</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
             <summary>
