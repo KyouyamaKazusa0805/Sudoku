@@ -309,6 +309,37 @@ public partial struct CellMap :
 	public readonly string[] StringChunks => this ? ToString(new RxCyConverter()).SplitBy([',', ' ']) : [];
 
 	/// <summary>
+	/// Try to get the symmetric type of the pattern.
+	/// </summary>
+	public readonly SymmetricType Symmetry
+	{
+		get
+		{
+			foreach (var symmetry in Enum.GetValues<SymmetricType>()[1..].EnumerateReversely())
+			{
+				var isThisSymmetry = true;
+				foreach (var cell in this)
+				{
+					var symmetricCells = symmetry.GetCells(cell);
+					if ((this & symmetricCells) != symmetricCells)
+					{
+						isThisSymmetry = false;
+						break;
+					}
+				}
+				if (!isThisSymmetry)
+				{
+					continue;
+				}
+
+				return symmetry;
+			}
+
+			return SymmetricType.None;
+		}
+	}
+
+	/// <summary>
 	/// Gets the expanded peers of the current map.
 	/// </summary>
 	/// <remarks>

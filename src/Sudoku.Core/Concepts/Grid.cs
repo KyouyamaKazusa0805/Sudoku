@@ -471,6 +471,11 @@ public unsafe partial struct Grid :
 	}
 
 	/// <summary>
+	/// Try to get the symmetry of the puzzle.
+	/// </summary>
+	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
+
+	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
 	public readonly CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);

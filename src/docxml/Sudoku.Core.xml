@@ -2234,6 +2234,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CellMap.StringChunks">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.Symmetry">
+            <summary>
+            Try to get the symmetric type of the pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.ExpandedPeers">
             <summary>
             Gets the expanded peers of the current map.
@@ -3072,6 +3077,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             <para>Indicates which houses are completed, regardless of ways of filling.</para>
             <para><inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyHouses" path="//summary/para[3]"/></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Symmetry">
+            <summary>
+            Try to get the symmetry of the puzzle.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
