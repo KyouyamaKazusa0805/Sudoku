@@ -6324,6 +6324,23 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.Nodes.CircleViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Rendering.Nodes.CrossViewNode">
+            <summary>
+            Defines a cross view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Rendering.Nodes.IconViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Rendering.Nodes.IconViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CrossViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)">
+            <summary>
+            Defines a cross view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Rendering.Nodes.IconViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)" path="/param[@name='identifier']"/></param>
+            <param name="cell"><inheritdoc cref="M:Sudoku.Rendering.Nodes.IconViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32)" path="/param[@name='cell']"/></param>
+        </member>
+        <member name="M:Sudoku.Rendering.Nodes.CrossViewNode.Clone">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Rendering.Nodes.DiamondViewNode">
             <summary>
             Defines a diamond view node.
