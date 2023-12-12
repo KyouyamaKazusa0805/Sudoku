@@ -26,7 +26,8 @@
           "PuzzleCompletedEventArgs.cs": [ "PuzzleCompletedEventHandler.cs" ],
           "TechniqueViewSelectedTechniquesChangedEventArgs.cs": [ "TechniqueViewSelectedTechniquesChangedEventHandler.cs" ],
           "TechniqueViewCurrentSelectedTechniqueChangedEventArgs.cs": [ "TechniqueViewCurrentSelectedTechniqueChangedEventHandler.cs" ],
-          "ReceivedDroppedFileSuccessfullyEventArgs.cs": [ "ReceivedDroppedFileSuccessfullyEventHandler.cs" ]
+          "ReceivedDroppedFileSuccessfullyEventArgs.cs": [ "ReceivedDroppedFileSuccessfullyEventHandler.cs" ],
+          "ReceivedDroppedFileFailedEventArgs.cs": [ "ReceivedDroppedFileFailedEventHandler.cs" ]
         }
       }
     }
