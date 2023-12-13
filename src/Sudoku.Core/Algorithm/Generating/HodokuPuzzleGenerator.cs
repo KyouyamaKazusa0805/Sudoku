@@ -372,7 +372,7 @@ public ref struct HodokuPuzzleGenerator
 			throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.");
 		}
 
-		var hodoku = new HodokuPuzzleGenerator();
+		scoped var hodoku = new HodokuPuzzleGenerator();
 		try
 		{
 			while (!hodoku.GenerateForFullGrid()) ;
