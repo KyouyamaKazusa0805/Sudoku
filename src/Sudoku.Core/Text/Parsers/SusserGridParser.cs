@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using Sudoku.Concepts;
+using Sudoku.Runtime.MaskServices;
 using Sudoku.Text.Converters;
 
 namespace Sudoku.Text.Parsers;
@@ -13,7 +14,11 @@ namespace Sudoku.Text.Parsers;
 /// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
 /// <c>.</c>s or <c>0</c>s to a <c>*</c>.
 /// </param>
-public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) : GridParser
+/// <param name="NegateEliminationsTripletRule">
+/// Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
+/// The default value is <see langword="false"/>.
+/// </param>
+public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, bool NegateEliminationsTripletRule = false) : GridParser
 {
 	/// <inheritdoc/>
 	public override Func<string, Grid> Parser
@@ -106,12 +111,33 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false) 
 			// If we have met the colon sign ':', this loop would not be executed.
 			if (SusserEliminationsGridConverter.EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 			{
-				foreach (var candidate in new HodokuTripletParser().Parser(elimMatch))
+				var candidates = new HodokuTripletParser().Parser(elimMatch);
+				if (!NegateEliminationsTripletRule)
 				{
-					// Set the candidate with false to eliminate the candidate.
-					result.SetExistence(candidate / 9, candidate % 9, false);
+					// This applies for normal rule - removing candidates marked.
+					foreach (var candidate in candidates)
+					{
+						// Set the candidate with false to eliminate the candidate.
+						result.SetExistence(candidate / 9, candidate % 9, false);
+					}
+				}
+				else
+				{
+					// If negate candidates, we should remove all possible candidates from all empty cells, making the grid invalid firstly.
+					// Then we should add candidates onto the grid to make the grid valid.
+					var distribution = candidates.CellDistribution;
+					for (var cell = 0; cell < 81; cell++)
+					{
+						scoped ref var mask = ref result[cell];
+						if (MaskOperations.MaskToCellState(mask) == CellState.Empty && distribution.TryGetValue(cell, out var digitsMask))
+						{
+							mask &= ~Grid.MaxCandidatesMask; // Remove all possible candidates in this cell.
+							mask |= digitsMask; // Set candidates via found digits.
+						}
+					}
 				}
 			}
+
 			return result;
 
 

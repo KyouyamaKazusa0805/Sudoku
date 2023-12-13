@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -155,6 +156,31 @@ public partial struct CandidateMap :
 		}
 	}
 
+	/// <summary>
+	/// Indicates the digits used in this pattern.
+	/// </summary>
+	public readonly Mask Digits
+	{
+		get
+		{
+			var result = (Mask)0;
+			for (var digit = 0; digit < 9; digit++)
+			{
+				if (this / digit)
+				{
+					result |= (Mask)(1 << digit);
+				}
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the cells used in this pattern.
+	/// </summary>
+	public readonly CellMap Cells => [.. CellDistribution.Keys];
+
 	/// <inheritdoc/>
 	public readonly CandidateMap PeerIntersection
 	{
@@ -173,6 +199,46 @@ public partial struct CandidateMap :
 			}
 
 			return result;
+		}
+	}
+
+	/// <summary>
+	/// Returns a <see cref="FrozenDictionary{TKey, TValue}"/> that describes the distribution of digits appeared in cells, grouped by digit.
+	/// </summary>
+	public readonly FrozenDictionary<Digit, CellMap> DigitDistribution
+	{
+		get
+		{
+			var dictionary = new Dictionary<Digit, CellMap>(9);
+			for (var digit = 0; digit < 9; digit++)
+			{
+				if (this / digit is var map and not [])
+				{
+					dictionary.Add(digit, map);
+				}
+			}
+
+			return dictionary.ToFrozenDictionary();
+		}
+	}
+
+	/// <summary>
+	/// Returns a <see cref="FrozenDictionary{TKey, TValue}"/> that describes the distribution of digits appeared in cells, grouped by cell.
+	/// </summary>
+	public readonly FrozenDictionary<Cell, Mask> CellDistribution
+	{
+		get
+		{
+			var dictionary = new Dictionary<Cell, Mask>(81);
+			foreach (var element in Offsets)
+			{
+				if (!dictionary.TryAdd(element / 9, (Mask)(1 << element % 9)))
+				{
+					dictionary[element / 9] |= (Mask)(1 << element % 9);
+				}
+			}
+
+			return dictionary.ToFrozenDictionary();
 		}
 	}
 

@@ -5,6 +5,7 @@ using System.SourceGeneration;
 using System.Text;
 using System.Text.RegularExpressions;
 using Sudoku.Concepts;
+using Sudoku.Text.Parsers;
 
 namespace Sudoku.Text.Converters;
 
@@ -28,7 +29,15 @@ namespace Sudoku.Text.Converters;
 /// <para>Indicates whether the formatter will shorten the final text.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public partial record SusserGridConverter(bool WithCandidates = false, bool WithModifiables = false, bool ShortenSusser = false) : GridConverter
+/// <param name="NegateEliminationsTripletRule">
+/// <inheritdoc cref="SusserGridParser(bool, bool)" path="/param[@name='NegateEliminationsTripletRule']"/>
+/// </param>
+public partial record SusserGridConverter(
+	bool WithCandidates = false,
+	bool WithModifiables = false,
+	bool ShortenSusser = false,
+	bool NegateEliminationsTripletRule = false
+) : GridConverter
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -93,7 +102,6 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 	/// </list>
 	/// </summary>
 	public static readonly SusserGridConverter FullZero = new(WithCandidates: true, WithModifiables: true) { Placeholder = Zero };
-
 
 
 	/// <summary>
@@ -182,12 +190,34 @@ public partial record SusserGridConverter(bool WithCandidates = false, bool With
 				}
 			}
 
-			var elimsStr = new HodokuTripletConverter().Converter(eliminatedCandidates);
+			var elimsStr = new HodokuTripletConverter().Converter(
+				NegateEliminationsTripletRule
+					? eliminatedCandidates
+					: negateElims(in grid, in eliminatedCandidates)
+			);
 			var @base = sb.ToStringAndClear();
 			return ShortenSusser
 				? shorten(@base, Placeholder)
 				: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $"{PreeliminationPrefix}{elimsStr}")}";
 
+
+			static CandidateMap negateElims(scoped ref readonly Grid grid, scoped ref readonly CandidateMap eliminatedCandidates)
+			{
+				var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
+				var result = CandidateMap.Empty;
+				foreach (var cell in grid.EmptyCells)
+				{
+					if (eliminatedCandidatesCellDistribution.TryGetValue(cell, out var digitsMask))
+					{
+						foreach (var digit in digitsMask)
+						{
+							result.Add(cell * 9 + digit);
+						}
+					}
+				}
+
+				return result;
+			}
 
 			static string shorten(string @base, char placeholder)
 			{

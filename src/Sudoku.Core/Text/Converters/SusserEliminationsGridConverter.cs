@@ -15,13 +15,16 @@ public sealed partial record SusserEliminationsGridConverter : SusserGridConvert
 	/// <item><see cref="SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
 	/// <item><see cref="SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
 	/// <item><see cref="SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+	/// <item><see cref="SusserGridConverter.NegateEliminationsTripletRule"/>: <see langword="false"/></item>
 	/// </list>
 	/// </summary>
 	public static new readonly SusserEliminationsGridConverter Default = new()
 	{
 		Placeholder = SusserGridConverter.Default.Placeholder,
 		WithModifiables = true,
-		WithCandidates = true
+		WithCandidates = true,
+		ShortenSusser = false,
+		NegateEliminationsTripletRule = false
 	};
 
 

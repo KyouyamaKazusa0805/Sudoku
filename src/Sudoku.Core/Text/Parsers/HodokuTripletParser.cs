@@ -14,7 +14,7 @@ public sealed record HodokuTripletParser : ISpecifiedConceptParser<CandidateMap>
 	public Func<string, CandidateMap> Parser
 		=> static str =>
 		{
-			var segments = str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			var segments = str.SplitBy([' ']);
 			if (Array.IndexOf(segments, string.Empty) != -1)
 			{
 				throw new FormatException("The string contains empty segment.");

@@ -12,12 +12,7 @@ public sealed record HodokuTripletConverter : ISpecifiedConceptConverter<Candida
 	public Func<CandidateMap, string> Converter
 		=> static candidates =>
 		{
-			return candidates switch
-			{
-			[] => string.Empty,
-			[var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}",
-				_ => f(in candidates)
-			};
+			return candidates switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in candidates) };
 
 
 			static string f(scoped ref readonly CandidateMap collection)

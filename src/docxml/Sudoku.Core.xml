@@ -1822,8 +1822,28 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CandidateMap.StringChunks">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Digits">
+            <summary>
+            Indicates the digits used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Cells">
+            <summary>
+            Indicates the cells used in this pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.PeerIntersection">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.DigitDistribution">
+            <summary>
+            Returns a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> that describes the distribution of digits appeared in cells, grouped by digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.CellDistribution">
+            <summary>
+            Returns a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> that describes the distribution of digits appeared in cells, grouped by cell.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Shifting">
             <inheritdoc/>
@@ -8372,6 +8392,7 @@ if (student is (name: var name, age: >= 18))
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="true"/></item>
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.ShortenSusser"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.NegateEliminationsTripletRule"/>: <see langword="false"/></item>
             </list>
             </summary>
         </member>
@@ -8417,8 +8438,11 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates whether the formatter will shorten the final text.</para>
             <para>The default value is <see langword="false"/>.</para>
             </param>
+            <param name="NegateEliminationsTripletRule">
+            <inheritdoc cref="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean,System.Boolean)" path="/param[@name='NegateEliminationsTripletRule']"/>
+            </param>
         </member>
-        <member name="M:Sudoku.Text.Converters.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Text.Converters.SusserGridConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Represents a converter that converts a <see cref="T:Sudoku.Concepts.Grid"/> into an equivalent <see cref="T:System.String"/> representation
             using Susser formatting rule.
@@ -8438,6 +8462,9 @@ if (student is (name: var name, age: >= 18))
             <param name="ShortenSusser">
             <para>Indicates whether the formatter will shorten the final text.</para>
             <para>The default value is <see langword="false"/>.</para>
+            </param>
+            <param name="NegateEliminationsTripletRule">
+            <inheritdoc cref="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean,System.Boolean)" path="/param[@name='NegateEliminationsTripletRule']"/>
             </param>
         </member>
         <member name="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates">
@@ -8460,6 +8487,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             <para>Indicates whether the formatter will shorten the final text.</para>
             <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.SusserGridConverter.NegateEliminationsTripletRule">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean,System.Boolean)" path="/param[@name='NegateEliminationsTripletRule']"/>
             </summary>
         </member>
         <member name="F:Sudoku.Text.Converters.SusserGridConverter.ModifiablePrefix">
@@ -9163,8 +9195,12 @@ if (student is (name: var name, age: >= 18))
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </param>
+            <param name="NegateEliminationsTripletRule">
+            Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
+            The default value is <see langword="false"/>.
+            </param>
         </member>
-        <member name="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean)">
+        <member name="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Represents a Susser format parser.
             </summary>
@@ -9173,12 +9209,22 @@ if (student is (name: var name, age: >= 18))
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
             </param>
+            <param name="NegateEliminationsTripletRule">
+            Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
+            The default value is <see langword="false"/>.
+            </param>
         </member>
         <member name="P:Sudoku.Text.Parsers.SusserGridParser.ShortenSusserFormat">
             <summary>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.SusserGridParser.NegateEliminationsTripletRule">
+            <summary>
+            Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
+            The default value is <see langword="false"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Text.Parsers.SusserGridParser.Parser">
