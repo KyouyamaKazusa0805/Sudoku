@@ -1,3 +1,5 @@
+#undef REMOVE_DUPLICATED_STEPS_IN_SINGLES_IF_RANDOM_ENABLED
+
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -252,6 +254,52 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 
 						goto MakeProgress;
 					}
+#if REMOVE_DUPLICATED_STEPS_IN_SINGLES_IF_RANDOM_ENABLED
+					case (_, SingleStepSearcher, { RandomizedChoosing: true }):
+					{
+						// Randomly select a step won't take any effects on single steps.
+						accumulator!.Clear();
+
+						searcher.Collect(ref context);
+						if (accumulator.Count == 0)
+						{
+							continue;
+						}
+
+						var temp = new List<Step>();
+						if (accumulator.Count == 1)
+						{
+							temp.Add(accumulator[0]);
+						}
+						else
+						{
+							var distinctCandidatesKey = CandidateMap.Empty;
+							foreach (SingleStep step in accumulator)
+							{
+								if (!distinctCandidatesKey.Contains(step.Cell * 9 + step.Digit))
+								{
+									temp.Add(step);
+									distinctCandidatesKey.Add(step.Cell * 9 + step.Digit);
+								}
+							}
+						}
+
+						// Here will fetch a correct step to be applied.
+						var chosenStep = temp[_random.Next(0, temp.Count)];
+						if (!verifyConclusionValidity(in solution, chosenStep))
+						{
+							throw new WrongStepException(in playground, chosenStep);
+						}
+
+						if (onCollectingSteps(
+							collectedSteps, chosenStep, in context, ref playground,
+							in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+						{
+							return result;
+						}
+						break;
+					}
+#endif
 					case (_, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();

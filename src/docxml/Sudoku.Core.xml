@@ -8668,6 +8668,15 @@ if (student is (name: var name, age: >= 18))
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Parsers.BitStatusCellMapParser">
+            <summary>
+            Represents a parser that uses bit operation rule to parse <see cref="T:Sudoku.Concepts.CellMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Parsers.BitStatusCellMapParser.Parser">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Parsers.CoordinateParser">
             <summary>
             Represents for a parser instance that parses a <see cref="T:System.String"/> text,
