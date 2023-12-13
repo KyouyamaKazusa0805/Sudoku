@@ -7576,6 +7576,15 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>assembly</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
+            <summary>
+            Represents a converter that uses bit operation to format <see cref="T:Sudoku.Concepts.CellMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Converters.BitStatusCellMapConverter.Converter">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Converters.CandidateNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.

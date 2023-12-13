@@ -625,7 +625,10 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(scoped ref readonly CellMap other)
-		=> _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{this:b}".CompareTo($"{other:b}"));
+	{
+		var b = new BitStatusCellMapConverter().Converter;
+		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(this)}".CompareTo($"{b(other)}"));
+	}
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
