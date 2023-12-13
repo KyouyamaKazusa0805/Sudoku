@@ -66,7 +66,8 @@ public static class PredefinedAnalyzers
 				s.EnableLastDigit = true;
 				s.HiddenSinglesInBlockFirst = true;
 				s.UseIttoryuMode = false;
-			});
+			})
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
@@ -92,5 +93,6 @@ public static class PredefinedAnalyzers
 			.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = false; s.SearchForExtendedUniqueRectangles = false; })
 			.WithStepSearcherSetters<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = false)
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 3)
-			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);
+			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3)
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 }
