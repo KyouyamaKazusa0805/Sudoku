@@ -3202,6 +3202,105 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Band swap (Randomly swap two bands).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_BandSwap {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_BandSwap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column swap (Randomly swap two columns).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_ColumnSwap {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_ColumnSwap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digit swap (Randomly swap two digits).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_Digit {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_Digit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anti-diagonal mirror (Swap cells from sides related to anti-diagonal).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_MirrorAntidiagonal {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_MirrorAntidiagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagonal mirror (Swap cells from sides related to diagonal).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_MirrorDiagonal {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_MirrorDiagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left-right mirror (Swap cells from left and right side of the grid).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_MirrowLeftRight {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_MirrowLeftRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top-bottom mirror (Swap cells from top and bottom side of the grid).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_MirrowTopBottom {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_MirrowTopBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate clockwise (Rotate grid clockwise).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_RotateClockwise {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_RotateClockwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate counter-clockwise (Rotate grid counter-clockwise).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_RotateCounterclockwise {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_RotateCounterclockwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row swap (Randomly swap two rows).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_RowSwap {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_RowSwap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tower swap (Randomly swap two towers).
+        /// </summary>
+        internal static string LibraryPuzzleTransformKinds_TowerSwap {
+            get {
+                return ResourceManager.GetString("LibraryPuzzleTransformKinds_TowerSwap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {
@@ -4622,6 +4721,24 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_LibraryDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_LibraryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transformations on library puzzles.
+        /// </summary>
+        internal static string SettingsPage_LibraryPuzzleTransformation {
+            get {
+                return ResourceManager.GetString("SettingsPage_LibraryPuzzleTransformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls the case that which way the puzzle fetched from puzzle libraries should be applied in transformation, making some differences with the orginal puzzle..
+        /// </summary>
+        internal static string SettingsPage_LibraryPuzzleTransformationDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_LibraryPuzzleTransformationDescription", resourceCulture);
             }
         }
         

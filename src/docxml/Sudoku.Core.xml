@@ -4185,6 +4185,16 @@ if (student is (name: var name, age: >= 18))
             in order to inline multiple transformation operations.
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.GridTransformations.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap chutes (i.e. mega-rows or mega-columns).
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="chuteIndex1">The first chute to be swapped.</param>
+            <param name="chuteIndex2">The second chute to be swapped.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+        </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.

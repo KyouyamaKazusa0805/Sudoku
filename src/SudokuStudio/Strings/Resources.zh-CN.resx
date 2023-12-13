@@ -1095,6 +1095,39 @@
   <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription" xml:space="preserve">
     <value>如果你执行此操作，该题目将会永久从题库里消失。你无法再以任何方式重新看到它。你是否确定需要这么做？</value>
   </data>
+  <data name="LibraryPuzzleTransformKinds_BandSwap" xml:space="preserve">
+    <value>大行变换（随机交换盘面里的其中两个大行）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_ColumnSwap" xml:space="preserve">
+    <value>列变换（随机交换盘面里的其中两列）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_Digit" xml:space="preserve">
+    <value>数字变换（随机交换盘面里的其中两种数字）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrorAntidiagonal" xml:space="preserve">
+    <value>撇对角线翻转（将盘面的撇对角线两侧的单元格翻转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrorDiagonal" xml:space="preserve">
+    <value>捺对角线翻转（将盘面的捺对角线两侧的单元格翻转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrowLeftRight" xml:space="preserve">
+    <value>左右翻转（将盘面的左右两边翻转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrowTopBottom" xml:space="preserve">
+    <value>上下翻转（将盘面的上下两边翻转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RotateClockwise" xml:space="preserve">
+    <value>顺时针旋转（将盘面的数字顺时针旋转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RotateCounterclockwise" xml:space="preserve">
+    <value>逆时针旋转（将盘面的数字逆时针旋转）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RowSwap" xml:space="preserve">
+    <value>行变换（随机交换盘面里的其中两行）</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_TowerSwap" xml:space="preserve">
+    <value>大列变换（随机交换盘面里的其中两个大列）</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>关于</value>
   </data>
@@ -1555,6 +1588,12 @@
   </data>
   <data name="SettingsPage_LibraryDescription" xml:space="preserve">
     <value>该页面设置的是一些跟题库有关页面的呈现和处理规则。</value>
+  </data>
+  <data name="SettingsPage_LibraryPuzzleTransformation" xml:space="preserve">
+    <value>题库内抽题的题目变换</value>
+  </data>
+  <data name="SettingsPage_LibraryPuzzleTransformationDescription" xml:space="preserve">
+    <value>该选项控制的是，通过题库抽题操作所得到题目会进行什么样的形式变换，使得题目和原题不同。</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>字面书写</value>

@@ -1348,9 +1348,20 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibility"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryPuzzleTransformationsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryPuzzleTransformations"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryPuzzleTransformations"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryCandidatesVisibility">
             <summary>
             Indicates whether the candidates in a puzzle defined in puzzle libraries should be shown.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.LibraryPreferenceGroup.LibraryPuzzleTransformations">
+            <summary>
+            Indicates the transforming kinds for library puzzles.
             </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.PreferenceGroup">
@@ -3252,6 +3263,71 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is adding one puzzle.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.LibraryPuzzleTransformKinds">
+            <summary>
+            Represents a list of adjustable kinds that describes which way the puzzle can be transformed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.None">
+            <summary>
+            Indicates no transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.Digit">
+            <summary>
+            Indicates digit transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RowSwap">
+            <summary>
+            Indicates row-swap transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.ColumnSwap">
+            <summary>
+            Indicates column-swap transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.BandSwap">
+            <summary>
+            Indicates band-swap transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.TowerSwap">
+            <summary>
+            Indicates tower-swap transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrowLeftRight">
+            <summary>
+            Indicates mirror left-right transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorTopBottom">
+            <summary>
+            Indicates mirror top-bottom transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorDiagonal">
+            <summary>
+            Indicates mirror diagonal transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorAntidigaonal">
+            <summary>
+            Indicates mirror anti-diagonal transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RotateClockwise">
+            <summary>
+            Indicates rotate clockwise transform.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RotateCounterclockwise">
+            <summary>
+            Indicates rotate counterclockwise transform.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -4025,6 +4101,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter">
+            <summary>
+            Represents a value converter that can convert a <see cref="T:SudokuStudio.Interaction.LibraryPuzzleTransformKinds"/> to a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter">
             <summary>
@@ -6784,6 +6872,61 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_BandSwap">
+            <summary>
+              Looks up a localized string similar to Band swap (Randomly swap two bands).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_ColumnSwap">
+            <summary>
+              Looks up a localized string similar to Column swap (Randomly swap two columns).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_Digit">
+            <summary>
+              Looks up a localized string similar to Digit swap (Randomly swap two digits).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_MirrorAntidiagonal">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal mirror (Swap cells from sides related to anti-diagonal).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_MirrorDiagonal">
+            <summary>
+              Looks up a localized string similar to Diagonal mirror (Swap cells from sides related to diagonal).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_MirrowLeftRight">
+            <summary>
+              Looks up a localized string similar to Left-right mirror (Swap cells from left and right side of the grid).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_MirrowTopBottom">
+            <summary>
+              Looks up a localized string similar to Top-bottom mirror (Swap cells from top and bottom side of the grid).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_RotateClockwise">
+            <summary>
+              Looks up a localized string similar to Rotate clockwise (Rotate grid clockwise).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_RotateCounterclockwise">
+            <summary>
+              Looks up a localized string similar to Rotate counter-clockwise (Rotate grid counter-clockwise).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_RowSwap">
+            <summary>
+              Looks up a localized string similar to Row swap (Randomly swap two rows).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.LibraryPuzzleTransformKinds_TowerSwap">
+            <summary>
+              Looks up a localized string similar to Tower swap (Randomly swap two towers).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -7574,6 +7717,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LibraryDescription">
             <summary>
               Looks up a localized string similar to This page lists options that controls the preferences for library-related pages..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LibraryPuzzleTransformation">
+            <summary>
+              Looks up a localized string similar to Transformations on library puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LibraryPuzzleTransformationDescription">
+            <summary>
+              Looks up a localized string similar to This option controls the case that which way the puzzle fetched from puzzle libraries should be applied in transformation, making some differences with the orginal puzzle..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LiteralNotation">

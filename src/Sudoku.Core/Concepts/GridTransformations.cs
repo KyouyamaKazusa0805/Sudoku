@@ -288,4 +288,33 @@ public static unsafe class GridTransformations
 
 		bool houseIndexChecker((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
 	}
+
+	/// <summary>
+	/// Swap chutes (i.e. mega-rows or mega-columns).
+	/// </summary>
+	/// <param name="this">The grid.</param>
+	/// <param name="chuteIndex1">The first chute to be swapped.</param>
+	/// <param name="chuteIndex2">The second chute to be swapped.</param>
+	/// <returns>The result.</returns>
+	/// <exception cref="ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+	public static ref Grid SwapChute(this ref Grid @this, int chuteIndex1, int chuteIndex2)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(chuteIndex1 is >= 0 and < 6, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(chuteIndex2 is >= 0 and < 6, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(chuteIndex1 is >= 0 and < 3, chuteIndex2 is >= 0 and < 3);
+
+		if (chuteIndex1 == chuteIndex2)
+		{
+			return ref @this;
+		}
+
+		var chuteCells1 = Chutes[chuteIndex1].Cells;
+		var chuteCells2 = Chutes[chuteIndex2].Cells;
+		for (var i = 0; i < 27; i++)
+		{
+			Ref.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
+		}
+
+		return ref @this;
+	}
 }

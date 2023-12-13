@@ -6,8 +6,15 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:LibraryPreferenceItemsPage}">
+	<Page.Resources>
+		<vcvt:LibraryPuzzleTransformKindsToBooleanConverter x:Key="LibraryPuzzleTransformConverter" />
+	</Page.Resources>
+
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 			<wc:SettingsCard
@@ -21,6 +28,67 @@
 					<ComboBoxItem Content="{m:R Key=LibraryCandidatesVisibility_AlwaysShown}" />
 				</ComboBox>
 			</wc:SettingsCard>
+			<wc:SettingsExpander
+				Header="{m:R Key=SettingsPage_LibraryPuzzleTransformation}"
+				Description="{m:R Key=SettingsPage_LibraryPuzzleTransformationDescription}">
+				<wc:SettingsExpander.Items>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_Digit}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='Digit'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_RowSwap}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RowSwap'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_ColumnSwap}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='ColumnSwap'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_BandSwap}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='BandSwap'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_TowerSwap}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='TowerSwap'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrowLeftRight}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrowLeftRight'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrowTopBottom}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrowTopBottom'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrorDiagonal}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrorDiagonal'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrorAntidiagonal}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrorAntidiagonal'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_RotateClockwise}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RotateClockwise'}" />
+					</wc:SettingsCard>
+					<wc:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=LibraryPuzzleTransformKinds_RotateCounterclockwise}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RotateCounterclockwise'}" />
+					</wc:SettingsCard>
+				</wc:SettingsExpander.Items>
+			</wc:SettingsExpander>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

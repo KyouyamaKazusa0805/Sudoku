@@ -1092,6 +1092,39 @@
   <data name="LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription" xml:space="preserve">
     <value>If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?</value>
   </data>
+  <data name="LibraryPuzzleTransformKinds_BandSwap" xml:space="preserve">
+    <value>Band swap (Randomly swap two bands)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_ColumnSwap" xml:space="preserve">
+    <value>Column swap (Randomly swap two columns)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_Digit" xml:space="preserve">
+    <value>Digit swap (Randomly swap two digits)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrorAntidiagonal" xml:space="preserve">
+    <value>Anti-diagonal mirror (Swap cells from sides related to anti-diagonal)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrorDiagonal" xml:space="preserve">
+    <value>Diagonal mirror (Swap cells from sides related to diagonal)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrowLeftRight" xml:space="preserve">
+    <value>Left-right mirror (Swap cells from left and right side of the grid)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_MirrowTopBottom" xml:space="preserve">
+    <value>Top-bottom mirror (Swap cells from top and bottom side of the grid)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RotateClockwise" xml:space="preserve">
+    <value>Rotate clockwise (Rotate grid clockwise)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RotateCounterclockwise" xml:space="preserve">
+    <value>Rotate counter-clockwise (Rotate grid counter-clockwise)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_RowSwap" xml:space="preserve">
+    <value>Row swap (Randomly swap two rows)</value>
+  </data>
+  <data name="LibraryPuzzleTransformKinds_TowerSwap" xml:space="preserve">
+    <value>Tower swap (Randomly swap two towers)</value>
+  </data>
   <data name="MainWindow_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -1552,6 +1585,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_LibraryDescription" xml:space="preserve">
     <value>This page lists options that controls the preferences for library-related pages.</value>
+  </data>
+  <data name="SettingsPage_LibraryPuzzleTransformation" xml:space="preserve">
+    <value>Transformations on library puzzles</value>
+  </data>
+  <data name="SettingsPage_LibraryPuzzleTransformationDescription" xml:space="preserve">
+    <value>This option controls the case that which way the puzzle fetched from puzzle libraries should be applied in transformation, making some differences with the orginal puzzle.</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>Literal</value>
