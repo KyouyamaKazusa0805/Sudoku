@@ -82,7 +82,7 @@ public static class GridDiff
 				case (CellState.Empty, CellState.Empty):
 				{
 					// Eliminations may exist here.
-					var left = temp.GetCandidates(cell);
+					var left = previous.GetCandidates(cell);
 					var right = current.GetCandidates(cell);
 					if ((left & right) != right || assignment is not null)
 					{

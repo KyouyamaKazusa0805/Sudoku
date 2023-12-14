@@ -391,7 +391,7 @@
     <value>{0}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
-    <value>枚举数字 {DigitStr} 的所有排列情况</value>
+    <value>枚举数字 {0} 的所有排列情况</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>如果所有这 {0} 个候选数都为假的话，单元格 {1} 将产生致命形式</value>

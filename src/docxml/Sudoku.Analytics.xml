@@ -20397,7 +20397,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_PatternOverlayStep">
             <summary>
-              Looks up a localized string similar to Enumeration on digit {DigitStr}.
+              Looks up a localized string similar to Enumeration on digit {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_QiuDeadlyPatternExternalType1Step">

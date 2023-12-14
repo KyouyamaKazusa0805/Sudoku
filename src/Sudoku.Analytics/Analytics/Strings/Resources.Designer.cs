@@ -5722,7 +5722,7 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enumeration on digit {DigitStr}.
+        ///   Looks up a localized string similar to Enumeration on digit {0}.
         /// </summary>
         public static string TechniqueFormat_PatternOverlayStep {
             get {

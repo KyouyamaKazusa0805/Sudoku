@@ -385,7 +385,7 @@
     <value>{0}</value>
   </data>
   <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
-    <value>Enumeration on digit {DigitStr}</value>
+    <value>Enumeration on digit {0}</value>
   </data>
   <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>Cells {0} will be a deadly pattern if{1}{2} {3} {4} {5} false</value>
