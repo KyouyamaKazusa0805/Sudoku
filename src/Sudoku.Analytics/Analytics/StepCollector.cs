@@ -106,7 +106,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 			var accumulator = new List<Step>();
 			scoped var context = new AnalysisContext(accumulator, ref playground, false, Options);
-			var (lastLevel, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
+			var (l, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{
 				switch (searcher)
@@ -121,10 +121,8 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 						// If a searcher contains the upper level, it will be skipped.
 						switch (DifficultyLevelMode)
 						{
-							case StepCollectorDifficultyLevelMode.OnlySame
-								when lastLevel != defaultLevel && currentLevel <= lastLevel || lastLevel == defaultLevel:
-							case StepCollectorDifficultyLevelMode.OneLevelHarder
-								when lastLevel != defaultLevel && currentLevel <= lastLevel + 1 || lastLevel == defaultLevel:
+							case StepCollectorDifficultyLevelMode.OnlySame when l != defaultLevel && currentLevel <= l || l == defaultLevel:
+							case StepCollectorDifficultyLevelMode.OneLevelHarder when l != defaultLevel && currentLevel <= l + 1 || l == defaultLevel:
 							case StepCollectorDifficultyLevelMode.All:
 							{
 								break;
@@ -147,7 +145,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 							goto ReportProgress;
 						}
 
-						lastLevel = currentLevel;
+						l = currentLevel;
 						bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
 						break;
 					}
