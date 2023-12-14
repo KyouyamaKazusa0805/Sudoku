@@ -115,7 +115,7 @@ public static class GridDiff
 		// Merge conclusion to be matched.
 		var conclusions = (ConclusionBag)([.. (ReadOnlySpan<Conclusion>)(assignment is { } c ? [c] : []), .. eliminations]);
 		var resultSteps = new List<Step>();
-		foreach (var s in @this.Collect(in temp)!)
+		foreach (var s in @this.Collect(in previous)!)
 		{
 			if (([.. s.Conclusions] & conclusions) == conclusions && (stepFilter?.Invoke(s) ?? true))
 			{
