@@ -260,6 +260,72 @@
             The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </returns>
         </member>
+        <member name="T:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
+            <param name="seedGivens"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SeedGivens" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
+            <param name="seedGivens"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SeedGivens" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._solver">
+            <summary>
+            The internal solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._testGrid">
+            <summary>
+            Indicates the test grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern">
+            <summary>
+            Indicates the predefind pattern used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.SeedGivens">
+            <summary>
+            Indicates the predefined given digits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle using the specified pattern.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified </exception>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.CheckSolutionValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Checks the validity of the solution to the uncovered candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._seedPattern">
+            <summary>
+            The generated field declaration for parameter <c>seedPattern</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._seedGivens">
+            <summary>
+            The generated field declaration for parameter <c>seedGivens</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.RecursionStackEntry">
             <summary>
             One entry in recursion stack.
