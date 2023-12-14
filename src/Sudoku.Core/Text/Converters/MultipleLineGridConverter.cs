@@ -11,7 +11,8 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="SubtleGridLines"><inheritdoc cref="PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
 /// <param name="TreatValueAsGiven"><inheritdoc cref="PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
-public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = true, bool TreatValueAsGiven = false) : GridConverter
+public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = true, bool TreatValueAsGiven = false) :
+	ISpecifiedConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the zero character.
@@ -56,7 +57,7 @@ public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = tr
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter Converter
+	public FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());

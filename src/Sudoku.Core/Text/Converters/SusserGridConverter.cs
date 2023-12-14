@@ -37,7 +37,7 @@ public partial record SusserGridConverter(
 	bool WithModifiables = false,
 	bool ShortenSusser = false,
 	bool NegateEliminationsTripletRule = false
-) : GridConverter
+) : ISpecifiedConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -125,7 +125,7 @@ public partial record SusserGridConverter(
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter Converter
+	public virtual FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var sb = new StringHandler(162);

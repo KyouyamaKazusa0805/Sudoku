@@ -14,7 +14,7 @@ namespace Sudoku.Text.Converters;
 /// <para>Indicates whether the output should be multi-line.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed partial record SukakuGridConverter(bool Multiline = false) : GridConverter
+public sealed partial record SukakuGridConverter(bool Multiline = false) : ISpecifiedConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the dot character.
@@ -58,7 +58,7 @@ public sealed partial record SukakuGridConverter(bool Multiline = false) : GridC
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter Converter
+	public FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			if (Multiline)

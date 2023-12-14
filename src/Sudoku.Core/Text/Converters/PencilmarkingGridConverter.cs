@@ -47,10 +47,10 @@ namespace Sudoku.Text.Converters;
 /// </para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : GridConverter
+public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : ISpecifiedConceptConverter<Grid>
 {
 	/// <inheritdoc/>
-	public override unsafe GridNotationConverter Converter
+	public unsafe FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Step 1: gets the candidates information grouped by columns.

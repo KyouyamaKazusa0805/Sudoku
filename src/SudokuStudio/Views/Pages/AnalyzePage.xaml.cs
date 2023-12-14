@@ -17,7 +17,7 @@ using Sudoku.Analytics.Metadata;
 using Sudoku.Concepts;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using Sudoku.Text.Converters;
+using Sudoku.Text;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Collection;
 using SudokuStudio.ComponentModel;
@@ -294,33 +294,6 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
 	/// <returns>A task that handles the operation.</returns>
-	/// <remarks>
-	/// <para>
-	/// Due to the design of <see langword="static abstract"/> members in <see langword="interface"/>s,
-	/// we cannot use this type as a type argument, because APIs may not contain any implementation from this type,
-	/// so C# compiler cannot determine which method can be called.
-	/// Therefore, here we cannot use generic type to pass arguments
-	/// because here the type <see cref="GridConverter"/> contains <see langword="static abstract"/> members.
-	/// </para>
-	/// <para>
-	/// This topic relates to the content in the following links:
-	/// <list type="bullet">
-	/// <item>
-	/// <see href="https://github.com/dotnet/csharplang/blob/main/proposals/csharp-11.0/static-abstracts-in-interfaces.md#interfaces-as-type-arguments">
-	/// Proposal - "Interfaces as type arguments" part
-	/// </see>
-	/// </item>
-	/// <item>
-	/// <see href="https://github.com/dotnet/csharplang/issues/5955">Discussion page about this</see>
-	/// </item>
-	/// </list>
-	/// </para>
-	/// <para>
-	/// In short, that's why I use <see cref="ArrayList"/> instead of <see cref="List{T}"/> as the type
-	/// of the argument <paramref name="gridFormatters"/>.
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="GridConverter"/>
 	internal async Task<bool> SaveFileInternalAsync(ArrayList? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
@@ -358,7 +331,14 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select ((GridConverter)formatter).Converter(in grid)])
+						string.Join(
+							"\r\n\r\n",
+							[
+								..
+								from ISpecifiedConceptConverter<Grid> formatter in gridFormatters
+								select formatter.Converter(in grid)
+							]
+						)
 					);
 				}
 				break;
@@ -383,11 +363,11 @@ public sealed partial class AnalyzePage : Page
 						],
 						_ => [
 							..
-							from GridConverter formatter in gridFormatters
+							from ISpecifiedConceptConverter<Grid> formatter in gridFormatters
 							select new GridInfo
 							{
 								BaseGrid = grid,
-								GridString = formatter!.Converter(in grid),
+								GridString = formatter.Converter(in grid),
 								RenderableData = viewUnit switch
 								{
 									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },

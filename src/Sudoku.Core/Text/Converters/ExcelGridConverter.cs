@@ -6,7 +6,7 @@ namespace Sudoku.Text.Converters;
 /// <summary>
 /// Represents with a converter that uses <c>Excel</c>-compatible <c>csv</c>-format to convert <see cref="Grid"/> instances.
 /// </summary>
-public sealed record ExcelGridConverter : GridConverter
+public sealed record ExcelGridConverter : ISpecifiedConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the tab character.
@@ -20,7 +20,7 @@ public sealed record ExcelGridConverter : GridConverter
 
 
 	/// <inheritdoc/>
-	public override GridNotationConverter Converter
+	public FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var span = grid.ToString(SusserGridConverter.Default with { Placeholder = Zero }).AsSpan();

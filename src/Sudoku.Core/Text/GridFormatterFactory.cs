@@ -1,3 +1,4 @@
+using Sudoku.Concepts;
 using Sudoku.Text.Converters;
 
 namespace Sudoku.Text;
@@ -8,12 +9,12 @@ namespace Sudoku.Text;
 internal static class GridFormatterFactory
 {
 	/// <summary>
-	/// Get a built-in <see cref="GridConverter"/> instance according to the specified format.
+	/// Get a built-in converter instance according to the specified format.
 	/// </summary>
 	/// <param name="format">The format.</param>
 	/// <returns>The grid formatter.</returns>
 	/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-	public static GridConverter? GetBuiltInConverter(string? format)
+	public static ISpecifiedConceptConverter<Grid>? GetBuiltInConverter(string? format)
 		=> format switch
 		{
 			null or "." => SusserGridConverter.Default,

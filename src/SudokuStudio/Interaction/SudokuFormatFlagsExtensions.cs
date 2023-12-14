@@ -1,3 +1,4 @@
+using Sudoku.Text;
 using Sudoku.Text.Converters;
 
 namespace SudokuStudio.Interaction;
@@ -9,12 +10,12 @@ namespace SudokuStudio.Interaction;
 internal static class SudokuFormatFlagsExtensions
 {
 	/// <summary>
-	/// Try to get target <see cref="GridConverter"/> instance.
+	/// Try to get target <see cref="ISpecifiedConceptConverter{T}"/> instance of type <see cref="Grid"/>.
 	/// </summary>
 	/// <param name="this">The flag instance.</param>
-	/// <returns><see cref="GridConverter"/> instance.</returns>
+	/// <returns>The final <see cref="ISpecifiedConceptConverter{T}"/> instance.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-	public static GridConverter GetConverter(this SudokuFormatFlags @this)
+	public static ISpecifiedConceptConverter<Grid> GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
 			SudokuFormatFlags.InitialFormat => SusserGridConverter.Default,

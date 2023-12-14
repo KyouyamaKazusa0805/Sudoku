@@ -26,7 +26,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Analytics;
-using Sudoku.Concepts.Primitive;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 using Sudoku.Text;
@@ -65,7 +64,6 @@ using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, 
 [ToString]
 [EqualityOperators]
 public unsafe partial struct Grid :
-	IConceptObject<Grid, GridConverter, GridParser>,
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -1084,9 +1082,15 @@ public unsafe partial struct Grid :
 		};
 #endif
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
+	/// using the specified formatting rule defined in argument <paramref name="converter"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the converter instance.</typeparam>
+	/// <param name="converter">A converter instance that defines the conversion rule.</param>
+	/// <returns>The target <see cref="string"/> representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(GridConverter converter)
+	public readonly string ToString<T>(T converter) where T : ISpecifiedConceptConverter<Grid>
 		=> this switch
 		{
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
@@ -1561,7 +1565,14 @@ public unsafe partial struct Grid :
 			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
 		} is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Parses the specified <see cref="string"/> text and convert into a <see cref="GridParser"/> instance,
+	/// using the specified parsing rule.
+	/// </summary>
+	/// <param name="str">The string text to be parsed.</param>
+	/// <param name="parser">The parser instance to be used.</param>
+	/// <returns>A valid <see cref="GridParser"/> instance parsed.</returns>
+	/// <exception cref="FormatException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid ParseExact(string str, GridParser parser)
 		=> parser.Parser(str) is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
@@ -1632,6 +1643,29 @@ public unsafe partial struct Grid :
 		catch (FormatException)
 		{
 			result = Undefined;
+			return false;
+		}
+	}
+
+	/// <summary>
+	/// Try to parse the specified <see cref="string"/> text and convert into a <see cref="Grid"/> instance,
+	/// using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
+	/// No exceptions will be thrown.
+	/// </summary>
+	/// <param name="str">The string text to be parsed.</param>
+	/// <param name="parser">The parser instance to be used.</param>
+	/// <param name="result">A parsed value of type <see cref="Grid"/>.</param>
+	/// <returns>Indicates whether the parsing operation is successful.</returns>
+	public static bool TryParseExact(string str, GridParser parser, out Grid result)
+	{
+		try
+		{
+			result = parser.Parser(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
 			return false;
 		}
 	}

@@ -5,7 +5,7 @@ namespace Sudoku.Text.Converters;
 /// <summary>
 /// Represents a converter type for Open-Sudoku app format.
 /// </summary>
-public sealed record OpenSudokuGridConverter : GridConverter
+public sealed record OpenSudokuGridConverter : ISpecifiedConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the string terminator character.
@@ -29,7 +29,7 @@ public sealed record OpenSudokuGridConverter : GridConverter
 
 
 	/// <inheritdoc/>
-	public override unsafe GridNotationConverter Converter
+	public unsafe FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Calculates the length of the result string.
