@@ -75,7 +75,7 @@ public static class GridDiff
 		{
 			switch (temp.GetState(cell), current.GetState(cell))
 			{
-				case var _ when temp[cell] == current[cell]:
+				case var _ when previous[cell] == current[cell]:
 				{
 					continue;
 				}
@@ -84,7 +84,7 @@ public static class GridDiff
 					// Eliminations may exist here.
 					var left = previous.GetCandidates(cell);
 					var right = current.GetCandidates(cell);
-					if ((left & right) != right || assignment is not null)
+					if ((left & right) != right && assignment is not null)
 					{
 						goto ReturnNull;
 					}
@@ -96,7 +96,7 @@ public static class GridDiff
 				{
 					// An assignment.
 					var setDigit = current.GetDigit(cell);
-					if ((temp.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
+					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
 					{
 						goto ReturnNull;
 					}
@@ -113,7 +113,7 @@ public static class GridDiff
 		}
 
 		// Merge conclusion to be matched.
-		var conclusions = (ConclusionBag)([.. (ReadOnlySpan<Conclusion>)(assignment is { } c ? [c] : []), .. eliminations]);
+		var conclusions = (ConclusionBag)(assignment is { } a ? [a] : [.. eliminations]);
 		var resultSteps = new List<Step>();
 		foreach (var s in @this.Collect(in previous)!)
 		{

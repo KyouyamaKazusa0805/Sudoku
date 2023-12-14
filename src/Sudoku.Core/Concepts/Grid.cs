@@ -1140,8 +1140,10 @@ public unsafe partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ResetCandidates()
 	{
-		var p = ToString("#");
-		this = Parse(p[..p.IndexOf(':')]);
+		if (ToString("#") is var p && p.Contains(':'))
+		{
+			this = Parse(p[..p.IndexOf(':')]);
+		}
 	}
 
 	/// <summary>
