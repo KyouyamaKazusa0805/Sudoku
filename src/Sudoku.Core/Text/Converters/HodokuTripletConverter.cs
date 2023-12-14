@@ -9,8 +9,8 @@ namespace Sudoku.Text.Converters;
 public sealed record HodokuTripletConverter : ISpecifiedConceptConverter<CandidateMap>
 {
 	/// <inheritdoc/>
-	public Func<CandidateMap, string> Converter
-		=> static candidates =>
+	public FuncRefReadOnly<CandidateMap, string> Converter
+		=> static (scoped ref readonly CandidateMap candidates) =>
 		{
 			return candidates switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in candidates) };
 

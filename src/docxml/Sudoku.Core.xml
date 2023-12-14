@@ -8664,21 +8664,6 @@ if (student is (name: var name, age: >= 18))
             <returns>The grid formatter.</returns>
             <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
-        <member name="T:Sudoku.Text.IConceptConverter">
-            <summary>
-            Represents a converter that converts the specified concept object into an equivalent <see cref="T:System.String"/> text.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.IConceptParser">
-            <summary>
-            Represents a parser that parses the specified text into a concept object.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Text.IConceptTextHandler">
-            <summary>
-            Represents a text handler that operates with <see cref="T:System.String"/>, converting values between <see cref="T:System.String"/> and concept objects.
-            </summary>
-        </member>
         <member name="T:Sudoku.Text.ISpecifiedConceptConverter`1">
             <summary>
             Represents a converter that only converts from a specified concept object into an equivalent <see cref="T:System.String"/> text.

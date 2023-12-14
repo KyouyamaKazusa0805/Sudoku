@@ -9,8 +9,8 @@ namespace Sudoku.Text.Converters;
 public sealed record BitStatusCellMapConverter : ISpecifiedConceptConverter<CellMap>
 {
 	/// <inheritdoc/>
-	public Func<CellMap, string> Converter
-		=> static cells =>
+	public FuncRefReadOnly<CellMap, string> Converter
+		=> static (scoped ref readonly CellMap cells) =>
 		{
 			scoped var result = (stackalloc char[81]);
 			result.Fill('0');

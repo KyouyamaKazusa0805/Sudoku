@@ -12,5 +12,5 @@ public abstract record GridConverter : ISpecifiedConceptConverter<Grid>
 	public abstract GridNotationConverter Converter { get; }
 
 	/// <inheritdoc/>
-	Func<Grid, string> ISpecifiedConceptConverter<Grid>.Converter => grid => Converter(in grid);
+	FuncRefReadOnly<Grid, string> ISpecifiedConceptConverter<Grid>.Converter => (scoped ref readonly Grid grid) => Converter(in grid);
 }

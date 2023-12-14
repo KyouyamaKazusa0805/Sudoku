@@ -627,7 +627,7 @@ public partial struct CellMap :
 	public readonly int CompareTo(scoped ref readonly CellMap other)
 	{
 		var b = new BitStatusCellMapConverter().Converter;
-		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(this)}".CompareTo($"{b(other)}"));
+		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
 	}
 
 	/// <inheritdoc cref="object.ToString"/>

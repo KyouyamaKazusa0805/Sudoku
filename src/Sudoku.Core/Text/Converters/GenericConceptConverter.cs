@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Text.Converters;
+namespace Sudoku.Text.Converters;
 
 /// <summary>
 /// Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="string"/> values.
@@ -11,4 +11,4 @@
 /// <para>Indicates the digits separator.</para>
 /// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
 /// </param>
-public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) : IConceptConverter;
+public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null);
