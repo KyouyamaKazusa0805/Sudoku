@@ -22973,7 +22973,7 @@ result ^= expression;
             Provides the method to operate with <see cref="T:Sudoku.Concepts.Grid"/> instances, checking for the diff of two <see cref="T:Sudoku.Concepts.Grid"/> instances.
             </summary>
         </member>
-        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Diff.StepFilter,System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
+        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Func{Sudoku.Analytics.Step,System.Boolean},System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
             <summary>
             Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
             </summary>
@@ -23010,13 +23010,6 @@ result ^= expression;
             </item>
             </list>
             </returns>
-        </member>
-        <member name="T:Sudoku.Diff.StepFilter">
-            <summary>
-            Represents a filter that checks whether a <see cref="T:Sudoku.Analytics.Step"/> is valid.
-            </summary>
-            <param name="step">A step to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

@@ -51,7 +51,7 @@ public static class GridDiff
 		this StepCollector @this,
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
-		StepFilter? stepFilter,
+		Func<Step, bool>? stepFilter,
 		out ReadOnlySpan<Step> steps
 	)
 	{
