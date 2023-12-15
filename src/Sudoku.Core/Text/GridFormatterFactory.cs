@@ -14,7 +14,7 @@ internal static class GridFormatterFactory
 	/// <param name="format">The format.</param>
 	/// <returns>The grid formatter.</returns>
 	/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-	public static ISpecifiedConceptConverter<Grid>? GetBuiltInConverter(string? format)
+	public static IConceptConverter<Grid>? GetBuiltInConverter(string? format)
 		=> format switch
 		{
 			null or "." => SusserGridConverter.Default,

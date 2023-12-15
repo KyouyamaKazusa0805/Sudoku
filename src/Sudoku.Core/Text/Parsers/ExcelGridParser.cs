@@ -6,7 +6,7 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents an Excel grid parser.
 /// </summary>
-public sealed partial record ExcelGridParser : ISpecifiedConceptParser<Grid>
+public sealed partial record ExcelGridParser : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser

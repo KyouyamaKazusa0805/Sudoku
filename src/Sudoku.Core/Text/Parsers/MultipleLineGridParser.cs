@@ -6,7 +6,7 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents a table parser.
 /// </summary>
-public sealed partial record MultipleLineGridParser : ISpecifiedConceptParser<Grid>
+public sealed partial record MultipleLineGridParser : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser

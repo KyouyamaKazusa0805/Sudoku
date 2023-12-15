@@ -10,12 +10,12 @@ namespace SudokuStudio.Interaction;
 internal static class SudokuFormatFlagsExtensions
 {
 	/// <summary>
-	/// Try to get target <see cref="ISpecifiedConceptConverter{T}"/> instance of type <see cref="Grid"/>.
+	/// Try to get target <see cref="IConceptConverter{T}"/> instance of type <see cref="Grid"/>.
 	/// </summary>
 	/// <param name="this">The flag instance.</param>
-	/// <returns>The final <see cref="ISpecifiedConceptConverter{T}"/> instance.</returns>
+	/// <returns>The final <see cref="IConceptConverter{T}"/> instance.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-	public static ISpecifiedConceptConverter<Grid> GetConverter(this SudokuFormatFlags @this)
+	public static IConceptConverter<Grid> GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
 			SudokuFormatFlags.InitialFormat => SusserGridConverter.Default,

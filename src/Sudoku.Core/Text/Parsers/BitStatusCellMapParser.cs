@@ -6,7 +6,7 @@ namespace Sudoku.Text.Parsers;
 /// Represents a parser that uses bit operation rule to parse <see cref="CellMap"/> instances.
 /// </summary>
 /// <seealso cref="CellMap"/>
-public sealed class BitStatusCellMapParser : ISpecifiedConceptParser<CellMap>
+public sealed class BitStatusCellMapParser : IConceptParser<CellMap>
 {
 	/// <inheritdoc/>
 	public Func<string, CellMap> Parser

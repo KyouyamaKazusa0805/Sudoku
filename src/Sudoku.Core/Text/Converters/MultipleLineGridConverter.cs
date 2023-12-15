@@ -12,7 +12,7 @@ namespace Sudoku.Text.Converters;
 /// <param name="SubtleGridLines"><inheritdoc cref="PencilmarkingGridConverter.SubtleGridLines" path="/summary"/></param>
 /// <param name="TreatValueAsGiven"><inheritdoc cref="PencilmarkingGridConverter.TreatValueAsGiven" path="/summary"/></param>
 public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = true, bool TreatValueAsGiven = false) :
-	ISpecifiedConceptConverter<Grid>
+	IConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the zero character.

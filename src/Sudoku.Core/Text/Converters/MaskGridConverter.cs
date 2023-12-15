@@ -18,7 +18,7 @@ namespace Sudoku.Text.Converters;
 /// when we call this method using <see cref="DebuggerDisplayAttribute"/>, only <c>grid[0]</c>
 /// can be output correctly, and other values will be incorrect: they're always 0.
 /// </remarks>
-public sealed record MaskGridConverter(string Separator = ", ") : ISpecifiedConceptConverter<Grid>
+public sealed record MaskGridConverter(string Separator = ", ") : IConceptConverter<Grid>
 {
 	/// <inheritdoc/>
 	public unsafe FuncRefReadOnly<Grid, string> Converter

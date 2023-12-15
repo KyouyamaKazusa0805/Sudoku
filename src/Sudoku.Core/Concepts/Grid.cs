@@ -177,7 +177,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static readonly ISpecifiedConceptParser<Grid>[] Parsers = [
+	private static readonly IConceptParser<Grid>[] Parsers = [
 		new MultipleLineGridParser(),
 		new SimpleMultipleLineGridParser(),
 		new PencilmarkingGridParser(),
@@ -1090,7 +1090,7 @@ public unsafe partial struct Grid :
 	/// <param name="converter">A converter instance that defines the conversion rule.</param>
 	/// <returns>The target <see cref="string"/> representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString<T>(T converter) where T : ISpecifiedConceptConverter<Grid>
+	public readonly string ToString<T>(T converter) where T : IConceptConverter<Grid>
 		=> this switch
 		{
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
@@ -1575,7 +1575,7 @@ public unsafe partial struct Grid :
 	/// <returns>A valid grid parsed.</returns>
 	/// <exception cref="FormatException">Throws when the target grid parser instance cannot parse it.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid ParseExact<T>(string str, T parser) where T : ISpecifiedConceptParser<Grid>
+	public static Grid ParseExact<T>(string str, T parser) where T : IConceptParser<Grid>
 		=> parser.Parser(str) is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <inheritdoc/>
@@ -1658,7 +1658,7 @@ public unsafe partial struct Grid :
 	/// <param name="parser">The parser instance to be used.</param>
 	/// <param name="result">A parsed value of type <see cref="Grid"/>.</param>
 	/// <returns>Indicates whether the parsing operation is successful.</returns>
-	public static bool TryParseExact<T>(string str, T parser, out Grid result) where T : ISpecifiedConceptParser<Grid>
+	public static bool TryParseExact<T>(string str, T parser, out Grid result) where T : IConceptParser<Grid>
 	{
 		try
 		{

@@ -335,7 +335,7 @@ public sealed partial class AnalyzePage : Page
 							"\r\n\r\n",
 							[
 								..
-								from ISpecifiedConceptConverter<Grid> formatter in gridFormatters
+								from IConceptConverter<Grid> formatter in gridFormatters
 								select formatter.Converter(in grid)
 							]
 						)
@@ -363,7 +363,7 @@ public sealed partial class AnalyzePage : Page
 						],
 						_ => [
 							..
-							from ISpecifiedConceptConverter<Grid> formatter in gridFormatters
+							from IConceptConverter<Grid> formatter in gridFormatters
 							select new GridInfo
 							{
 								BaseGrid = grid,

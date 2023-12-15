@@ -6,7 +6,7 @@ namespace Sudoku.Text.Converters;
 /// <summary>
 /// Represents with a converter that uses <c>Excel</c>-compatible <c>csv</c>-format to convert <see cref="Grid"/> instances.
 /// </summary>
-public sealed record ExcelGridConverter : ISpecifiedConceptConverter<Grid>
+public sealed record ExcelGridConverter : IConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the tab character.

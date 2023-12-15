@@ -14,7 +14,7 @@ namespace Sudoku.Text.Converters;
 /// <para>Indicates whether the output should be multi-line.</para>
 /// <para>The default value is <see langword="false"/>.</para>
 /// </param>
-public sealed partial record SukakuGridConverter(bool Multiline = false) : ISpecifiedConceptConverter<Grid>
+public sealed partial record SukakuGridConverter(bool Multiline = false) : IConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the dot character.

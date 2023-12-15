@@ -37,7 +37,7 @@ public partial record SusserGridConverter(
 	bool WithModifiables = false,
 	bool ShortenSusser = false,
 	bool NegateEliminationsTripletRule = false
-) : ISpecifiedConceptConverter<Grid>
+) : IConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.

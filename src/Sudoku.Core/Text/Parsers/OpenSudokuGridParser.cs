@@ -7,7 +7,7 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents an Open-Sudoku format parser.
 /// </summary>
-public sealed partial record OpenSudokuGridParser : ISpecifiedConceptParser<Grid>
+public sealed partial record OpenSudokuGridParser : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser

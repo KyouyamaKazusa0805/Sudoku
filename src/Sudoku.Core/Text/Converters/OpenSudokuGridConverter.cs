@@ -5,7 +5,7 @@ namespace Sudoku.Text.Converters;
 /// <summary>
 /// Represents a converter type for Open-Sudoku app format.
 /// </summary>
-public sealed record OpenSudokuGridConverter : ISpecifiedConceptConverter<Grid>
+public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the string terminator character.

@@ -6,7 +6,7 @@ namespace Sudoku.Text.Converters;
 /// <summary>
 /// Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
 /// </summary>
-public sealed record HodokuTripletConverter : ISpecifiedConceptConverter<CandidateMap>
+public sealed record HodokuTripletConverter : IConceptConverter<CandidateMap>
 {
 	/// <inheritdoc/>
 	public FuncRefReadOnly<CandidateMap, string> Converter

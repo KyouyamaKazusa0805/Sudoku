@@ -8,7 +8,7 @@ namespace Sudoku.Text.Parsers;
 /// converting into a valid <see cref="ICoordinateObject{TSelf}"/> instance.
 /// </summary>
 /// <seealso cref="ICoordinateObject{TSelf}"/>
-public sealed record HodokuTripletParser : ISpecifiedConceptParser<CandidateMap>
+public sealed record HodokuTripletParser : IConceptParser<CandidateMap>
 {
 	/// <inheritdoc/>
 	public Func<string, CandidateMap> Parser

@@ -7,7 +7,7 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents for a pencilmarking grid parser.
 /// </summary>
-public sealed partial record PencilmarkingGridParser : ISpecifiedConceptParser<Grid>
+public sealed partial record PencilmarkingGridParser : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser

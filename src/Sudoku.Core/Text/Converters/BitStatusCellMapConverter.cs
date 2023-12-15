@@ -6,7 +6,7 @@ namespace Sudoku.Text.Converters;
 /// Represents a converter that uses bit operation to format <see cref="CellMap"/> instances.
 /// </summary>
 /// <seealso cref="CellMap"/>
-public sealed record BitStatusCellMapConverter : ISpecifiedConceptConverter<CellMap>
+public sealed record BitStatusCellMapConverter : IConceptConverter<CellMap>
 {
 	/// <inheritdoc/>
 	public FuncRefReadOnly<CellMap, string> Converter

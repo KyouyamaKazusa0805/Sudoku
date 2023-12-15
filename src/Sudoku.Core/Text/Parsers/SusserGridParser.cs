@@ -18,7 +18,7 @@ namespace Sudoku.Text.Parsers;
 /// Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
 /// The default value is <see langword="false"/>.
 /// </param>
-public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, bool NegateEliminationsTripletRule = false) : ISpecifiedConceptParser<Grid>
+public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, bool NegateEliminationsTripletRule = false) : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser
