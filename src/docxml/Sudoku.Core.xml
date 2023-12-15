@@ -293,7 +293,7 @@
             </summary>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the specified </exception>
+            <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.OrderPatternCellsViaConnectionDegrees">
             <summary>
