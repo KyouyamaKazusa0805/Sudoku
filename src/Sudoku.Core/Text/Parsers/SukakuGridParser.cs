@@ -10,10 +10,10 @@ namespace Sudoku.Text.Parsers;
 /// Indicates whether the parser use single-line logic to parse the string text.
 /// The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
 /// </param>
-public sealed partial record SukakuGridParser(bool SingleLine = false) : GridParser
+public sealed partial record SukakuGridParser(bool SingleLine = false) : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> str =>
 		{
 			if (SingleLine)

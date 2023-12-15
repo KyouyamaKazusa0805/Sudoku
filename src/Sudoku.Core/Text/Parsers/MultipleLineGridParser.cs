@@ -6,10 +6,10 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents a table parser.
 /// </summary>
-public sealed partial record MultipleLineGridParser : GridParser
+public sealed partial record MultipleLineGridParser : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> static str =>
 		{
 			var matches = from match in GridSusserDigitPattern().Matches(str) select match.Value;

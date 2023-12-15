@@ -95,7 +95,7 @@ public ref partial struct PatternBasedPuzzleGenerator(
 				// Set the cells with the digits randomly selected.
 				foreach (var cell in
 					from cell in _seedPattern.ToArray()
-					orderby PopCount((uint)pGridCopied->GetCandidates(cell))
+					orderby PopCount((uint)pGridCopied->GetCandidates(cell)) descending
 					select cell)
 				{
 					var candidates = _testGrid.GetCandidates(cell);

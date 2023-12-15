@@ -8,10 +8,10 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents a simple multiple-line grid parser.
 /// </summary>
-public sealed partial record SimpleMultipleLineGridParser : GridParser
+public sealed partial record SimpleMultipleLineGridParser : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> [MethodImpl(MethodImplOptions.AggressiveInlining)] static (string str) =>
 		{
 			if (GridSimpleMultilinePattern().Match(str) is not { Success: true, Value: var match })

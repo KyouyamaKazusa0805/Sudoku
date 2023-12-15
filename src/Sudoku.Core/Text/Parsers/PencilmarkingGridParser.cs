@@ -7,10 +7,10 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents for a pencilmarking grid parser.
 /// </summary>
-public sealed partial record PencilmarkingGridParser : GridParser
+public sealed partial record PencilmarkingGridParser : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> static str =>
 		{
 			// Older regular expression pattern:

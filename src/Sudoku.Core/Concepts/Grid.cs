@@ -177,7 +177,7 @@ public unsafe partial struct Grid :
 	/// </summary>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static readonly GridParser[] Parsers = [
+	private static readonly ISpecifiedConceptParser<Grid>[] Parsers = [
 		new MultipleLineGridParser(),
 		new SimpleMultipleLineGridParser(),
 		new PencilmarkingGridParser(),
@@ -1548,7 +1548,7 @@ public unsafe partial struct Grid :
 	/// <param name="str">The string.</param>
 	/// <param name="gridParsingOption">The grid parsing type.</param>
 	/// <returns>The result instance had converted.</returns>
-	/// <exception cref="FormatException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
+	/// <exception cref="FormatException">Throws when the string text cannot be parsed.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid ParseExact(string str, GridParsingOption gridParsingOption)
 		=> gridParsingOption switch
@@ -1566,15 +1566,16 @@ public unsafe partial struct Grid :
 		} is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <summary>
-	/// Parses the specified <see cref="string"/> text and convert into a <see cref="GridParser"/> instance,
+	/// Parses the specified <see cref="string"/> text and convert into a grid parser instance,
 	/// using the specified parsing rule.
 	/// </summary>
+	/// <typeparam name="T">The type of the parser.</typeparam>
 	/// <param name="str">The string text to be parsed.</param>
 	/// <param name="parser">The parser instance to be used.</param>
-	/// <returns>A valid <see cref="GridParser"/> instance parsed.</returns>
-	/// <exception cref="FormatException">Throws when the target <see cref="GridParser"/> instance cannot parse it.</exception>
+	/// <returns>A valid grid parsed.</returns>
+	/// <exception cref="FormatException">Throws when the target grid parser instance cannot parse it.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid ParseExact(string str, GridParser parser)
+	public static Grid ParseExact<T>(string str, T parser) where T : ISpecifiedConceptParser<Grid>
 		=> parser.Parser(str) is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <inheritdoc/>
@@ -1652,11 +1653,12 @@ public unsafe partial struct Grid :
 	/// using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
 	/// No exceptions will be thrown.
 	/// </summary>
+	/// <typeparam name="T">The type of the parser.</typeparam>
 	/// <param name="str">The string text to be parsed.</param>
 	/// <param name="parser">The parser instance to be used.</param>
 	/// <param name="result">A parsed value of type <see cref="Grid"/>.</param>
 	/// <returns>Indicates whether the parsing operation is successful.</returns>
-	public static bool TryParseExact(string str, GridParser parser, out Grid result)
+	public static bool TryParseExact<T>(string str, T parser, out Grid result) where T : ISpecifiedConceptParser<Grid>
 	{
 		try
 		{
@@ -1669,15 +1671,6 @@ public unsafe partial struct Grid :
 			return false;
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IParsable<Grid>.TryParse(string? s, IFormatProvider? provider, out Grid result)
-		=> TryParse(s ?? $"<{nameof(Undefined)}>", out result);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.

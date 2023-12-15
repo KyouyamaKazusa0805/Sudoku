@@ -7,10 +7,10 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents an Open-Sudoku format parser.
 /// </summary>
-public sealed partial record OpenSudokuGridParser : GridParser
+public sealed partial record OpenSudokuGridParser : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> static str =>
 		{
 			if (GridOpenSudokuPattern().Match(str) is not { Success: true, Value: var match })

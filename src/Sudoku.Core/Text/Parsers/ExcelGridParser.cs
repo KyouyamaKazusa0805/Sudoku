@@ -6,10 +6,10 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents an Excel grid parser.
 /// </summary>
-public sealed partial record ExcelGridParser : GridParser
+public sealed partial record ExcelGridParser : ISpecifiedConceptParser<Grid>
 {
 	/// <inheritdoc/>
-	public override Func<string, Grid> Parser
+	public Func<string, Grid> Parser
 		=> static str =>
 		{
 			if (!str.Contains('\t'))
