@@ -17,6 +17,11 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(ChuteViewNode), 3)]
 [JsonDerivedType(typeof(BabaGroupViewNode), 4)]
 [JsonDerivedType(typeof(LinkViewNode), 5)]
+[JsonDerivedType(typeof(CircleViewNode), 10)]
+[JsonDerivedType(typeof(CrossViewNode), 11)]
+[JsonDerivedType(typeof(TriangleViewNode), 12)]
+[JsonDerivedType(typeof(DiamondViewNode), 13)]
+[JsonDerivedType(typeof(StarViewNode), 14)]
 [Equals]
 [EqualityOperators]
 public abstract partial class ViewNode(ColorIdentifier identifier) : IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
