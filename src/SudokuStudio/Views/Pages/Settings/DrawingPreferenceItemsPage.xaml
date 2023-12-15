@@ -46,7 +46,7 @@
 						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor}"
 						ColorChanged="DeltaCandidateColorSelector_ColorChanged" />
 				</w:SettingsCard>
-				
+
 				<!--
 				SettingsPage_Colors
 				-->
@@ -199,7 +199,7 @@
 						</w:SettingsCard>
 					</w:SettingsExpander.Items>
 				</w:SettingsExpander>
-				
+
 				<!--
 				SettingsPage_Fonts
 				-->
@@ -280,12 +280,14 @@
 						<Image Source="{m:Image UriSource='/Assets/images/group.gif',AutoPlay=True}" />
 					</StackPanel>
 				</w:SettingsExpander>
-				
+
 				<!--
 				SettingsPage_DashStyles
 				-->
 				<TextBlock Text="{m:R Key=SettingsPage_DashStyles}" Style="{StaticResource SettingGroupTitleTextStyle}" />
-				<TextBlock Text="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}" Style="{StaticResource SettingGroupDescriptionTextStyle}" />
+				<TextBlock
+					Text="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}" TextWrapping="WrapWholeWords"
+					Style="{StaticResource SettingGroupDescriptionTextStyle}" />
 				<w:SettingsCard Header="{m:R Key=SettingsPage_StrongLinkDashStyle}">
 					<c:DashArrayTextBox
 						x:Name="StrongLinkDashStyleBox" Width="150"
@@ -304,7 +306,7 @@
 						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle}"
 						DashArrayChanged="CycleLikeCellLinkDashStyleBox_DashArrayChanged" />
 				</w:SettingsCard>
-				
+
 				<!--
 				SettingsPage_Others
 				-->
