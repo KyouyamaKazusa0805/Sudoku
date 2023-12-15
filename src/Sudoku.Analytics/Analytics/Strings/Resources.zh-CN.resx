@@ -295,7 +295,7 @@
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
   <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 构成结构，并带排除法：如果单元格 {3} 填上了数字 {0}，{4} 区域仅能让 {5} 填入该数字，便出现致命形式</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2} 构成区块，并带排除法：如果单元格 {3} 填上了数字 {0}，{4} 区域仅能让 {5} 填入该数字，便出现致命形式</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}</value>
@@ -1017,27 +1017,27 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyWing" xml:space="preserve">
-    <value>结构 XY-Wing</value>
+    <value>区块 XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedWWing" xml:space="preserve">
-    <value>结构 W-Wing</value>
+    <value>区块 W-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedMWing" xml:space="preserve">
-    <value>结构 M-Wing</value>
+    <value>区块 M-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedLocalWing" xml:space="preserve">
-    <value>结构 Local Wing</value>
+    <value>区块 Local Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedSplitWing" xml:space="preserve">
-    <value>结构 Split Wing</value>
+    <value>区块 Split Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedHybridWing" xml:space="preserve">
-    <value>结构 Hybrid Wing</value>
+    <value>区块 Hybrid Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="UniqueRectangleType1" xml:space="preserve">
@@ -1425,39 +1425,39 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXChain" xml:space="preserve">
-    <value>同数结构链</value>
+    <value>同数区块链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedFishyCycle" xml:space="preserve">
-    <value>结构鱼环</value>
+    <value>区块鱼环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyChain" xml:space="preserve">
-    <value>双值格结构链</value>
+    <value>双值格区块链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyCycle" xml:space="preserve">
-    <value>双值格结构环</value>
+    <value>双值格区块环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyXChain" xml:space="preserve">
-    <value>首尾异数结构链</value>
+    <value>首尾异数区块链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedPurpleCow" xml:space="preserve">
-    <value>结构 Purple Cow</value>
+    <value>区块 Purple Cow</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedDiscontinuousNiceLoop" xml:space="preserve">
-    <value>结构不连续环</value>
+    <value>区块不连续环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedContinuousNiceLoop" xml:space="preserve">
-    <value>结构连续环</value>
+    <value>区块连续环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedAlternatingInferenceChain" xml:space="preserve">
-    <value>结构普通链</value>
+    <value>区块普通链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="NishioForcingChains" xml:space="preserve">
@@ -2270,19 +2270,19 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedSkyscraper" xml:space="preserve">
-    <value>结构摩天楼</value>
+    <value>区块摩天楼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedTurbotFish" xml:space="preserve">
-    <value>结构多宝鱼</value>
+    <value>区块多宝鱼</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedTwoStringKite" xml:space="preserve">
-    <value>结构双线风筝</value>
+    <value>区块双线风筝</value>
     <comment>Technique Name</comment>
   </data>
   <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
-    <value>结构双强链</value>
+    <value>区块双强链</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="QiuDeadlyPatternExternalType1" xml:space="preserve">
@@ -2633,11 +2633,11 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="GroupedXyzLoop" xml:space="preserve">
-    <value>结构 XYZ 半环</value>
+    <value>区块 XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXyzNiceLoop" xml:space="preserve">
-    <value>结构 XYZ 全环</value>
+    <value>区块 XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
   <data name="CrosshatchingBlock" xml:space="preserve">
