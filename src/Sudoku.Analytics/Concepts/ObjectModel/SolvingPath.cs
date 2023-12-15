@@ -114,15 +114,36 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 				return null;
 			}
 
-			foreach (var step in Steps)
+			if (Steps.All(static (scoped ref readonly Step step) => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
 			{
-				if (step is not SingleStep)
+				// No diamond step exist in all steps are hidden singles in block.
+				return null;
+			}
+
+			if (Steps.AllAre<Step, SingleStep>())
+			{
+				// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
+				foreach (var step in Steps)
 				{
-					return step;
+					if (step is not HiddenSingleStep { House: < 9 })
+					{
+						return step;
+					}
+				}
+			}
+			else
+			{
+				// Otherwise, an deletion step should be chosen.
+				foreach (var step in Steps)
+				{
+					if (step is not SingleStep)
+					{
+						return step;
+					}
 				}
 			}
 
-			throw new InvalidOperationException("The puzzle keeps a wrong state.");
+			return null;
 		}
 	}
 

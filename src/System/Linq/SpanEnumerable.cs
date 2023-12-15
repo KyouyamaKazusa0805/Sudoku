@@ -130,6 +130,66 @@ public static class SpanEnumerable
 	}
 
 	/// <summary>
+	/// Checks whether at least one element are satisfied the specified condition.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list of elements to be checked.</param>
+	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool Any<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
+	{
+		foreach (ref readonly var element in @this)
+		{
+			if (match(in element))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Checks whether all elements are satisfied the specified condition.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list of elements to be checked.</param>
+	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool All<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
+	{
+		foreach (ref readonly var element in @this)
+		{
+			if (!match(in element))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// Determines whether all elements are of type <typeparamref name="TDerived"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
+	/// <param name="this">A list of elements to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool AllAre<T, TDerived>(this scoped ReadOnlySpan<T> @this) where TDerived : T?
+	{
+		foreach (ref readonly var element in @this)
+		{
+			if (element is not TDerived)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
 	/// Retrieves all the elements that match the conditions defined by the specified predicate.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements of the span.</typeparam>

@@ -2794,6 +2794,33 @@ fixed (short* ptr = instance)
             <param name="condition">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+            <summary>
+            Checks whether at least one element are satisfied the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list of elements to be checked.</param>
+            <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+            <summary>
+            Checks whether all elements are satisfied the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list of elements to be checked.</param>
+            <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether all elements are of type <typeparamref name="TDerived"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TDerived">The derived type to be checked.</typeparam>
+            <param name="this">A list of elements to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.FindAll``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Retrieves all the elements that match the conditions defined by the specified predicate.
