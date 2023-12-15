@@ -248,7 +248,7 @@ public unsafe partial struct Grid :
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < CellsCount; i++)
 		{
-			var value = Unsafe.AddByteOffset(ref Ref.AsMutableRef(in firstElement), (nuint)(i * sizeof(Digit)));
+			var value = Unsafe.Add(ref Ref.AsMutableRef(in firstElement), i);
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).

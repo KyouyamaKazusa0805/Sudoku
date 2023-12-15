@@ -49,7 +49,7 @@ partial struct StringHandler
 			ref var z = ref chars._chars.GetPinnableReference();
 			Ref.ThrowIfNullRef(in z);
 
-			_ptr = ref Unsafe.SubtractByteOffset(ref z, 1);
+			_ptr = ref Unsafe.Add(ref z, -1);
 		}
 
 

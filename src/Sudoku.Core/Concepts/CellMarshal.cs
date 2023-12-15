@@ -28,8 +28,8 @@ public static class CellMarshal
 		Ref.ThrowIfNullRef(in reference);
 
 		reference = BlockTable[@this];
-		Unsafe.AddByteOffset(ref reference, sizeof(House)) = RowTable[@this];
-		Unsafe.AddByteOffset(ref reference, 2 * sizeof(House)) = ColumnTable[@this];
+		Unsafe.Add(ref reference, 1) = RowTable[@this];
+		Unsafe.Add(ref reference, 2) = ColumnTable[@this];
 	}
 
 	/// <summary>
