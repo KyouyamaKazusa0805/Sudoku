@@ -2679,6 +2679,66 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.CellMarshal">
+            <summary>
+            Represents a list of extension methods that operates with cell instances, as <see cref="T:System.Int32"/> representation.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.CopyHouseInfo(System.Int32,System.Int32@)">
+            <summary>
+            Gets the row, column and block value and copies to the specified array that represents by a pointer
+            of 3 elements, where the first element stores the block index, second element stores the row index
+            and the third element stores the column index.
+            </summary>
+            <param name="this">The cell. The available values must be between 0 and 80.</param>
+            <param name="reference">
+            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
+            only if the sequence can store at least 3 values.
+            </param>
+            <exception cref="T:System.ArgumentNullRefException">
+            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)">
+            <summary>
+            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
+            for the specified cell and the house type.
+            </summary>
+            <param name="this">The cell. The available values must be between 0 and 80.</param>
+            <param name="houseType">The house type.</param>
+            <returns>The house index. The return value must be between 0 and 26.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="houseType"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Byte)">
+            <summary>
+            Get the house indices for the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>A <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToBandIndex(System.Int32)">
+            <summary>
+            Try to get the band index (mega-row) of the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>The chute index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToTowerIndex(System.Int32)">
+            <summary>
+            Try to get the tower index (mega-column) of the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>The chute index.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
             Represents a cell state.
@@ -2739,26 +2799,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.ChuteExtensions">
-            <summary>
-            Provide with extension methdos on <see cref="T:Sudoku.Concepts.Chute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Chute"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ChuteExtensions.ToBandIndex(System.Int32)">
-            <summary>
-            Try to get the band index (mega-row) of the specified cell.
-            </summary>
-            <param name="this">The cell.</param>
-            <returns>The chute index.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ChuteExtensions.ToTowerIndex(System.Int32)">
-            <summary>
-            Try to get the tower index (mega-column) of the specified cell.
-            </summary>
-            <param name="this">The cell.</param>
-            <returns>The chute index.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
@@ -4277,73 +4317,13 @@ if (student is (name: var name, age: >= 18))
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
         </member>
-        <member name="T:Sudoku.Concepts.HouseType">
+        <member name="T:Sudoku.Concepts.HouseMarshal">
             <summary>
-            Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.
+            Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.
             </summary>
+            <seealso cref="T:System.Int32"/>
         </member>
-        <member name="F:Sudoku.Concepts.HouseType.Block">
-            <summary>
-            Indicates the house type is a block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseType.Row">
-            <summary>
-            Indicates the house type is a row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseType.Column">
-            <summary>
-            Indicates the house type is a column.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.HouseType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.CopyHouseInfo(System.Int32,System.Int32@)">
-            <summary>
-            Gets the row, column and block value and copies to the specified array that represents by a pointer
-            of 3 elements, where the first element stores the block index, second element stores the row index
-            and the third element stores the column index.
-            </summary>
-            <param name="cell">The cell. The available values must be between 0 and 80.</param>
-            <param name="reference">
-            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
-            only if the sequence can store at least 3 values.
-            </param>
-            <exception cref="T:System.ArgumentNullRefException">
-            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)">
-            <summary>
-            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
-            for the specified cell and the house type.
-            </summary>
-            <param name="cell">The cell. The available values must be between 0 and 80.</param>
-            <param name="houseType">The house type.</param>
-            <returns>The house index. The return value must be between 0 and 26.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="houseType"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Byte)">
-            <summary>
-            Get the house indices for the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseIndices(System.Byte)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.ToHouseType(System.Int32)">
+        <member name="M:Sudoku.Concepts.HouseMarshal.ToHouseType(System.Int32)">
             <summary>
             Get the house type for the specified house index.
             </summary>
@@ -4369,6 +4349,32 @@ if (student is (name: var name, age: >= 18))
             </item>
             </list>
             </returns>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseType">
+            <summary>
+            Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Block">
+            <summary>
+            Indicates the house type is a block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Row">
+            <summary>
+            Indicates the house type is a row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseType.Column">
+            <summary>
+            Indicates the house type is a column.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.HouseType"/>
         </member>
         <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetLabel(Sudoku.Concepts.HouseType)">
             <summary>

@@ -3814,10 +3814,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.SudokuFormatFlagsExtensions.GetConverter(SudokuStudio.Interaction.SudokuFormatFlags)">
             <summary>
-            Try to get target <see cref="T:Sudoku.Text.ISpecifiedConceptConverter`1"/> instance of type <see cref="T:Sudoku.Concepts.Grid"/>.
+            Try to get target <see cref="T:Sudoku.Text.IConceptConverter`1"/> instance of type <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <param name="this">The flag instance.</param>
-            <returns>The final <see cref="T:Sudoku.Text.ISpecifiedConceptConverter`1"/> instance.</returns>
+            <returns>The final <see cref="T:Sudoku.Text.IConceptConverter`1"/> instance.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
