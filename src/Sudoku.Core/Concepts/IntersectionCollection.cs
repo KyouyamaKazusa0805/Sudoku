@@ -39,7 +39,7 @@ public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, 
 	/// </summary>
 	/// <returns>An array of <see cref="Pair"/> instances.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Pair[] ToArray() => (Pair[])_values.Clone();
+	public Pair[] ToArray() => _values[..];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

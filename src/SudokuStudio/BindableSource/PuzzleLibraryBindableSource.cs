@@ -34,7 +34,7 @@ public sealed partial class PuzzleLibraryBindableSource([Data] bool isAddingOper
 		Description = other.Description;
 		Author = other.Author;
 		FileId = other.FileId!;
-		Tags = (string[])Tags.Clone();
+		Tags = Tags[..];
 		Puzzles = puzzles;
 		PuzzlesCount = puzzles.Length;
 	}

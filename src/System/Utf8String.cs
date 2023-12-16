@@ -74,7 +74,7 @@ public readonly unsafe partial struct Utf8String :
 	/// </summary>
 	/// <param name="underlyingArray">The underlying array.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Utf8String(Utf8Char[] underlyingArray) => _value = (Utf8Char[])underlyingArray.Clone();
+	public Utf8String(Utf8Char[] underlyingArray) => _value = underlyingArray[..];
 
 	/// <summary>
 	/// Initializes a <see cref="Utf8String"/> instance via the specified array of <see cref="byte"/>s
@@ -407,7 +407,7 @@ public readonly unsafe partial struct Utf8String :
 	/// </summary>
 	/// <param name="s">The string.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Utf8Char[](Utf8String s) => (Utf8Char[])s._value.Clone();
+	public static explicit operator Utf8Char[](Utf8String s) => s._value[..];
 
 	/// <summary>
 	/// Explicitly cast from <see cref="string"/> to <see cref="Utf8String"/> instance.
