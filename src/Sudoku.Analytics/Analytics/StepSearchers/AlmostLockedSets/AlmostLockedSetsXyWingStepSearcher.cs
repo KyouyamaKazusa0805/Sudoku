@@ -150,68 +150,52 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						}
 
 						// Record highlight candidates and cells.
+						var cellOffsets = new List<CellViewNode>();
 						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (var cell in aMap)
 						{
-							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (Mask)(mask & ~(finalX | finalZ));
-							var (xDigitsMask, zDigitsMask) = ((Mask)(mask & finalX), (Mask)(mask & finalZ));
-							foreach (var digit in alsDigitsMask)
+							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+
+							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
-							}
-							foreach (var digit in xDigitsMask)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-							}
-							foreach (var digit in zDigitsMask)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+								var colorIdentifier = (finalZ >> digit & 1) != 0
+									? WellKnownColorIdentifier.Auxiliary2
+									: ((finalX | finalY) >> digit & 1) != 0
+										? WellKnownColorIdentifier.Auxiliary1
+										: WellKnownColorIdentifier.AlmostLockedSet1;
+								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in bMap)
 						{
-							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (Mask)(mask & ~(finalY | finalZ));
-							var (yDigitsMask, zDigitsMask) = ((Mask)(mask & finalY), (Mask)(mask & finalZ));
-							foreach (var digit in alsDigitsMask)
+							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+
+							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
-							}
-							foreach (var digit in yDigitsMask)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-							}
-							foreach (var digit in zDigitsMask)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
+								var colorIdentifier = (finalZ >> digit & 1) != 0
+									? WellKnownColorIdentifier.Auxiliary2
+									: ((finalX | finalY) >> digit & 1) != 0
+										? WellKnownColorIdentifier.Auxiliary1
+										: WellKnownColorIdentifier.AlmostLockedSet2;
+								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in cMap)
 						{
-							var mask = grid.GetCandidates(cell);
-							var alsDigitsMask = (Mask)(mask & ~(finalX | finalY));
-							var xyDigitsMask = (Mask)(mask & (finalX | finalY));
-							foreach (var digit in alsDigitsMask)
+							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet3, cell));
+
+							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
-							}
-							foreach (var digit in xyDigitsMask)
-							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+								var colorIdentifier = ((finalX | finalY) >> digit & 1) != 0
+									? WellKnownColorIdentifier.Auxiliary1
+									: WellKnownColorIdentifier.AlmostLockedSet3;
+								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
 							[.. conclusions],
-							[
-								[
-									.. candidateOffsets,
-									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, aHouse),
-									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet2, bHouse),
-									new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet3, cHouse)
-								]
-							],
+							[[.. cellOffsets, .. candidateOffsets]],
 							context.PredefinedOptions,
 							a,
 							b,

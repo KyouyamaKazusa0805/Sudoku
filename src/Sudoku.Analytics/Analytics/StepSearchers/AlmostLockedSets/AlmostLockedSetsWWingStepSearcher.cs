@@ -129,12 +129,12 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 
 							// Gather highlight cells and candidates.
-							var candidateOffsets = (List<CandidateViewNode>)[
-								new(WellKnownColorIdentifier.Normal, cpMap[0] * 9 + x),
-								new(WellKnownColorIdentifier.Normal, cpMap[1] * 9 + x)
-							];
+							var cellOffsets = new List<CellViewNode>();
+							var candidateOffsets = new List<CandidateViewNode>();
 							foreach (var cell in map1)
 							{
+								cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+
 								foreach (var digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
@@ -152,6 +152,8 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 							foreach (var cell in map2)
 							{
+								cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+
 								foreach (var digit in grid.GetCandidates(cell))
 								{
 									candidateOffsets.Add(
@@ -172,10 +174,10 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 								[.. conclusions],
 								[
 									[
-										.. candidateOffsets,
-										new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, house1),
-										new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet2, house2),
-										new HouseViewNode(WellKnownColorIdentifier.Normal, TrailingZeroCount(conjugatePair.Houses))
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, cpMap[0] * 9 + x),
+										new CandidateViewNode(WellKnownColorIdentifier.Normal, cpMap[1] * 9 + x),
+										.. cellOffsets,
+										.. candidateOffsets
 									]
 								],
 								context.PredefinedOptions,

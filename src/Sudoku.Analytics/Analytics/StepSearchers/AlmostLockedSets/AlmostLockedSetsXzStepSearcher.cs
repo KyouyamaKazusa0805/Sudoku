@@ -58,14 +58,12 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];
-			var house1 = als1.House;
 			var mask1 = als1.DigitsMask;
 			var map1 = als1.Cells;
 			var possibleElimMap1 = als1.PossibleEliminationMap;
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
-				var house2 = als2.House;
 				var mask2 = als2.DigitsMask;
 				var map2 = als2.Cells;
 				var possibleElimMap2 = als2.PossibleEliminationMap;
@@ -201,6 +199,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 
 				// Now collect highlight elements.
 				var isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
+				var cellOffsets = new List<CellViewNode>();
 				var candidateOffsets = new List<CandidateViewNode>();
 				if (isEsp)
 				{
@@ -216,6 +215,8 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				{
 					foreach (var cell in map1)
 					{
+						cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+
 						var mask = grid.GetCandidates(cell);
 						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
 						var targetDigitsMask = (Mask)(mask & finalZ);
@@ -235,6 +236,8 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					}
 					foreach (var cell in map2)
 					{
+						cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+
 						var mask = grid.GetCandidates(cell);
 						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
 						var targetDigitsMask = (Mask)(mask & finalZ);
@@ -256,13 +259,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 
 				var step = new AlmostLockedSetsXzStep(
 					[.. conclusions],
-					[
-						[
-							.. candidateOffsets,
-							.. isEsp ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, house1)],
-							.. isEsp ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet2, house2)]
-						]
-					],
+					[[.. cellOffsets, .. candidateOffsets]],
 					context.PredefinedOptions,
 					als1,
 					als2,

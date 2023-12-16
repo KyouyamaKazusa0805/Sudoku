@@ -4913,6 +4913,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				continue;
 			}
 
+			var guardianCoveredHouse = houseCombination[(HousesMap[houseCombination[0]] & guardianCells) == guardianCells ? 0 : 1];
 			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
 			{
 				// Guardian cells must contain both two digits; otherwise, skip the current case.
@@ -4963,44 +4964,46 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					// ALS-XZ formed.
 					var candidateOffsets = new List<CandidateViewNode>();
 					var cellOffsets = new List<CellViewNode>();
-					foreach (var urCell in urCells)
+					foreach (var cell in urCells)
 					{
-						switch (grid.GetState(urCell))
+						switch (grid.GetState(cell))
 						{
 							case CellState.Empty:
 							{
 								foreach (var digit in comparer)
 								{
-									if (CandidatesMap[digit].Contains(urCell))
+									if (CandidatesMap[digit].Contains(cell))
 									{
-										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell * 9 + digit));
+										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 									}
 								}
 								break;
 							}
 							case CellState.Modifiable:
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, urCell));
+								cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell));
 								break;
 							}
 						}
 					}
-					foreach (var xDigitCell in xDigitGuardianCells)
+					foreach (var cell in xDigitGuardianCells)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, xDigitCell * 9 + xDigit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + xDigit));
 					}
-					foreach (var zDigitCell in zDigitGuardianCells)
+					foreach (var cell in zDigitGuardianCells)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, zDigitCell * 9 + zDigit));
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + zDigit));
 					}
-					foreach (var alsCell in alsMap)
+					foreach (var cell in alsMap)
 					{
-						foreach (var digit in grid.GetCandidates(alsCell))
+						cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+
+						foreach (var digit in grid.GetCandidates(cell))
 						{
 							candidateOffsets.Add(
 								new(
 									digit == d1 || digit == d2 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.AlmostLockedSet1,
-									alsCell * 9 + digit
+									cell * 9 + digit
 								)
 							);
 						}
@@ -5015,7 +5018,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					accumulator.Add(
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
-							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.AlmostLockedSet1, alsHouse)]],
+							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, guardianCoveredHouse)]],
 							context.PredefinedOptions,
 							d1,
 							d2,
