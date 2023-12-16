@@ -76,7 +76,7 @@ using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, 
 [Equals]
 [ToString]
 [EqualityOperators]
-public unsafe partial struct Grid :
+public partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
@@ -143,12 +143,12 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	public static readonly void* ValueChanged = (ValueChangedHandler)(&OnValueChanged);
+	public static readonly unsafe void* ValueChanged = (ValueChangedHandler)(&OnValueChanged);
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	public static readonly void* RefreshingCandidates = (RefreshingCandidatesHandler)(&OnRefreshingCandidates);
+	public static readonly unsafe void* RefreshingCandidates = (RefreshingCandidatesHandler)(&OnRefreshingCandidates);
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
@@ -497,28 +497,28 @@ public unsafe partial struct Grid :
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
-	public readonly CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);
+	public readonly unsafe CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);
 
 	/// <summary>
 	/// Gets a cell list that only contains the modifiable cells.
 	/// </summary>
-	public readonly CellMap ModifiableCells => GetMap(&GridCellPredicates.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => GetMap(&GridCellPredicates.ModifiableCells);
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid is empty.
 	/// </summary>
-	public readonly CellMap EmptyCells => GetMap(&GridCellPredicates.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => GetMap(&GridCellPredicates.EmptyCells);
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
 	/// </summary>
-	public readonly CellMap BivalueCells => GetMap(&GridCellPredicates.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => GetMap(&GridCellPredicates.BivalueCells);
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&GridCellPredicates.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&GridCellPredicates.CandidatesMap);
 
 	/// <summary>
 	/// <para>
@@ -531,7 +531,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly ReadOnlySpan<CellMap> DigitsMap => GetMaps(&GridCellPredicates.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GetMaps(&GridCellPredicates.DigitsMap);
 
 	/// <summary>
 	/// <para>
@@ -544,7 +544,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly ReadOnlySpan<CellMap> ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
 
 	/// <summary>
 	/// Indicates all possible candidates in the current grid.
@@ -1259,7 +1259,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="state">The state.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetState(Cell cell, CellState state)
+	public unsafe void SetState(Cell cell, CellState state)
 	{
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
@@ -1274,7 +1274,7 @@ public unsafe partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetMask(Cell cell, Mask mask)
+	public unsafe void SetMask(Cell cell, Mask mask)
 	{
 		scoped ref var newMask = ref this[cell];
 		var originalMask = newMask;
@@ -1299,7 +1299,7 @@ public unsafe partial struct Grid :
 	/// </para>
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetDigit(Cell cell, Digit digit)
+	public unsafe void SetDigit(Cell cell, Digit digit)
 	{
 		switch (digit)
 		{
@@ -1339,7 +1339,7 @@ public unsafe partial struct Grid :
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void SetExistence(Cell cell, Digit digit, bool isOn)
+	public unsafe void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
 		if (cell is >= 0 and < CellsCount && digit is >= 0 and < CellCandidatesCount)
 		{
@@ -1373,7 +1373,7 @@ public unsafe partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly CellMap GetMap(CellPredicateFunc predicate)
+	private readonly unsafe CellMap GetMap(CellPredicateFunc predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < CellsCount; cell++)
@@ -1395,7 +1395,7 @@ public unsafe partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly CellMap[] GetMaps(CellMapPredicateFunc predicate)
+	private readonly unsafe CellMap[] GetMaps(CellMapPredicateFunc predicate)
 	{
 		var result = new CellMap[CellCandidatesCount];
 		for (var digit = 0; digit < CellCandidatesCount; digit++)
@@ -1725,7 +1725,7 @@ public unsafe partial struct Grid :
 	/// The .NET Foundation licenses this file to you under the MIT license.
 	/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
 	/// -->
-	private static bool InternalEqualsByRef(scoped ref readonly byte first, scoped ref readonly byte second, nuint length)
+	private static unsafe bool InternalEqualsByRef(scoped ref readonly byte first, scoped ref readonly byte second, nuint length)
 	{
 		bool result;
 
