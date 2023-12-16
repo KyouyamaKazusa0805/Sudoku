@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace Sudoku.Analytics.Categorization;
 
-partial struct TechniqueSet
+partial class TechniqueSet
 {
 	/// <summary>
 	/// The enumerator that can iterate with <see cref="Technique"/> fields for a <see cref="TechniqueSet"/> instance.

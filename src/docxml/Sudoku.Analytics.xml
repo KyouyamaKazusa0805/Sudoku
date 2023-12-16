@@ -3594,9 +3594,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#Add(Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#Clear">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
