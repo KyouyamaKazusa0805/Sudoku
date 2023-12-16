@@ -25,7 +25,7 @@ public sealed partial class MainWindow : Window
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
 	/// <seealso cref="NavigationViewFrame"/>
-	private List<(Predicate<NavigationViewItemBase> PageChecker, Type PageType)> _navigatingData;
+	private List<(Func<NavigationViewItemBase, bool> PageChecker, Type PageType)> _navigatingData;
 
 
 	/// <summary>

@@ -36,11 +36,11 @@ public sealed partial class View : HashSet<ViewNode>
 	/// Searches for an element that matches the conditions defined by the specified predicate,
 	/// and returns the first occurrence within the entire <see cref="View"/>.
 	/// </summary>
-	/// <param name="match">The <see cref="Predicate{T}"/> delegate that defines the conditions of the element to search for.</param>
+	/// <param name="match">The <see cref="Func{T, TResult}"/> delegate that defines the conditions of the element to search for.</param>
 	/// <returns>
 	/// The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
 	/// </returns>
-	public ViewNode? Find(Predicate<ViewNode> match)
+	public ViewNode? Find(Func<ViewNode, bool> match)
 	{
 		foreach (var element in this)
 		{

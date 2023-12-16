@@ -13436,7 +13436,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
         </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.RemoveWhen``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Predicate{``0})">
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.RemoveWhen``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
             <summary>
             Removes the specified element if the specified condition returns <see langword="true"/>.
             </summary>

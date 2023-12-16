@@ -6875,12 +6875,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="nodes">A list of <see cref="T:Sudoku.Rendering.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Rendering.View.Find(System.Predicate{Sudoku.Rendering.ViewNode})">
+        <member name="M:Sudoku.Rendering.View.Find(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
             <summary>
             Searches for an element that matches the conditions defined by the specified predicate,
             and returns the first occurrence within the entire <see cref="T:Sudoku.Rendering.View"/>.
             </summary>
-            <param name="match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the element to search for.</param>
+            <param name="match">The <see cref="T:System.Func`2"/> delegate that defines the conditions of the element to search for.</param>
             <returns>
             The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
             </returns>

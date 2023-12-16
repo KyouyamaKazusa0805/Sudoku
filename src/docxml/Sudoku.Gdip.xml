@@ -136,7 +136,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodesWhen(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterFactory">
@@ -285,7 +285,7 @@
             <param name="nodes">Nodes.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Predicate{Sudoku.Rendering.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.RemoveNodesWhen(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
             <summary>
             Remove nodes if the target node satisfies the specified condition.
             </summary>

@@ -271,7 +271,7 @@ file sealed class SudokuPainter(int defaultSize, int defaultOffset) : ISudokuPai
 	}
 
 	/// <inheritdoc/>
-	public ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate)
+	public ISudokuPainter RemoveNodesWhen(Func<ViewNode, bool> predicate)
 	{
 		if (GridImageGenerator.View is not { } view)
 		{

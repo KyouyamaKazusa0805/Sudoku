@@ -12,7 +12,7 @@ public static class ObservableCollectionExtensions
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The collection.</param>
 	/// <param name="predicate">The condition that checks whether the element should be removed.</param>
-	public static void RemoveWhen<T>(this ObservableCollection<T> @this, Predicate<T> predicate)
+	public static void RemoveWhen<T>(this ObservableCollection<T> @this, Func<T, bool> predicate)
 	{
 		for (var i = 0; i < @this.Count; i++)
 		{

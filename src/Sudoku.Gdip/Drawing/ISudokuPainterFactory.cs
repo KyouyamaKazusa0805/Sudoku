@@ -170,5 +170,5 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="predicate">The predicate.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter RemoveNodesWhen(Predicate<ViewNode> predicate);
+	public abstract ISudokuPainter RemoveNodesWhen(Func<ViewNode, bool> predicate);
 }

@@ -105,7 +105,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// The navigating data.
 	/// </summary>
-	private List<(Predicate<NavigationViewItemBase> PageChecker, Type PageType)> _navigatingData;
+	private List<(Func<NavigationViewItemBase, bool> PageChecker, Type PageType)> _navigatingData;
 
 
 	/// <summary>

@@ -2687,7 +2687,7 @@ fixed (short* ptr = instance)
             </param>
             <returns><see langword="true"/> to indicate the sequences are equal; otherwise, <see langword="false"/>.</returns>
         </member>
-        <member name="M:System.Linq.ImmutableArrayEnumerable.Count``1(System.Collections.Immutable.ImmutableArray{``0},System.Predicate{``0})">
+        <member name="M:System.Linq.ImmutableArrayEnumerable.Count``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.ImmutableArrayEnumerable.Sum``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,``1})">
