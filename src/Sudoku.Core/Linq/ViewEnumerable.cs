@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Sudoku.Rendering;
 
 namespace Sudoku.Linq;
@@ -9,6 +10,24 @@ namespace Sudoku.Linq;
 /// <seealso cref="View"/>
 public static class ViewEnumerable
 {
+	/// <summary>
+	/// Projects with a new transform of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of target element.</typeparam>
+	/// <param name="this">The view.</param>
+	/// <param name="selector">The method to transform each element.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="T"/> elements.</returns>
+	public static ReadOnlySpan<T> Select<T>(this View @this, Func<ViewNode, T> selector)
+	{
+		var result = new List<T>(@this.Count);
+		foreach (var element in @this)
+		{
+			result.Add(selector(element));
+		}
+
+		return CollectionsMarshal.AsSpan(result);
+	}
+
 	/// <summary>
 	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
 	/// </summary>

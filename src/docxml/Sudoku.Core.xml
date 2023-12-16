@@ -5882,6 +5882,15 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Rendering.View"/>
         </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.Select``1(Sudoku.Rendering.View,System.Func{Sudoku.Rendering.ViewNode,``0})">
+            <summary>
+            Projects with a new transform of elements.
+            </summary>
+            <typeparam name="T">The type of target element.</typeparam>
+            <param name="this">The view.</param>
+            <param name="selector">The method to transform each element.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> elements.</returns>
+        </member>
         <member name="M:Sudoku.Linq.ViewEnumerable.OfType``1(Sudoku.Rendering.View)">
             <summary>
             Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
