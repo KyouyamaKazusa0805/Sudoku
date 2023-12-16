@@ -1,0 +1,142 @@
+using System.Diagnostics;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.SourceGeneration;
+using Sudoku.Algorithm.Solving;
+using Sudoku.Concepts;
+using static System.Numerics.BitOperations;
+using static Sudoku.SolutionWideReadOnlyFields;
+
+namespace Sudoku.Algorithm.Generating;
+
+/// <summary>
+/// Represents a grid-based puzzle generator.
+/// </summary>
+/// <param name="seedGrid"><inheritdoc cref="SeedGrid" path="/summary"/></param>
+[StructLayout(LayoutKind.Auto)]
+[LargeStructure]
+[Equals]
+[GetHashCode]
+[ToString]
+[method: DebuggerStepThrough]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, RefKind = "ref readonly")] ref readonly Grid seedGrid)
+{
+	/// <summary>
+	/// The internal solver.
+	/// </summary>
+	private readonly BitwiseSolver _solver = new();
+
+	/// <summary>
+	/// Indicates the playground.
+	/// </summary>
+	private Grid _playground;
+
+	/// <summary>
+	/// Indicates the result grid.
+	/// </summary>
+	private Grid _resultGrid;
+
+
+	/// <summary>
+	/// Indicates the seed grid to be used.
+	/// </summary>
+	public readonly ref readonly Grid SeedGrid => ref _seedGrid;
+
+
+	/// <summary>
+	/// Try to generate a puzzle using the specified seed pattern.
+	/// </summary>
+	/// <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>A valid <see cref="Grid"/> to be used.</returns>
+	public Grid Generate(bool shuffleDigits = false, CancellationToken cancellationToken = default)
+	{
+		try
+		{
+			_playground = _seedGrid.UnfixedGrid;
+			getGrid(_solver, in _seedGrid, ref _playground, [.. _seedGrid.GivenCells], ref _resultGrid);
+			return _resultGrid;
+		}
+		catch (OperationCanceledException)
+		{
+			return Grid.Undefined;
+		}
+		catch
+		{
+			throw;
+		}
+
+
+		void getGrid(
+			BitwiseSolver solver,
+			scoped ref readonly Grid seed,
+			scoped ref Grid playground,
+			Cell[] pattern,
+			scoped ref Grid resultGrid
+		)
+		{
+			while (true)
+			{
+				Random.Shared.Shuffle(pattern);
+
+				var shuffleDigitsCount = Random.Shared.Next(3, 10);
+				var selectedCells = pattern[..shuffleDigitsCount];
+				foreach (var cell in selectedCells)
+				{
+					var duplicatedDigitsMask = (Mask)0;
+					foreach (var c in PeersMap[cell])
+					{
+						if (playground.GetState(c) == CellState.Modifiable)
+						{
+							duplicatedDigitsMask |= (Mask)(1 << playground.GetDigit(c));
+						}
+					}
+
+					var availableDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~duplicatedDigitsMask);
+					if (availableDigitsMask == 0)
+					{
+						// No available digits can be used.
+						continue;
+					}
+
+					// Reset the digit.
+					playground.SetDigit(cell, -1);
+					playground.SetDigit(cell, availableDigitsMask.SetAt(Random.Shared.Next(0, PopCount((uint)availableDigitsMask))));
+				}
+
+				// Check validity.
+				if (solver.CheckValidity(playground.ToString("!0")) && playground.FixedGrid is var @fixed && seed != @fixed)
+				{
+					if (shuffleDigits)
+					{
+						// Try to shuffle digits for 10 times.
+						for (var times = 0; times < 10; times++)
+						{
+							var d1 = Random.Shared.Next(0, 9);
+							int d2;
+							do
+							{
+								d2 = Random.Shared.Next(0, 9);
+							} while (d1 == d2);
+
+							@fixed.SwapTwoDigits(d1, d2);
+						}
+					}
+
+					resultGrid = @fixed;
+					return;
+				}
+
+				// Revert.
+				foreach (var cell in selectedCells)
+				{
+					playground.SetMask(cell, (Mask)(Grid.ModifiableMask | (Mask)(1 << seed.GetDigit(cell))));
+				}
+
+				cancellationToken.ThrowIfCancellationRequested();
+			}
+		}
+	}
+}

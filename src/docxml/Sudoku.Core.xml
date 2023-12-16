@@ -60,6 +60,60 @@
         <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator">
+            <summary>
+            Represents a grid-based puzzle generator.
+            </summary>
+            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a grid-based puzzle generator.
+            </summary>
+            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._solver">
+            <summary>
+            The internal solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._playground">
+            <summary>
+            Indicates the playground.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._resultGrid">
+            <summary>
+            Indicates the result grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid">
+            <summary>
+            Indicates the seed grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle using the specified seed pattern.
+            </summary>
+            <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> to be used.</returns>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._seedGrid">
+            <summary>
+            The generated field declaration for parameter <c>seedGrid</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.

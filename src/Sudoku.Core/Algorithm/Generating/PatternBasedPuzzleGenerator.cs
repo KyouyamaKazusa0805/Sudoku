@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -12,9 +13,11 @@ namespace Sudoku.Algorithm.Generating;
 /// </summary>
 /// <param name="seedPattern"><inheritdoc cref="Pattern" path="/summary"/></param>
 [StructLayout(LayoutKind.Auto)]
+[LargeStructure]
 [Equals]
 [GetHashCode]
 [ToString]
+[method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
 {
@@ -57,25 +60,20 @@ public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Fiel
 		{
 			var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
 			_playground = Grid.Empty;
-			updatePattern(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
+			getGrid(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
+			return _resultGrid;
 		}
 		catch (OperationCanceledException)
 		{
 			return Grid.Undefined;
-		}
-		catch when (!_resultGrid.IsUndefined)
-		{
-			return _resultGrid;
 		}
 		catch
 		{
 			throw;
 		}
 
-		return Grid.Undefined;
 
-
-		void updatePattern(
+		void getGrid(
 			BitwiseSolver solver,
 			Cell[] patternCellsSorted,
 			scoped ref Grid playground,
@@ -111,7 +109,7 @@ public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Fiel
 
 				cancellationToken.ThrowIfCancellationRequested();
 
-				updatePattern(solver, patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
+				getGrid(solver, patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
 			}
 
 			playground.SetDigit(cell, -1);
