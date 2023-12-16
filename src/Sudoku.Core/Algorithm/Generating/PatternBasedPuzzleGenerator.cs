@@ -1,3 +1,4 @@
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
@@ -18,6 +19,12 @@ namespace Sudoku.Algorithm.Generating;
 public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
 {
 	/// <summary>
+	/// The internal index array.
+	/// </summary>
+	private static readonly int[] IndexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+
+	/// <summary>
 	/// The internal solver.
 	/// </summary>
 	private readonly BitwiseSolver _solver = new();
@@ -25,7 +32,12 @@ public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Fiel
 	/// <summary>
 	/// Indicates the test grid.
 	/// </summary>
-	private Grid _testGrid;
+	private Grid _playground;
+
+	/// <summary>
+	/// Indicates the result grid.
+	/// </summary>
+	private Grid _resultGrid;
 
 
 	/// <summary>
@@ -39,22 +51,81 @@ public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Fiel
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A valid <see cref="Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-	/// <exception cref="NotImplementedException">Always throws.</exception>
-	public readonly Grid Generate(CancellationToken cancellationToken = default)
+	public Grid Generate(CancellationToken cancellationToken = default)
 	{
-		var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
+		try
+		{
+			var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
+			_playground = Grid.Empty;
+			updatePattern(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
+		}
+		catch (OperationCanceledException)
+		{
+			return Grid.Undefined;
+		}
+		catch when (!_resultGrid.IsUndefined)
+		{
+			return _resultGrid;
+		}
+		catch
+		{
+			throw;
+		}
 
-		throw new NotImplementedException("I'll implement later.");
+		return Grid.Undefined;
+
+
+		void updatePattern(
+			BitwiseSolver solver,
+			Cell[] patternCellsSorted,
+			scoped ref Grid playground,
+			scoped ref Grid resultGrid,
+			int currentIndex
+		)
+		{
+			if (currentIndex == patternCellsSorted.Length)
+			{
+				if (solver.CheckValidity(playground.ToString("!0")))
+				{
+					resultGrid = playground;
+					throw new("Finished.");
+				}
+
+				return;
+			}
+
+			if (playground.GetCandidates(patternCellsSorted[currentIndex]) == 0)
+			{
+				// Invalid state.
+				return;
+			}
+
+			var cell = patternCellsSorted[currentIndex];
+			scoped var digits = playground.GetCandidates(cell).GetAllSets();
+			var indexArray = IndexArray[..digits.Length];
+			Random.Shared.Shuffle(indexArray);
+			foreach (var randomizedIndex in indexArray)
+			{
+				playground.SetDigit(cell, -1);
+				playground.SetDigit(cell, digits[randomizedIndex]);
+
+				cancellationToken.ThrowIfCancellationRequested();
+
+				updatePattern(solver, patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
+			}
+
+			playground.SetDigit(cell, -1);
+		}
 	}
 
 	/// <summary>
 	/// Order the pattern cells via connection complexity.
 	/// </summary>
 	/// <returns>The cells ordered.</returns>
-	private readonly int[] OrderPatternCellsViaConnectionDegrees()
+	private readonly Cell[] OrderPatternCellsViaConnectionDegrees()
 	{
 		var isOrdered = CellMap.Empty;
-		var result = new int[_seedPattern.Count];
+		var result = new Cell[_seedPattern.Count];
 		for (var index = 0; index < _seedPattern.Count; index++)
 		{
 			var maxRating = 0;

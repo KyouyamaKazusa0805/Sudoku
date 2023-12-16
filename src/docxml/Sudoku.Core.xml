@@ -272,14 +272,24 @@
             </summary>
             <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
         </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.IndexArray">
+            <summary>
+            The internal index array.
+            </summary>
+        </member>
         <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._solver">
             <summary>
             The internal solver.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._testGrid">
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._playground">
             <summary>
             Indicates the test grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._resultGrid">
+            <summary>
+            Indicates the result grid.
             </summary>
         </member>
         <member name="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern">
@@ -293,7 +303,6 @@
             </summary>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-            <exception cref="T:System.NotImplementedException">Always throws.</exception>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.OrderPatternCellsViaConnectionDegrees">
             <summary>
