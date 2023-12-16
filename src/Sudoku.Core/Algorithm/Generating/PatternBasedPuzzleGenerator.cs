@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -54,18 +55,19 @@ public ref partial struct PatternBasedPuzzleGenerator([Data(DataMemberKinds.Fiel
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A valid <see cref="Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-	public Grid Generate(CancellationToken cancellationToken = default)
+	[UnscopedRef]
+	public ref readonly Grid Generate(CancellationToken cancellationToken = default)
 	{
 		try
 		{
 			var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
 			_playground = Grid.Empty;
 			getGrid(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
-			return _resultGrid;
+			return ref _resultGrid;
 		}
 		catch (OperationCanceledException)
 		{
-			return Grid.Undefined;
+			return ref Grid.Undefined;
 		}
 		catch
 		{
