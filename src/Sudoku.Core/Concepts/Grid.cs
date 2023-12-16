@@ -39,6 +39,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Analytics;
+using Sudoku.Linq;
 using Sudoku.Rendering;
 using Sudoku.Runtime.MaskServices;
 using Sudoku.Text;
@@ -88,7 +89,8 @@ public partial struct Grid :
 #endif
 	IReadOnlyCollection<Digit>,
 	ISimpleFormattable,
-	ISimpleParsable<Grid>
+	ISimpleParsable<Grid>,
+	ISubtractionOperators<Grid, Grid, ConclusionBag?>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -2010,6 +2012,111 @@ public partial struct Grid :
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Try to fetch all possible different candidates for two grids, returning a <see cref="ConclusionBag"/> to describe
+	/// what different conclusions they hold.
+	/// </summary>
+	/// <param name="previous">The first sudoku grid to be checked. The value is at the previous state.</param>
+	/// <param name="current">The second sudoku grid to be checked. The value is at the current state.</param>
+	/// <returns>
+	/// A <see cref="ConclusionBag"/> containing all possible different candidates they hold.
+	/// <see langword="null"/> will be returned when two <see cref="Grid"/> instances are invalid.
+	/// </returns>
+	public static ConclusionBag? operator -(scoped in Grid previous, scoped in Grid current)
+	{
+		if (!previous.IsValid || !current.IsValid)
+		{
+			goto ReturnNull;
+		}
+
+		// If the previous grid contains any missing candidates, we should reset candidate status and use it to check for steps.
+		var stateCheckerGrid = previous is { ContainsAnyMissingCandidates: true, ResetCandidatesGrid: var p } ? p : previous;
+
+		// Check the validity of the current grid. A valid grid can only produce changes:
+		//
+		//     1) An extra assignment
+		//     2) Some disappeared candidate
+		//
+		// Otherwise, the grid is an invalid grid pattern.
+		var (assignment, eliminations) = (default(Conclusion?), (List<Conclusion>)[]);
+		for (var cell = 0; cell < 81; cell++)
+		{
+			switch (stateCheckerGrid.GetState(cell), current.GetState(cell))
+			{
+				case var _ when previous[cell] == current[cell]:
+				{
+					continue;
+				}
+				case (CellState.Empty, CellState.Empty):
+				{
+					// Eliminations may exist here.
+					var left = previous.GetCandidates(cell);
+					var right = current.GetCandidates(cell);
+					if ((left & right) != right && assignment is not null)
+					{
+						goto ReturnNull;
+					}
+
+					eliminations.AddRange(from digit in (Mask)(left & ~right) select new Conclusion(Elimination, cell, digit));
+					break;
+				}
+				case (CellState.Empty, CellState.Modifiable):
+				{
+					// An assignment.
+					var setDigit = current.GetDigit(cell);
+					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0 || eliminations.Count != 0)
+					{
+						goto ReturnNull;
+					}
+
+					assignment = new(Assignment, cell, setDigit);
+					break;
+				}
+				default:
+				{
+					// Invalid.
+					goto ReturnNull;
+				}
+			}
+		}
+
+		// Merge conclusion to be matched.
+		return assignment is { } a ? [a] : [.. eliminations];
+
+	ReturnNull:
+		return null;
+	}
+
+	/// <summary>
+	/// Try to fetch all possible different candidates for two grids, returning a <see cref="ConclusionBag"/> to describe
+	/// what different conclusions they hold.
+	/// </summary>
+	/// <param name="previous">The first sudoku grid to be checked. The value is at the previous state.</param>
+	/// <param name="current">The second sudoku grid to be checked. The value is at the current state.</param>
+	/// <returns>A <see cref="ConclusionBag"/> containing all possible different candidates they hold.</returns>
+	/// <exception cref="OverflowException">Throws when the state is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ConclusionBag operator checked -(scoped in Grid previous, scoped in Grid current)
+		=> previous - current is { } result
+			? result
+			: throw new OverflowException(
+				"Invalid state.",
+				new InvalidOperationException(
+					"Cannot operate because argument 'current' is not one step after from the argument 'previous'."
+				)
+			);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static ConclusionBag? ISubtractionOperators<Grid, Grid, ConclusionBag?>.operator -(Grid left, Grid right)
+		=> left - right;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	static ConclusionBag ISubtractionOperators<Grid, Grid, ConclusionBag?>.operator checked -(Grid left, Grid right)
+		=> checked(left - right);
 
 
 	/// <summary>

@@ -22970,43 +22970,17 @@ result ^= expression;
             Provides the method to operate with <see cref="T:Sudoku.Concepts.Grid"/> instances, checking for the diff of two <see cref="T:Sudoku.Concepts.Grid"/> instances.
             </summary>
         </member>
-        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Analytics.StepCollector,Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Func{Sudoku.Analytics.Step,System.Boolean},System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
+        <member name="M:Sudoku.Diff.GridDiff.TryGetDiffTechnique(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.StepCollector,System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
             <summary>
             Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
             </summary>
             <param name="this">The step collector.</param>
             <param name="previous">The first sudoku grid puzzle to be checked. The value is at the previous state.</param>
             <param name="current">The second sudoku grid puzzle to be checked. The value is at the current state.</param>
-            <param name="stepFilter">
-            A filter method that checks whether a <see cref="T:Sudoku.Analytics.Step"/> instance is valid. The value can be <see langword="null"/>
-            if you don't want to make any extra checking.
-            </param>
             <param name="steps">
             The found steps describing the changing making the <paramref name="previous"/> to be changed into <paramref name="current"/>.
             </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the operation is successful. Values are:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>The diff change is found.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The diff change is not found, but two grids are valid to be checked.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>
-            Arguments <paramref name="previous"/> and <paramref name="current"/> are invalid that makes the operation failed to be checked.
-            </description>
-            </item>
-            </list>
-            </returns>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

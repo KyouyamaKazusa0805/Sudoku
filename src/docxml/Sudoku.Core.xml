@@ -3879,6 +3879,34 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The grid itself.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.op_Subtraction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to fetch all possible different candidates for two grids, returning a <see cref="T:Sudoku.Analytics.ConclusionBag"/> to describe
+            what different conclusions they hold.
+            </summary>
+            <param name="previous">The first sudoku grid to be checked. The value is at the previous state.</param>
+            <param name="current">The second sudoku grid to be checked. The value is at the current state.</param>
+            <returns>
+            A <see cref="T:Sudoku.Analytics.ConclusionBag"/> containing all possible different candidates they hold.
+            <see langword="null"/> will be returned when two <see cref="T:Sudoku.Concepts.Grid"/> instances are invalid.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_CheckedSubtraction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to fetch all possible different candidates for two grids, returning a <see cref="T:Sudoku.Analytics.ConclusionBag"/> to describe
+            what different conclusions they hold.
+            </summary>
+            <param name="previous">The first sudoku grid to be checked. The value is at the previous state.</param>
+            <param name="current">The second sudoku grid to be checked. The value is at the current state.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.ConclusionBag"/> containing all possible different candidates they hold.</returns>
+            <exception cref="T:System.OverflowException">Throws when the state is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,Sudoku#Analytics#ConclusionBag}#op_Subtraction(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,Sudoku#Analytics#ConclusionBag}#op_CheckedSubtraction(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
             Converts the specified array elements into the target <see cref="T:Sudoku.Concepts.Grid"/> instance, without any value boundary checking.
