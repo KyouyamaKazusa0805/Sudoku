@@ -100,6 +100,22 @@
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> to be used.</returns>
         </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.BatchGenerate(System.Int32,System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Batch generating puzzles.
+            </summary>
+            <param name="times">The times of the pattern will be tried.</param>
+            <param name="shuffleDigits"><inheritdoc cref="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='shuffleDigits']"/></param>
+            <param name="progress">The <see cref="T:System.IProgress`1"/> instance that can report the progess.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A list of valid <see cref="T:Sudoku.Concepts.Grid"/> values.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.ShuffleDigitsFor10Times(Sudoku.Concepts.Grid@)">
+            <summary>
+            Shuffle digits for 10 times.
+            </summary>
+            <param name="puzzle">The puzzle to be shuffle.</param>
+        </member>
         <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._seedGrid">
             <summary>
             The generated field declaration for parameter <c>seedGrid</c>.

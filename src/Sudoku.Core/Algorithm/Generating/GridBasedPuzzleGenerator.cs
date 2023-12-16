@@ -1,10 +1,12 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Concepts;
+using Sudoku.Runtime.CompilerServices;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
@@ -51,17 +53,18 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 	/// <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A valid <see cref="Grid"/> to be used.</returns>
-	public Grid Generate(bool shuffleDigits = false, CancellationToken cancellationToken = default)
+	[UnscopedRef]
+	public ref readonly Grid Generate(bool shuffleDigits = false, CancellationToken cancellationToken = default)
 	{
 		try
 		{
 			_playground = _seedGrid.UnfixedGrid;
 			getGrid(_solver, in _seedGrid, ref _playground, [.. _seedGrid.GivenCells], ref _resultGrid);
-			return _resultGrid;
+			return ref _resultGrid;
 		}
 		catch (OperationCanceledException)
 		{
-			return Grid.Undefined;
+			return ref Grid.Undefined;
 		}
 		catch
 		{
@@ -81,7 +84,7 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 			{
 				Random.Shared.Shuffle(pattern);
 
-				var shuffleDigitsCount = Random.Shared.Next(3, 10);
+				var shuffleDigitsCount = Random.Shared.Next(1, 6);
 				var selectedCells = pattern[..shuffleDigitsCount];
 				foreach (var cell in selectedCells)
 				{
@@ -111,18 +114,7 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 				{
 					if (shuffleDigits)
 					{
-						// Try to shuffle digits for 10 times.
-						for (var times = 0; times < 10; times++)
-						{
-							var d1 = Random.Shared.Next(0, 9);
-							int d2;
-							do
-							{
-								d2 = Random.Shared.Next(0, 9);
-							} while (d1 == d2);
-
-							@fixed.SwapTwoDigits(d1, d2);
-						}
+						ShuffleDigitsFor10Times(ref @fixed);
 					}
 
 					resultGrid = @fixed;
@@ -137,6 +129,83 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 
 				cancellationToken.ThrowIfCancellationRequested();
 			}
+		}
+	}
+
+	/// <summary>
+	/// Batch generating puzzles.
+	/// </summary>
+	/// <param name="times">The times of the pattern will be tried.</param>
+	/// <param name="shuffleDigits"><inheritdoc cref="Generate(bool, CancellationToken)" path="/param[@name='shuffleDigits']"/></param>
+	/// <param name="progress">The <see cref="IProgress{T}"/> instance that can report the progess.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>A list of valid <see cref="Grid"/> values.</returns>
+	public ReadOnlySpan<Grid> BatchGenerate(
+		int times,
+		bool shuffleDigits = false,
+		IProgress<GeneratorProgress>? progress = null,
+		CancellationToken cancellationToken = default
+	)
+	{
+		var resultList = new List<Grid>(times);
+
+		// Iterate for the specified times.
+		for (var i = 1; i <= times;)
+		{
+			// Try to generate a puzzle no matter the puzzle is duplicated with one of elements stored in the current collection.
+			// Make the reference to be mutable because the return value is always points to the field of this type (i.e. '_resultGrid').
+			scoped ref var puzzle = ref Ref.AsMutableRef(in Generate(cancellationToken: cancellationToken));
+
+			// Check for duplicate.
+			var isDupe = false;
+			foreach (ref readonly var tempGrid in CollectionsMarshal.AsSpan(resultList))
+			{
+				if (tempGrid == puzzle)
+				{
+					isDupe = true;
+					break;
+				}
+			}
+			if (!isDupe)
+			{
+				resultList.AddRef(in puzzle);
+				progress?.Report(new(i));
+				i++;
+			}
+
+			cancellationToken.ThrowIfCancellationRequested();
+		}
+
+		// Shuffle digits if worth.
+		// We should shuffle values here because we cannot determine whther two grids having been shuffled are same.
+		if (shuffleDigits)
+		{
+			foreach (ref var puzzle in CollectionsMarshal.AsSpan(resultList))
+			{
+				ShuffleDigitsFor10Times(ref puzzle);
+			}
+		}
+
+		// Return the span.
+		return CollectionsMarshal.AsSpan(resultList);
+	}
+
+	/// <summary>
+	/// Shuffle digits for 10 times.
+	/// </summary>
+	/// <param name="puzzle">The puzzle to be shuffle.</param>
+	private static void ShuffleDigitsFor10Times(scoped ref Grid puzzle)
+	{
+		for (var times = 0; times < 10; times++)
+		{
+			var d1 = Random.Shared.Next(0, 9);
+			int d2;
+			do
+			{
+				d2 = Random.Shared.Next(0, 9);
+			} while (d1 == d2);
+
+			puzzle.SwapTwoDigits(d1, d2);
 		}
 	}
 }
