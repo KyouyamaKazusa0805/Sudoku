@@ -15,7 +15,7 @@ internal static class SudokuGridConversion
 	/// <summary>
 	/// Defines a solver.
 	/// </summary>
-	private static readonly BitwiseSolver Solver = new();
+	private static readonly ThreadLocal<BitwiseSolver> Solver = new(static () => new());
 
 
 	public static bool GetFixedButtonAvailability(Grid grid) => grid.ModifiablesCount != 0;
@@ -57,7 +57,7 @@ internal static class SudokuGridConversion
 		var hasNoGivenCells = grid.GivensCount == 0;
 		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
 		return GetString(
-			Solver.Solve(str, null, 2) switch
+			Solver.Value!.Solve(str, null, 2) switch
 			{
 				0 => "AnalyzePage_PuzzleHasNoSolution",
 				1 => hasNoGivenCells ? "AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" : "AnalyzePage_PuzzleHasUniqueSolution",
@@ -73,7 +73,7 @@ internal static class SudokuGridConversion
 			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
 		}
 
-		if (!Solver.CheckValidity(grid.ToString()))
+		if (!Solver.Value!.CheckValidity(grid.ToString()))
 		{
 			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
 		}
