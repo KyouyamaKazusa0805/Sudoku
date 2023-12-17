@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -294,7 +293,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
 	/// <returns>A task that handles the operation.</returns>
-	internal async Task<bool> SaveFileInternalAsync(ArrayList? gridFormatters = null)
+	internal async Task<bool> SaveFileInternalAsync(IConceptConverter<Grid>[]? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
 		{
@@ -331,14 +330,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join(
-							"\r\n\r\n",
-							[
-								..
-								from IConceptConverter<Grid> formatter in gridFormatters
-								select formatter.Converter(in grid)
-							]
-						)
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select formatter.Converter(in grid)])
 					);
 				}
 				break;
@@ -347,9 +339,8 @@ public sealed partial class AnalyzePage : Page
 			{
 				SudokuFileHandler.Write(
 					filePath,
-					gridFormatters switch
-					{
-						null => [
+					gridFormatters is null
+						? [
 							new()
 							{
 								BaseGrid = grid,
@@ -360,25 +351,21 @@ public sealed partial class AnalyzePage : Page
 								},
 								ShowCandidates = displayCandidates
 							}
-						],
-						_ => [
-							..
-							from IConceptConverter<Grid> formatter in gridFormatters
-							select new GridInfo
-							{
-								BaseGrid = grid,
-								GridString = formatter.Converter(in grid),
-								RenderableData = viewUnit switch
-								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
-									_ => null
-								},
-								ShowCandidates = displayCandidates
-							}
 						]
-					}
+						:
+						from formatter in gridFormatters
+						select new GridInfo
+						{
+							BaseGrid = grid,
+							GridString = formatter.Converter(in grid),
+							RenderableData = viewUnit switch
+							{
+								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
+								_ => null
+							},
+							ShowCandidates = displayCandidates
+						}
 				);
-
 				break;
 			}
 			case FileExtensions.PortablePicture:

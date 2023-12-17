@@ -11230,7 +11230,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>A task that handles the operation.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(System.Collections.ArrayList)">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(Sudoku.Text.IConceptConverter{Sudoku.Concepts.Grid}[])">
             <summary>
             Save a file via grid formatters.
             </summary>

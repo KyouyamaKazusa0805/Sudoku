@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Sudoku.Text;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 
@@ -94,21 +96,9 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 			return;
 		}
 
-		if (await BasePage.SaveFileInternalAsync(createFormatHandlers(flags)))
+		if (await BasePage.SaveFileInternalAsync(from flag in flags.GetAllFlags() select flag.GetConverter()))
 		{
 			Dialog_FormatChoosing.IsOpen = false;
-		}
-
-
-		static ArrayList createFormatHandlers(SudokuFormatFlags flags)
-		{
-			var result = new ArrayList();
-			foreach (var flag in flags.GetAllFlags())
-			{
-				result.Add(flag.GetConverter());
-			}
-
-			return result;
 		}
 	}
 
