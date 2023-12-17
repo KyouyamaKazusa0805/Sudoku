@@ -191,7 +191,7 @@
         </member>
         <member name="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator">
             <summary>
-            Represents a generator, implemented by HoDoKu.
+            Represents a puzzle generator, implemented by HoDoKu.
             </summary>
         </member>
         <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.AutoClues">
@@ -243,19 +243,6 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
-            If a deletion produces a grid with more than one solution it is of course undone.
-            </summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
-            <summary>
-            Generate a solution grid.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
-        </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
@@ -275,8 +262,32 @@
                 path="/param[@name='cancellationToken']"/>
             </param>
             <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
-            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
-            <exception cref="T:System.NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
+            or the argument <paramref name="cluesCount"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            If a deletion produces a grid with more than one solution it is of course undone.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
+            <summary>
+            Generate a solution grid.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.IProgressDataProvider`1">
             <summary>

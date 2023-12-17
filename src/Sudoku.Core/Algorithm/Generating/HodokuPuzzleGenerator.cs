@@ -14,6 +14,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.SourceGeneration;
 using Sudoku.Algorithm.Solving;
 using Sudoku.Concepts;
 using static System.Numerics.BitOperations;
@@ -22,9 +23,12 @@ using static Sudoku.SolutionWideReadOnlyFields;
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
-/// Represents a generator, implemented by HoDoKu.
+/// Represents a puzzle generator, implemented by HoDoKu.
 /// </summary>
-public ref struct HodokuPuzzleGenerator
+[Equals]
+[GetHashCode]
+[ToString]
+public ref partial struct HodokuPuzzleGenerator
 {
 	/// <summary>
 	/// Indicates the auto clues count.
@@ -74,6 +78,51 @@ public ref struct HodokuPuzzleGenerator
 		_stack.ForEachRef((scoped ref RecursionStackEntry element) => element = new());
 	}
 
+
+	/// <summary>
+	/// <inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
+	/// </summary>
+	/// <param name="cluesCount">
+	/// <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+	/// <para>
+	/// Please note that the target puzzle may not contain the same number of givens as this value.
+	/// If the number of givens from a puzzle is below this value but it also has a unique solution,
+	/// this puzzle will be still treated as valid one.
+	/// </para>
+	/// </param>
+	/// <param name="symmetricType">The symmetric type to be specified. The value is <see cref="SymmetricType.Central"/> by default.</param>
+	/// <param name="cancellationToken">
+	/// <inheritdoc
+	///     cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)"
+	///     path="/param[@name='cancellationToken']"/>
+	/// </param>
+	/// <returns><inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
+	/// or the argument <paramref name="cluesCount"/> is invalid.
+	/// </exception>
+	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
+	[UnscopedRef]
+	public ref readonly Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(symmetricType.IsFlag(), true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(cluesCount is >= 17 and <= 80 or AutoClues, true);
+
+		try
+		{
+			while (!GenerateForFullGrid()) ;
+
+			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
+
+			ref var p = ref _newValidSudoku;
+			p.Fix();
+			return ref p;
+		}
+		catch (OperationCanceledException)
+		{
+			return ref Grid.Undefined;
+		}
+	}
 
 	/// <summary>
 	/// Takes a full sudoku from <see cref="_newFullSudoku"/> and generates a valid puzzle by deleting cells.
@@ -327,57 +376,6 @@ public ref struct HodokuPuzzleGenerator
 
 			// Both hidden singles and naked singles are valid. Return true.
 			return true;
-		}
-	}
-
-
-	/// <summary>
-	/// <inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
-	/// </summary>
-	/// <param name="cluesCount">
-	/// <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
-	/// <para>
-	/// Please note that the target puzzle may not contain the same number of givens as this value.
-	/// If the number of givens from a puzzle is below this value but it also has a unique solution,
-	/// this puzzle will be still treated as valid one.
-	/// </para>
-	/// </param>
-	/// <param name="symmetricType">The symmetric type to be specified. The value is <see cref="SymmetricType.Central"/> by default.</param>
-	/// <param name="cancellationToken">
-	/// <inheritdoc
-	///     cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)"
-	///     path="/param[@name='cancellationToken']"/>
-	/// </param>
-	/// <returns><inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
-	/// <exception cref="ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
-	/// <exception cref="NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	[UnscopedRef]
-	public ref readonly Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
-	{
-		if (!symmetricType.IsFlag())
-		{
-			throw new ArgumentException($"The argument '{nameof(symmetricType)}' is invalid because it holds multiple flags.");
-		}
-
-		if (cluesCount is not (>= 17 and <= 80 or AutoClues))
-		{
-			throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.");
-		}
-
-		try
-		{
-			while (!GenerateForFullGrid()) ;
-
-			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
-
-			ref var p = ref _newValidSudoku;
-			p.Fix();
-			return ref p;
-		}
-		catch (OperationCanceledException)
-		{
-			return ref Grid.Undefined;
 		}
 	}
 }
