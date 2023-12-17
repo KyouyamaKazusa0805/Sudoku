@@ -1209,9 +1209,9 @@ public sealed partial class AnalyzePage : Page
 	{
 		switch (this, sender, e)
 		{
-			case ({ _userColoringView: { } tempView, SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
+			case ({ SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
 			{
-				makeColoring(selectionMode, index, tempView);
+				makeColoring(selectionMode, index, _userColoringView ??= new());
 				break;
 			}
 			case ({ SudokuPane: { DisableFlyout: false, Puzzle: var puzzle } }, _, { MouseButton: MouseButton.Right, Cell: var cell }):
