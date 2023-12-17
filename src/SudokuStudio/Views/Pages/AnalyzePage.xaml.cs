@@ -84,7 +84,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <seealso cref="SudokuPane.CurrentPaneMode"/>
 	/// <seealso cref="PaneMode.Drawing"/>
-	internal ViewUnitBindableSource? _userColoringView = new([], []);
+	internal ViewUnitBindableSource? _userColoringView = new();
 
 	/// <summary>
 	/// The internal puzzle libraries.
