@@ -1,4 +1,3 @@
-#define TARGET_64BIT
 using System.ComponentModel;
 using System.Diagnostics;
 using static System.Numerics.BitOperations;
@@ -10,7 +9,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 [DebuggerStepThrough]
-public static class GridCellPredicates
+internal static class GridCellPredicates
 {
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a given cell.
