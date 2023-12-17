@@ -248,15 +248,7 @@
             Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <param name="cluesCount">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
-            </param>
-            <param name="symmetricType">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='symmetricType']"/>
-            </param>
-            <param name="cancellationToken">
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)" path="/param[@name='cancellationToken']"/>
-            </param>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
             <summary>

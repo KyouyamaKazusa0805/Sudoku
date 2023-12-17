@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
@@ -256,33 +255,37 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					); ; _generatingCount++, progress.Report(T.Create(_generatingCount, _generatingFilteredCount)), cancellationToken.ThrowIfCancellationRequested()
 				)
 				{
-					var grid = HodokuPuzzleGenerator.Generate(givensCount, symmetry, cancellationToken);
-
 					switch (difficultyLevel)
 					{
 						case DifficultyLevel.Easy:
 						{
 							// Optimize: transform the grid if worth.
+							var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
 							var foundIttoryu = finder.FindPath(in grid);
 							if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
 							{
 								grid.MakeIttoryu(foundIttoryu);
 							}
 
-							if (basicCondition() && (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
+							if (basicCondition(in grid) && (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
 							{
 								return grid;
 							}
 							break;
 						}
-						case var _ when basicCondition():
+						default:
 						{
-							return grid;
+							scoped ref readonly var grid = ref new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
+							if (basicCondition(in grid))
+							{
+								return grid;
+							}
+							break;
 						}
 					}
 
 
-					bool basicCondition()
+					bool basicCondition(scoped ref readonly Grid grid)
 						=> (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
 						&& analyzer.Analyze(in grid) is
 						{

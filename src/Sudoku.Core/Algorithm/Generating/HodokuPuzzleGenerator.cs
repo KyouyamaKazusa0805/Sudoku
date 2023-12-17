@@ -79,15 +79,7 @@ public ref struct HodokuPuzzleGenerator
 	/// Takes a full sudoku from <see cref="_newFullSudoku"/> and generates a valid puzzle by deleting cells.
 	/// If a deletion produces a grid with more than one solution it is of course undone.
 	/// </summary>
-	/// <param name="cluesCount">
-	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
-	/// </param>
-	/// <param name="symmetricType">
-	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='symmetricType']"/>
-	/// </param>
-	/// <param name="cancellationToken">
-	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)" path="/param[@name='cancellationToken']"/>
-	/// </param>
+	/// <inheritdoc cref="Generate(int, SymmetricType, CancellationToken)"/>
 	private void GenerateInitPos(int cluesCount, SymmetricType symmetricType, CancellationToken cancellationToken = default)
 	{
 		// We start with the full board.
@@ -360,7 +352,8 @@ public ref struct HodokuPuzzleGenerator
 	/// <exception cref="ArgumentException">Throws when the argument <paramref name="symmetricType"/> holds multiple flags.</exception>
 	/// <exception cref="NotSupportedException">Throws when the argument <paramref name="cluesCount"/> is invalid.</exception>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	public static Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
+	[UnscopedRef]
+	public ref readonly Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 	{
 		if (!symmetricType.IsFlag())
 		{
@@ -372,18 +365,19 @@ public ref struct HodokuPuzzleGenerator
 			throw new NotSupportedException($"The argument '{nameof(cluesCount)}' has an invalid value that the current function cannot support.");
 		}
 
-		scoped var hodoku = new HodokuPuzzleGenerator();
 		try
 		{
-			while (!hodoku.GenerateForFullGrid()) ;
+			while (!GenerateForFullGrid()) ;
 
-			hodoku.GenerateInitPos(cluesCount, symmetricType, cancellationToken);
+			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 
-			return hodoku._newValidSudoku.FixedGrid;
+			ref var p = ref _newValidSudoku;
+			p.Fix();
+			return ref p;
 		}
 		catch (OperationCanceledException)
 		{
-			return Grid.Undefined;
+			return ref Grid.Undefined;
 		}
 	}
 }
