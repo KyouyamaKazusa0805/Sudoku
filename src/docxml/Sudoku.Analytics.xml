@@ -23231,12 +23231,12 @@ result ^= expression;
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
         </member>
-        <member name="T:Sudoku.Operations.OperationRecognition">
+        <member name="T:Sudoku.Operation.OperationRecognition">
             <summary>
             Represents a type that stores a list of methods that can recognize users' operation.
             </summary>
         </member>
-        <member name="M:Sudoku.Operations.OperationRecognition.TryGetDiffTechnique(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.StepCollector,System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
+        <member name="M:Sudoku.Operation.OperationRecognition.TryGetDiffTechnique(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.StepCollector,System.ReadOnlySpan{Sudoku.Analytics.Step}@)">
             <summary>
             Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
             </summary>

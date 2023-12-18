@@ -5901,13 +5901,13 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the node.</typeparam>
             <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
-        <member name="T:Sudoku.Operations.CandidateDifference">
+        <member name="T:Sudoku.Operation.CandidateDifference">
             <summary>
             Read from two <see cref="T:Sudoku.Concepts.Grid"/> instances, and analyzes difference of candidates between those two.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Operations.CandidateDifference.TryGetDiffCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Operations.OperationKind@)">
+        <member name="M:Sudoku.Operation.CandidateDifference.TryGetDiffCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Operation.OperationKind@)">
             <summary>
             Try to get difference of candidates between two grids.
             </summary>
@@ -5917,32 +5917,32 @@ if (student is (name: var name, age: >= 18))
             <param name="differenceKind">The difference kind.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
         </member>
-        <member name="T:Sudoku.Operations.OperationKind">
+        <member name="T:Sudoku.Operation.OperationKind">
             <summary>
             Provides with a kind of difference of candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.OperationKind.None">
+        <member name="F:Sudoku.Operation.OperationKind.None">
             <summary>
             Indicates the difference kind is none.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.OperationKind.Assignment">
+        <member name="F:Sudoku.Operation.OperationKind.Assignment">
             <summary>
             Indicates the difference kind is assignment.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.OperationKind.Appending">
+        <member name="F:Sudoku.Operation.OperationKind.Appending">
             <summary>
             Indicates the difference kind is appending candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.OperationKind.Elimination">
+        <member name="F:Sudoku.Operation.OperationKind.Elimination">
             <summary>
             Indicates the difference kind is elimination.
             </summary>
         </member>
-        <member name="F:Sudoku.Operations.OperationKind.Unknown">
+        <member name="F:Sudoku.Operation.OperationKind.Unknown">
             <summary>
             Indicates the difference kind is unknown.
             </summary>

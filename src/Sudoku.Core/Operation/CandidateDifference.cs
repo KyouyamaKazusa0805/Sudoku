@@ -3,7 +3,7 @@ using Sudoku.Linq;
 using static System.Numerics.BitOperations;
 using static Sudoku.SolutionWideReadOnlyFields;
 
-namespace Sudoku.Operations;
+namespace Sudoku.Operation;
 
 /// <summary>
 /// Read from two <see cref="Grid"/> instances, and analyzes difference of candidates between those two.

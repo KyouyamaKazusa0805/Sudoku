@@ -3,7 +3,7 @@ using Sudoku.Analytics;
 using Sudoku.Concepts;
 using static Sudoku.Analytics.ConclusionType;
 
-namespace Sudoku.Operations;
+namespace Sudoku.Operation;
 
 /// <summary>
 /// Represents a type that stores a list of methods that can recognize users' operation.

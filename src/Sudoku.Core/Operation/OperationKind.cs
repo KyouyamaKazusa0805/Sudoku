@@ -1,4 +1,4 @@
-namespace Sudoku.Operations;
+namespace Sudoku.Operation;
 
 /// <summary>
 /// Provides with a kind of difference of candidates.
