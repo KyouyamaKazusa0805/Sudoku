@@ -306,9 +306,9 @@ if (student is (name: var name, age: >= 18))
             If satisfying, what kind of symmetry the pattern will be.
             </summary>
             <remarks>
-            This value will only be set in <see cref="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher"/> with a not-<see langword="null"/> value.
+            This value will only be set in <see cref="T:Sudoku.Analytics.Analyzer"/> with a not-<see langword="null"/> value.
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.PreviousSetDigit">
             <summary>
