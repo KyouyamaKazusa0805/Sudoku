@@ -1,18 +1,19 @@
 using System.Runtime.InteropServices;
 using Sudoku.Analytics;
 using Sudoku.Concepts;
+using static Sudoku.Analytics.ConclusionType;
 
-namespace Sudoku.Diff;
+namespace Sudoku.Operations;
 
 /// <summary>
-/// Provides the method to operate with <see cref="Grid"/> instances, checking for the diff of two <see cref="Grid"/> instances.
+/// Represents a type that stores a list of methods that can recognize users' operation.
 /// </summary>
-public static class GridDiff
+public static class OperationRecognition
 {
 	/// <summary>
 	/// Try to check the technique that can make <paramref name="previous"/> to be changed into the state for <paramref name="current"/>.
 	/// </summary>
-	/// <param name="this">The step collector.</param>
+	/// <param name="stepRangeCollector">The step collector.</param>
 	/// <param name="previous">The first sudoku grid puzzle to be checked. The value is at the previous state.</param>
 	/// <param name="current">The second sudoku grid puzzle to be checked. The value is at the current state.</param>
 	/// <param name="steps">
@@ -22,18 +23,24 @@ public static class GridDiff
 	public static bool TryGetDiffTechnique(
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
-		StepCollector @this,
+		StepCollector stepRangeCollector,
 		out ReadOnlySpan<Step> steps
 	)
 	{
-		if (previous - current is not { } conclusions)
+		if (!CandidateDifference.TryGetDiffCandidates(in previous, in current, out var differentCandidates, out var differenceKind)
+			|| differenceKind is not (OperationKind.Assignment or OperationKind.Elimination))
 		{
 			goto ReturnNull;
 		}
 
+		var conclusions = new ConclusionBag(
+			from candidate in differentCandidates
+			select new Conclusion(differenceKind == OperationKind.Assignment ? Assignment : Elimination, candidate)
+		);
+
 		// Merge conclusion to be matched.
 		var resultSteps = new List<Step>();
-		foreach (var s in @this.Collect(in previous)!)
+		foreach (var s in stepRangeCollector.Collect(in previous)!)
 		{
 			if (([.. s.Conclusions] & conclusions) == conclusions)
 			{
