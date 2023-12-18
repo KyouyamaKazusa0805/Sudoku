@@ -1,6 +1,7 @@
+using System.Collections;
 using System.SourceGeneration;
 
-namespace System.Collections.Generic;
+namespace System;
 
 /// <summary>
 /// Defines an enumerator that iterates on elements, combined with two adjacent elements.

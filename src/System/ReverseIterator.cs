@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 
-namespace System.Collections.Generic;
+namespace System;
 
 /// <summary>
 /// Represents a reverse enumerator.

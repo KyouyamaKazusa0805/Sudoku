@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using static System.Numerics.BitOperations;
 
-namespace System.Collections.Generic;
+namespace System;
 
 /// <summary>
 /// Defines an enumerator that iterates the possible fields of an enumeration type.
@@ -45,7 +46,7 @@ public ref partial struct FlagsEnumTypeFieldIterator<T> where T : unmanaged, Enu
 			: throw new InvalidOperationException($"Cannot operate because the type '{typeof(T).Name}' isn't applied attribute type '{nameof(FlagsAttribute)}'.");
 
 
-	/// <inheritdoc cref="IEnumerator{T}.Current"/>
+	/// <inheritdoc cref="IEnumerator.Current"/>
 	public T Current { get; private set; } = default;
 
 

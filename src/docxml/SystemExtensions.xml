@@ -115,7 +115,7 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="value">The value to be initialized.</param>
         </member>
-        <member name="T:System.Collections.Generic.ArrayPairIterator`3">
+        <member name="T:System.ArrayPairIterator`3">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
             </summary>
@@ -129,7 +129,7 @@
             <param name="array">The array value.</param>
             <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.#ctor(`0[])">
+        <member name="M:System.ArrayPairIterator`3.#ctor(`0[])">
             <summary>
             Defines an enumerator that iterates on elements, combined with two adjacent elements.
             </summary>
@@ -143,222 +143,33 @@
             <param name="array">The array value.</param>
             <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
         </member>
-        <member name="F:System.Collections.Generic.ArrayPairIterator`3._array">
+        <member name="F:System.ArrayPairIterator`3._array">
             <summary>
             Indicates the internal array to be iterated.
             </summary>
         </member>
-        <member name="F:System.Collections.Generic.ArrayPairIterator`3._index">
+        <member name="F:System.ArrayPairIterator`3._index">
             <summary>
             Indicates the index.
             </summary>
         </member>
-        <member name="P:System.Collections.Generic.ArrayPairIterator`3.Current">
+        <member name="P:System.ArrayPairIterator`3.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.GetEnumerator">
+        <member name="M:System.ArrayPairIterator`3.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.MoveNext">
+        <member name="M:System.ArrayPairIterator`3.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.Equals(System.Object)">
+        <member name="M:System.ArrayPairIterator`3.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.GetHashCode">
+        <member name="M:System.ArrayPairIterator`3.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.Collections.Generic.ArrayPairIterator`3.ToString">
+        <member name="M:System.ArrayPairIterator`3.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:System.Collections.Generic.EnumFlagEnumeration">
-            <summary>
-            Represents enumeration methods for flags defined in an enumeration type, marked with <see cref="T:System.FlagsAttribute"/>.
-            </summary>
-            <seealso cref="T:System.Enum"/>
-            <seealso cref="T:System.FlagsAttribute"/>
-        </member>
-        <member name="M:System.Collections.Generic.EnumFlagEnumeration.GetEnumerator``1(``0)">
-            <summary>
-            Get all possible flags that the current enumeration field set.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <returns>All flags.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
-            </exception>
-        </member>
-        <member name="T:System.Collections.Generic.FlagsEnumTypeFieldIterator`1">
-            <summary>
-            Defines an enumerator that iterates the possible fields of an enumeration type.
-            </summary>
-            <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.</typeparam>
-        </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._fields">
-            <summary>
-            Indicates the fields of the type to iterate.
-            </summary>
-        </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._base">
-            <summary>
-            Indicates the base field.
-            </summary>
-        </member>
-        <member name="F:System.Collections.Generic.FlagsEnumTypeFieldIterator`1._index">
-            <summary>
-            Indicates the current index being iterated.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
-            <summary>
-            Initializes a <see cref="T:System.Collections.Generic.FlagsEnumTypeFieldIterator`1"/> instance via the type argument,
-            and the base field.
-            </summary>
-            <param name="base">The base field to iterate.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the type <typeparamref name="T"/> is not marked <see cref="T:System.FlagsAttribute"/>.
-            </exception>
-        </member>
-        <member name="P:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Collections.Generic.FlagsEnumTypeFieldIterator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:System.Collections.Generic.ReverseIterator`1">
-            <summary>
-            Represents a reverse enumerator.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The internal array.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.#ctor(System.ReadOnlySpan{`0})">
-            <summary>
-            Represents a reverse enumerator.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The internal array.</param>
-        </member>
-        <member name="F:System.Collections.Generic.ReverseIterator`1._index">
-            <summary>
-            Indicates the current index.
-            </summary>
-        </member>
-        <member name="P:System.Collections.Generic.ReverseIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:System.Collections.Generic.ReverseIterator`1._array">
-            <summary>
-            The generated field declaration for parameter <c>array</c>.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Collections.Generic.ReverseIterator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:System.Collections.Generic.ListExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list to be modified.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
-        </member>
-        <member name="T:System.Collections.Generic.StackExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.Stack`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.StackExtensions.Reverse``1(System.Collections.Generic.Stack{``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/summary"/>
-            </summary>
-            <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
-            <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
-        </member>
-        <member name="T:System.Collections.BitArrayExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <seealso cref="T:System.Collections.BitArray"/>
-        </member>
-        <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
-            <summary>
-            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <param name="this">The array.</param>
-            <returns>The total number of bits set <see langword="true"/>.</returns>
-        </member>
-        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
-            <summary>
-            Provides with extension methos on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Insert``1(System.Collections.ObjectModel.Collection{``0},System.Index,``0)">
-            <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)"/>
-            <param name="this">The current collection.</param>
-            <param name="index"/>
-            <param name="item"/>
-        </member>
-        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
         </member>
         <member name="T:System.CommonMethods">
             <summary>
@@ -548,7 +359,7 @@
         </member>
         <member name="M:System.ArrayExtensions.EnumerateAsPair``3(``0[])">
             <summary>
-            Creates a <see cref="T:System.Collections.Generic.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
+            Creates a <see cref="T:System.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
             </summary>
             <typeparam name="T">The type of the array elements.</typeparam>
             <typeparam name="TFirst">The first element returned.</typeparam>
@@ -683,6 +494,86 @@
             <param name="type">The type.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="T:System.Collections.BitArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <seealso cref="T:System.Collections.BitArray"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
+            <summary>
+            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <param name="this">The array.</param>
+            <returns>The total number of bits set <see langword="true"/>.</returns>
+        </member>
+        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
+            <summary>
+            Provides with extension methos on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Insert``1(System.Collections.ObjectModel.Collection{``0},System.Index,``0)">
+            <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)"/>
+            <param name="this">The current collection.</param>
+            <param name="index"/>
+            <param name="item"/>
+        </member>
+        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
+        </member>
+        <member name="T:System.Collections.Generic.ListExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list to be modified.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
+        </member>
+        <member name="T:System.Collections.Generic.StackExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Stack`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.StackExtensions.Reverse``1(System.Collections.Generic.Stack{``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/summary"/>
+            </summary>
+            <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
+            <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
+        </member>
         <member name="T:System.DelegateExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Delegate"/>.
@@ -758,6 +649,17 @@
             are also set in the current instance; otherwise, <see langword="false"/>.
             </returns>
             <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
+        </member>
+        <member name="M:System.EnumExtensions.GetEnumerator``1(``0)">
+            <summary>
+            Get all possible flags that the current enumeration field set.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="this">The current enumeration type instance.</param>
+            <returns>All flags.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
+            </exception>
         </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
@@ -2332,6 +2234,55 @@ fixed (short* ptr = instance)
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
+        <member name="T:System.FlagsEnumTypeFieldIterator`1">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.</typeparam>
+        </member>
+        <member name="F:System.FlagsEnumTypeFieldIterator`1._fields">
+            <summary>
+            Indicates the fields of the type to iterate.
+            </summary>
+        </member>
+        <member name="F:System.FlagsEnumTypeFieldIterator`1._base">
+            <summary>
+            Indicates the base field.
+            </summary>
+        </member>
+        <member name="F:System.FlagsEnumTypeFieldIterator`1._index">
+            <summary>
+            Indicates the current index being iterated.
+            </summary>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
+            <summary>
+            Initializes a <see cref="T:System.FlagsEnumTypeFieldIterator`1"/> instance via the type argument,
+            and the base field.
+            </summary>
+            <param name="base">The base field to iterate.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the type <typeparamref name="T"/> is not marked <see cref="T:System.FlagsAttribute"/>.
+            </exception>
+        </member>
+        <member name="P:System.FlagsEnumTypeFieldIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Represents for an abstraction unit that supports for boolean logical operators
@@ -3163,6 +3114,48 @@ fixed (short* ptr = instance)
 		</feature>
             </param>
             <exception cref="T:System.ArgumentNullRefException">Throws if the argument is a <see langword="null" /> reference.</exception>
+        </member>
+        <member name="T:System.ReverseIterator`1">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="array">The internal array.</param>
+        </member>
+        <member name="M:System.ReverseIterator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="array">The internal array.</param>
+        </member>
+        <member name="F:System.ReverseIterator`1._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:System.ReverseIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.ReverseIterator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.ReverseIterator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.ReverseIterator`1._array">
+            <summary>
+            The generated field declaration for parameter <c>array</c>.
+            </summary>
+        </member>
+        <member name="M:System.ReverseIterator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.ReverseIterator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.ReverseIterator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>

@@ -85,4 +85,16 @@ public static class EnumExtensions
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static TResult fastConvert<TResult>(T value) => Unsafe.As<T, TResult>(ref value);
 	}
+
+	/// <summary>
+	/// Get all possible flags that the current enumeration field set.
+	/// </summary>
+	/// <typeparam name="T">The type of the enumeration.</typeparam>
+	/// <param name="this">The current enumeration type instance.</param>
+	/// <returns>All flags.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static FlagsEnumTypeFieldIterator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
 }
