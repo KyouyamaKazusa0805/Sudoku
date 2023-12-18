@@ -24,7 +24,7 @@ public static class ListGridExtensions
 		var size = GetSize(@this);
 		if ((uint)size < (uint)array.Length)
 		{
-			GetSize(@this)++;
+			GetSize(@this) = size + 1;
 			array[size] = grid;
 		}
 		else
@@ -63,8 +63,28 @@ public static class ListGridExtensions
 	/// <param name="this">The collection.</param>
 	/// <param name="capacity">The desired capacity to be set.</param>
 	/// <returns>The result value to be set.</returns>
-	[UnsafeAccessor(UnsafeAccessorKind.Method)]
-	private static extern int GetNewCapacity(List<Grid> @this, int capacity);
+	private static int GetNewCapacity(List<Grid> @this, int capacity)
+	{
+		Debug.Assert(@this.GetItems().Length < capacity);
+
+		var newCapacity = @this.GetItems().Length == 0 ? 4 : 2 * @this.GetItems().Length;
+
+		// Allow the list to grow to maximum possible capacity (~2G elements) before encountering overflow.
+		// Note that this check works even when _items.Length overflowed thanks to the (uint) cast
+		if ((uint)newCapacity > Array.MaxLength)
+		{
+			newCapacity = Array.MaxLength;
+		}
+
+		// If the computed capacity is still less than specified, set to the original argument.
+		// Capacities exceeding Array.MaxLength will be surfaced as OutOfMemoryException by Array.Resize.
+		if (newCapacity < capacity)
+		{
+			newCapacity = capacity;
+		}
+
+		return newCapacity;
+	}
 
 	/// <summary>
 	/// Try to fetch the internal field <c>_size</c> in type <see cref="List{T}"/>.
