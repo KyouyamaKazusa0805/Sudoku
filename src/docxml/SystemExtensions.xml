@@ -107,34 +107,13 @@
             <inheritdoc/>
             <param name="paramName">The parameter name.</param>
         </member>
-        <member name="T:System.Collections.Generic.ArrayEnumeration">
+        <member name="T:System.ArrayInitializer`1">
             <summary>
-            Provides with a list of extension <c>GetEnumerator</c> methods for iterating one-dimensional arrays.
+            Represents a method that initializes for an element of type <typeparamref name="T"/>?,
+            and be <typeparamref name="T"/> after the method invoked.
             </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ArrayEnumeration.ForEachRef``1(``0[],System.ActionRef{``0})">
-            <summary>
-            Same as for-each method <see cref="M:System.Array.ForEach``1(``0[],System.Action{``0})"/>, but iterating on references to corresponding elements.
-            </summary>
-            <typeparam name="T">The type of each element in this array.</typeparam>
-            <param name="this">The array.</param>
-            <param name="callback">The callback method to handle for each reference to each element.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ArrayEnumeration.ForEachRefUnsafe``1(``0[],)">
-            <inheritdoc cref="M:System.Collections.Generic.ArrayEnumeration.ForEachRef``1(``0[],System.ActionRef{``0})"/>
-        </member>
-        <member name="M:System.Collections.Generic.ArrayEnumeration.EnumerateReversely``1(``0[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>.
-        </member>
-        <member name="M:System.Collections.Generic.ArrayEnumeration.EnumerateAsPair``3(``0[])">
-            <summary>
-            Creates a <see cref="T:System.Collections.Generic.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
-            </summary>
-            <typeparam name="T">The type of the array elements.</typeparam>
-            <typeparam name="TFirst">The first element returned.</typeparam>
-            <typeparam name="TSecond">The second element returned.</typeparam>
-            <param name="this">The array.</param>
-            <returns>An enumerable collection.</returns>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="value">The value to be initialized.</param>
         </member>
         <member name="T:System.Collections.Generic.ArrayPairIterator`3">
             <summary>
@@ -536,6 +515,26 @@
             </summary>
             <seealso cref="T:System.Array"/>
         </member>
+        <member name="M:System.ArrayExtensions.ForEachRef``1(``0[],System.ActionRef{``0})">
+            <summary>
+            Same as for-each method <see cref="M:System.Array.ForEach``1(``0[],System.Action{``0})"/>, but iterating on references to corresponding elements.
+            </summary>
+            <typeparam name="T">The type of each element in this array.</typeparam>
+            <param name="this">The array.</param>
+            <param name="callback">The callback method to handle for each reference to each element.</param>
+            <seealso cref="M:System.Array.ForEach``1(``0[],System.Action{``0})"/>
+        </member>
+        <member name="M:System.ArrayExtensions.ForEachRefUnsafe``1(``0[],)">
+            <inheritdoc cref="M:System.ArrayExtensions.ForEachRef``1(``0[],System.ActionRef{``0})"/>
+        </member>
+        <member name="M:System.ArrayExtensions.InitializeArray``1(``0[],System.ArrayInitializer{``0})">
+            <summary>
+            Initializes an array, using the specified method to initialize each element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="array">The array.</param>
+            <param name="initializer">The initializer callback method.</param>
+        </member>
         <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],)">
             <summary>
             Sort the specified array by quick sort.
@@ -543,6 +542,19 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
+        </member>
+        <member name="M:System.ArrayExtensions.EnumerateReversely``1(``0[])">
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>.
+        </member>
+        <member name="M:System.ArrayExtensions.EnumerateAsPair``3(``0[])">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
+            </summary>
+            <typeparam name="T">The type of the array elements.</typeparam>
+            <typeparam name="TFirst">The first element returned.</typeparam>
+            <typeparam name="TSecond">The second element returned.</typeparam>
+            <param name="this">The array.</param>
+            <returns>An enumerable collection.</returns>
         </member>
         <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],,System.Int32,System.Int32)">
             <summary>

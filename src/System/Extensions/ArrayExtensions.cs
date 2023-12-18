@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 /// <summary>
@@ -6,6 +8,44 @@ namespace System;
 /// <seealso cref="Array"/>
 public static class ArrayExtensions
 {
+	/// <summary>
+	/// Same as for-each method <see cref="Array.ForEach{T}(T[], Action{T})"/>, but iterating on references to corresponding elements.
+	/// </summary>
+	/// <typeparam name="T">The type of each element in this array.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <param name="callback">The callback method to handle for each reference to each element.</param>
+	/// <seealso cref="Array.ForEach{T}(T[], Action{T})"/>
+	public static void ForEachRef<T>(this T[] @this, ActionRef<T> callback)
+	{
+		foreach (ref var element in @this.AsSpan())
+		{
+			callback(ref element);
+		}
+	}
+
+	/// <inheritdoc cref="ForEachRef{T}(T[], ActionRef{T})"/>
+	public static unsafe void ForEachRefUnsafe<T>(this T[] @this, delegate*<ref T, void> callback)
+	{
+		foreach (ref var element in @this.AsSpan())
+		{
+			callback(ref element);
+		}
+	}
+
+	/// <summary>
+	/// Initializes an array, using the specified method to initialize each element.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="array">The array.</param>
+	/// <param name="initializer">The initializer callback method.</param>
+	public static void InitializeArray<T>(this T?[] array, ArrayInitializer<T> initializer)
+	{
+		foreach (ref var element in array.AsSpan())
+		{
+			initializer(ref element);
+		}
+	}
+
 	/// <summary>
 	/// Sort the specified array by quick sort.
 	/// </summary>
@@ -42,6 +82,22 @@ public static class ArrayExtensions
 			}
 		}
 	}
+
+	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>.
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReverseIterator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
+
+	/// <summary>
+	/// Creates a <see cref="ArrayPairIterator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
+	/// </summary>
+	/// <typeparam name="T">The type of the array elements.</typeparam>
+	/// <typeparam name="TFirst">The first element returned.</typeparam>
+	/// <typeparam name="TSecond">The second element returned.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <returns>An enumerable collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ArrayPairIterator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
+		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
 
 	/// <summary>
 	/// Sort the specified array by quick sort.
