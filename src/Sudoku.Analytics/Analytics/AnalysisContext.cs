@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
@@ -28,6 +30,8 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 [LargeStructure]
+[method: DebuggerStepThrough]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
 	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
 	[Data(DataMemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
