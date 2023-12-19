@@ -4810,7 +4810,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.LinkViewNode[],Sudoku.Analytics.Conclusion[],SudokuStudio.Rendering.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Rendering.Nodes.LinkViewNode},Sudoku.Analytics.Conclusion[],SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s.
             </summary>

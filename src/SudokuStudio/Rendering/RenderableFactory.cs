@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -107,7 +108,7 @@ internal static class RenderableFactory
 	/// </summary>
 	/// <param name="pane">The target pane.</param>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	public static void RemoveViewUnitControls(SudokuPane pane)
+	private static void RemoveViewUnitControls(SudokuPane pane)
 	{
 		foreach (var targetControl in getParentControls(pane))
 		{
@@ -139,7 +140,7 @@ internal static class RenderableFactory
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	public static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
+	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
 	{
 		// Check whether the data can be deconstructed.
 		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
@@ -211,7 +212,7 @@ internal static class RenderableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(pane, [.. links], conclusions, controlAddingActions);
+		ForLinkNodes(pane, CollectionsMarshal.AsSpan(links), conclusions, controlAddingActions);
 
 		controlAddingActions.ForEach(static pair => (pair.Animating + pair.Adding)());
 
@@ -731,14 +732,19 @@ internal static class RenderableFactory
 	/// <remarks>
 	/// This method is special: We should handle all <see cref="LinkViewNode"/>s together.
 	/// </remarks>
-	private static void ForLinkNodes(SudokuPane sudokuPane, LinkViewNode[] linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults)
+	private static void ForLinkNodes(
+		SudokuPane sudokuPane,
+		scoped ReadOnlySpan<LinkViewNode> linkNodes,
+		Conclusion[] conclusions,
+		AnimatedResultCollection animatedResults
+	)
 	{
 		if (sudokuPane.MainGrid is not { } gridControl)
 		{
 			return;
 		}
 
-		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
+		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks([.. linkNodes]))
 		{
 			GridLayout.SetRow(control, 2);
 			GridLayout.SetColumn(control, 2);
