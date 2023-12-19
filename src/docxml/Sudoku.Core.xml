@@ -424,6 +424,140 @@
             The current state of the sudoku.
             </summary>
         </member>
+        <member name="T:Sudoku.Algorithm.MinLex.BestTriplet">
+            <summary>
+            Represents for a best triplet permutation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet.BestTripletPermutations">
+            <summary>
+            The best triplet permutations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet._field">
+            <summary>
+            The field that points to the zero-indexed position.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.BestResult">
+            <summary>
+            The total score of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultMask">
+            <summary>
+            The result mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultNumBits">
+            <summary>
+            The result number bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.BestTriplet.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> instance via collection expression.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>A valid <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Algorithm.MinLex.GridPattern">
+            <summary>
+            Represents for a pattern for a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Rows">
+            <summary>
+            Indicates the rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Digits">
+            <summary>
+            Indicates the digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.MinLex.GridPattern.BestTopRowScore">
+            <summary>
+            Indicates the best top-row score.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromString(System.String,Sudoku.Algorithm.MinLex.GridPattern@,Sudoku.Algorithm.MinLex.GridPattern@)">
+            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)"/>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="text"/> does not have 81 characters.</exception>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*)">
+            <summary>
+            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
+            indicating the data equivalent to the grid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="pair">The pair of pointers indicating the normal and transposed cases. <i><b>The length must be 2.</b></i></param>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)">
+            <summary>
+            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
+            indicating the data equivalent to the grid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="normal">The normal converted data.</param>
+            <param name="transposed">The transposed converted data.</param>
+        </member>
+        <member name="T:Sudoku.Algorithm.MinLex.MinLexCandidate">
+            <summary>
+            Represents for the basic data for candidates used by MinLex operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.MinLex.MinLexCandidate.Perm">
+            <summary>
+            The permutation cases.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.#ctor">
+            <summary>
+            Skips for initialization for <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ExpandStacks(Sudoku.Algorithm.MinLex.GridPattern*,System.Int32,Sudoku.Algorithm.MinLex.MinLexCandidate*,System.Int32*)">
+            <summary>
+            Try to expand stacks for the specified pair of <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.Init(System.Boolean,System.Int32)">
+            <summary>
+            To initialize data manually.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.PatCanon(System.String,System.String@,System.Boolean)">
+            <summary>
+            Find minimum lexicographical-ordered string for the specified grid as a string value.
+            </summary>
+            <param name="source">The source grid.</param>
+            <param name="result">The result grid.</param>
+            <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
+        </member>
+        <member name="T:Sudoku.Algorithm.MinLex.MinLexFinder">
+            <summary>
+            Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
+            </summary>
+            <remarks>
+            This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
+            two grids will contain a same minimal lexicographic value.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(System.String,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Find for the minimal lexicographic result for a grid.
+            </summary>
+            <param name="grid">The specified grid.</param>
+            <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
+            <returns>The minimal result.</returns>
+        </member>
         <member name="T:Sudoku.Algorithm.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
@@ -1142,140 +1276,6 @@
             <summary>
             The matrix row.
             </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.BestTriplet">
-            <summary>
-            Represents for a best triplet permutation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet.BestTripletPermutations">
-            <summary>
-            The best triplet permutations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet._field">
-            <summary>
-            The field that points to the zero-indexed position.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.BestResult">
-            <summary>
-            The total score of the pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultMask">
-            <summary>
-            The result mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultNumBits">
-            <summary>
-            The result number bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.BestTriplet.Create(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> instance via collection expression.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>A valid <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.GridPattern">
-            <summary>
-            Represents for a pattern for a grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Rows">
-            <summary>
-            Indicates the rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Digits">
-            <summary>
-            Indicates the digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.GridPattern.BestTopRowScore">
-            <summary>
-            Indicates the best top-row score.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromString(System.String,Sudoku.Algorithm.MinLex.GridPattern@,Sudoku.Algorithm.MinLex.GridPattern@)">
-            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)"/>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="text"/> does not have 81 characters.</exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*)">
-            <summary>
-            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
-            indicating the data equivalent to the grid.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="pair">The pair of pointers indicating the normal and transposed cases. <i><b>The length must be 2.</b></i></param>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)">
-            <summary>
-            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
-            indicating the data equivalent to the grid.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="normal">The normal converted data.</param>
-            <param name="transposed">The transposed converted data.</param>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.MinLexCandidate">
-            <summary>
-            Represents for the basic data for candidates used by MinLex operations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.MinLexCandidate.Perm">
-            <summary>
-            The permutation cases.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.#ctor">
-            <summary>
-            Skips for initialization for <see langword="this"/>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ExpandStacks(Sudoku.Algorithm.MinLex.GridPattern*,System.Int32,Sudoku.Algorithm.MinLex.MinLexCandidate*,System.Int32*)">
-            <summary>
-            Try to expand stacks for the specified pair of <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.Init(System.Boolean,System.Int32)">
-            <summary>
-            To initialize data manually.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.PatCanon(System.String,System.String@,System.Boolean)">
-            <summary>
-            Find minimum lexicographical-ordered string for the specified grid as a string value.
-            </summary>
-            <param name="source">The source grid.</param>
-            <param name="result">The result grid.</param>
-            <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.MinLexFinder">
-            <summary>
-            Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
-            </summary>
-            <remarks>
-            This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
-            two grids will contain a same minimal lexicographic value.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(System.String,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Find for the minimal lexicographic result for a grid.
-            </summary>
-            <param name="grid">The specified grid.</param>
-            <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
-            <returns>The minimal result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerProgress">
             <summary>

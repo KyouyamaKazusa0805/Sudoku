@@ -1,5 +1,4 @@
-#pragma warning disable
-
+using System.Runtime.CompilerServices;
 using Sudoku.Concepts;
 
 namespace Sudoku.Algorithm.MinLex;
@@ -8,18 +7,18 @@ namespace Sudoku.Algorithm.MinLex;
 /// Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
 /// </summary>
 /// <remarks>
-/// <para>
 /// This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
 /// two grids will contain a same minimal lexicographic value.
-/// </para>
-/// <para>
-/// <inheritdoc cref="BestTriplet" path="/remarks"/>
-/// </para>
 /// </remarks>
 public static class MinLexFinder
 {
 	/// <inheritdoc cref="Find(ref readonly Grid, bool)"/>
-	public static extern string Find(string gridString, bool findForPattern = false);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string Find(string gridString, bool findForPattern = false)
+	{
+		MinLexCandidate.PatCanon(gridString, out var result, findForPattern);
+		return result;
+	}
 
 	/// <summary>
 	/// Find for the minimal lexicographic result for a grid.
@@ -27,5 +26,10 @@ public static class MinLexFinder
 	/// <param name="grid">The specified grid.</param>
 	/// <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
 	/// <returns>The minimal result.</returns>
-	public static extern Grid Find(scoped ref readonly Grid grid, bool findForPattern = false);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Find(scoped ref readonly Grid grid, bool findForPattern = false)
+	{
+		MinLexCandidate.PatCanon(grid.ToString(), out var result, findForPattern);
+		return Grid.Parse(result);
+	}
 }
