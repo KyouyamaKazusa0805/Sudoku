@@ -32,6 +32,8 @@ using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
 
 namespace SudokuStudio.Rendering;
 
+using static RenderableFactory;
+
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
 /// to display for highlighted cells, candidates and so on.
@@ -44,11 +46,24 @@ namespace SudokuStudio.Rendering;
 internal static class RenderableFactory
 {
 	/// <summary>
+	/// The internal dictionary that describes the tag prefixes of view nodes.
+	/// </summary>
+	internal static readonly Dictionary<Type, string[]> ViewNodeTagPrefixes = new()
+	{
+		{ typeof(CellViewNode), ["cell"] },
+		{ typeof(CandidateViewNode), ["candidate"] },
+		{ typeof(HouseViewNode), ["house"] },
+		{ typeof(LinkViewNode), ["cell link", "curve segment", "arrow cap"] },
+		{ typeof(ChuteViewNode), ["chute"] },
+		{ typeof(BabaGroupViewNode), ["baba group"] }
+	};
+
+	/// <summary>
 	/// Represents a dictionary that displays the relations between <see cref="WellKnownColorIdentifier"/> and <see cref="Control"/> instances.
 	/// </summary>
 	/// <seealso cref="WellKnownColorIdentifier"/>
 	/// <seealso cref="Control"/>
-	private static readonly Dictionary<ColorIdentifier, Func<Control>> ShapeKindsDictionary = new()
+	private static readonly Dictionary<ColorIdentifier, Func<Control>> ShapeKindsCreator = new()
 	{
 		{ WellKnownColorIdentifier.Normal, static () => new CircleRing() },
 		{ WellKnownColorIdentifier.Auxiliary1, static () => new Cross() },
@@ -247,7 +262,7 @@ internal static class RenderableFactory
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}",
+					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 					CornerRadius = new(6),
@@ -274,7 +289,7 @@ internal static class RenderableFactory
 			}
 			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				if (!ShapeKindsDictionary.TryGetValue(cellNode.Identifier, out var controlCreator))
+				if (!ShapeKindsCreator.TryGetValue(cellNode.Identifier, out var controlCreator))
 				{
 					// Bug fix: If a cell is colorized by a color, but the color is not an element stored in the dictionary,
 					// it will throw a KeyNotFoundException.
@@ -302,7 +317,7 @@ internal static class RenderableFactory
 				{
 					var result = instanceCreator();
 					result.BorderThickness = new(0);
-					result.Tag = $"{nameof(RenderableFactory)}: cell {new RxCyConverter().CellConverter([cell])}";
+					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
 
@@ -409,7 +424,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross
@@ -420,7 +435,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
 					? Visibility.Visible
@@ -436,7 +451,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse
@@ -447,7 +462,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle
@@ -458,7 +473,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle
@@ -468,7 +483,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleHollow, _) => new Rectangle
@@ -478,7 +493,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -490,7 +505,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: candidate {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -546,7 +561,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: house {new RxCyConverter().HouseConverter(1 << house)}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(HouseViewNode)][0]} {new RxCyConverter().HouseConverter(1 << house)}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -601,13 +616,13 @@ internal static class RenderableFactory
 		{
 			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
 			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
-			_ => throw new ArgumentException($"The value '{nameof(chuteNode)}' is invalid.", nameof(chuteNode))
+			_ => Throw<(int, int, int, int)>(chute, 6)
 		};
 
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: chute {new RxCyConverter().ChuteConverter([Chutes[chute]])}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(ChuteViewNode)][0]} {new RxCyConverter().ChuteConverter([Chutes[chute]])}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
 			CornerRadius = new(18),
@@ -652,7 +667,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(RenderableFactory)}: baba group {new RxCyConverter().CellConverter([cell])}, {@char}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter([cell])}, {@char}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -799,7 +814,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-						Tag = $"{nameof(RenderableFactory)}: cell link {start} -> {end}",
+						Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][0]} {start} -> {end}",
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					};
 
@@ -892,7 +907,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 									}
 								]
 							},
-							Tag = $"{nameof(RenderableFactory)}: curve segment {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][1]} {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -900,7 +915,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(RenderableFactory)}: line segment {start} -> {end}"
+							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][1]} {start} -> {end}"
 						};
 					}
 					else
@@ -915,7 +930,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-							Tag = $"{nameof(RenderableFactory)}: arrow cap {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][2]} {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -923,7 +938,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(RenderableFactory)}: arrow cap {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][2]} {start} -> {end}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 					}

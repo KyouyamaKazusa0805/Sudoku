@@ -3555,6 +3555,198 @@ if (student is (name: var name, age: >= 18))
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileSuccessfully"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.RenderableItemsUpdatingReason">
+            <summary>
+            Represents a list of values that describes the reason why nodes should be updated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.None">
+            <summary>
+            Indicates none will be updated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for non-eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightCandidateCircleScale">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their circle scale.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightBackgroundOpacity">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s, <see cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>s and <see cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>s,
+            changing their background opacity.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>
+            <seealso cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>
+            <seealso cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s, changing their dash styles.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.WeakLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CycleLikeLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OtherLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.LinkStrokeThickness">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>, changing their stroke thickness.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.NormalColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Normal"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Assignment"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OverlappedAssignmentColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.OverlappedAssignment"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Elimination"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CannibalismColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Cannibalism"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ExofinColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Exofin"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EndofinColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Endofin"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AuxiliaryColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>,
+            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/> or <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary1"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary2"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary3"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AlmostLockedSetColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>,
+            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>, <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>,
+            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/> or <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet1"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet2"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet3"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet4"/>
+            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet5"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ColorPaletteColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined colors defined in color palette.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.All">
+            <summary>
+            Indicates all nodes should be refreshed.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.PaneUpdateRenderableItemFilters">
+            <summary>
+            Defines the filters that filters the renderable item controls displayed in UI.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.PaneUpdateRenderableItemFilters.FactoryTypeName">
+            <summary>
+            The factory type name.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PaneUpdateRenderableItemFilters.Link(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PaneUpdateRenderableItemFilters.BabaGrouping(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.PaneUpdateRenderableItemFilters.TemplateMethod``1(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The template method.
+            </summary>
+            <typeparam name="T">The type of the node.</typeparam>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:SudokuStudio.Interaction.RunningStrategyItem">
             <summary>
             Represents a type that describes for a running strategy item.
@@ -4472,7 +4664,12 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ShapeKindsDictionary">
+        <member name="F:SudokuStudio.Rendering.RenderableFactory.ViewNodeTagPrefixes">
+            <summary>
+            The internal dictionary that describes the tag prefixes of view nodes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableFactory.ShapeKindsCreator">
             <summary>
             Represents a dictionary that displays the relations between <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> and <see cref="T:Microsoft.UI.Xaml.Controls.Control"/> instances.
             </summary>
@@ -9871,10 +10068,11 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateViewUnit">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateViewUnit(SudokuStudio.Interaction.RenderableItemsUpdatingReason)">
             <summary>
             Update view unit (add view nodes or remove view nodes).
             </summary>
+            <param name="reason">The reason why the updating operation should be executed. This will also filters the updating nodes.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
             <summary>
