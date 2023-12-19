@@ -204,16 +204,13 @@ internal static class PaneUpdateRenderableItemFilters
 			return false;
 		}
 
-		var containsAny = false;
 		foreach (var element in RenderableFactory.ViewNodeTagPrefixes[typeof(T)])
 		{
 			if (s.Contains(element))
 			{
-				containsAny = true;
-				break;
+				return true;
 			}
 		}
-
-		return containsAny;
+		return false;
 	}
 }
