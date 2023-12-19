@@ -494,20 +494,16 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	internal void SetPuzzleInternal(scoped ref readonly Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
 		=> SetPuzzleCore(in value, new(method, clearStack, false));
 
-	/// <inheritdoc cref="UpdateViewUnit(ViewUnitBindableSource?)"/>
-	private void UpdateViewUnit() => UpdateViewUnit(ViewUnit);
-
 	/// <summary>
 	/// Update view unit (add view nodes or remove view nodes).
 	/// </summary>
-	/// <param name="viewUnit">The view unit bindable source.</param>
-	private void UpdateViewUnit(ViewUnitBindableSource? viewUnit)
+	private void UpdateViewUnit()
 	{
 		RenderableFactory.RemoveViewUnitControls(this);
 
-		if (viewUnit is not null)
+		if (ViewUnit is not null)
 		{
-			RenderableFactory.AddViewUnitControls(this, viewUnit);
+			RenderableFactory.AddViewUnitControls(this, ViewUnit);
 		}
 	}
 
@@ -877,7 +873,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 
