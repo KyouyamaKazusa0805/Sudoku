@@ -547,12 +547,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// </summary>
 	/// <seealso cref="_stack"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void ClearStack()
-#if true
-		=> Array.Clear(_stack);
-#else
-		=> InitBlock(AsPointer(ref _stack[0]), 0, (uint)(sizeof(State) * 50));
-#endif
+	private void ClearStack() => Array.Clear(_stack);
 
 	/// <summary>
 	/// Set a cell as solved - used in <see cref="InitSudoku"/>.
@@ -560,6 +555,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool SetSolvedDigit(Cell cell, Digit digit)
 	{
 		var subBand = (int)Cell2Floor[cell];
@@ -597,6 +593,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool EliminateDigit(Cell cell, Digit digit)
 	{
 		var subBand = Cell2Floor[cell];
@@ -618,6 +615,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="band">The band.</param>
 	/// <param name="mask">The mask.</param>
 	/// <returns>The <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool SetSolvedMask(int band, uint mask)
 	{
 		if ((_g->Bands[band] & mask) == 0)
@@ -1088,6 +1086,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <param name="solutionPtr">The pointer to the solution string.</param>
 	/// <param name="limit">The limitation for the number of all final solutions.</param>
 	/// <returns>The number of solutions found.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private long InternalSolve(char* puzzle, char* solutionPtr, int limit)
 	{
 		_numSolutions = 0;
@@ -1234,6 +1233,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// <summary>
 	/// Either already solved, or guess and recurse.
 	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void Guess()
 	{
 		if ((_g->UnsolvedRows[0] | _g->UnsolvedRows[1] | _g->UnsolvedRows[2]) == 0)
