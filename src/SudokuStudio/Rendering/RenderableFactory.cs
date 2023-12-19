@@ -13,6 +13,7 @@ using Sudoku.Rendering.Nodes;
 using Sudoku.Text.Converters;
 using SudokuStudio.BindableSource;
 using SudokuStudio.Input;
+using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
 using SudokuStudio.Views.Controls;
 using SudokuStudio.Views.Controls.Shapes;
@@ -84,13 +85,31 @@ internal static class RenderableFactory
 
 
 	/// <summary>
+	/// Refresh the pane view unit controls.
+	/// </summary>
+	/// <param name="pane">The pane.</param>
+	/// <param name="reason">The reason why raising this updating operation.</param>
+	/// <param name="value">The value specified as a <see langword="dynamic"/> value.</param>
+	public static void UpdateViewUnitControls(SudokuPane pane, RenderableItemsUpdatingReason reason, dynamic? value = null)
+	{
+		if (reason != RenderableItemsUpdatingReason.None)
+		{
+			RemoveViewUnitControls(pane);
+			if (pane.ViewUnit is not null)
+			{
+				AddViewUnitControls(pane, pane.ViewUnit);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
-	/// <param name="sudokuPane">The target pane.</param>
+	/// <param name="pane">The target pane.</param>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	public static void RemoveViewUnitControls(SudokuPane sudokuPane)
+	public static void RemoveViewUnitControls(SudokuPane pane)
 	{
-		foreach (var targetControl in getParentControls(sudokuPane))
+		foreach (var targetControl in getParentControls(pane))
 		{
 			if (targetControl is GridLayout { Children: var children })
 			{
@@ -99,7 +118,7 @@ internal static class RenderableFactory
 		}
 
 		// Manually update property.
-		sudokuPane.ViewUnitUsedCandidates = CandidateMap.Empty;
+		pane.ViewUnitUsedCandidates = CandidateMap.Empty;
 
 
 		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
@@ -116,11 +135,11 @@ internal static class RenderableFactory
 	/// <summary>
 	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
-	/// <param name="sudokuPane">The target pane.</param>
+	/// <param name="pane">The target pane.</param>
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	public static void AddViewUnitControls(SudokuPane sudokuPane, ViewUnitBindableSource viewUnit)
+	public static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
 	{
 		// Check whether the data can be deconstructed.
 		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
@@ -144,12 +163,12 @@ internal static class RenderableFactory
 				case (CellViewNode { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }, true):
 				case (CellViewNode { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }, false):
 				{
-					ForCellNode(sudokuPane, (CellViewNode)viewNode, controlAddingActions);
+					ForCellNode(pane, (CellViewNode)viewNode, controlAddingActions);
 					break;
 				}
 				case (CandidateViewNode(_, var candidate) c, _):
 				{
-					ForCandidateNode(sudokuPane, c, conclusions, out var o, controlAddingActions);
+					ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
 					if (o is { } currentOverlappedConclusion)
 					{
 						overlapped.Add(currentOverlappedConclusion);
@@ -160,17 +179,17 @@ internal static class RenderableFactory
 				}
 				case (HouseViewNode h, _):
 				{
-					ForHouseNode(sudokuPane, h, controlAddingActions);
+					ForHouseNode(pane, h, controlAddingActions);
 					break;
 				}
 				case (ChuteViewNode c, _):
 				{
-					ForChuteNode(sudokuPane, c, controlAddingActions);
+					ForChuteNode(pane, c, controlAddingActions);
 					break;
 				}
 				case (BabaGroupViewNode b, _):
 				{
-					ForBabaGroupNode(sudokuPane, b, controlAddingActions);
+					ForBabaGroupNode(pane, b, controlAddingActions);
 					break;
 				}
 				case (LinkViewNode l, _):
@@ -184,7 +203,7 @@ internal static class RenderableFactory
 		// Then iterate on each conclusions. Those conclusions will also be rendered as real controls.
 		foreach (var conclusion in conclusions)
 		{
-			ForConclusion(sudokuPane, conclusion, overlapped, controlAddingActions);
+			ForConclusion(pane, conclusion, overlapped, controlAddingActions);
 
 			usedCandidates.Add(conclusion.Candidate);
 		}
@@ -192,12 +211,12 @@ internal static class RenderableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(sudokuPane, [.. links], conclusions, controlAddingActions);
+		ForLinkNodes(pane, [.. links], conclusions, controlAddingActions);
 
 		controlAddingActions.ForEach(static pair => (pair.Animating + pair.Adding)());
 
 		// Update property to get highlighted candidates.
-		sudokuPane.ViewUnitUsedCandidates = usedCandidates;
+		pane.ViewUnitUsedCandidates = usedCandidates;
 	}
 
 	/// <summary>

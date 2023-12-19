@@ -4676,18 +4676,26 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
             <seealso cref="T:Microsoft.UI.Xaml.Controls.Control"/>
         </member>
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.RenderableItemsUpdatingReason,System.Object)">
+            <summary>
+            Refresh the pane view unit controls.
+            </summary>
+            <param name="pane">The pane.</param>
+            <param name="reason">The reason why raising this updating operation.</param>
+            <param name="value">The value specified as a <see langword="dynamic"/> value.</param>
+        </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
             Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
-            <param name="sudokuPane">The target pane.</param>
+            <param name="pane">The target pane.</param>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
             Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
-            <param name="sudokuPane">The target pane.</param>
+            <param name="pane">The target pane.</param>
             <param name="viewUnit">The view unit that you want to display.</param>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
@@ -10067,12 +10075,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
             </param>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateViewUnit(SudokuStudio.Interaction.RenderableItemsUpdatingReason)">
-            <summary>
-            Update view unit (add view nodes or remove view nodes).
-            </summary>
-            <param name="reason">The reason why the updating operation should be executed. This will also filters the updating nodes.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.InitializeChildrenControls">
             <summary>
