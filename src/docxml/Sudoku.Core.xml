@@ -5477,6 +5477,42 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
         </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.Concepts.SymmetricType)">
+            <summary>
+            Try to get the number of cells that the current symmetry should be formed a complete symmetric pattern.
+            </summary>
+            <param name="this">The symmetric type.</param>
+            <returns>
+            The number of cells should form a complete pattern:
+            <list type="table">
+            <listheader>
+            <term>Argument</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term><see cref="F:Sudoku.Concepts.SymmetricType.None"/> (0)</term>
+            <description>1 (Itself)</description>
+            </item>
+            <item>
+            <term>
+            <see cref="F:Sudoku.Concepts.SymmetricType.Central"/>,
+            <see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/>,
+            <see cref="F:Sudoku.Concepts.SymmetricType.XAxis"/>, <see cref="F:Sudoku.Concepts.SymmetricType.YAxis"/>
+            </term>
+            <description>2</description>
+            </item>
+            <item>
+            <term>Other defined values</term>
+            <description>4</description>
+            </item>
+            <item>
+            <term>Otherwise</term>
+            <description><see cref="T:System.ArgumentOutOfRangeException"/> thrown</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.Concepts.SymmetricType)">
             <summary>
             Try to get the number of axes of the specified symmetric type.

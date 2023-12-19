@@ -36,9 +36,9 @@ public static class ListGridExtensions
 	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
 	public static void AddRangeRef(this List<Grid> @this, scoped ReadOnlySpan<Grid> collection)
 	{
-		foreach (ref readonly var cells in collection)
+		foreach (ref readonly var grid in collection)
 		{
-			@this.AddRef(in cells);
+			@this.AddRef(in grid);
 		}
 	}
 
