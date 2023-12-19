@@ -4280,9 +4280,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 										[
 											.. candidateOffsets,
 											new HouseViewNode(WellKnownColorIdentifier.Normal, houses[0]),
-											new HouseViewNode(WellKnownColorIdentifier.Normal, houses[1]),
-											new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse),
-											new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, strongLinkHouse)
+											new HouseViewNode(WellKnownColorIdentifier.Normal, houses[1])
 										]
 									],
 									context.PredefinedOptions,
