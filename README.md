@@ -6,7 +6,7 @@
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
 [![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
 
-![](https://img.shields.io/badge/Programming%20Language-C%23%2012%20Preview-%23178600)
+![](https://img.shields.io/badge/Programming%20Language-C%23%2012-%23178600)
 ![](https://img.shields.io/badge/Framework-.NET%208-blueviolet)
 ![](https://img.shields.io/badge/Indenting-Tabs-lightgrey)
 ![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.9%20Preview%202-%23cf98fb?logo=Visual%20Studio)
