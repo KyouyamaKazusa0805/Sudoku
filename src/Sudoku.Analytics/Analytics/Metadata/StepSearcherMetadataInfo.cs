@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
@@ -65,15 +66,7 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
-	public string Name
-		=> _stepSearcher.GetType() switch
-		{
-			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherRuntimeNameAttribute>() switch
-			{
-				{ FactName: { } factName } => factName,
-				_ => GetString($"StepSearcherName_{typeName}") ?? typeName
-			}
-		};
+	public string Name => GetName(null);
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => [.. _stepSearcherAttribute.SupportedTechniques];
@@ -83,6 +76,21 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// </summary>
 	public DifficultyLevel[] DifficultyLevelRange => _stepSearcherAttribute.DifficultyLevels.GetAllFlags();
 
+
+	/// <summary>
+	/// Gets the name of the step searcher, using the specified culture.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
+	/// <returns>The name.</returns>
+	public string GetName(CultureInfo? cultureInfo)
+		=> _stepSearcher.GetType() switch
+		{
+			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherRuntimeNameAttribute>() switch
+			{
+				{ } p when p.GetFactName(cultureInfo) is { } factName => factName,
+				_ => GetString($"StepSearcherName_{typeName}", cultureInfo ?? CultureInfo.CurrentUICulture) ?? typeName
+			}
+		};
 
 	/// <summary>
 	/// Fetch the the implementation details for the specified <see cref="StepSearcher"/> instance.

@@ -435,7 +435,7 @@ if (student is (name: var name, age: >= 18))
             Represents an event that is triggered when an exception is thrown while the analysis module is running.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Globalization.CultureInfo,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
@@ -822,11 +822,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions)">
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions,System.Globalization.CultureInfo)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
             <param name="options">The formatting options.</param>
+            <param name="cultureInfo">The culture information.</param>
             <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.GetEnumerator">
@@ -2930,14 +2931,6 @@ if (student is (name: var name, age: >= 18))
             The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
@@ -2976,11 +2969,12 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliases(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <summary>
             Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="cultureInfo">The culture information.</param>
             <returns>
             All possible aliases of the current technique.
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
@@ -4290,6 +4284,13 @@ if (student is (name: var name, age: >= 18))
             Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetName(System.Globalization.CultureInfo)">
+            <summary>
+            Gets the name of the step searcher, using the specified culture.
+            </summary>
+            <param name="cultureInfo">The culture information.</param>
+            <returns>The name.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetFor(Sudoku.Analytics.StepSearcher)">
             <summary>
             Fetch the the implementation details for the specified <see cref="T:Sudoku.Analytics.StepSearcher"/> instance.
@@ -4339,11 +4340,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="resourceKey">The resource key to fetch the target name.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.FactName">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.GetFactName(System.Globalization.CultureInfo)">
             <summary>
             Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
             <see langword="null"/> will be returned.
             </summary>
+            <param name="cultureInfo">The culture information.</param>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.ResourceKey">
             <summary>
@@ -4435,6 +4437,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Get the name of this factor.
+            </summary>
+            <param name="cultureInfo">The culture information.</param>
+            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames">
             <summary>
@@ -4764,13 +4773,13 @@ if (student is (name: var name, age: >= 18))
             var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
             var description = Format.ToString(formatArguments);
             ]]></code>
-            See the documentation documents defined in method <see cref="M:Sudoku.Analytics.Step.ToString"/> to learn more information.
+            See the documentation documents defined in method <see cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/> to learn more information.
             </para>
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
             <seealso cref="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String)"/>
             <seealso cref="T:Sudoku.Analytics.TechniqueFormat"/>
-            <seealso cref="M:Sudoku.Analytics.Step.ToString"/>
+            <seealso cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolationParts">
             <summary>
@@ -4791,16 +4800,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)">
+            <summary>
+            Try to fetch the name of this technique step, with the specified culture.
+            </summary>
+            <param name="cultureInfo">The culture information instance.</param>
+            <returns>The string representation.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
             <summary>
             Returns a string that only contains the name and the basic description.
             </summary>
             <returns>The string instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Step.ToSimpleString">
+        <member name="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Returns a string that only contains the name and the basic description.
+            </summary>
+            <param name="cultureInfo">The culture information.</param>
+            <returns>The string instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)">
             <summary>
             Gets the string representation for the current step, describing only its technique name and conclusions.
             </summary>
+            <param name="cultureInfo">The culture information.</param>
             <returns>The string value.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
@@ -4853,11 +4877,12 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepCollector.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.Globalization.CultureInfo,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
+            <param name="cultureInfo">The culture information.</param>
             <param name="progress">The progress instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>
@@ -5035,6 +5060,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the implementation details of the current step searcher instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Returns the real name of this instance.
+            </summary>
+            <param name="cultureInfo">The culture information.</param>
+            <returns>The name.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
@@ -21383,21 +21415,23 @@ if (student is (name: var name, age: >= 18))
             The suffix of the format.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.TechniqueFormat.TargetFormat">
+        <member name="M:Sudoku.Analytics.TechniqueFormat.AppendFormatted(System.String)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.TechniqueFormat.GetTargetFormat(System.Globalization.CultureInfo)">
             <summary>
             Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.AppendFormatted(System.String)">
-            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
+            <param name="cultureInfo">The culture information.</param>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString(System.String[])">
+        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString(System.Globalization.CultureInfo,System.String[])">
             <summary>
             Get the format string for the current instance.
             </summary>
+            <param name="cultureInfo">The culture information.</param>
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
         </member>

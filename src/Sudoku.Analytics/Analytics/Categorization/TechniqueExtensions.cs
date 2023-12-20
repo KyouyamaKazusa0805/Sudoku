@@ -26,23 +26,15 @@ public static class TechniqueExtensions
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>The name of the current technique.</returns>
-	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this Technique @this)
-		=> GetString(@this.ToString()) ?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
-
-	/// <summary>
-	/// Try to get the name of the current <see cref="Technique"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <param name="cultureInfo">The culture information.</param>
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this Technique @this, CultureInfo? cultureInfo)
-		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
-		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
+	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
+		=> cultureInfo is null
+			? GetString(@this.ToString()) ?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly)
+			: GetString(@this.ToString(), cultureInfo)
+				?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -84,12 +76,14 @@ public static class TechniqueExtensions
 	/// Try to get all aliases of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <param name="cultureInfo">The culture information.</param>
 	/// <returns>
 	/// All possible aliases of the current technique.
 	/// If the technique does not contain any aliases, the return value will be <see langword="null"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[]? GetAliases(this Technique @this) => GetString($"TechniqueAlias_{@this}")?.SplitBy([';']);
+	public static string[]? GetAliases(this Technique @this, CultureInfo? cultureInfo = null)
+		=> GetString($"TechniqueAlias_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)?.SplitBy([';']);
 
 	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.

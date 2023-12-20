@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.SourceGeneration;
@@ -35,30 +36,32 @@ public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalL
 	private string? _formatSuffix;
 
 
-	/// <summary>
-	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
-	/// </summary>
-	public readonly string? TargetFormat => _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}");
-
-
 	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted(string?)"/>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
 	public void AppendFormatted(string formatSuffix) => _formatSuffix = formatSuffix;
 
+	/// <summary>
+	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
+	public readonly string? GetTargetFormat(CultureInfo? cultureInfo)
+		=> _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}", cultureInfo ?? CultureInfo.CurrentUICulture);
+
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => TargetFormat ?? "<Unspecified>";
+	public override readonly string ToString() => GetTargetFormat(null) ?? "<Unspecified>";
 
 	/// <summary>
 	/// Get the format string for the current instance.
 	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
 	/// <param name="formatArguments">The format arguments.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(params string[] formatArguments)
-		=> TargetFormat is not null
-			? string.Format(TargetFormat, formatArguments)
+	public readonly string ToString(CultureInfo? cultureInfo, params string[] formatArguments)
+		=> GetTargetFormat(cultureInfo) is { } p
+			? string.Format(p, formatArguments)
 			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(TechniqueFormat).Assembly);
 }

@@ -24,10 +24,14 @@ internal static class PuzzleLibraryConversion
 		var currentPuzzle = source.Puzzles[currentPuzzleIndex];
 		return ((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility switch
 		{
-			LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate => !Analyzer.Analyze(in currentPuzzle).IsSolved,
-			LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound => currentPuzzle.ToString("#").Contains(':'),
-			LibraryCandidatesVisibility.AlwaysShown => true,
-			_ => false
+			LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate
+				=> !Analyzer.Analyze(in currentPuzzle, CurrentCultureInfo).IsSolved,
+			LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound
+				=> currentPuzzle.ToString("#").Contains(':'),
+			LibraryCandidatesVisibility.AlwaysShown
+				=> true,
+			_
+				=> false
 		};
 	}
 
@@ -50,7 +54,8 @@ internal static class PuzzleLibraryConversion
 			}
 		);
 
-	public static string GetTags(string[] tags) => string.Format(GetString("LibraryPage_TagsAre"), string.Join(GetString("_Token_Comma"), tags));
+	public static string GetTags(string[] tags)
+		=> string.Format(GetString("LibraryPage_TagsAre"), string.Join(GetString("_Token_Comma"), tags));
 
 	public static string GetPuzzlesCountText(int count)
 		=> string.Format(GetString(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural"), count);

@@ -1,3 +1,4 @@
+using System.Globalization;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Rating;
@@ -10,5 +11,13 @@ namespace Sudoku.Analytics.Rating;
 public readonly record struct ExtraDifficultyFactor(string FactorName, decimal Value) : IRatingDataProvider
 {
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => GetString($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}") ?? FactorName;
+	public override string ToString() => ToString(null);
+
+	/// <summary>
+	/// Get the name of this factor.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
+	/// <returns>The result.</returns>
+	public string ToString(CultureInfo? cultureInfo)
+		=> GetString($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}", cultureInfo ?? CultureInfo.CurrentUICulture) ?? FactorName;
 }

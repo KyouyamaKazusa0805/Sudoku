@@ -28,7 +28,7 @@ internal static class TechniqueConversion
 	public static string GetAliasNames(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: technique.GetAliases() is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
+			: technique.GetAliases(CurrentCultureInfo) is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
 
 	public static string GetAbbreviation(Technique technique)
 		=> technique == Technique.None

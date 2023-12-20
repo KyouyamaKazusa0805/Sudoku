@@ -42,7 +42,7 @@
 					</ToolTipService.ToolTip>
 
 					<TextBlock
-						Text="{x:Bind Step.ToSimpleString()}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+						Text="{x:Bind cvt:AnalyzeConversion.GetSimpleString(Step)}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 						Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
 				</ListViewItem>
 			</DataTemplate>

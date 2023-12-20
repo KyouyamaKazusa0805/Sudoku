@@ -36,5 +36,6 @@ public static class StringsAccessor
 	/// <param name="cultureInfo">The culture information instance.</param>
 	/// <returns>The value. If none found, <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetString(string key, CultureInfo cultureInfo) => Resources.ResourceManager.GetString(key, cultureInfo);
+	public static string? GetString(string key, CultureInfo cultureInfo)
+		=> cultureInfo is null ? GetString(key) : Resources.ResourceManager.GetString(key, cultureInfo);
 }

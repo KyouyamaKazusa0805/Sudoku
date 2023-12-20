@@ -43,7 +43,7 @@ public abstract partial class Step(
 	/// The technique name are all stored in the resource dictionary,
 	/// you can find them in the <c>Strings</c> folder (Type <see cref="StringsAccessor"/>).
 	/// </remarks>
-	public virtual string Name => Code.GetName();
+	public virtual string Name => GetName(null);
 
 	/// <summary>
 	/// Indicates the English name of the technique.
@@ -150,13 +150,13 @@ public abstract partial class Step(
 	/// var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
 	/// var description = Format.ToString(formatArguments);
 	/// ]]></code>
-	/// See the documentation documents defined in method <see cref="ToString"/> to learn more information.
+	/// See the documentation documents defined in method <see cref="ToString(CultureInfo?)"/> to learn more information.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="GetString(string)"/>
 	/// <seealso cref="TechniqueFormat"/>
-	/// <seealso cref="ToString"/>
+	/// <seealso cref="ToString(CultureInfo?)"/>
 	public virtual TechniqueFormat Format => $"{GetType().Name}";
 
 	/// <summary>
@@ -180,27 +180,46 @@ public abstract partial class Step(
 
 
 	/// <summary>
+	/// Try to fetch the name of this technique step, with the specified culture.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <returns>The string representation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string GetName(CultureInfo? cultureInfo) => Code.GetName(cultureInfo ?? CultureInfo.CurrentUICulture);
+
+	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
 	/// <returns>The string instance.</returns>
-	public sealed override string ToString()
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public sealed override string ToString() => ToString(null);
+
+	/// <summary>
+	/// Returns a string that only contains the name and the basic description.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
+	/// <returns>The string instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? cultureInfo)
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var currentCultureName = CultureInfo.CurrentCulture.Name;
+		var currentCultureName = (cultureInfo ?? CultureInfo.CurrentUICulture).Name;
 		var colonToken = GetString("Colon");
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
-			({ TargetFormat: null }, _) => ToSimpleString(),
-			(_, null) => $"{Name}{colonToken}{Format} => {ConclusionText}",
-			var (_, formatArgs) => $"{Name}{colonToken}{Format.ToString(formatArgs)} => {ConclusionText}"
+			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(cultureInfo),
+			(_, null) => $"{GetName(cultureInfo)}{colonToken}{Format} => {ConclusionText}",
+			var (_, formatArgs) => $"{GetName(cultureInfo)}{colonToken}{Format.ToString(cultureInfo, formatArgs)} => {ConclusionText}"
 		};
 	}
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
 	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString() => $"{Name} => {ConclusionText}";
+	public string ToSimpleString(CultureInfo? cultureInfo = null)
+		=> cultureInfo is null ? $"{Name} => {ConclusionText}" : $"{GetName(cultureInfo)} => {ConclusionText}";
 }

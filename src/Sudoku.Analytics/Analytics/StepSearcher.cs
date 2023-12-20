@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Metadata;
@@ -70,13 +71,20 @@ public abstract partial class StepSearcher(
 	/// Returns the real name of this instance.
 	/// </summary>
 	[StringMember]
-	public string Name => Metadata.Name;
+	public string Name => Metadata.GetName(null);
 
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
 	/// </summary>
 	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
 
+
+	/// <summary>
+	/// Returns the real name of this instance.
+	/// </summary>
+	/// <param name="cultureInfo">The culture information.</param>
+	/// <returns>The name.</returns>
+	public string ToString(CultureInfo? cultureInfo) => Metadata.GetName(cultureInfo);
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

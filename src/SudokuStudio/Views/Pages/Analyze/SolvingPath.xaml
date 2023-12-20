@@ -78,7 +78,7 @@
 											Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="12,0,0,0"
 											Orientation="Horizontal" Spacing="6">
 											<TextBlock
-												Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind Step.Name}"
+												Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind cvt:AnalyzeConversion.GetName(Step)}"
 												HorizontalAlignment="Left" VerticalAlignment="Center" />
 											<TextBlock
 												FontSize="11" Style="{StaticResource BodyTextBlockStyle}"

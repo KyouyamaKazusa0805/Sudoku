@@ -1,6 +1,7 @@
 #undef REMOVE_DUPLICATED_STEPS_IN_SINGLES_IF_RANDOM_ENABLED
 
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
@@ -113,7 +114,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, CultureInfo? cultureInfo = null, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -385,7 +386,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 				}
 
 			MakeProgress:
-				progressedStepSearcherName = searcher.ToString();
+				progressedStepSearcherName = searcher.ToString(cultureInfo);
 				goto ReportStateAndTryNextStep;
 			}
 

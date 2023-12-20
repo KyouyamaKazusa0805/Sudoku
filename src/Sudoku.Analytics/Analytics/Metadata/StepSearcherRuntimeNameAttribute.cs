@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.SourceGeneration;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -14,5 +15,6 @@ public sealed partial class StepSearcherRuntimeNameAttribute([Data] string resou
 	/// Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
 	/// <see langword="null"/> will be returned.
 	/// </summary>
-	public string? FactName => GetString(ResourceKey);
+	/// <param name="cultureInfo">The culture information.</param>
+	public string? GetFactName(CultureInfo? cultureInfo) => GetString(ResourceKey, cultureInfo ?? CultureInfo.CurrentUICulture);
 }
