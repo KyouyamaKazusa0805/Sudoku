@@ -13,6 +13,11 @@ namespace SudokuStudio.Configuration;
 public sealed partial class StepSearcherInfo : DependencyObject
 {
 	/// <summary>
+	/// Indicates whether the technique option is not fixed and can be used for drag-and-drop operation.
+	/// </summary>
+	public bool CanDrag => !CreateStepSearchers()[0].Metadata.IsFixed;
+
+	/// <summary>
 	/// Creates a list of <see cref="StepSearcher"/> instances.
 	/// </summary>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>

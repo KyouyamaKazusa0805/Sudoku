@@ -12,8 +12,7 @@
 		SelectionMode="Single" ItemsSource="{x:Bind StepSearchers,Mode=TwoWay}"
 		CanDragItems="True" CanReorderItems="True" AllowDrop="True" BorderBrush="{x:Bind BorderBrush,Mode=OneWay}"
 		BorderThickness="{x:Bind BorderThickness,Mode=OneWay}" CornerRadius="{x:Bind CornerRadius,Mode=OneWay}"
-		DragItemsStarting="MainListView_DragItemsStarting" DragOver="MainListView_DragOver" Drop="MainListView_DropAsync"
-		DragEnter="MainListView_DragEnter" SelectionChanged="MainListView_SelectionChanged">
+		DragItemsStarting="MainListView_DragItemsStarting" SelectionChanged="MainListView_SelectionChanged">
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="config:StepSearcherInfo">
 				<CheckBox IsChecked="{x:Bind IsEnabled,Mode=TwoWay}" Content="{x:Bind Name}" CanDrag="True" />

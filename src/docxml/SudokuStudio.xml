@@ -1423,6 +1423,11 @@
             Defines a serialization data of a step searcher.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherInfo.CanDrag">
+            <summary>
+            Indicates whether the technique option is not fixed and can be used for drag-and-drop operation.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Configuration.StepSearcherInfo.CreateStepSearchers">
             <summary>
             Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.

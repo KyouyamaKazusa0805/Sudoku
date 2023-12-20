@@ -1,12 +1,9 @@
 using System.Collections.ObjectModel;
-using System.Text.Json;
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Sudoku.Analytics;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Configuration;
 using SudokuStudio.Interaction;
-using Windows.ApplicationModel.DataTransfer;
 
 namespace SudokuStudio.Views.Controls;
 
@@ -31,47 +28,11 @@ public sealed partial class StepSearcherListView : UserControl
 
 	private void MainListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	{
-		if (e is { Data: var dataPackage, Items: [StepSearcherInfo stepSearcherInfo] })
+		if (e is not { Items: [StepSearcherInfo { CanDrag: true }] })
 		{
-			dataPackage.SetText(JsonSerializer.Serialize(stepSearcherInfo));
-			dataPackage.RequestedOperation = DataPackageOperation.Move;
+			e.Cancel = true;
 		}
 	}
-
-	private void MainListView_DragOver(object sender, DragEventArgs e) => e.AcceptedOperation = DataPackageOperation.Move;
-
-	private void MainListView_DragEnter(object sender, DragEventArgs e) => e.DragUIOverride.IsGlyphVisible = false;
-
-	private async void MainListView_DropAsync(object sender, DragEventArgs e)
-	{
-		if (sender is not ListView { Name: nameof(MainListView) } target)
-		{
-			return;
-		}
-
-		if (!e.DataView.Contains(StandardDataFormats.Text))
-		{
-			return;
-		}
-
-		var def = e.GetDeferral();
-		if (JsonSerializer.Deserialize<StepSearcherInfo>(await e.DataView.GetTextAsync()) is not { TypeName: var typeName } instance
-			|| StepSearcherPool.GetStepSearchers(typeName, false)[0].Metadata.IsFixed)
-		{
-			return;
-		}
-
-		// Important step: Drag & drop behavior cannot get the target element's index.
-		// We should get the target insertion index via cursor point.
-		var index = e.GetIndexViaCursorPoint(target);
-
-		StepSearchers.Insert(index, instance);
-		StepSearchers.RemoveWhen(item => item == instance);
-
-		e.AcceptedOperation = DataPackageOperation.Move;
-		def.Complete();
-	}
-
 
 	private void MainListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		=> ItemSelected?.Invoke(this, new((StepSearcherInfo)MainListView.SelectedItem));
