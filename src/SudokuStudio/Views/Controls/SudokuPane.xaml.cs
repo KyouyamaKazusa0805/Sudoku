@@ -655,7 +655,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Callback]
 	private static void BabaGroupLabelColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.BabaGrouping);
+		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.BabaGrouping, (Color)e.NewValue!);
 
 	[Callback]
 	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
