@@ -1,7 +1,5 @@
-using Microsoft.UI.Xaml;
 using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
-using SudokuStudio.Rendering;
 
 namespace SudokuStudio.Interaction;
 
@@ -28,10 +26,10 @@ public enum RenderableItemsUpdatingReason
 	EliminationDisplayMode,
 
 	/// <summary>
-	/// Indicates the updating items are <see cref="CandidateViewNode"/>s, changing their circle scale.
+	/// Indicates the updating items are <see cref="CandidateViewNode"/>s, changing their scale.
 	/// </summary>
 	/// <seealso cref="CandidateViewNode"/>
-	HighlightCandidateCircleScale,
+	HighlightCandidateScale,
 
 	/// <summary>
 	/// Indicates the updating items are <see cref="CellViewNode"/>s, <see cref="HouseViewNode"/>s and <see cref="ChuteViewNode"/>s,
@@ -162,55 +160,4 @@ public enum RenderableItemsUpdatingReason
 	/// Indicates all nodes should be refreshed.
 	/// </summary>
 	All
-}
-
-/// <summary>
-/// Defines the filters that filters the renderable item controls displayed in UI.
-/// </summary>
-internal static class PaneUpdateRenderableItemFilters
-{
-	/// <summary>
-	/// The factory type name.
-	/// </summary>
-	private const string FactoryTypeName = nameof(RenderableFactory);
-
-
-	/// <summary>
-	/// The filter for <see cref="RenderableItemsUpdatingReason.Link"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="RenderableItemsUpdatingReason.Link"/>
-	public static bool Link(FrameworkElement control) => TemplateMethod<LinkViewNode>(control);
-
-	/// <summary>
-	/// The filter for <see cref="RenderableItemsUpdatingReason.BabaGrouping"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="RenderableItemsUpdatingReason.BabaGrouping"/>
-	public static bool BabaGrouping(FrameworkElement control) => TemplateMethod<BabaGroupViewNode>(control);
-
-	/// <summary>
-	/// The template method.
-	/// </summary>
-	/// <typeparam name="T">The type of the node.</typeparam>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool TemplateMethod<T>(FrameworkElement control) where T : ViewNode
-	{
-		if (control.Tag is not string { Length: var p } s || p < FactoryTypeName.Length)
-		{
-			return false;
-		}
-
-		foreach (var element in RenderableFactory.ViewNodeTagPrefixes[typeof(T)])
-		{
-			if (s.Contains(element))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 }

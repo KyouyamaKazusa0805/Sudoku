@@ -14,6 +14,10 @@ namespace Sudoku.Rendering;
 [method: JsonConstructor]
 public sealed partial class PaletteIdColorIdentifier([Data, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out int value) => value = Value;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)

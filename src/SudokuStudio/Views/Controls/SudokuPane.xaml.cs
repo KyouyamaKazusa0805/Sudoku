@@ -723,7 +723,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Callback]
 	private static void HighlightCandidateCircleScalePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.HighlightCandidateCircleScale, (decimal)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.HighlightCandidateScale, (decimal)e.NewValue!);
 
 	[Callback]
 	private static void HighlightBackgroundOpacityPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

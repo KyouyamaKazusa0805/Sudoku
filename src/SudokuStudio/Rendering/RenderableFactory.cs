@@ -13,6 +13,7 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using Sudoku.Text.Converters;
 using SudokuStudio.BindableSource;
+using SudokuStudio.Collection;
 using SudokuStudio.Input;
 using SudokuStudio.Interaction;
 using SudokuStudio.Interaction.Conversions;
@@ -35,6 +36,7 @@ using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
 namespace SudokuStudio.Rendering;
 
 using static RenderableFactory;
+using Kind = WellKnownColorIdentifierKind;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -48,6 +50,68 @@ using static RenderableFactory;
 internal static class RenderableFactory
 {
 	/// <summary>
+	/// Indicates the separator for the suffix of conclusions in tag text.
+	/// </summary>
+	internal const string ConclusionSuffixSeparator = "|c";
+
+	/// <summary>
+	/// Indicates the separator for the suffix of inferences in tag text.
+	/// </summary>
+	internal const string InferenceSuffixSeparator = "|i";
+
+	/// <summary>
+	/// Indicates the separator for the suffix of colorized in tag text.
+	/// </summary>
+	internal const string ColorizedSuffixSeparator = "|@";
+
+	/// <summary>
+	/// Indicates the separator for the suffix of colorized color identifier in tag text.
+	/// </summary>
+	internal const string ColorColorIdentifierSeparator = "|*";
+
+	/// <summary>
+	/// Indicates the separator for the suffix of colorized named identifier in tag text.
+	/// </summary>
+	internal const string IdColorIdentifierSeparator = "|#";
+
+	/// <summary>
+	/// The conclusion suffixes.
+	/// </summary>
+	internal const string
+		CannibalismConclusionSuffix = "|cc|",
+		EliminationConclusionSuffix = "|ce|",
+		OverlappedAssignmentConclusionSuffix = "|co|",
+		AssignmentConclusionSuffix = "|ca|";
+
+	/// <summary>
+	/// The link suffixes.
+	/// </summary>
+	internal const string
+		StrongInferenceSuffix = "|is|",
+		StrongGeneralizedInferenceSuffix = "|isg|",
+		WeakInferenceSuffix = "|iw|",
+		WeakGeneralizedInferenceSuffix = "|iwg|",
+		ConjugateInferenceSuffix = "|ic|",
+		DefaultInferenceSuffix = "|id|";
+
+	/// <summary>
+	/// The colorized suffixes.
+	/// </summary>
+	internal const string
+		NormalColorizedSuffix = $"|@{nameof(Kind.Normal)}|",
+		AssignmentColorizedSuffix = $"|@{nameof(Kind.Assignment)}|",
+		OverlappedAssignmentColorizedSuffix = $"|@{nameof(Kind.OverlappedAssignment)}|",
+		EliminationColorizedSuffix = $"|@{nameof(Kind.Elimination)}|",
+		CannibalismColorizedSuffix = $"|@{nameof(Kind.Cannibalism)}|",
+		LinkColorizedSuffix = $"|@{nameof(Kind.Link)}|",
+		ExofinColorizedSuffix = $"|@{nameof(Kind.Exofin)}|",
+		EndofinColorizedSuffix = $"|@{nameof(Kind.Endofin)}|",
+		AuxiliaryColorizedSuffix = "|@Auxiliary|",
+		AlmostLockedSetColorizedSuffix = "|@AlmostLockedSet|",
+		ColorPaletteColorizedSuffix = "|@ColorPalette|";
+
+
+	/// <summary>
 	/// The internal dictionary that describes the tag prefixes of view nodes.
 	/// </summary>
 	internal static readonly Dictionary<Type, string[]> ViewNodeTagPrefixes = new()
@@ -58,6 +122,42 @@ internal static class RenderableFactory
 		{ typeof(LinkViewNode), ["cell link", "curve segment", "arrow cap"] },
 		{ typeof(ChuteViewNode), ["chute"] },
 		{ typeof(BabaGroupViewNode), ["baba group"] }
+	};
+
+	/// <summary>
+	/// The filters for controls that describes for view node.
+	/// </summary>
+	private static readonly Dictionary<RenderableItemsUpdatingReason, Func<FrameworkElement, bool>> ReasonNodeFilters = new()
+	{
+		{ RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode, Filters.CandidateViewNodeDisplayMode },
+		{ RenderableItemsUpdatingReason.EliminationDisplayMode, Filters.EliminationDisplayMode },
+		{ RenderableItemsUpdatingReason.HighlightCandidateScale, Filters.HighlightCandidateScale },
+		{ RenderableItemsUpdatingReason.Link, Filters.Link },
+		{ RenderableItemsUpdatingReason.StrongLinkDashStyle, Filters.StrongLinkDashStyle },
+		{ RenderableItemsUpdatingReason.WeakLinkDashStyle, Filters.WeakLinkDashStyle },
+		{ RenderableItemsUpdatingReason.CycleLikeLinkDashStyle, Filters.CycleLikeLinkDashStyle },
+		{ RenderableItemsUpdatingReason.OtherLinkDashStyle, Filters.OtherLinkDashStyle },
+		{ RenderableItemsUpdatingReason.LinkStrokeThickness, Filters.LinkStrokeThickness },
+		{ RenderableItemsUpdatingReason.BabaGrouping, Filters.BabaGrouping },
+		{ RenderableItemsUpdatingReason.NormalColorized, control => Filters.Colorized(control, Kind.Normal) },
+		{ RenderableItemsUpdatingReason.AssignmentColorized, control => Filters.Colorized(control, Kind.Assignment) },
+		{ RenderableItemsUpdatingReason.OverlappedAssignmentColorized, control => Filters.Colorized(control, Kind.OverlappedAssignment) },
+		{ RenderableItemsUpdatingReason.EliminationColorized, control => Filters.Colorized(control, Kind.Elimination) },
+		{ RenderableItemsUpdatingReason.CannibalismColorized, control => Filters.Colorized(control, Kind.Cannibalism) },
+		{ RenderableItemsUpdatingReason.ExofinColorized, control => Filters.Colorized(control, Kind.Exofin) },
+		{ RenderableItemsUpdatingReason.EndofinColorized, control => Filters.Colorized(control, Kind.Endofin) },
+		{
+			RenderableItemsUpdatingReason.AuxiliaryColorized,
+			control => Filters.ColorizedRange(control, [Kind.Auxiliary1, Kind.Auxiliary2, Kind.Auxiliary3])
+		},
+		{
+			RenderableItemsUpdatingReason.AlmostLockedSetColorized,
+			control => Filters.ColorizedRange(
+				control,
+				[Kind.AlmostLockedSet1, Kind.AlmostLockedSet2, Kind.AlmostLockedSet3, Kind.AlmostLockedSet4, Kind.AlmostLockedSet5]
+			)
+		},
+		{ RenderableItemsUpdatingReason.ColorPaletteColorized, Filters.ColorizedPaletteId },
 	};
 
 	/// <summary>
@@ -90,8 +190,8 @@ internal static class RenderableFactory
 	/// </summary>
 	/// <param name="pane">The pane.</param>
 	/// <param name="reason">The reason why raising this updating operation.</param>
-	/// <param name="value">The value specified as a <see langword="dynamic"/> value.</param>
-	public static void UpdateViewUnitControls(SudokuPane pane, RenderableItemsUpdatingReason reason, dynamic? value = null)
+	/// <param name="value">The value specified as an <see cref="object"/> value.</param>
+	public static void UpdateViewUnitControls(SudokuPane pane, RenderableItemsUpdatingReason reason, object? value = null)
 	{
 		if (reason != RenderableItemsUpdatingReason.None)
 		{
@@ -239,19 +339,22 @@ internal static class RenderableFactory
 		}
 
 		var isOverlapped = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
+		var id = (type, isOverlapped) switch
+		{
+			(Assignment, true) => Kind.OverlappedAssignment,
+			(Assignment, _) => Kind.Assignment,
+			(Elimination, true) => Kind.Cannibalism,
+			_ => (ColorIdentifier)Kind.Elimination
+		};
 		ForCandidateNodeCore(
-			IdentifierConversion.GetColor(
-				type switch
-				{
-					Assignment => isOverlapped ? WellKnownColorIdentifierKind.OverlappedAssignment : WellKnownColorIdentifierKind.Assignment,
-					Elimination => isOverlapped ? WellKnownColorIdentifierKind.Cannibalism : WellKnownColorIdentifierKind.Elimination
-				}
-			),
+			id,
+			IdentifierConversion.GetColor(id),
 			candidate,
 			paneCellControl,
 			animatedResults,
 			true,
-			conclusion.ConclusionType == Elimination
+			conclusion.ConclusionType == Elimination,
+			isOverlapped
 		);
 	}
 
@@ -277,12 +380,12 @@ internal static class RenderableFactory
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
-			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= WellKnownColorIdentifierKind.Normal and <= WellKnownColorIdentifierKind.Auxiliary3) } }):
+			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= Kind.Normal and <= Kind.Auxiliary3) } }):
 			{
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}",
+					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 					CornerRadius = new(6),
@@ -337,7 +440,7 @@ internal static class RenderableFactory
 				{
 					var result = instanceCreator();
 					result.BorderThickness = new(0);
-					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}";
+					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
 
@@ -394,12 +497,13 @@ internal static class RenderableFactory
 			return;
 		}
 
-		ForCandidateNodeCore(IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults, false, false);
+		ForCandidateNodeCore(id, IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults);
 	}
 
 	/// <summary>
 	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>.
 	/// </summary>
+	/// <param name="id">The color identifier.</param>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
@@ -408,14 +512,17 @@ internal static class RenderableFactory
 	/// </param>
 	/// <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
 	/// <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
+	/// <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
 	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>
 	private static void ForCandidateNodeCore(
+		ColorIdentifier id,
 		Color color,
 		Candidate candidate,
 		SudokuPaneCell paneCellControl,
 		AnimatedResultCollection animatedResults,
-		bool isForConclusion,
-		bool isForElimination
+		bool isForConclusion = false,
+		bool isForElimination = false,
+		bool isOverlapped = false
 	)
 	{
 		if (paneCellControl is not
@@ -435,6 +542,8 @@ internal static class RenderableFactory
 
 		var converter = new RxCyConverter();
 		var (width, height) = size / 3F * (float)highlightScale;
+		var tagPrefix = ViewNodeTagPrefixes[typeof(CandidateViewNode)][0];
+		var conclusionTagStr = GetConclusionTagSuffix(isForConclusion, isForElimination, isOverlapped);
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
 			(true, true, _, EliminationDisplayMode.CircleSolid) => new Ellipse
@@ -444,7 +553,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross
@@ -455,7 +564,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
 					? Visibility.Visible
@@ -471,7 +580,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse
@@ -482,7 +591,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle
@@ -493,7 +602,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle
@@ -503,7 +612,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleHollow, _) => new Rectangle
@@ -513,7 +622,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -525,7 +634,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CandidateViewNode)][0]} {converter.CandidateConverter([candidate])}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -581,7 +690,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(HouseViewNode)][0]} {new RxCyConverter().HouseConverter(1 << house)}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(HouseViewNode)][0]} {new RxCyConverter().HouseConverter(1 << house)}{id.GetIdentifierSuffix()}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -642,7 +751,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(ChuteViewNode)][0]} {new RxCyConverter().ChuteConverter([Chutes[chute]])}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(ChuteViewNode)][0]} {new RxCyConverter().ChuteConverter([Chutes[chute]])}{id.GetIdentifierSuffix()}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
 			CornerRadius = new(18),
@@ -687,7 +796,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter([cell])}, {@char}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter([cell])}, {@char}{id.GetIdentifierSuffix()}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -762,6 +871,20 @@ internal static class RenderableFactory
 	}
 
 	/// <summary>
+	/// Get conclusion suffix of tag.
+	/// </summary>
+	/// <returns>A <see cref="string"/> text as the result.</returns>
+	private static string? GetConclusionTagSuffix(bool isForConclusion, bool isForElimination, bool isOverlapped)
+		=> (isForConclusion, isForElimination, isOverlapped) switch
+		{
+			(true, true, true) => CannibalismConclusionSuffix,
+			(true, true, _) => EliminationConclusionSuffix,
+			(true, _, true) => OverlappedAssignmentConclusionSuffix,
+			(true, _, _) => AssignmentConclusionSuffix,
+			_ => null
+		};
+
+	/// <summary>
 	/// The internal helper method that creates a <see cref="InvalidOperationException"/> instance without any other operation.
 	/// </summary>
 	/// <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
@@ -825,6 +948,18 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					_ => Pane.OtherLinkDashStyle
 				}
 			).ToDoubleCollection();
+			var tagPrefixes = ViewNodeTagPrefixes[typeof(LinkViewNode)];
+			var tagSuffix = inference switch
+			{
+				Inference.Strong => StrongInferenceSuffix,
+				Inference.StrongGeneralized => StrongGeneralizedInferenceSuffix,
+				Inference.Weak => WeakInferenceSuffix,
+				Inference.WeakGeneralized => WeakGeneralizedInferenceSuffix,
+				Inference.Default => DefaultInferenceSuffix,
+				Inference.ConjugatePair => ConjugateInferenceSuffix,
+				_ => DefaultInferenceSuffix
+			};
+			var linkSuffix = ((ColorIdentifier)Kind.Link).GetIdentifierSuffix();
 			switch (inference)
 			{
 				case Inference.Default:
@@ -839,7 +974,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-						Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][0]} {start} -> {end}",
+						Tag = $"{nameof(RenderableFactory)}: {tagPrefixes[0]} {start} -> {end}{tagSuffix}{linkSuffix}",
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					};
 
@@ -932,7 +1067,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 									}
 								]
 							},
-							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][1]} {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -940,7 +1075,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][1]} {start} -> {end}"
+							Tag = $"{nameof(RenderableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
 						};
 					}
 					else
@@ -955,7 +1090,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							StrokeDashArray = dashArray,
 							Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][2]} {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 						yield return new()
@@ -963,7 +1098,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(LinkViewNode)][2]} {start} -> {end}",
+							Tag = $"{nameof(RenderableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 					}
@@ -1122,6 +1257,34 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 file static class Extensions
 {
 	/// <summary>
+	/// Try to get identifier suffix for the specified value.
+	/// </summary>
+	/// <param name="this">The color identifier.</param>
+	/// <returns>The string suffix text.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
+	public static string GetIdentifierSuffix(this ColorIdentifier @this)
+		=> @this switch
+		{
+			ColorColorIdentifier(var a, var r, var g, var b) => $"{ColorColorIdentifierSeparator}{a:X2}{r:X2}{g:X2}{b:X2}|",
+			PaletteIdColorIdentifier(var id) => $"{IdColorIdentifierSeparator}{id}|",
+			WellKnownColorIdentifier(var kind) => kind switch
+			{
+				Kind.Normal => NormalColorizedSuffix,
+				>= Kind.Auxiliary1 and <= Kind.Auxiliary3 => AuxiliaryColorizedSuffix,
+				Kind.Assignment => AssignmentColorizedSuffix,
+				Kind.OverlappedAssignment => OverlappedAssignmentColorizedSuffix,
+				Kind.Elimination => EliminationColorizedSuffix,
+				Kind.Exofin => ExofinColorizedSuffix,
+				Kind.Endofin => EndofinColorizedSuffix,
+				Kind.Cannibalism => CannibalismColorizedSuffix,
+				Kind.Link => LinkColorizedSuffix,
+				>= Kind.AlmostLockedSet1 and <= Kind.AlmostLockedSet5 => AlmostLockedSetColorizedSuffix,
+				_ => throw new ArgumentOutOfRangeException(nameof(@this))
+			},
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
+
+	/// <summary>
 	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="this">The collection.</param>
@@ -1166,6 +1329,271 @@ file static class Extensions
 		}
 
 		conclusion = null;
+		return false;
+	}
+}
+
+/// <summary>
+/// The internal type that filters the controls.
+/// </summary>
+file static class Filters
+{
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode"/>
+	public static bool CandidateViewNodeDisplayMode(FrameworkElement control)
+		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && !s.Contains(ConclusionSuffixSeparator));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.EliminationDisplayMode"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.EliminationDisplayMode"/>
+	public static bool EliminationDisplayMode(FrameworkElement control)
+		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(EliminationConclusionSuffix));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.HighlightCandidateScale"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.HighlightCandidateScale"/>
+	public static bool HighlightCandidateScale(FrameworkElement control)
+		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.HighlightBackgroundOpacity"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.HighlightBackgroundOpacity"/>
+	public static bool HighlightBackgroundOpacity(FrameworkElement control)
+		=> TemplateMethod<CellViewNode, HouseViewNode, ChuteViewNode>(control);
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.Link"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.Link"/>
+	public static bool Link(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.BabaGrouping"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.BabaGrouping"/>
+	public static bool BabaGrouping(FrameworkElement control)
+		=> TemplateMethod<BabaGroupViewNode>(control, static (s, element) => s.Contains(element));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.StrongLinkDashStyle"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
+	public static bool StrongLinkDashStyle(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(
+			control,
+			static (s, element) => s.Contains(element) && (s.Contains(StrongInferenceSuffix) || s.Contains(StrongGeneralizedInferenceSuffix))
+		);
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.WeakLinkDashStyle"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.WeakLinkDashStyle"/>
+	public static bool WeakLinkDashStyle(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(
+			control,
+			static (s, element) => s.Contains(element) && (s.Contains(WeakInferenceSuffix) || s.Contains(WeakGeneralizedInferenceSuffix))
+		);
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.CycleLikeLinkDashStyle"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.CycleLikeLinkDashStyle"/>
+	public static bool CycleLikeLinkDashStyle(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(DefaultInferenceSuffix));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.OtherLinkDashStyle"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.OtherLinkDashStyle"/>
+	public static bool OtherLinkDashStyle(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(ConjugateInferenceSuffix));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.LinkStrokeThickness"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.LinkStrokeThickness"/>
+	public static bool LinkStrokeThickness(FrameworkElement control)
+		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element));
+
+	/// <summary>
+	/// The filter for colorized items (except for <see cref="ColorPalette"/>-based items).
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <param name="kind">The kind to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="ColorPalette"/>
+	public static bool Colorized(FrameworkElement control, Kind kind)
+	{
+		if (control.Tag is not string s)
+		{
+			return false;
+		}
+
+		var array = (string[])[
+			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
+			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
+			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
+			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
+		];
+		foreach (var element in array)
+		{
+			if (s.Contains(element) && Enum.TryParse<Kind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..^1], out var final) && final == kind)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// The filter for colorized range items (for <see cref="ColorPalette"/>-based items).
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <param name="kinds">The kinds to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="ColorPalette"/>
+	public static bool ColorizedRange(FrameworkElement control, Kind[] kinds)
+	{
+		if (control.Tag is not string s)
+		{
+			return false;
+		}
+
+		var array = (string[])[
+			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
+			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
+			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
+			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
+		];
+		foreach (var element in array)
+		{
+			if (s.Contains(element)
+				&& Enum.TryParse<Kind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..], out var final)
+				&& Array.IndexOf(kinds, final) != -1)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// The filter for colorized paleete ID items.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool ColorizedPaletteId(FrameworkElement control)
+	{
+		if (control.Tag is not string s)
+		{
+			return false;
+		}
+
+		var array = (string[])[
+			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
+			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
+			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
+			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
+		];
+		foreach (var element in array)
+		{
+			if (s.Contains(element)
+				&& s.IndexOf(IdColorIdentifierSeparator) is var pos and not -1 && int.TryParse(s[(pos + 2)..], out _))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// The template method for view nodes.
+	/// </summary>
+	/// <typeparam name="T">The type of the node.</typeparam>
+	/// <param name="control">The control to be checked.</param>
+	/// <param name="tagMatcher">
+	/// The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
+	/// </param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	private static bool TemplateMethod<T>(FrameworkElement control, Func<string, string, bool> tagMatcher) where T : ViewNode
+	{
+		if (control.Tag is not string s)
+		{
+			return false;
+		}
+
+		foreach (var element in ViewNodeTagPrefixes[typeof(T)])
+		{
+			if (tagMatcher(s, element))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// The template method for view nodes.
+	/// </summary>
+	/// <typeparam name="T1">The first type of the node.</typeparam>
+	/// <typeparam name="T2">The second type of the node.</typeparam>
+	/// <typeparam name="T3">The third type of the node.</typeparam>
+	/// <param name="control">The control to be checked.</param>
+	/// <param name="tagMatcher">
+	/// The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
+	/// </param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	private static bool TemplateMethod<T1, T2, T3>(FrameworkElement control, Func<string, string, bool>? tagMatcher = null)
+		where T1 : ViewNode
+		where T2 : ViewNode
+		where T3 : ViewNode
+	{
+		if (control.Tag is not string s)
+		{
+			return false;
+		}
+
+		if (tagMatcher is null)
+		{
+			return true;
+		}
+
+		var array = (string[])[.. ViewNodeTagPrefixes[typeof(T1)], .. ViewNodeTagPrefixes[typeof(T2)], .. ViewNodeTagPrefixes[typeof(T3)]];
+		foreach (var element in array)
+		{
+			if (tagMatcher(s, element))
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 }

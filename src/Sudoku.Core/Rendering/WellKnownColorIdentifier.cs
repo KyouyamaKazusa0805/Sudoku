@@ -64,6 +64,10 @@ public sealed partial class WellKnownColorIdentifier([Data, HashCodeMember, Stri
 	public static readonly ColorIdentifier AlmostLockedSet5 = WellKnownColorIdentifierKind.AlmostLockedSet5;
 
 
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out WellKnownColorIdentifierKind kind) => kind = Kind;
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
