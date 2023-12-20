@@ -49,15 +49,11 @@ This repository is created for the following kinds of users:
 
 ### Main Page
 
-![](docs/pic/ui.png)
-
-### Puzzle Library Page
-
-![](docs/pic/puzzle-lib.png)
+![](docs/pic/ui-en.png)
 
 ### Technique Gallery Page
 
-![](docs/pic/gallery.png)
+![](docs/pic/gallery-en.png)
 
 ## Technique Supports
 
