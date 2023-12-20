@@ -54,6 +54,7 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
 [DependencyProperty<int>("GeneratedPuzzleGivensCount", DefaultValue = -1, DocSummary = "Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.")]
 [DependencyProperty<int>("IttoryuLength", DefaultValue = 0, DocSummary = "Indicates the ittoryu length for the generated puzzles.")]
+[DependencyProperty<int>("Language", DefaultValue = 0, DocSummary = "Indicates the language of UI.")]
 [DependencyProperty<string>("GivenFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<string>("ModifiableFontName", DefaultValue = "Cascadia Code")]
 [DependencyProperty<string>("PencilmarkFontName", DefaultValue = "Cascadia Code")]

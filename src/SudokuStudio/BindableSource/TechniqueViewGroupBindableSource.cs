@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
 
@@ -19,15 +20,15 @@ public sealed partial class TechniqueViewGroupBindableSource(
 	/// <summary>
 	/// Indicates the full name of the group.
 	/// </summary>
-	public string GroupFullName => (Group.GetName(), Group.GetShortenedName()) switch { var (a, b) => a == b ? a : $"{a} ({b})" };
+	public string GroupFullName => (GroupName, ShortenedName) switch { var (a, b) => a == b ? a : $"{a} ({b})" };
 
 	/// <summary>
 	/// Indicates the group name.
 	/// </summary>
-	public string GroupName => Group.GetName();
+	public string GroupName => Group.GetName(CurrentCultureInfo);
 
 	/// <summary>
 	/// Indicates the shortened name of the group.
 	/// </summary>
-	public string ShortenedName => Group.GetShortenedName();
+	public string ShortenedName => Group.GetShortenedName(CurrentCultureInfo);
 }

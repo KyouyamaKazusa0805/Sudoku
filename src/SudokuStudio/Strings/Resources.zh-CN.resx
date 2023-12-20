@@ -1242,6 +1242,12 @@
   <data name="OcrPage_ReadPicture" xml:space="preserve">
     <value>读取图片</value>
   </data>
+  <data name="SettingsPage_1033" xml:space="preserve">
+    <value>英语（English）</value>
+  </data>
+  <data name="SettingsPage_2052" xml:space="preserve">
+    <value>中文</value>
+  </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>均衡数组的最大枚举空格数量</value>
   </data>
@@ -1583,6 +1589,12 @@
   <data name="SettingsPage_K9Notation" xml:space="preserve">
     <value>K9 坐标模式</value>
   </data>
+  <data name="SettingsPage_Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="SettingsPage_LanguageDescription" xml:space="preserve">
+    <value>如果你更改了语言，请重启本程序。</value>
+  </data>
   <data name="SettingsPage_Library" xml:space="preserve">
     <value>题库</value>
   </data>
@@ -1675,6 +1687,9 @@
   </data>
   <data name="SettingsPage_PictureSizeOnSavingDescription" xml:space="preserve">
     <value>该设置项表示的是你在保存、复制等会拷贝图片数据的行为时，该图片经过缩放后的大小。图片越大越清晰，但程序产生这样的缩放后的图片，速度也就越慢。该项的默认数值是 1000，建议的数值也是 1000。</value>
+  </data>
+  <data name="SettingsPage_PreferCurrentCulture" xml:space="preserve">
+    <value>跟随系统</value>
   </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>阻止显而易见的冲突输入</value>

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Sudoku.Analytics.Metadata;
@@ -30,6 +31,18 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this)
 		=> GetString(@this.ToString()) ?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
+
+	/// <summary>
+	/// Try to get the name of the current <see cref="Technique"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <param name="cultureInfo">The culture information.</param>
+	/// <returns>The name of the current technique.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetName(this Technique @this, CultureInfo? cultureInfo)
+		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
+		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.

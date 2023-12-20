@@ -3688,6 +3688,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string SettingsPage_1033 {
+            get {
+                return ResourceManager.GetString("SettingsPage_1033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chinese Simplified (简体中文).
+        /// </summary>
+        internal static string SettingsPage_2052 {
+            get {
+                return ResourceManager.GetString("SettingsPage_2052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
         /// </summary>
         internal static string SettingsPage_AlignedExclusionMaxSearchingSize {
@@ -4707,6 +4725,24 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string SettingsPage_Language {
+            get {
+                return ResourceManager.GetString("SettingsPage_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have already changed the language, it will become available in the second time you open this program..
+        /// </summary>
+        internal static string SettingsPage_LanguageDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_LanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Puzzle Library.
         /// </summary>
         internal static string SettingsPage_Library {
@@ -4982,6 +5018,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_PictureSizeOnSavingDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_PictureSizeOnSavingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow my computer.
+        /// </summary>
+        internal static string SettingsPage_PreferCurrentCulture {
+            get {
+                return ResourceManager.GetString("SettingsPage_PreferCurrentCulture", resourceCulture);
             }
         }
         

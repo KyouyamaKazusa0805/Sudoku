@@ -1,7 +1,8 @@
+using System.Globalization;
 using System.Reflection;
-using static Sudoku.Analytics.Strings.StringsAccessor;
 using System.Runtime.CompilerServices;
 using Sudoku.Strings;
+using static Sudoku.Analytics.Strings.StringsAccessor;
 
 namespace Sudoku.Analytics.Categorization;
 
@@ -18,7 +19,18 @@ public static class TechniqueGroupExtensions
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
 	/// <returns>The shortened name.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetShortenedName(this TechniqueGroup @this) => @this.GetAbbreviation() is { } abbr ? abbr : @this.GetName();
+	public static string GetShortenedName(this TechniqueGroup @this) => @this.GetShortenedName(CultureInfo.CurrentUICulture);
+
+	/// <summary>
+	/// Try to get shortened name of the current <see cref="TechniqueGroup"/> instance. If the group has an abbreviation,
+	/// return its abbreviation; otherwise, its full name.
+	/// </summary>
+	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
+	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <returns>The shortened name.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetShortenedName(this TechniqueGroup @this, CultureInfo? cultureInfo)
+		=> @this.GetAbbreviation() is { } abbr ? abbr : @this.GetName(cultureInfo ?? CultureInfo.CurrentUICulture);
 
 	/// <summary>
 	/// Try to get name of the current <see cref="TechniqueGroup"/> instance.
@@ -27,8 +39,18 @@ public static class TechniqueGroupExtensions
 	/// <returns>The name.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this TechniqueGroup @this)
-		=> GetString($"{nameof(TechniqueGroup)}_{@this}")
+	public static string GetName(this TechniqueGroup @this) => @this.GetName(CultureInfo.CurrentUICulture);
+
+	/// <summary>
+	/// Try to get name of the current <see cref="TechniqueGroup"/> instance, with the specified culture information.
+	/// </summary>
+	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
+	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <returns>The name.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetName(this TechniqueGroup @this, CultureInfo? cultureInfo)
+		=> GetString($"{nameof(TechniqueGroup)}_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)
 		?? throw new ResourceNotFoundException($"{nameof(TechniqueGroup)}_{@this}", typeof(TechniqueGroup).Assembly);
 
 	/// <summary>

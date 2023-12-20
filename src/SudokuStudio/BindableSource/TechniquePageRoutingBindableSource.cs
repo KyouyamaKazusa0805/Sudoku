@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Sudoku.Analytics.Categorization;
 using Windows.UI;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
 
@@ -18,7 +19,7 @@ public sealed class TechniquePageRoutingBindableSource
 	/// <summary>
 	/// Indicates the resource name of this technique.
 	/// </summary>
-	public string Name => Technique.GetName();
+	public string Name => Technique.GetName(CurrentCultureInfo);
 
 	/// <summary>
 	/// Indicates the resource default name (English name) of this technique.

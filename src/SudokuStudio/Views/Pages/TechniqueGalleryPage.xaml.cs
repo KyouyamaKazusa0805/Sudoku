@@ -18,6 +18,7 @@ public sealed partial class TechniqueGalleryPage : Page
 	/// </summary>
 	public TechniqueGalleryPage() => InitializeComponent();
 
+
 	private void TechniqueCoreView_CurrentSelectedTechniqueChanged(TechniqueView sender, TechniqueViewCurrentSelectedTechniqueChangedEventArgs e)
 		=> CurrentSelectedTechnique = e.Technique;
 }

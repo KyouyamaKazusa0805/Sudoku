@@ -28,4 +28,13 @@ public static class StringsAccessor
 	public static string? GetString(string key)
 		=> Resources.ResourceManager.GetString(key)
 		?? Resources.ResourceManager.GetString(key, CultureInfo.GetCultureInfo(1033));
+
+	/// <summary>
+	/// Gets the value via the specified string key, with the specified culture information.
+	/// </summary>
+	/// <param name="key">The resource key.</param>
+	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <returns>The value. If none found, <see langword="null"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? GetString(string key, CultureInfo cultureInfo) => Resources.ResourceManager.GetString(key, cultureInfo);
 }

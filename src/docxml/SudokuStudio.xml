@@ -1711,6 +1711,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LanguageProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Language"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.Language"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName"/>.
@@ -2127,6 +2133,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength">
             <summary>
             Indicates the ittoryu length for the generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Language">
+            <summary>
+            Indicates the language of UI.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
@@ -7611,6 +7622,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Indicates whether the difficulty rating value defined by Sudoku Explainer will be displayed in the step shown in solving path tab. If the current technique is not defined in Sudoku Explainer, a string &quot;SER&quot; in light white will be displayed as a placeholder; if HoDoKu rating will be also displayed, Sudoku Explainer rating will be shown right-side of the HoDoKu rating.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_1033">
+            <summary>
+              Looks up a localized string similar to English.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_2052">
+            <summary>
+              Looks up a localized string similar to Chinese Simplified (简体中文).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AlignedExclusionMaxSearchingSize">
             <summary>
               Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
@@ -8178,6 +8199,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to K9 Notation.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Language">
+            <summary>
+              Looks up a localized string similar to Language.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LanguageDescription">
+            <summary>
+              Looks up a localized string similar to If you have already changed the language, it will become available in the second time you open this program..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Library">
             <summary>
               Looks up a localized string similar to Puzzle Library.
@@ -8331,6 +8362,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_PictureSizeOnSavingDescription">
             <summary>
               Looks up a localized string similar to A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_PreferCurrentCulture">
+            <summary>
+              Looks up a localized string similar to Follow my computer.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_PreventConflictingInput">
@@ -8972,6 +9008,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Strings.StringsAccessor">
             <summary>
             Defines an easy entry to get <see cref="T:System.String"/> resources.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.StringsAccessor.CurrentCultureInfo">
+            <summary>
+            The current culture information.
             </summary>
         </member>
         <member name="M:SudokuStudio.Strings.StringsAccessor.GetStringNullable(System.String)">

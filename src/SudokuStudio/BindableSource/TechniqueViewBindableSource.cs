@@ -1,5 +1,6 @@
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.BindableSource;
 
@@ -13,7 +14,7 @@ public sealed partial class TechniqueViewBindableSource([Data(SetterExpression =
 	/// <summary>
 	/// Indicates the name of the technique.
 	/// </summary>
-	public string TechniqueName => TechniqueField.GetName();
+	public string TechniqueName => TechniqueField.GetName(CurrentCultureInfo);
 
 	/// <summary>
 	/// Indicates the containing group for the current technique.

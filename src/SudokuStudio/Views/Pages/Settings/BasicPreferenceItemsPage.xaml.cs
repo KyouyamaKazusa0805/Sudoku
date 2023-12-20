@@ -27,6 +27,12 @@ public sealed partial class BasicPreferenceItemsPage : Page
 	/// </summary>
 	private void InitializeControls()
 	{
+		LanguageComboBox.SelectedIndex = ((App)Application.Current).Preference.UIPreferences.Language switch
+		{
+			0 => 0,
+			1033 => 1,
+			2052 => 2
+		};
 		Comma2ComboBoxItem_DefaultSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
 		Comma2ComboBoxItem_DigitSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
 	}
@@ -81,4 +87,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 			((App)Application.Current).Preference.UIPreferences.FinalRowLetterInK9Notation = ch;
 		}
 	}
+
+	private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> ((App)Application.Current).Preference.UIPreferences.Language = (int)((ComboBoxItem)LanguageComboBox.SelectedItem).Tag!;
 }

@@ -24,6 +24,18 @@
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 			<!--
+			SettingsPage_Language
+			-->
+			<TextBlock Text="{m:R Key=SettingsPage_Language}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Language}" Description="{m:R Key=SettingsPage_LanguageDescription}">
+				<ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged">
+					<ComboBoxItem Content="{m:R Key=SettingsPage_PreferCurrentCulture}" Tag="{m:Int32 Value=0}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_1033}" Tag="{m:Int32 Value=1033}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
+				</ComboBox>
+			</w:SettingsCard>
+
+			<!--
 			SettingsPage_SudokuGridBehaviors
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_SudokuGridBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />

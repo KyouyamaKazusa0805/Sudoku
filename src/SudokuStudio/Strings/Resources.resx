@@ -1239,6 +1239,12 @@
   <data name="OcrPage_ReadPicture" xml:space="preserve">
     <value>Read picture</value>
   </data>
+  <data name="SettingsPage_1033" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="SettingsPage_2052" xml:space="preserve">
+    <value>Chinese Simplified (简体中文)</value>
+  </data>
   <data name="SettingsPage_AlignedExclusionMaxSearchingSize" xml:space="preserve">
     <value>Maximum number of cell permutation in aligned exclusion</value>
   </data>
@@ -1580,6 +1586,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_K9Notation" xml:space="preserve">
     <value>K9 Notation</value>
   </data>
+  <data name="SettingsPage_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SettingsPage_LanguageDescription" xml:space="preserve">
+    <value>If you have already changed the language, it will become available in the second time you open this program.</value>
+  </data>
   <data name="SettingsPage_Library" xml:space="preserve">
     <value>Puzzle Library</value>
   </data>
@@ -1672,6 +1684,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_PictureSizeOnSavingDescription" xml:space="preserve">
     <value>A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000.</value>
+  </data>
+  <data name="SettingsPage_PreferCurrentCulture" xml:space="preserve">
+    <value>Follow my computer</value>
   </data>
   <data name="SettingsPage_PreventConflictingInput" xml:space="preserve">
     <value>Prevent conflicting inputs</value>

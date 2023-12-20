@@ -2938,6 +2938,15 @@ if (student is (name: var name, age: >= 18))
             <returns>The name of the current technique.</returns>
             <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="cultureInfo">The culture information.</param>
+            <returns>The name of the current technique.</returns>
+            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the English name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
@@ -3327,11 +3336,29 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The shortened name.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get shortened name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance. If the group has an abbreviation,
+            return its abbreviation; otherwise, its full name.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <param name="cultureInfo">The culture information instance.</param>
+            <returns>The shortened name.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
             Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>The name.</returns>
+            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <param name="cultureInfo">The culture information instance.</param>
             <returns>The name.</returns>
             <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
@@ -21247,6 +21274,14 @@ if (student is (name: var name, age: >= 18))
             Gets the value via the specified string key.
             </summary>
             <param name="key">The resource key.</param>
+            <returns>The value. If none found, <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Gets the value via the specified string key, with the specified culture information.
+            </summary>
+            <param name="key">The resource key.</param>
+            <param name="cultureInfo">The culture information instance.</param>
             <returns>The value. If none found, <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

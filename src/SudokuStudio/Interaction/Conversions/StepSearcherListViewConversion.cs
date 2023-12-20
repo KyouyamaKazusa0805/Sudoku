@@ -4,6 +4,7 @@ using Sudoku.Analytics;
 using Sudoku.Analytics.Categorization;
 using SudokuStudio.Configuration;
 using SudokuStudio.Views.Controls;
+using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Interaction.Conversions;
 
@@ -21,7 +22,7 @@ internal static class StepSearcherListViewConversion
 
 	public static string GetStepSearcherName(StepSearcherInfo? info) => info is null ? string.Empty : GetMatchedStepSearcher(info).Name;
 
-	public static string GetTechniqueName(Technique technique) => technique.GetName();
+	public static string GetTechniqueName(Technique technique) => technique.GetName(CurrentCultureInfo);
 
 	public static Visibility GetDisplayerVisibility(StepSearcherInfo? info) => info is null ? Visibility.Collapsed : Visibility.Visible;
 

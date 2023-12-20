@@ -120,8 +120,8 @@ public partial class App : Application
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
 		HandleOnProgramOpeningEntryCase();
-		ActivateMainWindow();
 		LoadConfigurationFileFromLocal();
+		ActivateMainWindow();
 	}
 
 	/// <summary>
