@@ -5802,7 +5802,7 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..
+        ///   Looks up a localized string similar to This technique cannot be generated or extremely hard to be generated..
         /// </summary>
         internal static string TechniqueFeature_HardToBeGenerated {
             get {

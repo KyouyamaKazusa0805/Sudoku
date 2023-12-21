@@ -8802,7 +8802,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_HardToBeGenerated">
             <summary>
-              Looks up a localized string similar to This technique cannot be generated or is extremely hard to be generated..
+              Looks up a localized string similar to This technique cannot be generated or extremely hard to be generated..
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.TechniqueFeature_HardToBeGeneratedShort">

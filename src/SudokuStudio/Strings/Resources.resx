@@ -1965,7 +1965,7 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Direct Techniques</value>
   </data>
   <data name="TechniqueFeature_HardToBeGenerated" xml:space="preserve">
-    <value>This technique cannot be generated or is extremely hard to be generated.</value>
+    <value>This technique cannot be generated or extremely hard to be generated.</value>
   </data>
   <data name="TechniqueFeature_HardToBeGeneratedShort" xml:space="preserve">
     <value>Very Rare</value>
