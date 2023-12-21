@@ -19,7 +19,7 @@ public static class CandidateDifference
 	/// <param name="differentCandidates">The difference candidates.</param>
 	/// <param name="differenceKind">The difference kind.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful.</returns>
-	public static bool TryGetDiffCandidates(
+	public static bool TryGetDifference(
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
 		out CandidateMap differentCandidates,

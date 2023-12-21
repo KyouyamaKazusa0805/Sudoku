@@ -27,7 +27,7 @@ public static class OperationRecognition
 		out ReadOnlySpan<Step> steps
 	)
 	{
-		if (!CandidateDifference.TryGetDiffCandidates(in previous, in current, out var differentCandidates, out var differenceKind)
+		if (!CandidateDifference.TryGetDifference(in previous, in current, out var differentCandidates, out var differenceKind)
 			|| differenceKind is not (OperationKind.Assignment or OperationKind.Elimination))
 		{
 			goto ReturnNull;

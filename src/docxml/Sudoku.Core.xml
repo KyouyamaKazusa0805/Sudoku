@@ -5944,7 +5944,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Operation.CandidateDifference.TryGetDiffCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Operation.OperationKind@)">
+        <member name="M:Sudoku.Operation.CandidateDifference.TryGetDifference(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Operation.OperationKind@)">
             <summary>
             Try to get difference of candidates between two grids.
             </summary>
