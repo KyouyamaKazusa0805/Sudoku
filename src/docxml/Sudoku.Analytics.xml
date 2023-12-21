@@ -5363,6 +5363,15 @@ if (student is (name: var name, age: >= 18))
             <param name="cellOffsets">The target collection.</param>
             <param name="mapping">The mapping relation.</param>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SymmetricalPlacementChecker.CheckAxesOrCenterPointForSymmetry(Sudoku.Concepts.Grid@,Sudoku.Concepts.SymmetricType,System.Int16)">
+            <summary>
+            Check for the symmetry behavior on axes or center point.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="symmetricType">The symmetric type.</param>
+            <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SymmetricalPlacementChecker.Diagonal(Sudoku.Concepts.Grid@,Sudoku.Concepts.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             The internal method to check for diagonal symmetrical placement kind.

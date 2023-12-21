@@ -145,6 +145,26 @@ public static class SymmetricalPlacementChecker
 	}
 
 	/// <summary>
+	/// Check for the symmetry behavior on axes or center point.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="symmetricType">The symmetric type.</param>
+	/// <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	private static bool CheckAxesOrCenterPointForSymmetry(scoped ref readonly Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
+	{
+		foreach (var cell in symmetricType.GetCellsInSymmetryAxis())
+		{
+			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
 	/// The internal method to check for diagonal symmetrical placement kind.
 	/// </summary>
 	/// <param name="grid">The grid to be check.</param>
@@ -230,6 +250,12 @@ public static class SymmetricalPlacementChecker
 			{
 				selfPairedDigitsMask |= (Mask)(1 << digit);
 			}
+		}
+
+		// Check behavior on axes.
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		{
+			goto ReturnFalse;
 		}
 
 		return true;
@@ -329,6 +355,12 @@ public static class SymmetricalPlacementChecker
 			}
 		}
 
+		// Check behavior on axes.
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		{
+			goto ReturnFalse;
+		}
+
 		return true;
 
 	ReturnFalse:
@@ -422,6 +454,12 @@ public static class SymmetricalPlacementChecker
 			}
 		}
 
+		// Check behavior on center point (r5c5).
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		{
+			goto ReturnFalse;
+		}
+
 		return true;
 
 	ReturnFalse:
@@ -471,18 +509,8 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		var containsNonselfPairedDigit = false;
-		foreach (var cell in SymmetricType.Diagonal.GetCellsInSymmetryAxis())
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
-			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
-			{
-				containsNonselfPairedDigit = true;
-				break;
-			}
-		}
-		if (containsNonselfPairedDigit)
-		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
 			return null;
 		}
 
@@ -561,18 +589,8 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		var containsNonselfPairedDigit = false;
-		foreach (var cell in SymmetricType.AntiDiagonal.GetCellsInSymmetryAxis())
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
-			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
-			{
-				containsNonselfPairedDigit = true;
-				break;
-			}
-		}
-		if (containsNonselfPairedDigit)
-		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
 			return null;
 		}
 
@@ -636,9 +654,8 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (grid.GetDigit(40) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
 		{
-			// The grid is not a fully-symmetric grid. We cannot use GSPs to set or delete candidates.
 			return null;
 		}
 
