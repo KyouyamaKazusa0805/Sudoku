@@ -129,10 +129,11 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 					for (var cell = 0; cell < 81; cell++)
 					{
 						scoped ref var mask = ref result[cell];
-						if (MaskOperations.MaskToCellState(mask) == CellState.Empty && distribution.TryGetValue(cell, out var digitsMask))
+						if (MaskOperations.MaskToCellState(mask) == CellState.Empty)
 						{
-							mask &= ~Grid.MaxCandidatesMask; // Remove all possible candidates in this cell.
-							mask |= digitsMask; // Set candidates via found digits.
+							mask = distribution.TryGetValue(cell, out var digitsMask)
+								? (Mask)((Mask)((Mask)(mask >> 9 & 7) << 9) | digitsMask)
+								: Grid.EmptyMask;
 						}
 					}
 				}
