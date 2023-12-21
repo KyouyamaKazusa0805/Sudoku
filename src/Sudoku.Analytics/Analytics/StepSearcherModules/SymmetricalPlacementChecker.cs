@@ -155,9 +155,29 @@ public static class SymmetricalPlacementChecker
 	{
 		foreach (var cell in symmetricType.GetCellsInSymmetryAxis())
 		{
-			if (grid.GetDigit(cell) is var d and not -1 && (nonselfPairedDigitsMask >> d & 1) != 0)
+			switch (grid.GetState(cell))
 			{
-				return false;
+				case CellState.Given or CellState.Modifiable when (nonselfPairedDigitsMask >> grid.GetDigit(cell) & 1) != 0:
+				{
+					return false;
+				}
+				case CellState.Empty when grid.GetCandidates(cell) is var digitsMask:
+				{
+					var allDigitsAreNonselfPaired = true;
+					foreach (var digit in digitsMask)
+					{
+						if ((nonselfPairedDigitsMask >> digit & 1) == 0)
+						{
+							allDigitsAreNonselfPaired = false;
+							break;
+						}
+					}
+					if (allDigitsAreNonselfPaired)
+					{
+						return false;
+					}
+					break;
+				}
 			}
 		}
 
