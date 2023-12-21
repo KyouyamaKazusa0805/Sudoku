@@ -509,7 +509,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Diagonal, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -589,7 +589,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.AntiDiagonal, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -654,7 +654,7 @@ public static class SymmetricalPlacementChecker
 		}
 
 		// Check whether the diagonal line contains non-self-paired digit.
-		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, (Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)))
+		if (!CheckAxesOrCenterPointForSymmetry(in grid, SymmetricType.Central, nonselfPairedDigitsMask))
 		{
 			return null;
 		}
