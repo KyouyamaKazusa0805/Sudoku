@@ -5969,6 +5969,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the difference kind is assignment.
             </summary>
         </member>
+        <member name="F:Sudoku.Operation.OperationKind.InitialAppending">
+            <summary>
+            Indicates the difference kind is initialize appending candidates.
+            </summary>
+            <remarks>
+            This operation is reserved one, to describe a user desires to start marking candidates.
+            From the algorithm, if a user append a candidate at the first time, we should initialize the environment,
+            removing all candidates that this user doesn't add.
+            </remarks>
+        </member>
         <member name="F:Sudoku.Operation.OperationKind.Appending">
             <summary>
             Indicates the difference kind is appending candidates.

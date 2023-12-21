@@ -111,6 +111,14 @@ public static class CandidateDifference
 			}
 		}
 
+		// Special handling.
+		if (eliminations.Cells == current.EmptyCells)
+		{
+			differentCandidates = eliminations;
+			differenceKind = OperationKind.InitialCandidatesMarking;
+			return true;
+		}
+
 		differenceKind = assignment != -1
 			? OperationKind.Assignment
 			: appending
