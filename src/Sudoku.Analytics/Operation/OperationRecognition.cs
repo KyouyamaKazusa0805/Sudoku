@@ -30,7 +30,7 @@ public static class OperationRecognition
 		if (!CandidateDifference.TryGetDifference(in previous, in current, out var differentCandidates, out var differenceKind)
 			|| differenceKind is not (OperationKind.Assignment or OperationKind.Elimination))
 		{
-			goto ReturnNull;
+			goto ReturnFalse;
 		}
 
 		var conclusions = new ConclusionBag(
@@ -61,10 +61,15 @@ public static class OperationRecognition
 			}
 		}
 
+		if (resultSteps.Count == 0)
+		{
+			goto ReturnFalse;
+		}
+
 		steps = CollectionsMarshal.AsSpan(resultSteps);
 		return true;
 
-	ReturnNull:
+	ReturnFalse:
 		steps = [];
 		return false;
 	}
