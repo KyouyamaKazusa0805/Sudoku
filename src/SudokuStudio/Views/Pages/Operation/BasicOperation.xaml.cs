@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Runtime.InteropServices;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Sudoku.Text;
 using SudokuStudio.ComponentModel;
 using SudokuStudio.Interaction;
 
