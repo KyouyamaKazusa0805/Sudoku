@@ -4634,7 +4634,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <see cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Evaluator(Sudoku.Analytics.Step[],,System.Decimal)">
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.EvaluatorUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
             <summary>
             The inner executor to get the difficulty value (total, average).
             </summary>
@@ -4646,10 +4646,10 @@ if (student is (name: var name, age: >= 18))
             <returns>The result.</returns>
             <seealso cref="N:Sudoku.Analytics.Steps"/>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Max``1(System.Collections.Generic.IEnumerable{``0},)">
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.MaxUnsafe``1(System.Collections.Generic.IEnumerable{``0},)">
             <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.Sum``1(System.Collections.Generic.IEnumerable{``0},)">
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.SumUnsafe``1(System.Collections.Generic.IEnumerable{``0},)">
             <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
         </member>
         <member name="T:Sudoku.Analytics.Step">
@@ -9559,7 +9559,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.AntiTypeCheckers">
             <summary>
-            Anti types.
+            Indicates the functions that are searchers for sub-types.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

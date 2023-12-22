@@ -11,7 +11,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe Handler = delegate*<SingleStepSearcher, ref AnalysisContext, ref readonly Grid, Step?>;
+using unsafe SingleModuleSearcherFund = delegate*<SingleStepSearcher, ref AnalysisContext, ref readonly Grid, Step?>;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
@@ -201,18 +201,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
 		// we should start with a naked single because they are "direct" in such mode.
-		Handler a = &CheckFullHouse, b = &CheckHiddenSingle, c = &CheckNakedSingle;
-		foreach (Handler searcher in (ReadOnlySpan<nint>)(
-			(EnableFullHouse, isFullyMarkedMode) switch
-			{
-				(true, true) => [(nint)a, (nint)c, (nint)b],
-				(true, _) => [(nint)a, (nint)b, (nint)c],
-				(_, true) => [(nint)c, (nint)b],
-				_ => [(nint)b, (nint)c]
-			}
-		))
+		var p = stackalloc SingleModuleSearcherFund[] { &CheckFullHouse, &CheckNakedSingle, &CheckHiddenSingle };
+		var q = stackalloc SingleModuleSearcherFund[] { &CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle };
+		var r = stackalloc SingleModuleSearcherFund[] { &CheckNakedSingle, &CheckHiddenSingle };
+		var s = stackalloc SingleModuleSearcherFund[] { &CheckHiddenSingle, &CheckNakedSingle };
+		var searchers = (EnableFullHouse, isFullyMarkedMode) switch { (true, true) => p, (true, _) => q, (_, true) => r, _ => s };
+		for (var i = 0; i < (searchers == p || searchers == q ? 3 : 2); i++)
 		{
-			if (searcher(this, ref context, in grid) is { } step)
+			if (searchers[i](this, ref context, in grid) is { } step)
 			{
 				return step;
 			}

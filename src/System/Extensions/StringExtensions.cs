@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 
 namespace System;
 
+using unsafe CharChecker = delegate*<char, bool>;
+
 /// <summary>
 /// Provides extension methods on <see cref="string"/>.
 /// </summary>
@@ -228,14 +230,14 @@ public static partial class StringExtensions
 		static bool isTab(char c) => c == '\t';
 		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 
-		delegate*<char, bool> predicate = reservePattern switch
+		var predicate = reservePattern switch
 		{
 			//lang = regex
 			@"\d" => &char.IsDigit,
 			//lang = regex
 			@"\t" => &isTab,
 			//lang = regex
-			@"\w" => &isLetterDigitOrUnderscore,
+			@"\w" => (CharChecker)(&isLetterDigitOrUnderscore),
 			_ => throw InvalidOperation
 		};
 

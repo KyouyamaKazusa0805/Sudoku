@@ -19,6 +19,8 @@ using static SudokuStudio.Strings.StringsAccessor;
 
 namespace SudokuStudio.Views.Pages.Operation;
 
+using unsafe GridRandomizedSuffler = delegate*<Random, ref Grid, void>;
+
 /// <summary>
 /// Indicates the generating operation command bar.
 /// </summary>
@@ -365,7 +367,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						LibraryPuzzleTransformKinds.MirrorAntidigaonal => &mirrorAntidiagonal,
 						LibraryPuzzleTransformKinds.RotateClockwise => &rotateClockwise,
 						LibraryPuzzleTransformKinds.RotateCounterclockwise => &rotateCounterclockwise,
-						_ => default(delegate*<Random, ref Grid, void>)
+						_ => default(GridRandomizedSuffler)
 					}
 				)(random, ref grid);
 			}

@@ -16,14 +16,14 @@ internal static unsafe class StepRatingHelper
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	public static decimal Evaluator(Step[]? steps, delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
+	public static decimal EvaluatorUnsafe(Step[]? steps, delegate*<IEnumerable<Step>, delegate*<Step, decimal>, decimal> executor, decimal d)
 	{
 		static decimal f(Step step) => step.Difficulty;
 		return steps is null ? d : executor(steps, &f);
 	}
 
 	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
-	public static decimal Max<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
+	public static decimal MaxUnsafe<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
 	{
 		var result = decimal.MinValue;
 		foreach (var element in collection)
@@ -39,7 +39,7 @@ internal static unsafe class StepRatingHelper
 	}
 
 	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
-	public static decimal Sum<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
+	public static decimal SumUnsafe<T>(IEnumerable<T> collection, delegate*<T, decimal> selector)
 	{
 		var result = 0M;
 		foreach (var element in collection)

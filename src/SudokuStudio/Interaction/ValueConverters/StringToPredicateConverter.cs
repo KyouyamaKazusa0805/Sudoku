@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml.Data;
 
 namespace SudokuStudio.Interaction.ValueConverters;
 
+using unsafe StringChecker = delegate*<string, bool>;
+
 /// <summary>
 /// Converts a <see cref="string"/> value into a predicate that can return a <see cref="bool"/> result.
 /// </summary>
@@ -22,13 +24,9 @@ public sealed class StringToPredicateConverter : IValueConverter
 	/// <inheritdoc/>
 	public unsafe object Convert(object? value, Type? targetType, object? parameter, string? language)
 		=> value is string target
-		&& (delegate*<string, bool>)(EnforceNonWhiteSpaceString ? &string.IsNullOrWhiteSpace : &string.IsNullOrEmpty) is var method
-			? IsInverted
-				? !method(target)
-				: method(target)
-			: IsInverted
-				? value is not null
-				: value is null;
+		&& (EnforceNonWhiteSpaceString ? &string.IsNullOrWhiteSpace : (StringChecker)(&string.IsNullOrEmpty)) is var checkerFunc
+			? IsInverted ? !checkerFunc(target) : checkerFunc(target)
+			: IsInverted ? value is not null : value is null;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

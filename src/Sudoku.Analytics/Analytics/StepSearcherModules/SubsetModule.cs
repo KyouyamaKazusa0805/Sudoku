@@ -10,7 +10,7 @@ using static Sudoku.SolutionWideReadOnlyFields;
 
 namespace Sudoku.Analytics.StepSearcherModules;
 
-using unsafe SubsetHandler = delegate*<ref AnalysisContext, ref readonly Grid, int, bool, Step?>;
+using unsafe SubsetModuleSearcherFund = delegate*<ref AnalysisContext, ref readonly Grid, int, bool, Step?>;
 
 /// <summary>
 /// Represents a subset module.
@@ -25,18 +25,15 @@ internal static class SubsetModule
 	/// <returns>The collected steps.</returns>
 	public static unsafe Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context)
 	{
-		scoped var searchers = (ReadOnlySpan<nint>)(
-			context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true }
-				? [(nint)(SubsetHandler)(&HiddenSubset), (nint)(SubsetHandler)(&NakedSubset)]
-				: [(nint)(SubsetHandler)(&NakedSubset), (nint)(SubsetHandler)(&HiddenSubset)]
-		);
-
+		var p = stackalloc SubsetModuleSearcherFund[] { &HiddenSubset, &NakedSubset };
+		var q = stackalloc SubsetModuleSearcherFund[] { &NakedSubset, &HiddenSubset };
+		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
 		scoped ref readonly var grid = ref context.Grid;
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
-			foreach (SubsetHandler searcher in searchers)
+			for (var i = 0; i < 2; i++)
 			{
-				if (searcher(ref context, in grid, size, searchingForLocked) is { } step)
+				if (searchers[i](ref context, in grid, size, searchingForLocked) is { } step)
 				{
 					return step;
 				}
