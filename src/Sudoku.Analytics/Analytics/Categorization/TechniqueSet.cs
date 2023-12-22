@@ -232,7 +232,7 @@ public sealed partial class TechniqueSet :
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()
 	{
-		var currentCountryOrRegionName = CultureInfo.CurrentCulture.Parent.Name;
+		var currentCountryOrRegionName = CultureInfo.CurrentUICulture.Parent.Name;
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			GetString("Comma", CultureInfo.CurrentUICulture),

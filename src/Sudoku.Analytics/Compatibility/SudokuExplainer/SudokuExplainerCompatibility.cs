@@ -53,11 +53,11 @@ public static class SudokuExplainerCompatibility
 			? throw new ArgumentOutOfRangeException(nameof(@this))
 			: (SudokuExplainerDifficultyRatingAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>() switch
 			{
-				[] => null,
-				[(var min, var max, false)] => new(new(min, max ?? min), null),
-				[(var min, var max, true)] => new(null, new(min, max ?? min)),
-				[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
-				[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+			[] => null,
+			[(var min, var max, false)] => new(new(min, max ?? min), null),
+			[(var min, var max, true)] => new(null, new(min, max ?? min)),
+			[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+			[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
 				_ => throw new InvalidOperationException("The field has marked too much attributes.")
 			};
 }

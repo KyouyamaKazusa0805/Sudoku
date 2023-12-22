@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -60,7 +59,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 	private string BranchesStr
 		=> string.Join(
-			GetString("Comma", CultureInfo.CurrentUICulture),
+			GetString("Comma", ResultCurrentCulture),
 			[.. from branch in Branches select $"{Options.Converter.CandidateConverter(branch.Key)} - {branch.AlsPattern}"]
 		);
 

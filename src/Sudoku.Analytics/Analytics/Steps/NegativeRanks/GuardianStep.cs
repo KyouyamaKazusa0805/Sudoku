@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
@@ -51,8 +50,7 @@ public sealed partial class GuardianStep(
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 
-	private string GuardianSingularOrPlural
-		=> GetString(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", CultureInfo.CurrentUICulture)!;
+	private string GuardianSingularOrPlural => GetString(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", ResultCurrentCulture)!;
 
 	private string GuardianStr => Options.Converter.CellConverter(Guardians);
 

@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -46,7 +45,7 @@ public sealed partial class DeathBlossomStep(
 
 	private string BranchesStr
 		=> string.Join(
-			GetString("Comma", CultureInfo.CurrentUICulture),
+			GetString("Comma", ResultCurrentCulture),
 			[.. from branch in Branches select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Key))} - {branch.AlsPattern}"]
 		);
 }

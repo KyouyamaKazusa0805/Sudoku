@@ -86,10 +86,10 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						var bridge = CandidatesMap[digit] & HousesMap[house];
 						var isPassed = bridge switch
 						{
-							[var a, var b]
-								when (CellsMap[c1] + a).InOneHouse(out _) && (CellsMap[c2] + b).InOneHouse(out _)
-								|| (CellsMap[c1] + b).InOneHouse(out _) && (CellsMap[c2] + a).InOneHouse(out _)
-								=> true,
+						[var a, var b]
+							when (CellsMap[c1] + a).InOneHouse(out _) && (CellsMap[c2] + b).InOneHouse(out _)
+							|| (CellsMap[c1] + b).InOneHouse(out _) && (CellsMap[c2] + a).InOneHouse(out _)
+							=> true,
 							{ Count: > 2 and <= 6, BlockMask: var blocks }
 								=> PopCount((uint)blocks) switch
 								{
@@ -130,10 +130,10 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						// Now W-Wing found. Store it into the accumulator.
 						var step = bridge switch
 						{
-							[var a, var b] => new WWingStep(
-								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+						[var a, var b] => new WWingStep(
+							[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+							[
 								[
-									[
 										new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
 										new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
 										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
@@ -142,12 +142,12 @@ public sealed partial class WWingStepSearcher : StepSearcher
 										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, b * 9 + digit),
 										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
 									]
-								],
-								context.PredefinedOptions,
-								c1,
-								c2,
-								new(a, b, digit)
-							),
+							],
+							context.PredefinedOptions,
+							c1,
+							c2,
+							new(a, b, digit)
+						),
 							_ => (Step)new GroupedWWingStep(
 								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
 								[

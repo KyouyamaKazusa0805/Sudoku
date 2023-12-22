@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -84,5 +83,5 @@ public sealed partial class AlmostLockedSetsXzStep(
 	private string ZResultStr
 		=> ZDigitsMask == 0
 			? string.Empty
-			: $"{GetString("Comma", CultureInfo.CurrentUICulture)!}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
+			: $"{GetString("Comma", ResultCurrentCulture)!}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
 }

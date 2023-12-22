@@ -3,9 +3,8 @@ using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Analytics.Rating;
 using Sudoku.Concepts;
-using Sudoku.Text.Converters;
 using Sudoku.Rendering;
-using static Sudoku.Analytics.Strings.StringsAccessor;
+using Sudoku.Text.Converters;
 
 namespace Sudoku.Analytics.Steps;
 

@@ -7,8 +7,8 @@ using Sudoku.Rendering;
 using Sudoku.Rendering.Nodes;
 using static System.Numerics.BitOperations;
 using static Sudoku.Analytics.CachedFields;
-using static Sudoku.Rendering.RenderingMode;
 using static Sudoku.Analytics.ConclusionType;
+using static Sudoku.Rendering.RenderingMode;
 
 namespace Sudoku.Analytics.StepSearchers;
 

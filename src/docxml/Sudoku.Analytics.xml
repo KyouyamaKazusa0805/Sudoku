@@ -4818,6 +4818,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.ResultCurrentCulture">
+            <summary>
+            Indicates the result culture.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)">
             <summary>
             Try to fetch the name of this technique step, with the specified culture.

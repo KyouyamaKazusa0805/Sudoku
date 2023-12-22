@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.SourceGeneration;
 using System.Text;
 using Sudoku.Analytics.Categorization;
@@ -50,13 +49,13 @@ public partial class GurthSymmetricalPlacementStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [SymmetryTypeStr, MappingStr]), new(ChineseLanguage, [SymmetryTypeStr, MappingStr])];
 
-	private string SymmetryTypeStr => GetString($"{SymmetricType}Symmetry", CultureInfo.CurrentUICulture)!;
+	private string SymmetryTypeStr => GetString($"{SymmetricType}Symmetry", ResultCurrentCulture)!;
 
 	private string MappingStr
 	{
 		get
 		{
-			var comma = GetString("Comma", CultureInfo.CurrentUICulture)!;
+			var comma = GetString("Comma", ResultCurrentCulture)!;
 			if (Mapping is not null)
 			{
 				scoped var sb = new StringHandler(10);
@@ -73,7 +72,7 @@ public partial class GurthSymmetricalPlacementStep(
 				return sb.ToStringAndClear();
 			}
 
-			return GetString("NoMappingRelation", CultureInfo.CurrentUICulture)!;
+			return GetString("NoMappingRelation", ResultCurrentCulture)!;
 		}
 	}
 }

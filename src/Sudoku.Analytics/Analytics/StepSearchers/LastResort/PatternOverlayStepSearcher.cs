@@ -61,7 +61,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 		var result = new CellMap[9];
 		scoped var invalidPos = (stackalloc CellMap[9]);
 		scoped var mustPos = (stackalloc CellMap[9]);
-		
+
 		invalidPos.Clear();
 		mustPos.Clear();
 		for (var digit = 0; digit < 9; digit++)

@@ -178,6 +178,11 @@ public abstract partial class Step(
 	/// </summary>
 	private protected string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
+	/// <summary>
+	/// Indicates the result culture.
+	/// </summary>
+	private protected CultureInfo ResultCurrentCulture => Options.Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
+
 
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
@@ -185,7 +190,7 @@ public abstract partial class Step(
 	/// <param name="cultureInfo">The culture information instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string GetName(CultureInfo? cultureInfo) => Code.GetName(cultureInfo ?? CultureInfo.CurrentUICulture);
+	public string GetName(CultureInfo? cultureInfo) => Code.GetName(cultureInfo ?? ResultCurrentCulture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
@@ -203,8 +208,8 @@ public abstract partial class Step(
 	public string ToString(CultureInfo? cultureInfo)
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var currentCultureName = (cultureInfo ?? CultureInfo.CurrentUICulture).Name;
-		var colonToken = GetString("Colon", cultureInfo ?? CultureInfo.CurrentUICulture);
+		var currentCultureName = (cultureInfo ?? ResultCurrentCulture).Name;
+		var colonToken = GetString("Colon", cultureInfo ?? ResultCurrentCulture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
