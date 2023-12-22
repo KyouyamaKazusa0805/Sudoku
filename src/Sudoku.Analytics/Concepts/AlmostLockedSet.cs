@@ -141,19 +141,11 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	public static AlmostLockedSet ParseExact(string str, CoordinateParser parser)
-	{
-		if (str.SplitBy(['/']) is not [var digitsStr, var cellsStrAndHouseStr])
-		{
-			throw new FormatException("The ALS notation must contain only 1 slash character.");
-		}
-
-		if (cellsStrAndHouseStr.SplitBy([' ']) is not [var cellsStr, _, _])
-		{
-			throw new FormatException("Missing cells or target house.");
-		}
-
-		return new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], []); // Elimination map cannot be known :(
-	}
+		=> str.SplitBy(['/']) is [var digitsStr, var cellsStrAndHouseStr]
+			? cellsStrAndHouseStr.SplitBy([' ']) is [var cellsStr, _, _]
+				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
+				: throw new FormatException("Missing cells or target house.")
+			: throw new FormatException("The ALS notation must contain only 1 slash character.");
 
 	/// <summary>
 	/// Collects all possible <see cref="AlmostLockedSet"/>s in the specified grid.
