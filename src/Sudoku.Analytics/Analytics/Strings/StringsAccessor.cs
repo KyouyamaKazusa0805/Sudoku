@@ -23,10 +23,10 @@ public static class StringsAccessor
 	/// Gets the value via the specified string key, with the specified culture information.
 	/// </summary>
 	/// <param name="key">The resource key.</param>
-	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <param name="culture">The culture information instance.</param>
 	/// <returns>The value. If none found, <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetString(string key, CultureInfo cultureInfo)
-		=> (cultureInfo is null ? Resources.ResourceManager.GetString(key) : Resources.ResourceManager.GetString(key, cultureInfo))
+	public static string? GetString(string key, CultureInfo culture)
+		=> (culture is null ? Resources.ResourceManager.GetString(key) : Resources.ResourceManager.GetString(key, culture))
 		?? Resources.ResourceManager.GetString(key, new(1033));
 }

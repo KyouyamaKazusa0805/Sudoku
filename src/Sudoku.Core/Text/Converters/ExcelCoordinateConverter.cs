@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Sudoku.Analytics;
@@ -14,8 +15,13 @@ namespace Sudoku.Text.Converters;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
-public sealed record ExcelCoordinateConverter(bool MakeLettersUpperCase = false, string DefaultSeparator = ", ", string? DigitsSeparator = null) :
-	CoordinateConverter(DefaultSeparator, DigitsSeparator)
+/// <param name="CurrentCulture"><inheritdoc/></param>
+public sealed record ExcelCoordinateConverter(
+	bool MakeLettersUpperCase = false,
+	string DefaultSeparator = ", ",
+	string? DigitsSeparator = null,
+	CultureInfo? CurrentCulture = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter

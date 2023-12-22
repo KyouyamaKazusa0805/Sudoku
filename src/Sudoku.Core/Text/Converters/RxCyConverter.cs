@@ -25,13 +25,15 @@ namespace Sudoku.Text.Converters;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record RxCyConverter(
 	bool MakeLettersUpperCase = false,
 	bool MakeDigitBeforeCell = false,
 	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
-	string? DigitsSeparator = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator, null)
+	string? DigitsSeparator = null,
+	CultureInfo? CurrentCulture = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter

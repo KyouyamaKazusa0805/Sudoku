@@ -32,6 +32,8 @@ public sealed record StepSearcherOptions
 	/// This default option makes the internal members be:
 	/// <list type="bullet">
 	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
+	/// <item><see cref="DistinctDirectMode"/>: <see langword="false"/></item>
+	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
 	/// </list>
 	/// </remarks>
 	public static StepSearcherOptions Default => new();

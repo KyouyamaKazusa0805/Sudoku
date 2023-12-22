@@ -223,7 +223,8 @@ public partial class App : Application
 					uiPref.MakeDigitBeforeCellInRxCyNotation,
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
-					uiPref.DigitsSeparatorInNotation
+					uiPref.DigitsSeparatorInNotation,
+					CurrentCultureInfo
 				),
 				CoordinateType.K9 => new K9Converter(
 					uiPref.MakeLettersUpperCaseInK9Notation,
@@ -235,7 +236,8 @@ public partial class App : Application
 				CoordinateType.Excel => new ExcelCoordinateConverter(
 					uiPref.MakeLettersUpperCaseInExcelNotation,
 					uiPref.DefaultSeparatorInNotation,
-					uiPref.DigitsSeparatorInNotation
+					uiPref.DigitsSeparatorInNotation,
+					CurrentCultureInfo
 				)
 			},
 			IsDirectMode = !uiPref.DisplayCandidates,

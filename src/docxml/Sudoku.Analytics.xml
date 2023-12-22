@@ -3794,6 +3794,8 @@ if (student is (name: var name, age: >= 18))
             This default option makes the internal members be:
             <list type="bullet">
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
             </list>
             </remarks>
         </member>
@@ -21331,7 +21333,7 @@ if (student is (name: var name, age: >= 18))
             Gets the value via the specified string key, with the specified culture information.
             </summary>
             <param name="key">The resource key.</param>
-            <param name="cultureInfo">The culture information instance.</param>
+            <param name="culture">The culture information instance.</param>
             <returns>The value. If none found, <see langword="null"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

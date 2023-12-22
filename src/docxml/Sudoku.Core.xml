@@ -8021,8 +8021,9 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Text.Converters.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents for Excel coordinate-based converter.
             </summary>
@@ -8032,6 +8033,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Text.Converters.ExcelCoordinateConverter.MakeLettersUpperCase">
             <summary>
@@ -8576,8 +8578,9 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Text.Converters.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using RxCy notation.
             </summary>
@@ -8595,6 +8598,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Text.Converters.RxCyConverter.MakeLettersUpperCase">
             <summary>
