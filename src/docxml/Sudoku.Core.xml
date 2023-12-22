@@ -7931,6 +7931,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
             <remarks>
             You can use types <see cref="T:Sudoku.Text.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>, <see cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>.
@@ -7941,12 +7942,13 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
             <seealso cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>
         </member>
-        <member name="M:Sudoku.Text.Converters.CoordinateConverter.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.CoordinateConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents an option provider for coordinates.
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
             <remarks>
             You can use types <see cref="T:Sudoku.Text.Converters.RxCyConverter"/>, <seealso cref="T:Sudoku.Text.Converters.K9Converter"/>, <see cref="T:Sudoku.Text.Converters.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Text.Converters.ExcelCoordinateConverter"/>.
@@ -7995,6 +7997,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Text.Converters.CoordinateConverter.ConjugateConverter">
             <summary>
             The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.CoordinateConverter.TargetCurrentCulture">
+            <summary>
+            Indicates the target culture.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.DigitNotationConverter">
@@ -8086,8 +8093,12 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </param>
+            <param name="CurrentCulture">
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
+            </param>
         </member>
-        <member name="M:Sudoku.Text.Converters.GenericConceptConverter.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.GenericConceptConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
             </summary>
@@ -8098,6 +8109,10 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitsSeparator">
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+            <param name="CurrentCulture">
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
             </param>
         </member>
         <member name="P:Sudoku.Text.Converters.GenericConceptConverter.DefaultSeparator">
@@ -8110,6 +8125,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Converters.GenericConceptConverter.CurrentCulture">
+            <summary>
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
             </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.GridNotationConverter">
@@ -8184,8 +8205,9 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Text.Converters.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using K9 notation.
             </summary>
@@ -8203,6 +8225,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Text.Converters.K9Converter.MakeLettersUpperCase">
             <summary>
@@ -8250,13 +8273,15 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Text.Converters.LiteralCoordinateConverter.#ctor(System.String,System.String)">
+        <member name="M:Sudoku.Text.Converters.LiteralCoordinateConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents a converter that outputs coordinates as literally-speaking representation.
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Text.Converters.LiteralCoordinateConverter.CellConverter">
             <inheritdoc/>

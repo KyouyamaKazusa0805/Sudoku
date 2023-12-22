@@ -215,7 +215,8 @@ public partial class App : Application
 			{
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
-					uiPref.DigitsSeparatorInNotation
+					uiPref.DigitsSeparatorInNotation,
+					CurrentCultureInfo
 				),
 				CoordinateType.RxCy => new RxCyConverter(
 					uiPref.MakeLettersUpperCaseInRxCyNotation,
@@ -228,7 +229,8 @@ public partial class App : Application
 					uiPref.MakeLettersUpperCaseInK9Notation,
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
-					uiPref.DigitsSeparatorInNotation
+					uiPref.DigitsSeparatorInNotation,
+					CurrentCultureInfo
 				),
 				CoordinateType.Excel => new ExcelCoordinateConverter(
 					uiPref.MakeLettersUpperCaseInExcelNotation,

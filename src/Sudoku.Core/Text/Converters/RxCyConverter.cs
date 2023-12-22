@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -30,7 +31,7 @@ public sealed record RxCyConverter(
 	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, null)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
@@ -38,8 +39,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-			[] => string.Empty,
-			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 

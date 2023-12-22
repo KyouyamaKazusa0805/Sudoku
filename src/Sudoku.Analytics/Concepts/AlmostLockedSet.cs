@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
@@ -133,7 +134,9 @@ public sealed partial class AlmostLockedSet(
 		var digitsStr = converter.DigitConverter(DigitsMask);
 		var houseStr = converter.HouseConverter(1 << House);
 		var cellsStr = converter.CellConverter(Cells);
-		return IsBivalueCell ? $"{digitsStr}/{cellsStr}" : $"{digitsStr}/{cellsStr} {GetString("KeywordIn")} {houseStr}";
+		return IsBivalueCell
+			? $"{digitsStr}/{cellsStr}"
+			: $"{digitsStr}/{cellsStr} {GetString("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
 	}
 
 	/// <inheritdoc/>

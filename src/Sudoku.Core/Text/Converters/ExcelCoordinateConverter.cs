@@ -14,11 +14,8 @@ namespace Sudoku.Text.Converters;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
-public sealed record ExcelCoordinateConverter(
-	bool MakeLettersUpperCase = false,
-	string DefaultSeparator = ", ",
-	string? DigitsSeparator = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
+public sealed record ExcelCoordinateConverter(bool MakeLettersUpperCase = false, string DefaultSeparator = ", ", string? DigitsSeparator = null) :
+	CoordinateConverter(DefaultSeparator, DigitsSeparator)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
@@ -126,8 +123,8 @@ public sealed record ExcelCoordinateConverter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

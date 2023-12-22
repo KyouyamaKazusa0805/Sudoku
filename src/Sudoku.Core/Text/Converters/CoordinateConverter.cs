@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Sudoku.Text.Converters;
 
 /// <summary>
@@ -5,6 +7,7 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="CurrentCulture"><inheritdoc/></param>
 /// <remarks>
 /// You can use types <see cref="RxCyConverter"/>, <seealso cref="K9Converter"/>, <see cref="LiteralCoordinateConverter"/>
 /// and <see cref="ExcelCoordinateConverter"/>.
@@ -14,8 +17,8 @@ namespace Sudoku.Text.Converters;
 /// <seealso cref="K9Converter"/>
 /// <seealso cref="LiteralCoordinateConverter"/>
 /// <seealso cref="ExcelCoordinateConverter"/>
-public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null) :
-	GenericConceptConverter(DefaultSeparator, DigitsSeparator)
+public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null, CultureInfo? CurrentCulture = null) :
+	GenericConceptConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
@@ -56,4 +59,9 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	/// The converter method that creates a <see cref="string"/> via the specified conjugate.
 	/// </summary>
 	public abstract ConjugateNotationConverter ConjugateConverter { get; }
+
+	/// <summary>
+	/// Indicates the target culture.
+	/// </summary>
+	private protected CultureInfo TargetCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
 }

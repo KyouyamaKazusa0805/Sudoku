@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,12 +26,14 @@ namespace Sudoku.Text.Converters;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record K9Converter(
 	bool MakeLettersUpperCase = false,
 	char FinalRowLetter = 'I',
 	string DefaultSeparator = ", ",
-	string? DigitsSeparator = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator)
+	string? DigitsSeparator = null,
+	CultureInfo? CurrentCulture = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
@@ -155,13 +158,19 @@ public sealed record K9Converter(
 			{
 				var house = Log2((uint)housesMask);
 				var houseType = house.ToHouseType();
-				return string.Format(GetString(houseType switch
-				{
-					HouseType.Row => "RowLabel",
-					HouseType.Column => "ColumnLabel",
-					HouseType.Block => "BlockLabel",
-					_ => throw new InvalidOperationException($"The specified house value '{nameof(house)}' is invalid.")
-				}), house % 9 + 1);
+				return string.Format(
+					GetString(
+						houseType switch
+						{
+							HouseType.Row => "RowLabel",
+							HouseType.Column => "ColumnLabel",
+							HouseType.Block => "BlockLabel",
+							_ => throw new InvalidOperationException($"The specified house value '{nameof(house)}' is invalid.")
+						},
+						TargetCurrentCulture
+					),
+					house % 9 + 1
+				);
 			}
 
 			var dic = new Dictionary<HouseType, List<House>>(3);
@@ -186,8 +195,10 @@ public sealed record K9Converter(
 								HouseType.Column => "ColumnLabel",
 								HouseType.Block => "BlockLabel",
 								_ => throw new InvalidOperationException($"The specified house value '{nameof(houseType)}' is invalid.")
-							}
-						), string.Concat([.. from house in h select (house % 9 + 1).ToString()])
+							},
+							TargetCurrentCulture
+						),
+						string.Concat([.. from house in h select (house % 9 + 1).ToString()])
 					)
 				);
 			}
@@ -264,18 +275,18 @@ public sealed record K9Converter(
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
-					GetString("LockedCandidatesLabel"),
+					GetString("LockedCandidatesLabel", TargetCurrentCulture),
 					((House)baseSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 					},
 					((House)coverSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(GetString("ColumnLabel"), (coverSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
 				)
 			]),
@@ -287,18 +298,18 @@ public sealed record K9Converter(
 					let baseSet = intersection.Base.Line
 					let coverSet = intersection.Base.Block
 					select string.Format(
-						GetString("LockedCandidatesLabel"),
+						GetString("LockedCandidatesLabel", TargetCurrentCulture),
 						((House)baseSet).ToHouseType() switch
 						{
-							HouseType.Block => string.Format(GetString("BlockLabel"), (baseSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(GetString("RowLabel"), (baseSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(GetString("ColumnLabel"), (baseSet % 9 + 1).ToString())
+							HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 						},
 						((House)coverSet).ToHouseType() switch
 						{
-							HouseType.Block => string.Format(GetString("BlockLabel"), (coverSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(GetString("RowLabel"), (coverSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(GetString("ColumnLabel"), (coverSet % 9 + 1).ToString())
+							HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 						}
 					)
 				]

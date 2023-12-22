@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Sudoku.Text.Converters;
 
 /// <summary>
@@ -11,4 +13,8 @@ namespace Sudoku.Text.Converters;
 /// <para>Indicates the digits separator.</para>
 /// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
 /// </param>
-public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null);
+/// <param name="CurrentCulture">
+/// <para>Indicates the current culture.</para>
+/// <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
+/// </param>
+public abstract record GenericConceptConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null, CultureInfo? CurrentCulture = null);
