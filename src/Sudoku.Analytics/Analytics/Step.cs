@@ -43,7 +43,7 @@ public abstract partial class Step(
 	/// The technique name are all stored in the resource dictionary,
 	/// you can find them in the <c>Strings</c> folder (Type <see cref="StringsAccessor"/>).
 	/// </remarks>
-	public virtual string Name => GetName(null);
+	public virtual string Name => GetName(Options.Converter.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the English name of the technique.
@@ -197,7 +197,7 @@ public abstract partial class Step(
 	/// </summary>
 	/// <returns>The string instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => ToString(null);
+	public sealed override string ToString() => ToString(Options.Converter.CurrentCulture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
