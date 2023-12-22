@@ -31,7 +31,10 @@ namespace Sudoku.Analytics;
 /// <seealso cref="PredefinedAnalyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="PredefinedAnalyzers"/>
-public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<Analyzer, AnalyzerResult>
+public sealed partial class Analyzer :
+	AnalyzerOrCollector,
+	IRandomizedAnalyzer<Analyzer, AnalyzerResult>,
+	ICultureSupportedAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -70,6 +73,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 	public bool IgnoreHighAllocationAlgorithms { get; internal set; }
 
 	/// <inheritdoc/>
+	public CultureInfo? CurrentCulture { get; set; }
+
+	/// <inheritdoc/>
 	[DisallowNull]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public override StepSearcher[]? StepSearchers
@@ -90,6 +96,11 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 
 	/// <inheritdoc/>
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
+
+	/// <summary>
+	/// Indicates the final <see cref="CultureInfo"/> instance to be used.
+	/// </summary>
+	private CultureInfo ResultCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 
 	/// <summary>
@@ -114,7 +125,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	[UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, CultureInfo? cultureInfo = null, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -386,7 +397,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IRandomizedAnalyzer<
 				}
 
 			MakeProgress:
-				progressedStepSearcherName = searcher.ToString(cultureInfo);
+				progressedStepSearcherName = searcher.ToString(ResultCurrentCulture);
 				goto ReportStateAndTryNextStep;
 			}
 

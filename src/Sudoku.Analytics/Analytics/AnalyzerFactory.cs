@@ -1,3 +1,4 @@
+using System.Globalization;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
 using Sudoku.ComponentModel;
@@ -33,6 +34,18 @@ public static class AnalyzerFactory
 	{
 		@this.IgnoreSlowAlgorithms = ignoreLargeTimeComplexity;
 		@this.IgnoreHighAllocationAlgorithms = ignoreLargeSpaceComplexity;
+		return @this;
+	}
+
+	/// <summary>
+	/// Try to set the variant culture for the specified <see cref="Analyzer"/> instance.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="culture">The culture to be set.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer WithCulture(this Analyzer @this, CultureInfo? culture)
+	{
+		@this.CurrentCulture = culture;
 		return @this;
 	}
 

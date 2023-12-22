@@ -1,15 +1,14 @@
-using System.Globalization;
 using Sudoku.Concepts;
 
 namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents an instance that describes the result after executed the method
-/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, CultureInfo?, IProgress{AnalyzerProgress}, CancellationToken)"/>.
+/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalyzerProgress}, CancellationToken)"/>.
 /// </summary>
 /// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSelf">The type of the target result itself.</typeparam>
-/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, CultureInfo?, IProgress{AnalyzerProgress}, CancellationToken)"/>
+/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalyzerProgress}, CancellationToken)"/>
 public interface IAnalyzerResult<in TSolver, out TSelf> where TSolver : IAnalyzer<TSolver, TSelf> where TSelf : IAnalyzerResult<TSolver, TSelf>
 {
 	/// <summary>

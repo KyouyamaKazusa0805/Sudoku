@@ -406,6 +406,9 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="F:Sudoku.Analytics.Metadata.ConditionalFlags.SpaceComplexity"/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.CurrentCulture">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
             <inheritdoc/>
         </member>
@@ -417,6 +420,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.ResultCurrentCulture">
+            <summary>
+            Indicates the final <see cref="T:System.Globalization.CultureInfo"/> instance to be used.
+            </summary>
         </member>
         <member name="E:Sudoku.Analytics.Analyzer.StepApplying">
             <summary>
@@ -435,7 +443,7 @@ if (student is (name: var name, age: >= 18))
             Represents an event that is triggered when an exception is thrown while the analysis module is running.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.Globalization.CultureInfo,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
@@ -466,6 +474,14 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
             <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithCulture(Sudoku.Analytics.Analyzer,System.Globalization.CultureInfo)">
+            <summary>
+            Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="culture">The culture to be set.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithApplyAll(Sudoku.Analytics.Analyzer,System.Boolean)">

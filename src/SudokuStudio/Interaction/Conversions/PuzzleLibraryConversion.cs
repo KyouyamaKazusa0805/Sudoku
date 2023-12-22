@@ -24,14 +24,10 @@ internal static class PuzzleLibraryConversion
 		var currentPuzzle = source.Puzzles[currentPuzzleIndex];
 		return ((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility switch
 		{
-			LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate
-				=> !Analyzer.Analyze(in currentPuzzle, CurrentCultureInfo).IsSolved,
-			LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound
-				=> currentPuzzle.ToString("#").Contains(':'),
-			LibraryCandidatesVisibility.AlwaysShown
-				=> true,
-			_
-				=> false
+			LibraryCandidatesVisibility.ShownWhenPuzzleIsGreaterThanModerate => !Analyzer.Analyze(in currentPuzzle).IsSolved,
+			LibraryCandidatesVisibility.ShownWhenExtraEliminatedCandidatesFound => currentPuzzle.ToString("#").Contains(':'),
+			LibraryCandidatesVisibility.AlwaysShown => true,
+			_ => false
 		};
 	}
 

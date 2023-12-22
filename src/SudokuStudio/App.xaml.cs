@@ -16,6 +16,7 @@ using Windows.Storage.Pickers;
 using Windows.UI.ViewManagement;
 using WinRT.Interop;
 using static SudokuStudio.ProjectWideConstants;
+using static SudokuStudio.Strings.StringsAccessor;
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 
 namespace SudokuStudio;
@@ -112,6 +113,7 @@ public partial class App : Application
 				a => a.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			)
 			.WithRuntimeIdentifierSetters(sudokuPane)
+			.WithCulture(CurrentCultureInfo)
 			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());
 	}

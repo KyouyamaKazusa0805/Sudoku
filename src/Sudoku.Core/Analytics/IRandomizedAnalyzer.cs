@@ -9,6 +9,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <typeparam name="TSelf">The type of the solver itself.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
+/// <seealso cref="Grid"/>
 public interface IRandomizedAnalyzer<in TSelf, out TResult> : IAnalyzer<TSelf, TResult>
 	where TSelf : IRandomizedAnalyzer<TSelf, TResult>
 	where TResult : IAnalyzerResult<TSelf, TResult>

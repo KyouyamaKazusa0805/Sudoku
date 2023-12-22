@@ -1122,7 +1122,6 @@ public sealed partial class AnalyzePage : Page
 		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
 		using var cts = new CancellationTokenSource();
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
-		var currentCultureInfo = CurrentCultureInfo;
 		_ctsForAnalyzingRelatedOperations = cts;
 
 		try
@@ -1133,7 +1132,6 @@ public sealed partial class AnalyzePage : Page
 				{
 					return analyzer.Analyze(
 						in puzzle,
-						currentCultureInfo,
 						new Progress<AnalyzerProgress>(
 							progress => DispatcherQueue.TryEnqueue(
 								() =>
