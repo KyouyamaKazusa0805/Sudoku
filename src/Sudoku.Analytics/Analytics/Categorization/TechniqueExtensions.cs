@@ -32,6 +32,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
 		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
+		?? GetString(@this.ToString(), new(1033))
 		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
