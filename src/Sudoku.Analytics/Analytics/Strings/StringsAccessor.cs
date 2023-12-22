@@ -9,17 +9,6 @@ namespace Sudoku.Analytics.Strings;
 public static class StringsAccessor
 {
 	/// <summary>
-	/// Indicates English language identifier.
-	/// </summary>
-	public const string EnglishLanguage = "en";
-
-	/// <summary>
-	/// Indicates Chinese language identifier.
-	/// </summary>
-	public const string ChineseLanguage = "zh";
-
-
-	/// <summary>
 	/// Gets the value via the specified string key, with the specified culture information.
 	/// </summary>
 	/// <param name="key">The resource key.</param>

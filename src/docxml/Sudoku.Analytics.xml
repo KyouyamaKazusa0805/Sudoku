@@ -21318,16 +21318,6 @@ if (student is (name: var name, age: >= 18))
             Represents an entry that can access resource strings.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Strings.StringsAccessor.EnglishLanguage">
-            <summary>
-            Indicates English language identifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Strings.StringsAccessor.ChineseLanguage">
-            <summary>
-            Indicates Chinese language identifier.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String,System.Globalization.CultureInfo)">
             <summary>
             Gets the value via the specified string key, with the specified culture information.

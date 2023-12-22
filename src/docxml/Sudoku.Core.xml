@@ -8975,6 +8975,21 @@ if (student is (name: var name, age: >= 18))
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
         </member>
+        <member name="T:Sudoku.Text.Languages">
+            <summary>
+            Indicates the supported languages in resource.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Languages.EnglishLanguage">
+            <summary>
+            Indicates English language identifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.Languages.ChineseLanguage">
+            <summary>
+            Indicates Chinese language identifier.
+            </summary>
+        </member>
         <member name="T:Sudoku.Text.Parsers.BitStatusCellMapParser">
             <summary>
             Represents a parser that uses bit operation rule to parse <see cref="T:Sudoku.Concepts.CellMap"/> instances.
