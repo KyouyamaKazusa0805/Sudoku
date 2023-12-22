@@ -64,17 +64,17 @@ public abstract partial class ChainingStep(
 			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string dynamicKeyword() => $"{GetString("DynamicKeyword")!}{space()}";
+			static string dynamicKeyword() => $"{GetString("DynamicKeyword", CultureInfo.CurrentUICulture)!}{space()}";
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static string nestedSuffix(int level)
 				=> level switch
 				{
-					1 => GetString("NestedSuffix_Level1")!,
-					2 => GetString("NestedSuffix_Level2")!,
-					3 => GetString("NestedSuffix_Level3")!,
-					4 => GetString("NestedSuffix_Level4")!,
-					>= 5 => string.Format(GetString("NestedSuffix_Level5OrGreater")!, nestedSuffix(level - 3)),
+					1 => GetString("NestedSuffix_Level1", CultureInfo.CurrentUICulture)!,
+					2 => GetString("NestedSuffix_Level2", CultureInfo.CurrentUICulture)!,
+					3 => GetString("NestedSuffix_Level3", CultureInfo.CurrentUICulture)!,
+					4 => GetString("NestedSuffix_Level4", CultureInfo.CurrentUICulture)!,
+					>= 5 => string.Format(GetString("NestedSuffix_Level5OrGreater", CultureInfo.CurrentUICulture)!, nestedSuffix(level - 3)),
 					_ => string.Empty
 				};
 
@@ -82,14 +82,14 @@ public abstract partial class ChainingStep(
 			string prefixWithoutLevel()
 				=> this switch
 				{
-					ForcingChainStep or BidirectionalCycleStep => GetString("NormalChains")!,
-					CellForcingChainsStep { IsDynamic: false } => GetString("CellChains")!,
-					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("CellChains")!}",
-					RegionForcingChainsStep { IsDynamic: false } => GetString("HouseChains")!,
-					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("HouseChains")!}",
-					BinaryForcingChainsStep { IsNishio: true } => GetString("NishioChains")!,
-					BinaryForcingChainsStep { IsAbsurd: true } => GetString("AbsurdChains")!,
-					BinaryForcingChainsStep => GetString("DoubleChains")!
+					ForcingChainStep or BidirectionalCycleStep => GetString("NormalChains", CultureInfo.CurrentUICulture)!,
+					CellForcingChainsStep { IsDynamic: false } => GetString("CellChains", CultureInfo.CurrentUICulture)!,
+					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("CellChains", CultureInfo.CurrentUICulture)!}",
+					RegionForcingChainsStep { IsDynamic: false } => GetString("HouseChains", CultureInfo.CurrentUICulture)!,
+					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{GetString("HouseChains", CultureInfo.CurrentUICulture)!}",
+					BinaryForcingChainsStep { IsNishio: true } => GetString("NishioChains", CultureInfo.CurrentUICulture)!,
+					BinaryForcingChainsStep { IsAbsurd: true } => GetString("AbsurdChains", CultureInfo.CurrentUICulture)!,
+					BinaryForcingChainsStep => GetString("DoubleChains", CultureInfo.CurrentUICulture)!
 				};
 		}
 	}

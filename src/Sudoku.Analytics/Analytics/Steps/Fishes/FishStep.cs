@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
 using Sudoku.Concepts.Primitive;
@@ -74,19 +75,22 @@ public abstract partial class FishStep(
 			}
 			case var c:
 			{
-				var comma = GetString("Comma");
+				var comma = GetString("Comma", CultureInfo.CurrentUICulture);
 				var digitString = c.DigitConverter((Mask)(1 << Digit));
 				var baseSets = c.HouseConverter(BaseSetsMask);
 				var coverSets = c.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] } => $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
-					ComplexFishStep { Exofins: var f and not [] } => $"{comma}{string.Format(GetString("ExofinsAre")!, c.CellConverter(in f))}",
+					NormalFishStep { Fins: var f and not [] }
+						=> $"{comma}{string.Format(GetString("ExofinsAre", CultureInfo.CurrentUICulture)!, c.CellConverter(in f))}",
+					ComplexFishStep { Exofins: var f and not [] }
+						=> $"{comma}{string.Format(GetString("ExofinsAre", CultureInfo.CurrentUICulture)!, c.CellConverter(in f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					ComplexFishStep { Endofins: var e and not [] } => $"{comma}{string.Format(GetString("EndofinsAre")!, c.CellConverter(in e))}",
+					ComplexFishStep { Endofins: var e and not [] }
+						=> $"{comma}{string.Format(GetString("EndofinsAre", CultureInfo.CurrentUICulture)!, c.CellConverter(in e))}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";

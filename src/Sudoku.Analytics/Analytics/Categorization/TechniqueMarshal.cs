@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using static Sudoku.Analytics.Strings.StringsAccessor;
 
@@ -15,7 +16,7 @@ public static class TechniqueMarshal
 	/// <param name="size">The number of cells used in a subset.</param>
 	/// <returns>The name of the subset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetSubsetName(int size) => GetString($"SubsetNamesSize{size}")!;
+	public static string GetSubsetName(int size) => GetString($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture)!;
 
 	/// <summary>
 	/// Make the real name of the regular wing.

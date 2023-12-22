@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -73,5 +74,5 @@ public sealed partial class NakedSubsetStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string SubsetName => GetString($"SubsetNamesSize{Size}")!;
+	private string SubsetName => GetString($"SubsetNamesSize{Size}", CultureInfo.CurrentUICulture)!;
 }

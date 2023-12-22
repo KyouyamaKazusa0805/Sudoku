@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
@@ -48,7 +49,8 @@ public sealed partial class ForcingChainStep(
 
 	private string OnOffStr => Target.IsOn.ToString().ToLower();
 
-	private string OnOffStrZhCn => (Target.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
+	private string OnOffStrZhCn
+		=> (Target.IsOn ? GetString("TrueKeyword", CultureInfo.CurrentUICulture) : GetString("FalseKeyword", CultureInfo.CurrentUICulture))!;
 
 
 	/// <inheritdoc/>

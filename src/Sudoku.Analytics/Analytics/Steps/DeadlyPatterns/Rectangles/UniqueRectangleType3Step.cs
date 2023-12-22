@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -72,9 +73,9 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
-	private string OnlyKeywordZhCn => GetString("Only")!;
+	private string OnlyKeywordZhCn => GetString("Only", CultureInfo.CurrentUICulture)!;
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string AppearLimitKeyword => GetString("Appear")!;
+	private string AppearLimitKeyword => GetString("Appear", CultureInfo.CurrentUICulture)!;
 }

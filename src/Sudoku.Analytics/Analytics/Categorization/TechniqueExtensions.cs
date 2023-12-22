@@ -31,10 +31,8 @@ public static class TechniqueExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
-		=> cultureInfo is null
-			? GetString(@this.ToString()) ?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly)
-			: GetString(@this.ToString(), cultureInfo)
-				?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
+		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
+		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -69,7 +67,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? GetString($"TechniqueAbbr_{@this}")
+		?? GetString($"TechniqueAbbr_{@this}", new(1033))
 		?? @this.GetGroup().GetAbbreviation();
 
 	/// <summary>

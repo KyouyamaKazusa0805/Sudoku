@@ -20,16 +20,6 @@ public static class StringsAccessor
 
 
 	/// <summary>
-	/// Gets the value via the specified string key.
-	/// </summary>
-	/// <param name="key">The resource key.</param>
-	/// <returns>The value. If none found, <see langword="null"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetString(string key)
-		=> Resources.ResourceManager.GetString(key)
-		?? Resources.ResourceManager.GetString(key, CultureInfo.GetCultureInfo(1033));
-
-	/// <summary>
 	/// Gets the value via the specified string key, with the specified culture information.
 	/// </summary>
 	/// <param name="key">The resource key.</param>
@@ -37,5 +27,6 @@ public static class StringsAccessor
 	/// <returns>The value. If none found, <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetString(string key, CultureInfo cultureInfo)
-		=> cultureInfo is null ? GetString(key) : Resources.ResourceManager.GetString(key, cultureInfo);
+		=> (cultureInfo is null ? Resources.ResourceManager.GetString(key) : Resources.ResourceManager.GetString(key, cultureInfo))
+		?? Resources.ResourceManager.GetString(key, new(1033));
 }

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.SourceGeneration;
 using Sudoku.Analytics.Categorization;
 using Sudoku.Analytics.Configuration;
@@ -50,7 +51,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string TrueCandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 
-	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword")!;
+	private string SubsetTypeStr => GetString(IsNaked ? "NakedKeyword" : "HiddenKeyword", CultureInfo.CurrentUICulture)!;
 
 	private string SizeStr => TechniqueMarshal.GetSubsetName(Size);
 

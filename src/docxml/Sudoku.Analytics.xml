@@ -4793,7 +4793,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
-            <seealso cref="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String)"/>
+            <seealso cref="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String,System.Globalization.CultureInfo)"/>
             <seealso cref="T:Sudoku.Analytics.TechniqueFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/>
         </member>
@@ -21325,13 +21325,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates Chinese language identifier.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String)">
-            <summary>
-            Gets the value via the specified string key.
-            </summary>
-            <param name="key">The resource key.</param>
-            <returns>The value. If none found, <see langword="null"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Strings.StringsAccessor.GetString(System.String,System.Globalization.CultureInfo)">
             <summary>

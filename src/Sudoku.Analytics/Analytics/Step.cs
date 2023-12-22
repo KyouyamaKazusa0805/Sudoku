@@ -154,7 +154,7 @@ public abstract partial class Step(
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
-	/// <seealso cref="GetString(string)"/>
+	/// <seealso cref="GetString(string, CultureInfo)"/>
 	/// <seealso cref="TechniqueFormat"/>
 	/// <seealso cref="ToString(CultureInfo?)"/>
 	public virtual TechniqueFormat Format => $"{GetType().Name}";
@@ -204,7 +204,7 @@ public abstract partial class Step(
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
 		var currentCultureName = (cultureInfo ?? CultureInfo.CurrentUICulture).Name;
-		var colonToken = GetString("Colon");
+		var colonToken = GetString("Colon", cultureInfo ?? CultureInfo.CurrentUICulture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{

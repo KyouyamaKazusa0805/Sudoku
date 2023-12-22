@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.SourceGeneration;
 using Sudoku.Analytics.Configuration;
@@ -86,7 +87,8 @@ public sealed partial class BinaryForcingChainsStep(
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
-	private string StartCandOnOffStrZhCn => (SourcePotential.IsOn ? GetString("TrueKeyword") : GetString("FalseKeyword"))!;
+	private string StartCandOnOffStrZhCn
+		=> (SourcePotential.IsOn ? GetString("TrueKeyword", CultureInfo.CurrentUICulture) : GetString("FalseKeyword", CultureInfo.CurrentUICulture))!;
 
 	private string EndCandStr => Options.Converter.CandidateConverter([FromOnPotential.Candidate]);
 
