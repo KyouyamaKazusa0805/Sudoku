@@ -843,7 +843,7 @@ if (student is (name: var name, age: >= 18))
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
             <param name="options">The formatting options.</param>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture used.</param>
             <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.GetEnumerator">
