@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -24,7 +25,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	/// we have cut the name part " + n" (4 characters in total) in the full name "Bivalue Universal Grave + n".
 	/// </para>
 	/// </remarks>
-	public override string Name => $"{base.Name[..^4]} + {TrueCandidates.Count}";
+	public override string Name => $"{GetName(ResultCurrentCulture)[..^4]} + {TrueCandidates.Count}";
 
 	/// <summary>
 	/// <inheritdoc cref="Step.EnglishName" path="/summary"/>
@@ -50,4 +51,10 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
 
 	private string CandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
+
+
+	/// <inheritdoce/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string GetName(CultureInfo? cultureInfo)
+		=> $"{base.GetName(cultureInfo ?? ResultCurrentCulture)[..^4]} + {TrueCandidates.Count}";
 }

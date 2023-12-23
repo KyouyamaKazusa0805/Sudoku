@@ -10960,6 +10960,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.GetName(System.Globalization.CultureInfo)">
+            <inheritdoce/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.TrueCandidates">
             <summary>
             The generated property declaration for parameter <c>trueCandidates</c>.
