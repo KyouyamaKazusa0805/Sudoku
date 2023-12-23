@@ -253,7 +253,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									}
 									else
 									{
-										CheckType6(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType6(gathered, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
@@ -272,7 +272,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 									if (!arMode)
 									{
-										CheckType4(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType4(gathered, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
@@ -663,7 +663,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
-	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
@@ -686,7 +685,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		Cell[] urCells,
-		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
@@ -762,19 +760,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				accumulator.Add(
 					new UniqueRectangleWithConjugatePairStep(
 						[.. conclusions],
-						[
-							[
-								.. arMode ? GetHighlightCells(urCells) : [],
-								.. candidateOffsets,
-								new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)
-							]
-						],
+						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
 						context.PredefinedOptions,
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
 						[.. urCells],
-						arMode,
+						false,
 						[new(otherCellsMap[0], otherCellsMap[1], digit)],
 						index
 					)
@@ -896,7 +888,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
-	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
 	/// <param name="comparer">The mask comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
@@ -918,7 +909,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		Cell[] urCells,
-		bool arMode,
 		Mask comparer,
 		Digit d1,
 		Digit d2,
@@ -943,12 +933,20 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
 			{
-				gather(in grid, ref context, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
+				collectCore(in grid, ref context, in otherCellsMap, h1 is >= 9 and < 18, digit, h1, h2);
 			}
 		}
 
 
-		void gather(scoped ref readonly Grid grid, scoped ref AnalysisContext context, scoped ref readonly CellMap otherCellsMap, bool isRow, Digit digit, House house1, House house2)
+		void collectCore(
+			scoped ref readonly Grid grid,
+			scoped ref AnalysisContext context,
+			scoped ref readonly CellMap otherCellsMap,
+			bool isRow,
+			Digit digit,
+			House house1,
+			House house2
+		)
 		{
 			var precheck = isRow && IsConjugatePair(digit, [corner1, o1], house1) && IsConjugatePair(digit, [corner2, o2], house2)
 				|| !isRow && IsConjugatePair(digit, [corner1, o2], house1) && IsConjugatePair(digit, [corner2, o1], house2);
@@ -981,7 +979,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				{
 					foreach (var d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + d));
+						var colorIdentifier = d == digit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal;
+						candidateOffsets.Add(new(colorIdentifier, cell * 9 + d));
 					}
 				}
 			}
@@ -997,7 +996,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					[.. conclusions],
 					[
 						[
-							.. arMode ? GetHighlightCells(urCells) : [],
 							.. candidateOffsets,
 							new HouseViewNode(WellKnownColorIdentifier.Normal, house1),
 							new HouseViewNode(WellKnownColorIdentifier.Normal, house2)

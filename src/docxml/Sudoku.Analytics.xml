@@ -7466,7 +7466,7 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 4.
             </summary>
@@ -7474,7 +7474,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
@@ -7517,7 +7516,7 @@ if (student is (name: var name, age: >= 18))
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType6(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check type 6.
             </summary>
@@ -7525,7 +7524,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
             <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
