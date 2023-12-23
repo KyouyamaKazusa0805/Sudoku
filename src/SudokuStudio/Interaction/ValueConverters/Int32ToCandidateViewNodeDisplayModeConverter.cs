@@ -1,12 +1,12 @@
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
-/// Defines a converter that converts an <see cref="int"/> value into a <see cref="CandidateViewNodeDisplayNode"/> field.
+/// Defines a converter that converts an <see cref="int"/> value into a <see cref="CandidateViewNodeDisplay"/> field.
 /// </summary>
 public sealed class Int32ToCandidateViewNodeDisplayModeConverter : IValueConverter
 {
 	/// <inheritdoc/>
-	public object Convert(object value, Type targetType, object parameter, string language) => (CandidateViewNodeDisplayNode)(int)value;
+	public object Convert(object value, Type targetType, object parameter, string language) => (CandidateViewNodeDisplay)(int)value;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

@@ -1,9 +1,5 @@
 namespace SudokuStudio.Configuration;
 
-using E = EliminationDisplayMode;
-using M = CoordinateLabelDisplayMode;
-using N = CandidateViewNodeDisplayNode;
-
 /// <summary>
 /// Defines a list of UI-related preference items. Some items in this group may not be found in settings page
 /// because they are controlled by UI only, not by users.
@@ -38,9 +34,9 @@ using N = CandidateViewNodeDisplayNode;
 [DependencyProperty<decimal>("PencilmarkFontScale")]
 [DependencyProperty<decimal>("BabaGroupingFontScale")]
 [DependencyProperty<decimal>("CoordinateLabelFontScale")]
-[DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)M.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
-[DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)N.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
-[DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)E.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
+[DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)CoordinateLabelDisplay.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
+[DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)CandidateViewNodeDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
+[DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)EliminationDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
 [DependencyProperty<int>("GeneratedPuzzleGivensCount", DefaultValue = -1, DocSummary = "Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.")]
 [DependencyProperty<int>("IttoryuLength", DefaultValue = 0, DocSummary = "Indicates the ittoryu length for the generated puzzles.")]

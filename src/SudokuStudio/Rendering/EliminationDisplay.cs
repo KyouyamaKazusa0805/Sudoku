@@ -3,7 +3,7 @@ namespace SudokuStudio.Rendering;
 /// <summary>
 /// Defines a mode that is used for displaying an elimination.
 /// </summary>
-public enum EliminationDisplayMode
+public enum EliminationDisplay
 {
 	/// <summary>
 	/// Indicates the display mode is to draw a solid circle.

@@ -3,7 +3,7 @@ namespace SudokuStudio.Rendering;
 /// <summary>
 /// Defines a mode that is used for displaying candidate view nodes.
 /// </summary>
-public enum CandidateViewNodeDisplayNode
+public enum CandidateViewNodeDisplay
 {
 	/// <summary>
 	/// Indicates the display mode is to draw a hollow circle.

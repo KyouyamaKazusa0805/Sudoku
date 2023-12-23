@@ -3,7 +3,7 @@ namespace SudokuStudio.Rendering;
 /// <summary>
 /// Defines a mode that is used for describing a kind of displaying case on coordinate labels.
 /// </summary>
-public enum CoordinateLabelDisplayMode
+public enum CoordinateLabelDisplay
 {
 	/// <summary>
 	/// Indicates the mode that never displays coordinate labels.

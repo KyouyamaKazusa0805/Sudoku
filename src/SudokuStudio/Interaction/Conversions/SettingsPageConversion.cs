@@ -41,7 +41,7 @@ internal static class SettingsPageConversion
 		return $"{nameof(Color.A)} = {a} {nameof(Color.R)} = {r} {nameof(Color.G)} = {g} {nameof(Color.B)} = {b}";
 	}
 
-	public static CoordinateLabelDisplayMode GetCoordinateLabelDisplayMode(int index) => (CoordinateLabelDisplayMode)index;
+	public static CoordinateLabelDisplay GetCoordinateLabelDisplayMode(int index) => (CoordinateLabelDisplay)index;
 
 	public static Visibility GetVisibility(string? text) => string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
 

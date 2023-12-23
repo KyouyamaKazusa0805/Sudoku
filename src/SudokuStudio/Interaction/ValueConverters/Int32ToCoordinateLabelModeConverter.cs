@@ -1,12 +1,12 @@
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
-/// Defines a converter that converts an <see cref="int"/> value into a <see cref="CoordinateLabelDisplayMode"/> field.
+/// Defines a converter that converts an <see cref="int"/> value into a <see cref="CoordinateLabelDisplay"/> field.
 /// </summary>
 public sealed class Int32ToCoordinateLabelModeConverter : IValueConverter
 {
 	/// <inheritdoc/>
-	public object Convert(object value, Type targetType, object parameter, string language) => (CoordinateLabelDisplayMode)(int)value;
+	public object Convert(object value, Type targetType, object parameter, string language) => (CoordinateLabelDisplay)(int)value;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

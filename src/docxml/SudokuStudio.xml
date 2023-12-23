@@ -4208,7 +4208,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CandidateViewNodeDisplayNode"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CandidateViewNodeDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4230,7 +4230,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplayMode"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4241,7 +4241,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.EliminationDisplayMode"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.EliminationDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4515,57 +4515,57 @@ if (student is (name: var name, age: >= 18))
             Represents a type that records a list of animating data.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Rendering.CandidateViewNodeDisplayNode">
+        <member name="T:SudokuStudio.Rendering.CandidateViewNodeDisplay">
             <summary>
             Defines a mode that is used for displaying candidate view nodes.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.CircleHollow">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleHollow">
             <summary>
             Indicates the display mode is to draw a hollow circle.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.CircleSolid">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleSolid">
             <summary>
             Indicates the display mode is to draw a solid circle.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.SquareHollow">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareHollow">
             <summary>
             Indicates the display mode is to draw a hollow square.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.SquareSolid">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareSolid">
             <summary>
             Indicates the display mode is to draw a solid square.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.RoundedRectangleHollow">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleHollow">
             <summary>
             Indicates the display mode is to draw a hollow rounded rectangle.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplayNode.RoundedRectangleSolid">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleSolid">
             <summary>
             Indicates the display mode is to draw a solid rounded rectangle.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplayMode">
+        <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplay">
             <summary>
             Defines a mode that is used for describing a kind of displaying case on coordinate labels.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayMode.None">
+        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.None">
             <summary>
             Indicates the mode that never displays coordinate labels.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayMode.UpperAndLeft">
+        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.UpperAndLeft">
             <summary>
             Indicates the mode that displays for coordinate labels only at upper and left-side.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplayMode.FourDirection">
+        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.FourDirection">
             <summary>
             Indicates the mode that displays for coordinate labels at four directions.
             </summary>
@@ -4610,27 +4610,27 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is baba grouping.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Rendering.EliminationDisplayMode">
+        <member name="T:SudokuStudio.Rendering.EliminationDisplay">
             <summary>
             Defines a mode that is used for displaying an elimination.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplayMode.CircleSolid">
+        <member name="F:SudokuStudio.Rendering.EliminationDisplay.CircleSolid">
             <summary>
             Indicates the display mode is to draw a solid circle.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplayMode.Cross">
+        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Cross">
             <summary>
             Indicates the display mode is to draw a cross sign.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplayMode.Slash">
+        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Slash">
             <summary>
             Indicates the display mode is to draw a slash.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplayMode.Backslash">
+        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Backslash">
             <summary>
             Indicates the display mode is to draw a backslash.
             </summary>
@@ -10904,7 +10904,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the displaying mode of coordinate labels.
             </summary>
             <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplayMode"/>.
+            For more information please visit <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplay"/>.
             </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">

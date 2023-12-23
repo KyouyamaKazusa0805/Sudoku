@@ -508,7 +508,7 @@ internal static class RenderableFactory
 		var conclusionTagStr = GetConclusionTagSuffix(isForConclusion, isForElimination, isOverlapped);
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
 		{
-			(true, true, _, EliminationDisplayMode.CircleSolid) => new Ellipse
+			(true, true, _, EliminationDisplay.CircleSolid) => new Ellipse
 			{
 				Width = width,
 				Height = height,
@@ -518,7 +518,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(true, true, _, EliminationDisplayMode.Cross or EliminationDisplayMode.Slash or EliminationDisplayMode.Backslash) => new Cross
+			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash) => new Cross
 			{
 				Width = width,
 				Height = height,
@@ -528,14 +528,14 @@ internal static class RenderableFactory
 				StrokeThickness = (width + height) / 2 * 3 / 20,
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
-				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Slash
+				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplay.Cross or EliminationDisplay.Slash
 					? Visibility.Visible
 					: Visibility.Collapsed,
-				BackwardLineVisibility = eliminationDisplayMode is EliminationDisplayMode.Cross or EliminationDisplayMode.Backslash
+				BackwardLineVisibility = eliminationDisplayMode is EliminationDisplay.Cross or EliminationDisplay.Backslash
 					? Visibility.Visible
 					: Visibility.Collapsed
 			},
-			(true, _, _, _) or (_, _, CandidateViewNodeDisplayNode.CircleSolid, _) => new Ellipse
+			(true, _, _, _) or (_, _, CandidateViewNodeDisplay.CircleSolid, _) => new Ellipse
 			{
 				Width = width,
 				Height = height,
@@ -545,7 +545,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplayNode.CircleHollow, _) => new Ellipse
+			(_, _, CandidateViewNodeDisplay.CircleHollow, _) => new Ellipse
 			{
 				Width = width,
 				Height = height,
@@ -556,7 +556,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplayNode.SquareHollow, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.SquareHollow, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -567,7 +567,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplayNode.SquareSolid, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.SquareSolid, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -577,7 +577,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
-			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleHollow, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -589,7 +589,7 @@ internal static class RenderableFactory
 				RadiusX = width / 3,
 				RadiusY = height / 3
 			},
-			(_, _, CandidateViewNodeDisplayNode.RoundedRectangleSolid, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.RoundedRectangleSolid, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,

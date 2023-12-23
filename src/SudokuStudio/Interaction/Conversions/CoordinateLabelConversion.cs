@@ -41,11 +41,11 @@ internal static class CoordinateLabelConversion
 		}
 	}
 
-	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplayMode mode)
-		=> mode == CoordinateLabelDisplayMode.None ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility ToCoordinateLabelVisibility(CoordinateLabelDisplay mode)
+		=> mode == CoordinateLabelDisplay.None ? Visibility.Collapsed : Visibility.Visible;
 
-	public static Visibility ToCoordinateLabelVisibilityLower(CoordinateLabelDisplayMode mode)
-		=> mode == CoordinateLabelDisplayMode.FourDirection ? Visibility.Visible : Visibility.Collapsed;
+	public static Visibility ToCoordinateLabelVisibilityLower(CoordinateLabelDisplay mode)
+		=> mode == CoordinateLabelDisplay.FourDirection ? Visibility.Visible : Visibility.Collapsed;
 
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 }

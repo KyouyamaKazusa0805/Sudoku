@@ -25,9 +25,9 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
 [DependencyProperty<PaneMode>("CurrentPaneMode", Accessibility = Accessibility.Internal, DefaultValue = PaneMode.Normal, DocSummary = "Indicates the mode that the current pane uses.")]
-[DependencyProperty<CoordinateLabelDisplayMode>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplayMode.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplayMode\"/>.")]
-[DependencyProperty<CandidateViewNodeDisplayNode>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplayNode.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
-[DependencyProperty<EliminationDisplayMode>("EliminationDisplayMode", DefaultValue = EliminationDisplayMode.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
+[DependencyProperty<CoordinateLabelDisplay>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplay.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplay\"/>.")]
+[DependencyProperty<CandidateViewNodeDisplay>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
+[DependencyProperty<EliminationDisplay>("EliminationDisplayMode", DefaultValue = EliminationDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
 [DependencyProperty<CandidateMap>("ViewUnitUsedCandidates", DocSummary = "Indicates a map that stores candidates used in a view unit.")]
 [DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
 [DependencyProperty<Color>("ModifiableColor", DocSummary = "Indicates the modifiable color.")]
@@ -706,12 +706,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> UpdateViewUnitControls(
 			(SudokuPane)d,
 			RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode,
-			(CandidateViewNodeDisplayNode)e.NewValue!
+			(CandidateViewNodeDisplay)e.NewValue!
 		);
 
 	[Callback]
 	private static void EliminationDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.EliminationDisplayMode, (EliminationDisplayMode)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.EliminationDisplayMode, (EliminationDisplay)e.NewValue!);
 
 	[Callback]
 	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
