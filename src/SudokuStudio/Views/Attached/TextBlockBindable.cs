@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Documents;
-using SudokuStudio.ComponentModel;
-
 namespace SudokuStudio.Views.Attached;
 
 /// <summary>

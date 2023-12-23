@@ -1,7 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using Microsoft.UI.Xaml;
-
 namespace SudokuStudio.Strings;
 
 /// <summary>

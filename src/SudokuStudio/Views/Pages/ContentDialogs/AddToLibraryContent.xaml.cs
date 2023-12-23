@@ -1,12 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Text.Json;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using SudokuStudio.BindableSource;
-using SudokuStudio.ComponentModel;
-
 namespace SudokuStudio.Views.Pages.ContentDialogs;
 
 /// <summary>

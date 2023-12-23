@@ -2,12 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using CommunityToolkit.WinUI;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Windows.Foundation;
-using TreeView = Microsoft.UI.Xaml.Controls.TreeView;
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>
@@ -116,7 +110,7 @@ public partial class DataRow : Panel
 
 						// TODO: Do we want this to ever shrink back?
 						var prev = col.MaxChildDesiredWidth;
-						col.MaxChildDesiredWidth = Math.Max(col.MaxChildDesiredWidth, Children[i].DesiredSize.Width + padding);
+						col.MaxChildDesiredWidth = Max(col.MaxChildDesiredWidth, Children[i].DesiredSize.Width + padding);
 						if (col.MaxChildDesiredWidth != prev)
 						{
 							// If our measure has changed, then we have to invalidate the arrange of the DataTable
@@ -132,7 +126,7 @@ public partial class DataRow : Panel
 						Children[i].Measure(availableSize);
 					}
 
-					maxHeight = Math.Max(maxHeight, Children[i].DesiredSize.Height);
+					maxHeight = Max(maxHeight, Children[i].DesiredSize.Height);
 				}
 			}
 			// Fallback for Grid Hybrid scenario...
@@ -153,7 +147,7 @@ public partial class DataRow : Panel
 						Children[i].Measure(availableSize);
 					}
 
-					maxHeight = Math.Max(maxHeight, Children[i].DesiredSize.Height);
+					maxHeight = Max(maxHeight, Children[i].DesiredSize.Height);
 				}
 			}
 			// TODO: What do we want to do if there's unequal children in the DataTable vs. DataRow?

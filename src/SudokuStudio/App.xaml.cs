@@ -1,24 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.Windows.AppLifecycle;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Configuration;
-using Sudoku.Concepts;
-using Sudoku.Text.Converters;
-using SudokuStudio.Configuration;
-using SudokuStudio.Storage;
-using SudokuStudio.Views.Attached;
-using SudokuStudio.Views.Controls;
-using SudokuStudio.Views.Windows;
-using Windows.ApplicationModel.Activation;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI.ViewManagement;
-using WinRT.Interop;
-using static SudokuStudio.ProjectWideConstants;
-using static SudokuStudio.Strings.StringsAccessor;
-using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
-
 namespace SudokuStudio;
 
 /// <summary>

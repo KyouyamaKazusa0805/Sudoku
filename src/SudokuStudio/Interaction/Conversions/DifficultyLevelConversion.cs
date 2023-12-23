@@ -1,10 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
-using Sudoku.Analytics.Categorization;
-using Windows.UI;
-using static System.Numerics.BitOperations;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

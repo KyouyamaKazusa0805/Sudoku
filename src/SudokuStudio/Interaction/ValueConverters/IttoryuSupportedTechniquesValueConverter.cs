@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using Sudoku.Algorithm.Ittoryu;
-using Sudoku.Analytics.Categorization;
-
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>

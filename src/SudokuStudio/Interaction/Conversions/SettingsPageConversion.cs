@@ -1,11 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using SudokuStudio.Collection;
-using SudokuStudio.Rendering;
-using Windows.Foundation;
-using Windows.UI;
-
 namespace SudokuStudio.Interaction.Conversions;
 
 internal static class SettingsPageConversion

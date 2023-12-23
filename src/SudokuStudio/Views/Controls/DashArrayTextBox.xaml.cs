@@ -1,9 +1,3 @@
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-using SudokuStudio.Collection;
-using SudokuStudio.ComponentModel;
-using Windows.System;
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>

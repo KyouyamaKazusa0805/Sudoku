@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Interaction;
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>

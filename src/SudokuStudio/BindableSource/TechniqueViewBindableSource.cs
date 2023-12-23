@@ -1,7 +1,3 @@
-using System.SourceGeneration;
-using Sudoku.Analytics.Categorization;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

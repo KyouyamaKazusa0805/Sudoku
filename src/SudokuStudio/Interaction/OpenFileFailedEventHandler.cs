@@ -1,5 +1,3 @@
-using SudokuStudio.Views.Pages;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

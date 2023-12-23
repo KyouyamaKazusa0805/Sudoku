@@ -1,7 +1,3 @@
-using System.Drawing;
-using System.Runtime.CompilerServices;
-using Sudoku.Concepts;
-
 namespace Sudoku.Recognition;
 
 /// <summary>

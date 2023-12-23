@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace Windows.Foundation;
 
 /// <summary>
@@ -20,5 +18,5 @@ public static class PointExtensions
 	/// <returns>The distance of the two points.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static double DistanceTo(this Point @this, Point other)
-		=> Math.Sqrt((@this.X - other.X) * (@this.X - other.X) + (@this.Y - other.Y) * (@this.Y - other.Y));
+		=> Sqrt((@this.X - other.X) * (@this.X - other.X) + (@this.Y - other.Y) * (@this.Y - other.Y));
 }

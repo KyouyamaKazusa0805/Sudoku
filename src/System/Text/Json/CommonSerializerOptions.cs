@@ -1,6 +1,3 @@
-using System.Text.Encodings.Web;
-using System.Text.Json.Serialization;
-
 namespace System.Text.Json;
 
 /// <summary>

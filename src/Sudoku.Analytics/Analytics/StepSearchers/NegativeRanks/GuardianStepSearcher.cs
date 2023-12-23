@@ -1,16 +1,4 @@
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Metadata;
-using Sudoku.Analytics.Steps;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using static Sudoku.Analytics.CachedFields;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-
 namespace Sudoku.Analytics.StepSearchers;
-
-using unsafe CollectorPredicateFunc = delegate*<ref readonly CellMap, bool>;
 
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.
@@ -83,12 +71,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
 						[
 							[
-								..
-								from c in loop
-								select new CandidateViewNode(WellKnownColorIdentifier.Normal, c * 9 + digit),
-								..
-								from c in guardians
-								select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c * 9 + digit)
+								.. from c in loop select new CandidateViewNode(WellKnownColorIdentifier.Normal, c * 9 + digit),
+								.. from c in guardians select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c * 9 + digit)
 							]
 						],
 						context.PredefinedOptions,

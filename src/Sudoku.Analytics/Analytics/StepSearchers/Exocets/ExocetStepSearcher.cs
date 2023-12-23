@@ -28,26 +28,7 @@
 // * Advanced Senior Exocet
 // * Weak Exocet with some other value cells
 
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Metadata;
-using Sudoku.Analytics.Steps;
-using Sudoku.Concepts;
-using Sudoku.Linq;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using Sudoku.Runtime.MaskServices;
-using static System.Numerics.BitOperations;
-using static Sudoku.Analytics.CachedFields;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.Concepts.Intersection;
-using static Sudoku.SolutionWideReadOnlyFields;
-
 namespace Sudoku.Analytics.StepSearchers;
-
-using LockedMember = (CellMap LockedCells, House LockedBlock);
-using TargetCellsGroup = BitStatusMapGroup<CellMap, Cell, House>;
 
 /// <summary>
 /// Provides with an <b>Exocet</b> step searcher.

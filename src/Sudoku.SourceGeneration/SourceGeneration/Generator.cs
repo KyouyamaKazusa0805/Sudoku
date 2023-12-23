@@ -1,5 +1,3 @@
-using Sudoku.SourceGeneration.Handlers;
-
 namespace Sudoku.SourceGeneration;
 
 /// <summary>

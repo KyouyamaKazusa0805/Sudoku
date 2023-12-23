@@ -1,6 +1,3 @@
-using Microsoft.UI.Xaml.Markup;
-using Microsoft.UI.Xaml.Media.Imaging;
-
 namespace SudokuStudio.Markup;
 
 /// <summary>

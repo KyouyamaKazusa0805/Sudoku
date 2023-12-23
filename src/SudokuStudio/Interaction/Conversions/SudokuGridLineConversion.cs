@@ -1,7 +1,3 @@
-using Microsoft.UI.Xaml.Media;
-using SudokuStudio.Views.Controls;
-using Windows.UI;
-
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

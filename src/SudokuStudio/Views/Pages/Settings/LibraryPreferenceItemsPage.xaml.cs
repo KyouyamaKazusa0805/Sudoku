@@ -1,7 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.Interaction;
-
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>

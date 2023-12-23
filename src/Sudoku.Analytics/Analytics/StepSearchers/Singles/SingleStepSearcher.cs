@@ -1,17 +1,4 @@
-using System.Numerics;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Metadata;
-using Sudoku.Analytics.Steps;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using static System.Numerics.BitOperations;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-
 namespace Sudoku.Analytics.StepSearchers;
-
-using unsafe SingleModuleSearcherFund = delegate*<SingleStepSearcher, ref AnalysisContext, ref readonly Grid, Step?>;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
@@ -423,7 +410,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid.GetDigit(cell) == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
+					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
 				}
 			}
 
@@ -486,13 +473,11 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			(chosenCells, var covered, var excluded) = info;
 			return [
-				..
-				from c in chosenCells
-				select new CellViewNode(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly },
+				.. from c in chosenCells select new CellViewNode(WellKnownColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
 				..
 				from c in covered
 				let p = excluded.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1
-				select new CellViewNode(p, c) { RenderingMode = RenderingMode.DirectModeOnly }
+				select new CellViewNode(p, c) { RenderingMode = DirectModeOnly }
 			];
 		}
 
@@ -522,7 +507,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
-					result[i] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = RenderingMode.DirectModeOnly };
+					result[i] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
 					(CellsMap[cell] + otherCell).InOneHouse(out excluderHouses[i]);
 
 					i++;

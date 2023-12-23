@@ -1,8 +1,3 @@
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Runtime.CompilerServices;
-using Sudoku.Rendering.Nodes;
-
 namespace Sudoku.Gdip;
 
 partial class GridImageGenerator

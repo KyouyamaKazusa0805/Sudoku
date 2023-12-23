@@ -1,5 +1,3 @@
-using Sudoku.Analytics.Configuration;
-
 namespace Sudoku.Analytics;
 
 /// <summary>

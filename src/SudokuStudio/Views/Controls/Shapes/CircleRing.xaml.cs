@@ -1,8 +1,3 @@
-using Microsoft.UI;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using SudokuStudio.ComponentModel;
-
 namespace SudokuStudio.Views.Controls.Shapes;
 
 /// <summary>

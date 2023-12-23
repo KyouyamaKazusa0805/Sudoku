@@ -1,18 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Sudoku.Algorithm.Backdoors;
-using Sudoku.Algorithm.Ittoryu;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.StepSearcherModules;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using SudokuStudio.ComponentModel;
-using WinRT;
-using static Sudoku.Analytics.ConclusionType;
-using static SudokuStudio.ProjectWideConstants;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Pages.Operation;
 
 /// <summary>

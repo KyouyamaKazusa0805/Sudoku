@@ -1,10 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.SourceGeneration;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Categorization;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

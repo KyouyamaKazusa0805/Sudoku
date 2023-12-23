@@ -1,6 +1,3 @@
-using Sudoku.Compatibility.Hodoku;
-using Sudoku.Compatibility.SudokuExplainer;
-
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>

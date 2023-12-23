@@ -1,9 +1,3 @@
-using Microsoft.UI.Xaml;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Metadata;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Views.Controls;
-
 namespace SudokuStudio.Views.Attached;
 
 /// <summary>

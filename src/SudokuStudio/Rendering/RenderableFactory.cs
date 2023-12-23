@@ -1,42 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using Microsoft.UI.Text;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Shapes;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using Sudoku.Text.Converters;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Collection;
-using SudokuStudio.Input;
-using SudokuStudio.Interaction;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Views.Controls;
-using SudokuStudio.Views.Controls.Shapes;
-using Windows.Foundation;
-using Windows.UI;
-using Windows.UI.Text;
-using WinRT;
-using static System.Math;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-using Geometry = Microsoft.UI.Xaml.Media.Geometry;
-using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
-using LineGeometry = Microsoft.UI.Xaml.Media.LineGeometry;
-using Path = Microsoft.UI.Xaml.Shapes.Path;
-using PathGeometry = Microsoft.UI.Xaml.Media.PathGeometry;
-using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;
-
 namespace SudokuStudio.Rendering;
-
-using static RenderableFactory;
-using Kind = WellKnownColorIdentifierKind;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -98,14 +60,14 @@ internal static class RenderableFactory
 	/// The colorized suffixes.
 	/// </summary>
 	internal const string
-		NormalColorizedSuffix = $"|@{nameof(Kind.Normal)}|",
-		AssignmentColorizedSuffix = $"|@{nameof(Kind.Assignment)}|",
-		OverlappedAssignmentColorizedSuffix = $"|@{nameof(Kind.OverlappedAssignment)}|",
-		EliminationColorizedSuffix = $"|@{nameof(Kind.Elimination)}|",
-		CannibalismColorizedSuffix = $"|@{nameof(Kind.Cannibalism)}|",
-		LinkColorizedSuffix = $"|@{nameof(Kind.Link)}|",
-		ExofinColorizedSuffix = $"|@{nameof(Kind.Exofin)}|",
-		EndofinColorizedSuffix = $"|@{nameof(Kind.Endofin)}|",
+		NormalColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Normal)}|",
+		AssignmentColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Assignment)}|",
+		OverlappedAssignmentColorizedSuffix = $"|@{nameof(ColorIdentifierKind.OverlappedAssignment)}|",
+		EliminationColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Elimination)}|",
+		CannibalismColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Cannibalism)}|",
+		LinkColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Link)}|",
+		ExofinColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Exofin)}|",
+		EndofinColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Endofin)}|",
 		AuxiliaryColorizedSuffix = "|@Auxiliary|",
 		AlmostLockedSetColorizedSuffix = "|@AlmostLockedSet|",
 		ColorPaletteColorizedSuffix = "|@ColorPalette|";
@@ -139,22 +101,22 @@ internal static class RenderableFactory
 		{ RenderableItemsUpdatingReason.OtherLinkDashStyle, Filters.OtherLinkDashStyle },
 		{ RenderableItemsUpdatingReason.LinkStrokeThickness, Filters.LinkStrokeThickness },
 		{ RenderableItemsUpdatingReason.BabaGrouping, Filters.BabaGrouping },
-		{ RenderableItemsUpdatingReason.NormalColorized, control => Filters.Colorized(control, Kind.Normal) },
-		{ RenderableItemsUpdatingReason.AssignmentColorized, control => Filters.Colorized(control, Kind.Assignment) },
-		{ RenderableItemsUpdatingReason.OverlappedAssignmentColorized, control => Filters.Colorized(control, Kind.OverlappedAssignment) },
-		{ RenderableItemsUpdatingReason.EliminationColorized, control => Filters.Colorized(control, Kind.Elimination) },
-		{ RenderableItemsUpdatingReason.CannibalismColorized, control => Filters.Colorized(control, Kind.Cannibalism) },
-		{ RenderableItemsUpdatingReason.ExofinColorized, control => Filters.Colorized(control, Kind.Exofin) },
-		{ RenderableItemsUpdatingReason.EndofinColorized, control => Filters.Colorized(control, Kind.Endofin) },
+		{ RenderableItemsUpdatingReason.NormalColorized, control => Filters.Colorized(control, ColorIdentifierKind.Normal) },
+		{ RenderableItemsUpdatingReason.AssignmentColorized, control => Filters.Colorized(control, ColorIdentifierKind.Assignment) },
+		{ RenderableItemsUpdatingReason.OverlappedAssignmentColorized, control => Filters.Colorized(control, ColorIdentifierKind.OverlappedAssignment) },
+		{ RenderableItemsUpdatingReason.EliminationColorized, control => Filters.Colorized(control, ColorIdentifierKind.Elimination) },
+		{ RenderableItemsUpdatingReason.CannibalismColorized, control => Filters.Colorized(control, ColorIdentifierKind.Cannibalism) },
+		{ RenderableItemsUpdatingReason.ExofinColorized, control => Filters.Colorized(control, ColorIdentifierKind.Exofin) },
+		{ RenderableItemsUpdatingReason.EndofinColorized, control => Filters.Colorized(control, ColorIdentifierKind.Endofin) },
 		{
 			RenderableItemsUpdatingReason.AuxiliaryColorized,
-			control => Filters.ColorizedRange(control, [Kind.Auxiliary1, Kind.Auxiliary2, Kind.Auxiliary3])
+			control => Filters.ColorizedRange(control, [ColorIdentifierKind.Auxiliary1, ColorIdentifierKind.Auxiliary2, ColorIdentifierKind.Auxiliary3])
 		},
 		{
 			RenderableItemsUpdatingReason.AlmostLockedSetColorized,
 			control => Filters.ColorizedRange(
 				control,
-				[Kind.AlmostLockedSet1, Kind.AlmostLockedSet2, Kind.AlmostLockedSet3, Kind.AlmostLockedSet4, Kind.AlmostLockedSet5]
+				[ColorIdentifierKind.AlmostLockedSet1, ColorIdentifierKind.AlmostLockedSet2, ColorIdentifierKind.AlmostLockedSet3, ColorIdentifierKind.AlmostLockedSet4, ColorIdentifierKind.AlmostLockedSet5]
 			)
 		},
 		{ RenderableItemsUpdatingReason.ColorPaletteColorized, Filters.ColorizedPaletteId },
@@ -341,10 +303,10 @@ internal static class RenderableFactory
 		var isOverlapped = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 		var id = (type, isOverlapped) switch
 		{
-			(Assignment, true) => Kind.OverlappedAssignment,
-			(Assignment, _) => Kind.Assignment,
-			(Elimination, true) => Kind.Cannibalism,
-			_ => (ColorIdentifier)Kind.Elimination
+			(Assignment, true) => ColorIdentifierKind.OverlappedAssignment,
+			(Assignment, _) => ColorIdentifierKind.Assignment,
+			(Elimination, true) => ColorIdentifierKind.Cannibalism,
+			_ => (ColorIdentifier)ColorIdentifierKind.Elimination
 		};
 		ForCandidateNodeCore(
 			id,
@@ -380,7 +342,7 @@ internal static class RenderableFactory
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
-			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= Kind.Normal and <= Kind.Auxiliary3) } }):
+			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= ColorIdentifierKind.Normal and <= ColorIdentifierKind.Auxiliary3) } }):
 			{
 				var control = new Border
 				{
@@ -959,7 +921,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				Inference.ConjugatePair => ConjugateInferenceSuffix,
 				_ => DefaultInferenceSuffix
 			};
-			var linkSuffix = ((ColorIdentifier)Kind.Link).GetIdentifierSuffix();
+			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 			switch (inference)
 			{
 				case Inference.Default:
@@ -1269,16 +1231,16 @@ file static class Extensions
 			PaletteIdColorIdentifier(var id) => $"{IdColorIdentifierSeparator}{id}|",
 			WellKnownColorIdentifier(var kind) => kind switch
 			{
-				Kind.Normal => NormalColorizedSuffix,
-				>= Kind.Auxiliary1 and <= Kind.Auxiliary3 => AuxiliaryColorizedSuffix,
-				Kind.Assignment => AssignmentColorizedSuffix,
-				Kind.OverlappedAssignment => OverlappedAssignmentColorizedSuffix,
-				Kind.Elimination => EliminationColorizedSuffix,
-				Kind.Exofin => ExofinColorizedSuffix,
-				Kind.Endofin => EndofinColorizedSuffix,
-				Kind.Cannibalism => CannibalismColorizedSuffix,
-				Kind.Link => LinkColorizedSuffix,
-				>= Kind.AlmostLockedSet1 and <= Kind.AlmostLockedSet5 => AlmostLockedSetColorizedSuffix,
+				ColorIdentifierKind.Normal => NormalColorizedSuffix,
+				>= ColorIdentifierKind.Auxiliary1 and <= ColorIdentifierKind.Auxiliary3 => AuxiliaryColorizedSuffix,
+				ColorIdentifierKind.Assignment => AssignmentColorizedSuffix,
+				ColorIdentifierKind.OverlappedAssignment => OverlappedAssignmentColorizedSuffix,
+				ColorIdentifierKind.Elimination => EliminationColorizedSuffix,
+				ColorIdentifierKind.Exofin => ExofinColorizedSuffix,
+				ColorIdentifierKind.Endofin => EndofinColorizedSuffix,
+				ColorIdentifierKind.Cannibalism => CannibalismColorizedSuffix,
+				ColorIdentifierKind.Link => LinkColorizedSuffix,
+				>= ColorIdentifierKind.AlmostLockedSet1 and <= ColorIdentifierKind.AlmostLockedSet5 => AlmostLockedSetColorizedSuffix,
 				_ => throw new ArgumentOutOfRangeException(nameof(@this))
 			},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
@@ -1450,7 +1412,7 @@ file static class Filters
 	/// <param name="kind">The kind to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="ColorPalette"/>
-	public static bool Colorized(FrameworkElement control, Kind kind)
+	public static bool Colorized(FrameworkElement control, ColorIdentifierKind kind)
 	{
 		if (control.Tag is not string s)
 		{
@@ -1465,7 +1427,7 @@ file static class Filters
 		];
 		foreach (var element in array)
 		{
-			if (s.Contains(element) && Enum.TryParse<Kind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..^1], out var final) && final == kind)
+			if (s.Contains(element) && Enum.TryParse<ColorIdentifierKind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..^1], out var final) && final == kind)
 			{
 				return true;
 			}
@@ -1480,7 +1442,7 @@ file static class Filters
 	/// <param name="kinds">The kinds to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="ColorPalette"/>
-	public static bool ColorizedRange(FrameworkElement control, Kind[] kinds)
+	public static bool ColorizedRange(FrameworkElement control, ColorIdentifierKind[] kinds)
 	{
 		if (control.Tag is not string s)
 		{
@@ -1496,7 +1458,7 @@ file static class Filters
 		foreach (var element in array)
 		{
 			if (s.Contains(element)
-				&& Enum.TryParse<Kind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..], out var final)
+				&& Enum.TryParse<ColorIdentifierKind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..], out var final)
 				&& Array.IndexOf(kinds, final) != -1)
 			{
 				return true;

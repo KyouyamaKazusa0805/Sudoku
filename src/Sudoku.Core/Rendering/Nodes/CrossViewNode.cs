@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Sudoku.Rendering.Nodes;
+﻿namespace Sudoku.Rendering.Nodes;
 
 /// <summary>
 /// Defines a cross view node.

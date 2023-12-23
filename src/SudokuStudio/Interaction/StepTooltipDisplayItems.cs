@@ -1,5 +1,3 @@
-using Sudoku.Analytics;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

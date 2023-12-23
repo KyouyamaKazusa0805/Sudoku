@@ -1,17 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Text.Json;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Sudoku.Runtime.CompilerServices;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Interaction;
-using SudokuStudio.Storage;
-using SudokuStudio.Views.Pages.ContentDialogs;
-using Windows.Storage.Pickers;
-using Windows.System;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -66,7 +52,7 @@ public sealed partial class LibraryPage : Page
 			return false;
 		}
 
-		var fileId = Path.GetFileNameWithoutExtension(filePath);
+		var fileId = FilePath.GetFileNameWithoutExtension(filePath);
 		var libFilePath = $@"{CommonPaths.PuzzleLibrariesFolder}\{fileId}{FileExtensions.PuzzleLibrary}";
 		if (File.Exists(libFilePath))
 		{
@@ -74,7 +60,7 @@ public sealed partial class LibraryPage : Page
 			return false;
 		}
 
-		var fileExtension = Path.GetExtension(filePath);
+		var fileExtension = FilePath.GetExtension(filePath);
 		if (fileExtension == FileExtensions.PuzzleLibrary)
 		{
 			var content = await File.ReadAllTextAsync(filePath);
@@ -257,7 +243,7 @@ public sealed partial class LibraryPage : Page
 		}
 
 		var newPuzzles = default(List<Grid>);
-		switch (Path.GetExtension(filePath))
+		switch (FilePath.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText or FileExtensions.CommaSeparated:
 			{

@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace Sudoku.Algorithm.Generating;
 
 /// <summary>

@@ -1,8 +1,3 @@
-using System.Globalization;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Configuration;
-using Sudoku.ComponentModel;
-
 namespace Sudoku.Analytics;
 
 /// <summary>

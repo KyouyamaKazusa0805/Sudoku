@@ -13,7 +13,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!--Compilation Features-->
 		<Features>strict</Features>

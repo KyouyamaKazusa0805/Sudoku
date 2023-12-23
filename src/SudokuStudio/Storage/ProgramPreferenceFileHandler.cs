@@ -1,7 +1,3 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SudokuStudio.Configuration;
-
 namespace SudokuStudio.Storage;
 
 /// <summary>
@@ -31,7 +27,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	/// <inheritdoc/>
 	public static void Write(string filePath, ProgramPreference instance)
 	{
-		var directory = Path.GetDirectoryName(filePath)!;
+		var directory = FilePath.GetDirectoryName(filePath)!;
 		if (!Directory.Exists(directory))
 		{
 			Directory.CreateDirectory(directory);

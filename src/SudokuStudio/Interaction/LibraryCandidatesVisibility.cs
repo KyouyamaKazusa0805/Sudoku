@@ -1,5 +1,3 @@
-using Sudoku.Analytics.Categorization;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

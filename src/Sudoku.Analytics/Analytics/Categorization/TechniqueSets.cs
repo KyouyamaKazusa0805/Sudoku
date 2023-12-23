@@ -1,5 +1,3 @@
-using Sudoku.Algorithm.Ittoryu;
-
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>

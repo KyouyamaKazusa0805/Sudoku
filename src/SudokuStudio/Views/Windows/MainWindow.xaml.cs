@@ -1,17 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.Runtime.InteropServices;
-using SudokuStudio.Storage;
-using SudokuStudio.Views.Pages;
-using SudokuStudio.Views.Pages.Manuals;
-using Windows.Graphics;
-using WinRT.Interop;
-using static SudokuStudio.ProjectWideConstants;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Windows;
 
 /// <summary>

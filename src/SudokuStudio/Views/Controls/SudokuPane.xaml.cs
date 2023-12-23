@@ -1,36 +1,4 @@
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.SourceGeneration;
-using Microsoft.UI;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Runtime.CompilerServices;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Collection;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Input;
-using SudokuStudio.Interaction;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Rendering;
-using SudokuStudio.Storage;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
-using Windows.Storage.Search;
-using Windows.UI;
-using WinRT;
-using static System.Numerics.BitOperations;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Controls;
-
-using static RenderableFactory;
 
 /// <summary>
 /// Defines a sudoku pane control.
@@ -837,7 +805,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 				default:
 				{
-					switch (Path.GetExtension(filePath))
+					switch (FilePath.GetExtension(filePath))
 					{
 						case FileExtensions.PlainText:
 						{

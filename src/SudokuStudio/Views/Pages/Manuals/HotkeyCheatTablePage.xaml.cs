@@ -1,5 +1,3 @@
-using Microsoft.UI.Xaml.Controls;
-
 namespace SudokuStudio.Views.Pages.Manuals;
 
 /// <summary>

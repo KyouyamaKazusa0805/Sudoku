@@ -1,13 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.UI.Xaml.Media.Imaging;
-using SudokuStudio;
-using Windows.Graphics.Imaging;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.Win32;
-using WinRT.Interop;
-
 namespace Microsoft.UI.Xaml;
 
 /// <summary>

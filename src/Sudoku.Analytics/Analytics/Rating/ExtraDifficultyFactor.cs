@@ -1,6 +1,3 @@
-using System.Globalization;
-using static Sudoku.Analytics.Strings.StringsAccessor;
-
 namespace Sudoku.Analytics.Rating;
 
 /// <summary>

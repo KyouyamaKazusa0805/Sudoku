@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace SudokuStudio.Configuration;
 
 /// <summary>

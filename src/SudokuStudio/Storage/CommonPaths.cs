@@ -1,5 +1,3 @@
-using SpecialFolder = System.Environment.SpecialFolder;
-
 namespace SudokuStudio.Storage;
 
 /// <summary>

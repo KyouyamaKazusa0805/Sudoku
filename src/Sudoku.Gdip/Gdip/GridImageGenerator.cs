@@ -1,13 +1,3 @@
-using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Runtime.CompilerServices;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-
 namespace Sudoku.Gdip;
 
 /// <summary>

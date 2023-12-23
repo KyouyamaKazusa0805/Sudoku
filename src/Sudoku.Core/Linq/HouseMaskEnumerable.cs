@@ -1,7 +1,3 @@
-using System.Numerics;
-using Sudoku.Concepts;
-using static System.Numerics.BitOperations;
-
 namespace Sudoku.Linq;
 
 /// <summary>

@@ -1,13 +1,3 @@
-using Microsoft.UI;
-using Microsoft.UI.Xaml;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Concepts;
-using SudokuStudio.Collection;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-using SudokuStudio.Rendering;
-using Windows.UI;
-
 namespace SudokuStudio.Configuration;
 
 using E = EliminationDisplayMode;

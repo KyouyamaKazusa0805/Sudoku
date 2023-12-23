@@ -1,13 +1,3 @@
-using System.Globalization;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using Sudoku.Linq;
-using static System.Numerics.BitOperations;
-using static Sudoku.Strings.InternalStringAccessor;
-
 namespace Sudoku.Text.Converters;
 
 /// <summary>
@@ -23,8 +13,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) => cells switch
 		{
-			[] => string.Empty,
-			[var p] => string.Format(GetString("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
+		[] => string.Empty,
+		[var p] => string.Format(GetString("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
 			_ => string.Format(
 				GetString("CellsLabel", TargetCurrentCulture),
 				string.Join(DefaultSeparator, [.. from cell in cells select string.Format(GetString("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)])

@@ -1,8 +1,3 @@
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-
 namespace Sudoku.Algorithm.MinLex;
 
 /// <summary>
@@ -142,8 +137,8 @@ public struct BestTriplet
 	public static BestTriplet Create(scoped ReadOnlySpan<int> values)
 		=> values switch
 		{
-			[] => new(),
-			[var bestResult, var resultMask, var resultNumBits] => new() { BestResult = bestResult, ResultMask = resultMask, ResultNumBits = resultNumBits },
+		[] => new(),
+		[var bestResult, var resultMask, var resultNumBits] => new() { BestResult = bestResult, ResultMask = resultMask, ResultNumBits = resultNumBits },
 			_ => throw new InvalidOperationException($"The length of argument '{nameof(values)}' is mismatched.")
 		};
 }

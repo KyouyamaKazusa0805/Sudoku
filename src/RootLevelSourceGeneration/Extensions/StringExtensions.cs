@@ -1,6 +1,3 @@
-using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis.CSharp;
-
 namespace Microsoft.CodeAnalysis;
 
 /// <summary>

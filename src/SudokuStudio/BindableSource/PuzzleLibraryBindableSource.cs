@@ -1,12 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.SourceGeneration;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Storage;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.BindableSource;
 
 /// <summary>
@@ -69,7 +60,7 @@ public sealed partial class PuzzleLibraryBindableSource([Data] bool isAddingOper
 	{
 		get => _fileId;
 
-		set => _fileId = value.IndexOfAny(Path.GetInvalidFileNameChars()) == -1
+		set => _fileId = value.IndexOfAny(io::Path.GetInvalidFileNameChars()) == -1
 			? value
 			: throw new ArgumentException("The file ID cannot contain invalid characters cannot be used in a file name.", nameof(value));
 	}
@@ -125,7 +116,7 @@ public sealed partial class PuzzleLibraryBindableSource([Data] bool isAddingOper
 		var result = new List<PuzzleLibraryBindableSource>();
 		foreach (var file in files)
 		{
-			if (Path.GetExtension(file.FullName) != FileExtensions.PuzzleLibrary)
+			if (io::Path.GetExtension(file.FullName) != FileExtensions.PuzzleLibrary)
 			{
 				// Filters invalid file extensions.
 				continue;
@@ -134,7 +125,7 @@ public sealed partial class PuzzleLibraryBindableSource([Data] bool isAddingOper
 			if (tryDeserialize(file.FullName, out var instance))
 			{
 				instance.PuzzlesCount = instance.Puzzles.Length;
-				instance.FileId = Path.GetFileNameWithoutExtension(file.FullName);
+				instance.FileId = io::Path.GetFileNameWithoutExtension(file.FullName);
 				result.Add(instance);
 			}
 		}

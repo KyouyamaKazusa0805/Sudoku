@@ -1,5 +1,3 @@
-using Sudoku.Text.Converters;
-
 namespace Sudoku.Analytics.Configuration;
 
 /// <summary>

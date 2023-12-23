@@ -1,46 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.SourceGeneration;
-using System.Text.Json;
-using Microsoft.UI;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Metadata;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using Sudoku.Text;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Collection;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Configuration;
-using SudokuStudio.Input;
-using SudokuStudio.Interaction;
-using SudokuStudio.Rendering;
-using SudokuStudio.Storage;
-using SudokuStudio.Views.Controls;
-using SudokuStudio.Views.Pages.Analyze;
-using SudokuStudio.Views.Pages.ContentDialogs;
-using SudokuStudio.Views.Pages.Operation;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.Storage.Streams;
-using Windows.System;
-using Windows.UI.ViewManagement;
-using WinRT;
-using static Sudoku.SolutionWideReadOnlyFields;
-using static SudokuStudio.ProjectWideConstants;
-using static SudokuStudio.Strings.StringsAccessor;
-using SolvingPath = SudokuStudio.Views.Pages.Analyze.SolvingPath;
-
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -318,7 +275,7 @@ public sealed partial class AnalyzePage : Page
 			return false;
 		}
 
-		switch (Path.GetExtension(filePath))
+		switch (FilePath.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText:
 			{
@@ -407,7 +364,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			default:
 			{
-				switch (Path.GetExtension(filePath))
+				switch (FilePath.GetExtension(filePath))
 				{
 					case FileExtensions.PlainText:
 					{
@@ -1090,7 +1047,7 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		switch (Path.GetExtension(filePath), gridInfo)
+		switch (FilePath.GetExtension(filePath), gridInfo)
 		{
 			case (FileExtensions.PlainText, { BaseGrid: var g }):
 			{
@@ -1256,7 +1213,7 @@ public sealed partial class AnalyzePage : Page
 					SudokuPane._temporarySelectedCell = cell;
 					foreach (var element in appBarButtons)
 					{
-						element.IsEnabled = (puzzle.GetCandidates(cell) >> Math.Abs((Digit)element.Tag) - 1 & 1) != 0;
+						element.IsEnabled = (puzzle.GetCandidates(cell) >> Abs((Digit)element.Tag) - 1 & 1) != 0;
 					}
 
 					MainMenuFlyout.ShowAt(SudokuPane);
@@ -1312,7 +1269,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		if ((sender, SudokuPane) is (AppBarButton { Tag: Digit rawDigit }, { _temporarySelectedCell: var cell and not -1 }))
 		{
-			SudokuPane.SetOrDeleteDigit(cell, Math.Abs(rawDigit) - 1, rawDigit > 0);
+			SudokuPane.SetOrDeleteDigit(cell, Abs(rawDigit) - 1, rawDigit > 0);
 		}
 	}
 

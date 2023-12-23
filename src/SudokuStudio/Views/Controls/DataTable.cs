@@ -3,11 +3,6 @@
 // See the LICENSE file in the project root for more information.
 // https://github.com/CommunityToolkit/Labs-Windows/blob/main/components/DataTable/src/DataTable/DataTable.cs
 
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.ComponentModel;
-using Windows.Foundation;
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>
@@ -92,10 +87,10 @@ public partial class DataTable : Panel
 				column.Measure(new(availableSize.Width - fixedWidth - autoSized, availableSize.Height));
 
 				// Keep track of already 'allotted' space, use either the maximum child size (if we know it) or the header content
-				autoSized += Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
+				autoSized += Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
 			}
 
-			maxHeight = Math.Max(maxHeight, column.DesiredSize.Height);
+			maxHeight = Max(maxHeight, column.DesiredSize.Height);
 		}
 
 		return new(availableSize.Width, maxHeight);
@@ -123,7 +118,7 @@ public partial class DataTable : Panel
 			}
 			else
 			{
-				autoSized += Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
+				autoSized += Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
 			}
 		}
 
@@ -149,7 +144,7 @@ public partial class DataTable : Panel
 			else
 			{
 				// TODO: We use the comparison of sizes a lot, should we cache in the DataColumn itself?
-				width = Math.Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
+				width = Max(column.DesiredSize.Width, column.MaxChildDesiredWidth);
 				column.Arrange(new(x, 0, width, finalSize.Height));
 			}
 

@@ -1,18 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using QuestPDF.Fluent;
-using QuestPDF.Infrastructure;
-using Sudoku.Analytics;
-using SudokuStudio.BindableSource;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Storage;
-using Windows.Storage.Pickers;
-using static SudokuStudio.Strings.StringsAccessor;
-using PdfColors = QuestPDF.Helpers.Colors;
-using PdfContainer = QuestPDF.Infrastructure.IContainer;
-
 namespace SudokuStudio.Views.Pages.Operation;
 
 /// <summary>

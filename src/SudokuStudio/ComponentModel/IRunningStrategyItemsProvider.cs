@@ -1,5 +1,3 @@
-using SudokuStudio.Interaction;
-
 namespace SudokuStudio.ComponentModel;
 
 /// <summary>

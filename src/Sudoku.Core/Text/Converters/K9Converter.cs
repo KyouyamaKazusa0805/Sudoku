@@ -1,12 +1,3 @@
-using System.Globalization;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using static System.Numerics.BitOperations;
-using static Sudoku.Strings.InternalStringAccessor;
-
 namespace Sudoku.Text.Converters;
 
 /// <summary>
@@ -212,8 +203,8 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

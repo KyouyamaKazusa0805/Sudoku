@@ -1,6 +1,3 @@
-using Microsoft.UI.Composition.SystemBackdrops;
-using Microsoft.UI.Xaml.Media;
-
 namespace SudokuStudio.Configuration;
 
 /// <summary>

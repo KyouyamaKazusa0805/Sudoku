@@ -1,11 +1,3 @@
-using System.Globalization;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Sudoku.Analytics;
-using Sudoku.Concepts;
-using static System.Numerics.BitOperations;
-
 namespace Sudoku.Text.Converters;
 
 /// <summary>
@@ -41,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+			[] => string.Empty,
+			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 

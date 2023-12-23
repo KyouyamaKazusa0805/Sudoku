@@ -1,6 +1,3 @@
-using Windows.Storage.Pickers;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Storage;
 
 /// <summary>

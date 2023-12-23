@@ -1,9 +1,3 @@
-using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Pages.ContentDialogs;
 
 /// <summary>

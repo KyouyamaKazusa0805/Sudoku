@@ -1,10 +1,4 @@
-using System.Reflection;
-using Microsoft.UI.Xaml;
-using SudokuStudio.ComponentModel;
-
 namespace SudokuStudio.Configuration;
-
-using XamlBindingAttribute = XamlBindingAttribute<object>;
 
 /// <summary>
 /// Defines a preference group that contains a list of preference items that can be serialized and deserialized by JSON.
@@ -58,9 +52,9 @@ public abstract class PreferenceGroup : DependencyObject
 					var attributeTypes and not [] => (
 						from attributeTypeInstance in attributeTypes
 						let targetTypeInfo = attributeTypeInstance.GetType()
-						let nameToCheck = (string?)targetTypeInfo.GetProperty(nameof(XamlBindingAttribute.PropertyName))!.GetValue(attributeTypeInstance)
+						let nameToCheck = (string?)targetTypeInfo.GetProperty("PropertyName")!.GetValue(attributeTypeInstance)
 						where nameToCheck == propertyName
-						select (TProperty?)targetTypeInfo.GetProperty(nameof(XamlBindingAttribute.DefaultValue))!.GetValue(attributeTypeInstance)
+						select (TProperty?)targetTypeInfo.GetProperty("DefaultValue")!.GetValue(attributeTypeInstance)
 					).FirstOrDefault(),
 
 					// If attribute type is still not found, return default(T).

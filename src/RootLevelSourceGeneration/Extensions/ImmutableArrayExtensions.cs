@@ -1,6 +1,3 @@
-using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis;
-
 namespace System.Collections.Immutable;
 
 /// <summary>

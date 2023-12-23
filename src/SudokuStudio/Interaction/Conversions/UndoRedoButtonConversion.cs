@@ -1,5 +1,3 @@
-using SudokuStudio.Collection;
-
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

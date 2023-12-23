@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace System.Linq;
 
 /// <summary>

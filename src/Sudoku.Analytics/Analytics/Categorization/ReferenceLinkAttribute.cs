@@ -1,6 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.SourceGeneration;
-
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>

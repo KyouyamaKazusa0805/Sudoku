@@ -1,6 +1,3 @@
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

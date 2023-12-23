@@ -1,9 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.UI.Xaml.Data;
-
 namespace SudokuStudio.Interaction.ValueConverters;
-
-using unsafe StringChecker = delegate*<string, bool>;
 
 /// <summary>
 /// Converts a <see cref="string"/> value into a predicate that can return a <see cref="bool"/> result.

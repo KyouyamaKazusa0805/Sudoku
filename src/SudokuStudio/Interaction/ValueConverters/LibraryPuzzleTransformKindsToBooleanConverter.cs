@@ -1,6 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>

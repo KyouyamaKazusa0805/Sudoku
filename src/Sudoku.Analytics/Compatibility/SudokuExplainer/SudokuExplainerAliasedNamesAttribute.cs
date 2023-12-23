@@ -1,5 +1,3 @@
-using System.SourceGeneration;
-
 namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>

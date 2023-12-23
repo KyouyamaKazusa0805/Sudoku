@@ -1,5 +1,3 @@
-using Sudoku.Filtering.Bottleneck;
-
 namespace Sudoku.Analytics;
 
 /// <summary>

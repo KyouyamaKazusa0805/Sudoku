@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
-
 namespace Sudoku.Concepts;
 
 partial class MultipleForcingChains

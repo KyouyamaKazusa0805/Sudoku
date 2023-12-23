@@ -1,5 +1,3 @@
-using static Sudoku.Concepts.Intersection;
-
 namespace Sudoku.Concepts;
 
 /// <summary>

@@ -1,5 +1,3 @@
-using Microsoft.UI.Xaml.Controls;
-
 namespace SudokuStudio.Interaction.Conversions;
 
 /// <summary>

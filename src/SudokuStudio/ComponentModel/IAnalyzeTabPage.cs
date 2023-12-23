@@ -1,6 +1,3 @@
-using Sudoku.Analytics;
-using SudokuStudio.Views.Pages;
-
 namespace SudokuStudio.ComponentModel;
 
 /// <summary>

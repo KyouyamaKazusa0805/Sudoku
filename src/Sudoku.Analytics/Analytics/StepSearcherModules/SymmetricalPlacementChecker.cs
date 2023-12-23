@@ -1,16 +1,4 @@
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using Sudoku.Analytics.Configuration;
-using Sudoku.Analytics.Steps;
-using Sudoku.Concepts;
-using Sudoku.Linq;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using static Sudoku.Analytics.ConclusionType;
-
 namespace Sudoku.Analytics.StepSearcherModules;
-
-using unsafe Checker = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
 
 /// <summary>
 /// Represents a checker type that checks for technique Gurth's symmetrical placement.
@@ -20,7 +8,7 @@ public static class SymmetricalPlacementChecker
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly unsafe Checker[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
+	private static readonly unsafe SymmetricalPlacementCheckerFunc[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
 	/// <summary>

@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 namespace SudokuStudio.Runtime.InteropServices;
 
 /// <summary>

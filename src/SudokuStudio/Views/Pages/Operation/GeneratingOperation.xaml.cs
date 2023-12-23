@@ -1,25 +1,4 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Documents;
-using Microsoft.UI.Xaml.Navigation;
-using Sudoku.Algorithm.Generating;
-using Sudoku.Algorithm.Ittoryu;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Concepts;
-using SudokuStudio.BindableSource;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Storage;
-using SudokuStudio.Strings;
-using SudokuStudio.Views.Attached;
-using Windows.Storage.Pickers;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.Views.Pages.Operation;
-
-using unsafe GridRandomizedSuffler = delegate*<Random, ref Grid, void>;
 
 /// <summary>
 /// Indicates the generating operation command bar.

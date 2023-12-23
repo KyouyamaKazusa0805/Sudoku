@@ -1,6 +1,3 @@
-using System.Runtime.CompilerServices;
-using Sudoku.Concepts;
-
 namespace Sudoku.Algorithm.Solving;
 
 /// <summary>
@@ -29,8 +26,8 @@ public sealed class EnumerableQuerySolver : ISolver
 		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch
 		{
-			[] => (Grid.Undefined, default(bool?)),
-			[var resultString] => (result = Grid.Parse(resultString), true),
+		[] => (Grid.Undefined, default(bool?)),
+		[var resultString] => (result = Grid.Parse(resultString), true),
 			_ => (Grid.Undefined, false)
 		};
 		return @return;

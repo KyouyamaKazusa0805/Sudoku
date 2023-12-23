@@ -1,9 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.Storage;
-using SudokuStudio.Views.Pages.Settings;
-using Windows.System;
-
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -30,5 +24,5 @@ public sealed partial class SettingsPage : Page
 		=> App.GetMainWindow(this).NavigateToPage<DrawingPreferenceItemsPage>();
 
 	private async void OpenSettingsFolderButton_ClickAsync(object sender, RoutedEventArgs e)
-		=> await Launcher.LaunchFolderPathAsync(Path.GetDirectoryName(CommonPaths.UserPreference));
+		=> await Launcher.LaunchFolderPathAsync(FilePath.GetDirectoryName(CommonPaths.UserPreference));
 }

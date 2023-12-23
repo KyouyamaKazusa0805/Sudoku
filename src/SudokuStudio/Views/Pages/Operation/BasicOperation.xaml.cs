@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-
 namespace SudokuStudio.Views.Pages.Operation;
 
 /// <summary>

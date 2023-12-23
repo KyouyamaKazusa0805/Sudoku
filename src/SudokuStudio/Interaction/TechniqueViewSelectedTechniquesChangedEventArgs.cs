@@ -1,6 +1,3 @@
-using System.SourceGeneration;
-using Sudoku.Analytics.Categorization;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

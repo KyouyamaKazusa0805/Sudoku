@@ -1,6 +1,4 @@
 #if NETSTANDARD
-using System.Runtime.CompilerServices;
-
 namespace System;
 
 /// <summary>

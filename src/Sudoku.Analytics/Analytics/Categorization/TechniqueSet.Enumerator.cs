@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Sudoku.Analytics.Categorization;
 
 partial class TechniqueSet

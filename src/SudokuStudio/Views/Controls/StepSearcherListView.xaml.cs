@@ -1,10 +1,3 @@
-using System.Collections.ObjectModel;
-using Microsoft.UI.Xaml.Controls;
-using Sudoku.Analytics;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Configuration;
-using SudokuStudio.Interaction;
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>

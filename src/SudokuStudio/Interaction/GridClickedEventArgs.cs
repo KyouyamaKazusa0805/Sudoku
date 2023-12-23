@@ -1,6 +1,3 @@
-using System.SourceGeneration;
-using Sudoku.Concepts;
-
 namespace SudokuStudio.Interaction;
 
 /// <summary>

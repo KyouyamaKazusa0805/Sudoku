@@ -1,14 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Sudoku.Concepts;
-using Sudoku.Rendering;
-using Sudoku.Rendering.Nodes;
-using SudokuStudio.BindableSource;
-using SudokuStudio.Collection;
-using Windows.UI;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>

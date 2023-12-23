@@ -1,13 +1,3 @@
-using System.Text.Json;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Navigation;
-using SudokuStudio.BindableSource;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Views.Controls;
-
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -114,6 +104,6 @@ public sealed partial class LibraryPuzzleDetailsPage : Page
 		await File.WriteAllTextAsync(newInstance.FilePath, json);
 
 		Source = newInstance;
-		CurrentPuzzleIndexBox.Value = CurrentPuzzleIndex = Math.Min(CurrentPuzzleIndex, newInstance.PuzzlesCount - 1);
+		CurrentPuzzleIndexBox.Value = CurrentPuzzleIndex = Min(CurrentPuzzleIndex, newInstance.PuzzlesCount - 1);
 	}
 }

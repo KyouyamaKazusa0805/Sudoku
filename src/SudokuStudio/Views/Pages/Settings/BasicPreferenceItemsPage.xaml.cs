@@ -1,10 +1,3 @@
-using System.Globalization;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Sudoku.Concepts;
-using SudokuStudio.Configuration;
-using Windows.UI;
-
 namespace SudokuStudio.Views.Pages.Settings;
 
 /// <summary>

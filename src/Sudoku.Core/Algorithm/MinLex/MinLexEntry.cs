@@ -1,6 +1,3 @@
-using System.Runtime.CompilerServices;
-using Sudoku.Concepts;
-
 namespace Sudoku.Algorithm.MinLex;
 
 /// <summary>

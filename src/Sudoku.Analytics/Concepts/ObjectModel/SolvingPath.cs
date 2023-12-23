@@ -1,13 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-using System.SourceGeneration;
-using Sudoku.Analytics;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Analytics.Steps;
-
 namespace Sudoku.Concepts;
-
-using Pair = (Grid SteppingGrid, Step Step);
 
 /// <summary>
 /// Represents a solving path.
@@ -150,11 +141,11 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// <summary>
 	/// Indicates the internal pairs.
 	/// </summary>
-	internal ReadOnlySpan<Pair> Pairs
+	internal ReadOnlySpan<SolvingPathElement> Pairs
 	{
 		get
 		{
-			var result = new Pair[Length];
+			var result = new SolvingPathElement[Length];
 			for (var i = 0; i < SteppingGrids.Length; i++)
 			{
 				result[i] = (SteppingGrids[i], Steps[i]);
@@ -169,7 +160,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>The reference to the pair of stepping grid and step.</returns>
-	public ref readonly Pair this[int index] => ref Pairs[index];
+	public ref readonly SolvingPathElement this[int index] => ref Pairs[index];
 
 	/// <summary>
 	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
@@ -208,7 +199,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// </summary>
 	/// <param name="techniqueName">Technique name.</param>
 	/// <returns>The first found step.</returns>
-	public Pair? this[string techniqueName]
+	public SolvingPathElement? this[string techniqueName]
 	{
 		get
 		{
@@ -319,7 +310,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// </summary>
 	/// <returns>An enumerator instance that iterates on each pair of stepping grid and actual step.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Pair>.Enumerator GetEnumerator() => Pairs.GetEnumerator();
+	public ReadOnlySpan<SolvingPathElement>.Enumerator GetEnumerator() => Pairs.GetEnumerator();
 
 	/// <summary>
 	/// Try to enumerate all steps.
@@ -340,7 +331,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// </summary>
 	/// <returns>An array of pairs of stepping grid and step.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Pair[] ToArray() => [.. Pairs];
+	public SolvingPathElement[] ToArray() => [.. Pairs];
 
 	/// <summary>
 	/// Try to fetch the step at the specified index.

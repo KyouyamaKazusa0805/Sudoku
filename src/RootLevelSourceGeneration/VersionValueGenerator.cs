@@ -1,6 +1,3 @@
-using System.Xml;
-using Microsoft.CodeAnalysis;
-
 namespace RootLevelSourceGeneration;
 
 /// <summary>

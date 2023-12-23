@@ -2,10 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // https://github.com/dotnet/aspnetcore/blob/a450cb69b5e4549f5515cdb057a68771f56cefd7/src/Shared/ValueStopwatch/ValueStopwatch.cs
 
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.SourceGeneration;
-
 namespace System.Timers;
 
 /// <summary>

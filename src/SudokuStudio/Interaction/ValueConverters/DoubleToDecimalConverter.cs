@@ -1,5 +1,3 @@
-using Microsoft.UI.Xaml.Data;
-
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
@@ -20,7 +18,7 @@ public sealed class DoubleToDecimalConverter : IValueConverter
 		=> (IsConvertFromDecimal, value) switch
 		{
 			(true, decimal d) => (double)d,
-			(false, double d) => (decimal)Math.Round(d, 2),
+			(false, double d) => (decimal)Round(d, 2),
 			_ => 0
 		};
 
@@ -28,7 +26,7 @@ public sealed class DoubleToDecimalConverter : IValueConverter
 	public object ConvertBack(object? value, Type? targetType, object? parameter, string? language)
 		=> (IsConvertFromDecimal, value) switch
 		{
-			(true, double d) => (decimal)Math.Round(d, 2),
+			(true, double d) => (decimal)Round(d, 2),
 			(false, decimal d) => (double)d,
 			_ => 0
 		};

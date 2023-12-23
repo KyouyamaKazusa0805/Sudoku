@@ -27,34 +27,7 @@
 #line default
 #endif
 
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics;
-using System.SourceGeneration;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Sudoku.Algorithm.Solving;
-using Sudoku.Analytics;
-using Sudoku.Rendering;
-using Sudoku.Runtime.MaskServices;
-using Sudoku.Text;
-using Sudoku.Text.Converters;
-using Sudoku.Text.Parsers;
-using static System.Numerics.BitOperations;
-using static Sudoku.Analytics.ConclusionType;
-using static Sudoku.SolutionWideReadOnlyFields;
-
 namespace Sudoku.Concepts;
-
-using unsafe CellMapPredicateFunc = delegate*<ref readonly Grid, Cell, Digit, bool>;
-using unsafe CellPredicateFunc = delegate*<ref readonly Grid, Cell, bool>;
-using unsafe MaskMergingFunc = delegate*<ref Mask, ref readonly Grid, Cell, void>;
-using unsafe RefreshingCandidatesHandler = delegate*<ref Grid, void>;
-using unsafe ValueChangedHandler = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.

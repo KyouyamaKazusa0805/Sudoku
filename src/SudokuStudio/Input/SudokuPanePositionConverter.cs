@@ -1,8 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.SourceGeneration;
-using Windows.Foundation;
-using Windows.UI;
-
 namespace SudokuStudio.Input;
 
 /// <summary>

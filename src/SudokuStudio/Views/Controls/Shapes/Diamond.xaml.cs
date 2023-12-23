@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using SudokuStudio.ComponentModel;
-using Path = Microsoft.UI.Xaml.Shapes.Path;
-
 namespace SudokuStudio.Views.Controls.Shapes;
 
 /// <summary>

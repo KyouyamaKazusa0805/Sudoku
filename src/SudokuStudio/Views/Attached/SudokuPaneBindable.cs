@@ -1,7 +1,3 @@
-using Sudoku.Analytics;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Views.Controls;
-
 namespace SudokuStudio.Views.Attached;
 
 /// <summary>

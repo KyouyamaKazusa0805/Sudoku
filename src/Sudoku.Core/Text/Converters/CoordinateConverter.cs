@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace Sudoku.Text.Converters;
 
 /// <summary>

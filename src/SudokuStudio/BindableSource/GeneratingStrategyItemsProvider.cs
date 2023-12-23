@@ -1,17 +1,3 @@
-using Microsoft.UI;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Sudoku.Analytics.Categorization;
-using Sudoku.Concepts;
-using SudokuStudio.ComponentModel;
-using SudokuStudio.Interaction;
-using SudokuStudio.Interaction.Conversions;
-using SudokuStudio.Views.Controls;
-using SudokuStudio.Views.Pages;
-using SudokuStudio.Views.Windows;
-using static SudokuStudio.Strings.StringsAccessor;
-
 namespace SudokuStudio.BindableSource;
 
 /// <summary>

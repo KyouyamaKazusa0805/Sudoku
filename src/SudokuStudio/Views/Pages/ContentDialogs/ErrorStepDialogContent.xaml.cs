@@ -1,8 +1,3 @@
-using Microsoft.UI.Xaml.Controls;
-using Sudoku.Analytics;
-using Sudoku.Rendering;
-using SudokuStudio.BindableSource;
-
 namespace SudokuStudio.Views.Pages.ContentDialogs;
 
 /// <summary>
