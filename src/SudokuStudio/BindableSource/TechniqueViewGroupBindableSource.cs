@@ -20,10 +20,10 @@ public sealed partial class TechniqueViewGroupBindableSource(
 	/// <summary>
 	/// Indicates the group name.
 	/// </summary>
-	public string GroupName => Group.GetName(CurrentCultureInfo);
+	public string GroupName => Group.GetName(CurrentCulture);
 
 	/// <summary>
 	/// Indicates the shortened name of the group.
 	/// </summary>
-	public string ShortenedName => Group.GetShortenedName(CurrentCultureInfo);
+	public string ShortenedName => Group.GetShortenedName(CurrentCulture);
 }

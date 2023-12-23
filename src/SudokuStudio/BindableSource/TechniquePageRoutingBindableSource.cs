@@ -14,7 +14,7 @@ public sealed class TechniquePageRoutingBindableSource
 	/// <summary>
 	/// Indicates the resource name of this technique.
 	/// </summary>
-	public string Name => Technique.GetName(CurrentCultureInfo);
+	public string Name => Technique.GetName(CurrentCulture);
 
 	/// <summary>
 	/// Indicates the resource default name (English name) of this technique.

@@ -175,7 +175,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorSelectedTechniques switch
 		{
 			[] => GetString("TechniqueSelector_NoTechniqueSelected"),
-			var n => string.Join(", ", [.. from s in n select s.GetName(CurrentCultureInfo)])
+			var n => string.Join(", ", [.. from s in n select s.GetName(CurrentCulture)])
 		};
 
 	private static string IsMinimalInitializedValueDisplayer()

@@ -92,7 +92,7 @@ public partial class App : Application
 				a => a.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			)
 			.WithRuntimeIdentifierSetters(sudokuPane)
-			.WithCulture(CurrentCultureInfo)
+			.WithCulture(CurrentCulture)
 			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());
 	}
@@ -195,7 +195,7 @@ public partial class App : Application
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
-					CurrentCultureInfo
+					CurrentCulture
 				),
 				CoordinateType.RxCy => new RxCyConverter(
 					uiPref.MakeLettersUpperCaseInRxCyNotation,
@@ -203,20 +203,20 @@ public partial class App : Application
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
-					CurrentCultureInfo
+					CurrentCulture
 				),
 				CoordinateType.K9 => new K9Converter(
 					uiPref.MakeLettersUpperCaseInK9Notation,
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
-					CurrentCultureInfo
+					CurrentCulture
 				),
 				CoordinateType.Excel => new ExcelCoordinateConverter(
 					uiPref.MakeLettersUpperCaseInExcelNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
-					CurrentCultureInfo
+					CurrentCulture
 				)
 			},
 			IsDirectMode = !uiPref.DisplayCandidates,

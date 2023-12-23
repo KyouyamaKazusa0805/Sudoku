@@ -14,7 +14,7 @@ internal static class StepSearcherListViewConversion
 
 	public static string GetStepSearcherName(StepSearcherInfo? info) => info is null ? string.Empty : GetMatchedStepSearcher(info).Name;
 
-	public static string GetTechniqueName(Technique technique) => technique.GetName(CurrentCultureInfo);
+	public static string GetTechniqueName(Technique technique) => technique.GetName(CurrentCulture);
 
 	public static Visibility GetDisplayerVisibility(StepSearcherInfo? info) => info is null ? Visibility.Collapsed : Visibility.Visible;
 

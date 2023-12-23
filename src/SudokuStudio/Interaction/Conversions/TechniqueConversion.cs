@@ -7,7 +7,7 @@ internal static class TechniqueConversion
 {
 	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
 
-	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(CurrentCultureInfo);
+	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(CurrentCulture);
 
 	public static string GetEnglishName(Technique technique)
 		=> technique == Technique.None ? string.Empty : technique.GetEnglishName() ?? GetString("TechniqueSelectionPage_NoEnglishName");
@@ -20,7 +20,7 @@ internal static class TechniqueConversion
 	public static string GetAliasNames(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: technique.GetAliases(CurrentCultureInfo) is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
+			: technique.GetAliases(CurrentCulture) is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
 
 	public static string GetAbbreviation(Technique technique)
 		=> technique == Technique.None
@@ -28,10 +28,10 @@ internal static class TechniqueConversion
 			: technique.GetAbbreviation() ?? GetString("TechniqueSelectionPage_NoAbbreviation");
 
 	public static string GetGroup(Technique technique)
-		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetName(CurrentCultureInfo);
+		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetName(CurrentCulture);
 
 	public static string GetGroupShortenedName(Technique technique)
-		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetShortenedName(CurrentCultureInfo);
+		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetShortenedName(CurrentCulture);
 
 	public static string GetFeature(Technique technique)
 		=> technique == Technique.None

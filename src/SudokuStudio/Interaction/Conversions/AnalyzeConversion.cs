@@ -45,9 +45,9 @@ internal static class AnalyzeConversion
 	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
 
-	public static string GetName(Step step) => step.GetName(CurrentCultureInfo);
+	public static string GetName(Step step) => step.GetName(CurrentCulture);
 
-	public static string GetSimpleString(Step step) => step.ToSimpleString(CurrentCultureInfo);
+	public static string GetSimpleString(Step step) => step.ToSimpleString(CurrentCulture);
 
 	public static Thickness GetMargin_HodokuRating(bool showing) => showing ? new(12, 0, 0, 0) : new();
 
@@ -98,7 +98,7 @@ internal static class AnalyzeConversion
 		{
 			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueName") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = step.GetName(CurrentCultureInfo) });
+			result.Add(new Run { Text = step.GetName(CurrentCulture) });
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueIndex))
@@ -128,7 +128,7 @@ internal static class AnalyzeConversion
 			result.Add(
 				new Run
 				{
-					Text = technique.GetAliases(CurrentCultureInfo) is { } aliases and not []
+					Text = technique.GetAliases(CurrentCulture) is { } aliases and not []
 						? string.Join(GetString("_Token_Comma"), aliases)
 						: GetString("AnalyzePage_None")
 				}
@@ -176,7 +176,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = GetString("AnalyzePage_SimpleDescription") }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = step.ToString(CurrentCultureInfo) });
+			result.Add(new Run { Text = step.ToString(CurrentCulture) });
 		}
 
 		return result;
@@ -187,7 +187,7 @@ internal static class AnalyzeConversion
 			for (var i = 0; i < factors.Length; i++)
 			{
 				var factor = factors[i];
-				var extraDifficultyName = factor.ToString(CurrentCultureInfo);
+				var extraDifficultyName = factor.ToString(CurrentCulture);
 				yield return new Run { Text = $"{extraDifficultyName}{Token("Colon")}+{factor.Value:0.0}" };
 
 				if (i != factors.Length - 1)

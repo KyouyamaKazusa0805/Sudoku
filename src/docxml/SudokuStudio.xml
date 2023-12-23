@@ -9010,7 +9010,7 @@ if (student is (name: var name, age: >= 18))
             Defines an easy entry to get <see cref="T:System.String"/> resources.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Strings.StringsAccessor.CurrentCultureInfo">
+        <member name="P:SudokuStudio.Strings.StringsAccessor.CurrentCulture">
             <summary>
             The current culture information.
             </summary>

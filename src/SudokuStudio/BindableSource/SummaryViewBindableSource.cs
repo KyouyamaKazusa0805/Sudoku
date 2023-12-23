@@ -35,7 +35,7 @@ internal sealed partial class SummaryViewBindableSource(
 				..
 				from step in steps
 				orderby step.DifficultyLevel, step.Code
-				group step by step.GetName(CurrentCultureInfo) into stepGroup
+				group step by step.GetName(CurrentCulture) into stepGroup
 				let stepGroupArray = (Step[])[.. stepGroup]
 				let difficultyLevels =
 					from step in stepGroupArray
