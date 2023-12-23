@@ -38,7 +38,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Length, Sequences.A002024(CompletePattern.Count) * .1M)];
+		=> [new(ExtraDifficultyFactorNames.Length, A002024(CompletePattern.Count) * .1M)];
 
 	/// <summary>
 	/// Indicates the last cells used that are not empty.

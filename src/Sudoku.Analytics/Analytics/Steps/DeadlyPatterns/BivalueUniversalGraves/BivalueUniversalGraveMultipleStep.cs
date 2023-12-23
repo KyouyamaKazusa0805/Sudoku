@@ -1,4 +1,3 @@
-
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -44,7 +43,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, Sequences.A002024(TrueCandidates.Count) * .1M)];
+		=> [new(ExtraDifficultyFactorNames.Size, A002024(TrueCandidates.Count) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

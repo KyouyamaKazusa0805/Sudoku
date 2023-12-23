@@ -77,8 +77,8 @@ public static class CommonMethods
 	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
-			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
-			8 when (Unsafe.As<T, long>(ref left) | Unsafe.As<T, long>(ref right)) is var f => Unsafe.As<long, T>(ref f),
+			1 or 2 or 4 when (As<T, int>(ref left) | As<T, int>(ref right)) is var f => As<int, T>(ref f),
+			8 when (As<T, long>(ref left) | As<T, long>(ref right)) is var f => As<long, T>(ref f),
 			_ => throw new NotSupportedException(ErrorInfo_UnderlyingTypeNotSupported<T>())
 		};
 

@@ -165,7 +165,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			var indexOfEqualityOperatorCharacters = s.Split((string[])["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 			var cells = CellParser(indexOfEqualityOperatorCharacters[0]);
 			var digits = MaskOperations.Create(from character in indexOfEqualityOperatorCharacters[1] select character - '1');
-			var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? ConclusionType.Assignment : ConclusionType.Elimination;
+			var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? Assignment : Elimination;
 			foreach (var cell in cells)
 			{
 				foreach (var digit in digits)

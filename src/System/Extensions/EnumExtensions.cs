@@ -16,8 +16,8 @@ public static class EnumExtensions
 	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
-			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,
-			8 when Unsafe.As<T, long>(ref @this) is var l => (l & l - 1) == 0,
+			1 or 2 or 4 when As<T, int>(ref @this) is var l => (l & l - 1) == 0,
+			8 when As<T, long>(ref @this) is var l => (l & l - 1) == 0,
 			_ => false
 		};
 
@@ -46,7 +46,7 @@ public static class EnumExtensions
 
 		// Returns the instance and copy the values.
 		var result = new T[i];
-		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in buffer[0]), (uint)(sizeof(T) * i));
+		CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in buffer[0]), (uint)(sizeof(T) * i));
 
 		// Returns the value.
 		return [.. result.Distinct()];

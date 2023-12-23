@@ -31,6 +31,6 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	public override ExtraDifficultyFactor[]? ExtraDifficultyFactors
 		=> [
 			new(ExtraDifficultyFactorNames.AlmostHiddenSet, .2M),
-			new(ExtraDifficultyFactorNames.Size, Sequences.A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
+			new(ExtraDifficultyFactorNames.Size, A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
 		];
 }

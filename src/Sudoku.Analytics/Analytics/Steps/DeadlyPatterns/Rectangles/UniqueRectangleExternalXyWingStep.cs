@@ -44,7 +44,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
-			new(ExtraDifficultyFactorNames.Guardian, Sequences.A004526(GuardianCells.Count) * .1M),
+			new(ExtraDifficultyFactorNames.Guardian, A004526(GuardianCells.Count) * .1M),
 			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
 			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
 		];

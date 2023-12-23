@@ -52,12 +52,12 @@ public ref partial struct FlagsEnumTypeFieldIterator<T> where T : unmanaged, Enu
 			var field = _fields[index];
 			switch (sizeof(T))
 			{
-				case 1 or 2 or 4 when IsPow2(Unsafe.As<T, int>(ref field)) && _base.Flags(field):
+				case 1 or 2 or 4 when IsPow2(As<T, int>(ref field)) && _base.Flags(field):
 				{
 					Current = _fields[_index = index];
 					return true;
 				}
-				case 8 when IsPow2(Unsafe.As<T, long>(ref field)) && _base.Flags(field):
+				case 8 when IsPow2(As<T, long>(ref field)) && _base.Flags(field):
 				{
 					Current = _fields[_index = index];
 					return true;

@@ -248,12 +248,12 @@ internal static class SubsetModule
 		var result = new List<CellViewNode>();
 		foreach (var c in combination)
 		{
-			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = RenderingMode.DirectModeOnly });
+			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
 		}
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
 			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
-			result.Add(new(p, c) { RenderingMode = RenderingMode.DirectModeOnly });
+			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
 		}
 
 		return [.. result];

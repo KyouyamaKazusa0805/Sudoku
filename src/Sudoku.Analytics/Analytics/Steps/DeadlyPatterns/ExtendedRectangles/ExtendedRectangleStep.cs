@@ -28,7 +28,7 @@ public abstract partial class ExtendedRectangleStep(
 	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, (Sequences.A004526(Cells.Count) - 2) * .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, (A004526(Cells.Count) - 2) * .1M)];
 
 	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

@@ -124,7 +124,7 @@ public sealed partial record K9Parser : CoordinateParser
 			}
 
 			var cellsInConclusion = CellParser(cells);
-			var conclusionType = equalityOperator is "=" or "==" ? ConclusionType.Assignment : ConclusionType.Elimination;
+			var conclusionType = equalityOperator is "=" or "==" ? Assignment : Elimination;
 			foreach (var cell in cells)
 			{
 				foreach (var digit in digits)
