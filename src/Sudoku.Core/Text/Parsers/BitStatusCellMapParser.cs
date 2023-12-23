@@ -18,18 +18,19 @@ public sealed class BitStatusCellMapParser : IConceptParser<CellMap>
 			var result = CellMap.Empty;
 			for (var cell = 0; cell < 81; cell++)
 			{
-				switch (str[cell] - '0')
+				var character = str[cell];
+				if (character is '.' or '0')
 				{
-					case 1:
-					{
-						result.Add(cell);
-						break;
-					}
-					case not 0:
-					{
-						throw new FormatException("The specified format contains invalid characters.");
-					}
+					continue;
 				}
+
+				if (str[cell] - '0' == 1)
+				{
+					result.Add(cell);
+					continue;
+				}
+
+				throw new FormatException("The specified format contains invalid characters.");
 			}
 
 			return result;
