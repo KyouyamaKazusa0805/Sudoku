@@ -16,6 +16,8 @@
 
 		<!--Compilation Features-->
 		<Features>strict</Features>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<AnalysisLevel>latest</AnalysisLevel>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	</PropertyGroup>
