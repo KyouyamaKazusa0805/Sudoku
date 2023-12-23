@@ -63,7 +63,7 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
-	private string OnlyKeywordZhCn => GetString("Only", new(ChineseLanguage))!;
+	private string OnlyKeywordZhCn => GetString("Only", new(2052))!;
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
