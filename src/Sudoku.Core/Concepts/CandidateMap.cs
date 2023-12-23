@@ -714,6 +714,11 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static CandidateMap operator +(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
 	{
+		if (offsets is CandidateMap other)
+		{
+			return collection | other;
+		}
+
 		var result = collection;
 		foreach (var offset in offsets)
 		{

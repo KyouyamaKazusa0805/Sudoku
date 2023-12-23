@@ -1042,6 +1042,11 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public static CellMap operator +(scoped in CellMap collection, IEnumerable<Cell> offsets)
 	{
+		if (offsets is CellMap other)
+		{
+			return collection | other;
+		}
+
 		var result = collection;
 		foreach (var offset in offsets)
 		{
