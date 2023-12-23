@@ -1,5 +1,4 @@
 global using System;
-global using System.Algorithm;
 global using System.Collections;
 global using System.Collections.Frozen;
 global using System.Collections.Generic;
@@ -50,6 +49,7 @@ global using Sudoku.Rendering.Nodes;
 global using Sudoku.Runtime.CompilerServices;
 global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Strings;
+global using Sudoku.Text;
 global using Sudoku.Text.Converters;
 global using Sudoku.Text.Parsers;
 global using static System.Algorithm.Sequences;

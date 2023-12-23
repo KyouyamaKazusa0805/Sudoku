@@ -35,7 +35,7 @@ public abstract partial class StepSearcher(
 	[Data] int priority,
 	[Data] int level,
 	[Data] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-)
+) : ICultureFormattable
 {
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
@@ -73,12 +73,8 @@ public abstract partial class StepSearcher(
 	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
 
 
-	/// <summary>
-	/// Returns the real name of this instance.
-	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
-	/// <returns>The name.</returns>
-	public string ToString(CultureInfo? cultureInfo) => Metadata.GetName(cultureInfo);
+	/// <inheritdoc/>
+	public string ToString(CultureInfo? culture) => Metadata.GetName(culture);
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.

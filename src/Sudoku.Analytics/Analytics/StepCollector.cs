@@ -51,7 +51,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// Search for all possible steps in a grid.
 	/// </summary>
 	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="cultureInfo">The culture information.</param>
+	/// <param name="culture">The culture information.</param>
 	/// <param name="progress">The progress instance that is used for reporting the state.</param>
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>
@@ -60,7 +60,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
 	public IEnumerable<Step>? Collect(
 		scoped ref readonly Grid puzzle,
-		CultureInfo? cultureInfo = null,
+		CultureInfo? culture = null,
 		IProgress<AnalyzerProgress>? progress = null,
 		CancellationToken cancellationToken = default
 	)
@@ -148,7 +148,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 			// Report the progress if worth.
 			ReportProgress:
-				progress?.Report(new(searcher.ToString(cultureInfo), ++currentSearcherIndex / (double)totalSearchersCount));
+				progress?.Report(new(searcher.ToString(culture), ++currentSearcherIndex / (double)totalSearchersCount));
 			}
 
 			// Return the result.

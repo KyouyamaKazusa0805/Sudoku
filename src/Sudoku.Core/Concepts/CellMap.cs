@@ -617,6 +617,17 @@ public partial struct CellMap :
 	public override readonly string ToString() => ToString(new RxCyConverter());
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(CultureInfo? culture = null)
+		=> culture switch
+		{
+			{ LCID: 1033 } or { DisplayName: ['E' or 'e', 'N' or 'n', ..] } => ToString(new RxCyConverter(true, true, CurrentCulture: culture)),
+			{ LCID: 2052 } or { DisplayName: ['Z' or 'z', 'H' or 'h', ..] } => ToString(new K9Converter(true, CurrentCulture: culture)),
+			_ => ToString()
+		};
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(in this);
 
 	/// <summary>

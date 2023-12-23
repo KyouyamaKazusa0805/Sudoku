@@ -11,6 +11,7 @@ namespace Sudoku.Concepts.Primitive;
 public partial interface IBitStatusMap<TSelf, TElement> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
+	ICultureFormattable,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	ILogicalOperators<TSelf>,

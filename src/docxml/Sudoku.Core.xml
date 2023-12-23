@@ -2011,6 +2011,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
@@ -2478,6 +2481,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
@@ -8974,6 +8980,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.ICultureFormattable">
+            <summary>
+            Represents an object that describes for an object that is defined in sudoku puzzle, with globalization (I18N) output supported.
+            </summary>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
+        </member>
+        <member name="M:Sudoku.Text.ICultureFormattable.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current object into an <see cref="T:System.String"/> result, using the specified <see cref="T:System.Globalization.CultureInfo"/>
+            to describe the data.
+            </summary>
+            <param name="culture">The current culture to be used.</param>
+            <returns>The final <see cref="T:System.String"/> representation of the object.</returns>
         </member>
         <member name="T:Sudoku.Text.Languages">
             <summary>

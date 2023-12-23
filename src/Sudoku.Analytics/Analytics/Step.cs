@@ -13,7 +13,7 @@ public abstract partial class Step(
 	[Data(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[Data] View[]? views,
 	[Data] StepSearcherOptions options
-) : IRenderable
+) : ICultureFormattable, IRenderable
 {
 	/// <summary>
 	/// The error information for difficulty level cannot be determined.
@@ -176,10 +176,10 @@ public abstract partial class Step(
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
 	/// </summary>
-	/// <param name="cultureInfo">The culture information instance.</param>
+	/// <param name="culture">The culture information instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string GetName(CultureInfo? cultureInfo) => Code.GetName(cultureInfo ?? ResultCurrentCulture);
+	public virtual string GetName(CultureInfo? culture) => Code.GetName(culture ?? ResultCurrentCulture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
@@ -188,32 +188,28 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override string ToString() => ToString(Options.Converter.CurrentCulture);
 
-	/// <summary>
-	/// Returns a string that only contains the name and the basic description.
-	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
-	/// <returns>The string instance.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? cultureInfo)
+	public string ToString(CultureInfo? culture = null)
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var currentCultureName = (cultureInfo ?? ResultCurrentCulture).Name;
-		var colonToken = GetString("Colon", cultureInfo ?? ResultCurrentCulture);
+		var currentCultureName = (culture ?? ResultCurrentCulture).Name;
+		var colonToken = GetString("Colon", culture ?? ResultCurrentCulture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
-			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(cultureInfo),
-			(_, null) => $"{GetName(cultureInfo)}{colonToken}{Format} => {ConclusionText}",
-			var (_, formatArgs) => $"{GetName(cultureInfo)}{colonToken}{Format.ToString(cultureInfo, formatArgs)} => {ConclusionText}"
+			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(culture),
+			(_, null) => $"{GetName(culture)}{colonToken}{Format} => {ConclusionText}",
+			var (_, formatArgs) => $"{GetName(culture)}{colonToken}{Format.ToString(culture, formatArgs)} => {ConclusionText}"
 		};
 	}
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
 	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
+	/// <param name="culture">The culture information.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString(CultureInfo? cultureInfo = null)
-		=> cultureInfo is null ? $"{Name} => {ConclusionText}" : $"{GetName(cultureInfo)} => {ConclusionText}";
+	public string ToSimpleString(CultureInfo? culture = null)
+		=> culture is null ? $"{Name} => {ConclusionText}" : $"{GetName(culture)} => {ConclusionText}";
 }

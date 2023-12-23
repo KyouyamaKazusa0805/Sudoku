@@ -36,9 +36,9 @@ public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalL
 	/// <summary>
 	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
 	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
-	public readonly string? GetTargetFormat(CultureInfo? cultureInfo)
-		=> _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}", cultureInfo ?? CultureInfo.CurrentUICulture);
+	/// <param name="culture">The culture information.</param>
+	public readonly string? GetTargetFormat(CultureInfo? culture)
+		=> _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}", culture ?? CultureInfo.CurrentUICulture);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -47,12 +47,12 @@ public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalL
 	/// <summary>
 	/// Get the format string for the current instance.
 	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
+	/// <param name="culture">The culture information.</param>
 	/// <param name="formatArguments">The format arguments.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? cultureInfo, params string[] formatArguments)
-		=> GetTargetFormat(cultureInfo) is { } p
+	public readonly string ToString(CultureInfo? culture, params string[] formatArguments)
+		=> GetTargetFormat(culture) is { } p
 			? string.Format(p, formatArguments)
 			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(TechniqueFormat).Assembly);
 }

@@ -1,3 +1,5 @@
+using Sudoku.Text;
+
 namespace Sudoku.Analytics.Rating;
 
 /// <summary>
@@ -5,16 +7,12 @@ namespace Sudoku.Analytics.Rating;
 /// </summary>
 /// <param name="FactorName"><inheritdoc cref="IRatingDataProvider.FactorName" path="/summary"/></param>
 /// <param name="Value"><inheritdoc cref="IRatingDataProvider.Value" path="/summary"/></param>
-public readonly record struct ExtraDifficultyFactor(string FactorName, decimal Value) : IRatingDataProvider
+public readonly record struct ExtraDifficultyFactor(string FactorName, decimal Value) : ICultureFormattable, IRatingDataProvider
 {
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(null);
 
-	/// <summary>
-	/// Get the name of this factor.
-	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
-	/// <returns>The result.</returns>
-	public string ToString(CultureInfo? cultureInfo)
-		=> GetString($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}", cultureInfo ?? CultureInfo.CurrentUICulture) ?? FactorName;
+	/// <inheritdoc/>
+	public string ToString(CultureInfo? culture)
+		=> GetString($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}", culture ?? CultureInfo.CurrentUICulture) ?? FactorName;
 }

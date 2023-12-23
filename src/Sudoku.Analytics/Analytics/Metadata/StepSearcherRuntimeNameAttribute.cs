@@ -11,6 +11,6 @@ public sealed partial class StepSearcherRuntimeNameAttribute([Data] string resou
 	/// Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
 	/// <see langword="null"/> will be returned.
 	/// </summary>
-	/// <param name="cultureInfo">The culture information.</param>
-	public string? GetFactName(CultureInfo? cultureInfo) => GetString(ResourceKey, cultureInfo ?? CultureInfo.CurrentUICulture);
+	/// <param name="culture">The culture information.</param>
+	public string? GetFactName(CultureInfo? culture) => GetString(ResourceKey, culture ?? CultureInfo.CurrentUICulture);
 }

@@ -4306,7 +4306,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Gets the name of the step searcher, using the specified culture.
             </summary>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <returns>The name.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetFor(Sudoku.Analytics.StepSearcher)">
@@ -4363,7 +4363,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
             <see langword="null"/> will be returned.
             </summary>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.ResourceKey">
             <summary>
@@ -4457,11 +4457,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString(System.Globalization.CultureInfo)">
-            <summary>
-            Get the name of this factor.
-            </summary>
-            <param name="cultureInfo">The culture information.</param>
-            <returns>The result.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames">
             <summary>
@@ -4827,7 +4823,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to fetch the name of this technique step, with the specified culture.
             </summary>
-            <param name="cultureInfo">The culture information instance.</param>
+            <param name="culture">The culture information instance.</param>
             <returns>The string representation.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
@@ -4837,17 +4833,13 @@ if (student is (name: var name, age: >= 18))
             <returns>The string instance.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)">
-            <summary>
-            Returns a string that only contains the name and the basic description.
-            </summary>
-            <param name="cultureInfo">The culture information.</param>
-            <returns>The string instance.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)">
             <summary>
             Gets the string representation for the current step, describing only its technique name and conclusions.
             </summary>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <returns>The string value.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
@@ -4905,7 +4897,7 @@ if (student is (name: var name, age: >= 18))
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <param name="progress">The progress instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>
@@ -5085,11 +5077,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
-            <summary>
-            Returns the real name of this instance.
-            </summary>
-            <param name="cultureInfo">The culture information.</param>
-            <returns>The name.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
@@ -21438,7 +21426,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
             </summary>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -21447,7 +21435,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Get the format string for the current instance.
             </summary>
-            <param name="cultureInfo">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
         </member>
