@@ -53,7 +53,7 @@ public ref partial struct AnalysisContext(
 	/// <summary>
 	/// Indicates the mapping relations. The index of the array means the base digit,
 	/// and the target value at the specified index means the other mapping digit. If a value does not contain a mapping digit,
-	/// the indexed value (target value) will be <see langword="null"/>.
+	/// the indexed value (target value) will be an empty array.
 	/// </summary>
 	/// <remarks><b>
 	/// <para>
@@ -62,7 +62,7 @@ public ref partial struct AnalysisContext(
 	/// </para>
 	/// <para>
 	/// Please firstly check for property <see cref="InferredGurthSymmetricalPlacementPattern"/>.
-	/// If that property returns a not-<see langword="null"/> value, you can use this property with safety.
+	/// If that property returns an array not empty, you can use this property with safety.
 	/// </para>
 	/// </b></remarks>
 	/// <seealso cref="InferredGurthSymmetricalPlacementPattern"/>
