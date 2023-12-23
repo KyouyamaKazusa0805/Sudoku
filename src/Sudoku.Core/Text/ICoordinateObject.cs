@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Text;
 
 /// <summary>
 /// Defines a type that supports for coordinate output rule.

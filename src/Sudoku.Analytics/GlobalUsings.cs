@@ -39,7 +39,6 @@ global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.ComponentModel;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.ObjectModel;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Filtering.Bottleneck;
 global using Sudoku.Filtering.Expressions;
 global using Sudoku.Filtering.Operators;

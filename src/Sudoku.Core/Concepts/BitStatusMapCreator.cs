@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a type that has ability to create <see cref="IBitStatusMap{TSelf, TElement}"/> instances called by compiler.

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.

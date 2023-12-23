@@ -14896,7 +14896,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Concepts#Primitive#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Text#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
