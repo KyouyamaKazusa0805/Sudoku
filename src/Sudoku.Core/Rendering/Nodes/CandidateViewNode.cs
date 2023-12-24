@@ -15,7 +15,7 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Data,
 	/// Indicates the candidate string.
 	/// </summary>
 	[StringMember(nameof(Candidate))]
-	private string CandidateString => new RxCyConverter().CandidateConverter([Candidate]);
+	private string CandidateString => GlobalizedConverter.InvariantCultureConverter.CandidateConverter([Candidate]);
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

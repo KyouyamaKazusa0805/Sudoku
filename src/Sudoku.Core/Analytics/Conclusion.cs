@@ -31,6 +31,7 @@ namespace Sudoku.Analytics;
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([Data(DataMemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
+	ICultureFormattable,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
 	ISimpleParsable<Conclusion>,
@@ -123,7 +124,11 @@ public readonly partial struct Conclusion([Data(DataMemberKinds.Field), HashCode
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(new RxCyConverter());
+	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -206,5 +211,5 @@ file sealed class Converter : JsonConverter<Conclusion>
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(new RxCyConverter()));
+		=> writer.WriteStringValue(value.ToString(GlobalizedConverter.InvariantCultureConverter));
 }

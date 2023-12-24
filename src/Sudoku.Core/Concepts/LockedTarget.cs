@@ -12,7 +12,6 @@ namespace Sudoku.Concepts;
 [LargeStructure]
 [Equals]
 [GetHashCode]
-[ToString]
 [EqualityOperators]
 [StructLayout(LayoutKind.Auto)]
 [method: JsonConstructor]
@@ -20,7 +19,7 @@ namespace Sudoku.Concepts;
 public readonly partial struct LockedTarget(
 	[Data, HashCodeMember] Digit digit,
 	[Data, HashCodeMember, StringMember] CellMap cells
-) : IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
+) : ICultureFormattable, IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
 	/// Indicates whether the number of cells is 1.
@@ -32,7 +31,7 @@ public readonly partial struct LockedTarget(
 	/// The digit string value.
 	/// </summary>
 	[StringMember(nameof(Digit))]
-	private string DigitString => new RxCyConverter().DigitConverter((Mask)(1 << Digit));
+	private string DigitString => GlobalizedConverter.InvariantCultureConverter.DigitConverter((Mask)(1 << Digit));
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -43,4 +42,20 @@ public readonly partial struct LockedTarget(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public bool Equals(scoped ref readonly LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+
+	/// <inheritdoc cref="ICoordinateObject{TSelf}.ToString(CoordinateConverter)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CoordinateConverter converter)
+	{
+		var digit = Digit;
+		return converter.CandidateConverter([.. from cell in Cells select cell * 9 + digit]);
+	}
 }

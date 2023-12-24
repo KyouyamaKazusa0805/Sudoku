@@ -105,7 +105,7 @@ public partial struct CandidateMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch { { _count: 0 } => [], [var a] => [new RxCyConverter().CandidateConverter([a])], _ => f(Offsets) };
+			return this switch { { _count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter([a])], _ => f(Offsets) };
 
 
 			static string[] f(Candidate[] offsets)
@@ -124,7 +124,7 @@ public partial struct CandidateMap :
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(new RxCyConverter().CellConverter(in cells));
+					sb.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -332,17 +332,11 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(new RxCyConverter());
+	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? culture = null)
-		=> culture switch
-		{
-			{ LCID: 1033 } or { DisplayName: ['E' or 'e', 'N' or 'n', ..] } => ToString(new RxCyConverter(true, true, CurrentCulture: culture)),
-			{ LCID: 2052 } or { DisplayName: ['Z' or 'z', 'H' or 'h', ..] } => ToString(new K9Converter(true, CurrentCulture: culture)),
-			_ => ToString()
-		};
+	public readonly string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

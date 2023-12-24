@@ -6,7 +6,7 @@ namespace Sudoku.Algorithm.Ittoryu;
 /// <param name="Grid">Indicates the currently-used grid.</param>
 /// <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
 /// <param name="Candidate">Indicates the target candidate.</param>
-public sealed record PathNode(scoped ref readonly Grid Grid, House House, Candidate Candidate)
+public sealed record PathNode(scoped ref readonly Grid Grid, House House, Candidate Candidate) : ICultureFormattable
 {
 	/// <summary>
 	/// Indicates the target digit.
@@ -26,8 +26,16 @@ public sealed record PathNode(scoped ref readonly Grid Grid, House House, Candid
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-		=> new RxCyConverter() is var converter && House != -1
+	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CoordinateConverter converter)
+		=> House != -1
 			? $"Full House / Hidden Single: {converter.CandidateConverter([Candidate])} in house {converter.HouseConverter(1 << House)}"
 			: $"Naked Single: {converter.CandidateConverter([Candidate])}";
 }

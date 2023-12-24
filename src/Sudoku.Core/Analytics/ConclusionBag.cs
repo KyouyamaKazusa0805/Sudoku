@@ -199,17 +199,11 @@ public sealed partial class ConclusionBag() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(new RxCyConverter());
+	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture)
-		=> culture switch
-		{
-			{ LCID: 1033 } or { DisplayName: ['E' or 'e', 'N' or 'n', ..] } => ToString(new RxCyConverter(true, true, CurrentCulture: culture)),
-			{ LCID: 2052 } or { DisplayName: ['Z' or 'z', 'H' or 'h', ..] } => ToString(new K9Converter(true, CurrentCulture: culture)),
-			_ => ToString()
-		};
+	public string ToString(CultureInfo? culture) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

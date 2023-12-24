@@ -258,6 +258,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
@@ -22093,6 +22099,9 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(Sudoku.Text.Converters.CoordinateConverter)">

@@ -20,7 +20,7 @@ public sealed record StepSearcherOptions
 	public bool IsDirectMode { get; init; } = false;
 
 	/// <inheritdoc cref="CoordinateConverter"/>
-	public CoordinateConverter Converter { get; init; } = new RxCyConverter();
+	public CoordinateConverter Converter { get; init; } = GlobalizedConverter.InvariantCultureConverter;
 
 
 	/// <summary>
