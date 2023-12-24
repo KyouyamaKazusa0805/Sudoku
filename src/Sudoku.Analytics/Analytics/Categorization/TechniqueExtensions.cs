@@ -9,7 +9,6 @@ public static class TechniqueExtensions
 	/// <summary>
 	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
 	/// </summary>
-	[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicFields)]
 	private static readonly Type TypeOfTechnique = typeof(Technique);
 
 

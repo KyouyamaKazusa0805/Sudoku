@@ -57,7 +57,6 @@ public abstract partial class StepSearcher(
 		get => _splitPriority;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[RequiresUnreferencedCode("This setter can only be invoked by reflection.")]
 		internal init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
 	}
 

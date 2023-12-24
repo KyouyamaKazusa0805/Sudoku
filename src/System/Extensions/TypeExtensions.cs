@@ -16,10 +16,7 @@ public static class TypeExtensions
 	/// <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
 	/// Question: How to detect if type is another generic type
 	/// </seealso>
-	public static bool IsGenericAssignableTo(
-		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] this Type @this,
-		[NotNullWhen(true)] Type? targetType
-	)
+	public static bool IsGenericAssignableTo(this Type @this, [NotNullWhen(true)] Type? targetType)
 	{
 		foreach (var it in @this.GetInterfaces())
 		{
@@ -48,7 +45,6 @@ public static class TypeExtensions
 	/// <param name="type">The type.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool HasParameterlessConstructor(
-		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] this Type type
-	) => type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, Type.EmptyTypes) is not null;
+	public static bool HasParameterlessConstructor(this Type type)
+		=> type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, Type.EmptyTypes) is not null;
 }

@@ -14,8 +14,6 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="instance">The instance to be serialized.</param>
 	/// <param name="options">The options.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-	[RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
 	public static void WriteNestedObject<T>(this Utf8JsonWriter @this, T instance, JsonSerializerOptions? options = null)
 		=> JsonSerializer.Serialize(@this, instance, options);
 
@@ -26,8 +24,6 @@ public static class Utf8JsonWriterExtensions
 	/// <param name="this">The <see cref="Utf8JsonWriter"/> instance.</param>
 	/// <param name="array">The array.</param>
 	/// <param name="options">The options.</param>
-	[RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-	[RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
 	public static void WriteArray<T>(this Utf8JsonWriter @this, T[] array, JsonSerializerOptions? options = null)
 	{
 		@this.WriteStartArray();

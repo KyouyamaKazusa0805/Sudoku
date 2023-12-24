@@ -14,7 +14,6 @@ public static class AssemblyExtensions
 	/// <param name="baseType">The type as the base type.</param>
 	/// <returns>All possible derived types.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[RequiresUnreferencedCode("Types might be removed")]
 	public static Type[] GetDerivedTypes(this Assembly @this, Type baseType)
 		=> from type in @this.GetTypes() where type.IsAssignableTo(baseType) select type;
 
@@ -23,7 +22,6 @@ public static class AssemblyExtensions
 	/// <param name="this"><inheritdoc/></param>
 	/// <returns><inheritdoc/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[RequiresUnreferencedCode("Types might be removed")]
 	public static Type[] GetDerivedTypes<TBase>(this Assembly @this)
 		=> from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type;
 }

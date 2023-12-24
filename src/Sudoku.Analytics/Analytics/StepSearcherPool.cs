@@ -33,7 +33,6 @@ public abstract class StepSearcherPool
 	/// </param>
 	/// <returns>An array of <see cref="StepSearcher"/> instances found.</returns>
 	/// <seealso cref="SplitStepSearcherAttribute"/>
-	[UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
 	public static StepSearcher[] Default(bool expandSplitStepSearchers = true)
 	{
 		var result = new SortedList<int, StepSearcher>();
@@ -70,7 +69,6 @@ public abstract class StepSearcherPool
 	/// Throws when the corresponding <see cref="Type"/> reflection result is not found.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[RequiresUnreferencedCode("Types might be removed.")]
 	public static StepSearcher[] GetStepSearchers(string typeName, bool expandSplitStepSearchers)
 		=> GetStepSearchers(ThisAssembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")!, expandSplitStepSearchers);
 
@@ -83,10 +81,7 @@ public abstract class StepSearcherPool
 	/// </param>
 	/// <returns><inheritdoc cref="Default(bool)" path="/returns"/></returns>
 	/// <seealso cref="SplitStepSearcherAttribute"/>
-	public static StepSearcher[] GetStepSearchers(
-		[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor | DynamicallyAccessedMemberTypes.PublicProperties)] Type type,
-		bool expandSplitStepSearchers
-	)
+	public static StepSearcher[] GetStepSearchers(Type type, bool expandSplitStepSearchers)
 	{
 		// Check whether the step searcher is marked 'SeparatedAttribute'.
 		switch ((SplitStepSearcherAttribute[])type.GetCustomAttributes<SplitStepSearcherAttribute>())
