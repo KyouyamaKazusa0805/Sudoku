@@ -515,16 +515,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithActionIfMatch(Sudoku.Analytics.Analyzer,System.Boolean,System.Action{Sudoku.Analytics.Analyzer},System.Action{Sudoku.Analytics.Analyzer})">
-            <summary>
-            Operate an arbitary by checking the specified condition.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="condition">The condition to be checked.</param>
-            <param name="trueMatch">The action will be handled when <paramref name="condition"/> is <see langword="true"/>.</param>
-            <param name="falseMatch">The action will be handled when <paramref name="condition"/> is <see langword="false"/>.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.Categorization.DifficultyLevel)">
             <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)"/>
         </member>

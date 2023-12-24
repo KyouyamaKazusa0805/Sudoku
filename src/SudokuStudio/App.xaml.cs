@@ -86,10 +86,10 @@ public partial class App : Application
 		var disallowHighTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
 		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
 		return Analyzer
-			.WithActionIfMatch(
-				difficultyLevel != DifficultyLevel.Unknown,
-				static a => a.WithStepSearchers(((App)Current).GetStepSearchers()),
-				a => a.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
+			.WithCustomAction(
+				analyzer => _ = difficultyLevel != DifficultyLevel.Unknown
+					? analyzer.WithStepSearchers(((App)Current).GetStepSearchers())
+					: analyzer.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			)
 			.WithRuntimeIdentifierSetters(sudokuPane)
 			.WithCulture(CurrentCulture)
@@ -222,5 +222,21 @@ public partial class App : Application
 			IsDirectMode = !uiPref.DisplayCandidates,
 			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes
 		};
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Executes for an arbitary action for the current analyzer instance.
+	/// </summary>
+	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
+	/// <param name="action">The action to be invoked.</param>
+	/// <returns>The result.</returns>
+	public static Analyzer WithCustomAction(this Analyzer @this, Action<Analyzer> action)
+	{
+		action(@this);
+		return @this;
 	}
 }
