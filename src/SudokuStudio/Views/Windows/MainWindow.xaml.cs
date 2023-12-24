@@ -113,6 +113,9 @@ public sealed partial class MainWindow : Window
 #endif
 	}
 
+	/// <summary>
+	/// Update value for open-pane length into preference.
+	/// </summary>
 	private void UpdateOpenPaneLengthToPreference()
 		=> ((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength = (decimal)Round(NavigationPage.MainNavigationView.OpenPaneLength, 1);
 

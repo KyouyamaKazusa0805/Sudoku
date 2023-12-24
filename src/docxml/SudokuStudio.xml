@@ -13595,6 +13595,11 @@ if (student is (name: var name, age: >= 18))
             Sets the state of app title bars conditionally.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.UpdateOpenPaneLengthToPreference">
+            <summary>
+            Update value for open-pane length into preference.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeAppWindow">
             <summary>
             Initializes for property <see cref="P:Microsoft.UI.Xaml.Window.AppWindow"/>.
