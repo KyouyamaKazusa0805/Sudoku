@@ -1651,6 +1651,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.ConclusionBag.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.ConclusionBag.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.ConclusionBag.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>

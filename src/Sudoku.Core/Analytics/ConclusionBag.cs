@@ -15,6 +15,7 @@ namespace Sudoku.Analytics;
 public sealed partial class ConclusionBag() :
 	IBitwiseOperators<ConclusionBag, ConclusionBag, ConclusionBag>,
 	ICoordinateObject<ConclusionBag>,
+	ICultureFormattable,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionBag>,
 	IEqualityOperators<ConclusionBag, ConclusionBag, bool>,
@@ -198,7 +199,17 @@ public sealed partial class ConclusionBag() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => new RxCyConverter().ConclusionConverter([.. _conclusionsEntry]);
+	public override string ToString() => ToString(new RxCyConverter());
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture)
+		=> culture switch
+		{
+			{ LCID: 1033 } or { DisplayName: ['E' or 'e', 'N' or 'n', ..] } => ToString(new RxCyConverter(true, true, CurrentCulture: culture)),
+			{ LCID: 2052 } or { DisplayName: ['Z' or 'z', 'H' or 'h', ..] } => ToString(new K9Converter(true, CurrentCulture: culture)),
+			_ => ToString()
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
