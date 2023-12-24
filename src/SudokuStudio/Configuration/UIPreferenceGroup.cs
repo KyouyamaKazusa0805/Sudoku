@@ -26,6 +26,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>("AlsoSaveBatchGeneratedPuzzlesIntoHistory", DocSummary = "Indicates whether the program also save for batch generated puzzles into history.")]
 [DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
 [DependencyProperty<char>("FinalRowLetterInK9Notation", DefaultValue = 'I', DocSummary = "Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.")]
+[DependencyProperty<decimal>("MainNavigationPageOpenPaneLength", DocSummary = "Indicates the open-pane length of main navigation page.")]
 [DependencyProperty<decimal>("HighlightedPencilmarkBackgroundEllipseScale", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale")]
 [DependencyProperty<decimal>("HighlightedBackgroundOpacity", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity")]
 [DependencyProperty<decimal>("ChainStrokeThickness", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness")]
@@ -86,6 +87,9 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
 public sealed partial class UIPreferenceGroup : PreferenceGroup
 {
+	[Default]
+	private static readonly decimal MainNavigationPageOpenPaneLengthDefaultValue = 200M;
+
 	[Default]
 	private static readonly decimal HighlightedPencilmarkBackgroundEllipseScaleDefaultValue = 0.9M;
 

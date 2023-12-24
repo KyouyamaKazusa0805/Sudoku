@@ -1627,6 +1627,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLengthProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLength"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLength"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale"/>.
@@ -2069,6 +2075,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation">
             <summary>
             Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLength">
+            <summary>
+            Indicates the open-pane length of main navigation page.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">

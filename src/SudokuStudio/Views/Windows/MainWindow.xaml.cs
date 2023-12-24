@@ -113,6 +113,9 @@ public sealed partial class MainWindow : Window
 #endif
 	}
 
+	private void UpdateOpenPaneLengthToPreference()
+		=> ((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength = (decimal)Round(NavigationPage.MainNavigationView.OpenPaneLength, 1);
+
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Initializes for property <see cref="Window.AppWindow"/>.
@@ -291,6 +294,7 @@ public sealed partial class MainWindow : Window
 
 	private void Window_Closed(object sender, WindowEventArgs args)
 	{
+		UpdateOpenPaneLengthToPreference();
 		SavePreference();
 		SavePuzzleGeneratingHistory();
 	}

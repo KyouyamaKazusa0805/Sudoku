@@ -10,9 +10,9 @@
 	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MainNavigationPage}">
 	<NavigationView
-		x:Name="MainNavigationView" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+		x:Name="MainNavigationView" x:FieldModifier="internal" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
 		IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
-		IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}" OpenPaneLength="200"
+		IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}"
 		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
 		BackRequested="MainNavigationView_BackRequested">
 		<NavigationView.MenuItems>

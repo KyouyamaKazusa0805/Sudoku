@@ -41,7 +41,8 @@ internal sealed partial class MainNavigationPage : Page
 	/// </summary>
 	[MemberNotNull(nameof(_navigatingData))]
 	private void InitializeField()
-		=> _navigatingData = [
+	{
+		_navigatingData = [
 			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
 			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
 			(container => container == PuzzleLibraryPage, typeof(LibraryPage)),
@@ -50,6 +51,9 @@ internal sealed partial class MainNavigationPage : Page
 			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage)),
 			(container => container == TechniqueGalleryPage, typeof(TechniqueGalleryPage))
 		];
+
+		MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
+	}
 
 	/// <summary>
 	/// An outer-layered method to switching pages. This method can be used by both
