@@ -60,12 +60,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				new LineBreak(),
 				new Run().WithText($"{uiPref.GeneratorSelectedTechniques switch
 				{
-					[var f]
-						=> string.Format(GetString("AnalyzePage_SingleTechniquesSelected"), f.GetName(CurrentCulture)),
-					[var f, ..] t and { Count: var fc }
-						=> string.Format(GetString("AnalyzePage_MultipleTechniquesSelected"), f.GetName(CurrentCulture), fc),
-					_
-						=> GetString("TechniqueSelector_NoTechniqueSelected"),
+					[var f] => string.Format(GetString("AnalyzePage_SingleTechniquesSelected"), f.GetName(App.CurrentCulture)),
+					[var f, ..] t and { Count: var fc } => string.Format(GetString("AnalyzePage_MultipleTechniquesSelected"), f.GetName(App.CurrentCulture), fc),
+					_ => GetString("TechniqueSelector_NoTechniqueSelected"),
 				}:AnalyzePage_SelectedTechniqueIs}"),
 				new LineBreak(),
 				new Run().WithText($"{(

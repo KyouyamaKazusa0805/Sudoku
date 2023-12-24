@@ -5,18 +5,9 @@ namespace SudokuStudio.Strings;
 /// </summary>
 internal static class StringsAccessor
 {
-	/// <summary>
-	/// The current culture information.
-	/// </summary>
-	internal static CultureInfo CurrentCulture
-		=> ((App)Application.Current).Preference.UIPreferences.Language is var cultureInfoId and not 0
-			? new(cultureInfoId)
-			: CultureInfo.CurrentUICulture;
-
-
 	/// <inheritdoc cref="GetString(string)"/>
 	[return: NotNullIfNotNull(nameof(key))]
-	public static string? GetStringNullable(string? key) => key is null ? null : Resources.ResourceManager.GetString(key, CurrentCulture);
+	public static string? GetStringNullable(string? key) => key is null ? null : Resources.ResourceManager.GetString(key, App.CurrentCulture);
 
 	/// <summary>
 	/// Try to fetch the target resource via the specified key.
@@ -24,7 +15,7 @@ internal static class StringsAccessor
 	/// <param name="key">The resource key.</param>
 	/// <returns>The target resource.</returns>
 	public static string GetString(string key)
-		=> Resources.ResourceManager.GetString(key, CurrentCulture) ?? throw new KeyNotFoundException("The target resource is not found.");
+		=> Resources.ResourceManager.GetString(key, App.CurrentCulture) ?? throw new KeyNotFoundException("The target resource is not found.");
 
 	/// <summary>
 	/// Try to fetch the specified token via its name.

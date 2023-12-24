@@ -35,7 +35,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		return new(
 			from step in collection
-			group step by step.GetName(CurrentCulture) into stepGroupGroupedByName
+			group step by step.GetName(App.CurrentCulture) into stepGroupGroupedByName
 			let techniqueName = stepGroupGroupedByName.Key
 			orderby
 				stepGroupGroupedByName.Average(static step => step.Difficulty),
@@ -98,7 +98,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		using var cts = new CancellationTokenSource();
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;
-		var currentCultureInfo = CurrentCulture;
+		var currentCultureInfo = App.CurrentCulture;
 		var collector = ((App)Application.Current)
 			.StepCollector
 			.WithMaxSteps(analysisPref.StepGathererMaxStepsGathered)

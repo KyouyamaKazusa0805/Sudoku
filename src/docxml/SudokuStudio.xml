@@ -74,6 +74,11 @@
             Indicates the assembly version.
             </summary>
         </member>
+        <member name="P:SudokuStudio.App.CurrentCulture">
+            <summary>
+            The current culture information.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.App.GetAnalyzerConfigured(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Try to fetch an <see cref="T:Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.
@@ -9051,11 +9056,6 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Strings.StringsAccessor">
             <summary>
             Defines an easy entry to get <see cref="T:System.String"/> resources.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Strings.StringsAccessor.CurrentCulture">
-            <summary>
-            The current culture information.
             </summary>
         </member>
         <member name="M:SudokuStudio.Strings.StringsAccessor.GetStringNullable(System.String)">

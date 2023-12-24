@@ -10,7 +10,7 @@ public sealed partial class TechniqueViewBindableSource([Data(SetterExpression =
 	/// <summary>
 	/// Indicates the name of the technique.
 	/// </summary>
-	public string TechniqueName => TechniqueField.GetName(CurrentCulture);
+	public string TechniqueName => TechniqueField.GetName(App.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the containing group for the current technique.

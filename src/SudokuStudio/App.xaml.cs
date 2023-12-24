@@ -72,6 +72,12 @@ public partial class App : Application
 	/// </summary>
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
+	/// <summary>
+	/// The current culture information.
+	/// </summary>
+	internal static CultureInfo CurrentCulture
+		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0 ? new(cultureInfoId) : CultureInfo.CurrentUICulture;
+
 
 	/// <summary>
 	/// Try to fetch an <see cref="Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="SudokuPane"/>.
