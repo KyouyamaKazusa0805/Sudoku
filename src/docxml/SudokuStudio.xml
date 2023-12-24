@@ -4188,6 +4188,23 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>tokenItem</c>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.BooleanToVisibilityConverter">
+            <summary>
+            Converts a <see cref="T:System.Boolean"/> value into a <see cref="T:Microsoft.UI.Xaml.Visibility"/> result.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Visibility"/>
+        </member>
+        <member name="P:SudokuStudio.Interaction.ValueConverters.BooleanToVisibilityConverter.IsReverted">
+            <summary>
+            Indicates whether the converter logic is reverted.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.BooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.BooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.DoubleToDecimalConverter">
             <summary>
             Represents a type that can convert values from <see cref="T:System.Double"/> to <see cref="T:System.Decimal"/>, or vice versa.
@@ -12614,6 +12631,73 @@ if (student is (name: var name, age: >= 18))
             Indicates the source of the file.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.MainNavigationPage">
+            <summary>
+            The navigation page for main window.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage._navigatingData">
+            <summary>
+            The navigating data. This dictionary stores the routing data that can be used and controlled
+            by control <see cref="F:SudokuStudio.Views.Pages.MainNavigationPage.NavigationViewFrame"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.MainNavigationPage.NavigationViewFrame"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.MainNavigationPage"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.ParentWindow">
+            <summary>
+            Indicates the parent window.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SetFrameDisplayTitle(System.Type)">
+            <summary>
+            Try to set the title of the main navigation frame.
+            </summary>
+            <param name="pageType">The page type.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeField">
+            <summary>
+            Initializes fields.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Boolean)">
+            <summary>
+            An outer-layered method to switching pages. This method can be used by both
+            <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="isSettingsNavigationViewItemSelectedOrInvoked">
+            A <see cref="T:System.Boolean"/> value indicating whether the settings item is invoked or selected.
+            </param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
+            <summary>
+            An outer-layered method to switching pages. This method can be used by both
+            <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
+            </summary>
+            <param name="container">The container.</param>
+            <seealso cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
+            <seealso cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
             <summary>
             Represents about page.
@@ -13447,13 +13531,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
-        <member name="F:SudokuStudio.Views.Windows.MainWindow._navigatingData">
-            <summary>
-            The navigating data. This dictionary stores the routing data that can be used and controlled
-            by control <see cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Windows.MainWindow.NavigationViewFrame"/>
-        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
@@ -13489,7 +13566,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>
-            Initializes fields.
+            Initializes for fields.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SavePreference">
@@ -13522,35 +13599,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="appWindow">The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetFrameDisplayTitle(System.Type)">
-            <summary>
-            Try to set the title of the main navigation frame.
-            </summary>
-            <param name="pageType">The page type.</param>
-        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppIcon">
             <summary>
             Try to set icon of the program.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
-            <summary>
-            An outer-layered method to switching pages. This method can be used by both
-            <see cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
-            </summary>
-            <param name="container">The container.</param>
-            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
-            <seealso cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Boolean)">
-            <summary>
-            An outer-layered method to switching pages. This method can be used by both
-            <see cref="M:SudokuStudio.Views.Windows.MainWindow.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Windows.MainWindow.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
-            </summary>
-            <param name="container">The container.</param>
-            <param name="isSettingsNavigationViewItemSelectedOrInvoked">
-            A <see cref="T:System.Boolean"/> value indicating whether the settings item is invoked or selected.
-            </param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.GetScaleAdjustment">
             <summary>

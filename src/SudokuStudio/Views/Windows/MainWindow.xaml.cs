@@ -7,20 +7,11 @@ namespace SudokuStudio.Views.Windows;
 public sealed partial class MainWindow : Window
 {
 	/// <summary>
-	/// The navigating data. This dictionary stores the routing data that can be used and controlled
-	/// by control <see cref="NavigationViewFrame"/>.
-	/// </summary>
-	/// <seealso cref="NavigationViewFrame"/>
-	private List<(Func<NavigationViewItemBase, bool> PageChecker, Type PageType)> _navigatingData;
-
-
-	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
 	public MainWindow()
 	{
 		InitializeComponent();
-
 		InitializeField();
 
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
@@ -36,10 +27,10 @@ public sealed partial class MainWindow : Window
 	/// <param name="pageType">The target page type.</param>
 	internal void NavigateToPage(Type pageType)
 	{
-		if (NavigationViewFrame.SourcePageType != pageType)
+		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.Navigate(pageType, null, DefaultNavigationTransitionInfo);
-			SetFrameDisplayTitle(pageType);
+			NavigationPage.NavigationViewFrame.Navigate(pageType, null, DefaultNavigationTransitionInfo);
+			NavigationPage.SetFrameDisplayTitle(pageType);
 		}
 	}
 
@@ -51,10 +42,10 @@ public sealed partial class MainWindow : Window
 	/// <param name="data">The data.</param>
 	internal void NavigateToPage<T>(Type pageType, T? data) where T : notnull
 	{
-		if (NavigationViewFrame.SourcePageType != pageType)
+		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationViewFrame.Navigate(pageType, data, DefaultNavigationTransitionInfo);
-			SetFrameDisplayTitle(pageType);
+			NavigationPage.NavigationViewFrame.Navigate(pageType, data, DefaultNavigationTransitionInfo);
+			NavigationPage.SetFrameDisplayTitle(pageType);
 		}
 	}
 
@@ -73,19 +64,9 @@ public sealed partial class MainWindow : Window
 	internal void NavigateToPage<TPage, TData>(TData? data) where TPage : Page where TData : notnull => NavigateToPage(typeof(TPage), data);
 
 	/// <summary>
-	/// Initializes fields.
+	/// Initializes for fields.
 	/// </summary>
-	[MemberNotNull(nameof(_navigatingData))]
-	private void InitializeField()
-		=> _navigatingData = [
-			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
-			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
-			(container => container == PuzzleLibraryPage, typeof(LibraryPage)),
-			(container => container == AboutPageItem, typeof(AboutPage)),
-			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
-			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage)),
-			(container => container == TechniqueGalleryPage, typeof(TechniqueGalleryPage))
-		];
+	private void InitializeField() => NavigationPage.ParentWindow = this;
 
 	/// <summary>
 	/// Saves for preferences.
@@ -277,57 +258,11 @@ public sealed partial class MainWindow : Window
 	}
 #endif
 
-	/// <summary>
-	/// Try to set the title of the main navigation frame.
-	/// </summary>
-	/// <param name="pageType">The page type.</param>
-	private void SetFrameDisplayTitle(Type pageType)
-		=> MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
-
 #if UI_FEATURE_CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to set icon of the program.
 	/// </summary>
-	private void SetAppIcon() => AppWindow.SetIcon("""Assets\images\Logo.ico""");
-
-	/// <summary>
-	/// An outer-layered method to switching pages. This method can be used by both
-	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
-	/// </summary>
-	/// <param name="container">The container.</param>
-	/// <seealso cref="NavigationView_ItemInvoked"/>
-	/// <seealso cref="MainNavigationView_SelectionChanged"/>
-	private void SwitchingPage(NavigationViewItemBase container)
-	{
-		foreach (var (condition, pageType) in _navigatingData)
-		{
-			if (condition(container))
-			{
-				NavigateToPage(pageType);
-				return;
-			}
-		}
-	}
-
-	/// <summary>
-	/// An outer-layered method to switching pages. This method can be used by both
-	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
-	/// </summary>
-	/// <param name="container">The container.</param>
-	/// <param name="isSettingsNavigationViewItemSelectedOrInvoked">
-	/// A <see cref="bool"/> value indicating whether the settings item is invoked or selected.
-	/// </param>
-	private void SwitchingPage(NavigationViewItemBase container, bool isSettingsNavigationViewItemSelectedOrInvoked)
-	{
-		if (isSettingsNavigationViewItemSelectedOrInvoked)
-		{
-			NavigateToPage(typeof(SettingsPage));
-		}
-		else
-		{
-			SwitchingPage(container);
-		}
-	}
+	private void SetAppIcon() => AppWindow.SetIcon(@"Assets\images\Logo.ico");
 
 	/// <summary>
 	/// Try to adjust the scaling.
@@ -354,26 +289,9 @@ public sealed partial class MainWindow : Window
 #endif
 
 
-	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
-
-	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> SwitchingPage(args.InvokedItemContainer, args.IsSettingsInvoked);
-
-	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> SwitchingPage(args.SelectedItemContainer, args.IsSettingsSelected);
-
 	private void Window_Closed(object sender, WindowEventArgs args)
 	{
 		SavePreference();
 		SavePuzzleGeneratingHistory();
-	}
-
-	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-	{
-		if (NavigationViewFrame is { CanGoBack: true, BackStack: [.., { SourcePageType: var lastPageType }] })
-		{
-			NavigationViewFrame.GoBack();
-			SetFrameDisplayTitle(lastPageType);
-		}
 	}
 }

@@ -1,0 +1,40 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.MainNavigationPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:ui="using:CommunityToolkit.WinUI"
+	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MainNavigationPage}">
+	<NavigationView
+		x:Name="MainNavigationView" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
+		IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
+		IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}" OpenPaneLength="200"
+		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
+		BackRequested="MainNavigationView_BackRequested">
+		<NavigationView.MenuItems>
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
+			<NavigationViewItem x:Name="AnalyzePageItem" Icon="Edit" Content="{m:R Key=MainWindow_Analyze}" />
+			<NavigationViewItem x:Name="GeneratingStrategyPageItem" Icon="Favorite" Content="{m:R Key=MainWindow_GeneratingStrategy}" />
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
+			<NavigationViewItem
+				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
+				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
+			<NavigationViewItem x:Name="PuzzleLibraryPage" Content="{m:R Key=MainWindow_PuzzleLibraryPage}" Icon="Library" />
+			<NavigationViewItem x:Name="TechniqueGalleryPage" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
+			<NavigationViewItem x:Name="HotkeyCheatTablePage" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
+			<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
+		</NavigationView.MenuItems>
+
+		<Grid ColumnDefinitions="Auto,*">
+			<wc:PropertySizer
+				Grid.Column="0" Minimum="200" Maximum="400" Binding="{x:Bind MainNavigationView.OpenPaneLength,Mode=TwoWay}"
+				Visibility="{x:Bind MainNavigationView.IsPaneOpen,Mode=TwoWay,Converter={StaticResource BooleanVisibilityConverter}}" />
+			<Frame x:Name="NavigationViewFrame" x:FieldModifier="internal" Grid.Column="1" />
+		</Grid>
+	</NavigationView>
+</Page>

@@ -38,6 +38,7 @@
 			<vcvt:Int32ToEliminationDisplayModeConverter x:Key="EliminationDisplayModeConverter" />
 			<vcvt:DoubleToDecimalConverter x:Key="Decimal2DoubleConverter" />
 			<vcvt:DoubleToDecimalConverter x:Key="Double2DecimalConverter" IsConvertFromDecimal="False" />
+			<vcvt:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
 			<Thickness x:Key="ContentAlignedWithNavigationViewHeaderMargin">56,20</Thickness>
 		</ResourceDictionary>
 	</Application.Resources>
