@@ -43,9 +43,6 @@ public sealed partial class UniqueRectangleType3Step(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 54;
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
 			new(ExtraDifficultyFactorNames.Hidden, IsNaked ? 0 : .1M),

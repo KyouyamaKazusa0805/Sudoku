@@ -33,9 +33,6 @@ public sealed partial class UniqueRectangleType1Step(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 54;
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr])];
 }

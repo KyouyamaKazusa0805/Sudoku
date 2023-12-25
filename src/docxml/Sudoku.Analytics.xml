@@ -4699,11 +4699,6 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>
         </member>
-        <member name="P:Sudoku.Analytics.Step.BaseLocatingDifficulty">
-            <summary>
-            Indicates the difficulty of this technique step on locating.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Step.Difficulty">
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
@@ -10749,9 +10744,6 @@ if (student is (name: var name, age: >= 18))
             <param name="isX"><inheritdoc/></param>
             <param name="isY"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ForcingChainStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -13093,9 +13085,6 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -13130,9 +13119,6 @@ if (student is (name: var name, age: >= 18))
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.FormatInterpolationParts">
@@ -13180,9 +13166,6 @@ if (student is (name: var name, age: >= 18))
             <param name="isNaked">
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.BaseLocatingDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyFactors">
             <inheritdoc/>
@@ -13285,9 +13268,6 @@ if (student is (name: var name, age: >= 18))
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyFactors">
@@ -14971,9 +14951,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
@@ -16167,9 +16144,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Code">
             <inheritdoc/>
         </member>
@@ -16301,9 +16275,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleStep.Code">
             <inheritdoc/>
         </member>
@@ -16370,9 +16341,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.TwoStrongLinksStep.Code">
             <inheritdoc/>
         </member>
@@ -16419,9 +16387,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
             <inheritdoc/>
         </member>
@@ -16461,9 +16426,6 @@ if (student is (name: var name, age: >= 18))
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Code">
@@ -17002,9 +16964,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
             <inheritdoc/>
         </member>
@@ -17066,9 +17025,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.BaseLocatingDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Size">

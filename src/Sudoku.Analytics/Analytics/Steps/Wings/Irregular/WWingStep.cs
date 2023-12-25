@@ -22,9 +22,6 @@ public sealed partial class WWingStep(
 	public override decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 440;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.WWing;
 
 	/// <inheritdoc/>

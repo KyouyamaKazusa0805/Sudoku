@@ -30,9 +30,6 @@ public sealed partial class ForcingChainStep(
 
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 400;
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CandStr, OnOffStr]), new(ChineseLanguage, [CandStr, OnOffStrZhCn])];
 

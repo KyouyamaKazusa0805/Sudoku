@@ -22,9 +22,6 @@ public sealed partial class GuardianStep(
 	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 600;
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>

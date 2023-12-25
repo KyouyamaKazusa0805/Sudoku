@@ -22,8 +22,5 @@ public sealed partial class FullHouseStep(
 	public override decimal BaseDifficulty => 1.0M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 100;
-
-	/// <inheritdoc/>
 	public override Technique Code => Options.IsDirectMode ? Technique.Single : Technique.FullHouse;
 }

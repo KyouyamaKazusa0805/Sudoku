@@ -40,9 +40,6 @@ public sealed partial class UniqueRectangleType2Step(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 54;
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),

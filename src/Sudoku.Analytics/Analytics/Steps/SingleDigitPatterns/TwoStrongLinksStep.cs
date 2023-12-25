@@ -33,9 +33,6 @@ public sealed partial class TwoStrongLinksStep(
 		};
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 320;
-
-	/// <inheritdoc/>
 	public override Technique Code
 		=> (BaseHouse / 9, TargetHouse / 9) switch
 		{

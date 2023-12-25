@@ -42,9 +42,6 @@ public sealed partial class NormalFishStep(
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => Size switch { 2 => 320, 3 => 380, 4 => 520 };
-
-	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
 			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => 0.6M, 4 => 2.0M }),

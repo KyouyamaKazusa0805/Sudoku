@@ -28,10 +28,6 @@ public partial class HiddenSingleStep(
 		=> EnableAndIsLastDigit ? 1.1M : House < 9 ? Options.IsDirectMode ? 1.2M : 2.2M : Options.IsDirectMode ? 1.5M : 2.3M;
 
 	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty
-		=> Code switch { Technique.LastDigit => 200, Technique.HiddenSingleBlock or Technique.CrosshatchingBlock => 250, _ => 300 };
-
-	/// <inheritdoc/>
 	public override Technique Code
 		=> (Options.IsDirectMode, EnableAndIsLastDigit) switch
 		{

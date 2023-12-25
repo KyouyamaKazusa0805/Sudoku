@@ -28,9 +28,6 @@ public sealed partial class RegularWingStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.2M;
 
-	/// <inheritdoc/>
-	public override decimal BaseLocatingDifficulty => 420;
-
 	/// <summary>
 	/// Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
 	/// </summary>
