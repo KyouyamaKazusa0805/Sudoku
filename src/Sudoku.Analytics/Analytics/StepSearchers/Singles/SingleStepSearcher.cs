@@ -160,8 +160,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out var excluderHouses);
-				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit, excluderHouses);
+				var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out _);
+				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -340,8 +340,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			}
 
 			var digit = TrailingZeroCount(mask);
-			var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out var excluderHouses);
-			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit, excluderHouses);
+			var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out _);
+			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -493,12 +493,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private static CellViewNode[] GetNakedSingleExcluders(
-		scoped ref readonly Grid grid,
-		Cell cell,
-		Digit digit,
-		out House[] excluderHouses
-	)
+	private static CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))

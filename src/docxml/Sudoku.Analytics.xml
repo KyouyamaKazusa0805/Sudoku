@@ -16513,9 +16513,8 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="excluderHouses">Indicates the excluder houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -16524,21 +16523,12 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="excluderHouses">Indicates the excluder houses.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseLocatingDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.ExcluderHouses">
-            <summary>
-            The generated property declaration for parameter <c>excluderHouses</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>
