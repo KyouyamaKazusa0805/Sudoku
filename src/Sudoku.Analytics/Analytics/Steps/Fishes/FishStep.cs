@@ -40,6 +40,10 @@ public abstract partial class FishStep(
 
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+
+	/// <inheritdoc/>
 	public string ToString(CoordinateConverter converter)
 	{
 		switch (converter)

@@ -15,7 +15,6 @@ namespace Sudoku.Analytics;
 public sealed partial class ConclusionBag() :
 	IBitwiseOperators<ConclusionBag, ConclusionBag, ConclusionBag>,
 	ICoordinateObject<ConclusionBag>,
-	ICultureFormattable,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionBag>,
 	IEqualityOperators<ConclusionBag, ConclusionBag, bool>,

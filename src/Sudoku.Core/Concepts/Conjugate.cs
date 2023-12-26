@@ -87,6 +87,10 @@ public readonly partial struct Conjugate([Data(DataMemberKinds.Field)] Conjugate
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter([this]);
 
 	/// <inheritdoc/>

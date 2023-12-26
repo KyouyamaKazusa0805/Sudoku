@@ -2919,6 +2919,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
         </member>
+        <member name="M:Sudoku.Concepts.Chute.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Chute.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
@@ -3034,6 +3037,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>

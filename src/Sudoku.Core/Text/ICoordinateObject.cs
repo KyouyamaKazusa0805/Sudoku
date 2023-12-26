@@ -4,7 +4,7 @@ namespace Sudoku.Text;
 /// Defines a type that supports for coordinate output rule.
 /// </summary>
 /// <typeparam name="TSelf">The type of implementation.</typeparam>
-public interface ICoordinateObject<TSelf> where TSelf : ICoordinateObject<TSelf>
+public interface ICoordinateObject<TSelf> : ICultureFormattable where TSelf : ICoordinateObject<TSelf>
 {
 	/// <summary>
 	/// Formats the current instance, converting it into a <see cref="string"/> result that can describe for this object.

@@ -14869,6 +14869,9 @@ if (student is (name: var name, age: >= 18))
             The internal notation.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>

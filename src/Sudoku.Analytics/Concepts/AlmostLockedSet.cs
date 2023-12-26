@@ -28,7 +28,6 @@ public sealed partial class AlmostLockedSet(
 	IComparable<AlmostLockedSet>,
 	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
 	ICoordinateObject<AlmostLockedSet>,
-	ICultureFormattable,
 	IEquatable<AlmostLockedSet>,
 	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
 {
