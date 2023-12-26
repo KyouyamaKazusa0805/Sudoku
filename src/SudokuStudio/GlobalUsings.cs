@@ -129,7 +129,6 @@ global using TokenItemRemovingEventArgs = SudokuStudio.Interaction.TokenItemRemo
 global using SolvingPath = SudokuStudio.Views.Pages.Analyze.SolvingPath;
 global using SpecialFolder = System.Environment.SpecialFolder;
 global using @io = System.IO;
-global using FilePath = System.IO.Path;
 global using Size = Windows.Foundation.Size;
 global using unsafe StringChecker = delegate*<string, bool>;
 global using unsafe GridRandomizedSuffler = delegate*<System.Random, ref Sudoku.Concepts.Grid, void>;

@@ -24,5 +24,5 @@ public sealed partial class SettingsPage : Page
 		=> App.GetMainWindow(this).NavigateToPage<DrawingPreferenceItemsPage>();
 
 	private async void OpenSettingsFolderButton_ClickAsync(object sender, RoutedEventArgs e)
-		=> await Launcher.LaunchFolderPathAsync(FilePath.GetDirectoryName(CommonPaths.UserPreference));
+		=> await Launcher.LaunchFolderPathAsync(io::Path.GetDirectoryName(CommonPaths.UserPreference));
 }

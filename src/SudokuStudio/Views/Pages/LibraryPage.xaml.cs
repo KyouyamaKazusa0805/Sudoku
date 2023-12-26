@@ -52,7 +52,7 @@ public sealed partial class LibraryPage : Page
 			return false;
 		}
 
-		var fileId = FilePath.GetFileNameWithoutExtension(filePath);
+		var fileId = io::Path.GetFileNameWithoutExtension(filePath);
 		var libFilePath = $@"{CommonPaths.PuzzleLibrariesFolder}\{fileId}{FileExtensions.PuzzleLibrary}";
 		if (File.Exists(libFilePath))
 		{
@@ -60,7 +60,7 @@ public sealed partial class LibraryPage : Page
 			return false;
 		}
 
-		var fileExtension = FilePath.GetExtension(filePath);
+		var fileExtension = io::Path.GetExtension(filePath);
 		if (fileExtension == FileExtensions.PuzzleLibrary)
 		{
 			var content = await File.ReadAllTextAsync(filePath);
@@ -243,7 +243,7 @@ public sealed partial class LibraryPage : Page
 		}
 
 		var newPuzzles = default(List<Grid>);
-		switch (FilePath.GetExtension(filePath))
+		switch (io::Path.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText or FileExtensions.CommaSeparated:
 			{

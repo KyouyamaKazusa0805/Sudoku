@@ -805,7 +805,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 				default:
 				{
-					switch (FilePath.GetExtension(filePath))
+					switch (io::Path.GetExtension(filePath))
 					{
 						case FileExtensions.PlainText:
 						{

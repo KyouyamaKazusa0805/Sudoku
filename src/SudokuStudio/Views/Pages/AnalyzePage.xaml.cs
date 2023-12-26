@@ -275,7 +275,7 @@ public sealed partial class AnalyzePage : Page
 			return false;
 		}
 
-		switch (FilePath.GetExtension(filePath))
+		switch (io::Path.GetExtension(filePath))
 		{
 			case FileExtensions.PlainText:
 			{
@@ -364,7 +364,7 @@ public sealed partial class AnalyzePage : Page
 			}
 			default:
 			{
-				switch (FilePath.GetExtension(filePath))
+				switch (io::Path.GetExtension(filePath))
 				{
 					case FileExtensions.PlainText:
 					{
@@ -1047,7 +1047,7 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		switch (FilePath.GetExtension(filePath), gridInfo)
+		switch (io::Path.GetExtension(filePath), gridInfo)
 		{
 			case (FileExtensions.PlainText, { BaseGrid: var g }):
 			{
