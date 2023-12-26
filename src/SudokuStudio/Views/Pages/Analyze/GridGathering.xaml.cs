@@ -8,7 +8,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <summary>
 	/// Indicates the found steps currently.
 	/// </summary>
-	internal IEnumerable<Step>? _currentFountSteps;
+	internal Step[]? _currentFountSteps;
 
 
 	/// <summary>
@@ -30,7 +30,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	/// <param name="collection">The raw collection.</param>
 	/// <param name="grid">The puzzle.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	private ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(IEnumerable<Step> collection, Grid grid)
+	private ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(Step[] collection, Grid grid)
 	{
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		return new(
@@ -98,10 +98,10 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		using var cts = new CancellationTokenSource();
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;
-		var currentCultureInfo = App.CurrentCulture;
 		var collector = ((App)Application.Current)
 			.StepCollector
 			.WithMaxSteps(analysisPref.StepGathererMaxStepsGathered)
+			.WithCulture(App.CurrentCulture)
 			.WithSameLevelConfigruation((StepCollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
@@ -114,13 +114,13 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 			{
 				lock (AnalyzingRelatedSyncRoot)
 				{
-					return collector.Collect(in grid, currentCultureInfo, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
+					return collector.Collect(in grid, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
 					{
 						var (stepSearcherName, percent) = progress;
 						BasePage.ProgressPercent = percent * 100;
 						BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
 						BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-					})), cts.Token);
+					})), cts.Token).ToArray();
 				}
 			}))
 			{

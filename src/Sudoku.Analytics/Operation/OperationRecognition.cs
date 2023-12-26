@@ -35,7 +35,7 @@ public static class OperationRecognition
 
 		// Merge conclusion to be matched.
 		var resultSteps = new List<Step>();
-		foreach (var s in stepRangeCollector.Collect(in previous)!)
+		foreach (var s in stepRangeCollector.Collect(in previous))
 		{
 			if (([.. s.Conclusions] & conclusions) == conclusions)
 			{

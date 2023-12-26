@@ -34,6 +34,18 @@ public static class StepCollectorFactory
 	}
 
 	/// <summary>
+	/// Try to set the variant culture for the specified <see cref="StepCollector"/> instance.
+	/// </summary>
+	/// <param name="this">The current <see cref="StepCollector"/> instance.</param>
+	/// <param name="culture">The culture to be set.</param>
+	/// <returns>The result.</returns>
+	public static StepCollector WithCulture(this StepCollector @this, CultureInfo? culture)
+	{
+		@this.CurrentCulture = culture;
+		return @this;
+	}
+
+	/// <summary>
 	/// Sets the property <see cref="StepCollector.StepSearchers"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>

@@ -12089,7 +12089,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Step},Sudoku.Concepts.Grid)">
+        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(Sudoku.Analytics.Step[],Sudoku.Concepts.Grid)">
             <summary>
             Converts the specified collection into the target view source collection.
             </summary>

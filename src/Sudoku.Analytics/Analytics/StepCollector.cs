@@ -27,6 +27,9 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// </remarks>
 	public StepCollectorDifficultyLevelMode DifficultyLevelMode { get; internal set; } = StepCollectorDifficultyLevelMode.OnlySame;
 
+	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
+	public CultureInfo? CurrentCulture { get; set; }
+
 	/// <inheritdoc/>
 	[DisallowNull]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
@@ -51,16 +54,14 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// Search for all possible steps in a grid.
 	/// </summary>
 	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="culture">The culture information.</param>
 	/// <param name="progress">The progress instance that is used for reporting the state.</param>
 	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
 	/// <returns>
-	/// The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
+	/// The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public IEnumerable<Step>? Collect(
+	public ReadOnlySpan<Step> Collect(
 		scoped ref readonly Grid puzzle,
-		CultureInfo? culture = null,
 		IProgress<AnalyzerProgress>? progress = null,
 		CancellationToken cancellationToken = default
 	)
@@ -89,7 +90,12 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 		}
 
 
-		List<Step> searchInternal(bool sukaku, IProgress<AnalyzerProgress>? progress, scoped ref readonly Grid puzzle, CancellationToken cancellationToken)
+		ReadOnlySpan<Step> searchInternal(
+			bool sukaku,
+			IProgress<AnalyzerProgress>? progress,
+			scoped ref readonly Grid puzzle,
+			CancellationToken cancellationToken
+		)
 		{
 			const int defaultLevel = int.MaxValue;
 
@@ -148,11 +154,11 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 
 			// Report the progress if worth.
 			ReportProgress:
-				progress?.Report(new(searcher.ToString(culture), ++currentSearcherIndex / (double)totalSearchersCount));
+				progress?.Report(new(searcher.ToString(CurrentCulture), ++currentSearcherIndex / (double)totalSearchersCount));
 			}
 
 			// Return the result.
-			return bag;
+			return CollectionsMarshal.AsSpan(bag);
 		}
 	}
 }

@@ -4874,6 +4874,9 @@ if (student is (name: var name, age: >= 18))
             The default value is <see cref="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame"/>.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.StepCollector.CurrentCulture">
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/>
+        </member>
         <member name="P:Sudoku.Analytics.StepCollector.StepSearchers">
             <inheritdoc/>
         </member>
@@ -4883,16 +4886,15 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepCollector.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.Globalization.CultureInfo,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>
             <param name="puzzle">The puzzle grid.</param>
-            <param name="culture">The culture information.</param>
             <param name="progress">The progress instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
             <returns>
-            The result. If cancelled, the return value will be <see langword="null"/>; otherwise, a real list even though it may be empty.
+            The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
             </returns>
             <exception cref="T:System.InvalidOperationException">Throws when property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> is not defined.</exception>
         </member>
@@ -4947,6 +4949,14 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.StepCollector.Options"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithCulture(Sudoku.Analytics.StepCollector,System.Globalization.CultureInfo)">
+            <summary>
+            Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.StepCollector"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.StepCollector"/> instance.</param>
+            <param name="culture">The culture to be set.</param>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])">
             <summary>
@@ -23167,7 +23177,7 @@ result ^= expression;
             Indicates the conclusion keyword.
             </summary>
         </member>
-        <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Step},System.String)">
+        <member name="M:Sudoku.Filtering.TechniqueFiltering.Filter(Sudoku.Analytics.Step[],System.String)">
             <summary>
             Filters some invalid steps.
             </summary>

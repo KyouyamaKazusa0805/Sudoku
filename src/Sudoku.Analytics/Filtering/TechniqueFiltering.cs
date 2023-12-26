@@ -38,7 +38,7 @@ public static partial class TechniqueFiltering
 	/// <param name="steps">The found steps.</param>
 	/// <param name="conditionString">The condition.</param>
 	/// <exception cref="ExpressiveException">Throws when the expression being evaluated is invalid.</exception>
-	public static IEnumerable<Step> Filter(IEnumerable<Step> steps, string conditionString)
+	public static Step[] Filter(Step[] steps, string conditionString)
 		=> string.IsNullOrWhiteSpace(conditionString)
 			? steps // Special case: If the condition string is empty, just return.
 			: from step in steps where Parse(conditionString, step).Evaluate<bool>() select step;
