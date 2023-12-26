@@ -35,7 +35,7 @@ public abstract record CoordinateParser : GenericConceptParser
 	/// The parser method that can creates a <see cref="Conclusion"/> list via the specified text to be parsed.
 	/// </summary>
 	/// <seealso cref="Conclusion"/>
-	public abstract Func<string, Conclusion[]> ConclusionParser { get; }
+	public abstract Func<string, ConclusionBag> ConclusionParser { get; }
 
 	/// <summary>
 	/// The parser method that can creates a <see cref="Mask"/> via the specified text to be parsed.

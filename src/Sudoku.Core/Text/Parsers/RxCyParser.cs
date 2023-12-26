@@ -17,7 +17,7 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, HouseMask> HouseParser => OnHouseParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Conclusion[]> ConclusionParser => OnConclusionParsing;
+	public override Func<string, ConclusionBag> ConclusionParser => OnConclusionParsing;
 
 	/// <inheritdoc/>
 	public override Func<string, Mask> DigitParser => OnDigitParsing;
@@ -146,7 +146,7 @@ public sealed partial record RxCyParser : CoordinateParser
 		return result;
 	}
 
-	private Conclusion[] OnConclusionParsing(string str)
+	private ConclusionBag OnConclusionParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -158,11 +158,11 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		var result = new List<Conclusion>();
+		var result = new ConclusionBag();
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;
-			var indexOfEqualityOperatorCharacters = s.Split((string[])["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+			var indexOfEqualityOperatorCharacters = s.Split(["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 			var cells = CellParser(indexOfEqualityOperatorCharacters[0]);
 			var digits = MaskOperations.Create(from character in indexOfEqualityOperatorCharacters[1] select character - '1');
 			var conclusionType = s.Match("""==?|<>|!=""") is "==" or "=" ? Assignment : Elimination;
@@ -170,12 +170,12 @@ public sealed partial record RxCyParser : CoordinateParser
 			{
 				foreach (var digit in digits)
 				{
-					result.Add(new(conclusionType, cell, digit));
+					result.Add(new Conclusion(conclusionType, cell, digit));
 				}
 			}
 		}
 
-		return [.. result];
+		return result;
 	}
 
 	private static Mask OnDigitParsing(string str)

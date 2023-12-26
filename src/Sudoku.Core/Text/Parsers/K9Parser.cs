@@ -18,7 +18,7 @@ public sealed partial record K9Parser : CoordinateParser
 	public override Func<string, HouseMask> HouseParser => OnHouseParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Conclusion[]> ConclusionParser => OnConclusionParsing;
+	public override Func<string, ConclusionBag> ConclusionParser => OnConclusionParsing;
 
 	/// <inheritdoc/>
 	public override Func<string, Mask> DigitParser => new RxCyParser().DigitParser;
@@ -103,7 +103,7 @@ public sealed partial record K9Parser : CoordinateParser
 		return result;
 	}
 
-	private Conclusion[] OnConclusionParsing(string str)
+	private ConclusionBag OnConclusionParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -115,7 +115,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		var result = new List<Conclusion>();
+		var result = new ConclusionBag();
 		foreach (var match in matches.Cast<Match>())
 		{
 			if (match.Captures is not [{ Value: var cells }, _, { Value: var equalityOperator }, { Value: var digits }])
@@ -129,12 +129,12 @@ public sealed partial record K9Parser : CoordinateParser
 			{
 				foreach (var digit in digits)
 				{
-					result.Add(new(conclusionType, cell, digit - '1'));
+					result.Add(new Conclusion(conclusionType, cell, digit - '1'));
 				}
 			}
 		}
 
-		return [.. result];
+		return result;
 	}
 
 	private Conjugate[] OnConjugateParsing(string str)
