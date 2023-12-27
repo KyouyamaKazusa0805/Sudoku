@@ -12,7 +12,7 @@ public static class AnalyzerResultEnumerable
 	/// <param name="this">The instance.</param>
 	/// <param name="condition">The condition to be satisfied.</param>
 	/// <returns>An array of <see cref="Step"/> instances.</returns>
-	public static Step[]? Where(this AnalyzerResult @this, Func<Step, bool> condition)
+	public static ReadOnlySpan<Step> Where(this AnalyzerResult @this, Func<Step, bool> condition)
 	{
 		if (@this.Steps is not { } steps)
 		{
@@ -28,7 +28,7 @@ public static class AnalyzerResultEnumerable
 			}
 		}
 
-		return [.. result];
+		return CollectionsMarshal.AsSpan(result);
 	}
 
 	/// <summary>
@@ -40,11 +40,11 @@ public static class AnalyzerResultEnumerable
 	/// The selector to project the <see cref="Step"/> instance into type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-	public static TResult[]? Select<TResult>(this AnalyzerResult @this, Func<Step, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this AnalyzerResult @this, Func<Step, TResult> selector)
 	{
 		if (@this.Steps is not { } steps)
 		{
-			return null;
+			return [];
 		}
 
 		var arr = new TResult[@this.SolvingStepsCount];
@@ -63,7 +63,7 @@ public static class AnalyzerResultEnumerable
 	/// <typeparam name="T">The type of the step you want to get.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>An array of <typeparamref name="T"/> instances.</returns>
-	public static T[] OfType<T>(this AnalyzerResult @this) where T : Step
+	public static ReadOnlySpan<T> OfType<T>(this AnalyzerResult @this) where T : Step
 	{
 		if (@this.Steps is not { } steps)
 		{
@@ -79,6 +79,6 @@ public static class AnalyzerResultEnumerable
 			}
 		}
 
-		return [.. list];
+		return CollectionsMarshal.AsSpan(list);
 	}
 }

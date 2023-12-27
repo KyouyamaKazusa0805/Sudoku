@@ -638,6 +638,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
             <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
         </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.DefaultOptions">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
             <inheritdoc/>
         </member>
@@ -834,12 +839,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions,Sudoku.Text.Converters.CoordinateConverter)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
             <param name="options">The formatting options.</param>
-            <param name="culture">The culture used.</param>
+            <param name="converter">The converter to be used.</param>
             <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.GetEnumerator">

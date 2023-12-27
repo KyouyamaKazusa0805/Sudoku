@@ -4,8 +4,22 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : IAnalyzerResult<Analyzer, AnalyzerResult>, IEnumerable<Step>
+public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
+	IAnalyzerResult<Analyzer, AnalyzerResult>,
+	ICultureFormattable,
+	IEnumerable<Step>
 {
+	/// <summary>
+	/// Indicates the default options.
+	/// </summary>
+	private const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
+		| FormattingOptions.ShowSeparators
+		| FormattingOptions.ShowStepsAfterBottleneck
+		| FormattingOptions.ShowSteps
+		| FormattingOptions.ShowGridAndSolutionCode
+		| FormattingOptions.ShowElapsedTime;
+
+
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids))]
 	public required bool IsSolved { get; init; }
@@ -232,26 +246,23 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString()
-	{
-		var flags = FormattingOptions.None;
-		flags |= FormattingOptions.ShowSeparators;
-		flags |= FormattingOptions.ShowDifficulty;
-		flags |= FormattingOptions.ShowStepsAfterBottleneck;
-		flags |= FormattingOptions.ShowSteps;
-		flags |= FormattingOptions.ShowGridAndSolutionCode;
-		flags |= FormattingOptions.ShowElapsedTime;
+	public override string ToString() => ToString(DefaultOptions, GlobalizedConverter.InvariantCultureConverter);
 
-		return ToString(flags);
-	}
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.InvariantCultureConverter);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(CoordinateConverter converter) => ToString(DefaultOptions, converter);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.
 	/// </summary>
 	/// <param name="options">The formatting options.</param>
-	/// <param name="culture">The culture used.</param>
+	/// <param name="converter">The converter to be used.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(FormattingOptions options, CultureInfo? culture = null)
+	public string ToString(FormattingOptions options, CoordinateConverter converter)
 	{
 		if (this is not
 			{
@@ -270,7 +281,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) : I
 			throw new();
 		}
 
-		culture ??= CultureInfo.CurrentUICulture;
+		var culture = converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 		// Print header.
 		scoped var sb = new StringHandler();
