@@ -15,7 +15,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <summary>
 	/// Indicates the functions that are searchers for sub-types.
 	/// </summary>
-	private static readonly unsafe AnitGurthSymmetricalPlacementModuleSearcherFund[] AntiTypeCheckers = [
+	private static readonly unsafe AnitGurthSymmetricalPlacementModuleSearcherFunc[] AntiTypeCheckers = [
 		&CheckDiagonal_Anti,
 		&CheckAntiDiagonal_Anti,
 		&CheckXAxis_Anti,
