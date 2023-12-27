@@ -57,14 +57,12 @@ public static class PredefinedAnalyzers
 	/// <seealso cref="NormalSubsetStepSearcher"/>
 	public static Analyzer SstsOnly
 		=> Default
-			.WithStepSearchers([new SingleStepSearcher(), new LockedSubsetStepSearcher(), new LockedCandidatesStepSearcher(), new NormalSubsetStepSearcher()])
-			.WithStepSearcherSetters<SingleStepSearcher>(static s =>
-			{
-				s.EnableFullHouse = true;
-				s.EnableLastDigit = true;
-				s.HiddenSinglesInBlockFirst = true;
-				s.UseIttoryuMode = false;
-			})
+			.WithStepSearchers([
+				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = false },
+				new LockedSubsetStepSearcher(),
+				new LockedCandidatesStepSearcher(),
+				new NormalSubsetStepSearcher()
+			])
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 	/// <summary>
@@ -73,24 +71,19 @@ public static class PredefinedAnalyzers
 	public static Analyzer SudokuExplainer
 		=> Default
 			.WithStepSearchers([
-				new SingleStepSearcher(),
+				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = false },
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher(),
 				new NormalFishStepSearcher(),
-				new RegularWingStepSearcher(),
-				new UniqueRectangleStepSearcher(),
+				new RegularWingStepSearcher { MaxSearchingPivotsCount = 3 },
+				new UniqueRectangleStepSearcher { AllowIncompleteUniqueRectangles = false, SearchForExtendedUniqueRectangles = false },
 				new UniqueLoopStepSearcher(),
-				new BivalueUniversalGraveStepSearcher(),
-				new AlignedExclusionStepSearcher(),
+				new BivalueUniversalGraveStepSearcher { SearchExtendedTypes = false },
+				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
 				new NonMultipleChainingStepSearcher(),
 				new MultipleChainingStepSearcher()
 			])
 			.WithAlgorithmLimits(false, false)
-			.WithStepSearcherSetters<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.UseIttoryuMode = false; })
-			.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = false; s.SearchForExtendedUniqueRectangles = false; })
-			.WithStepSearcherSetters<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = false)
-			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 3)
-			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 }
