@@ -92,141 +92,104 @@ file sealed class AnalysisResultDocumentCreator
 	/// </summary>
 	/// <returns>A task that handles the operation, and returns a PDF document.</returns>
 	public async Task<Document> CreateDocumentAsync()
-		=> await Task.Run(
-			() => Document.Create(
-				dc => dc.Page(
-					page =>
+	{
+		try
+		{
+			return await Task.Run(() => Document.Create(dc => dc.Page(page =>
+			{
+				page.Margin(50);
+				page.Header().Element(c => c.Row(row =>
+				{
+					row.RelativeItem().Column(column =>
 					{
-						page.Margin(50);
-						page.Header().Element(
-							c => c
-								.Row(
-									row =>
-									{
-										row.RelativeItem().Column(
-											column =>
-											{
-												column.Item().Text(GetString("AnalyzePage_AnalysisResultReportPdfTitle")).Style(TitleStyle);
-												column.Item()
-													.Text(
-														static text =>
-														{
-															text.Span(GetString("AnalyzePage_GenerateDate")).SemiBold().Style(DefaultStyle);
-															text.Span($"{DateTime.Now:d}").Style(DefaultStyle);
-														}
-													);
-												column.Item()
-													.Text(
-														text =>
-														{
-															text.Span(GetString("AnalyzePage_PuzzleIs")).SemiBold().Style(DefaultStyle);
-															text.Span($"{AnalysisResult.Puzzle:#}").Style(DefaultStyle);
-														}
-													);
-											}
-										);
-									}
-								)
-						);
+						column.Item().Text(GetString("AnalyzePage_AnalysisResultReportPdfTitle")).Style(TitleStyle);
+						column.Item().Text(static text =>
+						{
+							text.Span(GetString("AnalyzePage_GenerateDate")).SemiBold().Style(DefaultStyle);
+							text.Span($"{DateTime.Now:d}").Style(DefaultStyle);
+						});
+						column.Item().Text(text =>
+						{
+							text.Span(GetString("AnalyzePage_PuzzleIs")).SemiBold().Style(DefaultStyle);
+							text.Span($"{AnalysisResult.Puzzle:#}").Style(DefaultStyle);
+						});
+					});
+				}));
 
-						page.Content().Element(
-							c => c
-								.PaddingVertical(40)
-								.Column(
-									column =>
-									{
-										column.Spacing(5);
-										column.Item().Element(
-											c => c
-												.Table(
-													table =>
-													{
-														table.ColumnsDefinition(
-															static columns =>
-															{
-																columns.RelativeColumn();
-																columns.RelativeColumn();
-																columns.ConstantColumn(80);
-																columns.ConstantColumn(80);
-																columns.ConstantColumn(80);
-															}
-														);
+				page.Content().Element(c => c.PaddingVertical(40).Column(column =>
+				{
+					column.Spacing(5);
+					column.Item().Element(c => c.Table(table =>
+					{
+						table.ColumnsDefinition(static columns =>
+						{
+							columns.RelativeColumn();
+							columns.RelativeColumn();
+							columns.ConstantColumn(80);
+							columns.ConstantColumn(80);
+							columns.ConstantColumn(80);
+						});
 
-														table.Header(
-															static header =>
-															{
-																header.Cell().Element(cellStyle).Text(GetString("AnalyzePage_TechniqueOrTechniqueGroupName"));
-																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_TechniqueCount"));
-																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyLevel"));
-																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyTotal"));
-																header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyMax"));
+						table.Header(static header =>
+						{
+							header.Cell().Element(cellStyle).Text(GetString("AnalyzePage_TechniqueOrTechniqueGroupName"));
+							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_TechniqueCount"));
+							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyLevel"));
+							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyTotal"));
+							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyMax"));
 
 
-																static PdfContainer cellStyle(PdfContainer container)
-																	=> container
-																		.DefaultTextStyle(DefaultStyle)
-																		.PaddingVertical(5)
-																		.BorderBottom(1)
-																		.BorderColor(PdfColors.Black);
-															}
-														);
+							static PdfContainer cellStyle(PdfContainer container)
+								=> container
+									.DefaultTextStyle(DefaultStyle)
+									.PaddingVertical(5)
+									.BorderBottom(1)
+									.BorderColor(PdfColors.Black);
+						});
 
-														foreach (var element in SummaryViewBindableSource.CreateListFrom(AnalysisResult))
-														{
-															table.Cell().Element(cellStyle).Text(element.TechniqueName);
-															table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());
-															table.Cell().Element(cellStyle).AlignRight().Text(DifficultyLevelConversion.GetName(element.DifficultyLevel));
-															table.Cell().Element(cellStyle).AlignRight().Text($"{element.TotalDifficulty:0.0}");
-															table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaximumDifficulty:0.0}");
+						foreach (var element in SummaryViewBindableSource.CreateListFrom(AnalysisResult))
+						{
+							table.Cell().Element(cellStyle).Text(element.TechniqueName);
+							table.Cell().Element(cellStyle).AlignRight().Text(element.CountOfSteps.ToString());
+							table.Cell().Element(cellStyle).AlignRight().Text(DifficultyLevelConversion.GetName(element.DifficultyLevel));
+							table.Cell().Element(cellStyle).AlignRight().Text($"{element.TotalDifficulty:0.0}");
+							table.Cell().Element(cellStyle).AlignRight().Text($"{element.MaximumDifficulty:0.0}");
 
 
-															static PdfContainer cellStyle(PdfContainer container)
-																=> container
-																	.DefaultTextStyle(DefaultStyle)
-																	.BorderBottom(1)
-																	.BorderColor(PdfColors.Grey.Lighten2)
-																	.PaddingVertical(5);
-														}
-													}
-												)
-										);
+							static PdfContainer cellStyle(PdfContainer container)
+								=> container
+									.DefaultTextStyle(DefaultStyle)
+									.BorderBottom(1)
+									.BorderColor(PdfColors.Grey.Lighten2)
+									.PaddingVertical(5);
+						}
+					}));
 
-										if (!string.IsNullOrWhiteSpace(Comment))
-										{
-											column.AddComment(Comment);
-										}
-									}
-								)
-						);
+					if (!string.IsNullOrWhiteSpace(Comment))
+					{
+						column.AddComment(Comment);
 					}
-			)
-		)
-	);
+				}));
+			})));
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine(ex);
+			return null!;
+		}
+	}
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
 	public static void AddComment(this ColumnDescriptor @this, string comment)
-		=> @this.Item()
-			.PaddingTop(25)
-			.Element(
-				c => c
-					.Background(PdfColors.Grey.Lighten3)
-					.Padding(10)
-					.Column(
-						column =>
-						{
-							column.Spacing(5);
-							column.Item()
-								.DefaultTextStyle(AnalysisResultDocumentCreator.TitleStyle)
-								.Text(GetString("AnalyzePage_GenerateCommentTitle"));
-							column.Item()
-								.DefaultTextStyle(AnalysisResultDocumentCreator.DefaultStyle)
-								.Text(comment);
-						}
-					)
-			);
+		=> @this.Item().PaddingTop(25).Element(c => c.Background(PdfColors.Grey.Lighten3).Padding(10).Column(column =>
+		{
+			column.Spacing(5);
+			column.Item().DefaultTextStyle(AnalysisResultDocumentCreator.TitleStyle).Text(GetString("AnalyzePage_GenerateCommentTitle"));
+			column.Item().DefaultTextStyle(AnalysisResultDocumentCreator.DefaultStyle).Text(comment);
+		}));
 
 	public static TextStyle SupportChineseCharacters(this TextStyle @this) => @this.Fallback(static f => f.FontFamily("Microsoft YaHei UI"));
 }
