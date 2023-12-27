@@ -1491,7 +1491,6 @@ public partial struct Grid :
 	/// ]]></code>
 	/// </remarks>
 	/// <seealso cref="op_Explicit(string)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(string str)
 	{
 		var containsMultilineLimits = str.Contains("-+-");
