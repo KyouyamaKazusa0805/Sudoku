@@ -23289,6 +23289,7 @@ result ^= expression;
             The found steps describing the changing making the <paramref name="previous"/> to be changed into <paramref name="current"/>.
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the operation is successful.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the previous or current grid is invalid.</exception>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>

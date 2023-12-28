@@ -332,15 +332,15 @@ public partial struct Grid :
 		{
 			lock (PuzzleSolvingSynchronizer)
 			{
-				return Solver.CheckValidity(ToString());
+				return Solver.CheckValidity(ToString("!0"));
 			}
 		}
 #elif SYNC_ROOT_VIA_THREAD_LOCAL
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.Value!.CheckValidity(ToString());
+		get => Solver.Value!.CheckValidity(ToString("!0"));
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.CheckValidity(ToString());
+		get => Solver.CheckValidity(ToString("!0"));
 #endif
 	}
 
@@ -1208,7 +1208,7 @@ public partial struct Grid :
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="ApplyAll(Conclusion[])" path="/summary"/>
+	/// <inheritdoc cref="ApplyAll(ReadOnlySpan{Conclusion})" path="/summary"/>
 	/// </summary>
 	/// <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1218,7 +1218,7 @@ public partial struct Grid :
 	/// Try to apply the specified array of conclusions.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be applied.</param>
-	public void ApplyAll(Conclusion[] conclusions)
+	public void ApplyAll(scoped ReadOnlySpan<Conclusion> conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{
@@ -1254,6 +1254,21 @@ public partial struct Grid :
 		newMask = mask;
 
 		((ValueChangedHandler)ValueChanged)(ref this, cell, originalMask, newMask, -1);
+	}
+
+	/// <summary>
+	/// Replace the specified cell with the specified digit.
+	/// </summary>
+	/// <param name="cell">The cell to be set.</param>
+	/// <param name="digit">The digit to be set.</param>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="digit"/> is invalid (e.g. -1).</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ReplaceDigit(Cell cell, Digit digit)
+	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(digit is >= 0 and < 9, true);
+
+		SetDigit(cell, -1);
+		SetDigit(cell, digit);
 	}
 
 	/// <summary>

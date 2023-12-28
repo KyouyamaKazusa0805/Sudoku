@@ -15,6 +15,7 @@ public static class OperationRecognition
 	/// The found steps describing the changing making the <paramref name="previous"/> to be changed into <paramref name="current"/>.
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating whether the operation is successful.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the previous or current grid is invalid.</exception>
 	public static bool TryGetDiffTechnique(
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
@@ -22,15 +23,20 @@ public static class OperationRecognition
 		out ReadOnlySpan<Step> steps
 	)
 	{
+		if (!previous.IsValid || !current.IsValid)
+		{
+			throw new InvalidOperationException("Cannot analyze for grids with wrong candidates or values.");
+		}
+
 		if (!CandidateDifference.TryGetDifference(in previous, in current, out var differentCandidates, out var differenceKind)
-			|| differenceKind is not (OperationKind.Assignment or OperationKind.Elimination))
+			|| differenceKind is not (OperationKind.Assignment or OperationKind.Replacement or OperationKind.Elimination))
 		{
 			goto ReturnFalse;
 		}
 
 		var conclusions = new ConclusionBag(
 			from candidate in differentCandidates
-			select new Conclusion(differenceKind == OperationKind.Assignment ? Assignment : Elimination, candidate)
+			select new Conclusion(differenceKind is OperationKind.Assignment or OperationKind.Replacement ? Assignment : Elimination, candidate)
 		);
 
 		// Merge conclusion to be matched.

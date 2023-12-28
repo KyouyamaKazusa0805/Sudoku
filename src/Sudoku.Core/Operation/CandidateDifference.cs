@@ -33,6 +33,7 @@ public static class CandidateDifference
 		// If they hold only one different value cell, it must be an assignment;
 		// otherwise, an appending operation or elimination.
 		var assignment = -1;
+		var isReplacement = false;
 		var eliminations = CandidateMap.Empty;
 		var appending = CandidateMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
@@ -60,12 +61,17 @@ public static class CandidateDifference
 							continue;
 						}
 
-						// If here, we can know that two state of candidates are strictly different, e.g. [2, 4] and [3, 5]
-						// because the previous branch has checked the equality of candidates: 'previous[cell] == current[cell]'.
-						// Therefore, invalid. Just return false.
+						// Special state: candidate replacing.
 						case 0:
 						{
+#if false
+							// If here, we can know that two state of candidates are strictly different, e.g. [2, 4] and [3, 5]
+							// because the previous branch has checked the equality of candidates: 'previous[cell] == current[cell]'.
+							// Therefore, invalid. Just return false.
 							goto ReturnNull;
+#else
+							continue;
+#endif
 						}
 
 						// Possible appending.
@@ -80,17 +86,20 @@ public static class CandidateDifference
 					}
 					break;
 				}
+				case (CellState.Modifiable, CellState.Modifiable):
+				{
+					// A replacement.
+					var previousSetDigit = previous.GetDigit(cell);
+					var currentSetDigit = current.GetDigit(cell);
+					assignment = cell * 9 + currentSetDigit;
+					isReplacement = true;
+					break;
+				}
 				case (CellState.Empty, CellState.Modifiable):
 				{
 					// An assignment.
-					// We should check it carefully because an assignment may also contain extra removal:
-					// If a conclusion is an assignment, we will also remove the candidates of the same digit from its peer cells.
 					var setDigit = current.GetDigit(cell);
-					if ((previous.GetCandidates(cell) >> setDigit & 1) == 0
-						|| !!eliminations && (
-							eliminations.Digits != (Mask)(1 << setDigit)
-							|| eliminations.Cells is var eliminatedCells && (PeersMap[cell] & eliminatedCells) != eliminatedCells
-						))
+					if (assignment != -1)
 					{
 						goto ReturnNull;
 					}
@@ -107,24 +116,24 @@ public static class CandidateDifference
 		}
 
 		// Special handling.
-		if (eliminations.Cells == current.EmptyCells)
+		if (eliminations.Cells == current.EmptyCells && !!current.EmptyCells)
 		{
 			differentCandidates = eliminations;
-			differenceKind = OperationKind.InitialCandidatesMarking;
+			differenceKind = OperationKind.InitialPencilmarking;
 			return true;
 		}
 
-		differenceKind = assignment != -1
-			? OperationKind.Assignment
-			: appending
-				? OperationKind.Appending
-				: eliminations
-					? OperationKind.Elimination
-					: OperationKind.None;
+		differenceKind = isReplacement
+			? OperationKind.Replacement
+			: assignment != -1
+				? OperationKind.Assignment
+				: appending
+					? OperationKind.Appending
+					: eliminations ? OperationKind.Elimination : OperationKind.None;
 		differentCandidates = differenceKind switch
 		{
 			OperationKind.None => [],
-			OperationKind.Assignment => [assignment],
+			OperationKind.Assignment or OperationKind.Replacement => [assignment],
 			OperationKind.Appending => appending,
 			OperationKind.Elimination => eliminations
 		};
