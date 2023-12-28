@@ -7592,6 +7592,15 @@ if (student is (name: var name, age: >= 18))
             The generated field declaration for parameter <c>oneCount</c>.
             </summary>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskCombinationsGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
             <summary>
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.

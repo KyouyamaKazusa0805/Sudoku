@@ -5,10 +5,10 @@ namespace Sudoku.Runtime.MaskServices;
 /// </summary>
 /// <param name="bitCount">Indicates the number of bits.</param>
 /// <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
-public readonly ref partial struct MaskCombinationsGenerator(
-	[Data(DataMemberKinds.Field)] int bitCount,
-	[Data(DataMemberKinds.Field)] int oneCount
-)
+[Equals]
+[GetHashCode]
+[ToString]
+public readonly ref partial struct MaskCombinationsGenerator([Data(DataMemberKinds.Field)] int bitCount, [Data(DataMemberKinds.Field)] int oneCount)
 {
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
