@@ -32,7 +32,7 @@
 
 		<Grid ColumnDefinitions="Auto,*">
 			<wc:PropertySizer
-				Grid.Column="0" Minimum="200" Maximum="400" Binding="{x:Bind MainNavigationView.OpenPaneLength,Mode=TwoWay}"
+				Grid.Column="0" Minimum="60" Maximum="400" Binding="{x:Bind MainNavigationView.OpenPaneLength,Mode=TwoWay}"
 				Visibility="{x:Bind MainNavigationView.IsPaneOpen,Mode=TwoWay,Converter={StaticResource BooleanVisibilityConverter}}" />
 			<Frame x:Name="NavigationViewFrame" x:FieldModifier="internal" Grid.Column="1" />
 		</Grid>
