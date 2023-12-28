@@ -125,13 +125,6 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			{
 				case { } pivot when PopCount((uint)digitsMask) >= 3:
 				{
-#if false
-					if (CheckPairType1(accumulator, in grid, ref context, onlyFindOne, pattern, pivot) is { } stepPairType1)
-					{
-						return stepPairType1;
-					}
-#endif
-
 					if (CheckTriple(accumulator, in grid, ref context, onlyFindOne, in pattern, digitsMask, pivot) is { } stepTriple)
 					{
 						return stepTriple;
@@ -147,117 +140,6 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					break;
-				}
-			}
-		}
-
-		return null;
-	}
-
-	/// <summary>
-	/// Checks for firework pair type 1 steps.
-	/// </summary>
-	private FireworkPairType1Step? CheckPairType1(
-		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		bool onlyFindOne,
-		scoped ref readonly Pattern pattern,
-		Cell pivot
-	)
-	{
-		var map = pattern.Map;
-		var nonPivotCells = map - pivot;
-		var cell1 = nonPivotCells[0];
-		var cell2 = nonPivotCells[1];
-		var satisfiedDigitsMask = GetFireworkDigits(cell1, cell2, pivot, in grid, out var house1CellsExcluded, out var house2CellsExcluded);
-		if (PopCount((uint)satisfiedDigitsMask) < 2)
-		{
-			// No possible digits found as a firework digit.
-			return null;
-		}
-
-		var elimCell = ((PeersMap[cell1] & PeersMap[cell2]) - pivot)[0];
-		foreach (var digits in satisfiedDigitsMask.GetAllSets().GetSubsets(2))
-		{
-			var currentDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1]);
-			var cell1TheOtherLine = cell1.ToHouseIndex((CellsMap[cell1] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
-			var cell2TheOtherLine = cell2.ToHouseIndex((CellsMap[cell2] + pivot).CoveredLine.ToHouseType() == HouseType.Row ? HouseType.Column : HouseType.Row);
-
-			foreach (var extraCell1 in (HousesMap[cell1TheOtherLine] & EmptyCells) - cell1)
-			{
-				foreach (var extraCell2 in (HousesMap[cell2TheOtherLine] & EmptyCells) - cell2 - extraCell1)
-				{
-					if (grid.GetCandidates(extraCell1) != currentDigitsMask || grid.GetCandidates(extraCell2) != currentDigitsMask)
-					{
-						continue;
-					}
-
-					// Firework pair type 1 found.
-					var elimMap = PeersMap[extraCell1] & PeersMap[extraCell2] & EmptyCells;
-					if (!elimMap)
-					{
-						// No elimination cells.
-						continue;
-					}
-
-					var conclusions = new List<Conclusion>(2);
-					if (CandidatesMap[digits[0]].Contains(elimCell))
-					{
-						conclusions.Add(new(Elimination, elimCell * 9 + digits[0]));
-					}
-					if (CandidatesMap[digits[1]].Contains(elimCell))
-					{
-						conclusions.Add(new(Elimination, elimCell * 9 + digits[1]));
-					}
-					if (conclusions.Count == 0)
-					{
-						// No eliminations found.
-						continue;
-					}
-
-					var candidateOffsets = new List<CandidateViewNode>(10);
-					foreach (var cell in map)
-					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & currentDigitsMask))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
-						}
-					}
-					foreach (var digit in grid.GetCandidates(extraCell1))
-					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, extraCell1 * 9 + digit));
-					}
-					foreach (var digit in grid.GetCandidates(extraCell2))
-					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, extraCell2 * 9 + digit));
-					}
-
-					var cellOffsets = new List<CellViewNode>();
-					foreach (var cell in house1CellsExcluded)
-					{
-						cellOffsets.Add(new(WellKnownColorIdentifier.Elimination, cell));
-					}
-					foreach (var cell in house2CellsExcluded)
-					{
-						cellOffsets.Add(new(WellKnownColorIdentifier.Elimination, cell));
-					}
-
-					var step = new FireworkPairType1Step(
-						[.. conclusions],
-						[[.. candidateOffsets], [.. candidateOffsets, .. cellOffsets]],
-						context.PredefinedOptions,
-						in map,
-						currentDigitsMask,
-						extraCell1,
-						extraCell2
-					);
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator.Add(step);
 				}
 			}
 		}

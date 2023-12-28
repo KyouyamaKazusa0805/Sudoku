@@ -8709,11 +8709,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckPairType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern@,System.Int32)">
-            <summary>
-            Checks for firework pair type 1 steps.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.CheckTriple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,Sudoku.Analytics.StepSearchers.FireworkStepSearcher.Pattern@,System.Int16,System.Int32)">
             <summary>
             Checks for firework triple steps.
