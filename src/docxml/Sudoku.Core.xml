@@ -8415,7 +8415,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Converters.MultipleLineGridConverter.Default">
             <summary>
-            Indicates the default instance. The property set are:
+            Indicates the default instance. The properties set are:
             <list type="bullet">
             <item><see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.Placeholder"/>: <c>'.'</c></item>
             <item><see cref="P:Sudoku.Text.Converters.MultipleLineGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
@@ -8588,6 +8588,15 @@ if (student is (name: var name, age: >= 18))
             <para>The default value is <see langword="false"/>.</para>
             </summary>
         </member>
+        <member name="F:Sudoku.Text.Converters.PencilmarkingGridConverter.Default">
+            <summary>
+            Indicates the default instance. The properties set are:
+            <list type="bullet">
+            <item><see cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.SubtleGridLines"/>: <see langword="true"/></item>
+            <item><see cref="P:Sudoku.Text.Converters.PencilmarkingGridConverter.TreatValueAsGiven"/>: <see langword="false"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="P:Sudoku.Text.Converters.PencilmarkingGridConverter.Converter">
             <inheritdoc/>
         </member>
@@ -8718,7 +8727,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Converters.SukakuGridConverter.Default">
             <summary>
-            Indicates the default instance. The property set are:
+            Indicates the default instance. The properties set are:
             <list type="bullet">
             <item><see cref="P:Sudoku.Text.Converters.SukakuGridConverter.Placeholder"/>: <c>'.'</c></item>
             <item><see cref="P:Sudoku.Text.Converters.SukakuGridConverter.Multiline"/>: <see langword="false"/></item>
@@ -8748,7 +8757,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Converters.SusserEliminationsGridConverter.Default">
             <summary>
-            Indicates the default instance. The property set are:
+            Indicates the default instance. The properties set are:
             <list type="bullet">
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
@@ -8888,7 +8897,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Converters.SusserGridConverter.Default">
             <summary>
-            Indicates the default instance. The property set are:
+            Indicates the default instance. The properties set are:
             <list type="bullet">
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithCandidates"/>: <see langword="false"/></item>
@@ -8959,7 +8968,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Default">
             <summary>
-            Indicates the default instance. The property set are:
+            Indicates the default instance. The properties set are:
             <list type="bullet">
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
             <item><see cref="P:Sudoku.Text.Converters.SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>

@@ -22,7 +22,7 @@ public sealed partial record SukakuGridConverter(bool Multiline = false) : IConc
 
 
 	/// <summary>
-	/// Indicates the default instance. The property set are:
+	/// Indicates the default instance. The properties set are:
 	/// <list type="bullet">
 	/// <item><see cref="Placeholder"/>: <c>'.'</c></item>
 	/// <item><see cref="Multiline"/>: <see langword="false"/></item>

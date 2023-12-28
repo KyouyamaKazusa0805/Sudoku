@@ -62,7 +62,7 @@ public partial record SusserGridConverter(
 
 
 	/// <summary>
-	/// Indicates the default instance. The property set are:
+	/// Indicates the default instance. The properties set are:
 	/// <list type="bullet">
 	/// <item><see cref="Placeholder"/>: <c>'.'</c></item>
 	/// <item><see cref="WithCandidates"/>: <see langword="false"/></item>

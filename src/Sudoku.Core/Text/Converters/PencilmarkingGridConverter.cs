@@ -41,6 +41,16 @@ namespace Sudoku.Text.Converters;
 /// </param>
 public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, bool? TreatValueAsGiven = false) : IConceptConverter<Grid>
 {
+	/// <summary>
+	/// Indicates the default instance. The properties set are:
+	/// <list type="bullet">
+	/// <item><see cref="SubtleGridLines"/>: <see langword="true"/></item>
+	/// <item><see cref="TreatValueAsGiven"/>: <see langword="false"/></item>
+	/// </list>
+	/// </summary>
+	public static readonly PencilmarkingGridConverter Default = new();
+
+
 	/// <inheritdoc/>
 	public unsafe FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>

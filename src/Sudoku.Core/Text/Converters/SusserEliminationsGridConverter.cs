@@ -6,7 +6,7 @@ namespace Sudoku.Text.Converters;
 public sealed partial record SusserEliminationsGridConverter : SusserGridConverter
 {
 	/// <summary>
-	/// Indicates the default instance. The property set are:
+	/// Indicates the default instance. The properties set are:
 	/// <list type="bullet">
 	/// <item><see cref="SusserGridConverter.Placeholder"/>: <c>'.'</c></item>
 	/// <item><see cref="SusserGridConverter.WithModifiables"/>: <see langword="true"/></item>
