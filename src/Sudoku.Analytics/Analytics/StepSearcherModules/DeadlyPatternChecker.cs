@@ -47,13 +47,13 @@ public static class DeadlyPatternChecker
 		// Step 1: Get all solutions for that pattern.
 		var playground = grid;
 		var solutions = new List<Grid>();
-		dfsSearching(ref playground, in cellsUsed, solutions, 0);
+		dfs(ref playground, in cellsUsed, solutions, 0);
 		if (solutions.Count == 0)
 		{
 			return false;
 		}
 
-		foreach (ref var solution in solutions.ToArray().AsSpan())
+		foreach (ref var solution in CollectionsMarshal.AsSpan(solutions))
 		{
 			// Step 2: Make complete pattern for each solution.
 			foreach (var cell in cellsUsed)
@@ -72,7 +72,7 @@ public static class DeadlyPatternChecker
 			// Step 3: Try to get solutions for that pattern, then determine whether any solutions to the current state exists.
 			var tempSolutions = new List<Grid>();
 			var playgroundCopied = solution;
-			dfsSearching(ref playgroundCopied, in cellsUsed, tempSolutions, 0);
+			dfs(ref playgroundCopied, in cellsUsed, tempSolutions, 0);
 			if (tempSolutions.Count == 0)
 			{
 				return false;
@@ -83,7 +83,7 @@ public static class DeadlyPatternChecker
 		return true;
 
 
-		static void dfsSearching(scoped ref Grid grid, scoped ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfs(scoped ref Grid grid, scoped ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
@@ -93,7 +93,7 @@ public static class DeadlyPatternChecker
 
 			if (!cellsRange.Contains(currentCell))
 			{
-				dfsSearching(ref grid, in cellsRange, solutions, currentCell + 1);
+				dfs(ref grid, in cellsRange, solutions, currentCell + 1);
 			}
 			else
 			{
@@ -106,7 +106,7 @@ public static class DeadlyPatternChecker
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | (Mask)(1 << digit));
 					if (isValid(in grid, r, c))
 					{
-						dfsSearching(ref grid, in cellsRange, solutions, currentCell + 1);
+						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
 					}
 				}
 
