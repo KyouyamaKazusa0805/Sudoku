@@ -56,35 +56,58 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
 [DependencyProperty<CoordinateType>("ConceptNotationBasedKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the based type for displaying a concept notation.")]
 [DependencyProperty<Color>("GivenFontColor")]
+[DependencyProperty<Color>("GivenFontColor_Dark")]
 [DependencyProperty<Color>("ModifiableFontColor")]
+[DependencyProperty<Color>("ModifiableFontColor_Dark")]
 [DependencyProperty<Color>("PencilmarkFontColor")]
+[DependencyProperty<Color>("PencilmarkFontColor_Dark")]
 [DependencyProperty<Color>("BabaGroupingFontColor")]
+[DependencyProperty<Color>("BabaGroupingFontColor_Dark")]
 [DependencyProperty<Color>("CoordinateLabelFontColor")]
+[DependencyProperty<Color>("CoordinateLabelFontColor_Dark")]
 [DependencyProperty<Color>("DeltaValueColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
+[DependencyProperty<Color>("DeltaValueColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor")]
 [DependencyProperty<Color>("DeltaPencilmarkColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
+[DependencyProperty<Color>("DeltaPencilmarkColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor")]
 [DependencyProperty<Color>("SudokuPaneBorderColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
+[DependencyProperty<Color>("SudokuPaneBorderColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.BorderColor")]
 [DependencyProperty<Color>("CursorBackgroundColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor")]
+[DependencyProperty<Color>("CursorBackgroundColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor")]
 [DependencyProperty<Color>("ChainColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.LinkColor")]
+[DependencyProperty<Color>("ChainColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.LinkColor")]
 [DependencyProperty<Color>("NormalColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.NormalColor")]
+[DependencyProperty<Color>("NormalColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.NormalColor")]
 [DependencyProperty<Color>("AssignmentColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentColor")]
+[DependencyProperty<Color>("AssignmentColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentColor")]
 [DependencyProperty<Color>("OverlappedAssignmentColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor")]
+[DependencyProperty<Color>("OverlappedAssignmentColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor")]
 [DependencyProperty<Color>("EliminationColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationColor")]
+[DependencyProperty<Color>("EliminationColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationColor")]
 [DependencyProperty<Color>("CannibalismColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CannibalismColor")]
+[DependencyProperty<Color>("CannibalismColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CannibalismColor")]
 [DependencyProperty<Color>("ExofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
+[DependencyProperty<Color>("ExofinColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
 [DependencyProperty<Color>("EndofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
+[DependencyProperty<Color>("EndofinColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
 [DependencyProperty<Color>("HouseCompletedFeedbackColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor")]
+[DependencyProperty<Color>("HouseCompletedFeedbackColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
 [DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
 [DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
 [DependencyProperty<Grid>("LastGridPuzzle", DocSummary = "Indicates the last opened puzzle to be loaded or saved.")]
-[DependencyProperty<TechniqueSet>("GeneratorSelectedTechniques", DocSummary = "Indicates the selected techniques used by generator module.")]
 [DependencyProperty<UserDefinedRenderable?>("LastRenderable", DocSummary = "Indicates the renderable items produced by last opened puzzle.")]
+[DependencyProperty<TechniqueSet>("GeneratorSelectedTechniques", DocSummary = "Indicates the selected techniques used by generator module.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
+[DependencyProperty<ColorPalette>("AuxiliaryColors_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
+[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
 [DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
+[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds")]
 [DependencyProperty<ColorPalette>("UserDefinedColorPalette", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette")]
+[DependencyProperty<ColorPalette>("UserDefinedColorPalette_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette")]
 [DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
+[DependencyProperty<ColorPalette>("AlmostLockedSetsColors_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors")]
 public sealed partial class UIPreferenceGroup : PreferenceGroup
 {
 	[Default]
@@ -118,55 +141,109 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color GivenFontColorDefaultValue = Colors.Black;
 
 	[Default]
+	private static readonly Color GivenFontColor_DarkDefaultValue = Colors.White;
+
+	[Default]
 	private static readonly Color ModifiableFontColorDefaultValue = Colors.Blue;
+
+	[Default]
+	private static readonly Color ModifiableFontColor_DarkDefaultValue = Color.FromArgb(255, 86, 156, 214);
 
 	[Default]
 	private static readonly Color PencilmarkFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
 
 	[Default]
+	private static readonly Color PencilmarkFontColor_DarkDefaultValue = Color.FromArgb(255, 155, 155, 155);
+
+	[Default]
 	private static readonly Color BabaGroupingFontColorDefaultValue = Colors.Red;
+
+	[Default]
+	private static readonly Color BabaGroupingFontColor_DarkDefaultValue = Colors.Red;
 
 	[Default]
 	private static readonly Color CoordinateLabelFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
 
 	[Default]
+	private static readonly Color CoordinateLabelFontColor_DarkDefaultValue = Color.FromArgb(255, 155, 155, 155);
+
+	[Default]
 	private static readonly Color DeltaValueColorDefaultValue = Colors.Red;
+
+	[Default]
+	private static readonly Color DeltaValueColor_DarkDefaultValue = Colors.Red;
 
 	[Default]
 	private static readonly Color DeltaPencilmarkColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
 
 	[Default]
+	private static readonly Color DeltaPencilmarkColor_DarkDefaultValue = Colors.Magenta;
+
+	[Default]
 	private static readonly Color SudokuPaneBorderColorDefaultValue = Colors.Black;
+
+	[Default]
+	private static readonly Color SudokuPaneBorderColor_DarkDefaultValue = Colors.White;
 
 	[Default]
 	private static readonly Color CursorBackgroundColorDefaultValue = Colors.Blue with { A = 32 };
 
 	[Default]
+	private static readonly Color CursorBackgroundColor_DarkDefaultValue = Color.FromArgb(32, 86, 156, 214);
+
+	[Default]
 	private static readonly Color ChainColorDefaultValue = Colors.Red;
+
+	[Default]
+	private static readonly Color ChainColor_DarkDefaultValue = Colors.Red;
 
 	[Default]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
 	[Default]
+	private static readonly Color NormalColor_DarkDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[Default]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
+
+	[Default]
+	private static readonly Color AssignmentColor_DarkDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
 	[Default]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
 
 	[Default]
+	private static readonly Color OverlappedAssignmentColor_DarkDefaultValue = Color.FromArgb(255, 0, 255, 204);
+
+	[Default]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
+
+	[Default]
+	private static readonly Color EliminationColor_DarkDefaultValue = Color.FromArgb(255, 255, 118, 132);
 
 	[Default]
 	private static readonly Color CannibalismColorDefaultValue = Color.FromArgb(255, 235, 0, 0);
 
 	[Default]
+	private static readonly Color CannibalismColor_DarkDefaultValue = Color.FromArgb(255, 235, 0, 0);
+
+	[Default]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
+
+	[Default]
+	private static readonly Color ExofinColor_DarkDefaultValue = Color.FromArgb(255, 127, 187, 255);
 
 	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
 	[Default]
+	private static readonly Color EndofinColor_DarkDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[Default]
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
+
+	[Default]
+	private static readonly Color HouseCompletedFeedbackColor_DarkDefaultValue = Colors.DarkMagenta;
 
 	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
@@ -194,7 +271,23 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	];
 
 	[Default]
+	private static readonly ColorPalette AuxiliaryColors_DarkDefaultValue = [
+		Color.FromArgb(255, 255, 192, 89),
+		Color.FromArgb(255, 127, 187, 255),
+		Color.FromArgb(255, 216, 178, 255)
+	];
+
+	[Default]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = [
+		Color.FromArgb(255, 255, 203, 203),
+		Color.FromArgb(255, 178, 223, 223),
+		Color.FromArgb(255, 252, 220, 165),
+		Color.FromArgb(255, 255, 255, 150),
+		Color.FromArgb(255, 247, 222, 143)
+	];
+
+	[Default]
+	private static readonly ColorPalette AlmostLockedSetsColors_DarkDefaultValue = [
 		Color.FromArgb(255, 255, 203, 203),
 		Color.FromArgb(255, 178, 223, 223),
 		Color.FromArgb(255, 252, 220, 165),
@@ -213,6 +306,16 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	];
 
 	[Default]
+	private static readonly ColorPalette DifficultyLevelForegrounds_DarkDefaultValue = [
+		Color.FromArgb(255, 0, 51, 204),
+		Color.FromArgb(255, 0, 102, 0),
+		Color.FromArgb(255, 102, 51, 0),
+		Color.FromArgb(255, 102, 51, 0),
+		Color.FromArgb(255, 102, 0, 0),
+		Colors.White
+	];
+
+	[Default]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = [
 		Color.FromArgb(255, 204, 204, 255),
 		Color.FromArgb(255, 100, 255, 100),
@@ -223,7 +326,36 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	];
 
 	[Default]
+	private static readonly ColorPalette DifficultyLevelBackgrounds_DarkDefaultValue = [
+		Color.FromArgb(255, 204, 204, 255),
+		Color.FromArgb(255, 100, 255, 100),
+		Color.FromArgb(255, 255, 255, 100),
+		Color.FromArgb(255, 255, 150, 80),
+		Color.FromArgb(255, 255, 100, 100),
+		Color.FromArgb(255, 220, 220, 220)
+	];
+
+	[Default]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = [
+		Color.FromArgb(255, 63, 218, 101),
+		Color.FromArgb(255, 255, 192, 89),
+		Color.FromArgb(255, 127, 187, 255),
+		Color.FromArgb(255, 216, 178, 255),
+		Color.FromArgb(255, 197, 232, 140),
+		Color.FromArgb(255, 255, 203, 203),
+		Color.FromArgb(255, 178, 223, 223),
+		Color.FromArgb(255, 252, 220, 165),
+		Color.FromArgb(255, 255, 255, 150),
+		Color.FromArgb(255, 247, 222, 143),
+		Color.FromArgb(255, 220, 212, 252),
+		Color.FromArgb(255, 255, 118, 132),
+		Color.FromArgb(255, 206, 251, 237),
+		Color.FromArgb(255, 215, 255, 215),
+		Color.FromArgb(255, 192, 192, 192)
+	];
+
+	[Default]
+	private static readonly ColorPalette UserDefinedColorPalette_DarkDefaultValue = [
 		Color.FromArgb(255, 63, 218, 101),
 		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),

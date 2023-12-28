@@ -6,9 +6,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:SudokuPane}" IsTabStop="True" AllowDrop="True"
-	PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver" Drop="UserControl_DropAsync" KeyDown="UserControl_KeyDown"
-	PointerWheelChanged="UserControl_PointerWheelChanged">
+	IsTabStop="True" AllowDrop="True" mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
+	ActualThemeChanged="UserControl_ActualThemeChanged" PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver"
+	Drop="UserControl_DropAsync" KeyDown="UserControl_KeyDown" PointerWheelChanged="UserControl_PointerWheelChanged">
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>
 		<Thickness x:Key="ColumnLinesBorderThickness">0,0,1,0</Thickness>

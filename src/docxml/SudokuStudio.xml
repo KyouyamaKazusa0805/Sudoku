@@ -1837,11 +1837,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty">
             <summary>
@@ -1849,11 +1861,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty">
             <summary>
@@ -1861,11 +1885,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColorProperty">
             <summary>
@@ -1873,11 +1909,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColorProperty">
             <summary>
@@ -1885,11 +1933,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ChainColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.NormalColorProperty">
             <summary>
@@ -1897,11 +1957,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColorProperty">
             <summary>
@@ -1909,11 +1981,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColorProperty">
             <summary>
@@ -1921,11 +2005,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColorProperty">
             <summary>
@@ -1933,11 +2029,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyleProperty">
             <summary>
@@ -1969,17 +2077,17 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniquesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderableProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniquesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColorsProperty">
             <summary>
@@ -1987,11 +2095,23 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegroundsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgroundsProperty">
             <summary>
@@ -1999,17 +2119,35 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPaletteProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColorsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
@@ -2258,11 +2396,23 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty" />
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_Dark">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_DarkProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_DarkProperty" />
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_Dark">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_DarkProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_DarkProperty" />
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor">
             <summary>
@@ -2270,11 +2420,23 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty" />
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_Dark">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_DarkProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_DarkProperty" />
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor">
             <summary>
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_Dark">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_DarkProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_DarkProperty" />
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor">
             <summary>
@@ -2282,43 +2444,88 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty" />
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_Dark">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_DarkProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_DarkProperty" />
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
@@ -2338,29 +2545,44 @@
             Indicates the last opened puzzle to be loaded or saved.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques">
-            <summary>
-            Indicates the selected techniques used by generator module.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
             <summary>
             Indicates the renderable items produced by last opened puzzle.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques">
+            <summary>
+            Indicates the selected techniques used by generator module.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
         </member>
         <member name="T:SudokuStudio.Configuration.UserDefinedRenderable">
@@ -10655,6 +10877,222 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BorderColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.LinkColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.NormalColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BorderColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.LinkColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.NormalColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>.
@@ -10744,6 +11182,66 @@ if (student is (name: var name, age: >= 18))
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_LightProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Light"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Light"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Dark"/>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
             <summary>
@@ -10968,6 +11466,186 @@ if (student is (name: var name, age: >= 18))
             Indicates the feedback color when a house is completed.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Light">
+            <summary>
+            Indicates the given color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Light">
+            <summary>
+            Indicates the modifiable color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Light">
+            <summary>
+            Indicates the pencilmark color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Light">
+            <summary>
+            Indicates the coordinate label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Light">
+            <summary>
+            Indicates the baba group label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Light">
+            <summary>
+            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Light">
+            <summary>
+            Indicates the color that is used for displaying cell digits that are wrongly filled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Light">
+            <summary>
+            Indicates the border color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Light">
+            <summary>
+            Indicates the cursor background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Light">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Light">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Light">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Light">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Light">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Light">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Light">
+            <summary>
+            Indicates the exofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Light">
+            <summary>
+            Indicates the endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Light">
+            <summary>
+            Indicates the feedback color when a house is completed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor_Dark">
+            <summary>
+            Indicates the given color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor_Dark">
+            <summary>
+            Indicates the modifiable color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor_Dark">
+            <summary>
+            Indicates the pencilmark color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor_Dark">
+            <summary>
+            Indicates the coordinate label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor_Dark">
+            <summary>
+            Indicates the baba group label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor_Dark">
+            <summary>
+            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor_Dark">
+            <summary>
+            Indicates the color that is used for displaying cell digits that are wrongly filled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor_Dark">
+            <summary>
+            Indicates the border color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor_Dark">
+            <summary>
+            Indicates the cursor background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor_Dark">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor_Dark">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor_Dark">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor_Dark">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor_Dark">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor_Dark">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor_Dark">
+            <summary>
+            Indicates the exofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor_Dark">
+            <summary>
+            Indicates the endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor_Dark">
+            <summary>
+            Indicates the feedback color when a house is completed.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
             <summary>
             Indicates the dash style of the strong links.
@@ -11039,6 +11717,56 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors">
+            <summary>
+            Indicates the colors applied to technique structure Almost Locked Sets.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Light">
+            <summary>
+            Indicates the auxiliary colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Light">
+            <summary>
+            Indicates the foreground colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Light">
+            <summary>
+            Indicates the background colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Light">
+            <summary>
+            Indicates the user-defined colors used by customized views.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Light">
+            <summary>
+            Indicates the colors applied to technique structure Almost Locked Sets.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors_Dark">
+            <summary>
+            Indicates the auxiliary colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds_Dark">
+            <summary>
+            Indicates the foreground colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds_Dark">
+            <summary>
+            Indicates the background colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette_Dark">
+            <summary>
+            Indicates the user-defined colors used by customized views.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors_Dark">
             <summary>
             Indicates the colors applied to technique structure Almost Locked Sets.
             </summary>
