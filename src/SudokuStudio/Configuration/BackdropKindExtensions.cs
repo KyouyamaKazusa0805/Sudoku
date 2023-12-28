@@ -19,6 +19,10 @@ public static class BackdropKindExtensions
 			BackdropKind.Mica => new MicaBackdrop(),
 			BackdropKind.MicaDeep => new MicaBackdrop { Kind = MicaKind.BaseAlt },
 			BackdropKind.Acrylic => new DesktopAcrylicBackdrop(),
+#if false
+			BackdropKind.AcrylicThin => new AcrylicBackdrop { Kind = DesktopAcrylicKind.Thin },
+			BackdropKind.Transparent => new TransparentBackdrop(),
+#endif
 			_ => throw new NotSupportedException()
 		};
 }

@@ -105,6 +105,7 @@ global using Windows.UI.ViewManagement;
 global using Windows.Win32;
 global using WinRT;
 global using WinRT.Interop;
+global using WinUICommunity;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.ConclusionType;
