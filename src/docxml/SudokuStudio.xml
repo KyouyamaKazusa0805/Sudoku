@@ -14072,5 +14072,25 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="T:Happy">
+            <summary>
+            Provides with the word "Happy".
+            </summary>
+        </member>
+        <member name="T:Happy.New">
+            <summary>
+            Provides with the word "New".
+            </summary>
+        </member>
+        <member name="T:Happy.New.Year">
+            <summary>
+            Provides with the word "Year".
+            </summary>
+        </member>
+        <member name="M:Happy.New.Year.PrintGreetingMessageForYou">
+            <summary>
+            To print a greeting message!
+            </summary>
+        </member>
     </members>
 </doc>

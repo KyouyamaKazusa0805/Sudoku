@@ -112,6 +112,7 @@ global using static Sudoku.SolutionWideReadOnlyFields;
 global using static SudokuStudio.ProjectWideConstants;
 global using static SudokuStudio.Rendering.RenderableFactory;
 global using static SudokuStudio.Strings.StringsAccessor;
+global using __2024__ = Happy.New.Year;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using TreeView = Microsoft.UI.Xaml.Controls.TreeView;
 global using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
