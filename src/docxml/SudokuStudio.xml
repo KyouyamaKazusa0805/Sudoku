@@ -13963,20 +13963,6 @@ if (student is (name: var name, age: >= 18))
             <para><see href="https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdpiforwindow#">Read more on docs.microsoft.com</see>.</para>
             </remarks>
         </member>
-        <member name="T:Microsoft.UI.Xaml.DragEventArgsExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.DragEventArgs"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.DragEventArgs"/>
-        </member>
-        <member name="M:Microsoft.UI.Xaml.DragEventArgsExtensions.GetIndexViaCursorPoint``1(Microsoft.UI.Xaml.DragEventArgs,``0)">
-            <summary>
-            Infers the index of the element to be removed via specified event data provider instance of type <see cref="T:Microsoft.UI.Xaml.DragEventArgs"/>.
-            </summary>
-            <param name="this">The drag-drop event data provider instance.</param>
-            <param name="target">The target list view.</param>
-            <returns>The index of the element to be removed.</returns>
-        </member>
         <member name="T:Microsoft.UI.Xaml.Documents.RunExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Microsoft.UI.Xaml.Documents.Run"/>.
@@ -14013,20 +13999,6 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.NotSupportedException">
             Throws when the argument <paramref name="fileOrStream"/> is not supported.
             </exception>
-        </member>
-        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.RemoveWhen``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Removes the specified element if the specified condition returns <see langword="true"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="predicate">The condition that checks whether the element should be removed.</param>
         </member>
         <member name="T:System.Numerics.Vector2Extensions">
             <summary>
