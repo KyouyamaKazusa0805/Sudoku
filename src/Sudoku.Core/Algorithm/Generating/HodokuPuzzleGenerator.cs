@@ -66,7 +66,7 @@ public ref partial struct HodokuPuzzleGenerator
 	{
 		_generateIndices = new int[81];
 		_stack = new RecursionStackEntry[82];
-		_stack.InitializeArray(([NotNull] scoped ref RecursionStackEntry? element) => element = new());
+		_stack.InitializeArray(static ([NotNull] scoped ref RecursionStackEntry? element) => element = new());
 	}
 
 
