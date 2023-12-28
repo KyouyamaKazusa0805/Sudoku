@@ -139,9 +139,6 @@
 		<Page Update="Views\Pages\ContentDialogs\LibraryInfoDisplayerContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Controls\DataColumn.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\TechniqueGalleryPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

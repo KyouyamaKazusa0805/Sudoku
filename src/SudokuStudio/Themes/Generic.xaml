@@ -6,7 +6,6 @@
 
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:m="using:SudokuStudio.Markup">
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="{m:Uri Text='ms-appx:///Views/Controls/DataColumn.xaml'}" />
 		<ResourceDictionary Source="{m:Uri Text='ms-appx:///Views/Controls/TokenView.xaml'}" />
 		<ResourceDictionary Source="{m:Uri Text='ms-appx:///Views/Controls/TokenItem.xaml'}" />
 	</ResourceDictionary.MergedDictionaries>
