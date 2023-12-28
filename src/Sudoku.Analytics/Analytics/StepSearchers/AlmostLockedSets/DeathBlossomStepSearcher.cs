@@ -1,3 +1,5 @@
+#define TYPE_UNIQUE_RECTANGLE_BLOOMING
+
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -146,7 +148,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 							}
 
+#if TYPE_UNIQUE_RECTANGLE_BLOOMING
 							// Check for UR type.
+
+							// Today I don't have any possible examples to test for this type,
+							// so I don't know whether the module is correctly-impl'ed.
 							foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
 							{
 								var existsGivenCellsOrMoreThan2ModifiableCells = false;
@@ -209,6 +215,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 									}
 								}
 							}
+#endif
 						}
 					}
 				}
@@ -637,6 +644,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		return null;
 	}
 
+#if TYPE_UNIQUE_RECTANGLE_BLOOMING
 	/// <summary>
 	/// Search for A^nLS blooming type, and create a <see cref="RectangleDeathBlossomStep"/> instance
 	/// and add it into the accumulator if worth.
@@ -766,6 +774,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		accumulator.Add(step);
 		return null;
 	}
+#endif
 
 	/// <summary>
 	/// Search for A^nLS blooming type, and create a <see cref="NTimesAlmostLockedSetDeathBlossomStep"/> instance
