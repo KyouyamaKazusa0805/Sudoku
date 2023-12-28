@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//
