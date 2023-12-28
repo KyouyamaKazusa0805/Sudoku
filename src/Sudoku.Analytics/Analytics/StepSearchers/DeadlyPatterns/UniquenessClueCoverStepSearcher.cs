@@ -7,6 +7,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Uniqueness Clue Cover</item>
 /// </list>
 /// </summary>
+/// <seealso href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">Uniqueness Clue Cover</seealso>
+/// <seealso href="http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html#p342974">Serg's Descrpition to UCC</seealso>
 [StepSearcher(Technique.UniquenessClueCover)]
 [StepSearcherRuntimeName("StepSearcherName_UniquenessClueCoverStepSearcher")]
 public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
@@ -15,7 +17,9 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// The technique is very complex that I cannot enumerate all possible cases.
-	/// See <see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">this link</see> to learn about this technique.
+	/// See <see href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">this link</see> (Uniqueness Clue Cover - Sudopedia Mirror)
+	/// and <see href="http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html#p342974">this link</see> (Serg's Description to UCC)
+	/// to learn about this technique.
 	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
