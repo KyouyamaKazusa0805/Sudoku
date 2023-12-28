@@ -2368,9 +2368,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the covered line.
             </summary>
             <remarks>
-            If the covered house can't be found, it'll return <see cref="F:Sudoku.SolutionWideReadOnlyFields.InvalidTrailingZeroCountMethodFallback"/>.
+            If the covered house can't be found, it'll return <see cref="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback"/>.
             </remarks>
-            <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.InvalidTrailingZeroCountMethodFallback"/>
+            <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Count">
             <inheritdoc/>
@@ -7659,7 +7659,7 @@ if (student is (name: var name, age: >= 18))
             Provides with solution-wide read-only fields used.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.InvalidTrailingZeroCountMethodFallback">
+        <member name="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback">
             <summary>
             Indicates the invalid fallback value
             of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>,
@@ -7674,7 +7674,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.InvalidTrailingZeroCountMethodFallbackLong">
+        <member name="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallbackLong">
             <summary>
             Indicates the invalid fallback value
             of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>,

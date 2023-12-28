@@ -66,7 +66,7 @@ internal static class AlmostLockedSetsModule
 						new(
 							digitsMask,
 							in map,
-							houseIndex < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
+							houseIndex < 9 && coveredLine is >= 9 and not TrailingZeroCountFallback
 								? ((HousesMap[houseIndex] | HousesMap[coveredLine]) & EmptyCells) - map
 								: tempMap - map,
 							eliminationMap

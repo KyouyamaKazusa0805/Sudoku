@@ -199,7 +199,7 @@ public sealed partial class AlmostLockedSet(
 						new(
 							digitsMask,
 							in map,
-							house < 9 && coveredLine is >= 9 and not InvalidTrailingZeroCountMethodFallback
+							house < 9 && coveredLine is >= 9 and not TrailingZeroCountFallback
 								? ((HousesMap[house] | HousesMap[coveredLine]) & emptyMap) - map
 								: tempMap - map,
 							eliminationMap

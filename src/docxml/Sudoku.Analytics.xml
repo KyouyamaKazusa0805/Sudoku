@@ -7387,7 +7387,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Get all possible hints from the grid.
             </summary>
-            <param name="gathered"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
+            <param name="collected"><inheritdoc cref="P:Sudoku.Analytics.AnalysisContext.Accumulator" path="/summary"/></param>
             <param name="grid"><inheritdoc cref="F:Sudoku.Analytics.AnalysisContext.Grid" path="/summary"/></param>
             <param name="context">
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/>

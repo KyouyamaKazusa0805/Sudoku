@@ -206,9 +206,9 @@ public partial struct CellMap :
 	/// Indicates the covered line.
 	/// </summary>
 	/// <remarks>
-	/// If the covered house can't be found, it'll return <see cref="InvalidTrailingZeroCountMethodFallback"/>.
+	/// If the covered house can't be found, it'll return <see cref="TrailingZeroCountFallback"/>.
 	/// </remarks>
-	/// <seealso cref="InvalidTrailingZeroCountMethodFallback"/>
+	/// <seealso cref="TrailingZeroCountFallback"/>
 	public readonly House CoveredLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

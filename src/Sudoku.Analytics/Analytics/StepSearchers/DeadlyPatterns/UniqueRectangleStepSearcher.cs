@@ -1065,8 +1065,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			var map1 = CellsMap[abzCell] + abxCell;
 			var map2 = CellsMap[abzCell] + abyCell;
-			if (map1.CoveredLine is not (var m1cl and not InvalidTrailingZeroCountMethodFallback)
-				|| map2.CoveredLine is not (var m2cl and not InvalidTrailingZeroCountMethodFallback))
+			if (map1.CoveredLine is not (var m1cl and not TrailingZeroCountFallback)
+				|| map2.CoveredLine is not (var m2cl and not TrailingZeroCountFallback))
 			{
 				// There's no common covered line to display.
 				continue;
@@ -3187,7 +3187,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 			var elimMapIsolated = CellMap.Empty;
 			var digitIsolated = TrailingZeroCount(maskIsolated);
-			if (digitIsolated != InvalidTrailingZeroCountMethodFallback)
+			if (digitIsolated != TrailingZeroCountFallback)
 			{
 				elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
 					% CandidatesMap[digitIsolated]
@@ -3366,7 +3366,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			// Check all bi-value cells.
 			foreach (var bivalueCellToCheck in bivalueCellsToCheck)
 			{
-				if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != InvalidTrailingZeroCountMethodFallback)
+				if ((CellsMap[bivalueCellToCheck] + targetCell).CoveredLine != TrailingZeroCountFallback)
 				{
 					// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 					continue;
@@ -3380,7 +3380,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 				var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
 				var coveredLine = (CellsMap[bivalueCellToCheck] + urCellInSameBlock).CoveredLine;
-				if (coveredLine == InvalidTrailingZeroCountMethodFallback)
+				if (coveredLine == TrailingZeroCountFallback)
 				{
 					// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
 					// as 'urCellInSameBlock'.
@@ -4288,15 +4288,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			{
 				< 9 => (TrailingZeroCount(intersection.RowMask), TrailingZeroCount(intersection.ColumnMask)) switch
 				{
-					(var a and not InvalidTrailingZeroCountMethodFallback, var b and not InvalidTrailingZeroCountMethodFallback)
+					(var a and not TrailingZeroCountFallback, var b and not TrailingZeroCountFallback)
 						=> 1 << a + 9 | 1 << b + 18,
-					(var a and not InvalidTrailingZeroCountMethodFallback, _) => 1 << a + 9,
-					(_, var b and not InvalidTrailingZeroCountMethodFallback) => 1 << b + 18,
+					(var a and not TrailingZeroCountFallback, _) => 1 << a + 9,
+					(_, var b and not TrailingZeroCountFallback) => 1 << b + 18,
 					_ => 0
 				},
 				_ => TrailingZeroCount(intersection.BlockMask) switch
 				{
-					var result and not InvalidTrailingZeroCountMethodFallback => 1 << result,
+					var result and not TrailingZeroCountFallback => 1 << result,
 					_ => 0
 				}
 			};
@@ -4510,15 +4510,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			{
 				< 9 => (TrailingZeroCount(intersection.RowMask), TrailingZeroCount(intersection.ColumnMask)) switch
 				{
-					(var a and not InvalidTrailingZeroCountMethodFallback, var b and not InvalidTrailingZeroCountMethodFallback)
+					(var a and not TrailingZeroCountFallback, var b and not TrailingZeroCountFallback)
 						=> 1 << a + 9 | 1 << b + 18,
-					(var a and not InvalidTrailingZeroCountMethodFallback, _) => 1 << a + 9,
-					(_, var b and not InvalidTrailingZeroCountMethodFallback) => 1 << b + 18,
+					(var a and not TrailingZeroCountFallback, _) => 1 << a + 9,
+					(_, var b and not TrailingZeroCountFallback) => 1 << b + 18,
 					_ => 0
 				},
 				_ => TrailingZeroCount(intersection.BlockMask) switch
 				{
-					var result and not InvalidTrailingZeroCountMethodFallback => 1 << result,
+					var result and not TrailingZeroCountFallback => 1 << result,
 					_ => 0
 				}
 			};

@@ -21,7 +21,7 @@ internal static class ValueTextConversion
 		bool useDifferentColorToDisplayDeltaDigits
 	)
 	{
-		var digit = TrailingZeroCount(candidatesMask) is var d and not InvalidTrailingZeroCountMethodFallback ? d : -1;
+		var digit = TrailingZeroCount(candidatesMask) is var d and not TrailingZeroCountFallback ? d : -1;
 
 		// Implicit behavior: argument 'solution' can be 'Grid.Undefined'.
 		// Therefore, we must check validity first.
