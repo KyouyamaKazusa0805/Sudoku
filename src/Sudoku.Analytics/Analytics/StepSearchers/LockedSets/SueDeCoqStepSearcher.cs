@@ -105,9 +105,9 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									var maskIsolated = (Mask)(
 										cannibalMode
 											? lineMask & blockMask & selectedInterMask
-											: selectedInterMask & ~(blockMask | lineMask)
+											: selectedInterMask & (Mask)~(blockMask | lineMask)
 									);
-									var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
+									var maskOnlyInInter = (Mask)(selectedInterMask & (Mask)~(blockMask | lineMask));
 									if (!cannibalMode
 										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 										|| cannibalMode && !IsPow2(maskIsolated))
@@ -124,8 +124,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 											& EmptyCells;
 									}
 
-									if (currentInterMap.Count + i + j == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
-										&& !!(elimMapBlock | elimMapLine | elimMapIsolated))
+									var p = PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter);
+									if (currentInterMap.Count + i + j == p && !!(elimMapBlock | elimMapLine | elimMapIsolated))
 									{
 										// Check eliminations.
 										var conclusions = new List<Conclusion>();
