@@ -23,5 +23,15 @@ public enum BackdropKind
 	/// <summary>
 	/// Indicates the acrylic backdrop.
 	/// </summary>
-	Acrylic
+	Acrylic,
+
+	/// <summary>
+	/// Indicates the arcylic thin backdrop.
+	/// </summary>
+	AcrylicThin,
+
+	/// <summary>
+	/// Indicates the transparent backdrop.
+	/// </summary>
+	Transparent
 }
