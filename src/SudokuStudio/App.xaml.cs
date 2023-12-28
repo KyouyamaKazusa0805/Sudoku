@@ -116,7 +116,13 @@ public partial class App : Application
 	/// <summary>
 	/// Creates a window, and activate it.
 	/// </summary>
-	private void ActivateMainWindow() => WindowManager.CreateWindow<MainWindow>().Activate();
+	private void ActivateMainWindow()
+	{
+		var window = WindowManager.CreateWindow<MainWindow>();
+		window.SystemBackdrop = ((App)Application.Current).Preference.UIPreferences.Backdrop.GetBackdrop();
+
+		window.Activate();
+	}
 
 	/// <summary>
 	/// Handle the cases how user opens this program.
