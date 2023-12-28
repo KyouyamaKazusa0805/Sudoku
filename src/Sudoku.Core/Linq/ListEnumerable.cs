@@ -35,7 +35,7 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return CollectionsMarshal.AsSpan(result);
 	}
 
 	/// <summary>
@@ -67,6 +67,6 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return CollectionsMarshal.AsSpan(result);
 	}
 }
