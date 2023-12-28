@@ -95,11 +95,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		var list = new List<UniqueRectangleStep>();
-
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
+		var list = new List<UniqueRectangleStep>();
 		Collect(list, in grid, ref context, false);
 		Collect(list, in grid, ref context, true);
 
@@ -129,13 +128,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <summary>
 	/// Get all possible hints from the grid.
 	/// </summary>
-	/// <param name="gathered"><inheritdoc cref="AnalysisContext.Accumulator" path="/summary"/></param>
+	/// <param name="collected"><inheritdoc cref="AnalysisContext.Accumulator" path="/summary"/></param>
 	/// <param name="grid"><inheritdoc cref="AnalysisContext.Grid" path="/summary"/></param>
 	/// <param name="context">
 	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/>
 	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void Collect(List<UniqueRectangleStep> gathered, scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool arMode)
+	private void Collect(List<UniqueRectangleStep> collected, scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
 		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
@@ -181,17 +180,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckBabaGroupingUnique(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
-						CheckExternalType1Or2(gathered, in grid, ref context, urCells, d1, d2, index, arMode);
-						CheckExternalType3(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalType4(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalXyWing(gathered, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
-						CheckExternalAlmostLockedSetsXz(gathered, in grid, ref context, urCells, alses, comparer, d1, d2, index, arMode);
+						CheckBabaGroupingUnique(collected, in grid, ref context, urCells, comparer, d1, d2, index);
+						CheckExternalType1Or2(collected, in grid, ref context, urCells, d1, d2, index, arMode);
+						CheckExternalType3(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalType4(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalXyWing(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
+						CheckExternalAlmostLockedSetsXz(collected, in grid, ref context, urCells, alses, comparer, d1, d2, index, arMode);
 
 						if (!arMode)
 						{
-							CheckExternalTurbotFish(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
-							CheckExternalWWing(gathered, in grid, ref context, urCells, comparer, d1, d2, index);
+							CheckExternalTurbotFish(collected, in grid, ref context, urCells, comparer, d1, d2, index);
+							CheckExternalWWing(collected, in grid, ref context, urCells, comparer, d1, d2, index);
 						}
 					}
 
@@ -201,17 +200,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						var corner1 = urCells[c1];
 						var otherCellsMap = (CellMap)urCells - corner1;
 
-						CheckType1(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckType5(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckHidden(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType1(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType5(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckHidden(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3X2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3N2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3U2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3E2SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3N2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3U2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3E2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
@@ -229,11 +228,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							var tempOtherCellsMap = otherCellsMap - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+							CheckType2(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 							if (SearchForExtendedUniqueRectangles)
 							{
-								CheckRegularWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
+								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
 #if UNIQUE_RECTANGLE_W_WING
 								CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 #endif
@@ -248,17 +247,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(gathered, in grid, ref context, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											CheckHiddenSingleAvoidable(collected, in grid, ref context, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 									else
 									{
-										CheckType6(gathered, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType6(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check2D1SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
@@ -268,23 +267,23 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+									CheckType3(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 									if (!arMode)
 									{
-										CheckType4(gathered, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType4(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4X3SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4C3SL(gathered, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2B1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4X3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check4C3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckSueDeCoq(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 									}
 
 									break;
@@ -5144,8 +5143,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <returns>Indicates whether the UR is passed to check.</returns>
 	private static bool CheckPreconditions(scoped ref readonly Grid grid, Cell[] urCells, bool arMode)
 	{
-		var emptyCountWhenArMode = (byte)0;
-		var modifiableCount = (byte)0;
+		var (emptyCountWhenArMode, modifiableCount) = ((byte)0, (byte)0);
 		foreach (var urCell in urCells)
 		{
 			switch (grid.GetState(urCell))
