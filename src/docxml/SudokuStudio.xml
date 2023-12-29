@@ -1837,6 +1837,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CurrentThemeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CurrentTheme"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CurrentTheme"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor"/>.
@@ -2394,6 +2400,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
             <summary>
             Indicates the based type for displaying a concept notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CurrentTheme">
+            <summary>
+            Indicates the theme used in this program.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
@@ -9312,6 +9323,26 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="tokenName">The name of the token, such as <c>Colon</c>.</param>
             <returns>The token string.</returns>
+        </member>
+        <member name="T:SudokuStudio.Theme">
+            <summary>
+            Represents a theme.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Theme.Default">
+            <summary>
+            Indicates the theme is defualt, which means it relies on the operating system.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Theme.Light">
+            <summary>
+            Indicates the theme is light.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Theme.Dark">
+            <summary>
+            Indicates the theme is dark.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Attached.AnalyzerProperties">
             <summary>

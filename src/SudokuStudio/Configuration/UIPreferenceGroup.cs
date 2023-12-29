@@ -55,6 +55,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
 [DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
 [DependencyProperty<CoordinateType>("ConceptNotationBasedKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the based type for displaying a concept notation.")]
+[DependencyProperty<Theme>("CurrentTheme", DefaultValue = Theme.Default, DocSummary = "Indicates the theme used in this program.")]
 [DependencyProperty<Color>("GivenFontColor")]
 [DependencyProperty<Color>("GivenFontColor_Dark")]
 [DependencyProperty<Color>("ModifiableFontColor")]
