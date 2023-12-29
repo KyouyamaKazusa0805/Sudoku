@@ -7,7 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	IsTabStop="True" AllowDrop="True" mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:SudokuPane}"
-	ActualThemeChanged="UserControl_ActualThemeChanged" PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver"
+	PointerEntered="UserControl_PointerEntered" DragOver="UserControl_DragOver"
 	Drop="UserControl_DropAsync" KeyDown="UserControl_KeyDown" PointerWheelChanged="UserControl_PointerWheelChanged">
 	<UserControl.Resources>
 		<Thickness x:Key="RowLinesBorderThickness">0,0,0,1</Thickness>

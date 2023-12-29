@@ -4,13 +4,24 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	RequestedTheme="Light">
+	RequestedTheme="Dark">
 	<Application.Resources>
 		<ResourceDictionary>
 			<!--Theme or style dictionary-->
 			<ResourceDictionary.MergedDictionaries>
 				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
 			</ResourceDictionary.MergedDictionaries>
+
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="MenuBarBorderBrush">#EAEAEA</SolidColorBrush>
+					<SolidColorBrush x:Key="SolvingStepItemForeground">Black</SolidColorBrush>
+				</ResourceDictionary>
+				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="MenuBarBorderBrush">#262626</SolidColorBrush>
+					<SolidColorBrush x:Key="SolvingStepItemForeground">DarkGray</SolidColorBrush>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
 
 			<!--Other values-->
 			<Style x:Key="PreferenceSliderStyle" TargetType="Slider">

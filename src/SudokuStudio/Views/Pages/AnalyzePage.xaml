@@ -19,12 +19,6 @@
 		<TeachingTip
 			x:Name="ErrorDialog_MustSelectAtLeastOneLibrary"
 			Title="{m:R Key=LibraryPage_MustSelectOneLibraryTitle}" Subtitle="{m:R Key=LibraryPage_MustSelectOneLibrary}" />
-		<Style x:Key="MenuBarBorderStyle" TargetType="Border">
-			<Setter Property="CornerRadius" Value="5" />
-			<Setter Property="BorderBrush" Value="#EAEAEA" />
-			<Setter Property="BorderThickness" Value="2" />
-			<Setter Property="Margin" Value="0,10" />
-		</Style>
 		<CommandBarFlyout x:Name="MainMenuFlyout" Placement="TopEdgeAlignedLeft" Closed="MainMenuFlyout_Closed">
 			<AppBarButton
 				Label="{m:R Key=SudokuPane_Copy}" Icon="Copy" ToolTipService.ToolTip="{m:R Key=SudokuPane_Copy}"
@@ -76,7 +70,7 @@
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="10">
-			<Border Style="{StaticResource MenuBarBorderStyle}">
+			<Border CornerRadius="5" BorderThickness="2" Margin="0,10" BorderBrush="{ThemeResource MenuBarBorderBrush}">
 				<Grid RowDefinitions="*,*">
 					<!--
 					Navigation-styled functions
@@ -99,7 +93,7 @@
 					<!--
 					Common functions
 					-->
-					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#EAEAEA">
+					<Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="{ThemeResource MenuBarBorderBrush}">
 						<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 							<AppBarToggleButton
 								Label="{m:R Key=AnalyzePage_ToggleDisplayingCandidates}" IsChecked="{x:Bind SudokuPane.DisplayCandidates,Mode=TwoWay}"
@@ -231,8 +225,8 @@
 							a:AnalyzerProperties.IttoryuSupportedTechniques="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=OneWay}"
 							a:GathererProperties.DifficultyLevelMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=OneWay}"
 							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
-							Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged" GridUpdated="SudokuPane_GridUpdated"
-							ReceivedDroppedFileSuccessfully="SudokuPane_ReceivedDroppedFileSuccessfully"
+							Loaded="SudokuPane_Loaded" Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged"
+							GridUpdated="SudokuPane_GridUpdated" ReceivedDroppedFileSuccessfully="SudokuPane_ReceivedDroppedFileSuccessfully"
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"
 						/>
 					</Viewbox>

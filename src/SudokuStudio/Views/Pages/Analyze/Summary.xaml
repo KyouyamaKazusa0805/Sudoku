@@ -19,7 +19,7 @@
 				VerticalScrollBarVisibility="Visible" SelectionMode="Single" CanUserSortColumns="False"
 				CanUserReorderColumns="False" CanUserResizeColumns="False" AreRowDetailsFrozen="True"
 				AreRowGroupHeadersFrozen="True" HeadersVisibility="Column" AutoGenerateColumns="False"
-				HorizontalAlignment="Center" VerticalAlignment="Top" RowBackground="White" GridLinesVisibility="All" Margin="12">
+				HorizontalAlignment="Center" VerticalAlignment="Top" GridLinesVisibility="All" Margin="12">
 				<wc:DataGrid.Resources>
 					<Style x:Key="LabelStyle" TargetType="TextBlock">
 						<Setter Property="HorizontalAlignment" Value="Center" />

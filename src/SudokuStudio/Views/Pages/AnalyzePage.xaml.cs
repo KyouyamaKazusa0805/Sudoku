@@ -389,12 +389,12 @@ public sealed partial class AnalyzePage : Page
 						switch (SudokuFileHandler.Read(filePath))
 						{
 							case [
-								{
-									BaseGrid: var g,
-									GridString: var gridStr,
-									ShowCandidates: var showCandidates,
-									RenderableData: var nullableRenderableData
-								}
+							{
+								BaseGrid: var g,
+								GridString: var gridStr,
+								ShowCandidates: var showCandidates,
+								RenderableData: var nullableRenderableData
+							}
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
@@ -1360,5 +1360,74 @@ public sealed partial class AnalyzePage : Page
 
 		var json = JsonSerializer.Serialize(newInstance, LibraryPage.SerializerOptions);
 		await File.WriteAllTextAsync(newInstance.FilePath, json);
+	}
+
+	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
+	{
+		// Load light or dark theme.
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		if (((App)Application.Current).RequestedTheme == ApplicationTheme.Light)
+		{
+			setSudokuPaneColors_Light();
+		}
+		else
+		{
+			setSudokuPaneColors_Dark();
+		}
+
+
+		void setSudokuPaneColors_Light()
+		{
+			SudokuPane.GivenColor = uiPref.GivenFontColor;
+			SudokuPane.ModifiableColor = uiPref.ModifiableFontColor;
+			SudokuPane.PencilmarkColor = uiPref.PencilmarkFontColor;
+			SudokuPane.CoordinateLabelColor = uiPref.CoordinateLabelFontColor;
+			SudokuPane.BabaGroupLabelColor = uiPref.BabaGroupingFontColor;
+			SudokuPane.DeltaCandidateColor = uiPref.DeltaPencilmarkColor;
+			SudokuPane.DeltaCellColor = uiPref.DeltaValueColor;
+			SudokuPane.BorderColor = uiPref.SudokuPaneBorderColor;
+			SudokuPane.CursorBackgroundColor = uiPref.CursorBackgroundColor;
+			SudokuPane.LinkColor = uiPref.ChainColor;
+			SudokuPane.NormalColor = uiPref.NormalColor;
+			SudokuPane.AssignmentColor = uiPref.AssignmentColor;
+			SudokuPane.OverlappedAssignmentColor = uiPref.OverlappedAssignmentColor;
+			SudokuPane.EliminationColor = uiPref.EliminationColor;
+			SudokuPane.CannibalismColor = uiPref.CannibalismColor;
+			SudokuPane.ExofinColor = uiPref.ExofinColor;
+			SudokuPane.EndofinColor = uiPref.EndofinColor;
+			SudokuPane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor;
+			SudokuPane.AuxiliaryColors = uiPref.AuxiliaryColors;
+			SudokuPane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds;
+			SudokuPane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds;
+			SudokuPane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette;
+			SudokuPane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors;
+		}
+
+		void setSudokuPaneColors_Dark()
+		{
+			SudokuPane.GivenColor = uiPref.GivenFontColor_Dark;
+			SudokuPane.ModifiableColor = uiPref.ModifiableFontColor_Dark;
+			SudokuPane.PencilmarkColor = uiPref.PencilmarkFontColor_Dark;
+			SudokuPane.CoordinateLabelColor = uiPref.CoordinateLabelFontColor_Dark;
+			SudokuPane.BabaGroupLabelColor = uiPref.BabaGroupingFontColor_Dark;
+			SudokuPane.DeltaCandidateColor = uiPref.DeltaPencilmarkColor_Dark;
+			SudokuPane.DeltaCellColor = uiPref.DeltaValueColor_Dark;
+			SudokuPane.BorderColor = uiPref.SudokuPaneBorderColor_Dark;
+			SudokuPane.CursorBackgroundColor = uiPref.CursorBackgroundColor_Dark;
+			SudokuPane.LinkColor = uiPref.ChainColor_Dark;
+			SudokuPane.NormalColor = uiPref.NormalColor_Dark;
+			SudokuPane.AssignmentColor = uiPref.AssignmentColor_Dark;
+			SudokuPane.OverlappedAssignmentColor = uiPref.OverlappedAssignmentColor_Dark;
+			SudokuPane.EliminationColor = uiPref.EliminationColor_Dark;
+			SudokuPane.CannibalismColor = uiPref.CannibalismColor_Dark;
+			SudokuPane.ExofinColor = uiPref.ExofinColor_Dark;
+			SudokuPane.EndofinColor = uiPref.EndofinColor_Dark;
+			SudokuPane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor_Dark;
+			SudokuPane.AuxiliaryColors = uiPref.AuxiliaryColors_Dark;
+			SudokuPane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds_Dark;
+			SudokuPane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds_Dark;
+			SudokuPane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette_Dark;
+			SudokuPane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors_Dark;
+		}
 	}
 }

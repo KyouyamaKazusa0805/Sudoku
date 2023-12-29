@@ -141,7 +141,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color GivenFontColorDefaultValue = Colors.Black;
 
 	[Default]
-	private static readonly Color GivenFontColor_DarkDefaultValue = Colors.White;
+	private static readonly Color GivenFontColor_DarkDefaultValue = Colors.Gray;
 
 	[Default]
 	private static readonly Color ModifiableFontColorDefaultValue = Colors.Blue;
@@ -153,7 +153,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color PencilmarkFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
 
 	[Default]
-	private static readonly Color PencilmarkFontColor_DarkDefaultValue = Color.FromArgb(255, 155, 155, 155);
+	private static readonly Color PencilmarkFontColor_DarkDefaultValue = Color.FromArgb(255, 80, 80, 80);
 
 	[Default]
 	private static readonly Color BabaGroupingFontColorDefaultValue = Colors.Red;
@@ -183,7 +183,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color SudokuPaneBorderColorDefaultValue = Colors.Black;
 
 	[Default]
-	private static readonly Color SudokuPaneBorderColor_DarkDefaultValue = Colors.White;
+	private static readonly Color SudokuPaneBorderColor_DarkDefaultValue = Colors.Gray;
 
 	[Default]
 	private static readonly Color CursorBackgroundColorDefaultValue = Colors.Blue with { A = 32 };
