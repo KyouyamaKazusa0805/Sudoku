@@ -33,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-			[] => string.Empty,
-			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -97,6 +97,11 @@ public sealed record RxCyConverter(
 	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
+			if (!candidates)
+			{
+				return string.Empty;
+			}
+
 			scoped var sb = new StringHandler(50);
 			foreach (var digitGroup in
 				from candidate in candidates
