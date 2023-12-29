@@ -68,11 +68,6 @@ public sealed partial class MainWindow : Window
 	/// </summary>
 	private void InitializeField() => NavigationPage.ParentWindow = this;
 
-	private void InitializeTheme()
-	{
-
-	}
-
 	/// <summary>
 	/// Saves for preferences.
 	/// </summary>
