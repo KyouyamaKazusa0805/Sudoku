@@ -820,7 +820,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		// Degenerate to type 1.
 		var extraMask = (Mask)(otherCellsMask ^ comparer);
-		if ((extraMask & extraMask - 1) != 0)
+		if ((extraMask & extraMask - 1) != 0 || extraMask == 0)
 		{
 			return;
 		}
