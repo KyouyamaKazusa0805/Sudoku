@@ -67,4 +67,42 @@ public static class BitStatusMapEnumerable
 
 		return result.ToArray();
 	}
+
+	/// <summary>
+	/// Indicates whether at least one element satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">The cell to be checked.</param>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
+	public static bool Any(this scoped ref readonly CellMap @this, Func<Cell, bool> match)
+	{
+		foreach (var cell in @this)
+		{
+			if (match(cell))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Indicates whether at least one element satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">The cell to be checked.</param>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
+	public static bool Any(this scoped ref readonly CandidateMap @this, Func<Cell, bool> match)
+	{
+		foreach (var cell in @this)
+		{
+			if (match(cell))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

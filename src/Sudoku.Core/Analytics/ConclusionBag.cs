@@ -178,6 +178,33 @@ public sealed partial class ConclusionBag() :
 		return true;
 	}
 
+	/// <summary>
+	/// Indicates whether the collection contains the specified conclusion.
+	/// </summary>
+	/// <param name="conclusion">The conclusion.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Contains(Conclusion conclusion) => _bitArray[conclusion.GetHashCode()];
+
+	/// <summary>
+	/// Indicates whether the collection contains the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ContainsCell(Cell cell)
+	{
+		for (var bit = 0; bit < 9; bit++)
+		{
+			if (_bitArray[cell * 9 + bit] || _bitArray[HalfBitsCount + cell * 9 + bit])
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
