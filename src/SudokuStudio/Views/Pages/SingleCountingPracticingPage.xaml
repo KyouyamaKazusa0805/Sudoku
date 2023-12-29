@@ -31,14 +31,9 @@
 					GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
 					ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
 					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
-					GivenColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor,Mode=OneWay}"
-					ModifiableColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor,Mode=OneWay}"
-					CoordinateLabelColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor,Mode=OneWay}"
-					CursorBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor,Mode=OneWay}"
-					BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
 					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-					CandidateViewNodeDisplayMode="CircleSolid" EliminationDisplayMode="CircleSolid"
+					Loaded="SudokuPane_Loaded"
 				/>
 
 				<!--Info displaying pane-->

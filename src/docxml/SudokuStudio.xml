@@ -79,6 +79,12 @@
             The current culture information.
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.CoverSettingsToSudokuPaneViaApplicationTheme(SudokuStudio.Views.Controls.SudokuPane)">
+            <summary>
+            Cover the settings via the application theme.
+            </summary>
+            <param name="pane">The sudoku pane to be set.</param>
+        </member>
         <member name="M:SudokuStudio.App.GetAnalyzerConfigured(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Try to fetch an <see cref="T:Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/>.

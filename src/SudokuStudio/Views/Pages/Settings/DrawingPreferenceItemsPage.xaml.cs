@@ -64,6 +64,9 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 
 	private void Page_Loaded(object sender, RoutedEventArgs e) => SampleSudokuGrid.ViewUnit = _defaultViewUnit;
 
+	private void SampleSudokuGrid_Loaded(object sender, RoutedEventArgs e)
+		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SampleSudokuGrid);
+
 	private void DeltaCellColorSelector_ColorChanged(object sender, Color e)
 		=> ((App)Application.Current).Preference.UIPreferences.DeltaValueColor = e;
 

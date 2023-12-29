@@ -80,6 +80,71 @@ public partial class App : Application
 
 
 	/// <summary>
+	/// Cover the settings via the application theme.
+	/// </summary>
+	/// <param name="pane">The sudoku pane to be set.</param>
+	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
+	{
+		var uiPref = ((App)Current).Preference.UIPreferences;
+		((Action)(RequestedTheme == ApplicationTheme.Light ? setSudokuPaneColors_Light : setSudokuPaneColors_Dark))();
+
+
+		void setSudokuPaneColors_Light()
+		{
+			pane.GivenColor = uiPref.GivenFontColor;
+			pane.ModifiableColor = uiPref.ModifiableFontColor;
+			pane.PencilmarkColor = uiPref.PencilmarkFontColor;
+			pane.CoordinateLabelColor = uiPref.CoordinateLabelFontColor;
+			pane.BabaGroupLabelColor = uiPref.BabaGroupingFontColor;
+			pane.DeltaCandidateColor = uiPref.DeltaPencilmarkColor;
+			pane.DeltaCellColor = uiPref.DeltaValueColor;
+			pane.BorderColor = uiPref.SudokuPaneBorderColor;
+			pane.CursorBackgroundColor = uiPref.CursorBackgroundColor;
+			pane.LinkColor = uiPref.ChainColor;
+			pane.NormalColor = uiPref.NormalColor;
+			pane.AssignmentColor = uiPref.AssignmentColor;
+			pane.OverlappedAssignmentColor = uiPref.OverlappedAssignmentColor;
+			pane.EliminationColor = uiPref.EliminationColor;
+			pane.CannibalismColor = uiPref.CannibalismColor;
+			pane.ExofinColor = uiPref.ExofinColor;
+			pane.EndofinColor = uiPref.EndofinColor;
+			pane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor;
+			pane.AuxiliaryColors = uiPref.AuxiliaryColors;
+			pane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds;
+			pane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds;
+			pane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette;
+			pane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors;
+		}
+
+		void setSudokuPaneColors_Dark()
+		{
+			pane.GivenColor = uiPref.GivenFontColor_Dark;
+			pane.ModifiableColor = uiPref.ModifiableFontColor_Dark;
+			pane.PencilmarkColor = uiPref.PencilmarkFontColor_Dark;
+			pane.CoordinateLabelColor = uiPref.CoordinateLabelFontColor_Dark;
+			pane.BabaGroupLabelColor = uiPref.BabaGroupingFontColor_Dark;
+			pane.DeltaCandidateColor = uiPref.DeltaPencilmarkColor_Dark;
+			pane.DeltaCellColor = uiPref.DeltaValueColor_Dark;
+			pane.BorderColor = uiPref.SudokuPaneBorderColor_Dark;
+			pane.CursorBackgroundColor = uiPref.CursorBackgroundColor_Dark;
+			pane.LinkColor = uiPref.ChainColor_Dark;
+			pane.NormalColor = uiPref.NormalColor_Dark;
+			pane.AssignmentColor = uiPref.AssignmentColor_Dark;
+			pane.OverlappedAssignmentColor = uiPref.OverlappedAssignmentColor_Dark;
+			pane.EliminationColor = uiPref.EliminationColor_Dark;
+			pane.CannibalismColor = uiPref.CannibalismColor_Dark;
+			pane.ExofinColor = uiPref.ExofinColor_Dark;
+			pane.EndofinColor = uiPref.EndofinColor_Dark;
+			pane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor_Dark;
+			pane.AuxiliaryColors = uiPref.AuxiliaryColors_Dark;
+			pane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds_Dark;
+			pane.DifficultyLevelBackgrounds = uiPref.DifficultyLevelBackgrounds_Dark;
+			pane.UserDefinedColorPalette = uiPref.UserDefinedColorPalette_Dark;
+			pane.AlmostLockedSetsColors = uiPref.AlmostLockedSetsColors_Dark;
+		}
+	}
+
+	/// <summary>
 	/// Try to fetch an <see cref="Sudoku.Analytics.Analyzer"/> instance via the specified running <see cref="SudokuPane"/>.
 	/// </summary>
 	/// <param name="sudokuPane">The sudoku pane.</param>
@@ -119,7 +184,7 @@ public partial class App : Application
 	private void ActivateMainWindow()
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
-		window.SystemBackdrop = ((App)Application.Current).Preference.UIPreferences.Backdrop.GetBackdrop();
+		window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
 
 		window.Activate();
 	}
