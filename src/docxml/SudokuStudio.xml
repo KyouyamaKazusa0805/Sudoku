@@ -13760,6 +13760,12 @@ if (student is (name: var name, age: >= 18))
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
+            <summary>
+            Set title bar button colors using the specified theme.
+            </summary>
+            <param name="theme">The theme.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
             <summary>
             Try to navigate to the target page.

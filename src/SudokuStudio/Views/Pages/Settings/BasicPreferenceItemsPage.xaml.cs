@@ -94,6 +94,11 @@ public sealed partial class BasicPreferenceItemsPage : Page
 		// Manually set theme.
 		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
 		{
+			if (window is MainWindow instance)
+			{
+				instance.ManuallySetTitleBarButtonsColor(theme);
+			}
+
 			if (window.Content is FrameworkElement control)
 			{
 				control.RequestedTheme = theme switch

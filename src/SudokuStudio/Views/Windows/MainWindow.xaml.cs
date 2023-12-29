@@ -21,6 +21,53 @@ public sealed partial class MainWindow : Window
 #endif
 	}
 
+
+	/// <summary>
+	/// Set title bar button colors using the specified theme.
+	/// </summary>
+	/// <param name="theme">The theme.</param>
+	internal void ManuallySetTitleBarButtonsColor(Theme theme)
+	{
+		// Check to see if customization is supported. Currently only supported on Windows 11.
+		if (AppWindowTitleBar.IsCustomizationSupported())
+		{
+			var titleBar = AppWindow.TitleBar;
+			if (!titleBar.ExtendsContentIntoTitleBar)
+			{
+				titleBar.ExtendsContentIntoTitleBar = true;
+			}
+
+			// Sets the background color on "those" three buttons to transparent.
+			titleBar.ButtonBackgroundColor = Colors.Transparent;
+			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
+
+			switch (theme)
+			{
+				case Theme.Default when !App.ShouldSystemUseDarkMode():
+				case Theme.Light:
+				{
+					titleBar.ButtonForegroundColor = Colors.Black;
+					titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
+					titleBar.ButtonHoverForegroundColor = Colors.Black;
+					titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
+					titleBar.ButtonPressedForegroundColor = Colors.Black;
+					break;
+				}
+				case Theme.Default when App.ShouldSystemUseDarkMode():
+				case Theme.Dark:
+				{
+					titleBar.ButtonForegroundColor = Colors.White;
+					titleBar.ButtonHoverBackgroundColor = Colors.DarkGray;
+					titleBar.ButtonHoverForegroundColor = Colors.White;
+					titleBar.ButtonPressedBackgroundColor = Colors.LightGray;
+					titleBar.ButtonPressedForegroundColor = Colors.White;
+					break;
+				}
+			}
+		}
+	}
+
 	/// <summary>
 	/// Try to navigate to the target page.
 	/// </summary>
@@ -134,18 +181,7 @@ public sealed partial class MainWindow : Window
 		// Check to see if customization is supported. Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported())
 		{
-			var titleBar = AppWindow.TitleBar;
-			titleBar.ExtendsContentIntoTitleBar = true;
-
-			// Sets the background color on "those" three buttons to transparent.
-			titleBar.ButtonBackgroundColor = Colors.Transparent;
-			titleBar.ButtonForegroundColor = Colors.Black;
-			titleBar.ButtonHoverBackgroundColor = Colors.LightGray;
-			titleBar.ButtonHoverForegroundColor = Colors.Black;
-			titleBar.ButtonPressedBackgroundColor = Colors.DimGray;
-			titleBar.ButtonPressedForegroundColor = Colors.Black;
-			titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-			titleBar.ButtonInactiveForegroundColor = Colors.Gray;
+			ManuallySetTitleBarButtonsColor(((App)Application.Current).Preference.UIPreferences.CurrentTheme);
 
 #if SEARCH_AUTO_SUGGESTION_BOX
 			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
