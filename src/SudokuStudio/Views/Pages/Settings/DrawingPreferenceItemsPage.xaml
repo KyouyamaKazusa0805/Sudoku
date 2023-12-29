@@ -396,7 +396,7 @@
 			StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
 			WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
 			CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
-			Loaded="SampleSudokuGrid_Loaded"
+			Loaded="SampleSudokuGrid_Loaded" ActualThemeChanged="SampleSudokuGrid_ActualThemeChanged"
 		/>
 	</Grid>
 </Page>

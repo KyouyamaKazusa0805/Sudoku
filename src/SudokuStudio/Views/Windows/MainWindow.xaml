@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup" xmlns:p="using:SudokuStudio.Views.Pages" mc:Ignorable="d"
 	Title="{m:R Key=_ProgramName}" Closed="Window_Closed">
-	<Grid RowDefinitions="Auto,*">
+	<Grid RowDefinitions="Auto,*" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<!--Title bar-->
 		<Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<Grid x:Name="AppTitleBar" Visibility="Collapsed">

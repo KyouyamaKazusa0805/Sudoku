@@ -33,7 +33,7 @@
 					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
 					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-					Loaded="SudokuPane_Loaded"
+					Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged"
 				/>
 
 				<!--Info displaying pane-->

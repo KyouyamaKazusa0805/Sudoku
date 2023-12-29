@@ -86,7 +86,15 @@ public partial class App : Application
 	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
 	{
 		var uiPref = ((App)Current).Preference.UIPreferences;
-		((Action)(RequestedTheme == ApplicationTheme.Light ? setSudokuPaneColors_Light : setSudokuPaneColors_Dark))();
+		Action themeChanger = uiPref.CurrentTheme switch
+		{
+			Theme.Default when !ShouldSystemUseDarkMode() => setSudokuPaneColors_Light,
+			Theme.Default => setSudokuPaneColors_Dark,
+			Theme.Light => setSudokuPaneColors_Light,
+			Theme.Dark => setSudokuPaneColors_Dark
+		};
+
+		themeChanger();
 
 
 		void setSudokuPaneColors_Light()
@@ -185,6 +193,16 @@ public partial class App : Application
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
 		window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
+		if (window.Content is FrameworkElement control)
+		{
+			control.RequestedTheme = ((App)Current).Preference.UIPreferences.CurrentTheme switch
+			{
+				Theme.Default => ElementTheme.Default,
+				Theme.Light => ElementTheme.Light,
+				Theme.Dark => ElementTheme.Dark,
+				//_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
+			};
+		}
 
 		window.Activate();
 	}
@@ -227,6 +245,46 @@ public partial class App : Application
 		}
 	}
 
+
+	/// <summary>
+	/// Get system theme mode.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result indicating whether the system theme is dark.</returns>
+#if false
+	[LibraryImport("UXTheme", SetLastError = true, EntryPoint = "#138")]
+	[return: MarshalAs(UnmanagedType.Bool)]
+	public static partial bool ShouldSystemUseDarkMode();
+#else
+	public static bool ShouldSystemUseDarkMode()
+	{
+		try
+		{
+			var process = new Process();
+			process.StartInfo.FileName = "cmd.exe";
+			process.StartInfo.Arguments = @"/C reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize\";
+			process.StartInfo.UseShellExecute = false;
+			process.StartInfo.RedirectStandardOutput = true;
+			process.StartInfo.CreateNoWindow = true;
+
+			process.Start();
+
+			var output = process.StandardOutput.ReadToEnd();
+			var keys = output.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
+			foreach (var key in keys)
+			{
+				if (key.Contains("AppsUseLightTheme"))
+				{
+					return key.EndsWith('0');
+				}
+			}
+		}
+		catch
+		{
+		}
+
+		return false;
+	}
+#endif
 
 	/// <summary>
 	/// To determine whether the current application view is in an unsnapped state.

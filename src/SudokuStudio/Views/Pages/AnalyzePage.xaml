@@ -228,6 +228,7 @@
 							Loaded="SudokuPane_Loaded" Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged"
 							GridUpdated="SudokuPane_GridUpdated" ReceivedDroppedFileSuccessfully="SudokuPane_ReceivedDroppedFileSuccessfully"
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"
+							ActualThemeChanged="SudokuPane_ActualThemeChanged"
 						/>
 					</Viewbox>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">

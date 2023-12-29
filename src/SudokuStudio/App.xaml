@@ -3,8 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
-	xmlns:c="using:SudokuStudio.Views.Controls"
-	RequestedTheme="Dark">
+	xmlns:c="using:SudokuStudio.Views.Controls">
 	<Application.Resources>
 		<ResourceDictionary>
 			<!--Theme or style dictionary-->

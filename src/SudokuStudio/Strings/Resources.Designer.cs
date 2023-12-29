@@ -4111,6 +4111,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string SettingsPage_DarkTheme {
+            get {
+                return ResourceManager.GetString("SettingsPage_DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dash Styles.
         /// </summary>
         internal static string SettingsPage_DashStyles {
@@ -4125,6 +4134,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_DeadlyPatternsGroup {
             get {
                 return ResourceManager.GetString("SettingsPage_DeadlyPatternsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        internal static string SettingsPage_DefaultTheme {
+            get {
+                return ResourceManager.GetString("SettingsPage_DefaultTheme", resourceCulture);
             }
         }
         
@@ -4779,6 +4797,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string SettingsPage_LightTheme {
+            get {
+                return ResourceManager.GetString("SettingsPage_LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Literal.
         /// </summary>
         internal static string SettingsPage_LiteralNotation {
@@ -5369,6 +5396,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_SudokuGridBehaviors {
             get {
                 return ResourceManager.GetString("SettingsPage_SudokuGridBehaviors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string SettingsPage_Theme {
+            get {
+                return ResourceManager.GetString("SettingsPage_Theme", resourceCulture);
             }
         }
         

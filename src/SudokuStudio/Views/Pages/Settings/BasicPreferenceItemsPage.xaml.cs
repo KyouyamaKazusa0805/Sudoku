@@ -28,6 +28,8 @@ public sealed partial class BasicPreferenceItemsPage : Page
 		};
 		Comma2ComboBoxItem_DefaultSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
 		Comma2ComboBoxItem_DigitSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
+
+		ThemeComboBox.SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.CurrentTheme;
 	}
 
 	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -83,4 +85,24 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		=> ((App)Application.Current).Preference.UIPreferences.Language = (int)((ComboBoxItem)LanguageComboBox.SelectedItem).Tag!;
+
+	private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		var theme = (Theme)((ComboBoxItem)ThemeComboBox.SelectedItem).Tag!;
+		((App)Application.Current).Preference.UIPreferences.CurrentTheme = theme;
+
+		// Manually set theme.
+		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
+		{
+			if (window.Content is FrameworkElement control)
+			{
+				control.RequestedTheme = theme switch
+				{
+					Theme.Default => ElementTheme.Default,
+					Theme.Light => ElementTheme.Light,
+					_ => ElementTheme.Dark
+				};
+			}
+		}
+	}
 }

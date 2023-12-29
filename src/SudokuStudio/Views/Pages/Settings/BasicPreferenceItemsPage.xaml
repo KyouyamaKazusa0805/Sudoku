@@ -34,6 +34,18 @@
 					<ComboBoxItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
 				</ComboBox>
 			</w:SettingsCard>
+			
+			<!--
+			SettingsPage_Theme
+			-->
+			<TextBlock Text="{m:R Key=SettingsPage_Theme}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Language}">
+				<ComboBox x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged">
+					<ComboBoxItem Content="{m:R Key=SettingsPage_DefaultTheme}" Tag="{m:Int32 Value=0}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_LightTheme}" Tag="{m:Int32 Value=1}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_DarkTheme}" Tag="{m:Int32 Value=2}" />
+				</ComboBox>
+			</w:SettingsCard>
 
 			<!--
 			SettingsPage_SudokuGridBehaviors

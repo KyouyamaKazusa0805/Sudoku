@@ -113,6 +113,12 @@
             Loads configuration file from local path.
             </summary>
         </member>
+        <member name="M:SudokuStudio.App.ShouldSystemUseDarkMode">
+            <summary>
+            Get system theme mode.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the system theme is dark.</returns>
+        </member>
         <member name="M:SudokuStudio.App.EnsureUnsnapped">
             <summary>
             To determine whether the current application view is in an unsnapped state.
@@ -8154,6 +8160,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Cycling cell-link dash style.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DarkTheme">
+            <summary>
+              Looks up a localized string similar to Dark.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DashStyles">
             <summary>
               Looks up a localized string similar to Dash Styles.
@@ -8162,6 +8173,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DeadlyPatternsGroup">
             <summary>
               Looks up a localized string similar to Deadly Patterns.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DefaultTheme">
+            <summary>
+              Looks up a localized string similar to Automatic.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_DeltaCandidateColor">
@@ -8526,6 +8542,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This option controls the case that which way the puzzle fetched from puzzle libraries should be applied in transformation, making some differences with the orginal puzzle..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LightTheme">
+            <summary>
+              Looks up a localized string similar to Light.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_LiteralNotation">
             <summary>
               Looks up a localized string similar to Literal.
@@ -8854,6 +8875,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_SudokuGridBehaviors">
             <summary>
               Looks up a localized string similar to Sudoku Grid Behaviors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Theme">
+            <summary>
+              Looks up a localized string similar to Theme.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_TransparentBackground">

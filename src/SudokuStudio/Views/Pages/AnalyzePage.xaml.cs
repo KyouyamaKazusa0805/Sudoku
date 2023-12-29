@@ -1364,4 +1364,7 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
 		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+
+	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
+		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 }

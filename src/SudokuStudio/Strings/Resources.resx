@@ -1380,11 +1380,17 @@
   <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
     <value>Cycling cell-link dash style</value>
   </data>
+  <data name="SettingsPage_DarkTheme" xml:space="preserve">
+    <value>Dark</value>
+  </data>
   <data name="SettingsPage_DashStyles" xml:space="preserve">
     <value>Dash Styles</value>
   </data>
   <data name="SettingsPage_DeadlyPatternsGroup" xml:space="preserve">
     <value>Deadly Patterns</value>
+  </data>
+  <data name="SettingsPage_DefaultTheme" xml:space="preserve">
+    <value>Automatic</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>Delta candidates</value>
@@ -1604,6 +1610,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_LibraryPuzzleTransformationDescription" xml:space="preserve">
     <value>This option controls the case that which way the puzzle fetched from puzzle libraries should be applied in transformation, making some differences with the orginal puzzle.</value>
   </data>
+  <data name="SettingsPage_LightTheme" xml:space="preserve">
+    <value>Light</value>
+  </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>Literal</value>
   </data>
@@ -1801,6 +1810,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>Sudoku Grid Behaviors</value>
+  </data>
+  <data name="SettingsPage_Theme" xml:space="preserve">
+    <value>Theme</value>
   </data>
   <data name="SettingsPage_TransparentBackground" xml:space="preserve">
     <value>Make sudoku pane background transparent</value>

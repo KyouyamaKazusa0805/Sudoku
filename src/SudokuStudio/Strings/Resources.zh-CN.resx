@@ -1383,11 +1383,17 @@
   <data name="SettingsPage_CyclingCellLinkDashStyle" xml:space="preserve">
     <value>以单元格为单位的链接的虚线周期</value>
   </data>
+  <data name="SettingsPage_DarkTheme" xml:space="preserve">
+    <value>暗色主题</value>
+  </data>
   <data name="SettingsPage_DashStyles" xml:space="preserve">
     <value>虚线周期</value>
   </data>
   <data name="SettingsPage_DeadlyPatternsGroup" xml:space="preserve">
     <value>致命结构</value>
+  </data>
+  <data name="SettingsPage_DefaultTheme" xml:space="preserve">
+    <value>自动变化</value>
   </data>
   <data name="SettingsPage_DeltaCandidateColor" xml:space="preserve">
     <value>差分候选数</value>
@@ -1607,6 +1613,9 @@
   <data name="SettingsPage_LibraryPuzzleTransformationDescription" xml:space="preserve">
     <value>该选项控制的是，通过题库抽题操作所得到题目会进行什么样的形式变换，使得题目和原题不同。</value>
   </data>
+  <data name="SettingsPage_LightTheme" xml:space="preserve">
+    <value>亮色主题</value>
+  </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>字面书写</value>
   </data>
@@ -1804,6 +1813,9 @@
   </data>
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>数独盘面行为</value>
+  </data>
+  <data name="SettingsPage_Theme" xml:space="preserve">
+    <value>主题</value>
   </data>
   <data name="SettingsPage_TransparentBackground" xml:space="preserve">
     <value>数独盘面设置透明背景</value>

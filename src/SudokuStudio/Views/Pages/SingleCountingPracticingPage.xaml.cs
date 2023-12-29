@@ -162,6 +162,9 @@ public sealed partial class SingleCountingPracticingPage : Page
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
 		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+
+	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
+		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
