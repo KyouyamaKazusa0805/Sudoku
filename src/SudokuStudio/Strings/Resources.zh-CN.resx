@@ -1377,6 +1377,9 @@
   <data name="SettingsPage_Cross" xml:space="preserve">
     <value>打叉</value>
   </data>
+  <data name="SettingsPage_CurrentlySelectedThemeIs" xml:space="preserve">
+    <value>嘿！你现在正在用{0}，这意味着当前页面暂时只展示所有跟{0}有关的配色选项。如果你想要修改{1}的配色，请优先切换为{1}。</value>
+  </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>光标背景</value>
   </data>
@@ -1384,6 +1387,9 @@
     <value>以单元格为单位的链接的虚线周期</value>
   </data>
   <data name="SettingsPage_DarkTheme" xml:space="preserve">
+    <value>暗色主题</value>
+  </data>
+  <data name="SettingsPage_DarkThemeFullName" xml:space="preserve">
     <value>暗色主题</value>
   </data>
   <data name="SettingsPage_DashStyles" xml:space="preserve">
@@ -1614,6 +1620,9 @@
     <value>该选项控制的是，通过题库抽题操作所得到题目会进行什么样的形式变换，使得题目和原题不同。</value>
   </data>
   <data name="SettingsPage_LightTheme" xml:space="preserve">
+    <value>亮色主题</value>
+  </data>
+  <data name="SettingsPage_LightThemeFullName" xml:space="preserve">
     <value>亮色主题</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">

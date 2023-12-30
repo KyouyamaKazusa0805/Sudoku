@@ -78,6 +78,18 @@ public partial class App : Application
 	internal static CultureInfo CurrentCulture
 		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0 ? new(cultureInfoId) : CultureInfo.CurrentUICulture;
 
+	/// <summary>
+	/// Indicates the configured application theme.
+	/// </summary>
+	internal static ApplicationTheme CurrentTheme
+		=> ((App)Current).Preference.UIPreferences.CurrentTheme switch
+		{
+			Theme.Default when !ShouldSystemUseDarkMode() => ApplicationTheme.Light,
+			Theme.Default => ApplicationTheme.Dark,
+			Theme.Light => ApplicationTheme.Light,
+			_ => ApplicationTheme.Dark
+		};
+
 
 	/// <summary>
 	/// Cover the settings via the application theme.

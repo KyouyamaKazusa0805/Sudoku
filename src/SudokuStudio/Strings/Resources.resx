@@ -1374,6 +1374,9 @@
   <data name="SettingsPage_Cross" xml:space="preserve">
     <value>Cross</value>
   </data>
+  <data name="SettingsPage_CurrentlySelectedThemeIs" xml:space="preserve">
+    <value>Hey! Currently you use {0}, so all options related to colors will only display used by {0}. If you want to modify options related to the other theme, please switch to {1} in basic configuration page first.</value>
+  </data>
   <data name="SettingsPage_CursorBackgroundColor" xml:space="preserve">
     <value>Cursor background</value>
   </data>
@@ -1382,6 +1385,9 @@
   </data>
   <data name="SettingsPage_DarkTheme" xml:space="preserve">
     <value>Dark</value>
+  </data>
+  <data name="SettingsPage_DarkThemeFullName" xml:space="preserve">
+    <value>dark theme</value>
   </data>
   <data name="SettingsPage_DashStyles" xml:space="preserve">
     <value>Dash Styles</value>
@@ -1612,6 +1618,9 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_LightTheme" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="SettingsPage_LightThemeFullName" xml:space="preserve">
+    <value>light theme</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>Literal</value>

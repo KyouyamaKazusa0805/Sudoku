@@ -4093,6 +4093,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hey! Currently you use {0}, so all options related to colors will only display used by {0}. If you want to modify options related to the other theme, please switch to {1} in basic configuration page first..
+        /// </summary>
+        internal static string SettingsPage_CurrentlySelectedThemeIs {
+            get {
+                return ResourceManager.GetString("SettingsPage_CurrentlySelectedThemeIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cursor background.
         /// </summary>
         internal static string SettingsPage_CursorBackgroundColor {
@@ -4116,6 +4125,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_DarkTheme {
             get {
                 return ResourceManager.GetString("SettingsPage_DarkTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dark theme.
+        /// </summary>
+        internal static string SettingsPage_DarkThemeFullName {
+            get {
+                return ResourceManager.GetString("SettingsPage_DarkThemeFullName", resourceCulture);
             }
         }
         
@@ -4802,6 +4820,15 @@ namespace SudokuStudio.Strings {
         internal static string SettingsPage_LightTheme {
             get {
                 return ResourceManager.GetString("SettingsPage_LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to light theme.
+        /// </summary>
+        internal static string SettingsPage_LightThemeFullName {
+            get {
+                return ResourceManager.GetString("SettingsPage_LightThemeFullName", resourceCulture);
             }
         }
         

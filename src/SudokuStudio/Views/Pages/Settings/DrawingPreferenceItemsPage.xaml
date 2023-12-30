@@ -30,20 +30,18 @@
 		<!--Preference items-->
 		<ScrollViewer>
 			<StackPanel Margin="0,0,30,0" Spacing="6">
+				<TextBlock Text="{x:Bind ThemeDescription}" Foreground="Red" TextWrapping="WrapWholeWords" />
+
 				<!--
 				SettingsPage_Deltas
 				-->
 				<TextBlock Text="{m:R Key=SettingsPage_Deltas}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 				<w:SettingsCard Header="{m:R Key=SettingsPage_DeltaCellColor}" Description="{m:R Key=SettingsPage_DeltaCellColorDescription}">
-					<c:ColorSelector
-						x:Name="DeltaCellColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaValueColor}"
-						ColorChanged="DeltaCellColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="DeltaCellColorSelector" SelectedColor="{x:Bind DeltaValueColor}" ColorChanged="DeltaCellColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_DeltaCandidateColor}" Description="{m:R Key=SettingsPage_DeltaCandidateColorDescription}">
 					<c:ColorSelector
-						x:Name="DeltaCandidateColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor}"
+						x:Name="DeltaCandidateColorSelector" SelectedColor="{x:Bind DeltaPencilmarkColor}"
 						ColorChanged="DeltaCandidateColorSelector_ColorChanged" />
 				</w:SettingsCard>
 
@@ -52,64 +50,38 @@
 				-->
 				<TextBlock Text="{m:R Key=SettingsPage_Colors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 				<w:SettingsCard Header="{m:R Key=SettingsPage_BorderColor}">
-					<c:ColorSelector
-						x:Name="BorderColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor}"
-						ColorChanged="BorderColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="BorderColorSelector" SelectedColor="{x:Bind SudokuPaneBorderColor}" ColorChanged="BorderColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_CursorBackgroundColor}">
 					<c:ColorSelector
-						x:Name="CursorBackgroundColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CursorBackgroundColor}"
+						x:Name="CursorBackgroundColorSelector" SelectedColor="{x:Bind CursorBackgroundColor}"
 						ColorChanged="CursorBackgroundColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_ChainColor}">
-					<c:ColorSelector
-						x:Name="ChainColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor}"
-						ColorChanged="ChainColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="ChainColorSelector" SelectedColor="{x:Bind ChainColor}" ColorChanged="ChainColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_NormalColor}">
-					<c:ColorSelector
-						x:Name="NormalColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor}"
-						ColorChanged="NormalColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="NormalColorSelector" SelectedColor="{x:Bind NormalColor}" ColorChanged="NormalColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_AssignmentColor}">
-					<c:ColorSelector
-						x:Name="AssignmentColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor}"
-						ColorChanged="AssignmentColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="AssignmentColorSelector" SelectedColor="{x:Bind AssignmentColor}" ColorChanged="AssignmentColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_OverlappedAssignmentColor}">
 					<c:ColorSelector
-						x:Name="OverlappedAssignmentColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor}"
+						x:Name="OverlappedAssignmentColorSelector" SelectedColor="{x:Bind OverlappedAssignmentColor}"
 						ColorChanged="OverlappedAssignmentColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationColor}">
-					<c:ColorSelector
-						x:Name="EliminationColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor}"
-						ColorChanged="EliminationColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="EliminationColorSelector" SelectedColor="{x:Bind EliminationColor}" ColorChanged="EliminationColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_CannibalismColor}">
-					<c:ColorSelector
-						x:Name="CannibalismColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CannibalismColor}"
-						ColorChanged="CannibalismColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="CannibalismColorSelector" SelectedColor="{x:Bind CannibalismColor}" ColorChanged="CannibalismColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_ExofinColor}">
-					<c:ColorSelector
-						x:Name="ExofinColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor}"
-						ColorChanged="ExofinColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="ExofinColorSelector" SelectedColor="{x:Bind ExofinColor}" ColorChanged="ExofinColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_EndofinColor}">
-					<c:ColorSelector
-						x:Name="EndofinColorSelector"
-						SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor}"
-						ColorChanged="EndofinColorSelector_ColorChanged" />
+					<c:ColorSelector x:Name="EndofinColorSelector" SelectedColor="{x:Bind EndofinColor}" ColorChanged="EndofinColorSelector_ColorChanged" />
 				</w:SettingsCard>
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_AuxiliaryColors}" Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}">
 					<w:SettingsExpander.Items>
@@ -119,7 +91,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[0]}"
+									SelectedColor="{x:Bind AuxiliaryColors[0]}"
 									ColorChanged="AuxiliaryColor1Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -129,7 +101,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[1]}"
+									SelectedColor="{x:Bind AuxiliaryColors[1]}"
 									ColorChanged="AuxiliaryColor2Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -139,7 +111,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AuxiliaryColors[2]}"
+									SelectedColor="{x:Bind AuxiliaryColors[2]}"
 									ColorChanged="AuxiliaryColor3Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -153,7 +125,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[0]}"
+									SelectedColor="{x:Bind AlmostLockedSetsColors[0]}"
 									ColorChanged="AlmostLockedSetsColor1Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -163,7 +135,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[1]}"
+									SelectedColor="{x:Bind AlmostLockedSetsColors[1]}"
 									ColorChanged="AlmostLockedSetsColor2Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -173,7 +145,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[2]}"
+									SelectedColor="{x:Bind AlmostLockedSetsColors[2]}"
 									ColorChanged="AlmostLockedSetsColor3Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -183,7 +155,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[3]}"
+									SelectedColor="{x:Bind AlmostLockedSetsColors[3]}"
 									ColorChanged="AlmostLockedSetsColor4Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -193,7 +165,7 @@
 								<c:ColorSelector
 									RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
 									RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
-									SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlmostLockedSetsColors[4]}"
+									SelectedColor="{x:Bind AlmostLockedSetsColors[4]}"
 									ColorChanged="AlmostLockedSetsColor5Selector_ColorChanged" />
 							</RelativePanel>
 						</w:SettingsCard>
@@ -211,7 +183,7 @@
 								x:Name="GivenFontPicker" Margin="40,10"
 								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
 								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontColor}"
+								SelectedFontColor="{x:Bind GivenFontColor}"
 								SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
 								SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
 								SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
@@ -225,7 +197,7 @@
 								x:Name="ModifiableFontPicker" Margin="40,10"
 								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
 								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontColor}"
+								SelectedFontColor="{x:Bind ModifiableFontColor}"
 								SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
 								SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
 								SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
@@ -239,7 +211,7 @@
 								x:Name="PencilmarkFontPicker" Margin="40,10"
 								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
 								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontColor}"
+								SelectedFontColor="{x:Bind PencilmarkFontColor}"
 								SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
 								SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
 								SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
@@ -253,7 +225,7 @@
 								x:Name="CoordinateFontPicker" Margin="40,10"
 								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
 								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontColor}"
+								SelectedFontColor="{x:Bind CoordinateLabelFontColor}"
 								SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
 								SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
 								SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
@@ -267,7 +239,7 @@
 								x:Name="BabaGroupingFontPicker" Margin="40,10"
 								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
 								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
-								SelectedFontColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontColor}"
+								SelectedFontColor="{x:Bind BabaGroupingFontColor}"
 								SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
 								SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
 								SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />

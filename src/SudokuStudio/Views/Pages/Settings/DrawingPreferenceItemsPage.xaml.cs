@@ -54,6 +54,435 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 
 
 	/// <summary>
+	/// The theme description.
+	/// </summary>
+	internal string ThemeDescription
+		=> string.Format(
+			GetString("SettingsPage_CurrentlySelectedThemeIs"),
+			GetString(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_LightThemeFullName", _ => "SettingsPage_DarkThemeFullName" }),
+			GetString(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_DarkThemeFullName", _ => "SettingsPage_LightThemeFullName" })
+		);
+
+	/// <summary>
+	/// The delta value color.
+	/// </summary>
+	internal Color DeltaValueColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor_Dark = value
+			};
+			SampleSudokuGrid.DeltaCellColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The delta pencilmark color.
+	/// </summary>
+	internal Color DeltaPencilmarkColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor_Dark = value
+			};
+			SampleSudokuGrid.DeltaCandidateColor = value;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the border color.
+	/// </summary>
+	internal Color SudokuPaneBorderColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor_Dark = value
+			};
+			SampleSudokuGrid.BorderColor = value;
+		}
+	}
+
+	/// <summary>
+	/// Indicates cursor background color.
+	/// </summary>
+	internal Color CursorBackgroundColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor_Dark = value
+			};
+			SampleSudokuGrid.CursorBackgroundColor = value;
+		}
+	}
+
+	/// <summary>
+	/// Indicates chain color.
+	/// </summary>
+	internal Color ChainColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ChainColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.ChainColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ChainColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.ChainColor_Dark = value
+			};
+			SampleSudokuGrid.LinkColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The normal color.
+	/// </summary>
+	internal Color NormalColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.NormalColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.NormalColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.NormalColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.NormalColor_Dark = value
+			};
+			SampleSudokuGrid.NormalColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The assignment color.
+	/// </summary>
+	internal Color AssignmentColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AssignmentColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.AssignmentColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AssignmentColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.AssignmentColor_Dark = value
+			};
+			SampleSudokuGrid.AssignmentColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The overlapped assignment color.
+	/// </summary>
+	internal Color OverlappedAssignmentColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor_Dark = value
+			};
+			SampleSudokuGrid.OverlappedAssignmentColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The elimination color.
+	/// </summary>
+	internal Color EliminationColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EliminationColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.EliminationColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EliminationColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.EliminationColor_Dark = value
+			};
+			SampleSudokuGrid.EliminationColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The cannibalism color.
+	/// </summary>
+	internal Color CannibalismColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CannibalismColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.CannibalismColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CannibalismColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.CannibalismColor_Dark = value
+			};
+			SampleSudokuGrid.CannibalismColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The exofin color.
+	/// </summary>
+	internal Color ExofinColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ExofinColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.ExofinColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ExofinColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.ExofinColor_Dark = value
+			};
+			SampleSudokuGrid.ExofinColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The endofin color.
+	/// </summary>
+	internal Color EndofinColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EndofinColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.EndofinColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EndofinColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.EndofinColor_Dark = value
+			};
+			SampleSudokuGrid.EndofinColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The given color.
+	/// </summary>
+	internal Color GivenFontColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GivenFontColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.GivenFontColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GivenFontColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.GivenFontColor_Dark = value
+			};
+			SampleSudokuGrid.GivenColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The modifiable color.
+	/// </summary>
+	internal Color ModifiableFontColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ModifiableFontColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.ModifiableFontColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ModifiableFontColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.ModifiableFontColor_Dark = value
+			};
+			SampleSudokuGrid.ModifiableColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The pencilmark color.
+	/// </summary>
+	internal Color PencilmarkFontColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.PencilmarkFontColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.PencilmarkFontColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.PencilmarkFontColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.PencilmarkFontColor_Dark = value
+			};
+			SampleSudokuGrid.PencilmarkColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The coordinate label color.
+	/// </summary>
+	internal Color CoordinateLabelFontColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CoordinateLabelFontColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.CoordinateLabelFontColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CoordinateLabelFontColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.CoordinateLabelFontColor_Dark = value
+			};
+			SampleSudokuGrid.CoordinateLabelColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The baba grouping label color.
+	/// </summary>
+	internal Color BabaGroupingFontColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.BabaGroupingFontColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.BabaGroupingFontColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.BabaGroupingFontColor = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.BabaGroupingFontColor_Dark = value
+			};
+			SampleSudokuGrid.BabaGroupLabelColor = value;
+		}
+	}
+
+	/// <summary>
+	/// The auxiliary colors.
+	/// </summary>
+	internal ColorPalette AuxiliaryColors
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark = value
+			};
+			SampleSudokuGrid.AuxiliaryColors = value;
+		}
+	}
+
+	/// <summary>
+	/// The almost locked set colors.
+	/// </summary>
+	internal ColorPalette AlmostLockedSetsColors
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors = value,
+				_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark = value
+			};
+			SampleSudokuGrid.AlmostLockedSetsColors = value;
+		}
+	}
+
+
+	/// <summary>
 	/// Try to set color to the specified <see cref="ColorPalette"/> instance.
 	/// </summary>
 	/// <param name="palette">The instance.</param>
@@ -70,65 +499,85 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	private void SampleSudokuGrid_ActualThemeChanged(FrameworkElement sender, object args)
 		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SampleSudokuGrid);
 
-	private void DeltaCellColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.DeltaValueColor = e;
+	private void DeltaCellColorSelector_ColorChanged(object sender, Color e) => DeltaValueColor = e;
 
-	private void DeltaCandidateColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor = e;
+	private void DeltaCandidateColorSelector_ColorChanged(object sender, Color e) => DeltaPencilmarkColor = e;
 
-	private void BorderColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor = e;
+	private void BorderColorSelector_ColorChanged(object sender, Color e) => SudokuPaneBorderColor = e;
 
-	private void CursorBackgroundColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor = e;
+	private void CursorBackgroundColorSelector_ColorChanged(object sender, Color e) => CursorBackgroundColor = e;
 
-	private void ChainColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.ChainColor = e;
+	private void ChainColorSelector_ColorChanged(object sender, Color e) => ChainColor = e;
 
-	private void NormalColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.NormalColor = e;
+	private void NormalColorSelector_ColorChanged(object sender, Color e) => NormalColor = e;
 
-	private void AssignmentColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.AssignmentColor = e;
+	private void AssignmentColorSelector_ColorChanged(object sender, Color e) => AssignmentColor = e;
 
-	private void OverlappedAssignmentColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor = e;
+	private void OverlappedAssignmentColorSelector_ColorChanged(object sender, Color e) => OverlappedAssignmentColor = e;
 
-	private void EliminationColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.EliminationColor = e;
+	private void EliminationColorSelector_ColorChanged(object sender, Color e) => EliminationColor = e;
 
-	private void CannibalismColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.CannibalismColor = e;
+	private void CannibalismColorSelector_ColorChanged(object sender, Color e) => CannibalismColor = e;
 
-	private void ExofinColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.ExofinColor = e;
+	private void ExofinColorSelector_ColorChanged(object sender, Color e) => ExofinColor = e;
 
-	private void EndofinColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.EndofinColor = e;
+	private void EndofinColorSelector_ColorChanged(object sender, Color e) => EndofinColor = e;
 
 	private void AuxiliaryColor1Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AuxiliaryColors, 0, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+		}, 0, e);
 
 	private void AuxiliaryColor2Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AuxiliaryColors, 1, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+		}, 1, e);
 
 	private void AuxiliaryColor3Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AuxiliaryColors, 2, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+		}, 2, e);
 
 	private void AlmostLockedSetsColor1Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors, 0, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		}, 0, e);
 
 	private void AlmostLockedSetsColor2Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors, 1, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		}, 1, e);
 
 	private void AlmostLockedSetsColor3Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors, 2, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		}, 2, e);
 
 	private void AlmostLockedSetsColor4Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors, 3, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		}, 3, e);
 
 	private void AlmostLockedSetsColor5Selector_ColorChanged(object sender, Color e)
-		=> ChangeColor(((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors, 4, e);
+		=> ChangeColor(App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+		}, 4, e);
 
 	private void GivenFontPicker_SelectedFontChanged(object sender, string e)
 		=> ((App)Application.Current).Preference.UIPreferences.GivenFontName = e;
