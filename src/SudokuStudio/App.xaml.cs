@@ -192,7 +192,6 @@ public partial class App : Application
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
 		__2024__.PrintGreetingMessageForYou();
-
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
 		ActivateMainWindow();
