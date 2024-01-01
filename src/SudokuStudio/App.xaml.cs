@@ -98,13 +98,7 @@ public partial class App : Application
 	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
 	{
 		var uiPref = ((App)Current).Preference.UIPreferences;
-		Action themeChanger = uiPref.CurrentTheme switch
-		{
-			Theme.Default when !ShouldSystemUseDarkMode() => setSudokuPaneColors_Light,
-			Theme.Default => setSudokuPaneColors_Dark,
-			Theme.Light => setSudokuPaneColors_Light,
-			Theme.Dark => setSudokuPaneColors_Dark
-		};
+		Action themeChanger = CurrentTheme switch { ApplicationTheme.Light => setSudokuPaneColors_Light, _ => setSudokuPaneColors_Dark };
 
 		themeChanger();
 
@@ -203,7 +197,6 @@ public partial class App : Application
 	private void ActivateMainWindow()
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
-		window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
 		if (window.Content is FrameworkElement control)
 		{
 			control.RequestedTheme = ((App)Current).Preference.UIPreferences.CurrentTheme switch
@@ -214,6 +207,7 @@ public partial class App : Application
 				//_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
 			};
 		}
+		window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
 
 		window.Activate();
 	}
