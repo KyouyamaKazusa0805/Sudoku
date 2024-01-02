@@ -4992,32 +4992,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_CheckedExplicit(`1[])~`0">
-            <summary>
-            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, with boundary checks.
-            </summary>
-            <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
-            <exception cref="T:System.OverflowException">
-            Throws when at least one element in argument <paramref name="array"/> is greater than <see cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Explicit(System.ReadOnlySpan{`1})~`0">
             <summary>
             Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
             </summary>
             <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_CheckedExplicit(System.ReadOnlySpan{`1})~`0">
-            <summary>
-            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance, 
-            with boundary checks.
-            </summary>
-            <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
-            <exception cref="T:System.OverflowException">
-            Throws when at least one element in argument <paramref name="values"/> is greater than <see cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>.
-            </exception>
-            <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.MaxCount"/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#Clear">
             <inheritdoc/>
