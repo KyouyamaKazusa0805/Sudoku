@@ -34,6 +34,10 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 		};
 
 	/// <inheritdoc/>
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
+		=> [new(ExtraDifficultyFactorNames.WingSize, Cells.Count switch { 3 or 4 => 0, 5 or 6 or 7 => .2M, 8 or 9 => .4M })];
+
+	/// <inheritdoc/>
 	public override TechniqueFormat Format => $"{"ExtendedSubsetPrincipleWithDuplicate"}";
 
 	/// <inheritdoc/>

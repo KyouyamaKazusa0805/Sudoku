@@ -10096,6 +10096,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Format">
             <inheritdoc/>
         </member>
