@@ -2977,6 +2977,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RSTUVWXYZ-Wing Extension.
+        /// </summary>
+        public static string RstuvwxyzWingExtension {
+            get {
+                return ResourceManager.GetString("RstuvwxyzWingExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
         /// </summary>
         public static string RwDeadlyPattern {
@@ -4008,6 +4017,15 @@ namespace Sudoku.Analytics.Strings {
         public static string StuvwxyzWing {
             get {
                 return ResourceManager.GetString("StuvwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STUVWXYZ-Wing Extension.
+        /// </summary>
+        public static string StuvwxyzWingExtension {
+            get {
+                return ResourceManager.GetString("StuvwxyzWingExtension", resourceCulture);
             }
         }
         
@@ -6631,6 +6649,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TUVWXYZ-Wing Extension.
+        /// </summary>
+        public static string TuvwxyzWingExtension {
+            get {
+                return ResourceManager.GetString("TuvwxyzWingExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Two-String Kite.
         /// </summary>
         public static string TwoStringKite {
@@ -7054,11 +7081,29 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UVWXYZ-Wing Extension.
+        /// </summary>
+        public static string UvwxyzWingExtension {
+            get {
+                return ResourceManager.GetString("UvwxyzWingExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VWXYZ-Wing.
         /// </summary>
         public static string VwxyzWing {
             get {
                 return ResourceManager.GetString("VwxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VWXYZ-Wing Extension.
+        /// </summary>
+        public static string VwxyzWingExtension {
+            get {
+                return ResourceManager.GetString("VwxyzWingExtension", resourceCulture);
             }
         }
         
@@ -7122,6 +7167,15 @@ namespace Sudoku.Analytics.Strings {
         public static string WxyzWing {
             get {
                 return ResourceManager.GetString("WxyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WXYZ-Wing Extension.
+        /// </summary>
+        public static string WxyzWingExtension {
+            get {
+                return ResourceManager.GetString("WxyzWingExtension", resourceCulture);
             }
         }
         

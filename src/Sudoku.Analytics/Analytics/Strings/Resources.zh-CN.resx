@@ -2695,4 +2695,28 @@
     <value>伪数组</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="RstuvwxyzWingExtension" xml:space="preserve">
+    <value>伪九数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="StuvwxyzWingExtension" xml:space="preserve">
+    <value>伪八数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TuvwxyzWingExtension" xml:space="preserve">
+    <value>伪七数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="UvwxyzWingExtension" xml:space="preserve">
+    <value>伪六数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="VwxyzWingExtension" xml:space="preserve">
+    <value>伪五数组</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="WxyzWingExtension" xml:space="preserve">
+    <value>伪四数组</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

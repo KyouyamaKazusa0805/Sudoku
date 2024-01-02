@@ -1903,6 +1903,36 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped XYZ- nice loop.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.WxyzWingExtension">
+            <summary>
+            Indicates WXYZ-Wing extension.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.VwxyzWingExtension">
+            <summary>
+            Indicates VWXYZ-Wing extension.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UvwxyzWingExtension">
+            <summary>
+            Indicates UVWXYZ-Wing extension.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.TuvwxyzWingExtension">
+            <summary>
+            Indicates TUVWXYZ-Wing extension.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.StuvwxyzWingExtension">
+            <summary>
+            Indicates STUVWXYZ-Wing extension.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RstuvwxyzWingExtension">
+            <summary>
+            Indicates RSTUVWXYZ-Wing extension.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleType1">
             <summary>
             Indicates unique rectangle type 1.
@@ -2636,11 +2666,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.BlossomLoop">
             <summary>
             Indicates blossom loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedSubsetPrinciple">
-            <summary>
-            Indicates extended subset principle.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AlignedPairExclusion">
@@ -18974,6 +18999,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to RSTUVWXYZ-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.RstuvwxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to RSTUVWXYZ-Wing Extension.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.RwDeadlyPattern">
             <summary>
               Looks up a localized string similar to RW&apos;s Deadly Pattern.
@@ -19547,6 +19577,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StuvwxyzWing">
             <summary>
               Looks up a localized string similar to STUVWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StuvwxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to STUVWXYZ-Wing Extension.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.SubsetNamesSize2">
@@ -21004,6 +21039,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to TUVWXYZ-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TuvwxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to TUVWXYZ-Wing Extension.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TwoStringKite">
             <summary>
               Looks up a localized string similar to Two-String Kite.
@@ -21239,9 +21279,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to UVWXYZ-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.UvwxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to UVWXYZ-Wing Extension.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.VwxyzWing">
             <summary>
               Looks up a localized string similar to VWXYZ-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.VwxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to VWXYZ-Wing Extension.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.WeakExocet">
@@ -21277,6 +21327,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.WxyzWing">
             <summary>
               Looks up a localized string similar to WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.WxyzWingExtension">
+            <summary>
+              Looks up a localized string similar to WXYZ-Wing Extension.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.XAxisSymmetry">

@@ -1676,6 +1676,65 @@ public enum Technique
 	#endregion
 
 	//
+	// Extended Subset Principle
+	//
+	#region Extended Subset Principle
+	/// <summary>
+	/// Indicates WXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	WxyzWingExtension,
+
+	/// <summary>
+	/// Indicates VWXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	VwxyzWingExtension,
+
+	/// <summary>
+	/// Indicates UVWXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	UvwxyzWingExtension,
+
+	/// <summary>
+	/// Indicates TUVWXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	TuvwxyzWingExtension,
+
+	/// <summary>
+	/// Indicates STUVWXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	StuvwxyzWingExtension,
+
+	/// <summary>
+	/// Indicates RSTUVWXYZ-Wing extension.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	RstuvwxyzWingExtension,
+	#endregion
+
+	//
 	// Unique Rectangle
 	//
 	#region Unique Rectangle
@@ -3209,22 +3268,6 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	BlossomLoop,
-	#endregion
-
-	//
-	// Extended Subset Principle
-	//
-	#region Extended Subset Principle
-	/// <summary>
-	/// Indicates extended subset principle.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
-	[Abbreviation("ESP")]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	ExtendedSubsetPrinciple,
 	#endregion
 
 	//

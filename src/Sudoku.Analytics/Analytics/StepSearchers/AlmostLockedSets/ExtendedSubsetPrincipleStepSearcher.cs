@@ -7,7 +7,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Extended Subset Principle</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.ExtendedSubsetPrinciple)]
+[StepSearcher(
+	Technique.WxyzWingExtension, Technique.VwxyzWingExtension, Technique.UvwxyzWingExtension,
+	Technique.TuvwxyzWingExtension, Technique.StuvwxyzWingExtension, Technique.RstuvwxyzWingExtension)]
 [StepSearcherRuntimeName("StepSearcherName_ExtendedSubsetPrincipleStepSearcher")]
 public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 {

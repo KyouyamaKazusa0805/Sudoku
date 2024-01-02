@@ -22,7 +22,16 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	public override decimal BaseDifficulty => 5.5M;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.ExtendedSubsetPrinciple;
+	public override Technique Code
+		=> Cells.Count switch
+		{
+			4 => Technique.WxyzWingExtension,
+			5 => Technique.VwxyzWingExtension,
+			6 => Technique.UvwxyzWingExtension,
+			7 => Technique.TuvwxyzWingExtension,
+			8 => Technique.StuvwxyzWingExtension,
+			_ => Technique.RstuvwxyzWingExtension
+		};
 
 	/// <inheritdoc/>
 	public override TechniqueFormat Format => $"{"ExtendedSubsetPrincipleWithDuplicate"}";

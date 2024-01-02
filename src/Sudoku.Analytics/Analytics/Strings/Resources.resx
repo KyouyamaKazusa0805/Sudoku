@@ -2508,4 +2508,22 @@
   <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
     <value>Extended Subset Principle</value>
   </data>
+  <data name="RstuvwxyzWingExtension" xml:space="preserve">
+    <value>RSTUVWXYZ-Wing Extension</value>
+  </data>
+  <data name="StuvwxyzWingExtension" xml:space="preserve">
+    <value>STUVWXYZ-Wing Extension</value>
+  </data>
+  <data name="TuvwxyzWingExtension" xml:space="preserve">
+    <value>TUVWXYZ-Wing Extension</value>
+  </data>
+  <data name="UvwxyzWingExtension" xml:space="preserve">
+    <value>UVWXYZ-Wing Extension</value>
+  </data>
+  <data name="VwxyzWingExtension" xml:space="preserve">
+    <value>VWXYZ-Wing Extension</value>
+  </data>
+  <data name="WxyzWingExtension" xml:space="preserve">
+    <value>WXYZ-Wing Extension</value>
+  </data>
 </root>
