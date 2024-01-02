@@ -97,7 +97,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	public unsafe decimal MaxDifficulty => StepRatingHelper.EvaluatorUnsafe(Steps, &StepRatingHelper.MaxUnsafe<Step>, 20.0M);
+	public unsafe decimal MaxDifficulty => StepRatingHelper.EvaluateUnsafe(Steps, &StepRatingHelper.MaxUnsafe<Step>, 20.0M);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -109,7 +109,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => StepRatingHelper.EvaluatorUnsafe(Steps, &StepRatingHelper.SumUnsafe<Step>, 0);
+	public unsafe decimal TotalDifficulty => StepRatingHelper.EvaluateUnsafe(Steps, &StepRatingHelper.SumUnsafe<Step>, 0);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
