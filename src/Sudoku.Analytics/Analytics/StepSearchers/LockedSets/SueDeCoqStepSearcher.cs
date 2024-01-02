@@ -62,8 +62,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 					var selectedInterMask = grid[in currentInterMap];
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 					{
-						// The intersection combination is an ALS or a normal subset,
-						// which is invalid in SdCs.
+						// The intersection combination is an ALS or a normal subset, which is invalid in SdCs.
 						continue;
 					}
 
@@ -125,113 +124,116 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									}
 
 									var p = PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter);
-									if (currentInterMap.Count + i + j == p && !!(elimMapBlock | elimMapLine | elimMapIsolated))
+									if (currentInterMap.Count + i + j != p || !(elimMapBlock | elimMapLine | elimMapIsolated))
 									{
-										// Check eliminations.
-										var conclusions = new List<Conclusion>();
-										foreach (var cell in elimMapBlock)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												if ((blockMask >> digit & 1) != 0)
-												{
-													conclusions.Add(new(Elimination, cell, digit));
-												}
-											}
-										}
-										foreach (var cell in elimMapLine)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												if ((lineMask >> digit & 1) != 0)
-												{
-													conclusions.Add(new(Elimination, cell, digit));
-												}
-											}
-										}
-										foreach (var cell in elimMapIsolated)
-										{
-											conclusions.Add(new(Elimination, cell, digitIsolated));
-										}
-										if (conclusions.Count == 0)
-										{
-											continue;
-										}
-
-										var candidateOffsets = new List<CandidateViewNode>();
-										foreach (var cell in currentBlockMap)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												candidateOffsets.Add(
-													new(
-														!cannibalMode && digit == digitIsolated
-															? WellKnownColorIdentifier.Auxiliary2
-															: WellKnownColorIdentifier.Normal,
-														cell * 9 + digit
-													)
-												);
-											}
-										}
-										foreach (var cell in currentLineMap)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												candidateOffsets.Add(
-													new(
-														!cannibalMode && digit == digitIsolated
-															? WellKnownColorIdentifier.Auxiliary2
-															: WellKnownColorIdentifier.Auxiliary1,
-														cell * 9 + digit
-													)
-												);
-											}
-										}
-										foreach (var cell in currentInterMap)
-										{
-											foreach (var digit in grid.GetCandidates(cell))
-											{
-												candidateOffsets.Add(
-													new(
-														digitIsolated == digit
-															? WellKnownColorIdentifier.Auxiliary2
-															: (blockMask >> digit & 1) != 0
-																? WellKnownColorIdentifier.Normal
-																: WellKnownColorIdentifier.Auxiliary1,
-														cell * 9 + digit
-													)
-												);
-											}
-										}
-
-										var step = new SueDeCoqStep(
-											[.. conclusions],
-											[
-												[
-													.. candidateOffsets,
-													new HouseViewNode(WellKnownColorIdentifier.Normal, coverSet),
-													new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, baseSet)
-												]
-											],
-											context.PredefinedOptions,
-											coverSet,
-											baseSet,
-											blockMask,
-											lineMask,
-											selectedInterMask,
-											cannibalMode,
-											maskIsolated,
-											in currentBlockMap,
-											in currentLineMap,
-											in currentInterMap
-										);
-										if (context.OnlyFindOne)
-										{
-											return step;
-										}
-
-										context.Accumulator.Add(step);
+										// Invalid or no elimination.
+										continue;
 									}
+
+									// Check eliminations.
+									var conclusions = new List<Conclusion>();
+									foreach (var cell in elimMapBlock)
+									{
+										foreach (var digit in grid.GetCandidates(cell))
+										{
+											if ((blockMask >> digit & 1) != 0)
+											{
+												conclusions.Add(new(Elimination, cell, digit));
+											}
+										}
+									}
+									foreach (var cell in elimMapLine)
+									{
+										foreach (var digit in grid.GetCandidates(cell))
+										{
+											if ((lineMask >> digit & 1) != 0)
+											{
+												conclusions.Add(new(Elimination, cell, digit));
+											}
+										}
+									}
+									foreach (var cell in elimMapIsolated)
+									{
+										conclusions.Add(new(Elimination, cell, digitIsolated));
+									}
+									if (conclusions.Count == 0)
+									{
+										continue;
+									}
+
+									var candidateOffsets = new List<CandidateViewNode>();
+									foreach (var cell in currentBlockMap)
+									{
+										foreach (var digit in grid.GetCandidates(cell))
+										{
+											candidateOffsets.Add(
+												new(
+													!cannibalMode && digit == digitIsolated
+														? WellKnownColorIdentifier.Auxiliary2
+														: WellKnownColorIdentifier.Normal,
+													cell * 9 + digit
+												)
+											);
+										}
+									}
+									foreach (var cell in currentLineMap)
+									{
+										foreach (var digit in grid.GetCandidates(cell))
+										{
+											candidateOffsets.Add(
+												new(
+													!cannibalMode && digit == digitIsolated
+														? WellKnownColorIdentifier.Auxiliary2
+														: WellKnownColorIdentifier.Auxiliary1,
+													cell * 9 + digit
+												)
+											);
+										}
+									}
+									foreach (var cell in currentInterMap)
+									{
+										foreach (var digit in grid.GetCandidates(cell))
+										{
+											candidateOffsets.Add(
+												new(
+													digitIsolated == digit
+														? WellKnownColorIdentifier.Auxiliary2
+														: (blockMask >> digit & 1) != 0
+															? WellKnownColorIdentifier.Normal
+															: WellKnownColorIdentifier.Auxiliary1,
+													cell * 9 + digit
+												)
+											);
+										}
+									}
+
+									var step = new SueDeCoqStep(
+										[.. conclusions],
+										[
+											[
+												.. candidateOffsets,
+												new HouseViewNode(WellKnownColorIdentifier.Normal, coverSet),
+												new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, baseSet)
+											]
+										],
+										context.PredefinedOptions,
+										coverSet,
+										baseSet,
+										blockMask,
+										lineMask,
+										selectedInterMask,
+										cannibalMode,
+										maskIsolated,
+										in currentBlockMap,
+										in currentLineMap,
+										in currentInterMap
+									);
+									if (context.OnlyFindOne)
+									{
+										return step;
+									}
+
+									context.Accumulator.Add(step);
 								}
 							}
 						}

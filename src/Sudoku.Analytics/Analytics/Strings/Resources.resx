@@ -2505,4 +2505,7 @@
   <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>Rectangle cells: {0}, Branches: {1}</value>
   </data>
+  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
+    <value>Extended Subset Principle</value>
+  </data>
 </root>

@@ -3742,6 +3742,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        public static string StepSearcherName_ExtendedSubsetPrincipleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ExtendedSubsetPrincipleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firework.
         /// </summary>
         public static string StepSearcherName_FireworkStepSearcher {

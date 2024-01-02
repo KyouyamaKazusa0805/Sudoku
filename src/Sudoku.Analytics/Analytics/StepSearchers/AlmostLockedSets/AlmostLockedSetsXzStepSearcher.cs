@@ -101,7 +101,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				}
 
 				// Check basic eliminations.
-				var isDoublyLinked = (bool?)false;
+				var isDoublyLinked = false;
 				var finalZ = (Mask)0;
 				var conclusions = new List<Conclusion>();
 				foreach (var elimDigit in z)
@@ -179,69 +179,54 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 						}
 					}
 				}
-
 				if (conclusions.Count == 0)
 				{
 					continue;
 				}
 
 				// Now collect highlight elements.
-				var isEsp = als1.IsBivalueCell || als2.IsBivalueCell;
 				var cellOffsets = new List<CellViewNode>();
 				var candidateOffsets = new List<CandidateViewNode>();
-				if (isEsp)
+				foreach (var cell in map1)
 				{
-					foreach (var cell in map)
+					cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+
+					var mask = grid.GetCandidates(cell);
+					var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
+					var targetDigitsMask = (Mask)(mask & finalZ);
+					var rccDigitsMask = (Mask)(mask & rccMask);
+					foreach (var digit in alsDigitsMask)
 					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(new((WellKnownColorIdentifierKind)(finalZ >> digit & 1), cell * 9 + digit));
-						}
+						candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
+					}
+					foreach (var digit in targetDigitsMask)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+					}
+					foreach (var digit in rccDigitsMask)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
-				else
+				foreach (var cell in map2)
 				{
-					foreach (var cell in map1)
-					{
-						cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+					cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
 
-						var mask = grid.GetCandidates(cell);
-						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
-						var targetDigitsMask = (Mask)(mask & finalZ);
-						var rccDigitsMask = (Mask)(mask & rccMask);
-						foreach (var digit in alsDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
-						}
-						foreach (var digit in targetDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
-						}
-						foreach (var digit in rccDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
+					var mask = grid.GetCandidates(cell);
+					var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
+					var targetDigitsMask = (Mask)(mask & finalZ);
+					var rccDigitsMask = (Mask)(mask & rccMask);
+					foreach (var digit in alsDigitsMask)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
 					}
-					foreach (var cell in map2)
+					foreach (var digit in targetDigitsMask)
 					{
-						cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
-
-						var mask = grid.GetCandidates(cell);
-						var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
-						var targetDigitsMask = (Mask)(mask & finalZ);
-						var rccDigitsMask = (Mask)(mask & rccMask);
-						foreach (var digit in alsDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
-						}
-						foreach (var digit in targetDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
-						}
-						foreach (var digit in rccDigitsMask)
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+					}
+					foreach (var digit in rccDigitsMask)
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
 
@@ -253,7 +238,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					als2,
 					rccMask,
 					finalZ,
-					isEsp ? null : isDoublyLinked
+					isDoublyLinked
 				);
 				if (context.OnlyFindOne)
 				{

@@ -26,46 +26,25 @@ public sealed partial class AlmostLockedSetsXzStep(
 	[Data(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[Data] Mask xDigitsMask,
 	[Data] Mask zDigitsMask,
-	[Data] bool? isDoublyLinked
+	[Data] bool isDoublyLinked
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
-	public override TechniqueFormat Format
-		=> $"{(IsDoublyLinked, ZDigitsMask) switch
-		{
-			(null, 0) => "ExtendedSubsetPrincipleWithoutDuplicate",
-			(null, _) => "ExtendedSubsetPrincipleWithDuplicate",
-			_ => "AlmostLockedSetsXzRule"
-		}}";
+	public override TechniqueFormat Format => $"{"AlmostLockedSetsXzRule"}";
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> IsDoublyLinked switch
-		{
-			true => Technique.DoublyLinkedAlmostLockedSetsXzRule,
-			false => Technique.SinglyLinkedAlmostLockedSetsXzRule,
-			_ => Technique.ExtendedSubsetPrinciple
-		};
+		=> IsDoublyLinked ? Technique.DoublyLinkedAlmostLockedSetsXzRule : Technique.SinglyLinkedAlmostLockedSetsXzRule;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
-			new(
-				EnglishLanguage,
-				IsDoublyLinked is null ? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr] : [Als1Str, Als2Str, XStr, ZResultStr]
-			),
-			new(
-				ChineseLanguage,
-				IsDoublyLinked is null ? ZDigitsMask == 0 ? [CellsStr] : [EspDigitStr, CellsStr] : [Als1Str, Als2Str, XStr, ZResultStr]
-			)
+			new(EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr]),
+			new(ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr])
 		];
-
-	private string CellsStr => Options.Converter.CellConverter(FirstAls.Cells | SecondAls.Cells);
-
-	private string EspDigitStr => Options.Converter.DigitConverter(ZDigitsMask);
 
 	private string Als1Str => FirstAls.ToString(Options.Converter);
 

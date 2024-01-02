@@ -2691,4 +2691,8 @@
   <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>矩形：{0}，每个分支：{1}</value>
   </data>
+  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
+    <value>伪数组</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

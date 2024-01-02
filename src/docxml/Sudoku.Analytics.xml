@@ -5695,6 +5695,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher">
+            <summary>
+            Provides with an <b>Extended Subset Principle</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Extended Subset Principle</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
@@ -9865,7 +9877,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
@@ -10029,6 +10041,55 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Digit2">
             <summary>
             The generated property declaration for parameter <c>digit2</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep">
+            <summary>
+            Provides with a step that is an <b>Extended Subset Principle</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Extended Subset Principle</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Format">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HouseDeathBlossomStep">
@@ -19336,6 +19397,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_ExtendedRectangleStepSearcher">
             <summary>
               Looks up a localized string similar to Extended Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_ExtendedSubsetPrincipleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_FireworkStepSearcher">
