@@ -218,9 +218,7 @@
 			SettingsPage_MiscellaneousBehaviors
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_MiscellaneousBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
-			<w:SettingsCard
-				Header="{m:R Key=SettingsPage_Backdrop}"
-				IsEnabled="False">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}" IsEnabled="False">
 				<w:SettingsCard.Description>
 					<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
 				</w:SettingsCard.Description>
