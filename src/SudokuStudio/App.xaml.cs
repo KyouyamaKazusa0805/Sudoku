@@ -185,7 +185,6 @@ public partial class App : Application
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		__2024__.PrintGreetingMessageForYou();
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
 		ActivateMainWindow();
