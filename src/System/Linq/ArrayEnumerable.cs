@@ -24,29 +24,7 @@ public static class ArrayEnumerable
 	/// <param name="this">The array to be filtered.</param>
 	/// <returns>A list of <typeparamref name="TResult"/> elements.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TResult[] OfType<TResult>(this object[] @this) => (from element in @this where element is TResult select (TResult)element);
-
-	/// <summary>
-	/// Filters the array of <typeparamref name="T"/> instances, removing instances that are not of type <typeparamref name="TResult"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <typeparam name="TResult">The type of the result.</typeparam>
-	/// <param name="this">The array to be filtered.</param>
-	/// <returns>The filtered result.</returns>
-	public static TResult[] OfType<T, TResult>(this T[] @this) where TResult : T
-	{
-		var result = new TResult[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
-		{
-			if (element is TResult p)
-			{
-				result[i++] = p;
-			}
-		}
-
-		return result[..i];
-	}
+	public static TResult[] OfType<TResult>(this object[] @this) => from element in @this where element is TResult select (TResult)element;
 
 	/// <summary>
 	/// Totals up the number of elements that satisfy the specified condition.
@@ -268,10 +246,7 @@ public static class ArrayEnumerable
 	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
 	public static (TFirst Left, TSecond Right)[] Zip<TFirst, TSecond>(this TFirst[] first, TSecond[] second)
 	{
-		if (first.Length != second.Length)
-		{
-			throw new InvalidOperationException("Two arrays should be of same length.");
-		}
+		ArgumentOutOfRangeException.ThrowIfNotEqual(first.Length, second.Length);
 
 		var result = new (TFirst, TSecond)[first.Length];
 		for (var i = 0; i < first.Length; i++)
