@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Doubly-linked Almost Locked Sets XZ Rule</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.SinglyLinkedAlmostLockedSetsXzRule, Technique.DoublyLinkedAlmostLockedSetsXzRule, Technique.ExtendedSubsetPrinciple)]
+[StepSearcher(Technique.SinglyLinkedAlmostLockedSetsXzRule, Technique.DoublyLinkedAlmostLockedSetsXzRule)]
 [StepSearcherRuntimeName("StepSearcherName_AlmostLockedSetsXzStepSearcher")]
 public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 {
