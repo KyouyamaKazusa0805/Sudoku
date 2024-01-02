@@ -34,7 +34,7 @@
 					<ComboBoxItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
 				</ComboBox>
 			</w:SettingsCard>
-			
+
 			<!--
 			SettingsPage_Theme
 			-->
@@ -218,7 +218,13 @@
 			SettingsPage_MiscellaneousBehaviors
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_MiscellaneousBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
-			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_Backdrop}"
+				IsEnabled="False">
+				<w:SettingsCard.Description>
+					<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
+				</w:SettingsCard.Description>
+
 				<ComboBox
 					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
 					SelectionChanged="BackdropSelector_SelectionChanged">

@@ -8070,6 +8070,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mica deep.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_BackdropDescription">
+            <summary>
+              Looks up a localized string similar to This option is deprecated, meaning you cannot modify for this option because it is no longer supported by Windows. The backdrops will be back if higher versions of Windows application SDK..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_Backslash">
             <summary>
               Looks up a localized string similar to Backslash (\).
