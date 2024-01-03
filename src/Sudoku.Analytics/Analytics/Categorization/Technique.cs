@@ -1684,6 +1684,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	WxyzWingExtension,
@@ -1693,6 +1696,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	VwxyzWingExtension,
@@ -1702,6 +1708,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UvwxyzWingExtension,
@@ -1711,6 +1720,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	TuvwxyzWingExtension,
@@ -1720,6 +1732,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	StuvwxyzWingExtension,
@@ -1729,6 +1744,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
+	[HodokuTechniquePrefix("1102")]
+	[Abbreviation("ESP")]
+	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RstuvwxyzWingExtension,
