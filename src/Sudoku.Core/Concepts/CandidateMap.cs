@@ -33,11 +33,9 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
-	IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
 	ICoordinateObject<CandidateMap>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
-	ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>,
 	IBitStatusMap<CandidateMap, Candidate>
 {
 	/// <inheritdoc cref="IBitStatusMap{T, TElement}.Empty"/>
@@ -858,20 +856,12 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right) => left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IAdditionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>.operator +(CandidateMap left, IEnumerable<Candidate> right)
+	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right)
 		=> left + right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap ISubtractionOperators<CandidateMap, Candidate, CandidateMap>.operator -(CandidateMap left, Candidate right) => left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap ISubtractionOperators<CandidateMap, IEnumerable<Candidate>, CandidateMap>.operator -(CandidateMap left, IEnumerable<Candidate> right)
+	static CandidateMap ISubtractionOperators<CandidateMap, Candidate, CandidateMap>.operator -(CandidateMap left, Candidate right)
 		=> left - right;
 
 

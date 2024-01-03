@@ -32,16 +32,13 @@ namespace Sudoku.Concepts;
 [ComparisonOperators]
 public partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
-	IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>,
 	IBitStatusMap<CellMap, Cell>,
-	IComparable,
 	IComparable<CellMap>,
 	ICoordinateObject<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
-	ISubtractionOperators<CellMap, Cell, CellMap>,
-	ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>
+	ISubtractionOperators<CellMap, Cell, CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
 	private const int Shifting = 41;
@@ -881,17 +878,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	readonly int IComparable.CompareTo([NotNull] object? obj)
-	{
-		ArgumentNullException.ThrowIfNull(obj);
-
-		return obj is CellMap other
-			? CompareTo(in other)
-			: throw new ArgumentException($"The argument must be of type '{nameof(CellMap)}'.", nameof(obj));
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other) => this -= other;
 
 	/// <inheritdoc/>
@@ -1184,15 +1170,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap IAdditionOperators<CellMap, IEnumerable<Cell>, CellMap>.operator +(CellMap left, IEnumerable<Cell> right) => left + right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, Cell, CellMap>.operator -(CellMap left, Cell right) => left - right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CellMap ISubtractionOperators<CellMap, IEnumerable<Cell>, CellMap>.operator -(CellMap left, IEnumerable<Cell> right) => left - right;
 
 
 	/// <summary>
