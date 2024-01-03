@@ -141,7 +141,7 @@ public abstract partial class Step(
 	/// <seealso cref="GetString(string, CultureInfo)"/>
 	/// <seealso cref="TechniqueFormat"/>
 	/// <seealso cref="ToString(CultureInfo?)"/>
-	public virtual TechniqueFormat Format => $"{GetType().Name}";
+	public virtual TechniqueFormat Format => GetType().Name;
 
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.

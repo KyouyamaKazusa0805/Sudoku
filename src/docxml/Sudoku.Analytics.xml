@@ -21492,7 +21492,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.TechniqueFormat.#ctor(System.String)">
             <summary>
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
@@ -21504,13 +21504,10 @@ if (student is (name: var name, age: >= 18))
             The format prefix.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat._formatSuffix">
+        <member name="F:Sudoku.Analytics.TechniqueFormat._formatFullName">
             <summary>
-            The suffix of the format.
+            Full name of the format.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.AppendFormatted(System.String)">
-            <inheritdoc cref="M:System.Runtime.CompilerServices.DefaultInterpolatedStringHandler.AppendFormatted(System.String)"/>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.GetTargetFormat(System.Globalization.CultureInfo)">
             <summary>
@@ -21529,14 +21526,15 @@ if (student is (name: var name, age: >= 18))
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
         </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat._literalLength">
+        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Implicit(System.String)~Sudoku.Analytics.TechniqueFormat">
             <summary>
-            The generated field declaration for parameter <c>literalLength</c>.
+            Creates a <see cref="T:Sudoku.Analytics.TechniqueFormat"/> instance using the specified format name stored in resource file.
             </summary>
+            <param name="formatName">TThe format name.</param>
         </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat._holeCount">
+        <member name="F:Sudoku.Analytics.TechniqueFormat._formatName">
             <summary>
-            The generated field declaration for parameter <c>holeCount</c>.
+            The generated field declaration for parameter <c>formatName</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.Equals(System.Object)">

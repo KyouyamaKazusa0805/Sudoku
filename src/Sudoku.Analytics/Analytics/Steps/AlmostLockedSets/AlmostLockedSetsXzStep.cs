@@ -33,7 +33,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
 
 	/// <inheritdoc/>
-	public override TechniqueFormat Format => $"{"AlmostLockedSetsXzRule"}";
+	public override TechniqueFormat Format => "AlmostLockedSetsXzRule";
 
 	/// <inheritdoc/>
 	public override Technique Code

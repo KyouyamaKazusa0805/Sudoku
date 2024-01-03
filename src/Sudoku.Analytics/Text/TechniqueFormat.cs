@@ -5,40 +5,33 @@ namespace Sudoku.Analytics;
 /// stored in resource dictionary.
 /// </summary>
 /// <seealso cref="Step"/>
-[InterpolatedStringHandler]
 [StructLayout(LayoutKind.Auto)]
 [Equals(EqualsBehavior.ThrowNotSupportedException)]
 [GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
 [EqualityOperators]
+[method: DebuggerStepThrough]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-[method: DebuggerStepThrough]
-public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalLength, [Data(DataMemberKinds.Field)] int holeCount)
+public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] string formatName)
 {
 	/// <summary>
 	/// The format prefix.
 	/// </summary>
-	internal const string FormatPrefix = "TechniqueFormat";
+	private const string FormatPrefix = "TechniqueFormat";
 
 
 	/// <summary>
-	/// The suffix of the format.
+	/// Full name of the format.
 	/// </summary>
-	private string? _formatSuffix;
+	private readonly string _formatFullName = $"{FormatPrefix}_{formatName}";
 
-
-	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted(string?)"/>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[DebuggerStepThrough]
-	public void AppendFormatted(string formatSuffix) => _formatSuffix = formatSuffix;
 
 	/// <summary>
 	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
 	/// </summary>
 	/// <param name="culture">The culture information.</param>
 	public readonly string? GetTargetFormat(CultureInfo? culture)
-		=> _formatSuffix is null ? null : GetString($"{FormatPrefix}_{_formatSuffix}", culture ?? CultureInfo.CurrentUICulture);
+		=> _formatName is null ? null : GetString(_formatFullName, culture ?? CultureInfo.CurrentUICulture);
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -54,5 +47,13 @@ public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] int literalL
 	public readonly string ToString(CultureInfo? culture, params string[] formatArguments)
 		=> GetTargetFormat(culture) is { } p
 			? string.Format(p, formatArguments)
-			: throw new ResourceNotFoundException($"{FormatPrefix}_{_formatSuffix}", typeof(TechniqueFormat).Assembly);
+			: throw new ResourceNotFoundException(_formatFullName, typeof(TechniqueFormat).Assembly);
+
+
+	/// <summary>
+	/// Creates a <see cref="TechniqueFormat"/> instance using the specified format name stored in resource file.
+	/// </summary>
+	/// <param name="formatName">TThe format name.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static implicit operator TechniqueFormat(string formatName) => new(formatName);
 }
