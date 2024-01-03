@@ -77,14 +77,14 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 								}
 
 								// Check for elimination.
-								var elimMap = (currentBlockMap | currentLineMap | currentInterMap) % CandidatesMap[zDigit];
+								var pattern = currentBlockMap | currentLineMap | currentInterMap;
+								var elimMap = pattern % CandidatesMap[zDigit];
 								if (!elimMap)
 								{
 									continue;
 								}
 
 								var candidateOffsets = new List<CandidateViewNode>();
-								var pattern = currentBlockMap | currentLineMap | currentInterMap;
 								foreach (var cell in pattern)
 								{
 									foreach (var digit in grid.GetCandidates(cell))
