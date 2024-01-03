@@ -36,22 +36,4 @@ internal static class FishModule
 
 		return isSashimi;
 	}
-
-	/// <summary>
-	/// Try to get the number of body cells.
-	/// </summary>
-	/// <param name="grid">The grid to be used.</param>
-	/// <param name="baseSets">The base sets.</param>
-	/// <param name="digit">The digit.</param>
-	/// <returns>The number of cells of body, in fact.</returns>
-	public static int GetBodyCellsCount(scoped ref readonly Grid grid, House[] baseSets, Digit digit)
-	{
-		var bodyCellsCount = 0;
-		foreach (var baseSet in baseSets)
-		{
-			bodyCellsCount += (CandidatesMap[digit] & HousesMap[baseSet]).Count;
-		}
-
-		return bodyCellsCount;
-	}
 }

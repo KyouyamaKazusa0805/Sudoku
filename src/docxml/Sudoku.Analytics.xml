@@ -5319,15 +5319,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetBodyCellsCount(Sudoku.Concepts.Grid@,System.Int32[],System.Int32)">
-            <summary>
-            Try to get the number of body cells.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <param name="baseSets">The base sets.</param>
-            <param name="digit">The digit.</param>
-            <returns>The number of cells of body, in fact.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
             Represents a subset module.
