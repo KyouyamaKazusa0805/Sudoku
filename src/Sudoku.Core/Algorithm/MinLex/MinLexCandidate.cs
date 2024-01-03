@@ -283,11 +283,11 @@ public unsafe struct MinLexCandidate
 			{
 				if (resultBuffer[i] == 0)
 				{
-					resultBuffer[i] = (byte)'.';
+					resultBuffer[i] = 46;
 				}
 				else
 				{
-					resultBuffer[i] += (byte)'0';
+					resultBuffer[i] += 48;
 				}
 			}
 
@@ -369,7 +369,7 @@ public unsafe struct MinLexCandidate
 
 		for (var i = 0; i < 81; i++)
 		{
-			resultBuffer[i] = minLex[i] == 0 ? (byte)'.' : (byte)(minLex[i] + '0');
+			resultBuffer[i] = (byte)(minLex[i] == 0 ? 46 : minLex[i] + 48);
 		}
 
 		result = ((Utf8String)new ReadOnlySpan<byte>(resultBuffer, 81)).ToString();
