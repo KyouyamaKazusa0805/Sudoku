@@ -84,43 +84,20 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 								}
 
 								var candidateOffsets = new List<CandidateViewNode>();
-								foreach (var cell in currentBlockMap)
+								var pattern = currentBlockMap | currentLineMap | currentInterMap;
+								foreach (var cell in pattern)
 								{
 									foreach (var digit in grid.GetCandidates(cell))
 									{
 										candidateOffsets.Add(
 											new(
-												digit == zDigit
-													? WellKnownColorIdentifier.Auxiliary1
-													: WellKnownColorIdentifier.Normal,
+												digit == zDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
 												cell * 9 + digit
 											)
 										);
-									}
-								}
-								foreach (var cell in currentLineMap)
-								{
-									foreach (var digit in grid.GetCandidates(cell))
-									{
-										candidateOffsets.Add(
-											new(
-												digit == zDigit
-													? WellKnownColorIdentifier.Auxiliary1
-													: WellKnownColorIdentifier.Normal,
-												cell * 9 + digit
-											)
-										);
-									}
-								}
-								foreach (var cell in currentInterMap)
-								{
-									foreach (var digit in grid.GetCandidates(cell))
-									{
-										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 									}
 								}
 
-								var pattern = currentBlockMap | currentLineMap | currentInterMap;
 								if (results.Add(pattern))
 								{
 									var step = new ExtendedSubsetPrincipleStep(
