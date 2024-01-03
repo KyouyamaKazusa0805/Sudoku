@@ -917,7 +917,8 @@ public sealed partial class AnalyzePage : Page
 	{
 		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
 		{
-			SudokuPane.MainGrid.Background = new SolidColorBrush(Colors.White);
+			var color = App.CurrentTheme switch { ApplicationTheme.Light => Colors.White, _ => Colors.Black };
+			SudokuPane.MainGrid.Background = new SolidColorBrush(color);
 		}
 
 		var desiredSize = ((App)Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving;
