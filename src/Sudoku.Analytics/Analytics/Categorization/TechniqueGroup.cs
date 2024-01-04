@@ -42,6 +42,12 @@ public enum TechniqueGroup
 	Wing,
 
 	/// <summary>
+	/// Indicates the extended subset principle technique.
+	/// </summary>
+	[Abbreviation("ESP")]
+	ExtendedSubsetPrinciple,
+
+	/// <summary>
 	/// Indicates the empty rectangle technique.
 	/// </summary>
 	[Abbreviation("ER")]
@@ -178,12 +184,6 @@ public enum TechniqueGroup
 	/// Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
 	/// </summary>
 	AlmostLockedSetsChainingLike,
-
-	/// <summary>
-	/// Indicates the extended subset principle technique.
-	/// </summary>
-	[Abbreviation("ESP")]
-	ExtendedSubsetPrinciple,
 
 	/// <summary>
 	/// Indicates the aligned exclusion technique.

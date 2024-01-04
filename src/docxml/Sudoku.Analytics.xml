@@ -3162,6 +3162,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the wing technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
+            <summary>
+            Indicates the extended subset principle technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.EmptyRectangle">
             <summary>
             Indicates the empty rectangle technique.
@@ -3285,11 +3290,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlmostLockedSetsChainingLike">
             <summary>
             Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
-            <summary>
-            Indicates the extended subset principle technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlignedExclusion">

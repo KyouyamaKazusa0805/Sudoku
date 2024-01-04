@@ -35,16 +35,15 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		return new(
 			from step in collection
-			group step by step.GetName(App.CurrentCulture) into stepGroupGroupedByName
-			let techniqueName = stepGroupGroupedByName.Key
-			orderby
-				stepGroupGroupedByName.Average(static step => step.Difficulty),
-				stepGroupGroupedByName.Average(static step => (byte)step.DifficultyLevel),
-				techniqueName
-			let groupedBindableSource =
-				from step in stepGroupGroupedByName
+			let technique = step.Code
+			orderby step.DifficultyLevel, technique.GetGroup(), technique
+			group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
+			let name = stepsGroupedByName.Key
+			let elements =
+				from step in stepsGroupedByName
+				orderby step.DifficultyLevel, step.Difficulty
 				select new SolvingPathStepBindableSource { DisplayItems = displayItems, Step = step, StepGrid = grid }
-			select new TechniqueGroupBindableSource(groupedBindableSource) { Key = techniqueName }
+			select new TechniqueGroupBindableSource(elements) { Key = name }
 		);
 	}
 
