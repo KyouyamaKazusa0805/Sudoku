@@ -76,7 +76,7 @@ internal static class AlmostLockedSetsModule
 			}
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <summary>

@@ -561,6 +561,10 @@
         <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
             <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
         </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AsSpan``1(System.Collections.Generic.List{``0})">
+            <inheritdoc cref="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})"/>
+            <param name="this">The instance to be transformed.</param>
+        </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.

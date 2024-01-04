@@ -255,7 +255,7 @@ public sealed partial class ConclusionBag() :
 	/// <param name="start">The start index.</param>
 	/// <param name="length">The number of elements you want to get.</param>
 	/// <returns>The result <see cref="ConclusionBag"/> instance.</returns>
-	public ConclusionBag Slice(int start, int length) => new(CollectionsMarshal.AsSpan(_conclusionsEntry.Slice(start, length)));
+	public ConclusionBag Slice(int start, int length) => new(_conclusionsEntry[start..(start + length)].AsSpan());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

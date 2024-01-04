@@ -67,7 +67,7 @@ public static class OperationRecognition
 			goto ReturnFalse;
 		}
 
-		steps = CollectionsMarshal.AsSpan(resultSteps);
+		steps = resultSteps.AsSpan();
 		return true;
 
 	ReturnFalse:

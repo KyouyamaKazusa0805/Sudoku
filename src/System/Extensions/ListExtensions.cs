@@ -17,4 +17,9 @@ public static class ListExtensions
 	/// <inheritdoc cref="List{T}.RemoveAt(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RemoveAt<T>(this List<T> @this, Index index) => @this.RemoveAt(index.GetOffset(@this.Count));
+
+	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
+	/// <param name="this">The instance to be transformed.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Span<T> AsSpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 }

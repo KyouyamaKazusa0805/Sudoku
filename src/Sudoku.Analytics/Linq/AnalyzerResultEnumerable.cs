@@ -28,7 +28,7 @@ public static class AnalyzerResultEnumerable
 			}
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -79,6 +79,6 @@ public static class AnalyzerResultEnumerable
 			}
 		}
 
-		return CollectionsMarshal.AsSpan(list);
+		return list.AsSpan();
 	}
 }

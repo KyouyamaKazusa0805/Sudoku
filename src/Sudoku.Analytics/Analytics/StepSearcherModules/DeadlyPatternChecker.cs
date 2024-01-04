@@ -53,7 +53,7 @@ public static class DeadlyPatternChecker
 			return false;
 		}
 
-		foreach (ref var solution in CollectionsMarshal.AsSpan(solutions))
+		foreach (ref var solution in solutions.AsSpan())
 		{
 			// Step 2: Make complete pattern for each solution.
 			foreach (var cell in cellsUsed)

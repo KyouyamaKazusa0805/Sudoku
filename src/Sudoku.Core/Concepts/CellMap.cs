@@ -724,7 +724,7 @@ public partial struct CellMap :
 			}
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return CollectionsMarshal.AsSpan(result);
+			return result.AsSpan();
 
 
 			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
@@ -776,7 +776,7 @@ public partial struct CellMap :
 			result.AddRangeRef(GetSubsets(i));
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc/>

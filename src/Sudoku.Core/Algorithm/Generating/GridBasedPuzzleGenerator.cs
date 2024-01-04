@@ -146,7 +146,7 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 
 			// Check for duplicate.
 			var isDupe = false;
-			foreach (ref readonly var tempGrid in CollectionsMarshal.AsSpan(resultList))
+			foreach (ref readonly var tempGrid in resultList.AsSpan())
 			{
 				if (tempGrid == puzzle)
 				{
@@ -168,14 +168,14 @@ public ref partial struct GridBasedPuzzleGenerator([Data(DataMemberKinds.Field, 
 		// We should shuffle values here because we cannot determine whther two grids having been shuffled are same.
 		if (shuffleDigits)
 		{
-			foreach (ref var puzzle in CollectionsMarshal.AsSpan(resultList))
+			foreach (ref var puzzle in resultList.AsSpan())
 			{
 				ShuffleDigitsFor10Times(ref puzzle);
 			}
 		}
 
 		// Return the span.
-		return CollectionsMarshal.AsSpan(resultList);
+		return resultList.AsSpan();
 	}
 
 	/// <summary>

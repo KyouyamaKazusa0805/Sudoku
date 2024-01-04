@@ -21,7 +21,7 @@ public static class ViewEnumerable
 			result.Add(selector(element));
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <summary>

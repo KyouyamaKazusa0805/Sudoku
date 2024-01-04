@@ -274,7 +274,7 @@ internal static class RenderableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(pane, CollectionsMarshal.AsSpan(links), conclusions, controlAddingActions);
+		ForLinkNodes(pane, links.AsSpan(), conclusions, controlAddingActions);
 
 		controlAddingActions.ForEach(static pair => (pair.Animating + pair.Adding)());
 

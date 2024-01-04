@@ -412,7 +412,7 @@ public partial struct CandidateMap :
 			}
 			var result = new List<CandidateMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return CollectionsMarshal.AsSpan(result);
+			return result.AsSpan();
 
 
 			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
@@ -464,7 +464,7 @@ public partial struct CandidateMap :
 			result.AddRangeRef(GetSubsets(i));
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc/>

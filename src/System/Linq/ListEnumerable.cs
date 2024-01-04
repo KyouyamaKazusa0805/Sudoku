@@ -25,7 +25,7 @@ public static class ListEnumerable
 	public static int CountLargeStruct<T>(this List<T> @this, FuncRefReadOnly<T, bool> predicate) where T : struct
 	{
 		var result = 0;
-		foreach (ref readonly var element in CollectionsMarshal.AsSpan(@this))
+		foreach (ref readonly var element in @this.AsSpan())
 		{
 			if (predicate(in element))
 			{
@@ -48,7 +48,7 @@ public static class ListEnumerable
 			}
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
@@ -80,6 +80,6 @@ public static class ListEnumerable
 			}
 		}
 
-		return CollectionsMarshal.AsSpan(result);
+		return result.AsSpan();
 	}
 }
