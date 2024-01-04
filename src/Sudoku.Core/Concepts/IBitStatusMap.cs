@@ -42,11 +42,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 
 	/// <summary>
-	/// Indicates the size of each unit.
-	/// </summary>
-	public abstract int Shifting { get; }
-
-	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
 	public new abstract int Count { get; }
@@ -65,6 +60,11 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
 	/// </remarks>
 	public abstract TSelf PeerIntersection { get; }
+
+	/// <summary>
+	/// Indicates the size of each unit.
+	/// </summary>
+	protected abstract int Shifting { get; }
 
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
@@ -86,7 +86,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
 	/// </summary>
-	public static abstract TElement MaxCount { get; }
+	protected static abstract TElement MaxCount { get; }
 
 
 	/// <summary>
@@ -203,6 +203,24 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new abstract bool Contains(TElement offset);
+
+	/// <summary>
+	/// Try to get the specified index of the offset.
+	/// </summary>
+	/// <param name="offset">The desired offset.</param>
+	/// <returns>The index of the offset.</returns>
+	public virtual int IndexOf(TElement offset)
+	{
+		for (var index = 0; index < Count; index++)
+		{
+			if (this[index] == offset)
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
@@ -359,6 +377,24 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		}
 
 		return result;
+	}
+
+	/// <inheritdoc cref="RandomlySelect(int, Random)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public virtual TSelf RandomlySelect(int count) => RandomlySelect(count, Random.Shared);
+
+	/// <summary>
+	/// Randomly select the specified number of elements in the current collection.
+	/// </summary>
+	/// <param name="count">The desired number of elements.</param>
+	/// <param name="random">The random number generator instance.</param>
+	/// <returns>The desired number of elements, as a <typeparamref name="TSelf"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public virtual TSelf RandomlySelect(int count, Random random)
+	{
+		var result = Offsets[..];
+		random.Shuffle(result);
+		return [.. result[..count]];
 	}
 
 	/// <summary>

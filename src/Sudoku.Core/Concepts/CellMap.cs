@@ -609,6 +609,20 @@ public partial struct CellMap :
 		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
 	}
 
+	/// <inheritdoc/>
+	public readonly int IndexOf(Cell offset)
+	{
+		for (var index = 0; index < _count; index++)
+		{
+			if (this[index] == offset)
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
@@ -667,6 +681,15 @@ public partial struct CellMap :
 		}
 
 		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CellMap RandomlySelect(int count)
+	{
+		var result = Offsets[..];
+		Random.Shared.Shuffle(result);
+		return [.. result[..count]];
 	}
 
 	/// <inheritdoc/>

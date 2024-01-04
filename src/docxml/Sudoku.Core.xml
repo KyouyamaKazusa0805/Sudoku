@@ -2035,6 +2035,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.IndexOf(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.ForEach(System.Action{System.Int32})">
             <inheritdoc/>
         </member>
@@ -2072,6 +2075,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.RandomlySelect(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GroupBy``1(System.Func{System.Int32,``0})">
@@ -2509,6 +2515,9 @@ if (student is (name: var name, age: >= 18))
             If all rules are compared, but they are still considered equal, then return 0.
             </returns>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.IndexOf(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -2540,6 +2549,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.RandomlySelect(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetSubsets(System.Int32)">
@@ -4549,11 +4561,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/>
             <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
-            <summary>
-            Indicates the size of each unit.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Count">
             <summary>
             Indicates the number of the values stored in this collection.
@@ -4573,6 +4580,11 @@ if (student is (name: var name, age: >= 18))
             A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
             For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
+            <summary>
+            Indicates the size of each unit.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Offsets">
             <summary>
@@ -4681,6 +4693,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="offset">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.IndexOf(`1)">
+            <summary>
+            Try to get the specified index of the offset.
+            </summary>
+            <param name="offset">The desired offset.</param>
+            <returns>The index of the offset.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.Equals(`0@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
@@ -4792,6 +4811,17 @@ if (student is (name: var name, age: >= 18))
             A <typeparamref name="TSelf"/> that contains elements from the input <typeparamref name="TSelf"/> collection
             that satisfy the condition.
             </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32,System.Random)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32,System.Random)">
+            <summary>
+            Randomly select the specified number of elements in the current collection.
+            </summary>
+            <param name="count">The desired number of elements.</param>
+            <param name="random">The random number generator instance.</param>
+            <returns>The desired number of elements, as a <typeparamref name="TSelf"/> result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.GroupBy``1(System.Func{`1,``0})">
             <summary>

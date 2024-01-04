@@ -312,6 +312,20 @@ public partial struct CandidateMap :
 	public readonly bool Equals(scoped ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
+	public readonly int IndexOf(Candidate offset)
+	{
+		for (var index = 0; index < _count; index++)
+		{
+			if (this[index] == offset)
+			{
+				return index;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <inheritdoc/>
 	public readonly void ForEach(Action<Candidate> action)
 	{
 		foreach (var element in this)
@@ -493,6 +507,15 @@ public partial struct CandidateMap :
 		}
 
 		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CandidateMap RandomlySelect(int count)
+	{
+		var result = Offsets[..];
+		Random.Shared.Shuffle(result);
+		return [.. result[..count]];
 	}
 
 	/// <inheritdoc/>
