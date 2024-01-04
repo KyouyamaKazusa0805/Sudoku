@@ -20,5 +20,5 @@ public sealed partial class NakedSingleStep(
 	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;
 
 	/// <inheritdoc/>
-	public override Technique Code => Options.IsDirectMode ? Technique.NakedSingle : Technique.Single;
+	public override Technique Code => Technique.NakedSingle;
 }

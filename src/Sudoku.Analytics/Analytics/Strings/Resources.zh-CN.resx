@@ -493,11 +493,11 @@
     <value>真</value>
   </data>
   <data name="FullHouse" xml:space="preserve">
-    <value>同区域剩余</value>
+    <value>同区九缺一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="LastDigit" xml:space="preserve">
-    <value>同数剩余</value>
+    <value>同数九缺一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="HiddenSingleBlock" xml:space="preserve">
@@ -2653,7 +2653,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="Single" xml:space="preserve">
-    <value>显性唯一</value>
+    <value>同区九缺一</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">

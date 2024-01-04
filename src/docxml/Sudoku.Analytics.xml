@@ -1150,24 +1150,19 @@ if (student is (name: var name, age: >= 18))
             Indicates naked single.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Single">
-            <summary>
-            Indicates single. This technique is the most elementary technique to be used in the direct view mode.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock">
             <summary>
-            Indicates crosshatching in block.
+            Indicates crosshatching in block, equivalent to hidden single in block, but used in direct views.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow">
             <summary>
-            Indicates crosshatching in row.
+            Indicates crosshatching in row, equivalent to hidden single in row, but used in direct views.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn">
             <summary>
-            Indicates crosshatching in column.
+            Indicates crosshatching in column, equivalent to hidden single in column, but used in direct views.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">

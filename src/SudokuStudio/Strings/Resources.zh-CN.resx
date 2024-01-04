@@ -1505,7 +1505,7 @@
     <value>如果禁用此选项，所有同一个区域里只有一个空格的技巧会被视为“唯一余数”</value>
   </data>
   <data name="SettingsPage_EnableLastDigit" xml:space="preserve">
-    <value>启用“同数剩余”技巧</value>
+    <value>启用“同数九缺一”技巧</value>
   </data>
   <data name="SettingsPage_EnableRightTapRemovingForSudokuPane" xml:space="preserve">
     <value>允许鼠标右键点击候选数删除该数字</value>
@@ -1584,10 +1584,10 @@
     <value>一刀流题目检测所需技巧</value>
   </data>
   <data name="SettingsPage_IttoryuSupportedTechniquesDescription" xml:space="preserve">
-    <value>该项设置的是检测题目是否一刀流期间，需要轮番计算的使用技巧。默认情况下，所有出数类型技巧都列入计算之中：排除（Hidden Single）、唯一余数（Naked Single）和同区域剩余（Full House）。同数剩余（Last Digit）会使用宫排除代替。</value>
+    <value>该项设置的是检测题目是否一刀流期间，需要轮番计算的使用技巧。默认情况下，所有出数类型技巧都列入计算之中：排除（Hidden Single）、唯一余数（Naked Single）和同区九缺一（Full House）。同数九缺一（Last Digit）会使用宫排除代替。</value>
   </data>
   <data name="SettingsPage_IttoryuTechnique_FullHouse" xml:space="preserve">
-    <value>同区域剩余（不支持取消）</value>
+    <value>同区九缺一（不支持取消）</value>
   </data>
   <data name="SettingsPage_IttoryuTechnique_HiddenSingleBlock" xml:space="preserve">
     <value>宫排除（不建议取消）</value>

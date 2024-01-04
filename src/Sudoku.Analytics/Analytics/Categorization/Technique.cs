@@ -89,17 +89,7 @@ public enum Technique
 	//
 	#region Direct Singles
 	/// <summary>
-	/// Indicates single. This technique is the most elementary technique to be used in the direct view mode.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Full_House.html")]
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
-	[TechniqueGroup(TechniqueGroup.Single)]
-	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
-	[DifficultyLevel(DifficultyLevel.Easy)]
-	Single,
-
-	/// <summary>
-	/// Indicates crosshatching in block.
+	/// Indicates crosshatching in block, equivalent to hidden single in block, but used in direct views.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
@@ -108,7 +98,7 @@ public enum Technique
 	CrosshatchingBlock,
 
 	/// <summary>
-	/// Indicates crosshatching in row.
+	/// Indicates crosshatching in row, equivalent to hidden single in row, but used in direct views.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
@@ -117,7 +107,7 @@ public enum Technique
 	CrosshatchingRow,
 
 	/// <summary>
-	/// Indicates crosshatching in column.
+	/// Indicates crosshatching in column, equivalent to hidden single in column, but used in direct views.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[TechniqueGroup(TechniqueGroup.Single)]
