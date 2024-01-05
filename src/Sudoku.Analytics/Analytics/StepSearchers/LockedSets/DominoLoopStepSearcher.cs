@@ -234,6 +234,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 									{
 										0 => WellKnownColorIdentifier.Auxiliary1,
 										1 => WellKnownColorIdentifier.Auxiliary2,
+										2 => WellKnownColorIdentifier.Auxiliary3,
 										_ => WellKnownColorIdentifier.Normal
 									},
 									cell * 9 + digit
