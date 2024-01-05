@@ -1,12 +1,12 @@
 namespace Sudoku.Analytics;
 
-partial class ConclusionBag
+partial class ConclusionSet
 {
 	/// <summary>
 	/// The internal enumerator instance.
 	/// </summary>
 	/// <param name="collection">The collection.</param>
-	public ref struct Enumerator(ConclusionBag collection)
+	public ref struct Enumerator(ConclusionSet collection)
 	{
 		/// <summary>
 		/// The conclusions to be iterated.

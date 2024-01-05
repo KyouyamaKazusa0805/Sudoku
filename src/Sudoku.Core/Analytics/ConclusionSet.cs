@@ -12,14 +12,14 @@ namespace Sudoku.Analytics;
 [Equals]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public sealed partial class ConclusionBag() :
-	IBitwiseOperators<ConclusionBag, ConclusionBag, ConclusionBag>,
-	ICoordinateObject<ConclusionBag>,
+public sealed partial class ConclusionSet() :
+	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
+	ICoordinateObject<ConclusionSet>,
 	IEnumerable<Conclusion>,
-	IEquatable<ConclusionBag>,
-	IEqualityOperators<ConclusionBag, ConclusionBag, bool>,
-	ILogicalOperators<ConclusionBag>,
-	ISimpleParsable<ConclusionBag>
+	IEquatable<ConclusionSet>,
+	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
+	ILogicalOperators<ConclusionSet>,
+	ISimpleParsable<ConclusionSet>
 {
 	/// <summary>
 	/// The total length of bits.
@@ -50,11 +50,11 @@ public sealed partial class ConclusionBag() :
 
 
 	/// <summary>
-	/// Initializes a <see cref="ConclusionBag"/> instance via the specified conclusions.
+	/// Initializes a <see cref="ConclusionSet"/> instance via the specified conclusions.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConclusionBag(scoped ReadOnlySpan<Conclusion> conclusions) : this() => AddRange(conclusions);
+	public ConclusionSet(scoped ReadOnlySpan<Conclusion> conclusions) : this() => AddRange(conclusions);
 
 
 	/// <summary>
@@ -108,7 +108,7 @@ public sealed partial class ConclusionBag() :
 	/// <summary>
 	/// An empty instance.
 	/// </summary>
-	public static ConclusionBag Empty => [];
+	public static ConclusionSet Empty => [];
 
 
 	/// <summary>
@@ -160,7 +160,7 @@ public sealed partial class ConclusionBag() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] ConclusionBag? other)
+	public bool Equals([NotNullWhen(true)] ConclusionSet? other)
 	{
 		if (other is null)
 		{
@@ -254,8 +254,8 @@ public sealed partial class ConclusionBag() :
 	/// </summary>
 	/// <param name="start">The start index.</param>
 	/// <param name="length">The number of elements you want to get.</param>
-	/// <returns>The result <see cref="ConclusionBag"/> instance.</returns>
-	public ConclusionBag Slice(int start, int length) => new(_conclusionsEntry[start..(start + length)].AsSpan());
+	/// <returns>The result <see cref="ConclusionSet"/> instance.</returns>
+	public ConclusionSet Slice(int start, int length) => new(_conclusionsEntry[start..(start + length)].AsSpan());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -267,7 +267,7 @@ public sealed partial class ConclusionBag() :
 
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionBag? result)
+	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionSet? result)
 	{
 		try
 		{
@@ -283,29 +283,29 @@ public sealed partial class ConclusionBag() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionBag Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
+	public static ConclusionSet Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionBag ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
+	public static ConclusionSet ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(ConclusionBag value) => value.Count == 0;
+	public static bool operator !(ConclusionSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(ConclusionBag value) => value.Count != 0;
+	public static bool operator true(ConclusionSet value) => value.Count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(ConclusionBag value) => value.Count == 0;
+	public static bool operator false(ConclusionSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
-	public static ConclusionBag operator ~(ConclusionBag value)
+	public static ConclusionSet operator ~(ConclusionSet value)
 	{
-		var result = new ConclusionBag();
+		var result = new ConclusionSet();
 		var i = 0;
 		foreach (bool bit in ((BitArray)value._bitArray.Clone()).Not())
 		{
@@ -321,9 +321,9 @@ public sealed partial class ConclusionBag() :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionBag operator &(ConclusionBag left, ConclusionBag right)
+	public static ConclusionSet operator &(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionBag();
+		var result = new ConclusionSet();
 		var i = 0;
 		foreach (bool bit in ((BitArray)left._bitArray.Clone()).And(right._bitArray))
 		{
@@ -339,9 +339,9 @@ public sealed partial class ConclusionBag() :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionBag operator |(ConclusionBag left, ConclusionBag right)
+	public static ConclusionSet operator |(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionBag();
+		var result = new ConclusionSet();
 		var i = 0;
 		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Or(right._bitArray))
 		{
@@ -357,9 +357,9 @@ public sealed partial class ConclusionBag() :
 	}
 
 	/// <inheritdoc/>
-	public static ConclusionBag operator ^(ConclusionBag left, ConclusionBag right)
+	public static ConclusionSet operator ^(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionBag();
+		var result = new ConclusionSet();
 		var i = 0;
 		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Xor(right._bitArray))
 		{
@@ -376,9 +376,9 @@ public sealed partial class ConclusionBag() :
 
 
 	/// <summary>
-	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> of <see cref="Conclusion"/> instances to <see cref="ConclusionBag"/>.
+	/// Implicit cast from <see cref="ReadOnlySpan{T}"/> of <see cref="Conclusion"/> instances to <see cref="ConclusionSet"/>.
 	/// </summary>
 	/// <param name="conclusions">Conclusions to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator ConclusionBag(scoped ReadOnlySpan<Conclusion> conclusions) => [.. conclusions];
+	public static implicit operator ConclusionSet(scoped ReadOnlySpan<Conclusion> conclusions) => [.. conclusions];
 }

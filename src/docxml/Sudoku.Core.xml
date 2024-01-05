@@ -1543,7 +1543,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.ConclusionBag">
+        <member name="T:Sudoku.Analytics.ConclusionSet">
             <summary>
             Represents a list of conclusions. The collection only allows adding conclusions.
             </summary>
@@ -1554,7 +1554,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:System.Collections.BitArray"/>
             <seealso cref="T:Sudoku.Analytics.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.#ctor">
+        <member name="M:Sudoku.Analytics.ConclusionSet.#ctor">
             <summary>
             Represents a list of conclusions. The collection only allows adding conclusions.
             </summary>
@@ -1565,58 +1565,58 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:System.Collections.BitArray"/>
             <seealso cref="T:Sudoku.Analytics.Conclusion"/>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag.BitsCount">
+        <member name="F:Sudoku.Analytics.ConclusionSet.BitsCount">
             <summary>
             The total length of bits.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag.HalfBitsCount">
+        <member name="F:Sudoku.Analytics.ConclusionSet.HalfBitsCount">
             <summary>
             The maximum number of candidates can exist in a grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag.PrimeNumbers">
+        <member name="F:Sudoku.Analytics.ConclusionSet.PrimeNumbers">
             <summary>
             The prime numbers below 100.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag._bitArray">
+        <member name="F:Sudoku.Analytics.ConclusionSet._bitArray">
             <summary>
             The internal bit array.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag._conclusionsEntry">
+        <member name="F:Sudoku.Analytics.ConclusionSet._conclusionsEntry">
             <summary>
             The entry point that can visit conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.#ctor(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
+        <member name="M:Sudoku.Analytics.ConclusionSet.#ctor(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.ConclusionBag"/> instance via the specified conclusions.
+            Initializes a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance via the specified conclusions.
             </summary>
             <param name="conclusions">The conclusions to be added.</param>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.ContainsAssignment">
+        <member name="P:Sudoku.Analytics.ConclusionSet.ContainsAssignment">
             <summary>
             Indicates whether the collection contains any assignment conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.ContainsElimination">
+        <member name="P:Sudoku.Analytics.ConclusionSet.ContainsElimination">
             <summary>
             Indicates whether the collection contains any elimination conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.Count">
+        <member name="P:Sudoku.Analytics.ConclusionSet.Count">
             <summary>
             Indicates the number of bit array elements.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.Empty">
+        <member name="P:Sudoku.Analytics.ConclusionSet.Empty">
             <summary>
             An empty instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.Item(System.Int32)">
+        <member name="P:Sudoku.Analytics.ConclusionSet.Item(System.Int32)">
             <summary>
             Try to get n-th element stored in the collection.
             </summary>
@@ -1624,7 +1624,7 @@ if (student is (name: var name, age: >= 18))
             <returns>The found <see cref="T:Sudoku.Analytics.Conclusion"/> instance at the specified index.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Add(System.Int32)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Add(System.Int32)">
             <summary>
             Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
             </summary>
@@ -1633,141 +1633,141 @@ if (student is (name: var name, age: >= 18))
             <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Add(Sudoku.Analytics.Conclusion)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Add(Sudoku.Analytics.Conclusion)">
             <summary>
             Add a new conclusion into the collection.
             </summary>
             <param name="conclusion">The conclusion to be added.</param>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.AddRange(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
+        <member name="M:Sudoku.Analytics.ConclusionSet.AddRange(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
             <summary>
             Add a list of conclusions into the collection.
             </summary>
             <param name="conclusions">The conclusions to be added.</param>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Equals(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Equals(Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Contains(Sudoku.Analytics.Conclusion)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Contains(Sudoku.Analytics.Conclusion)">
             <summary>
             Indicates whether the collection contains the specified conclusion.
             </summary>
             <param name="conclusion">The conclusion.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ContainsCell(System.Int32)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ContainsCell(System.Int32)">
             <summary>
             Indicates whether the collection contains the specified cell.
             </summary>
             <param name="cell">The cell to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.GetHashCode">
+        <member name="M:Sudoku.Analytics.ConclusionSet.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ToString">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ToArray">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ToArray">
             <summary>
             Try to get the conclusions.
             </summary>
             <returns>The conclusions.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.GetEnumerator">
+        <member name="M:Sudoku.Analytics.ConclusionSet.GetEnumerator">
             <summary>
             Try to get an enumerator type that iterates on each conclusion.
             </summary>
             <returns>An enumerator type that iterates on each conclusion.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Slice(System.Int32,System.Int32)">
             <summary>
             Slices the collection, from the specified start index and the number of the elements.
             </summary>
             <param name="start">The start index.</param>
             <param name="length">The number of elements you want to get.</param>
-            <returns>The result <see cref="T:Sudoku.Analytics.ConclusionBag"/> instance.</returns>
+            <returns>The result <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Analytics.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Conclusion}#GetEnumerator">
+        <member name="M:Sudoku.Analytics.ConclusionSet.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Conclusion}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.TryParse(System.String,Sudoku.Analytics.ConclusionBag@)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.TryParse(System.String,Sudoku.Analytics.ConclusionSet@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Parse(System.String)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_LogicalNot(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_LogicalNot(Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_True(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_True(Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_False(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_False(Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_OnesComplement(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_OnesComplement(Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_BitwiseAnd(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_BitwiseAnd(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_BitwiseOr(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_BitwiseOr(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_ExclusiveOr(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_ExclusiveOr(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})~Sudoku.Analytics.ConclusionBag">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})~Sudoku.Analytics.ConclusionSet">
             <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Conclusion"/> instances to <see cref="T:Sudoku.Analytics.ConclusionBag"/>.
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Conclusion"/> instances to <see cref="T:Sudoku.Analytics.ConclusionSet"/>.
             </summary>
             <param name="conclusions">Conclusions to be added.</param>
         </member>
-        <member name="T:Sudoku.Analytics.ConclusionBag.Enumerator">
+        <member name="T:Sudoku.Analytics.ConclusionSet.Enumerator">
             <summary>
             The internal enumerator instance.
             </summary>
             <param name="collection">The collection.</param>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Enumerator.#ctor(Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Enumerator.#ctor(Sudoku.Analytics.ConclusionSet)">
             <summary>
             The internal enumerator instance.
             </summary>
             <param name="collection">The collection.</param>
         </member>
-        <member name="F:Sudoku.Analytics.ConclusionBag.Enumerator._enumerator">
+        <member name="F:Sudoku.Analytics.ConclusionSet.Enumerator._enumerator">
             <summary>
             The conclusions to be iterated.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ConclusionBag.Enumerator.Current">
+        <member name="P:Sudoku.Analytics.ConclusionSet.Enumerator.Current">
             <summary>
             Indicates the current iterated element.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Enumerator.MoveNext">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.Equals(System.Object)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_Equality(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_Equality(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionBag.op_Inequality(Sudoku.Analytics.ConclusionBag,Sudoku.Analytics.ConclusionBag)">
+        <member name="M:Sudoku.Analytics.ConclusionSet.op_Inequality(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.ConclusionType">

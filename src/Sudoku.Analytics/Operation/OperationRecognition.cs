@@ -34,7 +34,7 @@ public static class OperationRecognition
 			goto ReturnFalse;
 		}
 
-		var conclusions = new ConclusionBag(
+		var conclusions = new ConclusionSet(
 			from candidate in differentCandidates
 			select new Conclusion(differenceKind is OperationKind.Assignment or OperationKind.Replacement ? Assignment : Elimination, candidate)
 		);
