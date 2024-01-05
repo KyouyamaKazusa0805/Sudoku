@@ -57,22 +57,6 @@ public static class Ref
 	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right) => AreSame(in left, in right);
 
 	/// <summary>
-	/// Try to fetch the reference to the first character to a <see cref="Utf8String"/>, with read-only state.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The reference to the first character, with read-only state.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref Utf8Char GetRefFirstChar(Utf8String @this) => ref @this[0];
-
-	/// <summary>
-	/// Try to fetch the reference to the first character to a <see cref="string"/>, with read-only state.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The reference to the first character, with read-only state.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly char GetRefFirstChar(string @this) => ref @this.AsSpan()[0];
-
-	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
 	/// </summary>
 	/// <typeparam name="T">

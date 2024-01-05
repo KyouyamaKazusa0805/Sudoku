@@ -56,6 +56,22 @@ public static partial class StringExtensions
 		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
 
 	/// <summary>
+	/// Try to get the reference to the first character from a string, and immutable by default.
+	/// </summary>
+	/// <param name="this">The string.</param>
+	/// <returns>A read-only reference that points to the first character of the specified string.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly char Ref(this string @this) => ref @this.AsSpan()[0];
+
+	/// <summary>
+	/// Try to get the reference to the first character of a string.
+	/// </summary>
+	/// <param name="this">The string.</param>
+	/// <returns>The reference to the first element.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref char MutableRef(this string @this) => ref System.Ref.AsMutableRef(in @this.Ref());
+
+	/// <summary>
 	/// Removes all specified characters.
 	/// </summary>
 	/// <param name="this">The string value.</param>
@@ -224,33 +240,29 @@ public static partial class StringExtensions
 		static bool isTab(char c) => c == '\t';
 		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
 
+		//lang = regex
 		var predicate = reservePattern switch
 		{
-			//lang = regex
 			@"\d" => &char.IsDigit,
-			//lang = regex
 			@"\t" => &isTab,
-			//lang = regex
 			@"\w" => (CharChecker)(&isLetterDigitOrUnderscore),
 			_ => throw InvalidOperation
 		};
 
 		var length = @this.Length;
-		var ptr = stackalloc char[length];
+		scoped var buffer = (stackalloc char[length]);
 		var count = 0;
-		fixed (char* p = @this)
+		scoped ref var pThis = ref @this.MutableRef();
+		scoped ref var pointer = ref pThis;
+		for (var i = 0; i < length; i++, pointer.MoveNext())
 		{
-			var q = p;
-			for (var i = 0; i < length; i++, q++)
+			if (predicate(pointer))
 			{
-				if (predicate(*q))
-				{
-					ptr[count++] = *q;
-				}
+				buffer[count++] = pointer;
 			}
 		}
 
-		return new(ptr, 0, count);
+		return new(buffer[..count]);
 	}
 
 	/// <summary>

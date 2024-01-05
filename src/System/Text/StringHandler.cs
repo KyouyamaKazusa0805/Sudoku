@@ -203,7 +203,7 @@ public unsafe ref partial struct StringHandler
 	{
 		CopyBlock(
 			ref Ref.AsByteRef(ref _chars[0]),
-			in Ref.AsReadOnlyByteRef(in Ref.GetRefFirstChar(initialString)),
+			in Ref.AsReadOnlyByteRef(in initialString.Ref()),
 			(uint)(sizeof(char) * initialString.Length)
 		);
 
@@ -346,7 +346,7 @@ public unsafe ref partial struct StringHandler
 				{
 					WriteUnaligned(
 						ref Ref.AsByteRef(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
-						ReadUnaligned<int>(in Ref.AsReadOnlyByteRef(in Ref.GetRefFirstChar(value)))
+						ReadUnaligned<int>(in Ref.AsReadOnlyByteRef(in value.Ref()))
 					);
 
 					Length = pos + 2;

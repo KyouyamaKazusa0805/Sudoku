@@ -665,6 +665,25 @@
             Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
+        <member name="T:System.GenericExtensions">
+            <summary>
+            Extension methods for generic type parameters.
+            </summary>
+        </member>
+        <member name="M:System.GenericExtensions.MoveNext``1(``0@)">
+            <summary>
+            Move the pointer to the next element.
+            </summary>
+            <typeparam name="T">The type of the instance that the reference points to.</typeparam>
+            <param name="ref">The reference points to an instance of type <typeparamref name="T"/>.</param>
+        </member>
+        <member name="M:System.GenericExtensions.MovePrevious``1(``0@)">
+            <summary>
+            Move the pointer to the previous element.
+            </summary>
+            <typeparam name="T">The type of the instance that the reference points to.</typeparam>
+            <param name="ref">The reference points to an instance of type <typeparamref name="T"/>.</param>
+        </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
@@ -1821,6 +1840,20 @@ fixed (short* ptr = instance)
             Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
+        </member>
+        <member name="M:System.StringExtensions.Ref(System.String)">
+            <summary>
+            Try to get the reference to the first character from a string, and immutable by default.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>A read-only reference that points to the first character of the specified string.</returns>
+        </member>
+        <member name="M:System.StringExtensions.MutableRef(System.String)">
+            <summary>
+            Try to get the reference to the first character of a string.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The reference to the first element.</returns>
         </member>
         <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
             <summary>
@@ -3040,20 +3073,6 @@ fixed (short* ptr = instance)
             <param name="left">The first element to be checked.</param>
             <param name="right">The second element to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Ref.GetRefFirstChar(System.Utf8String)">
-            <summary>
-            Try to fetch the reference to the first character to a <see cref="T:System.Utf8String"/>, with read-only state.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The reference to the first character, with read-only state.</returns>
-        </member>
-        <member name="M:System.Ref.GetRefFirstChar(System.String)">
-            <summary>
-            Try to fetch the reference to the first character to a <see cref="T:System.String"/>, with read-only state.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The reference to the first character, with read-only state.</returns>
         </member>
         <member name="M:System.Ref.MakeNullReference``1">
             <summary>

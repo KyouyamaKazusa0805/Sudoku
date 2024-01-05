@@ -27,7 +27,7 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 
 
 	/// <inheritdoc/>
-	public unsafe FuncRefReadOnly<Grid, string> Converter
+	public FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
 			// Calculates the length of the result string.
@@ -37,38 +37,37 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 			var result = new string(Terminator, length);
 
 			// Modify the string value via pointers.
-			fixed (char* pResult = result)
-			{
-				// Replace the base character with the separator.
-				for (var pos = 1; pos < length; pos += 2)
-				{
-					pResult[pos] = Separator;
-				}
+			scoped ref var pResult = ref result.MutableRef();
 
-				// Now replace some positions with the specified values.
-				for (var (i, pos) = (0, 0); i < 81; i++, pos += 6)
+			// Replace the base character with the separator.
+			for (var pos = 1; pos < length; pos += 2)
+			{
+				Unsafe.Add(ref pResult, pos) = Separator;
+			}
+
+			// Now replace some positions with the specified values.
+			for (var (i, pos) = (0, 0); i < 81; i++, pos += 6)
+			{
+				switch (grid.GetState(i))
 				{
-					switch (grid.GetState(i))
+					case CellState.Empty:
 					{
-						case CellState.Empty:
-						{
-							pResult[pos] = Zero;
-							pResult[pos + 2] = Zero;
-							pResult[pos + 4] = One;
-							break;
-						}
-						case CellState.Modifiable:
-						case CellState.Given:
-						{
-							pResult[pos] = (char)(grid.GetDigit(i) + One);
-							pResult[pos + 2] = Zero;
-							pResult[pos + 4] = Zero;
-							break;
-						}
-						default:
-						{
-							throw new FormatException("The specified grid is invalid.");
-						}
+						Unsafe.Add(ref pResult, pos) = Zero;
+						Unsafe.Add(ref pResult, pos + 2) = Zero;
+						Unsafe.Add(ref pResult, pos + 4) = One;
+						break;
+					}
+					case CellState.Modifiable:
+					case CellState.Given:
+					{
+						Unsafe.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + One);
+						Unsafe.Add(ref pResult, pos + 2) = Zero;
+						Unsafe.Add(ref pResult, pos + 4) = Zero;
+						break;
+					}
+					default:
+					{
+						throw new FormatException("The specified grid is invalid.");
 					}
 				}
 			}
