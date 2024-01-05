@@ -1,3 +1,5 @@
+#undef ASYNC_LOAD_VIEW_NODES
+
 namespace SudokuStudio.Rendering;
 
 /// <summary>
@@ -71,6 +73,13 @@ internal static class RenderableFactory
 		AuxiliaryColorizedSuffix = "|@Auxiliary|",
 		AlmostLockedSetColorizedSuffix = "|@AlmostLockedSet|",
 		ColorPaletteColorizedSuffix = "|@ColorPalette|";
+
+#if ASYNC_LOAD_VIEW_NODES
+	/// <summary>
+	/// Indicates the load time for each view node.
+	/// </summary>
+	private const int AsyncLoadMilliseconds = 100;
+#endif
 
 
 	/// <summary>
@@ -160,7 +169,11 @@ internal static class RenderableFactory
 			RemoveViewUnitControls(pane);
 			if (pane.ViewUnit is not null)
 			{
+#if ASYNC_LOAD_VIEW_NODES
+				AddViewUnitControlsAsync(pane, pane.ViewUnit);
+#else
 				AddViewUnitControls(pane, pane.ViewUnit);
+#endif
 			}
 		}
 	}
@@ -202,10 +215,14 @@ internal static class RenderableFactory
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
+#if ASYNC_LOAD_VIEW_NODES
+	private static async void AddViewUnitControlsAsync(SudokuPane pane, ViewUnitBindableSource viewUnit)
+#else
 	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
+#endif
 	{
 		// Check whether the data can be deconstructed.
-		if (viewUnit is not { View.BasicNodes: var nodes, Conclusions: var conclusions })
+		if (viewUnit is not { View: var view, Conclusions: var conclusions })
 		{
 			return;
 		}
@@ -219,8 +236,14 @@ internal static class RenderableFactory
 		);
 
 		// Iterate on each view node, and get their own corresponding controls.
-		foreach (var viewNode in nodes)
+		foreach (var n in view)
 		{
+			if (n is not BasicViewNode viewNode)
+			{
+				// Not compatible with non-basic view nodes.
+				continue;
+			}
+
 			switch (viewNode, pencilmarkMode)
 			{
 				case (CellViewNode { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }, true):
@@ -276,7 +299,14 @@ internal static class RenderableFactory
 		// We should handle it at last.
 		ForLinkNodes(pane, links.AsSpan(), conclusions, controlAddingActions);
 
-		controlAddingActions.ForEach(static pair => (pair.Animating + pair.Adding)());
+		foreach (var (animator, adder) in controlAddingActions)
+		{
+			(animator + adder)();
+
+#if ASYNC_LOAD_VIEW_NODES
+			await Task.Delay(AsyncLoadMilliseconds);
+#endif
+		}
 
 		// Update property to get highlighted candidates.
 		pane.ViewUnitUsedCandidates = usedCandidates;
