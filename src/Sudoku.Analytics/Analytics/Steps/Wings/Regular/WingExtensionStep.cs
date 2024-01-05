@@ -16,7 +16,7 @@ public sealed partial class WingExtensionStep(
 	[Data] scoped ref readonly CellMap cells,
 	[Data] Mask digitsMask,
 	[Data] Digit extraDigit
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : WingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;

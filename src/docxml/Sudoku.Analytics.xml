@@ -5725,23 +5725,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher">
-            <summary>
-            Provides with a <b>Wing Extension</b> (Extended Subset Principle) step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>WXYZ-Wing Extension</item>
-            <item>VWXYZ-Wing Extension</item>
-            <item>UVWXYZ-Wing Extension</item>
-            <item>TUVWXYZ-Wing Extension</item>
-            <item>STUVWXYZ-Wing Extension</item>
-            <item>RSTUVWXYZ-Wing Extension</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
@@ -9707,6 +9690,23 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher">
+            <summary>
+            Provides with a <b>Wing Extension</b> (Extended Subset Principle) step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>WXYZ-Wing Extension</item>
+            <item>VWXYZ-Wing Extension</item>
+            <item>UVWXYZ-Wing Extension</item>
+            <item>TUVWXYZ-Wing Extension</item>
+            <item>STUVWXYZ-Wing Extension</item>
+            <item>RSTUVWXYZ-Wing Extension</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
             <summary>
             Provides with an <b>XYZ-Ring</b> step searcher.
@@ -10256,55 +10256,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.WingExtensionStep">
-            <summary>
-            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.WingExtensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDigit">
-            <summary>
-            The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -17212,6 +17163,55 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Petals">
             <summary>
             The generated property declaration for parameter <c>petals</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WingExtensionStep">
+            <summary>
+            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WingExtensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.WingStep">
