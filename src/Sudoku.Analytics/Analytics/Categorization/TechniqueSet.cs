@@ -167,6 +167,12 @@ public sealed partial class TechniqueSet :
 	}
 
 
+	/// <summary>
+	/// Clears the collection, making all techniques to be removed.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Clear() => _techniqueBits.SetAll(false);
+
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] TechniqueSet? other)
 	{
@@ -199,6 +205,40 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Technique item) => _techniqueBits[(int)item];
 
+	/// <summary>
+	/// Try to add a new technique.
+	/// </summary>
+	/// <param name="item">A technique to be added.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully added.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Add(Technique item)
+	{
+		if (_techniqueBits[(int)item])
+		{
+			return false;
+		}
+
+		_techniqueBits.Set((int)item, true);
+		return true;
+	}
+
+	/// <summary>
+	/// Try to remove a technique from the collection.
+	/// </summary>
+	/// <param name="item">A technique to be removed.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully removed.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Remove(Technique item)
+	{
+		if (!_techniqueBits[(int)item])
+		{
+			return false;
+		}
+
+		_techniqueBits.Set((int)item, false);
+		return true;
+	}
+
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
@@ -223,8 +263,12 @@ public sealed partial class TechniqueSet :
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			GetString("Comma", CultureInfo.CurrentUICulture),
-			from technique in ToArray()
-			select isCurrentCountryOrRegionUseEnglish ? $"{technique.GetName()}" : $"{technique.GetName()} ({technique.GetEnglishName()})"
+			[
+				..
+				from technique in this
+				let name = technique.GetName()
+				select isCurrentCountryOrRegionUseEnglish ? $"{name}" : $"{name} ({technique.GetEnglishName()})"
+			]
 		);
 	}
 
@@ -232,17 +276,7 @@ public sealed partial class TechniqueSet :
 	/// Converts the current collection into an array.
 	/// </summary>
 	/// <returns>The final array converted.</returns>
-	public Technique[] ToArray()
-	{
-		var result = new Technique[Count];
-		var i = 0;
-		foreach (var technique in this)
-		{
-			result[i++] = technique;
-		}
-
-		return result;
-	}
+	public Technique[] ToArray() => [.. this];
 
 	/// <summary>
 	/// Forms a slice out of the current collection starting at a specified index for a specified length.
@@ -285,45 +319,20 @@ public sealed partial class TechniqueSet :
 		return result;
 	}
 
-	/// <summary>
-	/// Try to add a new technique.
-	/// </summary>
-	/// <param name="item">A technique to be added.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully added.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Add(Technique item)
+	/// <inheritdoc cref="ArrayEnumerable.Where{T}(T[], Func{T, bool})"/>
+	public TechniqueSet Where(Func<Technique, bool> selector)
 	{
-		if (_techniqueBits[(int)item])
+		var result = new List<Technique>(Count);
+		foreach (var technique in this)
 		{
-			return false;
+			if (selector(technique))
+			{
+				result.Add(technique);
+			}
 		}
 
-		_techniqueBits.Set((int)item, true);
-		return true;
+		return [.. result];
 	}
-
-	/// <summary>
-	/// Try to remove a technique from the collection.
-	/// </summary>
-	/// <param name="item">A technique to be removed.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the current technique is successfully removed.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Remove(Technique item)
-	{
-		if (!_techniqueBits[(int)item])
-		{
-			return false;
-		}
-
-		_techniqueBits.Set((int)item, false);
-		return true;
-	}
-
-	/// <summary>
-	/// Clears the collection, making all techniques to be removed.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => _techniqueBits.SetAll(false);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

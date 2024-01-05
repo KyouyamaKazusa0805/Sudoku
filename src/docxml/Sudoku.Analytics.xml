@@ -3540,6 +3540,11 @@ if (student is (name: var name, age: >= 18))
             <param name="technique">The technique to be checked.</param>
             <returns>The index that the technique is at. If none found, -1.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Clear">
+            <summary>
+            Clears the collection, making all techniques to be removed.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
@@ -3549,6 +3554,20 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="item">The technique.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Add(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to add a new technique.
+            </summary>
+            <param name="item">A technique to be added.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully added.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Remove(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to remove a technique from the collection.
+            </summary>
+            <param name="item">A technique to be removed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully removed.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetHashCode">
             <inheritdoc/>
@@ -3579,24 +3598,8 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Select``1(System.Func{Sudoku.Analytics.Categorization.Technique,``0})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Add(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to add a new technique.
-            </summary>
-            <param name="item">A technique to be added.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully added.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Remove(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to remove a technique from the collection.
-            </summary>
-            <param name="item">A technique to be removed.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully removed.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Clear">
-            <summary>
-            Clears the collection, making all techniques to be removed.
-            </summary>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Where(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#CopyTo(Sudoku.Analytics.Categorization.Technique[],System.Int32)">
             <inheritdoc/>
