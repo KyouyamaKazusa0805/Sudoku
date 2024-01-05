@@ -21707,26 +21707,26 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>prefix</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult">
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating">
             <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
             for the specified technique defined in application Sudoku Explainer.
             </summary>
             <param name="Original">The original difficulty rating of the technique.</param>
             <param name="Advanced">The advanced difficulty rating of the technique.</param>
         </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange})">
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange})">
             <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instances indicating the result of difficulty rating
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
             for the specified technique defined in application Sudoku Explainer.
             </summary>
             <param name="Original">The original difficulty rating of the technique.</param>
             <param name="Advanced">The advanced difficulty rating of the technique.</param>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.Original">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.Original">
             <summary>The original difficulty rating of the technique.</summary>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult.Advanced">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.Advanced">
             <summary>The advanced difficulty rating of the technique.</summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute">
@@ -21776,7 +21776,7 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The technique.</param>
             <returns>
             <para>
-            A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderDifficultyResult"/> value defined by the project Sudoku Explainer.
+            A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating"/> value defined by the project Sudoku Explainer.
             </para>
             <para>
             If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
@@ -21884,38 +21884,38 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange">
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange">
             <summary>
             Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
             </summary>
             <param name="min">Indicates the minimum possible value.</param>
             <param name="max">Indicates the maximum possible value.</param>
         </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.#ctor(System.Half,System.Half)">
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half,System.Half)">
             <summary>
             Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
             </summary>
             <param name="min">Indicates the minimum possible value.</param>
             <param name="max">Indicates the maximum possible value.</param>
         </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.#ctor(System.Half)">
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange"/> instance via the specified difficulty rating value.
+            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.
             </summary>
             <param name="min">The difficulty rating value.</param>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.IsRange">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.IsRange">
             <summary>
-            Indicates whether the current range is a real range, i.e. property <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.Max"/> holds different value
-            with <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.Min"/>.
+            Indicates whether the current range is a real range, i.e. property <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Max"/> holds different value
+            with <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Min"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.Min">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Min">
             <summary>
             The generated property declaration for parameter <c>min</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingRange.Max">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Max">
             <summary>
             The generated property declaration for parameter <c>max</c>.
             </summary>

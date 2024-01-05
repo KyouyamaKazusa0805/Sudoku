@@ -32,7 +32,7 @@ public static class SudokuExplainerCompatibility
 	/// <param name="this">The technique.</param>
 	/// <returns>
 	/// <para>
-	/// A <see cref="SudokuExplainderDifficultyResult"/> value defined by the project Sudoku Explainer.
+	/// A <see cref="SudokuExplainderRating"/> value defined by the project Sudoku Explainer.
 	/// </para>
 	/// <para>
 	/// If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
@@ -44,16 +44,16 @@ public static class SudokuExplainerCompatibility
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuExplainderDifficultyResult? GetDifficultyRatingRange(Technique @this)
+	public static SudokuExplainderRating? GetDifficultyRatingRange(Technique @this)
 		=> @this == Technique.None || !Enum.IsDefined(@this)
 			? throw new ArgumentOutOfRangeException(nameof(@this))
 			: (SudokuExplainerDifficultyRatingAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>() switch
 			{
-			[] => null,
-			[(var min, var max, false)] => new(new(min, max ?? min), null),
-			[(var min, var max, true)] => new(null, new(min, max ?? min)),
-			[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
-			[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+				[] => null,
+				[(var min, var max, false)] => new(new(min, max ?? min), null),
+				[(var min, var max, true)] => new(null, new(min, max ?? min)),
+				[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
+				[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
 				_ => throw new InvalidOperationException("The field has marked too much attributes.")
 			};
 }

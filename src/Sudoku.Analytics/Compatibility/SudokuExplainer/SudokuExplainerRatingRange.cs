@@ -5,14 +5,14 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="min">Indicates the minimum possible value.</param>
 /// <param name="max">Indicates the maximum possible value.</param>
-public readonly partial struct SudokuExplainerDifficultyRatingRange([Data] half min, [Data] half max)
+public readonly partial struct SudokuExplainerRatingRange([Data] half min, [Data] half max)
 {
 	/// <summary>
-	/// Initializes a <see cref="SudokuExplainerDifficultyRatingRange"/> instance via the specified difficulty rating value.
+	/// Initializes a <see cref="SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.
 	/// </summary>
 	/// <param name="min">The difficulty rating value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SudokuExplainerDifficultyRatingRange(half min) : this(min, min)
+	public SudokuExplainerRatingRange(half min) : this(min, min)
 	{
 	}
 
