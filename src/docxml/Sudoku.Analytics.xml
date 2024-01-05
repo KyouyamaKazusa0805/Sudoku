@@ -3668,13 +3668,29 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
-            <inheritdoc/>
+            <summary>
+            Adds a new technique into the specified collection.
+            </summary>
+            <param name="left">The technique set.</param>
+            <param name="right">The technique to be added.</param>
+            <returns>
+            A new collection that contains the values from the collection <paramref name="left"/>,
+            with a new value <paramref name="right"/> added.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueGroup)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
-            <inheritdoc/>
+            <summary>
+            Removes a technique from the specified collection.
+            </summary>
+            <param name="left">The technique set.</param>
+            <param name="right">A technique to be removed.</param>
+            <returns>
+            A new collection that contains the values from the collection <paramref name="left"/>,
+            with a technique <paramref name="right"/> removed.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>

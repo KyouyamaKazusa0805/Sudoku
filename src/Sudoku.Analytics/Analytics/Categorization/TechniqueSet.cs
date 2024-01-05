@@ -16,7 +16,6 @@ namespace Sudoku.Analytics.Categorization;
 [Equals]
 [EqualityOperators]
 public sealed partial class TechniqueSet :
-	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
@@ -27,7 +26,6 @@ public sealed partial class TechniqueSet :
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
 	ISet<Technique>,
-	ISubtractionOperators<TechniqueSet, Technique, TechniqueSet>,
 	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>
 {
 	/// <summary>
@@ -469,7 +467,15 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator false(TechniqueSet techniques) => techniques.Count == 0;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Adds a new technique into the specified collection.
+	/// </summary>
+	/// <param name="left">The technique set.</param>
+	/// <param name="right">The technique to be added.</param>
+	/// <returns>
+	/// A new collection that contains the values from the collection <paramref name="left"/>,
+	/// with a new value <paramref name="right"/> added.
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator +(TechniqueSet left, Technique right) => [.. left, right];
 
@@ -477,7 +483,15 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator +(TechniqueSet left, TechniqueGroup right) => [.. left, .. TechniqueRelationGroups[right]];
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Removes a technique from the specified collection.
+	/// </summary>
+	/// <param name="left">The technique set.</param>
+	/// <param name="right">A technique to be removed.</param>
+	/// <returns>
+	/// A new collection that contains the values from the collection <paramref name="left"/>,
+	/// with a technique <paramref name="right"/> removed.
+	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator -(TechniqueSet left, Technique right)
 	{
