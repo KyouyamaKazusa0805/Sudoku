@@ -81,7 +81,7 @@ public static class EnumExtensions
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static TResult fastConvert<TResult>(T value) => Unsafe.As<T, TResult>(ref value);
+		static TResult fastConvert<TResult>(T value) => As<T, TResult>(ref value);
 	}
 
 	/// <summary>
