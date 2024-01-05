@@ -1258,15 +1258,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Subset Principle.
-        /// </summary>
-        public static string ExtendedSubsetPrinciple {
-            get {
-                return ResourceManager.GetString("ExtendedSubsetPrinciple", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Almost Hidden Set (AHS) logic.
         /// </summary>
         public static string ExtraDifficultyFactorNames_AlmostHiddenSet {
@@ -3751,15 +3742,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extended Subset Principle.
-        /// </summary>
-        public static string StepSearcherName_ExtendedSubsetPrincipleStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_ExtendedSubsetPrincipleStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Firework.
         /// </summary>
         public static string StepSearcherName_FireworkStepSearcher {
@@ -3990,6 +3972,15 @@ namespace Sudoku.Analytics.Strings {
         public static string StepSearcherName_UniqueRectangleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniqueRectangleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wing Extension.
+        /// </summary>
+        public static string StepSearcherName_WingExtensionStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_WingExtensionStepSearcher", resourceCulture);
             }
         }
         
@@ -4575,15 +4566,6 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueAbbr_ExtendedRectangleType4 {
             get {
                 return ResourceManager.GetString("TechniqueAbbr_ExtendedRectangleType4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ESP.
-        /// </summary>
-        public static string TechniqueAbbr_ExtendedSubsetPrinciple {
-            get {
-                return ResourceManager.GetString("TechniqueAbbr_ExtendedSubsetPrinciple", resourceCulture);
             }
         }
         
@@ -5533,24 +5515,6 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
-        /// </summary>
-        public static string TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All digits can&apos;t be duplicate in cells {0}.
-        /// </summary>
-        public static string TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework.
         /// </summary>
         public static string TechniqueFormat_FireworkPairType1Step {
@@ -6208,6 +6172,15 @@ namespace Sudoku.Analytics.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_WingExtensionStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_WingExtensionStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
@@ -6393,15 +6366,6 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueGroup_ExtendedRectangle {
             get {
                 return ResourceManager.GetString("TechniqueGroup_ExtendedRectangle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extended Subset Principle.
-        /// </summary>
-        public static string TechniqueGroup_ExtendedSubsetPrinciple {
-            get {
-                return ResourceManager.GetString("TechniqueGroup_ExtendedSubsetPrinciple", resourceCulture);
             }
         }
         
@@ -6600,6 +6564,15 @@ namespace Sudoku.Analytics.Strings {
         public static string TechniqueGroup_Wing {
             get {
                 return ResourceManager.GetString("TechniqueGroup_Wing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wing Extension.
+        /// </summary>
+        public static string TechniqueGroup_WingExtension {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_WingExtension", resourceCulture);
             }
         }
         

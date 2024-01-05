@@ -1666,9 +1666,9 @@ public enum Technique
 	#endregion
 
 	//
-	// Extended Subset Principle
+	// Wing Extension (Extended Subset Principle)
 	//
-	#region Extended Subset Principle
+	#region Wing Extension (Extended Subset Principle)
 	/// <summary>
 	/// Indicates WXYZ-Wing extension.
 	/// </summary>
@@ -1677,7 +1677,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	WxyzWingExtension,
 
@@ -1689,7 +1689,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	VwxyzWingExtension,
 
@@ -1701,7 +1701,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UvwxyzWingExtension,
 
@@ -1713,7 +1713,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	TuvwxyzWingExtension,
 
@@ -1725,7 +1725,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	StuvwxyzWingExtension,
 
@@ -1737,7 +1737,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
+	[TechniqueGroup(TechniqueGroup.WingExtension)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RstuvwxyzWingExtension,
 	#endregion

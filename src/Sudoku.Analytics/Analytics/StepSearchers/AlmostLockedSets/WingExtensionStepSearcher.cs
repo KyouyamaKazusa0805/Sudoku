@@ -1,17 +1,22 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with an <b>Extended Subset Principle</b> step searcher.
+/// Provides with a <b>Wing Extension</b> (Extended Subset Principle) step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Extended Subset Principle</item>
+/// <item>WXYZ-Wing Extension</item>
+/// <item>VWXYZ-Wing Extension</item>
+/// <item>UVWXYZ-Wing Extension</item>
+/// <item>TUVWXYZ-Wing Extension</item>
+/// <item>STUVWXYZ-Wing Extension</item>
+/// <item>RSTUVWXYZ-Wing Extension</item>
 /// </list>
 /// </summary>
 [StepSearcher(
 	Technique.WxyzWingExtension, Technique.VwxyzWingExtension, Technique.UvwxyzWingExtension,
 	Technique.TuvwxyzWingExtension, Technique.StuvwxyzWingExtension, Technique.RstuvwxyzWingExtension)]
-[StepSearcherRuntimeName("StepSearcherName_ExtendedSubsetPrincipleStepSearcher")]
-public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
+[StepSearcherRuntimeName("StepSearcherName_WingExtensionStepSearcher")]
+public sealed partial class WingExtensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
@@ -100,7 +105,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 
 								if (results.Add(pattern))
 								{
-									var step = new ExtendedSubsetPrincipleStep(
+									var step = new WingExtensionStep(
 										[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 										[
 											[

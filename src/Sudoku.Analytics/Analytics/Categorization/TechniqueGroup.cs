@@ -42,10 +42,10 @@ public enum TechniqueGroup
 	Wing,
 
 	/// <summary>
-	/// Indicates the extended subset principle technique.
+	/// Indicates the wing extension (extended subset principle) technique.
 	/// </summary>
 	[Abbreviation("ESP")]
-	ExtendedSubsetPrinciple,
+	WingExtension,
 
 	/// <summary>
 	/// Indicates the empty rectangle technique.

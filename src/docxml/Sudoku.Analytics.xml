@@ -3157,9 +3157,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the wing technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.WingExtension">
             <summary>
-            Indicates the extended subset principle technique.
+            Indicates the wing extension (extended subset principle) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.EmptyRectangle">
@@ -5725,16 +5725,21 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.EmptyRectangleIntersectionPairStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher">
             <summary>
-            Provides with an <b>Extended Subset Principle</b> step searcher.
+            Provides with a <b>Wing Extension</b> (Extended Subset Principle) step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Extended Subset Principle</item>
+            <item>WXYZ-Wing Extension</item>
+            <item>VWXYZ-Wing Extension</item>
+            <item>UVWXYZ-Wing Extension</item>
+            <item>TUVWXYZ-Wing Extension</item>
+            <item>STUVWXYZ-Wing Extension</item>
+            <item>RSTUVWXYZ-Wing Extension</item>
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WingExtensionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AdvancedMultipleChainingStepSearcher">
@@ -10073,58 +10078,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>digit2</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep">
-            <summary>
-            Provides with a step that is an <b>Extended Subset Principle</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is an <b>Extended Subset Principle</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.ExtraDigit">
-            <summary>
-            The generated property declaration for parameter <c>extraDigit</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.HouseDeathBlossomStep">
             <summary>
             Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
@@ -10303,6 +10256,55 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WingExtensionStep">
+            <summary>
+            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WingExtensionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Wing Extension</b> (Extended Subset Principle) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="extraDigit">Indicates the extra digit used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WingExtensionStep.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BidirectionalCycleStep">
@@ -18052,11 +18054,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Extended Rectangle Type 4.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.ExtendedSubsetPrinciple">
-            <summary>
-              Looks up a localized string similar to Extended Subset Principle.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.ExtraDifficultyFactorNames_AlmostHiddenSet">
             <summary>
               Looks up a localized string similar to Almost Hidden Set (AHS) logic.
@@ -19437,11 +19434,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Extended Rectangle.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_ExtendedSubsetPrincipleStepSearcher">
-            <summary>
-              Looks up a localized string similar to Extended Subset Principle.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_FireworkStepSearcher">
             <summary>
               Looks up a localized string similar to Firework.
@@ -19570,6 +19562,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_UniqueRectangleStepSearcher">
             <summary>
               Looks up a localized string similar to Unique Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_WingExtensionStepSearcher">
+            <summary>
+              Looks up a localized string similar to Wing Extension.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.StepSearcherName_WWingStepSearcher">
@@ -19895,11 +19892,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueAbbr_ExtendedRectangleType4">
             <summary>
               Looks up a localized string similar to XR4.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueAbbr_ExtendedSubsetPrinciple">
-            <summary>
-              Looks up a localized string similar to ESP.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueAbbr_GurthSymmetricalPlacement">
@@ -20427,16 +20419,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to {0} in {1} with the conjugate pair {2}.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate">
-            <summary>
-              Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate">
-            <summary>
-              Looks up a localized string similar to All digits can&apos;t be duplicate in cells {0}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_FireworkPairType1Step">
             <summary>
               Looks up a localized string similar to Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework.
@@ -20802,6 +20784,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_WingExtensionStep">
+            <summary>
+              Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueFormat_WWingStep">
             <summary>
               Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
@@ -20905,11 +20892,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueGroup_ExtendedRectangle">
             <summary>
               Looks up a localized string similar to Extended Rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueGroup_ExtendedSubsetPrinciple">
-            <summary>
-              Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueGroup_Firework">
@@ -21020,6 +21002,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueGroup_Wing">
             <summary>
               Looks up a localized string similar to Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Strings.Resources.TechniqueGroup_WingExtension">
+            <summary>
+              Looks up a localized string similar to Wing Extension.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Strings.Resources.TemplateDelete">

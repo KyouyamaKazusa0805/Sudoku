@@ -354,11 +354,8 @@
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>{0} in {1} with the conjugate pair {2}</value>
   </data>
-  <data name="TechniqueFormat_ExtendedSubsetPrincipleWithDuplicate" xml:space="preserve">
+  <data name="TechniqueFormat_WingExtensionStep" xml:space="preserve">
     <value>Only the digit {0} can be duplicate in cells {1}</value>
-  </data>
-  <data name="TechniqueFormat_ExtendedSubsetPrincipleWithoutDuplicate" xml:space="preserve">
-    <value>All digits can't be duplicate in cells {0}</value>
   </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
     <value>Cells {0} with {1} {2}</value>
@@ -1242,9 +1239,6 @@
   <data name="EmptyRectangleIntersectionPair" xml:space="preserve">
     <value>Empty Rectangle Intersection Pair</value>
   </data>
-  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
-    <value>Extended Subset Principle</value>
-  </data>
   <data name="SinglyLinkedAlmostLockedSetsXzRule" xml:space="preserve">
     <value>Singly-Linked Almost Locked Sets XZ Rule</value>
   </data>
@@ -1875,9 +1869,6 @@
   <data name="TechniqueAbbr_ExtendedRectangleType4" xml:space="preserve">
     <value>XR4</value>
   </data>
-  <data name="TechniqueAbbr_ExtendedSubsetPrinciple" xml:space="preserve">
-    <value>ESP</value>
-  </data>
   <data name="TechniqueAbbr_GurthSymmetricalPlacement" xml:space="preserve">
     <value>GSP</value>
   </data>
@@ -2253,8 +2244,8 @@
   <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>Extended Rectangle</value>
   </data>
-  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
-    <value>Extended Subset Principle</value>
+	<data name="TechniqueGroup_WingExtension" xml:space="preserve">
+    <value>Wing Extension</value>
   </data>
   <data name="TechniqueGroup_Firework" xml:space="preserve">
     <value>Firework</value>
@@ -2505,8 +2496,8 @@
   <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>Rectangle cells: {0}, Branches: {1}</value>
   </data>
-  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
-    <value>Extended Subset Principle</value>
+  <data name="StepSearcherName_WingExtensionStepSearcher" xml:space="preserve">
+    <value>Wing Extension</value>
   </data>
   <data name="RstuvwxyzWingExtension" xml:space="preserve">
     <value>RSTUVWXYZ-Wing Extension</value>
