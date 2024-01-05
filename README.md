@@ -113,13 +113,15 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * House Blooming
       * Unique/Avoidable Rectangle Blooming
       * $\text{A}^n\text{LS}$ Blooming
-  * Rank Logics
-    * Positive or 0 -Rank Logics
+  * Rank Logic
+    * Positive Ranks
+      * Extended Subset Principle (Now naming "Wing Extensions")
+    * 0 Ranks
       * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)
       * 3D SDC (3-Dimensional Sue de Coq)
       * DL (Domino Loop)
       * MSLS (Multi-Sector Locked Sets)
-    * Negative Rank Logics
+    * Negative Ranks
       * Guardian
       * Bi-value Oddagon
       * Chromatic Pattern (i.e. Tri-value Oddagon)
