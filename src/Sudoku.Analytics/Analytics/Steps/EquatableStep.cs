@@ -21,9 +21,9 @@ public static class EquatableStep
 	public static IEnumerable<TSelf> Distinct<TSelf>(List<TSelf> steps) where TSelf : Step, IEquatableStep<TSelf>
 		=> steps switch
 		{
-		[] => [],
-		[var firstElement] => [firstElement],
-		[var a, var b] => a == b ? [a] : [a, b],
+			[] => [],
+			[var firstElement] => [firstElement],
+			[var a, var b] => a == b ? [a] : [a, b],
 			_ => new HashSet<TSelf>(steps, new EqualityComparer<TSelf>())
 		};
 }

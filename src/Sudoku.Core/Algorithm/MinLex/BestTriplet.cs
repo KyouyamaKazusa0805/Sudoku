@@ -137,8 +137,8 @@ public struct BestTriplet
 	public static BestTriplet Create(scoped ReadOnlySpan<int> values)
 		=> values switch
 		{
-		[] => new(),
-		[var bestResult, var resultMask, var resultNumBits] => new() { BestResult = bestResult, ResultMask = resultMask, ResultNumBits = resultNumBits },
+			[] => new(),
+			[var bestResult, var resultMask, var resultNumBits] => new() { BestResult = bestResult, ResultMask = resultMask, ResultNumBits = resultNumBits },
 			_ => throw new InvalidOperationException($"The length of argument '{nameof(values)}' is mismatched.")
 		};
 }

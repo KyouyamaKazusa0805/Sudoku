@@ -203,8 +203,8 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
