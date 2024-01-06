@@ -102,6 +102,7 @@ internal static class RenderableFactory
 	{
 		{ RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode, Filters.CandidateViewNodeDisplayMode },
 		{ RenderableItemsUpdatingReason.EliminationDisplayMode, Filters.EliminationDisplayMode },
+		{ RenderableItemsUpdatingReason.AssignmentDisplayMode, Filters.AssignmentDisplayMode },
 		{ RenderableItemsUpdatingReason.HighlightCandidateScale, Filters.HighlightCandidateScale },
 		{ RenderableItemsUpdatingReason.Link, Filters.Link },
 		{ RenderableItemsUpdatingReason.StrongLinkDashStyle, Filters.StrongLinkDashStyle },
@@ -525,7 +526,8 @@ internal static class RenderableFactory
 					HighlightCandidateCircleScale: var highlightScale,
 					EnableAnimationFeedback: var enableAnimation,
 					CandidateViewNodeDisplayMode: var candidateDisplayMode,
-					EliminationDisplayMode: var eliminationDisplayMode
+					EliminationDisplayMode: var eliminationDisplayMode,
+					AssignmentDisplayMode: var assignmentDisplayMode
 				}
 			})
 		{
@@ -536,9 +538,9 @@ internal static class RenderableFactory
 		var (width, height) = size / 3F * (float)highlightScale;
 		var tagPrefix = ViewNodeTagPrefixes[typeof(CandidateViewNode)][0];
 		var conclusionTagStr = GetConclusionTagSuffix(isForConclusion, isForElimination, isOverlapped);
-		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode) switch
+		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode, assignmentDisplayMode) switch
 		{
-			(true, true, _, EliminationDisplay.CircleSolid) => new Ellipse
+			(true, true, _, EliminationDisplay.CircleSolid, _) or (true, false, _, _, AssignmentDisplay.CircleSolid) => new Ellipse
 			{
 				Width = width,
 				Height = height,
@@ -548,7 +550,18 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash) => new Cross
+			(true, true, _, EliminationDisplay.CircleHollow, _) or (true, false, _, _, AssignmentDisplay.CircleHollow) => new Ellipse
+			{
+				Width = width,
+				Height = height,
+				HorizontalAlignment = HorizontalAlignment.Center,
+				VerticalAlignment = VerticalAlignment.Center,
+				Stroke = new SolidColorBrush(color),
+				StrokeThickness = (width + height) / 2 * 3 / 20,
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Opacity = enableAnimation ? 0 : 1
+			},
+			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash, _) => new Cross
 			{
 				Width = width,
 				Height = height,
@@ -565,17 +578,17 @@ internal static class RenderableFactory
 					? Visibility.Visible
 					: Visibility.Collapsed
 			},
-			(true, _, _, _) or (_, _, CandidateViewNodeDisplay.CircleSolid, _) => new Ellipse
+			(true, _, _, _, _) or (_, _, CandidateViewNodeDisplay.CircleSolid, _, _) => new Ellipse
 			{
 				Width = width,
 				Height = height,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplay.CircleHollow, _) => new Ellipse
+			(_, _, CandidateViewNodeDisplay.CircleHollow, _, _) => new Ellipse
 			{
 				Width = width,
 				Height = height,
@@ -586,7 +599,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplay.SquareHollow, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.SquareHollow, _, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -597,7 +610,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
-			(_, _, CandidateViewNodeDisplay.SquareSolid, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.SquareSolid, _, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -607,7 +620,7 @@ internal static class RenderableFactory
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
-			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -619,7 +632,7 @@ internal static class RenderableFactory
 				RadiusX = width / 3,
 				RadiusY = height / 3
 			},
-			(_, _, CandidateViewNodeDisplay.RoundedRectangleSolid, _) => new Rectangle
+			(_, _, CandidateViewNodeDisplay.RoundedRectangleSolid, _, _) => new Rectangle
 			{
 				Width = width,
 				Height = height,
@@ -1347,6 +1360,15 @@ file static class Filters
 	/// <seealso cref="RenderableItemsUpdatingReason.EliminationDisplayMode"/>
 	public static bool EliminationDisplayMode(FrameworkElement control)
 		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(EliminationConclusionSuffix));
+
+	/// <summary>
+	/// The filter for <see cref="RenderableItemsUpdatingReason.AssignmentDisplayMode"/>.
+	/// </summary>
+	/// <param name="control">The control to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <seealso cref="RenderableItemsUpdatingReason.AssignmentDisplayMode"/>
+	public static bool AssignmentDisplayMode(FrameworkElement control)
+		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(AssignmentConclusionSuffix));
 
 	/// <summary>
 	/// The filter for <see cref="RenderableItemsUpdatingReason.HighlightCandidateScale"/>.

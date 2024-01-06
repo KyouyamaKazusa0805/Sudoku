@@ -11,6 +11,11 @@ public enum EliminationDisplay
 	CircleSolid,
 
 	/// <summary>
+	/// Indicates the display mode is to draw a hollow circle.
+	/// </summary>
+	CircleHollow,
+
+	/// <summary>
 	/// Indicates the display mode is to draw a cross sign.
 	/// </summary>
 	Cross,

@@ -1746,6 +1746,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>.
@@ -2320,6 +2326,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
             <summary>
@@ -3884,6 +3893,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
         </member>
+        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
+        </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightCandidateScale">
             <summary>
             Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their scale.
@@ -4514,6 +4529,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.DoubleToDecimalConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToAssignmentDisplayModeConverter">
+            <summary>
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.AssignmentDisplay"/> field.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToAssignmentDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToAssignmentDisplayModeConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter">
             <summary>
             Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CandidateViewNodeDisplay"/> field.
@@ -4823,14 +4849,24 @@ if (student is (name: var name, age: >= 18))
             Represents a type that records a list of animating data.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Rendering.AssignmentDisplay">
+            <summary>
+            Defines a mode that is used for displaying an assignment.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.AssignmentDisplay.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.AssignmentDisplay.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Rendering.CandidateViewNodeDisplay">
             <summary>
             Defines a mode that is used for displaying candidate view nodes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow circle.
             </summary>
         </member>
         <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleSolid">
@@ -4838,9 +4874,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the display mode is to draw a solid circle.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareHollow">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleHollow">
             <summary>
-            Indicates the display mode is to draw a hollow square.
+            Indicates the display mode is to draw a hollow circle.
             </summary>
         </member>
         <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareSolid">
@@ -4848,14 +4884,19 @@ if (student is (name: var name, age: >= 18))
             Indicates the display mode is to draw a solid square.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleHollow">
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareHollow">
             <summary>
-            Indicates the display mode is to draw a hollow rounded rectangle.
+            Indicates the display mode is to draw a hollow square.
             </summary>
         </member>
         <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleSolid">
             <summary>
             Indicates the display mode is to draw a solid rounded rectangle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow rounded rectangle.
             </summary>
         </member>
         <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplay">
@@ -4926,6 +4967,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Rendering.EliminationDisplay.CircleSolid">
             <summary>
             Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.EliminationDisplay.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
             </summary>
         </member>
         <member name="F:SudokuStudio.Rendering.EliminationDisplay.Cross">
@@ -5376,6 +5422,14 @@ if (student is (name: var name, age: >= 18))
             <param name="control">The control to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationDisplayMode"/>
+        </member>
+        <member name="M:SudokuStudio.Rendering.Filters.AssignmentDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode"/>
         </member>
         <member name="M:SudokuStudio.Rendering.Filters.HighlightCandidateScale(Microsoft.UI.Xaml.FrameworkElement)">
             <summary>
@@ -8018,6 +8072,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AssignmentColor">
             <summary>
               Looks up a localized string similar to Assignments.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AssignmentDisplayMode">
+            <summary>
+              Looks up a localized string similar to Display mode for assignments.
             </summary>
         </member>
         <member name="P:SudokuStudio.Strings.Resources.SettingsPage_AutoCachePuzzleAndViews">
@@ -10851,6 +10910,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>.
@@ -11181,6 +11246,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode">
             <summary>
             Indicates the displaying mode of an elimination.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode">
+            <summary>
+            Indicates the displaying mode of an assignment.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">

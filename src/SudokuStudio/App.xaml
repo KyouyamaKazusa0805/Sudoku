@@ -47,6 +47,7 @@
 			<vcvt:Int32ToCoordinateLabelModeConverter x:Key="IntToCoordinateModeConverter" />
 			<vcvt:Int32ToCandidateViewNodeDisplayModeConverter x:Key="CandidateViewNodeDisplayModeConverter" />
 			<vcvt:Int32ToEliminationDisplayModeConverter x:Key="EliminationDisplayModeConverter" />
+			<vcvt:Int32ToAssignmentDisplayModeConverter x:Key="AssignmentDisplayModeConverter" />
 			<vcvt:DoubleToDecimalConverter x:Key="Decimal2DoubleConverter" />
 			<vcvt:DoubleToDecimalConverter x:Key="Double2DecimalConverter" IsConvertFromDecimal="False" />
 			<vcvt:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />

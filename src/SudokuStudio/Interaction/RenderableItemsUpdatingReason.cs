@@ -23,6 +23,12 @@ public enum RenderableItemsUpdatingReason
 	EliminationDisplayMode,
 
 	/// <summary>
+	/// Indicates the updating items are <see cref="CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
+	/// </summary>
+	/// <seealso cref="CandidateViewNode"/>
+	AssignmentDisplayMode,
+
+	/// <summary>
 	/// Indicates the updating items are <see cref="CandidateViewNode"/>s, changing their scale.
 	/// </summary>
 	/// <seealso cref="CandidateViewNode"/>
@@ -71,76 +77,76 @@ public enum RenderableItemsUpdatingReason
 	BabaGrouping,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Normal"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Normal"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Normal"/>
+	/// <seealso cref="ColorIdentifierKind.Normal"/>
 	/// <seealso cref="WellKnownColorIdentifier.Normal"/>
 	NormalColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Assignment"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Assignment"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Assignment"/>
+	/// <seealso cref="ColorIdentifierKind.Assignment"/>
 	/// <seealso cref="WellKnownColorIdentifier.Assignment"/>
 	AssignmentColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.OverlappedAssignment"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.OverlappedAssignment"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.OverlappedAssignment"/>
+	/// <seealso cref="ColorIdentifierKind.OverlappedAssignment"/>
 	/// <seealso cref="WellKnownColorIdentifier.OverlappedAssignment"/>
 	OverlappedAssignmentColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Elimination"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Elimination"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Elimination"/>
+	/// <seealso cref="ColorIdentifierKind.Elimination"/>
 	/// <seealso cref="WellKnownColorIdentifier.Elimination"/>
 	EliminationColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Cannibalism"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Cannibalism"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Cannibalism"/>
+	/// <seealso cref="ColorIdentifierKind.Cannibalism"/>
 	/// <seealso cref="WellKnownColorIdentifier.Cannibalism"/>
 	CannibalismColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Exofin"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Exofin"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Exofin"/>
+	/// <seealso cref="ColorIdentifierKind.Exofin"/>
 	/// <seealso cref="WellKnownColorIdentifier.Exofin"/>
 	ExofinColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Endofin"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Endofin"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Endofin"/>
+	/// <seealso cref="ColorIdentifierKind.Endofin"/>
 	/// <seealso cref="WellKnownColorIdentifier.Endofin"/>
 	EndofinColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.Auxiliary1"/>,
-	/// <see cref="WellKnownColorIdentifierKind.Auxiliary2"/> or <see cref="WellKnownColorIdentifierKind.Auxiliary3"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Auxiliary1"/>,
+	/// <see cref="ColorIdentifierKind.Auxiliary2"/> or <see cref="ColorIdentifierKind.Auxiliary3"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.Auxiliary1"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.Auxiliary2"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.Auxiliary3"/>
+	/// <seealso cref="ColorIdentifierKind.Auxiliary1"/>
+	/// <seealso cref="ColorIdentifierKind.Auxiliary2"/>
+	/// <seealso cref="ColorIdentifierKind.Auxiliary3"/>
 	/// <seealso cref="WellKnownColorIdentifier.Auxiliary1"/>
 	/// <seealso cref="WellKnownColorIdentifier.Auxiliary2"/>
 	/// <seealso cref="WellKnownColorIdentifier.Auxiliary3"/>
 	AuxiliaryColorized,
 
 	/// <summary>
-	/// Indicates the updating items are view nodes that are defined <see cref="WellKnownColorIdentifierKind.AlmostLockedSet1"/>,
-	/// <see cref="WellKnownColorIdentifierKind.AlmostLockedSet2"/>, <see cref="WellKnownColorIdentifierKind.AlmostLockedSet3"/>,
-	/// <see cref="WellKnownColorIdentifierKind.AlmostLockedSet4"/> or <see cref="WellKnownColorIdentifierKind.AlmostLockedSet5"/>.
+	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.AlmostLockedSet1"/>,
+	/// <see cref="ColorIdentifierKind.AlmostLockedSet2"/>, <see cref="ColorIdentifierKind.AlmostLockedSet3"/>,
+	/// <see cref="ColorIdentifierKind.AlmostLockedSet4"/> or <see cref="ColorIdentifierKind.AlmostLockedSet5"/>.
 	/// </summary>
-	/// <seealso cref="WellKnownColorIdentifierKind.AlmostLockedSet1"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.AlmostLockedSet2"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.AlmostLockedSet3"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.AlmostLockedSet4"/>
-	/// <seealso cref="WellKnownColorIdentifierKind.AlmostLockedSet5"/>
+	/// <seealso cref="ColorIdentifierKind.AlmostLockedSet1"/>
+	/// <seealso cref="ColorIdentifierKind.AlmostLockedSet2"/>
+	/// <seealso cref="ColorIdentifierKind.AlmostLockedSet3"/>
+	/// <seealso cref="ColorIdentifierKind.AlmostLockedSet4"/>
+	/// <seealso cref="ColorIdentifierKind.AlmostLockedSet5"/>
 	/// <seealso cref="WellKnownColorIdentifier.AlmostLockedSet1"/>
 	/// <seealso cref="WellKnownColorIdentifier.AlmostLockedSet2"/>
 	/// <seealso cref="WellKnownColorIdentifier.AlmostLockedSet3"/>

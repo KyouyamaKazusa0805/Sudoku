@@ -3850,6 +3850,15 @@ namespace SudokuStudio.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display mode for assignments.
+        /// </summary>
+        internal static string SettingsPage_AssignmentDisplayMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_AssignmentDisplayMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cache puzzle and view.
         /// </summary>
         internal static string SettingsPage_AutoCachePuzzleAndViews {

@@ -289,12 +289,12 @@
 					<ComboBox
 						Width="150"
 						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Mode=TwoWay}">
-						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
-						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowSquare}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_SolidSquare}" />
-						<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleHollow}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowSquare}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleSolid}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleHollow}" />
 					</ComboBox>
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationDisplayMode}">
@@ -302,9 +302,18 @@
 						Width="150"
 						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Mode=TwoWay}">
 						<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Cross}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Slash}" />
 						<ComboBoxItem Content="{m:R Key=SettingsPage_Backslash}" />
+					</ComboBox>
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_AssignmentDisplayMode}">
+					<ComboBox
+						Width="150"
+						SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Mode=TwoWay}">
+						<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
+						<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
 					</ComboBox>
 				</w:SettingsCard>
 				<w:SettingsCard Header="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}">
@@ -350,6 +359,7 @@
 			CoordinateLabelDisplayMode="None" TransparentBackground="True"
 			CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
 			EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"
+			AssignmentDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Converter={StaticResource AssignmentDisplayModeConverter},Mode=OneWay}"
 			EnableUndoRedoStacking="False" EnableRightTapRemoving="False" EnableDoubleTapFilling="False"
 			Puzzle="{m:Grid Text='000001230123004+5604+5600789078900+1000000000000000+9001230123004+5604+5600789078900000'}"
 			GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"

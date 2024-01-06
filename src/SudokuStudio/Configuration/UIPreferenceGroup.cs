@@ -38,6 +38,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<int>("CoordinateLabelDisplayMode", DefaultValue = (int)CoordinateLabelDisplay.FourDirection, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode")]
 [DependencyProperty<int>("CandidateViewNodeDisplayMode", DefaultValue = (int)CandidateViewNodeDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode")]
 [DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)EliminationDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
+[DependencyProperty<int>("AssignmentDisplayMode", DefaultValue = (int)AssignmentDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
 [DependencyProperty<int>("GeneratedPuzzleGivensCount", DefaultValue = -1, DocSummary = "Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.")]
 [DependencyProperty<int>("IttoryuLength", DefaultValue = 0, DocSummary = "Indicates the ittoryu length for the generated puzzles.")]

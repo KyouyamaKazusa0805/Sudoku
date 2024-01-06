@@ -6,19 +6,14 @@ namespace SudokuStudio.Rendering;
 public enum CandidateViewNodeDisplay
 {
 	/// <summary>
-	/// Indicates the display mode is to draw a hollow circle.
-	/// </summary>
-	CircleHollow,
-
-	/// <summary>
 	/// Indicates the display mode is to draw a solid circle.
 	/// </summary>
 	CircleSolid,
 
 	/// <summary>
-	/// Indicates the display mode is to draw a hollow square.
+	/// Indicates the display mode is to draw a hollow circle.
 	/// </summary>
-	SquareHollow,
+	CircleHollow,
 
 	/// <summary>
 	/// Indicates the display mode is to draw a solid square.
@@ -26,12 +21,17 @@ public enum CandidateViewNodeDisplay
 	SquareSolid,
 
 	/// <summary>
-	/// Indicates the display mode is to draw a hollow rounded rectangle.
+	/// Indicates the display mode is to draw a hollow square.
 	/// </summary>
-	RoundedRectangleHollow,
+	SquareHollow,
 
 	/// <summary>
 	/// Indicates the display mode is to draw a solid rounded rectangle.
 	/// </summary>
-	RoundedRectangleSolid
+	RoundedRectangleSolid,
+
+	/// <summary>
+	/// Indicates the display mode is to draw a hollow rounded rectangle.
+	/// </summary>
+	RoundedRectangleHollow
 }

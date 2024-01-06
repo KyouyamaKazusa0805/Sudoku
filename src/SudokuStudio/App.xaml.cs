@@ -206,7 +206,7 @@ public partial class App : Application
 				//_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
 			};
 		}
-		window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
+		//window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
 
 		window.Activate();
 	}

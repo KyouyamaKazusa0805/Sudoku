@@ -1293,6 +1293,9 @@
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>Assignments</value>
   </data>
+  <data name="SettingsPage_AssignmentDisplayMode" xml:space="preserve">
+    <value>Display mode for assignments</value>
+  </data>
   <data name="SettingsPage_AutoCachePuzzleAndViews" xml:space="preserve">
     <value>Cache puzzle and view</value>
   </data>

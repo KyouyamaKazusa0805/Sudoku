@@ -1296,6 +1296,9 @@
   <data name="SettingsPage_AssignmentColor" xml:space="preserve">
     <value>出数</value>
   </data>
+  <data name="SettingsPage_AssignmentDisplayMode" xml:space="preserve">
+    <value>出数的渲染模型</value>
+  </data>
   <data name="SettingsPage_AutoCachePuzzleAndViews" xml:space="preserve">
     <value>自动缓存题目及视图</value>
   </data>
