@@ -53,7 +53,7 @@ public static class MaskEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return result.AsSpan();
 	}
 
 	/// <summary>

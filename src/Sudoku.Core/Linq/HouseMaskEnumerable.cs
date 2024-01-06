@@ -53,7 +53,7 @@ public static class HouseMaskEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -64,7 +64,7 @@ public static class HouseMaskEnumerable
 	/// <returns>A new <see cref="HouseMask"/> result.</returns>
 	public static HouseMask Where(this HouseMask @this, Func<House, bool> predicate)
 	{
-		var result = (HouseMask)0;
+		var result = 0;
 		foreach (var bitPos in @this)
 		{
 			if (predicate(bitPos))

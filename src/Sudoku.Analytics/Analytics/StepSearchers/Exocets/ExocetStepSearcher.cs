@@ -1606,7 +1606,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Try to get conjugate pairs in target cells.
-		inferredTargetConjugatePairs = conjugatePairs.ToArray();
+		inferredTargetConjugatePairs = conjugatePairs.AsSpan();
 
 		if (conclusions.Count == 0)
 		{

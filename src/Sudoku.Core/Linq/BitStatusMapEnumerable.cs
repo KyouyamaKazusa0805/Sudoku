@@ -34,7 +34,7 @@ public static class BitStatusMapEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -65,7 +65,7 @@ public static class BitStatusMapEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return result.AsSpan();
 	}
 
 	/// <summary>

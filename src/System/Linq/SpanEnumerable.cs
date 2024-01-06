@@ -208,7 +208,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		return result.ToArray();
+		return result.AsSpan();
 	}
 
 	/// <summary>
