@@ -33,7 +33,7 @@ public static class TechniqueExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetEnglishName(this Technique @this)
-		=> Resources.ResourceManager.GetString(@this.ToString(), new(1033))
+		=> Strings.Resources.ResourceManager.GetString(@this.ToString(), new(1033))
 		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
 
 	/// <summary>
