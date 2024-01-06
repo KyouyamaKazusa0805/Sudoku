@@ -292,6 +292,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
+		CellMap otherCells;
 		var otherDigitsMask = (Mask)(m & ~comparer);
 		if (extraCellsMap.InOneHouse(out _))
 		{
@@ -308,7 +309,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				var otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
+				otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 				{
 					foreach (ref readonly var cells in otherCells.GetSubsets(size))
@@ -383,85 +384,83 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Extra cells may not lie in a same house. However the type 3 can form in this case.
+		otherCells = extraCellsMap.PeerIntersection - loop & EmptyCells;
+		if (!otherCells)
 		{
-			// Extra cells may not lie in a same house. However the type 3 can form in this case.
-			var otherCells = extraCellsMap.PeerIntersection - loop & EmptyCells;
-			if (!otherCells)
-			{
-				return null;
-			}
-
-			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
-			{
-				foreach (ref readonly var cells in otherCells.GetSubsets(size))
-				{
-					var mask = grid[in cells];
-					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
-					{
-						continue;
-					}
-
-					if ((extraCellsMap | cells).PeerIntersection - loop is not (var elimMap and not []))
-					{
-						continue;
-					}
-
-					var conclusions = new List<Conclusion>();
-					foreach (var cell in elimMap)
-					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & otherDigitsMask))
-						{
-							conclusions.Add(new(Elimination, cell, digit));
-						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var cell in loop)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(
-								new(
-									(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
-									cell * 9 + digit
-								)
-							);
-						}
-					}
-					foreach (var cell in cells)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-					}
-
-					var step = new UniqueLoopType3Step(
-						[.. conclusions],
-						[[.. candidateOffsets, .. GetLoopLinks(path)]],
-						context.PredefinedOptions,
-						d1,
-						d2,
-						in loop,
-						in cells,
-						mask,
-						path
-					);
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator.Add(step);
-				}
-			}
-
 			return null;
 		}
+
+		for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+		{
+			foreach (ref readonly var cells in otherCells.GetSubsets(size))
+			{
+				var mask = grid[in cells];
+				if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+				{
+					continue;
+				}
+
+				if ((extraCellsMap | cells).PeerIntersection - loop is not (var elimMap and not []))
+				{
+					continue;
+				}
+
+				var conclusions = new List<Conclusion>();
+				foreach (var cell in elimMap)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & otherDigitsMask))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in loop)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+				foreach (var cell in cells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
+				var step = new UniqueLoopType3Step(
+					[.. conclusions],
+					[[.. candidateOffsets, .. GetLoopLinks(path)]],
+					context.PredefinedOptions,
+					d1,
+					d2,
+					in loop,
+					in cells,
+					mask,
+					path
+				);
+				if (onlyFindOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
+			}
+		}
+
+		return null;
 	}
 
 	/// <summary>
