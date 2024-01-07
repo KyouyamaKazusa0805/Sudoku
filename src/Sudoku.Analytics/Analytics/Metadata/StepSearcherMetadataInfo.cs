@@ -81,7 +81,7 @@ public sealed partial class StepSearcherMetadataInfo(
 			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherRuntimeNameAttribute>() switch
 			{
 				{ } p when p.GetFactName(culture) is { } factName => factName,
-				_ => GetString($"StepSearcherName_{typeName}", culture ?? CultureInfo.CurrentUICulture) ?? typeName
+				_ => ResourceDictionary.GetOrNull($"StepSearcherName_{typeName}", culture ?? CultureInfo.CurrentUICulture) ?? typeName
 			}
 		};
 

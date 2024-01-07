@@ -262,7 +262,7 @@ public sealed partial class TechniqueSet :
 		var currentCountryOrRegionName = CultureInfo.CurrentUICulture.Parent.Name;
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
-			GetString("Comma", CultureInfo.CurrentUICulture),
+			ResourceDictionary.Get("Comma", CultureInfo.CurrentUICulture),
 			[
 				..
 				from technique in this

@@ -55,5 +55,5 @@ public sealed partial class AlmostLockedSetsXzStep(
 	private string ZResultStr
 		=> ZDigitsMask == 0
 			? string.Empty
-			: $"{GetString("Comma", ResultCurrentCulture)!}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
+			: $"{ResourceDictionary.Get("Comma", ResultCurrentCulture)}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
 }

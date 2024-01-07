@@ -5973,6 +5973,36 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the node.</typeparam>
             <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.__Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.Operation.CandidateDifference">
             <summary>
             Read from two <see cref="T:Sudoku.Concepts.Grid"/> instances, and analyzes difference of candidates between those two.
@@ -7439,31 +7469,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Row {0}.
             </summary>
         </member>
-        <member name="T:Sudoku.Resources.IResourceReader">
-            <summary>
-            Defines a resource reader.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.IResourceReader.DefaultCulture">
-            <summary>
-            Indicates the default culture.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.IResourceReader.ResourceManager">
-            <summary>
-            The resource manager.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Resources.IResourceReader.GetResource(System.String,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get the resource file.
-            </summary>
-            <param name="resourceKey">The resource key.</param>
-            <param name="culture">The culture information.</param>
-            <returns>The final resource text.</returns>
-            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">Throws when the target resource manager is missing.</exception>
-            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the target resource is not found.</exception>
-        </member>
         <member name="T:Sudoku.Resources.MissingResourceManagerException">
             <summary>
             Represents an exception that will be thrown if resource manager is missing.
@@ -7489,44 +7494,49 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Resources.ResourceDictionary.DefaultBindingFlags">
             <summary>
-            The default binding flags.
+            Indicates the resource manager reflection binding flags.
             </summary>
         </member>
-        <member name="M:Sudoku.Resources.ResourceDictionary.GetString(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+        <member name="F:Sudoku.Resources.ResourceDictionary.DefaultCulture">
             <summary>
-            Try to get resource via the key.
+            Indicates the default culture.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDictionary.ResourceManagers">
+            <summary>
+            The internal resource managers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDictionary.RegisterResourceManager``1">
+            <summary>
+            Register a new resource manager for the current assembly calling this method.
+            </summary>
+            <typeparam name="T">
+            <para>The type of the resource manager provider.</para>
+            <para>
+            This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
+            For example, if you create a resource dictionary manifest file called <c>Resource.resx</c>, a generated type will be named <c>Resource</c>.
+            You should pass in this type (<c>Resource</c> here) as type argument to this method.
+            </para>
+            </typeparam>
+            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get resource via the key, or throw a <see cref="T:Sudoku.Resources.TargetResourceNotFoundException"/> if resource is not found.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the specified resource is not found.</exception>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get resource via the key, or return <see langword="null"/> if failed.
             </summary>
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture.</param>
             <param name="assembly">The assembly storing the resource dictionaries.</param>
-            <returns>The result string.</returns>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceDictionary.GetAssemblyResourceReader(System.Reflection.Assembly)">
-            <summary>
-            Try to fetch an instance for the resource dictionary for the specified assembly.
-            The return type may be a <see cref="T:System.Resources.ResourceReader"/> object, because it is generated by compiler.
-            </summary>
-            <param name="this">The assembly instance.</param>
-            <returns>A dynamic object that describes the resource dictionary.</returns>
-            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">
-            Throws when the resource reader is not found, meaning the assembly doesn't store any resources.
-            </exception>
-            <seealso cref="T:System.Resources.ResourceReader"/>
-        </member>
-        <member name="T:Sudoku.Resources.EntryResourceReader">
-            <summary>
-            The entry resource reader.
-            </summary>
-            <param name="resourceManager">The resource manager.</param>
-        </member>
-        <member name="M:Sudoku.Resources.EntryResourceReader.#ctor(System.Resources.ResourceManager)">
-            <summary>
-            The entry resource reader.
-            </summary>
-            <param name="resourceManager">The resource manager.</param>
-        </member>
-        <member name="P:Sudoku.Resources.EntryResourceReader.Sudoku#Resources#IResourceReader#ResourceManager">
-            <inheritdoc/>
+            <returns>The result string result.</returns>
+            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">Throws when the resource manager object is missing.</exception>
         </member>
         <member name="T:Sudoku.Resources.ResourceException">
             <summary>
@@ -7550,12 +7560,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated field declaration for parameter <c>assembly</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Resources.ResourceLocationAttribute`1">
-            <summary>
-            Specifies the location of the resource in the current assembly.
-            </summary>
-            <typeparam name="T">The type of the resource manager provider.</typeparam>
         </member>
         <member name="T:Sudoku.Resources.TargetResourceNotFoundException">
             <summary>

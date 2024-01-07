@@ -128,7 +128,7 @@ public sealed partial class AlmostLockedSet(
 		var cellsStr = converter.CellConverter(Cells);
 		return IsBivalueCell
 			? $"{digitsStr}/{cellsStr}"
-			: $"{digitsStr}/{cellsStr} {GetString("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
+			: $"{digitsStr}/{cellsStr} {ResourceDictionary.Get("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
 	}
 
 	/// <inheritdoc/>

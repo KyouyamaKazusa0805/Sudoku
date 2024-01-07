@@ -35,13 +35,13 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [SymmetryTypeStr, MappingStr]), new(ChineseLanguage, [SymmetryTypeStr, MappingStr])];
 
-	private string SymmetryTypeStr => GetString($"{SymmetricType}Symmetry", ResultCurrentCulture)!;
+	private string SymmetryTypeStr => ResourceDictionary.Get($"{SymmetricType}Symmetry", ResultCurrentCulture);
 
 	private string MappingStr
 	{
 		get
 		{
-			var comma = GetString("Comma", ResultCurrentCulture)!;
+			var comma = ResourceDictionary.Get("Comma", ResultCurrentCulture);
 			if (Mapping is not null)
 			{
 				scoped var sb = new StringHandler(10);
@@ -58,7 +58,7 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 				return sb.ToStringAndClear();
 			}
 
-			return GetString("NoMappingRelation", ResultCurrentCulture)!;
+			return ResourceDictionary.Get("NoMappingRelation", ResultCurrentCulture);
 		}
 	}
 }

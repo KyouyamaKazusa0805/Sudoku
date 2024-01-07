@@ -7,8 +7,9 @@ namespace Sudoku.Resources;
 public sealed class MissingResourceManagerException(Assembly assembly) : ResourceException(assembly)
 {
 	/// <inheritdoc/>
-	public override string Message => $"Assembly '{_assembly}' is lack of attribute '{typeof(ResourceLocationAttribute<>).Name}'.";
+	public override string Message
+		=> $"Assembly '{_assembly}' is lack of invocation '{nameof(ResourceDictionary)}.{nameof(ResourceDictionary.RegisterResourceManager)}'.";
 
 	/// <inheritdoc/>
-	public override IDictionary Data => new Dictionary<string, object> { { nameof(assembly), _assembly } };
+	public override IDictionary Data => new Dictionary<string, object?> { { nameof(assembly), _assembly } };
 }

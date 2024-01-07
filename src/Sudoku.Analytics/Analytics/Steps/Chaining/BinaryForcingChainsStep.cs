@@ -78,7 +78,7 @@ public sealed partial class BinaryForcingChainsStep(
 
 	private string StartCandOnOffStr => SourcePotential.IsOn.ToString().ToLower();
 
-	private string StartCandOnOffStrZhCn => GetString(SourcePotential.IsOn ? "TrueKeyword" : "FalseKeyword", new(2052))!;
+	private string StartCandOnOffStrZhCn => ResourceDictionary.Get(SourcePotential.IsOn ? "TrueKeyword" : "FalseKeyword", new(2052))!;
 
 	private string EndCandStr => Options.Converter.CandidateConverter([FromOnPotential.Candidate]);
 

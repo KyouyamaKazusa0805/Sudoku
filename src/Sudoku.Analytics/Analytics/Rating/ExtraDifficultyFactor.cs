@@ -14,5 +14,5 @@ public readonly record struct ExtraDifficultyFactor(string FactorName, decimal V
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo? culture)
-		=> GetString($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}", culture ?? CultureInfo.CurrentUICulture) ?? FactorName;
+		=> ResourceDictionary.Get($"{nameof(ExtraDifficultyFactorNames)}_{FactorName}", culture ?? CultureInfo.CurrentUICulture) ?? FactorName;
 }

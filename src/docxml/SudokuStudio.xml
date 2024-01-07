@@ -4821,6 +4821,36 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.UriExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.ModuleInitializer.__Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
         <member name="T:SudokuStudio.ProjectWideConstants">
             <summary>
             Represents a list of constant or <see langword="static readonly"/> fields used in the whole project.

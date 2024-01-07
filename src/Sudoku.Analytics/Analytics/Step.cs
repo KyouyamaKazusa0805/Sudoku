@@ -30,7 +30,7 @@ public abstract partial class Step(
 	/// </summary>
 	/// <remarks>
 	/// The technique name are all stored in the resource dictionary,
-	/// you can find them in the <c>Strings</c> folder (Type <see cref="StringsAccessor"/>).
+	/// you can find them in the <c>Strings</c> folder (Type <see cref="ResourceDictionary"/>).
 	/// </remarks>
 	public virtual string Name => GetName(ResultCurrentCulture);
 
@@ -140,7 +140,7 @@ public abstract partial class Step(
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
-	/// <seealso cref="GetString(string, CultureInfo)"/>
+	/// <seealso cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>
 	/// <seealso cref="TechniqueFormat"/>
 	/// <seealso cref="ToString(CultureInfo?)"/>
 	public virtual TechniqueFormat Format => GetType().Name;
@@ -191,7 +191,7 @@ public abstract partial class Step(
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
 		var currentCultureName = (culture ?? ResultCurrentCulture).Name;
-		var colonToken = GetString("Colon", culture ?? ResultCurrentCulture);
+		var colonToken = ResourceDictionary.Get("Colon", culture ?? ResultCurrentCulture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{

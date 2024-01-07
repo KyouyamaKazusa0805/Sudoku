@@ -12,5 +12,5 @@ public sealed partial class StepSearcherRuntimeNameAttribute([Data] string resou
 	/// <see langword="null"/> will be returned.
 	/// </summary>
 	/// <param name="culture">The culture information.</param>
-	public string? GetFactName(CultureInfo? culture) => GetString(ResourceKey, culture ?? CultureInfo.CurrentUICulture);
+	public string? GetFactName(CultureInfo? culture) => ResourceDictionary.Get(ResourceKey, culture ?? CultureInfo.CurrentUICulture);
 }

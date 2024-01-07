@@ -16,14 +16,13 @@ public static class TechniqueExtensions
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <param name="cultureInfo">The culture information.</param>
+	/// <param name="culture">The culture information.</param>
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
-		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
-		?? GetString(@this.ToString(), IResourceReader.DefaultCulture)
-		?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), cultureInfo);
+	public static string GetName(this Technique @this, CultureInfo? culture = null)
+		=> ResourceDictionary.GetOrNull(@this.ToString(), culture ?? CultureInfo.CurrentUICulture)
+		?? ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -32,9 +31,7 @@ public static class TechniqueExtensions
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetEnglishName(this Technique @this)
-		=> Strings.Resources.ResourceManager.GetString(@this.ToString(), IResourceReader.DefaultCulture)
-		?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), IResourceReader.DefaultCulture);
+	public static string? GetEnglishName(this Technique @this) => ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.
@@ -58,7 +55,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? GetString($"TechniqueAbbr_{@this}", IResourceReader.DefaultCulture)
+		?? ResourceDictionary.GetOrNull($"TechniqueAbbr_{@this}", ResourceDictionary.DefaultCulture)
 		?? @this.GetGroup().GetAbbreviation();
 
 	/// <summary>
@@ -72,7 +69,7 @@ public static class TechniqueExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliases(this Technique @this, CultureInfo? cultureInfo = null)
-		=> GetString($"TechniqueAlias_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)?.SplitBy([';']);
+		=> ResourceDictionary.GetOrNull($"TechniqueAlias_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)?.SplitBy([';']);
 
 	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.
@@ -81,9 +78,7 @@ public static class TechniqueExtensions
 	/// <returns>All configured links.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetIntroductionHyperlinks(this Technique @this)
-		=>
-		from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>()
-		select attr.Link;
+		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
 
 	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to. If a technique doesn't contain a corresponding group,

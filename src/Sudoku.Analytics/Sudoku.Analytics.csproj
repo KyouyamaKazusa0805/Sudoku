@@ -14,17 +14,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Analytics\Strings\Resources.Designer.cs">
-			<DependentUpon>Resources.resx</DependentUpon>
+		<Compile Update="Resources\AnalyticsResources.Designer.cs">
+			<DependentUpon>AnalyticsResources.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 		</Compile>
-		<EmbeddedResource Update="Analytics\Strings\Resources.resx">
+		<EmbeddedResource Update="Resources\AnalyticsResources.resx">
 			<SubType>Designer</SubType>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<LastGenOutput>AnalyticsResources.Designer.cs</LastGenOutput>
 			<Generator>PublicResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Analytics\Strings\Resources.zh-CN.resx">
+		<EmbeddedResource Update="Resources\AnalyticsResources.zh-CN.resx">
 			<SubType>Designer</SubType>
 		</EmbeddedResource>
 	</ItemGroup>

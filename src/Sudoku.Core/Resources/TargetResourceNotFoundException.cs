@@ -7,7 +7,7 @@ namespace Sudoku.Resources;
 /// <param name="resourceKey">The resource key.</param>
 /// <param name="culture">The culture information.</param>
 public sealed partial class TargetResourceNotFoundException(
-	Assembly assembly,
+	Assembly? assembly,
 	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] string resourceKey,
 	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] CultureInfo? culture
 ) : ResourceException(assembly)

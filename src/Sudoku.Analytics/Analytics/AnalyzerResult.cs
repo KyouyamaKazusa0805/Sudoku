@@ -287,7 +287,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		scoped var sb = new StringHandler();
 		if (options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(GetString("AnalysisResultPuzzle", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultPuzzle", culture));
 			sb.Append(puzzle.ToString("#"));
 			sb.AppendLine();
 		}
@@ -295,7 +295,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		// Print solving steps (if worth).
 		if (options.Flags(FormattingOptions.ShowSteps) && steps is not null)
 		{
-			sb.Append(GetString("AnalysisResultSolvingSteps", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultSolvingSteps", culture));
 			sb.AppendLine();
 
 			if (getBottleneck() is var (bIndex, bInfo))
@@ -304,7 +304,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				{
 					if (i > bIndex && !options.Flags(FormattingOptions.ShowStepsAfterBottleneck))
 					{
-						sb.Append(GetString("Ellipsis", culture)!);
+						sb.Append(ResourceDictionary.Get("Ellipsis", culture));
 						sb.AppendLine();
 
 						break;
@@ -333,13 +333,13 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				{
 					a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 
-					sb.Append(GetString("AnalysisResultBottleneckStep", culture)!);
+					sb.Append(ResourceDictionary.Get("AnalysisResultBottleneckStep", culture));
 
 					if (options.Flags(FormattingOptions.ShowStepLabel))
 					{
-						sb.Append(GetString("AnalysisResultInStep", culture)!);
+						sb.Append(ResourceDictionary.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
-						sb.Append(GetString("Colon", culture)!);
+						sb.Append(ResourceDictionary.Get("Colon", culture));
 					}
 
 					sb.Append(' ');
@@ -354,16 +354,16 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		// Print solving step statistics (if worth).
 		if (steps is not null)
 		{
-			sb.Append(GetString("AnalysisResultTechniqueUsed", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsed", culture));
 			sb.AppendLine();
 
 			if (options.Flags(FormattingOptions.ShowStepDetail))
 			{
-				sb.Append(GetString("AnalysisResultMin", culture)!, 6);
+				sb.Append(ResourceDictionary.Get("AnalysisResultMin", culture), 6);
 				sb.Append(',');
 				sb.Append(' ');
-				sb.Append(GetString("AnalysisResultTotal", culture)!, 6);
-				sb.Append(GetString("AnalysisResultTechniqueUsing", culture)!);
+				sb.Append(ResourceDictionary.Get("AnalysisResultTotal", culture), 6);
+				sb.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
 			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -403,14 +403,14 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 			sb.Append(stepsCount, 3);
 			sb.Append(' ');
-			sb.Append(GetString(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture)!);
+			sb.Append(ResourceDictionary.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 			sb.AppendLine();
 
 			a(ref sb, options.Flags(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
-		sb.Append(GetString("AnalysisResultPuzzleRating", culture)!);
+		sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleRating", culture));
 		sb.Append(max, "0.0");
 		sb.Append('/');
 		sb.Append(pearl ?? 20.0M, "0.0");
@@ -421,22 +421,22 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		// Print the solution (if not null and worth).
 		if (!solution.IsUndefined && options.Flags(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(GetString("AnalysisResultPuzzleSolution", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleSolution", culture));
 			sb.Append(solution.ToString("!"));
 			sb.AppendLine();
 		}
 
 		// Print the elapsed time.
-		sb.Append(GetString("AnalysisResultPuzzleHas", culture)!);
+		sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleHas", culture));
 		if (!isSolved)
 		{
-			sb.Append(GetString("AnalysisResultNot", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultNot", culture));
 		}
-		sb.Append(GetString("AnalysisResultBeenSolved", culture)!);
+		sb.Append(ResourceDictionary.Get("AnalysisResultBeenSolved", culture));
 		sb.AppendLine();
 		if (options.Flags(FormattingOptions.ShowElapsedTime))
 		{
-			sb.Append(GetString("AnalysisResultTimeElapsed", culture)!);
+			sb.Append(ResourceDictionary.Get("AnalysisResultTimeElapsed", culture));
 			sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
 			sb.AppendLine();
 		}
