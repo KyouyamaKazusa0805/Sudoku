@@ -2981,7 +2981,7 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <param name="cultureInfo">The culture information.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -2989,7 +2989,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -3388,16 +3388,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The name.</returns>
-            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
             <summary>
             Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <param name="cultureInfo">The culture information instance.</param>
+            <param name="culture">The culture information instance.</param>
             <returns>The name.</returns>
-            <exception cref="T:Sudoku.Strings.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
@@ -4737,6 +4737,7 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             <inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="/remarks"/>
             </remarks>
+            <!--<exception cref="TargetResourceNotFoundException">Throws when the resource doesn't contain the name of the technique.</exception>-->
         </member>
         <member name="P:Sudoku.Analytics.Step.BaseDifficulty">
             <summary>
@@ -21517,6 +21518,7 @@ if (student is (name: var name, age: >= 18))
             <param name="culture">The culture information.</param>
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
+            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
         </member>
         <member name="M:Sudoku.Analytics.TechniqueFormat.op_Implicit(System.String)~Sudoku.Analytics.TechniqueFormat">
             <summary>

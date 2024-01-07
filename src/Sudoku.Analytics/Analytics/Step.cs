@@ -40,7 +40,9 @@ public abstract partial class Step(
 	/// <remarks>
 	/// <inheritdoc cref="Name" path="/remarks"/>
 	/// </remarks>
-	public virtual string EnglishName => Code.GetEnglishName() ?? throw new ResourceNotFoundException(Code.ToString(), GetType().Assembly);
+	/// <!--<exception cref="TargetResourceNotFoundException">Throws when the resource doesn't contain the name of the technique.</exception>-->
+	public virtual string EnglishName
+		=> Code.GetEnglishName() ?? throw new TargetResourceNotFoundException(GetType().Assembly, Code.ToString(), ResultCurrentCulture);
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.

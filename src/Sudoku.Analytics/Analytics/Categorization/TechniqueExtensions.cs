@@ -18,23 +18,26 @@ public static class TechniqueExtensions
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <param name="cultureInfo">The culture information.</param>
 	/// <returns>The name of the current technique.</returns>
-	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
 		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
 		?? GetString(@this.ToString(), new(1033))
-		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
+		?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), cultureInfo);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>The name of the current technique.</returns>
-	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetEnglishName(this Technique @this)
-		=> Strings.Resources.ResourceManager.GetString(@this.ToString(), new(1033))
-		?? throw new ResourceNotFoundException(@this.ToString(), typeof(TechniqueExtensions).Assembly);
+	{
+		var englishCulture = new CultureInfo(1033);
+		return Strings.Resources.ResourceManager.GetString(@this.ToString(), englishCulture)
+			?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), englishCulture);
+	}
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.

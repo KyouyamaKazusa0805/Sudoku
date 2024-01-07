@@ -45,6 +45,7 @@ global using Sudoku.Filtering.Operators;
 global using Sudoku.Linq;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
+global using Sudoku.Resources;
 global using Sudoku.Runtime.CompilerServices;
 global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Strings;

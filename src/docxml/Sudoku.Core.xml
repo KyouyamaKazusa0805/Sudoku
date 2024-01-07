@@ -8013,33 +8013,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Row {0}.
             </summary>
         </member>
-        <member name="T:Sudoku.Strings.ResourceNotFoundException">
-            <summary>
-            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
-            </summary>
-            <param name="resourceKey">Indicates the resource key that causes this error.</param>
-            <param name="assembly">Indicates the assembly where this error is thrown.</param>
-        </member>
-        <member name="M:Sudoku.Strings.ResourceNotFoundException.#ctor(System.String,System.Reflection.Assembly)">
-            <summary>
-            Represents an exception that will be thrown when a certain resource key cannot be found in the resource dictionary.
-            </summary>
-            <param name="resourceKey">Indicates the resource key that causes this error.</param>
-            <param name="assembly">Indicates the assembly where this error is thrown.</param>
-        </member>
-        <member name="P:Sudoku.Strings.ResourceNotFoundException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strings.ResourceNotFoundException.ResourceKey">
-            <summary>
-            The generated property declaration for parameter <c>resourceKey</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.ResourceNotFoundException.Assembly">
-            <summary>
-            The generated property declaration for parameter <c>assembly</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
             <summary>
             Represents a converter that uses bit operation to format <see cref="T:Sudoku.Concepts.CellMap"/> instances.
