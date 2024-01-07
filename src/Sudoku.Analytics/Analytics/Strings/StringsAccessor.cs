@@ -14,5 +14,5 @@ public static class StringsAccessor
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetString(string key, CultureInfo culture)
 		=> (culture is null ? Resources.ResourceManager.GetString(key) : Resources.ResourceManager.GetString(key, culture))
-		?? Resources.ResourceManager.GetString(key, new(1033));
+		?? Resources.ResourceManager.GetString(key, IResourceReader.DefaultCulture);
 }

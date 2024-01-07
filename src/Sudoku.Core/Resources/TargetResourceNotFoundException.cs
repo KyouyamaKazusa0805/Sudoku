@@ -3,14 +3,14 @@ namespace Sudoku.Resources;
 /// <summary>
 /// Indicates an exception that will be thrown if target resource is not found.
 /// </summary>
-/// <param name="assembly">The assembly.</param>
+/// <param name="assembly"><inheritdoc/></param>
 /// <param name="resourceKey">The resource key.</param>
 /// <param name="culture">The culture information.</param>
 public sealed partial class TargetResourceNotFoundException(
-	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] Assembly assembly,
+	Assembly assembly,
 	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] string resourceKey,
 	[Data(DataMemberKinds.Field, Accessibility = "private readonly")] CultureInfo? culture
-) : Exception
+) : ResourceException(assembly)
 {
 	/// <summary>
 	/// The "unspecified" text.
@@ -23,8 +23,8 @@ public sealed partial class TargetResourceNotFoundException(
 		=> $"""
 		Specified resource not found.
 		* Resource key: '{_resourceKey}',
-		* assembly: '{_assembly}',
-		* culture: '{_culture?.EnglishName ?? CultureNotSpecifiedDefaultText}'
+		* Assembly: '{_assembly}',
+		* Culture: '{_culture?.EnglishName ?? CultureNotSpecifiedDefaultText}'
 		""";
 
 	/// <inheritdoc/>

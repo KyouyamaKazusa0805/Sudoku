@@ -150,7 +150,7 @@ public sealed record K9Converter(
 				var house = Log2((uint)housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
-					GetString(
+					ResourceDictionary.GetString(
 						houseType switch
 						{
 							HouseType.Row => "RowLabel",
@@ -179,7 +179,7 @@ public sealed record K9Converter(
 			{
 				sb.Append(
 					string.Format(
-						GetString(
+						ResourceDictionary.GetString(
 							houseType switch
 							{
 								HouseType.Row => "RowLabel",
@@ -266,18 +266,18 @@ public sealed record K9Converter(
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
-					GetString("LockedCandidatesLabel", TargetCurrentCulture),
+					ResourceDictionary.GetString("LockedCandidatesLabel", TargetCurrentCulture),
 					((House)baseSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(ResourceDictionary.GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(ResourceDictionary.GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(ResourceDictionary.GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 					},
 					((House)coverSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(ResourceDictionary.GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(ResourceDictionary.GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(ResourceDictionary.GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
 				)
 			]),
@@ -289,18 +289,18 @@ public sealed record K9Converter(
 					let baseSet = intersection.Base.Line
 					let coverSet = intersection.Base.Block
 					select string.Format(
-						GetString("LockedCandidatesLabel", TargetCurrentCulture),
+						ResourceDictionary.GetString("LockedCandidatesLabel", TargetCurrentCulture),
 						((House)baseSet).ToHouseType() switch
 						{
-							HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
+							HouseType.Block => string.Format(ResourceDictionary.GetString("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(ResourceDictionary.GetString("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(ResourceDictionary.GetString("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 						},
 						((House)coverSet).ToHouseType() switch
 						{
-							HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
+							HouseType.Block => string.Format(ResourceDictionary.GetString("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+							HouseType.Row => string.Format(ResourceDictionary.GetString("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+							HouseType.Column => string.Format(ResourceDictionary.GetString("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 						}
 					)
 				]

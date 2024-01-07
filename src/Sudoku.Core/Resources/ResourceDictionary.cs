@@ -6,6 +6,12 @@ namespace Sudoku.Resources;
 public static class ResourceDictionary
 {
 	/// <summary>
+	/// The default binding flags.
+	/// </summary>
+	private const BindingFlags DefaultBindingFlags = BindingFlags.NonPublic | BindingFlags.Static;
+
+
+	/// <summary>
 	/// Try to get resource via the key.
 	/// </summary>
 	/// <param name="resourceKey">The resource key.</param>
@@ -14,7 +20,7 @@ public static class ResourceDictionary
 	/// <returns>The result string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetString(string resourceKey, CultureInfo? culture = null, Assembly? assembly = null)
-		=> GetAssemblyResourceReader(assembly)!.GetResource(resourceKey, culture);
+		=> GetAssemblyResourceReader(assembly ?? Assembly.GetCallingAssembly())!.GetResource(resourceKey, culture);
 
 	/// <summary>
 	/// Try to fetch an instance for the resource dictionary for the specified assembly.
@@ -22,24 +28,22 @@ public static class ResourceDictionary
 	/// </summary>
 	/// <param name="this">The assembly instance.</param>
 	/// <returns>A dynamic object that describes the resource dictionary.</returns>
-	/// <exception cref="Exception">
+	/// <exception cref="MissingResourceManagerException">
 	/// Throws when the resource reader is not found, meaning the assembly doesn't store any resources.
 	/// </exception>
 	/// <seealso cref="ResourceReader"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Performance", "CA1859:Use concrete types when possible for improved performance", Justification = "<Pending>")]
-	private static IResourceReader GetAssemblyResourceReader(Assembly? @this = null)
-	{
-		@this ??= Assembly.GetCallingAssembly();
-
-		if (@this.GetCustomAttribute<ResourceLocationAttribute>() is not { ResourceFileSpecifier: var specifier }
-			|| specifier.GetProperty(nameof(ResourceManager), BindingFlags.Public | BindingFlags.Static) is not { } pi)
+	private static IResourceReader GetAssemblyResourceReader(Assembly @this)
+		=> @this.GetGenericAttributeTypeArguments(typeof(ResourceLocationAttribute<>)) switch
 		{
-			throw new();
-		}
-
-		return new EntryResourceReader((ResourceManager)pi.GetValue(null)!);
-	}
+			[var specifier] => specifier.GetProperty("ResourceManager", DefaultBindingFlags) switch
+			{
+				{ } pi => new EntryResourceReader((ResourceManager)pi.GetValue(null)!),
+				_ => null
+			},
+			_ => null
+		} ?? throw new MissingResourceManagerException(@this);
 }
 
 /// <summary>

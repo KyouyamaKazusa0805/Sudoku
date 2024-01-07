@@ -7363,6 +7363,82 @@ if (student is (name: var name, age: >= 18))
             Indicates the fifth ALS recorded.
             </summary>
         </member>
+        <member name="T:Sudoku.Resources.CoreResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
+            <summary>
+              Looks up a localized string similar to Block {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
+            <summary>
+              Looks up a localized string similar to {0}, digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellLabel">
+            <summary>
+              Looks up a localized string similar to row {0} column {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellsLabel">
+            <summary>
+              Looks up a localized string similar to cells: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnLabel">
+            <summary>
+              Looks up a localized string similar to Column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
+            <summary>
+              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
+            <summary>
+              Looks up a localized string similar to houses: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaColumnLabel">
+            <summary>
+              Looks up a localized string similar to Mega column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaLinesLabel">
+            <summary>
+              Looks up a localized string similar to Mega lines: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaRowLabel">
+            <summary>
+              Looks up a localized string similar to Mega row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowLabel">
+            <summary>
+              Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.IResourceReader">
             <summary>
             Defines a resource reader.
@@ -7385,11 +7461,35 @@ if (student is (name: var name, age: >= 18))
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture information.</param>
             <returns>The final resource text.</returns>
+            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">Throws when the target resource manager is missing.</exception>
             <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the target resource is not found.</exception>
+        </member>
+        <member name="T:Sudoku.Resources.MissingResourceManagerException">
+            <summary>
+            Represents an exception that will be thrown if resource manager is missing.
+            </summary>
+            <param name="assembly"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Resources.MissingResourceManagerException.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Represents an exception that will be thrown if resource manager is missing.
+            </summary>
+            <param name="assembly"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Resources.MissingResourceManagerException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Resources.MissingResourceManagerException.Data">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Resources.ResourceDictionary">
             <summary>
             Represents a easy way to fetch resource values using the specified key and culture information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceDictionary.DefaultBindingFlags">
+            <summary>
+            The default binding flags.
             </summary>
         </member>
         <member name="M:Sudoku.Resources.ResourceDictionary.GetString(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
@@ -7408,7 +7508,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The assembly instance.</param>
             <returns>A dynamic object that describes the resource dictionary.</returns>
-            <exception cref="T:System.Exception">
+            <exception cref="T:Sudoku.Resources.MissingResourceManagerException">
             Throws when the resource reader is not found, meaning the assembly doesn't store any resources.
             </exception>
             <seealso cref="T:System.Resources.ResourceReader"/>
@@ -7428,28 +7528,40 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.EntryResourceReader.Sudoku#Resources#IResourceReader#ResourceManager">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Resources.ResourceLocationAttribute">
+        <member name="T:Sudoku.Resources.ResourceException">
+            <summary>
+            Represents an exception type that relates to resource dictionary.
+            </summary>
+            <param name="assembly">Indicates the target assembly.</param>
+        </member>
+        <member name="M:Sudoku.Resources.ResourceException.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Represents an exception type that relates to resource dictionary.
+            </summary>
+            <param name="assembly">Indicates the target assembly.</param>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Resources.ResourceException.Data">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceException._assembly">
+            <summary>
+            The generated field declaration for parameter <c>assembly</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Resources.ResourceLocationAttribute`1">
             <summary>
             Specifies the location of the resource in the current assembly.
             </summary>
-            <param name="resourceFileSpecifier">The specifier for the assembly.</param>
-        </member>
-        <member name="M:Sudoku.Resources.ResourceLocationAttribute.#ctor(System.Type)">
-            <summary>
-            Specifies the location of the resource in the current assembly.
-            </summary>
-            <param name="resourceFileSpecifier">The specifier for the assembly.</param>
-        </member>
-        <member name="P:Sudoku.Resources.ResourceLocationAttribute.ResourceFileSpecifier">
-            <summary>
-            The generated property declaration for parameter <c>resourceFileSpecifier</c>.
-            </summary>
+            <typeparam name="T">The type of the resource manager provider.</typeparam>
         </member>
         <member name="T:Sudoku.Resources.TargetResourceNotFoundException">
             <summary>
             Indicates an exception that will be thrown if target resource is not found.
             </summary>
-            <param name="assembly">The assembly.</param>
+            <param name="assembly"><inheritdoc/></param>
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture information.</param>
         </member>
@@ -7457,7 +7569,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates an exception that will be thrown if target resource is not found.
             </summary>
-            <param name="assembly">The assembly.</param>
+            <param name="assembly"><inheritdoc/></param>
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture information.</param>
         </member>
@@ -7471,11 +7583,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.TargetResourceNotFoundException.Data">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Resources.TargetResourceNotFoundException._assembly">
-            <summary>
-            The generated field declaration for parameter <c>assembly</c>.
-            </summary>
         </member>
         <member name="F:Sudoku.Resources.TargetResourceNotFoundException._resourceKey">
             <summary>
@@ -7936,82 +8043,6 @@ if (student is (name: var name, age: >= 18))
 			</para>
 		</summary>
 	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Strings.InternalResources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.BlockLabel">
-            <summary>
-              Looks up a localized string similar to Block {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.CandidateLabel">
-            <summary>
-              Looks up a localized string similar to {0}, digit {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.CellLabel">
-            <summary>
-              Looks up a localized string similar to row {0} column {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.CellsLabel">
-            <summary>
-              Looks up a localized string similar to cells: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.ColumnLabel">
-            <summary>
-              Looks up a localized string similar to Column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.ConjugatePairWith">
-            <summary>
-              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.HousesLabel">
-            <summary>
-              Looks up a localized string similar to houses: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.LockedCandidatesLabel">
-            <summary>
-              Looks up a localized string similar to {0} {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.MegaColumnLabel">
-            <summary>
-              Looks up a localized string similar to Mega column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.MegaLinesLabel">
-            <summary>
-              Looks up a localized string similar to Mega lines: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.MegaRowLabel">
-            <summary>
-              Looks up a localized string similar to Mega row {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strings.InternalResources.RowLabel">
-            <summary>
-              Looks up a localized string similar to Row {0}.
-            </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
             <summary>

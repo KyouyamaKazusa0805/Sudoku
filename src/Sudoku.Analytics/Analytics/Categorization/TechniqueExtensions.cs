@@ -22,7 +22,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? cultureInfo = null)
 		=> GetString(@this.ToString(), cultureInfo ?? CultureInfo.CurrentUICulture)
-		?? GetString(@this.ToString(), new(1033))
+		?? GetString(@this.ToString(), IResourceReader.DefaultCulture)
 		?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), cultureInfo);
 
 	/// <summary>
@@ -33,11 +33,8 @@ public static class TechniqueExtensions
 	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetEnglishName(this Technique @this)
-	{
-		var englishCulture = new CultureInfo(1033);
-		return Strings.Resources.ResourceManager.GetString(@this.ToString(), englishCulture)
-			?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), englishCulture);
-	}
+		=> Strings.Resources.ResourceManager.GetString(@this.ToString(), IResourceReader.DefaultCulture)
+		?? throw new TargetResourceNotFoundException(typeof(TechniqueExtensions).Assembly, @this.ToString(), IResourceReader.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.
@@ -61,7 +58,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? GetString($"TechniqueAbbr_{@this}", new(1033))
+		?? GetString($"TechniqueAbbr_{@this}", IResourceReader.DefaultCulture)
 		?? @this.GetGroup().GetAbbreviation();
 
 	/// <summary>

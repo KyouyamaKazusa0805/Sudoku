@@ -13,11 +13,11 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	public override CellNotationConverter CellConverter
 		=> (scoped ref readonly CellMap cells) => cells switch
 		{
-		[] => string.Empty,
-		[var p] => string.Format(GetString("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
+			[] => string.Empty,
+			[var p] => string.Format(ResourceDictionary.GetString("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
 			_ => string.Format(
-				GetString("CellsLabel", TargetCurrentCulture),
-				string.Join(DefaultSeparator, [.. from cell in cells select string.Format(GetString("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)])
+				ResourceDictionary.GetString("CellsLabel", TargetCurrentCulture),
+				string.Join(DefaultSeparator, [.. from cell in cells select string.Format(ResourceDictionary.GetString("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)])
 			)
 		};
 
@@ -30,7 +30,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			{
 				var cellString = CellConverter([candidate / 9]);
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
-				snippets.Add(string.Format(GetString("CandidateLabel", TargetCurrentCulture), cellString, digitString));
+				snippets.Add(string.Format(ResourceDictionary.GetString("CandidateLabel", TargetCurrentCulture), cellString, digitString));
 			}
 
 			return string.Join(DefaultSeparator, snippets);
@@ -50,7 +50,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var house = Log2((uint)housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
-					GetString(
+					ResourceDictionary.GetString(
 						houseType switch
 						{
 							HouseType.Row => "RowLabel",
@@ -70,7 +70,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var houseType = house.ToHouseType();
 				snippets.Add(
 					string.Format(
-						GetString(
+						ResourceDictionary.GetString(
 							houseType switch
 							{
 								HouseType.Row => "RowLabel",
@@ -85,7 +85,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				);
 			}
 
-			return string.Format(GetString("HousesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
+			return string.Format(ResourceDictionary.GetString("HousesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
 	/// <inheritdoc/>
@@ -162,7 +162,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 					from intersection in intersections
 					let baseSet = intersection.Base.Line
 					let coverSet = intersection.Base.Block
-					select string.Format(GetString("LockedCandidatesLabel", TargetCurrentCulture), labelKey(baseSet), labelKey(coverSet))
+					select string.Format(ResourceDictionary.GetString("LockedCandidatesLabel", TargetCurrentCulture), labelKey(baseSet), labelKey(coverSet))
 				]
 			);
 
@@ -171,9 +171,9 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			string labelKey(byte house)
 				=> ((House)house).ToHouseType() switch
 				{
-					HouseType.Block => string.Format(GetString("BlockLabel", TargetCurrentCulture), house % 9 + 1),
-					HouseType.Row => string.Format(GetString("RowLabel", TargetCurrentCulture), house % 9 + 1),
-					HouseType.Column => string.Format(GetString("ColumnLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Block => string.Format(ResourceDictionary.GetString("BlockLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Row => string.Format(ResourceDictionary.GetString("RowLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Column => string.Format(ResourceDictionary.GetString("ColumnLabel", TargetCurrentCulture), house % 9 + 1),
 					_ => throw new ArgumentOutOfRangeException(nameof(house))
 				};
 		};
@@ -185,10 +185,10 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>(6);
 			foreach (var (index, _, isRow, _) in chutes)
 			{
-				snippets.Add(string.Format(GetString("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
+				snippets.Add(string.Format(ResourceDictionary.GetString("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
 			}
 
-			return string.Format(GetString("MegaLinesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
+			return string.Format(ResourceDictionary.GetString("MegaLinesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
 	/// <inheritdoc/>
@@ -206,7 +206,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var fromCellString = CellConverter([conjugatePair.From]);
 				var toCellString = CellConverter([conjugatePair.To]);
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
-				snippets.Add(string.Format(GetString("ConjugatePairWith", TargetCurrentCulture), fromCellString, toCellString, digitString));
+				snippets.Add(string.Format(ResourceDictionary.GetString("ConjugatePairWith", TargetCurrentCulture), fromCellString, toCellString, digitString));
 			}
 
 			return string.Join(DefaultSeparator, snippets);

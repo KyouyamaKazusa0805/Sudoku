@@ -398,42 +398,63 @@
             <param name="this"><inheritdoc/></param>
             <returns><inheritdoc/></returns>
         </member>
-        <member name="T:System.Reflection.MemberInfoExtensions">
+        <member name="T:System.Reflection.CustomAttributeProviderExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:System.Reflection.MemberInfo"/> instances.
+            Provides with extension methods on <see cref="T:System.Reflection.ICustomAttributeProvider"/>.
             </summary>
-            <seealso cref="T:System.Reflection.MemberInfo"/>
+            <seealso cref="T:System.Reflection.ICustomAttributeProvider"/>
         </member>
-        <member name="M:System.Reflection.MemberInfoExtensions.GetGenericAttributeTypeArguments``1(``0,System.Type)">
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.GetGenericAttributeTypeArguments``1(``0,System.Type)">
             <summary>
             Gets the type arguments of the specified attribute type applied to the specified property.
             </summary>
-            <typeparam name="T">The type of the member information.</typeparam>
-            <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
+            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
         </member>
-        <member name="M:System.Reflection.MemberInfoExtensions.GetCustomGenericAttribute``1(``0,System.Type)">
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.GetCustomGenericAttribute``1(``0,System.Type)">
             <summary>
             <inheritdoc cref="M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)" path="/summary"/>
             </summary>
-            <typeparam name="T">The type of the member information.</typeparam>
-            <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
+            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>
             <inheritdoc cref="M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)" path="/returns"/>
             </returns>
         </member>
-        <member name="M:System.Reflection.MemberInfoExtensions.GetCustomGenericAttributes``1(``0,System.Type)">
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.GetCustomGenericAttributes``1(``0,System.Type)">
             <summary>
             <inheritdoc cref="M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)" path="/summary"/>
             </summary>
-            <typeparam name="T">The type of the member information.</typeparam>
-            <param name="this">The <see cref="T:System.Reflection.MemberInfo"/> instance.</param>
+            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>
             <inheritdoc cref="M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)" path="/returns"/>
             </returns>
+        </member>
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.IndexOfBacktick(System.String)">
+            <summary>
+            Get the index of the text of the back tick.
+            </summary>
+            <param name="this">The string text.</param>
+            <returns>The index of the backtick in the string.</returns>
+        </member>
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.GetAttributesCore``1(``0)">
+            <summary>
+            Get custom attributes.
+            </summary>
+            <typeparam name="T">The type of the provider.</typeparam>
+            <param name="this">The custom attribute provider.</param>
+            <returns>The attributes.</returns>
+        </member>
+        <member name="T:System.Reflection.MemberInfoExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Reflection.MemberInfo"/> instances.
+            </summary>
+            <seealso cref="T:System.Reflection.MemberInfo"/>
         </member>
         <member name="M:System.Reflection.MemberInfoExtensions.GetInitMethod(System.Reflection.PropertyInfo,System.Boolean)">
             <summary>

@@ -16,17 +16,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Strings\InternalResources.Designer.cs">
+		<Compile Update="Resources\CoreResources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>InternalResources.resx</DependentUpon>
+			<DependentUpon>CoreResources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Strings\InternalResources.resx">
+		<EmbeddedResource Update="Resources\CoreResources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>InternalResources.Designer.cs</LastGenOutput>
+			<LastGenOutput>CoreResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
