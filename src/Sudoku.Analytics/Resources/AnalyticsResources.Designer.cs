@@ -1258,6 +1258,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        public static string ExtendedSubsetPrinciple {
+            get {
+                return ResourceManager.GetString("ExtendedSubsetPrinciple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Hidden Set (AHS) logic.
         /// </summary>
         public static string ExtraDifficultyFactorNames_AlmostHiddenSet {
@@ -2968,15 +2977,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RSTUVWXYZ-Wing Extension.
-        /// </summary>
-        public static string RstuvwxyzWingExtension {
-            get {
-                return ResourceManager.GetString("RstuvwxyzWingExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to RW&apos;s Deadly Pattern.
         /// </summary>
         public static string RwDeadlyPattern {
@@ -3742,6 +3742,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        public static string StepSearcherName_ExtendedSubsetPrincipleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ExtendedSubsetPrincipleStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firework.
         /// </summary>
         public static string StepSearcherName_FireworkStepSearcher {
@@ -3976,15 +3985,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wing Extension.
-        /// </summary>
-        public static string StepSearcherName_WingExtensionStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_WingExtensionStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to W-Wing.
         /// </summary>
         public static string StepSearcherName_WWingStepSearcher {
@@ -4008,15 +4008,6 @@ namespace Sudoku.Resources {
         public static string StuvwxyzWing {
             get {
                 return ResourceManager.GetString("StuvwxyzWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to STUVWXYZ-Wing Extension.
-        /// </summary>
-        public static string StuvwxyzWingExtension {
-            get {
-                return ResourceManager.GetString("StuvwxyzWingExtension", resourceCulture);
             }
         }
         
@@ -5515,6 +5506,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_ExtendedSubsetPrincipleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework.
         /// </summary>
         public static string TechniqueFormat_FireworkPairType1Step {
@@ -6172,15 +6172,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
-        /// </summary>
-        public static string TechniqueFormat_WingExtensionStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_WingExtensionStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
@@ -6366,6 +6357,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_ExtendedRectangle {
             get {
                 return ResourceManager.GetString("TechniqueGroup_ExtendedRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Subset Principle.
+        /// </summary>
+        public static string TechniqueGroup_ExtendedSubsetPrinciple {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ExtendedSubsetPrinciple", resourceCulture);
             }
         }
         
@@ -6568,15 +6568,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wing Extension.
-        /// </summary>
-        public static string TechniqueGroup_WingExtension {
-            get {
-                return ResourceManager.GetString("TechniqueGroup_WingExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Template Delete.
         /// </summary>
         public static string TemplateDelete {
@@ -6618,15 +6609,6 @@ namespace Sudoku.Resources {
         public static string TuvwxyzWing {
             get {
                 return ResourceManager.GetString("TuvwxyzWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TUVWXYZ-Wing Extension.
-        /// </summary>
-        public static string TuvwxyzWingExtension {
-            get {
-                return ResourceManager.GetString("TuvwxyzWingExtension", resourceCulture);
             }
         }
         
@@ -7054,29 +7036,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UVWXYZ-Wing Extension.
-        /// </summary>
-        public static string UvwxyzWingExtension {
-            get {
-                return ResourceManager.GetString("UvwxyzWingExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to VWXYZ-Wing.
         /// </summary>
         public static string VwxyzWing {
             get {
                 return ResourceManager.GetString("VwxyzWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to VWXYZ-Wing Extension.
-        /// </summary>
-        public static string VwxyzWingExtension {
-            get {
-                return ResourceManager.GetString("VwxyzWingExtension", resourceCulture);
             }
         }
         
@@ -7140,15 +7104,6 @@ namespace Sudoku.Resources {
         public static string WxyzWing {
             get {
                 return ResourceManager.GetString("WxyzWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to WXYZ-Wing Extension.
-        /// </summary>
-        public static string WxyzWingExtension {
-            get {
-                return ResourceManager.GetString("WxyzWingExtension", resourceCulture);
             }
         }
         

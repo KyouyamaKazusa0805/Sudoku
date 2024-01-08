@@ -354,7 +354,7 @@
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>{0} in {1} with the conjugate pair {2}</value>
   </data>
-  <data name="TechniqueFormat_WingExtensionStep" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedSubsetPrincipleStep" xml:space="preserve">
     <value>Only the digit {0} can be duplicate in cells {1}</value>
   </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
@@ -2244,8 +2244,8 @@
   <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>Extended Rectangle</value>
   </data>
-	<data name="TechniqueGroup_WingExtension" xml:space="preserve">
-    <value>Wing Extension</value>
+	<data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>Extended Subset Principle</value>
   </data>
   <data name="TechniqueGroup_Firework" xml:space="preserve">
     <value>Firework</value>
@@ -2466,6 +2466,9 @@
   <data name="Single" xml:space="preserve">
     <value>Single</value>
   </data>
+  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
+	<value>Extended Subset Principle</value>
+  </data>
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}, Branches: {1}</value>
   </data>
@@ -2496,25 +2499,7 @@
   <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>Rectangle cells: {0}, Branches: {1}</value>
   </data>
-  <data name="StepSearcherName_WingExtensionStepSearcher" xml:space="preserve">
-    <value>Wing Extension</value>
-  </data>
-  <data name="RstuvwxyzWingExtension" xml:space="preserve">
-    <value>RSTUVWXYZ-Wing Extension</value>
-  </data>
-  <data name="StuvwxyzWingExtension" xml:space="preserve">
-    <value>STUVWXYZ-Wing Extension</value>
-  </data>
-  <data name="TuvwxyzWingExtension" xml:space="preserve">
-    <value>TUVWXYZ-Wing Extension</value>
-  </data>
-  <data name="UvwxyzWingExtension" xml:space="preserve">
-    <value>UVWXYZ-Wing Extension</value>
-  </data>
-  <data name="VwxyzWingExtension" xml:space="preserve">
-    <value>VWXYZ-Wing Extension</value>
-  </data>
-  <data name="WxyzWingExtension" xml:space="preserve">
-    <value>WXYZ-Wing Extension</value>
+  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
+    <value>Extended Subset Principle</value>
   </data>
 </root>

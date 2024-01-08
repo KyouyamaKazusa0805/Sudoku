@@ -360,7 +360,7 @@
   <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里构成结构，带有共轭对 {2}</value>
   </data>
-  <data name="TechniqueFormat_WingExtensionStep" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedSubsetPrincipleStep" xml:space="preserve">
     <value>只有数字 {0} 在 {1} 里可以重复出现</value>
   </data>
   <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
@@ -2379,8 +2379,8 @@
   <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>扩展矩形</value>
   </data>
-  <data name="TechniqueGroup_WingExtension" xml:space="preserve">
-    <value>Wing 拓展（伪数组）</value>
+  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>伪数组</value>
   </data>
   <data name="TechniqueGroup_Firework" xml:space="preserve">
     <value>烟花数组</value>
@@ -2684,32 +2684,12 @@
   <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>矩形：{0}，每个分支：{1}</value>
   </data>
-  <data name="StepSearcherName_WingExtensionStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
     <value>Wing 拓展</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="RstuvwxyzWingExtension" xml:space="preserve">
-    <value>RSTUVWXYZ-Wing 拓展</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="StuvwxyzWingExtension" xml:space="preserve">
-    <value>STUVWXYZ-Wing 拓展</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="TuvwxyzWingExtension" xml:space="preserve">
-    <value>TUVWXYZ-Wing 拓展</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="UvwxyzWingExtension" xml:space="preserve">
-    <value>UVWXYZ-Wing 拓展</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="VwxyzWingExtension" xml:space="preserve">
-    <value>VWXYZ-Wing 拓展</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="WxyzWingExtension" xml:space="preserve">
-    <value>WXYZ-Wing 拓展</value>
+  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>伪数组</value>
     <comment>Technique Name</comment>
   </data>
 </root>

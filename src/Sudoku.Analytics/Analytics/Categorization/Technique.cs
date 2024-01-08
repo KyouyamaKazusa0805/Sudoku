@@ -1666,80 +1666,20 @@ public enum Technique
 	#endregion
 
 	//
-	// Wing Extension (Extended Subset Principle)
+	// Extended Subset Principle
 	//
-	#region Wing Extension (Extended Subset Principle)
+	#region Extended Subset Principle
 	/// <summary>
-	/// Indicates WXYZ-Wing extension.
+	/// Indicates extended subset principle.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
 	[HodokuTechniquePrefix("1102")]
 	[Abbreviation("ESP")]
 	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	WxyzWingExtension,
-
-	/// <summary>
-	/// Indicates VWXYZ-Wing extension.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
+	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	VwxyzWingExtension,
-
-	/// <summary>
-	/// Indicates UVWXYZ-Wing extension.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	UvwxyzWingExtension,
-
-	/// <summary>
-	/// Indicates TUVWXYZ-Wing extension.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	TuvwxyzWingExtension,
-
-	/// <summary>
-	/// Indicates STUVWXYZ-Wing extension.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	StuvwxyzWingExtension,
-
-	/// <summary>
-	/// Indicates RSTUVWXYZ-Wing extension.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
-	[TechniqueGroup(TechniqueGroup.WingExtension)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	RstuvwxyzWingExtension,
+	ExtendedSubsetPrinciple,
 	#endregion
 
 	//
