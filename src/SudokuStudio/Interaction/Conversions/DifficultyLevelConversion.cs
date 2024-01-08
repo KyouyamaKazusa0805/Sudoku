@@ -8,24 +8,24 @@ internal static class DifficultyLevelConversion
 	public static string GetName(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel.Easy => GetString("_DifficultyLevel_Easy"),
-			DifficultyLevel.Moderate => GetString("_DifficultyLevel_Moderate"),
-			DifficultyLevel.Hard => GetString("_DifficultyLevel_Hard"),
-			DifficultyLevel.Fiendish => GetString("_DifficultyLevel_Fiendish"),
-			DifficultyLevel.Nightmare => GetString("_DifficultyLevel_Nightmare"),
-			DifficultyLevel.LastResort => GetString("_DifficultyLevel_LastResort"),
+			DifficultyLevel.Easy => ResourceDictionary.Get("_DifficultyLevel_Easy", App.CurrentCulture),
+			DifficultyLevel.Moderate => ResourceDictionary.Get("_DifficultyLevel_Moderate", App.CurrentCulture),
+			DifficultyLevel.Hard => ResourceDictionary.Get("_DifficultyLevel_Hard", App.CurrentCulture),
+			DifficultyLevel.Fiendish => ResourceDictionary.Get("_DifficultyLevel_Fiendish", App.CurrentCulture),
+			DifficultyLevel.Nightmare => ResourceDictionary.Get("_DifficultyLevel_Nightmare", App.CurrentCulture),
+			DifficultyLevel.LastResort => ResourceDictionary.Get("_DifficultyLevel_LastResort", App.CurrentCulture),
 			_ => string.Empty
 		};
 
 	public static string GetNameWithDefault(DifficultyLevel difficultyLevel, string defaultValue)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel.Easy => GetString("_DifficultyLevel_Easy"),
-			DifficultyLevel.Moderate => GetString("_DifficultyLevel_Moderate"),
-			DifficultyLevel.Hard => GetString("_DifficultyLevel_Hard"),
-			DifficultyLevel.Fiendish => GetString("_DifficultyLevel_Fiendish"),
-			DifficultyLevel.Nightmare => GetString("_DifficultyLevel_Nightmare"),
-			DifficultyLevel.LastResort => GetString("_DifficultyLevel_LastResort"),
+			DifficultyLevel.Easy => ResourceDictionary.Get("_DifficultyLevel_Easy", App.CurrentCulture),
+			DifficultyLevel.Moderate => ResourceDictionary.Get("_DifficultyLevel_Moderate", App.CurrentCulture),
+			DifficultyLevel.Hard => ResourceDictionary.Get("_DifficultyLevel_Hard", App.CurrentCulture),
+			DifficultyLevel.Fiendish => ResourceDictionary.Get("_DifficultyLevel_Fiendish", App.CurrentCulture),
+			DifficultyLevel.Nightmare => ResourceDictionary.Get("_DifficultyLevel_Nightmare", App.CurrentCulture),
+			DifficultyLevel.LastResort => ResourceDictionary.Get("_DifficultyLevel_LastResort", App.CurrentCulture),
 			_ => defaultValue
 		};
 

@@ -5,9 +5,9 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class CompilationConversion
 {
-	public static string GetCompilationInfo() => $"{GetString("AboutPage_Version")} {App.AssemblyVersion.ToString(3)} | x64 | Release";
+	public static string GetCompilationInfo() => $"{ResourceDictionary.Get("AboutPage_Version", App.CurrentCulture)} {App.AssemblyVersion.ToString(3)} | x64 | Release";
 
-	public static string License(string input) => $"{input} {GetString("AboutPage_License")}";
+	public static string License(string input) => $"{input} {ResourceDictionary.Get("AboutPage_License", App.CurrentCulture)}";
 
-	public static string ForReference(bool input) => input ? GetString("AboutPage_ForReference") : string.Empty;
+	public static string ForReference(bool input) => input ? ResourceDictionary.Get("AboutPage_ForReference", App.CurrentCulture) : string.Empty;
 }

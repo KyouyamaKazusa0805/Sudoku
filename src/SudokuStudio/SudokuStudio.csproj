@@ -94,17 +94,17 @@
 		<EmbeddedResource Include="Assets\images\repo-dotnet.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Strings\Resources.resx">
+		<EmbeddedResource Update="Resources\SudokuStudioResources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<LastGenOutput>SudokuStudioResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Strings\Resources.Designer.cs">
+		<Compile Update="Resources\SudokuStudioResources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources.resx</DependentUpon>
+			<DependentUpon>SudokuStudioResources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 

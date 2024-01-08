@@ -58,9 +58,9 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	/// </summary>
 	internal string ThemeDescription
 		=> string.Format(
-			GetString("SettingsPage_CurrentlySelectedThemeIs"),
-			GetString(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_LightThemeFullName", _ => "SettingsPage_DarkThemeFullName" }),
-			GetString(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_DarkThemeFullName", _ => "SettingsPage_LightThemeFullName" })
+			ResourceDictionary.Get("SettingsPage_CurrentlySelectedThemeIs", App.CurrentCulture),
+			ResourceDictionary.Get(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_LightThemeFullName", _ => "SettingsPage_DarkThemeFullName" }, App.CurrentCulture),
+			ResourceDictionary.Get(App.CurrentTheme switch { ApplicationTheme.Light => "SettingsPage_DarkThemeFullName", _ => "SettingsPage_LightThemeFullName" }, App.CurrentCulture)
 		);
 
 	/// <summary>

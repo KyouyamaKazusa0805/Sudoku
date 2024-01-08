@@ -10,22 +10,22 @@ internal static class TechniqueConversion
 	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(App.CurrentCulture);
 
 	public static string GetEnglishName(Technique technique)
-		=> technique == Technique.None ? string.Empty : technique.GetEnglishName() ?? GetString("TechniqueSelectionPage_NoEnglishName");
+		=> technique == Technique.None ? string.Empty : technique.GetEnglishName() ?? ResourceDictionary.Get("TechniqueSelectionPage_NoEnglishName", App.CurrentCulture);
 
 	public static string GetDifficultyLevel(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: DifficultyLevelConversion.GetNameWithDefault(technique.GetDifficultyLevel(), GetString("TechniqueSelectionPage_NoDifficultyLevel"));
+			: DifficultyLevelConversion.GetNameWithDefault(technique.GetDifficultyLevel(), ResourceDictionary.Get("TechniqueSelectionPage_NoDifficultyLevel", App.CurrentCulture));
 
 	public static string GetAliasNames(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: technique.GetAliases(App.CurrentCulture) is { Length: not 0 } a ? string.Join(", ", a) : GetString("TechniqueSelectionPage_NoAliases");
+			: technique.GetAliases(App.CurrentCulture) is { Length: not 0 } a ? string.Join(", ", a) : ResourceDictionary.Get("TechniqueSelectionPage_NoAliases", App.CurrentCulture);
 
 	public static string GetAbbreviation(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: technique.GetAbbreviation() ?? GetString("TechniqueSelectionPage_NoAbbreviation");
+			: technique.GetAbbreviation() ?? ResourceDictionary.Get("TechniqueSelectionPage_NoAbbreviation", App.CurrentCulture);
 
 	public static string GetGroup(Technique technique)
 		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetName(App.CurrentCulture);
@@ -36,17 +36,17 @@ internal static class TechniqueConversion
 	public static string GetFeature(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: GetStringResourceViaFeature(technique.GetFeature()) is var p and not "" ? p : GetString("TechniqueSelectionPage_NoExtraFeatures");
+			: GetStringResourceViaFeature(technique.GetFeature()) is var p and not "" ? p : ResourceDictionary.Get("TechniqueSelectionPage_NoExtraFeatures", App.CurrentCulture);
 
 	public static string GetFeatureDescription(Technique technique)
 		=> technique == Technique.None
 			? string.Empty
-			: GetStringTooltipViaFeature(technique.GetFeature()) is { Length: not 0 } p ? p : GetString("TechniqueSelectionPage_NoExtraFeaturesDescription");
+			: GetStringTooltipViaFeature(technique.GetFeature()) is { Length: not 0 } p ? p : ResourceDictionary.Get("TechniqueSelectionPage_NoExtraFeaturesDescription", App.CurrentCulture);
 
 	public static string GetSudokuExplainerDifficultyRange(Technique technique)
 	{
-		var advancedText = GetString("TechniqueSelectionPage_AdvancedDefined");
-		var nullDefinedText = GetString("TechniqueSelectionPage_NullDefined");
+		var advancedText = ResourceDictionary.Get("TechniqueSelectionPage_AdvancedDefined", App.CurrentCulture);
+		var nullDefinedText = ResourceDictionary.Get("TechniqueSelectionPage_NullDefined", App.CurrentCulture);
 		return technique switch
 		{
 			Technique.None => string.Empty,
@@ -77,39 +77,39 @@ internal static class TechniqueConversion
 	public static string GetHodokuDifficultyRating(Technique technique)
 		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetDifficultyRating(technique, out var difficultyLevel) switch
 		{
-			{ } value => $"{value}{Token("OpenBrace")}{GetString(difficultyLevel switch
+			{ } value => $"{value}{ResourceDictionary.Get("_Token_OpenBrace", App.CurrentCulture)}{ResourceDictionary.Get(difficultyLevel switch
 			{
 				HodokuDifficultyLevel.Easy => "HodokuDifficultyLevel_Easy",
 				HodokuDifficultyLevel.Medium => "HodokuDifficultyLevel_Medium",
 				HodokuDifficultyLevel.Hard => "HodokuDifficultyLevel_Hard",
 				HodokuDifficultyLevel.Unfair => "HodokuDifficultyLevel_Unfair",
 				HodokuDifficultyLevel.Extreme => "HodokuDifficultyLevel_Extreme"
-			})}{Token("ClosedBrace")}",
-			_ => GetString("TechniqueSelectionPage_NullDefined")
+			}, App.CurrentCulture)}{ResourceDictionary.Get("_Token_ClosedBrace", App.CurrentCulture)}",
+			_ => ResourceDictionary.Get("TechniqueSelectionPage_NullDefined", App.CurrentCulture)
 		};
 
 	public static string GetHodokuPrefix(Technique technique)
-		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuPrefix(technique) ?? GetString("TechniqueSelectionPage_NoHodokuPrefix");
+		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuPrefix(technique) ?? ResourceDictionary.Get("TechniqueSelectionPage_NoHodokuPrefix", App.CurrentCulture);
 
 	public static string GetStringResourceViaFeature(TechniqueFeature feature)
 		=> feature switch
 		{
-			TechniqueFeature.HardToBeGenerated => GetString("TechniqueFeature_HardToBeGeneratedShort"),
-			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechniqueShort"),
-			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheoryShort"),
-			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplementedShort"),
-			TechniqueFeature.DirectTechniques => GetString("TechniqueFeature_DirectTechniquesShort"),
+			TechniqueFeature.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGeneratedShort", App.CurrentCulture),
+			TechniqueFeature.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechniqueShort", App.CurrentCulture),
+			TechniqueFeature.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheoryShort", App.CurrentCulture),
+			TechniqueFeature.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplementedShort", App.CurrentCulture),
+			TechniqueFeature.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniquesShort", App.CurrentCulture),
 			_ => string.Empty
 		};
 
 	public static string? GetStringTooltipViaFeature(TechniqueFeature feature)
 		=> feature switch
 		{
-			TechniqueFeature.HardToBeGenerated => GetString("TechniqueFeature_HardToBeGenerated"),
-			TechniqueFeature.WillBeReplacedByOtherTechnique => GetString("TechniqueFeature_WillBeReplacedByOtherTechnique"),
-			TechniqueFeature.OnlyExistInTheory => GetString("TechniqueFeature_OnlyExistInTheory"),
-			TechniqueFeature.NotImplemented => GetString("TechniqueFeature_NotImplemented"),
-			TechniqueFeature.DirectTechniques => GetString("TechniqueFeature_DirectTechniques"),
+			TechniqueFeature.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGenerated", App.CurrentCulture),
+			TechniqueFeature.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechnique", App.CurrentCulture),
+			TechniqueFeature.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheory", App.CurrentCulture),
+			TechniqueFeature.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplemented", App.CurrentCulture),
+			TechniqueFeature.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniques", App.CurrentCulture),
 			_ => null
 		};
 

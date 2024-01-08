@@ -34,21 +34,25 @@ internal static class PuzzleLibraryConversion
 	public static string GetTotalPagesCountText(PuzzleLibraryBindableSource? source) => $"/ {GetTotalPagesCount(source)}";
 
 	public static string GetLoadingOrAddingDialogTitle(LibraryDataUpdatingMode mode)
-		=> GetString(
+		=> ResourceDictionary.Get(
 			mode switch
 			{
 				LibraryDataUpdatingMode.Add => "LibraryPage_AddLibraryTitle",
 				LibraryDataUpdatingMode.Load => "LibraryPage_LoadLibraryTitle",
 				LibraryDataUpdatingMode.Update => "LibraryPage_UpdateLibraryTitle",
 				LibraryDataUpdatingMode.AddOne => "LibraryPage_AddOneLibraryTitle"
-			}
+			},
+			App.CurrentCulture
 		);
 
 	public static string GetTags(string[] tags)
-		=> string.Format(GetString("LibraryPage_TagsAre"), string.Join(GetString("_Token_Comma"), tags));
+		=> string.Format(
+			ResourceDictionary.Get("LibraryPage_TagsAre", App.CurrentCulture),
+			string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), tags)
+		);
 
 	public static string GetPuzzlesCountText(int count)
-		=> string.Format(GetString(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural"), count);
+		=> string.Format(ResourceDictionary.Get(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural", App.CurrentCulture), count);
 
 	public static string GetLibraryName(string libName, string libFileId) => $"{libName} ({libFileId}{FileExtensions.PuzzleLibrary})";
 

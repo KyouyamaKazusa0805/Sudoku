@@ -88,17 +88,17 @@ public sealed partial class LibraryPage : Page
 				XamlRoot = XamlRoot,
 				IsPrimaryButtonEnabled = true,
 				Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-				CloseButtonText = GetString("LibraryPage_Close"),
+				CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
 				Content = new LibraryInfoDisplayerContent
 				{
 					Mode = LibraryDataUpdatingMode.Load,
 					FilePath = libFilePath,
 					FileId = fileId,
 					LibraryName = fileId,
-					LibraryDescription = string.Format(GetString("LibraryPage_DescriptionDefaultValue"), fileId)
+					LibraryDescription = string.Format(ResourceDictionary.Get("LibraryPage_DescriptionDefaultValue", App.CurrentCulture), fileId)
 				},
 				DefaultButton = ContentDialogButton.Primary,
-				PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+				PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
 			};
 			var result = await contentDialog.ShowAsync();
 			if (result != ContentDialogResult.Primary)
@@ -166,10 +166,10 @@ public sealed partial class LibraryPage : Page
 			XamlRoot = XamlRoot,
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = GetString("LibraryPage_Close"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
 			Content = new LibraryInfoDisplayerContent { Mode = LibraryDataUpdatingMode.Add },
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 		{
@@ -404,7 +404,7 @@ public sealed partial class LibraryPage : Page
 			XamlRoot = XamlRoot,
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = GetString("LibraryPage_Close"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
 			Content = new LibraryInfoDisplayerContent
 			{
 				Mode = LibraryDataUpdatingMode.Update,
@@ -415,7 +415,7 @@ public sealed partial class LibraryPage : Page
 				FileId = fileId
 			},
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 		{
@@ -488,10 +488,10 @@ public sealed partial class LibraryPage : Page
 			XamlRoot = XamlRoot,
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = GetString("LibraryPage_Close"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
 			Content = new LibraryInfoDisplayerContent { Mode = LibraryDataUpdatingMode.AddOne },
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
 		};
 		if (await contentDialog.ShowAsync() == ContentDialogResult.Primary)
 		{

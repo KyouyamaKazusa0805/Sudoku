@@ -760,7 +760,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private void UserControl_DragOver(object sender, DragEventArgs e)
 	{
 		e.AcceptedOperation = DataPackageOperation.Copy;
-		e.DragUIOverride.Caption = GetString("SudokuPane_DropSudokuFileHere");
+		e.DragUIOverride.Caption = ResourceDictionary.Get("SudokuPane_DropSudokuFileHere", App.CurrentCulture);
 		e.DragUIOverride.IsCaptionVisible = true;
 		e.DragUIOverride.IsContentVisible = true;
 	}

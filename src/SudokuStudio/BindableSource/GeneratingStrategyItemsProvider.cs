@@ -88,12 +88,12 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		var control = new ComboBox
 		{
 			ItemsSource = (ComboBoxItem[])[
-				new() { Content = GetString("DifficultyLevel_None"), Tag = DifficultyLevel.Unknown },
-				new() { Content = GetString("DifficultyLevel_Easy"), Tag = DifficultyLevel.Easy },
-				new() { Content = GetString("DifficultyLevel_Moderate"), Tag = DifficultyLevel.Moderate },
-				new() { Content = GetString("DifficultyLevel_Hard"), Tag = DifficultyLevel.Hard },
-				new() { Content = GetString("DifficultyLevel_Fiendish"), Tag = DifficultyLevel.Fiendish },
-				new() { Content = GetString("DifficultyLevel_Nightmare"), Tag = DifficultyLevel.Nightmare }
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_None", App.CurrentCulture), Tag = DifficultyLevel.Unknown },
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_Easy", App.CurrentCulture), Tag = DifficultyLevel.Easy },
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_Moderate", App.CurrentCulture), Tag = DifficultyLevel.Moderate },
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_Hard", App.CurrentCulture), Tag = DifficultyLevel.Hard },
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_Fiendish", App.CurrentCulture), Tag = DifficultyLevel.Fiendish },
+				new() { Content = ResourceDictionary.Get("DifficultyLevel_Nightmare", App.CurrentCulture), Tag = DifficultyLevel.Nightmare }
 			]
 		};
 		control.SelectedIndex = Array.IndexOf(
@@ -108,16 +108,16 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> new()
 		{
 			ItemsSource = (ComboBoxItem[])[
-				new() { Content = GetString("SymmetricType_None"), Tag = SymmetricType.None },
-				new() { Content = GetString("SymmetricType_Central"), Tag = SymmetricType.Central },
-				new() { Content = GetString("SymmetricType_Diagonal"), Tag = SymmetricType.Diagonal },
-				new() { Content = GetString("SymmetricType_AntiDiagonal"), Tag = SymmetricType.AntiDiagonal },
-				new() { Content = GetString("SymmetricType_AntiDiagonal"), Tag = SymmetricType.AntiDiagonal },
-				new() { Content = GetString("SymmetricType_XAxis"), Tag = SymmetricType.XAxis },
-				new() { Content = GetString("SymmetricType_YAxis"), Tag = SymmetricType.YAxis },
-				new() { Content = GetString("SymmetricType_AxisBoth"), Tag = SymmetricType.AxisBoth },
-				new() { Content = GetString("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
-				new() { Content = GetString("SymmetricType_All"), Tag = SymmetricType.All }
+				new() { Content = ResourceDictionary.Get("SymmetricType_None", App.CurrentCulture), Tag = SymmetricType.None },
+				new() { Content = ResourceDictionary.Get("SymmetricType_Central", App.CurrentCulture), Tag = SymmetricType.Central },
+				new() { Content = ResourceDictionary.Get("SymmetricType_Diagonal", App.CurrentCulture), Tag = SymmetricType.Diagonal },
+				new() { Content = ResourceDictionary.Get("SymmetricType_AntiDiagonal", App.CurrentCulture), Tag = SymmetricType.AntiDiagonal },
+				new() { Content = ResourceDictionary.Get("SymmetricType_AntiDiagonal", App.CurrentCulture), Tag = SymmetricType.AntiDiagonal },
+				new() { Content = ResourceDictionary.Get("SymmetricType_XAxis", App.CurrentCulture), Tag = SymmetricType.XAxis },
+				new() { Content = ResourceDictionary.Get("SymmetricType_YAxis", App.CurrentCulture), Tag = SymmetricType.YAxis },
+				new() { Content = ResourceDictionary.Get("SymmetricType_AxisBoth", App.CurrentCulture), Tag = SymmetricType.AxisBoth },
+				new() { Content = ResourceDictionary.Get("SymmetricType_DiagonalBoth", App.CurrentCulture), Tag = SymmetricType.DiagonalBoth },
+				new() { Content = ResourceDictionary.Get("SymmetricType_All", App.CurrentCulture), Tag = SymmetricType.All }
 			],
 			SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern
 		};
@@ -165,16 +165,16 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static string DifficultyLevelInitializedValueDisplayer()
 		=> DifficultyLevelConversion.GetNameWithDefault(
 			((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel,
-			GetString("DifficultyLevel_None")
+			ResourceDictionary.Get("DifficultyLevel_None", App.CurrentCulture)
 		);
 
 	private static string SymmetricTypeInitializedValueDisplayer()
-		=> GetString($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
+		=> ResourceDictionary.Get($"SymmetricType_{((App)Application.Current).Preference.UIPreferences.GeneratorSymmetricPattern}");
 
 	private static string TechniqueMustIncludedInitializedValueDisplayer()
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratorSelectedTechniques switch
 		{
-			[] => GetString("TechniqueSelector_NoTechniqueSelected"),
+			[] => ResourceDictionary.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture),
 			var n => string.Join(", ", [.. from s in n select s.GetName(App.CurrentCulture)])
 		};
 
@@ -184,18 +184,18 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 	private static string FirstAssignmentAttributeInitializedValueDisplayer()
 		=> ((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleShouldBePearl switch
 		{
-			true => GetString("GeneratingStrategyPage_PearlPuzzle"),
-			false => GetString("GeneratingStrategyPage_NormalPuzzle"),
-			//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+			true => ResourceDictionary.Get("GeneratingStrategyPage_PearlPuzzle", App.CurrentCulture),
+			false => ResourceDictionary.Get("GeneratingStrategyPage_NormalPuzzle", App.CurrentCulture),
+			//_ => ResourceDictionary.Get("GeneratingStrategyPage_DiamondPuzzle", App.CurrentCulture)
 		};
 
 	private static string CanRestrictGeneratingGivensCountInitializedValueDisplayer()
-		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount ? GetString("Yes") : GetString("No");
+		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount ? ResourceDictionary.Get("Yes", App.CurrentCulture) : ResourceDictionary.Get("No", App.CurrentCulture);
 
 	private static string GeneratedPuzzleGivensCountInitializedValueDisplayer()
 		=> ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount
 			? string.Format(
-				GetString("GeneratingStrategyPage_GivensHave"),
+				ResourceDictionary.Get("GeneratingStrategyPage_GivensHave", App.CurrentCulture),
 				((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount
 			)
 			: "/";
@@ -204,10 +204,10 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		=> ((App)Application.Current).Preference.UIPreferences.IttoryuLength switch
 		{
 			-1 => "/",
-			0 => GetString("GeneratingStrategyPage_ZeroIttoryu"),
-			9 => GetString("GeneratingStrategyPage_RealIttoryu"),
+			0 => ResourceDictionary.Get("GeneratingStrategyPage_ZeroIttoryu", App.CurrentCulture),
+			9 => ResourceDictionary.Get("GeneratingStrategyPage_RealIttoryu", App.CurrentCulture),
 			var i and > 0 and < 9 => i.ToString(),
-			_ => GetString("GeneratingStrategyPage_Error")
+			_ => ResourceDictionary.Get("GeneratingStrategyPage_Error", App.CurrentCulture)
 		};
 
 	private static void DifficultyLevelValueRouter(FrameworkElement c, TextBlock _)
@@ -225,7 +225,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		var condition = uiPref.GeneratorDifficultyLevel is var gdl && gdl < expectedDifficultyLevel && gdl != DifficultyLevel.Unknown;
 		t.Text = condition
 			? string.Format(
-				GetString("GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan"),
+				ResourceDictionary.Get("GeneratingStrategyPage_DifficultyLevelMustBeGreaterThan", App.CurrentCulture),
 				DifficultyLevelConversion.GetName(expectedDifficultyLevel)
 			)
 			: string.Empty;
@@ -246,7 +246,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		var condition = ((App)Application.Current).Preference.UIPreferences.CanRestrictGeneratingGivensCount;
 		((App)Application.Current).Preference.UIPreferences.GeneratedPuzzleGivensCount = condition ? ((IntegerBox)c).Value : -1;
 
-		t.Text = condition ? string.Empty : GetString("GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue");
+		t.Text = condition ? string.Empty : ResourceDictionary.Get("GeneratingStrategyPage_GivensEnabledMustBePreviousControlSetTrue", App.CurrentCulture);
 		t.Foreground = condition ? null : new SolidColorBrush(Colors.Orange);
 	}
 
@@ -255,7 +255,7 @@ public sealed class GeneratingStrategyItemsProvider : IRunningStrategyItemsProvi
 		var condition = ((App)Application.Current).Preference.UIPreferences.GeneratorDifficultyLevel == DifficultyLevel.Easy;
 		((App)Application.Current).Preference.UIPreferences.IttoryuLength = condition ? ((IntegerBox)c).Value : -1;
 
-		t.Text = condition ? string.Empty : GetString("GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy");
+		t.Text = condition ? string.Empty : ResourceDictionary.Get("GeneratingStrategyPage_IttroyuLengthEnabledMustBeEasy", App.CurrentCulture);
 		t.Foreground = condition ? null : new SolidColorBrush(Colors.Orange);
 	}
 }

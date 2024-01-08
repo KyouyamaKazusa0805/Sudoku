@@ -86,8 +86,8 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		var finder = new IttoryuPathFinder(techniqueSet);
 		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) =
 			finder.FindPath(in puzzle) is { Digits.Length: not 0 } path
-				? (string.Format(GetString("AnalyzePage_DisorderedIttoryuOrderIs"), path.ToString()), true)
-				: (GetString("AnalyzePage_DisorderedIttoryuDoesNotExist"), true);
+				? (string.Format(ResourceDictionary.Get("AnalyzePage_DisorderedIttoryuOrderIs", App.CurrentCulture), path.ToString()), true)
+				: (ResourceDictionary.Get("AnalyzePage_DisorderedIttoryuDoesNotExist", App.CurrentCulture), true);
 	}
 }
 

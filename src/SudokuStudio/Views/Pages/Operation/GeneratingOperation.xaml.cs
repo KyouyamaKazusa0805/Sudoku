@@ -37,9 +37,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void SetConfiguredOptions(AnalyzePage basePage)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var comma = GetString("_Token_Comma");
-		var openBrace = GetString("_Token_OpenBrace");
-		var closedBrace = GetString("_Token_ClosedBrace");
+		var comma = ResourceDictionary.Get("_Token_Comma", App.CurrentCulture);
+		var openBrace = ResourceDictionary.Get("_Token_OpenBrace", App.CurrentCulture);
+		var closedBrace = ResourceDictionary.Get("_Token_ClosedBrace", App.CurrentCulture);
 		TextBlockBindable.SetInlines(
 			GeneratorStrategyTooltip,
 			[
@@ -47,41 +47,41 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				new LineBreak(),
 				new Run().WithText($"{(uiPref.CanRestrictGeneratingGivensCount, uiPref.GeneratedPuzzleGivensCount) switch
 				{
-					(false, _) or (_, -1) => (GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction"), string.Empty),
-					_ => (uiPref.GeneratedPuzzleGivensCount, GetString("AnalyzePage_NumberOfGivens"))
+					(false, _) or (_, -1) => (ResourceDictionary.Get("AnalyzePage_GeneratedPuzzleGivensNoRestriction", App.CurrentCulture), string.Empty),
+					_ => (uiPref.GeneratedPuzzleGivensCount, ResourceDictionary.Get("AnalyzePage_NumberOfGivens", App.CurrentCulture))
 				}:AnalyzePage_GeneratedPuzzleGivensIs}"),
 				new LineBreak(),
 				new Run().WithText($"{DifficultyLevelConversion.GetNameWithDefault(
 					uiPref.GeneratorDifficultyLevel,
-					GetString("DifficultyLevel_None")
+					ResourceDictionary.Get("DifficultyLevel_None", App.CurrentCulture)
 				):AnalyzePage_SelectedDifficultyLevelIs}"),
 				new LineBreak(),
-				new Run().WithText($"{GetString($"SymmetricType_{uiPref.GeneratorSymmetricPattern}"):AnalyzePage_SelectedSymmetricTypeIs}"),
+				new Run().WithText($"{ResourceDictionary.Get($"SymmetricType_{uiPref.GeneratorSymmetricPattern}", App.CurrentCulture):AnalyzePage_SelectedSymmetricTypeIs}"),
 				new LineBreak(),
 				new Run().WithText($"{uiPref.GeneratorSelectedTechniques switch
 				{
-					[var f] => string.Format(GetString("AnalyzePage_SingleTechniquesSelected"), f.GetName(App.CurrentCulture)),
-					[var f, ..] t and { Count: var fc } => string.Format(GetString("AnalyzePage_MultipleTechniquesSelected"), f.GetName(App.CurrentCulture), fc),
-					_ => GetString("TechniqueSelector_NoTechniqueSelected"),
+					[var f] => string.Format(ResourceDictionary.Get("AnalyzePage_SingleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture)),
+					[var f, ..] t and { Count: var fc } => string.Format(ResourceDictionary.Get("AnalyzePage_MultipleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture), fc),
+					_ => ResourceDictionary.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture),
 				}:AnalyzePage_SelectedTechniqueIs}"),
 				new LineBreak(),
 				new Run().WithText($"{(
 				uiPref.GeneratedPuzzleShouldBeMinimal
-					? GetString("AnalyzePage_IsAMinimal")
-					: GetString("AnalyzePage_IsNotMinimal")
+					? ResourceDictionary.Get("AnalyzePage_IsAMinimal", App.CurrentCulture)
+					: ResourceDictionary.Get("AnalyzePage_IsNotMinimal", App.CurrentCulture)
 				):AnalyzePage_SelectedMinimalRuleIs}"),
 				new LineBreak(),
 				new Run().WithText($"{uiPref.GeneratedPuzzleShouldBePearl switch
 				{
-					true => GetString("GeneratingStrategyPage_PearlPuzzle"),
-					false => GetString("GeneratingStrategyPage_NormalPuzzle"),
-					//_ => GetString("GeneratingStrategyPage_DiamondPuzzle")
+					true => ResourceDictionary.Get("GeneratingStrategyPage_PearlPuzzle", App.CurrentCulture),
+					false => ResourceDictionary.Get("GeneratingStrategyPage_NormalPuzzle", App.CurrentCulture),
+					//_ => ResourceDictionary.Get("GeneratingStrategyPage_DiamondPuzzle", App.CurrentCulture)
 				}:AnalyzePage_SelectedDiamondRuleIs}"),
 				new LineBreak(),
 				new Run().WithText($"{uiPref.GeneratorDifficultyLevel switch
 				{
-					DifficultyLevel.Easy => string.Format(GetString("AnalyzePage_IttoryuLength"), uiPref.IttoryuLength),
-					_ => GetString("AnalyzePage_IttoryuPathIsNotLimited")
+					DifficultyLevel.Easy => string.Format(ResourceDictionary.Get("AnalyzePage_IttoryuLength", App.CurrentCulture), uiPref.IttoryuLength),
+					_ => ResourceDictionary.Get("AnalyzePage_IttoryuPathIsNotLimited", App.CurrentCulture)
 				}:AnalyzePage_SelectedIttoryuIs}")
 			]
 		);
@@ -138,7 +138,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
 
-		var processingText = GetString("AnalyzePage_GeneratorIsProcessing");
+		var processingText = ResourceDictionary.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
 		var preferences = ((App)Application.Current).Preference.UIPreferences;
 		var difficultyLevel = preferences.GeneratorDifficultyLevel;
 		var symmetry = preferences.GeneratorSymmetricPattern;
@@ -470,7 +470,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var fsp = new FileSavePicker();
 		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = GetString("Sudoku");
+		fsp.SuggestedFileName = ResourceDictionary.Get("Sudoku", App.CurrentCulture);
 		fsp.AddFileFormat(FileFormats.PlainText);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
@@ -575,7 +575,7 @@ file static class RunExtensions
 /// Here <c>value</c> will be inserted into the resource, whose related key value is specified as <c>ResourceKeyName</c> after colon token.
 /// Its equivalent value is
 /// <code><![CDATA[
-/// string s = string.Format(GetString("ResourceKeyName"), value);
+/// string s = string.Format(ResourceDictionary.Get("ResourceKeyName", App.CurrentCulture), value);
 /// ]]></code>
 /// This type is implemented via an interpolated string handler pattern, same as <see cref="DefaultInterpolatedStringHandler"/>,
 /// marked with <see cref="InterpolatedStringHandlerAttribute"/>.
@@ -614,11 +614,11 @@ file ref struct ResourceFetcher(int literalLength, int formattedCount)
 		{
 			not null => _content switch
 			{
-				var (a, b, c) => string.Format(GetString(_format), a, b, c),
-				var (a, b) => string.Format(GetString(_format), a, b),
-				ITuple tuple => string.Format(GetString(_format), tuple.ToArray()),
-				not null => string.Format(GetString(_format), _content),
-				_ => GetString(_format)
+				var (a, b, c) => string.Format(ResourceDictionary.Get(_format, App.CurrentCulture), a, b, c),
+				var (a, b) => string.Format(ResourceDictionary.Get(_format, App.CurrentCulture), a, b),
+				ITuple tuple => string.Format(ResourceDictionary.Get(_format, App.CurrentCulture), tuple.ToArray()),
+				not null => string.Format(ResourceDictionary.Get(_format, App.CurrentCulture), _content),
+				_ => ResourceDictionary.Get(_format, App.CurrentCulture)
 			},
 			_ => throw new InvalidOperationException("The format cannot be null.")
 		};

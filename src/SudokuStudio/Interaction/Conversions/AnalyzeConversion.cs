@@ -96,7 +96,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueName))
 		{
-			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueName") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueName", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = step.GetName(App.CurrentCulture) });
 		}
@@ -105,7 +105,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueIndex") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueIndex", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = (index + 1).ToString() });
 		}
@@ -114,23 +114,23 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_Abbreviation") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_Abbreviation", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = technique.GetAbbreviation() ?? GetString("AnalyzePage_None") });
+			result.Add(new Run { Text = technique.GetAbbreviation() ?? ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
 		}
 
 		if (displayKind.Flags(StepTooltipDisplayItems.Aliases))
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_Aliases") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_Aliases", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(
 				new Run
 				{
 					Text = technique.GetAliases(App.CurrentCulture) is { } aliases and not []
-						? string.Join(GetString("_Token_Comma"), aliases)
-						: GetString("AnalyzePage_None")
+						? string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), aliases)
+						: ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture)
 				}
 			);
 		}
@@ -139,7 +139,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_TechniqueDifficultyRating") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = difficulty.ToString("0.0") });
 		}
@@ -148,14 +148,14 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_ExtraDifficultyCase") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_ExtraDifficultyCase", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 
 			switch (cases)
 			{
 				case { Length: not 0 }:
 				{
-					result.Add(new Run { Text = $"{GetString("AnalyzePage_BaseDifficulty")}{baseDifficulty:0.0}" });
+					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficulty:0.0}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(cases));
 
@@ -163,7 +163,7 @@ internal static class AnalyzeConversion
 				}
 				default:
 				{
-					result.Add(new Run { Text = GetString("AnalyzePage_None") });
+					result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
 
 					break;
 				}
@@ -174,7 +174,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = GetString("AnalyzePage_SimpleDescription") }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_SimpleDescription", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = step.ToString(App.CurrentCulture) });
 		}
@@ -188,7 +188,7 @@ internal static class AnalyzeConversion
 			{
 				var factor = factors[i];
 				var extraDifficultyName = factor.ToString(App.CurrentCulture);
-				yield return new Run { Text = $"{extraDifficultyName}{Token("Colon")}+{factor.Value:0.0}" };
+				yield return new Run { Text = $"{extraDifficultyName}{ResourceDictionary.Get("_Token_Colon", App.CurrentCulture)}+{factor.Value:0.0}" };
 
 				if (i != factors.Length - 1)
 				{

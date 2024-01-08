@@ -18,8 +18,8 @@ internal static class SudokuGridConversion
 	public static string GetPuzzleHintsCount(Grid grid)
 		=> grid switch
 		{
-			{ IsUndefined: true } => GetString("AnalyzePage_UndefinedGrid"),
-			{ IsEmpty: true } => GetString("AnalyzePage_EmptyGrid"),
+			{ IsUndefined: true } => ResourceDictionary.Get("AnalyzePage_UndefinedGrid", App.CurrentCulture),
+			{ IsEmpty: true } => ResourceDictionary.Get("AnalyzePage_EmptyGrid", App.CurrentCulture),
 			{ GivensCount: var givens } => givens.ToString()
 		};
 
@@ -28,8 +28,8 @@ internal static class SudokuGridConversion
 		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		return grid switch
 		{
-			{ IsUndefined: true } => GetString("AnalyzePage_UndefinedGrid"),
-			{ IsEmpty: true } => GetString("AnalyzePage_EmptyGrid"),
+			{ IsUndefined: true } => ResourceDictionary.Get("AnalyzePage_UndefinedGrid", App.CurrentCulture),
+			{ IsEmpty: true } => ResourceDictionary.Get("AnalyzePage_EmptyGrid", App.CurrentCulture),
 			_ => grid.ToString($"#{character}")
 		};
 	}
@@ -38,24 +38,25 @@ internal static class SudokuGridConversion
 	{
 		if (grid.IsUndefined)
 		{
-			return GetString("AnalyzePage_PuzzleHasNoSolution");
+			return ResourceDictionary.Get("AnalyzePage_PuzzleHasNoSolution", App.CurrentCulture);
 		}
 
 		if (grid.IsEmpty)
 		{
-			return GetString("AnalyzePage_PuzzleHasMultipleSolutions");
+			return ResourceDictionary.Get("AnalyzePage_PuzzleHasMultipleSolutions", App.CurrentCulture);
 		}
 
 		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var hasNoGivenCells = grid.GivensCount == 0;
 		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
-		return GetString(
+		return ResourceDictionary.Get(
 			Solver.Value!.Solve(str, null, 2) switch
 			{
 				0 => "AnalyzePage_PuzzleHasNoSolution",
 				1 => hasNoGivenCells ? "AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" : "AnalyzePage_PuzzleHasUniqueSolution",
 				_ => "AnalyzePage_PuzzleHasMultipleSolutions"
-			}
+			},
+			App.CurrentCulture
 		);
 	}
 
@@ -63,23 +64,23 @@ internal static class SudokuGridConversion
 	{
 		if (grid is { IsUndefined: true } or { IsEmpty: true })
 		{
-			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
+			return ResourceDictionary.Get("AnalyzePage_MinimalResult_NotUniquePuzzle", App.CurrentCulture);
 		}
 
 		if (!Solver.Value!.CheckValidity(grid.ToString()))
 		{
-			return GetString("AnalyzePage_MinimalResult_NotUniquePuzzle");
+			return ResourceDictionary.Get("AnalyzePage_MinimalResult_NotUniquePuzzle", App.CurrentCulture);
 		}
 
 		if (!grid.CheckMinimal(out var firstCandidateMakePuzzleNotMinimal))
 		{
 			return string.Format(
-				GetString("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved"),
+				ResourceDictionary.Get("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved", App.CurrentCulture),
 				GlobalizedConverter.InvariantCultureConverter.CandidateConverter([firstCandidateMakePuzzleNotMinimal])
 			);
 		}
 
-		return GetString("AnalyzePage_MinimalResult_Yes");
+		return ResourceDictionary.Get("AnalyzePage_MinimalResult_Yes", App.CurrentCulture);
 	}
 
 	public static FontFamily GetFont(FontFamily givenFont, FontFamily modifiable, CellState state)

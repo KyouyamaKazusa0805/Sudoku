@@ -93,7 +93,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 		BasePage.IsGathererLaunched = true;
 		TechniqueGroupView.ClearViewSource();
 
-		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
+		var textFormat = ResourceDictionary.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;

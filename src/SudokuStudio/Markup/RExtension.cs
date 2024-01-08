@@ -14,5 +14,5 @@ public sealed class RExtension : MarkupExtension
 
 
 	/// <inheritdoc/>
-	protected override object ProvideValue() => GetString(Key);
+	protected override object ProvideValue() => ResourceDictionary.Get(Key, App.CurrentCulture);
 }

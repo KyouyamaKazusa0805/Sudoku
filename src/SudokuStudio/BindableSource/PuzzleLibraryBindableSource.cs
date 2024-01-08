@@ -39,17 +39,17 @@ public sealed partial class PuzzleLibraryBindableSource([Data] bool isAddingOper
 	/// <summary>
 	/// Indicates the name of the library.
 	/// </summary>
-	public string Name { get; set; } = GetString("LibraryPage_UndefinedName");
+	public string Name { get; set; } = ResourceDictionary.Get("LibraryPage_UndefinedName", App.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the description of the library.
 	/// </summary>
-	public string Description { get; set; } = GetString("LibraryPage_UndefinedDescription");
+	public string Description { get; set; } = ResourceDictionary.Get("LibraryPage_UndefinedDescription", App.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the name of the user.
 	/// </summary>
-	public string Author { get; set; } = GetString("LibraryPage_UndefinedUserName");
+	public string Author { get; set; } = ResourceDictionary.Get("LibraryPage_UndefinedUserName", App.CurrentCulture);
 
 	/// <summary>
 	/// Idnicates the file ID used as storage file name. <b>Note: The ID should be unique in all puzzle libraries.</b>

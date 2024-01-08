@@ -260,7 +260,7 @@ public sealed partial class AnalyzePage : Page
 		var fsp = new FileSavePicker();
 		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = GetString("Sudoku");
+		fsp.SuggestedFileName = ResourceDictionary.Get("Sudoku", App.CurrentCulture);
 		fsp.AddFileFormat(FileFormats.Text);
 		fsp.AddFileFormat(FileFormats.PlainText);
 		fsp.AddFileFormat(FileFormats.PortablePicture);
@@ -463,25 +463,25 @@ public sealed partial class AnalyzePage : Page
 		_tabsRoutingData = [
 			new()
 			{
-				Header = GetString("AnalyzePage_TechniquesTable"),
+				Header = ResourceDictionary.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
 				IconSource = new SymbolIconSource { Symbol = Symbol.Flag },
 				Page = new Summary { Margin = thickness, BasePage = this }
 			},
 			new()
 			{
-				Header = GetString("AnalyzePage_StepDetail"),
+				Header = ResourceDictionary.Get("AnalyzePage_StepDetail", App.CurrentCulture),
 				IconSource = new SymbolIconSource { Symbol = Symbol.ShowResults },
 				Page = new SolvingPath { Margin = thickness, BasePage = this }
 			},
 			new()
 			{
-				Header = GetString("AnalyzePage_AllStepsInCurrentGrid"),
+				Header = ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
 				IconSource = new SymbolIconSource { Symbol = Symbol.Shuffle },
 				Page = new GridGathering { Margin = thickness, BasePage = this }
 			},
 			new()
 			{
-				Header = GetString("AnalyzePage_Drawing"),
+				Header = ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
 				IconSource = new SymbolIconSource { Symbol = Symbol.Edit },
 				Page = new Drawing { Margin = thickness, BasePage = this }
 			}
@@ -1077,7 +1077,7 @@ public sealed partial class AnalyzePage : Page
 		ClearAnalyzeTabsData();
 		IsAnalyzerLaunched = true;
 
-		var textFormat = GetString("AnalyzePage_AnalyzerProgress");
+		var textFormat = ResourceDictionary.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
 		_ctsForAnalyzingRelatedOperations = cts;
@@ -1123,13 +1123,13 @@ public sealed partial class AnalyzePage : Page
 					{
 						XamlRoot = XamlRoot,
 						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-						Title = GetString("AnalyzePage_ErrorStepEncounteredTitle"),
-						CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
+						Title = ResourceDictionary.Get("AnalyzePage_ErrorStepEncounteredTitle", App.CurrentCulture),
+						CloseButtonText = ResourceDictionary.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
 						DefaultButton = ContentDialogButton.Close,
 						Content = new ErrorStepDialogContent
 						{
 							ErrorStepGrid = invalidGrid,
-							ErrorStepText = string.Format(GetString("AnalyzePage_ErrorStepDescription"), wrongStep),
+							ErrorStepText = string.Format(ResourceDictionary.Get("AnalyzePage_ErrorStepDescription", App.CurrentCulture), wrongStep),
 							ViewUnit = new() { View = views?[0] ?? [], Conclusions = conclusions }
 						}
 					}.ShowAsync();
@@ -1142,8 +1142,8 @@ public sealed partial class AnalyzePage : Page
 					{
 						XamlRoot = XamlRoot,
 						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-						Title = GetString("AnalyzePage_ExceptionThrownTitle"),
-						CloseButtonText = GetString("AnalyzePage_ErrorStepDialogCloseButtonText"),
+						Title = ResourceDictionary.Get("AnalyzePage_ExceptionThrownTitle", App.CurrentCulture),
+						CloseButtonText = ResourceDictionary.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
 						DefaultButton = ContentDialogButton.Close,
 						Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
 					}.ShowAsync();
@@ -1331,10 +1331,10 @@ public sealed partial class AnalyzePage : Page
 			XamlRoot = XamlRoot,
 			IsPrimaryButtonEnabled = true,
 			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = GetString("LibraryPage_Close"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
 			Content = new AddToLibraryContent { PuzzleLibraries = _puzzleLibraries },
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = GetString("LibraryPage_LoadOrAddingButtonText")
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
 		};
 
 		if (await contentDialog.ShowAsync() != ContentDialogResult.Primary)

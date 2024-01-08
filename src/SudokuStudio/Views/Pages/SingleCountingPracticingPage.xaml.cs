@@ -104,7 +104,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 				var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, (a, b) => a.Candidate == b, testedCount);
 				var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
 				page.ResultDataDisplayer.Text = string.Format(
-					GetString("SingleCountingPracticingPage_ResultDisplayLabel"),
+					ResourceDictionary.Get("SingleCountingPracticingPage_ResultDisplayLabel", App.CurrentCulture),
 					totalTimeSpan,
 					testedCount,
 					totalTimeSpan / testedCount,

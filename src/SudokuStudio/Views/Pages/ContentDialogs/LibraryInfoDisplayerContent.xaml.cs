@@ -14,7 +14,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 public sealed partial class LibraryInfoDisplayerContent : Page
 {
 	[Default]
-	private static readonly string LibraryAuthorDefaultValue = GetString("AnonymousAuthor");
+	private static readonly string LibraryAuthorDefaultValue = ResourceDictionary.Get("AnonymousAuthor", App.CurrentCulture);
 
 	[Default]
 	private static readonly ObservableCollection<string> LibraryTagsDefaultValue = [];

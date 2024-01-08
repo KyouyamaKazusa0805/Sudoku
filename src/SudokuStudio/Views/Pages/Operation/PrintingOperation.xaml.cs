@@ -32,7 +32,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 
 		var document = await new AnalysisResultDocumentCreator
 		{
-			Comment = GetString("AnalyzePage_GenerateComment"),
+			Comment = ResourceDictionary.Get("AnalyzePage_GenerateComment", App.CurrentCulture),
 			AnalysisResult = analyzerResult
 		}.CreateDocumentAsync();
 
@@ -44,7 +44,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 		var fsp = new FileSavePicker();
 		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = GetString("SuggestedFileName_Output");
+		fsp.SuggestedFileName = ResourceDictionary.Get("SuggestedFileName_Output", App.CurrentCulture);
 		fsp.AddFileFormat(FileFormats.PortableDocument);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
@@ -102,15 +102,15 @@ file sealed class AnalysisResultDocumentCreator
 				{
 					row.RelativeItem().Column(column =>
 					{
-						column.Item().Text(GetString("AnalyzePage_AnalysisResultReportPdfTitle")).Style(TitleStyle);
+						column.Item().Text(ResourceDictionary.Get("AnalyzePage_AnalysisResultReportPdfTitle", App.CurrentCulture)).Style(TitleStyle);
 						column.Item().Text(static text =>
 						{
-							text.Span(GetString("AnalyzePage_GenerateDate")).SemiBold().Style(DefaultStyle);
+							text.Span(ResourceDictionary.Get("AnalyzePage_GenerateDate", App.CurrentCulture)).SemiBold().Style(DefaultStyle);
 							text.Span($"{DateTime.Now:d}").Style(DefaultStyle);
 						});
 						column.Item().Text(text =>
 						{
-							text.Span(GetString("AnalyzePage_PuzzleIs")).SemiBold().Style(DefaultStyle);
+							text.Span(ResourceDictionary.Get("AnalyzePage_PuzzleIs", App.CurrentCulture)).SemiBold().Style(DefaultStyle);
 							text.Span($"{AnalysisResult.Puzzle:#}").Style(DefaultStyle);
 						});
 					});
@@ -132,11 +132,11 @@ file sealed class AnalysisResultDocumentCreator
 
 						table.Header(static header =>
 						{
-							header.Cell().Element(cellStyle).Text(GetString("AnalyzePage_TechniqueOrTechniqueGroupName"));
-							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_TechniqueCount"));
-							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyLevel"));
-							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyTotal"));
-							header.Cell().Element(cellStyle).AlignRight().Text(GetString("AnalyzePage_DifficultyMax"));
+							header.Cell().Element(cellStyle).Text(ResourceDictionary.Get("AnalyzePage_TechniqueOrTechniqueGroupName", App.CurrentCulture));
+							header.Cell().Element(cellStyle).AlignRight().Text(ResourceDictionary.Get("AnalyzePage_TechniqueCount", App.CurrentCulture));
+							header.Cell().Element(cellStyle).AlignRight().Text(ResourceDictionary.Get("AnalyzePage_DifficultyLevel", App.CurrentCulture));
+							header.Cell().Element(cellStyle).AlignRight().Text(ResourceDictionary.Get("AnalyzePage_DifficultyTotal", App.CurrentCulture));
+							header.Cell().Element(cellStyle).AlignRight().Text(ResourceDictionary.Get("AnalyzePage_DifficultyMax", App.CurrentCulture));
 
 
 							static PdfContainer cellStyle(PdfContainer container)
@@ -187,7 +187,7 @@ file static class Extensions
 		=> @this.Item().PaddingTop(25).Element(c => c.Background(PdfColors.Grey.Lighten3).Padding(10).Column(column =>
 		{
 			column.Spacing(5);
-			column.Item().DefaultTextStyle(AnalysisResultDocumentCreator.TitleStyle).Text(GetString("AnalyzePage_GenerateCommentTitle"));
+			column.Item().DefaultTextStyle(AnalysisResultDocumentCreator.TitleStyle).Text(ResourceDictionary.Get("AnalyzePage_GenerateCommentTitle", App.CurrentCulture));
 			column.Item().DefaultTextStyle(AnalysisResultDocumentCreator.DefaultStyle).Text(comment);
 		}));
 

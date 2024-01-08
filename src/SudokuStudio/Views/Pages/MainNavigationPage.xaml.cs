@@ -34,7 +34,7 @@ internal sealed partial class MainNavigationPage : Page
 	/// </summary>
 	/// <param name="pageType">The page type.</param>
 	internal void SetFrameDisplayTitle(Type pageType)
-		=> MainNavigationView.Header = GetStringNullable($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
+		=> MainNavigationView.Header = ResourceDictionary.GetOrNull($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
 
 	/// <summary>
 	/// Initializes fields.

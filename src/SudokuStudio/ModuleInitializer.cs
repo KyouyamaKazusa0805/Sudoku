@@ -11,5 +11,5 @@ internal static class ModuleInitializer
 	[Obsolete("This method cannot be called by ourselves.", true)]
 	[RequiresUnreferencedCode("Module initializer cannot be invoked by user ourselves.")]
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public static void __Initialize() => ResourceDictionary.RegisterResourceManager<Resources>();
+	public static void __Initialize() => ResourceDictionary.RegisterResourceManager<SudokuStudioResources>();
 }
