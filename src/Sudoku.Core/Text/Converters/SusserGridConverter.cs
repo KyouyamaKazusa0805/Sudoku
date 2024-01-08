@@ -308,5 +308,5 @@ file sealed class EqualityComparer : IEqualityComparer<Match>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetHashCode([DisallowNull] Match? obj) => obj?.Value.Length ?? -1;
+	public int GetHashCode(Match obj) => obj?.Value.Length ?? -1;
 }

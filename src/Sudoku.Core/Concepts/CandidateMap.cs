@@ -346,6 +346,25 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
 
+	/// <summary>
+	/// Try to get digits that is in the current collection.
+	/// </summary>
+	/// <param name="cell">The desired cell.</param>
+	/// <returns>The digits.</returns>
+	public readonly Mask GetDigitsFor(Cell cell)
+	{
+		var result = (Mask)0;
+		for (var (candidate, digit) = (cell * 9, 0); digit < 9; candidate++, digit++)
+		{
+			if (Contains(candidate))
+			{
+				result |= (Mask)(1 << digit);
+			}
+		}
+
+		return result;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
