@@ -19346,7 +19346,7 @@ result ^= expression;
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.ModuleInitializer.__Initialize">
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
             <target name="method">
 				<summary>
 					Called by the runtime automatically while booting on this solution to initialize the values,

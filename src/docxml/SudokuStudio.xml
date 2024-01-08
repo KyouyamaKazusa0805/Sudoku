@@ -4837,7 +4837,7 @@ if (student is (name: var name, age: >= 18))
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.ModuleInitializer.__Initialize">
+        <member name="M:SudokuStudio.ModuleInitializer.Initialize">
             <target name="method">
 				<summary>
 					Called by the runtime automatically while booting on this solution to initialize the values,

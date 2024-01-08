@@ -10,6 +10,5 @@ internal static class ModuleInitializer
 	[MethodImpl(MethodImplOptions.NoInlining)]
 	[Obsolete("This method cannot be called by ourselves.", true)]
 	[RequiresUnreferencedCode("Module initializer cannot be invoked by user ourselves.")]
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public static void __Initialize() => ResourceDictionary.RegisterResourceManager<CoreResources>();
+	public static void Initialize() => ResourceDictionary.RegisterResourceManager<CoreResources>();
 }
