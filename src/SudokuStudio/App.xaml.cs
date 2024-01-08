@@ -171,11 +171,7 @@ public partial class App : Application
 		var disallowHighTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
 		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
 		return Analyzer
-			.WithCustomAction(
-				analyzer => _ = difficultyLevel != DifficultyLevel.Unknown
-					? analyzer.WithStepSearchers(((App)Current).GetStepSearchers())
-					: analyzer.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
-			)
+			.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(sudokuPane)
 			.WithCulture(CurrentCulture)
 			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
