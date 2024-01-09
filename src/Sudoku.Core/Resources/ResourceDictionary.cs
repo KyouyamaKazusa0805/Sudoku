@@ -25,7 +25,7 @@ public static class ResourceDictionary
 	/// <summary>
 	/// Register a new resource manager for the current assembly calling this method.
 	/// </summary>
-	/// <typeparam name="T">
+	/// <typeparam name="TResourceManagerProvider">
 	/// <para>The type of the resource manager provider.</para>
 	/// <para>
 	/// This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
@@ -34,10 +34,11 @@ public static class ResourceDictionary
 	/// </para>
 	/// </typeparam>
 	/// <exception cref="MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
-	public static void RegisterResourceManager<T>() where T : class
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void RegisterResourceManager<TResourceManagerProvider>() where TResourceManagerProvider : class
 	{
 		var assembly = Assembly.GetCallingAssembly();
-		var manager = typeof(T).GetProperty("ResourceManager", DefaultBindingFlags) switch
+		var manager = typeof(TResourceManagerProvider).GetProperty("ResourceManager", DefaultBindingFlags) switch
 		{
 			{ } pi => (ResourceManager)pi.GetValue(null)!,
 			_ => null

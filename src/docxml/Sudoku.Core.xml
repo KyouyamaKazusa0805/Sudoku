@@ -7518,7 +7518,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Register a new resource manager for the current assembly calling this method.
             </summary>
-            <typeparam name="T">
+            <typeparam name="TResourceManagerProvider">
             <para>The type of the resource manager provider.</para>
             <para>
             This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
