@@ -1418,7 +1418,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="AlternatingInferenceChain" xml:space="preserve">
-    <value>普通链</value>
+    <value>链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedXChain" xml:space="preserve">
@@ -1454,7 +1454,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedAlternatingInferenceChain" xml:space="preserve">
-    <value>区块普通链</value>
+    <value>区块链</value>
     <comment>Technique Name</comment>
   </data>
   <data name="NishioForcingChains" xml:space="preserve">
@@ -1795,7 +1795,7 @@
     <value>（+）</value>
   </data>
   <data name="NestedSuffix_Level2" xml:space="preserve">
-    <value>（+ 普通链）</value>
+    <value>（+ 链）</value>
   </data>
   <data name="NestedSuffix_Level3" xml:space="preserve">
     <value>（+ 强制链）</value>
@@ -1813,7 +1813,7 @@
     <value>西尾彻也</value>
   </data>
   <data name="NormalChains" xml:space="preserve">
-    <value>普通链</value>
+    <value>链</value>
   </data>
   <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
     <value>如果该环形成后，所有的候选数 {0} 均为假</value>
@@ -1926,7 +1926,7 @@
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
-    <value>普通链</value>
+    <value>链</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
@@ -2329,7 +2329,7 @@
     <value>待定数组</value>
   </data>
   <data name="TechniqueGroup_AlternatingInferenceChain" xml:space="preserve">
-    <value>普通链</value>
+    <value>链</value>
   </data>
   <data name="TechniqueGroup_AvoidableRectangle" xml:space="preserve">
     <value>可规避矩形</value>
