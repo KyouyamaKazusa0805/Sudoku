@@ -26,6 +26,48 @@ public abstract partial class Step(
 
 
 	/// <summary>
+	/// Indicates whether the step is an assignment. The possible result values are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The step is assignment, meaning all conclusions are assignment ones</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The step is elimination, meaning all conclusions are elimination ones</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The step contains mixed conclusion types</description>
+	/// </item>
+	/// </list>
+	/// </summary>
+	/// <exception cref="NotSupportedException">Throws when the step contains no conclusions.</exception>
+	public bool? IsAssignment
+	{
+		get
+		{
+			var bits = 0b00;
+			foreach (var conclusion in Conclusions)
+			{
+				bits |= conclusion.ConclusionType == Assignment ? 0b01 : 0b10;
+			}
+
+			return bits switch
+			{
+				0b11 => null,
+				0b01 => true,
+				0b10 => false,
+				_ => throw new NotSupportedException("Invalid value - the step doesn't contain any conclusions.")
+			};
+		}
+	}
+
+	/// <summary>
 	/// Indicates the technique name.
 	/// </summary>
 	/// <remarks>

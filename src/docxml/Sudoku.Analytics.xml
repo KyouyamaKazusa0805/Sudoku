@@ -4696,6 +4696,30 @@ if (student is (name: var name, age: >= 18))
             The error information for difficulty level cannot be determined.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.IsAssignment">
+            <summary>
+            Indicates whether the step is an assignment. The possible result values are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The step is assignment, meaning all conclusions are assignment ones</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The step is elimination, meaning all conclusions are elimination ones</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The step contains mixed conclusion types</description>
+            </item>
+            </list>
+            </summary>
+            <exception cref="T:System.NotSupportedException">Throws when the step contains no conclusions.</exception>
+        </member>
         <member name="P:Sudoku.Analytics.Step.Name">
             <summary>
             Indicates the technique name.
@@ -18902,7 +18926,7 @@ result ^= expression;
         <member name="P:Sudoku.Concepts.SolvingPath.Bottleneck">
             <summary>
             Gets the bottleneck during the whole grid solving.
-            Returns <see langword="null"/> if the property <see cref="P:Sudoku.Concepts.SolvingPath.Steps"/> is default case (i.e. empty).
+            Returns <see langword="null"/> if the property <see cref="P:Sudoku.Concepts.SolvingPath.Steps"/> is invalid (i.e. puzzle isn't solved).
             </summary>
             <seealso cref="P:Sudoku.Concepts.SolvingPath.Steps"/>
         </member>
