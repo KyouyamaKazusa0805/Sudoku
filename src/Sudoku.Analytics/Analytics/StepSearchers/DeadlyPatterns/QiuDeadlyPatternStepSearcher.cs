@@ -958,7 +958,8 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var elimDigit = Log2((uint)elimDigits);
-		var elimMap = mirror.PeerIntersection & CandidatesMap[elimDigit];
+		var rangeCells = (HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells) - crossline & EmptyCells;
+		var elimMap = rangeCells.PeerIntersection & CandidatesMap[elimDigit];
 		if (!elimMap)
 		{
 			return null;
@@ -979,7 +980,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
-		foreach (var cell in mirror)
+		foreach (var cell in rangeCells & CandidatesMap[elimDigit])
 		{
 			candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + elimDigit));
 		}
