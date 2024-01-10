@@ -33,7 +33,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 
 	/// <summary>
 	/// Gets the bottleneck during the whole grid solving.
-	/// Returns <see langword="null"/> if the property <see cref="Steps"/> is default case (i.e. empty).
+	/// Returns <see langword="null"/> if the property <see cref="Steps"/> is invalid (i.e. puzzle isn't solved).
 	/// </summary>
 	/// <seealso cref="Steps"/>
 	public Step? Bottleneck
@@ -47,9 +47,9 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 
 			switch (Steps)
 			{
-				case [var firstStep, ..]:
+				case [var firstStep, .. var lastSteps]:
 				{
-					foreach (var step in new ReverseIterator<Step>(Steps))
+					foreach (var step in new ReverseIterator<Step>(lastSteps))
 					{
 						if (step is not SingleStep)
 						{
