@@ -6428,6 +6428,11 @@ if (student is (name: var name, age: >= 18))
             <param name="identifier"><inheritdoc/></param>
             <param name="candidate">Indicates the candidate highlighted.</param>
         </member>
+        <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
         <member name="P:Sudoku.Rendering.Nodes.CandidateViewNode.CandidateString">
             <summary>
             Indicates the candidate string.
@@ -7084,6 +7089,10 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides with a data structure that displays a view for basic information.
             </summary>
+        </member>
+        <member name="M:Sudoku.Rendering.View.AddRange``1(System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})"/>
+            <typeparam name="T">The type of the node.</typeparam>
         </member>
         <member name="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>

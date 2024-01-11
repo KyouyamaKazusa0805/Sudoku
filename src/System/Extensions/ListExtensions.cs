@@ -22,4 +22,9 @@ public static class ListExtensions
 	/// <param name="this">The instance to be transformed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Span<T> AsSpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
+
+	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
+	/// <param name="this">The instance to be transformed.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<T> AsReadOnlySpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 }

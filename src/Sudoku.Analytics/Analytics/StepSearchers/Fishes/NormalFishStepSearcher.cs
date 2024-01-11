@@ -68,8 +68,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
-		var accumulator = context.Accumulator!;
-		var onlyFindOne = context.OnlyFindOne;
+		var accumulator = new List<Step>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (ValuesMap[digit].Count > 5)
@@ -112,6 +111,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			}
 		}
 
+		var onlyFindOne = context.OnlyFindOne;
 		for (var size = 2; size <= 4; size++)
 		{
 			if (Collect(accumulator, in grid, ref context, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
@@ -129,6 +129,31 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			if (Collect(accumulator, in grid, ref context, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
 			{
 				return finnedColumnFish;
+			}
+		}
+
+		// Add them into the collection.
+		if (accumulator.Count != 0 && !onlyFindOne)
+		{
+			context.Accumulator!.AddRange(accumulator);
+		}
+
+		// For Siamese fish, we should manually deal with them.
+		if (!onlyFindOne)
+		{
+			scoped var stepsSpan = accumulator.AsReadOnlySpan();
+			for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
+			{
+				var fish1 = (NormalFishStep)stepsSpan[index1];
+				for (var index2 = index1 + 1; index2 < accumulator.Count; index2++)
+				{
+					var fish2 = (NormalFishStep)stepsSpan[index2];
+					if (FishModule.CheckSiamese(in grid, fish1, fish2, out var siameseFishStep))
+					{
+						// Siamese fish contain more eliminations, we should insert them into the first place.
+						context.Accumulator!.Insert(0, siameseFishStep);
+					}
+				}
 			}
 		}
 
@@ -254,7 +279,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 								..
 								from cell in withFin ? baseLine - fins : baseLine
 								select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-								.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit) : [],
+								.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Exofin, cell * 9 + digit) : [],
 								.. from baseSet in bs select new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
 								.. from coverSet in cs select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet),
 							],
@@ -348,7 +373,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 		foreach (var cell in fins)
 		{
-			candidateOffsets!.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+			candidateOffsets!.Add(new(WellKnownColorIdentifier.Exofin, cell * 9 + digit));
 		}
 
 		return [.. cellOffsets, .. candidateOffsets ?? []];

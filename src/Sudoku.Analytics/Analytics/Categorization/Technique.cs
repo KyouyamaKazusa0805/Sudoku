@@ -451,7 +451,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedXWing,
 
@@ -460,7 +459,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiXWing,
 
@@ -503,7 +501,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedFrankenXWing,
 
@@ -512,7 +509,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiFrankenXWing,
 
@@ -555,7 +551,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedMutantXWing,
 
@@ -565,7 +560,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiMutantXWing,
 
@@ -614,7 +608,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedSwordfish,
 
@@ -623,7 +616,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiSwordfish,
 
@@ -671,7 +663,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedFrankenSwordfish,
 
@@ -681,7 +672,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenSwordfish,
 
@@ -728,7 +718,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedMutantSwordfish,
 
@@ -739,7 +728,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiMutantSwordfish,
 
@@ -788,7 +776,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseFinnedJellyfish,
 
@@ -797,7 +784,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SiameseSashimiJellyfish,
 
@@ -844,7 +830,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedFrankenJellyfish,
 
@@ -855,7 +840,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenJellyfish,
 
@@ -902,7 +886,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedMutantJellyfish,
 
@@ -913,7 +896,6 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiMutantJellyfish,
 
@@ -959,7 +941,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedSquirmbag,
 
@@ -968,7 +949,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiSquirmbag,
 
@@ -1012,7 +992,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenSquirmbag,
 
@@ -1022,7 +1001,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenSquirmbag,
 
@@ -1066,7 +1044,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantSquirmbag,
 
@@ -1076,7 +1053,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantSquirmbag,
 
@@ -1122,7 +1098,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedWhale,
 
@@ -1131,7 +1106,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiWhale,
 
@@ -1175,7 +1149,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenWhale,
 
@@ -1185,7 +1158,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenWhale,
 
@@ -1283,7 +1255,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedLeviathan,
 
@@ -1292,7 +1263,6 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiLeviathan,
 
@@ -1336,7 +1306,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedFrankenLeviathan,
 
@@ -1346,7 +1315,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiFrankenLeviathan,
 
@@ -1390,7 +1358,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseFinnedMutantLeviathan,
 
@@ -1400,7 +1367,6 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	SiameseSashimiMutantLeviathan,
 	#endregion

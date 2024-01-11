@@ -10,23 +10,8 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="baseSetsMask"><inheritdoc/></param>
 /// <param name="coverSetsMask"><inheritdoc/></param>
 /// <param name="fins">Indicates the fins.</param>
-/// <param name="isSashimi">
-/// Indicates whether the fish instance is a sashimi fish. All possible values are as below:
-/// <list type="table">
-/// <item>
-/// <term><see langword="true"/></term>
-/// <description>The fish is a sashimi fish.</description>
-/// </item>
-/// <item>
-/// <term><see langword="false"/></term>
-/// <description>The fish is a finned fish.</description>
-/// </item>
-/// <item>
-/// <term><see langword="null"/></term>
-/// <description>The fish is a normal fish without any fins.</description>
-/// </item>
-/// </list>
-/// </param>
+/// <param name="isSashimi"><inheritdoc/></param>
+/// <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
 public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -34,9 +19,10 @@ public sealed partial class NormalFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[RecordParameter] scoped ref readonly CellMap fins,
-	[RecordParameter] bool? isSashimi
-) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask)
+	scoped ref readonly CellMap fins,
+	bool? isSashimi,
+	bool isSiamese = false
+) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, in fins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
@@ -75,12 +61,18 @@ public sealed partial class NormalFishStep(
 	/// Indicates the internal name.
 	/// </summary>
 	private string InternalName
-	{
-		get
+		=> $"{(IsSiamese, IsSashimi) switch
 		{
-			var finModifier = IsSashimi switch { true => "Sashimi ", false => "Finned ", _ => string.Empty };
-			var fishName = Size switch { 2 => "X-Wing", 3 => "Swordfish", 4 => "Jellyfish" };
-			return $"{finModifier}{fishName}";
-		}
-	}
+			(true, true) => "Siamese Sashimi ",
+			(true, false) => "Siamese Finned ",
+			(_, true) => "Sashimi ",
+			(_, false) => "Finned ",
+			(false, null) => string.Empty,
+			_ => throw new InvalidOperationException($"Siamese fish requires a non-null value for property '{nameof(IsSashimi)}'.")
+		}}{Size switch
+		{
+			2 => "X-Wing",
+			3 => "Swordfish",
+			4 => "Jellyfish"
+		}}";
 }

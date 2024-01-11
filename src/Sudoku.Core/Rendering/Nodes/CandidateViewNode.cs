@@ -12,6 +12,11 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Recor
 	BasicViewNode(identifier)
 {
 	/// <summary>
+	/// Indicates the target cell.
+	/// </summary>
+	public Cell Cell => Candidate / 9;
+
+	/// <summary>
 	/// Indicates the candidate string.
 	/// </summary>
 	[StringMember(nameof(Candidate))]

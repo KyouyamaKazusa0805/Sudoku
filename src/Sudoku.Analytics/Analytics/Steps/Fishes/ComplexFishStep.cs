@@ -19,27 +19,9 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isFranken">
 /// Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
 /// </param>
-/// <param name="isSashimi">
-/// <para>Indicates whether the fish is a Sashimi fish.</para>
-/// <para>
-/// All cases are as below:
-/// <list type="table">
-/// <item>
-/// <term><see langword="true"/></term>
-/// <description>The fish is a sashimi finned fish.</description>
-/// </item>
-/// <item>
-/// <term><see langword="false"/></term>
-/// <description>The fish is a normal finned fish.</description>
-/// </item>
-/// <item>
-/// <term><see langword="null"/></term>
-/// <description>The fish doesn't contain any fin.</description>
-/// </item>
-/// </list>
-/// </para>
-/// </param>
+/// <param name="isSashimi"><inheritdoc/></param>
 /// <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
+/// <param name="isSiamese"><inheritdoc/></param>
 public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -50,21 +32,18 @@ public sealed partial class ComplexFishStep(
 	[RecordParameter] scoped ref readonly CellMap exofins,
 	[RecordParameter] scoped ref readonly CellMap endofins,
 	[RecordParameter] bool isFranken,
-	[RecordParameter] bool? isSashimi,
-	[RecordParameter] bool isCannibalism
-) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
+	bool? isSashimi,
+	[RecordParameter] bool isCannibalism,
+	bool isSiamese = false
+) :
+	FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese),
+	IEquatableStep<ComplexFishStep>
 {
-	/// <summary>
-	/// The letter or digit characters.
-	/// </summary>
-	private const string LetterOrDigitCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override unsafe Technique Code
+	public override Technique Code
 	{
 		get
 		{
@@ -86,13 +65,16 @@ public sealed partial class ComplexFishStep(
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			ReadOnlySpan<char> internalName()
 			{
-				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal ? $"{finModifier} " : null;
-				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : null;
+				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal
+					? IsSiamese ? $"Siamese {finModifier} " : $"{finModifier} "
+					: string.Empty;
+				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : string.Empty;
 				return $"{finKindStr}{shapeKindStr}{TechniqueMarshal.GetFishEnglishName(Size)}";
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			FishFinKind finKind() => IsSashimi switch { true => FishFinKind.Sashimi, false => FishFinKind.Finned, _ => FishFinKind.Normal };
+			FishFinKind finKind()
+				=> IsSashimi switch { true => FishFinKind.Sashimi, false => FishFinKind.Finned, _ => FishFinKind.Normal };
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			FishShapeKind shapeKind() => IsFranken ? FishShapeKind.Franken : FishShapeKind.Mutant;

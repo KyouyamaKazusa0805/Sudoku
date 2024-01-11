@@ -9,13 +9,38 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit">Indicates the digit used.</param>
 /// <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
 /// <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
+/// <param name="fins">Indicates the fins used.</param>
+/// <param name="isSashimi">
+/// <para>Indicates whether the fish is a Sashimi fish.</para>
+/// <para>
+/// All cases are as below:
+/// <list type="table">
+/// <item>
+/// <term><see langword="true"/></term>
+/// <description>The fish is a sashimi finned fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="false"/></term>
+/// <description>The fish is a normal finned fish.</description>
+/// </item>
+/// <item>
+/// <term><see langword="null"/></term>
+/// <description>The fish doesn't contain any fin.</description>
+/// </item>
+/// </list>
+/// </para>
+/// </param>
+/// <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
 public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[RecordParameter] Digit digit,
 	[RecordParameter] HouseMask baseSetsMask,
-	[RecordParameter] HouseMask coverSetsMask
+	[RecordParameter] HouseMask coverSetsMask,
+	[RecordParameter] scoped ref readonly CellMap fins,
+	[RecordParameter] bool? isSashimi,
+	[RecordParameter] bool isSiamese = false
 ) : Step(conclusions, views, options), ICoordinateObject<FishStep>
 {
 	/// <inheritdoc/>
@@ -41,7 +66,8 @@ public abstract partial class FishStep(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public new string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public new string ToString(CultureInfo? culture = null)
+		=> ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
 
 	/// <inheritdoc/>
 	public string ToString(CoordinateConverter converter)

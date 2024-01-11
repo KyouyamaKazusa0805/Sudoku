@@ -5324,9 +5324,28 @@ if (student is (name: var name, age: >= 18))
             <returns>
             <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
             <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi" path="/remarks"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
             </para>
             </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetShapeKind(Sudoku.Analytics.Steps.FishStep)">
+            <summary>
+            Determine the fish kind of the shape.
+            </summary>
+            <param name="pattern">The fish pattern.</param>
+            <returns>The shape kind.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.CheckSiamese``1(Sudoku.Concepts.Grid@,``0,``0,``0@)">
+            <summary>
+            Check whether two fishes can be merged into one Siamese fish. If so, return <see langword="true"/>
+            and assign valid values to <see langword="out"/> parameters of this method.
+            </summary>
+            <typeparam name="T">The type of the step for fish pattern.</typeparam>
+            <param name="puzzle">The puzzle.</param>
+            <param name="fish1">The fish pattern 1.</param>
+            <param name="fish2">The fish pattern 2.</param>
+            <param name="siameseFishStep">The final step.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether two fish can be merged into one Siamese fish.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
@@ -14833,29 +14852,11 @@ if (student is (name: var name, age: >= 18))
             <param name="isFranken">
             Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
             </param>
-            <param name="isSashimi">
-            <para>Indicates whether the fish is a Sashimi fish.</para>
-            <para>
-            All cases are as below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The fish is a sashimi finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The fish is a normal finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The fish doesn't contain any fin.</description>
-            </item>
-            </list>
-            </para>
-            </param>
+            <param name="isSashimi"><inheritdoc/></param>
             <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
+            <param name="isSiamese"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean},System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean},System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -14875,32 +14876,9 @@ if (student is (name: var name, age: >= 18))
             <param name="isFranken">
             Indicates whether the fish is a Franken fish. If <see langword="true"/>, a Franken fish; otherwise, a Mutant fish.
             </param>
-            <param name="isSashimi">
-            <para>Indicates whether the fish is a Sashimi fish.</para>
-            <para>
-            All cases are as below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The fish is a sashimi finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The fish is a normal finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The fish doesn't contain any fin.</description>
-            </item>
-            </list>
-            </para>
-            </param>
+            <param name="isSashimi"><inheritdoc/></param>
             <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexFishStep.LetterOrDigitCharacters">
-            <summary>
-            The letter or digit characters.
-            </summary>
+            <param name="isSiamese"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.BaseDifficulty">
             <inheritdoc/>
@@ -14932,11 +14910,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>isFranken</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsSashimi">
-            <summary>
-            The generated property declaration for parameter <c>isSashimi</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.IsCannibalism">
             <summary>
             The generated property declaration for parameter <c>isCannibalism</c>.
@@ -14952,8 +14925,30 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
+            <param name="fins">Indicates the fins used.</param>
+            <param name="isSashimi">
+            <para>Indicates whether the fish is a Sashimi fish.</para>
+            <para>
+            All cases are as below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </para>
+            </param>
+            <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -14963,6 +14958,28 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="baseSetsMask">Indicates the mask that contains the base sets.</param>
             <param name="coverSetsMask">Indicates the mask that contains the cover sets.</param>
+            <param name="fins">Indicates the fins used.</param>
+            <param name="isSashimi">
+            <para>Indicates whether the fish is a Sashimi fish.</para>
+            <para>
+            All cases are as below:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The fish is a sashimi finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The fish is a normal finned fish.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The fish doesn't contain any fin.</description>
+            </item>
+            </list>
+            </para>
+            </param>
+            <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
             <inheritdoc/>
@@ -15008,6 +15025,21 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>coverSetsMask</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Fins">
+            <summary>
+            The generated property declaration for parameter <c>fins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.IsSashimi">
+            <summary>
+            The generated property declaration for parameter <c>isSashimi</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.IsSiamese">
+            <summary>
+            The generated property declaration for parameter <c>isSiamese</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.NormalFishStep">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
@@ -15019,25 +15051,10 @@ if (student is (name: var name, age: >= 18))
             <param name="baseSetsMask"><inheritdoc/></param>
             <param name="coverSetsMask"><inheritdoc/></param>
             <param name="fins">Indicates the fins.</param>
-            <param name="isSashimi">
-            Indicates whether the fish instance is a sashimi fish. All possible values are as below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The fish is a sashimi fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The fish is a finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The fish is a normal fish without any fins.</description>
-            </item>
-            </list>
-            </param>
+            <param name="isSashimi"><inheritdoc/></param>
+            <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -15048,23 +15065,8 @@ if (student is (name: var name, age: >= 18))
             <param name="baseSetsMask"><inheritdoc/></param>
             <param name="coverSetsMask"><inheritdoc/></param>
             <param name="fins">Indicates the fins.</param>
-            <param name="isSashimi">
-            Indicates whether the fish instance is a sashimi fish. All possible values are as below:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The fish is a sashimi fish.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The fish is a finned fish.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The fish is a normal fish without any fins.</description>
-            </item>
-            </list>
-            </param>
+            <param name="isSashimi"><inheritdoc/></param>
+            <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
@@ -15081,16 +15083,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.InternalName">
             <summary>
             Indicates the internal name.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Fins">
-            <summary>
-            The generated property declaration for parameter <c>fins</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.IsSashimi">
-            <summary>
-            The generated property declaration for parameter <c>isSashimi</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IComparableStep`1">
