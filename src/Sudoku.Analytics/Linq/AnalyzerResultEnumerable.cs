@@ -14,12 +14,12 @@ public static class AnalyzerResultEnumerable
 	/// <returns>An array of <see cref="Step"/> instances.</returns>
 	public static ReadOnlySpan<Step> Where(this AnalyzerResult @this, Func<Step, bool> condition)
 	{
-		if (@this.Steps is not { } steps)
+		if (@this.Steps is not { Length: var stepsCount } steps)
 		{
-			return null;
+			return [];
 		}
 
-		var result = new List<Step>(@this.SolvingStepsCount);
+		var result = new List<Step>(stepsCount);
 		foreach (var step in steps)
 		{
 			if (condition(step))
@@ -42,12 +42,12 @@ public static class AnalyzerResultEnumerable
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
 	public static ReadOnlySpan<TResult> Select<TResult>(this AnalyzerResult @this, Func<Step, TResult> selector)
 	{
-		if (@this.Steps is not { } steps)
+		if (@this.Steps is not { Length: var stepsCount } steps)
 		{
 			return [];
 		}
 
-		var arr = new TResult[@this.SolvingStepsCount];
+		var arr = new TResult[stepsCount];
 		var i = 0;
 		foreach (var step in steps)
 		{
@@ -65,12 +65,12 @@ public static class AnalyzerResultEnumerable
 	/// <returns>An array of <typeparamref name="T"/> instances.</returns>
 	public static ReadOnlySpan<T> OfType<T>(this AnalyzerResult @this) where T : Step
 	{
-		if (@this.Steps is not { } steps)
+		if (@this.Steps is not { Length: var stepsCount } steps)
 		{
 			return [];
 		}
 
-		var list = new List<T>(@this.SolvingStepsCount);
+		var list = new List<T>(stepsCount);
 		foreach (var element in steps)
 		{
 			if (element is T current)

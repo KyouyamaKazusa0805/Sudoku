@@ -134,11 +134,6 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	public decimal? DiamondDifficulty => SolvingPath.DiamondStep?.Difficulty;
 
 	/// <summary>
-	/// Indicates the number of all solving steps recorded.
-	/// </summary>
-	public int SolvingStepsCount => Steps?.Length ?? 1;
-
-	/// <summary>
 	/// Indicates why the solving operation is failed.
 	/// This property is meaningless when <see cref="IsSolved"/> keeps the <see langword="true"/> value.
 	/// </summary>
@@ -250,7 +245,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public string ToString(CultureInfo? culture = null)
+		=> ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -274,8 +270,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
-				SolvingStepsCount: var stepsCount,
-				Steps: var steps
+				Steps: { Length: var stepsCount } steps
 			})
 		{
 			throw new();
@@ -457,7 +452,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 		(int, Step)? getBottleneck()
 		{
-			if (this is not { IsSolved: true, Steps: var steps, SolvingStepsCount: var stepsCount })
+			if (this is not { IsSolved: true, Steps: { Length: var stepsCount } steps })
 			{
 				return null;
 			}

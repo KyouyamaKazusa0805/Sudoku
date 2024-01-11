@@ -744,11 +744,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingStepsCount">
-            <summary>
-            Indicates the number of all solving steps recorded.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.FailedReason">
             <summary>
             Indicates why the solving operation is failed.
