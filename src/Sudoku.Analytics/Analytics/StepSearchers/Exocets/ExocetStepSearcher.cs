@@ -4697,7 +4697,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			r[lockedDigit] = (lockedMemberMap, lockedBlock);
+			r[lockedDigit] = new(in lockedMemberMap, lockedBlock);
 			realLockedDigitsMask |= (Mask)(1 << lockedDigit);
 			flag = true;
 		}

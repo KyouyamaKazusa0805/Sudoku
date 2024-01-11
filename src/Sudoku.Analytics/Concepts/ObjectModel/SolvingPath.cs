@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Represents a solving path.
@@ -148,7 +148,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 			var result = new SolvingPathElement[Length];
 			for (var i = 0; i < SteppingGrids.Length; i++)
 			{
-				result[i] = (SteppingGrids[i], Steps[i]);
+				result[i] = new(in SteppingGrids[i], Steps[i]);
 			}
 			return result;
 		}
