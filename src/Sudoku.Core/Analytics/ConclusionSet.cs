@@ -11,7 +11,6 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Conclusion"/>
 [Equals]
 [EqualityOperators]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public sealed partial class ConclusionSet() :
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
 	ICoordinateObject<ConclusionSet>,
