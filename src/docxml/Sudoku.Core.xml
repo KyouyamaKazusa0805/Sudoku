@@ -7085,16 +7085,6 @@ if (student is (name: var name, age: >= 18))
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
-        <member name="P:Sudoku.Rendering.View.BasicNodes">
-            <summary>
-            Indicates the basic nodes that the current data type stores.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.View.FigureNodes">
-            <summary>
-            Indicates icon nodes that the current data type stores.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Adds a list of <see cref="T:Sudoku.Rendering.ViewNode"/>s into the collection.

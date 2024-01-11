@@ -6,17 +6,6 @@ namespace Sudoku.Rendering;
 public sealed partial class View : HashSet<ViewNode>
 {
 	/// <summary>
-	/// Indicates the basic nodes that the current data type stores.
-	/// </summary>
-	public ViewNodeIterator<BasicViewNode> BasicNodes => this.OfType<BasicViewNode>();
-
-	/// <summary>
-	/// Indicates icon nodes that the current data type stores.
-	/// </summary>
-	public ViewNodeIterator<IconViewNode> FigureNodes => this.OfType<IconViewNode>();
-
-
-	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>

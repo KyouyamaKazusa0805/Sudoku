@@ -8,16 +8,16 @@ partial class GridImageGenerator
 	/// <param name="g"><inheritdoc cref="RenderTo(Graphics)" path="/param[@name='g']"/></param>
 	private void DrawFigure(Graphics g)
 	{
-		if (this is not { View.FigureNodes: var figureNodes, Calculator: { CellSize: var (cw, ch) } calc, Preferences.FigurePadding: var padding })
+		if (this is not { View: { } nodes, Calculator: { CellSize: var (cw, ch) } calc, Preferences.FigurePadding: var padding })
 		{
 			return;
 		}
 
-		foreach (var figureNode in figureNodes)
+		foreach (var figureNode in nodes)
 		{
 			switch (figureNode)
 			{
-				case (TriangleViewNode or DiamondViewNode or StarViewNode) and (var cell) { Identifier: var identifier }:
+				case (TriangleViewNode or DiamondViewNode or StarViewNode) and IconViewNode(var cell) { Identifier: var identifier }:
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
@@ -117,7 +117,7 @@ partial class GridImageGenerator
 						}
 					}
 				}
-				case (SquareViewNode or CircleViewNode) and (var cell) { Identifier: var identifier }:
+				case (SquareViewNode or CircleViewNode) and IconViewNode(var cell) { Identifier: var identifier }:
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = calc.GetMousePointInCenter(cell);
@@ -126,7 +126,7 @@ partial class GridImageGenerator
 						{
 							SquareViewNode => g.FillRectangle,
 							CircleViewNode => g.FillEllipse,
-							_ => default(Action<Brush, float, float, float, float>?)!
+							_ => default(Action<Brush, float, float, float, float>)!
 						}
 					)(brush, x - cw / 2 + padding, y - ch / 2 + padding, cw - 2 * padding, ch - 2 * padding);
 
