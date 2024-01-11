@@ -37,7 +37,6 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.SolutionWideReadOnlyFields;
-global using IntersectionPair = (Sudoku.Concepts.IntersectionBase Base, Sudoku.Concepts.IntersectionResult Result);
 global using unsafe CellMapPredicateFunc = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, int /*Digit*/, bool>;
 global using unsafe CellPredicateFunc = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, bool>;
 global using unsafe MaskMergingFunc = delegate*<ref short /*Mask*/, ref readonly Sudoku.Concepts.Grid, int /*Cell*/, void>;

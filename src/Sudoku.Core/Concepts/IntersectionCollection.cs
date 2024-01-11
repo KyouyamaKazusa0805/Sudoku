@@ -8,14 +8,14 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(IntersectionCollection), nameof(Create))]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
-public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, Accessibility = "private readonly")] IntersectionPair[] values) : IEnumerable<IntersectionPair>
+public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, Accessibility = "private readonly")] Intersection[] values) : IEnumerable<Intersection>
 {
 	/// <summary>
 	/// Try to get the enumerator that iterates on the elements of the current collection.
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<IntersectionPair>.Enumerator GetEnumerator() => _values.AsReadOnlySpan().GetEnumerator();
+	public ReadOnlySpan<Intersection>.Enumerator GetEnumerator() => _values.AsReadOnlySpan().GetEnumerator();
 
 	/// <summary>
 	/// Projects each element into a new transform using the specified method to transform.
@@ -24,14 +24,14 @@ public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, 
 	/// <param name="selector">The transform method.</param>
 	/// <returns>An array of <typeparamref name="TResult"/> results.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TResult[] Select<TResult>(Func<IntersectionPair, TResult> selector) => from e in _values select selector(e);
+	public TResult[] Select<TResult>(Func<Intersection, TResult> selector) => from e in _values select selector(e);
 
 	/// <summary>
 	/// Copies the internal array into a new instance, and return it.
 	/// </summary>
-	/// <returns>An array of <see cref="IntersectionPair"/> instances.</returns>
+	/// <returns>An array of <see cref="Intersection"/> instances.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public IntersectionPair[] ToArray() => _values[..];
+	public Intersection[] ToArray() => _values[..];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -39,7 +39,7 @@ public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<IntersectionPair> IEnumerable<IntersectionPair>.GetEnumerator() => ((IEnumerable<IntersectionPair>)_values).GetEnumerator();
+	IEnumerator<Intersection> IEnumerable<Intersection>.GetEnumerator() => ((IEnumerable<Intersection>)_values).GetEnumerator();
 
 
 	/// <summary>
@@ -49,5 +49,5 @@ public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, 
 	/// <returns>An <see cref="IntersectionCollection"/> result.</returns>
 	[DebuggerStepThrough]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static IntersectionCollection Create(scoped ReadOnlySpan<IntersectionPair> values) => new([.. values]);
+	public static IntersectionCollection Create(scoped ReadOnlySpan<Intersection> values) => new([.. values]);
 }

@@ -1,9 +1,11 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Defines a type that stores some fields as shared one.
+/// Represents a pair of intersection information.
 /// </summary>
-public static class Intersection
+/// <param name="Base">Indicates the base that describes the block and line index.</param>
+/// <param name="Result">Indicates the result values.</param>
+public readonly record struct Intersection(scoped ref readonly IntersectionBase Base, scoped ref readonly IntersectionResult Result)
 {
 	/// <summary>
 	/// Indicates the mini-lines to be iterated, grouped by chute index.

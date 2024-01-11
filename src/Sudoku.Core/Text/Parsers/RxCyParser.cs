@@ -255,7 +255,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		var result = new List<(IntersectionBase, IntersectionResult)>();
+		var result = new List<Intersection>();
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;
@@ -271,7 +271,7 @@ public sealed partial record RxCyParser : CoordinateParser
 						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
 						(byte)(block - '1')
 					);
-					result.Add((@base, IntersectionMaps[@base]));
+					result.Add(new(in @base, in IntersectionMaps[@base]));
 				}
 			}
 		}

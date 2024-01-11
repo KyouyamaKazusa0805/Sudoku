@@ -5160,8 +5160,23 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Concepts.Intersection">
             <summary>
-            Defines a type that stores some fields as shared one.
+            Represents a pair of intersection information.
             </summary>
+            <param name="Base">Indicates the base that describes the block and line index.</param>
+            <param name="Result">Indicates the result values.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Intersection.#ctor(Sudoku.Concepts.IntersectionBase@,Sudoku.Concepts.IntersectionResult@)">
+            <summary>
+            Represents a pair of intersection information.
+            </summary>
+            <param name="Base">Indicates the base that describes the block and line index.</param>
+            <param name="Result">Indicates the result values.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Intersection.Base">
+            <summary>Indicates the base that describes the block and line index.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Intersection.Result">
+            <summary>Indicates the result values.</summary>
         </member>
         <member name="F:Sudoku.Concepts.Intersection.MinilinesGroupedByChuteIndex">
             <summary>
@@ -5236,7 +5251,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
             <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.#ctor(System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult}[])">
+        <member name="M:Sudoku.Concepts.IntersectionCollection.#ctor(Sudoku.Concepts.Intersection[])">
             <summary>
             Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
             </summary>
@@ -5249,7 +5264,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.Select``1(System.Func{System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult},``0})">
+        <member name="M:Sudoku.Concepts.IntersectionCollection.Select``1(System.Func{Sudoku.Concepts.Intersection,``0})">
             <summary>
             Projects each element into a new transform using the specified method to transform.
             </summary>
@@ -5261,15 +5276,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Copies the internal array into a new instance, and return it.
             </summary>
-            <returns>An array of <see cref="T:System.ValueTuple`2"/> instances.</returns>
+            <returns>An array of <see cref="T:Sudoku.Concepts.Intersection"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#Generic#IEnumerable{(Sudoku#Concepts#IntersectionBaseBase,Sudoku#Concepts#IntersectionResultResult)}#GetEnumerator">
+        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Intersection}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.Create(System.ReadOnlySpan{System.ValueTuple{Sudoku.Concepts.IntersectionBase,Sudoku.Concepts.IntersectionResult}})">
+        <member name="M:Sudoku.Concepts.IntersectionCollection.Create(System.ReadOnlySpan{Sudoku.Concepts.Intersection})">
             <summary>
             Creates an <see cref="T:Sudoku.Concepts.IntersectionCollection"/> instance via the specified values using collection expression.
             </summary>
