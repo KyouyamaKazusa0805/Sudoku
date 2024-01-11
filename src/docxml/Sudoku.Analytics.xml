@@ -7351,6 +7351,13 @@ if (student is (name: var name, age: >= 18))
             and <see href="http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html#p342974">this link</see> (Serg's Description to UCC)
             to learn about this technique.
             </remarks>
+            <example>
+            To-do list:
+            <code><![CDATA[
+            ..+1.....+9.....+9..1.+9...1..2+349.5..2..+1632.9+4552.+9.43..1+84+79...39+6....7.8.5.8.6.9+4:
+              711 716 816 721 323 723 731 333 733 435 635 835 538 638 838 647 765 865 668 768
+            ]]></code>
+            </example>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher">
             <summary>
