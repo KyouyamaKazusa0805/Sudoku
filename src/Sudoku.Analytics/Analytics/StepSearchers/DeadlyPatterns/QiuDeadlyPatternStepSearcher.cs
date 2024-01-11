@@ -254,10 +254,21 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Check whether cross-line cells contain the base digits.
+		// Counter-example:
+		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:
+		//       825 826 833 837 839 844 254 255 256 779 789 495 496 499 799
 		var cornerDigitsMask = grid[in corner];
+		if ((grid[crossline - EmptyCells, true] & cornerDigitsMask) != 0)
+		{
+			return null;
+		}
 
 		// Okay. Now we have a rigorous pattern. Now check for mask and determine its sub-type that can be categorized.
-		// Part 1: check for corner cells.
+
+		//
+		// Part I - Corner-cell Types (Type 1-4)
+		//
 		var maskIntersected = cornerLockedDigitsMask & cornerDigitsMaskIntersected;
 		if (maskIntersected == cornerDigitsMaskIntersected)
 		{
@@ -307,7 +318,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		// Part 2: check for mirror cells.
+		//
+		// Part II - Guardian Types (External Type 1-2)
+		//
 		if ((grid[in crossline] & cornerDigitsMask) == cornerDigitsMask)
 		{
 			// Check whether the number of empty cross-line cells are same as the number of locked digits.
@@ -958,9 +971,29 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var elimDigit = Log2((uint)elimDigits);
-		var rangeCells = (HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells) - crossline & EmptyCells;
-		var elimMap = rangeCells.PeerIntersection & CandidatesMap[elimDigit];
+		var range = (HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells) - crossline;
+		var truth = range & CandidatesMap[elimDigit];
+		var elimMap = range % CandidatesMap[elimDigit];
 		if (!elimMap)
+		{
+			return null;
+		}
+
+		// Check whether other digits cannot be eliminated are locked in the cross-line cells.
+		// Counter-example:
+		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:
+		//       825 826 833 837 839 844 254 854 255 256 864 477 877 779 789 495 496 499 799
+		var allOtherDigitsAreLockedInCrosslineCells = true;
+		var crosslineBlock = HousesMap[Log2((uint)crossline.BlockMask)] & EmptyCells;
+		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & (Mask)~(1 << elimDigit)))
+		{
+			if ((crosslineBlock & CandidatesMap[digit]) - crossline)
+			{
+				allOtherDigitsAreLockedInCrosslineCells = false;
+				break;
+			}
+		}
+		if (!allOtherDigitsAreLockedInCrosslineCells)
 		{
 			return null;
 		}
@@ -980,7 +1013,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
-		foreach (var cell in rangeCells & CandidatesMap[elimDigit])
+		foreach (var cell in truth)
 		{
 			candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + elimDigit));
 		}
