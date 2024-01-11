@@ -13,7 +13,7 @@ public sealed partial class FullHouseStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] House house,
+	[RecordParameter] House house,
 	Cell cell,
 	Digit digit
 ) : SingleStep(conclusions, views, options, cell, digit)

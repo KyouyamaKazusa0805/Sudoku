@@ -11,5 +11,5 @@ public abstract partial class SingleDigitPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Digit digit
+	[RecordParameter] Digit digit
 ) : Step(conclusions, views, options);

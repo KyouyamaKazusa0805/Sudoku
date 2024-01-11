@@ -20,8 +20,8 @@ public sealed partial class QiuDeadlyPatternType1Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[Data] Cell targetCell,
-	[Data] Mask targetDigits
+	[RecordParameter] Cell targetCell,
+	[RecordParameter] Mask targetDigits
 ) : QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

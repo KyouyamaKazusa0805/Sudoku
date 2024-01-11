@@ -14,10 +14,10 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Mask nTimesAlmostLockedSetDigitsMask,
-	[Data] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
-	[Data] NTimesAlmostLockedSetsBlossomBranchCollection branches,
-	[Data] int freedomDegree
+	[RecordParameter] Mask nTimesAlmostLockedSetDigitsMask,
+	[RecordParameter] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
+	[RecordParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,
+	[RecordParameter] int freedomDegree
 ) :
 	AlmostLockedSetsStep(conclusions, views, options),
 	IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>,

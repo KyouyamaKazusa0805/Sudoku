@@ -9,7 +9,7 @@ namespace Sudoku.Rendering;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct ViewNodeIterator<T>([Data(DataMemberKinds.Field, IsImplicitlyReadOnly = false)] View.Enumerator enumerator)
+public ref partial struct ViewNodeIterator<T>([RecordParameter(DataMemberKinds.Field, IsImplicitlyReadOnly = false)] View.Enumerator enumerator)
 	where T : ViewNode
 {
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>

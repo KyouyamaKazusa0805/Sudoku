@@ -5,4 +5,4 @@ namespace Sudoku.ComponentModel;
 /// </summary>
 /// <seealso cref="FullApplyingEventHandler{TSelf, TResult}"/>
 /// <param name="applyingSteps">Indicates all steps to be applied at once.</param>
-public sealed partial class FullApplyingEventArgs([Data] Step[] applyingSteps) : EventArgs;
+public sealed partial class FullApplyingEventArgs([RecordParameter] Step[] applyingSteps) : EventArgs;

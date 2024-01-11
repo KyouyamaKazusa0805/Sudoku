@@ -24,9 +24,9 @@ public sealed partial class UniqueRectangleWithWingStep(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	[Data] scoped ref readonly CellMap branches,
-	[Data] scoped ref readonly CellMap petals,
-	[Data] Mask extraDigitsMask,
+	[RecordParameter] scoped ref readonly CellMap branches,
+	[RecordParameter] scoped ref readonly CellMap petals,
+	[RecordParameter] Mask extraDigitsMask,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

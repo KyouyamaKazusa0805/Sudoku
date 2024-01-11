@@ -20,8 +20,8 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[Data] scoped ref readonly CellMap mirrorCells,
-	[Data] Digit targetDigit
+	[RecordParameter] scoped ref readonly CellMap mirrorCells,
+	[RecordParameter] Digit targetDigit
 ) : QiuDeadlyPatternExternalTypeStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

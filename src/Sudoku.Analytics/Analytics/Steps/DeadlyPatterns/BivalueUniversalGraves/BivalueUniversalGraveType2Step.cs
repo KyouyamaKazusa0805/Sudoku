@@ -12,8 +12,8 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data(GeneratedMemberName = "ExtraDigit")] Digit digit,
-	[Data] scoped ref readonly CellMap cells
+	[RecordParameter(GeneratedMemberName = "ExtraDigit")] Digit digit,
+	[RecordParameter] scoped ref readonly CellMap cells
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

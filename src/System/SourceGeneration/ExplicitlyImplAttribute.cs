@@ -15,4 +15,4 @@ namespace System.SourceGeneration;
 /// (e.g. <c><![CDATA[I<A>]]></c> and <c><![CDATA[I<B>]]></c>), the target source generator won't work.
 /// </b></remarks>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
-public sealed partial class ExplicitInterfaceImplAttribute([Data] Type interfaceType) : Attribute;
+public sealed partial class ExplicitInterfaceImplAttribute([RecordParameter] Type interfaceType) : Attribute;

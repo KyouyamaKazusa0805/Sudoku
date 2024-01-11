@@ -17,9 +17,9 @@ public sealed partial class UniqueMatrixType4Step(
 	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[Data] Digit digit1,
-	[Data] Digit digit2,
-	[Data] scoped ref readonly CellMap conjugateHouse
+	[RecordParameter] Digit digit1,
+	[RecordParameter] Digit digit2,
+	[RecordParameter] scoped ref readonly CellMap conjugateHouse
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

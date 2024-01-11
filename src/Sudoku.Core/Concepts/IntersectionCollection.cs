@@ -8,7 +8,7 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(IntersectionCollection), nameof(Create))]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
-public sealed partial class IntersectionCollection([Data(DataMemberKinds.Field, Accessibility = "private readonly")] Intersection[] values) : IEnumerable<Intersection>
+public sealed partial class IntersectionCollection([RecordParameter(DataMemberKinds.Field, Accessibility = "private readonly")] Intersection[] values) : IEnumerable<Intersection>
 {
 	/// <summary>
 	/// Try to get the enumerator that iterates on the elements of the current collection.

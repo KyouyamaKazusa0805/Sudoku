@@ -12,8 +12,8 @@ public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] scoped ref readonly CellMap cells,
-	[Data] (Digit[], Cell)[] lockedCombinations
+	[RecordParameter] scoped ref readonly CellMap cells,
+	[RecordParameter] (Digit[], Cell)[] lockedCombinations
 ) : PermutationStep(conclusions, views, options), IEquatableStep<AlignedExclusionStep>
 {
 	/// <inheritdoc/>

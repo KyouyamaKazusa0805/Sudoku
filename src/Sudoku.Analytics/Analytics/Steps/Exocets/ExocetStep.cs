@@ -15,11 +15,11 @@ public abstract partial class ExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Mask digitsMask,
-	[Data] scoped ref readonly CellMap baseCells,
-	[Data] scoped ref readonly CellMap targetCells,
-	[Data] scoped ref readonly CellMap endoTargetCells,
-	[Data] scoped ref readonly CellMap crosslineCells
+	[RecordParameter] Mask digitsMask,
+	[RecordParameter] scoped ref readonly CellMap baseCells,
+	[RecordParameter] scoped ref readonly CellMap targetCells,
+	[RecordParameter] scoped ref readonly CellMap endoTargetCells,
+	[RecordParameter] scoped ref readonly CellMap crosslineCells
 ) : Step(conclusions, views, options)
 {
 	/// <summary>

@@ -13,9 +13,9 @@ public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Digit digit,
-	[Data] HouseMask baseSetsMask,
-	[Data] HouseMask coverSetsMask
+	[RecordParameter] Digit digit,
+	[RecordParameter] HouseMask baseSetsMask,
+	[RecordParameter] HouseMask coverSetsMask
 ) : Step(conclusions, views, options), ICoordinateObject<FishStep>
 {
 	/// <inheritdoc/>

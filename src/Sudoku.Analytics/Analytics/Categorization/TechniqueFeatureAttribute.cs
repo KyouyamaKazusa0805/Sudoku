@@ -5,4 +5,4 @@ namespace Sudoku.Analytics.Categorization;
 /// </summary>
 /// <seealso cref="Technique"/>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class TechniqueFeatureAttribute([Data] TechniqueFeature features) : Attribute;
+public sealed partial class TechniqueFeatureAttribute([RecordParameter] TechniqueFeature features) : Attribute;

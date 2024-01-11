@@ -16,7 +16,7 @@ public sealed partial class JuniorExocetIncompatiblePairStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[Data] scoped ref readonly CandidateMap incompatibleCandidates,
+	[RecordParameter] scoped ref readonly CandidateMap incompatibleCandidates,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells

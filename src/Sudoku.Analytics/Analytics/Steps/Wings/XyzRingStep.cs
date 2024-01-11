@@ -16,12 +16,12 @@ public sealed partial class XyzRingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Cell pivot,
-	[Data] Cell leafCell1,
-	[Data] Cell leafCell2,
-	[Data] House conjugateHouse,
-	[Data] bool isType2,
-	[Data] bool isGrouped
+	[RecordParameter] Cell pivot,
+	[RecordParameter] Cell leafCell1,
+	[RecordParameter] Cell leafCell2,
+	[RecordParameter] House conjugateHouse,
+	[RecordParameter] bool isType2,
+	[RecordParameter] bool isGrouped
 ) : WingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -16,8 +16,8 @@ public sealed partial class UniqueMatrixType3Step(
 	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[Data] scoped ref readonly CellMap subsetCells,
-	[Data] Mask subsetDigitsMask
+	[RecordParameter] scoped ref readonly CellMap subsetCells,
+	[RecordParameter] Mask subsetDigitsMask
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

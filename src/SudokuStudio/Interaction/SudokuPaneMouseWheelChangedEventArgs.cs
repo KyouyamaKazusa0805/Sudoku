@@ -9,4 +9,4 @@ namespace SudokuStudio.Interaction;
 /// indicating whether the mouse wheel is clockwise.
 /// </remarks>
 /// <seealso cref="SudokuPaneMouseWheelChangedEventHandler"/>
-public sealed partial class SudokuPaneMouseWheelChangedEventArgs([Data] bool isClockwise) : EventArgs;
+public sealed partial class SudokuPaneMouseWheelChangedEventArgs([RecordParameter] bool isClockwise) : EventArgs;

@@ -24,10 +24,10 @@ namespace Sudoku.Analytics;
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
-	[Data(SetterExpression = "internal set")] List<Step>? accumulator,
-	[Data(DataMemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
-	[Data(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
-	[Data] StepSearcherOptions predefinedOptions
+	[RecordParameter(SetterExpression = "internal set")] List<Step>? accumulator,
+	[RecordParameter(DataMemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
+	[RecordParameter(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
+	[RecordParameter] StepSearcherOptions predefinedOptions
 )
 {
 	/// <summary>

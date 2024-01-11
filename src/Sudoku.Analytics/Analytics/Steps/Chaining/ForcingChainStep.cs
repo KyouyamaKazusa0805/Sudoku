@@ -13,7 +13,7 @@ public sealed partial class ForcingChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] ChainNode target,
+	[RecordParameter] ChainNode target,
 	bool isX,
 	bool isY
 ) : ChainingStep(conclusions, views, options, isX, isY)

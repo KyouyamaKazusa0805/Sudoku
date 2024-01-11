@@ -19,8 +19,8 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
-	[Data] Cell targetCell,
-	[Data] Digit extraDigit,
+	[RecordParameter] Cell targetCell,
+	[RecordParameter] Digit extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

@@ -22,16 +22,16 @@ public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] House block,
-	[Data] House line,
-	[Data] Mask blockMask,
-	[Data] Mask lineMask,
-	[Data] Mask intersectionMask,
-	[Data] bool isCannibalistic,
-	[Data] Mask isolatedDigitsMask,
-	[Data] scoped ref readonly CellMap blockCells,
-	[Data] scoped ref readonly CellMap lineCells,
-	[Data] scoped ref readonly CellMap intersectionCells
+	[RecordParameter] House block,
+	[RecordParameter] House line,
+	[RecordParameter] Mask blockMask,
+	[RecordParameter] Mask lineMask,
+	[RecordParameter] Mask intersectionMask,
+	[RecordParameter] bool isCannibalistic,
+	[RecordParameter] Mask isolatedDigitsMask,
+	[RecordParameter] scoped ref readonly CellMap blockCells,
+	[RecordParameter] scoped ref readonly CellMap lineCells,
+	[RecordParameter] scoped ref readonly CellMap intersectionCells
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

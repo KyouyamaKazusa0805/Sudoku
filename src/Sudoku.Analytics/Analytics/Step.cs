@@ -10,9 +10,9 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 public abstract partial class Step(
-	[Data(SetterExpression = "internal set")] Conclusion[] conclusions,
-	[Data] View[]? views,
-	[Data] StepSearcherOptions options
+	[RecordParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
+	[RecordParameter] View[]? views,
+	[RecordParameter] StepSearcherOptions options
 ) : ICultureFormattable, IRenderable
 {
 	/// <summary>

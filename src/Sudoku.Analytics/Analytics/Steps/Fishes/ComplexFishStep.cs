@@ -47,11 +47,11 @@ public sealed partial class ComplexFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[Data] scoped ref readonly CellMap exofins,
-	[Data] scoped ref readonly CellMap endofins,
-	[Data] bool isFranken,
-	[Data] bool? isSashimi,
-	[Data] bool isCannibalism
+	[RecordParameter] scoped ref readonly CellMap exofins,
+	[RecordParameter] scoped ref readonly CellMap endofins,
+	[RecordParameter] bool isFranken,
+	[RecordParameter] bool? isSashimi,
+	[RecordParameter] bool isCannibalism
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask), IEquatableStep<ComplexFishStep>
 {
 	/// <summary>

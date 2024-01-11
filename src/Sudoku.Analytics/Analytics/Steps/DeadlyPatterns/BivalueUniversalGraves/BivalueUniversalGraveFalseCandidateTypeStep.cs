@@ -11,7 +11,7 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Candidate falseCandidate
+	[RecordParameter] Candidate falseCandidate
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

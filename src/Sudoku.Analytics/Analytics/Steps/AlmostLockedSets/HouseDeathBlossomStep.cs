@@ -14,10 +14,10 @@ public sealed partial class HouseDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] House house,
-	[Data] Digit digit,
-	[Data] HouseBlossomBranchCollection branches,
-	[Data] Mask zDigitsMask
+	[RecordParameter] House house,
+	[RecordParameter] Digit digit,
+	[RecordParameter] HouseBlossomBranchCollection branches,
+	[RecordParameter] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
 {
 	/// <inheritdoc/>

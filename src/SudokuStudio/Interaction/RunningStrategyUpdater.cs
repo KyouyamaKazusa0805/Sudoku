@@ -8,8 +8,8 @@ namespace SudokuStudio.Interaction;
 /// <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
 /// <param name="valueRouter">The value router that can assign the value to the distinction.</param>
 public sealed partial class RunningStrategyUpdater(
-	[Data(SetterExpression = "set")] string titleKey,
-	[Data(SetterExpression = "set")] Func<FrameworkElement> updaterControlCreator,
-	[Data(SetterExpression = "set")] Func<string> initializedValueDisplayer,
-	[Data(SetterExpression = "set")] Action<FrameworkElement, TextBlock> valueRouter
+	[RecordParameter(SetterExpression = "set")] string titleKey,
+	[RecordParameter(SetterExpression = "set")] Func<FrameworkElement> updaterControlCreator,
+	[RecordParameter(SetterExpression = "set")] Func<string> initializedValueDisplayer,
+	[RecordParameter(SetterExpression = "set")] Action<FrameworkElement, TextBlock> valueRouter
 );

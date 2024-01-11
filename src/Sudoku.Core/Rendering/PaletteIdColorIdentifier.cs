@@ -7,7 +7,7 @@ namespace Sudoku.Rendering;
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class PaletteIdColorIdentifier([Data, HashCodeMember, StringMember] int value) : ColorIdentifier
+public sealed partial class PaletteIdColorIdentifier([RecordParameter, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

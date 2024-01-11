@@ -13,9 +13,9 @@ public sealed partial class BlossomLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] House houseIndex,
-	[Data] byte digit,
-	[Data] MultipleForcingChains chains
+	[RecordParameter] House houseIndex,
+	[RecordParameter] byte digit,
+	[RecordParameter] MultipleForcingChains chains
 ) : Step(conclusions, views, options), IComparableStep<BlossomLoopStep>
 {
 	internal BlossomLoopStep(Conclusion[] conclusions, StepSearcherOptions options, House houseIndex, byte digit, MultipleForcingChains chains) :

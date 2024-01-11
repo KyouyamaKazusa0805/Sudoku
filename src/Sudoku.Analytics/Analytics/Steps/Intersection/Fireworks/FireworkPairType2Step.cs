@@ -16,12 +16,12 @@ public sealed partial class FireworkPairType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Mask digitsMask,
-	[Data] scoped ref readonly CellMap pattern1Map,
-	[Data] Cell? pattern1Pivot,
-	[Data] scoped ref readonly CellMap pattern2Map,
-	[Data] Cell? pattern2Pivot,
-	[Data] Cell extraCell
+	[RecordParameter] Mask digitsMask,
+	[RecordParameter] scoped ref readonly CellMap pattern1Map,
+	[RecordParameter] Cell? pattern1Pivot,
+	[RecordParameter] scoped ref readonly CellMap pattern2Map,
+	[RecordParameter] Cell? pattern2Pivot,
+	[RecordParameter] Cell extraCell
 ) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

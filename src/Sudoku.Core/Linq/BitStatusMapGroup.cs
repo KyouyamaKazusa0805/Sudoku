@@ -14,7 +14,7 @@ namespace Sudoku.Linq;
 [GetHashCode]
 [EqualityOperators]
 [LargeStructure]
-public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([Data] TKey key, [Data, HashCodeMember] scoped ref readonly TMap values) :
+public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([RecordParameter] TKey key, [RecordParameter, HashCodeMember] scoped ref readonly TMap values) :
 	IEnumerable<TElement>,
 	IEquatable<BitStatusMapGroup<TMap, TElement, TKey>>,
 	IEqualityOperators<BitStatusMapGroup<TMap, TElement, TKey>, BitStatusMapGroup<TMap, TElement, TKey>, bool>,

@@ -39,7 +39,7 @@ internal static class ToStringHandler
 			return null;
 		}
 
-		const string dataMemberAttributeTypeName = "System.SourceGeneration.DataAttribute";
+		const string dataMemberAttributeTypeName = "System.SourceGeneration.RecordParameterAttribute";
 		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
 		if (dataMemberAttributeTypeNameSymbol is null)
 		{

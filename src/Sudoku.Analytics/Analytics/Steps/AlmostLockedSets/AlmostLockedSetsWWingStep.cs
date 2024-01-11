@@ -15,11 +15,11 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[Data(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
-	[Data] Conjugate conjugatePair,
-	[Data] Mask wDigitsMask,
-	[Data] Digit xDigit
+	[RecordParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
+	[RecordParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[RecordParameter] Conjugate conjugatePair,
+	[RecordParameter] Mask wDigitsMask,
+	[RecordParameter] Digit xDigit
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -32,9 +32,9 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Step"/>
 [ToString(OtherModifiers = "sealed")]
 public abstract partial class StepSearcher(
-	[Data] int priority,
-	[Data] int level,
-	[Data] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
+	[RecordParameter] int priority,
+	[RecordParameter] int level,
+	[RecordParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
 ) : ICultureFormattable
 {
 	/// <summary>

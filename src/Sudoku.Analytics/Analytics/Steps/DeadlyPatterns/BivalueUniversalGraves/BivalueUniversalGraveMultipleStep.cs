@@ -11,7 +11,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] scoped ref readonly CandidateMap trueCandidates
+	[RecordParameter] scoped ref readonly CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <summary>

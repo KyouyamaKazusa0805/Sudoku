@@ -20,8 +20,8 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells,
-	[Data] scoped ref readonly CellMap extraCells,
-	[Data] Mask extraDigitsMask
+	[RecordParameter] scoped ref readonly CellMap extraCells,
+	[RecordParameter] Mask extraDigitsMask
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>

@@ -26,12 +26,12 @@ public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data(Accessibility = "public sealed override")] Technique code,
-	[Data] Digit digit1,
-	[Data] Digit digit2,
-	[Data] scoped ref readonly CellMap cells,
-	[Data] bool isAvoidable,
-	[Data] int absoluteOffset
+	[RecordParameter(Accessibility = "public sealed override")] Technique code,
+	[RecordParameter] Digit digit1,
+	[RecordParameter] Digit digit2,
+	[RecordParameter] scoped ref readonly CellMap cells,
+	[RecordParameter] bool isAvoidable,
+	[RecordParameter] int absoluteOffset
 ) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>

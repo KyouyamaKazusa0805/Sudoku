@@ -6,4 +6,4 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="aliases">Indicates the aliased names of the technique.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class SudokuExplainerAliasedNamesAttribute([Data] params string[] aliases) : Attribute;
+public sealed partial class SudokuExplainerAliasedNamesAttribute([RecordParameter] params string[] aliases) : Attribute;

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics;
 [method: DebuggerStepThrough]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public partial struct TechniqueFormat([Data(DataMemberKinds.Field)] string formatName)
+public partial struct TechniqueFormat([RecordParameter(DataMemberKinds.Field)] string formatName)
 {
 	/// <summary>
 	/// The format prefix.

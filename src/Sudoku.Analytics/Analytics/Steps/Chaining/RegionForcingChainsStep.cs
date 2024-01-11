@@ -15,9 +15,9 @@ public sealed partial class RegionForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] House houseIndex,
-	[Data] byte digit,
-	[Data] MultipleForcingChains chains,
+	[RecordParameter] House houseIndex,
+	[RecordParameter] byte digit,
+	[RecordParameter] MultipleForcingChains chains,
 	bool isDynamic,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: isDynamic, dynamicNestingLevel: dynamicNestingLevel)

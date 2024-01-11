@@ -17,8 +17,8 @@ public sealed partial class WeakExocetSlashStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[Data] Cell stabilityBalancer,
-	[Data] Cell missingValueCell,
+	[RecordParameter] Cell stabilityBalancer,
+	[RecordParameter] Cell missingValueCell,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells

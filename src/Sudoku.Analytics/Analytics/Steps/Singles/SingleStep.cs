@@ -12,6 +12,6 @@ public abstract partial class SingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Cell cell,
-	[Data] Digit digit
+	[RecordParameter] Cell cell,
+	[RecordParameter] Digit digit
 ) : Step(conclusions, views, options);

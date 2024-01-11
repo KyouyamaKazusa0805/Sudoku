@@ -9,7 +9,7 @@ namespace System;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct ReverseIterator<T>([Data(DataMemberKinds.Field)] ReadOnlySpan<T> array)
+public ref partial struct ReverseIterator<T>([RecordParameter(DataMemberKinds.Field)] ReadOnlySpan<T> array)
 {
 	/// <summary>
 	/// Indicates the current index.

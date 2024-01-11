@@ -13,9 +13,9 @@ public sealed partial class LockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Digit digit,
-	[Data] House baseSet,
-	[Data] House coverSet
+	[RecordParameter] Digit digit,
+	[RecordParameter] House baseSet,
+	[RecordParameter] House coverSet
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

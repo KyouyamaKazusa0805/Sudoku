@@ -19,8 +19,8 @@ public sealed partial class UniqueLoopType3Step(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap loop,
-	[Data] scoped ref readonly CellMap subsetCells,
-	[Data] Mask subsetDigitsMask,
+	[RecordParameter] scoped ref readonly CellMap subsetCells,
+	[RecordParameter] Mask subsetDigitsMask,
 	Cell[] loopPath
 ) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
 {

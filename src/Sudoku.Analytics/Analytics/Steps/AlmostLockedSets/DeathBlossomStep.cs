@@ -13,9 +13,9 @@ public sealed partial class DeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Cell pivot,
-	[Data] NormalBlossomBranchCollection branches,
-	[Data] Mask zDigitsMask
+	[RecordParameter] Cell pivot,
+	[RecordParameter] NormalBlossomBranchCollection branches,
+	[RecordParameter] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -16,12 +16,12 @@ public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[Data] Mask rowDigitsMask,
-	[Data] Mask columnDigitsMask,
-	[Data] Mask blockDigitsMask,
-	[Data] scoped ref readonly CellMap rowCells,
-	[Data] scoped ref readonly CellMap columnCells,
-	[Data] scoped ref readonly CellMap blockCells
+	[RecordParameter] Mask rowDigitsMask,
+	[RecordParameter] Mask columnDigitsMask,
+	[RecordParameter] Mask blockDigitsMask,
+	[RecordParameter] scoped ref readonly CellMap rowCells,
+	[RecordParameter] scoped ref readonly CellMap columnCells,
+	[RecordParameter] scoped ref readonly CellMap blockCells
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

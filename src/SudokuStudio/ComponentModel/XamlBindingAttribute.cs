@@ -9,7 +9,7 @@ namespace SudokuStudio.ComponentModel;
 /// For example, if a property of type <see cref="object"/> is named <c>Property</c>, write <c>Property?</c>
 /// instead of <c>Property</c>.
 /// </param>
-public abstract partial class XamlBindingAttribute<T>([Data] string propertyName) : Attribute
+public abstract partial class XamlBindingAttribute<T>([RecordParameter] string propertyName) : Attribute
 {
 	/// <summary>
 	/// Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.

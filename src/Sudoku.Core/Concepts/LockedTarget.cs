@@ -17,8 +17,8 @@ namespace Sudoku.Concepts;
 [method: JsonConstructor]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LockedTarget(
-	[Data, HashCodeMember] Digit digit,
-	[Data, HashCodeMember, StringMember] CellMap cells
+	[RecordParameter, HashCodeMember] Digit digit,
+	[RecordParameter, HashCodeMember, StringMember] CellMap cells
 ) : ICultureFormattable, IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
 {
 	/// <summary>
