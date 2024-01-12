@@ -18,6 +18,7 @@ src/SudokuTutorial/教程.docx
 
 # Build results
 src/ConsoleTest/
+src/Sudoku.Logging/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
