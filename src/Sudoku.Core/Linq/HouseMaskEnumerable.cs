@@ -53,7 +53,7 @@ public static class HouseMaskEnumerable
 			}
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

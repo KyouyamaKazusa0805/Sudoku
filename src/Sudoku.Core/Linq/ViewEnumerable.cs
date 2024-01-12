@@ -21,7 +21,7 @@ public static class ViewEnumerable
 			result.Add(selector(element));
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

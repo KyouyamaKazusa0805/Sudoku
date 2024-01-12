@@ -158,7 +158,7 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 			}
 
 			// Return the result.
-			return bag.AsSpan();
+			return bag.AsReadOnlySpan();
 		}
 	}
 }

@@ -175,7 +175,7 @@ public ref partial struct GridBasedPuzzleGenerator([RecordParameter(DataMemberKi
 		}
 
 		// Return the span.
-		return resultList.AsSpan();
+		return resultList.AsReadOnlySpan();
 	}
 
 	/// <summary>

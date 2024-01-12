@@ -329,7 +329,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 			result.AddRange(GetSubsets(i));
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

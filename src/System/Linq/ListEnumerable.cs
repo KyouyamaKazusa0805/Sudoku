@@ -48,7 +48,7 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
@@ -80,6 +80,6 @@ public static class ListEnumerable
 			}
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 }

@@ -208,7 +208,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

@@ -96,7 +96,7 @@ internal static class FishModule
 			}
 		}
 
-		return result.AsSpan();
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>
@@ -257,7 +257,7 @@ internal static class FishModule
 				);
 			}
 
-			return result.AsSpan();
+			return result.AsReadOnlySpan();
 		}
 	}
 }

@@ -562,7 +562,7 @@ public partial struct Grid :
 				}
 			}
 
-			return conjugatePairs.AsSpan();
+			return conjugatePairs.AsReadOnlySpan();
 		}
 	}
 
