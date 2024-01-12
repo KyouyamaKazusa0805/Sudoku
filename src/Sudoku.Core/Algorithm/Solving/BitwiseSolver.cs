@@ -26,7 +26,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 	private const int BitSet27 = 0x7FFFFFF;
 
 
-#pragma warning disable format
 	private static readonly byte[]
 		CellToRow = [
 			0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -329,7 +328,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 			0x1807F1F8, 0x180BF1F8, 0x1813F1F8, 0x18238FC7, 0x18438FC7, 0x18838FC7, 0x19007E3F, 0x1A007E3F,
 			0x1C007E3F
 		];
-#pragma warning restore format
 
 
 	/// <summary>

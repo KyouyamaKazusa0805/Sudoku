@@ -6,7 +6,6 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Grid"/>
 public static unsafe class GridTransformations
 {
-#pragma warning disable format
 	/// <summary>
 	/// The table of clockwise rotation.
 	/// </summary>
@@ -59,7 +58,6 @@ public static unsafe class GridTransformations
 		(9, 10), (9, 11), (10, 11), (12, 13), (12, 14), (13, 14), (15, 16), (15, 17), (16, 17),
 		(18, 19), (18, 20), (19, 20), (21, 22), (21, 23), (22, 23), (24, 25), (24, 26), (25, 26)
 	];
-#pragma warning restore format
 
 
 	/// <summary>

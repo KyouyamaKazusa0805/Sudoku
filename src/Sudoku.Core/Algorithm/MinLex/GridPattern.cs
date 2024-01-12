@@ -6,7 +6,6 @@ namespace Sudoku.Algorithm.MinLex;
 [LargeStructure]
 public unsafe struct GridPattern
 {
-#pragma warning disable format
 	internal static readonly int[] MinCanNineBits = [
 		0, 1, 1, 3, 1, 3, 3, 7, 1, 9, 9, 11, 9, 11, 11, 15, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11,
 		27, 27, 31, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11, 27, 27, 31, 3, 11, 11, 27, 11, 27, 27,
@@ -30,7 +29,6 @@ public unsafe struct GridPattern
 		95, 127, 31, 95, 95, 223, 95, 223, 223, 255, 15, 79, 79, 95, 79, 95, 95, 127, 31, 95, 95, 223, 95,
 		223, 223, 255, 31, 95, 95, 223, 95, 223, 223, 255, 63, 127, 127, 255, 127, 255, 255, 511
 	];
-#pragma warning restore format
 
 
 	/// <summary>

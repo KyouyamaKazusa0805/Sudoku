@@ -7,7 +7,6 @@ namespace Sudoku.Algorithm.MinLex;
 [CollectionBuilder(typeof(BestTriplet), nameof(Create))]
 public struct BestTriplet
 {
-#pragma warning disable format
 	/// <summary>
 	/// The best triplet permutations.
 	/// </summary>
@@ -93,7 +92,6 @@ public struct BestTriplet
 			[7, 56, 3], [7, 57, 4], [7, 58, 4], [7, 59, 5], [7, 60, 4], [7, 61, 5], [7, 62, 5], [7, 63, 6]
 		]
 	];
-#pragma warning restore format
 
 
 	/// <summary>

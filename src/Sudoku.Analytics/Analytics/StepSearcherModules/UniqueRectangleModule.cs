@@ -5,7 +5,6 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// </summary>
 internal static class UniqueRectangleModule
 {
-#pragma warning disable format
 	/// <summary>
 	/// The table of all possible pattern cells.
 	/// </summary>
@@ -65,5 +64,4 @@ internal static class UniqueRectangleModule
 		[16, 17, 61, 62], [16, 17, 70, 71], [16, 17, 79, 80], [25, 26, 34, 35], [25, 26, 43, 44], [25, 26, 52, 53], [25, 26, 61, 62], [25, 26, 70, 71], [25, 26, 79, 80],
 		[34, 35, 61, 62], [34, 35, 70, 71], [34, 35, 79, 80], [43, 44, 61, 62], [43, 44, 70, 71], [43, 44, 79, 80], [52, 53, 61, 62], [52, 53, 70, 71], [52, 53, 79, 80]
 	];
-#pragma warning restore format
 }

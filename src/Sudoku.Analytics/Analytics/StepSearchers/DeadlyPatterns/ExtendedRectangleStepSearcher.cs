@@ -43,7 +43,6 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-#pragma warning disable format
 		var houses = (int[][])[
 			[9, 10], [9, 11], [10, 11],
 			[12, 13], [12, 14], [13, 14],
@@ -68,7 +67,6 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[36, 54], [36, 63], [36, 72],
 			[45, 54], [45, 63], [45, 72]
 		];
-#pragma warning restore format
 
 		RawPatternData = [];
 

@@ -11,7 +11,6 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcherRuntimeName("StepSearcherName_BruteForceStepSearcher")]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
-#pragma warning disable format
 	/// <summary>
 	/// The order of cell offsets to get values.
 	/// </summary>
@@ -30,7 +29,6 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 		1, 0, 9, 18, 27, 36, 45, 54, 63,
 		72, 73, 74, 75, 76, 77, 78, 79, 80
 	];
-#pragma warning restore format
 
 
 	/// <inheritdoc/>

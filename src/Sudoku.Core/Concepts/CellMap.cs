@@ -130,17 +130,15 @@ public partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-#pragma warning disable format
-			if (this && HousesMap[0]) { result |=   1; }
-			if (this && HousesMap[1]) { result |=   2; }
-			if (this && HousesMap[2]) { result |=   4; }
-			if (this && HousesMap[3]) { result |=   8; }
-			if (this && HousesMap[4]) { result |=  16; }
-			if (this && HousesMap[5]) { result |=  32; }
-			if (this && HousesMap[6]) { result |=  64; }
+			if (this && HousesMap[0]) { result |= 1; }
+			if (this && HousesMap[1]) { result |= 2; }
+			if (this && HousesMap[2]) { result |= 4; }
+			if (this && HousesMap[3]) { result |= 8; }
+			if (this && HousesMap[4]) { result |= 16; }
+			if (this && HousesMap[5]) { result |= 32; }
+			if (this && HousesMap[6]) { result |= 64; }
 			if (this && HousesMap[7]) { result |= 128; }
 			if (this && HousesMap[8]) { result |= 256; }
-#pragma warning restore format
 			return result;
 		}
 	}
@@ -157,17 +155,15 @@ public partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-#pragma warning disable format
-			if (this && HousesMap[ 9]) { result |=   1; }
-			if (this && HousesMap[10]) { result |=   2; }
-			if (this && HousesMap[11]) { result |=   4; }
-			if (this && HousesMap[12]) { result |=   8; }
-			if (this && HousesMap[13]) { result |=  16; }
-			if (this && HousesMap[14]) { result |=  32; }
-			if (this && HousesMap[15]) { result |=  64; }
+			if (this && HousesMap[9]) { result |= 1; }
+			if (this && HousesMap[10]) { result |= 2; }
+			if (this && HousesMap[11]) { result |= 4; }
+			if (this && HousesMap[12]) { result |= 8; }
+			if (this && HousesMap[13]) { result |= 16; }
+			if (this && HousesMap[14]) { result |= 32; }
+			if (this && HousesMap[15]) { result |= 64; }
 			if (this && HousesMap[16]) { result |= 128; }
 			if (this && HousesMap[17]) { result |= 256; }
-#pragma warning restore format
 			return result;
 		}
 	}
@@ -184,17 +180,15 @@ public partial struct CellMap :
 		get
 		{
 			var result = (Mask)0;
-#pragma warning disable format
-			if (this && HousesMap[18]) { result |=   1; }
-			if (this && HousesMap[19]) { result |=   2; }
-			if (this && HousesMap[20]) { result |=   4; }
-			if (this && HousesMap[21]) { result |=   8; }
-			if (this && HousesMap[22]) { result |=  16; }
-			if (this && HousesMap[23]) { result |=  32; }
-			if (this && HousesMap[24]) { result |=  64; }
+			if (this && HousesMap[18]) { result |= 1; }
+			if (this && HousesMap[19]) { result |= 2; }
+			if (this && HousesMap[20]) { result |= 4; }
+			if (this && HousesMap[21]) { result |= 8; }
+			if (this && HousesMap[22]) { result |= 16; }
+			if (this && HousesMap[23]) { result |= 32; }
+			if (this && HousesMap[24]) { result |= 64; }
 			if (this && HousesMap[25]) { result |= 128; }
 			if (this && HousesMap[26]) { result |= 256; }
-#pragma warning restore format
 			return result;
 		}
 	}
