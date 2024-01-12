@@ -8609,7 +8609,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalFishStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalFishStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean)">
             <summary>
             Get all possible normal fishes.
             </summary>
@@ -8623,7 +8623,6 @@ if (student is (name: var name, age: >= 18))
             <param name="searchRow">
             Indicates whether the searcher searches for fishes in the direction of rows.
             </param>
-            <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
             <returns>The first found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.GetDirectView(System.Int32,System.Int32[],System.Int32[],Sudoku.Concepts.CellMap@,System.Boolean)">

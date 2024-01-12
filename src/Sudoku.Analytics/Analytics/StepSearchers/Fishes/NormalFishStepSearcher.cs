@@ -118,13 +118,12 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 
 		// Core invocation.
-		var onlyFindOne = context.OnlyFindOne;
 		for (var size = 2; size <= 4; size++)
 		{
-			Collect(accumulator, in grid, ref context, size, r, c, false, true, onlyFindOne);
-			Collect(accumulator, in grid, ref context, size, r, c, false, false, onlyFindOne);
-			Collect(accumulator, in grid, ref context, size, r, c, true, true, onlyFindOne);
-			Collect(accumulator, in grid, ref context, size, r, c, true, false, onlyFindOne);
+			Collect(accumulator, in grid, ref context, size, r, c, false, true);
+			Collect(accumulator, in grid, ref context, size, r, c, false, false);
+			Collect(accumulator, in grid, ref context, size, r, c, true, true);
+			Collect(accumulator, in grid, ref context, size, r, c, true, false);
 		}
 
 		// For Siamese fish, we should manually deal with them.
@@ -162,7 +161,6 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <param name="searchRow">
 	/// Indicates whether the searcher searches for fishes in the direction of rows.
 	/// </param>
-	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
 	private unsafe void Collect(
 		List<NormalFishStep> accumulator,
@@ -172,8 +170,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		House** r,
 		House** c,
 		bool withFin,
-		bool searchRow,
-		bool onlyFindOne
+		bool searchRow
 	)
 	{
 		// Iterate on each digit.
