@@ -4420,7 +4420,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.PredefinedAnalyzers.Balanced">
             <summary>
-            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration which are suitable for a whole analysis lifecycle.
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SstsOnly">
