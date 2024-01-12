@@ -53,6 +53,14 @@
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisableFinnedOrSashimiXWing,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowSiameseNormalFish}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseNormalFish,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowSiameseComplexFish}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseComplexFish,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfComplexFish}">
 				<c:IntegerBox
 					Minimum="2" Maximum="7" LargeChange="2"

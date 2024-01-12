@@ -62,7 +62,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// Indicates whether the step searcher allows searching for Siamese fishes.
 	/// </summary>
 	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseNormalFish)]
-	public bool AllowSiamese { get; set; } = true;
+	public bool AllowSiamese { get; set; }
 
 
 	/// <inheritdoc/>

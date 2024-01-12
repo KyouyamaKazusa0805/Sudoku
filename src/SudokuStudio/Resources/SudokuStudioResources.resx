@@ -1269,6 +1269,12 @@
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>Allow Doubly-Linked ALS-XZ</value>
   </data>
+  <data name="SettingsPage_AllowSiameseComplexFish" xml:space="preserve">
+    <value>Allow Siamese Fish (Franken/Mutant Fish)</value>
+  </data>
+  <data name="SettingsPage_AllowSiameseNormalFish" xml:space="preserve">
+    <value>Allow Siamese Fish (Normal Fish)</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsAndIntersectionsGroup" xml:space="preserve">
     <value>Almost Locked Sets (ALS) &amp; Intersections</value>
   </data>

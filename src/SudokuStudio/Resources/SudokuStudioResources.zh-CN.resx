@@ -1272,6 +1272,12 @@
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>允许 ALS-XZ 成环</value>
   </data>
+  <data name="SettingsPage_AllowSiameseComplexFish" xml:space="preserve">
+    <value>搜索复杂孪生鱼（宫内/交叉鱼）</value>
+  </data>
+  <data name="SettingsPage_AllowSiameseNormalFish" xml:space="preserve">
+    <value>搜索普通孪生鱼</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsAndIntersectionsGroup" xml:space="preserve">
     <value>待定数组（ALS）和类区块技巧</value>
   </data>
@@ -1502,7 +1508,7 @@
 不过需要注意的是，不是所有页面的数独盘面都会关联到该设置，因为有些页面的盘面不需要候选数，也就不存在该设置项的配置功能的生效与否了。</value>
   </data>
   <data name="SettingsPage_EnableFullHouse" xml:space="preserve">
-    <value>启用“同区剩余”技巧</value>
+    <value>启用“同区九缺一”技巧</value>
   </data>
   <data name="SettingsPage_EnableFullHouseDescription" xml:space="preserve">
     <value>如果禁用此选项，所有同一个区域里只有一个空格的技巧会被视为“唯一余数”</value>
@@ -1861,7 +1867,7 @@
     <value>两种都有</value>
   </data>
   <data name="SingleCountingPracticingPage_FullHouseMode" xml:space="preserve">
-    <value>只有同区剩余</value>
+    <value>只有同区九缺一</value>
   </data>
   <data name="SingleCountingPracticingPage_Index5Only" xml:space="preserve">
     <value>只使用第 5 行/列/宫</value>

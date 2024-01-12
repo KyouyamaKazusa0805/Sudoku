@@ -211,6 +211,8 @@
 							a:AnalyzerProperties.MaxSizeOfRegularWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=OneWay}"
 							a:AnalyzerProperties.MaxSizeOfComplexFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=OneWay}"
 							a:AnalyzerProperties.DisableFinnedOrSashimiXWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisableFinnedOrSashimiXWing,Mode=OneWay}"
+							a:AnalyzerProperties.AllowSiameseNormalFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseNormalFish,Mode=OneWay}"
+							a:AnalyzerProperties.AllowSiameseComplexFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseComplexFish,Mode=OneWay}"
 							a:AnalyzerProperties.AlignedExclusionMaxSearchingSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=OneWay}"
 							a:AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForReverseBugPartiallyUsedTypes,Mode=OneWay}"
 							a:AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=OneWay}"

@@ -3778,6 +3778,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow Siamese Fish (Franken/Mutant Fish).
+        /// </summary>
+        internal static string SettingsPage_AllowSiameseComplexFish {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowSiameseComplexFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Siamese Fish (Normal Fish).
+        /// </summary>
+        internal static string SettingsPage_AllowSiameseNormalFish {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowSiameseNormalFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets (ALS) &amp; Intersections.
         /// </summary>
         internal static string SettingsPage_AlmostLockedSetsAndIntersectionsGroup {
