@@ -138,6 +138,23 @@ public static partial class StringExtensions
 	public static string[] ExpandCharacters(this string @this) => [.. from c in (ReadOnlySpan<char>)@this select c.ToString()];
 
 	/// <summary>
+	/// Cut the array to multiple part, making them are all of length <paramref name="length"/>.
+	/// </summary>
+	/// <param name="this">The string text.</param>
+	/// <param name="length">The desired length.</param>
+	/// <returns>A list of <see cref="string"/> values.</returns>
+	public static string[] CutOfLength(this string @this, int length)
+	{
+		var result = new string[@this.Length % length == 0 ? @this.Length / length : @this.Length / length + 1];
+		for (var i = 0; i < @this.Length; i += length)
+		{
+			result[i] = @this[(i * length)..((i + 1) * length)];
+		}
+
+		return result;
+	}
+
+	/// <summary>
 	/// Searches the specified input string for all occurrences of a
 	/// specified regular expression pattern.
 	/// </summary>
