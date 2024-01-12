@@ -72,6 +72,34 @@ internal static class FishModule
 	}
 
 	/// <summary>
+	/// Get all possible Siamese fishes for the specified accumulator.
+	/// </summary>
+	/// <typeparam name="T">The type of the fish.s</typeparam>
+	/// <param name="accumulator">The accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <returns>All Siamese fish.</returns>
+	public static ReadOnlySpan<T> GetSiamese<T>(List<T> accumulator, scoped ref readonly Grid grid) where T : FishStep
+	{
+		var result = new List<T>();
+		scoped var stepsSpan = accumulator.AsReadOnlySpan();
+		for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
+		{
+			var fish1 = stepsSpan[index1];
+			for (var index2 = index1 + 1; index2 < accumulator.Count; index2++)
+			{
+				var fish2 = stepsSpan[index2];
+				if (CheckSiamese(in grid, fish1, fish2, out var siameseFishStep))
+				{
+					// Siamese fish contain more eliminations, we should insert them into the first place.
+					result.Add(siameseFishStep);
+				}
+			}
+		}
+
+		return result.AsSpan();
+	}
+
+	/// <summary>
 	/// Check whether two fishes can be merged into one Siamese fish. If so, return <see langword="true"/>
 	/// and assign valid values to <see langword="out"/> parameters of this method.
 	/// </summary>
@@ -90,9 +118,9 @@ internal static class FishModule
 			goto ReturnFalse;
 		}
 
-		if (fish1.Fins == fish2.Fins)
+		if (fish1.Fins == fish2.Fins || (fish1.Fins & fish2.Fins) == fish2.Fins || (fish2.Fins & fish1.Fins) == fish1.Fins)
 		{
-			// They are same fish.
+			// They shouldn't be a same fish, or all fins from one fish belongs to the other fish. 
 			goto ReturnFalse;
 		}
 
@@ -108,10 +136,19 @@ internal static class FishModule
 			goto ReturnFalse;
 		}
 
+		var conclusion1 = new ConclusionSet(fish1.Conclusions);
+		var conclusion2 = new ConclusionSet(fish2.Conclusions);
+		if (conclusion1 == conclusion2)
+		{
+			// Two fish cannot contain total same conclusions.
+			goto ReturnFalse;
+		}
+
 		// They can form a Siamese fish.
 		// Check for merged data.
 		var mergedFins = fish1.Fins | fish2.Fins;
 		var coveredSetsMask = fish1.CoverSetsMask | fish2.CoverSetsMask;
+		var siameseCoverSetsMask = fish1.CoverSetsMask ^ fish2.CoverSetsMask;
 		var conclusions = ((HashSet<Conclusion>)[.. fish1.Conclusions, .. fish2.Conclusions]).ToArray();
 		var isSashimi = (fish1.IsSashimi, fish2.IsSashimi) switch
 		{
@@ -136,11 +173,15 @@ internal static class FishModule
 		// Normal fish contains a direct view, which will not be useful here.
 		var fish1ViewNodes = fish1.Views![0];
 		var fish2ViewNodes = fish2.Views![0];
-		var view = new View();
-		collectViewNodes(view, fish1ViewNodes, fish2ViewNodes);
-		collectViewNodes(view, fish2ViewNodes, fish1ViewNodes);
-		view.AddRange(from house in fish1.BaseSetsMask select new HouseViewNode(WellKnownColorIdentifier.Normal, house));
-		view.AddRange(from house in coveredSetsMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house));
+		var view = (View)([
+			.. collectViewNodes(fish1ViewNodes, fish2ViewNodes),
+			.. collectViewNodes(fish2ViewNodes, fish1ViewNodes),
+			.. from house in fish1.BaseSetsMask select new HouseViewNode(WellKnownColorIdentifier.Normal, house),
+			.. from house in siameseCoverSetsMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary3, house),
+			..
+			from house in coveredSetsMask & ~siameseCoverSetsMask
+			select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+		]);
 
 		siameseFishStep = (T)(Step)(
 			fish1 switch
@@ -185,8 +226,9 @@ internal static class FishModule
 		return false;
 
 
-		static void collectViewNodes(View view, View fish1ViewNodes, View fish2ViewNodes)
+		static ReadOnlySpan<CandidateViewNode> collectViewNodes(View fish1ViewNodes, View fish2ViewNodes)
 		{
+			var result = new List<CandidateViewNode>();
 			foreach (var node1 in fish1ViewNodes)
 			{
 				if (node1 is not CandidateViewNode(WellKnownColorIdentifier id1, var candidate1))
@@ -200,7 +242,7 @@ internal static class FishModule
 					throw new InvalidOperationException("The view in the second fish is invalid.");
 				}
 
-				view.Add(
+				result.Add(
 					new CandidateViewNode(
 						(id1, id2) switch
 						{
@@ -214,6 +256,8 @@ internal static class FishModule
 					)
 				);
 			}
+
+			return result.AsSpan();
 		}
 	}
 }

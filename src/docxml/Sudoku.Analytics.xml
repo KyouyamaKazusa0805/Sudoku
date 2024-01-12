@@ -4004,6 +4004,12 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseNormalFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseComplexFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
+        </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
@@ -5334,6 +5340,15 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese``1(System.Collections.Generic.List{``0},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese fishes for the specified accumulator.
+            </summary>
+            <typeparam name="T">The type of the fish.s</typeparam>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese fish.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.CheckSiamese``1(Sudoku.Concepts.Grid@,``0,``0,``0@)">
             <summary>
@@ -8508,6 +8523,11 @@ if (student is (name: var name, age: >= 18))
             The internal <see cref="T:Sudoku.Analytics.StepSearcher"/> instance that is used for pre-checking the possible eliminations of the fishes.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese">
+            <summary>
+            Indicates whether the step searcher allows searching for Siamese fishes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize">
             <summary>
             Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
@@ -8581,10 +8601,15 @@ if (student is (name: var name, age: >= 18))
             All Finned X-Wings can be replaced with Grouped Skyscrapers, and all Sashimi X-Wings can be replaced with Non-grouped Skyscrapers.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese">
+            <summary>
+            Indicates whether the step searcher allows searching for Siamese fishes.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.Collect(System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalFishStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32**,System.Int32**,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Get all possible normal fishes.
             </summary>

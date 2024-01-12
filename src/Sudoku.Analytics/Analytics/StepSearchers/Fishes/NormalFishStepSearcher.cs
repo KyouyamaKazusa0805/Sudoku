@@ -58,6 +58,12 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	[RuntimeIdentifier(RuntimeIdentifier.DisableFinnedOrSashimiXWing)]
 	public bool DisableFinnedOrSashimiXWing { get; set; }
 
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for Siamese fishes.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseNormalFish)]
+	public bool AllowSiamese { get; set; } = true;
+
 
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
@@ -68,7 +74,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
-		var accumulator = new List<Step>();
+		var accumulator = new List<NormalFishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (ValuesMap[digit].Count > 5)
@@ -111,50 +117,33 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			}
 		}
 
+		// Core invocation.
 		var onlyFindOne = context.OnlyFindOne;
 		for (var size = 2; size <= 4; size++)
 		{
-			if (Collect(accumulator, in grid, ref context, size, r, c, false, true, onlyFindOne) is { } finlessRowFish)
-			{
-				return finlessRowFish;
-			}
-			if (Collect(accumulator, in grid, ref context, size, r, c, false, false, onlyFindOne) is { } finlessColumnFish)
-			{
-				return finlessColumnFish;
-			}
-			if (Collect(accumulator, in grid, ref context, size, r, c, true, true, onlyFindOne) is { } finnedRowFish)
-			{
-				return finnedRowFish;
-			}
-			if (Collect(accumulator, in grid, ref context, size, r, c, true, false, onlyFindOne) is { } finnedColumnFish)
-			{
-				return finnedColumnFish;
-			}
-		}
-
-		// Add them into the collection.
-		if (accumulator.Count != 0 && !onlyFindOne)
-		{
-			context.Accumulator!.AddRange(accumulator);
+			Collect(accumulator, in grid, ref context, size, r, c, false, true, onlyFindOne);
+			Collect(accumulator, in grid, ref context, size, r, c, false, false, onlyFindOne);
+			Collect(accumulator, in grid, ref context, size, r, c, true, true, onlyFindOne);
+			Collect(accumulator, in grid, ref context, size, r, c, true, false, onlyFindOne);
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		if (!onlyFindOne)
+		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
+		if (context.OnlyFindOne)
 		{
-			scoped var stepsSpan = accumulator.AsReadOnlySpan();
-			for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
+			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
+		}
+
+		if (siameses.Length != 0)
+		{
+			foreach (var step in siameses)
 			{
-				var fish1 = (NormalFishStep)stepsSpan[index1];
-				for (var index2 = index1 + 1; index2 < accumulator.Count; index2++)
-				{
-					var fish2 = (NormalFishStep)stepsSpan[index2];
-					if (FishModule.CheckSiamese(in grid, fish1, fish2, out var siameseFishStep))
-					{
-						// Siamese fish contain more eliminations, we should insert them into the first place.
-						context.Accumulator!.Insert(0, siameseFishStep);
-					}
-				}
+				context.Accumulator.Add(step);
 			}
+		}
+		if (accumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(accumulator);
 		}
 
 		return null;
@@ -175,8 +164,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only searches for one step.</param>
 	/// <returns>The first found step.</returns>
-	private unsafe NormalFishStep? Collect(
-		List<Step> accumulator,
+	private unsafe void Collect(
+		List<NormalFishStep> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		int size,
@@ -271,38 +260,31 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Gather the result.
-					var step = new NormalFishStep(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
-						[
+					accumulator.Add(
+						new(
+							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 							[
-								..
-								from cell in withFin ? baseLine - fins : baseLine
-								select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-								.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Exofin, cell * 9 + digit) : [],
-								.. from baseSet in bs select new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
-								.. from coverSet in cs select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet),
+								[
+									..
+									from cell in withFin ? baseLine - fins : baseLine
+									select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
+									.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Exofin, cell * 9 + digit) : [],
+									.. from baseSet in bs select new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
+									.. from coverSet in cs select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet),
+								],
+								GetDirectView(digit, bs, cs, in fins, searchRow)
 							],
-							GetDirectView(digit, bs, cs, in fins, searchRow)
-						],
-						context.PredefinedOptions,
-						digit,
-						HouseMaskOperations.Create(bs),
-						HouseMaskOperations.Create(cs),
-						in fins,
-						FishModule.IsSashimi(bs, in fins, digit)
+							context.PredefinedOptions,
+							digit,
+							HouseMaskOperations.Create(bs),
+							HouseMaskOperations.Create(cs),
+							in fins,
+							FishModule.IsSashimi(bs, in fins, digit)
+						)
 					);
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator.Add(step);
 				}
 			}
 		}
-
-		return null;
 	}
 
 	/// <summary>

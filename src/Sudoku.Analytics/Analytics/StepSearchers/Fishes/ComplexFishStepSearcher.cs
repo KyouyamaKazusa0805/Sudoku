@@ -52,6 +52,12 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 
 	/// <summary>
+	/// Indicates whether the step searcher allows searching for Siamese fishes.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseComplexFish)]
+	public bool AllowSiamese { get; set; } = true;
+
+	/// <summary>
 	/// Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
 	/// The default value is 3.
 	/// </summary>
@@ -66,7 +72,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
-		if (!Array.Exists(pomElims, CommonMethods.True))
+		if (pomElims.All(@false))
 		{
 			return null;
 		}
@@ -81,20 +87,35 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
 
 			// Create a background thread to work on searching for fishes of this digit.
-			if (!!pomElimsOfThisDigit && Collect(tempList, in tempGrid, ref context, in pomElimsOfThisDigit, digit, context.OnlyFindOne) is { } step)
+			if (pomElimsOfThisDigit)
 			{
-				return step;
+				Collect(tempList, in tempGrid, ref context, in pomElimsOfThisDigit, digit, context.OnlyFindOne);
 			}
 		}
 
-		// Remove duplicate items.
+		var accumulator = EquatableStep.Distinct(tempList).ToList();
+		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
-			return tempList is [var firstFoundStep, ..] ? firstFoundStep : null;
+			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;
 		}
 
-		context.Accumulator.AddRange(EquatableStep.Distinct(tempList));
+		if (siameses.Length != 0)
+		{
+			foreach (var step in siameses)
+			{
+				context.Accumulator.Add(step);
+			}
+		}
+		if (accumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(accumulator);
+		}
+
 		return null;
+
+
+		static bool @false<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !value;
 	}
 
 	/// <summary>
@@ -106,7 +127,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="pomElimsOfThisDigit">The possible eliminations to check.</param>
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
-	private unsafe ComplexFishStep? Collect(
+	private void Collect(
 		List<ComplexFishStep> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
@@ -418,38 +439,34 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								}
 
 								// Add into the 'accumulator'.
-								var step = new ComplexFishStep(
-									[.. from elimCell in elimMap select new Conclusion(Elimination, elimCell, digit)],
-									[
+								accumulator.Add(
+									new ComplexFishStep(
+										[.. from elimCell in elimMap select new Conclusion(Elimination, elimCell, digit)],
 										[
-											..
-											from body in actualBaseMap - exofins - endofins
-											select new CandidateViewNode(WellKnownColorIdentifier.Normal, body * 9 + digit),
-											..
-											from exofin in exofins
-											select new CandidateViewNode(WellKnownColorIdentifier.Exofin, exofin * 9 + digit),
-											..
-											from endofin in endofins
-											select new CandidateViewNode(WellKnownColorIdentifier.Endofin, endofin * 9 + digit),
-											.. houseOffsets
-										]
-									],
-									context.PredefinedOptions,
-									digit,
-									baseSetsMask,
-									coverSetsMask,
-									in exofins,
-									in endofins,
-									!checkMutant,
-									FishModule.IsSashimi(baseSets, in fins, digit),
-									cannibal
+											[
+												..
+												from body in actualBaseMap - exofins - endofins
+												select new CandidateViewNode(WellKnownColorIdentifier.Normal, body * 9 + digit),
+												..
+												from exofin in exofins
+												select new CandidateViewNode(WellKnownColorIdentifier.Exofin, exofin * 9 + digit),
+												..
+												from endofin in endofins
+												select new CandidateViewNode(WellKnownColorIdentifier.Endofin, endofin * 9 + digit),
+												.. houseOffsets
+											]
+										],
+										context.PredefinedOptions,
+										digit,
+										baseSetsMask,
+										coverSetsMask,
+										in exofins,
+										in endofins,
+										!checkMutant,
+										FishModule.IsSashimi(baseSets, in fins, digit),
+										cannibal
+									)
 								);
-								if (onlyFindOne)
-								{
-									return step;
-								}
-
-								accumulator.Add(step);
 
 							BacktrackValue:
 								// If failed to be checked, the code will jump to here. We should reset the value in order to backtrack.
@@ -460,8 +477,6 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 				}
 			}
 		}
-
-		return null;
 	}
 
 
@@ -471,7 +486,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static CellMap[] GetPomEliminationsFirstly(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
