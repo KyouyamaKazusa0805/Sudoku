@@ -1500,6 +1500,9 @@
   <data name="SettingsPage_EnableAnimationFeedbackDescription" xml:space="preserve">
     <value>当你将该设置项设置为“是”之后，当你在改变盘面的基本数据和状态时，就会产生一定的动画（比如候选数的淡入淡出）。这样的行为我们称为“动画反馈”。</value>
   </data>
+  <data name="SettingsPage_EnableCornerRadiusForSudokuPanes" xml:space="preserve">
+    <value>为数独盘面启用圆角属性</value>
+  </data>
   <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
     <value>允许鼠标双击候选数直接填入数字</value>
   </data>

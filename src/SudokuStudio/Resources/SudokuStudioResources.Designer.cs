@@ -4462,6 +4462,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable corner radius property for sudoku panes.
+        /// </summary>
+        internal static string SettingsPage_EnableCornerRadiusForSudokuPanes {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableCornerRadiusForSudokuPanes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable double tapping to fill digit.
         /// </summary>
         internal static string SettingsPage_EnableDoubleTapFillingForSudokuPane {

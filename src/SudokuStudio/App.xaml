@@ -51,6 +51,7 @@
 			<vcvt:DoubleToDecimalConverter x:Key="Decimal2DoubleConverter" />
 			<vcvt:DoubleToDecimalConverter x:Key="Double2DecimalConverter" IsConvertFromDecimal="False" />
 			<vcvt:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
+			<vcvt:BooleanToCornerRadiusConverter x:Key="BooleanCornerRadiusConverter" />
 			<Thickness x:Key="ContentAlignedWithNavigationViewHeaderMargin">56,20</Thickness>
 		</ResourceDictionary>
 	</Application.Resources>

@@ -143,6 +143,7 @@
 						<c:SudokuPane
 							x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" SelectedCell="-1"
 							HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
+							CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 							EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}"
 							TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}"
 							EnableDoubleTapFilling="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=OneWay}"

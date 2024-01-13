@@ -20,6 +20,7 @@
 				<!--Sudoku pane-->
 				<c:SudokuPane
 					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
+					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 					EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=OneWay}"
 					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
 					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="False"

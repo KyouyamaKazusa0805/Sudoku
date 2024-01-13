@@ -1497,6 +1497,9 @@
   <data name="SettingsPage_EnableAnimationFeedbackDescription" xml:space="preserve">
     <value>If this option is set true, when you adjust state of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called "Animation Feedback".</value>
   </data>
+  <data name="SettingsPage_EnableCornerRadiusForSudokuPanes" xml:space="preserve">
+    <value>Enable corner radius property for sudoku panes</value>
+  </data>
   <data name="SettingsPage_EnableDoubleTapFillingForSudokuPane" xml:space="preserve">
     <value>Enable double tapping to fill digit</value>
   </data>

@@ -1680,6 +1680,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanes"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacterProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter"/>.
@@ -2280,6 +2286,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory">
             <summary>
             Indicates whether the program also save for batch generated puzzles into history.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanes">
+            <summary>
+            Indicates whether the program uses corner radius property to apply to sudoku panes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
@@ -4511,6 +4522,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>tokenItem</c>.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.BooleanToCornerRadiusConverter">
+            <summary>
+            Converts a <see cref="T:System.Boolean"/> value into a <see cref="T:System.Double"/> value of corner radius.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.BooleanToCornerRadiusConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.BooleanToCornerRadiusConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.BooleanToVisibilityConverter">
             <summary>
@@ -8059,6 +8081,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableAnimationFeedbackDescription">
             <summary>
               Looks up a localized string similar to If this option is set true, when you adjust state of the sudoku grid pane, you can see animation (such as candidates ease in/out). Such animations are called &quot;Animation Feedback&quot;..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableCornerRadiusForSudokuPanes">
+            <summary>
+              Looks up a localized string similar to Enable corner radius property for sudoku panes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableDoubleTapFillingForSudokuPane">

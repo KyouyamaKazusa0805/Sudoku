@@ -357,6 +357,7 @@
 			x:Name="SampleSudokuGrid" Grid.Column="1" Margin="30,0,0,0" Width="610" Height="610" DisableFlyout="True"
 			HorizontalAlignment="Center" VerticalAlignment="Center"  DisplayCursors="True" SelectedCell="-1"
 			CoordinateLabelDisplayMode="None" TransparentBackground="True"
+			CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 			CandidateViewNodeDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Converter={StaticResource CandidateViewNodeDisplayModeConverter},Mode=OneWay}"
 			EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"
 			AssignmentDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Converter={StaticResource AssignmentDisplayModeConverter},Mode=OneWay}"

@@ -51,6 +51,10 @@
 			SettingsPage_SudokuGridBehaviors
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_SudokuGridBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableCornerRadiusForSudokuPanes}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />
 			</w:SettingsCard>

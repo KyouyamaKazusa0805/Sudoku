@@ -24,6 +24,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>("MakeDigitBeforeCellInRxCyNotation", DocSummary = "Indicates whether UI makes digits displaying before cells.")]
 [DependencyProperty<bool>("HouseNotationOnlyDisplayCapitalsInRxCyNotation", DocSummary = "Indicates whether UI makes houses display its capital letters.")]
 [DependencyProperty<bool>("AlsoSaveBatchGeneratedPuzzlesIntoHistory", DocSummary = "Indicates whether the program also save for batch generated puzzles into history.")]
+[DependencyProperty<bool>("EnableCornerRadiusForSudokuPanes", DefaultValue = true, DocSummary = "Indicates whether the program uses corner radius property to apply to sudoku panes.")]
 [DependencyProperty<char>("EmptyCellCharacter", DefaultValue = '0', DocSummary = "Indicates the default empty character you want to use. The value can be '0' or '.'.")]
 [DependencyProperty<char>("FinalRowLetterInK9Notation", DefaultValue = 'I', DocSummary = "Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.")]
 [DependencyProperty<decimal>("MainNavigationPageOpenPaneLength", DocSummary = "Indicates the open-pane length of main navigation page.")]

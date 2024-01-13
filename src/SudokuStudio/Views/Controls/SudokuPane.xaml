@@ -39,7 +39,8 @@
 		<!--Outside border-->
 		<Border
 			Grid.Row="1" Grid.Column="1" Grid.RowSpan="11" Grid.ColumnSpan="11" BorderThickness="4"
-			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" Canvas.ZIndex="-5" />
+			CornerRadius="{x:Bind CornerRadius,Mode=OneWay}" Canvas.ZIndex="-5"
+			BorderBrush="{x:Bind cvt:SudokuGridLineConversion.GetBrush(BorderColor),Mode=OneWay}" />
 
 		<!--Coordinate labels-->
 		<!--#region Upside-->

@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Interaction.ValueConverters;
+namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
 /// Converts a <see cref="bool"/> value into a <see cref="Visibility"/> result.
