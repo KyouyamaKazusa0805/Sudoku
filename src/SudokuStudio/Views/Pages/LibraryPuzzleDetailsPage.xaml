@@ -18,6 +18,7 @@
 			<c:SudokuPane
 				x:Name="SudokuDisplayer" Width="500" Height="500" EnableAnimationFeedback="False" SelectedCell="-1" DisplayCursors="False"
 				DisableFlyout="True" PreventConflictingInput="True" CoordinateLabelDisplayMode="None"
+				CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 				DisplayCandidates="{x:Bind cvt:PuzzleLibraryConversion.GetCandidatesVisibility(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				Puzzle="{x:Bind cvt:PuzzleLibraryConversion.GetCurrentGrid(Source,CurrentPuzzleIndex),Mode=OneWay}"
 				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground}"
