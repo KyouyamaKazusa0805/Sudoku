@@ -1,4 +1,5 @@
 #undef REMOVE_DUPLICATED_STEPS_IN_SINGLES_IF_RANDOM_ENABLED
+
 namespace Sudoku.Analytics;
 
 /// <summary>

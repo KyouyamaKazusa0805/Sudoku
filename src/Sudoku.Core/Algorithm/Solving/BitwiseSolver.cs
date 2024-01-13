@@ -1,4 +1,5 @@
 #pragma warning disable IDE0011, IDE0032
+
 namespace Sudoku.Algorithm.Solving;
 
 /// <summary>

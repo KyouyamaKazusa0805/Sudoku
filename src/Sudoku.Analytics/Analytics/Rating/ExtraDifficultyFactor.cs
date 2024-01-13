@@ -1,5 +1,3 @@
-using Sudoku.Text;
-
 namespace Sudoku.Analytics.Rating;
 
 /// <summary>
