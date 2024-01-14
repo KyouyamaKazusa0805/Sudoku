@@ -5756,7 +5756,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher">
             <summary>
-            Provides with a <b>Extended Subset Principle</b> step searcher.
+            Provides with an <b>Extended Subset Principle</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Extended Subset Principle</item>

@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>Extended Subset Principle</b> step searcher.
+/// Provides with an <b>Extended Subset Principle</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>Extended Subset Principle</item>
