@@ -19,12 +19,12 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	[RecordParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[RecordParameter] int freedomDegree
 ) :
-	AlmostLockedSetsStep(conclusions, views, options),
+	DeathBlossomBaseStep(conclusions, views, options),
 	IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>,
 	IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.7M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.NTimesAlmostLockedSetDeathBlossom;

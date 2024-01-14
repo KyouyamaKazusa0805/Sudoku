@@ -18,10 +18,10 @@ public sealed partial class RectangleDeathBlossomStep(
 	[RecordParameter] bool isAvoidable,
 	[RecordParameter] RectangleBlossomBranchCollection branches,
 	[RecordParameter] Mask zDigitsMask
-) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<RectangleDeathBlossomStep>
+) : DeathBlossomBaseStep(conclusions, views, options), IEquatableStep<RectangleDeathBlossomStep>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.5M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.RectangleDeathBlossom;

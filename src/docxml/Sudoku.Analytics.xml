@@ -10025,6 +10025,25 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>isDoublyLinked</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.DeathBlossomBaseStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomBaseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomBaseStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DeathBlossomStep">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
@@ -10046,9 +10065,6 @@ if (student is (name: var name, age: >= 18))
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.BaseDifficulty">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Code">
             <inheritdoc/>

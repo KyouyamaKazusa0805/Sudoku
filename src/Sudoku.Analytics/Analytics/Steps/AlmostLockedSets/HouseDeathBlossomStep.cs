@@ -18,10 +18,10 @@ public sealed partial class HouseDeathBlossomStep(
 	[RecordParameter] Digit digit,
 	[RecordParameter] HouseBlossomBranchCollection branches,
 	[RecordParameter] Mask zDigitsMask
-) : AlmostLockedSetsStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
+) : DeathBlossomBaseStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.3M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.HouseDeathBlossom;

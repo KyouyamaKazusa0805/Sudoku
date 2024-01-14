@@ -16,11 +16,8 @@ public sealed partial class DeathBlossomStep(
 	[RecordParameter] Cell pivot,
 	[RecordParameter] NormalBlossomBranchCollection branches,
 	[RecordParameter] Mask zDigitsMask
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : DeathBlossomBaseStep(conclusions, views, options)
 {
-	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.2M;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DeathBlossom;
 
