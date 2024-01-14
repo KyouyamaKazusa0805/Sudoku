@@ -2946,6 +2946,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.ConclusionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
+            </summary>
+            <param name="this">The conclusion array.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -5987,6 +6000,14 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The view.</param>
             <param name="selector">The method to transform each element.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> elements.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.Where(Sudoku.Rendering.View,System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <summary>
+            Filters a <see cref="T:Sudoku.Rendering.View"/>, only reserves the <see cref="T:Sudoku.Rendering.ViewNode"/> instances satisfying the specified condition.
+            </summary>
+            <param name="this">The view.</param>
+            <param name="predicate">The filter.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.ViewNode"/> filtered.</returns>
         </member>
         <member name="M:Sudoku.Linq.ViewEnumerable.OfType``1(Sudoku.Rendering.View)">
             <summary>

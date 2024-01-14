@@ -29,11 +29,13 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the normal fish technique.
 	/// </summary>
+	[SupportSiamese(true)]
 	NormalFish,
 
 	/// <summary>
 	/// Indicates the complex fish technique.
 	/// </summary>
+	[SupportSiamese(true)]
 	ComplexFish,
 
 	/// <summary>
@@ -179,6 +181,12 @@ public enum TechniqueGroup
 	/// Indicates the broken wing technique.
 	/// </summary>
 	BrokenWing,
+
+	/// <summary>
+	/// Indicates the XYZ-Ring technique.
+	/// </summary>
+	[SupportSiamese(true)]
+	XyzRing,
 
 	/// <summary>
 	/// Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.

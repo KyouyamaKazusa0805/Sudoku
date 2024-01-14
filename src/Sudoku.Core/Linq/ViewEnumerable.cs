@@ -25,6 +25,25 @@ public static class ViewEnumerable
 	}
 
 	/// <summary>
+	/// Filters a <see cref="View"/>, only reserves the <see cref="ViewNode"/> instances satisfying the specified condition.
+	/// </summary>
+	/// <param name="this">The view.</param>
+	/// <param name="predicate">The filter.</param>
+	/// <returns>A list of <see cref="ViewNode"/> filtered.</returns>
+	public static ReadOnlySpan<ViewNode> Where(this View @this, Func<ViewNode, bool> predicate)
+	{
+		var result = new List<ViewNode>(@this.Count);
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result.Add(element);
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
+
+	/// <summary>
 	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the node.</typeparam>

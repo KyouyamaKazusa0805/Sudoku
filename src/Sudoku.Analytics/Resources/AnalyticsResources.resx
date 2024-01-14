@@ -2244,7 +2244,7 @@
   <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>Extended Rectangle</value>
   </data>
-	<data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
     <value>Extended Subset Principle</value>
   </data>
   <data name="TechniqueGroup_Firework" xml:space="preserve">
@@ -2440,7 +2440,7 @@
     <value>Senior Exocet (True Base)</value>
   </data>
   <data name="XyzLoop" xml:space="preserve">
-    <value>XYZ Loop</value>
+    <value>XYZ-Loop</value>
   </data>
   <data name="XyzNiceLoop" xml:space="preserve">
     <value>XYZ-Loop (Nice)</value>
@@ -2467,7 +2467,7 @@
     <value>Single</value>
   </data>
   <data name="ExtendedSubsetPrinciple" xml:space="preserve">
-	<value>Extended Subset Principle</value>
+    <value>Extended Subset Principle</value>
   </data>
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}, Branches: {1}</value>
@@ -2501,5 +2501,20 @@
   </data>
   <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
     <value>Extended Subset Principle</value>
+  </data>
+  <data name="SiameseGroupedXyzLoop" xml:space="preserve">
+    <value>Siamese Grouped XYZ-Loop</value>
+  </data>
+  <data name="SiameseGroupedXyzNiceLoop" xml:space="preserve">
+    <value>Siamese Grouped XYZ-Loop (Nice)</value>
+  </data>
+  <data name="SiameseXyzLoop" xml:space="preserve">
+    <value>Siamese XYZ-Loop</value>
+  </data>
+  <data name="SiameseXyzNiceLoop" xml:space="preserve">
+    <value>Siamese XYZ-Loop (Nice)</value>
+  </data>
+  <data name="TechniqueGroup_XyzRing" xml:space="preserve">
+    <value>XYZ-Ring</value>
   </data>
 </root>

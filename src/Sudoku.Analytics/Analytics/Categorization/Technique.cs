@@ -1598,38 +1598,6 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedHybridWing,
-
-	/// <summary>
-	/// Indicates XYZ loop.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzLoop,
-
-	/// <summary>
-	/// Indicates XYZ nice loop.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	XyzNiceLoop,
-
-	/// <summary>
-	/// Indicates grouped XYZ loop.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedXyzLoop,
-
-	/// <summary>
-	/// Indicates grouped XYZ- nice loop.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedXyzNiceLoop,
 	#endregion
 
 	//
@@ -3231,6 +3199,75 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AlignedQuintupleExclusion,
+	#endregion
+
+	//
+	// XYZ-Ring
+	//
+	#region XYZ-Ring
+	/// <summary>
+	/// Indicates XYZ loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	XyzLoop,
+
+	/// <summary>
+	/// Indicates Siamese XYZ loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	SiameseXyzLoop,
+
+	/// <summary>
+	/// Indicates XYZ nice loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	XyzNiceLoop,
+
+	/// <summary>
+	/// Indicates Siamese XYZ nice loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	SiameseXyzNiceLoop,
+
+	/// <summary>
+	/// Indicates grouped XYZ loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	GroupedXyzLoop,
+
+	/// <summary>
+	/// Indicates Siamese grouped XYZ loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	SiameseGroupedXyzLoop,
+
+	/// <summary>
+	/// Indicates grouped XYZ nice loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	GroupedXyzNiceLoop,
+
+	/// <summary>
+	/// Indicates Siamese grouped XYZ nice loop.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
+	[TechniqueGroup(TechniqueGroup.XyzRing)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	SiameseGroupedXyzNiceLoop,
 	#endregion
 
 	//

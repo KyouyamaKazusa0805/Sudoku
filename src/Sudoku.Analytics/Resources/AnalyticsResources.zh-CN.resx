@@ -2692,4 +2692,23 @@
     <value>伪数组</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="SiameseGroupedXyzLoop" xml:space="preserve">
+    <value>孪生区块 XYZ 半环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SiameseGroupedXyzNiceLoop" xml:space="preserve">
+    <value>孪生区块 XYZ 全环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SiameseXyzLoop" xml:space="preserve">
+    <value>孪生 XYZ 半环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="SiameseXyzNiceLoop" xml:space="preserve">
+    <value>孪生 XYZ 全环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueGroup_XyzRing" xml:space="preserve">
+    <value>XYZ 环</value>
+  </data>
 </root>

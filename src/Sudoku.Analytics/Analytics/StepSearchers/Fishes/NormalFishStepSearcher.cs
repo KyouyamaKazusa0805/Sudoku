@@ -127,7 +127,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
+		scoped var siameses = AllowSiamese ? Siamese.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;

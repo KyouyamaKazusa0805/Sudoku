@@ -31,6 +31,9 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="ComplexFishStepSearcher.AllowSiamese"/>
 	public const string AllowSiameseComplexFish = nameof(AllowSiameseComplexFish);
 
+	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
+	public const string AllowSiameseXyzRing = nameof(AllowSiameseXyzRing);
+
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	public const string AllowIncompleteUniqueRectangles = nameof(AllowIncompleteUniqueRectangles);
 

@@ -3346,6 +3346,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Siamese Grouped XYZ-Loop.
+        /// </summary>
+        public static string SiameseGroupedXyzLoop {
+            get {
+                return ResourceManager.GetString("SiameseGroupedXyzLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese Grouped XYZ-Loop (Nice).
+        /// </summary>
+        public static string SiameseGroupedXyzNiceLoop {
+            get {
+                return ResourceManager.GetString("SiameseGroupedXyzNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
         /// </summary>
         public static string SiameseSashimiFrankenJellyfish {
@@ -3504,6 +3522,24 @@ namespace Sudoku.Resources {
         public static string SiameseSashimiXWing {
             get {
                 return ResourceManager.GetString("SiameseSashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese XYZ-Loop.
+        /// </summary>
+        public static string SiameseXyzLoop {
+            get {
+                return ResourceManager.GetString("SiameseXyzLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siamese XYZ-Loop (Nice).
+        /// </summary>
+        public static string SiameseXyzNiceLoop {
+            get {
+                return ResourceManager.GetString("SiameseXyzNiceLoop", resourceCulture);
             }
         }
         
@@ -6568,6 +6604,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XYZ-Ring.
+        /// </summary>
+        public static string TechniqueGroup_XyzRing {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_XyzRing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template Delete.
         /// </summary>
         public static string TemplateDelete {
@@ -7171,7 +7216,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to XYZ Loop.
+        ///   Looks up a localized string similar to XYZ-Loop.
         /// </summary>
         public static string XyzLoop {
             get {

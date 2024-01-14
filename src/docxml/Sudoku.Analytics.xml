@@ -1101,6 +1101,25 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>link</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.SupportSiameseAttribute">
+            <summary>
+            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SupportSiameseAttribute.#ctor(System.Boolean)">
+            <summary>
+            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SupportSiameseAttribute.SupportSiamese">
+            <summary>
+            The generated property declaration for parameter <c>supportSiamese</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.
@@ -1873,26 +1892,6 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped hybrid wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzLoop">
-            <summary>
-            Indicates XYZ loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzNiceLoop">
-            <summary>
-            Indicates XYZ nice loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzLoop">
-            <summary>
-            Indicates grouped XYZ loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzNiceLoop">
-            <summary>
-            Indicates grouped XYZ- nice loop.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedSubsetPrinciple">
             <summary>
             Indicates extended subset principle.
@@ -2653,6 +2652,46 @@ if (student is (name: var name, age: >= 18))
             Indicates aligned quintuple exclusion.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzLoop">
+            <summary>
+            Indicates XYZ loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseXyzLoop">
+            <summary>
+            Indicates Siamese XYZ loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzNiceLoop">
+            <summary>
+            Indicates XYZ nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseXyzNiceLoop">
+            <summary>
+            Indicates Siamese XYZ nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzLoop">
+            <summary>
+            Indicates grouped XYZ loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseGroupedXyzLoop">
+            <summary>
+            Indicates Siamese grouped XYZ loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyzNiceLoop">
+            <summary>
+            Indicates grouped XYZ nice loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseGroupedXyzNiceLoop">
+            <summary>
+            Indicates Siamese grouped XYZ nice loop.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.SinglyLinkedAlmostLockedSetsXzRule">
             <summary>
             Indicates singly linked ALS-XZ.
@@ -3252,6 +3291,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the broken wing technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.XyzRing">
+            <summary>
+            Indicates the XYZ-Ring technique.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AlmostLockedSetsChainingLike">
             <summary>
             Indicates the ALS chaining-like (ALS-XZ, ALS-XY-Wing, ALS-W-Wing) technique.
@@ -3334,6 +3378,13 @@ if (student is (name: var name, age: >= 18))
             Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportSiameseRule(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Indicates whether the technique group supports for Siamese rule.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
@@ -4009,6 +4060,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseComplexFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseXyzRing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
@@ -5356,26 +5410,33 @@ if (student is (name: var name, age: >= 18))
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese``1(System.Collections.Generic.List{``0},Sudoku.Concepts.Grid@)">
+        <member name="T:Sudoku.Analytics.StepSearcherModules.Siamese">
+            <summary>
+            Provides a module that checks for Siamese rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearcherModules.Siamese.NotationConverter">
+            <summary>
+            The backing field that will be used for formatting notations, especially for conclusions,
+            in order to check equality of two set of conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.Siamese.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese XYZ-Rings for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese XYZ-Rings.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.Siamese.GetSiamese``1(System.Collections.Generic.List{``0},Sudoku.Concepts.Grid@)">
             <summary>
             Get all possible Siamese fishes for the specified accumulator.
             </summary>
-            <typeparam name="T">The type of the fish.s</typeparam>
+            <typeparam name="T">The type of the fish.</typeparam>
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
             <returns>All Siamese fish.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.CheckSiamese``1(Sudoku.Concepts.Grid@,``0,``0,``0@)">
-            <summary>
-            Check whether two fishes can be merged into one Siamese fish. If so, return <see langword="true"/>
-            and assign valid values to <see langword="out"/> parameters of this method.
-            </summary>
-            <typeparam name="T">The type of the step for fish pattern.</typeparam>
-            <param name="puzzle">The puzzle.</param>
-            <param name="fish1">The fish pattern 1.</param>
-            <param name="fish2">The fish pattern 2.</param>
-            <param name="siameseFishStep">The final step.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two fish can be merged into one Siamese fish.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
@@ -9775,6 +9836,11 @@ if (student is (name: var name, age: >= 18))
             </list>
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese">
+            <summary>
+            Indicates whether the step searcher allows searching for Siamese XYZ-Rings.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
@@ -9783,7 +9849,7 @@ if (student is (name: var name, age: >= 18))
 			<b>Developer Notes</b>
 		</para>
 	</developer-notes>
-            The pattern is nearly equals an XYZ-Wing + a conjugate pair.
+            The pattern is formed by an XYZ-Wing and a conjugate pair.
             <code><![CDATA[
             abc.  .  | ab .  .
             .  .  .  | .  .  .
@@ -9804,6 +9870,14 @@ if (student is (name: var name, age: >= 18))
             a  .  .  | a  .  . ← conjugate pair of 'a'
             ]]></code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.CollectCore(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@)">
+            <summary>
+            The core method to collect steps.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedSetsStep">
             <summary>
@@ -17277,37 +17351,46 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
             <summary>
-            Provides with a step that is an <b>XYZ-Ring</b> or <b>Grouped XYZ-Ring</b> technique.
+            Provides with a step that is a <b>(Siamese) (Grouped) XYZ-Ring</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+            <param name="intersectedDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugateHouse">Indicates the conjugate house used.</param>
-            <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="conjugateHousesMask">Indicates the conjugate houses used.</param>
+            <param name="isNice">Indicates whether the pattern is a nice loop.</param>
             <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
+            <param name="isSiamese">Indicates whether the XYZ-loop is a Siamese one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Provides with a step that is an <b>XYZ-Ring</b> or <b>Grouped XYZ-Ring</b> technique.
+            Provides with a step that is a <b>(Siamese) (Grouped) XYZ-Ring</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+            <param name="intersectedDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
-            <param name="conjugateHouse">Indicates the conjugate house used.</param>
-            <param name="isType2">Indicates whether the type is type 2.</param>
+            <param name="conjugateHousesMask">Indicates the conjugate houses used.</param>
+            <param name="isNice">Indicates whether the pattern is a nice loop.</param>
             <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
+            <param name="isSiamese">Indicates whether the XYZ-loop is a Siamese one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IntersectedDigit">
+            <summary>
+            The generated property declaration for parameter <c>intersectedDigit</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">
             <summary>
@@ -17324,19 +17407,24 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>leafCell2</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHouse">
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHousesMask">
             <summary>
-            The generated property declaration for parameter <c>conjugateHouse</c>.
+            The generated property declaration for parameter <c>conjugateHousesMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsType2">
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsNice">
             <summary>
-            The generated property declaration for parameter <c>isType2</c>.
+            The generated property declaration for parameter <c>isNice</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsGrouped">
             <summary>
             The generated property declaration for parameter <c>isGrouped</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsSiamese">
+            <summary>
+            The generated property declaration for parameter <c>isSiamese</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetShapeKind">
@@ -21358,6 +21446,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Siamese Finned X-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SiameseGroupedXyzLoop">
+            <summary>
+              Looks up a localized string similar to Siamese Grouped XYZ-Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SiameseGroupedXyzNiceLoop">
+            <summary>
+              Looks up a localized string similar to Siamese Grouped XYZ-Loop (Nice).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.SiameseSashimiFrankenJellyfish">
             <summary>
               Looks up a localized string similar to Siamese Sashimi Franken Jellyfish.
@@ -21446,6 +21544,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.SiameseSashimiXWing">
             <summary>
               Looks up a localized string similar to Siamese Sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SiameseXyzLoop">
+            <summary>
+              Looks up a localized string similar to Siamese XYZ-Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SiameseXyzNiceLoop">
+            <summary>
+              Looks up a localized string similar to Siamese XYZ-Loop (Nice).
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Single">
@@ -23148,6 +23256,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_XyzRing">
+            <summary>
+              Looks up a localized string similar to XYZ-Ring.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TemplateDelete">
             <summary>
               Looks up a localized string similar to Template Delete.
@@ -23485,7 +23598,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.XyzLoop">
             <summary>
-              Looks up a localized string similar to XYZ Loop.
+              Looks up a localized string similar to XYZ-Loop.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.XyzNiceLoop">

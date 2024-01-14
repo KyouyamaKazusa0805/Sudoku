@@ -10,14 +10,23 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped Nice XYZ-Ring</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.XyzLoop, Technique.XyzNiceLoop, Technique.GroupedXyzLoop, Technique.GroupedXyzNiceLoop)]
+[StepSearcher(
+	Technique.XyzLoop, Technique.XyzNiceLoop, Technique.GroupedXyzLoop, Technique.GroupedXyzNiceLoop,
+	Technique.SiameseXyzLoop, Technique.SiameseXyzNiceLoop, Technique.SiameseGroupedXyzLoop, Technique.SiameseGroupedXyzNiceLoop)]
 [StepSearcherRuntimeName("StepSearcherName_XyzRingStepSearcher")]
 public sealed partial class XyzRingStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for Siamese XYZ-Rings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseXyzRing)]
+	public bool AllowSiamese { get; set; } = true;
+
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// The pattern is nearly equals an XYZ-Wing + a conjugate pair.
+	/// The pattern is formed by an XYZ-Wing and a conjugate pair.
 	/// <code><![CDATA[
 	/// abc.  .  | ab .  .
 	/// .  .  .  | .  .  .
@@ -41,7 +50,44 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
+		var accumulator = new List<XyzRingStep>();
+		CollectCore(accumulator, in grid, in context);
 
+		if (accumulator.Count == 0)
+		{
+			return null;
+		}
+
+		// Check for Siamese XYZ-Rings.
+		scoped var siameses = AllowSiamese ? Siamese.GetSiamese(accumulator, in grid) : [];
+		if (context.OnlyFindOne)
+		{
+			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
+		}
+
+		if (siameses.Length != 0)
+		{
+			foreach (var step in siameses)
+			{
+				context.Accumulator.Add(step);
+			}
+		}
+		if (accumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(accumulator);
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// The core method to collect steps.
+	/// </summary>
+	/// <param name="accumulator">The accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	private void CollectCore(List<XyzRingStep> accumulator, scoped ref readonly Grid grid, scoped ref readonly AnalysisContext context)
+	{
 		// The pattern starts with a tri-value cell, so check for it.
 		var trivalueCells = CellMap.Empty;
 		foreach (var cell in EmptyCells)
@@ -51,8 +97,6 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 				trivalueCells.Add(cell);
 			}
 		}
-
-		var foundSteps = new List<XyzRingStep>();
 
 		// Iterate on each pivot cell to get all possible results.
 		foreach (var pivot in trivalueCells)
@@ -180,53 +224,48 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 								continue;
 							}
 
-							var step = new XyzRingStep(
-								[.. conclusions],
-								[
+							accumulator.Add(
+								new(
+									[.. conclusions],
 									[
-										..
-										from digit in digitsMaskPivot
-										let colorIdentifier = digit == intersectedDigit
-											? WellKnownColorIdentifier.Auxiliary1
-											: WellKnownColorIdentifier.Normal
-										select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
-										..
-										from digit in digitsMask1
-										let colorIdentifier = digit == intersectedDigit
-											? WellKnownColorIdentifier.Auxiliary1
-											: WellKnownColorIdentifier.Normal
-										select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
-										..
-										from digit in digitsMask2
-										let colorIdentifier = digit == intersectedDigit
-											? WellKnownColorIdentifier.Auxiliary1
-											: WellKnownColorIdentifier.Normal
-										select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
-										..
-										from cell in cellsShouldBeCovered
-										select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
-									]
-								],
-								context.PredefinedOptions,
-								pivot,
-								leafCell1,
-								leafCell2,
-								conflictedHouse,
-								isType2,
-								cellsShouldBeCovered.Count > 2
+										[
+											..
+											from digit in digitsMaskPivot
+											let colorIdentifier = digit == intersectedDigit
+												? WellKnownColorIdentifier.Auxiliary1
+												: WellKnownColorIdentifier.Normal
+											select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
+											..
+											from digit in digitsMask1
+											let colorIdentifier = digit == intersectedDigit
+												? WellKnownColorIdentifier.Auxiliary1
+												: WellKnownColorIdentifier.Normal
+											select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
+											..
+											from digit in digitsMask2
+											let colorIdentifier = digit == intersectedDigit
+												? WellKnownColorIdentifier.Auxiliary1
+												: WellKnownColorIdentifier.Normal
+											select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
+											..
+											from cell in cellsShouldBeCovered
+											select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
+										]
+									],
+									context.PredefinedOptions,
+									intersectedDigit,
+									pivot,
+									leafCell1,
+									leafCell2,
+									1 << conflictedHouse,
+									isType2,
+									cellsShouldBeCovered.Count > 2
+								)
 							);
-							if (context.OnlyFindOne)
-							{
-								return step;
-							}
-
-							context.Accumulator.Add(step);
 						}
 					}
 				}
 			}
 		}
-
-		return null;
 	}
 }

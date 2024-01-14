@@ -7,6 +7,15 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueGroupExtensions
 {
 	/// <summary>
+	/// Indicates whether the technique group supports for Siamese rule.
+	/// </summary>
+	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool SupportSiameseRule(this TechniqueGroup @this)
+		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<SupportSiameseAttribute>()?.SupportSiamese ?? false;
+
+	/// <summary>
 	/// Try to get shortened name of the current <see cref="TechniqueGroup"/> instance. If the group has an abbreviation,
 	/// return its abbreviation; otherwise, its full name.
 	/// </summary>
