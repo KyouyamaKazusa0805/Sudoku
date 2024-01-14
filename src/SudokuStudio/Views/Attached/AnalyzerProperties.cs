@@ -23,6 +23,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(RuntimeIdentifier.DisableFinnedOrSashimiXWing, DefaultValue = true)]
 [AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseNormalFish)]
 [AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseComplexFish)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseXyzRing)]
 [AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
 [AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
 [AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
@@ -195,6 +196,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AllowSiameseComplexFishPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<ComplexFishStepSearcher>(d, s => s.AllowSiamese = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowSiameseXyzRingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<XyzRingStepSearcher>(d, s => s.AllowSiamese = (bool)e.NewValue);
 
 	[Callback]
 	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

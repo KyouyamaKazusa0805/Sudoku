@@ -1168,6 +1168,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseComplexFish"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRing"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -1289,6 +1295,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseComplexFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -7713,6 +7722,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow Siamese Fish (Normal Fish).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowSiameseXyzRing">
+            <summary>
+              Looks up a localized string similar to Allow Siamese XYZ-Rings (Grouped, Nice, etc.).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AlmostLockedSetsAndIntersectionsGroup">
             <summary>
               Looks up a localized string similar to Almost Locked Sets (ALS) &amp; Intersections.
@@ -8046,6 +8060,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DrawingDescription">
             <summary>
               Looks up a localized string similar to This page lists options that controls the drawing and rendering of sudoku puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Duality">
+            <summary>
+              Looks up a localized string similar to Duality.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EliminationColor">
@@ -9557,6 +9576,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>AllowSiameseComplexFish</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowSiameseXyzRing</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>ReverseBugMaxSearchingEmptyCellsCount</c>.
@@ -9789,6 +9813,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseComplexFishProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseComplexFishProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowSiameseXyzRing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowSiameseXyzRing(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetReverseBugMaxSearchingEmptyCellsCount(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>

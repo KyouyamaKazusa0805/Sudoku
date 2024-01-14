@@ -21,6 +21,7 @@ public static class PredefinedAnalyzers
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 9)
 			.WithStepSearcherSetters<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 4; s.AllowPartiallyUsedTypes = true; })
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => { s.MaxSize = 7; s.AllowSiamese = true; })
+			.WithStepSearcherSetters<XyzRingStepSearcher>(static s => s.AllowSiamese = false)
 			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
 			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 5);
 
@@ -40,6 +41,7 @@ public static class PredefinedAnalyzers
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 5)
 			.WithStepSearcherSetters<TemplateStepSearcher>(static s => s.TemplateDeleteOnly = false)
 			.WithStepSearcherSetters<ComplexFishStepSearcher>(static s => { s.MaxSize = 5; s.AllowSiamese = false; })
+			.WithStepSearcherSetters<XyzRingStepSearcher>(static s => s.AllowSiamese = false)
 			.WithStepSearcherSetters<BowmanBingoStepSearcher>(static s => s.MaxLength = 64)
 			.WithStepSearcherSetters<AlmostLockedCandidatesStepSearcher>(static s => s.CheckAlmostLockedQuadruple = false)
 			.WithStepSearcherSetters<AlignedExclusionStepSearcher>(static s => s.MaxSearchingSize = 3);

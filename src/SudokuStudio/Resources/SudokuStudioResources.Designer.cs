@@ -3796,6 +3796,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow Siamese XYZ-Rings (Grouped, Nice, etc.).
+        /// </summary>
+        internal static string SettingsPage_AllowSiameseXyzRing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowSiameseXyzRing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Almost Locked Sets (ALS) &amp; Intersections.
         /// </summary>
         internal static string SettingsPage_AlmostLockedSetsAndIntersectionsGroup {
@@ -4395,6 +4404,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_DrawingDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_DrawingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duality.
+        /// </summary>
+        internal static string SettingsPage_Duality {
+            get {
+                return ResourceManager.GetString("SettingsPage_Duality", resourceCulture);
             }
         }
         

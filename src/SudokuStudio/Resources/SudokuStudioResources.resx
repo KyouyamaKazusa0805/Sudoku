@@ -1275,6 +1275,9 @@
   <data name="SettingsPage_AllowSiameseNormalFish" xml:space="preserve">
     <value>Allow Siamese Fish (Normal Fish)</value>
   </data>
+  <data name="SettingsPage_AllowSiameseXyzRing" xml:space="preserve">
+    <value>Allow Siamese XYZ-Rings (Grouped, Nice, etc.)</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsAndIntersectionsGroup" xml:space="preserve">
     <value>Almost Locked Sets (ALS) &amp; Intersections</value>
   </data>
@@ -1475,6 +1478,9 @@
   </data>
   <data name="SettingsPage_DrawingDescription" xml:space="preserve">
     <value>This page lists options that controls the drawing and rendering of sudoku puzzles</value>
+  </data>
+  <data name="SettingsPage_Duality" xml:space="preserve">
+    <value>Duality</value>
   </data>
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>Eliminations</value>

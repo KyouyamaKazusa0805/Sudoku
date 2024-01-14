@@ -1278,6 +1278,9 @@
   <data name="SettingsPage_AllowSiameseNormalFish" xml:space="preserve">
     <value>搜索普通孪生鱼</value>
   </data>
+  <data name="SettingsPage_AllowSiameseXyzRing" xml:space="preserve">
+    <value>搜索孪生 XYZ 环（包括带区块结构和全环的情况）</value>
+  </data>
   <data name="SettingsPage_AlmostLockedSetsAndIntersectionsGroup" xml:space="preserve">
     <value>待定数组（ALS）和类区块技巧</value>
   </data>
@@ -1478,6 +1481,9 @@
   </data>
   <data name="SettingsPage_DrawingDescription" xml:space="preserve">
     <value>一些跟渲染和呈现配色方案有关系的偏好项</value>
+  </data>
+  <data name="SettingsPage_Duality" xml:space="preserve">
+    <value>孪生性设置</value>
   </data>
   <data name="SettingsPage_EliminationColor" xml:space="preserve">
     <value>删数</value>
