@@ -44,8 +44,9 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	{
 		foreach (var checkValueCells in (false, true))
 		{
-			if (checkValueCells && !CheckValueTypes)
+			if (CheckValueTypes ^ checkValueCells)
 			{
+				// They should hold a same state.
 				continue;
 			}
 
@@ -166,8 +167,10 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			// Value cells checker.
 			var valueCells = (alsCells | ahsCells) - EmptyCells;
-			if (checkValueCells && !valueCells)
+			if (!checkValueCells && !!valueCells)
 			{
+				// Value cells must be empty if we don't check value cells.
+				// However, we don't check anything if the existence of value cells is allowed.
 				continue;
 			}
 
