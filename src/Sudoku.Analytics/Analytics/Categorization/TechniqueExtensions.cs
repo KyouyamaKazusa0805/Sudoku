@@ -18,7 +18,7 @@ public static class TechniqueExtensions
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <param name="culture">The culture information.</param>
 	/// <returns>The name of the current technique.</returns>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? culture = null)
 		=> ResourceDictionary.GetOrNull(@this.ToString(), culture ?? CultureInfo.CurrentUICulture)
@@ -29,7 +29,7 @@ public static class TechniqueExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>The name of the current technique.</returns>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetEnglishName(this Technique @this) => ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 

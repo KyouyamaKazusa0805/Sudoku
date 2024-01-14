@@ -7544,10 +7544,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>
-            Try to get resource via the key, or throw a <see cref="T:Sudoku.Resources.TargetResourceNotFoundException"/> if resource is not found.
+            Try to get resource via the key, or throw a <see cref="T:Sudoku.Resources.ResourceNotFoundException"/> if resource is not found.
             </summary>
             <inheritdoc cref="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <exception cref="T:Sudoku.Resources.TargetResourceNotFoundException">Throws when the specified resource is not found.</exception>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
         </member>
         <member name="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>
@@ -7582,7 +7582,7 @@ if (student is (name: var name, age: >= 18))
             The generated field declaration for parameter <c>assembly</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Resources.TargetResourceNotFoundException">
+        <member name="T:Sudoku.Resources.ResourceNotFoundException">
             <summary>
             Indicates an exception that will be thrown if target resource is not found.
             </summary>
@@ -7590,7 +7590,7 @@ if (student is (name: var name, age: >= 18))
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture information.</param>
         </member>
-        <member name="M:Sudoku.Resources.TargetResourceNotFoundException.#ctor(System.Reflection.Assembly,System.String,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Resources.ResourceNotFoundException.#ctor(System.Reflection.Assembly,System.String,System.Globalization.CultureInfo)">
             <summary>
             Indicates an exception that will be thrown if target resource is not found.
             </summary>
@@ -7598,23 +7598,23 @@ if (student is (name: var name, age: >= 18))
             <param name="resourceKey">The resource key.</param>
             <param name="culture">The culture information.</param>
         </member>
-        <member name="F:Sudoku.Resources.TargetResourceNotFoundException.CultureNotSpecifiedDefaultText">
+        <member name="F:Sudoku.Resources.ResourceNotFoundException.CultureNotSpecifiedDefaultText">
             <summary>
             The "unspecified" text.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.TargetResourceNotFoundException.Message">
+        <member name="P:Sudoku.Resources.ResourceNotFoundException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Resources.TargetResourceNotFoundException.Data">
+        <member name="P:Sudoku.Resources.ResourceNotFoundException.Data">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Resources.TargetResourceNotFoundException._resourceKey">
+        <member name="F:Sudoku.Resources.ResourceNotFoundException._resourceKey">
             <summary>
             The generated field declaration for parameter <c>resourceKey</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Resources.TargetResourceNotFoundException._culture">
+        <member name="F:Sudoku.Resources.ResourceNotFoundException._culture">
             <summary>
             The generated field declaration for parameter <c>culture</c>.
             </summary>

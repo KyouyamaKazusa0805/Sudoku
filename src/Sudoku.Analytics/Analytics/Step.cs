@@ -84,7 +84,7 @@ public abstract partial class Step(
 	/// </remarks>
 	/// <!--<exception cref="TargetResourceNotFoundException">Throws when the resource doesn't contain the name of the technique.</exception>-->
 	public virtual string EnglishName
-		=> Code.GetEnglishName() ?? throw new TargetResourceNotFoundException(GetType().Assembly, Code.ToString(), ResultCurrentCulture);
+		=> Code.GetEnglishName() ?? throw new ResourceNotFoundException(GetType().Assembly, Code.ToString(), ResultCurrentCulture);
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.

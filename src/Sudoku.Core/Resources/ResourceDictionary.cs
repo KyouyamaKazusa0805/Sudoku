@@ -47,13 +47,13 @@ public static class ResourceDictionary
 	}
 
 	/// <summary>
-	/// Try to get resource via the key, or throw a <see cref="TargetResourceNotFoundException"/> if resource is not found.
+	/// Try to get resource via the key, or throw a <see cref="ResourceNotFoundException"/> if resource is not found.
 	/// </summary>
 	/// <inheritdoc cref="GetOrNull(string, CultureInfo?, Assembly?)"/>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the specified resource is not found.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified resource is not found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string Get(string resourceKey, CultureInfo? culture = null, Assembly? assembly = null)
-		=> GetOrNull(resourceKey, culture, assembly) ?? throw new TargetResourceNotFoundException(assembly, resourceKey, culture);
+		=> GetOrNull(resourceKey, culture, assembly) ?? throw new ResourceNotFoundException(assembly, resourceKey, culture);
 
 	/// <summary>
 	/// Try to get resource via the key, or return <see langword="null"/> if failed.

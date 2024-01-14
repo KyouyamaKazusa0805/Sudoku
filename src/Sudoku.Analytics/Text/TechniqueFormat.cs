@@ -43,12 +43,12 @@ public partial struct TechniqueFormat([RecordParameter(DataMemberKinds.Field)] s
 	/// <param name="culture">The culture information.</param>
 	/// <param name="formatArguments">The format arguments.</param>
 	/// <returns>The final result.</returns>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(CultureInfo? culture, params string[] formatArguments)
 		=> GetTargetFormat(culture) is { } p
 			? string.Format(p, formatArguments)
-			: throw new TargetResourceNotFoundException(typeof(TechniqueFormat).Assembly, _formatFullName, culture);
+			: throw new ResourceNotFoundException(typeof(TechniqueFormat).Assembly, _formatFullName, culture);
 
 
 	/// <summary>

@@ -31,7 +31,7 @@ public static class TechniqueGroupExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
 	/// <returns>The name.</returns>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this TechniqueGroup @this) => @this.GetName(CultureInfo.CurrentUICulture);
 
@@ -41,7 +41,7 @@ public static class TechniqueGroupExtensions
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
 	/// <param name="culture">The culture information instance.</param>
 	/// <returns>The name.</returns>
-	/// <exception cref="TargetResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this TechniqueGroup @this, CultureInfo? culture)
 		=> ResourceDictionary.Get($"{nameof(TechniqueGroup)}_{@this}", culture ?? CultureInfo.CurrentUICulture);
