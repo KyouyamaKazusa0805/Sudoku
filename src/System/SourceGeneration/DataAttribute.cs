@@ -62,10 +62,12 @@ public sealed partial class RecordParameterAttribute([RecordParameter] string me
 	public bool IsImplicitlyReadOnly { get; init; } = true;
 
 	/// <summary>
-	/// Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.
+	/// <para>Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.</para>
+	/// <para>
 	/// For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
 	/// the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
 	/// which means the target property does not contain a setter.
+	/// </para>
 	/// </summary>
 	[DisallowNull]
 	public string? SetterExpression { get; init; }
