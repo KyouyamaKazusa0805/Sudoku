@@ -672,6 +672,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
+	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiFrankenSwordfish,
 
