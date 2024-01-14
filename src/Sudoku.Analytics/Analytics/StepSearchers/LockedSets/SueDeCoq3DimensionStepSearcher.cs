@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var rbList = new List<CellMap>(3);
@@ -35,7 +35,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 			reinitializeList(rbList, in rbEmptyMap);
 			reinitializeList(cbList, in cbEmptyMap);
 
-			foreach (var rbCurrentMap in rbList)
+			foreach (ref readonly var rbCurrentMap in rbList.AsReadOnlySpan())
 			{
 				var rbSelectedInterMask = grid[in rbCurrentMap];
 				if (PopCount((uint)rbSelectedInterMask) <= rbCurrentMap.Count + 1)
@@ -43,7 +43,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var cbCurrentMap in cbList)
+				foreach (ref readonly var cbCurrentMap in cbList.AsReadOnlySpan())
 				{
 					var cbSelectedInterMask = grid[in cbCurrentMap];
 					if (PopCount((uint)cbSelectedInterMask) <= cbCurrentMap.Count + 1)

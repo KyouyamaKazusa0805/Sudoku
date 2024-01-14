@@ -57,7 +57,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				}
 
 				// Iterate on each intersection combination.
-				foreach (var currentInterMap in list)
+				foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
 				{
 					var selectedInterMask = grid[in currentInterMap];
 					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
