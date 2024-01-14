@@ -170,7 +170,7 @@ public abstract partial class Step(
 	/// where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
 	/// The format text will be expanded to this expression in runtime:
 	/// <code><![CDATA[
-	/// var formatText = StringAccessor.GetString($"TechniqueFormat_UniqueRectangle{Type}Step");
+	/// var formatText = ResourceDictionary.Get($"TechniqueFormat_UniqueRectangle{Type}Step");
 	/// ]]></code>
 	/// You can use this value to get the final text:
 	/// <code><![CDATA[
