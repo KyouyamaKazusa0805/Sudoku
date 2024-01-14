@@ -9,11 +9,13 @@ namespace Sudoku.Analytics;
 /// Indicates an optional instance that provides with extra information for a step searcher.
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
+[Equals]
+[EqualityOperators]
 public abstract partial class Step(
 	[RecordParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[RecordParameter] View[]? views,
 	[RecordParameter] StepSearcherOptions options
-) : ICultureFormattable, IRenderable
+) : ICultureFormattable, IEqualityOperators<Step, Step, bool>, IEquatable<Step>, IRenderable
 {
 	/// <summary>
 	/// The error information for difficulty level cannot be determined.
@@ -211,6 +213,21 @@ public abstract partial class Step(
 	/// </summary>
 	private protected CultureInfo ResultCurrentCulture => Options.Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public virtual bool Equals([NotNullWhen(true)] Step? other)
+		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode()
+	{
+		var hashCode = new HashCode();
+		hashCode.Add(Code);
+		hashCode.Add(ConclusionText);
+		return hashCode.ToHashCode();
+	}
 
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
