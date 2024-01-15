@@ -9480,21 +9480,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Parsers.InlineSusserGridParser.GridSusserPattern">
             <remarks>
             Pattern:<br/>
-            <code>(\\+?[\\d\\.]|\\[[1-9]{1,9}\\]){81}</code><br/>
+            <code>(\\+?[\\d\\.]|\\[[1-9]{1,9}\\])</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
             <code>
-            ○ Loop exactly 81 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match with 2 alternative expressions.<br/>
-                        ○ Match a sequence of expressions.<br/>
-                            ○ Match '+' atomically, optionally.<br/>
-                            ○ Match a character in the set [.\d].<br/>
-                        ○ Match a sequence of expressions.<br/>
-                            ○ Match '['.<br/>
-                            ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
-                            ○ Match ']'.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a character in the set [.\d].<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '['.<br/>
+                        ○ Match a character in the set [1-9] atomically at least 1 and at most 9 times.<br/>
+                        ○ Match ']'.<br/>
             </code>
             </remarks>
         </member>

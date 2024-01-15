@@ -23,8 +23,8 @@ public sealed partial record InlineSusserGridParser(bool NegateEliminationsTripl
 	public Func<string, Grid> Parser
 		=> str =>
 		{
-			var match = GridSusserPattern().Match(str);
-			if (match is not { Success: true, Captures: { Count: 81 } captures })
+			var match = GridSusserPattern().Matches(str);
+			if (match is not { Count: 81 } captures)
 			{
 				return Grid.Undefined;
 			}
@@ -82,6 +82,6 @@ public sealed partial record InlineSusserGridParser(bool NegateEliminationsTripl
 		};
 
 
-	[GeneratedRegex("""(\+?[\d\.]|\[[1-9]{1,9}\]){81}""", RegexOptions.Compiled, 5000)]
+	[GeneratedRegex("""(\+?[\d\.]|\[[1-9]{1,9}\])""", RegexOptions.Compiled, 5000)]
 	public static partial Regex GridSusserPattern();
 }
