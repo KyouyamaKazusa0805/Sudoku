@@ -146,7 +146,7 @@ public static partial class StringExtensions
 	public static string[] CutOfLength(this string @this, int length)
 	{
 		var result = new string[@this.Length % length == 0 ? @this.Length / length : @this.Length / length + 1];
-		for (var i = 0; i < @this.Length; i += length)
+		for (var i = 0; i < length; i++)
 		{
 			result[i] = @this[(i * length)..((i + 1) * length)];
 		}
