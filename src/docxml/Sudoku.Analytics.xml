@@ -3074,6 +3074,13 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>All found features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.AsTechniqueSet(Sudoku.Analytics.Categorization.Technique[])">
+            <summary>
+            Try to convert the current array instance into a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>The final result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueFeature">
             <summary>
             Defines a feature flag.

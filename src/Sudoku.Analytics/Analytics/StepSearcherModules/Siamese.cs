@@ -59,7 +59,7 @@ internal static class Siamese
 				goto ReturnFalse;
 			}
 
-			var mergedConclusions = (xyz1.Conclusions.AsSet() | xyz2.Conclusions.AsSet()).ToArray();
+			var mergedConclusions = (xyz1.Conclusions.AsConclusionSet() | xyz2.Conclusions.AsConclusionSet()).ToArray();
 			var xyz1ViewNodes = xyz1.Views![0];
 			var xyz2ViewNodes = xyz2.Views![0];
 			siameseStep = new(
@@ -155,7 +155,7 @@ internal static class Siamese
 			var mergedFins = fish1.Fins | fish2.Fins;
 			var coveredSetsMask = fish1.CoverSetsMask | fish2.CoverSetsMask;
 			var siameseCoverSetsMask = fish1.CoverSetsMask ^ fish2.CoverSetsMask;
-			var conclusions = (fish1.Conclusions.AsSet() | fish2.Conclusions.AsSet()).ToArray();
+			var conclusions = (fish1.Conclusions.AsConclusionSet() | fish2.Conclusions.AsConclusionSet()).ToArray();
 			var isSashimi = (fish1.IsSashimi, fish2.IsSashimi) switch
 			{
 				(true, not null) or (not null, true) => true,

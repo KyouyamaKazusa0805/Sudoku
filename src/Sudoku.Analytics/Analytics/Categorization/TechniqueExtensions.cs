@@ -130,4 +130,12 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueFeature GetFeature(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueFeatureAttribute>()?.Features ?? 0;
+
+	/// <summary>
+	/// Try to convert the current array instance into a <see cref="TechniqueSet"/> instance.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <returns>The final result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueSet AsTechniqueSet(this Technique[] @this) => [.. @this];
 }

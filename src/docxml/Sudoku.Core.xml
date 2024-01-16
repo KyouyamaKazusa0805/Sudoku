@@ -2952,7 +2952,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Analytics.Conclusion[])">
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
             <summary>
             Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
             </summary>
