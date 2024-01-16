@@ -5034,9 +5034,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <para>
 	/// <code><![CDATA[
 	/// ↓corner1
-	/// a   | aby  -  -
-	/// abx | a    -  b
-	///     | -    -  -
+	/// a   | aby.  .
+	/// abx | a  .  b
+	///     | .  .  .
 	///       ↑corner2(cell 'a')
 	/// ]]></code>
 	/// There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
