@@ -1,9 +1,9 @@
-namespace Sudoku.Operation;
+namespace Sudoku.Recording;
 
 /// <summary>
 /// Provides with a kind of difference of candidates.
 /// </summary>
-public enum OperationKind
+public enum DeltaOperationKind
 {
 	/// <summary>
 	/// Indicates the difference kind is none.

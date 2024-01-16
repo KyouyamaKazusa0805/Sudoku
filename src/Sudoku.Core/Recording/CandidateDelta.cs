@@ -1,31 +1,31 @@
-namespace Sudoku.Operation;
+namespace Sudoku.Recording;
 
 /// <summary>
 /// Read from two <see cref="Grid"/> instances, and analyzes difference of candidates between those two.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class CandidateDifference
+public static class CandidateDelta
 {
 	/// <summary>
 	/// Try to get difference of candidates between two grids.
 	/// </summary>
 	/// <param name="previous">The previous grid to be checked.</param>
 	/// <param name="current">The current grid to be checked.</param>
-	/// <param name="differentCandidates">The difference candidates.</param>
-	/// <param name="differenceKind">The difference kind.</param>
+	/// <param name="deltaCandidates">The difference candidates.</param>
+	/// <param name="deltaKind">The difference kind.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the operation is successful.</returns>
-	public static bool TryGetDifference(
+	public static bool TryGetDelta(
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
-		out CandidateMap differentCandidates,
-		out OperationKind differenceKind
+		out CandidateMap deltaCandidates,
+		out DeltaOperationKind deltaKind
 	)
 	{
 		if (previous == current)
 		{
 			// Same grid. Just return with message "Nothing change".
-			differentCandidates = [];
-			differenceKind = OperationKind.None;
+			deltaCandidates = [];
+			deltaKind = DeltaOperationKind.None;
 			return true;
 		}
 
@@ -118,30 +118,30 @@ public static class CandidateDifference
 		// Special handling.
 		if (eliminations.Cells == current.EmptyCells && !!current.EmptyCells)
 		{
-			differentCandidates = eliminations;
-			differenceKind = OperationKind.InitialPencilmarking;
+			deltaCandidates = eliminations;
+			deltaKind = DeltaOperationKind.InitialPencilmarking;
 			return true;
 		}
 
-		differenceKind = isReplacement
-			? OperationKind.Replacement
+		deltaKind = isReplacement
+			? DeltaOperationKind.Replacement
 			: assignment != -1
-				? OperationKind.Assignment
+				? DeltaOperationKind.Assignment
 				: appending
-					? OperationKind.Appending
-					: eliminations ? OperationKind.Elimination : OperationKind.None;
-		differentCandidates = differenceKind switch
+					? DeltaOperationKind.Appending
+					: eliminations ? DeltaOperationKind.Elimination : DeltaOperationKind.None;
+		deltaCandidates = deltaKind switch
 		{
-			OperationKind.None => [],
-			OperationKind.Assignment or OperationKind.Replacement => [assignment],
-			OperationKind.Appending => appending,
-			OperationKind.Elimination => eliminations
+			DeltaOperationKind.None => [],
+			DeltaOperationKind.Assignment or DeltaOperationKind.Replacement => [assignment],
+			DeltaOperationKind.Appending => appending,
+			DeltaOperationKind.Elimination => eliminations
 		};
-		return differenceKind != OperationKind.None;
+		return deltaKind != DeltaOperationKind.None;
 
 	ReturnNull:
-		differentCandidates = [];
-		differenceKind = default;
+		deltaCandidates = [];
+		deltaKind = default;
 		return false;
 	}
 }
