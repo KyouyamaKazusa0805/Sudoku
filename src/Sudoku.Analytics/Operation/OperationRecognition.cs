@@ -43,7 +43,7 @@ public static class OperationRecognition
 		var resultSteps = new List<Step>();
 		foreach (var s in stepRangeCollector.Collect(in previous))
 		{
-			if (([.. s.Conclusions] & conclusions) == conclusions)
+			if ((s.Conclusions.AsConclusionSet() & conclusions) == conclusions)
 			{
 				// Check whether the conclusion has already been deleted.
 				var anyConclusionsExist = false;
