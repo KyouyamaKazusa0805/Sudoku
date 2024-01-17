@@ -161,7 +161,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				}
 
 				var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out _);
-				var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit);
+				var step = new NakedSingleStep(
+					[new(Assignment, cell, digit)],
+					[[.. cellOffsets]],
+					context.PredefinedOptions,
+					cell,
+					digit,
+					GetNakedSingleSubtype(in grid, cell)
+				);
 				if (context.OnlyFindOne)
 				{
 					context.PreviousSetDigit = digit;
@@ -202,6 +209,71 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		}
 
 		return null;
+	}
+
+
+	/// <summary>
+	/// Get subtype of the hidden single.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="house">Indicates the house.</param>
+	/// <param name="chosenCells">The chosen cells.</param>
+	/// <returns>The subtype of the hidden single.</returns>
+	private static SingleSubtype GetHiddenSingleSubtype(scoped ref readonly Grid grid, Cell cell, House house, scoped ref readonly CellMap chosenCells)
+	{
+		scoped ref readonly var houseCells = ref HousesMap[house];
+		var (b, r, c) = (0, 0, 0);
+		foreach (var chosenCell in chosenCells)
+		{
+			foreach (var houseType in HouseTypes)
+			{
+				if (HousesMap[chosenCell.ToHouseIndex(houseType)] & houseCells)
+				{
+					(houseType == HouseType.Block ? ref b : ref houseType == HouseType.Row ? ref r : ref c)++;
+					break;
+				}
+			}
+		}
+
+		return Enum.Parse<SingleSubtype>(
+			house switch
+			{
+				>= 0 and < 9 => $"{HouseType.Block}HiddenSingle0{r}{c}",
+				>= 9 and < 18 => $"{HouseType.Row}HiddenSingle{b}0{c}",
+				>= 18 and < 27 => $"{HouseType.Column}HiddenSingle{b}{r}0"
+			}
+		);
+	}
+
+	/// <summary>
+	/// Get subtype of the naked single.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The subtype of the naked single.</returns>
+	private static SingleSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
+	{
+		var valuesCountInBlock = 0;
+		foreach (var c in HousesMap[cell.ToHouseIndex(HouseType.Block)])
+		{
+			if (grid.GetState(c) != CellState.Empty)
+			{
+				valuesCountInBlock++;
+			}
+		}
+		return valuesCountInBlock switch
+		{
+			0 => SingleSubtype.NakedSingle0,
+			1 => SingleSubtype.NakedSingle1,
+			2 => SingleSubtype.NakedSingle2,
+			3 => SingleSubtype.NakedSingle3,
+			4 => SingleSubtype.NakedSingle4,
+			5 => SingleSubtype.NakedSingle5,
+			6 => SingleSubtype.NakedSingle6,
+			7 => SingleSubtype.NakedSingle7,
+			_ => SingleSubtype.NakedSingle8
+		};
 	}
 
 	/// <summary>
@@ -341,7 +413,14 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 			var digit = TrailingZeroCount(mask);
 			var cellOffsets = GetNakedSingleExcluders(in grid, cell, digit, out _);
-			var step = new NakedSingleStep([new(Assignment, cell, digit)], [[.. cellOffsets]], context.PredefinedOptions, cell, digit);
+			var step = new NakedSingleStep(
+				[new(Assignment, cell, digit)],
+				[[.. cellOffsets]],
+				context.PredefinedOptions,
+				cell,
+				digit,
+				GetNakedSingleSubtype(in grid, cell)
+			);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -422,13 +501,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			(true, >= 9) => null,
 			(true, _) => new LastDigitStep(
 				[new(Assignment, resultCell, digit)],
-				[
-					[
-						.. enableAndIsLastDigit ? cellOffsets : [],
-						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
-						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-					]
-				],
+				[[.. cellOffsets]],
 				context.PredefinedOptions,
 				resultCell,
 				digit,
@@ -438,16 +511,16 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				[new(Assignment, resultCell, digit)],
 				[
 					[
-						.. enableAndIsLastDigit ? cellOffsets : [],
-						.. enableAndIsLastDigit ? [] : GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
-						.. enableAndIsLastDigit ? [] : (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
+						.. GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
+						.. (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
 					]
 				],
 				context.PredefinedOptions,
 				resultCell,
 				digit,
 				house,
-				enableAndIsLastDigit
+				enableAndIsLastDigit,
+				GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells)
 			)
 		};
 	}

@@ -9609,6 +9609,24 @@ if (student is (name: var name, age: >= 18))
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Get subtype of the hidden single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">Indicates the house.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>The subtype of the hidden single.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Get subtype of the naked single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The subtype of the naked single.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>
             Check for full houses.
@@ -16655,8 +16673,9 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
+            <param name="subtype"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Concepts.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
@@ -16670,6 +16689,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
+            <param name="subtype"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -16721,8 +16741,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -16731,6 +16752,7 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -16747,8 +16769,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>
             <param name="digit">Indicates the digit used.</param>
+            <param name="subtype">Indicates the subtype of the technique.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -16757,6 +16780,7 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>
             <param name="digit">Indicates the digit used.</param>
+            <param name="subtype">Indicates the subtype of the technique.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
             <summary>
@@ -16766,6 +16790,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SingleStep.Subtype">
+            <summary>
+            The generated property declaration for parameter <c>subtype</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
@@ -19297,6 +19326,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.SingleSubtype">
+            <summary>
+            Represents a subtype of the single technique.
+            </summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

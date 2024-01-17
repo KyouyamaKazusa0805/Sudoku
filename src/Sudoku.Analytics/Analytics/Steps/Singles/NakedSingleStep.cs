@@ -8,13 +8,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
+/// <param name="subtype"><inheritdoc/></param>
 public sealed partial class NakedSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	Cell cell,
-	Digit digit
-) : SingleStep(conclusions, views, options, cell, digit)
+	Digit digit,
+	SingleSubtype subtype
+) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;

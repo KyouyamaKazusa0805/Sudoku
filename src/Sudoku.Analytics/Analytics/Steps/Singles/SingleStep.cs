@@ -8,10 +8,12 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cell">Indicates the cell used.</param>
 /// <param name="digit">Indicates the digit used.</param>
+/// <param name="subtype">Indicates the subtype of the technique.</param>
 public abstract partial class SingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[RecordParameter] Cell cell,
-	[RecordParameter] Digit digit
+	[RecordParameter] Digit digit,
+	[RecordParameter] SingleSubtype subtype
 ) : Step(conclusions, views, options);

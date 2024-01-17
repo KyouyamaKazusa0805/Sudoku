@@ -16,7 +16,19 @@ public sealed partial class FullHouseStep(
 	[RecordParameter] House house,
 	Cell cell,
 	Digit digit
-) : SingleStep(conclusions, views, options, cell, digit)
+) : SingleStep(
+	conclusions,
+	views,
+	options,
+	cell,
+	digit,
+	house switch
+	{
+		< 9 => SingleSubtype.FullHouseBlock,
+		>= 9 and < 18 => SingleSubtype.FullHouseRow,
+		_ => SingleSubtype.FullHouseColumn
+	}
+)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 1.0M;

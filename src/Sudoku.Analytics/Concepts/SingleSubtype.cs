@@ -1,0 +1,62 @@
+#pragma warning disable CS1591
+
+namespace Sudoku.Concepts;
+
+/// <summary>
+/// Represents a subtype of the single technique.
+/// </summary>
+public enum SingleSubtype
+{
+	FullHouseBlock,
+	FullHouseRow,
+	FullHouseColumn,
+	LastDigit,
+	BlockHiddenSingle000,
+	BlockHiddenSingle011,
+	BlockHiddenSingle010,
+	BlockHiddenSingle001,
+	BlockHiddenSingle002,
+	BlockHiddenSingle020,
+	BlockHiddenSingle021,
+	BlockHiddenSingle012,
+	BlockHiddenSingle022,
+	RowHiddenSingle000,
+	RowHiddenSingle001,
+	RowHiddenSingle002,
+	RowHiddenSingle100,
+	RowHiddenSingle101,
+	RowHiddenSingle003,
+	RowHiddenSingle102,
+	RowHiddenSingle004,
+	RowHiddenSingle103,
+	RowHiddenSingle104,
+	RowHiddenSingle005,
+	RowHiddenSingle006,
+	RowHiddenSingle200,
+	RowHiddenSingle201,
+	RowHiddenSingle202,
+	ColumnHiddenSingle000,
+	ColumnHiddenSingle010,
+	ColumnHiddenSingle020,
+	ColumnHiddenSingle100,
+	ColumnHiddenSingle110,
+	ColumnHiddenSingle030,
+	ColumnHiddenSingle120,
+	ColumnHiddenSingle040,
+	ColumnHiddenSingle130,
+	ColumnHiddenSingle050,
+	ColumnHiddenSingle060,
+	ColumnHiddenSingle140,
+	ColumnHiddenSingle200,
+	ColumnHiddenSingle210,
+	ColumnHiddenSingle220,
+	NakedSingle0,
+	NakedSingle1,
+	NakedSingle2,
+	NakedSingle3,
+	NakedSingle4,
+	NakedSingle5,
+	NakedSingle6,
+	NakedSingle7,
+	NakedSingle8
+}

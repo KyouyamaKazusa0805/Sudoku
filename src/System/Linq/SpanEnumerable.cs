@@ -286,12 +286,12 @@ public static class SpanEnumerable
 		return copied;
 	}
 
-	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
-	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this)
 		{
-			if (condition(element))
+			if (predicate(element))
 			{
 				return element;
 			}
