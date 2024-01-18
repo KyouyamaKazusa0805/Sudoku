@@ -638,6 +638,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
             <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
         </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory">
+            <summary>
+            Indicates the maximum rating value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueFact">
+            <summary>
+            Indicates the maximum rating value in theory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerResult.MinimumRatingValue">
+            <summary>
+            Indicates the minimum rating value.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.AnalyzerResult.DefaultOptions">
             <summary>
             Indicates the default options.
@@ -706,9 +721,11 @@ if (student is (name: var name, age: >= 18))
             <remarks>
             When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>,
             the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
-            or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>.
+            or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>,
+            equal to <see cref="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory"/>.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.TotalDifficulty">
             <summary>
