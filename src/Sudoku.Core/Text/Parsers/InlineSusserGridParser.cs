@@ -19,6 +19,12 @@ public sealed partial record InlineSusserGridParser(bool NegateEliminationsTripl
 	private const string EmptyString = "";
 
 
+	/// <summary>
+	/// Indicates the internal digits parser.
+	/// </summary>
+	private static readonly Func<string, Mask> DigitParser = new RxCyParser().DigitParser;
+
+
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser
 		=> str =>
@@ -53,21 +59,21 @@ public sealed partial record InlineSusserGridParser(bool NegateEliminationsTripl
 					}
 					case ['[', .. var digitsStr, ']']:
 					{
-						var candidates = new HodokuTripletParser().Parser(digitsStr);
+						var digits = DigitParser(digitsStr);
 						if (!NegateEliminationsTripletRule)
 						{
 							// This applies for normal rule - removing candidates marked.
-							foreach (var candidate in candidates)
+							foreach (var digit in digits)
 							{
 								// Set the candidate with false to eliminate the candidate.
-								result.SetExistence(candidate / 9, candidate % 9, false);
+								result.SetExistence(cell, digit, false);
 							}
 						}
 						else
 						{
 							// If negate candidates, we should remove all possible candidates from all empty cells, making the grid invalid firstly.
 							// Then we should add candidates onto the grid to make the grid valid.
-							result[cell] = (Mask)(Grid.EmptyMask | candidates.GetDigitsFor(cell));
+							result[cell] = (Mask)(Grid.EmptyMask | digits);
 						}
 						break;
 					}

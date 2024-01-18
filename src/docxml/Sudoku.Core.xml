@@ -9474,6 +9474,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the empty string.
             </summary>
         </member>
+        <member name="F:Sudoku.Text.Parsers.InlineSusserGridParser.DigitParser">
+            <summary>
+            Indicates the internal digits parser.
+            </summary>
+        </member>
         <member name="P:Sudoku.Text.Parsers.InlineSusserGridParser.Parser">
             <inheritdoc/>
         </member>
