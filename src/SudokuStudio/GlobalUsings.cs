@@ -24,6 +24,7 @@ global using CommunityToolkit.WinUI;
 global using Expressive.Exceptions;
 global using Microsoft.Graphics.Canvas.Text;
 global using Microsoft.UI;
+global using Microsoft.UI.Composition;
 global using Microsoft.UI.Composition.SystemBackdrops;
 global using Microsoft.UI.Input;
 global using Microsoft.UI.Text;

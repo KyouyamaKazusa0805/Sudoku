@@ -1,3 +1,5 @@
+#define NATURAL_MOTION_COMPOSITION
+
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>
@@ -91,27 +93,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Default]
 	private static readonly Color GivenColorDefaultValue = Colors.Black;
-
-	[Default]
-	private static readonly Color GivenColor_LightDefaultValue = Colors.Black;
-
-	[Default]
-	private static readonly Color GivenColor_DarkDefaultValue = Colors.White;
-
-	[Default]
-	private static readonly Color ModifiableFontColorDefaultValue = Colors.Blue;
-
-	[Default]
-	private static readonly Color PencilmarkFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
-
-	[Default]
-	private static readonly Color BabaGroupingFontColorDefaultValue = Colors.Red;
-
-	[Default]
-	private static readonly Color CoordinateLabelFontColorDefaultValue = Color.FromArgb(255, 100, 100, 100);
-
-	[Default]
-	private static readonly Color DeltaValueColorDefaultValue = Colors.Red;
 
 	[Default]
 	private static readonly Color DeltaCandidateColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
@@ -263,6 +244,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <b>Please do not modify any elements in this array.</b>
 	/// </remarks>
 	internal SudokuPaneCell[] _children;
+
+#if NATURAL_MOTION_COMPOSITION
+	/// <summary>
+	/// Indicates the internal compositor.
+	/// </summary>
+	private readonly Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
+
+	/// <summary>
+	/// Indicates the spring animation.
+	/// </summary>
+	private SpringVector3NaturalMotionAnimation? _springAnimation;
+#endif
 
 
 	/// <summary>
@@ -502,6 +495,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		HouseCompleted += static (sender, e) => sender.OnHouseCompletedAsync(e);
+		Clicked += static (sender, e) => sender.ValueClicked(e.Cell);
 	}
 
 	/// <summary>
@@ -521,6 +515,57 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			await Task.Delay(100);
 		}
 	}
+
+#if NATURAL_MOTION_COMPOSITION
+	/// <summary>
+	/// Update scaling for <see cref="SudokuPaneCell"/> controls where the corresponding cell is value.
+	/// </summary>
+	/// <param name="cell">The cell to be checked.</param>
+	private void ValueClicked(Cell cell)
+	{
+		if (_puzzle.GetDigit(cell) is not (var digit and not -1))
+		{
+			return;
+		}
+
+		for (var c = 0; c < 81; c++)
+		{
+			if (_puzzle.GetDigit(c) == digit && _children[c] is { ValueTextBlock: var textBlock })
+			{
+				if (textBlock.Scale is { X: 1.0F, Y: 1.0F, Z: 1.0F })
+				{
+					// Scale up to 1.5.
+					CreateOrUpdateSpringAnimation(1.5F, .2F);
+					textBlock.StartAnimation(_springAnimation);
+				}
+				else
+				{
+					// Scale up to 1.0.
+					CreateOrUpdateSpringAnimation(1.0F, .2F);
+					textBlock.StartAnimation(_springAnimation);
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Create or update spring animation.
+	/// </summary>
+	/// <param name="finalValue">The value to be set. The value will be used for scaling the control.</param>
+	/// <param name="dampingRatio">The value indicating how much damping is applied to the spring.</param>
+	[MemberNotNull(nameof(_springAnimation))]
+	private void CreateOrUpdateSpringAnimation(float finalValue, float dampingRatio)
+	{
+		if (_springAnimation is null)
+		{
+			_springAnimation = _compositor.CreateSpringVector3Animation();
+			_springAnimation.Target = nameof(Scale);
+		}
+
+		_springAnimation.FinalValue = new(finalValue);
+		_springAnimation.DampingRatio = dampingRatio;
+	}
+#endif
 
 	/// <summary>
 	/// To initialize <see cref="_children"/> values via the specified grid.
@@ -840,7 +885,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 

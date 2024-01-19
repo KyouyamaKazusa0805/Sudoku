@@ -10631,6 +10631,16 @@ if (student is (name: var name, age: >= 18))
             <b>Please do not modify any elements in this array.</b>
             </remarks>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._compositor">
+            <summary>
+            Indicates the internal compositor.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._springAnimation">
+            <summary>
+            Indicates the spring animation.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance.
@@ -10781,6 +10791,19 @@ if (student is (name: var name, age: >= 18))
             The default handler that is used by <see cref="E:SudokuStudio.Views.Controls.SudokuPane.HouseCompleted"/> event.
             </summary>
             <param name="e">The event arguments.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.ValueClicked(System.Int32)">
+            <summary>
+            Update scaling for <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> controls where the corresponding cell is value.
+            </summary>
+            <param name="cell">The cell to be checked.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.CreateOrUpdateSpringAnimation(System.Single,System.Single)">
+            <summary>
+            Create or update spring animation.
+            </summary>
+            <param name="finalValue">The value to be set. The value will be used for scaling the control.</param>
+            <param name="dampingRatio">The value indicating how much damping is applied to the spring.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.UpdateCellData(Sudoku.Concepts.Grid@)">
             <summary>

@@ -26,8 +26,8 @@
 		<!--Values-->
 		<Border x:Name="ValueSurrounder" Grid.RowSpan="3" Grid.ColumnSpan="3" BorderThickness="0">
 			<TextBlock
-				x:Name="ValueTextBlock" Style="{StaticResource TextBlockStyle}" HorizontalTextAlignment="Center" TextAlignment="Center"
-				HorizontalAlignment="Center" VerticalAlignment="Center"
+				x:Name="ValueTextBlock" x:FieldModifier="internal" HorizontalTextAlignment="Center" TextAlignment="Center"
+				Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
 				FontFamily="{x:Bind cvt:SudokuGridConversion.GetFont(BasePane.GivenFont,BasePane.ModifiableFont,State),Mode=OneWay}"
 				Text="{x:Bind cvt:ValueTextConversion.GetText(State,CandidatesMask),Mode=OneWay}"
 				Foreground="{x:Bind cvt:ValueTextConversion.GetValueFontColor(BasePane.Puzzle,BasePane.Solution,CellIndex,CandidatesMask,BasePane.ModifiableColor,BasePane.GivenColor,BasePane.DeltaCellColor,BasePane.UseDifferentColorToDisplayDeltaDigits),Mode=OneWay}"
