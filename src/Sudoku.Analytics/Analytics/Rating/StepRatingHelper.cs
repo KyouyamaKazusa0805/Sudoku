@@ -4,8 +4,25 @@ namespace Sudoku.Analytics.Rating;
 /// The helper type that calculates for <see cref="Step"/> instances.
 /// </summary>
 /// <see cref="Step"/>
-internal static unsafe class StepRatingHelper
+internal static class StepRatingHelper
 {
+	/// <summary>
+	/// Get extra difficulty rating for a chain node sequence.
+	/// </summary>
+	/// <param name="length">The length.</param>
+	/// <returns>The difficulty.</returns>
+	public static decimal GetExtraDifficultyByLength(int length)
+	{
+		var result = 0M;
+		for (var (isOdd, ceil) = (false, 4); length > ceil; isOdd = !isOdd)
+		{
+			result += .1M;
+			ceil = isOdd ? ceil * 4 / 3 : ceil * 3 / 2;
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
 	/// </summary>
@@ -16,14 +33,14 @@ internal static unsafe class StepRatingHelper
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	public static decimal EvaluateUnsafe(Step[]? steps, delegate*<Step[], delegate*<Step, decimal>, decimal> executor, decimal d)
+	internal static unsafe decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluator executor, decimal d)
 	{
 		static decimal f(Step step) => step.Difficulty;
 		return steps is null ? d : executor(steps, &f);
 	}
 
 	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
-	public static decimal MaxUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
+	internal static unsafe decimal MaxUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
 	{
 		var result = decimal.MinValue;
 		foreach (var element in collection)
@@ -39,7 +56,7 @@ internal static unsafe class StepRatingHelper
 	}
 
 	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
-	public static decimal SumUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
+	internal static unsafe decimal SumUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
 	{
 		var result = 0M;
 		foreach (var element in collection)

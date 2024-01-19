@@ -19,7 +19,7 @@ public sealed partial class BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Length, ChainDifficultyRating.GetExtraDifficultyByLength(ContradictionLinks.Length))];
+		=> [new(ExtraDifficultyFactorNames.Length, StepRatingHelper.GetExtraDifficultyByLength(ContradictionLinks.Length))];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;

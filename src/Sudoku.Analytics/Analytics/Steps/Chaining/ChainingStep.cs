@@ -173,7 +173,7 @@ public abstract partial class ChainingStep(
 	/// <summary>
 	/// Indicates the difficulty rating of the current step, which binds with length factor.
 	/// </summary>
-	private decimal LengthDifficulty => ChainDifficultyRating.GetExtraDifficultyByLength(Complexity - 2);
+	private decimal LengthDifficulty => StepRatingHelper.GetExtraDifficultyByLength(Complexity - 2);
 
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.

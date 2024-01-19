@@ -63,3 +63,4 @@ global using unsafe SymmetricalPlacementCheckerFunc = delegate*<ref readonly Sud
 global using unsafe CollectorPredicateFunc = delegate*<ref readonly Sudoku.Concepts.CellMap, bool>;
 global using unsafe SingleModuleSearcherFunc = delegate*<Sudoku.Analytics.StepSearchers.SingleStepSearcher, ref Sudoku.Analytics.AnalysisContext, ref readonly Sudoku.Concepts.Grid, Sudoku.Analytics.Step?>;
 global using unsafe AnitGurthSymmetricalPlacementModuleSearcherFunc = delegate*<ref readonly Sudoku.Concepts.Grid, ref Sudoku.Analytics.AnalysisContext, Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep?>;
+global using unsafe StepRatingEvaluator = delegate*<Sudoku.Analytics.Step[], delegate*<Sudoku.Analytics.Step, decimal>, decimal>;

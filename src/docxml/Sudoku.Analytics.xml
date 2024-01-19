@@ -4532,18 +4532,6 @@ if (student is (name: var name, age: >= 18))
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.ChainDifficultyRating">
-            <summary>
-            Represents a type that calculates for chain difficulty.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.ChainDifficultyRating.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor">
             <summary>
             Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
@@ -4741,7 +4729,14 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <see cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.EvaluateUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.GetExtraDifficultyByLength(System.Int32)">
+            <summary>
+            Get extra difficulty rating for a chain node sequence.
+            </summary>
+            <param name="length">The length.</param>
+            <returns>The difficulty.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
             <summary>
             The inner executor to get the difficulty value (total, average).
             </summary>
