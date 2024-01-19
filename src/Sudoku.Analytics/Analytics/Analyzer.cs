@@ -87,24 +87,6 @@ public sealed partial class Analyzer :
 	private CultureInfo ResultCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 
-	/// <summary>
-	/// Represents an event that is triggered when a user has set <see cref="IsFullApplying"/> <see langword="true"/>,
-	/// and an analyzer will apply a list of steps.
-	/// </summary>
-	public event FullApplyingEventHandler<Analyzer, AnalyzerResult>? StepApplying;
-
-	/// <summary>
-	/// Represents an event that is triggered when a user has set <see cref="IsFullApplying"/> <see langword="true"/>,
-	/// and an analyzer has already applied a list of steps.
-	/// </summary>
-	public event FullAppliedEventHandler<Analyzer, AnalyzerResult>? StepApplied;
-
-	/// <summary>
-	/// Represents an event that is triggered when an exception is thrown while the analysis module is running.
-	/// </summary>
-	public event ExceptionThrownEventHandler<Analyzer, AnalyzerResult>? ExceptionThrown;
-
-
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
@@ -136,8 +118,6 @@ public sealed partial class Analyzer :
 			}
 			catch (Exception ex)
 			{
-				ExceptionThrown?.Invoke(this, new(ex));
-
 				return ex switch
 				{
 					NotImplementedException or NotSupportedException
@@ -322,8 +302,6 @@ public sealed partial class Analyzer :
 						}
 						else
 						{
-							StepApplying?.Invoke(this, new([.. accumulator]));
-
 							foreach (var foundStep in accumulator)
 							{
 								if (!verifyConclusionValidity(in solution, foundStep))
@@ -338,8 +316,6 @@ public sealed partial class Analyzer :
 									return result;
 								}
 							}
-
-							StepApplied?.Invoke(this, new([.. accumulator]));
 						}
 
 						// The puzzle has not been finished, we should turn to the first step finder
