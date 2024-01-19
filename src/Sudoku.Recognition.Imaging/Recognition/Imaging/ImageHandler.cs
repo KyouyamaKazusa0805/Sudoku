@@ -1,4 +1,4 @@
-namespace Sudoku.Recognition;
+namespace Sudoku.Recognition.Imaging;
 
 /// <summary>
 /// Provides extension methods on <see cref="Bitmap"/>.
@@ -304,7 +304,7 @@ public static class ImageHandler
 	{
 		var data = bmp.LockBits(new(Point.Empty, bmp.Size), ImageLockMode.ReadOnly, bmp.PixelFormat);
 		using var mat = new Matrix<TDepth>(bmp.Height, bmp.Width, image.NumberOfChannels, data.Scan0, data.Stride);
-		CvInvoke.cvCopy(mat.Ptr, image.Ptr, (nint)0);
+		CvInvoke.cvCopy(mat.Ptr, image.Ptr, 0);
 		bmp.UnlockBits(data);
 	}
 }

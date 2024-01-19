@@ -1,4 +1,4 @@
-namespace Sudoku.Recognition;
+namespace Sudoku.Recognition.Imaging;
 
 /// <summary>
 /// Define a recognizer.
