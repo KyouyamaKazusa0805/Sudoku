@@ -1,4 +1,4 @@
-namespace Sudoku.Recording;
+namespace Sudoku.Recognition.Behaviors;
 
 /// <summary>
 /// Represents a type that stores a list of methods that can recognize users' operation.

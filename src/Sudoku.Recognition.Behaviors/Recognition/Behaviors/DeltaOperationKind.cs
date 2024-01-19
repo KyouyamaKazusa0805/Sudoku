@@ -1,4 +1,4 @@
-namespace Sudoku.Recording;
+namespace Sudoku.Recognition.Behaviors;
 
 /// <summary>
 /// Provides with a kind of difference of candidates.

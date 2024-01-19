@@ -6046,67 +6046,6 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Recording.CandidateDelta">
-            <summary>
-            Read from two <see cref="T:Sudoku.Concepts.Grid"/> instances, and analyzes difference of candidates between those two.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Recording.CandidateDelta.TryGetDelta(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Recording.DeltaOperationKind@)">
-            <summary>
-            Try to get difference of candidates between two grids.
-            </summary>
-            <param name="previous">The previous grid to be checked.</param>
-            <param name="current">The current grid to be checked.</param>
-            <param name="deltaCandidates">The difference candidates.</param>
-            <param name="deltaKind">The difference kind.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is successful.</returns>
-        </member>
-        <member name="T:Sudoku.Recording.DeltaOperationKind">
-            <summary>
-            Provides with a kind of difference of candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.None">
-            <summary>
-            Indicates the difference kind is none.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.Assignment">
-            <summary>
-            Indicates the difference kind is assignment.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.Replacement">
-            <summary>
-            Indicates the difference kind is replacement.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.InitialPencilmarking">
-            <summary>
-            Indicates the difference kind is initialize appending candidates.
-            </summary>
-            <remarks>
-            This operation is reserved one, describing a user desires to start marking candidates.
-            From the algorithm, if a user append a candidate at the first time, we should initialize the environment,
-            removing all candidates that this user doesn't add.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.Appending">
-            <summary>
-            Indicates the difference kind is appending candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.Elimination">
-            <summary>
-            Indicates the difference kind is elimination.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recording.DeltaOperationKind.Unknown">
-            <summary>
-            Indicates the difference kind is unknown.
-            </summary>
-        </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.

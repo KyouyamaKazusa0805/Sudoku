@@ -1,4 +1,4 @@
-namespace Sudoku.Recording;
+namespace Sudoku.Recognition.Behaviors;
 
 /// <summary>
 /// Read from two <see cref="Grid"/> instances, and analyzes difference of candidates between those two.
