@@ -848,6 +848,17 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/>
             <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.Equals(Sudoku.Analytics.AnalyzerResult)">
+            <inheritdoc/>
+            <remarks>
+            <b>This method only checks for initial grid puzzle.</b>
+            This is by design: We only check for grids between two <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instances,
+            because the target value will be same if the base grid are same.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
             <inheritdoc/>
         </member>

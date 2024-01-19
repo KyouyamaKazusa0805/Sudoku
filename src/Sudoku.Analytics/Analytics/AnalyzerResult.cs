@@ -259,6 +259,19 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <b>This method only checks for initial grid puzzle.</b>
+	/// This is by design: We only check for grids between two <see cref="AnalyzerResult"/> instances,
+	/// because the target value will be same if the base grid are same.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] AnalyzerResult? other) => other is not null && Puzzle == other.Puzzle;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => Puzzle.GetHashCode();
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(DefaultOptions, GlobalizedConverter.InvariantCultureConverter);
 
