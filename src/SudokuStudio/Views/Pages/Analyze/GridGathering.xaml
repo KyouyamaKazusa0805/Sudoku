@@ -8,15 +8,19 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:GridGathering}">
+	<Page.Resources>
+		<ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
+	</Page.Resources>
+
 	<ScrollViewer>
-		<StackPanel Spacing="6">
+		<StackPanel>
 			<Button
 				x:Name="GatherButton" x:FieldModifier="internal" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
-				Click="GatherButton_ClickAsync" />
-			<StackPanel Orientation="Horizontal" Spacing="4">
+				Margin="0,0,0,3" Click="GatherButton_ClickAsync" />
+			<StackPanel Orientation="Horizontal">
 				<TextBox
 					x:Name="StepGatheringTextBox" Width="300" PlaceholderText="{m:R Key=AnalyzePage_SearchAllSteps}"
-					TextChanged="StepGatheringTextBox_TextChanged" />
+					VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="StepGatheringTextBox_TextChanged" />
 				<Button
 					Content="{m:R Key=AnalyzePage_FilterGatheredSteps}"
 					Click="FilterGatheredStepsButton_Click" />
