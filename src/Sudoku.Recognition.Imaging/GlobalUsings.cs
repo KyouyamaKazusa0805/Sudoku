@@ -13,4 +13,4 @@ global using Emgu.CV.OCR;
 global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.Concepts;
-global using static Sudoku.SolutionWideReadOnlyFields;
+global using static Sudoku.SolutionFields;

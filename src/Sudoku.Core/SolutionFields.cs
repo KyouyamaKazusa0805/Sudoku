@@ -3,7 +3,7 @@ namespace Sudoku;
 /// <summary>
 /// Provides with solution-wide read-only fields used.
 /// </summary>
-public static class SolutionWideReadOnlyFields
+public static class SolutionFields
 {
 	/// <summary>
 	/// Indicates the invalid fallback value
@@ -264,7 +264,7 @@ public static class SolutionWideReadOnlyFields
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static SolutionWideReadOnlyFields()
+	static SolutionFields()
 	{
 		PeersMap = new CellMap[81];
 		for (var i = 0; i < 81; i++)

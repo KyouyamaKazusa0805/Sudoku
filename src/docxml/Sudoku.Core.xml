@@ -2389,9 +2389,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the covered line.
             </summary>
             <remarks>
-            If the covered house can't be found, it'll return <see cref="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback"/>.
+            If the covered house can't be found, it'll return <see cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>.
             </remarks>
-            <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback"/>
+            <seealso cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Count">
             <inheritdoc/>
@@ -2432,9 +2432,9 @@ if (student is (name: var name, age: >= 18))
             An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
             appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
             this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
-            where the member <c>PeersMap</c> corresponds to the array <see cref="F:Sudoku.SolutionWideReadOnlyFields.PeersMap"/>.
+            where the member <c>PeersMap</c> corresponds to the array <see cref="F:Sudoku.SolutionFields.PeersMap"/>.
             </remarks>
-            <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.PeersMap"/>
+            <seealso cref="F:Sudoku.SolutionFields.PeersMap"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
@@ -7894,12 +7894,12 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The mask instance to be split.</param>
             <returns>A triplet of values.</returns>
         </member>
-        <member name="T:Sudoku.SolutionWideReadOnlyFields">
+        <member name="T:Sudoku.SolutionFields">
             <summary>
             Provides with solution-wide read-only fields used.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallback">
+        <member name="F:Sudoku.SolutionFields.TrailingZeroCountFallback">
             <summary>
             Indicates the invalid fallback value
             of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>,
@@ -7914,7 +7914,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.TrailingZeroCountFallbackLong">
+        <member name="F:Sudoku.SolutionFields.TrailingZeroCountFallbackLong">
             <summary>
             Indicates the invalid fallback value
             of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>,
@@ -7929,12 +7929,12 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.HouseFirst">
+        <member name="F:Sudoku.SolutionFields.HouseFirst">
             <summary>
             Indicates the first cell offset for each house.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.Peers">
+        <member name="F:Sudoku.SolutionFields.Peers">
             <summary>
             <para>Indicates a table for each cell's peers.</para>
             </summary>
@@ -7942,7 +7942,7 @@ if (student is (name: var name, age: >= 18))
             '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
             </example>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.HouseCells">
+        <member name="F:Sudoku.SolutionFields.HouseCells">
             <summary>
             <para>
             The map of all cell offsets in its specified house.
@@ -7967,7 +7967,7 @@ if (student is (name: var name, age: >= 18))
             '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
             </example>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.HousesMap">
+        <member name="F:Sudoku.SolutionFields.HousesMap">
             <summary>
             Indicates all grid maps that a grid contains.
             </summary>
@@ -7975,48 +7975,48 @@ if (student is (name: var name, age: >= 18))
             '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
             </example>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.CellsMap">
+        <member name="F:Sudoku.SolutionFields.CellsMap">
             <summary>
             Indicates the map of length 81, indicating the <see cref="T:Sudoku.Concepts.CellMap"/> instances that only contain one cell.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.PeersMap">
+        <member name="F:Sudoku.SolutionFields.PeersMap">
             <summary>
-            Indicates the peer maps using <see cref="F:Sudoku.SolutionWideReadOnlyFields.Peers"/> table.
+            Indicates the peer maps using <see cref="F:Sudoku.SolutionFields.Peers"/> table.
             </summary>
-            <seealso cref="F:Sudoku.SolutionWideReadOnlyFields.Peers"/>
+            <seealso cref="F:Sudoku.SolutionFields.Peers"/>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.Chutes">
+        <member name="F:Sudoku.SolutionFields.Chutes">
             <summary>
             Indicates the chute maps.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.HouseTypes">
+        <member name="F:Sudoku.SolutionFields.HouseTypes">
             <summary>
             Indicates the possible house types to iterate.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.BlockTable">
+        <member name="F:Sudoku.SolutionFields.BlockTable">
             <summary>
             Indicates a block list that each cell belongs to.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.RowTable">
+        <member name="F:Sudoku.SolutionFields.RowTable">
             <summary>
             Indicates a row list that each cell belongs to.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.ColumnTable">
+        <member name="F:Sudoku.SolutionFields.ColumnTable">
             <summary>
             Indicates a column list that each cell belongs to.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionWideReadOnlyFields.ChuteHouses">
+        <member name="F:Sudoku.SolutionFields.ChuteHouses">
             <summary>
             Indicates the chute houses.
             </summary>
         </member>
-        <member name="M:Sudoku.SolutionWideReadOnlyFields.#cctor">
+        <member name="M:Sudoku.SolutionFields.#cctor">
             <static-constructor>
 		<summary>
 			<para>

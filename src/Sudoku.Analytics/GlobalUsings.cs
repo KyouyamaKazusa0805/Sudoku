@@ -54,7 +54,7 @@ global using static Sudoku.Analytics.CachedFields;
 global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.Rendering.RenderingMode;
-global using static Sudoku.SolutionWideReadOnlyFields;
+global using static Sudoku.SolutionFields;
 global using static Sudoku.Text.Languages;
 global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGroup<Sudoku.Concepts.CellMap, int /*Cell*/, int /*House*/>;
 global using unsafe SubsetModuleSearcherFunc = delegate*<ref Sudoku.Analytics.AnalysisContext, ref readonly Sudoku.Concepts.Grid, int, bool, Sudoku.Analytics.Step?>;
