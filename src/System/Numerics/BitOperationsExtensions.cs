@@ -14,19 +14,19 @@ public static partial class BitOperationsExtensions
 	public static partial ReadOnlySpan<int> GetAllSets(this uint @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this long @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this);
-	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nint @this);
-	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nuint @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this nint @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this nuint @this);
 
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this sbyte @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this byte @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this short @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ushort @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this int @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this uint @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this long @this);
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ulong @this);
-	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nint @this);
-	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nuint @this);
+	public static partial Int32Enumerator GetEnumerator(this sbyte @this);
+	public static partial Int32Enumerator GetEnumerator(this byte @this);
+	public static partial Int32Enumerator GetEnumerator(this short @this);
+	public static partial Int32Enumerator GetEnumerator(this ushort @this);
+	public static partial Int32Enumerator GetEnumerator(this int @this);
+	public static partial Int32Enumerator GetEnumerator(this uint @this);
+	public static partial Int64Enumerator GetEnumerator(this long @this);
+	public static partial Int64Enumerator GetEnumerator(this ulong @this);
+	public static partial NativeIntEnumerator GetEnumerator(this nint @this);
+	public static partial NativeIntEnumerator GetEnumerator(this nuint @this);
 
 	public static partial int GetNextSet(this byte @this, int index);
 	public static partial int GetNextSet(this short @this, int index);

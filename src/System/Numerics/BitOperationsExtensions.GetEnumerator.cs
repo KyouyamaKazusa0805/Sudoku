@@ -18,41 +18,41 @@ partial class BitOperationsExtensions
 	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this sbyte @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this sbyte @this) => new((uint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this byte @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this byte @this) => new(@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this short @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this short @this) => new((uint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ushort @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this ushort @this) => new(@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this int @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this int @this) => new((uint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this uint @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int32Enumerator GetEnumerator(this uint @this) => new(@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this long @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int64Enumerator GetEnumerator(this long @this) => new((ulong)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial ReadOnlySpan<int>.Enumerator GetEnumerator(this ulong @this) => @this.GetAllSets().GetEnumerator();
+	public static partial Int64Enumerator GetEnumerator(this ulong @this) => new(@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nint @this) => @this.GetAllSets().GetEnumerator();
+	public static partial NativeIntEnumerator GetEnumerator(this nint @this) => new((nuint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe partial ReadOnlySpan<int>.Enumerator GetEnumerator(this nuint @this) => @this.GetAllSets().GetEnumerator();
+	public static partial NativeIntEnumerator GetEnumerator(this nuint @this) => new(@this);
 }

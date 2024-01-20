@@ -175,44 +175,50 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nint @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this nint @this)
 	{
 		if (@this == 0)
 		{
 			return [];
 		}
 
-		var length = PopCount((nuint)@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(nint) << 3; i++, @this >>= 1)
+		unsafe
 		{
-			if ((@this & 1) != 0)
+			var length = PopCount((nuint)@this);
+			var result = new int[length];
+			for (byte i = 0, p = 0; i < sizeof(nint) << 3; i++, @this >>= 1)
 			{
-				result[p++] = i;
+				if ((@this & 1) != 0)
+				{
+					result[p++] = i;
+				}
 			}
-		}
 
-		return result;
+			return result;
+		}
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static unsafe partial ReadOnlySpan<int> GetAllSets(this nuint @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this nuint @this)
 	{
 		if (@this == 0)
 		{
 			return [];
 		}
 
-		var length = PopCount(@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(nuint) << 3; i++, @this >>= 1)
+		unsafe
 		{
-			if ((@this & 1) != 0)
+			var length = PopCount(@this);
+			var result = new int[length];
+			for (byte i = 0, p = 0; i < sizeof(nuint) << 3; i++, @this >>= 1)
 			{
-				result[p++] = i;
+				if ((@this & 1) != 0)
+				{
+					result[p++] = i;
+				}
 			}
-		}
 
-		return result;
+			return result;
+		}
 	}
 }
