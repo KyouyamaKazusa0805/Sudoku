@@ -1064,6 +1064,308 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>link</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute">
+            <summary>
+            Represents an attribute type that describes the related technique of a subtype.
+            </summary>
+            <param name="technique">Indicates the technique related.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.#ctor(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Represents an attribute type that describes the related technique of a subtype.
+            </summary>
+            <param name="technique">Indicates the technique related.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.Technique">
+            <summary>
+            The generated property declaration for parameter <c>technique</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleSubtype">
+            <summary>
+            Represents a subtype of the single technique set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseBlock">
+            <summary>
+            Indicates the subtype is Full House in Block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseRow">
+            <summary>
+            Indicates the subtype is Full House in Row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseColumn">
+            <summary>
+            Indicates the subtype is Full House in Column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.LastDigit">
+            <summary>
+            Indicates the subtype is Last Digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with no excluder values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle011">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (1 row + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle010">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle001">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle002">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle020">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle021">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 3 excluders (2 rows + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle012">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 3 excluders (1 row + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle022">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 4 excluders (2 rows + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with no excluders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle001">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle002">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluder (2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle100">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 block).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle101">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluders (1 block + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle003">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (3 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle102">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (1 block + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle004">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (4 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle103">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (1 block + 3 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle104">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 5 excluders (1 block + 4 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle005">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 5 excluders (5 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle006">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle200">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle201">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle202">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with no excluders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle010">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle020">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle100">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 block).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle110">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (1 block + 1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle030">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (3 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle120">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (1 block + 2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle040">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (4 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle130">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (1 block + 3 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle050">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 5 excluders (5 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle060">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle140">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle200">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle210">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle220">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle0">
+            <summary>
+            Indicates the subtype is Naked Single, with no values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle1">
+            <summary>
+            Indicates the subtype is Naked Single, with 1 value in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle2">
+            <summary>
+            Indicates the subtype is Naked Single, with 2 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle3">
+            <summary>
+            Indicates the subtype is Naked Single, with 3 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle4">
+            <summary>
+            Indicates the subtype is Naked Single, with 4 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle5">
+            <summary>
+            Indicates the subtype is Naked Single, with 5 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle6">
+            <summary>
+            Indicates the subtype is Naked Single, with 6 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle7">
+            <summary>
+            Indicates the subtype is Naked Single, with 7 values in the target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle8">
+            <summary>
+            Indicates the subtype is Naked Single, with 8 values in the target block.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Indicates whether the specified subtype is unnecessary in practice.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Try to get the related technique of the current subtype.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>The related technique instance.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.SupportSiameseAttribute">
             <summary>
             Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
@@ -16633,7 +16935,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="subtype"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Concepts.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
@@ -16701,7 +17003,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -16729,7 +17031,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">Indicates the digit used.</param>
             <param name="subtype">Indicates the subtype of the technique.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Single</b> technique.
             </summary>
@@ -19200,271 +19502,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.SingleSubtype">
-            <summary>
-            Represents a subtype of the single technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.FullHouseBlock">
-            <summary>
-            Indicates the subtype is Full House in Block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.FullHouseRow">
-            <summary>
-            Indicates the subtype is Full House in Row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.FullHouseColumn">
-            <summary>
-            Indicates the subtype is Full House in Column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.LastDigit">
-            <summary>
-            Indicates the subtype is Last Digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with no excluder values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle011">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (1 row + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle010">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle001">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle002">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle020">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle021">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 3 excluders (2 rows + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle012">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 3 excluders (1 row + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.BlockHiddenSingle022">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 4 excluders (2 rows + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with no excluders.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle001">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle002">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluder (2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle100">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 block).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle101">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluders (1 block + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle003">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (3 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle102">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (1 block + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle004">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (4 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle103">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (1 block + 3 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle104">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 5 excluders (1 block + 4 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle005">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 5 excluders (5 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle006">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle200">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle201">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.RowHiddenSingle202">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with no excluders.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle010">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle020">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle100">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 block).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle110">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (1 block + 1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle030">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (3 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle120">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (1 block + 2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle040">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (4 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle130">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (1 block + 3 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle050">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 5 excluders (5 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle060">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle140">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle200">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle210">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.ColumnHiddenSingle220">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle0">
-            <summary>
-            Indicates the subtype is Naked Single, with no values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle1">
-            <summary>
-            Indicates the subtype is Naked Single, with 1 value in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle2">
-            <summary>
-            Indicates the subtype is Naked Single, with 2 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle3">
-            <summary>
-            Indicates the subtype is Naked Single, with 3 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle4">
-            <summary>
-            Indicates the subtype is Naked Single, with 4 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle5">
-            <summary>
-            Indicates the subtype is Naked Single, with 5 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle6">
-            <summary>
-            Indicates the subtype is Naked Single, with 6 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle7">
-            <summary>
-            Indicates the subtype is Naked Single, with 7 values in the target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SingleSubtype.NakedSingle8">
-            <summary>
-            Indicates the subtype is Naked Single, with 8 values in the target block.
-            </summary>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
