@@ -1,5 +1,3 @@
-#define NATURAL_MOTION_COMPOSITION
-
 namespace SudokuStudio.Views.Controls;
 
 /// <summary>
@@ -245,7 +243,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </remarks>
 	internal SudokuPaneCell[] _children;
 
-#if NATURAL_MOTION_COMPOSITION
 	/// <summary>
 	/// Indicates the internal compositor.
 	/// </summary>
@@ -255,7 +252,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the spring animation.
 	/// </summary>
 	private SpringVector3NaturalMotionAnimation? _springAnimation;
-#endif
 
 
 	/// <summary>
@@ -494,8 +490,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			(_redoStack = []).Changed += _ => PropertyChanged?.Invoke(this, new(nameof(_redoStack)));
 		}
 
-		HouseCompleted += static (sender, e) => sender.OnHouseCompletedAsync(e);
-		Clicked += static (sender, e) => { if (sender.CurrentPaneMode == PaneMode.Normal) { sender.ValueClicked(e.Cell); } };
+		if (EnableAnimationFeedback)
+		{
+			HouseCompleted += static (sender, e) => sender.OnHouseCompletedAsync(e);
+			Clicked += static (sender, e) => { if (sender.CurrentPaneMode == PaneMode.Normal) { sender.ValueClicked(e.Cell); } };
+		}
 	}
 
 	/// <summary>
@@ -516,7 +515,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-#if NATURAL_MOTION_COMPOSITION
 	/// <summary>
 	/// Update scaling for <see cref="SudokuPaneCell"/> controls where the corresponding cell is value.
 	/// </summary>
@@ -581,7 +579,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		_springAnimation.FinalValue = new(finalValue);
 		_springAnimation.DampingRatio = dampingRatio;
 	}
-#endif
 
 	/// <summary>
 	/// To initialize <see cref="_children"/> values via the specified grid.
@@ -654,7 +651,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		ViewUnit = null;
 
 		// Reset scale.
-		ResetScale();
+		if (EnableAnimationFeedback)
+		{
+			ResetScale();
+		}
 
 		// Triggers the event.
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
