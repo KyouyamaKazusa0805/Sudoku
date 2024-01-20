@@ -495,7 +495,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		HouseCompleted += static (sender, e) => sender.OnHouseCompletedAsync(e);
-		Clicked += static (sender, e) => sender.ValueClicked(e.Cell);
+		Clicked += static (sender, e) => { if (sender.CurrentPaneMode == PaneMode.Normal) { sender.ValueClicked(e.Cell); } };
 	}
 
 	/// <summary>
@@ -535,15 +535,31 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				if (textBlock.Scale is { X: 1.0F, Y: 1.0F, Z: 1.0F })
 				{
 					// Scale up to 1.5.
-					CreateOrUpdateSpringAnimation(1.5F, .2F);
+					CreateOrUpdateSpringAnimation(1.6F, .4F);
 					textBlock.StartAnimation(_springAnimation);
 				}
 				else
 				{
 					// Scale up to 1.0.
-					CreateOrUpdateSpringAnimation(1.0F, .2F);
+					CreateOrUpdateSpringAnimation(1.0F, .4F);
 					textBlock.StartAnimation(_springAnimation);
 				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Try to reset scale if worth.
+	/// </summary>
+	private void ResetScale()
+	{
+		for (var c = 0; c < 81; c++)
+		{
+			if (_children[c].ValueTextBlock is { Scale: not { X: 1.0F, Y: 1.0F, Z: 1.0F } } textBlock)
+			{
+				// Scale up to 1.0.
+				CreateOrUpdateSpringAnimation(1.0F, .4F);
+				textBlock.StartAnimation(_springAnimation);
 			}
 		}
 	}
@@ -636,6 +652,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 		// Clears the view unit.
 		ViewUnit = null;
+
+		// Reset scale.
+		ResetScale();
 
 		// Triggers the event.
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));

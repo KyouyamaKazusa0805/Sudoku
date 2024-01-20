@@ -10798,6 +10798,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="cell">The cell to be checked.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.ResetScale">
+            <summary>
+            Try to reset scale if worth.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.CreateOrUpdateSpringAnimation(System.Single,System.Single)">
             <summary>
             Create or update spring animation.
