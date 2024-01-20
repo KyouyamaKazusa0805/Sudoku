@@ -367,6 +367,9 @@
             <param name="this">The array.</param>
             <returns>An enumerable collection.</returns>
         </member>
+        <member name="M:System.ArrayExtensions.RandomSelectOne``1(``0[],System.Random)">
+            <inheritdoc cref="M:System.ReadOnlySpanExtensions.RandomSelectOne``1(System.ReadOnlySpan{``0},System.Random)"/>
+        </member>
         <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],,System.Int32,System.Int32)">
             <summary>
             Sort the specified array by quick sort.
@@ -1790,6 +1793,15 @@ fixed (short* ptr = instance)
             <param name="action">
             The <see cref="T:System.ActionRefReadOnly`1"/> delegate to perform on each element of the <see cref="T:System.ReadOnlySpan`1"/>.
             </param>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.RandomSelectOne``1(System.ReadOnlySpan{``0},System.Random)">
+            <summary>
+            Select an element from the specified list of elements.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="random">The randomizer.</param>
+            <returns>The chosen element.</returns>
         </member>
         <member name="T:System.SingleExtensions">
             <summary>

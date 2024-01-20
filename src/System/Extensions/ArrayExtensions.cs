@@ -97,6 +97,11 @@ public static class ArrayExtensions
 	public static ArrayPairIterator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
 		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
 
+	/// <inheritdoc cref="ReadOnlySpanExtensions.RandomSelectOne{T}(ReadOnlySpan{T}, Random?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly T RandomSelectOne<T>(this T[] @this, Random? random = null)
+		=> ref @this[(random ?? Random.Shared).Next(0, @this.Length)];
+
 	/// <summary>
 	/// Sort the specified array by quick sort.
 	/// </summary>
