@@ -32,10 +32,10 @@ public partial class App : Application
 	public Analyzer Analyzer { get; } = PredefinedAnalyzers.Default;
 
 	/// <summary>
-	/// Indicates the project-wide <see cref="Sudoku.Analytics.StepCollector"/> instance.
+	/// Indicates the project-wide <see cref="Sudoku.Analytics.Collector"/> instance.
 	/// </summary>
-	/// <seealso cref="Sudoku.Analytics.StepCollector"/>
-	public StepCollector StepCollector { get; } = new();
+	/// <seealso cref="Sudoku.Analytics.Collector"/>
+	public Collector Collector { get; } = new();
 
 	/// <summary>
 	/// Indicates a <see cref="GridInfo"/> instance that will be initialized when opening the application via extension-binding files.

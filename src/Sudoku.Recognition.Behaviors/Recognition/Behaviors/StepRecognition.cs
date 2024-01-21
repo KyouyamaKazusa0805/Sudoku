@@ -17,7 +17,7 @@ public static class StepRecognition
 	/// <returns>A <see cref="bool"/> value indicating whether the operation is successful.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the previous or current grid is invalid.</exception>
 	public static bool TryGetDiffTechnique(
-		StepCollector collector,
+		Collector collector,
 		scoped ref readonly Grid previous,
 		scoped ref readonly Grid current,
 		out ReadOnlySpan<Step> steps

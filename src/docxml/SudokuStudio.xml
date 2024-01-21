@@ -34,11 +34,11 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="P:SudokuStudio.App.StepCollector">
+        <member name="P:SudokuStudio.App.Collector">
             <summary>
-            Indicates the project-wide <see cref="T:Sudoku.Analytics.StepCollector"/> instance.
+            Indicates the project-wide <see cref="T:Sudoku.Analytics.Collector"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
         </member>
         <member name="P:SudokuStudio.App.AppStartingGridInfo">
             <summary>
@@ -1031,10 +1031,10 @@
         </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
-            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.StepCollector"/>.
+            Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.Collector"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>
@@ -1324,10 +1324,10 @@
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.StepGathererMaxStepsGathered">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
             <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques"/>
@@ -9996,10 +9996,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Views.Attached.GathererProperties">
             <summary>
-            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.StepCollector"/> instance's interaction.
+            Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Collector"/> instance's interaction.
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
-            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.GathererProperties.StepGathererMaxStepsGatheredProperty">
             <summary>
@@ -10063,7 +10063,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.AnalyzerProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetStepCollector(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.StepCollector)">
+        <member name="M:SudokuStudio.Views.Attached.SudokuPaneBindable.SetStepCollector(Microsoft.UI.Xaml.DependencyObject,Sudoku.Analytics.Collector)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.SudokuPaneBindable.StepCollectorProperty"/> to get or set value.
             </summary>

@@ -1,10 +1,10 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Indicates the mode that describe the difficulty level controlling for a <see cref="StepCollector"/> instance.
+/// Indicates the mode that describe the difficulty level controlling for a <see cref="Collector"/> instance.
 /// </summary>
-/// <seealso cref="StepCollector"/>
-public enum StepCollectorDifficultyLevelMode
+/// <seealso cref="Collector"/>
+public enum CollectorDifficultyLevelMode
 {
 	/// <summary>
 	/// Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.

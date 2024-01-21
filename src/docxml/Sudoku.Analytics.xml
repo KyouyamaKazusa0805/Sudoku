@@ -4104,6 +4104,146 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
+        <member name="T:Sudoku.Analytics.Collector">
+            <summary>
+            Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Collector.ErrorInfo_ModeIsUndefined">
+            <summary>
+            Indicates the error information that describes that the mode is undefined.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.MaxStepsGathered">
+            <summary>
+            Indicates the maximum steps can be gathered.
+            </summary>
+            <remarks>
+            The default value is 1000.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.DifficultyLevelMode">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+            <remarks>
+            The default value is <see cref="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OnlySame"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.CurrentCulture">
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.StepSearchers">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.ResultStepSearchers">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Collector.Options">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="puzzle">The puzzle grid.</param>
+            <param name="progress">The progress instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
+            <returns>
+            The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">Throws when property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> is not defined.</exception>
+        </member>
+        <member name="F:Sudoku.Analytics.Collector._stepSearchers">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Collector.StepSearchers"/>
+        </member>
+        <member name="T:Sudoku.Analytics.CollectorDifficultyLevelMode">
+            <summary>
+            Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.Collector"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OnlySame">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OneLevelHarder">
+            <summary>
+            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.CollectorDifficultyLevelMode.All">
+            <summary>
+            Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.CollectorFactory">
+            <summary>
+            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.Collector"/>, with extra configuration.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithMaxSteps(Sudoku.Analytics.Collector,System.Int32)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="count">The number of maximum value.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithUserDefinedOptions(Sudoku.Analytics.Collector,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Collector.Options"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Collector"/> instance.</param>
+            <param name="options">
+            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Collector.Options"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithCulture(Sudoku.Analytics.Collector,System.Globalization.CultureInfo)">
+            <summary>
+            Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.Collector"/> instance.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Collector"/> instance.</param>
+            <param name="culture">The culture to be set.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="stepSearchers">The step searchers.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
+            <inheritdoc cref="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Collector,System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.Collector,Sudoku.Analytics.CollectorDifficultyLevelMode)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> with the target value.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="collectingMode">The mode of the collecting steps.</param>
+            <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -4395,10 +4535,10 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DifficultyLevelMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.StepGathererMaxStepsGathered">
-            <inheritdoc cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.IttoryuSupportedTechniques">
             <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques"/>
@@ -5235,146 +5375,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Step.op_Inequality(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepCollector">
-            <summary>
-            Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepCollector.ErrorInfo_ModeIsUndefined">
-            <summary>
-            Indicates the error information that describes that the mode is undefined.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.MaxStepsGathered">
-            <summary>
-            Indicates the maximum steps can be gathered.
-            </summary>
-            <remarks>
-            The default value is 1000.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
-            </summary>
-            <remarks>
-            The default value is <see cref="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.CurrentCulture">
-            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.StepSearchers">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.ResultStepSearchers">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepCollector.Options">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="progress">The progress instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>
-            The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
-            </returns>
-            <exception cref="T:System.InvalidOperationException">Throws when property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> is not defined.</exception>
-        </member>
-        <member name="F:Sudoku.Analytics.StepCollector._stepSearchers">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepCollectorDifficultyLevelMode">
-            <summary>
-            Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.StepCollector"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
-        </member>
-        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OnlySame">
-            <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.OneLevelHarder">
-            <summary>
-            Indicates the collecting mode is to collect steps whose difficulty level are same as the state of the current grid or one level harder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepCollectorDifficultyLevelMode.All">
-            <summary>
-            Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.StepCollectorFactory">
-            <summary>
-            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.StepCollector"/>, with extra configuration.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepCollector"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithMaxSteps(Sudoku.Analytics.StepCollector,System.Int32)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.MaxStepsGathered"/> with the target value.
-            </summary>
-            <param name="this">The collector instance.</param>
-            <param name="count">The number of maximum value.</param>
-            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithUserDefinedOptions(Sudoku.Analytics.StepCollector,Sudoku.Analytics.Configuration.StepSearcherOptions)">
-            <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.StepCollector.Options"/> with the specified value.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.StepCollector"/> instance.</param>
-            <param name="options">
-            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.StepCollector.Options"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithCulture(Sudoku.Analytics.StepCollector,System.Globalization.CultureInfo)">
-            <summary>
-            Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.StepCollector"/> instance.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.StepCollector"/> instance.</param>
-            <param name="culture">The culture to be set.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.StepSearchers"/> with the target value.
-            </summary>
-            <param name="this">The collector instance.</param>
-            <param name="stepSearchers">The step searchers.</param>
-            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
-            <inheritdoc cref="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearchers(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepSearcher[])"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithStepSearcherSetters``1(Sudoku.Analytics.StepCollector,System.Action{``0})">
-            <summary>
-            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
-            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
-            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="propertySetter">The method to set the target property with new value.</param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepCollectorFactory.WithSameLevelConfigruation(Sudoku.Analytics.StepCollector,Sudoku.Analytics.StepCollectorDifficultyLevelMode)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.StepCollector.DifficultyLevelMode"/> with the target value.
-            </summary>
-            <param name="this">The collector instance.</param>
-            <param name="collectingMode">The mode of the collecting steps.</param>
-            <returns>The reference same as <see cref="T:Sudoku.Analytics.StepCollector"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>

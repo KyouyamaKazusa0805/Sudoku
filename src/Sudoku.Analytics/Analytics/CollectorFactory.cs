@@ -1,64 +1,64 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents a factory for construction of type <see cref="StepCollector"/>, with extra configuration.
+/// Represents a factory for construction of type <see cref="Collector"/>, with extra configuration.
 /// </summary>
-/// <seealso cref="StepCollector"/>
-public static class StepCollectorFactory
+/// <seealso cref="Collector"/>
+public static class CollectorFactory
 {
 	/// <summary>
-	/// Sets the property <see cref="StepCollector.MaxStepsGathered"/> with the target value.
+	/// Sets the property <see cref="Collector.MaxStepsGathered"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>
 	/// <param name="count">The number of maximum value.</param>
-	/// <returns>The reference same as <see cref="StepCollector"/>.</returns>
-	public static StepCollector WithMaxSteps(this StepCollector @this, int count)
+	/// <returns>The reference same as <see cref="Collector"/>.</returns>
+	public static Collector WithMaxSteps(this Collector @this, int count)
 	{
 		@this.MaxStepsGathered = count;
 		return @this;
 	}
 
 	/// <summary>
-	/// Try to set property <see cref="StepCollector.Options"/> with the specified value.
+	/// Try to set property <see cref="Collector.Options"/> with the specified value.
 	/// </summary>
-	/// <param name="this">The current <see cref="StepCollector"/> instance.</param>
+	/// <param name="this">The current <see cref="Collector"/> instance.</param>
 	/// <param name="options">
 	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
 	/// </param>
 	/// <returns>The result.</returns>
-	/// <seealso cref="StepCollector.Options"/>
-	public static StepCollector WithUserDefinedOptions(this StepCollector @this, StepSearcherOptions? options)
+	/// <seealso cref="Collector.Options"/>
+	public static Collector WithUserDefinedOptions(this Collector @this, StepSearcherOptions? options)
 	{
 		@this.Options = options ?? StepSearcherOptions.Default;
 		return @this;
 	}
 
 	/// <summary>
-	/// Try to set the variant culture for the specified <see cref="StepCollector"/> instance.
+	/// Try to set the variant culture for the specified <see cref="Collector"/> instance.
 	/// </summary>
-	/// <param name="this">The current <see cref="StepCollector"/> instance.</param>
+	/// <param name="this">The current <see cref="Collector"/> instance.</param>
 	/// <param name="culture">The culture to be set.</param>
 	/// <returns>The result.</returns>
-	public static StepCollector WithCulture(this StepCollector @this, CultureInfo? culture)
+	public static Collector WithCulture(this Collector @this, CultureInfo? culture)
 	{
 		@this.CurrentCulture = culture;
 		return @this;
 	}
 
 	/// <summary>
-	/// Sets the property <see cref="StepCollector.StepSearchers"/> with the target value.
+	/// Sets the property <see cref="Collector.StepSearchers"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>
 	/// <param name="stepSearchers">The step searchers.</param>
-	/// <returns>The reference same as <see cref="StepCollector"/>.</returns>
-	public static StepCollector WithStepSearchers(this StepCollector @this, StepSearcher[] stepSearchers)
+	/// <returns>The reference same as <see cref="Collector"/>.</returns>
+	public static Collector WithStepSearchers(this Collector @this, StepSearcher[] stepSearchers)
 	{
 		@this.StepSearchers = stepSearchers;
 		return @this;
 	}
 
-	/// <inheritdoc cref="WithStepSearchers(StepCollector, StepSearcher[])"/>
-	public static StepCollector WithStepSearchers(this StepCollector @this, IEnumerable<StepSearcher> stepSearchers)
+	/// <inheritdoc cref="WithStepSearchers(Collector, StepSearcher[])"/>
+	public static Collector WithStepSearchers(this Collector @this, IEnumerable<StepSearcher> stepSearchers)
 	{
 		@this.StepSearchers = [.. stepSearchers];
 		return @this;
@@ -73,7 +73,7 @@ public static class StepCollectorFactory
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
 	/// <param name="propertySetter">The method to set the target property with new value.</param>
 	/// <seealso cref="StepSearcher"/>
-	public static StepCollector WithStepSearcherSetters<TStepSearcher>(this StepCollector @this, Action<TStepSearcher> propertySetter)
+	public static Collector WithStepSearcherSetters<TStepSearcher>(this Collector @this, Action<TStepSearcher> propertySetter)
 		where TStepSearcher : StepSearcher
 	{
 		foreach (var stepSearcher in @this.ResultStepSearchers)
@@ -88,12 +88,12 @@ public static class StepCollectorFactory
 	}
 
 	/// <summary>
-	/// Sets the property <see cref="StepCollector.DifficultyLevelMode"/> with the target value.
+	/// Sets the property <see cref="Collector.DifficultyLevelMode"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>
 	/// <param name="collectingMode">The mode of the collecting steps.</param>
-	/// <returns>The reference same as <see cref="StepCollector"/>.</returns>
-	public static StepCollector WithSameLevelConfigruation(this StepCollector @this, StepCollectorDifficultyLevelMode collectingMode)
+	/// <returns>The reference same as <see cref="Collector"/>.</returns>
+	public static Collector WithSameLevelConfigruation(this Collector @this, CollectorDifficultyLevelMode collectingMode)
 	{
 		@this.DifficultyLevelMode = collectingMode;
 		return @this;

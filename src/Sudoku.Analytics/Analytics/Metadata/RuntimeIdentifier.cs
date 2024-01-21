@@ -94,10 +94,10 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="Analyzer.IgnoreHighAllocationAlgorithms"/>
 	public const string LogicalSolverIgnoresHighAllocationAlgorithms = nameof(LogicalSolverIgnoresHighAllocationAlgorithms);
 
-	/// <inheritdoc cref="StepCollector.DifficultyLevelMode"/>
+	/// <inheritdoc cref="Collector.DifficultyLevelMode"/>
 	public const string DifficultyLevelMode = nameof(DifficultyLevelMode);
 
-	/// <inheritdoc cref="StepCollector.MaxStepsGathered"/>
+	/// <inheritdoc cref="Collector.MaxStepsGathered"/>
 	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);
 
 	/// <inheritdoc cref="IttoryuPathFinder.SupportedTechniques"/>

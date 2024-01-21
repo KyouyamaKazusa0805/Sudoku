@@ -199,7 +199,7 @@
 							EliminationDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Converter={StaticResource EliminationDisplayModeConverter},Mode=OneWay}"
 							AssignmentDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Converter={StaticResource AssignmentDisplayModeConverter},Mode=OneWay}"
 							a:SudokuPaneBindable.Analyzer="{x:Bind ((z:App)y:Application.Current).Analyzer}"
-							a:SudokuPaneBindable.StepCollector="{x:Bind ((z:App)y:Application.Current).StepCollector}"
+							a:SudokuPaneBindable.StepCollector="{x:Bind ((z:App)y:Application.Current).Collector}"
 							a:AnalyzerProperties.EnableFullHouse="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=OneWay}"
 							a:AnalyzerProperties.EnableLastDigit="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=OneWay}"
 							a:AnalyzerProperties.HiddenSinglesInBlockFirst="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=OneWay}"

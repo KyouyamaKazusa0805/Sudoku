@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed partial class StepCollector : AnalyzerOrCollector
+public sealed partial class Collector : AnalyzerOrCollector
 {
 	/// <summary>
 	/// Indicates the error information that describes that the mode is undefined.
@@ -23,9 +23,9 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
 	/// </summary>
 	/// <remarks>
-	/// The default value is <see cref="StepCollectorDifficultyLevelMode.OnlySame"/>.
+	/// The default value is <see cref="CollectorDifficultyLevelMode.OnlySame"/>.
 	/// </remarks>
-	public StepCollectorDifficultyLevelMode DifficultyLevelMode { get; internal set; } = StepCollectorDifficultyLevelMode.OnlySame;
+	public CollectorDifficultyLevelMode DifficultyLevelMode { get; internal set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
 	public CultureInfo? CurrentCulture { get; set; }
@@ -122,9 +122,9 @@ public sealed partial class StepCollector : AnalyzerOrCollector
 						// If a searcher contains the upper level, it will be skipped.
 						switch (DifficultyLevelMode)
 						{
-							case StepCollectorDifficultyLevelMode.OnlySame when l != defaultLevel && currentLevel <= l || l == defaultLevel:
-							case StepCollectorDifficultyLevelMode.OneLevelHarder when l != defaultLevel && currentLevel <= l + 1 || l == defaultLevel:
-							case StepCollectorDifficultyLevelMode.All:
+							case CollectorDifficultyLevelMode.OnlySame when l != defaultLevel && currentLevel <= l || l == defaultLevel:
+							case CollectorDifficultyLevelMode.OneLevelHarder when l != defaultLevel && currentLevel <= l + 1 || l == defaultLevel:
+							case CollectorDifficultyLevelMode.All:
 							{
 								break;
 							}
