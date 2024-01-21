@@ -182,7 +182,7 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 
 ## Author
 
-Sunnie, from Chengdu, is a normal undergraduate from Sichuan Normal University. I mean, a normal university (Pun)
+Sunnie, from Chengdu, SiChuan, China. I'm not a developer, but I like it!
 
 Please visit file [CONTACTS](CONTACTS) to contact me if you want.
 
