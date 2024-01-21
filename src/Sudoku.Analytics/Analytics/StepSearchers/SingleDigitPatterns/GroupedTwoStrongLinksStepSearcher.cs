@@ -48,7 +48,7 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 
 					// Now we should iterate on each combination to determine which 2 cells group intersects in a same house.
 					// If so, it will form a weak link.
-					var (cellsForHouse1, cellsForHouse2) = ((CellMap[])[CellMap.Empty, CellMap.Empty], (CellMap[])[CellMap.Empty, CellMap.Empty]);
+					var (cellsForHouse1, cellsForHouse2) = ((CellMap[])[[], []], (CellMap[])[[], []]);
 					foreach (var pos in mask1Subgroups[0])
 					{
 						scoped ref var currentMap = ref cellsForHouse1[0];
