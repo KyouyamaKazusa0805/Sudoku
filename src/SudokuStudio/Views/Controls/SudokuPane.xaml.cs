@@ -526,23 +526,26 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
+		var a = new List<TextBlock>();
+		var b = new List<TextBlock>();
 		for (var c = 0; c < 81; c++)
 		{
-			if (_puzzle.GetDigit(c) == digit && _children[c] is { ValueTextBlock: var textBlock })
+			var textBlock = _children[c].ValueTextBlock;
+			if (_puzzle.GetState(c) != CellState.Empty)
 			{
-				if (textBlock.Scale is { X: 1.0F, Y: 1.0F, Z: 1.0F })
-				{
-					// Scale up to 1.5.
-					CreateOrUpdateSpringAnimation(1.6F, .4F);
-					textBlock.StartAnimation(_springAnimation);
-				}
-				else
-				{
-					// Scale up to 1.0.
-					CreateOrUpdateSpringAnimation(1.0F, .4F);
-					textBlock.StartAnimation(_springAnimation);
-				}
+				(_puzzle.GetDigit(c) == digit ? a : b).Add(textBlock);
 			}
+		}
+
+		ResetScale();
+		a.ForEach(textBlock => updateScale(1.6F, textBlock));
+		b.ForEach(textBlock => updateScale(1.0F, textBlock));
+
+
+		void updateScale(float value, TextBlock textBlock)
+		{
+			CreateOrUpdateSpringAnimation(value, .4F);
+			textBlock.StartAnimation(_springAnimation);
 		}
 	}
 
