@@ -4,7 +4,6 @@
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #undef SYNC_ROOT_VIA_THREAD_LOCAL
-#define TARGET_64BIT
 #if SYNC_ROOT_VIA_METHODIMPL && SYNC_ROOT_VIA_OBJECT && SYNC_ROOT_VIA_THREAD_LOCAL
 #line 1 "Grid.cs"
 #error You cannot set all three symbols 'SYNC_ROOT_VIA_METHODIMPL', 'SYNC_ROOT_VIA_OBJECT' and 'SYNC_ROOT_VIA_THREAD_LOCAL' - they are designed by the same purpose. You should only define at most one of three symbols.
@@ -1714,6 +1713,7 @@ public partial struct Grid :
 	/// -->
 	private static unsafe bool InternalEqualsByRef(scoped ref readonly byte first, scoped ref readonly byte second, nuint length)
 	{
+		var isTarget64Bits = sizeof(nint) == 8;
 		bool result;
 
 		// Use nint for arithmetic to avoid unnecessary 64->32->64 truncations.
@@ -1724,10 +1724,8 @@ public partial struct Grid :
 			goto Longer;
 		}
 
-#if TARGET_64BIT
 		// On 32-bit, this will always be true since sizeof(nuint) == 4.
-		if (length < sizeof(uint))
-#endif
+		if (isTarget64Bits && length < sizeof(uint) || !isTarget64Bits)
 		{
 			var differentBits = 0U;
 			var offset = length & 2;
@@ -1746,8 +1744,7 @@ public partial struct Grid :
 
 			goto Result;
 		}
-#if TARGET_64BIT
-		else
+		else if (!isTarget64Bits)
 		{
 			var offset = length - sizeof(uint);
 			var differentBits = loadUint(in first) - loadUint(in second);
@@ -1756,7 +1753,6 @@ public partial struct Grid :
 
 			goto Result;
 		}
-#endif
 	Longer:
 		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
 		if (!Ref.MemoryLocationAreSame(in first, in second))
@@ -1872,8 +1868,7 @@ public partial struct Grid :
 			goto NotEqual;
 		}
 
-#if TARGET_64BIT
-		if (Vector128.IsHardwareAccelerated)
+		if (isTarget64Bits && Vector128.IsHardwareAccelerated)
 		{
 			Debug.Assert(length <= (nuint)sizeof(nuint) * 2);
 
@@ -1883,8 +1878,7 @@ public partial struct Grid :
 			result = differentBits == 0;
 			goto Result;
 		}
-		else
-#endif
+		else if (!isTarget64Bits)
 		{
 			Debug.Assert(length >= (nuint)sizeof(nuint));
 
@@ -1922,7 +1916,6 @@ public partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static ushort loadUshort(scoped ref readonly byte start) => Unsafe.ReadUnaligned<ushort>(in start);
 
-#if TARGET_64BIT
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static uint loadUint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<uint>(in start);
 
@@ -1932,7 +1925,6 @@ public partial struct Grid :
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
-#endif
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint2(scoped ref readonly byte start, nuint offset)
