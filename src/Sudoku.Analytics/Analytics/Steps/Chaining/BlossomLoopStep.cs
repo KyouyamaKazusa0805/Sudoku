@@ -75,8 +75,8 @@ public sealed partial class BlossomLoopStep(
 				full.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate));
 			}
 
-			eachBranchView.AddRange(GetLinks(i));
-			full.AddRange(GetLinks(i));
+			eachBranchView.AddRange(GetLinks(i).AsReadOnlySpan());
+			full.AddRange(GetLinks(i).AsReadOnlySpan());
 
 			result.Add(eachBranchView);
 		}

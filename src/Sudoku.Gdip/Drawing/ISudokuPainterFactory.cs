@@ -148,7 +148,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="nodes">Extra nodes.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter AddNodes(IEnumerable<ViewNode> nodes);
+	public abstract ISudokuPainter AddNodes(scoped ReadOnlySpan<ViewNode> nodes);
 
 	/// <summary>
 	/// Remove nodes.

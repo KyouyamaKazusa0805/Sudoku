@@ -6998,10 +6998,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Rendering.View.AddRange``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})"/>
-            <typeparam name="T">The type of the node.</typeparam>
-        </member>
-        <member name="M:Sudoku.Rendering.View.AddRange(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <summary>
             Adds a list of <see cref="T:Sudoku.Rendering.ViewNode"/>s into the collection.
             </summary>

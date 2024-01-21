@@ -5,21 +5,11 @@ namespace Sudoku.Rendering;
 /// </summary>
 public sealed partial class View : HashSet<ViewNode>
 {
-	/// <inheritdoc cref="AddRange(IEnumerable{ViewNode})"/>
-	/// <typeparam name="T">The type of the node.</typeparam>
-	public void AddRange<T>(scoped ReadOnlySpan<T> nodes) where T : ViewNode
-	{
-		foreach (var node in nodes)
-		{
-			Add(node);
-		}
-	}
-
 	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
-	public void AddRange(IEnumerable<ViewNode> nodes)
+	public void AddRange<T>(scoped ReadOnlySpan<T> nodes) where T : ViewNode
 	{
 		foreach (var node in nodes)
 		{

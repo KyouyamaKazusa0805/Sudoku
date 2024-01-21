@@ -130,7 +130,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.AddNodes(System.ReadOnlySpan{Sudoku.Rendering.ViewNode})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.RemoveNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
@@ -271,7 +271,7 @@
             <param name="nodes">The nodes.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.AddNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.AddNodes(System.ReadOnlySpan{Sudoku.Rendering.ViewNode})">
             <summary>
             Append extra nodes.
             </summary>

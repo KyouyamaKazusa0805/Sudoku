@@ -288,8 +288,9 @@ public abstract partial class ChainingStep(
 			}
 
 			var links = GetLinks(i);
-			view.AddRange(links);
-			globalView.AddRange(links);
+			scoped var listOfNodes = links.AsReadOnlySpan();
+			view.AddRange(listOfNodes);
+			globalView.AddRange(listOfNodes);
 
 			result[i] = view;
 		}
@@ -299,7 +300,7 @@ public abstract partial class ChainingStep(
 			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
 			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
-			view.AddRange(GetNestedLinks(i));
+			view.AddRange(GetNestedLinks(i).AsReadOnlySpan());
 
 			result[i] = view;
 		}
