@@ -39,7 +39,7 @@ namespace Sudoku.Concepts;
 /// (include 0 but not include 81).
 /// </para>
 /// </remarks>
-[JsonConverter(typeof(Converter))]
+[JsonConverter(typeof(GridConverter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(CellsCount)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
@@ -2049,24 +2049,4 @@ public partial struct Grid :
 	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
-}
-
-/// <summary>
-/// Indicates the JSON converter of the current type.
-/// </summary>
-file sealed class Converter : JsonConverter<Grid>
-{
-	/// <inheritdoc/>
-	public override bool HandleNull => true;
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override Grid Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(SusserGridConverter.Full));
 }

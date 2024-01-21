@@ -22,7 +22,7 @@ namespace Sudoku.Concepts;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </para>
 /// </remarks>
-[JsonConverter(typeof(Converter))]
+[JsonConverter(typeof(CandidateMapConverter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
@@ -913,30 +913,4 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CandidateMap(scoped ReadOnlySpan<Candidate> values) => [.. values];
-}
-
-/// <summary>
-/// Indicates the JSON converter of the current type.
-/// </summary>
-file sealed class Converter : JsonConverter<CandidateMap>
-{
-	/// <inheritdoc/>
-	public override bool HandleNull => false;
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override CandidateMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
-
-	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, CandidateMap value, JsonSerializerOptions options)
-	{
-		writer.WriteStartArray();
-		foreach (var element in value.StringChunks)
-		{
-			writer.WriteStringValue(element);
-		}
-		writer.WriteEndArray();
-	}
 }

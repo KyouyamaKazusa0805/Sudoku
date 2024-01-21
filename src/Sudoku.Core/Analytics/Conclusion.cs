@@ -24,7 +24,7 @@ namespace Sudoku.Analytics;
 /// (i.e. holds the value <see cref="Elimination"/> as the type), the instance will be greater;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
-[JsonConverter(typeof(Converter))]
+[JsonConverter(typeof(ConclusionConverter))]
 [Equals]
 [GetHashCode]
 [EqualityOperators]
@@ -198,18 +198,4 @@ public readonly partial struct Conclusion([RecordParameter(DataMemberKinds.Field
 	/// <returns>The negation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conclusion operator ~(Conclusion self) => new(self.ConclusionType == Assignment ? Elimination : Assignment, self.Candidate);
-}
-
-/// <summary>
-/// The file-local type that provides the basic operation for serialization or deserialization for type <see cref="Conclusion"/>.
-/// </summary>
-file sealed class Converter : JsonConverter<Conclusion>
-{
-	/// <inheritdoc/>
-	public override Conclusion Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Conclusion.ParseExact(reader.GetString() ?? string.Empty, new RxCyParser());
-
-	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(GlobalizedConverter.InvariantCultureConverter));
 }

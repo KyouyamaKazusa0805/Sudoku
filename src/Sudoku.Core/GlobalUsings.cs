@@ -32,6 +32,7 @@ global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Text;
 global using Sudoku.Text.Converters;
 global using Sudoku.Text.Parsers;
+global using Sudoku.Text.Serialization.Specialized;
 global using static System.Algorithm.Combinatorial;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.ConclusionType;

@@ -1532,17 +1532,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Converter">
-            <summary>
-            The file-local type that provides the basic operation for serialization or deserialization for type <see cref="T:Sudoku.Analytics.Conclusion"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.ConclusionSet">
             <summary>
             Represents a list of conclusions. The collection only allows adding conclusions.
@@ -2259,20 +2248,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Converter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell state table.
@@ -2806,20 +2781,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,System#Int32,System#Int16}#op_Division(Sudoku.Concepts.CellMap,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CellMarshal">
@@ -4029,20 +3990,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Converter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridCellPredicates">
@@ -9954,6 +9901,65 @@ if (student is (name: var name, age: >= 18))
                     ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.Specialized.CandidateMapConverter">
+            <summary>
+            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.Specialized.CellMapConverter">
+            <summary>
+            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.Specialized.CellMapConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.Specialized.ConclusionConverter">
+            <summary>
+            Represents a JSON converter for type <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.Specialized.ConclusionConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.Serialization.Specialized.GridConverter">
+            <summary>
+            Indicates the JSON converter of the current type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.Serialization.Specialized.GridConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.EliminationPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the EliminationPattern method.</summary>
