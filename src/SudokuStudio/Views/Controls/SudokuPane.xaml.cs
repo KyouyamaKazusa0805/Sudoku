@@ -558,7 +558,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		{
 			if (_children[c].ValueTextBlock is { Scale: not { X: 1.0F, Y: 1.0F, Z: 1.0F } } textBlock)
 			{
-				// Scale up to 1.0.
 				CreateOrUpdateSpringAnimation(1.0F, .4F);
 				textBlock.StartAnimation(_springAnimation);
 			}
