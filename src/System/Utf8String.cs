@@ -52,7 +52,7 @@ public readonly unsafe partial struct Utf8String :
 	{
 		var length = StringLengthOf(value);
 		_value = new Utf8Char[length];
-		CopyBlock(
+		Unsafe.CopyBlock(
 			ref Ref.AsByteRef(ref _value[0]),
 			in Ref.AsReadOnlyByteRef(in value[0]),
 			(uint)(sizeof(Utf8Char) * length)
@@ -76,7 +76,7 @@ public readonly unsafe partial struct Utf8String :
 	private Utf8String(byte[] array)
 	{
 		_value = new Utf8Char[array.Length];
-		CopyBlock(ref Ref.AsByteRef(ref _value[0]), in array[0], (uint)(sizeof(byte) * array.Length));
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref _value[0]), in array[0], (uint)(sizeof(byte) * array.Length));
 	}
 
 
@@ -285,7 +285,7 @@ public readonly unsafe partial struct Utf8String :
 	public override string ToString()
 	{
 		var array = new byte[_value.Length];
-		CopyBlock(ref array[0], in Ref.AsReadOnlyByteRef(in _value[0]), (uint)(sizeof(byte) * _value.Length));
+		Unsafe.CopyBlock(ref array[0], in Ref.AsReadOnlyByteRef(in _value[0]), (uint)(sizeof(byte) * _value.Length));
 
 		return Encoding.UTF8.GetString(array);
 	}
@@ -339,18 +339,18 @@ public readonly unsafe partial struct Utf8String :
 	/// <returns>The final string.</returns>
 	public static Utf8String operator +(Utf8String left, Utf8String right)
 	{
-		SkipInit(out Utf8Char[] targetBuffer);
+		Unsafe.SkipInit(out Utf8Char[] targetBuffer);
 
 		try
 		{
 			var totalLength = left._value.Length + right._value.Length;
 			targetBuffer = ArrayPool<Utf8Char>.Shared.Rent(totalLength);
-			CopyBlock(
+			Unsafe.CopyBlock(
 				ref Ref.AsByteRef(ref targetBuffer[0]),
 				in Ref.AsReadOnlyByteRef(in left._value[0]),
 				(uint)(sizeof(byte) * left._value.Length)
 			);
-			CopyBlock(
+			Unsafe.CopyBlock(
 				ref Ref.AsByteRef(ref targetBuffer[left._value.Length]),
 				in Ref.AsReadOnlyByteRef(in right._value[0]),
 				(uint)(sizeof(byte) * right._value.Length)

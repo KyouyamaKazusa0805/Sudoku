@@ -46,7 +46,7 @@ partial struct StringHandler
 			ref var z = ref chars._chars.GetPinnableReference();
 			Ref.ThrowIfNullRef(in z);
 
-			_ptr = ref Add(ref z, -1);
+			_ptr = ref Unsafe.Add(ref z, -1);
 		}
 
 
@@ -62,7 +62,7 @@ partial struct StringHandler
 				return false;
 			}
 
-			Add(ref _ptr, 1);
+			Unsafe.Add(ref _ptr, 1);
 			return true;
 		}
 	}

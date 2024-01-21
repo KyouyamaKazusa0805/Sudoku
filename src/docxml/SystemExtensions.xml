@@ -370,16 +370,6 @@
         <member name="M:System.ArrayExtensions.RandomSelectOne``1(``0[],System.Random)">
             <inheritdoc cref="M:System.ReadOnlySpanExtensions.RandomSelectOne``1(System.ReadOnlySpan{``0},System.Random)"/>
         </member>
-        <member name="M:System.ArrayExtensions.SortUnsafe``1(``0[],,System.Int32,System.Int32)">
-            <summary>
-            Sort the specified array by quick sort.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
-            <param name="comparer">The method to compare two elements.</param>
-            <param name="startIndex">Indicates the start index.</param>
-            <param name="endIndex">Indicates the end index.</param>
-        </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Reflection.Assembly"/>.
@@ -692,25 +682,6 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
             </exception>
-        </member>
-        <member name="T:System.GenericExtensions">
-            <summary>
-            Extension methods for generic type parameters.
-            </summary>
-        </member>
-        <member name="M:System.GenericExtensions.MoveNext``1(``0@)">
-            <summary>
-            Move the pointer to the next element.
-            </summary>
-            <typeparam name="T">The type of the instance that the reference points to.</typeparam>
-            <param name="ref">The reference points to an instance of type <typeparamref name="T"/>.</param>
-        </member>
-        <member name="M:System.GenericExtensions.MovePrevious``1(``0@)">
-            <summary>
-            Move the pointer to the previous element.
-            </summary>
-            <typeparam name="T">The type of the instance that the reference points to.</typeparam>
-            <param name="ref">The reference points to an instance of type <typeparamref name="T"/>.</param>
         </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>

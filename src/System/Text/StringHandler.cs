@@ -201,7 +201,7 @@ public unsafe ref partial struct StringHandler
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StringHandler(string initialString)
 	{
-		CopyBlock(
+		Unsafe.CopyBlock(
 			ref Ref.AsByteRef(ref _chars[0]),
 			in Ref.AsReadOnlyByteRef(in initialString.Ref()),
 			(uint)(sizeof(char) * initialString.Length)
@@ -238,7 +238,7 @@ public unsafe ref partial struct StringHandler
 	/// </summary>
 	/// <param name="handler">The collection.</param>
 	public readonly void CopyTo(scoped ref StringHandler handler)
-		=> CopyBlock(ref Ref.AsByteRef(ref handler._chars[0]), in Ref.AsReadOnlyByteRef(in _chars[0]), (uint)(sizeof(char) * Length));
+		=> Unsafe.CopyBlock(ref Ref.AsByteRef(ref handler._chars[0]), in Ref.AsReadOnlyByteRef(in _chars[0]), (uint)(sizeof(char) * Length));
 
 	/// <summary>
 	/// Determine whether the specified <see cref="StringHandler"/> instance hold a same character set
@@ -344,9 +344,9 @@ public unsafe ref partial struct StringHandler
 				var pos = Length;
 				if ((uint)pos < chars.Length - 1)
 				{
-					WriteUnaligned(
-						ref Ref.AsByteRef(ref Add(ref MemoryMarshal.GetReference(chars), pos)),
-						ReadUnaligned<int>(in Ref.AsReadOnlyByteRef(in value.Ref()))
+					Unsafe.WriteUnaligned(
+						ref Ref.AsByteRef(ref Unsafe.Add(ref MemoryMarshal.GetReference(chars), pos)),
+						Unsafe.ReadUnaligned<int>(in Ref.AsReadOnlyByteRef(in value.Ref()))
 					);
 
 					Length = pos + 2;
@@ -693,7 +693,7 @@ public unsafe ref partial struct StringHandler
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Add(ref Ref.AsMutableRef(in list), i);
+			scoped ref readonly var element = ref Unsafe.Add(ref Ref.AsMutableRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}
@@ -721,7 +721,7 @@ public unsafe ref partial struct StringHandler
 
 		for (var i = 0; i < length; i++)
 		{
-			scoped ref readonly var element = ref Add(ref Ref.AsMutableRef(in list), i);
+			scoped ref readonly var element = ref Unsafe.Add(ref Ref.AsMutableRef(in list), i);
 			AppendFormatted(converter(in element));
 			AppendFormatted(separator);
 		}

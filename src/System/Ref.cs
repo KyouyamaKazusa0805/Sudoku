@@ -23,7 +23,7 @@ public static class Ref
 	}
 
 	/// <summary>
-	/// Simply invokes the method <see cref="As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
+	/// Simply invokes the method <see cref="Unsafe.As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
 	/// </summary>
 	/// <typeparam name="T">The base type that is converted from.</typeparam>
 	/// <param name="ref">
@@ -31,11 +31,11 @@ public static class Ref
 	/// using <see langword="ref readonly"/> as a combined parameter modifier.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref byte AsByteRef<T>(ref T @ref) => ref As<T, byte>(ref @ref);
+	public static ref byte AsByteRef<T>(ref T @ref) => ref Unsafe.As<T, byte>(ref @ref);
 
 	/// <inheritdoc cref="AsByteRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly byte AsReadOnlyByteRef<T>(ref readonly T @ref) => ref As<T, byte>(ref AsRef(in @ref));
+	public static ref readonly byte AsReadOnlyByteRef<T>(ref readonly T @ref) => ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
 
 	/// <summary>
 	/// Determines whether the current reference points to <see langword="null"/>.
@@ -44,7 +44,7 @@ public static class Ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullReference<T>(scoped ref readonly T reference) => IsNullRef(in reference);
+	public static bool IsNullReference<T>(scoped ref readonly T reference) => Unsafe.IsNullRef(in reference);
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -54,7 +54,7 @@ public static class Ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right) => AreSame(in left, in right);
+	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right) => Unsafe.AreSame(in left, in right);
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
@@ -64,7 +64,7 @@ public static class Ref
 	/// </typeparam>
 	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T MakeNullReference<T>() => ref NullRef<T>();
+	public static ref readonly T MakeNullReference<T>() => ref Unsafe.NullRef<T>();
 
 	/// <summary>
 	/// Re-interpret the read-only reference to non-read-only reference.
@@ -73,7 +73,7 @@ public static class Ref
 	/// <param name="ref">The read-only reference.</param>
 	/// <returns>The non-read-only reference.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T AsMutableRef<T>(ref readonly T @ref) => ref AsRef(in @ref);
+	public static ref T AsMutableRef<T>(ref readonly T @ref) => ref Unsafe.AsRef(in @ref);
 
 	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
@@ -93,7 +93,7 @@ public static class Ref
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = Add(ref AsRef(in memorySpan), i);
+			result[i - start] = Unsafe.Add(ref Unsafe.AsRef(in memorySpan), i);
 		}
 
 		return result;
@@ -108,7 +108,7 @@ public static class Ref
 	/// <para><i>
 	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
 	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
-	/// However, the method will invoke <see cref="IsNullRef{T}(ref readonly T)"/>,
+	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
 	/// where the only argument is passed by <see langword="ref"/>.
 	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
 	/// </i></para>
