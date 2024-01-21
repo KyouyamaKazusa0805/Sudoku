@@ -10614,11 +10614,6 @@ if (student is (name: var name, age: >= 18))
             Defines a sudoku pane control.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.SpringAnimationLock">
-            <summary>
-            Indicates the sync root for spring animation.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._temporarySelectedCell">
             <summary>
             Indicates the temporary selected cell.

@@ -148,14 +148,17 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var mask = grid.GetCandidates(cell);
-				if (!IsPow2(mask))
+				if (grid.GetCandidates(cell) is var mask && !IsPow2(mask))
 				{
 					continue;
 				}
 
-				var tempDigit = TrailingZeroCount(mask);
-				if (tempDigit != digit)
+				if (TrailingZeroCount(mask) != digit)
+				{
+					continue;
+				}
+
+				if (GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary())
 				{
 					continue;
 				}
@@ -167,7 +170,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					context.PredefinedOptions,
 					cell,
 					digit,
-					GetNakedSingleSubtype(in grid, cell)
+					subtype
 				);
 				if (context.OnlyFindOne)
 				{
@@ -499,29 +502,22 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		return (enableAndIsLastDigit, house) switch
 		{
 			(true, >= 9) => null,
-			(true, _) => new LastDigitStep(
-				[new(Assignment, resultCell, digit)],
-				[[.. cellOffsets]],
-				context.PredefinedOptions,
-				resultCell,
-				digit,
-				house
-			),
-			_ => new HiddenSingleStep(
-				[new(Assignment, resultCell, digit)],
-				[
-					[
-						.. GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells),
-						.. (ViewNode[])[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]
-					]
-				],
-				context.PredefinedOptions,
-				resultCell,
-				digit,
-				house,
-				enableAndIsLastDigit,
-				GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells)
-			)
+			(true, _) => new LastDigitStep([new(Assignment, resultCell, digit)], [[.. cellOffsets]], context.PredefinedOptions, resultCell, digit, house),
+			_ when GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) is var cellOffsets2
+				=> GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
+				{
+					var subtype when subtype.IsUnnecessary() => null,
+					var subtype => new HiddenSingleStep(
+						[new(Assignment, resultCell, digit)],
+						[[.. cellOffsets2, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						context.PredefinedOptions,
+						resultCell,
+						digit,
+						house,
+						enableAndIsLastDigit,
+						subtype
+					)
+				}
 		};
 	}
 

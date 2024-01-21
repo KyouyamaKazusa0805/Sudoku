@@ -8,6 +8,7 @@ public static class SingleSubtypeExtensions
 {
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
+	/// For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
 	/// </summary>
 	/// <param name="this">The subtype.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the subtype is unnecessary.</returns>
