@@ -7,8 +7,22 @@ namespace System.Numerics;
 [StructLayout(LayoutKind.Auto)]
 public ref partial struct Int64Enumerator([RecordParameter(DataMemberKinds.Field, IsImplicitlyReadOnly = false)] ulong value)
 {
+	/// <summary>
+	/// Indicates the population count of the value.
+	/// </summary>
+	public readonly int PopulationCount => PopCount(_value);
+
+	/// <summary>
+	/// Indicates the bits set.
+	/// </summary>
+	public readonly ReadOnlySpan<int> Bits => _value.GetAllSets();
+
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public int Current { get; private set; } = -1;
+
+
+	/// <inheritdoc cref="BitOperationsExtensions.SetAt(uint, int)"/>
+	public readonly int this[int index] => _value.SetAt(index);
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>

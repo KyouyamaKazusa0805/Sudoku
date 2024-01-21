@@ -3030,6 +3030,9 @@ fixed (short* ptr = instance)
         <member name="M:System.Numerics.BitOperationsExtensions.ReverseBits(System.Int64@)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.ReverseBits(System.Byte@)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.SByte,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)">
             <summary>
             Get an <see cref="T:System.Int32"/> value, indicating that the absolute position of all set bits with the specified set bit order.
@@ -3041,10 +3044,25 @@ fixed (short* ptr = instance)
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.Int16,System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt16,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.Int64,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt64,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.IntPtr,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UIntPtr,System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SkipSetBit(System.Byte,System.Int32)">
@@ -3088,8 +3106,21 @@ fixed (short* ptr = instance)
             </summary>
             <param name="value">The value to be iterated.</param>
         </member>
+        <member name="P:System.Numerics.Int32Enumerator.PopulationCount">
+            <summary>
+            Indicates the population count of the value.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Int32Enumerator.Bits">
+            <summary>
+            Indicates the bits set.
+            </summary>
+        </member>
         <member name="P:System.Numerics.Int32Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Numerics.Int32Enumerator.Item(System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.Int32Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
@@ -3111,8 +3142,21 @@ fixed (short* ptr = instance)
             </summary>
             <param name="value">The value to be iterated.</param>
         </member>
+        <member name="P:System.Numerics.Int64Enumerator.PopulationCount">
+            <summary>
+            Indicates the population count of the value.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Int64Enumerator.Bits">
+            <summary>
+            Indicates the bits set.
+            </summary>
+        </member>
         <member name="P:System.Numerics.Int64Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Numerics.Int64Enumerator.Item(System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.Int64Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
@@ -3134,8 +3178,21 @@ fixed (short* ptr = instance)
             </summary>
             <param name="value">The value to be iterated.</param>
         </member>
+        <member name="P:System.Numerics.NativeIntEnumerator.PopulationCount">
+            <summary>
+            Indicates the population count of the value.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.NativeIntEnumerator.Bits">
+            <summary>
+            Indicates the bits set.
+            </summary>
+        </member>
         <member name="P:System.Numerics.NativeIntEnumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Numerics.NativeIntEnumerator.Item(System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.NativeIntEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>

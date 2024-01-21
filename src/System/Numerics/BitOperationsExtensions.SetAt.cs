@@ -2,6 +2,20 @@ namespace System.Numerics;
 
 partial class BitOperationsExtensions
 {
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this sbyte @this, int order)
+	{
+		for (int i = 0, count = -1; i < sizeof(sbyte) << 3; i++, @this >>= 1)
+		{
+			if ((@this & 1) != 0 && ++count == order)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
 	/// <summary>
 	/// Get an <see cref="int"/> value, indicating that the absolute position of all set bits with the specified set bit order.
 	/// </summary>
@@ -36,9 +50,37 @@ partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this ushort @this, int order)
+	{
+		for (int i = 0, count = -1; i < sizeof(ushort) << 3; i++, @this >>= 1)
+		{
+			if ((@this & 1) != 0 && ++count == order)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
 	public static partial int SetAt(this int @this, int order)
 	{
 		for (int i = 0, count = -1; i < sizeof(int) << 3; i++, @this >>= 1)
+		{
+			if ((@this & 1) != 0 && ++count == order)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this uint @this, int order)
+	{
+		for (int i = 0, count = -1; i < sizeof(uint) << 3; i++, @this >>= 1)
 		{
 			if ((@this & 1) != 0 && ++count == order)
 			{
@@ -61,5 +103,53 @@ partial class BitOperationsExtensions
 		}
 
 		return -1;
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this ulong @this, int order)
+	{
+		for (int i = 0, count = -1; i < sizeof(ulong) << 3; i++, @this >>= 1)
+		{
+			if ((@this & 1) != 0 && ++count == order)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this nint @this, int order)
+	{
+		unsafe
+		{
+			for (int i = 0, count = -1; i < sizeof(nint) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0 && ++count == order)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this nuint @this, int order)
+	{
+		unsafe
+		{
+			for (int i = 0, count = -1; i < sizeof(nuint) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0 && ++count == order)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
 	}
 }

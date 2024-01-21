@@ -38,10 +38,16 @@ public static partial class BitOperationsExtensions
 	public static partial void ReverseBits(this scoped ref int @this);
 	public static partial void ReverseBits(this scoped ref long @this);
 
+	public static partial int SetAt(this sbyte @this, int order);
 	public static partial int SetAt(this byte @this, int order);
 	public static partial int SetAt(this short @this, int order);
+	public static partial int SetAt(this ushort @this, int order);
 	public static partial int SetAt(this int @this, int order);
+	public static partial int SetAt(this uint @this, int order);
 	public static partial int SetAt(this long @this, int order);
+	public static partial int SetAt(this ulong @this, int order);
+	public static partial int SetAt(this nint @this, int order);
+	public static partial int SetAt(this nuint @this, int order);
 
 	public static partial byte SkipSetBit(this byte @this, int setBitPosCount);
 	public static partial short SkipSetBit(this short @this, int setBitPosCount);
