@@ -461,30 +461,26 @@ public sealed partial class AnalyzePage : Page
 	{
 		var thickness = new Thickness(10);
 		_tabsRoutingData = [
-			new()
-			{
-				Header = ResourceDictionary.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
-				IconSource = new SymbolIconSource { Symbol = Symbol.Flag },
-				Page = new Summary { Margin = thickness, BasePage = this }
-			},
-			new()
-			{
-				Header = ResourceDictionary.Get("AnalyzePage_StepDetail", App.CurrentCulture),
-				IconSource = new SymbolIconSource { Symbol = Symbol.ShowResults },
-				Page = new SolvingPath { Margin = thickness, BasePage = this }
-			},
-			new()
-			{
-				Header = ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
-				IconSource = new SymbolIconSource { Symbol = Symbol.Shuffle },
-				Page = new GridGathering { Margin = thickness, BasePage = this }
-			},
-			new()
-			{
-				Header = ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
-				IconSource = new SymbolIconSource { Symbol = Symbol.Edit },
-				Page = new Drawing { Margin = thickness, BasePage = this }
-			}
+			new(
+				ResourceDictionary.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
+				new SymbolIconSource { Symbol = Symbol.Flag },
+				new Summary { Margin = thickness, BasePage = this }
+			),
+			new(
+				ResourceDictionary.Get("AnalyzePage_StepDetail", App.CurrentCulture),
+				new SymbolIconSource { Symbol = Symbol.ShowResults },
+				new SolvingPath { Margin = thickness, BasePage = this }
+			),
+			new(
+				ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
+				new SymbolIconSource { Symbol = Symbol.Shuffle },
+				new GridGathering { Margin = thickness, BasePage = this }
+			),
+			new(
+				ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
+				new SymbolIconSource { Symbol = Symbol.Edit },
+				new Drawing { Margin = thickness, BasePage = this }
+			)
 		];
 
 		_hotkeyFunctions = [

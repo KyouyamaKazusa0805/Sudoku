@@ -184,21 +184,33 @@
             <summary>
             Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
             </summary>
+            <param name="header">Indicates the header.</param>
+            <param name="iconSource">Indicates the icon source.</param>
+            <param name="page">Indicates the tab page.</param>
+            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.#ctor(System.String,Microsoft.UI.Xaml.Controls.IconSource,SudokuStudio.ComponentModel.IAnalyzeTabPage)">
+            <summary>
+            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
+            </summary>
+            <param name="header">Indicates the header.</param>
+            <param name="iconSource">Indicates the icon source.</param>
+            <param name="page">Indicates the tab page.</param>
             <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.Header">
             <summary>
-            Indicates the header.
+            The generated property declaration for parameter <c>header</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.IconSource">
             <summary>
-            Indicates the icon source.
+            The generated property declaration for parameter <c>iconSource</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.Page">
             <summary>
-            Indicates the target page instance.
+            The generated property declaration for parameter <c>page</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider">
