@@ -10,6 +10,12 @@ namespace SudokuStudio.Views.Controls;
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
+	/// Indicates the internal digit displayers.
+	/// </summary>
+	private List<UIElement> _internalDigitDisplayers;
+
+
+	/// <summary>
 	/// Initializes a <see cref="SudokuPaneCell"/> instance.
 	/// </summary>
 	public SudokuPaneCell()
@@ -52,23 +58,28 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Try to initialize for animation feedback if worth.
 	/// </summary>
+	[MemberNotNull(nameof(_internalDigitDisplayers))]
 	private void InitializeAnimationFeedbackIfWorth()
 	{
+		_internalDigitDisplayers = [
+			ValueTextBlock,
+			Candidate0TextBlock,
+			Candidate1TextBlock,
+			Candidate2TextBlock,
+			Candidate3TextBlock,
+			Candidate4TextBlock,
+			Candidate5TextBlock,
+			Candidate6TextBlock,
+			Candidate7TextBlock,
+			Candidate8TextBlock
+		];
+
 		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
 		{
 			return;
 		}
 
-		ValueTextBlock.OpacityTransition = new();
-		Candidate0TextBlock.OpacityTransition = new();
-		Candidate1TextBlock.OpacityTransition = new();
-		Candidate2TextBlock.OpacityTransition = new();
-		Candidate3TextBlock.OpacityTransition = new();
-		Candidate4TextBlock.OpacityTransition = new();
-		Candidate5TextBlock.OpacityTransition = new();
-		Candidate6TextBlock.OpacityTransition = new();
-		Candidate7TextBlock.OpacityTransition = new();
-		Candidate8TextBlock.OpacityTransition = new();
+		_internalDigitDisplayers.ForEach(static e => e.OpacityTransition = new());
 
 		ValueSurrounder.BackgroundTransition = new() { Duration = TimeSpan.FromMilliseconds(HouseCompletedFeedbackDuration) };
 	}

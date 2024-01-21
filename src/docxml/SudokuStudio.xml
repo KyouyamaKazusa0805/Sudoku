@@ -11524,6 +11524,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._internalDigitDisplayers">
+            <summary>
+            Indicates the internal digit displayers.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instance.
