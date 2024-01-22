@@ -50,7 +50,7 @@ public static class SymmetricalPlacementChecker
 	/// <param name="mappingDigits">The mapping digits returned.</param>
 	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
-	public static unsafe bool GetSymmetricalPlacementType(
+	public static unsafe bool InferSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,

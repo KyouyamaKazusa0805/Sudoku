@@ -100,7 +100,7 @@ public sealed partial class Analyzer :
 		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
 		{
 			// Firstly, we should check whether the puzzle is a GSP.
-			puzzle.GetSymmetricalPlacementType(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
+			puzzle.InferSymmetricalPlacement(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
 
 			try
 			{

@@ -5763,7 +5763,7 @@ if (student is (name: var name, age: >= 18))
             <see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/> or	<see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SymmetricalPlacementChecker.GetSymmetricalPlacementType(Sudoku.Concepts.Grid@,Sudoku.Concepts.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SymmetricalPlacementChecker.InferSymmetricalPlacement(Sudoku.Concepts.Grid@,Sudoku.Concepts.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             Try to get the symmetric type and its mapping rule for the specified grid.
             </summary>
