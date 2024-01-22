@@ -3,12 +3,12 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents a checker type that checks for technique Gurth's symmetrical placement.
 /// </summary>
-public static class SymmetricalPlacementChecker
+public static unsafe class SymmetricalPlacementChecker
 {
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly unsafe SymmetricalPlacementCheckerFunc[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
+	private static readonly SymmetricalPlacementCheckerFunc[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
 	/// <summary>
@@ -24,7 +24,7 @@ public static class SymmetricalPlacementChecker
 	/// <see cref="SymmetricType.Diagonal"/> or	<see cref="SymmetricType.AntiDiagonal"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsSymmetricalPlacement(
+	public static bool IsSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,

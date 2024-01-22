@@ -126,7 +126,7 @@ public sealed partial class Analyzer :
 						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = ex },
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					_ when ex.GetType().IsGenericAssignableTo(typeof(StepSearcherProcessException<>))
+					PuzzleInvalidException
 						=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid },
 					_
 						=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }

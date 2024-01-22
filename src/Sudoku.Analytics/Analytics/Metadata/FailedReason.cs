@@ -19,11 +19,11 @@ public enum FailedReason
 	/// </para>
 	/// </summary>
 	/// <remarks>
-	/// This field can also be used for false-positive on analyzing a puzzle, raising <see cref="StepSearcherProcessException{TStepSearcher}"/>.
+	/// This field can also be used for false-positive on analyzing a puzzle, raising <see cref="PuzzleInvalidException"/>.
 	/// </remarks>
 	/// <seealso cref="PuzzleHasNoSolution"/>
 	/// <seealso cref="PuzzleHasMultipleSolutions"/>
-	/// <seealso cref="StepSearcherProcessException{TStepSearcher}"/>
+	/// <seealso cref="PuzzleInvalidException"/>
 	PuzzleIsInvalid,
 
 	/// <summary>

@@ -4348,11 +4348,11 @@ if (student is (name: var name, age: >= 18))
             </para>
             </summary>
             <remarks>
-            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>.
+            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.PuzzleInvalidException"/>.
             </remarks>
             <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasNoSolution"/>
             <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasMultipleSolutions"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcherProcessException`1"/>
+            <seealso cref="T:Sudoku.Analytics.PuzzleInvalidException"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleHasNoSolution">
             <summary>
@@ -4908,6 +4908,35 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.PredefinedAnalyzers.SudokuExplainer">
             <summary>
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.PuzzleInvalidException">
+            <summary>
+            Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
+            </summary>
+            <param name="stepSearcherType">The type of the step searcher that throws the exception.</param>
+            <remarks>
+            This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
+            but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
+            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+        </member>
+        <member name="M:Sudoku.Analytics.PuzzleInvalidException.#ctor(System.Type)">
+            <summary>
+            Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
+            </summary>
+            <param name="stepSearcherType">The type of the step searcher that throws the exception.</param>
+            <remarks>
+            This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
+            but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
+            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+        </member>
+        <member name="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType">
+            <summary>
+            The generated property declaration for parameter <c>stepSearcherType</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor">
@@ -5938,12 +5967,6 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/returns"/></returns>
             <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherProcessException`1">
-            <summary>
-            Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>

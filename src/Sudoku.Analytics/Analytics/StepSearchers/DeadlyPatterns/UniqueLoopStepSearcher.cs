@@ -55,7 +55,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					case 0:
 					{
 						// The current puzzle has multiple solutions.
-						throw new StepSearcherProcessException<UniqueLoopStepSearcher>();
+						throw new PuzzleInvalidException(typeof(UniqueLoopStepSearcher));
 					}
 					case 1:
 					{
