@@ -5602,6 +5602,22 @@ if (student is (name: var name, age: >= 18))
             <param name="match">The match method.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether at least one element satisfies the specified condition.</returns>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.All(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
+            </summary>
+            <param name="this">The candidate to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.All(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
+            </summary>
+            <param name="this">The candidate to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
+        </member>
         <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.

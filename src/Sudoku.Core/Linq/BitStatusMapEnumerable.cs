@@ -57,11 +57,11 @@ public static class BitStatusMapEnumerable
 	)
 	{
 		var result = new List<TResult>(@this.Count << 1);
-		foreach (var cell in @this)
+		foreach (var candidate in @this)
 		{
-			foreach (var digit in collectionSelector(cell))
+			foreach (var digit in collectionSelector(candidate))
 			{
-				result.Add(resultSelector(cell, digit));
+				result.Add(resultSelector(candidate, digit));
 			}
 		}
 
@@ -93,16 +93,54 @@ public static class BitStatusMapEnumerable
 	/// <param name="this">The cell to be checked.</param>
 	/// <param name="match">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
-	public static bool Any(this scoped ref readonly CandidateMap @this, Func<Cell, bool> match)
+	public static bool Any(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
-		foreach (var cell in @this)
+		foreach (var candidate in @this)
 		{
-			if (match(cell))
+			if (match(candidate))
 			{
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	/// <summary>
+	/// Determine whether all <see cref="Cell"/>s satisfy the specified condition.
+	/// </summary>
+	/// <param name="this">The candidate to be checked.</param>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
+	public static bool All(this scoped ref readonly CellMap @this, Func<Cell, bool> match)
+	{
+		foreach (var cell in @this)
+		{
+			if (!match(cell))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// Determine whether all <see cref="Candidate"/>s satisfy the specified condition.
+	/// </summary>
+	/// <param name="this">The candidate to be checked.</param>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
+	public static bool All(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+	{
+		foreach (var candidate in @this)
+		{
+			if (!match(candidate))
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
