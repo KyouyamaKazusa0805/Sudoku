@@ -15,21 +15,4 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> : Dictio
 
 	/// <inheritdoc/>
 	public abstract override int GetHashCode();
-
-	/// <summary>
-	/// Transforms the current collection into another representation, using the specified function to transform.
-	/// </summary>
-	/// <typeparam name="TResult">The type of the results.</typeparam>
-	/// <param name="selector">The selector to tranform elements.</param>
-	/// <returns>The results.</returns>
-	public ReadOnlySpan<TResult> Select<TResult>(Func<(TKey Key, AlmostLockedSet AlsPattern), TResult> selector)
-	{
-		var (result, i) = (new TResult[Count], 0);
-		foreach (var (key, value) in this)
-		{
-			result[i++] = selector((key, value));
-		}
-
-		return result;
-	}
 }

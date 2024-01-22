@@ -51,51 +51,6 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([RecordPa
 	public ReadOnlySpan<TElement>.Enumerator GetEnumerator() => Values.GetEnumerator();
 
 	/// <summary>
-	/// Filters a sequence of values based on a predicate.
-	/// </summary>
-	/// <param name="predicate">A function to test each element for a condition.</param>
-	/// <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
-	public ReadOnlySpan<TElement> Where(Func<TElement, bool> predicate)
-	{
-		var result = new TElement[Values.Count];
-		var i = 0;
-		foreach (var element in Values)
-		{
-			if (predicate(element))
-			{
-				result[i++] = element;
-			}
-		}
-
-		return result.AsReadOnlySpan()[..i];
-	}
-
-	/// <summary>
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/summary"/>
-	/// </summary>
-	/// <typeparam name="TResult">
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/typeparam[@name='TResult']"/>
-	/// </typeparam>
-	/// <param name="selector">
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
-	/// </param>
-	/// <returns>
-	/// An array of <typeparamref name="TResult"/> instances whose elements are the result of invoking the transform function
-	/// on each element of the current instance.
-	/// </returns>
-	public ReadOnlySpan<TResult> Select<TResult>(Func<TElement, TResult> selector)
-	{
-		var result = new TResult[Values.Count];
-		var i = 0;
-		foreach (var element in Values)
-		{
-			result[i++] = selector(element);
-		}
-
-		return result;
-	}
-
-	/// <summary>
 	/// Makes a <see cref="CellMap"/> instance that is concatenated by a list of groups
 	/// of type <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/>, adding their keys.
 	/// </summary>

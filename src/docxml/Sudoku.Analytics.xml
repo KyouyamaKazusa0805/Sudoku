@@ -3889,12 +3889,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Select``1(System.Func{Sudoku.Analytics.Categorization.Technique,``0})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Where(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#CopyTo(Sudoku.Analytics.Categorization.Technique[],System.Int32)">
             <inheritdoc/>
         </member>
@@ -18904,14 +18898,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Select``1(System.Func{System.ValueTuple{`1,Sudoku.Concepts.AlmostLockedSet},``0})">
-            <summary>
-            Transforms the current collection into another representation, using the specified function to transform.
-            </summary>
-            <typeparam name="TResult">The type of the results.</typeparam>
-            <param name="selector">The selector to tranform elements.</param>
-            <returns>The results.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -19792,6 +19778,39 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
+            <summary>
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2"/>
+        </member>
+        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection{``0,``1},System.Func{System.ValueTuple{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="this">The current collection.</param>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.TechniqueSetEnumerable">
+            <summary>
+            Represents a list of methods that is used for LINQ on <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
+        </member>
+        <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Select``1(Sudoku.Analytics.Categorization.TechniqueSet,System.Func{Sudoku.Analytics.Categorization.Technique,``0})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
+        </member>
+        <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Where(Sudoku.Analytics.Categorization.TechniqueSet,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">

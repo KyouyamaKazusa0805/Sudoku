@@ -8,7 +8,7 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(IntersectionCollection), nameof(Create))]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 [method: DebuggerStepThrough]
-public sealed partial class IntersectionCollection([RecordParameter(DataMemberKinds.Field, Accessibility = "private readonly")] Intersection[] values) : IEnumerable<Intersection>
+public sealed partial class IntersectionCollection([RecordParameter(DataMemberKinds.Field, Accessibility = "internal readonly")] Intersection[] values) : IEnumerable<Intersection>
 {
 	/// <summary>
 	/// Try to get the enumerator that iterates on the elements of the current collection.
@@ -16,15 +16,6 @@ public sealed partial class IntersectionCollection([RecordParameter(DataMemberKi
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ReadOnlySpan<Intersection>.Enumerator GetEnumerator() => _values.AsReadOnlySpan().GetEnumerator();
-
-	/// <summary>
-	/// Projects each element into a new transform using the specified method to transform.
-	/// </summary>
-	/// <typeparam name="TResult">The type of result elements.</typeparam>
-	/// <param name="selector">The transform method.</param>
-	/// <returns>An array of <typeparamref name="TResult"/> results.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TResult[] Select<TResult>(Func<Intersection, TResult> selector) => from e in _values select selector(e);
 
 	/// <summary>
 	/// Copies the internal array into a new instance, and return it.

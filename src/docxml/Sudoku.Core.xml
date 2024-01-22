@@ -5224,14 +5224,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.Select``1(System.Func{Sudoku.Concepts.Intersection,``0})">
-            <summary>
-            Projects each element into a new transform using the specified method to transform.
-            </summary>
-            <typeparam name="TResult">The type of result elements.</typeparam>
-            <param name="selector">The transform method.</param>
-            <returns>An array of <typeparamref name="TResult"/> results.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.IntersectionCollection.ToArray">
             <summary>
             Copies the internal array into a new instance, and return it.
@@ -5698,28 +5690,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>An enumerator object that can be used to iterate through the collection.</returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Where(System.Func{`1,System.Boolean})">
-            <summary>
-            Filters a sequence of values based on a predicate.
-            </summary>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`3.Select``1(System.Func{`1,``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
-            </summary>
-            <typeparam name="TResult">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
-            </typeparam>
-            <param name="selector">
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
-            </param>
-            <returns>
-            An array of <typeparamref name="TResult"/> instances whose elements are the result of invoking the transform function
-            on each element of the current instance.
-            </returns>
-        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroup`3.CreateMapByKeys(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{`0,`1,System.Int32}})">
             <summary>
             Makes a <see cref="T:Sudoku.Concepts.CellMap"/> instance that is concatenated by a list of groups
@@ -5770,6 +5740,46 @@ if (student is (name: var name, age: >= 18))
             Represents a list of LINQ methods used by <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Where``3(Sudoku.Linq.BitStatusMapGroup{``0,``1,``2},System.Func{``1,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate.
+            </summary>
+            <typeparam name="TMap">
+            The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.
+            </typeparam>
+            <typeparam name="TElement">
+            The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`3.Values"/>.
+            </typeparam>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <param name="this">The instance to be checked.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``4(Sudoku.Linq.BitStatusMapGroup{``0,``1,``2},System.Func{``1,``3})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <typeparam name="TMap">
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`3" path="/typeparam[@name='TMap']"/>
+            </typeparam>
+            <typeparam name="TElement">
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`3" path="/typeparam[@name='TElement']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`3" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TResult">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
+            </typeparam>
+            <param name="this">The instance to be checked.</param>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            An array of <typeparamref name="TResult"/> instances whose elements are the result of invoking the transform function
+            on each element of the current instance.
+            </returns>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,``0},System.Int32})">
             <summary>
@@ -5871,6 +5881,21 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The mask type of bits.</param>
             <param name="predicate">The condition that filters bits, removing bits not satisfying the condition.</param>
             <returns>A new <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.IntersectionCollectionEnumerable">
+            <summary>
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.IntersectionCollection"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionCollection"/>
+        </member>
+        <member name="M:Sudoku.Linq.IntersectionCollectionEnumerable.Select``1(Sudoku.Concepts.IntersectionCollection,System.Func{Sudoku.Concepts.Intersection,``0})">
+            <summary>
+            Projects each element into a new transform using the specified method to transform.
+            </summary>
+            <typeparam name="TResult">The type of result elements.</typeparam>
+            <param name="this">The instance to be checked..</param>
+            <param name="selector">The transform method.</param>
+            <returns>An array of <typeparamref name="TResult"/> results.</returns>
         </member>
         <member name="T:Sudoku.Linq.ListEnumerable">
             <summary>
