@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Inferring;
 
 /// <summary>
 /// Represents a checker type that checks for technique Gurth's symmetrical placement.

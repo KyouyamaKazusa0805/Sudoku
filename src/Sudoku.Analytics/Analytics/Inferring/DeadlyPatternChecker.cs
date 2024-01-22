@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Inferring;
 
 /// <summary>
 /// Represents a checker that checks for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),
