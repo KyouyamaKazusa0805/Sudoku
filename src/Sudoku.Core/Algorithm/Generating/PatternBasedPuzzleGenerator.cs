@@ -14,12 +14,6 @@ namespace Sudoku.Algorithm.Generating;
 public ref partial struct PatternBasedPuzzleGenerator([RecordParameter(DataMemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
 {
 	/// <summary>
-	/// The internal index array.
-	/// </summary>
-	private static readonly int[] IndexArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-
-	/// <summary>
 	/// The internal solver.
 	/// </summary>
 	private readonly BitwiseSolver _solver = new();
@@ -93,7 +87,7 @@ public ref partial struct PatternBasedPuzzleGenerator([RecordParameter(DataMembe
 
 			var cell = patternCellsSorted[currentIndex];
 			scoped var digits = playground.GetCandidates(cell).GetAllSets();
-			var indexArray = IndexArray[..digits.Length];
+			var indexArray = Digits[..digits.Length];
 			Random.Shared.Shuffle(indexArray);
 			foreach (var randomizedIndex in indexArray)
 			{

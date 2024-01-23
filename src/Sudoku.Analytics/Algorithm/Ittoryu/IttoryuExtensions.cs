@@ -22,7 +22,7 @@ public static class IttoryuExtensions
 			throw new ArgumentException($"The argument '{nameof(ittoryuPath)}' requires a digit series of length greater than 1.", nameof(ittoryuPath));
 		}
 
-		if (ittoryuPath == [0, 1, 2, 3, 4, 5, 6, 7, 8])
+		if (ittoryuPath == Digits)
 		{
 			// The puzzle won't be changed.
 			return;

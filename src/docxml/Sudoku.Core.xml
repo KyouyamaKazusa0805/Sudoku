@@ -345,11 +345,6 @@
             </summary>
             <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.IndexArray">
-            <summary>
-            The internal index array.
-            </summary>
-        </member>
         <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._solver">
             <summary>
             The internal solver.
@@ -1207,11 +1202,6 @@
         <member name="F:Sudoku.Algorithm.Solving.EnumerableQuerySolver.DigitCharacters">
             <summary>
             Indicates the characters for 1 to 9.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.EnumerableQuerySolver.Digits">
-            <summary>
-            Indicates the raw digits 1 to 9 used in memory.
             </summary>
         </member>
         <member name="P:Sudoku.Algorithm.Solving.EnumerableQuerySolver.UriLink">
