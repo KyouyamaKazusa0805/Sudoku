@@ -4932,11 +4932,6 @@ if (student is (name: var name, age: >= 18))
             Determines whether the current step searcher is only run for indirect view.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.Name">
-            <summary>
-            Returns the real name of this instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportedTechniques">
             <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
         </member>

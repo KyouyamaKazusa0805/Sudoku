@@ -58,11 +58,6 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// </summary>
 	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.IndirectTechniquesOnly);
 
-	/// <summary>
-	/// Returns the real name of this instance.
-	/// </summary>
-	public string Name => GetName(null);
-
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
 
