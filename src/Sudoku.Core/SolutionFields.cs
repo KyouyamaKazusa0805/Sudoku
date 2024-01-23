@@ -36,9 +36,14 @@ public static class SolutionFields
 	public const int TrailingZeroCountFallbackLong = 64;
 
 	/// <summary>
-	/// Indicates the digits used.
+	/// Indicates the digits used. The value can be also used for ordered houses by rows.
 	/// </summary>
 	public static readonly Digit[] Digits = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+	/// <summary>
+	/// Indicates the houses ordered by column.
+	/// </summary>
+	public static readonly Digit[] HousesOrderedByColumn = [0, 3, 6, 1, 4, 7, 2, 5, 8];
 
 	/// <summary>
 	/// Indicates the first cell offset for each house.
