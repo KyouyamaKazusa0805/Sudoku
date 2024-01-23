@@ -13,7 +13,7 @@ namespace System;
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct FlagsEnumTypeFieldIterator<T>([RecordParameter(DataMemberKinds.Field)] T baseField)
+public ref partial struct EnumFlagsEnumerator<T>([RecordParameter(DataMemberKinds.Field)] T baseField)
 	where T : unmanaged, Enum
 {
 	/// <summary>
@@ -60,8 +60,4 @@ public ref partial struct FlagsEnumTypeFieldIterator<T>([RecordParameter(DataMem
 
 		return false;
 	}
-
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly FlagsEnumTypeFieldIterator<T> GetEnumerator() => this;
 }

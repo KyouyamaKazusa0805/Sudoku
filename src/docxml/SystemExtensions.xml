@@ -320,6 +320,59 @@
             The syntax identifier for strings containing XML.
             </summary>
         </member>
+        <member name="T:System.EnumFlagsEnumerator`1">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.#ctor(`0)">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
+        </member>
+        <member name="F:System.EnumFlagsEnumerator`1._fields">
+            <summary>
+            Indicates the fields of the type to iterate.
+            </summary>
+        </member>
+        <member name="F:System.EnumFlagsEnumerator`1._index">
+            <summary>
+            Indicates the current index being iterated.
+            </summary>
+        </member>
+        <member name="P:System.EnumFlagsEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.EnumFlagsEnumerator`1.SizeOfT">
+            <summary>
+            Indicates the size of <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.EnumFlagsEnumerator`1._baseField">
+            <summary>
+            The generated field declaration for parameter <c>baseField</c>.
+            </summary>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Array"/>, especially for one-dimensional array.
@@ -2274,62 +2327,6 @@ fixed (short* ptr = instance)
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
-        <member name="T:System.FlagsEnumTypeFieldIterator`1">
-            <summary>
-            Defines an enumerator that iterates the possible fields of an enumeration type.
-            </summary>
-            <typeparam name="T">
-            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
-            </typeparam>
-            <param name="baseField">Indicates the base field.</param>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
-            <summary>
-            Defines an enumerator that iterates the possible fields of an enumeration type.
-            </summary>
-            <typeparam name="T">
-            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
-            </typeparam>
-            <param name="baseField">Indicates the base field.</param>
-        </member>
-        <member name="F:System.FlagsEnumTypeFieldIterator`1._fields">
-            <summary>
-            Indicates the fields of the type to iterate.
-            </summary>
-        </member>
-        <member name="F:System.FlagsEnumTypeFieldIterator`1._index">
-            <summary>
-            Indicates the current index being iterated.
-            </summary>
-        </member>
-        <member name="P:System.FlagsEnumTypeFieldIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.FlagsEnumTypeFieldIterator`1.SizeOfT">
-            <summary>
-            Indicates the size of <typeparamref name="T"/>.
-            </summary>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="F:System.FlagsEnumTypeFieldIterator`1._baseField">
-            <summary>
-            The generated field declaration for parameter <c>baseField</c>.
-            </summary>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Represents for an abstraction unit that supports for boolean logical operators
@@ -2564,6 +2561,14 @@ fixed (short* ptr = instance)
             indicating whether two elements are considered equal.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether two arrays are considered equal.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Distinct``1(``0[])">
+            <summary>
+            Filters duplicate items from an array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The array to be filtered.</param>
+            <returns>A new array of elements that doesn't contain any duplicate items.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>

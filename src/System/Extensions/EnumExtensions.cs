@@ -29,7 +29,7 @@ public static class EnumExtensions
 	/// <returns>
 	/// All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
 	/// </returns>
-	public static unsafe T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
+	public static T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
 	{
 		// Create a buffer to gather all possible flags.
 		scoped var buffer = (stackalloc T[Enum.GetValues<T>().Length]);
@@ -39,17 +39,7 @@ public static class EnumExtensions
 			buffer[i++] = flag;
 		}
 
-		if (i == 0)
-		{
-			return [];
-		}
-
-		// Returns the instance and copy the values.
-		var result = new T[i];
-		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in buffer[0]), (uint)(sizeof(T) * i));
-
-		// Returns the value.
-		return [.. result.Distinct()];
+		return i == 0 ? [] : buffer[..i].ToArray().Distinct();
 	}
 
 	/// <summary>
@@ -62,5 +52,5 @@ public static class EnumExtensions
 	/// Throws when the type isn't applied the attribute <see cref="FlagsAttribute"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FlagsEnumTypeFieldIterator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
+	public static EnumFlagsEnumerator<T> GetEnumerator<T>(this T @this) where T : unmanaged, Enum => new(@this);
 }
