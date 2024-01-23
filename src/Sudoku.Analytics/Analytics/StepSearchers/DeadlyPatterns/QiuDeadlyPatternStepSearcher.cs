@@ -340,6 +340,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				return null;
 			}
 
+			// Counter-example:
+			//     .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:
+			//       211 711 412 213 713 215 235 251 451 751 452 261 761
 			var mirror = pattern.Mirror;
 			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
