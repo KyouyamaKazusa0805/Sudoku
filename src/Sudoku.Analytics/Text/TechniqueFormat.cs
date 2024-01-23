@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Text;
 
 /// <summary>
 /// Represents a resource format. This type is used by <see cref="Step"/> instances to describe the technique format

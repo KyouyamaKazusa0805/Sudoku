@@ -5441,7 +5441,7 @@ if (student is (name: var name, age: >= 18))
             If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
             </para>
             <para>
-            Please note the type of this property is <see cref="T:Sudoku.Analytics.TechniqueFormat"/>, which is not a plain string text.
+            Please note the type of this property is <see cref="T:Sudoku.Text.TechniqueFormat"/>, which is not a plain string text.
             However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
             where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
             The format text will be expanded to this expression in runtime:
@@ -5459,7 +5459,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
             <seealso cref="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <seealso cref="T:Sudoku.Analytics.TechniqueFormat"/>
+            <seealso cref="T:Sudoku.Text.TechniqueFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolationParts">
@@ -5468,7 +5468,7 @@ if (student is (name: var name, age: >= 18))
             The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.Format"/> result.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.Format"/>
-            <seealso cref="T:Sudoku.Analytics.FormatInterpolation"/>
+            <seealso cref="T:Sudoku.Text.FormatInterpolation"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ExtraDifficultyFactors">
             <summary>
@@ -17847,100 +17847,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.FormatInterpolation">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.FormatInterpolation.#ctor(System.String,System.String[])">
-            <summary>
-            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            </summary>
-            <param name="LanguageNameOrIdentifier">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
-            </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.FormatInterpolation.LanguageNameOrIdentifier">
-            <summary>
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.FormatInterpolation.ResourcePlaceholderValues">
-            <summary>The values of the interpolation.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.TechniqueFormat">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.#ctor(System.String)">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat.FormatPrefix">
-            <summary>
-            The format prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat._formatFullName">
-            <summary>
-            Full name of the format.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.GetTargetFormat(System.Globalization.CultureInfo)">
-            <summary>
-            Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
-            </summary>
-            <param name="culture">The culture information.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.ToString(System.Globalization.CultureInfo,System.String[])">
-            <summary>
-            Get the format string for the current instance.
-            </summary>
-            <param name="culture">The culture information.</param>
-            <param name="formatArguments">The format arguments.</param>
-            <returns>The final result.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Implicit(System.String)~Sudoku.Analytics.TechniqueFormat">
-            <summary>
-            Creates a <see cref="T:Sudoku.Analytics.TechniqueFormat"/> instance using the specified format name stored in resource file.
-            </summary>
-            <param name="formatName">TThe format name.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.TechniqueFormat._formatName">
-            <summary>
-            The generated field declaration for parameter <c>formatName</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Equality(Sudoku.Analytics.TechniqueFormat,Sudoku.Analytics.TechniqueFormat)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.TechniqueFormat.op_Inequality(Sudoku.Analytics.TechniqueFormat,Sudoku.Analytics.TechniqueFormat)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute">
             <summary>
             Defines an attribute that is applied to a field of technique,
@@ -23857,6 +23763,100 @@ if (student is (name: var name, age: >= 18))
             <summary>
               Looks up a localized string similar to Y-Chain.
             </summary>
+        </member>
+        <member name="T:Sudoku.Text.FormatInterpolation">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="M:Sudoku.Text.FormatInterpolation.#ctor(System.String,System.String[])">
+            <summary>
+            Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
+            </summary>
+            <param name="LanguageNameOrIdentifier">
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            </param>
+            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+        </member>
+        <member name="P:Sudoku.Text.FormatInterpolation.LanguageNameOrIdentifier">
+            <summary>
+            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Text.FormatInterpolation.ResourcePlaceholderValues">
+            <summary>The values of the interpolation.</summary>
+        </member>
+        <member name="T:Sudoku.Text.TechniqueFormat">
+            <summary>
+            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
+            stored in resource dictionary.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.#ctor(System.String)">
+            <summary>
+            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
+            stored in resource dictionary.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="F:Sudoku.Text.TechniqueFormat.FormatPrefix">
+            <summary>
+            The format prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Text.TechniqueFormat._formatFullName">
+            <summary>
+            Full name of the format.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.GetTargetFormat(System.Globalization.CultureInfo)">
+            <summary>
+            Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
+            </summary>
+            <param name="culture">The culture information.</param>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.ToString(System.Globalization.CultureInfo,System.String[])">
+            <summary>
+            Get the format string for the current instance.
+            </summary>
+            <param name="culture">The culture information.</param>
+            <param name="formatArguments">The format arguments.</param>
+            <returns>The final result.</returns>
+            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.op_Implicit(System.String)~Sudoku.Text.TechniqueFormat">
+            <summary>
+            Creates a <see cref="T:Sudoku.Text.TechniqueFormat"/> instance using the specified format name stored in resource file.
+            </summary>
+            <param name="formatName">TThe format name.</param>
+        </member>
+        <member name="F:Sudoku.Text.TechniqueFormat._formatName">
+            <summary>
+            The generated field declaration for parameter <c>formatName</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.op_Equality(Sudoku.Text.TechniqueFormat,Sudoku.Text.TechniqueFormat)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Text.TechniqueFormat.op_Inequality(Sudoku.Text.TechniqueFormat,Sudoku.Text.TechniqueFormat)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.KeywordPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the KeywordPattern method.</summary>
