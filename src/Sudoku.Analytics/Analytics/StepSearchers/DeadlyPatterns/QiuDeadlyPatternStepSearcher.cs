@@ -40,23 +40,34 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private static readonly Pattern2[] PatternsForCase2;
 
+	/// <summary>
+	/// Indicates the line offsets of the patterns.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] LineOffsets = [
+		[0, 1, 2], [0, 2, 1], [1, 2, 0],
+		[3, 4, 5], [3, 5, 4], [4, 5, 3],
+		[6, 7, 8], [6, 8, 7], [7, 8, 6]
+	];
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static QiuDeadlyPatternStepSearcher()
 	{
 		// Case 1: 2 lines + 2 cells.
-		var lineOffsets = (int[][])[[0, 1, 2], [0, 2, 1], [1, 2, 0], [3, 4, 5], [3, 5, 4], [4, 5, 3], [6, 7, 8], [6, 8, 7], [7, 8, 6]];
 		var patternsForCase1 = new List<Pattern1>();
 		foreach (var isRow in (true, false))
 		{
 			var (@base, fullHousesMask) = isRow ? (9, HouseMaskOperations.AllRowsMask) : (18, HouseMaskOperations.AllColumnsMask);
-			foreach (var lineOffsetPair in lineOffsets)
+			foreach (var lineOffsetPair in LineOffsets)
 			{
 				var (l1, l2, l3) = (lineOffsetPair[0] + @base, lineOffsetPair[1] + @base, lineOffsetPair[2] + @base);
 				var linesMask = 1 << l1 | 1 << l2;
 				foreach (var cornerHouse in fullHousesMask & ~linesMask & ~(1 << l3))
 				{
-					foreach (var posPair in lineOffsets)
+					foreach (var posPair in LineOffsets)
 					{
 						patternsForCase1.Add(new([HouseCells[cornerHouse][posPair[0]], HouseCells[cornerHouse][posPair[1]]], linesMask));
 					}
@@ -69,10 +80,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var patternsForCase2 = new List<Pattern2>();
 		scoped var rows = HouseMaskOperations.AllRowsMask.GetAllSets();
 		scoped var columns = HouseMaskOperations.AllColumnsMask.GetAllSets();
-		foreach (var lineOffsetPairRow in lineOffsets)
+		foreach (var lineOffsetPairRow in LineOffsets)
 		{
 			var rowsMask = 1 << rows[lineOffsetPairRow[0]] | 1 << rows[lineOffsetPairRow[1]];
-			foreach (var lineOffsetPairColumn in lineOffsets)
+			foreach (var lineOffsetPairColumn in LineOffsets)
 			{
 				var columnsMask = 1 << columns[lineOffsetPairColumn[0]] | 1 << columns[lineOffsetPairColumn[1]];
 				patternsForCase2.Add(new(rowsMask, columnsMask));

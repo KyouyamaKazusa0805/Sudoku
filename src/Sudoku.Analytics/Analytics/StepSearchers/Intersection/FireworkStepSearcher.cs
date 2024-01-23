@@ -15,9 +15,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Firework Quadruple</item>
 /// </list>
 /// </summary>
-[StepSearcher(
-	Technique.FireworkPairType1, Technique.FireworkPairType2, Technique.FireworkPairType3,
-	Technique.FireworkTriple, Technique.FireworkQuadruple, Flags = ConditionalFlags.TimeComplexity)]
+[StepSearcher(Technique.FireworkTriple, Technique.FireworkQuadruple, Flags = ConditionalFlags.TimeComplexity)]
 [StepSearcherRuntimeName("StepSearcherName_FireworkStepSearcher")]
 public sealed partial class FireworkStepSearcher : StepSearcher
 {
@@ -26,28 +24,28 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private static readonly Pattern[] Patterns;
 
+	/// <summary>
+	/// Indicates the house combinations.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] HouseCombinations = [
+		[0, 1, 3, 4], [0, 2, 3, 5], [1, 2, 4, 5],
+		[0, 1, 6, 7], [0, 2, 6, 8], [1, 2, 7, 8],
+		[3, 4, 6, 7], [3, 5, 6, 8], [4, 5, 7, 8]
+	];
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		var houses = (int[][])[
-			[0, 1, 3, 4],
-			[0, 2, 3, 5],
-			[1, 2, 4, 5],
-			[0, 1, 6, 7],
-			[0, 2, 6, 8],
-			[1, 2, 7, 8],
-			[3, 4, 6, 7],
-			[3, 5, 6, 8],
-			[4, 5, 7, 8]
-		];
-
 		Patterns = new Pattern[3645];
 
 		var i = 0;
-		foreach (var houseQuad in houses)
+		foreach (var houseQuad in HouseCombinations)
 		{
-			// Gather triples.
+			// Collection for pattern triples.
 			foreach (var triple in houseQuad.GetSubsets(3))
 			{
 				foreach (var a in HousesMap[triple[0]])
@@ -77,7 +75,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 				}
 			}
 
-			// Gather quadruples.
+			// Collection for pattern quadruples.
 			foreach (var a in HousesMap[houseQuad[0]])
 			{
 				foreach (var b in HousesMap[houseQuad[1]])

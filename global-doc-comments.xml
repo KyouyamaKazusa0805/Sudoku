@@ -39,6 +39,13 @@ Then you can reference the doc here.
 		</para>
 	</developer-notes>
 
+	<!-- Requires static constructor invocation -->
+	<requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+
 	<!-- Requires compound invocation -->
 	<requires-compound-invocation>
 		<para>

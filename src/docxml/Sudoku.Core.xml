@@ -7913,6 +7913,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>
             <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>
         </member>
+        <member name="F:Sudoku.SolutionFields.Digits">
+            <summary>
+            Indicates the digits used.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.HouseFirst">
             <summary>
             Indicates the first cell offset for each house.

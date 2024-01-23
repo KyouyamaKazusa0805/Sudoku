@@ -11,7 +11,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
-	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2, Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
+	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2,
+	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
 	Flags = ConditionalFlags.Standard)]
 [StepSearcherRuntimeName("StepSearcherName_ExtendedRectangleStepSearcher")]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
@@ -37,73 +38,87 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly List<(CellMap Cells, List<(Cell Left, Cell Right)> PairCells, int Size)> RawPatternData;
+	private static readonly (CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size)[] RawPatternData;
+
+	/// <summary>
+	/// Indicates all possible combinations of houses.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] HouseCombinations = [
+		[9, 10], [9, 11], [10, 11],
+		[12, 13], [12, 14], [13, 14],
+		[15, 16], [15, 17], [16, 17],
+		[18, 19], [18, 20], [19, 20],
+		[21, 22], [21, 23], [22, 23],
+		[24, 25], [24, 26], [25, 26]
+	];
+
+	/// <summary>
+	/// Indicates the row combinations for rows.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] FitTableRow = [
+		[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
+		[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8], [3, 6], [3, 7], [3, 8], [4, 6], [4, 7], [4, 8], [5, 6], [5, 7], [5, 8]
+	];
+
+	/// <summary>
+	/// Indicates the column combinations of columns.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] FitTableColumn = [
+		[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72], [9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
+		[18, 27], [18, 36], [18, 45], [18, 54], [18, 63], [18, 72],
+		[27, 54], [27, 63], [27, 72], [36, 54], [36, 63], [36, 72],
+		[45, 54], [45, 63], [45, 72]
+	];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		var houses = (int[][])[
-			[9, 10], [9, 11], [10, 11],
-			[12, 13], [12, 14], [13, 14],
-			[15, 16], [15, 17], [16, 17],
-			[18, 19], [18, 20], [19, 20],
-			[21, 22], [21, 23], [22, 23],
-			[24, 25], [24, 26], [25, 26]
-		];
-		var fitTableRow = (int[][])[
-			[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8],
-			[1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
-			[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8],
-			[3, 6], [3, 7], [3, 8],
-			[4, 6], [4, 7], [4, 8],
-			[5, 6], [5, 7], [5, 8]
-		];
-		var fitTableColumn = (int[][])[
-			[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72],
-			[9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
-			[18, 27], [18, 36], [18, 45], [18, 54], [18, 63], [18, 72],
-			[27, 54], [27, 63], [27, 72],
-			[36, 54], [36, 63], [36, 72],
-			[45, 54], [45, 63], [45, 72]
-		];
-
-		RawPatternData = [];
+		var result = new List<(CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size)>();
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
 		{
-			for (var i = 0; i < fitTableRow.Length >> 1; i++)
+			for (var i = 0; i < FitTableRow.Length >> 1; i++)
 			{
-				var c11 = fitTableRow[i][0] + j * 27;
-				var c21 = fitTableRow[i][1] + j * 27;
+				var c11 = FitTableRow[i][0] + j * 27;
+				var c21 = FitTableRow[i][1] + j * 27;
 				var c12 = c11 + 9;
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
 				var c23 = c21 + 18;
-				RawPatternData.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 		for (var j = 0; j < 3; j++)
 		{
-			for (var i = 0; i < fitTableColumn.Length >> 1; i++)
+			for (var i = 0; i < FitTableColumn.Length >> 1; i++)
 			{
-				var c11 = fitTableColumn[i][0] + j * 3;
-				var c21 = fitTableColumn[i][1] + j * 3;
+				var c11 = FitTableColumn[i][0] + j * 3;
+				var c21 = FitTableColumn[i][1] + j * 3;
 				var c12 = c11 + 1;
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
 				var c23 = c21 + 2;
-				RawPatternData.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 
 		// Initializes fat types.
 		for (var size = 3; size <= 7; size++)
 		{
-			for (var i = 0; i < houses.Length >> 1; i++)
+			for (var i = 0; i < HouseCombinations.Length >> 1; i++)
 			{
-				var (house1, house2) = (houses[i][0], houses[i][1]);
+				var (house1, house2) = (HouseCombinations[i][0], HouseCombinations[i][1]);
 				foreach (Mask mask in new MaskCombinationsGenerator(9, size))
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
@@ -121,10 +136,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						pairs.Add((cell1, cell2));
 					}
 
-					RawPatternData.Add((map, pairs, size));
+					result.Add((map, [.. pairs], size));
 				}
 			}
 		}
+
+		RawPatternData = [.. result];
 	}
 
 

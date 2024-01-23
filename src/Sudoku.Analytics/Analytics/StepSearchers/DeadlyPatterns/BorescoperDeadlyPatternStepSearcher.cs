@@ -25,53 +25,53 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </remarks>
 	private static readonly Pattern[] Patterns;
 
+	/// <summary>
+	/// Indicates the quadruple list that describes the chosen cells in the target block.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] OffsetQuadruples = [
+		[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7],
+		[4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8],
+		[0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]
+	];
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BorescoperDeadlyPatternStepSearcher()
 	{
-		var quads = (int[][])[[0, 1, 3, 4], [1, 2, 4, 5], [3, 4, 6, 7], [4, 5, 7, 8], [0, 2, 3, 5], [3, 5, 6, 8], [0, 1, 6, 7], [1, 2, 7, 8], [0, 2, 6, 8]];
 		var count = 0;
-
 		Patterns = new Pattern[14580];
 		for (var block = 0; block < 9; block++)
 		{
 			for (var i = 0; i < 9; i++) // 9 cases.
 			{
-				var quad = quads[i];
-				var tempQuad = new Cell[4];
+				var quadruple = OffsetQuadruples[i];
+				var tempQuadruple = new Cell[4];
 				for (var j = 0; j < 4; j++)
 				{
 					// Set all indices to cell offsets.
-					tempQuad[j] = (block / 3 * 3 + quad[j] / 3) * 9 + block % 3 * 3 + quad[j] % 3;
+					tempQuadruple[j] = (block / 3 * 3 + quadruple[j] / 3) * 9 + block % 3 * 3 + quadruple[j] % 3;
 				}
 
-				collectHeptagonPatterns(block, i, tempQuad, ref count);
-				collectOctagonPatterns(block, i, tempQuad, ref count);
+				collectHeptagonPatterns(block, i, tempQuadruple, ref count);
+				collectOctagonPatterns(block, i, tempQuadruple, ref count);
 			}
 		}
 
 
-		static void collectHeptagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
+		static void collectHeptagonPatterns(House block, int i, Cell[] quadruple, scoped ref int count)
 		{
-			if (quad is not [var q1, var q2, var q3, var q4])
+			if (quadruple is not [var q1, var q2, var q3, var q4])
 			{
 				return;
 			}
 
-			var triplets = (int[][])[
-				[q1, q2, q3], // (0, 1) and (0, 2) is same house.
-				[q2, q1, q4], // (0, 1) and (1, 3) is same house.
-				[q3, q1, q4], // (0, 2) and (2, 3) is same house.
-				[q4, q2, q3] // (1, 3) and (2, 3) is same house.
-			];
-
+			scoped var blockTriplets = (ReadOnlySpan<(Cell, Cell, Cell)>)[(q1, q2, q3), (q2, q1, q4), (q3, q1, q4), (q4, q2, q3)];
 			for (var j = 0; j < 4; j++)
 			{
-				if (triplets[j] is not [var t1, var t2, var t3] triplet)
-				{
-					continue;
-				}
-
+				_ = blockTriplets[j] is (var t1, var t2, var t3) triplet;
 				var house1 = (CellsMap[t1] + t2).CoveredLine;
 				var house2 = (CellsMap[t1] + t3).CoveredLine;
 				var pair1 = new Cell[6, 2];
@@ -95,17 +95,16 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					for (var i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
-						var allCells = (List<Cell>)([.. triplet, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]]);
+						scoped var allCells = (ReadOnlySpan<Cell>)[.. triplet, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]];
 						var v = 0L;
-						for (var z = 0; z < allCells.Count; z++)
+						for (var z = 0; z < allCells.Length; z++)
 						{
 							v |= (long)allCells[z];
 
-							if (z != allCells.Count - 1)
+							if (z != allCells.Length - 1)
 							{
 								v <<= 7;
 							}
-
 							if (z == 2)
 							{
 								v |= 127;
@@ -149,13 +148,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				for (var i2 = 0; i2 < 6; i2++)
 				{
 					// Now check extra digits.
-					var allCells = (List<Cell>)([.. quad, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]]);
+					var allCells = (ReadOnlySpan<Cell>)[.. quad, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]];
 					var v = 0L;
-					for (var z = 0; z < allCells.Count; z++)
+					for (var z = 0; z < allCells.Length; z++)
 					{
 						var cell = allCells[z];
 						v |= (long)cell;
-						if (z != allCells.Count - 1)
+						if (z != allCells.Length - 1)
 						{
 							v <<= 7;
 						}

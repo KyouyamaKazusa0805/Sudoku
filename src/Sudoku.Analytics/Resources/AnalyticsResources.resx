@@ -1341,20 +1341,11 @@
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
     <value>Cells {0} must form a hidden quadruple of digits {1}</value>
   </data>
-  <data name="FireworkPairType1" xml:space="preserve">
-    <value>Firework Pair Type 1</value>
-  </data>
-  <data name="FireworkPairType2" xml:space="preserve">
-    <value>Firework Pair Type 2</value>
-  </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
     <value>Two of three cells {0} must form a hidden pair of digits {1}, therefore one of cells {2} and {3} should be a naked pair with that firework</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
     <value>Two fireworks {0} and {1} of digits {2}, and an extra cell {3}</value>
-  </data>
-  <data name="FireworkPairType3" xml:space="preserve">
-    <value>Firework Pair Type 3</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
     <value>Cells {0} of digits {1} is a firework, with empty rectangle in house {2}</value>

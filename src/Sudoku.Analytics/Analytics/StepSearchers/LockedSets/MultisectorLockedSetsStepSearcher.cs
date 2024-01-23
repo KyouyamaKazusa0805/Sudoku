@@ -16,19 +16,25 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// </summary>
 	private static readonly CellMap[] Patterns;
 
+	/// <summary>
+	/// Indicates the possible size (the number of rows and columns) in an MSLS.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly int[][] PossibleSizes = [[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static MultisectorLockedSetsStepSearcher()
 	{
 		const HouseMask a = ~7, b = ~56, c = ~448;
-		var sizeList = (int[][])[[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
-		var z = (int[])[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		var result = new CellMap[74601];
-		var n = 0;
-		for (var i = 0; i < sizeList.Length; i++)
+		var i = 0;
+		for (var sizeLength = 0; sizeLength < PossibleSizes.Length; sizeLength++)
 		{
-			var (rows, columns) = (sizeList[i][0], sizeList[i][1]);
-			foreach (var rowList in z.GetSubsets(rows))
+			var (rows, columns) = (PossibleSizes[sizeLength][0], PossibleSizes[sizeLength][1]);
+			foreach (var rowList in Digits.GetSubsets(rows))
 			{
 				var (rowMask, rowMap) = ((Mask)0, CellMap.Empty);
 				foreach (var row in rowList)
@@ -42,7 +48,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var columnList in z.GetSubsets(columns))
+				foreach (var columnList in Digits.GetSubsets(columns))
 				{
 					var (columnMask, columnMap) = ((Mask)0, CellMap.Empty);
 					foreach (var column in columnList)
@@ -56,7 +62,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 						continue;
 					}
 
-					result[n++] = rowMap & columnMap;
+					result[i++] = rowMap & columnMap;
 				}
 			}
 		}

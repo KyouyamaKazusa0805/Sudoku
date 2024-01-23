@@ -36,30 +36,38 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
-	private static readonly (int[], int[], int[], int[])[] PatternOffsets;
+	private static readonly (Cell[], Cell[], Cell[], Cell[])[] PatternOffsets;
 
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
 	/// </summary>
 	private static readonly Mask[] ChromaticPatternBlocksCombinations = [
-		0b000_011_011,
-		0b000_101_101,
-		0b000_110_110,
-		0b011_000_011,
-		0b101_000_101,
-		0b110_000_110,
-		0b011_011_000,
-		0b101_101_000,
-		0b110_110_000
+		0b000_011_011, 0b000_101_101, 0b000_110_110,
+		0b011_000_011, 0b101_000_101, 0b110_000_110,
+		0b011_011_000, 0b101_101_000, 0b110_110_000
 	];
+
+	/// <summary>
+	/// Indicates the possible offset values for diagonal cases.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly Cell[][] DiagonalCases = [[0, 10, 20], [1, 11, 18], [2, 9, 19]];
+
+	/// <summary>
+	/// Indicates the possible offset values for anti-diagonal cases.
+	/// </summary>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
+	/// </remarks>
+	private static readonly Cell[][] AntidiagonalCases = [[0, 11, 19], [1, 9, 20], [2, 10, 18]];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		var diagonalCases = (int[][])[[0, 10, 20], [1, 11, 18], [2, 9, 19]];
-		var antidiagonalCases = (int[][])[[0, 11, 19], [1, 9, 20], [2, 10, 18]];
-		var patternOffsetsList = new List<(int[], int[], int[], int[])>();
+		var patternOffsetsList = new List<(Cell[], Cell[], Cell[], Cell[])>();
 		foreach (var (aCase, bCase, cCase, dCase) in (
 			(true, false, false, false),
 			(false, true, false, false),
@@ -68,13 +76,13 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		))
 		{
 			// Phase 1.
-			foreach (var a in aCase ? diagonalCases : antidiagonalCases)
+			foreach (var a in aCase ? DiagonalCases : AntidiagonalCases)
 			{
-				foreach (var b in bCase ? diagonalCases : antidiagonalCases)
+				foreach (var b in bCase ? DiagonalCases : AntidiagonalCases)
 				{
-					foreach (var c in cCase ? diagonalCases : antidiagonalCases)
+					foreach (var c in cCase ? DiagonalCases : AntidiagonalCases)
 					{
-						foreach (var d in dCase ? diagonalCases : antidiagonalCases)
+						foreach (var d in dCase ? DiagonalCases : AntidiagonalCases)
 						{
 							patternOffsetsList.Add((a, b, c, d));
 						}
@@ -83,13 +91,13 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			}
 
 			// Phase 2.
-			foreach (var a in aCase ? antidiagonalCases : diagonalCases)
+			foreach (var a in aCase ? AntidiagonalCases : DiagonalCases)
 			{
-				foreach (var b in bCase ? antidiagonalCases : diagonalCases)
+				foreach (var b in bCase ? AntidiagonalCases : DiagonalCases)
 				{
-					foreach (var c in cCase ? antidiagonalCases : diagonalCases)
+					foreach (var c in cCase ? AntidiagonalCases : DiagonalCases)
 					{
-						foreach (var d in dCase ? antidiagonalCases : diagonalCases)
+						foreach (var d in dCase ? AntidiagonalCases : DiagonalCases)
 						{
 							patternOffsetsList.Add((a, b, c, d));
 						}

@@ -36,6 +36,11 @@ public static class SolutionFields
 	public const int TrailingZeroCountFallbackLong = 64;
 
 	/// <summary>
+	/// Indicates the digits used.
+	/// </summary>
+	public static readonly Digit[] Digits = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+	/// <summary>
 	/// Indicates the first cell offset for each house.
 	/// </summary>
 	public static readonly Cell[] HouseFirst = [0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 9, 18, 27, 36, 45, 54, 63, 72, 0, 1, 2, 3, 4, 5, 6, 7, 8];

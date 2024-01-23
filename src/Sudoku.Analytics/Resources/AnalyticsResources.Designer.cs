@@ -1699,33 +1699,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Firework Pair Type 1.
-        /// </summary>
-        public static string FireworkPairType1 {
-            get {
-                return ResourceManager.GetString("FireworkPairType1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Firework Pair Type 2.
-        /// </summary>
-        public static string FireworkPairType2 {
-            get {
-                return ResourceManager.GetString("FireworkPairType2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Firework Pair Type 3.
-        /// </summary>
-        public static string FireworkPairType3 {
-            get {
-                return ResourceManager.GetString("FireworkPairType3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Firework Quadruple.
         /// </summary>
         public static string FireworkQuadruple {

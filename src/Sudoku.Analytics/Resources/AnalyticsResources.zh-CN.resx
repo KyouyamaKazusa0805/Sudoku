@@ -1625,23 +1625,11 @@
   <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
     <value>单元格 {0} 里必须构成关于数字 {1} 的跨区四数组结构</value>
   </data>
-  <data name="FireworkPairType1" xml:space="preserve">
-    <value>烟花数对・双值格对</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="FireworkPairType2" xml:space="preserve">
-    <value>烟花数对・鸳鸯烟花</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
     <value>单元格 {0} 里的其中之二会构成关于数字 {1} 的隐性数对，因此 {2} 和 {3} 的其一会和此结构构成显性数对</value>
   </data>
   <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
     <value>烟花结构 {0} 和 {1} 使用数字 {2}，并带有额外单元格 {3}</value>
-  </data>
-  <data name="FireworkPairType3" xml:space="preserve">
-    <value>烟花数对・空矩形</value>
-    <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
     <value>单元格 {0} 里的数字 {1} 构成烟花数组结构，带有空矩形结构位于 {2}</value>

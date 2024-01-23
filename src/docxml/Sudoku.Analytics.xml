@@ -1488,21 +1488,6 @@ if (student is (name: var name, age: >= 18))
             The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType1">
-            <summary>
-            Indicates firework pair type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType2">
-            <summary>
-            Indicates firework pair type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkPairType3">
-            <summary>
-            Indicates firework pair type 3.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FireworkTriple">
             <summary>
             Indicates firework triple.
@@ -6708,6 +6693,18 @@ if (student is (name: var name, age: >= 18))
             Please note that all possible heptagons and octagons are in here.
             </remarks>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.OffsetQuadruples">
+            <summary>
+            Indicates the quadruple list that describes the chosen cells in the target block.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.BorescoperDeadlyPatternStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -6960,6 +6957,42 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.HouseCombinations">
+            <summary>
+            Indicates all possible combinations of houses.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.FitTableRow">
+            <summary>
+            Indicates the row combinations for rows.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.FitTableColumn">
+            <summary>
+            Indicates the column combinations of columns.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -7067,6 +7100,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the patterns for case 2.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.LineOffsets">
+            <summary>
+            Indicates the line offsets of the patterns.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.#cctor">
             <static-constructor>
@@ -7685,6 +7730,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the patterns.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.ChuteIteratorValues">
+            <summary>
+            Indicates the iterator values for split chutes.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.#cctor">
             <static-constructor>
@@ -9143,6 +9200,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the patterns used.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.HouseCombinations">
+            <summary>
+            Indicates the house combinations.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.FireworkStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -9496,6 +9565,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the list initialized with the static constructor.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.PossibleSizes">
+            <summary>
+            Indicates the possible size (the number of rows and columns) in an MSLS.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.#cctor">
             <static-constructor>
 		<summary>
@@ -9644,6 +9725,30 @@ if (student is (name: var name, age: >= 18))
             <summary>
             All possible blocks combinations being reserved for chromatic pattern searcher's usages.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.DiagonalCases">
+            <summary>
+            Indicates the possible offset values for diagonal cases.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.AntidiagonalCases">
+            <summary>
+            Indicates the possible offset values for anti-diagonal cases.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.#cctor">
             <static-constructor>
@@ -15629,169 +15734,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>hasValueCell</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.FireworkPairType1Step">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 1</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraCell1">Indicates the first extra digit used.</param>
-            <param name="extraCell2">Indicates the second extra digit used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType1Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 1</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="extraCell1">Indicates the first extra digit used.</param>
-            <param name="extraCell2">Indicates the second extra digit used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell1">
-            <summary>
-            The generated property declaration for parameter <c>extraCell1</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType1Step.ExtraCell2">
-            <summary>
-            The generated property declaration for parameter <c>extraCell2</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.FireworkPairType2Step">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 2</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="pattern1Map">Indicates the map for pattern 1.</param>
-            <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
-            <param name="pattern2Map">Indicates the map for pattern 2.</param>
-            <param name="pattern2Pivot">Indicates the pivot cell for pattern 2. <see langword="null"/> when the pattern is a quadruple.</param>
-            <param name="extraCell">Indicates the extra cell used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Nullable{System.Int32},System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 2</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="pattern1Map">Indicates the map for pattern 1.</param>
-            <param name="pattern1Pivot">Indicates the pivot cell for pattern 1. <see langword="null"/> when the pattern is a quadruple.</param>
-            <param name="pattern2Map">Indicates the map for pattern 2.</param>
-            <param name="pattern2Pivot">Indicates the pivot cell for pattern 2. <see langword="null"/> when the pattern is a quadruple.</param>
-            <param name="extraCell">Indicates the extra cell used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1Map">
-            <summary>
-            The generated property declaration for parameter <c>pattern1Map</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern1Pivot">
-            <summary>
-            The generated property declaration for parameter <c>pattern1Pivot</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2Map">
-            <summary>
-            The generated property declaration for parameter <c>pattern2Map</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.Pattern2Pivot">
-            <summary>
-            The generated property declaration for parameter <c>pattern2Pivot</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType2Step.ExtraCell">
-            <summary>
-            The generated property declaration for parameter <c>extraCell</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.FireworkPairType3Step">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="emptyRectangleBlock">Indicates the block index that empty rectangle forms.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkPairType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Firework Pair Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="emptyRectangleBlock">Indicates the block index that empty rectangle forms.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.FireworkPairType3Step.EmptyRectangleBlock">
-            <summary>
-            The generated property declaration for parameter <c>emptyRectangleBlock</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkQuadrupleStep">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
@@ -20672,21 +20614,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.FinnedXWing">
             <summary>
               Looks up a localized string similar to Finned X-Wing.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.FireworkPairType1">
-            <summary>
-              Looks up a localized string similar to Firework Pair Type 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.FireworkPairType2">
-            <summary>
-              Looks up a localized string similar to Firework Pair Type 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.FireworkPairType3">
-            <summary>
-              Looks up a localized string similar to Firework Pair Type 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FireworkQuadruple">

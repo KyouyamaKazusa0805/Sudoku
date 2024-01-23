@@ -219,30 +219,6 @@ public enum Technique
 	//
 	#region Fireworks
 	/// <summary>
-	/// Indicates firework pair type 1.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	FireworkPairType1,
-
-	/// <summary>
-	/// Indicates firework pair type 2.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	FireworkPairType2,
-
-	/// <summary>
-	/// Indicates firework pair type 3.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	FireworkPairType3,
-
-	/// <summary>
 	/// Indicates firework triple.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
