@@ -8,7 +8,7 @@ internal sealed class StepTooltipDisplayItemToBooleanConverter : IValueConverter
 	/// <inheritdoc/>
 	public object Convert(object value, Type targetType, object parameter, string language)
 		=> (value, parameter) is (StepTooltipDisplayItems items, string rawFlag)
-		&& Enum.TryParse(rawFlag, out StepTooltipDisplayItems flag) && items.Flags(flag);
+		&& Enum.TryParse(rawFlag, out StepTooltipDisplayItems flag) && items.HasFlag(flag);
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>

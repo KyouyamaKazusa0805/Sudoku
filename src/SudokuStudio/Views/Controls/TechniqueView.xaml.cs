@@ -32,7 +32,7 @@ public sealed partial class TechniqueView : UserControl
 		=> [
 			..
 			from technique in Enum.GetValues<Technique>()[1..]
-			where !technique.GetFeature().Flags(TechniqueFeature.NotImplemented)
+			where !technique.GetFeature().HasFlag(TechniqueFeature.NotImplemented)
 			select new TechniqueViewBindableSource(technique) into item
 			group item by item.ContainingGroup into itemGroup
 			orderby itemGroup.Key

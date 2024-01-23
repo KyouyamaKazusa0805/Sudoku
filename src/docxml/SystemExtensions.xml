@@ -659,19 +659,6 @@
             All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:System.EnumExtensions.Flags``1(``0,``0)">
-            <summary>
-            Determines whether one or more bit fields are set in the current instance.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <param name="this">The current enumeration type instance.</param>
-            <param name="other">The other instance to check.</param>
-            <returns>
-            <see langword="true"/> if the bit field or bit fields that are set in <paramref name="other"/>
-            are also set in the current instance; otherwise, <see langword="false"/>.
-            </returns>
-            <exception cref="T:System.ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-        </member>
         <member name="M:System.EnumExtensions.GetEnumerator``1(``0)">
             <summary>
             Get all possible flags that the current enumeration field set.
@@ -2291,16 +2278,23 @@ fixed (short* ptr = instance)
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
             </summary>
-            <typeparam name="T">The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.</typeparam>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
+        </member>
+        <member name="M:System.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
         </member>
         <member name="F:System.FlagsEnumTypeFieldIterator`1._fields">
             <summary>
             Indicates the fields of the type to iterate.
-            </summary>
-        </member>
-        <member name="F:System.FlagsEnumTypeFieldIterator`1._base">
-            <summary>
-            Indicates the base field.
             </summary>
         </member>
         <member name="F:System.FlagsEnumTypeFieldIterator`1._index">
@@ -2308,24 +2302,24 @@ fixed (short* ptr = instance)
             Indicates the current index being iterated.
             </summary>
         </member>
-        <member name="M:System.FlagsEnumTypeFieldIterator`1.#ctor(`0)">
-            <summary>
-            Initializes a <see cref="T:System.FlagsEnumTypeFieldIterator`1"/> instance via the type argument,
-            and the base field.
-            </summary>
-            <param name="base">The base field to iterate.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the type <typeparamref name="T"/> is not marked <see cref="T:System.FlagsAttribute"/>.
-            </exception>
-        </member>
         <member name="P:System.FlagsEnumTypeFieldIterator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.FlagsEnumTypeFieldIterator`1.SizeOfT">
+            <summary>
+            Indicates the size of <typeparamref name="T"/>.
+            </summary>
         </member>
         <member name="M:System.FlagsEnumTypeFieldIterator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:System.FlagsEnumTypeFieldIterator`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="F:System.FlagsEnumTypeFieldIterator`1._baseField">
+            <summary>
+            The generated field declaration for parameter <c>baseField</c>.
+            </summary>
         </member>
         <member name="M:System.FlagsEnumTypeFieldIterator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

@@ -43,7 +43,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <inheritdoc/>
 	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
 		from searcher in StepSearcherPool.BuiltInStepSearchersExpanded
-		where searcher.RunningArea.Flags(StepSearcherRunningArea.Collecting)
+		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Collecting)
 		select searcher;
 
 	/// <inheritdoc/>
@@ -112,7 +112,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 			{
 				switch (searcher)
 				{
-					case { RunningArea: var runningArea } when !runningArea.Flags(StepSearcherRunningArea.Collecting):
+					case { RunningArea: var runningArea } when !runningArea.HasFlag(StepSearcherRunningArea.Collecting):
 					case { Metadata.IsNotSupportedForSukaku: true } when sukaku:
 					{
 						goto ReportProgress;

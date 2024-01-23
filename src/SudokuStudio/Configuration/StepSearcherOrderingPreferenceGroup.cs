@@ -13,7 +13,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 		from searcher in StepSearcherPool.BuiltInStepSearchers
 		select new StepSearcherInfo
 		{
-			IsEnabled = searcher.RunningArea.Flags(StepSearcherRunningArea.Searching),
+			IsEnabled = searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching),
 			Name = searcher.ToString(),
 			TypeName = searcher.GetType().Name
 		}

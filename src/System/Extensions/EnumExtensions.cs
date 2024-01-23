@@ -53,38 +53,6 @@ public static class EnumExtensions
 	}
 
 	/// <summary>
-	/// Determines whether one or more bit fields are set in the current instance.
-	/// </summary>
-	/// <typeparam name="T">The type of the enumeration.</typeparam>
-	/// <param name="this">The current enumeration type instance.</param>
-	/// <param name="other">The other instance to check.</param>
-	/// <returns>
-	/// <see langword="true"/> if the bit field or bit fields that are set in <paramref name="other"/>
-	/// are also set in the current instance; otherwise, <see langword="false"/>.
-	/// </returns>
-	/// <exception cref="ArgumentException">Throws when the used bytes aren't 1, 2 or 4.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool Flags<T>(this T @this, T other) where T : unmanaged, Enum
-	{
-		return @this.GetTypeCode() switch
-		{
-			TypeCode.SByte => (fastConvert<sbyte>(@this) & fastConvert<sbyte>(other)) == fastConvert<sbyte>(other),
-			TypeCode.Byte => (fastConvert<byte>(@this) & fastConvert<byte>(other)) == fastConvert<byte>(other),
-			TypeCode.Int16 => (fastConvert<short>(@this) & fastConvert<short>(other)) == fastConvert<short>(other),
-			TypeCode.UInt16 => (fastConvert<ushort>(@this) & fastConvert<ushort>(other)) == fastConvert<ushort>(other),
-			TypeCode.Int32 => (fastConvert<int>(@this) & fastConvert<int>(other)) == fastConvert<int>(other),
-			TypeCode.UInt32 => (fastConvert<uint>(@this) & fastConvert<uint>(other)) == fastConvert<uint>(other),
-			TypeCode.Int64 => (fastConvert<long>(@this) & fastConvert<long>(other)) == fastConvert<long>(other),
-			TypeCode.UInt64 => (fastConvert<ulong>(@this) & fastConvert<ulong>(other)) == fastConvert<ulong>(other),
-			_ => throw new NotSupportedException("The specified underlying type is not supported.")
-		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static TResult fastConvert<TResult>(T value) => Unsafe.As<T, TResult>(ref value);
-	}
-
-	/// <summary>
 	/// Get all possible flags that the current enumeration field set.
 	/// </summary>
 	/// <typeparam name="T">The type of the enumeration.</typeparam>

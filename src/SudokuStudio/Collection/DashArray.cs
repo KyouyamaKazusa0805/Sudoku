@@ -95,7 +95,7 @@ file sealed class Converter : JsonConverter<DashArray>
 					targetCollection.Add(reader.GetDouble());
 					break;
 				}
-				case JsonTokenType.String when options.NumberHandling is var o && o.Flags(JsonNumberHandling.AllowReadingFromString):
+				case JsonTokenType.String when options.NumberHandling is var o && o.HasFlag(JsonNumberHandling.AllowReadingFromString):
 				{
 					if (reader.TryGetDouble(out var value))
 					{
@@ -103,7 +103,7 @@ file sealed class Converter : JsonConverter<DashArray>
 						break;
 					}
 
-					bool optionPredicate() => o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals);
+					bool optionPredicate() => o.HasFlag(JsonNumberHandling.AllowNamedFloatingPointLiterals);
 					targetCollection.Add(
 						reader.GetString() switch
 						{
@@ -140,12 +140,12 @@ file sealed class Converter : JsonConverter<DashArray>
 		{
 			switch (options)
 			{
-				case { NumberHandling: var o } when o.Flags(JsonNumberHandling.WriteAsString):
+				case { NumberHandling: var o } when o.HasFlag(JsonNumberHandling.WriteAsString):
 				{
 					writer.WriteStringValue(element.ToString());
 					break;
 				}
-				case { NumberHandling: var o } when o.Flags(JsonNumberHandling.AllowNamedFloatingPointLiterals):
+				case { NumberHandling: var o } when o.HasFlag(JsonNumberHandling.AllowNamedFloatingPointLiterals):
 				{
 					writer.WriteStringValue(
 						element switch

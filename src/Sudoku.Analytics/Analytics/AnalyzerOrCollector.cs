@@ -41,5 +41,5 @@ public abstract class AnalyzerOrCollector
 	/// <param name="runningArea">The running area to be checked.</param>
 	/// <returns>Filtered collection.</returns>
 	protected static StepSearcher[] FilterStepSearchers(StepSearcher[] @in, StepSearcherRunningArea runningArea)
-		=> from searcher in @in where searcher.RunningArea.Flags(runningArea) select searcher;
+		=> from searcher in @in where searcher.RunningArea.HasFlag(runningArea) select searcher;
 }

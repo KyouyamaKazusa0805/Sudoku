@@ -94,14 +94,14 @@ internal static class AnalyzeConversion
 
 		var result = new List<Inline>();
 
-		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueName))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.TechniqueName))
 		{
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueName", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = step.GetName(App.CurrentCulture) });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.TechniqueIndex))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.TechniqueIndex))
 		{
 			appendEmptyLinesIfNeed();
 
@@ -110,7 +110,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = (index + 1).ToString() });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.Abbreviation))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.Abbreviation))
 		{
 			appendEmptyLinesIfNeed();
 
@@ -119,7 +119,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = technique.GetAbbreviation() ?? ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.Aliases))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.Aliases))
 		{
 			appendEmptyLinesIfNeed();
 
@@ -135,7 +135,7 @@ internal static class AnalyzeConversion
 			);
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.DifficultyRating))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.DifficultyRating))
 		{
 			appendEmptyLinesIfNeed();
 
@@ -144,7 +144,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = difficulty.ToString("0.0") });
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.ExtraDifficultyCases))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.ExtraDifficultyCases))
 		{
 			appendEmptyLinesIfNeed();
 
@@ -170,7 +170,7 @@ internal static class AnalyzeConversion
 			}
 		}
 
-		if (displayKind.Flags(StepTooltipDisplayItems.SimpleDescription))
+		if (displayKind.HasFlag(StepTooltipDisplayItems.SimpleDescription))
 		{
 			appendEmptyLinesIfNeed();
 

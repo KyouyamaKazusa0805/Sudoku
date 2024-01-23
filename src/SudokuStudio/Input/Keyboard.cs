@@ -8,24 +8,24 @@ public static class Keyboard
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Control"/> is input.
 	/// </summary>
-	public static bool IsControlKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsControlKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Control).HasFlag(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Shift"/> is input.
 	/// </summary>
-	public static bool IsShiftKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsShiftKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Shift).HasFlag(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.Menu"/> is input.
 	/// </summary>
-	public static bool IsAltKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu).Flags(CoreVirtualKeyStates.Down);
+	public static bool IsAltKeyDown => InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.Menu).HasFlag(CoreVirtualKeyStates.Down);
 
 	/// <summary>
 	/// Checks whether the key <see cref="VirtualKey.LeftWindows"/> or <see cref="VirtualKey.RightWindows"/> is input.
 	/// </summary>
 	public static bool IsWindowsKeyDown
-		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.LeftWindows).Flags(CoreVirtualKeyStates.Down)
-		|| InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.RightWindows).Flags(CoreVirtualKeyStates.Down);
+		=> InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.LeftWindows).HasFlag(CoreVirtualKeyStates.Down)
+		|| InputKeyboardSource.GetKeyStateForCurrentThread(VirtualKey.RightWindows).HasFlag(CoreVirtualKeyStates.Down);
 
 
 	/// <summary>
