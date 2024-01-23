@@ -7361,11 +7361,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the mirror cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern1.MirrorStrict">
-            <summary>
-            Indicates the mirror cells, with strict check.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher.Pattern2">
             <summary>
             Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:

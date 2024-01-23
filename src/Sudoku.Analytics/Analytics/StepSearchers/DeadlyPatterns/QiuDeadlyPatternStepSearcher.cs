@@ -340,7 +340,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				return null;
 			}
 
-			var mirror = pattern.MirrorStrict;
+			var mirror = pattern.Mirror;
 			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
 				return externalType1Step;
@@ -1112,11 +1112,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				return HousesMap[block] - (HousesMap[l1] | HousesMap[l2]);
 			}
 		}
-
-		/// <summary>
-		/// Indicates the mirror cells, with strict check.
-		/// </summary>
-		public CellMap MirrorStrict => Mirror & Corner.ExpandedPeers;
 	}
 
 	/// <summary>
