@@ -45,7 +45,7 @@ public sealed partial class Analyzer :
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
-	public bool IgnoreSlowAlgorithms { get; internal set; }
+	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalFlags.SpaceComplexity"/>.
@@ -54,7 +54,7 @@ public sealed partial class Analyzer :
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
-	public bool IgnoreHighAllocationAlgorithms { get; internal set; }
+	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
 	public CultureInfo? CurrentCulture { get; set; }
@@ -66,7 +66,7 @@ public sealed partial class Analyzer :
 	{
 		get => _stepSearchers;
 
-		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
+		set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>
@@ -76,7 +76,7 @@ public sealed partial class Analyzer :
 		select searcher;
 
 	/// <inheritdoc/>
-	public override StepSearcherOptions Options { get; protected internal set; } = StepSearcherOptions.Default;
+	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 	/// <inheritdoc/>
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;

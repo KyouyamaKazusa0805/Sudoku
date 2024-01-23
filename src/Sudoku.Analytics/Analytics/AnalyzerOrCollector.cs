@@ -19,7 +19,7 @@ public abstract class AnalyzerOrCollector
 	/// </summary>
 	/// <seealso cref="StepSearcherPool.Default(bool)"/>
 	[DisallowNull]
-	public abstract StepSearcher[]? StepSearchers { get; protected internal set; }
+	public abstract StepSearcher[]? StepSearchers { get; set; }
 
 	/// <summary>
 	/// Indicates the result step searchers used in the current analyzer or collector.
@@ -31,7 +31,7 @@ public abstract class AnalyzerOrCollector
 	/// in internal method called <c>Collect</c>, and create <see cref="Step"/> instances and pass into constructor.
 	/// </summary>
 	/// <seealso cref="Step"/>
-	public abstract StepSearcherOptions Options { get; protected internal set; }
+	public abstract StepSearcherOptions Options { get; set; }
 
 
 	/// <summary>

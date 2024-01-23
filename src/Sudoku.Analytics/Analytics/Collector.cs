@@ -17,7 +17,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
-	public int MaxStepsGathered { get; internal set; } = 1000;
+	public int MaxStepsGathered { get; set; } = 1000;
 
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
@@ -25,7 +25,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is <see cref="CollectorDifficultyLevelMode.OnlySame"/>.
 	/// </remarks>
-	public CollectorDifficultyLevelMode DifficultyLevelMode { get; internal set; } = CollectorDifficultyLevelMode.OnlySame;
+	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
 	public CultureInfo? CurrentCulture { get; set; }
@@ -37,7 +37,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	{
 		get => _stepSearchers;
 
-		protected internal set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
+		set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
 	}
 
 	/// <inheritdoc/>
@@ -47,7 +47,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		select searcher;
 
 	/// <inheritdoc/>
-	public override StepSearcherOptions Options { get; protected internal set; } = StepSearcherOptions.Default;
+	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 
 	/// <summary>
