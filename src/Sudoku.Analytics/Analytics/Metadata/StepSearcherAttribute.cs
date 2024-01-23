@@ -53,13 +53,6 @@ public sealed class StepSearcherAttribute(params Technique[] supportedTechniques
 	public bool IsFixed { get; init; }
 
 	/// <summary>
-	/// Indicates the <see cref="StepSearcher"/> instance is unavailable on partial cases.
-	/// For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
-	/// whether a candidate is having been removed before.
-	/// </summary>
-	public ConditionalFlags Flags { get; init; }
-
-	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
 	public DifficultyLevel DifficultyLevels

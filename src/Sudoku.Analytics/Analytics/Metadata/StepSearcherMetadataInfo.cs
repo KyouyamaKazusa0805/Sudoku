@@ -5,10 +5,12 @@ namespace Sudoku.Analytics.Metadata;
 /// </summary>
 /// <param name="stepSearcher">The step searcher instance.</param>
 /// <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
+/// <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
 /// <seealso cref="StepSearcher"/>
 public sealed partial class StepSearcherMetadataInfo(
 	[RecordParameter(DataMemberKinds.Field)] StepSearcher stepSearcher,
-	[RecordParameter(DataMemberKinds.Field)] StepSearcherAttribute stepSearcherAttribute
+	[RecordParameter(DataMemberKinds.Field)] StepSearcherAttribute stepSearcherAttribute,
+	[RecordParameter(DataMemberKinds.Field)] StepSearcherFlagsAttribute? stepSearcherFlagsAttribute
 )
 {
 	/// <summary>
@@ -30,31 +32,31 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
-	public bool IsNotSupportedForSukaku => _stepSearcherAttribute.Flags is var cases && cases.HasFlag(ConditionalFlags.Standard);
+	public bool IsNotSupportedForSukaku => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
 	/// by option <see cref="ConditionalFlags.TimeComplexity"/> being configured.
 	/// </summary>
 	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
-	public bool IsConfiguredSlow => _stepSearcherAttribute.Flags is var cases && cases.HasFlag(ConditionalFlags.TimeComplexity);
+	public bool IsConfiguredSlow => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.TimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
 	/// by option <see cref="ConditionalFlags.SpaceComplexity"/> being configured.
 	/// </summary>
 	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => _stepSearcherAttribute.Flags is var cases && cases.HasFlag(ConditionalFlags.SpaceComplexity);
+	public bool IsConfiguredHighAllocation => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.SpaceComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for direct view.
 	/// </summary>
-	public bool IsOnlyRunForDirectViews => _stepSearcherAttribute.Flags is var cases && cases.HasFlag(ConditionalFlags.DirectTechniquesOnly);
+	public bool IsOnlyRunForDirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.DirectTechniquesOnly);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for indirect view.
 	/// </summary>
-	public bool IsOnlyRunForIndirectViews => _stepSearcherAttribute.Flags is var cases && cases.HasFlag(ConditionalFlags.IndirectTechniquesOnly);
+	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.IndirectTechniquesOnly);
 
 	/// <summary>
 	/// Returns the real name of this instance.
@@ -62,7 +64,7 @@ public sealed partial class StepSearcherMetadataInfo(
 	public string Name => GetName(null);
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
-	public TechniqueSet SupportedTechniques => [.. _stepSearcherAttribute.SupportedTechniques];
+	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
 
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
@@ -92,5 +94,9 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static StepSearcherMetadataInfo GetFor(StepSearcher stepSearcher)
-		=> new(stepSearcher, stepSearcher.GetType().GetCustomAttribute<StepSearcherAttribute>()!);
+		=> new(
+			stepSearcher,
+			stepSearcher.GetType().GetCustomAttribute<StepSearcherAttribute>()!,
+			stepSearcher.GetType().GetCustomAttribute<StepSearcherFlagsAttribute>()
+		);
 }

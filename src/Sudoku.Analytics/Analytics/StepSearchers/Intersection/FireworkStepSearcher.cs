@@ -15,7 +15,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Firework Quadruple</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.FireworkTriple, Technique.FireworkQuadruple, Flags = ConditionalFlags.TimeComplexity)]
+[StepSearcher(Technique.FireworkTriple, Technique.FireworkQuadruple)]
+[StepSearcherFlags(ConditionalFlags.TimeComplexity)]
 [StepSearcherRuntimeName("StepSearcherName_FireworkStepSearcher")]
 public sealed partial class FireworkStepSearcher : StepSearcher
 {

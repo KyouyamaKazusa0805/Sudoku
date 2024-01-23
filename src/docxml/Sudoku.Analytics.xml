@@ -4401,14 +4401,15 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Analytics.Metadata.ConditionalFlags">
             <summary>
             Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
-            in searching or gathering operation. Fields in this type can be used by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags"/> property assigning.
+            in searching or gathering operation. Fields in this type can be used
+            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags"/> property assigning.
             </summary>
             <remarks><i>
             This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
             <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>.<see langword="operator"/> | to combine multiple fields.
             </i></remarks>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.ConditionalFlags.Default">
             <summary>
@@ -4783,13 +4784,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the option is fixed that can't be modified in UI.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.Flags">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> instance is unavailable on partial cases.
-            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
-            whether a candidate is having been removed before.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevels">
             <summary>
             Indicates what difficulty levels the current step searcher can produce.
@@ -4798,6 +4792,45 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques">
             <summary>
             <inheritdoc cref="T:Sudoku.Analytics.Metadata.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute">
+            <summary>
+            <para>
+            Represents an attribute type that contains condition flags,
+            describing the condition cases that the step searcher can run on.
+            </para>
+            <para>
+            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </para>
+            </summary>
+            <param name="flags">
+            Indicates the flags to be set. You can use <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>.<see langword="operator"/>
+            |(<see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>, <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>) to merge multiple flags.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.#ctor(Sudoku.Analytics.Metadata.ConditionalFlags)">
+            <summary>
+            <para>
+            Represents an attribute type that contains condition flags,
+            describing the condition cases that the step searcher can run on.
+            </para>
+            <para>
+            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
+            whether a candidate is having been removed before.
+            </para>
+            </summary>
+            <param name="flags">
+            Indicates the flags to be set. You can use <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>.<see langword="operator"/>
+            |(<see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>, <see cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>) to merge multiple flags.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Metadata.ConditionalFlags"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags">
+            <summary>
+            The generated property declaration for parameter <c>flags</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
@@ -4842,14 +4875,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="stepSearcher">The step searcher instance.</param>
             <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
+            <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.#ctor(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.Metadata.StepSearcherAttribute)">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.#ctor(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.Metadata.StepSearcherAttribute,Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute)">
             <summary>
             Represents the metadata implementation details for a <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="stepSearcher">The step searcher instance.</param>
             <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
+            <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsSplit">
@@ -4932,6 +4967,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcherAttribute">
             <summary>
             The generated field declaration for parameter <c>stepSearcherAttribute</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcherFlagsAttribute">
+            <summary>
+            The generated field declaration for parameter <c>stepSearcherFlagsAttribute</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">

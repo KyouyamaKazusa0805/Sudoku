@@ -7,7 +7,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Law of leftover</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.LawOfLeftover, Flags = ConditionalFlags.DirectTechniquesOnly)]
+[StepSearcher(Technique.LawOfLeftover)]
+[StepSearcherFlags(ConditionalFlags.DirectTechniquesOnly)]
 [StepSearcherRuntimeName("StepSearcherName_LawOfLeftoverStepSearcher")]
 public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 {

@@ -2,14 +2,15 @@ namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents a list of cases that describes some cases that <see cref="StepSearcher"/> is partially allowed
-/// in searching or gathering operation. Fields in this type can be used by <see cref="StepSearcherAttribute.Flags"/> property assigning.
+/// in searching or gathering operation. Fields in this type can be used
+/// by <see cref="StepSearcherFlagsAttribute.Flags"/> property assigning.
 /// </summary>
 /// <remarks><i>
 /// This type is marked <see cref="FlagsAttribute"/>, which means you can use
 /// <see cref="ConditionalFlags"/>.<see langword="operator"/> | to combine multiple fields.
 /// </i></remarks>
 /// <seealso cref="StepSearcher"/>
-/// <seealso cref="StepSearcherAttribute.Flags"/>
+/// <seealso cref="StepSearcherFlagsAttribute.Flags"/>
 [Flags]
 public enum ConditionalFlags
 {

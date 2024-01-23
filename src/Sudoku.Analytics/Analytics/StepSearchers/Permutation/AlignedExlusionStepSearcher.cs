@@ -12,8 +12,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	Technique.AlignedPairExclusion, Technique.AlignedTripleExclusion,
-	Technique.AlignedQuadrupleExclusion, Technique.AlignedQuintupleExclusion,
-	Flags = ConditionalFlags.TimeComplexity)]
+	Technique.AlignedQuadrupleExclusion, Technique.AlignedQuintupleExclusion)]
+[StepSearcherFlags(ConditionalFlags.TimeComplexity)]
 [StepSearcherRuntimeName("StepSearcherName_AlignedExclusionStepSearcher")]
 public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 {
