@@ -3372,7 +3372,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	RectangleDeathBlossom,
 
 	/// <summary>
@@ -3380,7 +3380,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	NTimesAlmostLockedSetDeathBlossom,
 	#endregion
 
