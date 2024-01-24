@@ -123,7 +123,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				{
 					// Doubly linked ALS-XZ.
 					isDoublyLinked = true;
-					foreach (var elimDigit in (Mask)(z & ~rccMask))
+					foreach (var elimDigit in (Mask)(z & (Mask)~rccMask))
 					{
 						if ((CandidatesMap[elimDigit] & map1) is not (var zMap and not []))
 						{
@@ -160,7 +160,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					tempMap &= possibleElimMap1;
 					foreach (var cell in tempMap)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask1 & ~rccMask)))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask1 & (Mask)~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -173,7 +173,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					tempMap &= possibleElimMap2;
 					foreach (var cell in tempMap)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask2 & ~rccMask)))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (mask2 & (Mask)~rccMask)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}

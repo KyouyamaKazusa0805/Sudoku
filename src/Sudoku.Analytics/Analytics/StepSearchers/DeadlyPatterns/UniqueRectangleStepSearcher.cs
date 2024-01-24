@@ -3388,7 +3388,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				var anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
-				foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & ~comparer))
+				foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~comparer))
 				{
 					var abcMask = (Mask)(comparer | (Mask)(1 << extraDigit));
 					if (grid.GetCandidates(anotherCell) != abcMask)

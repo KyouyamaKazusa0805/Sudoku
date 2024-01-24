@@ -66,7 +66,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 						var disappearedDigitsMask = (Mask)(mergedDigitsMask & digitsMaskTheOtherSide);
 						foreach (var cell in houseCells)
 						{
-							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~disappearedDigitsMask))
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~disappearedDigitsMask))
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}

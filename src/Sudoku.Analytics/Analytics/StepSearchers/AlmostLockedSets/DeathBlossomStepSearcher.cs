@@ -102,7 +102,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					}
 
 					// If the found ALS is valid, iterate on each digits from the ALS, as selected one.
-					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & ~(1 << wrongDigit)))
+					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & (Mask)~(1 << wrongDigit)))
 					{
 						// Iterate on each pivot cells that contains the selected digit.
 						foreach (var pivot in alsElimMap[currentSelectedDigit])
@@ -189,7 +189,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 								}
 
 								// Iterate on each pair of UR digits, and check whether other digits are eliminated in all four cells.
-								foreach (var urDigits in ((Mask)(mergedDigitsMask & ~fixedDigitsMask)).GetAllSets().GetSubsets(2))
+								foreach (var urDigits in ((Mask)(mergedDigitsMask & (Mask)~fixedDigitsMask)).GetAllSets().GetSubsets(2))
 								{
 									var urDigitsMask = MaskOperations.Create(urDigits);
 									var allCellsOnlyContainUrDigits = true;
@@ -668,7 +668,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var disappearedCandidates = CandidateMap.Empty;
 		foreach (var urCell in urCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(urCell) & ~urDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(urCell) & (Mask)~urDigitsMask))
 			{
 				var branch = alses[alsReferenceTable[urCell * 9 + digit]];
 				branches.Add(urCell * 9 + digit, branch);

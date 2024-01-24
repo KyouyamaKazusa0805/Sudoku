@@ -149,7 +149,7 @@ internal class ChainingModule
 			var houseIndex = cell.ToHouseIndex(currentHouseType);
 
 			// Get positions of the potential value that have been removed.
-			foreach (var pos in (Mask)(g(in original, houseIndex, digit) & ~g(in current, houseIndex, digit)))
+			foreach (var pos in (Mask)(g(in original, houseIndex, digit) & (Mask)~g(in current, houseIndex, digit)))
 			{
 				// Add a hidden parent.
 				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)

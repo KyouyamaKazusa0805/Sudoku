@@ -699,7 +699,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
 				{
 					var conclusions = new List<Conclusion>();
-					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCorner & ~(1 << digit)))
+					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCorner & (Mask)~(1 << digit)))
 					{
 						foreach (var cell in CandidatesMap[elimDigit] & corner)
 						{

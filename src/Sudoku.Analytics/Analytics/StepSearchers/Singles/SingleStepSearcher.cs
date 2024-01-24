@@ -565,7 +565,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	private static CellViewNode[] GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
-		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
+		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
 		{
 			foreach (var otherCell in Peers[cell])
 			{
