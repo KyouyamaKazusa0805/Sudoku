@@ -1979,16 +1979,16 @@ if (student is (name: var name, age: >= 18))
             Returns a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> that describes the distribution of digits appeared in cells, grouped by cell.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Offsets">
+            <summary>
+            Indicates the cell offsets in this collection.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Shifting">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#Offsets">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Offsets">
-            <summary>
-            Indicates the cell offsets in this collection.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32}#MaxCount">
             <inheritdoc/>
@@ -2057,16 +2057,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Where(System.Func{System.Int32,System.Boolean})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.RandomlySelect(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GroupBy``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
@@ -2404,16 +2395,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.Offsets">
+            <summary>
+            Indicates the cell offsets in this collection.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Shifting">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#Offsets">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.Offsets">
-            <summary>
-            Indicates the cell offsets in this collection.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32}#MaxCount">
             <inheritdoc/>
@@ -2533,15 +2524,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetAllSubsets(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Select``1(System.Func{System.Int32,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Where(System.Func{System.Int32,System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.GroupBy``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
@@ -4750,25 +4732,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Select``1(System.Func{`1,``0})">
-            <summary>
-            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
-            using the specified function to convert.
-            </summary>
-            <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.Where(System.Func{`1,System.Boolean})">
-            <summary>
-            Filters a <typeparamref name="TSelf"/> collection based on a predicate.
-            </summary>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>
-            A <typeparamref name="TSelf"/> that contains elements from the input <typeparamref name="TSelf"/> collection
-            that satisfy the condition.
-            </returns>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32,System.Random)"/>
         </member>
@@ -4779,21 +4742,6 @@ if (student is (name: var name, age: >= 18))
             <param name="count">The desired number of elements.</param>
             <param name="random">The random number generator instance.</param>
             <returns>The desired number of elements, as a <typeparamref name="TSelf"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GroupBy``1(System.Func{`1,``0})">
-            <summary>
-            Groups the elements of a sequence according to a specified key selector function.
-            </summary>
-            <typeparam name="TKey">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
-            </typeparam>
-            <param name="keySelector">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
-            </param>
-            <returns>
-            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances where each value object contains a sequence of objects and a key.
-            </returns>
-            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
@@ -5542,6 +5490,58 @@ if (student is (name: var name, age: >= 18))
             Represents a list of methods for iteration on <see cref="T:Sudoku.Concepts.IBitStatusMap`2"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.IBitStatusMap`2"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
+            <inheritdoc cref="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Where(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters a <see cref="T:Sudoku.Concepts.CellMap"/> collection based on a predicate.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            A <see cref="T:Sudoku.Concepts.CellMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CellMap"/> satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Where(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters a <see cref="T:Sudoku.Concepts.CandidateMap"/> collection based on a predicate.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            A <see cref="T:Sudoku.Concepts.CandidateMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CandidateMap"/> satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
+            <summary>
+            Groups the elements of a sequence according to a specified key selector function.
+            </summary>
+            <typeparam name="TKey">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <param name="this">The current instance.</param>
+            <param name="keySelector">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
+            </param>
+            <returns>
+            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances where each value object contains a sequence of objects and a key.
+            </returns>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
+            <inheritdoc cref="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapEnumerable.SelectMany``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
             <summary>

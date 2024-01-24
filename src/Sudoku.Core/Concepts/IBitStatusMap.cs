@@ -338,47 +338,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract ReadOnlySpan<TElement>.Enumerator GetEnumerator();
 
-	/// <summary>
-	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
-	/// using the specified function to convert.
-	/// </summary>
-	/// <typeparam name="TResult">The type of target value.</typeparam>
-	/// <param name="selector">The selector.</param>
-	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-	public virtual ReadOnlySpan<TResult> Select<TResult>(Func<TElement, TResult> selector)
-	{
-		var offsets = Offsets;
-		var result = new TResult[offsets.Length];
-		for (var i = 0; i < offsets.Length; i++)
-		{
-			result[i] = selector(offsets[i]);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Filters a <typeparamref name="TSelf"/> collection based on a predicate.
-	/// </summary>
-	/// <param name="predicate">A function to test each element for a condition.</param>
-	/// <returns>
-	/// A <typeparamref name="TSelf"/> that contains elements from the input <typeparamref name="TSelf"/> collection
-	/// that satisfy the condition.
-	/// </returns>
-	public virtual TSelf Where(Func<TElement, bool> predicate)
-	{
-		var result = (TSelf)this;
-		foreach (var cell in this)
-		{
-			if (!predicate(cell))
-			{
-				result.Remove(cell);
-			}
-		}
-
-		return result;
-	}
-
 	/// <inheritdoc cref="RandomlySelect(int, Random)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual TSelf RandomlySelect(int count) => RandomlySelect(count, Random.Shared);
@@ -395,48 +354,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 		var result = Offsets[..];
 		random.Shuffle(result);
 		return [.. result[..count]];
-	}
-
-	/// <summary>
-	/// Groups the elements of a sequence according to a specified key selector function.
-	/// </summary>
-	/// <typeparam name="TKey">
-	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
-	/// </typeparam>
-	/// <param name="keySelector">
-	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
-	/// </param>
-	/// <returns>
-	/// A list of <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/> instances where each value object contains a sequence of objects and a key.
-	/// </returns>
-	/// <seealso cref="BitStatusMapGroup{TMap, TElement, TKey}"/>
-	public virtual ReadOnlySpan<BitStatusMapGroup<TSelf, TElement, TKey>> GroupBy<TKey>(Func<TElement, TKey> keySelector)
-		where TKey : notnull
-	{
-		var dictionary = new Dictionary<TKey, TSelf>();
-		foreach (var element in this)
-		{
-			var key = keySelector(element);
-			if (!dictionary.TryAdd(key, [element]))
-			{
-				var originalElement = dictionary[key];
-				originalElement.Add(element);
-				dictionary[key] = originalElement;
-				// Don't use this due to the struct handling bug:
-				//dictionary[key].Add(element);
-				// This will copy a new instance, which means you add a new element into the new instance
-				// instead of the instance stored in the collection.
-			}
-		}
-
-		var result = new BitStatusMapGroup<TSelf, TElement, TKey>[dictionary.Count];
-		var i = 0;
-		foreach (var (key, value) in dictionary)
-		{
-			result[i++] = new(key, in value);
-		}
-
-		return result;
 	}
 
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>

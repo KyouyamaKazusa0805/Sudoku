@@ -220,16 +220,10 @@ public partial struct CandidateMap :
 		}
 	}
 
-	/// <inheritdoc/>
-	readonly int IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
-
-	/// <inheritdoc/>
-	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate>.Offsets => Offsets;
-
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	private readonly Candidate[] Offsets
+	internal readonly Candidate[] Offsets
 	{
 		get
 		{
@@ -251,6 +245,12 @@ public partial struct CandidateMap :
 			return arr;
 		}
 	}
+
+	/// <inheritdoc/>
+	readonly int IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
+
+	/// <inheritdoc/>
+	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate>.Offsets => Offsets;
 
 	/// <inheritdoc/>
 	static Candidate IBitStatusMap<CandidateMap, Candidate>.MaxCount => 9 * 9 * 9;
@@ -500,66 +500,12 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
-	{
-		var offsets = Offsets;
-		var result = new TResult[offsets.Length];
-		for (var i = 0; i < offsets.Length; i++)
-		{
-			result[i] = selector(offsets[i]);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public readonly CandidateMap Where(Func<Candidate, bool> predicate)
-	{
-		var result = this;
-		foreach (var cell in Offsets)
-		{
-			if (!predicate(cell))
-			{
-				result.Remove(cell);
-			}
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly CandidateMap RandomlySelect(int count)
 	{
 		var result = Offsets[..];
 		Random.Shared.Shuffle(result);
 		return [.. result[..count]];
-	}
-
-	/// <inheritdoc/>
-	public readonly ReadOnlySpan<BitStatusMapGroup<CandidateMap, Candidate, TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector)
-		where TKey : notnull
-	{
-		var dictionary = new Dictionary<TKey, CandidateMap>();
-		foreach (var candidate in this)
-		{
-			var key = keySelector(candidate);
-			if (!dictionary.TryAdd(key, [candidate]))
-			{
-				var originalElement = dictionary[key];
-				originalElement.Add(candidate);
-				dictionary[key] = originalElement;
-			}
-		}
-
-		var result = new BitStatusMapGroup<CandidateMap, Candidate, TKey>[dictionary.Count];
-		var i = 0;
-		foreach (var (key, value) in dictionary)
-		{
-			result[i++] = new(key, in value);
-		}
-
-		return result;
 	}
 
 	/// <inheritdoc/>

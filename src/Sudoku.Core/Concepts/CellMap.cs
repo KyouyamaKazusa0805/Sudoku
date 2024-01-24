@@ -366,16 +366,10 @@ public partial struct CellMap :
 		}
 	}
 
-	/// <inheritdoc/>
-	readonly int IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
-
-	/// <inheritdoc/>
-	readonly Cell[] IBitStatusMap<CellMap, Cell>.Offsets => Offsets;
-
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	private readonly Cell[] Offsets
+	internal readonly Cell[] Offsets
 	{
 		get
 		{
@@ -411,6 +405,12 @@ public partial struct CellMap :
 			return arr;
 		}
 	}
+
+	/// <inheritdoc/>
+	readonly int IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
+
+	/// <inheritdoc/>
+	readonly Cell[] IBitStatusMap<CellMap, Cell>.Offsets => Offsets;
 
 	/// <inheritdoc/>
 	static Cell IBitStatusMap<CellMap, Cell>.MaxCount => 9 * 9;
@@ -794,58 +794,6 @@ public partial struct CellMap :
 		}
 
 		return result.AsReadOnlySpan();
-	}
-
-	/// <inheritdoc/>
-	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Cell, TResult> selector)
-	{
-		var (result, i) = (new TResult[_count], 0);
-		foreach (var cell in Offsets)
-		{
-			result[i++] = selector(cell);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public readonly CellMap Where(Func<Cell, bool> predicate)
-	{
-		var result = this;
-		foreach (var cell in Offsets)
-		{
-			if (!predicate(cell))
-			{
-				result.Remove(cell);
-			}
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public readonly ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> GroupBy<TKey>(Func<Cell, TKey> keySelector) where TKey : notnull
-	{
-		var dictionary = new Dictionary<TKey, CellMap>();
-		foreach (var cell in this)
-		{
-			var key = keySelector(cell);
-			if (!dictionary.TryAdd(key, CellsMap[cell]))
-			{
-				var originalElement = dictionary[key];
-				originalElement.Add(cell);
-				dictionary[key] = originalElement;
-			}
-		}
-
-		var result = new BitStatusMapGroup<CellMap, Cell, TKey>[dictionary.Count];
-		var i = 0;
-		foreach (var (key, value) in dictionary)
-		{
-			result[i++] = new(key, in value);
-		}
-
-		return result;
 	}
 
 	/// <inheritdoc/>

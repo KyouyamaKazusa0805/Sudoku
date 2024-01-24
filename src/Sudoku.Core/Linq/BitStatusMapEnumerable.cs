@@ -6,6 +6,151 @@ namespace Sudoku.Linq;
 /// <seealso cref="IBitStatusMap{TSelf, TElement}"/>
 public static class BitStatusMapEnumerable
 {
+	/// <inheritdoc cref="Select{TResult}(ref readonly CellMap, Func{int, TResult})"/>
+	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
+	{
+		var offsets = @this.Offsets;
+		var result = new TResult[offsets.Length];
+		for (var i = 0; i < offsets.Length; i++)
+		{
+			result[i] = selector(offsets[i]);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+	/// using the specified function to convert.
+	/// </summary>
+	/// <typeparam name="TResult">The type of target value.</typeparam>
+	/// <param name="this">The current instance.</param>
+	/// <param name="selector">The selector.</param>
+	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CellMap @this, Func<Cell, TResult> selector)
+	{
+		var (result, i) = (new TResult[@this.Count], 0);
+		foreach (var cell in @this.Offsets)
+		{
+			result[i++] = selector(cell);
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Filters a <see cref="CellMap"/> collection based on a predicate.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <param name="predicate">A function to test each element for a condition.</param>
+	/// <returns>
+	/// A <see cref="CellMap"/> that contains elements from the input <see cref="CellMap"/> satisfying the condition.
+	/// </returns>
+	public static CellMap Where(this scoped ref readonly CellMap @this, Func<Cell, bool> predicate)
+	{
+		var result = @this;
+		foreach (var cell in @this.Offsets)
+		{
+			if (!predicate(cell))
+			{
+				result.Remove(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Filters a <see cref="CandidateMap"/> collection based on a predicate.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <param name="predicate">A function to test each element for a condition.</param>
+	/// <returns>
+	/// A <see cref="CandidateMap"/> that contains elements from the input <see cref="CandidateMap"/> satisfying the condition.
+	/// </returns>
+	public static CandidateMap Where(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> predicate)
+	{
+		var result = @this;
+		foreach (var cell in @this.Offsets)
+		{
+			if (!predicate(cell))
+			{
+				result.Remove(cell);
+			}
+		}
+
+		return result;
+	}
+
+	/// <summary>
+	/// Groups the elements of a sequence according to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TKey">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
+	/// </typeparam>
+	/// <param name="this">The current instance.</param>
+	/// <param name="keySelector">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
+	/// </param>
+	/// <returns>
+	/// A list of <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/> instances where each value object contains a sequence of objects and a key.
+	/// </returns>
+	/// <seealso cref="BitStatusMapGroup{TMap, TElement, TKey}"/>
+	public static ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> GroupBy<TKey>(
+		this scoped ref readonly CellMap @this,
+		Func<Cell, TKey> keySelector
+	) where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CellMap>();
+		foreach (var cell in @this)
+		{
+			var key = keySelector(cell);
+			if (!dictionary.TryAdd(key, CellsMap[cell]))
+			{
+				var originalElement = dictionary[key];
+				originalElement.Add(cell);
+				dictionary[key] = originalElement;
+			}
+		}
+
+		var result = new BitStatusMapGroup<CellMap, Cell, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var (key, value) in dictionary)
+		{
+			result[i++] = new(key, in value);
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc cref="GroupBy{TKey}(ref readonly CellMap, Func{int, TKey})"/>
+	public static ReadOnlySpan<BitStatusMapGroup<CandidateMap, Candidate, TKey>> GroupBy<TKey>(
+		this scoped ref readonly CandidateMap @this,
+		Func<Candidate, TKey> keySelector
+	) where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CandidateMap>();
+		foreach (var candidate in @this)
+		{
+			var key = keySelector(candidate);
+			if (!dictionary.TryAdd(key, [candidate]))
+			{
+				var originalElement = dictionary[key];
+				originalElement.Add(candidate);
+				dictionary[key] = originalElement;
+			}
+		}
+
+		var result = new BitStatusMapGroup<CandidateMap, Candidate, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var (key, value) in dictionary)
+		{
+			result[i++] = new(key, in value);
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Projects each cell (of type <see cref="Cell"/>) of a <see cref="CellMap"/> to a mask (of type <see cref="Mask"/>),
 	/// flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
