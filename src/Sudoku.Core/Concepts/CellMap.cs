@@ -465,9 +465,9 @@ public partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(Cell* arr, int length)
+	public readonly void CopyTo(scoped ref Cell sequence, int length)
 	{
-		ArgumentNullException.ThrowIfNull(arr);
+		ArgumentNullException.ThrowIfNull(sequence);
 
 		if (!this)
 		{
@@ -484,7 +484,7 @@ public partial struct CellMap :
 			{
 				if ((value & 1) != 0)
 				{
-					arr[pos++] = i;
+					Unsafe.Add(ref sequence, pos++) = i;
 				}
 			}
 		}
@@ -494,7 +494,7 @@ public partial struct CellMap :
 			{
 				if ((value & 1) != 0)
 				{
-					arr[pos++] = i;
+					Unsafe.Add(ref sequence, pos++) = i;
 				}
 			}
 		}
@@ -679,7 +679,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellMap RandomlySelect(int count)
+	public readonly CellMap RandomSelect(int count)
 	{
 		var result = Offsets[..];
 		Random.Shared.Shuffle(result);
@@ -770,10 +770,10 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CellMap> GetAllSubsets() => GetAllSubsets(_count);
+	public readonly ReadOnlySpan<CellMap> GetSubsetsAll() => GetSubsetsAllBelow(_count);
 
 	/// <inheritdoc/>
-	public readonly ReadOnlySpan<CellMap> GetAllSubsets(int limitSubsetSize)
+	public readonly ReadOnlySpan<CellMap> GetSubsetsAllBelow(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
@@ -826,15 +826,6 @@ public partial struct CellMap :
 		}
 
 		return false;
-	}
-
-	/// <inheritdoc/>
-	public void RemoveRange(IEnumerable<Cell> offsets)
-	{
-		foreach (var offset in offsets)
-		{
-			Remove(offset);
-		}
 	}
 
 	/// <inheritdoc/>

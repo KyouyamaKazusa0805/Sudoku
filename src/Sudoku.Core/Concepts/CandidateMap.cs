@@ -291,14 +291,16 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly unsafe void CopyTo(Candidate* arr, int length)
+	public readonly void CopyTo(scoped ref Candidate sequence, int length)
 	{
-		if (length < 729)
+		if (length >= 729)
 		{
-			return;
+			Unsafe.CopyBlock(
+				ref Ref.AsByteRef(ref sequence),
+				in Ref.AsReadOnlyByteRef(in Offsets[0]),
+				(uint)(sizeof(Candidate) * length)
+			);
 		}
-
-		Unsafe.CopyBlock(ref Ref.AsByteRef(ref arr[0]), in Ref.AsReadOnlyByteRef(in Offsets[0]), (uint)(sizeof(Candidate) * length));
 	}
 
 	/// <inheritdoc/>
@@ -473,10 +475,10 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CandidateMap> GetAllSubsets() => GetAllSubsets(_count);
+	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAll() => GetSubsetsAllBelow(_count);
 
 	/// <inheritdoc/>
-	public readonly ReadOnlySpan<CandidateMap> GetAllSubsets(int limitSubsetSize)
+	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAllBelow(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !this)
 		{
@@ -501,7 +503,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateMap RandomlySelect(int count)
+	public readonly CandidateMap RandomSelect(int count)
 	{
 		var result = Offsets[..];
 		Random.Shared.Shuffle(result);
@@ -522,15 +524,6 @@ public partial struct CandidateMap :
 		}
 
 		return false;
-	}
-
-	/// <inheritdoc/>
-	public void RemoveRange(IEnumerable<Candidate> offsets)
-	{
-		foreach (var element in offsets)
-		{
-			Remove(element);
-		}
 	}
 
 	/// <inheritdoc/>

@@ -31,10 +31,10 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <summary>
 	/// Indicates the error information describing the case that the number of subsets calculated by methods
-	/// <see cref="GetSubsets(int)"/> and <see cref="GetAllSubsets(int)"/> is too large.
+	/// <see cref="GetSubsets(int)"/> and <see cref="GetSubsetsAllBelow(int)"/> is too large.
 	/// </summary>
 	/// <seealso cref="GetSubsets(int)"/>
-	/// <seealso cref="GetAllSubsets(int)"/>
+	/// <seealso cref="GetSubsetsAllBelow(int)"/>
 	private protected static readonly string ErrorInfo_SubsetsExceeded = """
 		Both cells count and subset size is too large, which may cause potential out of memory exception. 
 		This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
@@ -116,63 +116,30 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public new abstract bool Remove(TElement offset);
 
 	/// <summary>
-	/// Set the specified offsets as <see langword="false"/> value.
-	/// </summary>
-	/// <param name="offsets">The offsets to remove.</param>
-	public sealed void RemoveRange(scoped ReadOnlySpan<TElement> offsets)
-	{
-		foreach (var cell in offsets)
-		{
-			Remove(cell);
-		}
-	}
-
-	/// <inheritdoc cref="RemoveRange(ReadOnlySpan{TElement})"/>
-	public abstract void RemoveRange(IEnumerable<TElement> offsets);
-
-	/// <summary>
 	/// Clear all bits.
 	/// </summary>
 	[ExplicitInterfaceImpl(typeof(ICollection<>))]
 	public new abstract void Clear();
 
 	/// <summary>
-	/// Copies the current instance to the target array specified as an <typeparamref name="TElement"/>*.
+	/// Copies the current instance to the target sequence specified as a reference
+	/// to an element of type <typeparamref name="TElement"/>.
 	/// </summary>
-	/// <param name="arr">The pointer that points to an array of type <typeparamref name="TElement"/>.</param>
+	/// <param name="sequence">
+	/// The reference that points to the first element in a sequence of type <typeparamref name="TElement"/>.
+	/// </param>
 	/// <param name="length">The length of that array.</param>
 	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+	/// Throws when the argument <paramref name="sequence"/> is <see langword="null"/>.
 	/// </exception>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public abstract unsafe void CopyTo(TElement* arr, int length);
+	public abstract void CopyTo(scoped ref TElement sequence, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
 	[ExplicitInterfaceImpl(typeof(ICollection<>))]
-	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex)
-	{
-		fixed (TElement* pArray = array)
-		{
-			CopyTo(pArray + arrayIndex, Count - arrayIndex);
-		}
-	}
-
-	/// <summary>
-	/// Copies the current instance to the target <see cref="Span{T}"/> instance.
-	/// </summary>
-	/// <param name="span">
-	/// The target <see cref="Span{T}"/> instance.
-	/// </param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed unsafe void CopyTo(scoped Span<TElement> span)
-	{
-		fixed (TElement* ptr = span)
-		{
-			CopyTo(ptr, span.Length);
-		}
-	}
+	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex) => CopyTo(ref array[arrayIndex], Count - arrayIndex);
 
 	/// <summary>
 	/// Iterates on each element in this collection.
@@ -282,9 +249,9 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </summary>
 	/// <returns>All subsets of the current instance.</returns>
 	/// <seealso cref="Count"/>
-	/// <seealso cref="GetAllSubsets(int)"/>
+	/// <seealso cref="GetSubsetsAllBelow(int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual ReadOnlySpan<TSelf> GetAllSubsets() => GetAllSubsets(Count);
+	public virtual ReadOnlySpan<TSelf> GetSubsetsAll() => GetSubsetsAllBelow(Count);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -308,7 +275,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// </item>
 	/// </list>
 	/// </returns>
-	public virtual ReadOnlySpan<TSelf> GetAllSubsets(int limitSubsetSize)
+	public virtual ReadOnlySpan<TSelf> GetSubsetsAllBelow(int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || Count == 0)
 		{
@@ -338,9 +305,9 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract ReadOnlySpan<TElement>.Enumerator GetEnumerator();
 
-	/// <inheritdoc cref="RandomlySelect(int, Random)"/>
+	/// <inheritdoc cref="RandomSelect(int, Random)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual TSelf RandomlySelect(int count) => RandomlySelect(count, Random.Shared);
+	public virtual TSelf RandomSelect(int count) => RandomSelect(count, Random.Shared);
 
 	/// <summary>
 	/// Randomly select the specified number of elements in the current collection.
@@ -349,7 +316,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="random">The random number generator instance.</param>
 	/// <returns>The desired number of elements, as a <typeparamref name="TSelf"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual TSelf RandomlySelect(int count, Random random)
+	public virtual TSelf RandomSelect(int count, Random random)
 	{
 		var result = Offsets[..];
 		random.Shuffle(result);
@@ -423,13 +390,15 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <inheritdoc/>
 	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
 	{
-		var collection = new List<TElement>();
-		foreach (var element in this)
+		if (Offsets.Length == 0)
 		{
-			collection.Add(element);
+			yield break;
 		}
 
-		return collection.GetEnumerator();
+		foreach (var element in Offsets)
+		{
+			yield return element;
+		}
 	}
 
 

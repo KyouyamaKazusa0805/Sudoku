@@ -2005,7 +2005,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CandidateMap.CandidateIndex(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.CopyTo(System.Int32*,System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.CopyTo(System.Int32@,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Contains(System.Int32)">
@@ -2051,19 +2051,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.GetSubsets(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets">
+        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsetsAll">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GetAllSubsets(System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsetsAllBelow(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.RandomlySelect(System.Int32)">
+        <member name="M:Sudoku.Concepts.CandidateMap.RandomSelect(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Clear">
@@ -2421,7 +2418,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CellMap.CellIndex(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Int32*,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.CopyTo(System.Int32@,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ForEach(System.Action{System.Int32})">
@@ -2514,25 +2511,22 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.RandomlySelect(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.RandomSelect(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.GetSubsets(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetAllSubsets">
+        <member name="M:Sudoku.Concepts.CellMap.GetSubsetsAll">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetAllSubsets(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMap.GetSubsetsAllBelow(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Remove(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.RemoveRange(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
@@ -4495,10 +4489,10 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.IBitStatusMap`2.ErrorInfo_SubsetsExceeded">
             <summary>
             Indicates the error information describing the case that the number of subsets calculated by methods
-            <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/> and <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/> is too large.
+            <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/> and <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsetsAllBelow(System.Int32)"/> is too large.
             </summary>
             <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/>
-            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsetsAllBelow(System.Int32)"/>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Count">
             <summary>
@@ -4570,28 +4564,22 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="offset">The offset.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.ReadOnlySpan{`1})">
-            <summary>
-            Set the specified offsets as <see langword="false"/> value.
-            </summary>
-            <param name="offsets">The offsets to remove.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RemoveRange(System.ReadOnlySpan{`1})"/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.Clear">
             <summary>
             Clear all bits.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(`1*,System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(`1@,System.Int32)">
             <summary>
-            Copies the current instance to the target array specified as an <typeparamref name="TElement"/>*.
+            Copies the current instance to the target sequence specified as a reference
+            to an element of type <typeparamref name="TElement"/>.
             </summary>
-            <param name="arr">The pointer that points to an array of type <typeparamref name="TElement"/>.</param>
+            <param name="sequence">
+            The reference that points to the first element in a sequence of type <typeparamref name="TElement"/>.
+            </param>
             <param name="length">The length of that array.</param>
             <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="arr"/> is <see langword="null"/>.
+            Throws when the argument <paramref name="sequence"/> is <see langword="null"/>.
             </exception>
             <exception cref="T:System.InvalidOperationException">
             Throws when the capacity isn't enough to store all values.
@@ -4599,14 +4587,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(`1[],System.Int32)">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.CopyTo(System.Span{`1})">
-            <summary>
-            Copies the current instance to the target <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="span">
-            The target <see cref="T:System.Span`1"/> instance.
-            </param>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.ForEach(System.Action{`1})">
             <summary>
@@ -4694,15 +4674,15 @@ if (student is (name: var name, age: >= 18))
             the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsetsAll">
             <summary>
             Equivalent to calling <see cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsets(System.Int32)"/> with argument <see cref="P:Sudoku.Concepts.IBitStatusMap`2.Count"/>.
             </summary>
             <returns>All subsets of the current instance.</returns>
             <seealso cref="P:Sudoku.Concepts.IBitStatusMap`2.Count"/>
-            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsetsAllBelow(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetAllSubsets(System.Int32)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.GetSubsetsAllBelow(System.Int32)">
             <summary>
             Gets all subsets of the current collection via the specified size
             indicating the <b>maximum</b> number of elements of the each subset.
@@ -4732,10 +4712,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32,System.Random)"/>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomSelect(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStatusMap`2.RandomSelect(System.Int32,System.Random)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomlySelect(System.Int32,System.Random)">
+        <member name="M:Sudoku.Concepts.IBitStatusMap`2.RandomSelect(System.Int32,System.Random)">
             <summary>
             Randomly select the specified number of elements in the current collection.
             </summary>

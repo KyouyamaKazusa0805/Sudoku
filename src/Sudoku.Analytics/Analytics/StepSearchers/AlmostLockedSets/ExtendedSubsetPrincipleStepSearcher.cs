@@ -30,7 +30,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 
 			// Add all combinations into the collection.
 			list.Clear();
-			list.AddRangeRef(emptyCellsInInterMap.GetAllSubsets());
+			list.AddRangeRef(emptyCellsInInterMap.GetSubsetsAll());
 
 			// Iterate on each intersection combination.
 			foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
