@@ -97,7 +97,7 @@ public abstract class StepSearcherPool
 				foreach (var a in splitAttributes)
 				{
 					var inst = (StepSearcher)Activator.CreateInstance(type)!;
-					foreach (var (name, value) in a.PropertyNamesAndValues.EnumerateAsPair<object, string, object>())
+					foreach (var (name, value) in a.PropertyNamesAndValues.AsReadOnlySpan().EnumeratePairly().Cast<string, object>())
 					{
 						if (type.GetProperty(name) is { CanRead: true, CanWrite: true } propertyInfo)
 						{

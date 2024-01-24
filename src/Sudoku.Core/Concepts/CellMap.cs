@@ -288,7 +288,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			foreach (var symmetry in Enum.GetValues<SymmetricType>()[1..].EnumerateReversely())
+			foreach (var symmetry in Enum.GetValues<SymmetricType>().AsReadOnlySpan()[1..].EnumerateReversely())
 			{
 				var isThisSymmetry = true;
 				foreach (var cell in this)

@@ -47,4 +47,23 @@ public static class ReadOnlySpanExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly T RandomSelectOne<T>(this ReadOnlySpan<T> @this, Random? random = null)
 		=> ref @this[(random ?? Random.Shared).Next(0, @this.Length)];
+
+	/// <summary>
+	/// Iterates on each element, in reverse order.
+	/// </summary>
+	/// <typeparam name="T">The type of each element in the sequence.</typeparam>
+	/// <param name="this">The sequence to be iterated.</param>
+	/// <returns>An enumerator type that iterates on each element.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReverseEnumerator<T> EnumerateReversely<T>(this ReadOnlySpan<T> @this) => new(@this);
+
+	/// <summary>
+	/// Creates a <see cref="PairEnumerator{T}"/> instance that iterates on each element of pair elements.
+	/// </summary>
+	/// <typeparam name="T">The type of the array elements.</typeparam>
+	/// <param name="this">The array.</param>
+	/// <returns>An enumerable collection.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static PairEnumerator<T> EnumeratePairly<T>(this ReadOnlySpan<T> @this) where T : notnull
+		=> new((@this.Length & 1) != 0 ? throw new ArgumentException("The argument must be of an even length.", nameof(@this)) : @this);
 }

@@ -35,7 +35,7 @@ public readonly partial record struct DigitPath(Digit[] Digits) :
 	public override int GetHashCode()
 	{
 		var (result, multiplicativeIdentity) = (0, 1);
-		foreach (var digit in Digits.EnumerateReversely())
+		foreach (var digit in Digits.AsReadOnlySpan().EnumerateReversely())
 		{
 			result += digit * multiplicativeIdentity;
 			multiplicativeIdentity *= 10;

@@ -49,7 +49,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 			{
 				case [var firstStep, .. var lastSteps]:
 				{
-					foreach (var step in new ReverseIterator<Step>(lastSteps))
+					foreach (var step in lastSteps.EnumerateReversely())
 					{
 						if (step is not SingleStep)
 						{

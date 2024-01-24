@@ -115,62 +115,6 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="value">The value to be initialized.</param>
         </member>
-        <member name="T:System.ArrayPairIterator`3">
-            <summary>
-            Defines an enumerator that iterates on elements, combined with two adjacent elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <typeparam name="TFirst">
-            The first element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
-            </typeparam>
-            <typeparam name="TSecond">
-            The second element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
-            </typeparam>
-            <param name="array">The array value.</param>
-            <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.#ctor(`0[])">
-            <summary>
-            Defines an enumerator that iterates on elements, combined with two adjacent elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <typeparam name="TFirst">
-            The first element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
-            </typeparam>
-            <typeparam name="TSecond">
-            The second element returned. This type argument must be derived from <typeparamref name="T"/>, or same type.
-            </typeparam>
-            <param name="array">The array value.</param>
-            <exception cref="T:System.ArgumentException">Throws when <paramref name="array"/> has the odd number of elements.</exception>
-        </member>
-        <member name="F:System.ArrayPairIterator`3._array">
-            <summary>
-            Indicates the internal array to be iterated.
-            </summary>
-        </member>
-        <member name="F:System.ArrayPairIterator`3._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.ArrayPairIterator`3.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.ArrayPairIterator`3.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:System.CommonMethods">
             <summary>
             Represents a set of methods to be used as method groups.
@@ -406,22 +350,6 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array.</param>
             <param name="comparer">The method to compare two elements.</param>
-        </member>
-        <member name="M:System.ArrayExtensions.EnumerateReversely``1(``0[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})"/>.
-        </member>
-        <member name="M:System.ArrayExtensions.EnumerateAsPair``3(``0[])">
-            <summary>
-            Creates a <see cref="T:System.ArrayPairIterator`3"/> instance that iterates on each element of pair elements.
-            </summary>
-            <typeparam name="T">The type of the array elements.</typeparam>
-            <typeparam name="TFirst">The first element returned.</typeparam>
-            <typeparam name="TSecond">The second element returned.</typeparam>
-            <param name="this">The array.</param>
-            <returns>An enumerable collection.</returns>
-        </member>
-        <member name="M:System.ArrayExtensions.RandomSelectOne``1(``0[],System.Random)">
-            <inheritdoc cref="M:System.ReadOnlySpanExtensions.RandomSelectOne``1(System.ReadOnlySpan{``0},System.Random)"/>
         </member>
         <member name="T:System.Reflection.AssemblyExtensions">
             <summary>
@@ -1814,6 +1742,22 @@ fixed (short* ptr = instance)
             <param name="random">The randomizer.</param>
             <returns>The chosen element.</returns>
         </member>
+        <member name="M:System.ReadOnlySpanExtensions.EnumerateReversely``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Iterates on each element, in reverse order.
+            </summary>
+            <typeparam name="T">The type of each element in the sequence.</typeparam>
+            <param name="this">The sequence to be iterated.</param>
+            <returns>An enumerator type that iterates on each element.</returns>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.EnumeratePairly``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Creates a <see cref="T:System.PairEnumerator`1"/> instance that iterates on each element of pair elements.
+            </summary>
+            <typeparam name="T">The type of the array elements.</typeparam>
+            <param name="this">The array.</param>
+            <returns>An enumerable collection.</returns>
+        </member>
         <member name="T:System.SingleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Single"/>.
@@ -3172,6 +3116,101 @@ fixed (short* ptr = instance)
             The generated field declaration for parameter <c>value</c>.
             </summary>
         </member>
+        <member name="T:System.PairEnumerator`1">
+            <summary>
+            Represents an enumerator that can iterate on elements, adjacent-pairly combined.
+            </summary>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <param name="sequence">The sequence value.</param>
+        </member>
+        <member name="M:System.PairEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents an enumerator that can iterate on elements, adjacent-pairly combined.
+            </summary>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <param name="sequence">The sequence value.</param>
+        </member>
+        <member name="F:System.PairEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.PairEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.PairEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.PairEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.PairEnumerator`1.Cast``2">
+            <summary>
+            Creates a <see cref="T:System.PairEnumeratorCasted`3"/> instance that supports down-casting
+            for paired elements.
+            </summary>
+            <typeparam name="TFirst">
+            <inheritdoc cref="T:System.PairEnumeratorCasted`3" path="/typeparam[@name='TFirst']"/>
+            </typeparam>
+            <typeparam name="TSecond">
+            <inheritdoc cref="T:System.PairEnumeratorCasted`3" path="/typeparam[@name='TSecond']"/>
+            </typeparam>
+            <returns>A <see cref="T:System.PairEnumeratorCasted`3"/> instance.</returns>
+        </member>
+        <member name="F:System.PairEnumerator`1._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="M:System.PairEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.PairEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.PairEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.PairEnumeratorCasted`3">
+            <inheritdoc cref="T:System.PairEnumerator`1"/>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
+            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.#ctor(System.ReadOnlySpan{`0})">
+            <inheritdoc cref="T:System.PairEnumerator`1"/>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
+            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
+        </member>
+        <member name="F:System.PairEnumeratorCasted`3._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.PairEnumeratorCasted`3.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.GetEnumerator">
+            <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
+        </member>
+        <member name="F:System.PairEnumeratorCasted`3._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.Ref">
             <summary>
             Represents a list of methods that can check for the concept "References" defined in C#.
@@ -3270,46 +3309,54 @@ fixed (short* ptr = instance)
             </param>
             <exception cref="T:System.ArgumentNullRefException">Throws if the argument is a <see langword="null" /> reference.</exception>
         </member>
-        <member name="T:System.ReverseIterator`1">
+        <member name="T:System.ReverseEnumerator`1">
             <summary>
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The internal array.</param>
+            <param name="sequence">The internal sequence to be iterated.</param>
         </member>
-        <member name="M:System.ReverseIterator`1.#ctor(System.ReadOnlySpan{`0})">
+        <member name="M:System.ReverseEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
             <summary>
             Represents a reverse enumerator.
             </summary>
             <typeparam name="T">The type of the element.</typeparam>
-            <param name="array">The internal array.</param>
+            <param name="sequence">The internal sequence to be iterated.</param>
         </member>
-        <member name="F:System.ReverseIterator`1._index">
+        <member name="F:System.ReverseEnumerator`1._index">
             <summary>
             Indicates the current index.
             </summary>
         </member>
-        <member name="P:System.ReverseIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.ReverseIterator`1.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.ReverseIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:System.ReverseIterator`1._array">
+        <member name="P:System.ReverseEnumerator`1.Length">
             <summary>
-            The generated field declaration for parameter <c>array</c>.
+            Indicates the length to the sequence.
             </summary>
         </member>
-        <member name="M:System.ReverseIterator`1.Equals(System.Object)">
+        <member name="P:System.ReverseEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.ReverseEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.ReverseEnumerator`1.GetEnumerator">
+            <summary>
+            Provides the basic iteration rule that iterates on each element using the current enumerator.
+            </summary>
+            <returns>The current enumerator.</returns>
+        </member>
+        <member name="F:System.ReverseEnumerator`1._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="M:System.ReverseEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.ReverseIterator`1.GetHashCode">
+        <member name="M:System.ReverseEnumerator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.ReverseIterator`1.ToString">
+        <member name="M:System.ReverseEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.SourceGeneration.Accessibility">

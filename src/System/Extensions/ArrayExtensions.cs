@@ -80,25 +80,4 @@ public static class ArrayExtensions
 			}
 		}
 	}
-
-	/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})"/>.
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReverseIterator<T> EnumerateReversely<T>(this T[] @this) => new(@this);
-
-	/// <summary>
-	/// Creates a <see cref="ArrayPairIterator{T, TFirst, TSecond}"/> instance that iterates on each element of pair elements.
-	/// </summary>
-	/// <typeparam name="T">The type of the array elements.</typeparam>
-	/// <typeparam name="TFirst">The first element returned.</typeparam>
-	/// <typeparam name="TSecond">The second element returned.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <returns>An enumerable collection.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ArrayPairIterator<T, TFirst, TSecond> EnumerateAsPair<T, TFirst, TSecond>(this T[] @this)
-		where T : notnull where TFirst : notnull, T where TSecond : notnull, T => new(@this);
-
-	/// <inheritdoc cref="ReadOnlySpanExtensions.RandomSelectOne{T}(ReadOnlySpan{T}, Random?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T RandomSelectOne<T>(this T[] @this, Random? random = null)
-		=> ref @this[(random ?? Random.Shared).Next(0, @this.Length)];
 }
