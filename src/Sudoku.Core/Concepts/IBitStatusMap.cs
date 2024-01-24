@@ -324,30 +324,46 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	}
 
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty + other;
+		var otherCells = TSelf.Empty;
+		foreach (var element in other)
+		{
+			otherCells.Add(element);
+		}
+
 		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
 	}
 
 	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty + other;
+		var otherCells = TSelf.Empty;
+		foreach (var element in other)
+		{
+			otherCells.Add(element);
+		}
+
 		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
 	}
 
 	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool IsSubsetOf(IEnumerable<TElement> other) => ((TSelf.Empty + other) & (TSelf)this) == (TSelf)this;
+	public new sealed bool IsSubsetOf(IEnumerable<TElement> other)
+	{
+		var otherCells = TSelf.Empty;
+		foreach (var element in other)
+		{
+			otherCells.Add(element);
+		}
+
+		return (otherCells & (TSelf)this) == (TSelf)this;
+	}
 
 	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -355,7 +371,12 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty + other;
+		var otherCells = TSelf.Empty;
+		foreach (var element in other)
+		{
+			otherCells.Add(element);
+		}
+
 		return ((TSelf)this & otherCells) == otherCells;
 	}
 
@@ -363,13 +384,13 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & (TSelf.Empty + other));
+	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & [.. other]);
 
 	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == TSelf.Empty + other;
+	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == [.. other];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -463,15 +484,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	public static abstract TSelf operator +(scoped in TSelf collection, TElement offset);
 
 	/// <summary>
-	/// Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
-	/// and returns the added result.
-	/// </summary>
-	/// <param name="collection">The collection.</param>
-	/// <param name="offsets">A list of cells to be added.</param>
-	/// <returns>The result collection.</returns>
-	public static abstract TSelf operator +(scoped in TSelf collection, IEnumerable<TElement> offsets);
-
-	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
 	/// and returns the removed result.
 	/// </summary>
@@ -479,15 +491,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
 	public static abstract TSelf operator -(scoped in TSelf collection, TElement offset);
-
-	/// <summary>
-	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
-	/// but not in <paramref name="offsets"/> instance.
-	/// </summary>
-	/// <param name="collection">The left instance.</param>
-	/// <param name="offsets">The right instance.</param>
-	/// <returns>The result.</returns>
-	public static abstract TSelf operator -(scoped in TSelf collection, IEnumerable<TElement> offsets);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance

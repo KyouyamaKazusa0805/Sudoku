@@ -33,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+			[] => string.Empty,
+			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -214,7 +214,11 @@ public sealed record RxCyConverter(
 			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
 			{
 				var conclusions = new Conclusion[c.Length];
-				Unsafe.CopyBlock(ref Ref.AsByteRef(ref conclusions[0]), in Ref.AsReadOnlyByteRef(in c[0]), (uint)(sizeof(Conclusion) * c.Length));
+				Unsafe.CopyBlock(
+					ref Ref.AsByteRef(ref conclusions[0]),
+					in Ref.AsReadOnlyByteRef(in c[0]),
+					(uint)(sizeof(Conclusion) * c.Length)
+				);
 
 				scoped var sb = new StringHandler(50);
 				conclusions.SortUnsafe(&cmp);
@@ -226,7 +230,7 @@ public sealed record RxCyConverter(
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append(CellMap.Empty + from conclusion in digitGroup select conclusion.Cell);
+						sb.Append((CellMap)([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

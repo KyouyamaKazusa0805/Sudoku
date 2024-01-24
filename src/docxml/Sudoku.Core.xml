@@ -1901,8 +1901,8 @@ if (student is (name: var name, age: >= 18))
             <para>
             This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CandidateMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" />
-            or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />
+            or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" />.
             <code><![CDATA[
             var map = CandidateMap.Empty;
             map += 0; // Adds 'r1c1(1)' into the collection.
@@ -2118,13 +2118,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Subtraction(Sudoku.Concepts.CandidateMap@,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Subtraction(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
@@ -2234,8 +2228,7 @@ if (student is (name: var name, age: >= 18))
             <para>
             This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CellMap.Empty" />,
             it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" />, <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" />
-            or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})" />:
+            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" /> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" />.
             <code><![CDATA[
             var map = CellMap.Empty;
             map += 0; // Adds 'r1c1' into the collection.
@@ -2602,13 +2595,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
@@ -4808,15 +4795,6 @@ if (student is (name: var name, age: >= 18))
             <param name="offset">The offset to be added.</param>
             <returns>The result collection.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Addition(`0@,System.Collections.Generic.IEnumerable{`1})">
-            <summary>
-            Adds the specified list of <paramref name="offsets"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offsets">A list of cells to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,`1)">
             <summary>
             Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -4825,15 +4803,6 @@ if (student is (name: var name, age: >= 18))
             <param name="collection">The collection.</param>
             <param name="offset">The offset to be removed.</param>
             <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,System.Collections.Generic.IEnumerable{`1})">
-            <summary>
-            Get a <typeparamref name="TSelf"/> that contains all <paramref name="collection"/> instance
-            but not in <paramref name="offsets"/> instance.
-            </summary>
-            <param name="collection">The left instance.</param>
-            <param name="offsets">The right instance.</param>
-            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`2.op_Subtraction(`0@,`0@)">
             <summary>

@@ -7,8 +7,7 @@ namespace Sudoku.Concepts;
 /// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Cell)"/>, <see cref="op_Addition(in CellMap, Cell)"/>
-/// or <see cref="op_Addition(in CellMap, IEnumerable{Cell})"/>:
+/// If you want to add elements into it, you can use <see cref="Add(Cell)"/> or <see cref="op_Addition(in CellMap, Cell)"/>.
 /// <code><![CDATA[
 /// var map = CellMap.Empty;
 /// map += 0; // Adds 'r1c1' into the collection.
@@ -833,20 +832,34 @@ public partial struct CellMap :
 	public void Clear() => this = default;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other) => this -= other;
+	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other)
+	{
+		foreach (var element in other)
+		{
+			Remove(element);
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.IntersectWith(IEnumerable<Cell> other) => this &= Empty + other;
+	void IBitStatusMap<CellMap, Cell>.IntersectWith(IEnumerable<Cell> other) => this &= [.. other];
+
+	/// <inheritdoc/>
+	void IBitStatusMap<CellMap, Cell>.SymmetricExceptWith(IEnumerable<Cell> other)
+	{
+		var left = this;
+		foreach (var element in other)
+		{
+			left.Remove(element);
+		}
+
+		var right = [.. other] - this;
+		this = left | right;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.SymmetricExceptWith(IEnumerable<Cell> other) => this = (this - other) | (Empty + other - this);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.UnionWith(IEnumerable<Cell> other) => this += other;
+	void IBitStatusMap<CellMap, Cell>.UnionWith(IEnumerable<Cell> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>
@@ -987,23 +1000,6 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	public static CellMap operator +(scoped in CellMap collection, IEnumerable<Cell> offsets)
-	{
-		if (offsets is CellMap other)
-		{
-			return collection | other;
-		}
-
-		var result = collection;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator -(scoped in CellMap collection, Cell offset)
 	{
@@ -1015,18 +1011,6 @@ public partial struct CellMap :
 
 		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
 		result._count--;
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static CellMap operator -(scoped in CellMap collection, IEnumerable<Cell> offsets)
-	{
-		var result = collection;
-		foreach (var offset in offsets)
-		{
-			result.Remove(offset);
-		}
-
 		return result;
 	}
 

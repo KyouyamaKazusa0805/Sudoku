@@ -8,8 +8,8 @@ namespace Sudoku.Concepts;
 /// <para>
 /// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
 /// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>, <see cref="op_Addition(in CandidateMap, Candidate)"/>
-/// or <see cref="op_Addition(in CandidateMap, IEnumerable{Candidate})"/>:
+/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>
+/// or <see cref="op_Addition(in CandidateMap, Candidate)"/>.
 /// <code><![CDATA[
 /// var map = CandidateMap.Empty;
 /// map += 0; // Adds 'r1c1(1)' into the collection.
@@ -547,21 +547,34 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate>.ExceptWith(IEnumerable<Candidate> other) => this -= other;
+	void IBitStatusMap<CandidateMap, Candidate>.ExceptWith(IEnumerable<Candidate> other)
+	{
+		foreach (var element in other)
+		{
+			Remove(element);
+		}
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate>.IntersectWith(IEnumerable<Candidate> other) => this &= Empty + other;
+	void IBitStatusMap<CandidateMap, Candidate>.IntersectWith(IEnumerable<Candidate> other) => this &= [.. other];
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void IBitStatusMap<CandidateMap, Candidate>.SymmetricExceptWith(IEnumerable<Candidate> other)
-		=> this = (this - other) | (Empty + other - this);
+	{
+		var left = this;
+		foreach (var element in other)
+		{
+			left.Remove(element);
+		}
+
+		var right = [.. other] - this;
+		this = left | right;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this += other;
+	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>
@@ -695,39 +708,10 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap operator +(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
-	{
-		if (offsets is CandidateMap other)
-		{
-			return collection | other;
-		}
-
-		var result = collection;
-		foreach (var offset in offsets)
-		{
-			result.Add(offset);
-		}
-
-		return result;
-	}
-
-	/// <inheritdoc/>
 	public static CandidateMap operator -(scoped in CandidateMap collection, Candidate offset)
 	{
 		var result = collection;
 		result.Remove(offset);
-
-		return result;
-	}
-
-	/// <inheritdoc/>
-	public static CandidateMap operator -(scoped in CandidateMap collection, IEnumerable<Candidate> offsets)
-	{
-		var result = collection;
-		foreach (var element in offsets)
-		{
-			result.Remove(element);
-		}
 
 		return result;
 	}
