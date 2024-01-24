@@ -4520,14 +4520,14 @@ if (student is (name: var name, age: >= 18))
             For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
-            <summary>
-            Indicates the size of each unit.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.Offsets">
             <summary>
             Indicates the cell offsets in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`2.Shifting">
+            <summary>
+            Indicates the size of each unit.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`2.System#Collections#Generic#ICollection{TElement}#IsReadOnly">
