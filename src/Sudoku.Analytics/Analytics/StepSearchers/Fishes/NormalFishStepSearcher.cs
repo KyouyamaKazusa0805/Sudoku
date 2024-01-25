@@ -264,10 +264,10 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 								[
 									..
 									from cell in withFin ? baseLine - fins : baseLine
-									select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-									.. withFin ? from cell in fins select new CandidateViewNode(WellKnownColorIdentifier.Exofin, cell * 9 + digit) : [],
-									.. from baseSet in bs select new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
-									.. from coverSet in cs select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet),
+									select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+									.. withFin ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : [],
+									.. from baseSet in bs select new HouseViewNode(ColorIdentifier.Normal, baseSet),
+									.. from coverSet in cs select new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet),
 								],
 								GetDirectView(digit, bs, cs, in fins, searchRow)
 							],
@@ -305,7 +305,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 				{
 					case true when fins.Contains(cell):
 					{
-						cellOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell));
+						cellOffsets.Add(new(ColorIdentifier.Auxiliary1, cell));
 						break;
 					}
 					default:
@@ -339,7 +339,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
+						cellOffsets.Add(new(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
 						break;
 					}
 				}
@@ -348,11 +348,11 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 		foreach (var cell in ValuesMap[digit])
 		{
-			cellOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark });
+			cellOffsets.Add(new(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark });
 		}
 		foreach (var cell in fins)
 		{
-			candidateOffsets!.Add(new(WellKnownColorIdentifier.Exofin, cell * 9 + digit));
+			candidateOffsets!.Add(new(ColorIdentifier.Exofin, cell * 9 + digit));
 		}
 
 		return [.. cellOffsets, .. candidateOffsets ?? []];

@@ -276,13 +276,13 @@ public abstract partial class ChainingStep(
 			var view = new View();
 			foreach (var candidate in GetOffPotentials(i))
 			{
-				var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate);
+				var node = new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate);
 				view.Add(node);
 				globalView.Add(node);
 			}
 			foreach (var candidate in GetOnPotentials(i))
 			{
-				var node = new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate);
+				var node = new CandidateViewNode(ColorIdentifier.Normal, candidate);
 				view.Add(node);
 				globalView.Add(node);
 			}
@@ -297,9 +297,9 @@ public abstract partial class ChainingStep(
 		for (; i < ViewsCount; i++)
 		{
 			var view = new View();
-			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate)));
-			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate)));
-			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, candidate)));
+			GetNestedOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Normal, candidate)));
+			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate)));
+			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i).AsReadOnlySpan());
 
 			result[i] = view;
@@ -608,7 +608,7 @@ public abstract partial class ChainingStep(
 			{
 				result.Add(
 					new(
-						WellKnownColorIdentifier.Normal,
+						ColorIdentifier.Normal,
 						new(prDigit, CellsMap[prCell]),
 						new(pDigit, CellsMap[pCell]),
 						(prIsOn, pIsOn) switch

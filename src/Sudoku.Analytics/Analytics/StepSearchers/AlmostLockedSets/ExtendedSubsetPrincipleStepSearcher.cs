@@ -89,7 +89,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == zDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+												digit == zDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 												cell * 9 + digit
 											)
 										);
@@ -100,13 +100,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 								{
 									var step = new ExtendedSubsetPrincipleStep(
 										[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
-										[
-											[
-												.. candidateOffsets,
-												new HouseViewNode(WellKnownColorIdentifier.Normal, coverSet),
-												new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, baseSet)
-											]
-										],
+										[[.. candidateOffsets]],
 										context.PredefinedOptions,
 										in pattern,
 										(Mask)(blockMask | lineMask),

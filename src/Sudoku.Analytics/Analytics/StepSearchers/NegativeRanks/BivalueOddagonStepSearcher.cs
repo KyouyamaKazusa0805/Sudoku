@@ -250,7 +250,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(digit == extraDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -356,7 +356,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 						{
 							candidateOffsets.Add(
 								new(
-									(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+									(otherDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 									cell * 9 + digit
 								)
 							);
@@ -366,13 +366,13 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
 					var step = new BivalueOddagonType3Step(
 						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.PredefinedOptions,
 						in loop,
 						d1,

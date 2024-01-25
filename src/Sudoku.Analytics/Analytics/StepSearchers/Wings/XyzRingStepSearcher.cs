@@ -232,24 +232,24 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 											..
 											from digit in digitsMaskPivot
 											let colorIdentifier = digit == intersectedDigit
-												? WellKnownColorIdentifier.Auxiliary1
-												: WellKnownColorIdentifier.Normal
+												? ColorIdentifier.Auxiliary1
+												: ColorIdentifier.Normal
 											select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
 											..
 											from digit in digitsMask1
 											let colorIdentifier = digit == intersectedDigit
-												? WellKnownColorIdentifier.Auxiliary1
-												: WellKnownColorIdentifier.Normal
+												? ColorIdentifier.Auxiliary1
+												: ColorIdentifier.Normal
 											select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
 											..
 											from digit in digitsMask2
 											let colorIdentifier = digit == intersectedDigit
-												? WellKnownColorIdentifier.Auxiliary1
-												: WellKnownColorIdentifier.Normal
+												? ColorIdentifier.Auxiliary1
+												: ColorIdentifier.Normal
 											select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
 											..
 											from cell in cellsShouldBeCovered
-											select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
+											select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
 										]
 									],
 									context.PredefinedOptions,

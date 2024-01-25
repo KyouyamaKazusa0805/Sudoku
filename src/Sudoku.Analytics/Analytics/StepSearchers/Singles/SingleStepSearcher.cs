@@ -108,7 +108,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
-					[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					[[new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.PredefinedOptions,
 					house,
 					resultCell,
@@ -307,7 +307,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
-				[[new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+				[[new HouseViewNode(ColorIdentifier.Normal, house)]],
 				context.PredefinedOptions,
 				house,
 				resultCell,
@@ -492,7 +492,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid.GetDigit(cell) == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(WellKnownColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
+					cellOffsets.Add(new(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
 				}
 			}
 
@@ -509,7 +509,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					var subtype when subtype.IsUnnecessary() => null,
 					var subtype => new HiddenSingleStep(
 						[new(Assignment, resultCell, digit)],
-						[[.. cellOffsets2, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+						[[.. cellOffsets2, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.PredefinedOptions,
 						resultCell,
 						digit,
@@ -542,10 +542,10 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			(chosenCells, var covered, var excluded) = info;
 			return [
-				.. from c in chosenCells select new CellViewNode(WellKnownColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
+				.. from c in chosenCells select new CellViewNode(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
 				..
 				from c in covered
-				let p = excluded.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1
+				let p = excluded.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1
 				select new CellViewNode(p, c) { RenderingMode = DirectModeOnly }
 			];
 		}
@@ -571,7 +571,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
-					result[i] = new(WellKnownColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
+					result[i] = new(ColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
 					(CellsMap[cell] + otherCell).InOneHouse(out excluderHouses[i]);
 
 					i++;

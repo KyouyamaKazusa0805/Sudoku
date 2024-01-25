@@ -72,8 +72,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 						[.. from c in elimMap select new Conclusion(Elimination, c, digit)],
 						[
 							[
-								.. from c in loop select new CandidateViewNode(WellKnownColorIdentifier.Normal, c * 9 + digit),
-								.. from c in guardians select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c * 9 + digit)
+								.. from c in loop select new CandidateViewNode(ColorIdentifier.Normal, c * 9 + digit),
+								.. from c in guardians select new CandidateViewNode(ColorIdentifier.Auxiliary1, c * 9 + digit)
 							]
 						],
 						context.PredefinedOptions,

@@ -66,8 +66,8 @@ internal static class Siamese
 				mergedConclusions,
 				[
 					[
-						.. from node in xyz1ViewNodes where node.Identifier == WellKnownColorIdentifier.Auxiliary2 select node,
-						.. from node in xyz2ViewNodes where node.Identifier == WellKnownColorIdentifier.Auxiliary2 select node,
+						.. from node in xyz1ViewNodes where node.Identifier == ColorIdentifier.Auxiliary2 select node,
+						.. from node in xyz2ViewNodes where node.Identifier == ColorIdentifier.Auxiliary2 select node,
 						.. xyz1ViewNodes
 					],
 					xyz1ViewNodes,
@@ -182,11 +182,11 @@ internal static class Siamese
 			var view = (View)([
 				.. collectViewNodes(fish1ViewNodes, fish2ViewNodes),
 				.. collectViewNodes(fish2ViewNodes, fish1ViewNodes),
-				.. from house in fish1.BaseSetsMask select new HouseViewNode(WellKnownColorIdentifier.Normal, house),
-				.. from house in siameseCoverSetsMask select new HouseViewNode(WellKnownColorIdentifier.Auxiliary3, house),
+				.. from house in fish1.BaseSetsMask select new HouseViewNode(ColorIdentifier.Normal, house),
+				.. from house in siameseCoverSetsMask select new HouseViewNode(ColorIdentifier.Auxiliary3, house),
 				..
 				from house in coveredSetsMask & ~siameseCoverSetsMask
-				select new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, house)
+				select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 			]);
 
 			siameseStep = (T)(Step)(
@@ -252,10 +252,10 @@ internal static class Siamese
 						new CandidateViewNode(
 							(id1, id2) switch
 							{
-								({ Kind: WellKnownColorIdentifierKind.Endofin }, _) => WellKnownColorIdentifier.Endofin,
-								(_, { Kind: WellKnownColorIdentifierKind.Endofin }) => WellKnownColorIdentifier.Endofin,
-								({ Kind: WellKnownColorIdentifierKind.Exofin }, _) => WellKnownColorIdentifier.Exofin,
-								(_, { Kind: WellKnownColorIdentifierKind.Exofin }) => WellKnownColorIdentifier.Exofin,
+								({ Kind: WellKnownColorIdentifierKind.Endofin }, _) => ColorIdentifier.Endofin,
+								(_, { Kind: WellKnownColorIdentifierKind.Endofin }) => ColorIdentifier.Endofin,
+								({ Kind: WellKnownColorIdentifierKind.Exofin }, _) => ColorIdentifier.Exofin,
+								(_, { Kind: WellKnownColorIdentifierKind.Exofin }) => ColorIdentifier.Exofin,
 								_ => WellKnownColorIdentifierKind.Normal
 							},
 							candidate1

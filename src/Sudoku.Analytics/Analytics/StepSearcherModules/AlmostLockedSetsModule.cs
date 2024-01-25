@@ -88,11 +88,11 @@ internal static class AlmostLockedSetsModule
 	internal static ColorIdentifier GetColor(int index)
 		=> (index % 5) switch
 		{
-			0 => WellKnownColorIdentifier.AlmostLockedSet1,
-			1 => WellKnownColorIdentifier.AlmostLockedSet2,
-			2 => WellKnownColorIdentifier.AlmostLockedSet3,
-			3 => WellKnownColorIdentifier.AlmostLockedSet4,
-			4 => WellKnownColorIdentifier.AlmostLockedSet5
+			0 => ColorIdentifier.AlmostLockedSet1,
+			1 => ColorIdentifier.AlmostLockedSet2,
+			2 => ColorIdentifier.AlmostLockedSet3,
+			3 => ColorIdentifier.AlmostLockedSet4,
+			4 => ColorIdentifier.AlmostLockedSet5
 		};
 
 	/// <summary>

@@ -23,7 +23,7 @@ public sealed partial class BabaGroupViewNode(
 	/// <inheritdoc cref="BabaGroupViewNode(ColorIdentifier, Cell, Utf8Char, Mask)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public BabaGroupViewNode(Cell cell, Utf8Char unknownValueChar, Mask digitsMask) :
-		this(WellKnownColorIdentifier.Normal, cell, unknownValueChar, digitsMask)
+		this(ColorIdentifier.Normal, cell, unknownValueChar, digitsMask)
 	{
 	}
 

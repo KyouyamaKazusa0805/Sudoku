@@ -537,7 +537,7 @@ public static unsafe class SymmetricalPlacementInferrer
 			{
 				if (selfPairedDigits.Contains(digit))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					continue;
 				}
 
@@ -617,7 +617,7 @@ public static unsafe class SymmetricalPlacementInferrer
 			{
 				if (selfPairedDigits.Contains(digit))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					continue;
 				}
 

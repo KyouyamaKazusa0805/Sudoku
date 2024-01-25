@@ -149,7 +149,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				foreach (var cell in pattern - elimCell & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -202,12 +202,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				foreach (var cell in CandidatesMap[digit] & pattern)
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in CandidatesMap[extraDigit] & pattern)
 			{
-				candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
 			}
 
 			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in pattern, digitsMask, extraDigit);
@@ -282,7 +282,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										(tempMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+										(tempMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -292,13 +292,13 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniqueMatrixType3Step(
 							[.. conclusions],
-							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 							context.PredefinedOptions,
 							in pattern,
 							digitsMask,
@@ -392,21 +392,21 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 				foreach (var cell in conjugateMap & CandidatesMap[d1])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d1));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
 				}
 				foreach (var cell in conjugateMap & CandidatesMap[d2])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + d2));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d2));
 				}
 
 				var step = new UniqueMatrixType4Step(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.PredefinedOptions,
 					in pattern,
 					digitsMask,

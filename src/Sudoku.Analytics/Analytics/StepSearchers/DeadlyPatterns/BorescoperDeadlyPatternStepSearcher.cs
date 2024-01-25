@@ -284,7 +284,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 			}
@@ -346,7 +346,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(digit == otherDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(digit == otherDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -437,7 +437,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										(tempMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+										(tempMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -447,20 +447,20 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in combination)
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
 						var step = new BorescoperDeadlyPatternType3Step(
 							[.. conclusions],
-							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
+							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 							context.PredefinedOptions,
 							in map,
 							tempMask,
@@ -577,20 +577,20 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & combinationMask))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 						}
 					}
 					foreach (var cell in otherCellsMap)
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 						}
 					}
 
 					var step = new BorescoperDeadlyPatternType4Step(
 						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 						context.PredefinedOptions,
 						in map,
 						otherMask,

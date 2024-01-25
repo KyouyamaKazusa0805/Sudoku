@@ -87,13 +87,13 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 					[
 						..
 						from cell in a
-						select new CellViewNode(WellKnownColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark },
+						select new CellViewNode(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark },
 						..
 						from cell in b
-						select new CellViewNode(WellKnownColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark },
+						select new CellViewNode(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark },
 						..
 						from cell in c
-						select new CellViewNode(WellKnownColorIdentifier.Auxiliary3, cell) { RenderingMode = BothDirectAndPencilmark }
+						select new CellViewNode(ColorIdentifier.Auxiliary3, cell) { RenderingMode = BothDirectAndPencilmark }
 					]
 				],
 				context.PredefinedOptions,

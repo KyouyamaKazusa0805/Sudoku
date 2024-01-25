@@ -88,9 +88,9 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 					[
 						[
-							.. from cell in intersection select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-							new HouseViewNode(WellKnownColorIdentifier.Normal, realBaseSet),
-							new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, realCoverSet),
+							.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+							new HouseViewNode(ColorIdentifier.Normal, realBaseSet),
+							new HouseViewNode(ColorIdentifier.Auxiliary1, realCoverSet),
 							.. GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
 						]
 					],
@@ -131,11 +131,11 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		var result = new List<CellViewNode>();
 		foreach (var c in combination)
 		{
-			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
+			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
 		}
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
-			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
+			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
 			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
 		}
 

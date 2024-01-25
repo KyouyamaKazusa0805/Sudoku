@@ -94,17 +94,17 @@ public sealed partial class MultiBranchWWingStepSearcher : StepSearcher
 								{
 									foreach (var digit in grid.GetCandidates(cell))
 									{
-										candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+										candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 									}
 								}
 								foreach (var cell in emptyCellsInThisHouse)
 								{
-									candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + xDigit));
+									candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + xDigit));
 								}
 
 								var step = new MultiBranchWWingStep(
 									[.. conclusions],
-									[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)]],
+									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
 									context.PredefinedOptions,
 									in cells,
 									in emptyCellsInThisHouse,

@@ -206,21 +206,21 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			{
 				foreach (var cell in alsCells & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in c)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in ahsCells)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -228,35 +228,35 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var character = (Utf8Char)'a';
 			foreach (var cell in alsCells)
 			{
-				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
 			}
 
 			character = (Utf8Char)'a';
 			foreach (var cell in ahsCells)
 			{
-				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
 			}
 
 			foreach (var cell in c & EmptyCells)
 			{
-				babaGroupingNodes.Add(new(WellKnownColorIdentifier.Normal, cell, (Utf8Char)(char)('a' - 1 + size), grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, (Utf8Char)(char)('a' - 1 + size), grid.GetCandidates(cell)));
 			}
 
-			scoped var valueCellNodes = from cell in valueCells select new CellViewNode(WellKnownColorIdentifier.Normal, cell);
+			scoped var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
 				[.. conclusions],
 				[
 					[
 						.. valueCellNodes,
 						.. candidateOffsets,
-						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
-						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
+						new HouseViewNode(ColorIdentifier.Normal, baseSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet)
 					],
 					[
 						.. valueCellNodes,
 						.. babaGroupingNodes,
-						new HouseViewNode(WellKnownColorIdentifier.Normal, baseSet),
-						new HouseViewNode(WellKnownColorIdentifier.Auxiliary2, coverSet)
+						new HouseViewNode(ColorIdentifier.Normal, baseSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet)
 					]
 				],
 				context.PredefinedOptions,

@@ -91,11 +91,11 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var digit in grid.GetCandidates(c1))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, c1 * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, c1 * 9 + digit));
 					}
 					foreach (var digit in grid.GetCandidates(c2))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, c2 * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, c2 * 9 + digit));
 					}
 					foreach (var cell in erMap)
 					{
@@ -103,14 +103,14 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 						{
 							if (digit == d1 || digit == d2)
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 					}
 
 					var step = new EmptyRectangleIntersectionPairStep(
 						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, block)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, block)]],
 						context.PredefinedOptions,
 						c1,
 						c2,

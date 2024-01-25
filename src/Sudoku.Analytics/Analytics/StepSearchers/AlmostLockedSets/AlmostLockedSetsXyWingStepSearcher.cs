@@ -142,41 +142,41 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						var candidateOffsets = new List<CandidateViewNode>();
 						foreach (var cell in aMap)
 						{
-							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+							cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet1, cell));
 
 							foreach (var digit in grid.GetCandidates(cell))
 							{
 								var colorIdentifier = (finalZ >> digit & 1) != 0
-									? WellKnownColorIdentifier.Auxiliary2
+									? ColorIdentifier.Auxiliary2
 									: ((finalX | finalY) >> digit & 1) != 0
-										? WellKnownColorIdentifier.Auxiliary1
-										: WellKnownColorIdentifier.AlmostLockedSet1;
+										? ColorIdentifier.Auxiliary1
+										: ColorIdentifier.AlmostLockedSet1;
 								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in bMap)
 						{
-							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+							cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet2, cell));
 
 							foreach (var digit in grid.GetCandidates(cell))
 							{
 								var colorIdentifier = (finalZ >> digit & 1) != 0
-									? WellKnownColorIdentifier.Auxiliary2
+									? ColorIdentifier.Auxiliary2
 									: ((finalX | finalY) >> digit & 1) != 0
-										? WellKnownColorIdentifier.Auxiliary1
-										: WellKnownColorIdentifier.AlmostLockedSet2;
+										? ColorIdentifier.Auxiliary1
+										: ColorIdentifier.AlmostLockedSet2;
 								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}
 						foreach (var cell in cMap)
 						{
-							cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet3, cell));
+							cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet3, cell));
 
 							foreach (var digit in grid.GetCandidates(cell))
 							{
 								var colorIdentifier = ((finalX | finalY) >> digit & 1) != 0
-									? WellKnownColorIdentifier.Auxiliary1
-									: WellKnownColorIdentifier.AlmostLockedSet3;
+									? ColorIdentifier.Auxiliary1
+									: ColorIdentifier.AlmostLockedSet3;
 								candidateOffsets.Add(new(colorIdentifier, cell * 9 + digit));
 							}
 						}

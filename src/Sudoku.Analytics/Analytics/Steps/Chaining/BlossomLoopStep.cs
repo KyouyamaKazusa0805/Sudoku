@@ -65,14 +65,14 @@ public sealed partial class BlossomLoopStep(
 			var eachBranchView = new View();
 			foreach (var candidate in GetOffPotentials(i))
 			{
-				eachBranchView.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate));
-				full.Add(new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, candidate));
+				eachBranchView.Add(new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate));
+				full.Add(new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate));
 			}
 
 			foreach (var candidate in GetOnPotentials(i))
 			{
-				eachBranchView.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate));
-				full.Add(new CandidateViewNode(WellKnownColorIdentifier.Normal, candidate));
+				eachBranchView.Add(new CandidateViewNode(ColorIdentifier.Normal, candidate));
+				full.Add(new CandidateViewNode(ColorIdentifier.Normal, candidate));
 			}
 
 			eachBranchView.AddRange(GetLinks(i).AsReadOnlySpan());

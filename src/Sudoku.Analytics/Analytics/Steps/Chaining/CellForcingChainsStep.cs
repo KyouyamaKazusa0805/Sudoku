@@ -48,7 +48,7 @@ public sealed partial class CellForcingChainsStep(
 	protected internal override View[] CreateViews(scoped ref readonly Grid grid)
 	{
 		var result = base.CreateViews(in grid);
-		return [[.. result[0], new CellViewNode(WellKnownColorIdentifier.Normal, SourceCell)], .. result[1..]];
+		return [[.. result[0], new CellViewNode(ColorIdentifier.Normal, SourceCell)], .. result[1..]];
 	}
 
 	/// <inheritdoc/>

@@ -453,18 +453,18 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		// Collect for view nodes.
-		var cellOffsets = new List<CellViewNode> { new(WellKnownColorIdentifier.Normal, pivot) };
+		var cellOffsets = new List<CellViewNode> { new(ColorIdentifier.Normal, pivot) };
 		var candidateOffsets = new List<CandidateViewNode>();
 		var detailViews = new View[branches.Count];
 		foreach (ref var view in detailViews.AsSpan())
 		{
-			view = [new CellViewNode(WellKnownColorIdentifier.Normal, pivot)];
+			view = [new CellViewNode(ColorIdentifier.Normal, pivot)];
 		}
 
 		var indexOfAls = 0;
 		foreach (var digit in grid.GetCandidates(pivot))
 		{
-			var node = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, pivot * 9 + digit);
+			var node = new CandidateViewNode(ColorIdentifier.Auxiliary2, pivot * 9 + digit);
 			candidateOffsets.Add(node);
 			detailViews[indexOfAls++].Add(node);
 		}
@@ -479,8 +479,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				{
 					var node = new CandidateViewNode(
 						branchDigit == digit
-							? WellKnownColorIdentifier.Auxiliary2
-							: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
+							? ColorIdentifier.Auxiliary2
+							: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : alsColor,
 						alsCell * 9 + digit
 					);
 					candidateOffsets.Add(node);
@@ -588,14 +588,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			var candidateOffsets = (List<CandidateViewNode>)[
 				..
 				from cell in targetCells
-				select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + disappearedDigit)
+				select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + disappearedDigit)
 			];
-			var houseOffset = new HouseViewNode(WellKnownColorIdentifier.Normal, house);
+			var houseOffset = new HouseViewNode(ColorIdentifier.Normal, house);
 			var detailViews = new View[branches.Count];
 			var i = 0;
 			foreach (ref var view in detailViews.AsSpan())
 			{
-				view = [houseOffset, new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, targetCells[i++] * 9 + disappearedDigit)];
+				view = [houseOffset, new CandidateViewNode(ColorIdentifier.Auxiliary2, targetCells[i++] * 9 + disappearedDigit)];
 			}
 
 			var indexOfAls = 0;
@@ -608,8 +608,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					{
 						var node = new CandidateViewNode(
 							disappearedDigit == digit
-								? WellKnownColorIdentifier.Auxiliary2
-								: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
+								? ColorIdentifier.Auxiliary2
+								: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : alsColor,
 							alsCell * 9 + digit
 						);
 						candidateOffsets.Add(node);
@@ -723,12 +723,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		// Collect for view nodes.
 		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = (List<CandidateViewNode>)[.. from c in disappearedCandidates select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, c)];
+		var candidateOffsets = (List<CandidateViewNode>)[.. from c in disappearedCandidates select new CandidateViewNode(ColorIdentifier.Auxiliary2, c)];
 		var detailViews = new View[branches.Count];
 		var i = 0;
 		foreach (ref var view in detailViews.AsSpan())
 		{
-			view = [new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, disappearedCandidates[i++])];
+			view = [new CandidateViewNode(ColorIdentifier.Auxiliary2, disappearedCandidates[i++])];
 		}
 
 		var indexOfAls = 0;
@@ -741,8 +741,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				{
 					var node = new CandidateViewNode(
 						disappearedCandidates.Contains(alsCell * 9 + digit)
-							? WellKnownColorIdentifier.Auxiliary2
-							: (zDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : alsColor,
+							? ColorIdentifier.Auxiliary2
+							: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : alsColor,
 						alsCell * 9 + digit
 					);
 					candidateOffsets.Add(node);
@@ -871,14 +871,14 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				{
 					if (grid.Exists(cell, currentDigit) is true)
 					{
-						var candidateNode = new CandidateViewNode(WellKnownColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
+						var candidateNode = new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + currentDigit);
 						view.Add(candidateNode);
 						candidateOffsets.Add(candidateNode);
 
 						branchCandidates.Add(cell * 9 + currentDigit);
 					}
 
-					var node = new CellViewNode(WellKnownColorIdentifier.Normal, cell);
+					var node = new CellViewNode(ColorIdentifier.Normal, cell);
 					view.Add(node);
 					cellOffsets.Add(node);
 					//clrCands[cell] &= (Mask)~tCand;
@@ -898,9 +898,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				foreach (var digit in grid.GetCandidates(cell))
 				{
 					var colorIdentifier = (rcc >> digit & 1) != 0
-						? WellKnownColorIdentifier.Auxiliary2
+						? ColorIdentifier.Auxiliary2
 						: (zDigitsMask >> digit & 1) != 0
-							? WellKnownColorIdentifier.Auxiliary1
+							? ColorIdentifier.Auxiliary1
 							: AlmostLockedSetsModule.GetColor(alsIndex);
 					var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
 					view.Add(candidateNode);

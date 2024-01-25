@@ -74,17 +74,17 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 					var cpCells = new List<Cell>(2);
 					foreach (var cell in HousesMap[block] & CandidatesMap[digit])
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 					foreach (var cell in linkMap)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 						cpCells.Add(cell);
 					}
 
 					var step = new EmptyRectangleStep(
 						[new(Elimination, elimCell, digit)],
-						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, block)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, block)]],
 						context.PredefinedOptions,
 						digit,
 						block,

@@ -47,7 +47,7 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 				var cand = offset * 9 + Solution.GetDigit(offset);
 				var step = new BruteForceStep(
 					[new(Assignment, cand)],
-					[[new CandidateViewNode(WellKnownColorIdentifier.Normal, cand)]],
+					[[new CandidateViewNode(ColorIdentifier.Normal, cand)]],
 					context.PredefinedOptions
 				);
 				if (context.OnlyFindOne)

@@ -144,8 +144,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		var candidateOffsets = new List<CandidateViewNode>();
 		foreach (var cell in loop - extraCell)
 		{
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d1));
-			candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d2));
+			candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d1));
+			candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d2));
 		}
 
 		var step = new UniqueLoopType1Step(
@@ -213,7 +213,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(digit == extraDigit ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(digit == extraDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -344,7 +344,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							{
 								candidateOffsets.Add(
 									new(
-										(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+										(otherDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -354,13 +354,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
-								candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 							}
 						}
 
 						var step = new UniqueLoopType3Step(
 							[.. conclusions],
-							[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
+							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 							context.PredefinedOptions,
 							d1,
 							d2,
@@ -425,7 +425,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								(otherDigitsMask >> digit & 1) != 0 ? WellKnownColorIdentifier.Auxiliary1 : WellKnownColorIdentifier.Normal,
+								(otherDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -435,7 +435,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
 
@@ -525,17 +525,17 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					foreach (var d in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + d));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d));
 					}
 				}
 				foreach (var cell in extraCellsMap)
 				{
-					candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 				}
 
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 					context.PredefinedOptions,
 					d1,
 					d2,
@@ -698,7 +698,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		{
 			result.Add(
 				new(
-					WellKnownColorIdentifier.Normal,
+					ColorIdentifier.Normal,
 					new(digit, CellsMap[path[i]]),
 					new(digit, CellsMap[path[i + 1 == path.Length ? 0 : i + 1]]),
 					Inference.ConjugatePair

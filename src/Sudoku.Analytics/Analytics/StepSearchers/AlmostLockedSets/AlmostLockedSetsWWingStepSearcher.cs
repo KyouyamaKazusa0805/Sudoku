@@ -122,7 +122,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							var candidateOffsets = new List<CandidateViewNode>();
 							foreach (var cell in map1)
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+								cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet1, cell));
 
 								foreach (var digit in grid.GetCandidates(cell))
 								{
@@ -130,9 +130,9 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										new(
 											(digit == x, (wDigitsMask >> digit & 1) != 0) switch
 											{
-												(true, _) => WellKnownColorIdentifier.Auxiliary1,
-												(_, true) => WellKnownColorIdentifier.Auxiliary2,
-												_ => WellKnownColorIdentifier.AlmostLockedSet1
+												(true, _) => ColorIdentifier.Auxiliary1,
+												(_, true) => ColorIdentifier.Auxiliary2,
+												_ => ColorIdentifier.AlmostLockedSet1
 											},
 											cell * 9 + digit
 										)
@@ -141,7 +141,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 							foreach (var cell in map2)
 							{
-								cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+								cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet2, cell));
 
 								foreach (var digit in grid.GetCandidates(cell))
 								{
@@ -149,9 +149,9 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										new(
 											(digit == x, (wDigitsMask >> digit & 1) != 0) switch
 											{
-												(true, _) => WellKnownColorIdentifier.Auxiliary1,
-												(_, true) => WellKnownColorIdentifier.Auxiliary2,
-												_ => WellKnownColorIdentifier.AlmostLockedSet2
+												(true, _) => ColorIdentifier.Auxiliary1,
+												(_, true) => ColorIdentifier.Auxiliary2,
+												_ => ColorIdentifier.AlmostLockedSet2
 											},
 											cell * 9 + digit
 										)
@@ -163,8 +163,8 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 								[.. conclusions],
 								[
 									[
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, cpMap[0] * 9 + x),
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, cpMap[1] * 9 + x),
+										new CandidateViewNode(ColorIdentifier.Normal, cpMap[0] * 9 + x),
+										new CandidateViewNode(ColorIdentifier.Normal, cpMap[1] * 9 + x),
 										.. cellOffsets,
 										.. candidateOffsets
 									]

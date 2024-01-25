@@ -81,7 +81,7 @@ internal static class SubsetModule
 				{
 					foreach (var cell in cells & CandidatesMap[digit])
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 
 					cellOffsets.AddRange(GetCrosshatchBaseCells(in grid, digit, house, in cells));
@@ -118,7 +118,7 @@ internal static class SubsetModule
 
 					var step = new HiddenSubsetStep(
 						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house), .. cellOffsets]],
+						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. cellOffsets]],
 						context.PredefinedOptions,
 						house,
 						in cells,
@@ -193,7 +193,7 @@ internal static class SubsetModule
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 				}
 
@@ -209,7 +209,7 @@ internal static class SubsetModule
 
 				var step = new NakedSubsetStep(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(WellKnownColorIdentifier.Normal, house)]],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.PredefinedOptions,
 					house,
 					in cells,
@@ -248,11 +248,11 @@ internal static class SubsetModule
 		var result = new List<CellViewNode>();
 		foreach (var c in combination)
 		{
-			result.Add(new(WellKnownColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
+			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
 		}
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
-			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? WellKnownColorIdentifier.Auxiliary2 : WellKnownColorIdentifier.Auxiliary1;
+			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
 			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
 		}
 

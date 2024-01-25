@@ -53,7 +53,7 @@ public sealed partial class RegionForcingChainsStep(
 	protected internal override View[] CreateViews(scoped ref readonly Grid grid)
 	{
 		var result = base.CreateViews(in grid);
-		return [[.. result[0], new HouseViewNode(WellKnownColorIdentifier.Normal, HouseIndex)], .. result[1..]];
+		return [[.. result[0], new HouseViewNode(ColorIdentifier.Normal, HouseIndex)], .. result[1..]];
 	}
 
 	/// <inheritdoc/>

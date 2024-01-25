@@ -6110,7 +6110,55 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an identifier that is used for describing target rendering item.
             </summary>
-            <completionlist cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
+            <completionlist cref="T:Sudoku.Rendering.ColorIdentifier"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Normal">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Auxiliary1">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Auxiliary2">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Auxiliary3">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Assignment">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.OverlappedAssignment">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Elimination">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Cannibalism">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Exofin">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Endofin">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.Link">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Link"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet1">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet2">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet3">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet4">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
+        </member>
+        <member name="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet5">
+            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
         </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
@@ -7115,54 +7163,6 @@ if (student is (name: var name, age: >= 18))
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
             </summary>
             <param name="kind">The well-known identifier kind to be assigned.</param>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Normal">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary1">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary2">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary3">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Assignment">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.OverlappedAssignment">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Elimination">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Cannibalism">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Exofin">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Endofin">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.Link">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Link"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet1">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet2">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet3">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet4">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
-        </member>
-        <member name="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet5">
-            <inheritdoc cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
         </member>
         <member name="M:Sudoku.Rendering.WellKnownColorIdentifier.Deconstruct(Sudoku.Rendering.WellKnownColorIdentifierKind@)">
             <target name="method">

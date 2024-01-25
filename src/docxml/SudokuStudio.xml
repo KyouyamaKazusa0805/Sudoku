@@ -4002,49 +4002,49 @@ if (student is (name: var name, age: >= 18))
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Normal"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Normal"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Assignment"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Assignment"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OverlappedAssignmentColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.OverlappedAssignment"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.OverlappedAssignment"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Elimination"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Elimination"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CannibalismColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Cannibalism"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Cannibalism"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ExofinColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Exofin"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Exofin"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EndofinColorized">
             <summary>
             Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>.
             </summary>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Endofin"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Endofin"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AuxiliaryColorized">
             <summary>
@@ -4054,9 +4054,9 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary1"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary2"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.Auxiliary3"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary1"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary2"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary3"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AlmostLockedSetColorized">
             <summary>
@@ -4069,11 +4069,11 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
             <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet1"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet2"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet3"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet4"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifier.AlmostLockedSet5"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet1"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet2"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet3"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet4"/>
+            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet5"/>
         </member>
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ColorPaletteColorized">
             <summary>

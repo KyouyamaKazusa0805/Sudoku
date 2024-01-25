@@ -189,7 +189,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (var cell in map1)
 				{
-					cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell));
+					cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet1, cell));
 
 					var mask = grid.GetCandidates(cell);
 					var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
@@ -197,20 +197,20 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					var rccDigitsMask = (Mask)(mask & rccMask);
 					foreach (var digit in alsDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.AlmostLockedSet1, cell * 9 + digit));
 					}
 					foreach (var digit in targetDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 					foreach (var digit in rccDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
 				foreach (var cell in map2)
 				{
-					cellOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell));
+					cellOffsets.Add(new(ColorIdentifier.AlmostLockedSet2, cell));
 
 					var mask = grid.GetCandidates(cell);
 					var alsDigitsMask = (Mask)(mask & ~(finalZ | rccMask));
@@ -218,15 +218,15 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					var rccDigitsMask = (Mask)(mask & rccMask);
 					foreach (var digit in alsDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.AlmostLockedSet2, cell * 9 + digit));
 					}
 					foreach (var digit in targetDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary2, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 					foreach (var digit in rccDigitsMask)
 					{
-						candidateOffsets.Add(new(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
 					}
 				}
 

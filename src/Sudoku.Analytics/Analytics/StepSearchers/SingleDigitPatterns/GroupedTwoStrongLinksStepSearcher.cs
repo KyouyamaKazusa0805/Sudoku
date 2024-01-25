@@ -101,13 +101,13 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 							[
 								[
-									.. from cell in headCells select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-									.. from cell in tailCells select new CandidateViewNode(WellKnownColorIdentifier.Normal, cell * 9 + digit),
-									.. from cell in cells1 select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit),
-									.. from cell in cells2 select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit),
-									new HouseViewNode(WellKnownColorIdentifier.Normal, h1),
-									new HouseViewNode(WellKnownColorIdentifier.Normal, h2),
-									new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, weakLinkHouse)
+									.. from cell in headCells select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+									.. from cell in tailCells select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+									.. from cell in cells1 select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digit),
+									.. from cell in cells2 select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digit),
+									new HouseViewNode(ColorIdentifier.Normal, h1),
+									new HouseViewNode(ColorIdentifier.Normal, h2),
+									new HouseViewNode(ColorIdentifier.Auxiliary1, weakLinkHouse)
 								]
 							],
 							context.PredefinedOptions,

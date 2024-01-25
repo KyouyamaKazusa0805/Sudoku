@@ -124,13 +124,13 @@ public sealed partial class WWingStepSearcher : StepSearcher
 								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
 								[
 									[
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, a * 9 + digit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, b * 9 + digit),
-										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
+										new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + anotherDigit),
+										new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + anotherDigit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + digit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + digit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, a * 9 + digit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, b * 9 + digit),
+										new HouseViewNode(ColorIdentifier.Auxiliary1, house)
 									]
 								],
 								context.PredefinedOptions,
@@ -143,12 +143,12 @@ public sealed partial class WWingStepSearcher : StepSearcher
 								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
 								[
 									[
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, c1 * 9 + anotherDigit),
-										new CandidateViewNode(WellKnownColorIdentifier.Normal, c2 * 9 + anotherDigit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c1 * 9 + digit),
-										new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, c2 * 9 + digit),
-										.. from cell in bridge select new CandidateViewNode(WellKnownColorIdentifier.Auxiliary1, cell * 9 + digit),
-										new HouseViewNode(WellKnownColorIdentifier.Auxiliary1, house)
+										new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + anotherDigit),
+										new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + anotherDigit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + digit),
+										new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + digit),
+										.. from cell in bridge select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digit),
+										new HouseViewNode(ColorIdentifier.Auxiliary1, house)
 									]
 								],
 								context.PredefinedOptions,
