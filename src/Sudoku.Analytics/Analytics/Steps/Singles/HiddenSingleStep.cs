@@ -48,8 +48,4 @@ public partial class HiddenSingleStep(
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
-
-
-	private static int ExcluderValueSelector((int Left, House Right) p)
-		=> p.Right.ToHouseType() switch { HouseType.Block => 3, HouseType.Row => 1, HouseType.Column => 2 } + p.Left * 3;
 }
