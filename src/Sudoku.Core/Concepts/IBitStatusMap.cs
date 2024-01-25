@@ -24,11 +24,6 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	where TElement : unmanaged, IBinaryInteger<TElement>
 {
 	/// <summary>
-	/// The parsers can be used.
-	/// </summary>
-	protected static readonly CoordinateParser[] Parsers = [new RxCyParser(), new K9Parser()];
-
-	/// <summary>
 	/// Indicates the error information describing the case that the number of subsets calculated by methods
 	/// <see cref="GetSubsets(int)"/> and <see cref="GetSubsetsAllBelow(int)"/> is too large.
 	/// </summary>

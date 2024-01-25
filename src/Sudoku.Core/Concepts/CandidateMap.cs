@@ -611,7 +611,11 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public static CandidateMap Parse(string str)
 	{
-		foreach (var parser in IBitStatusMap<CandidateMap, Candidate>.Parsers)
+		foreach (var parser in
+			from element in Enum.GetValues<CoordinateType>()
+			let parser = element.GetParser()
+			where parser is not null
+			select parser)
 		{
 			if (parser.CandidateParser(str) is { Count: not 0 } result)
 			{

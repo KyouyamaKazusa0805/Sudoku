@@ -930,7 +930,11 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public static CellMap Parse(string str)
 	{
-		foreach (var parser in IBitStatusMap<CellMap, Cell>.Parsers)
+		foreach (var parser in
+			from element in Enum.GetValues<CoordinateType>()
+			let parser = element.GetParser()
+			where parser is not null
+			select parser)
 		{
 			if (parser.CellParser(str) is { Count: not 0 } result)
 			{

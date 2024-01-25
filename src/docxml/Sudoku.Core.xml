@@ -3018,6 +3018,39 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation is based on <b>Excel</b> notation.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.CoordinateType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CoordinateType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.CoordinateType,System.Object[])">
+            <summary>
+            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.CoordinateType,System.Object[])">
+            <summary>
+            Gets the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
+            </summary>
+            <param name="this">The type of the coordinate type.</param>
+            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -4451,11 +4484,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
             <typeparam name="TElement">The type of each element.</typeparam>
-        </member>
-        <member name="F:Sudoku.Concepts.IBitStatusMap`2.Parsers">
-            <summary>
-            The parsers can be used.
-            </summary>
         </member>
         <member name="F:Sudoku.Concepts.IBitStatusMap`2.ErrorInfo_SubsetsExceeded">
             <summary>
@@ -9133,6 +9161,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Converter">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Text.CoordinateConverterAttribute`1">
+            <summary>
+            Represents an attribute type that specifies the bound concept for converter.
+            </summary>
+            <typeparam name="T">The type of the converter.</typeparam>
+        </member>
+        <member name="T:Sudoku.Text.CoordinateParserAttribute`1">
+            <summary>
+            Represents an attribute type that specifies the bound concept for parser.
+            </summary>
+            <typeparam name="T">The type of the parser.</typeparam>
         </member>
         <member name="T:Sudoku.Text.GridFormatterFactory">
             <summary>
