@@ -4,6 +4,7 @@ namespace System.Algorithm;
 /// Defines some sequences that has been recorded in the
 /// <see href="https://oeis.org/">On-Line Encyclopedia of Integer Sequences</see>.
 /// </summary>
+/// <seealso href="https://oeis.org/">On-Line Encyclopedia of Integer Sequences</seealso>
 /// <shared-comments>
 /// <para>The index of the sequence. The index is 0-based.</para>
 /// <para>The index of the sequence. The index is 1-based.</para>

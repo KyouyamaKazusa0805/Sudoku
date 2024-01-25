@@ -1,9 +1,0 @@
-﻿root = false
-
-[*.cs]
-
-# Remove unused parameter
-dotnet_diagnostic.IDE0060.severity = none
-
-# Parameter is unread
-dotnet_diagnostic.cs9113.severity = none
