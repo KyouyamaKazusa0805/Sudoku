@@ -1876,22 +1876,6 @@ if (student is (name: var name, age: >= 18))
             The internal <see cref="T:System.Random"/> instance to be used.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.BitStatusMapCreator">
-            <summary>
-            Represents a type that has ability to create <see cref="T:Sudoku.Concepts.IBitStatusMap`2"/> instances called by compiler.
-            For the users' aspect, we can just use collection expressions.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IBitStatusMap`2"/>
-        </member>
-        <member name="M:Sudoku.Concepts.BitStatusMapCreator.Create``2(System.ReadOnlySpan{``1})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.IBitStatusMap`2"/> instance via the specified offsets.
-            </summary>
-            <typeparam name="TSelf"><inheritdoc cref="T:Sudoku.Concepts.IBitStatusMap`2" path="/typeparam[@name='TSelf']"/></typeparam>
-            <typeparam name="TElement"><inheritdoc cref="T:Sudoku.Concepts.IBitStatusMap`2" path="/typeparam[@name='TElement']"/></typeparam>
-            <param name="offsets">The offsets.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.IBitStatusMap`2"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.

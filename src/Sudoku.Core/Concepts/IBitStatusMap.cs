@@ -5,7 +5,6 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
-[CollectionBuilder(typeof(BitStatusMapCreator), nameof(BitStatusMapCreator.Create))]
 [LargeStructure]
 [EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
 public partial interface IBitStatusMap<TSelf, TElement> :
