@@ -3,7 +3,7 @@ namespace SudokuStudio.ComponentModel;
 /// <summary>
 /// Defines a page that is used for displaying analysis result for a puzzle.
 /// </summary>
-public interface IAnalyzeTabPage
+internal interface IAnalyzerTab
 {
 	/// <summary>
 	/// Indicates the parent page of the current tab.

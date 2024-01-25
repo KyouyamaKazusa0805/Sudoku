@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Represents a tab page.
 /// </summary>
-public sealed partial class Drawing : Page, IAnalyzeTabPage
+public sealed partial class Drawing : Page, IAnalyzerTab
 {
 	/// <summary>
 	/// Initializes a <see cref="Drawing"/> instance.
@@ -15,7 +15,7 @@ public sealed partial class Drawing : Page, IAnalyzeTabPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	AnalyzerResult? IAnalyzeTabPage.AnalysisResult { get; set; }
+	AnalyzerResult? IAnalyzerTab.AnalysisResult { get; set; }
 
 
 	private void SetSelectedMode(int selectedIndex) => BasePage.SelectedMode = (DrawingMode)(selectedIndex + 1);

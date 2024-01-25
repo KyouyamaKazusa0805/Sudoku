@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the gathering page.
 /// </summary>
-public sealed partial class GridGathering : Page, IAnalyzeTabPage
+public sealed partial class GridGathering : Page, IAnalyzerTab
 {
 	/// <summary>
 	/// Indicates the found steps currently.
@@ -21,7 +21,7 @@ public sealed partial class GridGathering : Page, IAnalyzeTabPage
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	AnalyzerResult? IAnalyzeTabPage.AnalysisResult { get; set; }
+	AnalyzerResult? IAnalyzerTab.AnalysisResult { get; set; }
 
 
 	/// <summary>

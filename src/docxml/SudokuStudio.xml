@@ -182,21 +182,21 @@
         </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
             <summary>
-            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
+            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>.
             </summary>
             <param name="header">Indicates the header.</param>
             <param name="iconSource">Indicates the icon source.</param>
             <param name="page">Indicates the tab page.</param>
-            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>
+            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.#ctor(System.String,Microsoft.UI.Xaml.Controls.IconSource,SudokuStudio.ComponentModel.IAnalyzeTabPage)">
+        <member name="M:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.#ctor(System.String,Microsoft.UI.Xaml.Controls.IconSource,SudokuStudio.ComponentModel.IAnalyzerTab)">
             <summary>
-            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>.
+            Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>.
             </summary>
             <param name="header">Indicates the header.</param>
             <param name="iconSource">Indicates the icon source.</param>
             <param name="page">Indicates the tab page.</param>
-            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzeTabPage"/>
+            <seealso cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource.Header">
             <summary>
@@ -910,17 +910,17 @@
             </remarks>
             <seealso cref="F:System.SourceGeneration.Accessibility.Public"/>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.IAnalyzeTabPage">
+        <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
             </summary>
         </member>
-        <member name="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.BasePage">
+        <member name="P:SudokuStudio.ComponentModel.IAnalyzerTab.BasePage">
             <summary>
             Indicates the parent page of the current tab.
             </summary>
         </member>
-        <member name="P:SudokuStudio.ComponentModel.IAnalyzeTabPage.AnalysisResult">
+        <member name="P:SudokuStudio.ComponentModel.IAnalyzerTab.AnalysisResult">
             <summary>
             Gets or sets the analysis result, updating the current tab page using this property.
             </summary>
@@ -12448,7 +12448,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.BasePage">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
+        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.InitializeComponent">
@@ -12484,7 +12484,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.BasePage">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzeTabPage#AnalysisResult">
+        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(Sudoku.Analytics.Step[],Sudoku.Concepts.Grid)">

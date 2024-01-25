@@ -4,7 +4,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// Defines a summary page.
 /// </summary>
 [DependencyProperty<AnalyzerResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
-public sealed partial class Summary : Page, IAnalyzeTabPage
+public sealed partial class Summary : Page, IAnalyzerTab
 {
 	/// <summary>
 	/// Initializes a <see cref="Summary"/> instance.

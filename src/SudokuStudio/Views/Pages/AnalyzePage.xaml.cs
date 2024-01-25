@@ -99,7 +99,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		foreach (var pageData in (IEnumerable<AnalyzeTabPageBindableSource>)AnalyzeTabs.TabItemsSource)
 		{
-			if (pageData is { Page: IAnalyzeTabPage subTabPage })
+			if (pageData is { Page: IAnalyzerTab subTabPage })
 			{
 				subTabPage.AnalysisResult = null;
 			}
@@ -115,7 +115,7 @@ public sealed partial class AnalyzePage : Page
 	{
 		foreach (var pageData in (IEnumerable<AnalyzeTabPageBindableSource>)AnalyzeTabs.TabItemsSource)
 		{
-			if (pageData is { Page: IAnalyzeTabPage subTabPage })
+			if (pageData is { Page: IAnalyzerTab subTabPage })
 			{
 				subTabPage.AnalysisResult = analyzerResult;
 			}
