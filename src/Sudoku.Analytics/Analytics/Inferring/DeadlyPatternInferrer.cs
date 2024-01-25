@@ -1,11 +1,11 @@
 namespace Sudoku.Analytics.Inferring;
 
 /// <summary>
-/// Represents a checker that checks for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),
+/// Represents a type that checks and infers for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),
 /// determining whether the pattern is a deadly pattern.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class DeadlyPatternChecker
+public static class DeadlyPatternInferrer
 {
 	/// <summary>
 	/// Determines whether a pattern is a deadly pattern.

@@ -161,7 +161,7 @@ public sealed partial class Analyzer :
 				context.InferredGurthSymmetricalPlacementPattern = symmetricType;
 				context.MappingRelations = mappingDigits;
 
-				if (SymmetricalPlacementChecker.GetStep(in playground, Options) is { } step)
+				if (SymmetricalPlacementInferrer.GetStep(in playground, Options) is { } step)
 				{
 					if (verifyConclusionValidity(in solution, step))
 					{

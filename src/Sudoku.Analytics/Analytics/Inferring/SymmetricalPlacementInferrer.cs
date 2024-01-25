@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics.Inferring;
 
 /// <summary>
-/// Represents a checker type that checks for technique Gurth's symmetrical placement.
+/// Represents a type that checks and infers for technique usages on Gurth's symmetrical placement.
 /// </summary>
-public static unsafe class SymmetricalPlacementChecker
+public static unsafe class SymmetricalPlacementInferrer
 {
 	/// <summary>
 	/// The internal methods.
