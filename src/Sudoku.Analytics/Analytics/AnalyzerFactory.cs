@@ -94,10 +94,6 @@ public static class AnalyzerFactory
 		return @this;
 	}
 
-	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[], DifficultyLevel)"/>
-	public static Analyzer WithStepSearchers(this Analyzer @this, IEnumerable<StepSearcher> stepSearchers, DifficultyLevel level = default)
-		=> @this.WithStepSearchers([.. stepSearchers], level);
-
 	/// <summary>
 	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
 	/// If the target <see cref="StepSearcher"/> collection does not contain the step searcher instance

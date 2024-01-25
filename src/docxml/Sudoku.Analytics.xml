@@ -504,9 +504,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.Categorization.DifficultyLevel)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)"/>
-        </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
             <summary>
             Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
