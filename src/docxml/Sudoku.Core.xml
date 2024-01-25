@@ -5434,126 +5434,6 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Linq.BitStatusMapEnumerable">
-            <summary>
-            Represents a list of methods for iteration on <see cref="T:Sudoku.Concepts.IBitStatusMap`2"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IBitStatusMap`2"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
-            <inheritdoc cref="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
-            <summary>
-            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
-            using the specified function to convert.
-            </summary>
-            <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="this">The current instance.</param>
-            <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Where(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Filters a <see cref="T:Sudoku.Concepts.CellMap"/> collection based on a predicate.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>
-            A <see cref="T:Sudoku.Concepts.CellMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CellMap"/> satisfying the condition.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Where(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Filters a <see cref="T:Sudoku.Concepts.CandidateMap"/> collection based on a predicate.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="predicate">A function to test each element for a condition.</param>
-            <returns>
-            A <see cref="T:Sudoku.Concepts.CandidateMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CandidateMap"/> satisfying the condition.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
-            <summary>
-            Groups the elements of a sequence according to a specified key selector function.
-            </summary>
-            <typeparam name="TKey">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
-            </typeparam>
-            <param name="this">The current instance.</param>
-            <param name="keySelector">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
-            </param>
-            <returns>
-            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances where each value object contains a sequence of objects and a key.
-            </returns>
-            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
-            <inheritdoc cref="M:Sudoku.Linq.BitStatusMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.SelectMany``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
-            <summary>
-            Projects each cell (of type <see cref="T:System.Int32"/>) of a <see cref="T:Sudoku.Concepts.CellMap"/> to a mask (of type <see cref="T:System.Int16"/>),
-            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
-            </summary>
-            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
-            <param name="this">A sequence of values to project.</param>
-            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
-            <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="T:System.Int16"/>).</param>
-            <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
-            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
-            and then mapping each of those sequences and their corresponding source element to a result element.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.SelectMany``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
-            <summary>
-            Projects each candidate (of type <see cref="T:System.Int32"/>) of a <see cref="T:Sudoku.Concepts.CandidateMap"/> to a mask (of type <see cref="T:System.Int16"/>),
-            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
-            </summary>
-            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
-            <param name="this">A sequence of values to project.</param>
-            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:Sudoku.Concepts.CandidateMap"/>.</param>
-            <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="T:System.Int16"/>).</param>
-            <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
-            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
-            and then mapping each of those sequences and their corresponding source element to a result element.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Any(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Indicates whether at least one element satisfies the specified condition.
-            </summary>
-            <param name="this">The cell to be checked.</param>
-            <param name="match">The match method.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether at least one element satisfies the specified condition.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.Any(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Indicates whether at least one element satisfies the specified condition.
-            </summary>
-            <param name="this">The cell to be checked.</param>
-            <param name="match">The match method.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether at least one element satisfies the specified condition.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.All(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
-            </summary>
-            <param name="this">The candidate to be checked.</param>
-            <param name="match">The match method.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.BitStatusMapEnumerable.All(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
-            </summary>
-            <param name="this">The candidate to be checked.</param>
-            <param name="match">The match method.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
-        </member>
         <member name="T:Sudoku.Linq.BitStatusMapGroup`3">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
@@ -5746,6 +5626,132 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The list to be checked.</param>
             <param name="selector">The transform method to apply to each element.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.CandidateMapEnumerable">
+            <summary>
+            Represents a list of LINQ methods that can operate with <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
+            <inheritdoc cref="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.Where(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters a <see cref="T:Sudoku.Concepts.CandidateMap"/> collection based on a predicate.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            A <see cref="T:Sudoku.Concepts.CandidateMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CandidateMap"/> satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.GroupBy``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
+            <inheritdoc cref="M:Sudoku.Linq.CellMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.SelectMany``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            Projects each candidate (of type <see cref="T:System.Int32"/>) of a <see cref="T:Sudoku.Concepts.CandidateMap"/> to a mask (of type <see cref="T:System.Int16"/>),
+            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="this">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:Sudoku.Concepts.CandidateMap"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="T:System.Int16"/>).</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            and then mapping each of those sequences and their corresponding source element to a result element.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.Any(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Indicates whether at least one element satisfies the specified condition.
+            </summary>
+            <param name="this">The cell to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether at least one element satisfies the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.All(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
+            </summary>
+            <param name="this">The candidate to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.CellMapEnumerable">
+            <summary>
+            Represents a list of LINQ methods that can operate with <see cref="T:Sudoku.Concepts.CellMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
+            <summary>
+            Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+            using the specified function to convert.
+            </summary>
+            <typeparam name="TResult">The type of target value.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="selector">The selector.</param>
+            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.Where(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Filters a <see cref="T:Sudoku.Concepts.CellMap"/> collection based on a predicate.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            A <see cref="T:Sudoku.Concepts.CellMap"/> that contains elements from the input <see cref="T:Sudoku.Concepts.CellMap"/> satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.GroupBy``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
+            <summary>
+            Groups the elements of a sequence according to a specified key selector function.
+            </summary>
+            <typeparam name="TKey">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <param name="this">The current instance.</param>
+            <param name="keySelector">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
+            </param>
+            <returns>
+            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`3"/> instances where each value object contains a sequence of objects and a key.
+            </returns>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`3"/>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.SelectMany``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
+            <summary>
+            Projects each cell (of type <see cref="T:System.Int32"/>) of a <see cref="T:Sudoku.Concepts.CellMap"/> to a mask (of type <see cref="T:System.Int16"/>),
+            flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+            </summary>
+            <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+            <param name="this">A sequence of values to project.</param>
+            <param name="collectionSelector">A transform function to apply to each element of the input <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
+            <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="T:System.Int16"/>).</param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            and then mapping each of those sequences and their corresponding source element to a result element.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.Any(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Indicates whether at least one element satisfies the specified condition.
+            </summary>
+            <param name="this">The cell to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether at least one element satisfies the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.All(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Determine whether all <see cref="T:System.Int32"/>s satisfy the specified condition.
+            </summary>
+            <param name="this">The candidate to be checked.</param>
+            <param name="match">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether all elements satisfy the specified condition.</returns>
         </member>
         <member name="T:Sudoku.Linq.ConclusionsEnumerable">
             <summary>
