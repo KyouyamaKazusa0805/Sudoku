@@ -682,7 +682,7 @@ public sealed partial class AnalyzePage : Page
 		{
 			case { Cell: var cell, MouseButton: MouseButton.Left }:
 			{
-				if (view.View.Find(node => node is CellViewNode { Cell: var c } && c == cell) is { } foundNode)
+				if (view.View.FirstOrDefault(node => node is CellViewNode { Cell: var c } && c == cell) is { } foundNode)
 				{
 					view.View.Remove(foundNode);
 				}
@@ -706,7 +706,7 @@ public sealed partial class AnalyzePage : Page
 		{
 			case { Candidate: var candidate, MouseButton: MouseButton.Left }:
 			{
-				if (view.View.Find(node => node is CandidateViewNode { Candidate: var c } && c == candidate) is { } foundNode)
+				if (view.View.FirstOrDefault(node => node is CandidateViewNode { Candidate: var c } && c == candidate) is { } foundNode)
 				{
 					view.View.Remove(foundNode);
 				}
@@ -745,7 +745,7 @@ public sealed partial class AnalyzePage : Page
 				}
 
 				var house = coveredHouses.GetAllSets()[^1];
-				if (view.View.Find(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
+				if (view.View.FirstOrDefault(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
 				{
 					view.View.Remove(foundNode);
 				}
@@ -779,7 +779,7 @@ public sealed partial class AnalyzePage : Page
 				var (mr2, mc2) = GridClickedEventArgs.GetChute(candidate2);
 				if (mr1 == mr2)
 				{
-					if (view.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c == mr1) is { } foundNode)
+					if (view.View.FirstOrDefault(node => node is ChuteViewNode { ChuteIndex: var c } && c == mr1) is { } foundNode)
 					{
 						view.View.Remove(foundNode);
 					}
@@ -794,7 +794,7 @@ public sealed partial class AnalyzePage : Page
 
 				if (mc1 == mc2)
 				{
-					if (view.View.Find(node => node is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1) is { } foundNode)
+					if (view.View.FirstOrDefault(node => node is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1) is { } foundNode)
 					{
 						view.View.Remove(foundNode);
 					}
@@ -830,7 +830,7 @@ public sealed partial class AnalyzePage : Page
 				var cell2 = candidate2 / 9;
 				var digit1 = candidate1 % 9;
 				var digit2 = candidate2 % 9;
-				if (view.View.Find(predicate) is { } foundNode)
+				if (view.View.FirstOrDefault(predicate) is { } foundNode)
 				{
 					view.View.Remove(foundNode);
 				}
@@ -874,7 +874,7 @@ public sealed partial class AnalyzePage : Page
 			case ([var character], { Candidate: var candidate }, { View: var v }):
 			{
 				var cell = candidate / 9;
-				if (v.Find(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
+				if (v.FirstOrDefault(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
 				{
 					v.Remove(foundNode);
 				}

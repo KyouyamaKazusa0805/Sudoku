@@ -18,27 +18,6 @@ public sealed partial class View : HashSet<ViewNode>
 	}
 
 	/// <summary>
-	/// Searches for an element that matches the conditions defined by the specified predicate,
-	/// and returns the first occurrence within the entire <see cref="View"/>.
-	/// </summary>
-	/// <param name="match">The <see cref="Func{T, TResult}"/> delegate that defines the conditions of the element to search for.</param>
-	/// <returns>
-	/// The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
-	/// </returns>
-	public ViewNode? Find(Func<ViewNode, bool> match)
-	{
-		foreach (var element in this)
-		{
-			if (match(element))
-			{
-				return element;
-			}
-		}
-
-		return null;
-	}
-
-	/// <summary>
 	/// Determines whether the specified <see cref="View"/> stores several <see cref="BabaGroupViewNode"/>s,
 	/// and at least one of it overlaps the specified cell.
 	/// </summary>

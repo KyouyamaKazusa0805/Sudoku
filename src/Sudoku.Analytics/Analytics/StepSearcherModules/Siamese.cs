@@ -242,7 +242,7 @@ internal static class Siamese
 						continue;
 					}
 
-					var n = fish2ViewNodes.Find(node => node is CandidateViewNode(_, var candidate2) && candidate1 == candidate2);
+					var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode(_, var candidate2) && candidate1 == candidate2);
 					if (n?.Identifier is not WellKnownColorIdentifier id2)
 					{
 						throw new InvalidOperationException("The view in the second fish is invalid.");

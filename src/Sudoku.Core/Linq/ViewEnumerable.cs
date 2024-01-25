@@ -48,6 +48,51 @@ public static class ViewEnumerable
 	/// </summary>
 	/// <typeparam name="T">The type of the node.</typeparam>
 	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+	public static ReadOnlySpan<T> OfType<T>(this View @this) where T : ViewNode
+	{
+		var result = new List<T>();
+		foreach (var node in result)
+		{
+			if (node is T casted)
+			{
+				result.Add(casted);
+			}
+		}
+
+		return result.AsReadOnlySpan();
+	}
+
+	/// <returns>
+	/// The first element that matches the conditions defined by the specified predicate, if found;
+	/// otherwise, throw an <see cref="InvalidOperationException"/>.
+	/// </returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the sequence has no elements satisfying the specified rule.
+	/// </exception>
+	/// <inheritdoc cref="FirstOrDefault(View, Func{ViewNode, bool})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ViewNodeIterator<T> OfType<T>(this View @this) where T : ViewNode => new(@this.GetEnumerator());
+	public static ViewNode First(this View @this, Func<ViewNode, bool> match)
+		=> @this.FirstOrDefault(match) ?? throw new InvalidOperationException("Sequence has no elements.");
+
+	/// <summary>
+	/// Searches for an element that matches the conditions defined by the specified predicate,
+	/// and returns the first occurrence within the entire <see cref="View"/>.
+	/// </summary>
+	/// <param name="this">The view to be checked.</param>
+	/// <param name="match">The <see cref="Func{T, TResult}"/> delegate that defines the conditions of the element to search for.</param>
+	/// <returns>
+	/// The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+	/// </returns>
+	public static ViewNode? FirstOrDefault(this View @this, Func<ViewNode, bool> match)
+	{
+		foreach (var element in @this)
+		{
+			if (match(element))
+			{
+				return element;
+			}
+		}
+
+		return null;
+	}
 }

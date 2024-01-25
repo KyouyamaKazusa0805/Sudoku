@@ -5948,6 +5948,27 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="T">The type of the node.</typeparam>
             <returns>The target collection of element type <typeparamref name="T"/>.</returns>
         </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.First(Sudoku.Rendering.View,System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <returns>
+            The first element that matches the conditions defined by the specified predicate, if found;
+            otherwise, throw an <see cref="T:System.InvalidOperationException"/>.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the sequence has no elements satisfying the specified rule.
+            </exception>
+            <inheritdoc cref="M:Sudoku.Linq.ViewEnumerable.FirstOrDefault(Sudoku.Rendering.View,System.Func{Sudoku.Rendering.ViewNode,System.Boolean})"/>
+        </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.FirstOrDefault(Sudoku.Rendering.View,System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the first occurrence within the entire <see cref="T:Sudoku.Rendering.View"/>.
+            </summary>
+            <param name="this">The view to be checked.</param>
+            <param name="match">The <see cref="T:System.Func`2"/> delegate that defines the conditions of the element to search for.</param>
+            <returns>
+            The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+            </returns>
+        </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
 				<summary>
@@ -7036,16 +7057,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="nodes">A list of <see cref="T:Sudoku.Rendering.ViewNode"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Rendering.View.Find(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the first occurrence within the entire <see cref="T:Sudoku.Rendering.View"/>.
-            </summary>
-            <param name="match">The <see cref="T:System.Func`2"/> delegate that defines the conditions of the element to search for.</param>
-            <returns>
-            The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
-            </returns>
-        </member>
         <member name="M:Sudoku.Rendering.View.UnknownOverlaps(System.Int32)">
             <summary>
             Determines whether the specified <see cref="T:Sudoku.Rendering.View"/> stores several <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s,
@@ -7111,46 +7122,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.op_Inequality(Sudoku.Rendering.ViewNode,Sudoku.Rendering.ViewNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Rendering.ViewNodeIterator`1">
-            <summary>
-            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
-            </summary>
-            <typeparam name="T">The type of the element node.</typeparam>
-            <param name="enumerator">The enumerator.</param>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.#ctor(System.Collections.Generic.HashSet{Sudoku.Rendering.ViewNode}.Enumerator)">
-            <summary>
-            Represents an enumerator that iterates for <typeparamref name="T"/>-typed instances.
-            </summary>
-            <typeparam name="T">The type of the element node.</typeparam>
-            <param name="enumerator">The enumerator.</param>
-        </member>
-        <member name="P:Sudoku.Rendering.ViewNodeIterator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.GetEnumerator">
-            <summary>
-            Creates an <see cref="T:Sudoku.Rendering.ViewNodeIterator`1"/> instance.
-            </summary>
-            <returns>An <see cref="T:Sudoku.Rendering.ViewNodeIterator`1"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:Sudoku.Rendering.ViewNodeIterator`1._enumerator">
-            <summary>
-            The generated field declaration for parameter <c>enumerator</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNodeIterator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Rendering.WellKnownColorIdentifier">
             <summary>
