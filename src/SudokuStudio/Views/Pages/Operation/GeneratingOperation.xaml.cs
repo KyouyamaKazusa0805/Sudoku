@@ -152,7 +152,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		};
 		var ittoryuLength = preferences.IttoryuLength;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, preferences.GeneratorDifficultyLevel);
-		var ittoryuFinder = new IttoryuPathFinder([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
+		var ittoryuFinder = new DisorderedIttoryuFinder([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
 
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
@@ -199,7 +199,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		Grid gridCreator(Analyzer analyzer, IttoryuPathFinder finder, GeneratingDetails details)
+		Grid gridCreator(Analyzer analyzer, DisorderedIttoryuFinder finder, GeneratingDetails details)
 		{
 			try
 			{
@@ -224,7 +224,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			GeneratingDetails details,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
-			IttoryuPathFinder finder
+			DisorderedIttoryuFinder finder
 		)
 		{
 			try

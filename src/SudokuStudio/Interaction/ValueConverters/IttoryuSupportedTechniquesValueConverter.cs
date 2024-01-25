@@ -1,11 +1,11 @@
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
-/// Represents a value converter that can convert a <see cref="List{T}"/> of <see cref="Technique"/> supported by <see cref="IttoryuPathFinder"/> instances
+/// Represents a value converter that can convert a <see cref="List{T}"/> of <see cref="Technique"/> supported by <see cref="DisorderedIttoryuFinder"/> instances
 /// into a <see cref="bool"/> control determining whether the corresponding control is set as "on" value.
 /// </summary>
 /// <seealso cref="Technique"/>
-/// <seealso cref="IttoryuPathFinder"/>
+/// <seealso cref="DisorderedIttoryuFinder"/>
 internal sealed class IttoryuSupportedTechniquesValueConverter : IValueConverter
 {
 	/// <inheritdoc/>

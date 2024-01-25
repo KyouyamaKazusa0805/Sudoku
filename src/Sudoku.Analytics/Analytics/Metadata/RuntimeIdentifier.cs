@@ -100,6 +100,6 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="Collector.MaxStepsGathered"/>
 	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);
 
-	/// <inheritdoc cref="IttoryuPathFinder.SupportedTechniques"/>
+	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
 	public const string IttoryuSupportedTechniques = nameof(IttoryuSupportedTechniques);
 }

@@ -7,14 +7,14 @@ namespace Sudoku.Algorithm.Ittoryu;
 public static class IttoryuExtensions
 {
 	/// <summary>
-	/// Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="IttoryuPathFinder"/>.
+	/// Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="DisorderedIttoryuFinder"/>.
 	/// </summary>
 	/// <param name="this">The grid to be adjusted.</param>
 	/// <param name="ittoryuPath">
 	/// The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
 	/// </param>
 	/// <exception cref="ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-	/// <seealso cref="IttoryuPathFinder"/>
+	/// <seealso cref="DisorderedIttoryuFinder"/>
 	public static void MakeIttoryu(this scoped ref Grid @this, DigitPath ittoryuPath)
 	{
 		if (ittoryuPath.Digits is not { Length: >= 2 })
@@ -86,7 +86,7 @@ public static class IttoryuExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DigitPath? path)
 	{
-		var pathFinder = new IttoryuPathFinder(techniques);
+		var pathFinder = new DisorderedIttoryuFinder(techniques);
 		var foundPath = pathFinder.FindPath(in @this);
 		if (foundPath.IsComplete)
 		{

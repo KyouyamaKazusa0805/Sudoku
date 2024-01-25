@@ -36,7 +36,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexFishStepSearcher)}.{nameof(ComplexFishStepSearcher.MaxSize)}")]
 [DependencyProperty<int>(RuntimeIdentifier.StepGathererMaxStepsGathered, DefaultValue = 1000, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Collector)}.{nameof(Collector.MaxStepsGathered)}")]
 [DependencyProperty<int>(RuntimeIdentifier.DifficultyLevelMode, DefaultValue = 0, DocReferencedMemberName = $"global::Sudoku.Analytics.{nameof(Collector)}.{nameof(Collector.DifficultyLevelMode)}")]
-[DependencyProperty<List<Technique>>(RuntimeIdentifier.IttoryuSupportedTechniques, DocReferencedMemberName = $"global::Sudoku.Algorithm.Ittoryu.{nameof(IttoryuPathFinder)}.{nameof(IttoryuPathFinder.SupportedTechniques)}")]
+[DependencyProperty<List<Technique>>(RuntimeIdentifier.IttoryuSupportedTechniques, DocReferencedMemberName = $"global::Sudoku.Algorithm.Ittoryu.{nameof(DisorderedIttoryuFinder)}.{nameof(DisorderedIttoryuFinder.SupportedTechniques)}")]
 public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 {
 	[Default]

@@ -96,6 +96,44 @@
         <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder">
+            <summary>
+            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
+            <summary>
+            The generated property declaration for parameter <c>supportedTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Algorithm.Ittoryu.AlreadyFinishedException">
+            <summary>
+            The internal exception type that reports "Already finished" information, breaking the recursion.
+            </summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -104,14 +142,14 @@
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
             <summary>
-            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>.
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>.
             </summary>
             <param name="this">The grid to be adjusted.</param>
             <param name="ittoryuPath">
             The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
             </param>
             <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
             <summary>
@@ -143,44 +181,6 @@
             </param>
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder">
-            <summary>
-            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
-            <summary>
-            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.#ctor">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.FindPath(Sudoku.Concepts.Grid@)">
-            <summary>
-            Find a suitable ittoryu path.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>
-            The target digit path. If none found, a longest path will be returned.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques">
-            <summary>
-            The generated property declaration for parameter <c>supportedTechniques</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.AlreadyFinishedException">
-            <summary>
-            The internal exception type that reports "Already finished" information, breaking the recursion.
-            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
             <summary>
@@ -4063,20 +4063,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the techniques that ittoryu path finder will use.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuNakedSingleNotIncluded">
             <summary>
             Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuBlockHiddenSingle">
             <summary>
             Indicates the techniques that ittroyu path finder will use,
             only containing <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder"/>
+            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
@@ -4658,7 +4658,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.IttoryuPathFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute">
             <summary>
