@@ -83,12 +83,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing[^2]
-      * W-Wing (Basic, Grouped, Multi-Branch)
-      * M-Wing
-      * Local-Wing
-      * Split-Wing
-      * Hybrid-Wing
-      * Purple Cow
+      * W-Wing (Non-grouped, Grouped, Multi-Branch)
+      * M-Wing (Non-grouped, Grouped)
     * XYZ-Loops (Non-nice, Nice)
   * Uniqueness
     * UR (Unique Rectangle)

@@ -1384,6 +1384,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped.
+        /// </summary>
+        public static string ExtraDifficultyFactorNames_IsGrouped {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyFactorNames_IsGrouped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Isolated logic.
         /// </summary>
         public static string ExtraDifficultyFactorNames_Isolated {
@@ -3841,6 +3850,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to M-Wing.
+        /// </summary>
+        public static string StepSearcherName_MWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_MWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alternating Inference Chains.
         /// </summary>
         public static string StepSearcherName_NonMultipleChainingStepSearcher {
@@ -5691,6 +5709,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_MultisectorLockedSetsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nodes {0} and {1} with XY cells {2} and {3}.
+        /// </summary>
+        public static string TechniqueFormat_MWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_MWingStep", resourceCulture);
             }
         }
         

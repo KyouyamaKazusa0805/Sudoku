@@ -84,11 +84,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
     * 规则 Wing（XY-Wing、XYZ-Wing 等）
     * 不规则 Wing
       * W-Wing（标准、区块、多分支类型）
-      * M-Wing
-      * Local-Wing
-      * Split-Wing
-      * Hybrid-Wing
-      * Purple Cow
+      * M-Wing（标准、区块类型）
     * XYZ 环（含半环、全环类型）
   * 唯一性
     * 唯一矩形（UR）

@@ -2699,4 +2699,14 @@
   <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ 环</value>
   </data>
+  <data name="StepSearcherName_MWingStepSearcher" xml:space="preserve">
+    <value>W-Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
+    <value>区块结构</value>
+  </data>
+  <data name="TechniqueFormat_MWingStep" xml:space="preserve">
+    <value>使用 {0} 和 {1} 以及 XY 单元格 {2} 和 {3}</value>
+  </data>
 </root>

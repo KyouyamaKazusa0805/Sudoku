@@ -1,0 +1,212 @@
+namespace Sudoku.Analytics.StepSearchers;
+
+/// <summary>
+/// Provides with an <b>M-Wing (Medusa Wing)</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>M-Wing</item>
+/// <item>Grouped M-Wing</item>
+/// </list>
+/// </summary>
+[StepSearcher(Technique.MWing, Technique.GroupedMWing)]
+[StepSearcherRuntimeName("StepSearcherName_MWingStepSearcher")]
+public sealed partial class MWingStepSearcher : StepSearcher
+{
+	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
+	/// A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+	/// </remarks>
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	{
+		foreach (var supportsGroupedNodes in (false, true))
+		{
+			if (CollectCore(ref context, supportsGroupedNodes) is { } step)
+			{
+				return step;
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// The internal method to check for M-Wings and grouped M-Wings.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="supportsGroupedNodes">Indicates whether the pattern supports for grouped nodes.</param>
+	/// <returns>The found step.</returns>
+	private MWingStep? CollectCore(scoped ref AnalysisContext context, bool supportsGroupedNodes)
+	{
+		// A grid must contain at least one bi-value cell.
+		if (!BivalueCells)
+		{
+			return null;
+		}
+
+		// Iterates on two houses, combining to the part 'y=(y-x)=x'.
+		scoped ref readonly var grid = ref context.Grid;
+		for (var h1 = 0; h1 < 27; h1++)
+		{
+			var cells1 = HousesMap[h1] & EmptyCells;
+			var digitsMask1 = grid[in cells1];
+			for (var h2 = h1; h2 < 27; h2++)
+			{
+				// Check for strong links.
+				var cells2 = HousesMap[h2] & EmptyCells;
+				var digitsMask2 = grid[in cells2];
+				foreach (var d1 in digitsMask1)
+				{
+					foreach (var d2 in (Mask)(digitsMask2 & (Mask)~(1 << d1)))
+					{
+						// Check for validity of (grouped) strong links. The link must be one of the cases in:
+						//
+						//   1) If non-grouped, two cell maps must contain 2 cells.
+						//   2) If grouped, two cell maps must be the case either:
+						//     a. The house type is block - the number of spanned rows or columns must be 2.
+						//     b. The house type is row or column - the number of spanned blocks must be 2.
+						//
+						// Otherwise, invalid.
+						var (tempCells1, tempCells2) = (cells1, cells2);
+						if (!GroupedNode.IsGroupedStrongLink(ref tempCells1, d1, h1, out var spannedHouses1))
+						{
+							continue;
+						}
+						if (!GroupedNode.IsGroupedStrongLink(ref tempCells2, d2, h2, out var spannedHouses2))
+						{
+							continue;
+						}
+
+						(cells1, cells2) = (tempCells1, tempCells2);
+
+						// Check for cases, and determine whether 2 (grouped) nodes use 1 cell.
+						foreach (var spannedHouse1 in spannedHouses1)
+						{
+							var p = cells1 & HousesMap[spannedHouse1];
+							if (!supportsGroupedNodes && p.Count != 1)
+							{
+								// Grouped nodes will not be supported in non-grouped searching mode.
+								continue;
+							}
+
+							if (cells1 - p is not [var theOtherCell1])
+							{
+								// We cannot make both two nodes grouped.
+								continue;
+							}
+
+							foreach (var spannedHouse2 in spannedHouses2)
+							{
+								var q = cells2 & HousesMap[spannedHouse2];
+								if (!supportsGroupedNodes && q.Count != 1)
+								{
+									// Grouped nodes will not be supported in non-grouped searching mode.
+									continue;
+								}
+
+								if (cells2 - q is not [var theOtherCell2])
+								{
+									// We cannot make both nodes grouped.
+									continue;
+								}
+
+								if (supportsGroupedNodes && p.Count * q.Count == 1)
+								{
+									// In grouped mode, we don't handle for non-grouped steps.
+									continue;
+								}
+
+								if (theOtherCell1 != theOtherCell2)
+								{
+									// The XYa cell must be same.
+									continue;
+								}
+
+								var weakXyCell = theOtherCell1;
+
+								// Find for the real XY cell (strong XY cell) that only contains candidates X and Y.
+								var possibleBivalueCells = CandidatesMap[d1] & CandidatesMap[d2] & BivalueCells;
+								foreach (var (node, theOtherNode) in ((p, q), (q, p)))
+								{
+									foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
+									{
+										foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
+										{
+											if (strongXyCell == weakXyCell)
+											{
+												// Invalid.
+												continue;
+											}
+
+											var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[d1];
+											if (!elimMap)
+											{
+												// No conclusions will be found.
+												continue;
+											}
+
+											var comparer = (Mask)(1 << d1 | 1 << d2);
+											var candidateOffsets = new List<CandidateViewNode>();
+											foreach (var cell in node)
+											{
+												candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
+											}
+											foreach (var cell in theOtherNode)
+											{
+												candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d2));
+											}
+											foreach (var digit in grid.GetCandidates(strongXyCell))
+											{
+												candidateOffsets.Add(
+													new(
+														digit == d1 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+														strongXyCell * 9 + digit
+													)
+												);
+											}
+											foreach (var digit in (Mask)(grid.GetCandidates(weakXyCell) & comparer))
+											{
+												candidateOffsets.Add(
+													new(
+														digit == d1 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+														weakXyCell * 9 + digit
+													)
+												);
+											}
+
+											var step = new MWingStep(
+												[.. from cell in elimMap select new Conclusion(Elimination, cell, d1)],
+												[
+													[
+														new CellViewNode(ColorIdentifier.Normal, strongXyCell),
+														new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
+														new HouseViewNode(ColorIdentifier.Normal, h1),
+														.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
+														.. candidateOffsets
+													]
+												],
+												context.PredefinedOptions,
+												in node,
+												in theOtherNode,
+												strongXyCell,
+												weakXyCell,
+												comparer
+											);
+											if (context.OnlyFindOne)
+											{
+												return step;
+											}
+
+											context.Accumulator.Add(step);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+}

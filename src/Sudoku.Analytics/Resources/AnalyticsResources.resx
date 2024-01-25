@@ -2508,4 +2508,13 @@
   <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ-Ring</value>
   </data>
+  <data name="StepSearcherName_MWingStepSearcher" xml:space="preserve">
+    <value>M-Wing</value>
+  </data>
+  <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
+    <value>Grouped</value>
+  </data>
+  <data name="TechniqueFormat_MWingStep" xml:space="preserve">
+    <value>Nodes {0} and {1} with XY cells {2} and {3}</value>
+  </data>
 </root>

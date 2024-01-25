@@ -2090,9 +2090,19 @@ if (student is (name: var name, age: >= 18))
             Indicates Multi-Branch W-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedWWing">
+            <summary>
+            Indicates grouped W-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.MWing">
             <summary>
             Indicates M-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedMWing">
+            <summary>
+            Indicates grouped M-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.LocalWing">
@@ -2113,16 +2123,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyWing">
             <summary>
             Indicates grouped XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedWWing">
-            <summary>
-            Indicates grouped W-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedMWing">
-            <summary>
-            Indicates grouped M-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLocalWing">
@@ -5184,6 +5184,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.IsGrouped">
+            <summary>
+            Indicates the kind is the pattern use grouped nodes, such as irregular wings and chains.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Incompleteness">
             <summary>
             Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
@@ -5836,6 +5841,21 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.GroupedNode">
+            <summary>
+            Represents a list of methods that operates with concept "Grouped Node".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.GroupedNode.IsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house.</param>
+            <param name="spannedHouses">The spanned houses.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.Siamese">
             <summary>
@@ -10221,6 +10241,35 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.MWingStepSearcher">
+            <summary>
+            Provides with an <b>M-Wing (Medusa Wing)</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>M-Wing</item>
+            <item>Grouped M-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,System.Boolean)">
+            <summary>
+            The internal method to check for M-Wings and grouped M-Wings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="supportsGroupedNodes">Indicates whether the pattern supports for grouped nodes.</param>
+            <returns>The found step.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
             <summary>
@@ -17461,6 +17510,74 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>house</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.MWingStep">
+            <summary>
+            Provides with a step that is an <b>M-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="node1">Indicates the node 1.</param>
+            <param name="node2">Indicates the node 2.</param>
+            <param name="strongXyCell">Indicates the strong XY cell.</param>
+            <param name="weakXyCell">Indicates the weak XY cell.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>M-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="node1">Indicates the node 1.</param>
+            <param name="node2">Indicates the node 2.</param>
+            <param name="strongXyCell">Indicates the strong XY cell.</param>
+            <param name="weakXyCell">Indicates the weak XY cell.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.Node1">
+            <summary>
+            The generated property declaration for parameter <c>node1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.Node2">
+            <summary>
+            The generated property declaration for parameter <c>node2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.StrongXyCell">
+            <summary>
+            The generated property declaration for parameter <c>strongXyCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.WeakXyCell">
+            <summary>
+            The generated property declaration for parameter <c>weakXyCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.WWingStep">
             <summary>
             Provides with a step that is a <b>W-Wing</b> technique.
@@ -20468,6 +20585,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Incompleteness logic.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_IsGrouped">
+            <summary>
+              Looks up a localized string similar to Grouped.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Isolated">
             <summary>
               Looks up a localized string similar to Isolated logic.
@@ -21833,6 +21955,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Multi-Sector Locked Sets.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to M-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_NonMultipleChainingStepSearcher">
             <summary>
               Looks up a localized string similar to Alternating Inference Chains.
@@ -22861,6 +22988,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultisectorLockedSetsStep">
             <summary>
               Looks up a localized string similar to {0} cells {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MWingStep">
+            <summary>
+              Looks up a localized string similar to Nodes {0} and {1} with XY cells {2} and {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NakedSubsetStep">

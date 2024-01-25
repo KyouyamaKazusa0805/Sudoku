@@ -1496,12 +1496,26 @@ public enum Technique
 	MultiBranchWWing,
 
 	/// <summary>
+	/// Indicates grouped W-Wing.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
+	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedWWing,
+
+	/// <summary>
 	/// Indicates M-Wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	MWing,
+
+	/// <summary>
+	/// Indicates grouped M-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedMWing,
 
 	/// <summary>
 	/// Indicates local wing.
@@ -1534,22 +1548,6 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedXyWing,
-
-	/// <summary>
-	/// Indicates grouped W-Wing.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	GroupedWWing,
-
-	/// <summary>
-	/// Indicates grouped M-Wing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	GroupedMWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.

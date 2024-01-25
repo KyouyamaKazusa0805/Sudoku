@@ -69,6 +69,11 @@ public static class ExtraDifficultyFactorNames
 	public const string ValueCell = nameof(ValueCell);
 
 	/// <summary>
+	/// Indicates the kind is the pattern use grouped nodes, such as irregular wings and chains.
+	/// </summary>
+	public const string IsGrouped = nameof(IsGrouped);
+
+	/// <summary>
 	/// Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
 	/// </summary>
 	public const string Incompleteness = nameof(Incompleteness);
