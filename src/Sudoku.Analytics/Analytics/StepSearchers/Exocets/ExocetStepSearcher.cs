@@ -1672,7 +1672,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
-		var endoTargetCells = CellMap.Empty;
 		foreach (var endoTargetCell in crossline)
 		{
 			if (grid.GetState(endoTargetCell) != CellState.Empty)
