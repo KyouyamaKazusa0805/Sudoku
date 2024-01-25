@@ -7065,11 +7065,57 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
         </member>
+        <member name="M:Sudoku.Rendering.View.Equals(Sudoku.Rendering.View)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.View.Clone">
             <summary>
             Creates a new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance, with independency.
             </summary>
             <returns>A new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.AsSpan">
+            <summary>
+            Try to convert this collection as a <see cref="T:System.ReadOnlySpan`1"/> instance.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.op_BitwiseAnd(Sudoku.Rendering.View,Sudoku.Rendering.View)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Rendering.View"/> whose elements contains both <paramref name="left"/> and <paramref name="right"/>.
+            </summary>
+            <param name="left">The left-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <param name="right">The right-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <returns>A <see cref="T:Sudoku.Rendering.View"/> result created.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.op_BitwiseOr(Sudoku.Rendering.View,Sudoku.Rendering.View)">
+            <summary>
+            Merges two <see cref="T:Sudoku.Rendering.View"/> instances into one <see cref="T:Sudoku.Rendering.View"/>.
+            </summary>
+            <param name="left">Indicates the left-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <param name="right">Indicates the right-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <returns>A <see cref="T:Sudoku.Rendering.View"/> result merged.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.op_ExclusiveOr(Sudoku.Rendering.View,Sudoku.Rendering.View)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Rendering.View"/> instance, whose elements is from two <see cref="T:Sudoku.Rendering.View"/> collections
+            <paramref name="left"/> and <paramref name="right"/>, with only one-side containing this element.
+            </summary>
+            <param name="left">The left-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <param name="right">The right-side <see cref="T:Sudoku.Rendering.View"/> instance.</param>
+            <returns>A <see cref="T:Sudoku.Rendering.View"/> result created.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.op_Equality(Sudoku.Rendering.View,Sudoku.Rendering.View)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.op_Inequality(Sudoku.Rendering.View,Sudoku.Rendering.View)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Rendering.ViewNode">
             <summary>
