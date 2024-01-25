@@ -6,14 +6,7 @@ namespace System.Text.RegularExpressions;
 /// <seealso cref="MatchCollection"/>
 public static class MatchCollectionEnumerable
 {
-	/// <summary>
-	/// The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-	/// clause.
-	/// </summary>
-	/// <typeparam name="TResult">The result type.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <param name="selector">The selector that is used for conversion.</param>
-	/// <returns>The array of target result elements.</returns>
+	/// <inheritdoc cref="ReadOnlySpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 	public static ReadOnlySpan<TResult> Select<TResult>(this MatchCollection @this, Func<Match, TResult> selector)
 	{
 		var result = new TResult[@this.Count];

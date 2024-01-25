@@ -787,14 +787,7 @@
             <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
         </member>
         <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
-            <summary>
-            The select method used in <see langword="from"/>-<see langword="in"/>-<see langword="select"/>
-            clause.
-            </summary>
-            <typeparam name="TResult">The result type.</typeparam>
-            <param name="this">The list.</param>
-            <param name="selector">The selector that is used for conversion.</param>
-            <returns>The array of target result elements.</returns>
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
@@ -1707,6 +1700,32 @@ fixed (short* ptr = instance)
             <param name="b">The second value.</param>
             <param name="c">The third value.</param>
             <returns>Which is the maximum value.</returns>
+        </member>
+        <member name="T:System.ReadOnlyMemoryExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryExtensions.ElementAt``1(System.ReadOnlyMemory{``0},System.Int32)">
+            <summary>
+            Fetch the element at the specified index inside a <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The <see cref="T:System.ReadOnlyMemory`1"/> instance.</param>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the element at the specified index.</returns>
+        </member>
+        <member name="M:System.ReadOnlyMemoryExtensions.ElementAt``1(System.ReadOnlyMemory{``0},System.Index)">
+            <inheritdoc cref="M:System.ReadOnlyMemoryExtensions.ElementAt``1(System.ReadOnlyMemory{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryExtensions.GetEnumerator``1(System.ReadOnlyMemory{``0})">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlyMemoryEnumerator`1"/> instance that can be consumed by a <see langword="foreach"/> loop.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The sequence of <see cref="T:System.ReadOnlyMemory`1"/> instance.</param>
+            <returns>A <see cref="T:System.ReadOnlyMemoryEnumerator`1"/> instance.</returns>
         </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
@@ -2639,16 +2658,28 @@ fixed (short* ptr = instance)
         <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
-        <member name="T:System.Linq.SpanEnumerable">
+        <member name="T:System.Linq.ReadOnlyMemoryEnumerable">
+            <summary>
+            Represents a list of methods that are LINQ methods operating with <see cref="T:System.ReadOnlyMemory`1"/> instances.
+            </summary>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlyMemoryEnumerable.Select``2(System.ReadOnlyMemory{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlyMemoryEnumerable.Where``1(System.ReadOnlyMemory{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.ReadOnlySpanEnumerable">
             <summary>
             Provides LINQ-based extension methods on <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <summary>
             Returns the minimum value in a generic sequence according to a specified key selector function.
             </summary>
@@ -2658,10 +2689,10 @@ fixed (short* ptr = instance)
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the minimum key in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <summary>
             Returns the maximum value in a generic sequence according to a specified key selector function.
             </summary>
@@ -2671,7 +2702,7 @@ fixed (short* ptr = instance)
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the maximum key in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Sum``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Sum``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <summary>
             Totals up all elements, and return the result of the sum by the specified property calculated from each element.
             </summary>
@@ -2681,7 +2712,7 @@ fixed (short* ptr = instance)
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the sum key in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Count``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Count``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Totals up how many elements stored in the specified sequence satisfy the specified condition.
             </summary>
@@ -2690,7 +2721,7 @@ fixed (short* ptr = instance)
             <param name="condition">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Checks whether at least one element are satisfied the specified condition.
             </summary>
@@ -2699,7 +2730,7 @@ fixed (short* ptr = instance)
             <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.All``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Checks whether all elements are satisfied the specified condition.
             </summary>
@@ -2708,7 +2739,7 @@ fixed (short* ptr = instance)
             <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
             <summary>
             Determines whether all elements are of type <typeparamref name="TDerived"/>.
             </summary>
@@ -2717,7 +2748,7 @@ fixed (short* ptr = instance)
             <param name="this">A list of elements to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.FindAll``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.FindAll``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Retrieves all the elements that match the conditions defined by the specified predicate.
             </summary>
@@ -2729,7 +2760,7 @@ fixed (short* ptr = instance)
             by the specified predicate, if found; otherwise, an empty <see cref="T:System.ReadOnlySpan`1"/>.
             </returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
             Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
             using the specified function to convert.
@@ -2740,10 +2771,10 @@ fixed (short* ptr = instance)
             <param name="selector">The selector.</param>
             <returns>An array of <typeparamref name="TResult"/> elements.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,``1[]},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,``1[]},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
             </summary>
@@ -2753,22 +2784,22 @@ fixed (short* ptr = instance)
             </param>
             <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.First``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.First``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Aggregate``1(System.ReadOnlySpan{``0},System.Func{``0,``0,``0})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Aggregate``1(System.ReadOnlySpan{``0},System.Func{``0,``0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Aggregate``2(System.ReadOnlySpan{``0},``1,System.Func{``1,``0,``1})">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Aggregate``2(System.ReadOnlySpan{``0},``1,System.Func{``1,``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.GetSubsets``1(System.ReadOnlySpan{``0},System.Int32)">
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.GetSubsets``1(System.ReadOnlySpan{``0},System.Int32)">
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
@@ -3209,6 +3240,47 @@ fixed (short* ptr = instance)
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:System.PairEnumeratorCasted`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.ReadOnlyMemoryEnumerator`1">
+            <summary>
+            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.#ctor(System.ReadOnlyMemory{`0})">
+            <summary>
+            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="F:System.ReadOnlyMemoryEnumerator`1._span">
+            <summary>
+            Indicates the span to the memory.
+            </summary>
+        </member>
+        <member name="F:System.ReadOnlyMemoryEnumerator`1._index">
+            <summary>
+            Indicates the index that is currently iterated.
+            </summary>
+        </member>
+        <member name="P:System.ReadOnlyMemoryEnumerator`1.Current">
+            <summary>
+            Indicates the current instance.
+            </summary>
+        </member>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Ref">

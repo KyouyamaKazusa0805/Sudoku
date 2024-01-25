@@ -4,7 +4,7 @@ namespace System.Linq;
 /// Provides LINQ-based extension methods on <see cref="ReadOnlySpan{T}"/>.
 /// </summary>
 /// <seealso cref="ReadOnlySpan{T}"/>
-public static class SpanEnumerable
+public static class ReadOnlySpanEnumerable
 {
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static TKey Min<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
