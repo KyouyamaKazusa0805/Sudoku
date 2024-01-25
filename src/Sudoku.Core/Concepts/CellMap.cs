@@ -117,6 +117,18 @@ public partial struct CellMap :
 		}
 	}
 
+	/// <inheritdoc/>
+	[ImplicitField(RequiredReadOnlyModifier = false)]
+	public readonly int Count
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _count;
+	}
+
+	/// <inheritdoc/>
+	[JsonInclude]
+	public readonly string[] StringChunks => this ? ToString(GlobalizedConverter.InvariantCultureConverter).SplitBy([',', ' ']) : [];
+
 	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.
 	/// </summary>
@@ -205,14 +217,6 @@ public partial struct CellMap :
 		get => TrailingZeroCount(CoveredHouses & ~Grid.MaxCandidatesMask);
 	}
 
-	/// <inheritdoc/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public readonly int Count
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _count;
-	}
-
 	/// <summary>
 	/// Indicates all houses covered. This property is used to check all houses that all cells
 	/// of this instance covered. For example, if the cells are <c>[0, 1]</c>, the property
@@ -275,10 +279,6 @@ public partial struct CellMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => (HouseMask)BlockMask | RowMask << 9 | ColumnMask << 18;
 	}
-
-	/// <inheritdoc/>
-	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString(GlobalizedConverter.InvariantCultureConverter).SplitBy([',', ' ']) : [];
 
 	/// <summary>
 	/// Try to get the symmetric type of the pattern.

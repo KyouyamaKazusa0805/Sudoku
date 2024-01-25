@@ -2306,6 +2306,12 @@ if (student is (name: var name, age: >= 18))
             Indicates whether every cell in the current collection cannot see each other.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.StringChunks">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.BlockMask">
             <summary>
             Indicates the mask of block that all cells in this collection spanned.
@@ -2339,9 +2345,6 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Count">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.CoveredHouses">
             <summary>
             Indicates all houses covered. This property is used to check all houses that all cells
@@ -2361,9 +2364,6 @@ if (student is (name: var name, age: >= 18))
             <see cref="P:Sudoku.Concepts.CellMap.Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
             and 19 (column 2).
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.StringChunks">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Symmetry">
             <summary>
