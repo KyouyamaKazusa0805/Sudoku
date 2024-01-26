@@ -137,7 +137,17 @@ public sealed partial class MWingStepSearcher : StepSearcher
 												continue;
 											}
 
-											var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[d1];
+											var nodeCanSeeStrongXyCell = (HousesMap[strongXyCellHouse] & node) == node;
+											var elimDigit = nodeCanSeeStrongXyCell ? d2 : d1;
+											var theOtherDigit = d1 == elimDigit ? d2 : d1;
+
+											if ((HousesMap[nodeCanSeeStrongXyCell ? h1 : h2] & CandidatesMap[elimDigit]) - weakXyCell != node
+												|| (HousesMap[nodeCanSeeStrongXyCell ? h2 : h1] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
+											{
+												continue;
+											}
+
+											var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
 											if (!elimMap)
 											{
 												// No conclusions will be found.
@@ -158,7 +168,7 @@ public sealed partial class MWingStepSearcher : StepSearcher
 											{
 												candidateOffsets.Add(
 													new(
-														digit == d1 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+														digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 														strongXyCell * 9 + digit
 													)
 												);
@@ -167,14 +177,14 @@ public sealed partial class MWingStepSearcher : StepSearcher
 											{
 												candidateOffsets.Add(
 													new(
-														digit == d1 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+														digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
 														weakXyCell * 9 + digit
 													)
 												);
 											}
 
 											var step = new MWingStep(
-												[.. from cell in elimMap select new Conclusion(Elimination, cell, d1)],
+												[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
 												[
 													[
 														new CellViewNode(ColorIdentifier.Normal, strongXyCell),
