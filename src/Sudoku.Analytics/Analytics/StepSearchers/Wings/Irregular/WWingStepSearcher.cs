@@ -117,46 +117,23 @@ public sealed partial class WWingStepSearcher : StepSearcher
 						}
 
 						// Now W-Wing found. Store it into the accumulator.
-						Step step = bridge switch
-						{
-#pragma warning disable format
-							[var a, var b] => new WWingStep(
-								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+						var step = new WWingStep(
+							[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+							[
 								[
-									[
-										new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + anotherDigit),
-										new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + anotherDigit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + digit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + digit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, a * 9 + digit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, b * 9 + digit),
-										new HouseViewNode(ColorIdentifier.Auxiliary1, house)
-									]
-								],
-								context.PredefinedOptions,
-								c1,
-								c2,
-								new(a, b, digit)
-							),
-#pragma warning restore format
-							_ => new GroupedWWingStep(
-								[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
-								[
-									[
-										new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + anotherDigit),
-										new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + anotherDigit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + digit),
-										new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + digit),
-										.. from cell in bridge select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digit),
-										new HouseViewNode(ColorIdentifier.Auxiliary1, house)
-									]
-								],
-								context.PredefinedOptions,
-								c1,
-								c2,
-								in bridge
-							)
-						};
+									new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + anotherDigit),
+									new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + anotherDigit),
+									new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + digit),
+									new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + digit),
+									.. from cell in bridge select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digit),
+									new HouseViewNode(ColorIdentifier.Auxiliary1, house)
+								]
+							],
+							context.PredefinedOptions,
+							c1,
+							c2,
+							in bridge
+						);
 						if (context.OnlyFindOne)
 						{
 							return step;

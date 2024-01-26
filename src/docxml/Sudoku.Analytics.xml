@@ -17394,52 +17394,6 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.GroupedWWingStep">
-            <summary>
-            Provides with a step that is a <b>Grouped W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="startCell">Indicates the start cell.</param>
-            <param name="endCell">Indicates the end cell.</param>
-            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.GroupedWWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Grouped W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="startCell">Indicates the start cell.</param>
-            <param name="endCell">Indicates the end cell.</param>
-            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell"/>.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.StartCell">
-            <summary>
-            The generated property declaration for parameter <c>startCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.EndCell">
-            <summary>
-            The generated property declaration for parameter <c>endCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.GroupedWWingStep.Bridge">
-            <summary>
-            The generated property declaration for parameter <c>bridge</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.IrregularWingStep">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
@@ -17512,7 +17466,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.Steps.MWingStep">
             <summary>
-            Provides with a step that is an <b>M-Wing</b> technique.
+            Provides with a step that is a <b>(Grouped) M-Wing</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -17525,7 +17479,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Steps.MWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
-            Provides with a step that is an <b>M-Wing</b> technique.
+            Provides with a step that is a <b>(Grouped) M-Wing</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -17580,25 +17534,30 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.Steps.WWingStep">
             <summary>
-            Provides with a step that is a <b>W-Wing</b> technique.
+            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="startCell">Indicates the start cell.</param>
             <param name="endCell">Indicates the end cell.</param>
-            <param name="conjugatePair">Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Provides with a step that is a <b>W-Wing</b> technique.
+            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="startCell">Indicates the start cell.</param>
             <param name="endCell">Indicates the end cell.</param>
-            <param name="conjugatePair">Indicates the conjugate pair connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
             <inheritdoc/>
@@ -17606,18 +17565,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.GetHouseTypeScore(Sudoku.Concepts.HouseType)">
-            <summary>
-            Try to get the score for house type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.GetPairedCellFor(System.Int32,System.Int32@)">
-            <summary>
-            Try to get the paired cell by the specified start or end cell.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
             <summary>
@@ -17629,9 +17581,9 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>endCell</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.ConjugatePair">
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.Bridge">
             <summary>
-            The generated property declaration for parameter <c>conjugatePair</c>.
+            The generated property declaration for parameter <c>bridge</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RegularWingStep">
@@ -22925,11 +22877,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to It is proved that the candidate {0} is {1}, the state of the candidate will be flipped, forming a contradiction.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_GroupedWWingStep">
-            <summary>
-              Looks up a localized string similar to {0} to {1} with bridge cells {2}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_GuardianStep">
             <summary>
               Looks up a localized string similar to Cells {0} with {1} {2}.
@@ -23267,7 +23214,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_WWingStep">
             <summary>
-              Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
+              Looks up a localized string similar to {0} to {1}, with {2} as connection.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_AlignedExclusion">

@@ -484,7 +484,7 @@
     <value>如果共轭区域 {0} 无法填入数字 {1} 或者 {2} 的话，数字 {3} 在单元格 {4} 里将形成致命形式</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
-    <value>从 {0} 到 {1}，共轭对为 {2}</value>
+    <value>从 {0} 到 {1}，用 {2} 连接</value>
   </data>
   <data name="TrueKeyword" xml:space="preserve">
     <value>真</value>
@@ -1700,9 +1700,6 @@
   </data>
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
     <value>根 {0} 位于 {1}，分支走向终端 {2}</value>
-  </data>
-  <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
-    <value>从 {0} 到 {1}，使用单元格 {2} 关联起来</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>该技巧必须保证对称性，否则题目会无解。对称规则：{0}，对称映射关系：{1}</value>

@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is an <b>M-Wing</b> technique.
+/// Provides with a step that is a <b>(Grouped) M-Wing</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -31,7 +31,7 @@ public sealed partial class MWingStep(
 	public override decimal BaseDifficulty => 4.5M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, .1M)];
+	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

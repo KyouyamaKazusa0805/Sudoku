@@ -481,7 +481,7 @@
     <value>Digits {0} in cells {1} can avoid to form a deadly pattern if and only if the conjugate house {2} can't set the digit neither {3} nor {4}</value>
   </data>
   <data name="TechniqueFormat_WWingStep" xml:space="preserve">
-    <value>{0} to {1} with conjugate pair {2}</value>
+    <value>{0} to {1}, with {2} as connection</value>
   </data>
   <data name="TrueKeyword" xml:space="preserve">
     <value>true</value>
@@ -1406,9 +1406,6 @@
   </data>
   <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
     <value>Leaves {0}, root cells {1} in house {2}</value>
-  </data>
-  <data name="TechniqueFormat_GroupedWWingStep" xml:space="preserve">
-    <value>{0} to {1} with bridge cells {2}</value>
   </data>
   <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {0}, mapping relations: {1}</value>

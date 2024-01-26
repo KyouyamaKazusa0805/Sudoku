@@ -5596,15 +5596,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} to {1} with bridge cells {2}.
-        /// </summary>
-        public static string TechniqueFormat_GroupedWWingStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_GroupedWWingStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cells {0} with {1} {2}.
         /// </summary>
         public static string TechniqueFormat_GuardianStep {
@@ -6208,7 +6199,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} to {1} with conjugate pair {2}.
+        ///   Looks up a localized string similar to {0} to {1}, with {2} as connection.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
             get {
