@@ -51,7 +51,7 @@ public static class ViewEnumerable
 	public static ReadOnlySpan<T> OfType<T>(this View @this) where T : ViewNode
 	{
 		var result = new List<T>();
-		foreach (var node in result)
+		foreach (var node in @this)
 		{
 			if (node is T casted)
 			{
