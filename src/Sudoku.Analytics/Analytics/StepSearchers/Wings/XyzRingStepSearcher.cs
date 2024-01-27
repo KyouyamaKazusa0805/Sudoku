@@ -137,7 +137,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						}
 
 						var intersectedDigit = Log2((uint)(Mask)(digitsMaskPivot & digitsMask1 & digitsMask2));
-						var theOtherTwoDigitsMask = (Mask)(unionedDigitsMask & ~(1 << intersectedDigit));
+						var theOtherTwoDigitsMask = (Mask)(unionedDigitsMask & (Mask)~(1 << intersectedDigit));
 						var theOtherDigit1 = TrailingZeroCount(theOtherTwoDigitsMask);
 						var theOtherDigit2 = theOtherTwoDigitsMask.GetNextSet(theOtherDigit1);
 						var coveringHouseForDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? house1 : house2;

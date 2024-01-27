@@ -96,7 +96,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 
 					// Get the Z digit (The digit to be removed).
 					var isIncomplete = inter == 0;
-					var interWithoutPivot = (Mask)(union & ~grid.GetCandidates(pivot));
+					var interWithoutPivot = (Mask)(union & (Mask)~grid.GetCandidates(pivot));
 					var maskToCheck = isIncomplete ? interWithoutPivot : inter;
 					if (!IsPow2(maskToCheck))
 					{
