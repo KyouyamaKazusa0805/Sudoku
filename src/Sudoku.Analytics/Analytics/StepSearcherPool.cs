@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Represents a provider type that can find built-in <see cref="StepSearcher"/> instances.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-public abstract class StepSearcherPool
+public static class StepSearcherPool
 {
 	/// <summary>
 	/// Indicates the current assembly.
