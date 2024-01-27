@@ -179,20 +179,15 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						foreach (Mask mask in Bits.EnumerateOf(size, 2))
 						{
 							scoped var cellIndices = mask.GetAllSets();
-							var p1 = potentials[cellIndices[0]];
-							var p2 = potentials[cellIndices[1]];
-
-							if (p1 == p2)
+							if ((potentials[cellIndices[0]], potentials[cellIndices[1]]) is var (p1, p2)
+								&& p1 == p2
+								&& (cells[cellIndices[0]], cells[cellIndices[1]]) is var (c1, c2)
+								&& PeersMap[c1].Contains(c2))
 							{
 								// Hidden single: Using the same candidate value for 2 cells of the set is only allowed
 								// if they don't share a house.
-								var c1 = cells[cellIndices[0]];
-								var c2 = cells[cellIndices[1]];
-								if (PeersMap[c1].Contains(c2))
-								{
-									isAllowed = false;
-									break;
-								}
+								isAllowed = false;
+								break;
 							}
 						}
 
