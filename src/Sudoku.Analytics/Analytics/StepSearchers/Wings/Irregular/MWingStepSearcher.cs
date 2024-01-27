@@ -17,6 +17,13 @@ public sealed partial class MWingStepSearcher : StepSearcher
 	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
 	/// A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
 	/// </remarks>
+	/// <example>
+	/// TODO: Add loop logic. Example:
+	/// <code><![CDATA[
+	/// .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:
+	///   417 419 157 883 785 891 893 795
+	/// ]]></code>
+	/// </example>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		foreach (var supportsGroupedNodes in (false, true))
