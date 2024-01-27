@@ -10273,26 +10273,6 @@ if (student is (name: var name, age: >= 18))
             <param name="supportsGroupedNodes">Indicates whether the pattern supports for grouped nodes.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
-            <summary>
-            Provides with a <b>W-Wing (George Woods' Wing)</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>W-Wing</item>
-            <item>Grouped W-Wing</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-            <example>
-            TODO: Add loop logic. Example:
-            <code><![CDATA[
-            +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
-              435 935 567 175 185 192 193 993 195 495 995
-            ]]></code>
-            </example>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
             <summary>
             Provides with a <b>Regular Wing</b> step searcher.
@@ -10316,6 +10296,26 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
+            <summary>
+            Provides with a <b>W-Wing (George Woods' Wing)</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>W-Wing</item>
+            <item>Grouped W-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+            <example>
+            TODO: Add loop logic. Example:
+            <code><![CDATA[
+            +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
+              435 935 567 175 185 192 193 993 195 495 995
+            ]]></code>
+            </example>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
             <summary>
@@ -17541,60 +17541,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.WWingStep">
-            <summary>
-            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="startCell">Indicates the start cell.</param>
-            <param name="endCell">Indicates the end cell.</param>
-            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="startCell">Indicates the start cell.</param>
-            <param name="endCell">Indicates the end cell.</param>
-            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.IsGrouped">
-            <summary>
-            Indicates whether the pattern is grouped.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
-            <summary>
-            The generated property declaration for parameter <c>startCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.EndCell">
-            <summary>
-            The generated property declaration for parameter <c>endCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.Bridge">
-            <summary>
-            The generated property declaration for parameter <c>bridge</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.RegularWingStep">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
@@ -17709,6 +17655,60 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WWingStep">
+            <summary>
+            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="startCell">Indicates the start cell.</param>
+            <param name="endCell">Indicates the end cell.</param>
+            <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.StartCell">
+            <summary>
+            The generated property declaration for parameter <c>startCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.EndCell">
+            <summary>
+            The generated property declaration for parameter <c>endCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.Bridge">
+            <summary>
+            The generated property declaration for parameter <c>bridge</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
             <summary>
