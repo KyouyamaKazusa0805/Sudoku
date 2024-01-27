@@ -13,6 +13,13 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class WWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
+	/// <example>
+	/// TODO: Add loop logic. Example:
+	/// <code><![CDATA[
+	/// +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
+	///   435 935 567 175 185 192 193 993 195 495 995
+	/// ]]></code>
+	/// </example>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// The grid with possible W-Wing pattern should contain at least two empty cells (start and end cell).

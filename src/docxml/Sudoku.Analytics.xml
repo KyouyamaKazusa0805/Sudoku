@@ -10290,6 +10290,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+            <example>
+            TODO: Add loop logic. Example:
+            <code><![CDATA[
+            +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
+              435 935 567 175 185 192 193 993 195 495 995
+            ]]></code>
+            </example>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
             <summary>
