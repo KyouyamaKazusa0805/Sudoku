@@ -14,14 +14,8 @@ public static class GroupedNode
 	/// <param name="spannedHouses">The spanned houses.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static bool IsGroupedStrongLink(scoped ref CellMap cells, Digit digit, House house, out HouseMask spannedHouses)
+	internal static bool IsGroupedStrongLink(scoped ref readonly CellMap cells, Digit digit, House house, out HouseMask spannedHouses)
 	{
-		if ((HousesMap[house] & CandidatesMap[digit]).Count != 2)
-		{
-			goto ReturnFalse;
-		}
-
-		cells &= CandidatesMap[digit];
 		switch (house.ToHouseType())
 		{
 			case HouseType.Block:
@@ -58,7 +52,6 @@ public static class GroupedNode
 			}
 		}
 
-	ReturnFalse:
 		spannedHouses = default;
 		return false;
 	}

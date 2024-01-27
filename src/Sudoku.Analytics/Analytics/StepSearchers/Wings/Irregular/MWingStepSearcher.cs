@@ -47,13 +47,11 @@ public sealed partial class MWingStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		for (var h1 = 0; h1 < 27; h1++)
 		{
-			var cells1 = HousesMap[h1] & EmptyCells;
-			var digitsMask1 = grid[in cells1];
+			var digitsMask1 = grid[HousesMap[h1] & EmptyCells];
 			for (var h2 = h1; h2 < 27; h2++)
 			{
 				// Check for strong links.
-				var cells2 = HousesMap[h2] & EmptyCells;
-				var digitsMask2 = grid[in cells2];
+				var digitsMask2 = grid[HousesMap[h2] & EmptyCells];
 				foreach (var d1 in digitsMask1)
 				{
 					foreach (var d2 in (Mask)(digitsMask2 & (Mask)~(1 << d1)))
@@ -66,17 +64,15 @@ public sealed partial class MWingStepSearcher : StepSearcher
 						//     b. The house type is row or column - the number of spanned blocks must be 2.
 						//
 						// Otherwise, invalid.
-						var (tempCells1, tempCells2) = (cells1, cells2);
-						if (!GroupedNode.IsGroupedStrongLink(ref tempCells1, d1, h1, out var spannedHouses1))
+						var (cells1, cells2) = (HousesMap[h1] & CandidatesMap[d1], HousesMap[h2] & CandidatesMap[d2]);
+						if (!GroupedNode.IsGroupedStrongLink(in cells1, d1, h1, out var spannedHouses1))
 						{
 							continue;
 						}
-						if (!GroupedNode.IsGroupedStrongLink(ref tempCells2, d2, h2, out var spannedHouses2))
+						if (!GroupedNode.IsGroupedStrongLink(in cells2, d2, h2, out var spannedHouses2))
 						{
 							continue;
 						}
-
-						(cells1, cells2) = (tempCells1, tempCells2);
 
 						// Check for cases, and determine whether 2 (grouped) nodes use 1 cell.
 						foreach (var spannedHouse1 in spannedHouses1)
@@ -127,86 +123,85 @@ public sealed partial class MWingStepSearcher : StepSearcher
 								var possibleBivalueCells = CandidatesMap[d1] & CandidatesMap[d2] & BivalueCells;
 								foreach (var (node, theOtherNode) in ((p, q), (q, p)))
 								{
-									foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
+									foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 									{
-										foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
+										foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
 										{
-											if (strongXyCell == weakXyCell)
+											foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
 											{
-												// Invalid.
-												continue;
-											}
+												if (strongXyCell == weakXyCell)
+												{
+													// Invalid.
+													continue;
+												}
 
-											var nodeCanSeeStrongXyCell = (HousesMap[strongXyCellHouse] & node) == node;
-											var elimDigit = nodeCanSeeStrongXyCell ? d2 : d1;
-											var theOtherDigit = d1 == elimDigit ? d2 : d1;
+												if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
+													|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
+												{
+													continue;
+												}
 
-											if ((HousesMap[nodeCanSeeStrongXyCell ? h1 : h2] & CandidatesMap[elimDigit]) - weakXyCell != node
-												|| (HousesMap[nodeCanSeeStrongXyCell ? h2 : h1] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
-											{
-												continue;
-											}
+												var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
+												if (!elimMap)
+												{
+													// No conclusions will be found.
+													continue;
+												}
 
-											var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
-											if (!elimMap)
-											{
-												// No conclusions will be found.
-												continue;
-											}
+												var comparer = (Mask)(1 << d1 | 1 << d2);
+												var candidateOffsets = new List<CandidateViewNode>();
+												foreach (var cell in node)
+												{
+													candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + elimDigit));
+												}
+												foreach (var cell in theOtherNode)
+												{
+													candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + theOtherDigit));
+												}
+												foreach (var digit in grid.GetCandidates(strongXyCell))
+												{
+													candidateOffsets.Add(
+														new(
+															digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+															strongXyCell * 9 + digit
+														)
+													);
+												}
+												foreach (var digit in (Mask)(grid.GetCandidates(weakXyCell) & comparer))
+												{
+													candidateOffsets.Add(
+														new(
+															digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+															weakXyCell * 9 + digit
+														)
+													);
+												}
 
-											var comparer = (Mask)(1 << d1 | 1 << d2);
-											var candidateOffsets = new List<CandidateViewNode>();
-											foreach (var cell in node)
-											{
-												candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
-											}
-											foreach (var cell in theOtherNode)
-											{
-												candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d2));
-											}
-											foreach (var digit in grid.GetCandidates(strongXyCell))
-											{
-												candidateOffsets.Add(
-													new(
-														digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-														strongXyCell * 9 + digit
-													)
-												);
-											}
-											foreach (var digit in (Mask)(grid.GetCandidates(weakXyCell) & comparer))
-											{
-												candidateOffsets.Add(
-													new(
-														digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-														weakXyCell * 9 + digit
-													)
-												);
-											}
-
-											var step = new MWingStep(
-												[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
-												[
+												var step = new MWingStep(
+													[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
 													[
-														new CellViewNode(ColorIdentifier.Normal, strongXyCell),
-														new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
-														new HouseViewNode(ColorIdentifier.Normal, h1),
-														.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
-														.. candidateOffsets
-													]
-												],
-												context.PredefinedOptions,
-												in node,
-												in theOtherNode,
-												strongXyCell,
-												weakXyCell,
-												comparer
-											);
-											if (context.OnlyFindOne)
-											{
-												return step;
-											}
+														[
+															new CellViewNode(ColorIdentifier.Normal, strongXyCell),
+															new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
+															new HouseViewNode(ColorIdentifier.Normal, h1),
+															.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
+															.. candidateOffsets
+														]
+													],
+													context.PredefinedOptions,
+													in node,
+													in theOtherNode,
+													strongXyCell,
+													weakXyCell,
+													comparer
+												);
+												if (context.OnlyFindOne)
+												{
+													return step;
+												}
 
-											context.Accumulator.Add(step);
+												context.Accumulator.Add(step);
+											}
 										}
 									}
 								}
