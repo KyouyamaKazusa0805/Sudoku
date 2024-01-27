@@ -10,7 +10,7 @@
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<RootNamespace>SudokuStudio</RootNamespace>
-		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR</DefineConstants>
+		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR;DISABLE_XAML_GENERATED_MAIN</DefineConstants>
 		<DocumentationFile>..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 		<PublishAot>false</PublishAot>

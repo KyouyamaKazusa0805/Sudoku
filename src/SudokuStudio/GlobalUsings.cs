@@ -111,6 +111,8 @@ global using static Sudoku.Analytics.ConclusionType;
 global using static Sudoku.SolutionFields;
 global using static SudokuStudio.ProjectWideConstants;
 global using static SudokuStudio.Rendering.RenderableFactory;
+global using DispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue;
+global using DispatcherQueueSynchronizationContext = Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext;
 global using GridLayout = Microsoft.UI.Xaml.Controls.Grid;
 global using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 global using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;

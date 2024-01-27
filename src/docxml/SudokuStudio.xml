@@ -14281,11 +14281,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="window">The window.</param>
         </member>
-        <member name="T:SudokuStudio.Program">
-            <summary>
-            Program class
-            </summary>
-        </member>
         <member name="T:SudokuStudio.SudokuStudio_XamlTypeInfo.XamlMetaDataProvider">
             <summary>
             Main class for providing metadata for the app or library
@@ -14620,6 +14615,17 @@ if (student is (name: var name, age: >= 18))
 					</para>
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Represents a type that encapsulates the entry point.
+            </summary>
+        </member>
+        <member name="M:Program.Main(System.String[])">
+            <summary>
+            Indicates the entry point method.
+            </summary>
+            <param name="args">The command line arguments.</param>
         </member>
     </members>
 </doc>
