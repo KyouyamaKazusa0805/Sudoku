@@ -1,13 +1,15 @@
-namespace Sudoku.Runtime.MaskServices;
+namespace System.Numerics;
 
 /// <summary>
 /// Indicates the enumerator of the current instance.
 /// </summary>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
+[DebuggerStepThrough]
 [Equals]
 [GetHashCode]
 [ToString]
+[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 {
 	/// <summary>
@@ -21,14 +23,15 @@ public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 	private bool _isLast = bitCount == 0;
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEnumerator.Current"/>
 	public long Current { get; private set; } = (1 << oneCount) - 1;
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEnumerator.MoveNext"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext()
 	{
-		var result = hasNext(ref this);
+		var result = HasNext();
 		if (result && !_isLast)
 		{
 			var smallest = Current & -Current;
@@ -39,14 +42,17 @@ public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 		}
 
 		return result;
+	}
 
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool hasNext(scoped ref MaskCombinationEnumerator @this)
-		{
-			var result = !@this._isLast;
-			@this._isLast = (@this.Current & -@this.Current & @this._mask) == 0;
-			return result;
-		}
+	/// <summary>
+	/// Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private bool HasNext()
+	{
+		var result = !_isLast;
+		_isLast = (Current & -Current & _mask) == 0;
+		return result;
 	}
 }
