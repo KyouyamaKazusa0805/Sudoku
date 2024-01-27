@@ -1013,10 +1013,6 @@
     <value>Hybrid Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedXyWing" xml:space="preserve">
-    <value>区块 XY-Wing</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="GroupedWWing" xml:space="preserve">
     <value>区块 W-Wing</value>
     <comment>Technique Name</comment>

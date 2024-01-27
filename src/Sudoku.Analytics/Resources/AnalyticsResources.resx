@@ -879,9 +879,6 @@
   <data name="HybridWing" xml:space="preserve">
     <value>Hybrid Wing</value>
   </data>
-  <data name="GroupedXyWing" xml:space="preserve">
-    <value>Grouped XY-Wing</value>
-  </data>
   <data name="GroupedWWing" xml:space="preserve">
     <value>Grouped W-Wing</value>
   </data>

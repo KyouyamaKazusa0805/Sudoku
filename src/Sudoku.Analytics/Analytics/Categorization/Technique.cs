@@ -1542,14 +1542,6 @@ public enum Technique
 	HybridWing,
 
 	/// <summary>
-	/// Indicates grouped XY-Wing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	GroupedXyWing,
-
-	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]

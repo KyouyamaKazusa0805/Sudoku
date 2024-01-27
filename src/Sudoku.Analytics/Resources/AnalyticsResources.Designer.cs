@@ -2014,15 +2014,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped XY-Wing.
-        /// </summary>
-        public static string GroupedXyWing {
-            get {
-                return ResourceManager.GetString("GroupedXyWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Grouped XY-X-Chain.
         /// </summary>
         public static string GroupedXyXChain {

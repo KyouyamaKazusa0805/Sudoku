@@ -2120,11 +2120,6 @@ if (student is (name: var name, age: >= 18))
             Indicates hybrid wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedXyWing">
-            <summary>
-            Indicates grouped XY-Wing.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLocalWing">
             <summary>
             Indicates grouped local wing.
@@ -20929,11 +20924,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedXyCycle">
             <summary>
               Looks up a localized string similar to Grouped XY-Cycle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedXyWing">
-            <summary>
-              Looks up a localized string similar to Grouped XY-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedXyXChain">
