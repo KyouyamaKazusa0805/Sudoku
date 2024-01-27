@@ -60,7 +60,7 @@ public static class HodokuCompatibility
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetHodokuPrefix(Technique @this)
+	public static string? GetHodokuLibraryPrefix(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
 				? fieldInfo.GetCustomAttribute<HodokuTechniquePrefixAttribute>() is { Prefix: var prefix } ? prefix : null
@@ -68,17 +68,13 @@ public static class HodokuCompatibility
 			: throw new ArgumentOutOfRangeException(nameof(@this));
 
 	/// <summary>
-	/// Try to get difficulty rating of the specified technique.
+	/// Try to get difficulty score of the specified technique.
 	/// </summary>
 	/// <param name="this">The technique.</param>
 	/// <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
 	/// <returns>
-	/// <para>
-	/// An <see cref="int"/> value defined by the project Hodoku.
-	/// </para>
-	/// <para>
-	/// If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
-	/// </para>
+	/// <para>An <see cref="int"/> value defined by the project Hodoku.</para>
+	/// <para>If this technique is not supported by Hodoku, <see langword="null"/> will be returned.</para>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
@@ -87,7 +83,7 @@ public static class HodokuCompatibility
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[return: NotNullIfNotNull(nameof(difficultyLevel))]
-	public static int? GetDifficultyRating(Technique @this, out HodokuDifficultyLevel? difficultyLevel)
+	public static int? GetDifficultyScore(Technique @this, out HodokuDifficultyLevel? difficultyLevel)
 	{
 		if (@this == Technique.None || !Enum.IsDefined(@this))
 		{
@@ -98,7 +94,7 @@ public static class HodokuCompatibility
 		{
 			{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuDifficultyRatingAttribute>() switch
 			{
-				{ DifficultyRating: var rating, DifficultyLevel: var level } => (rating, level),
+				var (rating, level) => (rating, level),
 				_ => (null, null)
 			},
 			_ => default((int?, HodokuDifficultyLevel?))

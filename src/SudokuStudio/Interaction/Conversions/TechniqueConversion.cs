@@ -75,7 +75,7 @@ internal static class TechniqueConversion
 	}
 
 	public static string GetHodokuDifficultyRating(Technique technique)
-		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetDifficultyRating(technique, out var difficultyLevel) switch
+		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetDifficultyScore(technique, out var difficultyLevel) switch
 		{
 			{ } value => $"{value}{ResourceDictionary.Get("_Token_OpenBrace", App.CurrentCulture)}{ResourceDictionary.Get(difficultyLevel switch
 			{
@@ -89,7 +89,7 @@ internal static class TechniqueConversion
 		};
 
 	public static string GetHodokuPrefix(Technique technique)
-		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuPrefix(technique) ?? ResourceDictionary.Get("TechniqueSelectionPage_NoHodokuPrefix", App.CurrentCulture);
+		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuLibraryPrefix(technique) ?? ResourceDictionary.Get("TechniqueSelectionPage_NoHodokuPrefix", App.CurrentCulture);
 
 	public static string GetStringResourceViaFeature(TechniqueFeature feature)
 		=> feature switch

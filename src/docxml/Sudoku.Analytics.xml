@@ -17938,7 +17938,7 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuPrefix(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuLibraryPrefix(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the prefix of the specified technique. The return value will be a four-digit value
             represented as a <see cref="T:System.String"/> value. For more information please visit
@@ -17974,19 +17974,15 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetDifficultyRating(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetDifficultyScore(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
             <summary>
-            Try to get difficulty rating of the specified technique.
+            Try to get difficulty score of the specified technique.
             </summary>
             <param name="this">The technique.</param>
             <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
             <returns>
-            <para>
-            An <see cref="T:System.Int32"/> value defined by the project Hodoku.
-            </para>
-            <para>
-            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
-            </para>
+            <para>An <see cref="T:System.Int32"/> value defined by the project Hodoku.</para>
+            <para>If this technique is not supported by Hodoku, <see langword="null"/> will be returned.</para>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
@@ -18037,6 +18033,44 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="difficultyRating">Indicates the difficulty rating.</param>
             <param name="difficultyLevel">Indicates the difficulty level.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.Deconstruct(System.Int32@,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+    => (name, age) = (Name, Age);
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
         </member>
         <member name="P:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.DifficultyRating">
             <summary>
@@ -18133,12 +18167,8 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The technique.</param>
             <returns>
-            <para>
-            A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating"/> value defined by the project Sudoku Explainer.
-            </para>
-            <para>
-            If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
-            </para>
+            <para>A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating"/> value defined by the project Sudoku Explainer.</para>
+            <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,

@@ -31,12 +31,8 @@ public static class SudokuExplainerCompatibility
 	/// </summary>
 	/// <param name="this">The technique.</param>
 	/// <returns>
-	/// <para>
-	/// A <see cref="SudokuExplainderRating"/> value defined by the project Sudoku Explainer.
-	/// </para>
-	/// <para>
-	/// If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.
-	/// </para>
+	/// <para>A <see cref="SudokuExplainderRating"/> value defined by the project Sudoku Explainer.</para>
+	/// <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the specified value is not defined by the type <see cref="Technique"/>,
