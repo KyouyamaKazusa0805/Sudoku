@@ -145,6 +145,9 @@ public sealed partial class MWingStepSearcher : StepSearcher
 												if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
 													|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
 												{
+													// Rescue check: We should guarantee the case that both two are real strong links,
+													// which means, the target houses for those strong links produced should
+													// only contains the cells that hold the nodes and 'weakXyCell'.
 													continue;
 												}
 
@@ -155,44 +158,26 @@ public sealed partial class MWingStepSearcher : StepSearcher
 													continue;
 												}
 
-												var comparer = (Mask)(1 << d1 | 1 << d2);
-												var candidateOffsets = new List<CandidateViewNode>();
-												foreach (var cell in node)
-												{
-													candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + elimDigit));
-												}
-												foreach (var cell in theOtherNode)
-												{
-													candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + theOtherDigit));
-												}
-												foreach (var digit in grid.GetCandidates(strongXyCell))
-												{
-													candidateOffsets.Add(
-														new(
-															digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-															strongXyCell * 9 + digit
-														)
-													);
-												}
-												foreach (var digit in (Mask)(grid.GetCandidates(weakXyCell) & comparer))
-												{
-													candidateOffsets.Add(
-														new(
-															digit == elimDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-															weakXyCell * 9 + digit
-														)
-													);
-												}
-
 												var step = new MWingStep(
 													[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
 													[
 														[
+															..
+															from cell in node
+															let cand = cell * 9 + elimDigit
+															select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
+															..
+															from cell in theOtherNode
+															let cand = cell * 9 + theOtherDigit
+															select new CandidateViewNode(ColorIdentifier.Normal, cand),
 															new CellViewNode(ColorIdentifier.Normal, strongXyCell),
 															new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
+															new CandidateViewNode(ColorIdentifier.Auxiliary1, strongXyCell * 9 + elimDigit),
+															new CandidateViewNode(ColorIdentifier.Normal, strongXyCell * 9 + theOtherDigit),
+															new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d1),
+															new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d2),
 															new HouseViewNode(ColorIdentifier.Normal, h1),
 															.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
-															.. candidateOffsets
 														]
 													],
 													context.PredefinedOptions,
@@ -200,7 +185,7 @@ public sealed partial class MWingStepSearcher : StepSearcher
 													in theOtherNode,
 													strongXyCell,
 													weakXyCell,
-													comparer
+													(Mask)(1 << d1 | 1 << d2)
 												);
 												if (context.OnlyFindOne)
 												{
