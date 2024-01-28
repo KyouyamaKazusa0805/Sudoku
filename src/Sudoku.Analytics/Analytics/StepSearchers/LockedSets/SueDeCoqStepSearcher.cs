@@ -168,9 +168,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										{
 											candidateOffsets.Add(
 												new(
-													!cannibalMode && digit == digitIsolated
-														? ColorIdentifier.Auxiliary2
-														: ColorIdentifier.Normal,
+													!cannibalMode && digit == digitIsolated ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Normal,
 													cell * 9 + digit
 												)
 											);
@@ -182,9 +180,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										{
 											candidateOffsets.Add(
 												new(
-													!cannibalMode && digit == digitIsolated
-														? ColorIdentifier.Auxiliary2
-														: ColorIdentifier.Auxiliary1,
+													!cannibalMode && digit == digitIsolated ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1,
 													cell * 9 + digit
 												)
 											);
@@ -198,9 +194,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 												new(
 													digitIsolated == digit
 														? ColorIdentifier.Auxiliary2
-														: (blockMask >> digit & 1) != 0
-															? ColorIdentifier.Normal
-															: ColorIdentifier.Auxiliary1,
+														: (blockMask >> digit & 1) != 0 ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1,
 													cell * 9 + digit
 												)
 											);
