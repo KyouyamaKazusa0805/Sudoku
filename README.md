@@ -85,6 +85,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Irregular Wing[^2]
       * W-Wing (Non-grouped, Grouped, Multi-Branch)
       * M-Wing (Non-grouped, Grouped)
+      * S-Wing (Non-grouped, Grouped)
     * XYZ-Loops (Non-nice, Nice)
   * Uniqueness
     * UR (Unique Rectangle)

@@ -15,6 +15,7 @@
 [assembly: StepSearcherImport<SueDeCoqStepSearcher>(1)]
 [assembly: StepSearcherImport<SueDeCoq3DimensionStepSearcher>(1)]
 [assembly: StepSearcherImport<ExtendedSubsetPrincipleStepSearcher>(1)]
+[assembly: StepSearcherImport<SWingStepSearcher>(1)]
 [assembly: StepSearcherImport<UniqueLoopStepSearcher>(1)]
 [assembly: StepSearcherImport<ExtendedRectangleStepSearcher>(1)]
 [assembly: StepSearcherImport<EmptyRectangleStepSearcher>(1)]

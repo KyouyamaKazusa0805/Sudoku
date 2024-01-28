@@ -13,6 +13,10 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class WWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
+	/// A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+	/// </remarks>
 	/// <example>
 	/// TODO: Add loop logic. Example:
 	/// <code><![CDATA[

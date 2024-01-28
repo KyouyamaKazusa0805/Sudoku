@@ -1005,8 +1005,8 @@
     <value>Local Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="SplitWing" xml:space="preserve">
-    <value>Split Wing</value>
+  <data name="SWing" xml:space="preserve">
+    <value>S-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="HybridWing" xml:space="preserve">
@@ -1025,8 +1025,8 @@
     <value>区块 Local Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedSplitWing" xml:space="preserve">
-    <value>区块 Split Wing</value>
+  <data name="GroupedSWing" xml:space="preserve">
+    <value>区块 S-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedHybridWing" xml:space="preserve">
@@ -2701,5 +2701,12 @@
   </data>
   <data name="TechniqueFormat_MWingStep" xml:space="preserve">
     <value>使用 {0} 和 {1} 以及 XY 单元格 {2} 和 {3}</value>
+  </data>
+  <data name="StepSearcherName_SWingStepSearcher" xml:space="preserve">
+    <value>S-Wing</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="TechniqueFormat_SWingStep" xml:space="preserve">
+    <value>单元格 {0} 和 {1} 和 {2} 关联</value>
   </data>
 </root>

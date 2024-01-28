@@ -1951,11 +1951,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Split Wing.
+        ///   Looks up a localized string similar to Grouped S-Wing.
         /// </summary>
-        public static string GroupedSplitWing {
+        public static string GroupedSWing {
             get {
-                return ResourceManager.GetString("GroupedSplitWing", resourceCulture);
+                return ResourceManager.GetString("GroupedSWing", resourceCulture);
             }
         }
         
@@ -3544,15 +3544,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Split Wing.
-        /// </summary>
-        public static string SplitWing {
-            get {
-                return ResourceManager.GetString("SplitWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Squirmbag.
         /// </summary>
         public static string Squirmbag {
@@ -3949,6 +3940,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to S-Wing.
+        /// </summary>
+        public static string StepSearcherName_SWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SWingStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates.
         /// </summary>
         public static string StepSearcherName_TemplateStepSearcher {
@@ -4116,6 +4116,15 @@ namespace Sudoku.Resources {
         public static string SueDeCoqIsolated {
             get {
                 return ResourceManager.GetString("SueDeCoqIsolated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S-Wing.
+        /// </summary>
+        public static string SWing {
+            get {
+                return ResourceManager.GetString("SWing", resourceCulture);
             }
         }
         
@@ -5907,6 +5916,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_SueDeCoqStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_SueDeCoqStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both strong links {0} and {1} connect with mid cell {2}.
+        /// </summary>
+        public static string TechniqueFormat_SWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_SWingStep", resourceCulture);
             }
         }
         

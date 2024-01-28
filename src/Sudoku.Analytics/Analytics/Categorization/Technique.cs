@@ -1518,20 +1518,26 @@ public enum Technique
 	GroupedMWing,
 
 	/// <summary>
+	/// Indicates S-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	SWing,
+
+	/// <summary>
+	/// Indicates grouped S-Wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedSWing,
+
+	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	LocalWing,
-
-	/// <summary>
-	/// Indicates split wing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	SplitWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.
@@ -1548,14 +1554,6 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedLocalWing,
-
-	/// <summary>
-	/// Indicates grouped split wing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedSplitWing,
 
 	/// <summary>
 	/// Indicates grouped hybrid wing.
