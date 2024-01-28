@@ -1491,12 +1491,6 @@
   <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
     <value>Placeholder for empty cells in text</value>
   </data>
-  <data name="SettingsPage_EmptyCellCharacter_Dot" xml:space="preserve">
-    <value>Dot ('.')</value>
-  </data>
-  <data name="SettingsPage_EmptyCellCharacter_Zero" xml:space="preserve">
-    <value>Digit 0 ('0')</value>
-  </data>
   <data name="SettingsPage_EnableAnimationFeedback" xml:space="preserve">
     <value>Enable animation feedback</value>
   </data>
@@ -1723,6 +1717,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_PictureSizeOnSavingDescription" xml:space="preserve">
     <value>A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000.</value>
+  </data>
+  <data name="SettingsPage_PlaceholderDot" xml:space="preserve">
+    <value>Dot</value>
+  </data>
+  <data name="SettingsPage_PlaceholderZero" xml:space="preserve">
+    <value>Zero</value>
   </data>
   <data name="SettingsPage_PreferCurrentCulture" xml:space="preserve">
     <value>Follow my computer</value>

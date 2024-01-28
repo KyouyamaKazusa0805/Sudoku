@@ -2,11 +2,11 @@ namespace SudokuStudio.Interaction.Conversions;
 
 internal static class SettingsPageConversion
 {
-	public static int GetSelectedIndexForEmptyCellCharacter(ComboBox comboBox)
+	public static int GetSelectedIndexForEmptyCellCharacter(Segmented segmented)
 	{
 		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var i = 0;
-		foreach (var element in comboBox.Items.Cast<ComboBoxItem>())
+		foreach (var element in segmented.Items.Cast<SegmentedItem>())
 		{
 			if (element.Tag is string and [var ch] && ch == character)
 			{

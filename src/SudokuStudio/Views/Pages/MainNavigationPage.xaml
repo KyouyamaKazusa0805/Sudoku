@@ -17,12 +17,11 @@
 		BackRequested="MainNavigationView_BackRequested">
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
-			<NavigationViewItem x:Name="AnalyzePageItem" Icon="Edit" Content="{m:R Key=MainWindow_Analyze}" />
+			<NavigationViewItem x:Name="AnalyzePageItem" Icon="{ui:FontIcon Glyph=&#xE9D9;}" Content="{m:R Key=MainWindow_Analyze}" />
 			<NavigationViewItem x:Name="GeneratingStrategyPageItem" Icon="Favorite" Content="{m:R Key=MainWindow_GeneratingStrategy}" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
 			<NavigationViewItem
-				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
-				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
+				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}" Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
 			<NavigationViewItem x:Name="PuzzleLibraryPage" Content="{m:R Key=MainWindow_PuzzleLibraryPage}" Icon="Library" />
 			<NavigationViewItem x:Name="TechniqueGalleryPage" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />

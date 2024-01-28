@@ -20,31 +20,19 @@ public sealed partial class BasicPreferenceItemsPage : Page
 	/// </summary>
 	private void InitializeControls()
 	{
-		LanguageComboBox.SelectedIndex = ((App)Application.Current).Preference.UIPreferences.Language switch
-		{
-			0 => 0,
-			1033 => 1,
-			2052 => 2
-		};
-		Comma2ComboBoxItem_DefaultSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
-		Comma2ComboBoxItem_DigitSeparator.Visibility = CultureInfo.CurrentUICulture.Name.Contains("zh") ? Visibility.Visible : Visibility.Collapsed;
-
-		ThemeComboBox.SelectedIndex = (int)((App)Application.Current).Preference.UIPreferences.CurrentTheme;
+		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		var isChinese = CultureInfo.CurrentUICulture.Name.Contains("zh");
+		LanguageComboBox.SelectedIndex = uiPref.Language switch { 0 => 0, 1033 => 1, 2052 => 2 };
+		Comma2ComboBoxItem_DefaultSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;
+		Comma2ComboBoxItem_DigitSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;
+		ThemeComboBox.SelectedIndex = (int)uiPref.CurrentTheme;
 	}
 
 	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
 		{
 			((App)Application.Current).Preference.UIPreferences.Backdrop = value;
-		}
-	}
-
-	private void EmptyCellCharacterSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string and [var ch] } })
-		{
-			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
 		}
 	}
 
@@ -53,7 +41,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void ConceptNotationModeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: int rawValue } })
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: int rawValue } })
 		{
 			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
 		}
@@ -61,7 +49,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void NotationDefaultSeparatorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string s } })
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
 		{
 			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
 		}
@@ -69,7 +57,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void NotationDigitSeparatorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string s } })
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
 		{
 			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
 		}
@@ -77,18 +65,18 @@ public sealed partial class BasicPreferenceItemsPage : Page
 
 	private void FinalRowLetterInK9NotationSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		if (sender is ComboBox { SelectedItem: ComboBoxItem { Tag: string and [var ch] } })
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
 		{
 			((App)Application.Current).Preference.UIPreferences.FinalRowLetterInK9Notation = ch;
 		}
 	}
 
 	private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> ((App)Application.Current).Preference.UIPreferences.Language = (int)((ComboBoxItem)LanguageComboBox.SelectedItem).Tag!;
+		=> ((App)Application.Current).Preference.UIPreferences.Language = (int)((SegmentedItem)LanguageComboBox.SelectedItem).Tag!;
 
 	private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-		var theme = (Theme)((ComboBoxItem)ThemeComboBox.SelectedItem).Tag!;
+		var theme = (Theme)((SegmentedItem)ThemeComboBox.SelectedItem).Tag!;
 		((App)Application.Current).Preference.UIPreferences.CurrentTheme = theme;
 
 		// Manually set theme.
@@ -108,6 +96,14 @@ public sealed partial class BasicPreferenceItemsPage : Page
 					_ => ElementTheme.Dark
 				};
 			}
+		}
+	}
+
+	private void PlaceholderTextSegmented_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
+		{
+			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
 		}
 	}
 }

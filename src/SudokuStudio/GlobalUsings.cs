@@ -21,6 +21,7 @@ global using System.Text.Json.Serialization;
 global using System.Threading;
 global using System.Threading.Tasks;
 global using CommunityToolkit.WinUI;
+global using CommunityToolkit.WinUI.Controls;
 global using Expressive.Exceptions;
 global using Microsoft.Graphics.Canvas.Text;
 global using Microsoft.UI;

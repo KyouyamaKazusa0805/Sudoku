@@ -5,11 +5,11 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class BackdropConversion
 {
-	public static int GetSelectedIndex(ComboBox comboBox)
+	public static int GetSelectedIndex(Segmented segmented)
 	{
 		var backdropKind = ((App)Application.Current).Preference.UIPreferences.Backdrop;
 		var i = 0;
-		foreach (var element in comboBox.Items.Cast<ComboBoxItem>())
+		foreach (var element in segmented.Items.Cast<SegmentedItem>())
 		{
 			if (element.Tag is string s && Enum.TryParse<BackdropKind>(s, out var target) && target == backdropKind)
 			{

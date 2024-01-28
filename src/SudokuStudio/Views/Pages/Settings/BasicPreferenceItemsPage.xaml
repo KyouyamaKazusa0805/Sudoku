@@ -8,6 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ps="using:SudokuStudio.Views.Pages.Settings"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
@@ -28,11 +29,11 @@
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_Language}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Language}" Description="{m:R Key=SettingsPage_LanguageDescription}">
-				<ComboBox x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_PreferCurrentCulture}" Tag="{m:Int32 Value=0}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_1033}" Tag="{m:Int32 Value=1033}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
-				</ComboBox>
+				<w:Segmented x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PreferCurrentCulture}" Tag="{m:Int32 Value=0}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_1033}" Tag="{m:Int32 Value=1033}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
+				</w:Segmented>
 			</w:SettingsCard>
 
 			<!--
@@ -40,11 +41,11 @@
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_Theme}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Language}">
-				<ComboBox x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_DefaultTheme}" Tag="{m:Int32 Value=0}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_LightTheme}" Tag="{m:Int32 Value=1}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_DarkTheme}" Tag="{m:Int32 Value=2}" />
-				</ComboBox>
+				<w:Segmented x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged">
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE97E;}" Tag="{m:Int32 Value=0}" />
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE706;}" Tag="{m:Int32 Value=1}" />
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE708;}" Tag="{m:Int32 Value=2}" />
+				</w:Segmented>
 			</w:SettingsCard>
 
 			<!--
@@ -52,8 +53,7 @@
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_SudokuGridBehaviors}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableCornerRadiusForSudokuPanes}">
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Mode=TwoWay}" />
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />
@@ -67,13 +67,11 @@
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
-				<ComboBox
-					Width="150"
-					SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
-				</ComboBox>
+				<w:Segmented SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_PreventConflictingInput}"
@@ -103,43 +101,41 @@
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_ConceptNotationBasedKind}"
 				Description="{m:R Key=SettingsPage_ConceptNotationBasedKindDescription}">
-				<ComboBox
+				<w:Segmented
 					x:Name="ConceptNotationModeSelector"
 					SelectedIndex="{x:Bind cvt:ConceptNotationConversion.GetSelectedIndex(ConceptNotationModeSelector)}"
 					SelectionChanged="ConceptNotationModeSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_RxCyNotation}" Tag="{m:Int32 Value=1}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_K9Notation}" Tag="{m:Int32 Value=2}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_ExcelNotation}" Tag="{m:Int32 Value=3}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_LiteralNotation}" Tag="{m:Int32 Value=0}" />
-				</ComboBox>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_RxCyNotation}" Tag="{m:Int32 Value=1}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_K9Notation}" Tag="{m:Int32 Value=2}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_ExcelNotation}" Tag="{m:Int32 Value=3}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_LiteralNotation}" Tag="{m:Int32 Value=0}" />
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDefaultSeparator}">
-				<ComboBox
+				<w:Segmented
 					x:Name="NotationDefaultSeparatorSelector"
 					SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDefaultSeparatorSelector)}"
 					SelectionChanged="NotationDefaultSeparatorSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}">
-						<ComboBoxItem.Tag>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}">
+						<w:SegmentedItem.Tag>
 							<x:String></x:String>
-						</ComboBoxItem.Tag>
-					</ComboBoxItem>
-					<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
-					<ComboBoxItem
+						</w:SegmentedItem.Tag>
+					</w:SegmentedItem>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+					<w:SegmentedItem
 						x:Name="Comma2ComboBoxItem_DefaultSeparator"
 						Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
-				</ComboBox>
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDigitSeparator}">
-				<ComboBox
+				<w:Segmented
 					x:Name="NotationDigitSeparatorSelector"
 					SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDigitSeparatorSelector)}"
 					SelectionChanged="NotationDigitSeparatorSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}" Tag="{m:EmptyString}" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
-					<ComboBoxItem
-						x:Name="Comma2ComboBoxItem_DigitSeparator"
-						Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
-				</ComboBox>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}" Tag="{m:EmptyString}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+					<w:SegmentedItem x:Name="Comma2ComboBoxItem_DigitSeparator" Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard
 				IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
@@ -168,14 +164,14 @@
 			<w:SettingsCard
 				IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_FinalRowLetterInK9Notation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
 				Header="{m:R Key=SettingsPage_FinalRowLetterInK9Notation}">
-				<ComboBox
+				<w:Segmented
 					x:Name="FinalRowLetterInK9NotationSelector"
 					SelectedIndex="{x:Bind cvt:ConceptNotationConversion.FinalRowLetterInK9NotationSelectedIndex(FinalRowLetterInK9NotationSelector)}"
 					SelectionChanged="FinalRowLetterInK9NotationSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_I}" Tag="I" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_J}" Tag="J" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_FinalRowLetter_K}" Tag="K" />
-				</ComboBox>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_I}" Tag="I" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_J}" Tag="J" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_K}" Tag="K" />
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard
 				IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInExcelNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
@@ -227,14 +223,14 @@
 					<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
 				</w:SettingsCard.Description>
 
-				<ComboBox
+				<w:Segmented
 					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
 					SelectionChanged="BackdropSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
-					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
-				</ComboBox>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
+				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_PictureSizeOnSaving}"
@@ -249,17 +245,17 @@
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_EmptyCellCharacter}">
-				<ComboBox
+				<w:Segmented
 					x:Name="EmptyCellCharacterSelector"
 					SelectedIndex="{x:Bind cvt:SettingsPageConversion.GetSelectedIndexForEmptyCellCharacter(EmptyCellCharacterSelector)}"
-					SelectionChanged="EmptyCellCharacterSelector_SelectionChanged">
-					<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Zero}">
-						<ComboBoxItem.Tag>
+					SelectionChanged="PlaceholderTextSegmented_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderZero}" Icon="{ui:FontIcon Glyph=&#xEA3A;}">
+						<w:SegmentedItem.Tag>
 							<x:String>0</x:String>
-						</ComboBoxItem.Tag>
-					</ComboBoxItem>
-					<ComboBoxItem Content="{m:R Key=SettingsPage_EmptyCellCharacter_Dot}" Tag="." />
-				</ComboBox>
+						</w:SegmentedItem.Tag>
+					</w:SegmentedItem>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderDot}" Icon="{ui:FontIcon Glyph=&#xE915;}" Tag="." />
+				</w:Segmented>
 			</w:SettingsCard>
 		</StackPanel>
 	</ScrollViewer>

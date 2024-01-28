@@ -8094,16 +8094,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Placeholder for empty cells in text.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EmptyCellCharacter_Dot">
-            <summary>
-              Looks up a localized string similar to Dot (&apos;.&apos;).
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EmptyCellCharacter_Zero">
-            <summary>
-              Looks up a localized string similar to Digit 0 (&apos;0&apos;).
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableAnimationFeedback">
             <summary>
               Looks up a localized string similar to Enable animation feedback.
@@ -8479,6 +8469,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_PictureSizeOnSavingDescription">
             <summary>
               Looks up a localized string similar to A value controlling the result size of the target picture you want to save to local. The greater the value can be, the slower the operation will be executed. The default and recommend value is 1000..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_PlaceholderDot">
+            <summary>
+              Looks up a localized string similar to Dot.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_PlaceholderZero">
+            <summary>
+              Looks up a localized string similar to Zero.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_PreferCurrentCulture">

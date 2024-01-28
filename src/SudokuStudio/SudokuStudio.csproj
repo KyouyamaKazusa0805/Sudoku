@@ -31,6 +31,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" Version="8.0.240109" />
 		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.230907" />
 		<PackageReference Include="CommunityToolkit.WinUI.Controls.Sizers" Version="8.0.230907" />
 		<PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" Version="8.0.230907" />

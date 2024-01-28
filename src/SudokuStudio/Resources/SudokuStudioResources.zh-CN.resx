@@ -1494,12 +1494,6 @@
   <data name="SettingsPage_EmptyCellCharacter" xml:space="preserve">
     <value>文本里空格的占位符</value>
   </data>
-  <data name="SettingsPage_EmptyCellCharacter_Dot" xml:space="preserve">
-    <value>小数点（'.'）</value>
-  </data>
-  <data name="SettingsPage_EmptyCellCharacter_Zero" xml:space="preserve">
-    <value>数字 0（'0'）</value>
-  </data>
   <data name="SettingsPage_EnableAnimationFeedback" xml:space="preserve">
     <value>启用动画反馈</value>
   </data>
@@ -1726,6 +1720,12 @@
   </data>
   <data name="SettingsPage_PictureSizeOnSavingDescription" xml:space="preserve">
     <value>该设置项表示的是你在保存、复制等会拷贝图片数据的行为时，该图片经过缩放后的大小。图片越大越清晰，但程序产生这样的缩放后的图片，速度也就越慢。该项的默认数值是 1000，建议的数值也是 1000。</value>
+  </data>
+  <data name="SettingsPage_PlaceholderDot" xml:space="preserve">
+    <value>小数点</value>
+  </data>
+  <data name="SettingsPage_PlaceholderZero" xml:space="preserve">
+    <value>数字零</value>
   </data>
   <data name="SettingsPage_PreferCurrentCulture" xml:space="preserve">
     <value>跟随系统</value>
