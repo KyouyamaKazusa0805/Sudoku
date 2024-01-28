@@ -6,6 +6,36 @@ namespace Sudoku.Linq;
 /// <seealso cref="CandidateMap"/>
 public static class CandidateMapEnumerable
 {
+	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="predicate">The condition to be used.</param>
+	/// <returns>The first found candidate.</returns>
+	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cell First(this scoped ref readonly CandidateMap @this, Func<Cell, bool> predicate)
+		=> @this.FirstOrNull(predicate) ?? throw new InvalidOperationException("No possible elements found.");
+
+	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="predicate">The condition to be used.</param>
+	/// <returns>The first found candidate.</returns>
+	public static Cell? FirstOrNull(this scoped ref readonly CandidateMap @this, Func<Cell, bool> predicate)
+	{
+		foreach (var candidate in @this.Offsets)
+		{
+			if (predicate(candidate))
+			{
+				return candidate;
+			}
+		}
+
+		return null;
+	}
+
 	/// <inheritdoc cref="CellMapEnumerable.Select{TResult}(ref readonly CellMap, Func{int, TResult})"/>
 	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
 	{

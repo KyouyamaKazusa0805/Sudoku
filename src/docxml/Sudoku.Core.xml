@@ -2464,21 +2464,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.First(System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Finds the first cell that satisfies the specified condition.
-            </summary>
-            <param name="predicate">The condition to be used.</param>
-            <returns>The first found cell.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.FirstOrNull(System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Finds the first cell that satisfies the specified condition.
-            </summary>
-            <param name="predicate">The condition to be used.</param>
-            <returns>The first found cell.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <inheritdoc/>
         </member>
@@ -5645,6 +5630,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first candidate that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found candidate.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first candidate that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found candidate.</returns>
+        </member>
         <member name="M:Sudoku.Linq.CandidateMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
             <inheritdoc cref="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
         </member>
@@ -5697,6 +5699,23 @@ if (student is (name: var name, age: >= 18))
             Represents a list of LINQ methods that can operate with <see cref="T:Sudoku.Concepts.CellMap"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found cell.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="predicate">The condition to be used.</param>
+            <returns>The first found cell.</returns>
         </member>
         <member name="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
             <summary>

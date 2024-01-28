@@ -23,8 +23,12 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Span<T> AsSpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 
-	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
+	/// <summary>
+	/// Gets a <see cref="ReadOnlySpan{T}"/> view over the data in a list. Items should not be added or removed from the <see cref="List{T}"/>
+	/// while the <see cref="ReadOnlySpan{T}"/> is in use.
+	/// </summary>
 	/// <param name="this">The instance to be transformed.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance over the <see cref="List{T}"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<T> AsReadOnlySpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 }

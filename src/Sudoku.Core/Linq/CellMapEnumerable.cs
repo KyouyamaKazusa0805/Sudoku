@@ -7,6 +7,36 @@ namespace Sudoku.Linq;
 public static class CellMapEnumerable
 {
 	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="predicate">The condition to be used.</param>
+	/// <returns>The first found cell.</returns>
+	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cell First(this scoped ref readonly CellMap @this, Func<Cell, bool> predicate)
+		=> @this.FirstOrNull(predicate) ?? throw new InvalidOperationException("No possible elements found.");
+
+	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="predicate">The condition to be used.</param>
+	/// <returns>The first found cell.</returns>
+	public static Cell? FirstOrNull(this scoped ref readonly CellMap @this, Func<Cell, bool> predicate)
+	{
+		foreach (var cell in @this.Offsets)
+		{
+			if (predicate(cell))
+			{
+				return cell;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
 	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
 	/// using the specified function to convert.
 	/// </summary>

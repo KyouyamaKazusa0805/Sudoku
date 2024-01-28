@@ -452,8 +452,12 @@
             <param name="this">The instance to be transformed.</param>
         </member>
         <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlySpan``1(System.Collections.Generic.List{``0})">
-            <inheritdoc cref="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})"/>
+            <summary>
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> view over the data in a list. Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/>
+            while the <see cref="T:System.ReadOnlySpan`1"/> is in use.
+            </summary>
             <param name="this">The instance to be transformed.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance over the <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>

@@ -628,34 +628,6 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(in this);
 
-	/// <summary>
-	/// Finds the first cell that satisfies the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly Cell First(Func<Cell, bool> predicate)
-		=> FirstOrNull(predicate) ?? throw new InvalidOperationException("No possible elements found.");
-
-	/// <summary>
-	/// Finds the first cell that satisfies the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	public readonly Cell? FirstOrNull(Func<Cell, bool> predicate)
-	{
-		foreach (var cell in Offsets)
-		{
-			if (predicate(cell))
-			{
-				return cell;
-			}
-		}
-
-		return null;
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Cell[] ToArray() => Offsets;

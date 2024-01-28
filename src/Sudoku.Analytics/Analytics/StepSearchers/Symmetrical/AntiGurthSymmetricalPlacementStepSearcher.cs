@@ -65,11 +65,9 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				continue;
 			}
 
-			var currentMappingRelationDigit = mapping[digit];
-
 			colorIndices[digit] = colorIndexCurrent;
 			digitsMaskBucket |= (Mask)(1 << digit);
-			if (currentMappingRelationDigit is { } relatedDigit && relatedDigit != digit)
+			if (mapping[digit] is { } relatedDigit && relatedDigit != digit)
 			{
 				colorIndices[relatedDigit] = colorIndexCurrent;
 				digitsMaskBucket |= (Mask)(1 << relatedDigit);
@@ -99,8 +97,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		{
 			for (var j = 0; j < i; j++)
 			{
-				var c1 = i * 9 + j;
-				var c2 = j * 9 + i;
+				var (c1, c2) = (i * 9 + j, j * 9 + i);
 				var condition = grid.GetState(c1) == CellState.Empty;
 				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{
@@ -120,8 +117,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 					continue;
 				}
 
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
+				var (d1, d2) = (grid.GetDigit(c1), grid.GetDigit(c2));
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -138,8 +134,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				}
 				else
 				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
+					var (o1, o2) = (mapping[d1], mapping[d2]);
 					if (o1.HasValue ^ o2.HasValue)
 					{
 						return null;
@@ -147,8 +142,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 					if (o1 is null && o2 is null)
 					{
-						mapping[d1] = d2;
-						mapping[d2] = d1;
+						(mapping[d1], mapping[d2]) = (d2, d1);
 						continue;
 					}
 
@@ -177,7 +171,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -236,8 +230,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		{
 			for (var j = 0; j < 8 - i; j++)
 			{
-				var c1 = i * 9 + j;
-				var c2 = (8 - j) * 9 + (8 - i);
+				var (c1, c2) = (i * 9 + j, (8 - j) * 9 + (8 - i));
 				var condition = grid.GetState(c1) == CellState.Empty;
 				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{
@@ -257,8 +250,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 					continue;
 				}
 
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
+				var (d1, d2) = (grid.GetDigit(c1), grid.GetDigit(c2));
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -275,8 +267,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				}
 				else
 				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
+					var (o1, o2) = (mapping[d1], mapping[d2]);
 					if (o1.HasValue ^ o2.HasValue)
 					{
 						return null;
@@ -284,8 +275,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 					if (o1 is null || o2 is null)
 					{
-						mapping[d1] = d2;
-						mapping[d2] = d1;
+						(mapping[d1], mapping[d2]) = (d2, d1);
 						continue;
 					}
 
@@ -314,7 +304,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -394,8 +384,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 					continue;
 				}
 
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
+				var (d1, d2) = (grid.GetDigit(c1), grid.GetDigit(c2));
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -412,8 +401,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				}
 				else
 				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
+					var (o1, o2) = (mapping[d1], mapping[d2]);
 					if (o1.HasValue ^ o2.HasValue)
 					{
 						return null;
@@ -499,8 +487,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 					continue;
 				}
 
-				var d1 = grid.GetDigit(c1);
-				var d2 = grid.GetDigit(c2);
+				var (d1, d2) = (grid.GetDigit(c1), grid.GetDigit(c2));
 				if (d1 == d2)
 				{
 					var o1 = mapping[d1];
@@ -517,8 +504,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				}
 				else
 				{
-					var o1 = mapping[d1];
-					var o2 = mapping[d2];
+					var (o1, o2) = (mapping[d1], mapping[d2]);
 					if (o1.HasValue ^ o2.HasValue)
 					{
 						return null;
@@ -601,8 +587,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				continue;
 			}
 
-			var d1 = grid.GetDigit(cell);
-			var d2 = grid.GetDigit(anotherCell);
+			var (d1, d2) = (grid.GetDigit(cell), grid.GetDigit(anotherCell));
 			if (d1 == d2)
 			{
 				var o1 = mapping[d1];
@@ -619,8 +604,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 			else
 			{
-				var o1 = mapping[d1];
-				var o2 = mapping[d2];
+				var (o1, o2) = (mapping[d1], mapping[d2]);
 				if (o1 is not null ^ o2 is not null)
 				{
 					return null;
@@ -657,7 +641,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create((ReadOnlySpan<Digit>)[.. singleDigitList]);
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 1 || (Mask)(grid.GetCandidates(40) & singleDigitsMask) == 0;
