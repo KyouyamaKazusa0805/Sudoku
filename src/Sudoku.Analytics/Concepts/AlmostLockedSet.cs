@@ -144,7 +144,7 @@ public sealed partial class AlmostLockedSet(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
-	public static AlmostLockedSet[] Collect(scoped ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostLockedSet> Collect(scoped ref readonly Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
 
@@ -209,6 +209,6 @@ public sealed partial class AlmostLockedSet(
 			}
 		}
 
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 }
