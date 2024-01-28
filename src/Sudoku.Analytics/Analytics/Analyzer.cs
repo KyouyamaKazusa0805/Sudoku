@@ -120,16 +120,15 @@ public sealed partial class Analyzer :
 			{
 				return ex switch
 				{
-					NotImplementedException or NotSupportedException
-						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
-					WrongStepException
-						=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = ex },
+					RuntimeAnalyticsException e => e switch
+					{
+						WrongStepException => result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
+						PuzzleInvalidException => result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
+					},
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					PuzzleInvalidException
-						=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid },
-					_
-						=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
+					NotImplementedException or NotSupportedException => result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
+					_ => result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}

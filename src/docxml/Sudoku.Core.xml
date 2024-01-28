@@ -1876,6 +1876,28 @@ if (student is (name: var name, age: >= 18))
             The internal <see cref="T:System.Random"/> instance to be used.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.RuntimeAnalyticsException">
+            <summary>
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            </summary>
+            <param name="grid">Indicates the grid to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+        </member>
+        <member name="M:Sudoku.Analytics.RuntimeAnalyticsException.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            </summary>
+            <param name="grid">Indicates the grid to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+        </member>
+        <member name="P:Sudoku.Analytics.RuntimeAnalyticsException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.RuntimeAnalyticsException.InvalidGrid">
+            <summary>
+            The generated property declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.

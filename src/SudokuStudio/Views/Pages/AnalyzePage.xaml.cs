@@ -1112,7 +1112,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					WrongStep: { Views: var views, Conclusions: var conclusions } wrongStep,
 					FailedReason: FailedReason.WrongStep,
-					UnhandledException: WrongStepException { CurrentInvalidGrid: var invalidGrid }
+					UnhandledException: WrongStepException { InvalidGrid: var invalidGrid }
 				}:
 				{
 					await new ContentDialog

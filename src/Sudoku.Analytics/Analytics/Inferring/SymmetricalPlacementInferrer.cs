@@ -1,3 +1,5 @@
+#pragma warning disable CS9088
+
 namespace Sudoku.Analytics.Inferring;
 
 /// <summary>
@@ -37,9 +39,7 @@ public static unsafe class SymmetricalPlacementInferrer
 		}
 
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
-#pragma warning disable CS9088
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
-#pragma warning restore CS9088
 	}
 
 	/// <summary>
@@ -57,7 +57,6 @@ public static unsafe class SymmetricalPlacementInferrer
 		out Mask selfPairedDigitsMask
 	)
 	{
-#pragma warning disable CS9088
 		foreach (var functionPointer in Checkers)
 		{
 			if (functionPointer(in grid, out symmetricType, out mappingDigits, out selfPairedDigitsMask))
@@ -65,7 +64,6 @@ public static unsafe class SymmetricalPlacementInferrer
 				return true;
 			}
 		}
-#pragma warning restore CS9088
 
 		symmetricType = SymmetricType.None;
 		mappingDigits = null;

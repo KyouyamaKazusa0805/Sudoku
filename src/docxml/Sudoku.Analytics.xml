@@ -5060,6 +5060,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
+            <param name="grid"><inheritdoc/></param>
             <param name="stepSearcherType">The type of the step searcher that throws the exception.</param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
@@ -5068,10 +5069,11 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
         </member>
-        <member name="M:Sudoku.Analytics.PuzzleInvalidException.#ctor(System.Type)">
+        <member name="M:Sudoku.Analytics.PuzzleInvalidException.#ctor(Sudoku.Concepts.Grid@,System.Type)">
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
+            <param name="grid"><inheritdoc/></param>
             <param name="stepSearcherType">The type of the step searcher that throws the exception.</param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
@@ -5079,6 +5081,9 @@ if (student is (name: var name, age: >= 18))
             <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+        </member>
+        <member name="P:Sudoku.Analytics.PuzzleInvalidException.Message">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType">
             <summary>
@@ -17871,23 +17876,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
             </summary>
-            <param name="grid">Indicates the invalid sudoku grid. This property is also stored in the property <see cref="P:System.Exception.Data"/>.</param>
+            <param name="grid"><inheritdoc/></param>
             <param name="wrongStep">Indicates the wrong step.</param>
         </member>
         <member name="M:Sudoku.Analytics.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
             </summary>
-            <param name="grid">Indicates the invalid sudoku grid. This property is also stored in the property <see cref="P:System.Exception.Data"/>.</param>
+            <param name="grid"><inheritdoc/></param>
             <param name="wrongStep">Indicates the wrong step.</param>
         </member>
         <member name="P:Sudoku.Analytics.WrongStepException.Message">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.WrongStepException.CurrentInvalidGrid">
-            <summary>
-            The generated property declaration for parameter <c>grid</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.WrongStepException.WrongStep">
             <summary>
