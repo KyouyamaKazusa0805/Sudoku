@@ -1009,8 +1009,8 @@
     <value>S-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="HybridWing" xml:space="preserve">
-    <value>Hybrid Wing</value>
+  <data name="HWing" xml:space="preserve">
+    <value>H-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedWWing" xml:space="preserve">
@@ -1029,8 +1029,8 @@
     <value>区块 S-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedHybridWing" xml:space="preserve">
-    <value>区块 Hybrid Wing</value>
+  <data name="GroupedHWing" xml:space="preserve">
+    <value>区块 H-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="UniqueRectangleType1" xml:space="preserve">
@@ -2711,5 +2711,9 @@
   </data>
   <data name="TechniqueFormat_SWingStep" xml:space="preserve">
     <value>单元格 {0} 和 {1} 和 {2} 关联</value>
+  </data>
+  <data name="StepSearcherName_HWingStepSearcher" xml:space="preserve">
+    <value>H-Wing</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

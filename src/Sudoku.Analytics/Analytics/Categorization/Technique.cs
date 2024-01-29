@@ -1555,18 +1555,16 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	HybridWing,
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	HWing,
 
 	/// <summary>
 	/// Indicates grouped hybrid wing.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedHybridWing,
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedHWing,
 	#endregion
 
 	//

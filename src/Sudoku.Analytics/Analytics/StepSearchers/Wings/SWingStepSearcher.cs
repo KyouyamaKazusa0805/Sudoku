@@ -16,7 +16,7 @@ public sealed partial class SWingStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
 	/// A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-	/// Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminiations
+	/// Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
 	/// if those two cells share a same house.
 	/// </remarks>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
@@ -91,8 +91,8 @@ public sealed partial class SWingStepSearcher : StepSearcher
 		// Iterate on two digits 'x' and 'y', to collect (grouped) strong links for two digits.
 		foreach (var digitPair in iterableDigitsMask.GetAllSets().GetSubsets(2))
 		{
-			var (x, y) = (digitPair[0], digitPair[1]);
-			foreach (var (house1, xNode1, xNode2, spannedHouses1) in strongLinks[x])
+			var (digitX, digitY) = (digitPair[0], digitPair[1]);
+			foreach (var (house1, xNode1, xNode2, spannedHouses1) in strongLinks[digitX])
 			{
 				var containsGroupedNodesForDigitX = xNode1.Count * xNode2.Count != 1;
 				if (!supportsGroupedNode && containsGroupedNodesForDigitX)
@@ -100,7 +100,7 @@ public sealed partial class SWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var (house2, yNode1, yNode2, spannedHouses2) in strongLinks[y])
+				foreach (var (house2, yNode1, yNode2, spannedHouses2) in strongLinks[digitY])
 				{
 					var containsGroupedNodesForDigitY = yNode1.Count * yNode2.Count != 1;
 					if (!supportsGroupedNode && containsGroupedNodesForDigitY
@@ -118,7 +118,7 @@ public sealed partial class SWingStepSearcher : StepSearcher
 						{
 							// Check whether both cells 'xEnd' and 'yStart' can see a same bi-value cell containing the digits 'x' and 'y'.
 							var possibleBivalueCells = ((xEnd | yStart).PeerIntersection & BivalueCells) - xStart - yEnd;
-							possibleBivalueCells &= CandidatesMap[x] & CandidatesMap[y];
+							possibleBivalueCells &= CandidatesMap[digitX] & CandidatesMap[digitY];
 							if (!possibleBivalueCells)
 							{
 								continue;
@@ -143,13 +143,13 @@ public sealed partial class SWingStepSearcher : StepSearcher
 										continue;
 									}
 
-									if ((grid.GetCandidates(xCell) >> y & 1) != 0)
+									if ((grid.GetCandidates(xCell) >> digitY & 1) != 0)
 									{
-										conclusions.Add(new(Elimination, xCell, y));
+										conclusions.Add(new(Elimination, xCell, digitY));
 									}
-									if ((grid.GetCandidates(yCell) >> x & 1) != 0)
+									if ((grid.GetCandidates(yCell) >> digitX & 1) != 0)
 									{
-										conclusions.Add(new(Elimination, yCell, x));
+										conclusions.Add(new(Elimination, yCell, digitX));
 									}
 									break;
 								}
@@ -161,9 +161,9 @@ public sealed partial class SWingStepSearcher : StepSearcher
 										continue;
 									}
 
-									if ((grid.GetCandidates(xCell) >> y & 1) != 0)
+									if ((grid.GetCandidates(xCell) >> digitY & 1) != 0)
 									{
-										conclusions.Add(new(Elimination, xCell, y));
+										conclusions.Add(new(Elimination, xCell, digitY));
 									}
 									break;
 								}
@@ -175,9 +175,9 @@ public sealed partial class SWingStepSearcher : StepSearcher
 										continue;
 									}
 
-									if ((grid.GetCandidates(yCell) >> x & 1) != 0)
+									if ((grid.GetCandidates(yCell) >> digitX & 1) != 0)
 									{
-										conclusions.Add(new(Elimination, yCell, x));
+										conclusions.Add(new(Elimination, yCell, digitX));
 									}
 									break;
 								}
@@ -203,10 +203,10 @@ public sealed partial class SWingStepSearcher : StepSearcher
 									[.. conclusions],
 									[
 										[
-											.. from cell in xStart select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + x),
-											.. from cell in xEnd select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + x),
-											.. from cell in yStart select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + y),
-											.. from cell in yEnd select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + y),
+											.. from cell in xStart select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digitX),
+											.. from cell in xEnd select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digitX),
+											.. from cell in yStart select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digitY),
+											.. from cell in yEnd select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + digitY),
 											..
 											from digit in grid.GetCandidates(midCell)
 											select new CandidateViewNode(ColorIdentifier.Normal, midCell * 9 + digit),
@@ -220,8 +220,8 @@ public sealed partial class SWingStepSearcher : StepSearcher
 									in xNode2,
 									in yNode1,
 									in yNode2,
-									x,
-									y,
+									digitX,
+									digitY,
 									midCell
 								);
 								if (context.OnlyFindOne)

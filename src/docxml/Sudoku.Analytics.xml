@@ -2125,12 +2125,12 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped local wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.HybridWing">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HWing">
             <summary>
             Indicates hybrid wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedHybridWing">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedHWing">
             <summary>
             Indicates grouped hybrid wing.
             </summary>
@@ -10235,6 +10235,46 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.HWingStepSearcher">
+            <summary>
+            Provides with an <b>H-Wing (Hybrid Wing)</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>H-Wing</item>
+            <item>Grouped H-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>
+            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
+            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
+            if those two cells share a same house.
+            </para>
+            <para>
+            We can treat <c><![CDATA[(x=y)-(y=z)]]></c> as an ALS of digits X, Y and Z, in order to reduce redundant searching -
+            this pattern will be reduce to <c><![CDATA[(ALS:x=z)-z=z]]></c>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{Sudoku.Concepts.HWingAlmostLockedSetLinkInfo}},System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
+            <summary>
+            The internal collect method.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="alsLinks">All possible ALS-related links.</param>
+            <param name="strongLinks">Indicates the strong links.</param>
+            <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
+            <returns>The found step.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -10326,7 +10366,7 @@ if (student is (name: var name, age: >= 18))
 		</para>
 	</developer-notes>
             A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminiations
+            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
             if those two cells share a same house.
             </remarks>
         </member>
@@ -17455,6 +17495,78 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.HWingStep">
+            <summary>
+            Provides with a step that is a <b>(Grouped) H-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell1">Indicates the cell 1.</param>
+            <param name="cell2">Indicates the cell 2.</param>
+            <param name="digitX">Indicates the digit X.</param>
+            <param name="digitY">Indicates the digit Y.</param>
+            <param name="digitZ">Indicates the digit Z.</param>
+            <param name="strongLink">Indicates the storng link used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.HWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>(Grouped) H-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell1">Indicates the cell 1.</param>
+            <param name="cell2">Indicates the cell 2.</param>
+            <param name="digitX">Indicates the digit X.</param>
+            <param name="digitY">Indicates the digit Y.</param>
+            <param name="digitZ">Indicates the digit Z.</param>
+            <param name="strongLink">Indicates the storng link used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.Cell1">
+            <summary>
+            The generated property declaration for parameter <c>cell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.Cell2">
+            <summary>
+            The generated property declaration for parameter <c>cell2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.DigitX">
+            <summary>
+            The generated property declaration for parameter <c>digitX</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.DigitY">
+            <summary>
+            The generated property declaration for parameter <c>digitY</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.DigitZ">
+            <summary>
+            The generated property declaration for parameter <c>digitZ</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.StrongLink">
+            <summary>
+            The generated property declaration for parameter <c>strongLink</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.IrregularWingStep">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
@@ -18919,6 +19031,31 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.CrosshatchingInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo">
+            <summary>
+            Represents data describing for an H-Wing pattern.
+            </summary>
+            <param name="CommonDigit">The common digit for those two digits.</param>
+            <param name="OtherDigitsMask">Indicates the other digits used.</param>
+            <param name="Cells">Indicates the two cells.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents data describing for an H-Wing pattern.
+            </summary>
+            <param name="CommonDigit">The common digit for those two digits.</param>
+            <param name="OtherDigitsMask">Indicates the other digits used.</param>
+            <param name="Cells">Indicates the two cells.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.CommonDigit">
+            <summary>The common digit for those two digits.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.OtherDigitsMask">
+            <summary>Indicates the other digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.Cells">
+            <summary>Indicates the two cells.</summary>
         </member>
         <member name="T:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides">
             <summary>
@@ -21025,9 +21162,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Grouped Fishy Cycle.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedHybridWing">
+        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedHWing">
             <summary>
-              Looks up a localized string similar to Grouped Hybrid Wing.
+              Looks up a localized string similar to Grouped H-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedLocalWing">
@@ -21170,9 +21307,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Death Blossom (House Blooming).
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.HybridWing">
+        <member name="P:Sudoku.Resources.AnalyticsResources.HWing">
             <summary>
-              Looks up a localized string similar to Hybrid Wing.
+              Looks up a localized string similar to H-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.IncludedExtraHouse">
@@ -22063,6 +22200,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GuardianStepSearcher">
             <summary>
               Looks up a localized string similar to Guardian.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_HWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to H-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_LawOfLeftoverStepSearcher">

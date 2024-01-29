@@ -876,8 +876,8 @@
   <data name="SWing" xml:space="preserve">
     <value>S-Wing</value>
   </data>
-  <data name="HybridWing" xml:space="preserve">
-    <value>Hybrid Wing</value>
+  <data name="HWing" xml:space="preserve">
+    <value>H-Wing</value>
   </data>
   <data name="GroupedWWing" xml:space="preserve">
     <value>Grouped W-Wing</value>
@@ -891,8 +891,8 @@
   <data name="GroupedSWing" xml:space="preserve">
     <value>Grouped S-Wing</value>
   </data>
-  <data name="GroupedHybridWing" xml:space="preserve">
-    <value>Grouped Hybrid Wing</value>
+  <data name="GroupedHWing" xml:space="preserve">
+    <value>Grouped H-Wing</value>
   </data>
   <data name="UniqueRectangleType1" xml:space="preserve">
     <value>Unique Rectangle Type 1</value>
@@ -2519,5 +2519,8 @@
   </data>
   <data name="TechniqueFormat_SWingStep" xml:space="preserve">
     <value>Both strong links {0} and {1} connect with mid cell {2}</value>
+  </data>
+  <data name="StepSearcherName_HWingStepSearcher" xml:space="preserve">
+    <value>H-Wing</value>
   </data>
 </root>

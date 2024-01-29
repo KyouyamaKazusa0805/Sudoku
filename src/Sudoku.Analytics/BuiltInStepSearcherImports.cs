@@ -19,6 +19,7 @@
 [assembly: StepSearcherImport<UniqueLoopStepSearcher>(1)]
 [assembly: StepSearcherImport<ExtendedRectangleStepSearcher>(1)]
 [assembly: StepSearcherImport<EmptyRectangleStepSearcher>(1)]
+[assembly: StepSearcherImport<HWingStepSearcher>(1)]
 [assembly: StepSearcherImport<UniqueMatrixStepSearcher>(1)]
 [assembly: StepSearcherImport<BorescoperDeadlyPatternStepSearcher>(1)]
 [assembly: StepSearcherImport<BivalueUniversalGraveStepSearcher>(1)]

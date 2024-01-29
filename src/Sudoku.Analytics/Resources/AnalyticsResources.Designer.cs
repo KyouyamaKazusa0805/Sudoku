@@ -1906,11 +1906,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Hybrid Wing.
+        ///   Looks up a localized string similar to Grouped H-Wing.
         /// </summary>
-        public static string GroupedHybridWing {
+        public static string GroupedHWing {
             get {
-                return ResourceManager.GetString("GroupedHybridWing", resourceCulture);
+                return ResourceManager.GetString("GroupedHWing", resourceCulture);
             }
         }
         
@@ -2167,11 +2167,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hybrid Wing.
+        ///   Looks up a localized string similar to H-Wing.
         /// </summary>
-        public static string HybridWing {
+        public static string HWing {
             get {
-                return ResourceManager.GetString("HybridWing", resourceCulture);
+                return ResourceManager.GetString("HWing", resourceCulture);
             }
         }
         
@@ -3774,6 +3774,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_GuardianStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_GuardianStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to H-Wing.
+        /// </summary>
+        public static string StepSearcherName_HWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_HWingStepSearcher", resourceCulture);
             }
         }
         
