@@ -461,7 +461,7 @@ public static class ArrayEnumerable
 	/// <returns>
 	/// All combinations that each sub-array choose one.
 	/// For example, if one array is <c>[[1, 2, 3], [1, 3], [1, 4, 7, 10]]</c>, the final combinations will be
-	/// <code>
+	/// <code><![CDATA[
 	/// [
 	///     [1, 1, 1], [1, 1, 4], [1, 1, 7], [1, 1, 10],
 	///     [1, 3, 1], [1, 3, 4], [1, 3, 7], [1, 3, 10],
@@ -470,7 +470,7 @@ public static class ArrayEnumerable
 	///     [3, 1, 1], [3, 1, 4], [3, 1, 7], [3, 1, 10],
 	///     [3, 3, 1], [3, 3, 4], [3, 3, 7], [3, 3, 10]
 	/// ]
-	/// </code>
+	/// ]]></code>
 	/// 24 cases.
 	/// </returns>
 	public static T[][] GetExtractedCombinations<T>(this T[][] @this)
