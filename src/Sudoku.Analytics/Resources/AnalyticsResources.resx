@@ -2523,4 +2523,7 @@
   <data name="StepSearcherName_HWingStepSearcher" xml:space="preserve">
     <value>H-Wing</value>
   </data>
+  <data name="TechniqueFormat_HWingStep" xml:space="preserve">
+    <value>Strong link {0} connects with two cells {1}</value>
+  </data>
 </root>

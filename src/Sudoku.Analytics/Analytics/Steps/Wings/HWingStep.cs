@@ -38,10 +38,11 @@ public sealed partial class HWingStep(
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
-	///// <inheritdoc/>
-	//public override FormatInterpolation[] FormatInterpolationParts
-	//	=> [
-	//		new(EnglishLanguage, []),
-	//		new(ChineseLanguage, [])
-	//	];
+	/// <inheritdoc/>
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [StrongLinkStr, CellsStr]), new(ChineseLanguage, [StrongLinkStr, CellsStr])];
+
+	private string StrongLinkStr => $"{Options.Converter.CellConverter(StrongLink)}({DigitX + 1})";
+
+	private string CellsStr => Options.Converter.CellConverter([Cell1, Cell2]);
 }

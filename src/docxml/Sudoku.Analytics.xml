@@ -17537,6 +17537,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.Cell1">
             <summary>
             The generated property declaration for parameter <c>cell1</c>.
@@ -23245,6 +23248,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HouseDeathBlossomStep">
             <summary>
               Looks up a localized string similar to House: {0}, Branches: {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HWingStep">
+            <summary>
+              Looks up a localized string similar to Strong link {0} connects with two cells {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_JuniorExocetStep">

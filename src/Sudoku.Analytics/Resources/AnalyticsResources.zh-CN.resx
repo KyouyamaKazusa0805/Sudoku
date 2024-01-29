@@ -2716,4 +2716,7 @@
     <value>H-Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="TechniqueFormat_HWingStep" xml:space="preserve">
+    <value>共轭对 {0} 和两个单元格 {1} 连接</value>
+  </data>
 </root>

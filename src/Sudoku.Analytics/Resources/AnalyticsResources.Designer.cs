@@ -5659,6 +5659,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strong link {0} connects with two cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_HWingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Base cells {BaseCellsStr}, target cells {TargetCellsStr}, digits {DigitsStr} =&gt; {ElimStr}.
         /// </summary>
         public static string TechniqueFormat_JuniorExocetStep {
