@@ -2120,14 +2120,14 @@ if (student is (name: var name, age: >= 18))
             Indicates local wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.HybridWing">
-            <summary>
-            Indicates hybrid wing.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLocalWing">
             <summary>
             Indicates grouped local wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.HybridWing">
+            <summary>
+            Indicates hybrid wing.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedHybridWing">

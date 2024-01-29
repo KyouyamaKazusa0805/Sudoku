@@ -1349,9 +1349,9 @@ public enum Technique
 	#endregion
 
 	//
-	// Wings
+	// Regular Wings
 	//
-	#region Wings
+	#region Regular Wings
 	/// <summary>
 	/// Indicates XY-Wing.
 	/// </summary>
@@ -1475,7 +1475,12 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteRstuvwxyzWing,
+	#endregion
 
+	//
+	// Irregular Wings
+	//
+	#region Irregular Wings
 	/// <summary>
 	/// Indicates W-Wing.
 	/// </summary>
@@ -1535,29 +1540,29 @@ public enum Technique
 	/// Indicates local wing.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
 	LocalWing,
+
+	/// <summary>
+	/// Indicates grouped local wing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Wing)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	GroupedLocalWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.
 	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	HybridWing,
 
 	/// <summary>
-	/// Indicates grouped local wing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	GroupedLocalWing,
-
-	/// <summary>
 	/// Indicates grouped hybrid wing.
 	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.Wing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
