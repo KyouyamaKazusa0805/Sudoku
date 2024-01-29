@@ -493,7 +493,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		if (EnableAnimationFeedback)
 		{
 			HouseCompleted += static (sender, e) => sender.OnHouseCompletedAsync(e);
-			Clicked += static (sender, e) => { if (sender.CurrentPaneMode == PaneMode.Normal) { sender.ValueClicked(e.Cell); } };
+			Clicked += static (sender, e) => sender.ValueClicked(e.MouseButton, e.Cell);
 		}
 	}
 
@@ -518,9 +518,20 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Update scaling for <see cref="SudokuPaneCell"/> controls where the corresponding cell is value.
 	/// </summary>
+	/// <param name="button">The clicked button.</param>
 	/// <param name="cell">The cell to be checked.</param>
-	private void ValueClicked(Cell cell)
+	private void ValueClicked(MouseButton button, Cell cell)
 	{
+		if (CurrentPaneMode != PaneMode.Normal)
+		{
+			return;
+		}
+
+		if (button != MouseButton.Left)
+		{
+			return;
+		}
+
 		if (_puzzle.GetDigit(cell) is not (var digit and not -1))
 		{
 			return;

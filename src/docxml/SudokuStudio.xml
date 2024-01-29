@@ -10804,10 +10804,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="e">The event arguments.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPane.ValueClicked(System.Int32)">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPane.ValueClicked(SudokuStudio.Interaction.MouseButton,System.Int32)">
             <summary>
             Update scaling for <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> controls where the corresponding cell is value.
             </summary>
+            <param name="button">The clicked button.</param>
             <param name="cell">The cell to be checked.</param>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPane.ResetScale">
