@@ -39,9 +39,14 @@ public enum TechniqueGroup
 	ComplexFish,
 
 	/// <summary>
-	/// Indicates the wing technique.
+	/// Indicates the regular wing technique.
 	/// </summary>
-	Wing,
+	RegularWing,
+
+	/// <summary>
+	/// Indicates the irregular wing technique.
+	/// </summary>
+	IrregularWing,
 
 	/// <summary>
 	/// Indicates the wing extension (extended subset principle) technique.

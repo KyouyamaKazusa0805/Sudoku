@@ -6424,6 +6424,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Irregular Wing.
+        /// </summary>
+        public static string TechniqueGroup_IrregularWing {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_IrregularWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked Candidates.
         /// </summary>
         public static string TechniqueGroup_LockedCandidates {
@@ -6474,6 +6483,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_RankTheory {
             get {
                 return ResourceManager.GetString("TechniqueGroup_RankTheory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular Wing.
+        /// </summary>
+        public static string TechniqueGroup_RegularWing {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_RegularWing", resourceCulture);
             }
         }
         
@@ -6591,15 +6609,6 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_UniqueRectanglePlus {
             get {
                 return ResourceManager.GetString("TechniqueGroup_UniqueRectanglePlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wing.
-        /// </summary>
-        public static string TechniqueGroup_Wing {
-            get {
-                return ResourceManager.GetString("TechniqueGroup_Wing", resourceCulture);
             }
         }
         

@@ -2295,8 +2295,11 @@
   <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
     <value>Unique Rectangle (+)</value>
   </data>
-  <data name="TechniqueGroup_Wing" xml:space="preserve">
-    <value>Wing</value>
+  <data name="TechniqueGroup_RegularWing" xml:space="preserve">
+    <value>Regular Wing</value>
+  </data>
+  <data name="TechniqueGroup_IrregularWing" xml:space="preserve">
+    <value>Irregular Wing</value>
   </data>
   <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
     <value>Exocets</value>

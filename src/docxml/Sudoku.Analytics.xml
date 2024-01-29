@@ -3411,9 +3411,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the complex fish technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Wing">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.RegularWing">
             <summary>
-            Indicates the wing technique.
+            Indicates the regular wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.IrregularWing">
+            <summary>
+            Indicates the irregular wing technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
@@ -23530,6 +23535,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_IrregularWing">
+            <summary>
+              Looks up a localized string similar to Irregular Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_LockedCandidates">
             <summary>
               Looks up a localized string similar to Locked Candidates.
@@ -23558,6 +23568,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_RankTheory">
             <summary>
               Looks up a localized string similar to Rank Theory.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_RegularWing">
+            <summary>
+              Looks up a localized string similar to Regular Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ReverseBivalueUniversalGrave">
@@ -23623,11 +23638,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_UniqueRectanglePlus">
             <summary>
               Looks up a localized string similar to Unique Rectangle (+).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_Wing">
-            <summary>
-              Looks up a localized string similar to Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_XyzRing">

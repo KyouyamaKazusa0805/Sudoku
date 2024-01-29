@@ -1359,7 +1359,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0800")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.2)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	XyWing,
 
@@ -1370,7 +1370,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0801")]
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	XyzWing,
 
@@ -1380,7 +1380,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[HodokuTechniquePrefix("0802")]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	WxyzWing,
 
@@ -1388,7 +1388,7 @@ public enum Technique
 	/// Indicates VWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	VwxyzWing,
@@ -1397,7 +1397,7 @@ public enum Technique
 	/// Indicates UVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	UvwxyzWing,
@@ -1406,7 +1406,7 @@ public enum Technique
 	/// Indicates TUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	TuvwxyzWing,
@@ -1415,7 +1415,7 @@ public enum Technique
 	/// Indicates STUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	StuvwxyzWing,
@@ -1424,7 +1424,7 @@ public enum Technique
 	/// Indicates RSTUVWXYZ-Wing.
 	/// </summary>
 	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	RstuvwxyzWing,
@@ -1433,21 +1433,21 @@ public enum Technique
 	/// Indicates incomplete WXYZ-Wing.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	IncompleteWxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete VWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteVwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete UVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteUvwxyzWing,
@@ -1455,7 +1455,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates incomplete TUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteTuvwxyzWing,
@@ -1463,7 +1463,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates incomplete STUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteStuvwxyzWing,
@@ -1471,7 +1471,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates incomplete RSTUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	IncompleteRstuvwxyzWing,
@@ -1488,7 +1488,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0803")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	WWing,
 
@@ -1496,7 +1496,7 @@ public enum Technique
 	/// Indicates Multi-Branch W-Wing.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	MultiBranchWWing,
 
@@ -1504,49 +1504,49 @@ public enum Technique
 	/// Indicates grouped W-Wing.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedWWing,
 
 	/// <summary>
 	/// Indicates M-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	MWing,
 
 	/// <summary>
 	/// Indicates grouped M-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedMWing,
 
 	/// <summary>
 	/// Indicates S-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	SWing,
 
 	/// <summary>
 	/// Indicates grouped S-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedSWing,
 
 	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	LocalWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	GroupedLocalWing,
 
@@ -1554,7 +1554,7 @@ public enum Technique
 	/// Indicates hybrid wing.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	HybridWing,
@@ -1563,7 +1563,7 @@ public enum Technique
 	/// Indicates grouped hybrid wing.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
-	[TechniqueGroup(TechniqueGroup.Wing)]
+	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	GroupedHybridWing,
