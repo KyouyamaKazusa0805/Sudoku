@@ -18,6 +18,12 @@ public sealed partial class MultiBranchWWingStep(
 	[RecordParameter] House house
 ) : IrregularWingStep(conclusions, views, options)
 {
+	/// <inheritdoc/>
+	public override bool IsGrouped => false;
+
+	/// <inheritdoc/>
+	public override bool IsSymmetricPattern => false;
+
 	/// <summary>
 	/// Indicates the number of branches of the technique.
 	/// </summary>

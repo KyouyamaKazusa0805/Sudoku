@@ -1001,8 +1001,8 @@
     <value>M-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="LocalWing" xml:space="preserve">
-    <value>Local Wing</value>
+  <data name="LWing" xml:space="preserve">
+    <value>L-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="SWing" xml:space="preserve">
@@ -1021,8 +1021,8 @@
     <value>区块 M-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedLocalWing" xml:space="preserve">
-    <value>区块 Local Wing</value>
+  <data name="GroupedLWing" xml:space="preserve">
+    <value>区块 L-Wing</value>
     <comment>Technique Name</comment>
   </data>
   <data name="GroupedSWing" xml:space="preserve">
@@ -2718,5 +2718,9 @@
   </data>
   <data name="TechniqueFormat_HWingStep" xml:space="preserve">
     <value>共轭对 {0} 和两个单元格 {1} 连接</value>
+  </data>
+  <data name="StepSearcherName_LWingStepSearcher" xml:space="preserve">
+    <value>L-Wing</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

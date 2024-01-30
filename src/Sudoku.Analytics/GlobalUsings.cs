@@ -59,6 +59,7 @@ global using static Sudoku.Rendering.RenderingMode;
 global using static Sudoku.SolutionFields;
 global using static Sudoku.Text.Languages;
 global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGroup<Sudoku.Concepts.CellMap, int /*Cell*/, int /*House*/>;
+global using IrregularWingStrongLinkEntry = System.Collections.Generic.Dictionary<(int /*House*/ House, int /*Digit*/ Digit), System.Collections.Generic.List<Sudoku.Concepts.StrongLinkInfo>>;
 global using unsafe SubsetModuleSearcherFunc = delegate*<ref Sudoku.Analytics.AnalysisContext, ref readonly Sudoku.Concepts.Grid, int, bool, Sudoku.Analytics.Step?>;
 global using unsafe SymmetricalPlacementCheckerFunc = delegate*<ref readonly Sudoku.Concepts.Grid, out Sudoku.Concepts.SymmetricType, out System.ReadOnlySpan<int /*Digit*/?>, out short /*Mask*/, bool>;
 global using unsafe CollectorPredicateFunc = delegate*<ref readonly Sudoku.Concepts.CellMap, bool>;

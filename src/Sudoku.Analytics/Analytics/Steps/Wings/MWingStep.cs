@@ -22,16 +22,14 @@ public sealed partial class MWingStep(
 	[RecordParameter] Mask digitsMask
 ) : IrregularWingStep(conclusions, views, options)
 {
-	/// <summary>
-	/// Indicates whether the pattern is grouped.
-	/// </summary>
-	public bool IsGrouped => Node1.Count != 1 || Node2.Count != 1;
+	/// <inheritdoc/>
+	public override bool IsSymmetricPattern => false;
+
+	/// <inheritdoc/>
+	public override bool IsGrouped => Node1.Count != 1 || Node2.Count != 1;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

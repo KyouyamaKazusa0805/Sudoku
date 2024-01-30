@@ -22,21 +22,19 @@ public sealed partial class HWingStep(
 	[RecordParameter] Digit digitY,
 	[RecordParameter] Digit digitZ,
 	[RecordParameter] scoped ref readonly CellMap strongLink
-) : WingStep(conclusions, views, options)
+) : IrregularWingStep(conclusions, views, options)
 {
-	/// <summary>
-	/// Indicates whether the pattern is grouped.
-	/// </summary>
-	public bool IsGrouped => StrongLink.Count > 2;
+	/// <inheritdoc/>
+	public override bool IsSymmetricPattern => false;
+
+	/// <inheritdoc/>
+	public override bool IsGrouped => StrongLink.Count > 2;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.7M;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedHWing : Technique.HWing;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

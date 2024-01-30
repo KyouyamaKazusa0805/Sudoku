@@ -26,16 +26,14 @@ public sealed partial class SWingStep(
 	[RecordParameter] Cell midCell
 ) : IrregularWingStep(conclusions, views, options)
 {
-	/// <summary>
-	/// Indicates whether the pattern is grouped.
-	/// </summary>
-	public bool IsGrouped => XNode1.Count != 1 || XNode2.Count != 1 || YNode1.Count != 1 || YNode2.Count != 1;
+	/// <inheritdoc/>
+	public override bool IsSymmetricPattern => true;
+
+	/// <inheritdoc/>
+	public override bool IsGrouped => XNode1.Count != 1 || XNode2.Count != 1 || YNode1.Count != 1 || YNode2.Count != 1;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.7M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

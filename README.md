@@ -87,6 +87,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * M-Wing (Non-grouped, Grouped)
       * S-Wing (Non-grouped, Grouped)
       * H-Wing (Non-grouped, Grouped)
+      * L-Wing (Non-grouped, Grouped)
     * XYZ-Loops (Non-nice, Nice)
   * Uniqueness
     * UR (Unique Rectangle)

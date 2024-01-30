@@ -18,19 +18,17 @@ public sealed partial class WWingStep(
 	[RecordParameter] scoped ref readonly CellMap bridge
 ) : IrregularWingStep(conclusions, views, options)
 {
-	/// <summary>
-	/// Indicates whether the pattern is grouped.
-	/// </summary>
-	public bool IsGrouped => Bridge.Count >= 3;
+	/// <inheritdoc/>
+	public override bool IsSymmetricPattern => true;
+
+	/// <inheritdoc/>
+	public override bool IsGrouped => Bridge.Count >= 3;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.4M;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedWWing : Technique.WWing;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.IsGrouped, IsGrouped ? .1M : 0)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

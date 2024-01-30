@@ -870,8 +870,8 @@
   <data name="MWing" xml:space="preserve">
     <value>M-Wing</value>
   </data>
-  <data name="LocalWing" xml:space="preserve">
-    <value>Local Wing</value>
+  <data name="LWing" xml:space="preserve">
+    <value>L-Wing</value>
   </data>
   <data name="SWing" xml:space="preserve">
     <value>S-Wing</value>
@@ -885,8 +885,8 @@
   <data name="GroupedMWing" xml:space="preserve">
     <value>Grouped M-Wing</value>
   </data>
-  <data name="GroupedLocalWing" xml:space="preserve">
-    <value>Grouped Local Wing</value>
+  <data name="GroupedLWing" xml:space="preserve">
+    <value>Grouped L-Wing</value>
   </data>
   <data name="GroupedSWing" xml:space="preserve">
     <value>Grouped S-Wing</value>
@@ -2525,5 +2525,8 @@
   </data>
   <data name="TechniqueFormat_HWingStep" xml:space="preserve">
     <value>Strong link {0} connects with two cells {1}</value>
+  </data>
+  <data name="StepSearcherName_LWingStepSearcher" xml:space="preserve">
+    <value>L-Wing</value>
   </data>
 </root>

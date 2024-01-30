@@ -37,7 +37,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 
 		// Search for all possible ALSes appeared in the grid, and arrange them by grouping them by houses.
 		var alsLinks = new Dictionary<House, List<HWingAlmostLockedSetLinkInfo>>(27);
-		var strongLinks = new Dictionary<(House House, Digit Digit), List<StrongLinkInfo>>(27);
+		var strongLinks = new IrregularWingStrongLinkEntry(243);
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for strong links first.
@@ -117,7 +117,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
 		Dictionary<House, List<HWingAlmostLockedSetLinkInfo>> alsLinks,
-		Dictionary<(House House, Digit Digit), List<StrongLinkInfo>> strongLinks,
+		IrregularWingStrongLinkEntry strongLinks,
 		bool supportsGroupedNode
 	)
 	{

@@ -1915,11 +1915,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped Local Wing.
+        ///   Looks up a localized string similar to Grouped L-Wing.
         /// </summary>
-        public static string GroupedLocalWing {
+        public static string GroupedLWing {
             get {
-                return ResourceManager.GetString("GroupedLocalWing", resourceCulture);
+                return ResourceManager.GetString("GroupedLWing", resourceCulture);
             }
         }
         
@@ -2392,15 +2392,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Local Wing.
-        /// </summary>
-        public static string LocalWing {
-            get {
-                return ResourceManager.GetString("LocalWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Locked Hidden Pair.
         /// </summary>
         public static string LockedHiddenPair {
@@ -2460,6 +2451,15 @@ namespace Sudoku.Resources {
         public static string LockedTriple {
             get {
                 return ResourceManager.GetString("LockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L-Wing.
+        /// </summary>
+        public static string LWing {
+            get {
+                return ResourceManager.GetString("LWing", resourceCulture);
             }
         }
         
@@ -3810,6 +3810,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_LockedSubsetStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_LockedSubsetStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L-Wing.
+        /// </summary>
+        public static string StepSearcherName_LWingStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_LWingStepSearcher", resourceCulture);
             }
         }
         

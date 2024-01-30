@@ -1539,16 +1539,18 @@ public enum Technique
 	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
-	LocalWing,
+	LWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
-	GroupedLocalWing,
+	GroupedLWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.

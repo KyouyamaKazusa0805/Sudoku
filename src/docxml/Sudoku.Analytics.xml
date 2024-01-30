@@ -2115,12 +2115,12 @@ if (student is (name: var name, age: >= 18))
             Indicates grouped S-Wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.LocalWing">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.LWing">
             <summary>
             Indicates local wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLocalWing">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedLWing">
             <summary>
             Indicates grouped local wing.
             </summary>
@@ -10279,6 +10279,44 @@ if (student is (name: var name, age: >= 18))
             <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
             <returns>The found step.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.LWingStepSearcher">
+            <summary>
+            Provides with an <b>L-Wing (Local Wing)</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>L-Wing</item>
+            <item>Grouped L-Wing</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.LWingStepSearcher.IterableHousePairOffsets">
+            <summary>
+            Indicates the iterable house pairs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, symmetric.
+            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
+            if those two cells share a same house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.LWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
+            <summary>
+            The internal collect method.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="strongLinks">Indicates the strong links.</param>
+            <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
+            <returns>The found step.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
             <summary>
             Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
@@ -17527,18 +17565,16 @@ if (student is (name: var name, age: >= 18))
             <param name="digitZ">Indicates the digit Z.</param>
             <param name="strongLink">Indicates the storng link used.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HWingStep.IsSymmetricPattern">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.IsGrouped">
-            <summary>
-            Indicates whether the pattern is grouped.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.FormatInterpolationParts">
@@ -17590,6 +17626,96 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.IsSymmetricPattern">
+            <summary>
+            Indicates whether the pattern is symmetric.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.LWingStep">
+            <summary>
+            Provides with a step that is a <b>(Grouped) L-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="start">Indicates the start node.</param>
+            <param name="end">Indicates the end node.</param>
+            <param name="digitX">Indicates the digit X.</param>
+            <param name="digitY">Indicates the digit Y.</param>
+            <param name="digitZ">Indicates the digit Z.</param>
+            <param name="midWeakCell1">Indicates the mid cell 1.</param>
+            <param name="midWeakCell2">Indicates the mid cell 2.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.LWingStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>(Grouped) L-Wing</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="start">Indicates the start node.</param>
+            <param name="end">Indicates the end node.</param>
+            <param name="digitX">Indicates the digit X.</param>
+            <param name="digitY">Indicates the digit Y.</param>
+            <param name="digitZ">Indicates the digit Z.</param>
+            <param name="midWeakCell1">Indicates the mid cell 1.</param>
+            <param name="midWeakCell2">Indicates the mid cell 2.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.IsSymmetricPattern">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.Start">
+            <summary>
+            The generated property declaration for parameter <c>start</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.End">
+            <summary>
+            The generated property declaration for parameter <c>end</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.DigitX">
+            <summary>
+            The generated property declaration for parameter <c>digitX</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.DigitY">
+            <summary>
+            The generated property declaration for parameter <c>digitY</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.DigitZ">
+            <summary>
+            The generated property declaration for parameter <c>digitZ</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.MidWeakCell1">
+            <summary>
+            The generated property declaration for parameter <c>midWeakCell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.LWingStep.MidWeakCell2">
+            <summary>
+            The generated property declaration for parameter <c>midWeakCell2</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.MultiBranchWWingStep">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
@@ -17611,6 +17737,12 @@ if (student is (name: var name, age: >= 18))
             <param name="leaves">The leaves of the pattern.</param>
             <param name="root">The root cells that corresponds to each leaf.</param>
             <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.IsSymmetricPattern">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Size">
             <summary>
@@ -17670,15 +17802,13 @@ if (student is (name: var name, age: >= 18))
             <param name="weakXyCell">Indicates the weak XY cell.</param>
             <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MWingStep.IsGrouped">
-            <summary>
-            Indicates whether the pattern is grouped.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MWingStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.IsSymmetricPattern">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MWingStep.FormatInterpolationParts">
@@ -17841,15 +17971,13 @@ if (student is (name: var name, age: >= 18))
             <param name="DigitY">Indicates the digit Y.</param>
             <param name="midCell">Indicates the mid cell.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SWingStep.IsGrouped">
-            <summary>
-            Indicates whether the pattern is grouped.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SWingStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.SWingStep.IsSymmetricPattern">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.SWingStep.IsGrouped">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SWingStep.FormatInterpolationParts">
@@ -17931,18 +18059,16 @@ if (student is (name: var name, age: >= 18))
             <param name="endCell">Indicates the end cell.</param>
             <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.IsSymmetricPattern">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.IsGrouped">
-            <summary>
-            Indicates whether the pattern is grouped.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.FormatInterpolationParts">
@@ -21174,9 +21300,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Grouped H-Wing.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedLocalWing">
+        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedLWing">
             <summary>
-              Looks up a localized string similar to Grouped Local Wing.
+              Looks up a localized string similar to Grouped L-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedMWing">
@@ -21439,11 +21565,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Leviathan.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.LocalWing">
-            <summary>
-              Looks up a localized string similar to Local Wing.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.LockedHiddenPair">
             <summary>
               Looks up a localized string similar to Locked Hidden Pair.
@@ -21477,6 +21598,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.LockedTriple">
             <summary>
               Looks up a localized string similar to Locked Triple.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.LWing">
+            <summary>
+              Looks up a localized string similar to L-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.MultiBranchWWing">
@@ -22227,6 +22353,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_LockedSubsetStepSearcher">
             <summary>
               Looks up a localized string similar to Locked Subsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_LWingStepSearcher">
+            <summary>
+              Looks up a localized string similar to L-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultiBranchWWingStepSearcher">
