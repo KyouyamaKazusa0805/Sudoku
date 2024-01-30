@@ -65,7 +65,7 @@ public sealed class DancingLinksSolver : ISolver
 		}
 
 		Debug.Assert(_root is not null);
-		if (_root.Right == _root)
+		if (ReferenceEquals(_root.Right, _root))
 		{
 			// All columns were removed!
 			_solutionCount++;
@@ -76,10 +76,10 @@ public sealed class DancingLinksSolver : ISolver
 			var c = ChooseNextColumn();
 			Cover(c);
 
-			for (var r = c.Down; r != c; r = r.Down)
+			for (var r = c.Down; !ReferenceEquals(r, c); r = r.Down)
 			{
 				_answerNodesStack.Push(r);
-				for (var j = r.Right; j != r; j = j.Right)
+				for (var j = r.Right; !ReferenceEquals(j, r); j = j.Right)
 				{
 					Cover(j.Column!);
 				}
@@ -88,7 +88,7 @@ public sealed class DancingLinksSolver : ISolver
 				r = _answerNodesStack.Pop();
 				c = r.Column!;
 
-				for (var j = r.Left; j != r; j = j.Left)
+				for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
 				{
 					Uncover(j.Column!);
 				}
@@ -106,9 +106,9 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		column.Right.Left = column.Left;
 		column.Left.Right = column.Right;
-		for (var i = column.Down; i != column; i = i.Down)
+		for (var i = column.Down; !ReferenceEquals(i, column); i = i.Down)
 		{
-			for (var j = i.Right; j != i; j = j.Right)
+			for (var j = i.Right; !ReferenceEquals(j, i); j = j.Right)
 			{
 				j.Down.Up = j.Up;
 				j.Up.Down = j.Down;
@@ -123,9 +123,9 @@ public sealed class DancingLinksSolver : ISolver
 	/// <param name="column">The column.</param>
 	private void Uncover(DancingLinkNode column)
 	{
-		for (var i = column.Up; i != column; i = i.Up)
+		for (var i = column.Up; !ReferenceEquals(i, column); i = i.Up)
 		{
-			for (var j = i.Left; j != i; j = j.Left)
+			for (var j = i.Left; !ReferenceEquals(j, i); j = j.Left)
 			{
 				j.Column!.Size++;
 				j.Down.Up = j;
@@ -146,10 +146,8 @@ public sealed class DancingLinksSolver : ISolver
 	/// </exception>
 	private void RecordSolution(Stack<DancingLinkNode> answer, out Grid result)
 	{
-		var idList = new List<int>(from k in answer select k.Id);
-		idList.Sort();
-		var gridArray = (Digit[])[.. from id in idList select id % 9 + 1];
-		var grid = Grid.Create(gridArray, GridCreatingOption.MinusOne);
+		var idList = (from k in answer orderby k.Id select k.Id).ToList();
+		var grid = Grid.Create(from id in idList select id % 9 + 1, GridCreatingOption.MinusOne);
 		result = grid.IsValid ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
 	}
 
@@ -165,7 +163,7 @@ public sealed class DancingLinksSolver : ISolver
 		var size = int.MaxValue;
 		var nextColumn = new ColumnNode(-1);
 		var j = _root.Right.Column;
-		while (j != _root)
+		while (!ReferenceEquals(j, _root))
 		{
 			if (j!.Size < size)
 			{
@@ -234,7 +232,8 @@ file sealed class DancingLink(ColumnNode root)
 	/// Links the row.
 	/// </summary>
 	/// <param name="d">The matrix row instance.</param>
-	private void LinkRow(ref MatrixRow d)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void LinkRow(scoped ref MatrixRow d)
 	{
 		d.Cell.Right = d.Column;
 		d.Cell.Left = d.Block;
