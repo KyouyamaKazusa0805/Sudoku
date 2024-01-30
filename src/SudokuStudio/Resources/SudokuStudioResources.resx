@@ -1527,7 +1527,7 @@ In additional, some sudoku panels in some pages may not be related to this optio
     <value>Endo-fins</value>
   </data>
   <data name="SettingsPage_ExcelNotation" xml:space="preserve">
-    <value>Excel Notation</value>
+    <value>Excel</value>
   </data>
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>Exo-fins</value>
@@ -1611,7 +1611,7 @@ In additional, some sudoku panels in some pages may not be related to this optio
     <value>Naked Single</value>
   </data>
   <data name="SettingsPage_K9Notation" xml:space="preserve">
-    <value>K9 Notation</value>
+    <value>K9</value>
   </data>
   <data name="SettingsPage_Language" xml:space="preserve">
     <value>Language</value>
@@ -1746,7 +1746,7 @@ In additional, some sudoku panels in some pages may not be related to this optio
     <value>Solid rounded rectangle</value>
   </data>
   <data name="SettingsPage_RxCyNotation" xml:space="preserve">
-    <value>RxCy Notation</value>
+    <value>RxCy</value>
   </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>Same level only</value>

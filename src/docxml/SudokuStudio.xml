@@ -8153,7 +8153,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ExcelNotation">
             <summary>
-              Looks up a localized string similar to Excel Notation.
+              Looks up a localized string similar to Excel.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ExofinColor">
@@ -8293,7 +8293,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_K9Notation">
             <summary>
-              Looks up a localized string similar to K9 Notation.
+              Looks up a localized string similar to K9.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Language">
@@ -8518,7 +8518,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_RxCyNotation">
             <summary>
-              Looks up a localized string similar to RxCy Notation.
+              Looks up a localized string similar to RxCy.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SameLevel">

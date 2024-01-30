@@ -1530,7 +1530,7 @@
     <value>内鱼鳍</value>
   </data>
   <data name="SettingsPage_ExcelNotation" xml:space="preserve">
-    <value>Excel 坐标模式</value>
+    <value>Excel 坐标</value>
   </data>
   <data name="SettingsPage_ExofinColor" xml:space="preserve">
     <value>外鱼鳍</value>
@@ -1614,7 +1614,7 @@
     <value>唯一余数</value>
   </data>
   <data name="SettingsPage_K9Notation" xml:space="preserve">
-    <value>K9 坐标模式</value>
+    <value>K9</value>
   </data>
   <data name="SettingsPage_Language" xml:space="preserve">
     <value>语言</value>
@@ -1641,7 +1641,7 @@
     <value>亮色主题</value>
   </data>
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
-    <value>字面书写</value>
+    <value>字面显示</value>
   </data>
   <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
     <value>RxCy 记号 - 数字放到单元格左边</value>
@@ -1749,7 +1749,7 @@
     <value>实心圆角矩形</value>
   </data>
   <data name="SettingsPage_RxCyNotation" xml:space="preserve">
-    <value>RxCy 坐标模式</value>
+    <value>RxCy</value>
   </data>
   <data name="SettingsPage_SameLevel" xml:space="preserve">
     <value>只搜索同一技巧级别的技巧</value>

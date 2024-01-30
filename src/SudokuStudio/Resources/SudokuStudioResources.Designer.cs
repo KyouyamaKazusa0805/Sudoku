@@ -4545,7 +4545,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Excel Notation.
+        ///   Looks up a localized string similar to Excel.
         /// </summary>
         internal static string SettingsPage_ExcelNotation {
             get {
@@ -4797,7 +4797,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to K9 Notation.
+        ///   Looks up a localized string similar to K9.
         /// </summary>
         internal static string SettingsPage_K9Notation {
             get {
@@ -5202,7 +5202,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RxCy Notation.
+        ///   Looks up a localized string similar to RxCy.
         /// </summary>
         internal static string SettingsPage_RxCyNotation {
             get {
