@@ -237,7 +237,7 @@ internal static class SubsetModule
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private static CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
+	private static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
 		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
@@ -256,6 +256,6 @@ internal static class SubsetModule
 			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
 		}
 
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 }
