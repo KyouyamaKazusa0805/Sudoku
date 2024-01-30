@@ -11,48 +11,55 @@ public static class GroupedNode
 	/// <param name="cells">The cells to be checked.</param>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="house">The house.</param>
-	/// <param name="spannedHouses">The spanned houses.</param>
+	/// <param name="spannedHousesList">The spanned houses.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static bool IsGroupedStrongLink(scoped ref readonly CellMap cells, Digit digit, House house, out HouseMask spannedHouses)
+	public static bool IsGroupedStrongLink(scoped ref readonly CellMap cells, Digit digit, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
 	{
+		// The link must be one of the cases in:
+		//
+		//   1) If non-grouped, two cell maps must contain 2 cells.
+		//   2) If grouped, two cell maps must be the case either:
+		//     a. The house type is block - the number of spanned rows or columns must be 2.
+		//     b. The house type is row or column - the number of spanned blocks must be 2.
+		//
+		// Otherwise, invalid.
 		switch (house.ToHouseType())
 		{
 			case HouseType.Block:
 			{
 				// Check row.
-				var rowsSpanned = cells.RowMask << 9;
-				if (PopCount((uint)rowsSpanned) == 2)
+				var list = new List<HouseMask>(2);
+				if (cells.RowMask << 9 is var rowsSpanned && PopCount((uint)rowsSpanned) == 2)
 				{
-					spannedHouses = rowsSpanned;
-					return true;
+					list.Add(rowsSpanned);
 				}
 
 				// Check column.
-				var columnSpanned = cells.ColumnMask << 18;
-				if (PopCount((uint)columnSpanned) == 2)
+				if (cells.ColumnMask << 18 is var columnSpanned && PopCount((uint)columnSpanned) == 2)
 				{
-					spannedHouses = columnSpanned;
+					list.Add(columnSpanned);
+				}
+
+				if (list.Count != 0)
+				{
+					spannedHousesList = list.AsReadOnlySpan();
 					return true;
 				}
 
-				break;
+				goto default;
+			}
+			case HouseType.Row or HouseType.Column when cells.BlockMask is var blocksSpanned && PopCount((uint)blocksSpanned) == 2:
+			{
+				// Check block.
+				spannedHousesList = (HouseMask[])[blocksSpanned];
+				return true;
 			}
 			default:
 			{
-				// Check block.
-				var blocksSpanned = cells.BlockMask;
-				if (PopCount((uint)blocksSpanned) == 2)
-				{
-					spannedHouses = blocksSpanned;
-					return true;
-				}
-
-				break;
+				spannedHousesList = default;
+				return false;
 			}
 		}
-
-		spannedHouses = default;
-		return false;
 	}
 }

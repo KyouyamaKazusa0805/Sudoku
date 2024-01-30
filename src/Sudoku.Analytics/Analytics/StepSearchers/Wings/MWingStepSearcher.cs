@@ -63,136 +63,135 @@ public sealed partial class MWingStepSearcher : StepSearcher
 				{
 					foreach (var d2 in (Mask)(digitsMask2 & (Mask)~(1 << d1)))
 					{
-						// Check for validity of (grouped) strong links. The link must be one of the cases in:
-						//
-						//   1) If non-grouped, two cell maps must contain 2 cells.
-						//   2) If grouped, two cell maps must be the case either:
-						//     a. The house type is block - the number of spanned rows or columns must be 2.
-						//     b. The house type is row or column - the number of spanned blocks must be 2.
-						//
-						// Otherwise, invalid.
+						// Check for validity of (grouped) strong links.
 						var (cells1, cells2) = (HousesMap[h1] & CandidatesMap[d1], HousesMap[h2] & CandidatesMap[d2]);
-						if (!GroupedNode.IsGroupedStrongLink(in cells1, d1, h1, out var spannedHouses1))
+						if (!GroupedNode.IsGroupedStrongLink(in cells1, d1, h1, out var spannedHousesList1))
 						{
 							continue;
 						}
-						if (!GroupedNode.IsGroupedStrongLink(in cells2, d2, h2, out var spannedHouses2))
+						if (!GroupedNode.IsGroupedStrongLink(in cells2, d2, h2, out var spannedHousesList2))
 						{
 							continue;
 						}
 
-						// Check for cases, and determine whether 2 (grouped) nodes use 1 cell.
-						foreach (var spannedHouse1 in spannedHouses1)
+						foreach (var spannedHouses1 in spannedHousesList1)
 						{
-							var p = cells1 & HousesMap[spannedHouse1];
-							if (!supportsGroupedNodes && p.Count != 1)
+							foreach (var spannedHouses2 in spannedHousesList2)
 							{
-								// Grouped nodes will not be supported in non-grouped searching mode.
-								continue;
-							}
-
-							if (cells1 - p is not [var theOtherCell1])
-							{
-								// We cannot make both two nodes grouped.
-								continue;
-							}
-
-							foreach (var spannedHouse2 in spannedHouses2)
-							{
-								var q = cells2 & HousesMap[spannedHouse2];
-								if (!supportsGroupedNodes && q.Count != 1)
+								// Check for cases, and determine whether 2 (grouped) nodes use 1 cell.
+								foreach (var spannedHouse1 in spannedHouses1)
 								{
-									// Grouped nodes will not be supported in non-grouped searching mode.
-									continue;
-								}
-
-								if (cells2 - q is not [var theOtherCell2])
-								{
-									// We cannot make both nodes grouped.
-									continue;
-								}
-
-								if (supportsGroupedNodes && p.Count * q.Count == 1)
-								{
-									// In grouped mode, we don't handle for non-grouped steps.
-									continue;
-								}
-
-								if (theOtherCell1 != theOtherCell2)
-								{
-									// The XYa cell must be same.
-									continue;
-								}
-
-								var weakXyCell = theOtherCell1;
-
-								// Find for the real XY cell (strong XY cell) that only contains candidates X and Y.
-								var possibleBivalueCells = CandidatesMap[d1] & CandidatesMap[d2] & BivalueCells;
-								foreach (var (node, theOtherNode) in ((p, q), (q, p)))
-								{
-									foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
+									var p = cells1 & HousesMap[spannedHouse1];
+									if (!supportsGroupedNodes && p.Count != 1)
 									{
-										foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
+										// Grouped nodes will not be supported in non-grouped searching mode.
+										continue;
+									}
+
+									if (cells1 - p is not [var theOtherCell1])
+									{
+										// We cannot make both two nodes grouped.
+										continue;
+									}
+
+									foreach (var spannedHouse2 in spannedHouses2)
+									{
+										var q = cells2 & HousesMap[spannedHouse2];
+										if (!supportsGroupedNodes && q.Count != 1)
 										{
-											foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
+											// Grouped nodes will not be supported in non-grouped searching mode.
+											continue;
+										}
+
+										if (cells2 - q is not [var theOtherCell2])
+										{
+											// We cannot make both nodes grouped.
+											continue;
+										}
+
+										if (supportsGroupedNodes && p.Count * q.Count == 1)
+										{
+											// In grouped mode, we don't handle for non-grouped steps.
+											continue;
+										}
+
+										if (theOtherCell1 != theOtherCell2)
+										{
+											// The XYa cell must be same.
+											continue;
+										}
+
+										var weakXyCell = theOtherCell1;
+
+										// Find for the real XY cell (strong XY cell) that only contains candidates X and Y.
+										var possibleBivalueCells = CandidatesMap[d1] & CandidatesMap[d2] & BivalueCells;
+										foreach (var (node, theOtherNode) in ((p, q), (q, p)))
+										{
+											foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 											{
-												if (strongXyCell == weakXyCell)
+												foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
 												{
-													// Invalid.
-													continue;
-												}
+													foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
+													{
+														if (strongXyCell == weakXyCell)
+														{
+															// Invalid.
+															continue;
+														}
 
-												if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
-													|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
-												{
-													// Rescue check: We should guarantee the case that both two are real strong links,
-													// which means, the target houses for those strong links produced should
-													// only contains the cells that hold the nodes and 'weakXyCell'.
-													continue;
-												}
+														if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
+															|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
+														{
+															// Rescue check: We should guarantee the case that both two are real strong links,
+															// which means, the target houses for those strong links produced should
+															// only contains the cells that hold the nodes and 'weakXyCell'.
+															continue;
+														}
 
-												var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
-												if (!elimMap)
-												{
-													// No conclusions will be found.
-													continue;
-												}
+														var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
+														if (!elimMap)
+														{
+															// No conclusions will be found.
+															continue;
+														}
 
-												var step = new MWingStep(
-													[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
-													[
-														[
-															..
-															from cell in node
-															let cand = cell * 9 + elimDigit
-															select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
-															..
-															from cell in theOtherNode
-															let cand = cell * 9 + theOtherDigit
-															select new CandidateViewNode(ColorIdentifier.Normal, cand),
-															new CellViewNode(ColorIdentifier.Normal, strongXyCell),
-															new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
-															new CandidateViewNode(ColorIdentifier.Auxiliary1, strongXyCell * 9 + elimDigit),
-															new CandidateViewNode(ColorIdentifier.Normal, strongXyCell * 9 + theOtherDigit),
-															new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d1),
-															new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d2),
-															new HouseViewNode(ColorIdentifier.Normal, h1),
-															.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
-														]
-													],
-													context.PredefinedOptions,
-													in node,
-													in theOtherNode,
-													strongXyCell,
-													weakXyCell,
-													(Mask)(1 << d1 | 1 << d2)
-												);
-												if (context.OnlyFindOne)
-												{
-													return step;
-												}
+														var step = new MWingStep(
+															[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+															[
+																[
+																	..
+																	from cell in node
+																	let cand = cell * 9 + elimDigit
+																	select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
+																	..
+																	from cell in theOtherNode
+																	let cand = cell * 9 + theOtherDigit
+																	select new CandidateViewNode(ColorIdentifier.Normal, cand),
+																	new CellViewNode(ColorIdentifier.Normal, strongXyCell),
+																	new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
+																	new CandidateViewNode(ColorIdentifier.Auxiliary1, strongXyCell * 9 + elimDigit),
+																	new CandidateViewNode(ColorIdentifier.Normal, strongXyCell * 9 + theOtherDigit),
+																	new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d1),
+																	new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d2),
+																	new HouseViewNode(ColorIdentifier.Normal, h1),
+																	.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
+																]
+															],
+															context.PredefinedOptions,
+															in node,
+															in theOtherNode,
+															strongXyCell,
+															weakXyCell,
+															(Mask)(1 << d1 | 1 << d2)
+														);
+														if (context.OnlyFindOne)
+														{
+															return step;
+														}
 
-												context.Accumulator.Add(step);
+														context.Accumulator.Add(step);
+													}
+												}
 											}
 										}
 									}

@@ -33,15 +33,19 @@ public sealed partial class SWingStepSearcher : StepSearcher
 		{
 			for (var digit = 0; digit < 9; digit++)
 			{
-				var cells = HousesMap[house] & CandidatesMap[digit];
-				if (GroupedNode.IsGroupedStrongLink(in cells, digit, house, out var spannedHouses))
+				if ((HousesMap[house] & CandidatesMap[digit]) is var cells
+					&& GroupedNode.IsGroupedStrongLink(in cells, digit, house, out var spannedHousesList))
 				{
-					var house1 = TrailingZeroCount(spannedHouses);
-					var house2 = spannedHouses.GetNextSet(house1);
-					var target = new StrongLinkInfo(house, cells & HousesMap[house1], cells & HousesMap[house2], spannedHouses);
-					if (!strongLinks.TryAdd(digit, [target]))
+					foreach (var spannedHouses in spannedHousesList)
 					{
-						strongLinks[digit].Add(target);
+						if (TrailingZeroCount(spannedHouses) is var firstHouse
+							&& spannedHouses.GetNextSet(firstHouse) is var secondHouse
+							&& (cells & HousesMap[firstHouse], cells & HousesMap[secondHouse]) is var (p, q)
+							&& new StrongLinkInfo(house, in p, in q, spannedHouses) is var link
+							&& !strongLinks.TryAdd(digit, [link]))
+						{
+							strongLinks[digit].Add(link);
+						}
 					}
 				}
 			}

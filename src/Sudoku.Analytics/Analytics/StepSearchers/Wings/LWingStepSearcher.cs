@@ -37,14 +37,19 @@ public sealed partial class LWingStepSearcher : StepSearcher
 			for (var digit = 0; digit < 9; digit++)
 			{
 				if ((HousesMap[house] & CandidatesMap[digit]) is var cells
-					&& GroupedNode.IsGroupedStrongLink(in cells, digit, house, out var spannedHouses)
-					&& TrailingZeroCount(spannedHouses) is var firstHouse
-					&& spannedHouses.GetNextSet(firstHouse) is var secondHouse
-					&& (cells & HousesMap[firstHouse], cells & HousesMap[secondHouse]) is var (node1, node2)
-					&& new StrongLinkInfo(house, in node1, in node2, spannedHouses) is var link
-					&& !strongLinks.TryAdd((house, digit), [link]))
+					&& GroupedNode.IsGroupedStrongLink(in cells, digit, house, out var spannedHousesList))
 				{
-					strongLinks[(house, digit)].Add(link);
+					foreach (var spannedHouses in spannedHousesList)
+					{
+						if (TrailingZeroCount(spannedHouses) is var firstHouse
+							&& spannedHouses.GetNextSet(firstHouse) is var secondHouse
+							&& (cells & HousesMap[firstHouse], cells & HousesMap[secondHouse]) is var (node1, node2)
+							&& new StrongLinkInfo(house, in node1, in node2, spannedHouses) is var link
+							&& !strongLinks.TryAdd((house, digit), [link]))
+						{
+							strongLinks[(house, digit)].Add(link);
+						}
+					}
 				}
 			}
 		}
