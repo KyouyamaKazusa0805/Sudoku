@@ -9989,19 +9989,23 @@ if (student is (name: var name, age: >= 18))
             Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
             <list type="bullet">
             <item>
-            Direct techniques:
+            Common techniques:
             <list type="bullet">
             <item>Full House (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/> is <see langword="true"/>)</item>
             <item>Last Digit (If the property <see cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/> is <see langword="true"/>)</item>
-            <item>Hidden Single</item>
             <item>Naked Single</item>
+            </list>
+            </item>
+            <item>
+            Direct techniques:
+            <list type="bullet">
+            <item>Crosshatching</item>
             </list>
             </item>
             <item>
             Indirect techniques:
             <list type="bullet">
-            <item>Single</item>
-            <item>Crosshatching</item>
+            <item>Hidden Single</item>
             </list>
             </item>
             </list>
