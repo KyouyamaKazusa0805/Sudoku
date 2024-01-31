@@ -94,7 +94,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		var accumulator = EquatableStep.Distinct(tempList).ToList();
-		scoped var siameses = AllowSiamese ? Siamese.GetSiamese(accumulator, in grid) : [];
+		scoped var siameses = AllowSiamese ? FishStep.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;

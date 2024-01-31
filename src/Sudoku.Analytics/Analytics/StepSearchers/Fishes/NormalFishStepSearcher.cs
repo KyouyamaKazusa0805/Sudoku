@@ -74,7 +74,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
 		scoped ref readonly var grid = ref context.Grid;
-		var accumulator = new List<NormalFishStep>();
+		var accumulator = new List<FishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (ValuesMap[digit].Count > 5)
@@ -127,7 +127,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		scoped var siameses = AllowSiamese ? Siamese.GetSiamese(accumulator, in grid) : [];
+		scoped var siameses = AllowSiamese ? FishStep.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
@@ -163,7 +163,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// </param>
 	/// <returns>The first found step.</returns>
 	private unsafe void Collect(
-		List<NormalFishStep> accumulator,
+		List<FishStep> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
 		int size,
@@ -258,7 +258,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					}
 
 					accumulator.Add(
-						new(
+						new NormalFishStep(
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 							[
 								[
