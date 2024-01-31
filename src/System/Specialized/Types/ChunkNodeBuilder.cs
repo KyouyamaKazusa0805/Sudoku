@@ -1,19 +1,19 @@
 namespace System;
 
 /// <summary>
-/// Internal builder type for creating <see cref="TrunkNode{T}"/>.
+/// Internal builder type for creating <see cref="ChunkNode{T}"/>.
 /// </summary>
-/// <seealso cref="TrunkNode{T}"/>
+/// <seealso cref="ChunkNode{T}"/>
 [EditorBrowsable(EditorBrowsableState.Never)]
 [DebuggerStepThrough]
-public static class TrunkNodeBuilder
+public static class ChunkNodeBuilder
 {
 	/// <summary>
 	/// The create method.
 	/// </summary>
 	/// <typeparam name="T">The type of the value.</typeparam>
 	/// <param name="values">The values.</param>
-	/// <returns>A <see cref="TrunkNode{T}"/> instance.</returns>
+	/// <returns>A <see cref="ChunkNode{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TrunkNode<T> Create<T>(scoped ReadOnlySpan<T> values) => values.ToArray();
+	public static ChunkNode<T> Create<T>(scoped ReadOnlySpan<T> values) => values.ToArray();
 }

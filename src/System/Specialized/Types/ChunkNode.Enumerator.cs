@@ -1,12 +1,12 @@
 namespace System;
 
-partial struct TrunkNode<T>
+partial struct ChunkNode<T>
 {
 	/// <summary>
 	/// Indicates the enumerator of current type.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	public ref struct Enumerator(scoped ref readonly TrunkNode<T> value)
+	public ref struct Enumerator(scoped ref readonly ChunkNode<T> value)
 	{
 		/// <summary>
 		/// Indicates the values.
@@ -14,8 +14,8 @@ partial struct TrunkNode<T>
 		private readonly unsafe ReadOnlySpan<T> _values =
 			value.Type switch
 			{
-				TrunkNodeType.Value => (T[])[value.Value!],
-				TrunkNodeType.Array => (T[])value.ValueRef!,
+				ChunkNodeType.Value => (T[])[value.Value!],
+				ChunkNodeType.Array => (T[])value.ValueRef!,
 				_ => ((List<T>)value.ValueRef!).AsReadOnlySpan()
 			};
 

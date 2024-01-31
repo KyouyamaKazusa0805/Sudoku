@@ -1,10 +1,10 @@
-﻿namespace System;
+namespace System;
 
 /// <summary>
-/// Represents a type of a <see cref="TrunkNode{T}"/>.
+/// Represents a type of a <see cref="ChunkNode{T}"/>.
 /// </summary>
-/// <seealso cref="TrunkNode{T}"/>
-public enum TrunkNodeType
+/// <seealso cref="ChunkNode{T}"/>
+public enum ChunkNodeType
 {
 	/// <summary>
 	/// Indicates the type is a value.
