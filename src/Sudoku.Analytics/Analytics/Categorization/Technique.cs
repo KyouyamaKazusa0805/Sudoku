@@ -24,8 +24,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Full_House.html")]
 	[HodokuTechniquePrefix("0000")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.Single)]
 	[SudokuExplainerDifficultyRating(1.0)]
-	[SudokuExplainerAliasedNames("Single")]
+	[SudokuExplainerNames("Single")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	FullHouse,
@@ -56,6 +57,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.HiddenSingle)]
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -67,6 +69,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Single.html")]
 	[HodokuTechniquePrefix("0002")]
 	[HodokuDifficultyRating(14, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.HiddenSingle)]
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -78,6 +81,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Single.html")]
 	[HodokuTechniquePrefix("0003")]
 	[HodokuDifficultyRating(4, HodokuDifficultyLevel.Easy)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.NakedSingle)]
 	[SudokuExplainerDifficultyRating(2.3)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
@@ -127,6 +131,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0100")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 1")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.Pointing)]
 	[SudokuExplainerDifficultyRating(2.6)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
@@ -139,6 +144,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0101")]
 	[HodokuDifficultyRating(50, HodokuDifficultyLevel.Medium)]
 	[HodokuAliasedNames("Locked Candidates Type 2")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.Claiming)]
 	[SudokuExplainerDifficultyRating(2.8)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
@@ -245,6 +251,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
 	[HodokuTechniquePrefix("0200")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.NakedPair)]
 	[SudokuExplainerDifficultyRating(3.0)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
@@ -265,6 +272,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0110-1")]
 	[HodokuDifficultyRating(40, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DirectHiddenPair)]
 	[SudokuExplainerDifficultyRating(2.0)]
 	[SudokuExplainerAliasNames("Direct Hidden Pair")]
 #endif
@@ -278,6 +286,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Pair.html")]
 	[HodokuTechniquePrefix("0210")]
 	[HodokuDifficultyRating(70, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.HiddenPair)]
 	[SudokuExplainerDifficultyRating(3.4)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
@@ -297,8 +306,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
 	[HodokuTechniquePrefix("0201")]
 	[HodokuDifficultyRating(80, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.NakedTriplet)]
 	[SudokuExplainerDifficultyRating(3.6)]
-	[SudokuExplainerAliasedNames("Naked Triplet")]
+	[SudokuExplainerNames("Naked Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedTriple,
@@ -318,6 +328,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0111-1")]
 	[HodokuDifficultyRating(60, HodokuDifficultyLevel.Medium)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DirectHiddenTriplet)]
 	[SudokuExplainerDifficultyRating(2.5)]
 	[SudokuExplainerAliasNames("Direct Hidden Triplet")]
 #endif
@@ -331,8 +342,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Triple.html")]
 	[HodokuTechniquePrefix("0211")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Medium)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.HiddenTriplet)]
 	[SudokuExplainerDifficultyRating(4.0)]
-	[SudokuExplainerAliasedNames("Hidden Triplet")]
+	[SudokuExplainerNames("Hidden Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	HiddenTriple,
@@ -351,8 +363,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
 	[HodokuTechniquePrefix("0202")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.NakedQuad)]
 	[SudokuExplainerDifficultyRating(5.0)]
-	[SudokuExplainerAliasedNames("Naked Quad")]
+	[SudokuExplainerNames("Naked Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	NakedQuadruple,
@@ -371,8 +384,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Hidden_Quad.html")]
 	[HodokuTechniquePrefix("0212")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.HiddenQuad)]
 	[SudokuExplainerDifficultyRating(5.4)]
-	[SudokuExplainerAliasedNames("Hidden Quad")]
+	[SudokuExplainerNames("Hidden Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	HiddenQuadruple,
@@ -389,6 +403,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[HodokuTechniquePrefix("0300")]
 	[HodokuDifficultyRating(140, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.XWing)]
 	[SudokuExplainerDifficultyRating(3.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -546,6 +561,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Swordfish.html")]
 	[HodokuTechniquePrefix("0301")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.Swordfish)]
 	[SudokuExplainerDifficultyRating(3.8)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -715,6 +731,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Jellyfish.html")]
 	[HodokuTechniquePrefix("0302")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.Jellyfish)]
 	[SudokuExplainerDifficultyRating(5.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1358,6 +1375,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/XY-Wing.html")]
 	[HodokuTechniquePrefix("0800")]
 	[HodokuDifficultyRating(160, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.XyWing)]
 	[SudokuExplainerDifficultyRating(4.2)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1369,6 +1387,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/XYZ-Wing.html")]
 	[HodokuTechniquePrefix("0801")]
 	[HodokuDifficultyRating(180, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.XyzWing)]
 	[SudokuExplainerDifficultyRating(4.4)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1379,6 +1398,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[HodokuTechniquePrefix("0802")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.XyzWing, IsAdvancedDefined = true)]
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -1487,6 +1507,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[HodokuTechniquePrefix("0803")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.WWing, IsAdvancedDefined = true)]
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2206,6 +2227,7 @@ public enum Technique
 	/// Indicates unique loop type 1.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2215,6 +2237,7 @@ public enum Technique
 	/// Indicates unique loop type 2.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2225,6 +2248,7 @@ public enum Technique
 	/// Indicates unique loop type 3.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2235,6 +2259,7 @@ public enum Technique
 	/// Indicates unique loop type 4.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
@@ -2299,6 +2324,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0610")]
 	[HodokuDifficultyRating(100, HodokuDifficultyLevel.Hard)]
 	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[SudokuExplainerDifficultyRating(5.6)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2309,6 +2335,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2319,6 +2346,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[SudokuExplainerDifficultyRating(5.8, 6.1)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2329,6 +2357,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2339,6 +2368,8 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.BivalueUniversalGravePlusN, IsAdvancedDefined = true)]
+	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG + n")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2738,6 +2769,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0400")]
 	[HodokuDifficultyRating(130, HodokuDifficultyLevel.Hard)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.TurbotFish)]
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
@@ -2752,6 +2784,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0401")]
 	[HodokuDifficultyRating(150, HodokuDifficultyLevel.Hard)]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.TurbotFish)]
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
@@ -2765,6 +2798,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
 	[HodokuTechniquePrefix("0403")]
 	[HodokuDifficultyRating(120, HodokuDifficultyLevel.Hard)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.TurbotFish)]
 	[SudokuExplainerDifficultyRating(6.6)]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
@@ -2844,7 +2878,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Fishy_Cycle.html")]
 	[HodokuTechniquePrefix("0704")]
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
-	[SudokuExplainerAliasedNames("Bidirectional X-Cycle")]
+	[SudokuExplainerNames("Bidirectional X-Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -2903,7 +2937,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0707")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.6)]
-	[SudokuExplainerAliasedNames("Forcing Chain")]
+	[SudokuExplainerNames("Forcing Chain")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("DNL")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
@@ -2917,7 +2951,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0706")]
 	[HodokuDifficultyRating(280, HodokuDifficultyLevel.Unfair)]
 	[SudokuExplainerDifficultyRating(7.0, 7.3)]
-	[SudokuExplainerAliasedNames("Bidirectional Cycle")]
+	[SudokuExplainerNames("Bidirectional Cycle")]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("CNL")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3031,6 +3065,7 @@ public enum Technique
 	/// Indicates nishio forcing chains.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Nishio.html")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.NishioForcingChain)]
 	[SudokuExplainerDifficultyRating(7.6, 8.1)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3041,6 +3076,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.MultipleForcingChain)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3051,6 +3087,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("1301")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.MultipleForcingChain)]
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3062,6 +3099,7 @@ public enum Technique
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DynamicForcingChain)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
@@ -3072,6 +3110,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("1303")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DynamicForcingChain)]
 	[SudokuExplainerDifficultyRating(8.6, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3083,6 +3122,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DynamicForcingChain)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3094,6 +3134,7 @@ public enum Technique
 	/// </summary>
 	[HodokuTechniquePrefix("1304")]
 	[HodokuDifficultyRating(500, HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.DynamicForcingChain)]
 	[SudokuExplainerDifficultyRating(8.8, 9.4)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
@@ -3134,6 +3175,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3882")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("APE")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.AlignedPairExclusion)]
 	[SudokuExplainerDifficultyRating(6.2)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3146,6 +3188,7 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Aligned_Triple_Exclusion.html")]
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[Abbreviation("ATE")]
+	[SudokuExplainerTechnique(SudokuExplainerTechnique.AlignedTripletExclusion)]
 	[SudokuExplainerDifficultyRating(7.5)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
@@ -3780,7 +3823,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Trial_%26_Error.html")]
 	[HodokuDifficultyRating(10000, HodokuDifficultyLevel.Extreme)]
-	[SudokuExplainerAliasedNames("Try & Error")]
+	[SudokuExplainerNames("Try & Error")]
 	[TechniqueGroup(TechniqueGroup.BruteForce)]
 	[Abbreviation("BF")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]

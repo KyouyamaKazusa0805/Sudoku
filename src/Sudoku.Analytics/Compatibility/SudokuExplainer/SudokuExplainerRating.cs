@@ -6,4 +6,4 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="Original">The original difficulty rating of the technique.</param>
 /// <param name="Advanced">The advanced difficulty rating of the technique.</param>
-public readonly record struct SudokuExplainderRating(SudokuExplainerRatingRange? Original, SudokuExplainerRatingRange? Advanced);
+public readonly record struct SudokuExplainerRating(SudokuExplainerRatingRange? Original, SudokuExplainerRatingRange? Advanced);

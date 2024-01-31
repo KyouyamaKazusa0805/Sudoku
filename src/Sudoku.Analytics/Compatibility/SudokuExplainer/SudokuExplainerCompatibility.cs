@@ -22,16 +22,38 @@ public static class SudokuExplainerCompatibility
 	public static string[]? GetAliases(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
-				? fieldInfo.GetCustomAttribute<SudokuExplainerAliasedNamesAttribute>() is { Aliases: var aliases } ? aliases : null
+				? fieldInfo.GetCustomAttribute<SudokuExplainerNamesAttribute>() is { Names: var names } ? names : null
 				: null
 			: throw new ArgumentOutOfRangeException(nameof(@this));
+
+	/// <summary>
+	/// Try to get the corresponding technique defined by Sudoku Explainer.
+	/// </summary>
+	/// <param name="this">The technique.</param>
+	/// <param name="isAdvanced">Indicates whether the technique is not defined by the program with original version.</param>
+	/// <returns>
+	/// The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static SudokuExplainerTechnique? GetCorrespondingTechnique(Technique @this, out bool isAdvanced)
+	{
+		var found = typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<SudokuExplainerTechniqueAttribute>();
+		if (found is not { Technique: var flag, IsAdvancedDefined: var isAdvancedDefinition })
+		{
+			isAdvanced = false;
+			return null;
+		}
+
+		isAdvanced = isAdvancedDefinition;
+		return flag;
+	}
 
 	/// <summary>
 	/// Try to get difficulty rating of the specified technique.
 	/// </summary>
 	/// <param name="this">The technique.</param>
 	/// <returns>
-	/// <para>A <see cref="SudokuExplainderRating"/> value defined by the project Sudoku Explainer.</para>
+	/// <para>A <see cref="SudokuExplainerRating"/> value defined by the project Sudoku Explainer.</para>
 	/// <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
 	/// </returns>
 	/// <exception cref="ArgumentOutOfRangeException">
@@ -40,7 +62,7 @@ public static class SudokuExplainerCompatibility
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuExplainderRating? GetDifficultyRatingRange(Technique @this)
+	public static SudokuExplainerRating? GetDifficultyRatingRange(Technique @this)
 		=> @this == Technique.None || !Enum.IsDefined(@this)
 			? throw new ArgumentOutOfRangeException(nameof(@this))
 			: (SudokuExplainerDifficultyRatingAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>() switch

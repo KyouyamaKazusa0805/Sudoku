@@ -18468,47 +18468,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>prefix</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange})">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.Original">
-            <summary>The original difficulty rating of the technique.</summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating.Advanced">
-            <summary>The advanced difficulty rating of the technique.</summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute">
-            <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
-            </summary>
-            <param name="aliases">Indicates the aliased names of the technique.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute.#ctor(System.String[])">
-            <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
-            </summary>
-            <param name="aliases">Indicates the aliased names of the technique.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAliasedNamesAttribute.Aliases">
-            <summary>
-            The generated property declaration for parameter <c>aliases</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
@@ -18530,13 +18489,23 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetCorrespondingTechnique(Sudoku.Analytics.Categorization.Technique,System.Boolean@)">
+            <summary>
+            Try to get the corresponding technique defined by Sudoku Explainer.
+            </summary>
+            <param name="this">The technique.</param>
+            <param name="isAdvanced">Indicates whether the technique is not defined by the program with original version.</param>
+            <returns>
+            The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
+            </returns>
+        </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get difficulty rating of the specified technique.
             </summary>
             <param name="this">The technique.</param>
             <returns>
-            <para>A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainderRating"/> value defined by the project Sudoku Explainer.</para>
+            <para>A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating"/> value defined by the project Sudoku Explainer.</para>
             <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
@@ -18641,6 +18610,47 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute">
+            <summary>
+            Defines an attribute that is applied to a field of technique,
+            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
+            </summary>
+            <param name="names">Indicates the aliased names of the technique.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute.#ctor(System.String[])">
+            <summary>
+            Defines an attribute that is applied to a field of technique,
+            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
+            </summary>
+            <param name="names">Indicates the aliased names of the technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute.Names">
+            <summary>
+            The generated property declaration for parameter <c>names</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange})">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.Original">
+            <summary>The original difficulty rating of the technique.</summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.Advanced">
+            <summary>The advanced difficulty rating of the technique.</summary>
+        </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange">
             <summary>
             Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
@@ -18675,6 +18685,203 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Max">
             <summary>
             The generated property declaration for parameter <c>max</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique">
+            <summary>
+            Represents an enumeration that describes for a technique usage designed by Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Single">
+            <summary>
+            Represents single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenSingle">
+            <summary>
+            Represents hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectPointing">
+            <summary>
+            Represents direct pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenPair">
+            <summary>
+            Represents direct hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedSingle">
+            <summary>
+            Represents naked single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenTriplet">
+            <summary>
+            Represents direct hidden triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Pointing">
+            <summary>
+            Represents pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Claiming">
+            <summary>
+            Represents claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedPair">
+            <summary>
+            Represents naked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XWing">
+            <summary>
+            Represents X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenPair">
+            <summary>
+            Represents hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedTriplet">
+            <summary>
+            Represent naked triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Swordfish">
+            <summary>
+            Represent swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenTriplet">
+            <summary>
+            Represents hidden triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.TurbotFish">
+            <summary>
+            Represent turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XyWing">
+            <summary>
+            Represents XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XyzWing">
+            <summary>
+            Represents XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.WWing">
+            <summary>
+            Represents W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.WXYZWing">
+            <summary>
+            Represents WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.UniqueLoop">
+            <summary>
+            Represents unique loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedQuad">
+            <summary>
+            Represents naked quad.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Jellyfish">
+            <summary>
+            Represents jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenQuad">
+            <summary>
+            Represents hidden quad.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGrave">
+            <summary>
+            Represents bi-value universal grave.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGravePlusN">
+            <summary>
+            Represents bi-value universal grave + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlignedPairExclusion">
+            <summary>
+            Represents aligned pair exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.ForcingChainCycle">
+            <summary>
+            Represents forcing chains / cycles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlignedTripletExclusion">
+            <summary>
+            Represents aligned triplet exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NishioForcingChain">
+            <summary>
+            Represents nishio forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.MultipleForcingChain">
+            <summary>
+            Represents multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChain">
+            <summary>
+            Represents dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChainPlus">
+            <summary>
+            Represents dynamic forcing chains (+).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NestedForcingChain">
+            <summary>
+            Represents nested forcing chains.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute">
+            <summary>
+            Represents an attribute type that describes the corresponding technique usage designed by Sudoku Explainer.
+            </summary>
+            <param name="technique">Indicates the technique.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.#ctor(Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique)">
+            <summary>
+            Represents an attribute type that describes the corresponding technique usage designed by Sudoku Explainer.
+            </summary>
+            <param name="technique">Indicates the technique.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.IsAdvancedDefined">
+            <summary>
+            Indicates whether the specified technique is defined by advanced version of Sudoku Explainer,
+            which is not original program, or other implementations compatible with original Sudoku Explainer's
+            rating system.
+            </summary>
+            <remarks>
+            The default value is <see langword="false"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.Technique">
+            <summary>
+            The generated property declaration for parameter <c>technique</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.AlmostLockedSet">

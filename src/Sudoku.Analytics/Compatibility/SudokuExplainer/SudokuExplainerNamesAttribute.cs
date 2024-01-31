@@ -4,6 +4,6 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// Defines an attribute that is applied to a field of technique,
 /// indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
 /// </summary>
-/// <param name="aliases">Indicates the aliased names of the technique.</param>
+/// <param name="names">Indicates the aliased names of the technique.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class SudokuExplainerAliasedNamesAttribute([RecordParameter] params string[] aliases) : Attribute;
+public sealed partial class SudokuExplainerNamesAttribute([RecordParameter] params string[] names) : Attribute;
