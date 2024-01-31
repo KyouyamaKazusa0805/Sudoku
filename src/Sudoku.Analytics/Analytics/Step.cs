@@ -9,7 +9,7 @@ namespace Sudoku.Analytics;
 /// Indicates an optional instance that provides with extra information for a step searcher.
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
-[Equals]
+[Equals(OtherModifiers = "sealed")]
 [EqualityOperators]
 public abstract partial class Step(
 	[RecordParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
