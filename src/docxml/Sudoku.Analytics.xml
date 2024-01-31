@@ -18787,6 +18787,16 @@ if (student is (name: var name, age: >= 18))
             Represents WXYZ-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.UniqueRectangle">
+            <summary>
+            Represents unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AvoidableRectangle">
+            <summary>
+            Represents avoidable rectangle.
+            </summary>
+        </member>
         <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.UniqueLoop">
             <summary>
             Represents unique loop.
@@ -18820,6 +18830,16 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlignedPairExclusion">
             <summary>
             Represents aligned pair exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlsXz">
+            <summary>
+            Represents ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlsXyWing">
+            <summary>
+            Represents ALS-XY-Wing.
             </summary>
         </member>
         <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.ForcingChainCycle">

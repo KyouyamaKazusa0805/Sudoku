@@ -101,6 +101,16 @@ public enum SudokuExplainerTechnique
 	WXYZWing,
 
 	/// <summary>
+	/// Represents unique rectangle.
+	/// </summary>
+	UniqueRectangle,
+
+	/// <summary>
+	/// Represents avoidable rectangle.
+	/// </summary>
+	AvoidableRectangle,
+
+	/// <summary>
 	/// Represents unique loop.
 	/// </summary>
 	UniqueLoop,
@@ -134,6 +144,16 @@ public enum SudokuExplainerTechnique
 	/// Represents aligned pair exclusion.
 	/// </summary>
 	AlignedPairExclusion,
+
+	/// <summary>
+	/// Represents ALS-XZ.
+	/// </summary>
+	AlsXz,
+
+	/// <summary>
+	/// Represents ALS-XY-Wing.
+	/// </summary>
+	AlsXyWing,
 
 	/// <summary>
 	/// Represents forcing chains / cycles.
