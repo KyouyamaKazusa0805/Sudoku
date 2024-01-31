@@ -41,6 +41,10 @@ public static class CommonMethods
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool True<T>(T value) where T : ILogicalOperators<T> => !!value;
 
+	/// <inheritdoc cref="True{T}(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool True<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !!value;
+
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
 	/// </summary>
@@ -52,6 +56,10 @@ public static class CommonMethods
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool False<T>(T value) where T : ILogicalOperators<T> => !value;
+
+	/// <inheritdoc cref="False{T}(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool False<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !value;
 
 	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method

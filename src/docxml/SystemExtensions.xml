@@ -176,6 +176,9 @@
             ]]></code>
             </remarks>
         </member>
+        <member name="M:System.CommonMethods.True``1(``0@)">
+            <inheritdoc cref="M:System.CommonMethods.True``1(``0)"/>
+        </member>
         <member name="M:System.CommonMethods.False``1(``0)">
             <summary>
             Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
@@ -186,6 +189,9 @@
             <remarks>
             <inheritdoc cref="M:System.CommonMethods.True``1(``0)" path="/remarks"/>
             </remarks>
+        </member>
+        <member name="M:System.CommonMethods.False``1(``0@)">
+            <inheritdoc cref="M:System.CommonMethods.False``1(``0)"/>
         </member>
         <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
             <summary>

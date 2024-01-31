@@ -72,7 +72,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
-		if (pomElims.All(@false))
+		if (pomElims.All(CommonMethods.False))
 		{
 			return null;
 		}
@@ -113,9 +113,6 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		return null;
-
-
-		static bool @false<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !value;
 	}
 
 	/// <summary>
