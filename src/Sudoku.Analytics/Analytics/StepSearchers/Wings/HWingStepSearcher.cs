@@ -36,7 +36,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 
 		// Search for all possible ALSes appeared in the grid, and arrange them by grouping them by houses.
-		var alsLinks = new Dictionary<House, List<HWingAlmostLockedSetLinkInfo>>(27);
+		var alsLinks = new Dictionary<House, List<AlmostLockedSetLinkInfo>>(27);
 		var strongLinks = new IrregularWingStrongLinkEntry(243);
 		for (var house = 0; house < 27; house++)
 		{
@@ -80,7 +80,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 				}
 
 				var commonDigit = Log2((uint)commonCandidate);
-				var strongLink = new HWingAlmostLockedSetLinkInfo(
+				var strongLink = new AlmostLockedSetLinkInfo(
 					commonDigit,
 					(Mask)((Mask)(grid.GetCandidates(p) | grid.GetCandidates(q)) & (Mask)~(1 << commonDigit)),
 					in pair
@@ -121,7 +121,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 	private HWingStep? CollectCore(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
-		Dictionary<House, List<HWingAlmostLockedSetLinkInfo>> alsLinks,
+		Dictionary<House, List<AlmostLockedSetLinkInfo>> alsLinks,
 		IrregularWingStrongLinkEntry strongLinks,
 		bool supportsGroupedNode
 	)
@@ -244,4 +244,13 @@ public sealed partial class HWingStepSearcher : StepSearcher
 
 		return null;
 	}
+
+
+	/// <summary>
+	/// Represents data describing for an H-Wing pattern.
+	/// </summary>
+	/// <param name="CommonDigit">The common digit for those two digits.</param>
+	/// <param name="OtherDigitsMask">Indicates the other digits used.</param>
+	/// <param name="Cells">Indicates the two cells.</param>
+	private sealed record AlmostLockedSetLinkInfo(Digit CommonDigit, Mask OtherDigitsMask, scoped ref readonly CellMap Cells);
 }

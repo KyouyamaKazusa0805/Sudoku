@@ -8880,7 +8880,7 @@ if (student is (name: var name, age: >= 18))
             <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Concepts.LockedMember}@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember}@,System.Int16@)">
             <summary>
             Try to fetch locked members in the pattern, and verify validity of the pattern.
             </summary>
@@ -8939,6 +8939,26 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">The target cells.</param>
             <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.LockedCells">
+            <summary>Indicates the locked cells.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.LockedBlock">
+            <summary>Indicates the locked block.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Extensions">
             <target name="class" when="extension">
@@ -10268,7 +10288,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{Sudoku.Concepts.HWingAlmostLockedSetLinkInfo}},System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo}},System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
             <summary>
             The internal collect method.
             </summary>
@@ -10278,6 +10298,31 @@ if (student is (name: var name, age: >= 18))
             <param name="strongLinks">Indicates the strong links.</param>
             <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
             <returns>The found step.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo">
+            <summary>
+            Represents data describing for an H-Wing pattern.
+            </summary>
+            <param name="CommonDigit">The common digit for those two digits.</param>
+            <param name="OtherDigitsMask">Indicates the other digits used.</param>
+            <param name="Cells">Indicates the two cells.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents data describing for an H-Wing pattern.
+            </summary>
+            <param name="CommonDigit">The common digit for those two digits.</param>
+            <param name="OtherDigitsMask">Indicates the other digits used.</param>
+            <param name="Cells">Indicates the two cells.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.CommonDigit">
+            <summary>The common digit for those two digits.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.OtherDigitsMask">
+            <summary>Indicates the other digits used.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.Cells">
+            <summary>Indicates the two cells.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.LWingStepSearcher">
             <summary>
@@ -19392,31 +19437,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CrosshatchingInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
         </member>
-        <member name="T:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo">
-            <summary>
-            Represents data describing for an H-Wing pattern.
-            </summary>
-            <param name="CommonDigit">The common digit for those two digits.</param>
-            <param name="OtherDigitsMask">Indicates the other digits used.</param>
-            <param name="Cells">Indicates the two cells.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Represents data describing for an H-Wing pattern.
-            </summary>
-            <param name="CommonDigit">The common digit for those two digits.</param>
-            <param name="OtherDigitsMask">Indicates the other digits used.</param>
-            <param name="Cells">Indicates the two cells.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.CommonDigit">
-            <summary>The common digit for those two digits.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.OtherDigitsMask">
-            <summary>Indicates the other digits used.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.HWingAlmostLockedSetLinkInfo.Cells">
-            <summary>Indicates the two cells.</summary>
-        </member>
         <member name="T:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides">
             <summary>
             The base overrides for complex senior exocet steps.
@@ -19456,26 +19476,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A list of cells as the other pair of target cells.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.LockedMember">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.LockedMember.LockedCells">
-            <summary>Indicates the locked cells.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
-            <summary>Indicates the locked block.</summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
