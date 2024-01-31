@@ -67,12 +67,14 @@ public readonly partial struct ReadOnlyTrunks<T>([RecordParameter(DataMemberKind
 			{
 				case TrunkNodeType.Value:
 				{
-					yield return element.Value!;
+					Debug.Assert(element.IsSingleValue);
+					yield return element.Value;
 					break;
 				}
 				case TrunkNodeType.Array:
 				{
-					foreach (var e in (T[])element.ValueRef!)
+					Debug.Assert(!element.IsSingleValue);
+					foreach (var e in (T[])element.ValueRef)
 					{
 						yield return e;
 					}
@@ -80,7 +82,8 @@ public readonly partial struct ReadOnlyTrunks<T>([RecordParameter(DataMemberKind
 				}
 				case TrunkNodeType.List:
 				{
-					foreach (var e in (List<T>)element.ValueRef!)
+					Debug.Assert(!element.IsSingleValue);
+					foreach (var e in (List<T>)element.ValueRef)
 					{
 						yield return e;
 					}
