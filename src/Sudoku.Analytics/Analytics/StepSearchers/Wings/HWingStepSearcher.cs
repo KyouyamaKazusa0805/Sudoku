@@ -44,7 +44,7 @@ public sealed partial class HWingStepSearcher : StepSearcher
 			for (var digit = 0; digit < 9; digit++)
 			{
 				if ((HousesMap[house] & CandidatesMap[digit]) is var possibleCells
-					&& GroupedNode.IsGroupedStrongLink(in possibleCells, digit, house, out var spannedHousesList))
+					&& Grouped.IsGroupedStrongLink(in possibleCells, digit, house, out var spannedHousesList))
 				{
 					foreach (var spannedHouses in spannedHousesList)
 					{

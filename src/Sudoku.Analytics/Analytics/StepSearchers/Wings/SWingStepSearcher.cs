@@ -34,7 +34,7 @@ public sealed partial class SWingStepSearcher : StepSearcher
 			for (var digit = 0; digit < 9; digit++)
 			{
 				if ((HousesMap[house] & CandidatesMap[digit]) is var cells
-					&& GroupedNode.IsGroupedStrongLink(in cells, digit, house, out var spannedHousesList))
+					&& Grouped.IsGroupedStrongLink(in cells, digit, house, out var spannedHousesList))
 				{
 					foreach (var spannedHouses in spannedHousesList)
 					{

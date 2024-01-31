@@ -75,7 +75,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private Step? CheckForTrueCandidateTypes(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		switch (TrueCandidatesSearcher.GetAllTrueCandidates(in grid))
+		switch (TrueCandidate.GetAllTrueCandidates(in grid))
 		{
 			case []:
 			{

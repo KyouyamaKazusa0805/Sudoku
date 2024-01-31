@@ -65,11 +65,11 @@ public sealed partial class MWingStepSearcher : StepSearcher
 					{
 						// Check for validity of (grouped) strong links.
 						var (cells1, cells2) = (HousesMap[h1] & CandidatesMap[d1], HousesMap[h2] & CandidatesMap[d2]);
-						if (!GroupedNode.IsGroupedStrongLink(in cells1, d1, h1, out var spannedHousesList1))
+						if (!Grouped.IsGroupedStrongLink(in cells1, d1, h1, out var spannedHousesList1))
 						{
 							continue;
 						}
-						if (!GroupedNode.IsGroupedStrongLink(in cells2, d2, h2, out var spannedHousesList2))
+						if (!Grouped.IsGroupedStrongLink(in cells2, d2, h2, out var spannedHousesList2))
 						{
 							continue;
 						}

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides a module that checks for Siamese rules.

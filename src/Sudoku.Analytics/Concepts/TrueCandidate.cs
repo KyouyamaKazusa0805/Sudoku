@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.
 /// </summary>
-public static class TrueCandidatesSearcher
+public static class TrueCandidate
 {
 	/// <summary>
 	/// Get all true candidates when the number of empty cells is below than the argument.

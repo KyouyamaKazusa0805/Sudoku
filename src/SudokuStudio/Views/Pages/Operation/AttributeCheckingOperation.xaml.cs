@@ -56,7 +56,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return TrueCandidatesSearcher.GetAllTrueCandidates(in puzzle);
+				return TrueCandidate.GetAllTrueCandidates(in puzzle);
 			}
 		});
 		if (trueCandidates.Count == 0)

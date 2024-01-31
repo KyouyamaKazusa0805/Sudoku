@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of methods that operates with concept "Grouped Node".
 /// </summary>
-public static class GroupedNode
+public static class Grouped
 {
 	/// <summary>
 	/// Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.

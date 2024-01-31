@@ -5847,49 +5847,6 @@ if (student is (name: var name, age: >= 18))
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.GroupedNode">
-            <summary>
-            Represents a list of methods that operates with concept "Grouped Node".
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.GroupedNode.IsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
-            </summary>
-            <param name="cells">The cells to be checked.</param>
-            <param name="digit">The digit to be checked.</param>
-            <param name="house">The house.</param>
-            <param name="spannedHousesList">The spanned houses.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.Siamese">
-            <summary>
-            Provides a module that checks for Siamese rules.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcherModules.Siamese.NotationConverter">
-            <summary>
-            The backing field that will be used for formatting notations, especially for conclusions,
-            in order to check equality of two set of conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.Siamese.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese XYZ-Rings for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese XYZ-Rings.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.Siamese.GetSiamese``1(System.Collections.Generic.List{``0},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese fishes for the specified accumulator.
-            </summary>
-            <typeparam name="T">The type of the fish.</typeparam>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese fish.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
             Represents a subset module.
@@ -5922,20 +5879,6 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.TrueCandidatesSearcher">
-            <summary>
-            Defines a searcher that searches for the true candidates of the current sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.TrueCandidatesSearcher.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Get all true candidates when the number of empty cells is below than the argument.
-            </summary>
-            <param name="grid">Indicates the puzzle.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>All true candidates.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule">
             <summary>
@@ -19437,6 +19380,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CrosshatchingInfo.ExcludedCells">
             <summary>The excluded cells to be used.</summary>
         </member>
+        <member name="T:Sudoku.Concepts.Grouped">
+            <summary>
+            Represents a list of methods that operates with concept "Grouped Node".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grouped.IsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house.</param>
+            <param name="spannedHousesList">The spanned houses.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides">
             <summary>
             The base overrides for complex senior exocet steps.
@@ -20122,6 +20080,34 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Siamese">
+            <summary>
+            Provides a module that checks for Siamese rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Siamese.NotationConverter">
+            <summary>
+            The backing field that will be used for formatting notations, especially for conclusions,
+            in order to check equality of two set of conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Siamese.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese XYZ-Rings for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese XYZ-Rings.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Siamese.GetSiamese``1(System.Collections.Generic.List{``0},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese fishes for the specified accumulator.
+            </summary>
+            <typeparam name="T">The type of the fish.</typeparam>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese fish.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.StrongLinkInfo">
             <summary>
             Represents a data that describes for a strong link used by patterns using link logic.
@@ -20151,6 +20137,20 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.StrongLinkInfo.SpannedHouses">
             <summary>The spanned houses.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.TrueCandidate">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.TrueCandidate.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>
