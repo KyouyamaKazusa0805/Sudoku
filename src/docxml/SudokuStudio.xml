@@ -165,21 +165,6 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:SudokuStudio.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Extensions.WithCustomAction(Sudoku.Analytics.Analyzer,System.Action{Sudoku.Analytics.Analyzer})">
-            <summary>
-            Executes for an arbitary action for the current analyzer instance.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="action">The action to be invoked.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
             <summary>
             Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>.
