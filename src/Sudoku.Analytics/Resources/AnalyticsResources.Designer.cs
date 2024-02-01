@@ -6424,7 +6424,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complex Singles.
+        ///   Looks up a localized string similar to Complex Single.
         /// </summary>
         public static string TechniqueGroup_ComplexSingle {
             get {

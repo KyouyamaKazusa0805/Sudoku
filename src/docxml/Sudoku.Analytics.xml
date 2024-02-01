@@ -24335,7 +24335,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ComplexSingle">
             <summary>
-              Looks up a localized string similar to Complex Singles.
+              Looks up a localized string similar to Complex Single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_DeathBlossom">
