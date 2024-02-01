@@ -4594,6 +4594,21 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseXyzRing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowWWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowMWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowLWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowHWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
+        </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
@@ -10249,6 +10264,31 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.IterableHousePairOffsets">
             <summary>
             Indicates the iterable house pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing">
+            <summary>
+            Indicates whether the step searcher allows searching for W-Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing">
+            <summary>
+            Indicates whether the step searcher allows searching for M-Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing">
+            <summary>
+            Indicates whether the step searcher allows searching for S-Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing">
+            <summary>
+            Indicates whether the step searcher allows searching for L-Wings.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing">
+            <summary>
+            Indicates whether the step searcher allows searching for H-Wings.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

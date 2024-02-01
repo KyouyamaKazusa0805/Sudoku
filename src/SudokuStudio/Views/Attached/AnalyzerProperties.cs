@@ -24,6 +24,11 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseNormalFish)]
 [AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseComplexFish)]
 [AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseXyzRing)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowWWing)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowMWing)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowSWing)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowLWing)]
+[AttachedProperty<bool>(RuntimeIdentifier.AllowHWing)]
 [AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
 [AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
 [AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
@@ -200,6 +205,26 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AllowSiameseXyzRingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<XyzRingStepSearcher>(d, s => s.AllowSiamese = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<IrregularWingStepSearcher>(d, s => s.AllowWWing = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowMWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<IrregularWingStepSearcher>(d, s => s.AllowMWing = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowSWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<IrregularWingStepSearcher>(d, s => s.AllowSWing = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowLWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<IrregularWingStepSearcher>(d, s => s.AllowLWing = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowHWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<IrregularWingStepSearcher>(d, s => s.AllowHWing = (bool)e.NewValue);
 
 	[Callback]
 	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

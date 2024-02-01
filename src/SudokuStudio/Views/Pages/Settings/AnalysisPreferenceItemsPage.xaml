@@ -90,6 +90,57 @@
 			</w:SettingsCard>
 
 			<!--
+			SettingsPage_IrregularWingGroup
+			-->
+			<TextBlock Text="{m:R Key=SettingsPage_IrregularWingGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsExpander
+				Header="{m:R Key=SettingsPage_AllowIrregularWingSubtypes}"
+				Description="{m:R Key=SettingsPage_AllowIrregularWingSubtypesDescription}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowWWing,Mode=TwoWay}">
+							<TextBlock>
+								<Run Text="{m:R Key=SettingsPage_WWing}" />
+								<Run FontFamily="Consolas" Text="{m:R Key=SettingsPage_WWingPattern}" />
+							</TextBlock>
+						</CheckBox>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowMWing,Mode=TwoWay}">
+							<TextBlock>
+								<Run Text="{m:R Key=SettingsPage_MWing}" />
+								<Run FontFamily="Consolas" Text="{m:R Key=SettingsPage_MWingPattern}" />
+							</TextBlock>
+						</CheckBox>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSWing,Mode=TwoWay}">
+							<TextBlock>
+								<Run Text="{m:R Key=SettingsPage_SWing}" />
+								<Run FontFamily="Consolas" Text="{m:R Key=SettingsPage_SWingPattern}" />
+							</TextBlock>
+						</CheckBox>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLWing,Mode=TwoWay}">
+							<TextBlock>
+								<Run Text="{m:R Key=SettingsPage_LWing}" />
+								<Run FontFamily="Consolas" Text="{m:R Key=SettingsPage_LWingPattern}" />
+							</TextBlock>
+						</CheckBox>
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowHWing,Mode=TwoWay}">
+							<TextBlock>
+								<Run Text="{m:R Key=SettingsPage_HWing}" />
+								<Run FontFamily="Consolas" Text="{m:R Key=SettingsPage_HWingPattern}" />
+							</TextBlock>
+						</CheckBox>
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+
+			<!--
 			SettingsPage_AlmostLockedSetsAndIntersectionsGroup
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_AlmostLockedSetsAndIntersectionsGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />

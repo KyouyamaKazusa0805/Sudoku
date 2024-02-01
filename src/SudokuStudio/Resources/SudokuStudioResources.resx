@@ -1266,6 +1266,12 @@
   <data name="SettingsPage_AllowIncompleteUniqueRectangles" xml:space="preserve">
     <value>Allow searching for Incomplete Unique Rectangle</value>
   </data>
+  <data name="SettingsPage_AllowIrregularWingSubtypes" xml:space="preserve">
+    <value>Allowed irregular wing subtypes</value>
+  </data>
+  <data name="SettingsPage_AllowIrregularWingSubtypesDescription" xml:space="preserve">
+    <value>The name of the subtypes are "terrible", so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells</value>
+  </data>
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>Allow Doubly-Linked ALS-XZ</value>
   </data>
@@ -1580,8 +1586,17 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation" xml:space="preserve">
     <value>RxCy Notation - Only output capitals 'r', 'c' and 'b' for houses</value>
   </data>
+  <data name="SettingsPage_HWing" xml:space="preserve">
+    <value>H-Wing: </value>
+  </data>
+  <data name="SettingsPage_HWingPattern" xml:space="preserve">
+    <value>(x=y)-(y=z)-z=z</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting.</value>
+  </data>
+  <data name="SettingsPage_IrregularWingGroup" xml:space="preserve">
+    <value>Irregular Wings</value>
   </data>
   <data name="SettingsPage_IttoryuSettingsGroup" xml:space="preserve">
     <value>Ittoryu</value>
@@ -1640,6 +1655,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>Literal</value>
   </data>
+  <data name="SettingsPage_LWing" xml:space="preserve">
+    <value>L-Wing: </value>
+  </data>
+  <data name="SettingsPage_LWingPattern" xml:space="preserve">
+    <value>x=(x-y)=(y-z)=z</value>
+  </data>
   <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
     <value>RxCy Notation - Make digits output left-side cell coordinates</value>
   </data>
@@ -1666,6 +1687,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_MoreColors" xml:space="preserve">
     <value>&gt;&gt; More</value>
+  </data>
+  <data name="SettingsPage_MWing" xml:space="preserve">
+    <value>M-Wing: </value>
+  </data>
+  <data name="SettingsPage_MWingPattern" xml:space="preserve">
+    <value>(x=y)-y=(y-x)=x</value>
   </data>
   <data name="SettingsPage_NormalColor" xml:space="preserve">
     <value>Normal highlighted candidates</value>
@@ -1841,6 +1868,12 @@ In additional, some sudoku panels in some pages may not be related to this optio
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>Sudoku Grid Behaviors</value>
   </data>
+  <data name="SettingsPage_SWing" xml:space="preserve">
+    <value>S-Wing: </value>
+  </data>
+  <data name="SettingsPage_SWingPattern" xml:space="preserve">
+    <value>x=x-(x=y)-y=y</value>
+  </data>
   <data name="SettingsPage_Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
@@ -1853,6 +1886,12 @@ Please note that saving/copying transparent-background sudoku pane is terrible, 
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>Weak link dash style</value>
+  </data>
+  <data name="SettingsPage_WWing" xml:space="preserve">
+    <value>W-Wing: </value>
+  </data>
+  <data name="SettingsPage_WWingPattern" xml:space="preserve">
+    <value>(x=y)-(y=y)-(y=x)</value>
   </data>
   <data name="Settings_Compatibility" xml:space="preserve">
     <value>Compatibility</value>

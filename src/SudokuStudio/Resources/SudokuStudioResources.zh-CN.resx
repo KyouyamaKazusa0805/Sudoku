@@ -1269,6 +1269,12 @@
   <data name="SettingsPage_AllowIncompleteUniqueRectangles" xml:space="preserve">
     <value>允许搜索残缺唯一矩形</value>
   </data>
+  <data name="SettingsPage_AllowIrregularWingSubtypes" xml:space="preserve">
+    <value>允许搜索的不规则 Wing 结构</value>
+  </data>
+  <data name="SettingsPage_AllowIrregularWingSubtypesDescription" xml:space="preserve">
+    <value>这些子类型的命名简直就是火葬场，所以我给你加了一个公式的呈现。公式里的小括号表示的是单元格内产生的强弱关系</value>
+  </data>
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>允许 ALS-XZ 成环</value>
   </data>
@@ -1583,8 +1589,17 @@
   <data name="SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation" xml:space="preserve">
     <value>RxCy 记号 - 区域记号用“r”、“c”和“b”字母进行代替</value>
   </data>
+  <data name="SettingsPage_HWing" xml:space="preserve">
+    <value>H-Wing 结构：</value>
+  </data>
+  <data name="SettingsPage_HWingPattern" xml:space="preserve">
+    <value>(x=y)-(y=z)-z=z</value>
+  </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
     <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
+  </data>
+  <data name="SettingsPage_IrregularWingGroup" xml:space="preserve">
+    <value>不规则 Wing</value>
   </data>
   <data name="SettingsPage_IttoryuSettingsGroup" xml:space="preserve">
     <value>一刀流</value>
@@ -1643,6 +1658,12 @@
   <data name="SettingsPage_LiteralNotation" xml:space="preserve">
     <value>字面显示</value>
   </data>
+  <data name="SettingsPage_LWing" xml:space="preserve">
+    <value>L-Wing 结构：</value>
+  </data>
+  <data name="SettingsPage_LWingPattern" xml:space="preserve">
+    <value>x=(x-y)=(y-z)=z</value>
+  </data>
   <data name="SettingsPage_MakeDigitBeforeCellInRxCyNotation" xml:space="preserve">
     <value>RxCy 记号 - 数字放到单元格左边</value>
   </data>
@@ -1669,6 +1690,12 @@
   </data>
   <data name="SettingsPage_MoreColors" xml:space="preserve">
     <value>&gt;&gt; 更多</value>
+  </data>
+  <data name="SettingsPage_MWing" xml:space="preserve">
+    <value>M-Wing 结构：</value>
+  </data>
+  <data name="SettingsPage_MWingPattern" xml:space="preserve">
+    <value>(x=y)-y=(y-x)=x</value>
   </data>
   <data name="SettingsPage_NormalColor" xml:space="preserve">
     <value>普通的高亮候选数</value>
@@ -1844,6 +1871,12 @@
   <data name="SettingsPage_SudokuGridBehaviors" xml:space="preserve">
     <value>数独盘面行为</value>
   </data>
+  <data name="SettingsPage_SWing" xml:space="preserve">
+    <value>S-Wing 结构：</value>
+  </data>
+  <data name="SettingsPage_SWingPattern" xml:space="preserve">
+    <value>x=x-(x=y)-y=y</value>
+  </data>
   <data name="SettingsPage_Theme" xml:space="preserve">
     <value>主题</value>
   </data>
@@ -1856,6 +1889,12 @@
   </data>
   <data name="SettingsPage_WeakLinkDashStyle" xml:space="preserve">
     <value>弱链的虚线周期</value>
+  </data>
+  <data name="SettingsPage_WWing" xml:space="preserve">
+    <value>W-Wing 结构：</value>
+  </data>
+  <data name="SettingsPage_WWingPattern" xml:space="preserve">
+    <value>(x=y)-(y=y)-(y=x)</value>
   </data>
   <data name="Settings_Compatibility" xml:space="preserve">
     <value>兼容性</value>

@@ -34,6 +34,21 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
 	public const string AllowSiameseXyzRing = nameof(AllowSiameseXyzRing);
 
+	/// <inheritdoc cref="IrregularWingStepSearcher.AllowWWing"/>
+	public const string AllowWWing = nameof(AllowWWing);
+
+	/// <inheritdoc cref="IrregularWingStepSearcher.AllowMWing"/>
+	public const string AllowMWing = nameof(AllowMWing);
+
+	/// <inheritdoc cref="IrregularWingStepSearcher.AllowSWing"/>
+	public const string AllowSWing = nameof(AllowSWing);
+
+	/// <inheritdoc cref="IrregularWingStepSearcher.AllowLWing"/>
+	public const string AllowLWing = nameof(AllowLWing);
+
+	/// <inheritdoc cref="IrregularWingStepSearcher.AllowHWing"/>
+	public const string AllowHWing = nameof(AllowHWing);
+
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	public const string AllowIncompleteUniqueRectangles = nameof(AllowIncompleteUniqueRectangles);
 

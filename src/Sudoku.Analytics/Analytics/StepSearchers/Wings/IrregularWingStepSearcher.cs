@@ -55,32 +55,63 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		[(0, 1), (0, 2), (1, 2), (3, 4), (3, 5), (4, 5), (6, 7), (6, 8), (7, 8)];
 
 
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for W-Wings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowWWing)]
+	public bool AllowWWing { get; set; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for M-Wings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowMWing)]
+	public bool AllowMWing { get; set; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for S-Wings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowSWing)]
+	public bool AllowSWing { get; set; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for L-Wings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowLWing)]
+	public bool AllowLWing { get; set; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows searching for H-Wings.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowHWing)]
+	public bool AllowHWing { get; set; }
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		if (Collect_WWing(ref context) is { } wWing)
+		if (AllowWWing && Collect_WWing(ref context) is { } w)
 		{
-			return wWing;
+			return w;
 		}
-		if (Collect_MultiBranchWWing(ref context) is { } wWingMultipleBranch)
+		if (AllowWWing && Collect_MultiBranchWWing(ref context) is { } w2)
 		{
-			return wWingMultipleBranch;
+			return w2;
 		}
-		if (Collect_MWing(ref context) is { } mWing)
+		if (AllowMWing && Collect_MWing(ref context) is { } m)
 		{
-			return mWing;
+			return m;
 		}
-		if (Collect_SWing(ref context) is { } sWing)
+		if (AllowSWing && Collect_SWing(ref context) is { } s)
 		{
-			return sWing;
+			return s;
 		}
-		if (Collect_LWing(ref context) is { } lWing)
+		if (AllowLWing && Collect_LWing(ref context) is { } l)
 		{
-			return lWing;
+			return l;
 		}
-		if (Collect_HWing(ref context) is { } hWing)
+		if (AllowHWing && Collect_HWing(ref context) is { } h)
 		{
-			return hWing;
+			return h;
 		}
 
 		return null;

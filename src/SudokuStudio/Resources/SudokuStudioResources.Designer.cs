@@ -3769,6 +3769,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allowed irregular wing subtypes.
+        /// </summary>
+        internal static string SettingsPage_AllowIrregularWingSubtypes {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowIrregularWingSubtypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the subtypes are &quot;terrible&quot;, so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells.
+        /// </summary>
+        internal static string SettingsPage_AllowIrregularWingSubtypesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowIrregularWingSubtypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
         /// </summary>
         internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule {
@@ -4707,11 +4725,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to H-Wing: .
+        /// </summary>
+        internal static string SettingsPage_HWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_HWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (x=y)-(y=z)-z=z.
+        /// </summary>
+        internal static string SettingsPage_HWingPattern {
+            get {
+                return ResourceManager.GetString("SettingsPage_HWingPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here lists the preference items that will be used in the program. You can modify and adjust them with a new value to make the program be more suitable to be used. All preference items are saved on-time, however such items require restarting..
         /// </summary>
         internal static string SettingsPage_Intro {
             get {
                 return ResourceManager.GetString("SettingsPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Irregular Wings.
+        /// </summary>
+        internal static string SettingsPage_IrregularWingGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_IrregularWingGroup", resourceCulture);
             }
         }
         
@@ -4887,6 +4932,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to L-Wing: .
+        /// </summary>
+        internal static string SettingsPage_LWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_LWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x=(x-y)=(y-z)=z.
+        /// </summary>
+        internal static string SettingsPage_LWingPattern {
+            get {
+                return ResourceManager.GetString("SettingsPage_LWingPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RxCy Notation - Make digits output left-side cell coordinates.
         /// </summary>
         internal static string SettingsPage_MakeDigitBeforeCellInRxCyNotation {
@@ -4964,6 +5027,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_MoreColors {
             get {
                 return ResourceManager.GetString("SettingsPage_MoreColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M-Wing: .
+        /// </summary>
+        internal static string SettingsPage_MWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_MWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (x=y)-y=(y-x)=x.
+        /// </summary>
+        internal static string SettingsPage_MWingPattern {
+            get {
+                return ResourceManager.GetString("SettingsPage_MWingPattern", resourceCulture);
             }
         }
         
@@ -5490,6 +5571,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to S-Wing: .
+        /// </summary>
+        internal static string SettingsPage_SWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_SWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x=x-(x=y)-y=y.
+        /// </summary>
+        internal static string SettingsPage_SWingPattern {
+            get {
+                return ResourceManager.GetString("SettingsPage_SWingPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         internal static string SettingsPage_Theme {
@@ -5523,6 +5622,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_WeakLinkDashStyle {
             get {
                 return ResourceManager.GetString("SettingsPage_WeakLinkDashStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W-Wing: .
+        /// </summary>
+        internal static string SettingsPage_WWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_WWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (x=y)-(y=y)-(y=x).
+        /// </summary>
+        internal static string SettingsPage_WWingPattern {
+            get {
+                return ResourceManager.GetString("SettingsPage_WWingPattern", resourceCulture);
             }
         }
         
