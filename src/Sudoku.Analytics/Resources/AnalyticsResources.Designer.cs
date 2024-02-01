@@ -3778,11 +3778,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to H-Wing.
+        ///   Looks up a localized string similar to Irregular Wing.
         /// </summary>
-        public static string StepSearcherName_HWingStepSearcher {
+        public static string StepSearcherName_IrregularWingStepSearcher {
             get {
-                return ResourceManager.GetString("StepSearcherName_HWingStepSearcher", resourceCulture);
+                return ResourceManager.GetString("StepSearcherName_IrregularWingStepSearcher", resourceCulture);
             }
         }
         
@@ -3814,24 +3814,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to L-Wing.
-        /// </summary>
-        public static string StepSearcherName_LWingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_LWingStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multi-Branched W-Wing.
-        /// </summary>
-        public static string StepSearcherName_MultiBranchWWingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_MultiBranchWWingStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Multiple Forcing Chains.
         /// </summary>
         public static string StepSearcherName_MultipleChainingStepSearcher {
@@ -3846,15 +3828,6 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_MultisectorLockedSetsStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetsStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to M-Wing.
-        /// </summary>
-        public static string StepSearcherName_MWingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_MWingStepSearcher", resourceCulture);
             }
         }
         
@@ -3958,15 +3931,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S-Wing.
-        /// </summary>
-        public static string StepSearcherName_SWingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_SWingStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Templates.
         /// </summary>
         public static string StepSearcherName_TemplateStepSearcher {
@@ -4017,15 +3981,6 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_UniqueRectangleStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_UniqueRectangleStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to W-Wing.
-        /// </summary>
-        public static string StepSearcherName_WWingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_WWingStepSearcher", resourceCulture);
             }
         }
         

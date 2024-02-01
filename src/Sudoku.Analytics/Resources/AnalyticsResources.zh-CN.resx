@@ -1894,10 +1894,6 @@
     <value>区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_MultiBranchWWingStepSearcher" xml:space="preserve">
-    <value>多分支 W-Wing</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
     <value>强制链</value>
     <comment>Step Searcher Name</comment>
@@ -1976,10 +1972,6 @@
   </data>
   <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
     <value>唯一矩形</value>
-    <comment>Step Searcher Name</comment>
-  </data>
-  <data name="StepSearcherName_WWingStepSearcher" xml:space="preserve">
-    <value>W-Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
@@ -2695,32 +2687,20 @@
   <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ 环</value>
   </data>
-  <data name="StepSearcherName_MWingStepSearcher" xml:space="preserve">
-    <value>W-Wing</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
     <value>区块结构</value>
   </data>
   <data name="TechniqueFormat_MWingStep" xml:space="preserve">
     <value>使用 {0} 和 {1} 以及 XY 单元格 {2} 和 {3}</value>
   </data>
-  <data name="StepSearcherName_SWingStepSearcher" xml:space="preserve">
-    <value>S-Wing</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="TechniqueFormat_SWingStep" xml:space="preserve">
     <value>单元格 {0} 和 {1} 和 {2} 关联</value>
-  </data>
-  <data name="StepSearcherName_HWingStepSearcher" xml:space="preserve">
-    <value>H-Wing</value>
-    <comment>Step Searcher Name</comment>
   </data>
   <data name="TechniqueFormat_HWingStep" xml:space="preserve">
     <value>共轭对 {0} 和两个单元格 {1} 连接</value>
   </data>
-  <data name="StepSearcherName_LWingStepSearcher" xml:space="preserve">
-    <value>L-Wing</value>
+  <data name="StepSearcherName_IrregularWingStepSearcher" xml:space="preserve">
+    <value>不规则 Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
 </root>

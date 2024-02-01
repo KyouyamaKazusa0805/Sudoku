@@ -10202,18 +10202,125 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.HWingStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher">
             <summary>
-            Provides with an <b>H-Wing (Hybrid Wing)</b> step searcher.
+            Provides with an <b>Irregular Wing</b> step searcher.
             The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            W-Wing (George Woods' Wing) family:
+            <list type="bullet">
+            <item>W-Wing</item>
+            <item>Grouped W-Wing</item>
+            <item>Multiple Branch W-Wing</item>
+            </list>
+            </item>
+            <item>
+            M-Wing (Medusa Wing) family:
+            <list type="bullet">
+            <item>M-Wing</item>
+            <item>Grouped M-Wing</item>
+            </list>
+            </item>
+            <item>
+            S-Wing (Split Wing) family:
+            <list type="bullet">
+            <item>S-Wing</item>
+            <item>Grouped S-Wing</item>
+            </list>
+            </item>
+            <item>
+            L-Wing (Local Wing) family:
+            <list type="bullet">
+            <item>L-Wing</item>
+            <item>Grouped L-Wing</item>
+            </list>
+            </item>
+            <item>
+            H-Wing (Hybrid Wing) family:
             <list type="bullet">
             <item>H-Wing</item>
             <item>Grouped H-Wing</item>
             </list>
+            </item>
+            </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
+        <member name="F:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.IterableHousePairOffsets">
+            <summary>
+            Indicates the iterable house pairs.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_WWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+            </remarks>
+            <example>
+            TODO: Add loop logic. Example:
+            <code><![CDATA[
+            +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
+              435 935 567 175 185 192 193 993 195 495 995
+            ]]></code>
+            </example>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_MultiBranchWWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_MWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+            </remarks>
+            <example>
+            TODO: Add loop logic. Example:
+            <code><![CDATA[
+            .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:
+              417 419 157 883 785 891 893 795
+            ]]></code>
+            </example>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_SWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
+            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
+            if those two cells share a same house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_LWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
+            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
+            if those two cells share a same house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_HWing(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
             <remarks>
             <developer-notes>
 		<para>
@@ -10231,18 +10338,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo}},System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
-            <summary>
-            The internal collect method.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="grid">The grid.</param>
-            <param name="alsLinks">All possible ALS-related links.</param>
-            <param name="strongLinks">Indicates the strong links.</param>
-            <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
-            <returns>The found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo">
+        <member name="T:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo">
             <summary>
             Represents data describing for an H-Wing pattern.
             </summary>
@@ -10250,7 +10346,7 @@ if (student is (name: var name, age: >= 18))
             <param name="OtherDigitsMask">Indicates the other digits used.</param>
             <param name="Cells">Indicates the two cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Represents data describing for an H-Wing pattern.
             </summary>
@@ -10258,100 +10354,14 @@ if (student is (name: var name, age: >= 18))
             <param name="OtherDigitsMask">Indicates the other digits used.</param>
             <param name="Cells">Indicates the two cells.</param>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.CommonDigit">
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.CommonDigit">
             <summary>The common digit for those two digits.</summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.OtherDigitsMask">
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.OtherDigitsMask">
             <summary>Indicates the other digits used.</summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.HWingStepSearcher.AlmostLockedSetLinkInfo.Cells">
+        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.Cells">
             <summary>Indicates the two cells.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.LWingStepSearcher">
-            <summary>
-            Provides with an <b>L-Wing (Local Wing)</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>L-Wing</item>
-            <item>Grouped L-Wing</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.LWingStepSearcher.IterableHousePairOffsets">
-            <summary>
-            Indicates the iterable house pairs.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.LWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, symmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
-            if those two cells share a same house.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.LWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}},System.Boolean)">
-            <summary>
-            The internal collect method.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="grid">The grid.</param>
-            <param name="strongLinks">Indicates the strong links.</param>
-            <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
-            <returns>The found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher">
-            <summary>
-            Provides with a <b>Multiple-Branch W-Wing</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Multiple-Branch W-Wing (Multiple-Branch George Woods' Wing)</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultiBranchWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.MWingStepSearcher">
-            <summary>
-            Provides with an <b>M-Wing (Medusa Wing)</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>M-Wing</item>
-            <item>Grouped M-Wing</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
-            </remarks>
-            <example>
-            TODO: Add loop logic. Example:
-            <code><![CDATA[
-            .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:
-              417 419 157 883 785 891 893 795
-            ]]></code>
-            </example>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,System.Boolean)">
-            <summary>
-            The internal method to check for M-Wings and grouped M-Wings.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="supportsGroupedNodes">Indicates whether the pattern supports for grouped nodes.</param>
-            <returns>The found step.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
             <summary>
@@ -10376,68 +10386,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.SWingStepSearcher">
-            <summary>
-            Provides with an <b>S-Wing (Split Wing)</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>S-Wing</item>
-            <item>Grouped S-Wing</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
-            if those two cells share a same house.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SWingStepSearcher.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Boolean,System.Int16,System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{Sudoku.Concepts.StrongLinkInfo}})">
-            <summary>
-            The internal collect method.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="grid">The grid.</param>
-            <param name="supportsGroupedNode">Indicates whether the method calculate in grouped nodes.</param>
-            <param name="iterableDigitsMask">The digits should be iterated.</param>
-            <param name="strongLinks">All possible strong links.</param>
-            <returns>The found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.WWingStepSearcher">
-            <summary>
-            Provides with a <b>W-Wing (George Woods' Wing)</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>W-Wing</item>
-            <item>Grouped W-Wing</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
-            </remarks>
-            <example>
-            TODO: Add loop logic. Example:
-            <code><![CDATA[
-            +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
-              435 935 567 175 185 192 193 993 195 495 995
-            ]]></code>
-            </example>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
             <summary>
@@ -22574,9 +22522,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Guardian.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_HWingStepSearcher">
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_IrregularWingStepSearcher">
             <summary>
-              Looks up a localized string similar to H-Wing.
+              Looks up a localized string similar to Irregular Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_LawOfLeftoverStepSearcher">
@@ -22594,16 +22542,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Locked Subsets.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_LWingStepSearcher">
-            <summary>
-              Looks up a localized string similar to L-Wing.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultiBranchWWingStepSearcher">
-            <summary>
-              Looks up a localized string similar to Multi-Branched W-Wing.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultipleChainingStepSearcher">
             <summary>
               Looks up a localized string similar to Multiple Forcing Chains.
@@ -22612,11 +22550,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultisectorLockedSetsStepSearcher">
             <summary>
               Looks up a localized string similar to Multi-Sector Locked Sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MWingStepSearcher">
-            <summary>
-              Looks up a localized string similar to M-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_NonMultipleChainingStepSearcher">
@@ -22674,11 +22607,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Sue de Coq.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_SWingStepSearcher">
-            <summary>
-              Looks up a localized string similar to S-Wing.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_TemplateStepSearcher">
             <summary>
               Looks up a localized string similar to Templates.
@@ -22707,11 +22635,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_UniqueRectangleStepSearcher">
             <summary>
               Looks up a localized string similar to Unique Rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_WWingStepSearcher">
-            <summary>
-              Looks up a localized string similar to W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_XyzRingStepSearcher">

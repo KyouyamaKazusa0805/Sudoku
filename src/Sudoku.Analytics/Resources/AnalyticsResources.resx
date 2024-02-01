@@ -1572,9 +1572,6 @@
   <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>Locked Candidates</value>
   </data>
-  <data name="StepSearcherName_MultiBranchWWingStepSearcher" xml:space="preserve">
-    <value>Multi-Branched W-Wing</value>
-  </data>
   <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
     <value>Multiple Forcing Chains</value>
   </data>
@@ -1634,9 +1631,6 @@
   </data>
   <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
     <value>Unique Rectangle</value>
-  </data>
-  <data name="StepSearcherName_WWingStepSearcher" xml:space="preserve">
-    <value>W-Wing</value>
   </data>
   <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
     <value>Avoidable logic</value>
@@ -2505,28 +2499,19 @@
   <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ-Ring</value>
   </data>
-  <data name="StepSearcherName_MWingStepSearcher" xml:space="preserve">
-    <value>M-Wing</value>
-  </data>
   <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
     <value>Grouped</value>
   </data>
   <data name="TechniqueFormat_MWingStep" xml:space="preserve">
     <value>Nodes {0} and {1} with XY cells {2} and {3}</value>
   </data>
-  <data name="StepSearcherName_SWingStepSearcher" xml:space="preserve">
-    <value>S-Wing</value>
-  </data>
   <data name="TechniqueFormat_SWingStep" xml:space="preserve">
     <value>Both strong links {0} and {1} connect with mid cell {2}</value>
-  </data>
-  <data name="StepSearcherName_HWingStepSearcher" xml:space="preserve">
-    <value>H-Wing</value>
   </data>
   <data name="TechniqueFormat_HWingStep" xml:space="preserve">
     <value>Strong link {0} connects with two cells {1}</value>
   </data>
-  <data name="StepSearcherName_LWingStepSearcher" xml:space="preserve">
-    <value>L-Wing</value>
+  <data name="StepSearcherName_IrregularWingStepSearcher" xml:space="preserve">
+    <value>Irregular Wing</value>
   </data>
 </root>
