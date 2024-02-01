@@ -111,19 +111,19 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		foreach (var house in elimMap.Houses)
 		{
 			var emptyCells = HousesMap[house] & EmptyCells;
-			if (emptyCells.Count != 7)
+			if (emptyCells.Count != 2)
 			{
-				return null;
+				continue;
 			}
 
 			var lastDigitMask = (Mask)(grid[in emptyCells] & (Mask)~(1 << digit));
 			if (!IsPow2(lastDigitMask))
 			{
-				return null;
+				continue;
 			}
 
 			var lastDigit = Log2((uint)lastDigitMask);
-			var lastCell = (emptyCells - elimMap)[0];
+			var lastCell = (emptyCells & elimMap)[0];
 			var step = new DirectIntersectionStep(
 				[new(Assignment, lastCell, lastDigit)],
 				[
@@ -132,6 +132,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary3, house),
 						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
 					]
 				],
