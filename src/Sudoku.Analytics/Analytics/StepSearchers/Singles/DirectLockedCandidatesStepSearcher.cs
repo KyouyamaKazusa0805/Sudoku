@@ -7,21 +7,21 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>
 /// Direct Pointing family:
 /// <list type="bullet">
-/// <item>Direct Pointing Full House</item>
-/// <item>Direct Pointing Crosshatching in Block</item>
-/// <item>Direct Pointing Crosshatching in Row</item>
-/// <item>Direct Pointing Crosshatching in Column</item>
-/// <item>Direct Pointing Naked Single</item>
+/// <item>Pointed Full House</item>
+/// <item>Pointed Crosshatching in Block</item>
+/// <item>Pointed Crosshatching in Row</item>
+/// <item>Pointed Crosshatching in Column</item>
+/// <item>Pointed Naked Single</item>
 /// </list>
 /// </item>
 /// <item>
 /// Direct Claiming family:
 /// <list type="bullet">
-/// <item>Direct Claiming Full House</item>
-/// <item>Direct Claiming Crosshatching in Block</item>
-/// <item>Direct Claiming Crosshatching in Row</item>
-/// <item>Direct Claiming Crosshatching in Column</item>
-/// <item>Direct Claiming Naked Single</item>
+/// <item>Claimed Full House</item>
+/// <item>Claimed Crosshatching in Block</item>
+/// <item>Claimed Crosshatching in Row</item>
+/// <item>Claimed Crosshatching in Column</item>
+/// <item>Claimed Naked Single</item>
 /// </list>
 /// </item>
 /// </list>
