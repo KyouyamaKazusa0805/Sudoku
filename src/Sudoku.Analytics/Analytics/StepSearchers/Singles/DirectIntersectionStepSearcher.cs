@@ -196,7 +196,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[new(Assignment, lastCell, digit)],
 				[
 					[
-						.. SingleStepSearcher.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+						.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 						..
 						from cell in HousesMap[house] & elimMap
@@ -216,7 +216,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				((HousesMap[house] & CandidatesMap[digit]) - lastCell)[0],
 				digit,
-				SingleStepSearcher.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+				SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 				house switch
 				{
 					< 9 => Technique.CrosshatchingBlock,

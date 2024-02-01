@@ -5943,6 +5943,32 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.SingleModule">
+            <summary>
+            Represents single module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Get subtype of the hidden single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">Indicates the house.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>The subtype of the hidden single.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
             Represents a subset module.
@@ -10177,27 +10203,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cell">The cell.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Get subtype of the hidden single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">Indicates the house.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>The subtype of the hidden single.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
             <summary>
