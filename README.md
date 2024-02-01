@@ -70,10 +70,12 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Firework Subsets (Hanabi)
   * Subsets
     * Naked Subsets
-      * Locked Subsets (Naked, Hidden)
+      * Locked Subsets
       * Semi-Locked Subsets
       * Normal Naked Subsets
     * Hidden Subsets
+      * Locked Hidden Subsets
+      * Normal Hidden Subsets
   * Fishes (including finned types)
     * Normal Fishes
     * Complex Fishes (Franken, Mutant)
@@ -92,7 +94,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Uniqueness
     * UR (Unique Rectangle)
     * UL (Unique Loop)
-    * XR (Extended Rectangle, Including fit & fat types)
+    * XR (Extended Rectangle, fit & fat types)
     * Borescoper's Deadly Pattern
     * Qiu's Deadly Pattern
     * Unique Matrix
