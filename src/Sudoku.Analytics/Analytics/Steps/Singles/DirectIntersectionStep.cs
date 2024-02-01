@@ -51,6 +51,17 @@ public sealed partial class DirectIntersectionStep(
 		} + .2M;
 
 	/// <inheritdoc/>
+	public override string EnglishName
+	{
+		get
+		{
+			const string prefix = "Locked Candidates";
+			var result = base.EnglishName[prefix.Length..];
+			return $"{(IsPointing ? Technique.Pointing : Technique.Claiming)}{result}";
+		}
+	}
+
+	/// <inheritdoc/>
 	public override Technique Code
 		=> FinalTechnique switch
 		{

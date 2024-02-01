@@ -17332,6 +17332,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.EnglishName">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Code">
             <inheritdoc/>
         </member>
