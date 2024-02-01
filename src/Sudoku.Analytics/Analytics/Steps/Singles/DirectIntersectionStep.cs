@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="subtype"><inheritdoc/></param>
-/// <param name="finalTechnique"><inheritdoc/></param>
+/// <param name="basedOn"><inheritdoc/></param>
 /// <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
 public sealed partial class DirectIntersectionStep(
 	Conclusion[] conclusions,
@@ -18,7 +18,7 @@ public sealed partial class DirectIntersectionStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	Technique finalTechnique,
+	Technique basedOn,
 	[RecordParameter] bool isPointing
 ) : ComplexSingleStep(
 	conclusions,
@@ -27,7 +27,7 @@ public sealed partial class DirectIntersectionStep(
 	cell,
 	digit,
 	subtype,
-	finalTechnique,
+	basedOn,
 	[[isPointing ? Technique.Pointing : Technique.Claiming]]
 )
 {
@@ -39,7 +39,7 @@ public sealed partial class DirectIntersectionStep(
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> FinalTechnique switch
+		=> BasedOn switch
 		{
 			Technique.FullHouse => 1.0M,
 			Technique.CrosshatchingBlock => 1.2M,
@@ -51,26 +51,15 @@ public sealed partial class DirectIntersectionStep(
 		} + .2M;
 
 	/// <inheritdoc/>
-	public override string EnglishName
-	{
-		get
-		{
-			const string prefix = "Locked Candidates";
-			var result = base.EnglishName[prefix.Length..];
-			return $"{(IsPointing ? Technique.Pointing : Technique.Claiming)}{result}";
-		}
-	}
-
-	/// <inheritdoc/>
 	public override Technique Code
-		=> FinalTechnique switch
+		=> BasedOn switch
 		{
-			Technique.FullHouse => Technique.DirectIntersectionFullHouse,
-			Technique.CrosshatchingBlock => Technique.DirectIntersectionCrosshatchingBlock,
-			Technique.HiddenSingleBlock => Technique.DirectIntersectionCrosshatchingBlock,
-			Technique.CrosshatchingRow or Technique.HiddenSingleRow => Technique.DirectIntersectionCrosshatchingRow,
-			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => Technique.DirectIntersectionCrosshatchingColumn,
-			Technique.NakedSingle => Technique.DirectIntersectionNakedSingle,
+			Technique.FullHouse => Technique.PointingFullHouse,
+			Technique.CrosshatchingBlock => Technique.PointingCrosshatchingBlock,
+			Technique.HiddenSingleBlock => Technique.PointingCrosshatchingBlock,
+			Technique.CrosshatchingRow or Technique.HiddenSingleRow => Technique.PointingCrosshatchingRow,
+			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => Technique.PointingCrosshatchingColumn,
+			Technique.NakedSingle => Technique.PointingNakedSingle,
 			_ => throw new NotSupportedException(TechniqueNotSupportedMessage)
 		};
 

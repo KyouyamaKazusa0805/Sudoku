@@ -16,6 +16,11 @@ public enum TechniqueGroup
 	Single,
 
 	/// <summary>
+	/// Indicates the complex singles technique.
+	/// </summary>
+	ComplexSingle,
+
+	/// <summary>
 	/// Indicates the locked candidates (LC) technique.
 	/// </summary>
 	[Abbreviation("LC")]

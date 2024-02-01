@@ -118,46 +118,91 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	CrosshatchingColumn,
+	#endregion
 
+	//
+	// Complex Singles
+	//
+	#region Complex Singles
 	/// <summary>
-	/// Indicates full house, with several locked candidates used.
+	/// Indicates full house, with pointing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
-	DirectIntersectionFullHouse,
+	PointingFullHouse,
 
 	/// <summary>
-	/// Indicates naked single, with several locked candidates used.
+	/// Indicates crosshatching in block, with pointing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
-	DirectIntersectionNakedSingle,
+	PointingCrosshatchingBlock,
 
 	/// <summary>
-	/// Indicates crosshatching in block, with several locked candidates used.
+	/// Indicates crosshatching in row, with pointing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
-	DirectIntersectionCrosshatchingBlock,
+	PointingCrosshatchingRow,
 
 	/// <summary>
-	/// Indicates crosshatching in row, with several locked candidates used.
+	/// Indicates crosshatching in column, with pointing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
-	DirectIntersectionCrosshatchingRow,
+	PointingCrosshatchingColumn,
 
 	/// <summary>
-	/// Indicates crosshatching in column, with several locked candidates used.
+	/// Indicates naked single, with pointing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
-	DirectIntersectionCrosshatchingColumn,
+	PointingNakedSingle,
+
+	/// <summary>
+	/// Indicates full house, with claiming.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	ClaimingFullHouse,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with claiming.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	ClaimingCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with claiming.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	ClaimingCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with claiming.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	ClaimingCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates naked single, with claiming.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	ClaimingNakedSingle,
 	#endregion
 
 	//

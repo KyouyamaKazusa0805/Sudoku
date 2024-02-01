@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="subtype"><inheritdoc/></param>
-/// <param name="finalTechnique">Indicates the final technique.</param>
+/// <param name="basedOn">Indicates the single technique that is based on.</param>
 /// <param name="indirectTechniques">
 /// <para>Indicates the indirect techniques used in this pattern.</para>
 /// <para>
@@ -40,7 +40,7 @@ public abstract partial class ComplexSingleStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	[RecordParameter] Technique finalTechnique,
+	[RecordParameter] Technique basedOn,
 	[RecordParameter] Technique[][] indirectTechniques
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {

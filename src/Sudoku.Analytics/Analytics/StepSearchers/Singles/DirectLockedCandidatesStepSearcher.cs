@@ -27,9 +27,11 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
-	Technique.DirectIntersectionFullHouse, Technique.DirectIntersectionCrosshatchingBlock,
-	Technique.DirectIntersectionCrosshatchingRow, Technique.DirectIntersectionCrosshatchingColumn,
-	Technique.DirectIntersectionNakedSingle, IsFixed = true)]
+	Technique.PointingFullHouse, Technique.PointingCrosshatchingBlock, Technique.PointingCrosshatchingRow,
+	Technique.PointingCrosshatchingColumn, Technique.PointingNakedSingle,
+	Technique.ClaimingFullHouse, Technique.ClaimingCrosshatchingBlock, Technique.ClaimingCrosshatchingRow,
+	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
+	IsFixed = true)]
 [StepSearcherFlags(ConditionalFlags.DirectTechniquesOnly)]
 [StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
@@ -127,6 +129,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
 						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
@@ -190,7 +193,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 					[
 						.. SingleStepSearcher.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. from cell in elimMap select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
+						..
+						from cell in HousesMap[house] & elimMap
+						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
 						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),

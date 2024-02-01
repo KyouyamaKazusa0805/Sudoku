@@ -898,6 +898,51 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Claimed Crosshatching in Block.
+        /// </summary>
+        public static string ClaimingCrosshatchingBlock {
+            get {
+                return ResourceManager.GetString("ClaimingCrosshatchingBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claimed Crosshatching in Column.
+        /// </summary>
+        public static string ClaimingCrosshatchingColumn {
+            get {
+                return ResourceManager.GetString("ClaimingCrosshatchingColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claimed Crosshatching in Row.
+        /// </summary>
+        public static string ClaimingCrosshatchingRow {
+            get {
+                return ResourceManager.GetString("ClaimingCrosshatchingRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claimed Full House.
+        /// </summary>
+        public static string ClaimingFullHouse {
+            get {
+                return ResourceManager.GetString("ClaimingFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claimed Naked Single.
+        /// </summary>
+        public static string ClaimingNakedSingle {
+            get {
+                return ResourceManager.GetString("ClaimingNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to :.
         /// </summary>
         public static string Colon {
@@ -966,51 +1011,6 @@ namespace Sudoku.Resources {
         public static string DiagonalSymmetry {
             get {
                 return ResourceManager.GetString("DiagonalSymmetry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Block.
-        /// </summary>
-        public static string DirectIntersectionCrosshatchingBlock {
-            get {
-                return ResourceManager.GetString("DirectIntersectionCrosshatchingBlock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Column.
-        /// </summary>
-        public static string DirectIntersectionCrosshatchingColumn {
-            get {
-                return ResourceManager.GetString("DirectIntersectionCrosshatchingColumn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Row.
-        /// </summary>
-        public static string DirectIntersectionCrosshatchingRow {
-            get {
-                return ResourceManager.GetString("DirectIntersectionCrosshatchingRow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked Candidates Full House.
-        /// </summary>
-        public static string DirectIntersectionFullHouse {
-            get {
-                return ResourceManager.GetString("DirectIntersectionFullHouse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked Candidates Naked Single.
-        /// </summary>
-        public static string DirectIntersectionNakedSingle {
-            get {
-                return ResourceManager.GetString("DirectIntersectionNakedSingle", resourceCulture);
             }
         }
         
@@ -2856,6 +2856,51 @@ namespace Sudoku.Resources {
         public static string Pointing {
             get {
                 return ResourceManager.GetString("Pointing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointed Crosshatching in Block.
+        /// </summary>
+        public static string PointingCrosshatchingBlock {
+            get {
+                return ResourceManager.GetString("PointingCrosshatchingBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointed Crosshatching in Column.
+        /// </summary>
+        public static string PointingCrosshatchingColumn {
+            get {
+                return ResourceManager.GetString("PointingCrosshatchingColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointed Crosshatching in Row.
+        /// </summary>
+        public static string PointingCrosshatchingRow {
+            get {
+                return ResourceManager.GetString("PointingCrosshatchingRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointed Full House.
+        /// </summary>
+        public static string PointingFullHouse {
+            get {
+                return ResourceManager.GetString("PointingFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointed Naked Single.
+        /// </summary>
+        public static string PointingNakedSingle {
+            get {
+                return ResourceManager.GetString("PointingNakedSingle", resourceCulture);
             }
         }
         
@@ -6375,6 +6420,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_ComplexFish {
             get {
                 return ResourceManager.GetString("TechniqueGroup_ComplexFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Singles.
+        /// </summary>
+        public static string TechniqueGroup_ComplexSingle {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ComplexSingle", resourceCulture);
             }
         }
         

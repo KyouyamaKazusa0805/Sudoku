@@ -1442,29 +1442,54 @@ if (student is (name: var name, age: >= 18))
             Indicates crosshatching in column, equivalent to hidden single in column, but used in direct views.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionFullHouse">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PointingFullHouse">
             <summary>
-            Indicates full house, with several locked candidates used.
+            Indicates full house, with pointing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionNakedSingle">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingBlock">
             <summary>
-            Indicates naked single, with several locked candidates used.
+            Indicates crosshatching in block, with pointing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingBlock">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingRow">
             <summary>
-            Indicates crosshatching in block, with several locked candidates used.
+            Indicates crosshatching in row, with pointing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingRow">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingColumn">
             <summary>
-            Indicates crosshatching in row, with several locked candidates used.
+            Indicates crosshatching in column, with pointing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingColumn">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.PointingNakedSingle">
             <summary>
-            Indicates crosshatching in column, with several locked candidates used.
+            Indicates naked single, with pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ClaimingFullHouse">
+            <summary>
+            Indicates full house, with claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingBlock">
+            <summary>
+            Indicates crosshatching in block, with claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingRow">
+            <summary>
+            Indicates crosshatching in row, with claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingColumn">
+            <summary>
+            Indicates crosshatching in column, with claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ClaimingNakedSingle">
+            <summary>
+            Indicates naked single, with claiming.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">
@@ -3414,6 +3439,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.Single">
             <summary>
             Indicates the singles technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ComplexSingle">
+            <summary>
+            Indicates the complex singles technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.LockedCandidates">
@@ -17210,7 +17240,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="finalTechnique">Indicates the final technique.</param>
+            <param name="basedOn">Indicates the single technique that is based on.</param>
             <param name="indirectTechniques">
             <para>Indicates the indirect techniques used in this pattern.</para>
             <para>
@@ -17245,7 +17275,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="finalTechnique">Indicates the final technique.</param>
+            <param name="basedOn">Indicates the single technique that is based on.</param>
             <param name="indirectTechniques">
             <para>Indicates the indirect techniques used in this pattern.</para>
             <para>
@@ -17288,9 +17318,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.FinalTechnique">
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn">
             <summary>
-            The generated property declaration for parameter <c>finalTechnique</c>.
+            The generated property declaration for parameter <c>basedOn</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques">
@@ -17308,7 +17338,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="finalTechnique"><inheritdoc/></param>
+            <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
@@ -17321,7 +17351,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="finalTechnique"><inheritdoc/></param>
+            <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
         <member name="F:Sudoku.Analytics.Steps.DirectIntersectionStep.NotSupportedMessage">
@@ -17330,9 +17360,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.EnglishName">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Code">
@@ -21236,6 +21263,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Claiming.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ClaimingCrosshatchingBlock">
+            <summary>
+              Looks up a localized string similar to Claimed Crosshatching in Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ClaimingCrosshatchingColumn">
+            <summary>
+              Looks up a localized string similar to Claimed Crosshatching in Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ClaimingCrosshatchingRow">
+            <summary>
+              Looks up a localized string similar to Claimed Crosshatching in Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ClaimingFullHouse">
+            <summary>
+              Looks up a localized string similar to Claimed Full House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ClaimingNakedSingle">
+            <summary>
+              Looks up a localized string similar to Claimed Naked Single.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Colon">
             <summary>
               Looks up a localized string similar to :.
@@ -21274,31 +21326,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.DiagonalSymmetry">
             <summary>
               Looks up a localized string similar to Diagonal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingBlock">
-            <summary>
-              Looks up a localized string similar to Locked Candidates Crosshatching in Block.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingColumn">
-            <summary>
-              Looks up a localized string similar to Locked Candidates Crosshatching in Column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingRow">
-            <summary>
-              Looks up a localized string similar to Locked Candidates Crosshatching in Row.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionFullHouse">
-            <summary>
-              Looks up a localized string similar to Locked Candidates Full House.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionNakedSingle">
-            <summary>
-              Looks up a localized string similar to Locked Candidates Naked Single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.DiscontinuousNiceLoop">
@@ -22324,6 +22351,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.Pointing">
             <summary>
               Looks up a localized string similar to Pointing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.PointingCrosshatchingBlock">
+            <summary>
+              Looks up a localized string similar to Pointed Crosshatching in Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.PointingCrosshatchingColumn">
+            <summary>
+              Looks up a localized string similar to Pointed Crosshatching in Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.PointingCrosshatchingRow">
+            <summary>
+              Looks up a localized string similar to Pointed Crosshatching in Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.PointingFullHouse">
+            <summary>
+              Looks up a localized string similar to Pointed Full House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.PointingNakedSingle">
+            <summary>
+              Looks up a localized string similar to Pointed Naked Single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.PurpleCow">
@@ -24279,6 +24331,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ComplexFish">
             <summary>
               Looks up a localized string similar to Complex Fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ComplexSingle">
+            <summary>
+              Looks up a localized string similar to Complex Singles.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_DeathBlossom">

@@ -2517,19 +2517,37 @@
   <data name="StepSearcherName_DirectIntersectionStepSearcher" xml:space="preserve">
     <value>Direct Intersection</value>
   </data>
-  <data name="DirectIntersectionCrosshatchingBlock" xml:space="preserve">
-    <value>Locked Candidates Crosshatching in Block</value>
+  <data name="PointingCrosshatchingBlock" xml:space="preserve">
+    <value>Pointed Crosshatching in Block</value>
   </data>
-  <data name="DirectIntersectionCrosshatchingColumn" xml:space="preserve">
-    <value>Locked Candidates Crosshatching in Column</value>
+  <data name="PointingCrosshatchingColumn" xml:space="preserve">
+    <value>Pointed Crosshatching in Column</value>
   </data>
-  <data name="DirectIntersectionCrosshatchingRow" xml:space="preserve">
-    <value>Locked Candidates Crosshatching in Row</value>
+  <data name="PointingCrosshatchingRow" xml:space="preserve">
+    <value>Pointed Crosshatching in Row</value>
   </data>
-  <data name="DirectIntersectionFullHouse" xml:space="preserve">
-    <value>Locked Candidates Full House</value>
+  <data name="PointingFullHouse" xml:space="preserve">
+    <value>Pointed Full House</value>
   </data>
-  <data name="DirectIntersectionNakedSingle" xml:space="preserve">
-    <value>Locked Candidates Naked Single</value>
+  <data name="PointingNakedSingle" xml:space="preserve">
+    <value>Pointed Naked Single</value>
+  </data>
+  <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
+    <value>Claimed Crosshatching in Block</value>
+  </data>
+  <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
+    <value>Claimed Crosshatching in Column</value>
+  </data>
+  <data name="ClaimingCrosshatchingRow" xml:space="preserve">
+    <value>Claimed Crosshatching in Row</value>
+  </data>
+  <data name="ClaimingFullHouse" xml:space="preserve">
+    <value>Claimed Full House</value>
+  </data>
+  <data name="ClaimingNakedSingle" xml:space="preserve">
+    <value>Claimed Naked Single</value>
+  </data>
+  <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
+    <value>Complex Singles</value>
   </data>
 </root>
