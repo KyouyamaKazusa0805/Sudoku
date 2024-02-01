@@ -60,14 +60,18 @@ public sealed partial class DirectIntersectionStep(
 
 	/// <inheritdoc/>
 	public override Technique Code
-		=> BasedOn switch
+		=> (BasedOn, IsPointing) switch
 		{
-			Technique.FullHouse => Technique.PointingFullHouse,
-			Technique.CrosshatchingBlock => Technique.PointingCrosshatchingBlock,
-			Technique.HiddenSingleBlock => Technique.PointingCrosshatchingBlock,
-			Technique.CrosshatchingRow or Technique.HiddenSingleRow => Technique.PointingCrosshatchingRow,
-			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => Technique.PointingCrosshatchingColumn,
-			Technique.NakedSingle => Technique.PointingNakedSingle,
+			(Technique.FullHouse, true) => Technique.PointingFullHouse,
+			(Technique.FullHouse, _) => Technique.ClaimingFullHouse,
+			(Technique.CrosshatchingBlock or Technique.HiddenSingleBlock, true) => Technique.PointingCrosshatchingBlock,
+			(Technique.CrosshatchingBlock or Technique.HiddenSingleBlock, _) => Technique.ClaimingCrosshatchingBlock,
+			(Technique.CrosshatchingRow or Technique.HiddenSingleRow, true) => Technique.PointingCrosshatchingRow,
+			(Technique.CrosshatchingRow or Technique.HiddenSingleRow, _) => Technique.ClaimingCrosshatchingRow,
+			(Technique.CrosshatchingColumn or Technique.HiddenSingleColumn, true) => Technique.PointingCrosshatchingColumn,
+			(Technique.CrosshatchingColumn or Technique.HiddenSingleColumn, _) => Technique.ClaimingCrosshatchingColumn,
+			(Technique.NakedSingle, true) => Technique.PointingNakedSingle,
+			(Technique.NakedSingle, _) => Technique.ClaimingNakedSingle,
 			_ => throw new NotSupportedException(TechniqueNotSupportedMessage)
 		};
 
