@@ -1442,6 +1442,31 @@ if (student is (name: var name, age: >= 18))
             Indicates crosshatching in column, equivalent to hidden single in column, but used in direct views.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionFullHouse">
+            <summary>
+            Indicates full house, with several locked candidates used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionNakedSingle">
+            <summary>
+            Indicates naked single, with several locked candidates used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingBlock">
+            <summary>
+            Indicates crosshatching in block, with several locked candidates used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingRow">
+            <summary>
+            Indicates crosshatching in row, with several locked candidates used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.DirectIntersectionCrosshatchingColumn">
+            <summary>
+            Indicates crosshatching in column, with several locked candidates used.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">
             <summary>
             Indicates pointing.
@@ -5862,6 +5887,32 @@ if (student is (name: var name, age: >= 18))
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.IntersectionModule">
+            <summary>
+            Represents an intersection module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+            <summary>
+            Indicates whether the pattern is a locked candidates.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
+            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
+            <param name="c">Indicates the intersection 3 cells.</param>
+            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
             Represents a subset module.
@@ -9368,8 +9419,8 @@ if (student is (name: var name, age: >= 18))
 			<b>Developer Notes</b>
 		</para>
 	</developer-notes>
-            <para>The main idea of this searching operation:</para>
             <para>
+            The main idea of this searching operation:
             <code><![CDATA[
             .-------.-------.-------.
             | C C C | A A A | A A A |
@@ -9383,13 +9434,14 @@ if (student is (name: var name, age: >= 18))
             <item><b>Claiming (Type 2)</b>: Cells B contains the digit, but cells A doesn't.</item>
             </list>
             </para>
-            <para>
             <para>Therefore, the algorithm is:</para>
-            Use bitwise-or <c>operator |</c> to gather all candidate masks from cells A, cells B and cells C,
+            <para>
+            Use <see cref="T:System.Int16" />.<see langword="operator" /> |(<see cref="T:System.Int16" />, <see cref="T:System.Int16" />)
+            to merge digits mask from cells A, cells B and cells C,
             and suppose the notation <c>a</c> is the mask result for cells A, <c>b</c> is the mask result for cells B,
-            and <c>c</c> is the mask result for cells C. If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c>
-            is correct, the locked candidates exists, and the result of the expression
-            <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
+            and <c>c</c> is the mask result for cells C.
+            If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c> is correct, the locked candidates exists,
+            and the result of the expression <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
             </para>
             <para>
             Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
@@ -9398,16 +9450,6 @@ if (student is (name: var name, age: >= 18))
             all possible location where may form a locked candidates.
             </para>
             </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher">
             <summary>
@@ -9962,9 +10004,89 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher">
+            <summary>
+            Provides with a <b>Direct Intersection</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>
+            Direct Pointing family:
+            <list type="bullet">
+            <item>Direct Pointing Full House</item>
+            <item>Direct Pointing Crosshatching in Block</item>
+            <item>Direct Pointing Crosshatching in Row</item>
+            <item>Direct Pointing Crosshatching in Column</item>
+            <item>Direct Pointing Naked Single</item>
+            </list>
+            </item>
+            <item>
+            Direct Claiming family:
+            <list type="bullet">
+            <item>Direct Claiming Full House</item>
+            <item>Direct Claiming Crosshatching in Block</item>
+            <item>Direct Claiming Crosshatching in Row</item>
+            <item>Direct Claiming Crosshatching in Column</item>
+            <item>Direct Claiming Naked Single</item>
+            </list>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            Please check documentation comments for <see cref="M:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
+            to learn more information about this technique.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check full house.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+            <param name="intersection">The intersection cells.</param>
+            <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+            <param name="digit">The digit that can be eliminated in locked candidates.</param>
+            <returns>The result step found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check hidden single.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+            <param name="intersection">The intersection cells.</param>
+            <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+            <param name="digit">The digit that can be eliminated in locked candidates.</param>
+            <returns>The result step found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check naked single.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="baseSet">The base set.</param>
+            <param name="coverSet">The cover set.</param>
+            <param name="intersection">The intersection cells.</param>
+            <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+            <param name="digit">The digit that can be eliminated in locked candidates.</param>
+            <returns>The result step found.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
             <summary>
-            Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+            Provides with a <b>Single</b> step searcher.
+            The step searcher will include the following techniques:
             <list type="bullet">
             <item>
             Common techniques:
@@ -10026,6 +10148,17 @@ if (student is (name: var name, age: >= 18))
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Get subtype of the hidden single.
@@ -10081,17 +10214,6 @@ if (student is (name: var name, age: >= 18))
             that only appears once indeed.
             </para>
             </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cell">The cell.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
@@ -17078,6 +17200,155 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
+            <summary>
+            Provides with a step that is a <b>Complex Single</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="finalTechnique">Indicates the final technique.</param>
+            <param name="indirectTechniques">
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
+            describing the detail usage on the complex combination of indirect technique usages.
+            For example, if a naked single relies on a pointing and a claiming, the value can be combined in multiple cases.
+            two of those are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+            <summary>
+            Provides with a step that is a <b>Complex Single</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="finalTechnique">Indicates the final technique.</param>
+            <param name="indirectTechniques">
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
+            describing the detail usage on the complex combination of indirect technique usages.
+            For example, if a naked single relies on a pointing and a claiming, the value can be combined in multiple cases.
+            two of those are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
+            </param>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.ComplexSingleStep.TechniqueNotSupportedMessage">
+            <summary>
+            Indicates "Technique not supported" message.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.PrefixNameLength">
+            <summary>
+            Indicates the prefix name of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.PrefixName">
+            <summary>
+            Indicates the prefix name replaced.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.FinalTechnique">
+            <summary>
+            The generated property declaration for parameter <c>finalTechnique</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques">
+            <summary>
+            The generated property declaration for parameter <c>indirectTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
+            <summary>
+            Provides with a step that is a <b>Direct Intersection</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="finalTechnique"><inheritdoc/></param>
+            <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+            <summary>
+            Provides with a step that is a <b>Direct Intersection</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="finalTechnique"><inheritdoc/></param>
+            <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Steps.DirectIntersectionStep.NotSupportedMessage">
+            <summary>
+            Indicates the "Not supported" message.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixNameLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing">
+            <summary>
+            The generated property declaration for parameter <c>isPointing</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FullHouseStep">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
@@ -21002,6 +21273,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Diagonal.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingBlock">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Crosshatching in Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingColumn">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Crosshatching in Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionCrosshatchingRow">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Crosshatching in Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionFullHouse">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Full House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectIntersectionNakedSingle">
+            <summary>
+              Looks up a localized string similar to Locked Candidates Naked Single.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.DiscontinuousNiceLoop">
             <summary>
               Looks up a localized string similar to Discontinuous Nice Loop.
@@ -22515,6 +22811,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DeathBlossomStepSearcher">
             <summary>
               Looks up a localized string similar to Death Blossom.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DirectIntersectionStepSearcher">
+            <summary>
+              Looks up a localized string similar to Direct Intersection.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DominoLoopStepSearcher">

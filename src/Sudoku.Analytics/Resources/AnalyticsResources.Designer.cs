@@ -970,6 +970,51 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Block.
+        /// </summary>
+        public static string DirectIntersectionCrosshatchingBlock {
+            get {
+                return ResourceManager.GetString("DirectIntersectionCrosshatchingBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Column.
+        /// </summary>
+        public static string DirectIntersectionCrosshatchingColumn {
+            get {
+                return ResourceManager.GetString("DirectIntersectionCrosshatchingColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Crosshatching in Row.
+        /// </summary>
+        public static string DirectIntersectionCrosshatchingRow {
+            get {
+                return ResourceManager.GetString("DirectIntersectionCrosshatchingRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Full House.
+        /// </summary>
+        public static string DirectIntersectionFullHouse {
+            get {
+                return ResourceManager.GetString("DirectIntersectionFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates Naked Single.
+        /// </summary>
+        public static string DirectIntersectionNakedSingle {
+            get {
+                return ResourceManager.GetString("DirectIntersectionNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discontinuous Nice Loop.
         /// </summary>
         public static string DiscontinuousNiceLoop {
@@ -3693,6 +3738,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_DeathBlossomStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_DeathBlossomStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Intersection.
+        /// </summary>
+        public static string StepSearcherName_DirectIntersectionStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_DirectIntersectionStepSearcher", resourceCulture);
             }
         }
         

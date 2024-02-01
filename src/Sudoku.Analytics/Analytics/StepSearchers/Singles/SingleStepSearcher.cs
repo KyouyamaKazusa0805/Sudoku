@@ -1,7 +1,8 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>Single</b> step searcher. The step searcher will include the following techniques:
+/// Provides with a <b>Single</b> step searcher.
+/// The step searcher will include the following techniques:
 /// <list type="bullet">
 /// <item>
 /// Common techniques:
@@ -220,6 +221,40 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 
 	/// <summary>
+	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="house">The house.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="chosenCells">The chosen cells.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	internal static ReadOnlySpan<CellViewNode> GetHiddenSingleExcluders(
+		scoped ref readonly Grid grid,
+		Digit digit,
+		House house,
+		Cell cell,
+		out CellMap chosenCells
+	)
+	{
+		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) is { } info)
+		{
+			(chosenCells, var covered, var excluded) = info;
+			return (CellViewNode[])[
+				.. from c in chosenCells select new CellViewNode(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
+				..
+				from c in covered
+				let p = excluded.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1
+				select new CellViewNode(p, c) { RenderingMode = DirectModeOnly }
+			];
+		}
+
+		chosenCells = [];
+		return [];
+	}
+
+
+	/// <summary>
 	/// Get subtype of the hidden single.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -227,7 +262,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="house">Indicates the house.</param>
 	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>The subtype of the hidden single.</returns>
-	private static SingleSubtype GetHiddenSingleSubtype(scoped ref readonly Grid grid, Cell cell, House house, scoped ref readonly CellMap chosenCells)
+	internal static SingleSubtype GetHiddenSingleSubtype(scoped ref readonly Grid grid, Cell cell, House house, scoped ref readonly CellMap chosenCells)
 	{
 		scoped ref readonly var houseCells = ref HousesMap[house];
 		var (b, r, c) = (0, 0, 0);
@@ -523,39 +558,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					)
 				}
 		};
-	}
-
-	/// <summary>
-	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="house">The house.</param>
-	/// <param name="cell">The cell.</param>
-	/// <param name="chosenCells">The chosen cells.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private static CellViewNode[] GetHiddenSingleExcluders(
-		scoped ref readonly Grid grid,
-		Digit digit,
-		House house,
-		Cell cell,
-		out CellMap chosenCells
-	)
-	{
-		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) is { } info)
-		{
-			(chosenCells, var covered, var excluded) = info;
-			return [
-				.. from c in chosenCells select new CellViewNode(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
-				..
-				from c in covered
-				let p = excluded.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1
-				select new CellViewNode(p, c) { RenderingMode = DirectModeOnly }
-			];
-		}
-
-		chosenCells = [];
-		return [];
 	}
 
 	/// <summary>

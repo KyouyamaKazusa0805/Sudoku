@@ -118,6 +118,46 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	CrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates full house, with several locked candidates used.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	DirectIntersectionFullHouse,
+
+	/// <summary>
+	/// Indicates naked single, with several locked candidates used.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	DirectIntersectionNakedSingle,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with several locked candidates used.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	DirectIntersectionCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with several locked candidates used.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	DirectIntersectionCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with several locked candidates used.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.Single)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	DirectIntersectionCrosshatchingColumn,
 	#endregion
 
 	//

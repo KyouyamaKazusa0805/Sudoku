@@ -2703,4 +2703,28 @@
     <value>不规则 Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="StepSearcherName_DirectIntersectionStepSearcher" xml:space="preserve">
+    <value>直观区块</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="DirectIntersectionCrosshatchingBlock" xml:space="preserve">
+    <value>区块宫排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="DirectIntersectionCrosshatchingColumn" xml:space="preserve">
+    <value>区块列排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="DirectIntersectionCrosshatchingRow" xml:space="preserve">
+    <value>区块行排除</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="DirectIntersectionFullHouse" xml:space="preserve">
+    <value>区块同区九缺一</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="DirectIntersectionNakedSingle" xml:space="preserve">
+    <value>区块唯一余数</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 [assembly: StepSearcherImport<SingleStepSearcher>(0)]
+[assembly: StepSearcherImport<DirectIntersectionStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedSubsetStepSearcher>(0)]
 [assembly: StepSearcherImport<LockedCandidatesStepSearcher>(0)]
 [assembly: StepSearcherImport<LawOfLeftoverStepSearcher>(0)]

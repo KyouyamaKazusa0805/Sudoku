@@ -1,0 +1,294 @@
+namespace Sudoku.Analytics.StepSearchers;
+
+/// <summary>
+/// Provides with a <b>Direct Intersection</b> step searcher.
+/// The step searcher will include the following techniques:
+/// <list type="bullet">
+/// <item>
+/// Direct Pointing family:
+/// <list type="bullet">
+/// <item>Direct Pointing Full House</item>
+/// <item>Direct Pointing Crosshatching in Block</item>
+/// <item>Direct Pointing Crosshatching in Row</item>
+/// <item>Direct Pointing Crosshatching in Column</item>
+/// <item>Direct Pointing Naked Single</item>
+/// </list>
+/// </item>
+/// <item>
+/// Direct Claiming family:
+/// <list type="bullet">
+/// <item>Direct Claiming Full House</item>
+/// <item>Direct Claiming Crosshatching in Block</item>
+/// <item>Direct Claiming Crosshatching in Row</item>
+/// <item>Direct Claiming Crosshatching in Column</item>
+/// <item>Direct Claiming Naked Single</item>
+/// </list>
+/// </item>
+/// </list>
+/// </summary>
+[StepSearcher(
+	Technique.DirectIntersectionFullHouse, Technique.DirectIntersectionCrosshatchingBlock,
+	Technique.DirectIntersectionCrosshatchingRow, Technique.DirectIntersectionCrosshatchingColumn,
+	Technique.DirectIntersectionNakedSingle, IsFixed = true)]
+[StepSearcherFlags(ConditionalFlags.DirectTechniquesOnly)]
+[StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
+public sealed partial class DirectIntersectionStepSearcher : StepSearcher
+{
+	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
+	/// Please check documentation comments for <see cref="LockedCandidatesStepSearcher.Collect(ref AnalysisContext)"/>
+	/// to learn more information about this technique.
+	/// </remarks>
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	{
+		scoped ref readonly var grid = ref context.Grid;
+		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+		{
+			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, out var m))
+			{
+				continue;
+			}
+
+			foreach (var digit in m)
+			{
+				scoped ref readonly var candidatesMap = ref CandidatesMap[digit];
+
+				// Check whether the digit contains any eliminations.
+				var (housesMask, elimMap) = a & candidatesMap
+					? ((Mask)(coverSet << 8 | baseSet), a & candidatesMap)
+					: ((Mask)(baseSet << 8 | coverSet), b & candidatesMap);
+				if (!elimMap)
+				{
+					continue;
+				}
+
+				// Different with normal locked candidates searcher, this searcher is used as direct views.
+				// We should check any possible assignments after such eliminations applied -
+				// such assignments are the real conclusions of this technique.
+				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
+				if (CheckFullHouse(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } fullHouse)
+				{
+					return fullHouse;
+				}
+				if (CheckHiddenSingle(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } hiddenSingle)
+				{
+					return hiddenSingle;
+				}
+				if (CheckNakedSingle(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } nakedSingle)
+				{
+					return nakedSingle;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check full house.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="baseSet">The base set.</param>
+	/// <param name="coverSet">The cover set.</param>
+	/// <param name="intersection">The intersection cells.</param>
+	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
+	/// <returns>The result step found.</returns>
+	private DirectIntersectionStep? CheckFullHouse(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		House baseSet,
+		House coverSet,
+		scoped ref readonly CellMap intersection,
+		scoped ref readonly CellMap elimMap,
+		Digit digit
+	)
+	{
+		foreach (var house in elimMap.Houses)
+		{
+			var emptyCells = HousesMap[house] & EmptyCells;
+			if (emptyCells.Count != 7)
+			{
+				return null;
+			}
+
+			var lastDigitMask = (Mask)(grid[in emptyCells] & (Mask)~(1 << digit));
+			if (!IsPow2(lastDigitMask))
+			{
+				return null;
+			}
+
+			var lastDigit = Log2((uint)lastDigitMask);
+			var lastCell = (emptyCells - elimMap)[0];
+			var step = new DirectIntersectionStep(
+				[new(Assignment, lastCell, lastDigit)],
+				[
+					[
+						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						new HouseViewNode(ColorIdentifier.Normal, baseSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+					]
+				],
+				context.PredefinedOptions,
+				lastCell,
+				lastDigit,
+				house switch
+				{
+					< 9 => SingleSubtype.FullHouseBlock,
+					< 18 => SingleSubtype.FullHouseRow,
+					_ => SingleSubtype.FullHouseColumn
+				},
+				Technique.FullHouse,
+				baseSet < 9
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check hidden single.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="baseSet">The base set.</param>
+	/// <param name="coverSet">The cover set.</param>
+	/// <param name="intersection">The intersection cells.</param>
+	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
+	/// <returns>The result step found.</returns>
+	private DirectIntersectionStep? CheckHiddenSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		House baseSet,
+		House coverSet,
+		scoped ref readonly CellMap intersection,
+		scoped ref readonly CellMap elimMap,
+		Digit digit
+	)
+	{
+		foreach (var house in elimMap.Houses)
+		{
+			var emptyCells = (HousesMap[house] & CandidatesMap[digit]) - elimMap;
+			if (emptyCells is not [var lastCell])
+			{
+				continue;
+			}
+
+			var step = new DirectIntersectionStep(
+				[new(Assignment, lastCell, digit)],
+				[
+					[
+						.. SingleStepSearcher.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						.. from cell in elimMap select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
+						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
+						new HouseViewNode(ColorIdentifier.Normal, baseSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary3, house),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+					]
+				],
+				context.PredefinedOptions,
+				lastCell,
+				digit,
+				SingleStepSearcher.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+				house switch
+				{
+					< 9 => Technique.CrosshatchingBlock,
+					< 18 => Technique.CrosshatchingRow,
+					_ => Technique.CrosshatchingColumn
+				},
+				baseSet < 9
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check naked single.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="baseSet">The base set.</param>
+	/// <param name="coverSet">The cover set.</param>
+	/// <param name="intersection">The intersection cells.</param>
+	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
+	/// <returns>The result step found.</returns>
+	private DirectIntersectionStep? CheckNakedSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		House baseSet,
+		House coverSet,
+		scoped ref readonly CellMap intersection,
+		scoped ref readonly CellMap elimMap,
+		Digit digit
+	)
+	{
+		foreach (var lastCell in elimMap)
+		{
+			if (grid.GetCandidates(lastCell) is var digitsMask && PopCount((uint)digitsMask) != 2)
+			{
+				continue;
+			}
+
+			var lastDigit = TrailingZeroCount((Mask)(digitsMask & (Mask)~(1 << digit)));
+			var step = new DirectIntersectionStep(
+				[new(Assignment, lastCell, lastDigit)],
+				[
+					[
+						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
+						new HouseViewNode(ColorIdentifier.Normal, baseSet),
+						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+					]
+				],
+				context.PredefinedOptions,
+				lastCell,
+				lastDigit,
+				(HousesMap[lastCell.ToHouseIndex(HouseType.Block)] & EmptyCells).Count switch
+				{
+					0 => SingleSubtype.NakedSingle0,
+					1 => SingleSubtype.NakedSingle1,
+					2 => SingleSubtype.NakedSingle2,
+					3 => SingleSubtype.NakedSingle3,
+					4 => SingleSubtype.NakedSingle4,
+					5 => SingleSubtype.NakedSingle5,
+					6 => SingleSubtype.NakedSingle6,
+					7 => SingleSubtype.NakedSingle7,
+					_ => SingleSubtype.NakedSingle8
+				},
+				Technique.NakedSingle,
+				baseSet < 9
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
+		return null;
+	}
+}

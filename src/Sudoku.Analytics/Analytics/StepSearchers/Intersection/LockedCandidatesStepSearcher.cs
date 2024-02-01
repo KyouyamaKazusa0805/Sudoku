@@ -15,8 +15,8 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// <para>The main idea of this searching operation:</para>
 	/// <para>
+	/// The main idea of this searching operation:
 	/// <code><![CDATA[
 	/// .-------.-------.-------.
 	/// | C C C | A A A | A A A |
@@ -30,13 +30,14 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// <item><b>Claiming (Type 2)</b>: Cells B contains the digit, but cells A doesn't.</item>
 	/// </list>
 	/// </para>
-	/// <para>
 	/// <para>Therefore, the algorithm is:</para>
-	/// Use bitwise-or <c>operator |</c> to gather all candidate masks from cells A, cells B and cells C,
+	/// <para>
+	/// Use <see cref="Mask"/>.<see langword="operator"/> |(<see cref="Mask"/>, <see cref="Mask"/>)
+	/// to merge digits mask from cells A, cells B and cells C,
 	/// and suppose the notation <c>a</c> is the mask result for cells A, <c>b</c> is the mask result for cells B,
-	/// and <c>c</c> is the mask result for cells C. If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c>
-	/// is correct, the locked candidates exists, and the result of the expression
-	/// <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
+	/// and <c>c</c> is the mask result for cells C.
+	/// If the equation <c><![CDATA[(c & (a ^ b)) != 0]]></c> is correct, the locked candidates exists,
+	/// and the result of the expression <c><![CDATA[c & (a ^ b)]]></c> is a mask that holds the digits of the locked candidates.
 	/// </para>
 	/// <para>
 	/// Why this expression? <c>a ^ b</c> means the digit can only appear in either cells A or cells B.
@@ -50,20 +51,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
-			// If the cells C doesn't contain any empty cells,
-			// the location won't contain any locked candidates.
-			if (!(EmptyCells & c))
-			{
-				continue;
-			}
-
-			// Gather the masks in cells A, B and C.
-			var (maskA, maskB, maskC) = (grid[in a], grid[in b], grid[in c]);
-
-			// Use the formula, and check whether the equation is correct.
-			// If so, the mask 'm' will hold the digits that form locked candidates structures.
-			var m = (Mask)(maskC & (maskA ^ maskB));
-			if (m == 0)
+			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, out var m))
 			{
 				continue;
 			}
@@ -91,7 +79,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 							.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 							new HouseViewNode(ColorIdentifier.Normal, realBaseSet),
 							new HouseViewNode(ColorIdentifier.Auxiliary1, realCoverSet),
-							.. GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
+							.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
 						]
 					],
 					context.PredefinedOptions,
@@ -99,7 +87,6 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					realBaseSet,
 					realCoverSet
 				);
-
 				if (context.OnlyFindOne)
 				{
 					return step;
@@ -110,35 +97,5 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		}
 
 		return null;
-	}
-
-	/// <summary>
-	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="house">The house.</param>
-	/// <param name="cells">The cells.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private CellViewNode[] GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
-	{
-		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
-		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
-		{
-			return [];
-		}
-
-		var result = new List<CellViewNode>();
-		foreach (var c in combination)
-		{
-			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
-		}
-		foreach (var c in emptyCellsShouldBeCovered)
-		{
-			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
-			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
-		}
-
-		return [.. result];
 	}
 }

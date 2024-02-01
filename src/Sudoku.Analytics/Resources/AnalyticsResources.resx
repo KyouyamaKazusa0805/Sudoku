@@ -2514,4 +2514,22 @@
   <data name="StepSearcherName_IrregularWingStepSearcher" xml:space="preserve">
     <value>Irregular Wing</value>
   </data>
+  <data name="StepSearcherName_DirectIntersectionStepSearcher" xml:space="preserve">
+    <value>Direct Intersection</value>
+  </data>
+  <data name="DirectIntersectionCrosshatchingBlock" xml:space="preserve">
+    <value>Locked Candidates Crosshatching in Block</value>
+  </data>
+  <data name="DirectIntersectionCrosshatchingColumn" xml:space="preserve">
+    <value>Locked Candidates Crosshatching in Column</value>
+  </data>
+  <data name="DirectIntersectionCrosshatchingRow" xml:space="preserve">
+    <value>Locked Candidates Crosshatching in Row</value>
+  </data>
+  <data name="DirectIntersectionFullHouse" xml:space="preserve">
+    <value>Locked Candidates Full House</value>
+  </data>
+  <data name="DirectIntersectionNakedSingle" xml:space="preserve">
+    <value>Locked Candidates Naked Single</value>
+  </data>
 </root>

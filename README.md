@@ -62,6 +62,8 @@ This solution supports many kinds of human-friendly techniques. Here I will list
 * Singles
   * Naked Single, Full House
   * Hidden Single, Last Digit
+* Complex Singles
+  * Direct Intersection
 * Candidate-Related Techniques
   * Locked Candidates Family
     * LC (Locked Candidates)
