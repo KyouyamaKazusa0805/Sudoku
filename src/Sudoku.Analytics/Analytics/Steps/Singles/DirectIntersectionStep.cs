@@ -8,6 +8,10 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
+/// <param name="intersectionCells">Indicates the intersection cells.</param>
+/// <param name="intersectionHouse">Indicates the intersection house.</param>
+/// <param name="interim">Indicates the interim.</param>
+/// <param name="interimDigit">Indicates the interim digit.</param>
 /// <param name="subtype"><inheritdoc/></param>
 /// <param name="basedOn"><inheritdoc/></param>
 /// <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
@@ -17,6 +21,10 @@ public sealed partial class DirectIntersectionStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
+	[RecordParameter] scoped ref readonly CellMap intersectionCells,
+	[RecordParameter] House intersectionHouse,
+	[RecordParameter] Cell interim,
+	[RecordParameter] Digit interimDigit,
 	SingleSubtype subtype,
 	Technique basedOn,
 	[RecordParameter] bool isPointing
@@ -64,6 +72,13 @@ public sealed partial class DirectIntersectionStep(
 		};
 
 	/// <inheritdoc/>
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr]),
+			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr])
+		];
+
+	/// <inheritdoc/>
 	protected override string PrefixName
 	{
 		[DoesNotReturn]
@@ -76,4 +91,14 @@ public sealed partial class DirectIntersectionStep(
 		[DoesNotReturn]
 		get => throw new NotImplementedException(NotSupportedMessage);
 	}
+
+	private string CellsStr => Options.Converter.CellConverter(IntersectionCells);
+
+	private string HouseStr => Options.Converter.HouseConverter(1 << IntersectionHouse);
+
+	private string InterimCellStr => Options.Converter.CellConverter([Interim]);
+
+	private string InterimDigitStr => Options.Converter.DigitConverter((Mask)(1 << InterimDigit));
+
+	private string TechniqueNameStr => BasedOn.GetName(ResultCurrentCulture);
 }

@@ -2750,4 +2750,7 @@
   <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
     <value>复杂出数类技巧</value>
   </data>
+  <data name="TechniqueFormat_DirectIntersectionStep" xml:space="preserve">
+    <value>单元格 {0} 在 {1} 里形成区块，于是 {2} 不能填入 {3}，因而形成{4}技巧</value>
+  </data>
 </root>

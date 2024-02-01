@@ -17337,11 +17337,15 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="intersectionCells">Indicates the intersection cells.</param>
+            <param name="intersectionHouse">Indicates the intersection house.</param>
+            <param name="interim">Indicates the interim.</param>
+            <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Direct Intersection</b> technique.
             </summary>
@@ -17350,6 +17354,10 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="intersectionCells">Indicates the intersection cells.</param>
+            <param name="intersectionHouse">Indicates the intersection house.</param>
+            <param name="interim">Indicates the interim.</param>
+            <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
@@ -17365,11 +17373,34 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixName">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixNameLength">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionCells">
+            <summary>
+            The generated property declaration for parameter <c>intersectionCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionHouse">
+            <summary>
+            The generated property declaration for parameter <c>intersectionHouse</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Interim">
+            <summary>
+            The generated property declaration for parameter <c>interim</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.InterimDigit">
+            <summary>
+            The generated property declaration for parameter <c>interimDigit</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing">
             <summary>
@@ -23833,6 +23864,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DeathBlossomStep">
             <summary>
               Looks up a localized string similar to Pivot: {0}, Branches: {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DirectIntersectionStep">
+            <summary>
+              Looks up a localized string similar to Cells {0} is formed a locked candidates in {1}, then {2} cannot be filled with digit {3}, so the {4} is formed.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DominoLoopStep">

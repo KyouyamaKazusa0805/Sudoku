@@ -139,6 +139,10 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				lastDigit,
+				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				baseSet,
+				lastCell,
+				digit,
 				house switch
 				{
 					< 9 => SingleSubtype.FullHouseBlock,
@@ -208,6 +212,10 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				digit,
+				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				baseSet,
+				((HousesMap[house] & CandidatesMap[digit]) - lastCell)[0],
+				digit,
 				SingleStepSearcher.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 				house switch
 				{
@@ -272,6 +280,10 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				lastDigit,
+				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				baseSet,
+				lastCell,
+				digit,
 				(HousesMap[lastCell.ToHouseIndex(HouseType.Block)] & EmptyCells).Count switch
 				{
 					0 => SingleSubtype.NakedSingle0,

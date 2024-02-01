@@ -2550,4 +2550,7 @@
   <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
     <value>Complex Single</value>
   </data>
+  <data name="TechniqueFormat_DirectIntersectionStep" xml:space="preserve">
+    <value>Cells {0} is formed a locked candidates in {1}, then {2} cannot be filled with digit {3}, so the {4} is formed</value>
+  </data>
 </root>
