@@ -296,7 +296,6 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped ref readonly CellMap fins, bool searchRow)
 	{
 		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = fins ? new List<CandidateViewNode>() : null;
 		foreach (var baseSet in baseSets)
 		{
 			foreach (var cell in HousesMap[baseSet])
@@ -346,16 +345,13 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			}
 		}
 
-		foreach (var cell in ValuesMap[digit])
-		{
-			cellOffsets.Add(new(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark });
-		}
-		foreach (var cell in fins)
-		{
-			candidateOffsets!.Add(new(ColorIdentifier.Exofin, cell * 9 + digit));
-		}
-
-		return [.. cellOffsets, .. candidateOffsets ?? []];
+		return [
+			.. cellOffsets,
+			..
+			from cell in ValuesMap[digit]
+			select new CellViewNode(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark },
+			.. fins ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : []
+		];
 	}
 }
 
