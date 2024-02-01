@@ -76,8 +76,4 @@ public sealed partial class DirectIntersectionStep(
 		[DoesNotReturn]
 		get => throw new NotImplementedException(NotSupportedMessage);
 	}
-
-
-	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture) => Code.GetName(culture ?? ResultCurrentCulture);
 }

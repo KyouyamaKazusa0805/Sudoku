@@ -17371,9 +17371,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixNameLength">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.GetName(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing">
             <summary>
             The generated property declaration for parameter <c>isPointing</c>.

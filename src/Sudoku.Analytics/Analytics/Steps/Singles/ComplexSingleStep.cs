@@ -62,6 +62,6 @@ public abstract partial class ComplexSingleStep(
 
 
 	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture)
+	public new string GetName(CultureInfo? culture)
 		=> $"{PrefixName}{base.GetName(culture ?? ResultCurrentCulture)[PrefixNameLength..]}";
 }
