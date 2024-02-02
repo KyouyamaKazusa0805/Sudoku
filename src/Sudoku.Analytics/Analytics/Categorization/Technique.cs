@@ -133,44 +133,124 @@ public enum Technique
 	PointingFullHouse,
 
 	/// <summary>
-	/// Indicates crosshatching in block, with pointing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
-	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
-	PointingCrosshatchingBlock,
-
-	/// <summary>
-	/// Indicates crosshatching in row, with pointing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
-	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
-	PointingCrosshatchingRow,
-
-	/// <summary>
-	/// Indicates crosshatching in column, with pointing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
-	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
-	PointingCrosshatchingColumn,
-
-	/// <summary>
-	/// Indicates naked single, with pointing.
-	/// </summary>
-	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
-	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
-	[DifficultyLevel(DifficultyLevel.Moderate)]
-	PointingNakedSingle,
-
-	/// <summary>
 	/// Indicates full house, with claiming.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	ClaimingFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked pair (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairPlusFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenPairFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with locked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedPairFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with locked hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenPairFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTripleFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked triple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTriplePlusFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenTripleFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with locked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedTripleFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with locked hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenTripleFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadrupleFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with naked quadruple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadruplePlusFullHouse,
+
+	/// <summary>
+	/// Indicates full house, with hidden quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenQuadrupleFullHouse,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with pointing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	PointingCrosshatchingBlock,
 
 	/// <summary>
 	/// Indicates crosshatching in block, with claiming.
@@ -181,12 +261,236 @@ public enum Technique
 	ClaimingCrosshatchingBlock,
 
 	/// <summary>
+	/// Indicates crosshatching in block, with naked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with naked pair (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairPlusCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenPairCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with locked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedPairCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with locked hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenPairCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with naked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTripleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with naked triple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTriplePlusCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenTripleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with locked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedTripleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with locked hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenTripleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with naked quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadrupleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in block, with naked quadruple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadruplePlusCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates full house, with hidden quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenQuadrupleCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with pointing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	PointingCrosshatchingRow,
+
+	/// <summary>
 	/// Indicates crosshatching in row, with claiming.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	ClaimingCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked pair (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairPlusCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenPairCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with locked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedPairCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with locked hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenPairCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTripleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked triple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTriplePlusCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenTripleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with locked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedTripleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with locked hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenTripleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadrupleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in row, with naked quadruple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadruplePlusCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates full house, with hidden quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenQuadrupleCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with pointing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	PointingCrosshatchingColumn,
 
 	/// <summary>
 	/// Indicates crosshatching in column, with claiming.
@@ -197,12 +501,228 @@ public enum Technique
 	ClaimingCrosshatchingColumn,
 
 	/// <summary>
+	/// Indicates crosshatching in column, with naked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with naked pair (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairPlusCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenPairCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with locked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedPairCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with locked hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenPairCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with naked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTripleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with naked triple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTriplePlusCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenTripleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with locked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedTripleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with locked hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenTripleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with naked quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadrupleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates crosshatching in column, with naked quadruple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadruplePlusCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates full house, with hidden quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenQuadrupleCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates naked single, with pointing.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	PointingNakedSingle,
+
+	/// <summary>
 	/// Indicates naked single, with claiming.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	ClaimingNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked pair (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedPairPlusNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenPairNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with locked pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedPairNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with locked hidden pair.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenPairNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTripleNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked triple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedTriplePlusNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenTripleNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with locked triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedTripleNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with locked hidden triple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	LockedHiddenTripleNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadrupleNakedSingle,
+
+	/// <summary>
+	/// Indicates naked single, with naked quadruple (+).
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	NakedQuadruplePlusNakedSingle,
+
+	/// <summary>
+	/// Indicates full house, with hidden quadruple.
+	/// </summary>
+	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
+	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
+	[DifficultyLevel(DifficultyLevel.Moderate)]
+	HiddenQuadrupleNakedSingle,
 	#endregion
 
 	//
@@ -244,86 +764,6 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[Abbreviation("LoL")]
 	LawOfLeftover,
-	#endregion
-
-	//
-	// Almost Locked Candidates
-	//
-	#region Almost Locked Candidates
-	/// <summary>
-	/// Indicates almost locked pair.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALP")]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	AlmostLockedPair,
-
-	/// <summary>
-	/// Indicates almost locked triple.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALT")]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	AlmostLockedTriple,
-
-	/// <summary>
-	/// Indicates almost locked quadruple.
-	/// The technique may not be useful because it'll be replaced with Sue de Coq.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALQ")]
-	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	AlmostLockedQuadruple,
-
-	/// <summary>
-	/// Indicates almost locked triple value type.
-	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	AlmostLockedTripleValueType,
-
-	/// <summary>
-	/// Indicates almost locked quadruple value type.
-	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[DifficultyLevel(DifficultyLevel.Hard)]
-	AlmostLockedQuadrupleValueType,
-	#endregion
-
-	//
-	// Fireworks
-	//
-	#region Fireworks
-	/// <summary>
-	/// Indicates firework triple.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	FireworkTriple,
-
-	/// <summary>
-	/// Indicates firework quadruple.
-	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	FireworkQuadruple,
 	#endregion
 
 	//
@@ -1676,6 +2116,65 @@ public enum Technique
 	#endregion
 
 	//
+	// Almost Locked Candidates
+	//
+	#region Almost Locked Candidates
+	/// <summary>
+	/// Indicates almost locked pair.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALP")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedPair,
+
+	/// <summary>
+	/// Indicates almost locked triple.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALT")]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedTriple,
+
+	/// <summary>
+	/// Indicates almost locked quadruple.
+	/// The technique may not be useful because it'll be replaced with Sue de Coq.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[Abbreviation("ALQ")]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedQuadruple,
+
+	/// <summary>
+	/// Indicates almost locked triple value type.
+	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedTripleValueType,
+
+	/// <summary>
+	/// Indicates almost locked quadruple value type.
+	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
+	/// </summary>
+	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
+	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
+	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
+	[DifficultyLevel(DifficultyLevel.Hard)]
+	AlmostLockedQuadrupleValueType,
+	#endregion
+
+	//
 	// Extended Subset Principle
 	//
 	#region Extended Subset Principle
@@ -2762,6 +3261,27 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SueDeCoqCannibalism,
+	#endregion
+
+	//
+	// Fireworks
+	//
+	#region Fireworks
+	/// <summary>
+	/// Indicates firework triple.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	FireworkTriple,
+
+	/// <summary>
+	/// Indicates firework quadruple.
+	/// </summary>
+	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
+	[TechniqueGroup(TechniqueGroup.Firework)]
+	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	FireworkQuadruple,
 	#endregion
 
 	//
