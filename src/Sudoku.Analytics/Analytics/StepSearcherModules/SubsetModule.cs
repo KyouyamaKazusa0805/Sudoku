@@ -31,6 +31,35 @@ internal static class SubsetModule
 		return null;
 	}
 
+	/// <summary>
+	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="house">The house.</param>
+	/// <param name="cells">The cells.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	internal static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
+	{
+		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
+		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
+		{
+			return [];
+		}
+
+		var result = new List<CellViewNode>();
+		foreach (var c in combination)
+		{
+			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
+		}
+		foreach (var c in emptyCellsShouldBeCovered)
+		{
+			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
+			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
+		}
+
+		return result.AsReadOnlySpan();
+	}
 
 	/// <summary>
 	/// Search for hidden subsets.
@@ -227,35 +256,5 @@ internal static class SubsetModule
 		}
 
 		return null;
-	}
-
-	/// <summary>
-	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="digit">The digit.</param>
-	/// <param name="house">The house.</param>
-	/// <param name="cells">The cells.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	private static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
-	{
-		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
-		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
-		{
-			return [];
-		}
-
-		var result = new List<CellViewNode>();
-		foreach (var c in combination)
-		{
-			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
-		}
-		foreach (var c in emptyCellsShouldBeCovered)
-		{
-			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
-			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
-		}
-
-		return result.AsReadOnlySpan();
 	}
 }

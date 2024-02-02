@@ -5982,16 +5982,6 @@ if (student is (name: var name, age: >= 18))
             <param name="context">The context.</param>
             <returns>The collected steps.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
-            <summary>
-            Search for hidden subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
-            <summary>
-            Search for naked subsets.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
@@ -6001,6 +5991,16 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule">
             <summary>
