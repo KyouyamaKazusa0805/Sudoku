@@ -39,21 +39,21 @@ public sealed partial class Analyzer :
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalFlags.TimeComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherFlags.TimeComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
+	/// <seealso cref="StepSearcherFlags.TimeComplexity"/>
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="ConditionalFlags.SpaceComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherFlags.SpaceComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
+	/// <seealso cref="StepSearcherFlags.SpaceComplexity"/>
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>

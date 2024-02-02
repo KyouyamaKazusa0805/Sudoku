@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.Metadata;
 /// </para>
 /// </summary>
 /// <param name="flags">
-/// Indicates the flags to be set. You can use <see cref="ConditionalFlags"/>.<see langword="operator"/>
-/// |(<see cref="ConditionalFlags"/>, <see cref="ConditionalFlags"/>) to merge multiple flags.
+/// Indicates the flags to be set. You can use <see cref="StepSearcherFlags"/>.<see langword="operator"/>
+/// |(<see cref="StepSearcherFlags"/>, <see cref="StepSearcherFlags"/>) to merge multiple flags.
 /// </param>
-/// <seealso cref="ConditionalFlags"/>
+/// <seealso cref="StepSearcherFlags"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherFlagsAttribute([RecordParameter] ConditionalFlags flags) : Attribute;
+public sealed partial class StepSearcherFlagsAttribute([RecordParameter] StepSearcherFlags flags) : Attribute;

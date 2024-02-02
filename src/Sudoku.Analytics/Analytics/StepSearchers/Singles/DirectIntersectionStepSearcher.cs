@@ -32,7 +32,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.ClaimingFullHouse, Technique.ClaimingCrosshatchingBlock, Technique.ClaimingCrosshatchingRow,
 	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
 	IsFixed = true)]
-[StepSearcherFlags(ConditionalFlags.DirectTechniquesOnly)]
+[StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
 [StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {

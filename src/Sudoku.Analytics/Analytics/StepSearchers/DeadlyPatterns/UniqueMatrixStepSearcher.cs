@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(Technique.UniqueMatrixType1, Technique.UniqueMatrixType2, Technique.UniqueMatrixType3, Technique.UniqueMatrixType4)]
-[StepSearcherFlags(ConditionalFlags.Standard)]
+[StepSearcherFlags(StepSearcherFlags.Standard)]
 [StepSearcherRuntimeName("StepSearcherName_UniqueMatrixStepSearcher")]
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {

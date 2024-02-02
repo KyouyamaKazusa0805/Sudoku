@@ -7,12 +7,12 @@ namespace Sudoku.Analytics.Metadata;
 /// </summary>
 /// <remarks><i>
 /// This type is marked <see cref="FlagsAttribute"/>, which means you can use
-/// <see cref="ConditionalFlags"/>.<see langword="operator"/> | to combine multiple fields.
+/// <see cref="StepSearcherFlags"/>.<see langword="operator"/> | to combine multiple fields.
 /// </i></remarks>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="StepSearcherFlagsAttribute.Flags"/>
 [Flags]
-public enum ConditionalFlags
+public enum StepSearcherFlags
 {
 	/// <summary>
 	/// Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.

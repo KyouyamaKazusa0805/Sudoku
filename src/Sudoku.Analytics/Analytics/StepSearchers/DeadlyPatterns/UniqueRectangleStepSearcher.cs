@@ -62,7 +62,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleBrokenWing, Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
 	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing)]
-[StepSearcherFlags(ConditionalFlags.Standard)]
+[StepSearcherFlags(StepSearcherFlags.Standard)]
 [StepSearcherRuntimeName("StepSearcherName_UniqueRectangleStepSearcher")]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {

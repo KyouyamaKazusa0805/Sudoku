@@ -32,31 +32,31 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
-	public bool IsNotSupportedForSukaku => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.Standard);
+	public bool IsNotSupportedForSukaku => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.Standard);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalFlags.TimeComplexity"/> being configured.
+	/// by option <see cref="StepSearcherFlags.TimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalFlags.TimeComplexity"/>
-	public bool IsConfiguredSlow => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.TimeComplexity);
+	/// <seealso cref="StepSearcherFlags.TimeComplexity"/>
+	public bool IsConfiguredSlow => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.TimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="ConditionalFlags.SpaceComplexity"/> being configured.
+	/// by option <see cref="StepSearcherFlags.SpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="ConditionalFlags.SpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.SpaceComplexity);
+	/// <seealso cref="StepSearcherFlags.SpaceComplexity"/>
+	public bool IsConfiguredHighAllocation => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.SpaceComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for direct view.
 	/// </summary>
-	public bool IsOnlyRunForDirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.DirectTechniquesOnly);
+	public bool IsOnlyRunForDirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.DirectTechniquesOnly);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for indirect view.
 	/// </summary>
-	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(ConditionalFlags.IndirectTechniquesOnly);
+	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.IndirectTechniquesOnly);
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
