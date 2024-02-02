@@ -14,6 +14,11 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	public bool CanDrag => !CreateStepSearchers()[0].Metadata.IsFixed;
 
 	/// <summary>
+	/// Indicates whether the technique option is not read-only and can be used for toggle operation.
+	/// </summary>
+	public bool CanToggle => !CreateStepSearchers()[0].Metadata.IsReadOnly;
+
+	/// <summary>
 	/// Creates a list of <see cref="StepSearcher"/> instances.
 	/// </summary>
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>

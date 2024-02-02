@@ -30,6 +30,11 @@ public sealed partial class StepSearcherMetadataInfo(
 	public bool IsFixed => _stepSearcherAttribute.IsFixed;
 
 	/// <summary>
+	/// Determines whether we can toggle availability of the step searcher.
+	/// </summary>
+	public bool IsReadOnly => _stepSearcherAttribute.IsReadOnly;
+
+	/// <summary>
 	/// Determines whether the current step searcher is not supported for sukaku solving mode.
 	/// </summary>
 	public bool IsNotSupportedForSukaku => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.Standard);

@@ -15,7 +15,7 @@
 		DragItemsStarting="MainListView_DragItemsStarting" SelectionChanged="MainListView_SelectionChanged">
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="config:StepSearcherInfo">
-				<CheckBox IsChecked="{x:Bind IsEnabled,Mode=TwoWay}" Content="{x:Bind Name}" CanDrag="True" />
+				<CheckBox IsChecked="{x:Bind IsEnabled,Mode=TwoWay}" Content="{x:Bind Name}" CanDrag="True" IsEnabled="{x:Bind CanToggle}" />
 			</DataTemplate>
 		</ListView.ItemTemplate>
 	</ListView>

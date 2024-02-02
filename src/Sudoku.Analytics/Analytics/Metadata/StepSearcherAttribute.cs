@@ -48,9 +48,14 @@ public sealed class StepSearcherAttribute(params Technique[] supportedTechniques
 	public bool IsPure { get; init; }
 
 	/// <summary>
-	/// Indicates whether the option is fixed that can't be modified in UI.
+	/// Indicates whether the option is fixed in the sorting that can't be modified in UI.
 	/// </summary>
 	public bool IsFixed { get; init; }
+
+	/// <summary>
+	/// Indicates whether the option is read-only that cannot be modified in UI.
+	/// </summary>
+	public bool IsReadOnly { get; init; }
 
 	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.

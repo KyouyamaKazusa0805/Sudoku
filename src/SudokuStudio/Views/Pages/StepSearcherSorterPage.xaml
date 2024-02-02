@@ -25,10 +25,8 @@
 
 	<ScrollViewer VerticalScrollBarVisibility="Hidden">
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="12">
-			<TextBlock Text="{m:R Key=StepSearcherSorterPage_Description}" />
-			<Grid
-				RowDefinitions="Auto,*" ColumnDefinitions="*,*"
-				RowSpacing="8" ColumnSpacing="12">
+			<TextBlock Text="{m:R Key=StepSearcherSorterPage_Description}" TextWrapping="WrapWholeWords" />
+			<Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*" RowSpacing="8" ColumnSpacing="12">
 				<Grid Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}">
 					<c:StepSearcherListView
 						x:Name="StepSearcherView" Margin="30"

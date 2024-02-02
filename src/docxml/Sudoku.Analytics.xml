@@ -5123,7 +5123,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsFixed">
             <summary>
-            Indicates whether the option is fixed that can't be modified in UI.
+            Indicates whether the option is fixed in the sorting that can't be modified in UI.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsReadOnly">
+            <summary>
+            Indicates whether the option is read-only that cannot be modified in UI.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevels">
@@ -5293,6 +5298,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsFixed">
             <summary>
             Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsReadOnly">
+            <summary>
+            Determines whether we can toggle availability of the step searcher.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsNotSupportedForSukaku">
