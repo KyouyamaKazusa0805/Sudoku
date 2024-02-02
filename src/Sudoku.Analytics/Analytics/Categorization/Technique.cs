@@ -4030,7 +4030,7 @@ public enum Technique
 	/// Indicates extended Gurth's symmetrical placement.
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[TechniqueFeature(TechniqueFeature.NotImplemented | TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	ExtendedGurthSymmetricalPlacement,
 
@@ -4039,6 +4039,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/new-type-of-gsp-t40470.html")]
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
+	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	AntiGurthSymmetricalPlacement,
 	#endregion
