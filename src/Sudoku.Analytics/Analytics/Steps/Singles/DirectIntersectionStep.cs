@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="intersectionCells">Indicates the intersection cells.</param>
 /// <param name="intersectionHouse">Indicates the intersection house.</param>
-/// <param name="interim">Indicates the interim.</param>
+/// <param name="interim">Indicates the interim cells.</param>
 /// <param name="interimDigit">Indicates the interim digit.</param>
 /// <param name="subtype"><inheritdoc/></param>
 /// <param name="basedOn"><inheritdoc/></param>
@@ -23,7 +23,7 @@ public sealed partial class DirectIntersectionStep(
 	Digit digit,
 	[RecordParameter] scoped ref readonly CellMap intersectionCells,
 	[RecordParameter] House intersectionHouse,
-	[RecordParameter] Cell interim,
+	[RecordParameter] scoped ref readonly CellMap interim,
 	[RecordParameter] Digit interimDigit,
 	SingleSubtype subtype,
 	Technique basedOn,
@@ -100,7 +100,7 @@ public sealed partial class DirectIntersectionStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << IntersectionHouse);
 
-	private string InterimCellStr => Options.Converter.CellConverter([Interim]);
+	private string InterimCellStr => Options.Converter.CellConverter(Interim);
 
 	private string InterimDigitStr => Options.Converter.DigitConverter((Mask)(1 << InterimDigit));
 

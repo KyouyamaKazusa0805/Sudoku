@@ -17344,13 +17344,13 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="intersectionCells">Indicates the intersection cells.</param>
             <param name="intersectionHouse">Indicates the intersection house.</param>
-            <param name="interim">Indicates the interim.</param>
+            <param name="interim">Indicates the interim cells.</param>
             <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Direct Intersection</b> technique.
             </summary>
@@ -17361,7 +17361,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="intersectionCells">Indicates the intersection cells.</param>
             <param name="intersectionHouse">Indicates the intersection house.</param>
-            <param name="interim">Indicates the interim.</param>
+            <param name="interim">Indicates the interim cells.</param>
             <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
