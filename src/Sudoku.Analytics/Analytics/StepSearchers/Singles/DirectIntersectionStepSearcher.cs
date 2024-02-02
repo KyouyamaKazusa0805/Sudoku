@@ -284,18 +284,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				lastCell,
 				digit,
-				(HousesMap[lastCell.ToHouseIndex(HouseType.Block)] & EmptyCells).Count switch
-				{
-					0 => SingleSubtype.NakedSingle0,
-					1 => SingleSubtype.NakedSingle1,
-					2 => SingleSubtype.NakedSingle2,
-					3 => SingleSubtype.NakedSingle3,
-					4 => SingleSubtype.NakedSingle4,
-					5 => SingleSubtype.NakedSingle5,
-					6 => SingleSubtype.NakedSingle6,
-					7 => SingleSubtype.NakedSingle7,
-					_ => SingleSubtype.NakedSingle8
-				},
+				SingleSubtype.NakedSingle0 + (HousesMap[lastCell.ToHouseIndex(HouseType.Block)] & EmptyCells).Count,
 				Technique.NakedSingle,
 				baseSet < 9
 			);
