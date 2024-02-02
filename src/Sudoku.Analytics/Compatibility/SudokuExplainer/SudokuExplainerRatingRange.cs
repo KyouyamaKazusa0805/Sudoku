@@ -5,7 +5,7 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="min">Indicates the minimum possible value.</param>
 /// <param name="max">Indicates the maximum possible value.</param>
-public readonly partial struct SudokuExplainerRatingRange([PrimaryCosntructorParameter] half min, [PrimaryCosntructorParameter] half max)
+public readonly partial struct SudokuExplainerRatingRange([PrimaryConstructorParameter] half min, [PrimaryConstructorParameter] half max)
 {
 	/// <summary>
 	/// Initializes a <see cref="SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.

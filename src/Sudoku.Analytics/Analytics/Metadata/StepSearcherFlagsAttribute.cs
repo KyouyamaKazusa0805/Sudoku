@@ -16,4 +16,4 @@ namespace Sudoku.Analytics.Metadata;
 /// </param>
 /// <seealso cref="StepSearcherFlags"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherFlagsAttribute([PrimaryCosntructorParameter] StepSearcherFlags flags) : Attribute;
+public sealed partial class StepSearcherFlagsAttribute([PrimaryConstructorParameter] StepSearcherFlags flags) : Attribute;

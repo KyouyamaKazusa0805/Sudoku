@@ -12,7 +12,7 @@ namespace Sudoku.Concepts;
 [GetHashCode]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Conjugate([PrimaryCosntructorParameter(MemberKinds.Field)] ConjugateMask mask) :
+public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] ConjugateMask mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>,
 	ICoordinateObject<Conjugate>

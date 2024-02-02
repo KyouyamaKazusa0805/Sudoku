@@ -5,7 +5,7 @@ namespace Sudoku.Compatibility.SudokuExplainer;
 /// </summary>
 /// <param name="technique">Indicates the technique.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class SudokuExplainerTechniqueAttribute([PrimaryCosntructorParameter] SudokuExplainerTechnique technique) : Attribute
+public sealed partial class SudokuExplainerTechniqueAttribute([PrimaryConstructorParameter] SudokuExplainerTechnique technique) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the specified technique is defined by advanced version of Sudoku Explainer,

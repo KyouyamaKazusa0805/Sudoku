@@ -32,7 +32,7 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.PrimaryCosntructorParameterAttribute",
+					"System.SourceGeneration.PrimaryConstructorParameterAttribute",
 					SyntaxNodeTypePredicate<ParameterSyntax>,
 					PrimaryConstructorMemberHandler.Transform
 				)

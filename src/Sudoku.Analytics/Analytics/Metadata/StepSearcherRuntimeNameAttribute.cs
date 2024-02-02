@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Metadata;
 /// </summary>
 /// <param name="resourceKey">The resource key to fetch the target name.</param>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-public sealed partial class StepSearcherRuntimeNameAttribute([PrimaryCosntructorParameter] string resourceKey) : Attribute
+public sealed partial class StepSearcherRuntimeNameAttribute([PrimaryConstructorParameter] string resourceKey) : Attribute
 {
 	/// <summary>
 	/// Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,

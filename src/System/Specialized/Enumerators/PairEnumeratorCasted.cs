@@ -10,7 +10,7 @@
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([PrimaryCosntructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
+public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
 	where T : notnull
 	where TFirst : T
 	where TSecond : T

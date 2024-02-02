@@ -15,9 +15,9 @@ public sealed partial class TwoStrongLinksStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Digit digit,
-	[PrimaryCosntructorParameter] House baseHouse,
-	[PrimaryCosntructorParameter] House targetHouse,
-	[PrimaryCosntructorParameter] bool isGrouped
+	[PrimaryConstructorParameter] House baseHouse,
+	[PrimaryConstructorParameter] House targetHouse,
+	[PrimaryConstructorParameter] bool isGrouped
 ) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>

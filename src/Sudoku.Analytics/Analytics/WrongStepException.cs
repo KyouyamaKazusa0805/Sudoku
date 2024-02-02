@@ -5,7 +5,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="grid"><inheritdoc/></param>
 /// <param name="wrongStep">Indicates the wrong step.</param>
-public sealed partial class WrongStepException(scoped ref readonly Grid grid, [PrimaryCosntructorParameter] Step wrongStep) : RuntimeAnalyticsException(in grid)
+public sealed partial class WrongStepException(scoped ref readonly Grid grid, [PrimaryConstructorParameter] Step wrongStep) : RuntimeAnalyticsException(in grid)
 {
 	/// <inheritdoc/>
 	public override string Message

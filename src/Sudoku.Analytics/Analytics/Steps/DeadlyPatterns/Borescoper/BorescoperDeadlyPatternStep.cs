@@ -12,8 +12,8 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells,
-	[PrimaryCosntructorParameter] Mask digitsMask
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

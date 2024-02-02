@@ -29,7 +29,7 @@ namespace Sudoku.Analytics;
 [GetHashCode]
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Conclusion([PrimaryCosntructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
+public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
 	ICultureFormattable,
 	IEqualityOperators<Conclusion, Conclusion, bool>,

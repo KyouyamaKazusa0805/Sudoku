@@ -11,7 +11,7 @@ public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cells
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

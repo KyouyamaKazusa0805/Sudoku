@@ -6,4 +6,4 @@ namespace System.SourceGeneration;
 /// <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
 /// <seealso cref="object.GetHashCode"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
-public sealed partial class GetHashCodeAttribute([PrimaryCosntructorParameter] GetHashCodeBehavior behavior = GetHashCodeBehavior.Intelligent) : PatternOverriddenAttribute;
+public sealed partial class GetHashCodeAttribute([PrimaryConstructorParameter] GetHashCodeBehavior behavior = GetHashCodeBehavior.Intelligent) : PatternOverriddenAttribute;

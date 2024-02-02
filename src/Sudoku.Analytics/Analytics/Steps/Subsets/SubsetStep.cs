@@ -13,9 +13,9 @@ public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] House house,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells,
-	[PrimaryCosntructorParameter] Mask digitsMask
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : Step(conclusions, views, options)
 {
 	/// <inheritdoc/>

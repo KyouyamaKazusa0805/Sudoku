@@ -12,9 +12,9 @@ namespace Sudoku.Analytics;
 [Equals(OtherModifiers = "sealed")]
 [EqualityOperators]
 public abstract partial class Step(
-	[PrimaryCosntructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
-	[PrimaryCosntructorParameter] View[]? views,
-	[PrimaryCosntructorParameter] StepSearcherOptions options
+	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
+	[PrimaryConstructorParameter] View[]? views,
+	[PrimaryConstructorParameter] StepSearcherOptions options
 ) : ICultureFormattable, IEqualityOperators<Step, Step, bool>, IEquatable<Step>, IRenderable
 {
 	/// <summary>

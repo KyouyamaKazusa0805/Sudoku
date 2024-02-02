@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="Technique"/>
 /// <seealso cref="TechniqueGroup"/>
 /// <seealso cref="TechniqueGroupAttribute"/>
-public sealed partial class MissingTechniqueGroupException([PrimaryCosntructorParameter] string memberName) : Exception
+public sealed partial class MissingTechniqueGroupException([PrimaryConstructorParameter] string memberName) : Exception
 {
 	/// <inheritdoc/>
 	public override string Message => $"The member '{MemberName}' is missing technique group attribute.";

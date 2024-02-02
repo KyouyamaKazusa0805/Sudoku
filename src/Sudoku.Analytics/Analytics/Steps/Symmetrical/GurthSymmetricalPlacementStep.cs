@@ -21,8 +21,8 @@ public partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] SymmetricType symmetricType,
-	[PrimaryCosntructorParameter] Digit?[]? mapping
+	[PrimaryConstructorParameter] SymmetricType symmetricType,
+	[PrimaryConstructorParameter] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

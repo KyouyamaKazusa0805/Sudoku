@@ -8,8 +8,8 @@ namespace Sudoku.Resources;
 /// <param name="culture">The culture information.</param>
 public sealed partial class ResourceNotFoundException(
 	Assembly? assembly,
-	[PrimaryCosntructorParameter(MemberKinds.Field, Accessibility = "private readonly")] string resourceKey,
-	[PrimaryCosntructorParameter(MemberKinds.Field, Accessibility = "private readonly")] CultureInfo? culture
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private readonly")] string resourceKey,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private readonly")] CultureInfo? culture
 ) : ResourceException(assembly)
 {
 	/// <summary>

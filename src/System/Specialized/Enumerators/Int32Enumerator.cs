@@ -5,7 +5,7 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct Int32Enumerator([PrimaryCosntructorParameter(MemberKinds.Field, IsImplicitlyReadOnly = false)] uint value)
+public ref partial struct Int32Enumerator([PrimaryConstructorParameter(MemberKinds.Field, IsImplicitlyReadOnly = false)] uint value)
 {
 	/// <summary>
 	/// Indicates the population count of the value.

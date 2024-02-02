@@ -14,10 +14,10 @@ public sealed partial class AlmostLockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] Mask digitsMask,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap baseCells,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap targetCells,
-	[PrimaryCosntructorParameter] bool hasValueCell
+	[PrimaryConstructorParameter] Mask digitsMask,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCells,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCells,
+	[PrimaryConstructorParameter] bool hasValueCell
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

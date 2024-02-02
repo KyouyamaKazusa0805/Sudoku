@@ -14,10 +14,10 @@ public sealed partial class HouseDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] House house,
-	[PrimaryCosntructorParameter] Digit digit,
-	[PrimaryCosntructorParameter] HouseBlossomBranchCollection branches,
-	[PrimaryCosntructorParameter] Mask zDigitsMask
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] Digit digit,
+	[PrimaryConstructorParameter] HouseBlossomBranchCollection branches,
+	[PrimaryConstructorParameter] Mask zDigitsMask
 ) : DeathBlossomBaseStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
 {
 	/// <inheritdoc/>

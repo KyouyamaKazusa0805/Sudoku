@@ -21,7 +21,7 @@ public sealed partial class ExocetBaseStep(
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap endoTargetCells,
 	scoped ref readonly CellMap crosslineCells,
-	[PrimaryCosntructorParameter] Conjugate[] conjugatePairs
+	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>

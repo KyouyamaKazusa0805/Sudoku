@@ -4,7 +4,7 @@ namespace SudokuStudio.BindableSource;
 /// Describes for a puzzle library.
 /// </summary>
 /// <param name="isAddingOperationPlaceholder">A <see cref="bool"/> value indicating whether the value is for a placeholder.</param>
-public sealed partial class PuzzleLibraryBindableSource([PrimaryCosntructorParameter] bool isAddingOperationPlaceholder)
+public sealed partial class PuzzleLibraryBindableSource([PrimaryConstructorParameter] bool isAddingOperationPlaceholder)
 {
 	/// <summary>
 	/// Initializes a <see cref="PuzzleLibraryBindableSource"/> instance.

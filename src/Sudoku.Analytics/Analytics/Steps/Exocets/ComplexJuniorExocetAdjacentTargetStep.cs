@@ -21,9 +21,9 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells,
-	[PrimaryCosntructorParameter] HouseMask crosslineHousesMask,
-	[PrimaryCosntructorParameter] HouseMask extraHousesMask,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap singleMirrors
+	[PrimaryConstructorParameter] HouseMask crosslineHousesMask,
+	[PrimaryConstructorParameter] HouseMask extraHousesMask,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap singleMirrors
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
 	IComplexSeniorExocetStepBaseOverrides

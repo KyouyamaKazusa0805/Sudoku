@@ -11,7 +11,7 @@ namespace Sudoku.Algorithm.Generating;
 [ToString]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct PatternBasedPuzzleGenerator([PrimaryCosntructorParameter(MemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
+public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParameter(MemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
 {
 	/// <summary>
 	/// The internal solver.

@@ -17,13 +17,13 @@ public sealed partial class SWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap xNode1,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap xNode2,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap yNode1,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap yNode2,
-	[PrimaryCosntructorParameter] Digit DigitX,
-	[PrimaryCosntructorParameter] Digit DigitY,
-	[PrimaryCosntructorParameter] Cell midCell
+	[PrimaryConstructorParameter] scoped ref readonly CellMap xNode1,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap xNode2,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap yNode1,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap yNode2,
+	[PrimaryConstructorParameter] Digit DigitX,
+	[PrimaryConstructorParameter] Digit DigitY,
+	[PrimaryConstructorParameter] Cell midCell
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

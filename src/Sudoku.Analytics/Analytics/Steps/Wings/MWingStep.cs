@@ -15,11 +15,11 @@ public sealed partial class MWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap node1,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap node2,
-	[PrimaryCosntructorParameter] Cell strongXyCell,
-	[PrimaryCosntructorParameter] Cell weakXyCell,
-	[PrimaryCosntructorParameter] Mask digitsMask
+	[PrimaryConstructorParameter] scoped ref readonly CellMap node1,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap node2,
+	[PrimaryConstructorParameter] Cell strongXyCell,
+	[PrimaryConstructorParameter] Cell weakXyCell,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

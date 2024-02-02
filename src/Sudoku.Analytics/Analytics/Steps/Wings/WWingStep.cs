@@ -13,9 +13,9 @@ public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] Cell startCell,
-	[PrimaryCosntructorParameter] Cell endCell,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap bridge
+	[PrimaryConstructorParameter] Cell startCell,
+	[PrimaryConstructorParameter] Cell endCell,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap bridge
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -7,7 +7,7 @@ namespace Sudoku.Rendering;
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class WellKnownColorIdentifier([PrimaryCosntructorParameter, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
+public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
 	ColorIdentifier
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

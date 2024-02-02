@@ -29,10 +29,10 @@ namespace System.SourceGeneration;
 /// Via this attribute type, we can simplify the code:
 /// <code><![CDATA[
 /// public readonly partial struct Color(
-///     [RecordParameter] byte a,
-///     [RecordParameter] byte r,
-///     [RecordParameter] byte g,
-///     [RecordParameter] byte b
+///     [PrimaryConstructorParameter] byte a,
+///     [PrimaryConstructorParameter] byte r,
+///     [PrimaryConstructorParameter] byte g,
+///     [PrimaryConstructorParameter] byte b
 /// );
 /// ]]></code>
 /// Such code is equivalent to the original one.
@@ -40,7 +40,7 @@ namespace System.SourceGeneration;
 /// <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed partial class PrimaryCosntructorParameterAttribute([PrimaryCosntructorParameter] string memberKind = MemberKinds.Property) : Attribute
+public sealed partial class PrimaryConstructorParameterAttribute([PrimaryConstructorParameter] string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the generated field or property is implicitly read-only.

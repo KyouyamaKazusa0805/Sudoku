@@ -12,8 +12,8 @@ public sealed partial class FireworkTripleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells,
-	[PrimaryCosntructorParameter] Mask digitsMask
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -21,9 +21,9 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap guardianCells,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap cellPair,
-	[PrimaryCosntructorParameter] bool isIncomplete,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap guardianCells,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cellPair,
+	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

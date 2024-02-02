@@ -14,10 +14,10 @@ public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] Digit digit1,
-	[PrimaryCosntructorParameter] Digit digit2,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap loop,
-	[PrimaryCosntructorParameter] Cell[] loopPath
+	[PrimaryConstructorParameter] Digit digit1,
+	[PrimaryConstructorParameter] Digit digit2,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap loop,
+	[PrimaryConstructorParameter] Cell[] loopPath
 ) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>

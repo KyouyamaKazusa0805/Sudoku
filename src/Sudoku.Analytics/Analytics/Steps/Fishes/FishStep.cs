@@ -35,12 +35,12 @@ public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] Digit digit,
-	[PrimaryCosntructorParameter] HouseMask baseSetsMask,
-	[PrimaryCosntructorParameter] HouseMask coverSetsMask,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap fins,
-	[PrimaryCosntructorParameter] bool? isSashimi,
-	[PrimaryCosntructorParameter] bool isSiamese = false
+	[PrimaryConstructorParameter] Digit digit,
+	[PrimaryConstructorParameter] HouseMask baseSetsMask,
+	[PrimaryConstructorParameter] HouseMask coverSetsMask,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap fins,
+	[PrimaryConstructorParameter] bool? isSashimi,
+	[PrimaryConstructorParameter] bool isSiamese = false
 ) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISiameseSupporter<FishStep>
 {
 	/// <summary>

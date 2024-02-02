@@ -20,8 +20,8 @@ public sealed partial class QiuDeadlyPatternExternalType1Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[PrimaryCosntructorParameter] Cell targetCell,
-	[PrimaryCosntructorParameter] Mask targetDigits
+	[PrimaryConstructorParameter] Cell targetCell,
+	[PrimaryConstructorParameter] Mask targetDigits
 ) : QiuDeadlyPatternExternalTypeStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

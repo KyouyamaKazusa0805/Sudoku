@@ -6,4 +6,4 @@ namespace System.SourceGeneration;
 /// <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
 /// <seealso cref="object.ToString"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
-public sealed partial class ToStringAttribute([PrimaryCosntructorParameter] ToStringBehavior behavior = ToStringBehavior.Intelligent) : PatternOverriddenAttribute;
+public sealed partial class ToStringAttribute([PrimaryConstructorParameter] ToStringBehavior behavior = ToStringBehavior.Intelligent) : PatternOverriddenAttribute;

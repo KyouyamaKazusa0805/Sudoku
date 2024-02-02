@@ -32,7 +32,7 @@ internal static class GetHashCodeHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
 
-		const string dataMemberAttributeTypeName = "System.SourceGeneration.PrimaryCosntructorParameterAttribute";
+		const string dataMemberAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
 		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
 		if (dataMemberAttributeTypeNameSymbol is null)
 		{

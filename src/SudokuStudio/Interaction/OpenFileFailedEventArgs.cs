@@ -8,4 +8,4 @@ namespace SudokuStudio.Interaction;
 /// <remarks>
 /// Initializes an <see cref="OpenFileFailedEventArgs"/> instance via the specified reason.
 /// </remarks>
-public sealed partial class OpenFileFailedEventArgs([PrimaryCosntructorParameter] OpenFileFailedReason reason) : EventArgs;
+public sealed partial class OpenFileFailedEventArgs([PrimaryConstructorParameter] OpenFileFailedReason reason) : EventArgs;

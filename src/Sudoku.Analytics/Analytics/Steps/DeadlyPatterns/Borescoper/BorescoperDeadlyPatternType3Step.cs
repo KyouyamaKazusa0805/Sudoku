@@ -16,8 +16,8 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap subsetCells,
-	[PrimaryCosntructorParameter] Mask subsetDigitsMask
+	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
+	[PrimaryConstructorParameter] Mask subsetDigitsMask
 ) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

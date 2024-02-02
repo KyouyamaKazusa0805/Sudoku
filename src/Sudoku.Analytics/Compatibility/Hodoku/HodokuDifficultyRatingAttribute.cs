@@ -7,8 +7,8 @@ namespace Sudoku.Compatibility.Hodoku;
 /// <param name="difficultyLevel">Indicates the difficulty level.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class HodokuDifficultyRatingAttribute(
-	[PrimaryCosntructorParameter] int difficultyRating,
-	[PrimaryCosntructorParameter] HodokuDifficultyLevel difficultyLevel
+	[PrimaryConstructorParameter] int difficultyRating,
+	[PrimaryConstructorParameter] HodokuDifficultyLevel difficultyLevel
 ) : Attribute
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

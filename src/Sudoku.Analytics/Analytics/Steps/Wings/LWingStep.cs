@@ -17,13 +17,13 @@ public sealed partial class LWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap start,
-	[PrimaryCosntructorParameter] scoped ref readonly CellMap end,
-	[PrimaryCosntructorParameter] Digit digitX,
-	[PrimaryCosntructorParameter] Digit digitY,
-	[PrimaryCosntructorParameter] Digit digitZ,
-	[PrimaryCosntructorParameter] Cell midWeakCell1,
-	[PrimaryCosntructorParameter] Cell midWeakCell2
+	[PrimaryConstructorParameter] scoped ref readonly CellMap start,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap end,
+	[PrimaryConstructorParameter] Digit digitX,
+	[PrimaryConstructorParameter] Digit digitY,
+	[PrimaryConstructorParameter] Digit digitZ,
+	[PrimaryConstructorParameter] Cell midWeakCell1,
+	[PrimaryConstructorParameter] Cell midWeakCell2
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

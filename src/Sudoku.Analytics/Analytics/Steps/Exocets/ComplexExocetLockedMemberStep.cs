@@ -22,8 +22,8 @@ public sealed partial class ComplexExocetLockedMemberStep(
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap endoTargetCells,
 	scoped ref readonly CellMap crosslineCells,
-	[PrimaryCosntructorParameter] HouseMask crosslineHousesMask,
-	[PrimaryCosntructorParameter] HouseMask extraHousesMask
+	[PrimaryConstructorParameter] HouseMask crosslineHousesMask,
+	[PrimaryConstructorParameter] HouseMask extraHousesMask
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
 	IComplexSeniorExocetStepBaseOverrides
