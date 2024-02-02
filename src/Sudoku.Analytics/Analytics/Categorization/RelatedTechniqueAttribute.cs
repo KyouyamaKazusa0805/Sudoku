@@ -5,4 +5,4 @@ namespace Sudoku.Analytics.Categorization;
 /// </summary>
 /// <param name="technique">Indicates the technique related.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class RelatedTechniqueAttribute([RecordParameter] Technique technique) : Attribute;
+public sealed partial class RelatedTechniqueAttribute([PrimaryCosntructorParameter] Technique technique) : Attribute;

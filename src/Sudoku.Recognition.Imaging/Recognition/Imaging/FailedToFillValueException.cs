@@ -5,7 +5,7 @@ namespace Sudoku.Recognition.Imaging;
 /// </summary>
 /// <param name="cell">Indicates the wrong cell.</param>
 /// <param name="digit">Indicates the wrong digit.</param>
-public sealed partial class FailedToFillValueException([RecordParameter] Cell cell, [RecordParameter] Digit digit) : Exception
+public sealed partial class FailedToFillValueException([PrimaryCosntructorParameter] Cell cell, [PrimaryCosntructorParameter] Digit digit) : Exception
 {
 	/// <inheritdoc/>
 	public override string Message => $"Can't fill the cell {CellsMap[Cell]} with the digit {Digit + 1}.";

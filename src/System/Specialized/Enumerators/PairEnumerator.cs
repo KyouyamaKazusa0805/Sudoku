@@ -11,7 +11,7 @@ namespace System;
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct PairEnumerator<T>([RecordParameter(DataMemberKinds.Field)] ReadOnlySpan<T> sequence) where T : notnull
+public ref partial struct PairEnumerator<T>([PrimaryCosntructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) where T : notnull
 {
 	/// <summary>
 	/// Indicates the index.

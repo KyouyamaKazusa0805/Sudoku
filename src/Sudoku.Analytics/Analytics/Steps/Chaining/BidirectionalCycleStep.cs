@@ -13,7 +13,7 @@ public sealed partial class BidirectionalCycleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] ChainNode destinationOn,
+	[PrimaryCosntructorParameter] ChainNode destinationOn,
 	bool isX,
 	bool isY
 ) : ChainingStep(conclusions, views, options, isX, isY)

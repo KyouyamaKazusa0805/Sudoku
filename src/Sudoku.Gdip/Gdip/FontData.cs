@@ -10,9 +10,9 @@ namespace Sudoku.Gdip;
 [GetHashCode]
 [method: SetsRequiredMembers]
 public sealed partial class FontData(
-	[RecordParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] string fontName,
-	[RecordParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] float fontSize,
-	[RecordParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
+	[PrimaryCosntructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] string fontName,
+	[PrimaryCosntructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] float fontSize,
+	[PrimaryCosntructorParameter(Accessibility = "public required", SetterExpression = "set"), HashCodeMember] FontStyle fontStyle
 ) : IEquatable<FontData>
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

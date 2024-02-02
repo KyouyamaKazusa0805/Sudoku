@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="Technique"/>
 /// <seealso cref="DifficultyLevel"/>
 /// <seealso cref="DifficultyLevelAttribute"/>
-public sealed partial class MissingDifficultyLevelException([RecordParameter] string memberName) : Exception
+public sealed partial class MissingDifficultyLevelException([PrimaryCosntructorParameter] string memberName) : Exception
 {
 	/// <inheritdoc/>
 	public override string Message => $"The member '{MemberName}' is missing difficulty level attribute.";

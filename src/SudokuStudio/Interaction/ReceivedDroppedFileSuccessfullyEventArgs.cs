@@ -6,4 +6,4 @@ namespace SudokuStudio.Interaction;
 /// <param name="filePath">The path of the dropped file.</param>
 /// <param name="gridInfo">The loaded grid info.</param>
 /// <seealso cref="ReceivedDroppedFileSuccessfullyEventHandler"/>
-public sealed partial class ReceivedDroppedFileSuccessfullyEventArgs([RecordParameter] string filePath, [RecordParameter] GridInfo gridInfo) : EventArgs;
+public sealed partial class ReceivedDroppedFileSuccessfullyEventArgs([PrimaryCosntructorParameter] string filePath, [PrimaryCosntructorParameter] GridInfo gridInfo) : EventArgs;

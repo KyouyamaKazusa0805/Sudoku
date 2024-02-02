@@ -8,7 +8,7 @@ namespace System.Runtime.CompilerServices;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct TupleEnumerator([RecordParameter(DataMemberKinds.Field)] ITuple tuple)
+public ref partial struct TupleEnumerator([PrimaryCosntructorParameter(MemberKinds.Field)] ITuple tuple)
 {
 	/// <summary>
 	/// The current index.

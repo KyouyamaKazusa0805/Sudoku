@@ -13,7 +13,7 @@ namespace System;
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct EnumFlagsEnumerator<T>([RecordParameter(DataMemberKinds.Field)] T baseField)
+public ref partial struct EnumFlagsEnumerator<T>([PrimaryCosntructorParameter(MemberKinds.Field)] T baseField)
 	where T : unmanaged, Enum
 {
 	/// <summary>

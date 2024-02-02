@@ -5,4 +5,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <param name="techniqueSet">The technique set to be assigned.</param>
 /// <seealso cref="TechniqueViewSelectedTechniquesChangedEventHandler"/>
-public sealed partial class TechniqueViewSelectedTechniquesChangedEventArgs([RecordParameter] TechniqueSet techniqueSet) : EventArgs;
+public sealed partial class TechniqueViewSelectedTechniquesChangedEventArgs([PrimaryCosntructorParameter] TechniqueSet techniqueSet) : EventArgs;

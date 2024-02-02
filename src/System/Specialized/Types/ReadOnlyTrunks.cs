@@ -6,7 +6,7 @@ namespace System;
 /// <typeparam name="T">The type of each values.</typeparam>
 /// <param name="chunks">Indicates the internal chunks.</param>
 [CollectionBuilder(typeof(ReadOnlyChunksBuilder), nameof(ReadOnlyChunksBuilder.Create))]
-public readonly partial struct ReadOnlyChunk<T>([RecordParameter(DataMemberKinds.Field)] params ChunkNode<T>[] chunks) : IEnumerable<T>
+public readonly partial struct ReadOnlyChunk<T>([PrimaryCosntructorParameter(MemberKinds.Field)] params ChunkNode<T>[] chunks) : IEnumerable<T>
 {
 	/// <summary>
 	/// Indicates the number of elements of type <see cref="ChunkNode{T}"/> stored in this collection.

@@ -29,7 +29,7 @@ public sealed partial class HiddenSubsetStep(
 	House house,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[RecordParameter] bool isLocked
+	[PrimaryCosntructorParameter] bool isLocked
 ) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>

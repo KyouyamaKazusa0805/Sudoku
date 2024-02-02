@@ -6,4 +6,4 @@ namespace System.SourceGeneration;
 /// <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
 /// <seealso cref="object.Equals(object?)"/>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-public sealed partial class EqualsAttribute([RecordParameter] EqualsBehavior behavior = EqualsBehavior.Intelligent) : PatternOverriddenAttribute;
+public sealed partial class EqualsAttribute([PrimaryCosntructorParameter] EqualsBehavior behavior = EqualsBehavior.Intelligent) : PatternOverriddenAttribute;

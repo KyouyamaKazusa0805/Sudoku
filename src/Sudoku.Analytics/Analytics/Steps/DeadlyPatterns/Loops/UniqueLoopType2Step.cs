@@ -18,7 +18,7 @@ public sealed partial class UniqueLoopType2Step(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap loop,
-	[RecordParameter] Digit extraDigit,
+	[PrimaryCosntructorParameter] Digit extraDigit,
 	Cell[] loopPath
 ) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
 {

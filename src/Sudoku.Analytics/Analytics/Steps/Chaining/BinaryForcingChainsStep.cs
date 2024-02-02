@@ -21,10 +21,10 @@ public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] ChainNode sourcePotential,
-	[RecordParameter] ChainNode fromOnPotential,
-	[RecordParameter] ChainNode fromOffPotential,
-	[RecordParameter] bool isAbsurd,
+	[PrimaryCosntructorParameter] ChainNode sourcePotential,
+	[PrimaryCosntructorParameter] ChainNode fromOnPotential,
+	[PrimaryCosntructorParameter] ChainNode fromOffPotential,
+	[PrimaryCosntructorParameter] bool isAbsurd,
 	bool isNishio,
 	int dynamicNestingLevel = 0
 ) : ChainingStep(conclusions, views, options, isMultiple: true, isDynamic: true, isNishio: isNishio, dynamicNestingLevel: dynamicNestingLevel)

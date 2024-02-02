@@ -12,9 +12,9 @@ namespace Sudoku.Rendering.Nodes;
 [method: JsonConstructor]
 public sealed partial class LinkViewNode(
 	ColorIdentifier identifier,
-	[RecordParameter, HashCodeMember, StringMember] LockedTarget start,
-	[RecordParameter, HashCodeMember, StringMember] LockedTarget end,
-	[RecordParameter, StringMember] Inference inference
+	[PrimaryCosntructorParameter, HashCodeMember, StringMember] LockedTarget start,
+	[PrimaryCosntructorParameter, HashCodeMember, StringMember] LockedTarget end,
+	[PrimaryCosntructorParameter, StringMember] Inference inference
 ) : BasicViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

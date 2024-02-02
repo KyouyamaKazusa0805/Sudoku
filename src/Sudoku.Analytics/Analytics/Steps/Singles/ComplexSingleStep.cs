@@ -40,8 +40,8 @@ public abstract partial class ComplexSingleStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	[RecordParameter] Technique basedOn,
-	[RecordParameter] Technique[][] indirectTechniques
+	[PrimaryCosntructorParameter] Technique basedOn,
+	[PrimaryCosntructorParameter] Technique[][] indirectTechniques
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <summary>

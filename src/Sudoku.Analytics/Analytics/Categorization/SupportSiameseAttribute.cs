@@ -6,4 +6,4 @@ namespace Sudoku.Analytics.Categorization;
 /// <param name="supportSiamese">A <see cref="bool"/> value indicating that.</param>
 /// <seealso cref="TechniqueGroup"/>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class SupportSiameseAttribute([RecordParameter] bool supportSiamese) : Attribute;
+public sealed partial class SupportSiameseAttribute([PrimaryCosntructorParameter] bool supportSiamese) : Attribute;

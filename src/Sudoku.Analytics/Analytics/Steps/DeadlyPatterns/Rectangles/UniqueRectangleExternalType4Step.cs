@@ -21,9 +21,9 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	Digit digit1,
 	Digit digit2,
 	scoped ref readonly CellMap cells,
-	[RecordParameter] scoped ref readonly CellMap guardianCells,
-	[RecordParameter] Conjugate conjugatePair,
-	[RecordParameter] bool isIncomplete,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap guardianCells,
+	[PrimaryCosntructorParameter] Conjugate conjugatePair,
+	[PrimaryCosntructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

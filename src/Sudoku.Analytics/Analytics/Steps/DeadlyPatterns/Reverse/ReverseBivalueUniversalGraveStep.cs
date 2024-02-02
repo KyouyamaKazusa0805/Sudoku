@@ -14,10 +14,10 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Digit digit1,
-	[RecordParameter] Digit digit2,
-	[RecordParameter(GeneratedMemberName = "CompletePattern")] scoped ref readonly CellMap pattern,
-	[RecordParameter] scoped ref readonly CellMap emptyCells
+	[PrimaryCosntructorParameter] Digit digit1,
+	[PrimaryCosntructorParameter] Digit digit2,
+	[PrimaryCosntructorParameter(GeneratedMemberName = "CompletePattern")] scoped ref readonly CellMap pattern,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap emptyCells
 ) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<ReverseBivalueUniversalGraveStep>
 {
 	/// <summary>

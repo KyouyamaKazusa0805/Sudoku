@@ -19,7 +19,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[RecordParameter(NamingRule = ">@Locked")] scoped ref readonly CandidateMap candidates
+	[PrimaryCosntructorParameter(NamingRule = ">@Locked")] scoped ref readonly CandidateMap candidates
 ) : QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>

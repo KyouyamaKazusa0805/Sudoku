@@ -8,7 +8,7 @@ namespace Sudoku.Rendering.Nodes;
 [GetHashCode]
 [ToString]
 [method: JsonConstructor]
-public sealed partial class CellViewNode(ColorIdentifier identifier, [RecordParameter, HashCodeMember] Cell cell) : BasicViewNode(identifier)
+public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCosntructorParameter, HashCodeMember] Cell cell) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the mode that the bound view node will be displayed.

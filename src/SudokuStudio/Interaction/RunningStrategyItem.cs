@@ -6,6 +6,6 @@ namespace SudokuStudio.Interaction;
 /// <param name="titleKey">Indicates the title key in resource.</param>
 /// <param name="updater">The updater that can assign new value to the target place.</param>
 public sealed partial class RunningStrategyItem(
-	[RecordParameter(SetterExpression = "set")] string titleKey,
-	[RecordParameter(SetterExpression = "set")] RunningStrategyUpdater updater
+	[PrimaryCosntructorParameter(SetterExpression = "set")] string titleKey,
+	[PrimaryCosntructorParameter(SetterExpression = "set")] RunningStrategyUpdater updater
 );

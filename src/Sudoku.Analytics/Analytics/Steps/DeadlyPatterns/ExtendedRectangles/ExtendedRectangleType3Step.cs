@@ -17,9 +17,9 @@ public sealed partial class ExtendedRectangleType3Step(
 	StepSearcherOptions options,
 	scoped ref readonly CellMap cells,
 	Mask digitsMask,
-	[RecordParameter] scoped ref readonly CellMap subsetCells,
-	[RecordParameter] Mask subsetDigitsMask,
-	[RecordParameter] House house
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap subsetCells,
+	[PrimaryCosntructorParameter] Mask subsetDigitsMask,
+	[PrimaryCosntructorParameter] House house
 ) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

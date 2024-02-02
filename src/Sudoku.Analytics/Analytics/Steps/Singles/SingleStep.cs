@@ -13,7 +13,7 @@ public abstract partial class SingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Cell cell,
-	[RecordParameter] Digit digit,
-	[RecordParameter] SingleSubtype subtype
+	[PrimaryCosntructorParameter] Cell cell,
+	[PrimaryCosntructorParameter] Digit digit,
+	[PrimaryCosntructorParameter] SingleSubtype subtype
 ) : Step(conclusions, views, options);

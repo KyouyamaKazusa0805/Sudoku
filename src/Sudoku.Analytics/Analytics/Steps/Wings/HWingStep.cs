@@ -16,12 +16,12 @@ public sealed partial class HWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Cell cell1,
-	[RecordParameter] Cell cell2,
-	[RecordParameter] Digit digitX,
-	[RecordParameter] Digit digitY,
-	[RecordParameter] Digit digitZ,
-	[RecordParameter] scoped ref readonly CellMap strongLink
+	[PrimaryCosntructorParameter] Cell cell1,
+	[PrimaryCosntructorParameter] Cell cell2,
+	[PrimaryCosntructorParameter] Digit digitX,
+	[PrimaryCosntructorParameter] Digit digitY,
+	[PrimaryCosntructorParameter] Digit digitZ,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap strongLink
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

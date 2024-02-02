@@ -16,12 +16,12 @@ public abstract partial class ChainingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] bool isX = true,
-	[RecordParameter] bool isY = true,
-	[RecordParameter] bool isMultiple = false,
-	[RecordParameter] bool isDynamic = false,
-	[RecordParameter] bool isNishio = false,
-	[RecordParameter] int dynamicNestingLevel = 0
+	[PrimaryCosntructorParameter] bool isX = true,
+	[PrimaryCosntructorParameter] bool isY = true,
+	[PrimaryCosntructorParameter] bool isMultiple = false,
+	[PrimaryCosntructorParameter] bool isDynamic = false,
+	[PrimaryCosntructorParameter] bool isNishio = false,
+	[PrimaryCosntructorParameter] int dynamicNestingLevel = 0
 ) : Step(conclusions, views, options), IComparableStep<ChainingStep>
 {
 	/// <inheritdoc/>

@@ -3,7 +3,7 @@ namespace System.SourceGeneration;
 /// <summary>
 /// Indicates a data member kind.
 /// </summary>
-public static class DataMemberKinds
+public static class MemberKinds
 {
 	/// <summary>
 	/// Indicates the member kind is field.

@@ -13,9 +13,9 @@ public sealed partial class DeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Cell pivot,
-	[RecordParameter] NormalBlossomBranchCollection branches,
-	[RecordParameter] Mask zDigitsMask
+	[PrimaryCosntructorParameter] Cell pivot,
+	[PrimaryCosntructorParameter] NormalBlossomBranchCollection branches,
+	[PrimaryCosntructorParameter] Mask zDigitsMask
 ) : DeathBlossomBaseStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -17,8 +17,8 @@ public sealed partial class WeakExocetBzRectangleStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[RecordParameter] Cell stabilityBalancer,
-	[RecordParameter] Cell missingValueCell,
+	[PrimaryCosntructorParameter] Cell stabilityBalancer,
+	[PrimaryCosntructorParameter] Cell missingValueCell,
 	scoped ref readonly CellMap baseCells,
 	scoped ref readonly CellMap targetCells,
 	scoped ref readonly CellMap crosslineCells

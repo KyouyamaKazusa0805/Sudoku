@@ -13,9 +13,9 @@ public sealed partial class UniquenessClueCoverStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] scoped ref readonly CellMap extraCells,
-	[RecordParameter] Mask extraDigits,
-	[RecordParameter] int chuteIndex
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap extraCells,
+	[PrimaryCosntructorParameter] Mask extraDigits,
+	[PrimaryCosntructorParameter] int chuteIndex
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

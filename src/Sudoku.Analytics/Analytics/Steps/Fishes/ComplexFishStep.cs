@@ -29,11 +29,11 @@ public sealed partial class ComplexFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[RecordParameter] scoped ref readonly CellMap exofins,
-	[RecordParameter] scoped ref readonly CellMap endofins,
-	[RecordParameter] bool isFranken,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap exofins,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap endofins,
+	[PrimaryCosntructorParameter] bool isFranken,
 	bool? isSashimi,
-	[RecordParameter] bool isCannibalism,
+	[PrimaryCosntructorParameter] bool isCannibalism,
 	bool isSiamese = false
 ) :
 	FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese),

@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
 /// <seealso cref="StepSearcher"/>
 public sealed partial class StepSearcherMetadataInfo(
-	[RecordParameter(DataMemberKinds.Field)] StepSearcher stepSearcher,
-	[RecordParameter(DataMemberKinds.Field)] StepSearcherAttribute stepSearcherAttribute,
-	[RecordParameter(DataMemberKinds.Field)] StepSearcherFlagsAttribute? stepSearcherFlagsAttribute
+	[PrimaryCosntructorParameter(MemberKinds.Field)] StepSearcher stepSearcher,
+	[PrimaryCosntructorParameter(MemberKinds.Field)] StepSearcherAttribute stepSearcherAttribute,
+	[PrimaryCosntructorParameter(MemberKinds.Field)] StepSearcherFlagsAttribute? stepSearcherFlagsAttribute
 )
 {
 	/// <summary>

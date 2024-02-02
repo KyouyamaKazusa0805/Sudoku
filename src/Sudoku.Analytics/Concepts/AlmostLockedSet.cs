@@ -20,10 +20,10 @@ namespace Sudoku.Concepts;
 [ComparisonOperators]
 [EqualityOperators]
 public sealed partial class AlmostLockedSet(
-	[RecordParameter, HashCodeMember] Mask digitsMask,
-	[RecordParameter, HashCodeMember] scoped ref readonly CellMap cells,
-	[RecordParameter] scoped ref readonly CellMap possibleEliminationMap,
-	[RecordParameter] CellMap[] eliminationMap
+	[PrimaryCosntructorParameter, HashCodeMember] Mask digitsMask,
+	[PrimaryCosntructorParameter, HashCodeMember] scoped ref readonly CellMap cells,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap possibleEliminationMap,
+	[PrimaryCosntructorParameter] CellMap[] eliminationMap
 ) :
 	IComparable<AlmostLockedSet>,
 	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,

@@ -12,7 +12,7 @@ namespace Sudoku.Text;
 [method: DebuggerStepThrough]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public partial struct TechniqueFormat([RecordParameter(DataMemberKinds.Field)] string formatName)
+public partial struct TechniqueFormat([PrimaryCosntructorParameter(MemberKinds.Field)] string formatName)
 {
 	/// <summary>
 	/// The format prefix.

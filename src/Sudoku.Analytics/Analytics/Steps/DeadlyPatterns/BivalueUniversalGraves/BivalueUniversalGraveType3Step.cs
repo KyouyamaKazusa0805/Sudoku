@@ -14,10 +14,10 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] scoped ref readonly CandidateMap trueCandidates,
-	[RecordParameter] Mask subsetDigitsMask,
-	[RecordParameter] scoped ref readonly CellMap cells,
-	[RecordParameter] bool isNaked
+	[PrimaryCosntructorParameter] scoped ref readonly CandidateMap trueCandidates,
+	[PrimaryCosntructorParameter] Mask subsetDigitsMask,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryCosntructorParameter] bool isNaked
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

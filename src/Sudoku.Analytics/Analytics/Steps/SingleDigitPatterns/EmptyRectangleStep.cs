@@ -14,8 +14,8 @@ public sealed partial class EmptyRectangleStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Digit digit,
-	[RecordParameter] House block,
-	[RecordParameter] scoped ref readonly Conjugate conjugatePair
+	[PrimaryCosntructorParameter] House block,
+	[PrimaryCosntructorParameter] scoped ref readonly Conjugate conjugatePair
 ) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>

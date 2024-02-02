@@ -11,7 +11,7 @@ namespace System;
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct ReverseEnumerator<T>([RecordParameter(DataMemberKinds.Field)] ReadOnlySpan<T> sequence)
+public ref partial struct ReverseEnumerator<T>([PrimaryCosntructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
 {
 	/// <summary>
 	/// Indicates the current index.

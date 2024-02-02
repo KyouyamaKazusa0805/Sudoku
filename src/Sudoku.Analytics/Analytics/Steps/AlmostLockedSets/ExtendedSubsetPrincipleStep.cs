@@ -13,9 +13,9 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] scoped ref readonly CellMap cells,
-	[RecordParameter] Mask digitsMask,
-	[RecordParameter] Digit extraDigit
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryCosntructorParameter] Mask digitsMask,
+	[PrimaryCosntructorParameter] Digit extraDigit
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -5,7 +5,7 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct Int64Enumerator([RecordParameter(DataMemberKinds.Field, IsImplicitlyReadOnly = false)] ulong value)
+public ref partial struct Int64Enumerator([PrimaryCosntructorParameter(MemberKinds.Field, IsImplicitlyReadOnly = false)] ulong value)
 {
 	/// <summary>
 	/// Indicates the population count of the value.

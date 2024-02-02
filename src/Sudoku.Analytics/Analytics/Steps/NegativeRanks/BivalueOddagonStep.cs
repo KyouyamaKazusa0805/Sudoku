@@ -13,9 +13,9 @@ public abstract partial class BivalueOddagonStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] scoped ref readonly CellMap loopCells,
-	[RecordParameter] Digit digit1,
-	[RecordParameter] Digit digit2
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap loopCells,
+	[PrimaryCosntructorParameter] Digit digit1,
+	[PrimaryCosntructorParameter] Digit digit2
 ) : NegativeRankStep(conclusions, views, options), IEquatableStep<BivalueOddagonStep>
 {
 	/// <summary>

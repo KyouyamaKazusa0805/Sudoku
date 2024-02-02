@@ -20,8 +20,8 @@ public partial class HiddenSingleStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	[RecordParameter] House house,
-	[RecordParameter] bool enableAndIsLastDigit,
+	[PrimaryCosntructorParameter] House house,
+	[PrimaryCosntructorParameter] bool enableAndIsLastDigit,
 	SingleSubtype subtype
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {

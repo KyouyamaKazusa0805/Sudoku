@@ -5,7 +5,7 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <param name="finishedPuzzle">Indicates the finished puzzle.</param>
 /// <seealso cref="PuzzleCompletedEventHandler"/>
-public sealed partial class PuzzleCompletedEventArgs([RecordParameter] scoped ref readonly Grid finishedPuzzle) : EventArgs
+public sealed partial class PuzzleCompletedEventArgs([PrimaryCosntructorParameter] scoped ref readonly Grid finishedPuzzle) : EventArgs
 {
 	/// <summary>
 	/// Indicates whether the puzzle is fully fixed.

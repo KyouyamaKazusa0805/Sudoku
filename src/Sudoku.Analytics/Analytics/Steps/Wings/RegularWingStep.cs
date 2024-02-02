@@ -14,10 +14,10 @@ public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Cell pivot,
-	[RecordParameter] int pivotCandidatesCount,
-	[RecordParameter] Mask digitsMask,
-	[RecordParameter] scoped ref readonly CellMap petals
+	[PrimaryCosntructorParameter] Cell pivot,
+	[PrimaryCosntructorParameter] int pivotCandidatesCount,
+	[PrimaryCosntructorParameter] Mask digitsMask,
+	[PrimaryCosntructorParameter] scoped ref readonly CellMap petals
 ) : WingStep(conclusions, views, options)
 {
 	/// <summary>

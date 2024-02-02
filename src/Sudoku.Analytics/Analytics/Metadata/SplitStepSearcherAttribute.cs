@@ -12,4 +12,4 @@ namespace Sudoku.Analytics.Metadata;
 /// </remarks>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed partial class SplitStepSearcherAttribute([RecordParameter] int priority, [RecordParameter] params object[] propertyNamesAndValues) : Attribute;
+public sealed partial class SplitStepSearcherAttribute([PrimaryCosntructorParameter] int priority, [PrimaryCosntructorParameter] params object[] propertyNamesAndValues) : Attribute;

@@ -20,10 +20,10 @@ public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] bool is2LinesWith2Cells,
-	[RecordParameter] HouseMask houses,
-	[RecordParameter] Cell? corner1,
-	[RecordParameter] Cell? corner2
+	[PrimaryCosntructorParameter] bool is2LinesWith2Cells,
+	[PrimaryCosntructorParameter] HouseMask houses,
+	[PrimaryCosntructorParameter] Cell? corner1,
+	[PrimaryCosntructorParameter] Cell? corner2
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

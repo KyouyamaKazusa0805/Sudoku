@@ -15,11 +15,11 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[RecordParameter] Cell startCell,
-	[RecordParameter] Cell endCell,
-	[RecordParameter] House house,
-	[RecordParameter] Digit digit1,
-	[RecordParameter] Digit digit2
+	[PrimaryCosntructorParameter] Cell startCell,
+	[PrimaryCosntructorParameter] Cell endCell,
+	[PrimaryCosntructorParameter] House house,
+	[PrimaryCosntructorParameter] Digit digit1,
+	[PrimaryCosntructorParameter] Digit digit2
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

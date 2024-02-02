@@ -11,8 +11,8 @@ namespace System.Numerics;
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly ref partial struct MaskCombinationsGenerator(
-	[RecordParameter(DataMemberKinds.Field)] int bitCount,
-	[RecordParameter(DataMemberKinds.Field)] int oneCount
+	[PrimaryCosntructorParameter(MemberKinds.Field)] int bitCount,
+	[PrimaryCosntructorParameter(MemberKinds.Field)] int oneCount
 )
 {
 	/// <summary>

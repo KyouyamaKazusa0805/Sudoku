@@ -7,7 +7,7 @@ namespace Sudoku.Rendering.Nodes;
 /// <param name="cell">The cell.</param>
 [GetHashCode]
 [ToString]
-public abstract partial class IconViewNode(ColorIdentifier identifier, [RecordParameter, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
+public abstract partial class IconViewNode(ColorIdentifier identifier, [PrimaryCosntructorParameter, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

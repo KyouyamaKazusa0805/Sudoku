@@ -5,7 +5,7 @@ namespace System.SourceGeneration;
 /// telling the source generator that it should generate a property that references this parameter.
 /// </summary>
 /// <param name="memberKind">
-/// Indicates the member kind to be generated. You can reference the target value via type <see cref="DataMemberKinds"/>.
+/// Indicates the member kind to be generated. You can reference the target value via type <see cref="MemberKinds"/>.
 /// </param>
 /// <remarks>
 /// <para>
@@ -40,7 +40,7 @@ namespace System.SourceGeneration;
 /// <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-public sealed partial class RecordParameterAttribute([RecordParameter] string memberKind = DataMemberKinds.Property) : Attribute
+public sealed partial class PrimaryCosntructorParameterAttribute([PrimaryCosntructorParameter] string memberKind = MemberKinds.Property) : Attribute
 {
 	/// <summary>
 	/// Indicates whether the generated field or property is implicitly read-only.
