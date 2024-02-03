@@ -328,6 +328,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					lastDigit,
 					in subsetCells,
 					subsetDigitsMask,
+					house,
 					[cell],
 					eliminatedDigitsMask,
 					houseType switch
@@ -403,6 +404,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					digit,
 					in subsetCells,
 					subsetDigitsMask,
+					house,
 					in eliminatedCells,
 					(Mask)(1 << digit),
 					SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
@@ -470,6 +472,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				lastDigit,
 				in subsetCells,
 				subsetDigitsMask,
+				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
 				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - EmptyCells).Count,

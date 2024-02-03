@@ -6136,6 +6136,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cells {0} is formed a {6} in {1} of digits {5}, then {2} cannot be filled with digit {3}, so the {4} is formed.
+        /// </summary>
+        public static string TechniqueFormat_DirectSubsetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_DirectSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} cells {1}.
         /// </summary>
         public static string TechniqueFormat_DominoLoopStep {

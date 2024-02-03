@@ -2751,4 +2751,7 @@
   <data name="HiddenQuadrupleNakedSingle" xml:space="preserve">
     <value>Hidden Quadruple Naked Single</value>
   </data>
+  <data name="TechniqueFormat_DirectSubsetStep" xml:space="preserve">
+    <value>Cells {0} is formed a {6} in {1} of digits {5}, then {2} cannot be filled with digit {3}, so the {4} is formed</value>
+  </data>
 </root>

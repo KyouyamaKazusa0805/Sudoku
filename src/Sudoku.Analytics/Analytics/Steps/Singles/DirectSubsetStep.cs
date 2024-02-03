@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="subsetCells">Indicates the subset cells used.</param>
 /// <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+/// <param name="subsetHouse">Indicates the subset house.</param>
 /// <param name="interim">Indicates the interim.</param>
 /// <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
 /// <param name="subtype"><inheritdoc/></param>
@@ -23,6 +24,7 @@ public sealed partial class DirectSubsetStep(
 	Digit digit,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
+	[PrimaryConstructorParameter] House subsetHouse,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap interim,
 	[PrimaryConstructorParameter] Mask interimDigitsMask,
 	SingleSubtype subtype,
@@ -86,6 +88,13 @@ public sealed partial class DirectSubsetStep(
 		];
 
 	/// <inheritdoc/>
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [
+			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr]),
+			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr])
+		];
+
+	/// <inheritdoc/>
 	protected override int PrefixNameLength
 	{
 		[DoesNotReturn]
@@ -98,4 +107,18 @@ public sealed partial class DirectSubsetStep(
 		[DoesNotReturn]
 		get => throw new NotImplementedException();
 	}
+
+	private string CellsStr => Options.Converter.CellConverter(SubsetCells);
+
+	private string HouseStr => Options.Converter.HouseConverter(1 << SubsetHouse);
+
+	private string InterimCellStr => Options.Converter.CellConverter(Interim);
+
+	private string InterimDigitStr => Options.Converter.DigitConverter(InterimDigitsMask);
+
+	private string TechniqueNameStr => BasedOn.GetName(ResultCurrentCulture);
+
+	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
+
+	private string SubsetNameStr => SubsetTechnique.GetName(ResultCurrentCulture);
 }

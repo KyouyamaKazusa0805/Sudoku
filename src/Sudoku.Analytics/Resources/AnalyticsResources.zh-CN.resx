@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,2962 +59,2965 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string" />
-                            <xsd:attribute name="type" type="xsd:string" />
-                            <xsd:attribute name="mimetype" type="xsd:string" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string" />
-                            <xsd:attribute name="name" type="xsd:string" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" />
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="AnalysisResultBeenSolved" xml:space="preserve">
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnalysisResultBeenSolved" xml:space="preserve">
     <value>被解出。</value>
   </data>
-    <data name="AnalysisResultBottleneckStep" xml:space="preserve">
+  <data name="AnalysisResultBottleneckStep" xml:space="preserve">
     <value>卡点步骤：</value>
   </data>
-    <data name="AnalysisResultInStep" xml:space="preserve">
+  <data name="AnalysisResultInStep" xml:space="preserve">
     <value>于步骤编号 </value>
   </data>
-    <data name="AnalysisResultMin" xml:space="preserve">
+  <data name="AnalysisResultMin" xml:space="preserve">
     <value>最小</value>
   </data>
-    <data name="AnalysisResultNot" xml:space="preserve">
+  <data name="AnalysisResultNot" xml:space="preserve">
     <value>未</value>
   </data>
-    <data name="AnalysisResultPuzzle" xml:space="preserve">
+  <data name="AnalysisResultPuzzle" xml:space="preserve">
     <value>题目：</value>
   </data>
-    <data name="AnalysisResultPuzzleHas" xml:space="preserve">
+  <data name="AnalysisResultPuzzleHas" xml:space="preserve">
     <value>题目</value>
   </data>
-    <data name="AnalysisResultPuzzleRating" xml:space="preserve">
+  <data name="AnalysisResultPuzzleRating" xml:space="preserve">
     <value>题目难度分：</value>
   </data>
-    <data name="AnalysisResultPuzzleSolution" xml:space="preserve">
+  <data name="AnalysisResultPuzzleSolution" xml:space="preserve">
     <value>终盘：</value>
   </data>
-    <data name="AnalysisResultSolvingSteps" xml:space="preserve">
+  <data name="AnalysisResultSolvingSteps" xml:space="preserve">
     <value>解题步骤：</value>
   </data>
-    <data name="AnalysisResultStepPlural" xml:space="preserve">
+  <data name="AnalysisResultStepPlural" xml:space="preserve">
     <value>个步骤</value>
   </data>
-    <data name="AnalysisResultStepSingular" xml:space="preserve">
+  <data name="AnalysisResultStepSingular" xml:space="preserve">
     <value>个步骤</value>
   </data>
-    <data name="AnalysisResultTechniqueUsed" xml:space="preserve">
+  <data name="AnalysisResultTechniqueUsed" xml:space="preserve">
     <value>技巧使用情况：</value>
   </data>
-    <data name="AnalysisResultTechniqueUsing" xml:space="preserve">
+  <data name="AnalysisResultTechniqueUsing" xml:space="preserve">
     <value>          技巧使用</value>
   </data>
-    <data name="AnalysisResultTimeElapsed" xml:space="preserve">
+  <data name="AnalysisResultTimeElapsed" xml:space="preserve">
     <value>耗时：</value>
   </data>
-    <data name="AnalysisResultTotal" xml:space="preserve">
+  <data name="AnalysisResultTotal" xml:space="preserve">
     <value>最大</value>
   </data>
-    <data name="Appear" xml:space="preserve">
+  <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
-    <data name="BruteForceSolverResultBeenSolved" xml:space="preserve">
+  <data name="BruteForceSolverResultBeenSolved" xml:space="preserve">
     <value>被解出。</value>
   </data>
-    <data name="BruteForceSolverResultNot" xml:space="preserve">
+  <data name="BruteForceSolverResultNot" xml:space="preserve">
     <value>未</value>
   </data>
-    <data name="BruteForceSolverResultPuzzle" xml:space="preserve">
+  <data name="BruteForceSolverResultPuzzle" xml:space="preserve">
     <value>题目：</value>
   </data>
-    <data name="BruteForceSolverResultPuzzleHas" xml:space="preserve">
+  <data name="BruteForceSolverResultPuzzleHas" xml:space="preserve">
     <value>题目</value>
   </data>
-    <data name="BruteForceSolverResultSolution" xml:space="preserve">
+  <data name="BruteForceSolverResultSolution" xml:space="preserve">
     <value>终盘：</value>
   </data>
-    <data name="BruteForceSolverResultTimeElapsed" xml:space="preserve">
+  <data name="BruteForceSolverResultTimeElapsed" xml:space="preserve">
     <value>耗时：</value>
   </data>
-    <data name="Colon" xml:space="preserve">
+  <data name="Colon" xml:space="preserve">
     <value>：</value>
   </data>
-    <data name="Ellipsis" xml:space="preserve">
+  <data name="Ellipsis" xml:space="preserve">
     <value>……</value>
   </data>
-    <data name="EndoTaraget" xml:space="preserve">
+  <data name="EndoTaraget" xml:space="preserve">
     <value>内目标格：</value>
   </data>
-    <data name="ExocetBasicEliminationName" xml:space="preserve">
+  <data name="ExocetBasicEliminationName" xml:space="preserve">
     <value>目标格删数</value>
   </data>
-    <data name="ExocetBiBiPatternEliminationName" xml:space="preserve">
+  <data name="ExocetBiBiPatternEliminationName" xml:space="preserve">
     <value>X 理论删数</value>
   </data>
-    <data name="ExocetCompatibilityTestEliminationName" xml:space="preserve">
+  <data name="ExocetCompatibilityTestEliminationName" xml:space="preserve">
     <value>兼容性测试删数</value>
   </data>
-    <data name="ExocetElimination" xml:space="preserve">
+  <data name="ExocetElimination" xml:space="preserve">
     <value>删数：</value>
   </data>
-    <data name="ExocetGeneralizedSwordfishEliminationName" xml:space="preserve">
+  <data name="ExocetGeneralizedSwordfishEliminationName" xml:space="preserve">
     <value>广义三阶鱼删数</value>
   </data>
-    <data name="ExocetMirrorEliminationName" xml:space="preserve">
+  <data name="ExocetMirrorEliminationName" xml:space="preserve">
     <value>镜面格删数</value>
   </data>
-    <data name="ExocetTargetInferenceEliminationName" xml:space="preserve">
+  <data name="ExocetTargetInferenceEliminationName" xml:space="preserve">
     <value>目标格推断删数</value>
   </data>
-    <data name="ExocetTargetPairEliminationName" xml:space="preserve">
+  <data name="ExocetTargetPairEliminationName" xml:space="preserve">
     <value>目标格数对删数</value>
   </data>
-    <data name="ExocetTrueBaseEliminationName" xml:space="preserve">
+  <data name="ExocetTrueBaseEliminationName" xml:space="preserve">
     <value>基准格永真删数</value>
   </data>
-    <data name="FalseKeyword" xml:space="preserve">
+  <data name="FalseKeyword" xml:space="preserve">
     <value>假</value>
   </data>
-    <data name="Fin" xml:space="preserve">
+  <data name="Fin" xml:space="preserve">
     <value>，鱼鳍为</value>
   </data>
-    <data name="GuardianPlural" xml:space="preserve">
+  <data name="GuardianPlural" xml:space="preserve">
     <value>守护者</value>
   </data>
-    <data name="GuardianSingular" xml:space="preserve">
+  <data name="GuardianSingular" xml:space="preserve">
     <value>守护者</value>
   </data>
-    <data name="HiddenKeyword" xml:space="preserve">
+  <data name="HiddenKeyword" xml:space="preserve">
     <value>隐性</value>
   </data>
-    <data name="IncludedExtraHouse" xml:space="preserve">
+  <data name="IncludedExtraHouse" xml:space="preserve">
     <value>。额外的需要计算进来的区域：</value>
   </data>
-    <data name="KeywordIn" xml:space="preserve">
+  <data name="KeywordIn" xml:space="preserve">
     <value>位于</value>
   </data>
-    <data name="Language" xml:space="preserve">
+  <data name="Language" xml:space="preserve">
     <value>2052</value>
   </data>
-    <data name="LockedMemberQ" xml:space="preserve">
+  <data name="LockedMemberQ" xml:space="preserve">
     <value>，区块成员 #1：</value>
   </data>
-    <data name="LockedMemberR" xml:space="preserve">
+  <data name="LockedMemberR" xml:space="preserve">
     <value>，区块成员 #2：</value>
   </data>
-    <data name="NakedKeyword" xml:space="preserve">
+  <data name="NakedKeyword" xml:space="preserve">
     <value>显性</value>
   </data>
-    <data name="Only" xml:space="preserve">
+  <data name="Only" xml:space="preserve">
     <value>只</value>
   </data>
-    <data name="OrKeywordWithSpaces" xml:space="preserve">
+  <data name="OrKeywordWithSpaces" xml:space="preserve">
     <value> 或 </value>
   </data>
-    <data name="SubsetNamesSize2" xml:space="preserve">
+  <data name="SubsetNamesSize2" xml:space="preserve">
     <value>数对</value>
   </data>
-    <data name="SubsetNamesSize3" xml:space="preserve">
+  <data name="SubsetNamesSize3" xml:space="preserve">
     <value>三数组</value>
   </data>
-    <data name="SubsetNamesSize4" xml:space="preserve">
+  <data name="SubsetNamesSize4" xml:space="preserve">
     <value>四数组</value>
   </data>
-    <data name="SubsetNamesSize5" xml:space="preserve">
+  <data name="SubsetNamesSize5" xml:space="preserve">
     <value>五数组</value>
   </data>
-    <data name="SubsetNamesSize6" xml:space="preserve">
+  <data name="SubsetNamesSize6" xml:space="preserve">
     <value>六数组</value>
   </data>
-    <data name="SubsetNamesSize7" xml:space="preserve">
+  <data name="SubsetNamesSize7" xml:space="preserve">
     <value>七数组</value>
   </data>
-    <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
+  <data name="TechniqueFormat_AlmostLockedCandidatesStep" xml:space="preserve">
     <value>数字 {0} 从 {1} 往 {2} 推理</value>
   </data>
-    <data name="TechniqueFormat_AlmostLockedSetsWWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_AlmostLockedSetsWWingStep" xml:space="preserve">
     <value>ALS {0} 和 {1} 以共轭对 {2} 关联起来；其中 W = {3}、X = {4}</value>
   </data>
-    <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
     <value>{0} -&gt; {1} -&gt; {2}；其中 X = {3}、Y = {4}、Z = {5}</value>
   </data>
-    <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
+  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
     <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
   </data>
-    <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">
+  <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
+  <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 构成区块，并带排除法：如果单元格 {3} 填上了数字 {0}，{4} 区域仅能让 {5} 填入该数字，便出现致命形式</value>
   </data>
-    <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
+  <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
     <value>{Name}：可以证明如果 {AnchorCandidateStr} 为{AnchorIsTrueOrFalseStr}时会产生矛盾 =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_BivalueOddagonType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueOddagonType1Step" xml:space="preserve">
     <value>如果单元格 {0} 只有数字 {1} 和 {2} 的话，整个环 {3} 会直接导致违背规则的矛盾现象</value>
   </data>
-    <data name="TechniqueFormat_BivalueOddagonType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueOddagonType2Step" xml:space="preserve">
     <value>如果所有在单元格 {0} 里的数字 {1} 全部删掉，则整个环会直接导致违背规则的矛盾现象</value>
   </data>
-    <data name="TechniqueFormat_BivalueOddagonType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueOddagonType3Step" xml:space="preserve">
     <value>为规避数字 {0} 和 {1} 在单元格 {2} 里出错，唯一的办法就是和 {3} 单元格组成关于数字 {4} 的数组</value>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveMultipleStep" xml:space="preserve">
     <value>真数为 {0}</value>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveType2Step" xml:space="preserve">
     <value>单元格 {0} 里包含额外数字 {1}</value>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveType3Step" xml:space="preserve">
     <value>真数 {0}，伴有{1}{2}于单元格 {3} 里，涉及数字 {4}</value>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveType4Step" xml:space="preserve">
     <value>位于单元格 {0} 里的数字 {1}，带有一个共轭对 {2}</value>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveXzStep" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveXzStep" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，并带有额外单元格 {2}</value>
   </data>
-    <data name="TechniqueFormat_BowmanBingoStep" xml:space="preserve">
+  <data name="TechniqueFormat_BowmanBingoStep" xml:space="preserve">
     <value>设 {0}</value>
   </data>
-    <data name="TechniqueFormat_BruteForceStep" xml:space="preserve">
+  <data name="TechniqueFormat_BruteForceStep" xml:space="preserve">
     <value>{0}</value>
   </data>
-    <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
+  <data name="TechniqueFormat_CellChainingStep" xml:space="preserve">
     <value>{Name}：可以通过强制链来证明得到 {0} 里的所有候选数全部为假 =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
+  <data name="TechniqueFormat_ComplexFishStep" xml:space="preserve">
     <value>{0}</value>
   </data>
-    <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
+  <data name="TechniqueFormat_ContinuousNiceLoopStep" xml:space="preserve">
     <value>{Name}：环 {ChainStr} =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_DominoLoopStep" xml:space="preserve">
+  <data name="TechniqueFormat_DominoLoopStep" xml:space="preserve">
     <value>{0} 个单元格 {1} 构成多米诺环</value>
   </data>
-    <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
+  <data name="TechniqueFormat_EmptyRectangleIntersectionPairStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于双值格 {2} 和 {3} 里，并在区域 {4} 里带有此两数交织起来的空矩形</value>
   </data>
-    <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
+  <data name="TechniqueFormat_EmptyRectangleStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1} 下拥有共轭对 {2}</value>
   </data>
-    <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedRectangleType1Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里构成结构</value>
   </data>
-    <data name="TechniqueFormat_ExtendedRectangleType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedRectangleType2Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里构成结构，带有额外数字 {2}</value>
   </data>
-    <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedRectangleType3Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里构成结构，在区域 {2} 带有数组，涉及单元格 {3} 的数字 {4}</value>
   </data>
-    <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedRectangleType4Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里构成结构，带有共轭对 {2}</value>
   </data>
-    <data name="TechniqueFormat_ExtendedSubsetPrincipleStep" xml:space="preserve">
+  <data name="TechniqueFormat_ExtendedSubsetPrincipleStep" xml:space="preserve">
     <value>只有数字 {0} 在 {1} 里可以重复出现</value>
   </data>
-    <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
+  <data name="TechniqueFormat_GuardianStep" xml:space="preserve">
     <value>单元格 {0} 并带有{1} {2}</value>
   </data>
-    <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
+  <data name="TechniqueFormat_HiddenSingle" xml:space="preserve">
     <value>在区域 {0} 里有结论</value>
   </data>
-    <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
+  <data name="TechniqueFormat_HiddenSubsetStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1} 里有隐性数组结构</value>
   </data>
-    <data name="TechniqueFormat_LastDigit" xml:space="preserve">
+  <data name="TechniqueFormat_LastDigit" xml:space="preserve">
     <value>这是数字 {0} 的最后一个未填项</value>
   </data>
-    <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
+  <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1}\{2} 里有区块结构</value>
   </data>
-    <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
+  <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
     <value>共 {0} 个单元格 {1}</value>
   </data>
-    <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
+  <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1} 里有显性{2}结构</value>
   </data>
-    <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
+  <data name="TechniqueFormat_NormalFishStep" xml:space="preserve">
     <value>{0}</value>
   </data>
-    <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
+  <data name="TechniqueFormat_PatternOverlayStep" xml:space="preserve">
     <value>枚举数字 {0} 的所有排列情况</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternLockedTypeStep" xml:space="preserve">
     <value>如果所有这 {0} 个候选数都为假的话，单元格 {1} 将产生致命形式</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternType1Step" xml:space="preserve">
     <value>但凡 {1} 的数字 {2} 为真，单元格 {0} 都将产生致命形式</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternType2Step" xml:space="preserve">
     <value>如果所有位于单元格 {0} 里的数字 {1} 全部为假的话，则结构将产生致命形式</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternType3Step" xml:space="preserve">
     <value>单元格 {0} 不会产生致命形式当且仅当数字 {1} 在单元格 {2} 里会构成显性{3}</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternType4Step" xml:space="preserve">
     <value>如果涉及结构的、和共轭对 {0} 涉及外的数字被放在了共轭对上，单元格 {1} 将产生致命形式</value>
   </data>
-    <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
+  <data name="TechniqueFormat_HouseChainingStep" xml:space="preserve">
     <value>{Name}：可以使用强制链证得位于区域 {HouseStr} 的数字 {DigitStr} 全为假的矛盾 =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_RegularWingStep" xml:space="preserve">
     <value>数字 {0} 位于拐点 {1} 上，往单元格 {2} 上进行推理</value>
   </data>
-    <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
+  <data name="TechniqueFormat_SueDeCoq3DimensionStep" xml:space="preserve">
     <value>{0}({1}) + {2}({3}) + {4}({5})</value>
   </data>
-    <data name="TechniqueFormat_SueDeCoqStep" xml:space="preserve">
+  <data name="TechniqueFormat_SueDeCoqStep" xml:space="preserve">
     <value>{0}({1}) - {2}({3}) &amp; {4}({5})</value>
   </data>
-    <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
+  <data name="TechniqueFormat_TemplateStep" xml:space="preserve">
     <value>关于数字 {DigitStr}</value>
   </data>
-    <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
+  <data name="TechniqueFormat_TwoStrongLinksStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1}\{2}</value>
   </data>
-    <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 里</value>
   </data>
-    <data name="TechniqueFormat_UniqueLoopType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueLoopType2Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带额外数字 {3}</value>
   </data>
-    <data name="TechniqueFormat_UniqueLoopType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueLoopType3Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有显性{3}、额外数字 {4}，单元格为 {5}</value>
   </data>
-    <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有共轭对 {3}</value>
   </data>
-    <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里</value>
   </data>
-    <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，带有一个额外数字 {2}</value>
   </data>
-    <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，在单元格 {2} 里带有额外数字 {3}</value>
   </data>
-    <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，带有一个关于数字 {2} 的共轭区域，位于单元格 {3} 里</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，X 为 {3}、Y 为 {4}、双值格为 {5}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleType1Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleType2Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带额外数字 {3}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带额外数字 {3} {4}在区域 {5} 的 {6} 这几格里{7}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，并带共轭对 {3}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带一个简化版的融合待定数组存在于单元格 {3} 里，涉及数字 {4}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleWithBabaGroupingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithBabaGroupingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带代数结构：设单元格 {3} 填入 X（X 是 {4} 其一），则四个单元格将构成关于 X 和数字 {5} 的唯一矩形致命形式</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {3}，涉及数字 {4}</value>
   </data>
-    <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
     <value>如果候选数 {0} 为假，则位于单元格 {1} 的数字 {2} 将构成致命形式</value>
   </data>
-    <data name="TechniqueFormat_UniqueMatrixType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType2Step" xml:space="preserve">
     <value>如果数字 {0} 在单元格 {1} 里全部为假，则剩余数字 {2} 在这些格子里将构成致命形式</value>
   </data>
-    <data name="TechniqueFormat_UniqueMatrixType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType3Step" xml:space="preserve">
     <value>如果数字 {0} 在单元格 {1} 里不构成显性{2}的话，则数字 {3} 在单元格 {4} 里将构成致命形式</value>
   </data>
-    <data name="TechniqueFormat_UniqueMatrixType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueMatrixType4Step" xml:space="preserve">
     <value>如果共轭区域 {0} 无法填入数字 {1} 或者 {2} 的话，数字 {3} 在单元格 {4} 里将形成致命形式</value>
   </data>
-    <data name="TechniqueFormat_WWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_WWingStep" xml:space="preserve">
     <value>从 {0} 到 {1}，用 {2} 连接</value>
   </data>
-    <data name="TrueKeyword" xml:space="preserve">
+  <data name="TrueKeyword" xml:space="preserve">
     <value>真</value>
   </data>
-    <data name="FullHouse" xml:space="preserve">
+  <data name="FullHouse" xml:space="preserve">
     <value>同区九缺一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LastDigit" xml:space="preserve">
+  <data name="LastDigit" xml:space="preserve">
     <value>同数九缺一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenSingleBlock" xml:space="preserve">
+  <data name="HiddenSingleBlock" xml:space="preserve">
     <value>宫隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenSingleRow" xml:space="preserve">
+  <data name="HiddenSingleRow" xml:space="preserve">
     <value>行隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenSingleColumn" xml:space="preserve">
+  <data name="HiddenSingleColumn" xml:space="preserve">
     <value>列隐性唯一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedSingle" xml:space="preserve">
+  <data name="NakedSingle" xml:space="preserve">
     <value>唯一余数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Pointing" xml:space="preserve">
+  <data name="Pointing" xml:space="preserve">
     <value>宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Claiming" xml:space="preserve">
+  <data name="Claiming" xml:space="preserve">
     <value>行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedPair" xml:space="preserve">
+  <data name="AlmostLockedPair" xml:space="preserve">
     <value>欠一数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedTriple" xml:space="preserve">
+  <data name="AlmostLockedTriple" xml:space="preserve">
     <value>欠一三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedQuadruple" xml:space="preserve">
+  <data name="AlmostLockedQuadruple" xml:space="preserve">
     <value>欠一四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPair" xml:space="preserve">
+  <data name="NakedPair" xml:space="preserve">
     <value>显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlus" xml:space="preserve">
+  <data name="NakedPairPlus" xml:space="preserve">
     <value>显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPair" xml:space="preserve">
+  <data name="LockedPair" xml:space="preserve">
     <value>死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPair" xml:space="preserve">
+  <data name="HiddenPair" xml:space="preserve">
     <value>隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriple" xml:space="preserve">
+  <data name="NakedTriple" xml:space="preserve">
     <value>显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlus" xml:space="preserve">
+  <data name="NakedTriplePlus" xml:space="preserve">
     <value>显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTriple" xml:space="preserve">
+  <data name="LockedTriple" xml:space="preserve">
     <value>死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTriple" xml:space="preserve">
+  <data name="HiddenTriple" xml:space="preserve">
     <value>隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruple" xml:space="preserve">
+  <data name="NakedQuadruple" xml:space="preserve">
     <value>显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlus" xml:space="preserve">
+  <data name="NakedQuadruplePlus" xml:space="preserve">
     <value>显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadruple" xml:space="preserve">
+  <data name="HiddenQuadruple" xml:space="preserve">
     <value>隐性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XWing" xml:space="preserve">
+  <data name="XWing" xml:space="preserve">
     <value>二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedXWing" xml:space="preserve">
+  <data name="FinnedXWing" xml:space="preserve">
     <value>鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiXWing" xml:space="preserve">
+  <data name="SashimiXWing" xml:space="preserve">
     <value>退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedXWing" xml:space="preserve">
+  <data name="SiameseFinnedXWing" xml:space="preserve">
     <value>孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiXWing" xml:space="preserve">
+  <data name="SiameseSashimiXWing" xml:space="preserve">
     <value>孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenXWing" xml:space="preserve">
+  <data name="FrankenXWing" xml:space="preserve">
     <value>宫内二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenXWing" xml:space="preserve">
+  <data name="FinnedFrankenXWing" xml:space="preserve">
     <value>宫内鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenXWing" xml:space="preserve">
+  <data name="SashimiFrankenXWing" xml:space="preserve">
     <value>宫内退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenXWing" xml:space="preserve">
+  <data name="SiameseFinnedFrankenXWing" xml:space="preserve">
     <value>宫内孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenXWing" xml:space="preserve">
+  <data name="SiameseSashimiFrankenXWing" xml:space="preserve">
     <value>宫内孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantXWing" xml:space="preserve">
+  <data name="MutantXWing" xml:space="preserve">
     <value>交叉二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantXWing" xml:space="preserve">
+  <data name="FinnedMutantXWing" xml:space="preserve">
     <value>交叉鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantXWing" xml:space="preserve">
+  <data name="SashimiMutantXWing" xml:space="preserve">
     <value>交叉退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantXWing" xml:space="preserve">
+  <data name="SiameseFinnedMutantXWing" xml:space="preserve">
     <value>交叉孪生鳍二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantXWing" xml:space="preserve">
+  <data name="SiameseSashimiMutantXWing" xml:space="preserve">
     <value>交叉孪生退化二阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Swordfish" xml:space="preserve">
+  <data name="Swordfish" xml:space="preserve">
     <value>三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedSwordfish" xml:space="preserve">
+  <data name="FinnedSwordfish" xml:space="preserve">
     <value>鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiSwordfish" xml:space="preserve">
+  <data name="SashimiSwordfish" xml:space="preserve">
     <value>退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedSwordfish" xml:space="preserve">
+  <data name="SiameseFinnedSwordfish" xml:space="preserve">
     <value>孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiSwordfish" xml:space="preserve">
+  <data name="SiameseSashimiSwordfish" xml:space="preserve">
     <value>孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenSwordfish" xml:space="preserve">
+  <data name="FrankenSwordfish" xml:space="preserve">
     <value>宫内三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenSwordfish" xml:space="preserve">
+  <data name="FinnedFrankenSwordfish" xml:space="preserve">
     <value>宫内鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenSwordfish" xml:space="preserve">
+  <data name="SashimiFrankenSwordfish" xml:space="preserve">
     <value>宫内退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenSwordfish" xml:space="preserve">
+  <data name="SiameseFinnedFrankenSwordfish" xml:space="preserve">
     <value>宫内孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenSwordfish" xml:space="preserve">
+  <data name="SiameseSashimiFrankenSwordfish" xml:space="preserve">
     <value>宫内孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantSwordfish" xml:space="preserve">
+  <data name="MutantSwordfish" xml:space="preserve">
     <value>交叉三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantSwordfish" xml:space="preserve">
+  <data name="FinnedMutantSwordfish" xml:space="preserve">
     <value>交叉鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantSwordfish" xml:space="preserve">
+  <data name="SashimiMutantSwordfish" xml:space="preserve">
     <value>交叉退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantSwordfish" xml:space="preserve">
+  <data name="SiameseFinnedMutantSwordfish" xml:space="preserve">
     <value>交叉孪生鳍三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantSwordfish" xml:space="preserve">
+  <data name="SiameseSashimiMutantSwordfish" xml:space="preserve">
     <value>交叉孪生退化三阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Jellyfish" xml:space="preserve">
+  <data name="Jellyfish" xml:space="preserve">
     <value>四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedJellyfish" xml:space="preserve">
+  <data name="FinnedJellyfish" xml:space="preserve">
     <value>鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiJellyfish" xml:space="preserve">
+  <data name="SashimiJellyfish" xml:space="preserve">
     <value>退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedJellyfish" xml:space="preserve">
+  <data name="SiameseFinnedJellyfish" xml:space="preserve">
     <value>孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiJellyfish" xml:space="preserve">
+  <data name="SiameseSashimiJellyfish" xml:space="preserve">
     <value>孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenJellyfish" xml:space="preserve">
+  <data name="FrankenJellyfish" xml:space="preserve">
     <value>宫内四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenJellyfish" xml:space="preserve">
+  <data name="FinnedFrankenJellyfish" xml:space="preserve">
     <value>宫内鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenJellyfish" xml:space="preserve">
+  <data name="SashimiFrankenJellyfish" xml:space="preserve">
     <value>宫内退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenJellyfish" xml:space="preserve">
+  <data name="SiameseFinnedFrankenJellyfish" xml:space="preserve">
     <value>宫内孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenJellyfish" xml:space="preserve">
+  <data name="SiameseSashimiFrankenJellyfish" xml:space="preserve">
     <value>宫内孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantJellyfish" xml:space="preserve">
+  <data name="MutantJellyfish" xml:space="preserve">
     <value>交叉四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantJellyfish" xml:space="preserve">
+  <data name="FinnedMutantJellyfish" xml:space="preserve">
     <value>交叉鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantJellyfish" xml:space="preserve">
+  <data name="SashimiMutantJellyfish" xml:space="preserve">
     <value>交叉退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantJellyfish" xml:space="preserve">
+  <data name="SiameseFinnedMutantJellyfish" xml:space="preserve">
     <value>交叉孪生鳍四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantJellyfish" xml:space="preserve">
+  <data name="SiameseSashimiMutantJellyfish" xml:space="preserve">
     <value>交叉孪生退化四阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Squirmbag" xml:space="preserve">
+  <data name="Squirmbag" xml:space="preserve">
     <value>五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedSquirmbag" xml:space="preserve">
+  <data name="FinnedSquirmbag" xml:space="preserve">
     <value>鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiSquirmbag" xml:space="preserve">
+  <data name="SashimiSquirmbag" xml:space="preserve">
     <value>退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedSquirmbag" xml:space="preserve">
+  <data name="SiameseFinnedSquirmbag" xml:space="preserve">
     <value>孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiSquirmbag" xml:space="preserve">
+  <data name="SiameseSashimiSquirmbag" xml:space="preserve">
     <value>孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenSquirmbag" xml:space="preserve">
+  <data name="FrankenSquirmbag" xml:space="preserve">
     <value>宫内五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenSquirmbag" xml:space="preserve">
+  <data name="FinnedFrankenSquirmbag" xml:space="preserve">
     <value>宫内鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenSquirmbag" xml:space="preserve">
+  <data name="SashimiFrankenSquirmbag" xml:space="preserve">
     <value>宫内退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenSquirmbag" xml:space="preserve">
+  <data name="SiameseFinnedFrankenSquirmbag" xml:space="preserve">
     <value>宫内孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenSquirmbag" xml:space="preserve">
+  <data name="SiameseSashimiFrankenSquirmbag" xml:space="preserve">
     <value>宫内孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantSquirmbag" xml:space="preserve">
+  <data name="MutantSquirmbag" xml:space="preserve">
     <value>交叉五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantSquirmbag" xml:space="preserve">
+  <data name="FinnedMutantSquirmbag" xml:space="preserve">
     <value>交叉鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantSquirmbag" xml:space="preserve">
+  <data name="SashimiMutantSquirmbag" xml:space="preserve">
     <value>交叉退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantSquirmbag" xml:space="preserve">
+  <data name="SiameseFinnedMutantSquirmbag" xml:space="preserve">
     <value>交叉孪生鳍五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantSquirmbag" xml:space="preserve">
+  <data name="SiameseSashimiMutantSquirmbag" xml:space="preserve">
     <value>交叉孪生退化五阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Whale" xml:space="preserve">
+  <data name="Whale" xml:space="preserve">
     <value>六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedWhale" xml:space="preserve">
+  <data name="FinnedWhale" xml:space="preserve">
     <value>鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiWhale" xml:space="preserve">
+  <data name="SashimiWhale" xml:space="preserve">
     <value>退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedWhale" xml:space="preserve">
+  <data name="SiameseFinnedWhale" xml:space="preserve">
     <value>孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiWhale" xml:space="preserve">
+  <data name="SiameseSashimiWhale" xml:space="preserve">
     <value>孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenWhale" xml:space="preserve">
+  <data name="FrankenWhale" xml:space="preserve">
     <value>宫内六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenWhale" xml:space="preserve">
+  <data name="FinnedFrankenWhale" xml:space="preserve">
     <value>宫内鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenWhale" xml:space="preserve">
+  <data name="SashimiFrankenWhale" xml:space="preserve">
     <value>宫内退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenWhale" xml:space="preserve">
+  <data name="SiameseFinnedFrankenWhale" xml:space="preserve">
     <value>宫内孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenWhale" xml:space="preserve">
+  <data name="SiameseSashimiFrankenWhale" xml:space="preserve">
     <value>宫内孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantWhale" xml:space="preserve">
+  <data name="MutantWhale" xml:space="preserve">
     <value>交叉六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantWhale" xml:space="preserve">
+  <data name="FinnedMutantWhale" xml:space="preserve">
     <value>交叉鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantWhale" xml:space="preserve">
+  <data name="SashimiMutantWhale" xml:space="preserve">
     <value>交叉退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantWhale" xml:space="preserve">
+  <data name="SiameseFinnedMutantWhale" xml:space="preserve">
     <value>交叉孪生鳍六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantWhale" xml:space="preserve">
+  <data name="SiameseSashimiMutantWhale" xml:space="preserve">
     <value>交叉孪生退化六阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Leviathan" xml:space="preserve">
+  <data name="Leviathan" xml:space="preserve">
     <value>七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedLeviathan" xml:space="preserve">
+  <data name="FinnedLeviathan" xml:space="preserve">
     <value>鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiLeviathan" xml:space="preserve">
+  <data name="SashimiLeviathan" xml:space="preserve">
     <value>退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedLeviathan" xml:space="preserve">
+  <data name="SiameseFinnedLeviathan" xml:space="preserve">
     <value>孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiLeviathan" xml:space="preserve">
+  <data name="SiameseSashimiLeviathan" xml:space="preserve">
     <value>孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenLeviathan" xml:space="preserve">
+  <data name="FrankenLeviathan" xml:space="preserve">
     <value>宫内七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedFrankenLeviathan" xml:space="preserve">
+  <data name="FinnedFrankenLeviathan" xml:space="preserve">
     <value>宫内鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiFrankenLeviathan" xml:space="preserve">
+  <data name="SashimiFrankenLeviathan" xml:space="preserve">
     <value>宫内退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedFrankenLeviathan" xml:space="preserve">
+  <data name="SiameseFinnedFrankenLeviathan" xml:space="preserve">
     <value>宫内孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiFrankenLeviathan" xml:space="preserve">
+  <data name="SiameseSashimiFrankenLeviathan" xml:space="preserve">
     <value>宫内孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantLeviathan" xml:space="preserve">
+  <data name="MutantLeviathan" xml:space="preserve">
     <value>交叉七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FinnedMutantLeviathan" xml:space="preserve">
+  <data name="FinnedMutantLeviathan" xml:space="preserve">
     <value>交叉鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SashimiMutantLeviathan" xml:space="preserve">
+  <data name="SashimiMutantLeviathan" xml:space="preserve">
     <value>交叉退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseFinnedMutantLeviathan" xml:space="preserve">
+  <data name="SiameseFinnedMutantLeviathan" xml:space="preserve">
     <value>交叉孪生鳍七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseSashimiMutantLeviathan" xml:space="preserve">
+  <data name="SiameseSashimiMutantLeviathan" xml:space="preserve">
     <value>交叉孪生退化七阶鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyWing" xml:space="preserve">
+  <data name="XyWing" xml:space="preserve">
     <value>XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyzWing" xml:space="preserve">
+  <data name="XyzWing" xml:space="preserve">
     <value>XYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WxyzWing" xml:space="preserve">
+  <data name="WxyzWing" xml:space="preserve">
     <value>WXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="VwxyzWing" xml:space="preserve">
+  <data name="VwxyzWing" xml:space="preserve">
     <value>VWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UvwxyzWing" xml:space="preserve">
+  <data name="UvwxyzWing" xml:space="preserve">
     <value>UVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TuvwxyzWing" xml:space="preserve">
+  <data name="TuvwxyzWing" xml:space="preserve">
     <value>TUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="StuvwxyzWing" xml:space="preserve">
+  <data name="StuvwxyzWing" xml:space="preserve">
     <value>STUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="RstuvwxyzWing" xml:space="preserve">
+  <data name="RstuvwxyzWing" xml:space="preserve">
     <value>RSTUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteWxyzWing" xml:space="preserve">
+  <data name="IncompleteWxyzWing" xml:space="preserve">
     <value>残缺 WXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteVwxyzWing" xml:space="preserve">
+  <data name="IncompleteVwxyzWing" xml:space="preserve">
     <value>残缺 VWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteUvwxyzWing" xml:space="preserve">
+  <data name="IncompleteUvwxyzWing" xml:space="preserve">
     <value>残缺 UVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteTuvwxyzWing" xml:space="preserve">
+  <data name="IncompleteTuvwxyzWing" xml:space="preserve">
     <value>残缺 TUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteStuvwxyzWing" xml:space="preserve">
+  <data name="IncompleteStuvwxyzWing" xml:space="preserve">
     <value>残缺 STUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="IncompleteRstuvwxyzWing" xml:space="preserve">
+  <data name="IncompleteRstuvwxyzWing" xml:space="preserve">
     <value>残缺 RSTUVWXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WWing" xml:space="preserve">
+  <data name="WWing" xml:space="preserve">
     <value>W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MWing" xml:space="preserve">
+  <data name="MWing" xml:space="preserve">
     <value>M-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LWing" xml:space="preserve">
+  <data name="LWing" xml:space="preserve">
     <value>L-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SWing" xml:space="preserve">
+  <data name="SWing" xml:space="preserve">
     <value>S-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HWing" xml:space="preserve">
+  <data name="HWing" xml:space="preserve">
     <value>H-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedWWing" xml:space="preserve">
+  <data name="GroupedWWing" xml:space="preserve">
     <value>区块 W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedMWing" xml:space="preserve">
+  <data name="GroupedMWing" xml:space="preserve">
     <value>区块 M-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedLWing" xml:space="preserve">
+  <data name="GroupedLWing" xml:space="preserve">
     <value>区块 L-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedSWing" xml:space="preserve">
+  <data name="GroupedSWing" xml:space="preserve">
     <value>区块 S-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedHWing" xml:space="preserve">
+  <data name="GroupedHWing" xml:space="preserve">
     <value>区块 H-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType1" xml:space="preserve">
+  <data name="UniqueRectangleType1" xml:space="preserve">
     <value>唯一矩形类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType2" xml:space="preserve">
+  <data name="UniqueRectangleType2" xml:space="preserve">
     <value>唯一矩形类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType3" xml:space="preserve">
+  <data name="UniqueRectangleType3" xml:space="preserve">
     <value>唯一矩形类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType4" xml:space="preserve">
+  <data name="UniqueRectangleType4" xml:space="preserve">
     <value>唯一矩形类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType5" xml:space="preserve">
+  <data name="UniqueRectangleType5" xml:space="preserve">
     <value>唯一矩形类型 5</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleType6" xml:space="preserve">
+  <data name="UniqueRectangleType6" xml:space="preserve">
     <value>唯一矩形类型 6</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenUniqueRectangle" xml:space="preserve">
+  <data name="HiddenUniqueRectangle" xml:space="preserve">
     <value>隐性唯一矩形</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle2D" xml:space="preserve">
+  <data name="UniqueRectangle2D" xml:space="preserve">
     <value>唯一矩形 + 2D</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle2B1" xml:space="preserve">
+  <data name="UniqueRectangle2B1" xml:space="preserve">
     <value>唯一矩形 + 2B/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle2D1" xml:space="preserve">
+  <data name="UniqueRectangle2D1" xml:space="preserve">
     <value>唯一矩形 + 2D/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3X" xml:space="preserve">
+  <data name="UniqueRectangle3X" xml:space="preserve">
     <value>唯一矩形 + 3X</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3X1L" xml:space="preserve">
+  <data name="UniqueRectangle3X1L" xml:space="preserve">
     <value>唯一矩形 + 3x/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3X1U" xml:space="preserve">
+  <data name="UniqueRectangle3X1U" xml:space="preserve">
     <value>唯一矩形 + 3X/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3X2" xml:space="preserve">
+  <data name="UniqueRectangle3X2" xml:space="preserve">
     <value>唯一矩形 + 3X/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3N2" xml:space="preserve">
+  <data name="UniqueRectangle3N2" xml:space="preserve">
     <value>唯一矩形 + 3N/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3U2" xml:space="preserve">
+  <data name="UniqueRectangle3U2" xml:space="preserve">
     <value>唯一矩形 + 3U/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle3E2" xml:space="preserve">
+  <data name="UniqueRectangle3E2" xml:space="preserve">
     <value>唯一矩形 + 3E/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4X1L" xml:space="preserve">
+  <data name="UniqueRectangle4X1L" xml:space="preserve">
     <value>唯一矩形 + 4x/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4X1U" xml:space="preserve">
+  <data name="UniqueRectangle4X1U" xml:space="preserve">
     <value>唯一矩形 + 4X/1SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4X2L" xml:space="preserve">
+  <data name="UniqueRectangle4X2L" xml:space="preserve">
     <value>唯一矩形 + 4x/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4X2U" xml:space="preserve">
+  <data name="UniqueRectangle4X2U" xml:space="preserve">
     <value>唯一矩形 + 4X/2SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4X3" xml:space="preserve">
+  <data name="UniqueRectangle4X3" xml:space="preserve">
     <value>唯一矩形 + 4X/3SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangle4C3" xml:space="preserve">
+  <data name="UniqueRectangle4C3" xml:space="preserve">
     <value>唯一矩形 + 4C/3SL</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleXyWing" xml:space="preserve">
+  <data name="UniqueRectangleXyWing" xml:space="preserve">
     <value>唯一矩形・XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleXyzWing" xml:space="preserve">
+  <data name="UniqueRectangleXyzWing" xml:space="preserve">
     <value>唯一矩形・XYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleWxyzWing" xml:space="preserve">
+  <data name="UniqueRectangleWxyzWing" xml:space="preserve">
     <value>唯一矩形・WXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleSueDeCoq" xml:space="preserve">
+  <data name="UniqueRectangleSueDeCoq" xml:space="preserve">
     <value>唯一矩形・融合待定数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleBabaGrouping" xml:space="preserve">
+  <data name="UniqueRectangleBabaGrouping" xml:space="preserve">
     <value>唯一矩形・代数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleExternalType2" xml:space="preserve">
+  <data name="UniqueRectangleExternalType2" xml:space="preserve">
     <value>唯一矩形・外部类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleType1" xml:space="preserve">
+  <data name="AvoidableRectangleType1" xml:space="preserve">
     <value>可规避矩形类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleType2" xml:space="preserve">
+  <data name="AvoidableRectangleType2" xml:space="preserve">
     <value>可规避矩形类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleType3" xml:space="preserve">
+  <data name="AvoidableRectangleType3" xml:space="preserve">
     <value>可规避矩形类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleType5" xml:space="preserve">
+  <data name="AvoidableRectangleType5" xml:space="preserve">
     <value>可规避矩形类型 5</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenAvoidableRectangle" xml:space="preserve">
+  <data name="HiddenAvoidableRectangle" xml:space="preserve">
     <value>隐性可规避矩形</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangle2D" xml:space="preserve">
+  <data name="AvoidableRectangle2D" xml:space="preserve">
     <value>可规避矩形 + 2D</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangle3X" xml:space="preserve">
+  <data name="AvoidableRectangle3X" xml:space="preserve">
     <value>可规避矩形 + 3X</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleXyWing" xml:space="preserve">
+  <data name="AvoidableRectangleXyWing" xml:space="preserve">
     <value>可规避矩形・XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleXyzWing" xml:space="preserve">
+  <data name="AvoidableRectangleXyzWing" xml:space="preserve">
     <value>可规避矩形・XYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleWxyzWing" xml:space="preserve">
+  <data name="AvoidableRectangleWxyzWing" xml:space="preserve">
     <value>可规避矩形・WXYZ-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleSueDeCoq" xml:space="preserve">
+  <data name="AvoidableRectangleSueDeCoq" xml:space="preserve">
     <value>可规避矩形・融合待定数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleBrokenWing" xml:space="preserve">
+  <data name="AvoidableRectangleBrokenWing" xml:space="preserve">
     <value>可规避矩形・守护者</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleHiddenSingleBlock" xml:space="preserve">
+  <data name="AvoidableRectangleHiddenSingleBlock" xml:space="preserve">
     <value>可规避矩形・宫排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleHiddenSingleRow" xml:space="preserve">
+  <data name="AvoidableRectangleHiddenSingleRow" xml:space="preserve">
     <value>可规避矩形・行排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleHiddenSingleColumn" xml:space="preserve">
+  <data name="AvoidableRectangleHiddenSingleColumn" xml:space="preserve">
     <value>可规避矩形・列排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueLoopType1" xml:space="preserve">
+  <data name="UniqueLoopType1" xml:space="preserve">
     <value>唯一环类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueLoopType2" xml:space="preserve">
+  <data name="UniqueLoopType2" xml:space="preserve">
     <value>唯一环类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueLoopType3" xml:space="preserve">
+  <data name="UniqueLoopType3" xml:space="preserve">
     <value>唯一环类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueLoopType4" xml:space="preserve">
+  <data name="UniqueLoopType4" xml:space="preserve">
     <value>唯一环类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtendedRectangleType1" xml:space="preserve">
+  <data name="ExtendedRectangleType1" xml:space="preserve">
     <value>拓展矩形类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtendedRectangleType2" xml:space="preserve">
+  <data name="ExtendedRectangleType2" xml:space="preserve">
     <value>拓展矩形类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtendedRectangleType3" xml:space="preserve">
+  <data name="ExtendedRectangleType3" xml:space="preserve">
     <value>拓展矩形类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtendedRectangleType4" xml:space="preserve">
+  <data name="ExtendedRectangleType4" xml:space="preserve">
     <value>拓展矩形类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveType1" xml:space="preserve">
+  <data name="BivalueUniversalGraveType1" xml:space="preserve">
     <value>全双值格致死解法类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveType2" xml:space="preserve">
+  <data name="BivalueUniversalGraveType2" xml:space="preserve">
     <value>全双值格致死解法类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveType3" xml:space="preserve">
+  <data name="BivalueUniversalGraveType3" xml:space="preserve">
     <value>全双值格致死解法类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveType4" xml:space="preserve">
+  <data name="BivalueUniversalGraveType4" xml:space="preserve">
     <value>全双值格致死解法类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGravePlusN" xml:space="preserve">
+  <data name="BivalueUniversalGravePlusN" xml:space="preserve">
     <value>全双值格致死解法 + n</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGravePlusNForcingChains" xml:space="preserve">
+  <data name="BivalueUniversalGravePlusNForcingChains" xml:space="preserve">
     <value>全双值格致死解法・强制链 + n</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveXzRule" xml:space="preserve">
+  <data name="BivalueUniversalGraveXzRule" xml:space="preserve">
     <value>全双值格致死解法・双强链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveXyWing" xml:space="preserve">
+  <data name="BivalueUniversalGraveXyWing" xml:space="preserve">
     <value>全双值格致死解法・XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
     <value>探长致命结构类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BorescoperDeadlyPatternType2" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType2" xml:space="preserve">
     <value>探长致命结构类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BorescoperDeadlyPatternType3" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType3" xml:space="preserve">
     <value>探长致命结构类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BorescoperDeadlyPatternType4" xml:space="preserve">
+  <data name="BorescoperDeadlyPatternType4" xml:space="preserve">
     <value>探长致命结构类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="QiuDeadlyPatternType1" xml:space="preserve">
+  <data name="QiuDeadlyPatternType1" xml:space="preserve">
     <value>淑芬致命结构类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="QiuDeadlyPatternType2" xml:space="preserve">
+  <data name="QiuDeadlyPatternType2" xml:space="preserve">
     <value>淑芬致命结构类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="QiuDeadlyPatternType3" xml:space="preserve">
+  <data name="QiuDeadlyPatternType3" xml:space="preserve">
     <value>淑芬致命结构类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="QiuDeadlyPatternType4" xml:space="preserve">
+  <data name="QiuDeadlyPatternType4" xml:space="preserve">
     <value>淑芬致命结构类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedQiuDeadlyPattern" xml:space="preserve">
+  <data name="LockedQiuDeadlyPattern" xml:space="preserve">
     <value>死锁淑芬致命结构</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueMatrixType1" xml:space="preserve">
+  <data name="UniqueMatrixType1" xml:space="preserve">
     <value>唯一矩阵类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueMatrixType2" xml:space="preserve">
+  <data name="UniqueMatrixType2" xml:space="preserve">
     <value>唯一矩阵类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueMatrixType3" xml:space="preserve">
+  <data name="UniqueMatrixType3" xml:space="preserve">
     <value>唯一矩阵类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueMatrixType4" xml:space="preserve">
+  <data name="UniqueMatrixType4" xml:space="preserve">
     <value>唯一矩阵类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SueDeCoq" xml:space="preserve">
+  <data name="SueDeCoq" xml:space="preserve">
     <value>融合待定数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SueDeCoqIsolated" xml:space="preserve">
+  <data name="SueDeCoqIsolated" xml:space="preserve">
     <value>融合待定数组・孤立区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SueDeCoq3Dimension" xml:space="preserve">
+  <data name="SueDeCoq3Dimension" xml:space="preserve">
     <value>融合待定数组・三维</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SueDeCoqCannibalism" xml:space="preserve">
+  <data name="SueDeCoqCannibalism" xml:space="preserve">
     <value>融合待定数组・自噬</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Skyscraper" xml:space="preserve">
+  <data name="Skyscraper" xml:space="preserve">
     <value>摩天楼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TwoStringKite" xml:space="preserve">
+  <data name="TwoStringKite" xml:space="preserve">
     <value>双线风筝</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TurbotFish" xml:space="preserve">
+  <data name="TurbotFish" xml:space="preserve">
     <value>多宝鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="EmptyRectangle" xml:space="preserve">
+  <data name="EmptyRectangle" xml:space="preserve">
     <value>空矩形</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BrokenWing" xml:space="preserve">
+  <data name="BrokenWing" xml:space="preserve">
     <value>守护者</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueOddagonType1" xml:space="preserve">
+  <data name="BivalueOddagonType1" xml:space="preserve">
     <value>死环类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueOddagonType2" xml:space="preserve">
+  <data name="BivalueOddagonType2" xml:space="preserve">
     <value>死环类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueOddagonType3" xml:space="preserve">
+  <data name="BivalueOddagonType3" xml:space="preserve">
     <value>死环类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedBivalueOddagon" xml:space="preserve">
+  <data name="GroupedBivalueOddagon" xml:space="preserve">
     <value>区块死环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XChain" xml:space="preserve">
+  <data name="XChain" xml:space="preserve">
     <value>同数链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="YChain" xml:space="preserve">
+  <data name="YChain" xml:space="preserve">
     <value>同格链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FishyCycle" xml:space="preserve">
+  <data name="FishyCycle" xml:space="preserve">
     <value>鱼环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyChain" xml:space="preserve">
+  <data name="XyChain" xml:space="preserve">
     <value>双值格链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyCycle" xml:space="preserve">
+  <data name="XyCycle" xml:space="preserve">
     <value>双值格环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyXChain" xml:space="preserve">
+  <data name="XyXChain" xml:space="preserve">
     <value>首尾异数链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PurpleCow" xml:space="preserve">
+  <data name="PurpleCow" xml:space="preserve">
     <value>Purple Cow</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DiscontinuousNiceLoop" xml:space="preserve">
+  <data name="DiscontinuousNiceLoop" xml:space="preserve">
     <value>不连续环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ContinuousNiceLoop" xml:space="preserve">
+  <data name="ContinuousNiceLoop" xml:space="preserve">
     <value>连续环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlternatingInferenceChain" xml:space="preserve">
+  <data name="AlternatingInferenceChain" xml:space="preserve">
     <value>链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedXChain" xml:space="preserve">
+  <data name="GroupedXChain" xml:space="preserve">
     <value>同数区块链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedFishyCycle" xml:space="preserve">
+  <data name="GroupedFishyCycle" xml:space="preserve">
     <value>区块鱼环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedXyChain" xml:space="preserve">
+  <data name="GroupedXyChain" xml:space="preserve">
     <value>双值格区块链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedXyCycle" xml:space="preserve">
+  <data name="GroupedXyCycle" xml:space="preserve">
     <value>双值格区块环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedXyXChain" xml:space="preserve">
+  <data name="GroupedXyXChain" xml:space="preserve">
     <value>首尾异数区块链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedPurpleCow" xml:space="preserve">
+  <data name="GroupedPurpleCow" xml:space="preserve">
     <value>区块 Purple Cow</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedDiscontinuousNiceLoop" xml:space="preserve">
+  <data name="GroupedDiscontinuousNiceLoop" xml:space="preserve">
     <value>区块不连续环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedContinuousNiceLoop" xml:space="preserve">
+  <data name="GroupedContinuousNiceLoop" xml:space="preserve">
     <value>区块连续环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedAlternatingInferenceChain" xml:space="preserve">
+  <data name="GroupedAlternatingInferenceChain" xml:space="preserve">
     <value>区块链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NishioForcingChains" xml:space="preserve">
+  <data name="NishioForcingChains" xml:space="preserve">
     <value>西尾彻也强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="RegionForcingChains" xml:space="preserve">
+  <data name="RegionForcingChains" xml:space="preserve">
     <value>区域强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="CellForcingChains" xml:space="preserve">
+  <data name="CellForcingChains" xml:space="preserve">
     <value>单元格强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DynamicRegionForcingChains" xml:space="preserve">
+  <data name="DynamicRegionForcingChains" xml:space="preserve">
     <value>动态区域强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DynamicCellForcingChains" xml:space="preserve">
+  <data name="DynamicCellForcingChains" xml:space="preserve">
     <value>动态单元格强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DynamicContradictionForcingChains" xml:space="preserve">
+  <data name="DynamicContradictionForcingChains" xml:space="preserve">
     <value>动态矛盾强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DynamicDoubleForcingChains" xml:space="preserve">
+  <data name="DynamicDoubleForcingChains" xml:space="preserve">
     <value>动态二值矛盾强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DynamicForcingChains" xml:space="preserve">
+  <data name="DynamicForcingChains" xml:space="preserve">
     <value>动态强制链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="EmptyRectangleIntersectionPair" xml:space="preserve">
+  <data name="EmptyRectangleIntersectionPair" xml:space="preserve">
     <value>对交空矩形</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SinglyLinkedAlmostLockedSetsXzRule" xml:space="preserve">
+  <data name="SinglyLinkedAlmostLockedSetsXzRule" xml:space="preserve">
     <value>待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DoublyLinkedAlmostLockedSetsXzRule" xml:space="preserve">
+  <data name="DoublyLinkedAlmostLockedSetsXzRule" xml:space="preserve">
     <value>待定数组・双强链・环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedSetsXyWing" xml:space="preserve">
+  <data name="AlmostLockedSetsXyWing" xml:space="preserve">
     <value>待定数组・XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedSetsWWing" xml:space="preserve">
+  <data name="AlmostLockedSetsWWing" xml:space="preserve">
     <value>待定数组・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DeathBlossom" xml:space="preserve">
+  <data name="DeathBlossom" xml:space="preserve">
     <value>死亡绽放</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GurthSymmetricalPlacement" xml:space="preserve">
+  <data name="GurthSymmetricalPlacement" xml:space="preserve">
     <value>宇宙法</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtendedGurthSymmetricalPlacement" xml:space="preserve">
+  <data name="ExtendedGurthSymmetricalPlacement" xml:space="preserve">
     <value>宇宙法拓展用法</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocet" xml:space="preserve">
+  <data name="JuniorExocet" xml:space="preserve">
     <value>初级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SeniorExocet" xml:space="preserve">
+  <data name="SeniorExocet" xml:space="preserve">
     <value>高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DominoLoop" xml:space="preserve">
+  <data name="DominoLoop" xml:space="preserve">
     <value>多米诺环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MultisectorLockedSets" xml:space="preserve">
+  <data name="MultisectorLockedSets" xml:space="preserve">
     <value>网</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PatternOverlay" xml:space="preserve">
+  <data name="PatternOverlay" xml:space="preserve">
     <value>同数叠加</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TemplateSet" xml:space="preserve">
+  <data name="TemplateSet" xml:space="preserve">
     <value>模板填数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TemplateDelete" xml:space="preserve">
+  <data name="TemplateDelete" xml:space="preserve">
     <value>模板删数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BowmanBingo" xml:space="preserve">
+  <data name="BowmanBingo" xml:space="preserve">
     <value>Bowman 试数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BruteForce" xml:space="preserve">
+  <data name="BruteForce" xml:space="preserve">
     <value>计算机试数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NodeCollision" xml:space="preserve">
+  <data name="NodeCollision" xml:space="preserve">
     <value>节点重叠</value>
   </data>
-    <data name="AlmostLockedSetsChain" xml:space="preserve">
+  <data name="AlmostLockedSetsChain" xml:space="preserve">
     <value>待定数组・链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostHiddenSetsChain" xml:space="preserve">
+  <data name="AlmostHiddenSetsChain" xml:space="preserve">
     <value>隐性待定数组・链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="RemotePair" xml:space="preserve">
+  <data name="RemotePair" xml:space="preserve">
     <value>远程数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ChromaticPatternType1" xml:space="preserve">
+  <data name="ChromaticPatternType1" xml:space="preserve">
     <value>三值死环类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ChromaticPatternType2" xml:space="preserve">
+  <data name="ChromaticPatternType2" xml:space="preserve">
     <value>三值死环类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ChromaticPatternType3" xml:space="preserve">
+  <data name="ChromaticPatternType3" xml:space="preserve">
     <value>三值死环类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ChromaticPatternType4" xml:space="preserve">
+  <data name="ChromaticPatternType4" xml:space="preserve">
     <value>三值死环类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_ChromaticPatternType1Step" xml:space="preserve">
     <value>位于第 {0} 宫的单元格 {1} 如果只有数字 {2}，结构将直接无解</value>
   </data>
-    <data name="ChromaticPatternXzRule" xml:space="preserve">
+  <data name="ChromaticPatternXzRule" xml:space="preserve">
     <value>三值死环・双强链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
+  <data name="TechniqueFormat_ChromaticPatternXzStep" xml:space="preserve">
     <value>位于 {0} 的 {1} 单元格包含数字 {2}，额外单元格为 {3}</value>
   </data>
-    <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
+  <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者 {3} 位于单元格 {4} 之中</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并有外部数组结构，数字为 {3}，单元格为 {4}</value>
   </data>
-    <data name="UniqueRectangleExternalType3" xml:space="preserve">
+  <data name="UniqueRectangleExternalType3" xml:space="preserve">
     <value>唯一矩形・外部类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FireworkQuadruple" xml:space="preserve">
+  <data name="FireworkQuadruple" xml:space="preserve">
     <value>烟花四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FireworkTriple" xml:space="preserve">
+  <data name="FireworkTriple" xml:space="preserve">
     <value>烟花三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
+  <data name="TechniqueFormat_FireworkTripleStep" xml:space="preserve">
     <value>单元格 {0} 里必须构成关于数字 {1} 的跨区三数组结构</value>
   </data>
-    <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
+  <data name="TechniqueFormat_FireworkQuadrupleStep" xml:space="preserve">
     <value>单元格 {0} 里必须构成关于数字 {1} 的跨区四数组结构</value>
   </data>
-    <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_FireworkPairType1Step" xml:space="preserve">
     <value>单元格 {0} 里的其中之二会构成关于数字 {1} 的隐性数对，因此 {2} 和 {3} 的其一会和此结构构成显性数对</value>
   </data>
-    <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_FireworkPairType2Step" xml:space="preserve">
     <value>烟花结构 {0} 和 {1} 使用数字 {2}，并带有额外单元格 {3}</value>
   </data>
-    <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_FireworkPairType3Step" xml:space="preserve">
     <value>单元格 {0} 里的数字 {1} 构成烟花数组结构，带有空矩形结构位于 {2}</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalType4Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并有外部共轭对 {3}</value>
   </data>
-    <data name="UniqueRectangleExternalType1" xml:space="preserve">
+  <data name="UniqueRectangleExternalType1" xml:space="preserve">
     <value>唯一矩形・外部类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleExternalType4" xml:space="preserve">
+  <data name="UniqueRectangleExternalType4" xml:space="preserve">
     <value>唯一矩形・外部类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="BivalueUniversalGraveFalseCandidateType" xml:space="preserve">
+  <data name="BivalueUniversalGraveFalseCandidateType" xml:space="preserve">
     <value>全双值格致死解法・假数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
+  <data name="TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep" xml:space="preserve">
     <value>如果 {0} 为真，则盘面会变为 BUG 致命形式</value>
   </data>
-    <data name="ChineseComma" xml:space="preserve">
+  <data name="ChineseComma" xml:space="preserve">
     <value>、</value>
   </data>
-    <data name="Comma" xml:space="preserve">
+  <data name="Comma" xml:space="preserve">
     <value>，</value>
   </data>
-    <data name="TechniqueFormat_UniquenessClueCoverStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniquenessClueCoverStep" xml:space="preserve">
     <value>枚举大行列 {0}（即 {1} 这些区域的单元格）的全部非致命结构的填数情况，发现仍有数字无法覆盖</value>
   </data>
-    <data name="UniquenessClueCover" xml:space="preserve">
+  <data name="UniquenessClueCover" xml:space="preserve">
     <value>唯一性确定值覆盖</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
+  <data name="ReverseBivalueUniversalGraveType1" xml:space="preserve">
     <value>反双数致命结构类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ReverseBivalueUniversalGraveType2" xml:space="preserve">
+  <data name="ReverseBivalueUniversalGraveType2" xml:space="preserve">
     <value>反双数致命结构类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ReverseBivalueUniversalGraveType3" xml:space="preserve">
+  <data name="ReverseBivalueUniversalGraveType3" xml:space="preserve">
     <value>反双数致命结构类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ReverseBivalueUniversalGraveType4" xml:space="preserve">
+  <data name="ReverseBivalueUniversalGraveType4" xml:space="preserve">
     <value>反双数致命结构类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseUniqueRectangleType1Step" xml:space="preserve">
     <value>只有 {0} 包含数字 {1}，那么如果 {2} 填入 {3} 的话，就会构成致命结构</value>
   </data>
-    <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseUniqueRectangleType2Step" xml:space="preserve">
     <value>数字 {0}，位于单元格 {1} 里，并带有额外数字 {2}</value>
   </data>
-    <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
+  <data name="TechniqueFormat_RwDeadlyPatternStep" xml:space="preserve">
     <value>单元格 {0}，数字 {1}</value>
   </data>
-    <data name="RwDeadlyPattern" xml:space="preserve">
+  <data name="RwDeadlyPattern" xml:space="preserve">
     <value>RW 致命结构</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MultiBranchWWing" xml:space="preserve">
+  <data name="MultiBranchWWing" xml:space="preserve">
     <value>多分支 W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_MultiBranchWWingStep" xml:space="preserve">
     <value>根 {0} 位于 {1}，分支走向终端 {2}</value>
   </data>
-    <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
+  <data name="TechniqueFormat_GurthSymmetricalPlacementStep" xml:space="preserve">
     <value>该技巧必须保证对称性，否则题目会无解。对称规则：{0}，对称映射关系：{1}</value>
   </data>
-    <data name="NoMappingRelation" xml:space="preserve">
+  <data name="NoMappingRelation" xml:space="preserve">
     <value>无对称映射关系</value>
   </data>
-    <data name="AntiDiagonalSymmetry" xml:space="preserve">
+  <data name="AntiDiagonalSymmetry" xml:space="preserve">
     <value>撇对角线对称（反对角线）</value>
   </data>
-    <data name="CentralSymmetry" xml:space="preserve">
+  <data name="CentralSymmetry" xml:space="preserve">
     <value>中心对称</value>
   </data>
-    <data name="DiagonalSymmetry" xml:space="preserve">
+  <data name="DiagonalSymmetry" xml:space="preserve">
     <value>捺对角线对称（正对角线）</value>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，ALS 结构 {4}</value>
   </data>
-    <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
+  <data name="UniqueRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
     <value>唯一矩形・外部待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalXyWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalXyWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，XY-Wing 结构，外侧单元格对为 {4}</value>
   </data>
-    <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
+  <data name="UniqueRectangleExternalXyWing" xml:space="preserve">
     <value>唯一矩形・外部 XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
+  <data name="AvoidableRectangleExternalAlmostLockedSetsXz" xml:space="preserve">
     <value>可规避矩形・外部待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalXyWing" xml:space="preserve">
+  <data name="AvoidableRectangleExternalXyWing" xml:space="preserve">
     <value>可规避矩形・外部 XY-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalType1" xml:space="preserve">
+  <data name="AvoidableRectangleExternalType1" xml:space="preserve">
     <value>可规避矩形・外部类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalType2" xml:space="preserve">
+  <data name="AvoidableRectangleExternalType2" xml:space="preserve">
     <value>可规避矩形・外部类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalType3" xml:space="preserve">
+  <data name="AvoidableRectangleExternalType3" xml:space="preserve">
     <value>可规避矩形・外部类型 3</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalType4" xml:space="preserve">
+  <data name="AvoidableRectangleExternalType4" xml:space="preserve">
     <value>可规避矩形・外部类型 4</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
+  <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
     <value>唯一矩形・外部多宝鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，构成外部的双强链结构</value>
   </data>
-    <data name="AbsurdChains" xml:space="preserve">
+  <data name="AbsurdChains" xml:space="preserve">
     <value>动态矛盾强制链</value>
   </data>
-    <data name="CellChains" xml:space="preserve">
+  <data name="CellChains" xml:space="preserve">
     <value>单元格强制链</value>
   </data>
-    <data name="DoubleChains" xml:space="preserve">
+  <data name="DoubleChains" xml:space="preserve">
     <value>动态逆矛盾强制链</value>
   </data>
-    <data name="DynamicKeyword" xml:space="preserve">
+  <data name="DynamicKeyword" xml:space="preserve">
     <value>动态</value>
   </data>
-    <data name="HouseChains" xml:space="preserve">
+  <data name="HouseChains" xml:space="preserve">
     <value>区域强制链</value>
   </data>
-    <data name="NestedSuffix_Level1" xml:space="preserve">
+  <data name="NestedSuffix_Level1" xml:space="preserve">
     <value>（+）</value>
   </data>
-    <data name="NestedSuffix_Level2" xml:space="preserve">
+  <data name="NestedSuffix_Level2" xml:space="preserve">
     <value>（+ 链）</value>
   </data>
-    <data name="NestedSuffix_Level3" xml:space="preserve">
+  <data name="NestedSuffix_Level3" xml:space="preserve">
     <value>（+ 强制链）</value>
   </data>
-    <data name="NestedSuffix_Level4" xml:space="preserve">
+  <data name="NestedSuffix_Level4" xml:space="preserve">
     <value>（+ 动态强制链）</value>
   </data>
-    <data name="NestedSuffix_Level5OrGreater" xml:space="preserve">
+  <data name="NestedSuffix_Level5OrGreater" xml:space="preserve">
     <value>（+ 动态强制链{0}）</value>
   </data>
-    <data name="NishioChains" xml:space="preserve">
+  <data name="NishioChains" xml:space="preserve">
     <value>西尾彻也强制链</value>
   </data>
-    <data name="NishioKeyword" xml:space="preserve">
+  <data name="NishioKeyword" xml:space="preserve">
     <value>西尾彻也</value>
   </data>
-    <data name="NormalChains" xml:space="preserve">
+  <data name="NormalChains" xml:space="preserve">
     <value>链</value>
   </data>
-    <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
+  <data name="TechniqueFormat_BidirectionalCycleStep" xml:space="preserve">
     <value>如果该环形成后，所有的候选数 {0} 均为假</value>
   </data>
-    <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
+  <data name="TechniqueFormat_CellForcingChainsStep" xml:space="preserve">
     <value>单元格 {0} 里的所有候选数都会得到同样的结论</value>
   </data>
-    <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
+  <data name="TechniqueFormat_ContradictionForcingChainsStep" xml:space="preserve">
     <value>如果 {0} 为{1}，那么候选数 {2} 的真假两种状态都成立，这是不可能的</value>
   </data>
-    <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
+  <data name="TechniqueFormat_DoubleForcingChainsStep" xml:space="preserve">
     <value>不论 {1} 是真是假，都可以得到 {0} 为{2}的结论</value>
   </data>
-    <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
+  <data name="TechniqueFormat_ForcingChainStep" xml:space="preserve">
     <value>如果 {0} 为{1}，跟着结构绕一圈后发现该候选数刚好与原假设相反，产生矛盾</value>
   </data>
-    <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
+  <data name="TechniqueFormat_RegionForcingChainsStep" xml:space="preserve">
     <value>所有位于 {0} 里的数字 {1} 都会得到同样的结论</value>
   </data>
-    <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AdvancedMultipleChainingStepSearcher" xml:space="preserve">
     <value>强制链（进阶）</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_AlmostLockedCandidatesStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AlmostLockedCandidatesStepSearcher" xml:space="preserve">
     <value>欠一数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_AlmostLockedSetsWWingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AlmostLockedSetsWWingStepSearcher" xml:space="preserve">
     <value>待定数组・W-Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_AlmostLockedSetsXyWingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AlmostLockedSetsXyWingStepSearcher" xml:space="preserve">
     <value>待定数组・XY-Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_AlmostLockedSetsXzStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AlmostLockedSetsXzStepSearcher" xml:space="preserve">
     <value>待定数组・双强链</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_BivalueOddagonStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BivalueOddagonStepSearcher" xml:space="preserve">
     <value>死环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_BivalueUniversalGraveStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BivalueUniversalGraveStepSearcher" xml:space="preserve">
     <value>全双值格致死解法</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BowmanBingoStepSearcher" xml:space="preserve">
     <value>Bowman 试数</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_BruteForceStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BruteForceStepSearcher" xml:space="preserve">
     <value>计算机试数</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_ChromaticPatternStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ChromaticPatternStepSearcher" xml:space="preserve">
     <value>三值死环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_ComplexFishStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ComplexFishStepSearcher" xml:space="preserve">
     <value>复杂鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_DeathBlossomStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_DeathBlossomStepSearcher" xml:space="preserve">
     <value>死亡绽放</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_DominoLoopStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_DominoLoopStepSearcher" xml:space="preserve">
     <value>多米诺环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_EmptyRectangleIntersectionPairStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_EmptyRectangleIntersectionPairStepSearcher" xml:space="preserve">
     <value>对交空矩形</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_EmptyRectangleStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_EmptyRectangleStepSearcher" xml:space="preserve">
     <value>空矩形</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_ExtendedRectangleStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ExtendedRectangleStepSearcher" xml:space="preserve">
     <value>拓展矩形</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_FireworkStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_FireworkStepSearcher" xml:space="preserve">
     <value>烟花数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_GuardianStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_GuardianStepSearcher" xml:space="preserve">
     <value>守护者</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher" xml:space="preserve">
     <value>宇宙法</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
     <value>强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
     <value>网</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
     <value>链</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
     <value>普通鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_PatternOverlayStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_PatternOverlayStepSearcher" xml:space="preserve">
     <value>同数叠加</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_QiuDeadlyPatternStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_QiuDeadlyPatternStepSearcher" xml:space="preserve">
     <value>淑芬致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_RegularWingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_RegularWingStepSearcher" xml:space="preserve">
     <value>规则 Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ReverseBivalueUniversalGraveStepSearcher" xml:space="preserve">
     <value>反双数致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_RwDeadlyPatternStepSearcher" xml:space="preserve">
     <value>RW 致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_SingleStepSearcher" xml:space="preserve">
     <value>排除和唯余</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_NormalSubsetStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_NormalSubsetStepSearcher" xml:space="preserve">
     <value>普通数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_SueDeCoq3DimensionStepSearcher" xml:space="preserve">
     <value>融合待定数组・三维</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_SueDeCoqStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_SueDeCoqStepSearcher" xml:space="preserve">
     <value>融合待定数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_TemplateStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_TemplateStepSearcher" xml:space="preserve">
     <value>模板</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_TwoStrongLinksStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_TwoStrongLinksStepSearcher" xml:space="preserve">
     <value>双强链</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_UniqueLoopStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_UniqueLoopStepSearcher" xml:space="preserve">
     <value>唯一环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_UniqueMatrixStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_UniqueMatrixStepSearcher" xml:space="preserve">
     <value>唯一矩阵</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_UniquenessClueCoverStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_UniquenessClueCoverStepSearcher" xml:space="preserve">
     <value>唯一性提示信息覆盖</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_BorescoperDeadlyPatternStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BorescoperDeadlyPatternStepSearcher" xml:space="preserve">
     <value>探长致命结构</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_UniqueRectangleStepSearcher" xml:space="preserve">
     <value>唯一矩形</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
     <value>可规避逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
     <value>X 致命逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
     <value>自噬逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_ConjugatePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ConjugatePair" xml:space="preserve">
     <value>共轭对逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_ExtraDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraDigit" xml:space="preserve">
     <value>额外数字</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_ExtraHouse" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ExtraHouse" xml:space="preserve">
     <value>额外区域</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_FishShape" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_FishShape" xml:space="preserve">
     <value>鱼的形状</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_GeneralizedFish" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_GeneralizedFish" xml:space="preserve">
     <value>鱼</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Guardian" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Guardian" xml:space="preserve">
     <value>守护者逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Hidden" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Hidden" xml:space="preserve">
     <value>隐性思维</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Incompleteness" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Incompleteness" xml:space="preserve">
     <value>残缺逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Isolated" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Isolated" xml:space="preserve">
     <value>孤立逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Length" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Length" xml:space="preserve">
     <value>结构长度</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Locked" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Locked" xml:space="preserve">
     <value>死锁结构</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_LockedDigit" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedDigit" xml:space="preserve">
     <value>锁死的数字</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Mirror" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Mirror" xml:space="preserve">
     <value>Mirror 共轭对</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Petals" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Petals" xml:space="preserve">
     <value>花瓣数量</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Sashimi" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Sashimi" xml:space="preserve">
     <value>退化逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_Size" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_Size" xml:space="preserve">
     <value>结构规格</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_TargetPair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TargetPair" xml:space="preserve">
     <value>Target 数对</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_ValueCell" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_ValueCell" xml:space="preserve">
     <value>明数逻辑</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
     <value>Wing 的分支数量</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
     <value>同宫定理</value>
   </data>
-    <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
+  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
     <value>差一数对</value>
   </data>
-    <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
+  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
     <value>差一四数组;差一四链数</value>
   </data>
-    <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
+  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
     <value>差一三数组;差一三链数</value>
   </data>
-    <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
+  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
     <value>全双值坟墓</value>
   </data>
-    <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
+  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
     <value>全双值坟墓</value>
   </data>
-    <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
+  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
     <value>全双值坟墓</value>
   </data>
-    <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
+  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
     <value>全双值坟墓</value>
   </data>
-    <data name="TechniqueAlias_FireworkPairType1" xml:space="preserve">
+  <data name="TechniqueAlias_FireworkPairType1" xml:space="preserve">
     <value>花火数对</value>
   </data>
-    <data name="TechniqueAlias_FireworkPairType2" xml:space="preserve">
+  <data name="TechniqueAlias_FireworkPairType2" xml:space="preserve">
     <value>花火数对</value>
   </data>
-    <data name="TechniqueAlias_FireworkPairType3" xml:space="preserve">
+  <data name="TechniqueAlias_FireworkPairType3" xml:space="preserve">
     <value>花火数对</value>
   </data>
-    <data name="TechniqueAlias_FireworkQuadruple" xml:space="preserve">
+  <data name="TechniqueAlias_FireworkQuadruple" xml:space="preserve">
     <value>花火四数组;花火四链数</value>
   </data>
-    <data name="TechniqueAlias_FireworkTriple" xml:space="preserve">
+  <data name="TechniqueAlias_FireworkTriple" xml:space="preserve">
     <value>花火三数组;花火三链数</value>
   </data>
-    <data name="TechniqueAlias_FullHouse" xml:space="preserve">
+  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
     <value>唯余;唯一余数</value>
   </data>
-    <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
     <value>数对占位</value>
   </data>
-    <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
     <value>隐性四链数;四数组占位</value>
   </data>
-    <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
     <value>隐性唯一</value>
   </data>
-    <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
     <value>隐性唯一</value>
   </data>
-    <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
     <value>隐性唯一</value>
   </data>
-    <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
+  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
     <value>隐性三链数;三数组占位</value>
   </data>
-    <data name="TechniqueAlias_Jellyfish" xml:space="preserve">
+  <data name="TechniqueAlias_Jellyfish" xml:space="preserve">
     <value>水母</value>
   </data>
-    <data name="TechniqueAlias_LastDigit" xml:space="preserve">
+  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
     <value>排除</value>
   </data>
-    <data name="TechniqueAlias_Leviathan" xml:space="preserve">
+  <data name="TechniqueAlias_Leviathan" xml:space="preserve">
     <value>海怪;海妖</value>
   </data>
-    <data name="TechniqueAlias_NakedPair" xml:space="preserve">
+  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
     <value>数对唯余</value>
   </data>
-    <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
+  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
     <value>区块数对</value>
   </data>
-    <data name="TechniqueAlias_NakedQuadruple" xml:space="preserve">
+  <data name="TechniqueAlias_NakedQuadruple" xml:space="preserve">
     <value>显性四链数;四数组唯余</value>
   </data>
-    <data name="TechniqueAlias_NakedQuadruplePlus" xml:space="preserve">
+  <data name="TechniqueAlias_NakedQuadruplePlus" xml:space="preserve">
     <value>区块四数组</value>
   </data>
-    <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
+  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
     <value>唯余;喂鱼</value>
   </data>
-    <data name="TechniqueAlias_NakedTriple" xml:space="preserve">
+  <data name="TechniqueAlias_NakedTriple" xml:space="preserve">
     <value>三数组唯余;显性三链数</value>
   </data>
-    <data name="TechniqueAlias_NakedTriplePlus" xml:space="preserve">
+  <data name="TechniqueAlias_NakedTriplePlus" xml:space="preserve">
     <value>区块三数组</value>
   </data>
-    <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
+  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
     <value>双强链</value>
   </data>
-    <data name="TechniqueAlias_Squirmbag" xml:space="preserve">
+  <data name="TechniqueAlias_Squirmbag" xml:space="preserve">
     <value>海星</value>
   </data>
-    <data name="TechniqueAlias_Swordfish" xml:space="preserve">
+  <data name="TechniqueAlias_Swordfish" xml:space="preserve">
     <value>剑鱼</value>
   </data>
-    <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
+  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
     <value>双强链</value>
   </data>
-    <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
+  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
     <value>双强链</value>
   </data>
-    <data name="TechniqueAlias_Whale" xml:space="preserve">
+  <data name="TechniqueAlias_Whale" xml:space="preserve">
     <value>鲸;鲸鱼</value>
   </data>
-    <data name="TechniqueAlias_XChain" xml:space="preserve">
+  <data name="TechniqueAlias_XChain" xml:space="preserve">
     <value>单数链;单链</value>
   </data>
-    <data name="TechniqueAlias_XWing" xml:space="preserve">
+  <data name="TechniqueAlias_XWing" xml:space="preserve">
     <value>矩形删减法;四角对角线法则</value>
   </data>
-    <data name="TechniqueAlias_XyChain" xml:space="preserve">
+  <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-    <data name="AlignedPairExclusion" xml:space="preserve">
+  <data name="AlignedPairExclusion" xml:space="preserve">
     <value>均衡数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlignedQuadrupleExclusion" xml:space="preserve">
+  <data name="AlignedQuadrupleExclusion" xml:space="preserve">
     <value>均衡四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlignedQuintupleExclusion" xml:space="preserve">
+  <data name="AlignedQuintupleExclusion" xml:space="preserve">
     <value>均衡五数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlignedTripleExclusion" xml:space="preserve">
+  <data name="AlignedTripleExclusion" xml:space="preserve">
     <value>均衡三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_AlignedExclusionStep" xml:space="preserve">
+  <data name="TechniqueFormat_AlignedExclusionStep" xml:space="preserve">
     <value>排列出单元格 {0} 的所有填数情况，而当 {1} 时的全部情况均会造成矛盾</value>
   </data>
-    <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>均衡数组</value>
   </data>
-    <data name="TechniqueFormat_ReverseBivalueUniversalGraveType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType1Step" xml:space="preserve">
     <value>全盘只有 {0} 是 {1} 和 {2} 的话，会造成这两个数字出现致命形式</value>
   </data>
-    <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType2Step" xml:space="preserve">
     <value>额外数字 {0}</value>
   </data>
-    <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType4Step" xml:space="preserve">
     <value>外部共轭对：{0}</value>
   </data>
-    <data name="BlossomLoop" xml:space="preserve">
+  <data name="BlossomLoop" xml:space="preserve">
     <value>绽放环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
+  <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
     <value>所有位于 {0} 里的数字 {1} 都会归拢合并到同一单元格内，形成动态环结构</value>
   </data>
-    <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
     <value>绽放环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="LockedHiddenPair" xml:space="preserve">
+  <data name="LockedHiddenPair" xml:space="preserve">
     <value>隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTriple" xml:space="preserve">
+  <data name="LockedHiddenTriple" xml:space="preserve">
     <value>隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_LockedSubsetStepSearcher" xml:space="preserve">
     <value>死锁数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleExternalWWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleExternalWWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，W-Wing 结构，外侧单元格对为 {4}</value>
   </data>
-    <data name="UniqueRectangleExternalWWing" xml:space="preserve">
+  <data name="UniqueRectangleExternalWWing" xml:space="preserve">
     <value>唯一矩形・外部 W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
+  <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
     <value>可规避矩形・外部 W-Wing</value>
   </data>
-    <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
     <value>额外区域 {0}，带有额外数字 {1}</value>
   </data>
-    <data name="AvoidableRectangleWWing" xml:space="preserve">
+  <data name="AvoidableRectangleWWing" xml:space="preserve">
     <value>可规避矩形・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_UniqueRectangleWithWWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWithWWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带 W-Wing 结构，由 {3} 连接起来，最终单元格为 {4}，w 为 {5}</value>
   </data>
-    <data name="UniqueRectangleWWing" xml:space="preserve">
+  <data name="UniqueRectangleWWing" xml:space="preserve">
     <value>唯一矩形・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedSkyscraper" xml:space="preserve">
+  <data name="GroupedSkyscraper" xml:space="preserve">
     <value>区块摩天楼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedTurbotFish" xml:space="preserve">
+  <data name="GroupedTurbotFish" xml:space="preserve">
     <value>区块多宝鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedTwoStringKite" xml:space="preserve">
+  <data name="GroupedTwoStringKite" xml:space="preserve">
     <value>区块双线风筝</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_GroupedTwoStrongLinksStepSearcher" xml:space="preserve">
     <value>区块双强链</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="QiuDeadlyPatternExternalType1" xml:space="preserve">
+  <data name="QiuDeadlyPatternExternalType1" xml:space="preserve">
     <value>淑芬致命结构外部类型 1</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="QiuDeadlyPatternExternalType2" xml:space="preserve">
+  <data name="QiuDeadlyPatternExternalType2" xml:space="preserve">
     <value>淑芬致命结构外部类型 2</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternExternalType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternExternalType1Step" xml:space="preserve">
     <value>如果 {1} 的数字 {2} 全部去掉的话，单元格 {0} 将形成致命形式</value>
   </data>
-    <data name="TechniqueFormat_QiuDeadlyPatternExternalType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_QiuDeadlyPatternExternalType2Step" xml:space="preserve">
     <value>如果数字 {2} 全部从 {1} 去掉的话，单元格 {0} 将形成致命形式</value>
   </data>
-    <data name="AlmostLockedTripleValueType" xml:space="preserve">
+  <data name="AlmostLockedTripleValueType" xml:space="preserve">
     <value>欠一三数组・明数类型</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AlmostLockedQuadrupleValueType" xml:space="preserve">
+  <data name="AlmostLockedQuadrupleValueType" xml:space="preserve">
     <value>欠一四数组・明数类型</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="EndofinsAre" xml:space="preserve">
+  <data name="EndofinsAre" xml:space="preserve">
     <value>内鱼鳍有：{0}</value>
   </data>
-    <data name="ExofinsAre" xml:space="preserve">
+  <data name="ExofinsAre" xml:space="preserve">
     <value>外鱼鳍有：{0}</value>
   </data>
-    <data name="AntiGurthSymmetricalPlacement" xml:space="preserve">
+  <data name="AntiGurthSymmetricalPlacement" xml:space="preserve">
     <value>宇宙法・反演</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_AntiGurthSymmetricalPlacementStep" xml:space="preserve">
+  <data name="TechniqueFormat_AntiGurthSymmetricalPlacementStep" xml:space="preserve">
     <value>该盘面终盘一定不对称，所以初盘也一定不对称。对称规则：{0}，对称映射关系：{1}</value>
   </data>
-    <data name="XAxisSymmetry" xml:space="preserve">
+  <data name="XAxisSymmetry" xml:space="preserve">
     <value>横轴对称</value>
   </data>
-    <data name="YAxisSymmetry" xml:space="preserve">
+  <data name="YAxisSymmetry" xml:space="preserve">
     <value>纵轴对称</value>
   </data>
-    <data name="TechniqueGroup_AlignedExclusion" xml:space="preserve">
+  <data name="TechniqueGroup_AlignedExclusion" xml:space="preserve">
     <value>均衡数组</value>
   </data>
-    <data name="TechniqueGroup_AlmostLockedCandidates" xml:space="preserve">
+  <data name="TechniqueGroup_AlmostLockedCandidates" xml:space="preserve">
     <value>欠一数组</value>
   </data>
-    <data name="TechniqueGroup_AlmostLockedSetsChainingLike" xml:space="preserve">
+  <data name="TechniqueGroup_AlmostLockedSetsChainingLike" xml:space="preserve">
     <value>待定数组</value>
   </data>
-    <data name="TechniqueGroup_AlternatingInferenceChain" xml:space="preserve">
+  <data name="TechniqueGroup_AlternatingInferenceChain" xml:space="preserve">
     <value>链</value>
   </data>
-    <data name="TechniqueGroup_AvoidableRectangle" xml:space="preserve">
+  <data name="TechniqueGroup_AvoidableRectangle" xml:space="preserve">
     <value>可规避矩形</value>
   </data>
-    <data name="TechniqueGroup_BivalueOddagon" xml:space="preserve">
+  <data name="TechniqueGroup_BivalueOddagon" xml:space="preserve">
     <value>死环</value>
   </data>
-    <data name="TechniqueGroup_BivalueUniversalGrave" xml:space="preserve">
+  <data name="TechniqueGroup_BivalueUniversalGrave" xml:space="preserve">
     <value>全双值格致死解法</value>
   </data>
-    <data name="TechniqueGroup_BlossomLoop" xml:space="preserve">
+  <data name="TechniqueGroup_BlossomLoop" xml:space="preserve">
     <value>绽放环</value>
   </data>
-    <data name="TechniqueGroup_BorescoperDeadlyPattern" xml:space="preserve">
+  <data name="TechniqueGroup_BorescoperDeadlyPattern" xml:space="preserve">
     <value>探长致命结构</value>
   </data>
-    <data name="TechniqueGroup_BowmanBingo" xml:space="preserve">
+  <data name="TechniqueGroup_BowmanBingo" xml:space="preserve">
     <value>试数</value>
   </data>
-    <data name="TechniqueGroup_BrokenWing" xml:space="preserve">
+  <data name="TechniqueGroup_BrokenWing" xml:space="preserve">
     <value>守护者</value>
   </data>
-    <data name="TechniqueGroup_BruteForce" xml:space="preserve">
+  <data name="TechniqueGroup_BruteForce" xml:space="preserve">
     <value>计算机试数</value>
   </data>
-    <data name="TechniqueGroup_ChromaticPattern" xml:space="preserve">
+  <data name="TechniqueGroup_ChromaticPattern" xml:space="preserve">
     <value>三值死环</value>
   </data>
-    <data name="TechniqueGroup_ComplexFish" xml:space="preserve">
+  <data name="TechniqueGroup_ComplexFish" xml:space="preserve">
     <value>复杂鱼</value>
   </data>
-    <data name="TechniqueGroup_DeathBlossom" xml:space="preserve">
+  <data name="TechniqueGroup_DeathBlossom" xml:space="preserve">
     <value>死亡绽放</value>
   </data>
-    <data name="TechniqueGroup_DominoLoop" xml:space="preserve">
+  <data name="TechniqueGroup_DominoLoop" xml:space="preserve">
     <value>多米诺环</value>
   </data>
-    <data name="TechniqueGroup_EmptyRectangle" xml:space="preserve">
+  <data name="TechniqueGroup_EmptyRectangle" xml:space="preserve">
     <value>空矩形</value>
   </data>
-    <data name="TechniqueGroup_EmptyRectangleIntersectionPair" xml:space="preserve">
+  <data name="TechniqueGroup_EmptyRectangleIntersectionPair" xml:space="preserve">
     <value>对交空矩形</value>
   </data>
-    <data name="TechniqueGroup_Exocet" xml:space="preserve">
+  <data name="TechniqueGroup_Exocet" xml:space="preserve">
     <value>飞鱼</value>
   </data>
-    <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
+  <data name="TechniqueGroup_ExtendedRectangle" xml:space="preserve">
     <value>扩展矩形</value>
   </data>
-    <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
+  <data name="TechniqueGroup_ExtendedSubsetPrinciple" xml:space="preserve">
     <value>伪数组</value>
   </data>
-    <data name="TechniqueGroup_Firework" xml:space="preserve">
+  <data name="TechniqueGroup_Firework" xml:space="preserve">
     <value>烟花数组</value>
   </data>
-    <data name="TechniqueGroup_ForcingChains" xml:space="preserve">
+  <data name="TechniqueGroup_ForcingChains" xml:space="preserve">
     <value>强制链</value>
   </data>
-    <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
+  <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
     <value>区块</value>
   </data>
-    <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
+  <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
     <value>网</value>
   </data>
-    <data name="TechniqueGroup_NormalFish" xml:space="preserve">
+  <data name="TechniqueGroup_NormalFish" xml:space="preserve">
     <value>普通鱼</value>
   </data>
-    <data name="TechniqueGroup_PatternOverlay" xml:space="preserve">
+  <data name="TechniqueGroup_PatternOverlay" xml:space="preserve">
     <value>图案叠加删数</value>
   </data>
-    <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
+  <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
     <value>淑芬致命结构</value>
   </data>
-    <data name="TechniqueGroup_RankTheory" xml:space="preserve">
+  <data name="TechniqueGroup_RankTheory" xml:space="preserve">
     <value>秩理论技巧</value>
   </data>
-    <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
+  <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
     <value>反双数致命结构</value>
   </data>
-    <data name="TechniqueGroup_RwDeadlyPattern" xml:space="preserve">
+  <data name="TechniqueGroup_RwDeadlyPattern" xml:space="preserve">
     <value>RW 致命结构</value>
   </data>
-    <data name="TechniqueGroup_Single" xml:space="preserve">
+  <data name="TechniqueGroup_Single" xml:space="preserve">
     <value>出数类技巧</value>
   </data>
-    <data name="TechniqueGroup_SingleDigitPattern" xml:space="preserve">
+  <data name="TechniqueGroup_SingleDigitPattern" xml:space="preserve">
     <value>同数类技巧</value>
   </data>
-    <data name="TechniqueGroup_Subset" xml:space="preserve">
+  <data name="TechniqueGroup_Subset" xml:space="preserve">
     <value>数组</value>
   </data>
-    <data name="TechniqueGroup_SueDeCoq" xml:space="preserve">
+  <data name="TechniqueGroup_SueDeCoq" xml:space="preserve">
     <value>融合待定数组</value>
   </data>
-    <data name="TechniqueGroup_Symmetry" xml:space="preserve">
+  <data name="TechniqueGroup_Symmetry" xml:space="preserve">
     <value>对称类技巧</value>
   </data>
-    <data name="TechniqueGroup_Templating" xml:space="preserve">
+  <data name="TechniqueGroup_Templating" xml:space="preserve">
     <value>模板</value>
   </data>
-    <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
+  <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
     <value>唯一环</value>
   </data>
-    <data name="TechniqueGroup_UniqueMatrix" xml:space="preserve">
+  <data name="TechniqueGroup_UniqueMatrix" xml:space="preserve">
     <value>唯一矩阵</value>
   </data>
-    <data name="TechniqueGroup_UniquenessClueCover" xml:space="preserve">
+  <data name="TechniqueGroup_UniquenessClueCover" xml:space="preserve">
     <value>唯一性提示信息覆盖</value>
   </data>
-    <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
+  <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
     <value>唯一矩形</value>
   </data>
-    <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
+  <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
     <value>唯一矩形拓展</value>
   </data>
-    <data name="TechniqueGroup_RegularWing" xml:space="preserve">
+  <data name="TechniqueGroup_RegularWing" xml:space="preserve">
     <value>规则 Wing</value>
   </data>
-    <data name="TechniqueGroup_IrregularWing" xml:space="preserve">
+  <data name="TechniqueGroup_IrregularWing" xml:space="preserve">
     <value>不规则 Wing</value>
   </data>
-    <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ExocetStepSearcher" xml:space="preserve">
     <value>飞鱼</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="JuniorExocetMirrorConjugatePair" xml:space="preserve">
+  <data name="JuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetAdjacentTarget" xml:space="preserve">
+  <data name="JuniorExocetAdjacentTarget" xml:space="preserve">
     <value>初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SeniorExocetMirrorConjugatePair" xml:space="preserve">
+  <data name="SeniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>高级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
+  <data name="JuniorExocetGeneralizedFish" xml:space="preserve">
     <value>初级飞鱼・鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
+  <data name="JuniorExocetIncompatiblePair" xml:space="preserve">
     <value>初级飞鱼・X 定则</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetTargetPair" xml:space="preserve">
+  <data name="JuniorExocetTargetPair" xml:space="preserve">
     <value>初级飞鱼・T 格数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_AlmostHiddenSet" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_AlmostHiddenSet" xml:space="preserve">
     <value>隐性待定数组</value>
   </data>
-    <data name="JuniorExocetConjugatePair" xml:space="preserve">
+  <data name="JuniorExocetConjugatePair" xml:space="preserve">
     <value>初级飞鱼・T 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
+  <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
     <value>初级飞鱼・M 格隐性待定数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_LockedMember" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_LockedMember" xml:space="preserve">
     <value>死锁成员</value>
   </data>
-    <data name="JuniorExocetLockedMember" xml:space="preserve">
+  <data name="JuniorExocetLockedMember" xml:space="preserve">
     <value>初级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SeniorExocetLockedMember" xml:space="preserve">
+  <data name="SeniorExocetLockedMember" xml:space="preserve">
     <value>高级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="JuniorExocetMirrorSync" xml:space="preserve">
+  <data name="JuniorExocetMirrorSync" xml:space="preserve">
     <value>初级飞鱼・M 格同步</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WeakExocet" xml:space="preserve">
+  <data name="WeakExocet" xml:space="preserve">
     <value>衰弱飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WeakExocetAdjacentTarget" xml:space="preserve">
+  <data name="WeakExocetAdjacentTarget" xml:space="preserve">
     <value>衰弱飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_BzRectangle" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_BzRectangle" xml:space="preserve">
     <value>BZ 矩形删数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_SlashElimination" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_SlashElimination" xml:space="preserve">
     <value>斜杠删数</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WeakExocetBzRectangle" xml:space="preserve">
+  <data name="WeakExocetBzRectangle" xml:space="preserve">
     <value>衰弱飞鱼・BZ 矩形模式</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="WeakExocetSlash" xml:space="preserve">
+  <data name="WeakExocetSlash" xml:space="preserve">
     <value>衰弱飞鱼・斜杠模式</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_MissingStabilityBalancer" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_MissingStabilityBalancer" xml:space="preserve">
     <value>“强心针”单元格缺失</value>
   </data>
-    <data name="LameWeakExocet" xml:space="preserve">
+  <data name="LameWeakExocet" xml:space="preserve">
     <value>全衰飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DoubleExocet" xml:space="preserve">
+  <data name="DoubleExocet" xml:space="preserve">
     <value>双飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenJuniorExocet" xml:space="preserve">
+  <data name="FrankenJuniorExocet" xml:space="preserve">
     <value>宫内初级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenSeniorExocet" xml:space="preserve">
+  <data name="FrankenSeniorExocet" xml:space="preserve">
     <value>宫内高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantJuniorExocet" xml:space="preserve">
+  <data name="MutantJuniorExocet" xml:space="preserve">
     <value>交叉初级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantSeniorExocet" xml:space="preserve">
+  <data name="MutantSeniorExocet" xml:space="preserve">
     <value>交叉高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PatternLockedQuadruple" xml:space="preserve">
+  <data name="PatternLockedQuadruple" xml:space="preserve">
     <value>结构限定四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
+  <data name="DoubleExocetGeneralizedFish" xml:space="preserve">
     <value>双飞鱼・鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenJuniorExocetLockedMember" xml:space="preserve">
+  <data name="FrankenJuniorExocetLockedMember" xml:space="preserve">
     <value>宫内初级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenSeniorExocetLockedMember" xml:space="preserve">
+  <data name="FrankenSeniorExocetLockedMember" xml:space="preserve">
     <value>宫内高级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantJuniorExocetLockedMember" xml:space="preserve">
+  <data name="MutantJuniorExocetLockedMember" xml:space="preserve">
     <value>交叉初级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantSeniorExocetLockedMember" xml:space="preserve">
+  <data name="MutantSeniorExocetLockedMember" xml:space="preserve">
     <value>交叉高级飞鱼・死锁成员</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
+  <data name="FrankenSeniorExocetTargetExternalAlmostHiddenSet" xml:space="preserve">
     <value>宫内高级飞鱼・T 格待定隐性数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AdvancedMutantSeniorExocet" xml:space="preserve">
+  <data name="AdvancedMutantSeniorExocet" xml:space="preserve">
     <value>拓展交叉高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="AdvancedFrankenSeniorExocet" xml:space="preserve">
+  <data name="AdvancedFrankenSeniorExocet" xml:space="preserve">
     <value>拓展宫内高级飞鱼</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenJuniorExocetAdjacentTarget" xml:space="preserve">
+  <data name="FrankenJuniorExocetAdjacentTarget" xml:space="preserve">
     <value>宫内初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="FrankenJuniorExocetMirrorConjugatePair" xml:space="preserve">
+  <data name="FrankenJuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>宫内初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantJuniorExocetAdjacentTarget" xml:space="preserve">
+  <data name="MutantJuniorExocetAdjacentTarget" xml:space="preserve">
     <value>交叉初级飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
+  <data name="MutantJuniorExocetMirrorConjugatePair" xml:space="preserve">
     <value>交叉初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ExtraDifficultyFactorNames_TrueBase" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_TrueBase" xml:space="preserve">
     <value>内 T 格明数直出</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SeniorExocetTrueBase" xml:space="preserve">
+  <data name="SeniorExocetTrueBase" xml:space="preserve">
     <value>高级飞鱼・B 格区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyzLoop" xml:space="preserve">
+  <data name="XyzLoop" xml:space="preserve">
     <value>XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="XyzNiceLoop" xml:space="preserve">
+  <data name="XyzNiceLoop" xml:space="preserve">
     <value>XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_XyzRingStepSearcher" xml:space="preserve">
     <value>XYZ-环</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="GroupedXyzLoop" xml:space="preserve">
+  <data name="GroupedXyzLoop" xml:space="preserve">
     <value>区块 XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="GroupedXyzNiceLoop" xml:space="preserve">
+  <data name="GroupedXyzNiceLoop" xml:space="preserve">
     <value>区块 XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="CrosshatchingBlock" xml:space="preserve">
+  <data name="CrosshatchingBlock" xml:space="preserve">
     <value>宫排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="CrosshatchingColumn" xml:space="preserve">
+  <data name="CrosshatchingColumn" xml:space="preserve">
     <value>列排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="CrosshatchingRow" xml:space="preserve">
+  <data name="CrosshatchingRow" xml:space="preserve">
     <value>行排除</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="Single" xml:space="preserve">
+  <data name="Single" xml:space="preserve">
     <value>同区九缺一</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>拐点 {0}，每个分支：{1}</value>
   </data>
-    <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
     <value>割补</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="LawOfLeftover" xml:space="preserve">
+  <data name="LawOfLeftover" xml:space="preserve">
     <value>割补</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
+  <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>单元格 {0} 和单元格 {1} 填数一致</value>
   </data>
-    <data name="NTimesAlmostLockedSetDeathBlossom" xml:space="preserve">
+  <data name="NTimesAlmostLockedSetDeathBlossom" xml:space="preserve">
     <value>死亡绽放・ALS 绽放</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
     <value>拐点为 {0} 次待定数组（单元格：{1}，数字 {2}）；分支为 {3}</value>
   </data>
-    <data name="HouseDeathBlossom" xml:space="preserve">
+  <data name="HouseDeathBlossom" xml:space="preserve">
     <value>死亡绽放・区域绽放</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_HouseDeathBlossomStep" xml:space="preserve">
     <value>区域 {0}，每个分支：{1}</value>
   </data>
-    <data name="RectangleDeathBlossom" xml:space="preserve">
+  <data name="RectangleDeathBlossom" xml:space="preserve">
     <value>死亡绽放・矩形绽放</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_RectangleDeathBlossomStep" xml:space="preserve">
     <value>矩形：{0}，每个分支：{1}</value>
   </data>
-    <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
     <value>伪数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="ExtendedSubsetPrinciple" xml:space="preserve">
+  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
     <value>伪数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseGroupedXyzLoop" xml:space="preserve">
+  <data name="SiameseGroupedXyzLoop" xml:space="preserve">
     <value>孪生区块 XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseGroupedXyzNiceLoop" xml:space="preserve">
+  <data name="SiameseGroupedXyzNiceLoop" xml:space="preserve">
     <value>孪生区块 XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseXyzLoop" xml:space="preserve">
+  <data name="SiameseXyzLoop" xml:space="preserve">
     <value>孪生 XYZ 半环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="SiameseXyzNiceLoop" xml:space="preserve">
+  <data name="SiameseXyzNiceLoop" xml:space="preserve">
     <value>孪生 XYZ 全环</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueGroup_XyzRing" xml:space="preserve">
+  <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ 环</value>
   </data>
-    <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
+  <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
     <value>区块结构</value>
   </data>
-    <data name="TechniqueFormat_MWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_MWingStep" xml:space="preserve">
     <value>使用 {0} 和 {1} 以及 XY 单元格 {2} 和 {3}</value>
   </data>
-    <data name="TechniqueFormat_SWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_SWingStep" xml:space="preserve">
     <value>单元格 {0} 和 {1} 和 {2} 关联</value>
   </data>
-    <data name="TechniqueFormat_HWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_HWingStep" xml:space="preserve">
     <value>共轭对 {0} 和两个单元格 {1} 连接</value>
   </data>
-    <data name="StepSearcherName_IrregularWingStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_IrregularWingStepSearcher" xml:space="preserve">
     <value>不规则 Wing</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="StepSearcherName_DirectIntersectionStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_DirectIntersectionStepSearcher" xml:space="preserve">
     <value>直观区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
+  <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
     <value>区块宫排除・行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
+  <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
     <value>区块列排除・行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ClaimingCrosshatchingRow" xml:space="preserve">
+  <data name="ClaimingCrosshatchingRow" xml:space="preserve">
     <value>区块行排除・行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ClaimingFullHouse" xml:space="preserve">
+  <data name="ClaimingFullHouse" xml:space="preserve">
     <value>区块同区九缺一・行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="ClaimingNakedSingle" xml:space="preserve">
+  <data name="ClaimingNakedSingle" xml:space="preserve">
     <value>区块唯一余数・行列区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PointingCrosshatchingBlock" xml:space="preserve">
+  <data name="PointingCrosshatchingBlock" xml:space="preserve">
     <value>区块宫排除・宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PointingCrosshatchingColumn" xml:space="preserve">
+  <data name="PointingCrosshatchingColumn" xml:space="preserve">
     <value>区块列排除・宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PointingCrosshatchingRow" xml:space="preserve">
+  <data name="PointingCrosshatchingRow" xml:space="preserve">
     <value>区块行排除・宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PointingFullHouse" xml:space="preserve">
+  <data name="PointingFullHouse" xml:space="preserve">
     <value>区块同区九缺一・宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="PointingNakedSingle" xml:space="preserve">
+  <data name="PointingNakedSingle" xml:space="preserve">
     <value>区块唯一余数・宫区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
+  <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
     <value>复杂出数类技巧</value>
   </data>
-    <data name="TechniqueFormat_DirectIntersectionStep" xml:space="preserve">
+  <data name="TechniqueFormat_DirectIntersectionStep" xml:space="preserve">
     <value>单元格 {0} 在 {1} 里形成区块，于是 {2} 不能填入 {3}，因而形成{4}技巧</value>
   </data>
-    <data name="StepSearcherName_DirectSubsetStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_DirectSubsetStepSearcher" xml:space="preserve">
     <value>直观数组</value>
     <comment>Step Searcher Name</comment>
   </data>
-    <data name="NakedPairFullHouse" xml:space="preserve">
+  <data name="NakedPairFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlusFullHouse" xml:space="preserve">
+  <data name="NakedPairPlusFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPairFullHouse" xml:space="preserve">
+  <data name="HiddenPairFullHouse" xml:space="preserve">
     <value>数组同区九缺一・隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPairFullHouse" xml:space="preserve">
+  <data name="LockedPairFullHouse" xml:space="preserve">
     <value>数组同区九缺一・死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenPairFullHouse" xml:space="preserve">
+  <data name="LockedHiddenPairFullHouse" xml:space="preserve">
     <value>数组同区九缺一・隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTripleFullHouse" xml:space="preserve">
+  <data name="NakedTripleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlusFullHouse" xml:space="preserve">
+  <data name="NakedTriplePlusFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTripleFullHouse" xml:space="preserve">
+  <data name="HiddenTripleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTripleFullHouse" xml:space="preserve">
+  <data name="LockedTripleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTripleFullHouse" xml:space="preserve">
+  <data name="LockedHiddenTripleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadrupleFullHouse" xml:space="preserve">
+  <data name="NakedQuadrupleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlusFullHouse" xml:space="preserve">
+  <data name="NakedQuadruplePlusFullHouse" xml:space="preserve">
     <value>数组同区九缺一・显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadrupleFullHouse" xml:space="preserve">
+  <data name="HiddenQuadrupleFullHouse" xml:space="preserve">
     <value>数组同区九缺一・隐性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedPairCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlusCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedPairPlusCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPairCrosshatchingBlock" xml:space="preserve">
+  <data name="HiddenPairCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPairCrosshatchingBlock" xml:space="preserve">
+  <data name="LockedPairCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenPairCrosshatchingBlock" xml:space="preserve">
+  <data name="LockedHiddenPairCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTripleCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedTripleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlusCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedTriplePlusCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTripleCrosshatchingBlock" xml:space="preserve">
+  <data name="HiddenTripleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTripleCrosshatchingBlock" xml:space="preserve">
+  <data name="LockedTripleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTripleCrosshatchingBlock" xml:space="preserve">
+  <data name="LockedHiddenTripleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadrupleCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedQuadrupleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlusCrosshatchingBlock" xml:space="preserve">
+  <data name="NakedQuadruplePlusCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadrupleCrosshatchingBlock" xml:space="preserve">
+  <data name="HiddenQuadrupleCrosshatchingBlock" xml:space="preserve">
     <value>数组宫排除・隐性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairCrosshatchingRow" xml:space="preserve">
+  <data name="NakedPairCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlusCrosshatchingRow" xml:space="preserve">
+  <data name="NakedPairPlusCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPairCrosshatchingRow" xml:space="preserve">
+  <data name="HiddenPairCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPairCrosshatchingRow" xml:space="preserve">
+  <data name="LockedPairCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenPairCrosshatchingRow" xml:space="preserve">
+  <data name="LockedHiddenPairCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTripleCrosshatchingRow" xml:space="preserve">
+  <data name="NakedTripleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlusCrosshatchingRow" xml:space="preserve">
+  <data name="NakedTriplePlusCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTripleCrosshatchingRow" xml:space="preserve">
+  <data name="HiddenTripleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTripleCrosshatchingRow" xml:space="preserve">
+  <data name="LockedTripleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTripleCrosshatchingRow" xml:space="preserve">
+  <data name="LockedHiddenTripleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadrupleCrosshatchingRow" xml:space="preserve">
+  <data name="NakedQuadrupleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlusCrosshatchingRow" xml:space="preserve">
+  <data name="NakedQuadruplePlusCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadrupleCrosshatchingRow" xml:space="preserve">
+  <data name="HiddenQuadrupleCrosshatchingRow" xml:space="preserve">
     <value>数组行排除・隐性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedPairCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlusCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedPairPlusCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPairCrosshatchingColumn" xml:space="preserve">
+  <data name="HiddenPairCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPairCrosshatchingColumn" xml:space="preserve">
+  <data name="LockedPairCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenPairCrosshatchingColumn" xml:space="preserve">
+  <data name="LockedHiddenPairCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTripleCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedTripleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlusCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedTriplePlusCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTripleCrosshatchingColumn" xml:space="preserve">
+  <data name="HiddenTripleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTripleCrosshatchingColumn" xml:space="preserve">
+  <data name="LockedTripleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTripleCrosshatchingColumn" xml:space="preserve">
+  <data name="LockedHiddenTripleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadrupleCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedQuadrupleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlusCrosshatchingColumn" xml:space="preserve">
+  <data name="NakedQuadruplePlusCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadrupleCrosshatchingColumn" xml:space="preserve">
+  <data name="HiddenQuadrupleCrosshatchingColumn" xml:space="preserve">
     <value>数组列排除・隐性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairNakedSingle" xml:space="preserve">
+  <data name="NakedPairNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedPairPlusNakedSingle" xml:space="preserve">
+  <data name="NakedPairPlusNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性数对带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenPairNakedSingle" xml:space="preserve">
+  <data name="HiddenPairNakedSingle" xml:space="preserve">
     <value>数组唯一余数・隐性数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedPairNakedSingle" xml:space="preserve">
+  <data name="LockedPairNakedSingle" xml:space="preserve">
     <value>数组唯一余数・死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenPairNakedSingle" xml:space="preserve">
+  <data name="LockedHiddenPairNakedSingle" xml:space="preserve">
     <value>数组唯一余数・隐性死锁数对</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTripleNakedSingle" xml:space="preserve">
+  <data name="NakedTripleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedTriplePlusNakedSingle" xml:space="preserve">
+  <data name="NakedTriplePlusNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性三数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenTripleNakedSingle" xml:space="preserve">
+  <data name="HiddenTripleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・隐性三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedTripleNakedSingle" xml:space="preserve">
+  <data name="LockedTripleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="LockedHiddenTripleNakedSingle" xml:space="preserve">
+  <data name="LockedHiddenTripleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・隐性死锁三数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadrupleNakedSingle" xml:space="preserve">
+  <data name="NakedQuadrupleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性四数组</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="NakedQuadruplePlusNakedSingle" xml:space="preserve">
+  <data name="NakedQuadruplePlusNakedSingle" xml:space="preserve">
     <value>数组唯一余数・显性四数组带区块</value>
     <comment>Technique Name</comment>
   </data>
-    <data name="HiddenQuadrupleNakedSingle" xml:space="preserve">
+  <data name="HiddenQuadrupleNakedSingle" xml:space="preserve">
     <value>数组唯一余数・隐性四数组</value>
     <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_DirectSubsetStep" xml:space="preserve">
+    <value>单元格 {0} 的数字 {5} 在 {1} 里形成{6}，于是 {2} 不能填入 {3}，因而形成{4}技巧</value>
   </data>
 </root>

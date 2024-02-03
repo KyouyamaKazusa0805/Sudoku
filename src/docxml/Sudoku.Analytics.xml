@@ -17845,13 +17845,14 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="subsetCells">Indicates the subset cells used.</param>
             <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+            <param name="subsetHouse">Indicates the subset house.</param>
             <param name="interim">Indicates the interim.</param>
             <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
             <param name="subsetTechnique">Indicates the subset technique used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Provides with a step that is a <b>Direct Subset</b> technique.
             </summary>
@@ -17862,6 +17863,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="subsetCells">Indicates the subset cells used.</param>
             <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+            <param name="subsetHouse">Indicates the subset house.</param>
             <param name="interim">Indicates the interim.</param>
             <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
             <param name="subtype"><inheritdoc/></param>
@@ -17894,6 +17896,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixNameLength">
             <inheritdoc/>
         </member>
@@ -17908,6 +17913,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetDigitsMask">
             <summary>
             The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetHouse">
+            <summary>
+            The generated property declaration for parameter <c>subsetHouse</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Interim">
@@ -24717,6 +24727,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DirectIntersectionStep">
             <summary>
               Looks up a localized string similar to Cells {0} is formed a locked candidates in {1}, then {2} cannot be filled with digit {3}, so the {4} is formed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DirectSubsetStep">
+            <summary>
+              Looks up a localized string similar to Cells {0} is formed a {6} in {1} of digits {5}, then {2} cannot be filled with digit {3}, so the {4} is formed.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DominoLoopStep">
