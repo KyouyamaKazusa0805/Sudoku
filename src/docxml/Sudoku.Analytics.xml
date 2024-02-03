@@ -10552,6 +10552,19 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
+            <summary>
+            Check for naked single produced on hidden subsets.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.GetSubsetTechnique_Hidden(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field describing the subset usage on hidden subsets.
+            </summary>
+            <param name="subsetCells">The subset cells used.</param>
+            <returns>The final result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
             <summary>
             Provides with a <b>Single</b> step searcher.

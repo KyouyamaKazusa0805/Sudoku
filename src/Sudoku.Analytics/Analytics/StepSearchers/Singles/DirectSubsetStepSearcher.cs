@@ -163,6 +163,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					{
 						return hiddenSingle;
 					}
+					if (CheckHiddenSubsetNakedSingle(
+						ref context, in grid, in conclusions, in cells, digitsMask, house,
+						searchingForLocked, containsExtraEliminations, cellOffsets, candidateOffsets) is { } nakedSingle)
+					{
+						return nakedSingle;
+					}
 				}
 			}
 		}
@@ -292,9 +298,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				}
 
 				// Check for candidates for the cell.
-				var eliminatedDigitsMaskInCell = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
+				var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
 				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] - emptyCells, true]);
-				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMaskInCell);
+				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMask);
 				if (!IsPow2(lastDigitsMask))
 				{
 					continue;
@@ -323,7 +329,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					in subsetCells,
 					subsetDigitsMask,
 					[cell],
-					eliminatedDigitsMaskInCell,
+					eliminatedDigitsMask,
 					houseType switch
 					{
 						HouseType.Block => SingleSubtype.FullHouseBlock,
@@ -331,14 +337,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						_ => SingleSubtype.FullHouseColumn
 					},
 					Technique.FullHouse,
-					(subsetCells.IsInIntersection, subsetCells.Count) switch
-					{
-						(true, 2) => Technique.LockedHiddenPair,
-						(_, 2) => Technique.HiddenPair,
-						(true, 3) => Technique.LockedHiddenTriple,
-						(_, 3) => Technique.HiddenTriple,
-						(_, 4) => Technique.HiddenQuadruple
-					}
+					GetSubsetTechnique_Hidden(in subsetCells)
 				);
 				if (context.OnlyFindOne)
 				{
@@ -413,14 +412,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						HouseType.Row => Technique.CrosshatchingRow,
 						_ => Technique.CrosshatchingColumn
 					},
-					(subsetCells.IsInIntersection, subsetCells.Count) switch
-					{
-						(true, 2) => Technique.LockedHiddenPair,
-						(_, 2) => Technique.HiddenPair,
-						(true, 3) => Technique.LockedHiddenTriple,
-						(_, 3) => Technique.HiddenTriple,
-						(_, 4) => Technique.HiddenQuadruple
-					}
+					GetSubsetTechnique_Hidden(in subsetCells)
 				);
 				if (context.OnlyFindOne)
 				{
@@ -433,4 +425,81 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 		return null;
 	}
+
+	/// <summary>
+	/// Check for naked single produced on hidden subsets.
+	/// </summary>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode})"/>
+	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CandidateMap conclusions,
+		scoped ref readonly CellMap subsetCells,
+		Mask subsetDigitsMask,
+		House subsetHouse,
+		bool searchingForLocked,
+		bool containsExtraEliminations,
+		List<CellViewNode> cellOffsets,
+		List<CandidateViewNode> candidateOffsets
+	)
+	{
+		foreach (var candidate in conclusions)
+		{
+			var cell = candidate / 9;
+			var digit = candidate % 9;
+			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
+			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
+			if (!IsPow2(availableDigitsMask))
+			{
+				continue;
+			}
+
+			var lastDigit = Log2((uint)availableDigitsMask);
+			var step = new DirectSubsetStep(
+				[new(Assignment, cell, lastDigit)],
+				[
+					[
+						.. candidateOffsets,
+						.. cellOffsets,
+						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
+						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
+					]
+				],
+				context.PredefinedOptions,
+				cell,
+				lastDigit,
+				in subsetCells,
+				subsetDigitsMask,
+				[cell],
+				eliminatedDigitsMask,
+				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - EmptyCells).Count,
+				Technique.NakedSingle,
+				GetSubsetTechnique_Hidden(in subsetCells)
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Gets the <see cref="Technique"/> field describing the subset usage on hidden subsets.
+	/// </summary>
+	/// <param name="subsetCells">The subset cells used.</param>
+	/// <returns>The final result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Technique GetSubsetTechnique_Hidden(scoped ref readonly CellMap subsetCells)
+		=> (subsetCells.IsInIntersection, subsetCells.Count) switch
+		{
+			(true, 2) => Technique.LockedHiddenPair,
+			(_, 2) => Technique.HiddenPair,
+			(true, 3) => Technique.LockedHiddenTriple,
+			(_, 3) => Technique.HiddenTriple,
+			(_, 4) => Technique.HiddenQuadruple
+		};
 }
