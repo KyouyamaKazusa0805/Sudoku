@@ -369,6 +369,68 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
+		foreach (var candidate in conclusions)
+		{
+			var cell = candidate / 9;
+			var digit = candidate % 9;
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouseIndex(houseType);
+				var eliminatedCells = (CellMap)from c in conclusions where c % 9 == digit select c / 9;
+				var availableCells = (HousesMap[house] & CandidatesMap[digit]) - eliminatedCells;
+				if (availableCells is not [var lastCell])
+				{
+					continue;
+				}
+
+				var step = new DirectSubsetStep(
+					[new(Assignment, lastCell, digit)],
+					[
+						[
+							.. candidateOffsets,
+							.. cellOffsets,
+							.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							..
+							from c in HousesMap[house] & eliminatedCells
+							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
+							new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
+							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+						]
+					],
+					context.PredefinedOptions,
+					lastCell,
+					digit,
+					in subsetCells,
+					subsetDigitsMask,
+					in eliminatedCells,
+					(Mask)(1 << digit),
+					SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					houseType switch
+					{
+						HouseType.Block => Technique.CrosshatchingBlock,
+						HouseType.Row => Technique.CrosshatchingRow,
+						_ => Technique.CrosshatchingColumn
+					},
+					(subsetCells.IsInIntersection, subsetCells.Count) switch
+					{
+						(true, 2) => Technique.LockedHiddenPair,
+						(_, 2) => Technique.HiddenPair,
+						(true, 3) => Technique.LockedHiddenTriple,
+						(_, 3) => Technique.HiddenTriple,
+						(_, 4) => Technique.HiddenQuadruple
+					}
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+
 		return null;
 	}
 }

@@ -10530,6 +10530,28 @@ if (student is (name: var name, age: >= 18))
             Search for naked subsets.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
+            <summary>
+            Check for full houses produced on hidden subsets.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="conclusions">The conclusions produced by hidden subsets.</param>
+            <param name="subsetCells">The subset cells used.</param>
+            <param name="subsetDigitsMask">The digits that the subset pattern used.</param>
+            <param name="subsetHouse">The house producing the subset.</param>
+            <param name="searchingForLocked">Indicates whether the current mode is for searching locked hidden subsets.</param>
+            <param name="containsExtraEliminations">Indicates whether the extra eliminations are inferred.</param>
+            <param name="cellOffsets">Indicates the cell nodes.</param>
+            <param name="candidateOffsets">Indicates the candidate offsets.</param>
+            <returns>The found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
+            <summary>
+            Check for hidden single produced on hidden subsets.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})"/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
             <summary>
             Provides with a <b>Single</b> step searcher.
