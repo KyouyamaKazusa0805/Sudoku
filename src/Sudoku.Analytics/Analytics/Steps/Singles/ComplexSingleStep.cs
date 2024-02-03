@@ -14,9 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <para>Indicates the indirect techniques used in this pattern.</para>
 /// <para>
 /// This value is an array of array of <see cref="Technique"/> instances,
-/// describing the detail usage on the complex combination of indirect technique usages.
-/// For example, if a naked single relies on a pointing and a claiming, the value can be combined in multiple cases.
-/// two of those are:
+/// describing the detail usage on the complex combination of indirect technique usages. For example:
 /// <list type="table">
 /// <listheader>
 /// <term>Value</term>

@@ -42,9 +42,333 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class DirectSubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
 	{
-		// TODO: Implement later.
+		var p = stackalloc SubsetModuleSearcherFunc[] { &HiddenSubset, &NakedSubset };
+		var q = stackalloc SubsetModuleSearcherFunc[] { &NakedSubset, &HiddenSubset };
+		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
+		scoped ref readonly var grid = ref context.Grid;
+		foreach (var searchingForLocked in (true, false))
+		{
+			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
+			{
+				for (var i = 0; i < 2; i++)
+				{
+					if (searchers[i](ref context, in grid, size, searchingForLocked) is { } step)
+					{
+						return step;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+	/// <summary>
+	/// Search for hidden subsets.
+	/// </summary>
+	private static DirectSubsetStep? HiddenSubset(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		int size,
+		bool searchingForLocked
+	)
+	{
+		for (var house = 0; house < 27; house++)
+		{
+			scoped ref readonly var currentHouseCells = ref HousesMap[house];
+			var traversingMap = currentHouseCells & EmptyCells;
+			var mask = grid[in traversingMap];
+			foreach (var digits in mask.GetAllSets().GetSubsets(size))
+			{
+				var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
+				foreach (var digit in digits)
+				{
+					tempMask &= (Mask)~(1 << digit);
+					digitsMask |= (Mask)(1 << digit);
+					cells |= currentHouseCells & CandidatesMap[digit];
+				}
+				if (cells.Count != size)
+				{
+					continue;
+				}
+
+				// Gather eliminations.
+				var conclusions = CandidateMap.Empty;
+				foreach (var digit in tempMask)
+				{
+					foreach (var cell in cells & CandidatesMap[digit])
+					{
+						conclusions.Add(cell * 9 + digit);
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				// Gather highlight candidates.
+				var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
+				foreach (var digit in digits)
+				{
+					foreach (var cell in cells & CandidatesMap[digit])
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+					}
+
+					cellOffsets.AddRange(SubsetModule.GetCrosshatchBaseCells(in grid, digit, house, in cells));
+				}
+
+				var isLocked = cells.IsInIntersection;
+				if (!searchingForLocked || isLocked && searchingForLocked)
+				{
+					var containsExtraEliminations = false;
+					if (isLocked)
+					{
+						// A potential locked hidden subset found. Extra eliminations should be checked.
+						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
+						var eliminatingHouse = TrailingZeroCount(cells.CoveredHouses & ~(1 << house));
+						foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - cells)
+						{
+							foreach (var digit in digitsMask)
+							{
+								if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+								{
+									conclusions.Add(cell * 9 + digit);
+									containsExtraEliminations = true;
+								}
+							}
+						}
+					}
+
+					if (searchingForLocked && isLocked && !containsExtraEliminations
+						|| !searchingForLocked && isLocked && containsExtraEliminations)
+					{
+						// This is a locked hidden subset. We cannot handle this as a normal hidden subset.
+						continue;
+					}
+
+					// Check whether such conclusions will raise a single.
+					if (CheckHiddenSubsetFullHouse(
+						ref context, in grid, in conclusions, in cells, digitsMask, house,
+						searchingForLocked, containsExtraEliminations, cellOffsets, candidateOffsets) is { } fullHouse)
+					{
+						return fullHouse;
+					}
+					if (CheckHiddenSubsetHiddenSingle(
+						ref context, in grid, in conclusions, in cells, digitsMask, house,
+						searchingForLocked, containsExtraEliminations, cellOffsets, candidateOffsets) is { } hiddenSingle)
+					{
+						return hiddenSingle;
+					}
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Search for naked subsets.
+	/// </summary>
+	private static DirectSubsetStep? NakedSubset(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		int size,
+		bool searchingForLocked
+	)
+	{
+		return null;
+		for (var house = 0; house < 27; house++)
+		{
+			if ((HousesMap[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
+			{
+				continue;
+			}
+
+			// Remove cells that only contain 1 candidate (Naked Singles).
+			foreach (var cell in HousesMap[house] & EmptyCells)
+			{
+				if (IsPow2(grid.GetCandidates(cell)))
+				{
+					currentEmptyMap.Remove(cell);
+				}
+			}
+
+			// Iterate on each combination.
+			foreach (ref readonly var cells in currentEmptyMap.GetSubsets(size))
+			{
+				var digitsMask = grid[in cells];
+				if (PopCount((uint)digitsMask) != size)
+				{
+					continue;
+				}
+
+				// Naked subset found. Now check eliminations.
+				var (lockedDigitsMask, conclusions) = ((Mask)0, new List<Conclusion>(18));
+				foreach (var digit in digitsMask)
+				{
+					var map = cells % CandidatesMap[digit];
+					lockedDigitsMask |= (Mask)(map.InOneHouse(out _) ? 0 : 1 << digit);
+
+					conclusions.AddRange(from cell in map select new Conclusion(Elimination, cell, digit));
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>(16);
+				foreach (var cell in cells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+					}
+				}
+
+				var isLocked = cells.IsInIntersection
+					? true
+					: lockedDigitsMask == digitsMask && size != 4
+						? true
+						: lockedDigitsMask != 0 ? false : default(bool?);
+				if ((isLocked, searchingForLocked) is not ((true, true) or (not true, false)))
+				{
+					continue;
+				}
+
+				// Check whether such conclusions will raise a single.
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check for full houses produced on hidden subsets.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="conclusions">The conclusions produced by hidden subsets.</param>
+	/// <param name="subsetCells">The subset cells used.</param>
+	/// <param name="subsetDigitsMask">The digits that the subset pattern used.</param>
+	/// <param name="subsetHouse">The house producing the subset.</param>
+	/// <param name="searchingForLocked">Indicates whether the current mode is for searching locked hidden subsets.</param>
+	/// <param name="containsExtraEliminations">Indicates whether the extra eliminations are inferred.</param>
+	/// <param name="cellOffsets">Indicates the cell nodes.</param>
+	/// <param name="candidateOffsets">Indicates the candidate offsets.</param>
+	/// <returns>The found step.</returns>
+	private static DirectSubsetStep? CheckHiddenSubsetFullHouse(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CandidateMap conclusions,
+		scoped ref readonly CellMap subsetCells,
+		Mask subsetDigitsMask,
+		House subsetHouse,
+		bool searchingForLocked,
+		bool containsExtraEliminations,
+		List<CellViewNode> cellOffsets,
+		List<CandidateViewNode> candidateOffsets
+	)
+	{
+		foreach (var candidate in conclusions)
+		{
+			var cell = candidate / 9;
+			var digit = candidate % 9;
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouseIndex(houseType);
+				if (house == subsetHouse)
+				{
+					continue;
+				}
+
+				var emptyCells = HousesMap[house] & EmptyCells;
+				if (emptyCells.Count <= 1)
+				{
+					continue;
+				}
+
+				// Check for candidates for the cell.
+				var eliminatedDigitsMaskInCell = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
+				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] - emptyCells, true]);
+				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMaskInCell);
+				if (!IsPow2(lastDigitsMask))
+				{
+					continue;
+				}
+
+				var lastDigit = Log2((uint)lastDigitsMask);
+				if ((grid.GetCandidates(cell) >> lastDigit & 1) == 0)
+				{
+					// This cell doesn't contain such digit.
+					continue;
+				}
+
+				var step = new DirectSubsetStep(
+					[new(Assignment, cell, lastDigit)],
+					[
+						[
+							.. candidateOffsets,
+							.. cellOffsets,
+							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+						]
+					],
+					context.PredefinedOptions,
+					cell,
+					lastDigit,
+					in subsetCells,
+					subsetDigitsMask,
+					[cell],
+					eliminatedDigitsMaskInCell,
+					houseType switch
+					{
+						HouseType.Block => SingleSubtype.FullHouseBlock,
+						HouseType.Row => SingleSubtype.FullHouseRow,
+						_ => SingleSubtype.FullHouseColumn
+					},
+					Technique.FullHouse,
+					(subsetCells.IsInIntersection, subsetCells.Count) switch
+					{
+						(true, 2) => Technique.LockedHiddenPair,
+						(_, 2) => Technique.HiddenPair,
+						(true, 3) => Technique.LockedHiddenTriple,
+						(_, 3) => Technique.HiddenTriple,
+						(_, 4) => Technique.HiddenQuadruple
+					}
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check for hidden single produced on hidden subsets.
+	/// </summary>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode})"/>
+	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CandidateMap conclusions,
+		scoped ref readonly CellMap subsetCells,
+		Mask subsetDigitsMask,
+		House subsetHouse,
+		bool searchingForLocked,
+		bool containsExtraEliminations,
+		List<CellViewNode> cellOffsets,
+		List<CandidateViewNode> candidateOffsets
+	)
+	{
 		return null;
 	}
 }

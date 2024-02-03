@@ -3596,6 +3596,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.Error_ComplexSingleNotSupportedToday">
+            <summary>
+            Represents an error message that complex single field is not supported.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
             <summary>
             The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
@@ -3656,6 +3661,32 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>All configured links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.ComplexSingleUsing(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Combine the technique with indirect technique, to produce a new <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field, describing the complex single usage.
+            For example, <see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/> combining with <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPair"/>
+            will produce <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingBlock"/>.
+            </summary>
+            <param name="this">
+            The direct technique used. The value can be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/></item>
+            </list>
+            </param>
+            <param name="indirect">
+            The indirect technique used. The value can be ones of group <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.LockedCandidates"/>
+            and <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.Subset"/>.
+            </param>
+            <returns>The combined result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not a direct technique.</exception>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="indirect"/> is neither locked candidates nor subset.
+            </exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -10488,6 +10519,16 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher">
             <summary>
@@ -17600,9 +17641,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the indirect techniques used in this pattern.</para>
             <para>
             This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages.
-            For example, if a naked single relies on a pointing and a claiming, the value can be combined in multiple cases.
-            two of those are:
+            describing the detail usage on the complex combination of indirect technique usages. For example:
             <list type="table">
             <listheader>
             <term>Value</term>
@@ -17635,9 +17674,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indicates the indirect techniques used in this pattern.</para>
             <para>
             This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages.
-            For example, if a naked single relies on a pointing and a claiming, the value can be combined in multiple cases.
-            two of those are:
+            describing the detail usage on the complex combination of indirect technique usages. For example:
             <list type="table">
             <listheader>
             <term>Value</term>
@@ -17760,6 +17797,97 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing">
             <summary>
             The generated property declaration for parameter <c>isPointing</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DirectSubsetStep">
+            <summary>
+            Provides with a step that is a <b>Direct Subset</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the subset cells used.</param>
+            <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+            <param name="interim">Indicates the interim.</param>
+            <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="basedOn"><inheritdoc/></param>
+            <param name="subsetTechnique">Indicates the subset technique used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Provides with a step that is a <b>Direct Subset</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subsetCells">Indicates the subset cells used.</param>
+            <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+            <param name="interim">Indicates the interim.</param>
+            <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="basedOn"><inheritdoc/></param>
+            <param name="subsetTechnique">Indicates the subset technique used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.IsNaked">
+            <summary>
+            Indicates whether the used subset is a naked subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.IsLocked">
+            <summary>
+            <inheritdoc
+                cref="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})"
+                path="/param[@name='isLocked']"/>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Size">
+            <summary>
+            Indicate the number of cells used in the subset pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixNameLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetCells">
+            <summary>
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Interim">
+            <summary>
+            The generated property declaration for parameter <c>interim</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.InterimDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>interimDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetTechnique">
+            <summary>
+            The generated property declaration for parameter <c>subsetTechnique</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FullHouseStep">

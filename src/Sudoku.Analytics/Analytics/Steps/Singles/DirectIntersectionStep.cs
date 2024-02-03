@@ -59,21 +59,7 @@ public sealed partial class DirectIntersectionStep(
 		} + .2M;
 
 	/// <inheritdoc/>
-	public override Technique Code
-		=> (BasedOn, IsPointing) switch
-		{
-			(Technique.FullHouse, true) => Technique.PointingFullHouse,
-			(Technique.FullHouse, _) => Technique.ClaimingFullHouse,
-			(Technique.CrosshatchingBlock or Technique.HiddenSingleBlock, true) => Technique.PointingCrosshatchingBlock,
-			(Technique.CrosshatchingBlock or Technique.HiddenSingleBlock, _) => Technique.ClaimingCrosshatchingBlock,
-			(Technique.CrosshatchingRow or Technique.HiddenSingleRow, true) => Technique.PointingCrosshatchingRow,
-			(Technique.CrosshatchingRow or Technique.HiddenSingleRow, _) => Technique.ClaimingCrosshatchingRow,
-			(Technique.CrosshatchingColumn or Technique.HiddenSingleColumn, true) => Technique.PointingCrosshatchingColumn,
-			(Technique.CrosshatchingColumn or Technique.HiddenSingleColumn, _) => Technique.ClaimingCrosshatchingColumn,
-			(Technique.NakedSingle, true) => Technique.PointingNakedSingle,
-			(Technique.NakedSingle, _) => Technique.ClaimingNakedSingle,
-			_ => throw new NotSupportedException(TechniqueNotSupportedMessage)
-		};
+	public override Technique Code => BasedOn.ComplexSingleUsing(IsPointing ? Technique.Pointing : Technique.Claiming);
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

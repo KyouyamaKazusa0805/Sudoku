@@ -7,6 +7,14 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
+	/// Represents an error message that complex single field is not supported.
+	/// </summary>
+	private static readonly string Error_ComplexSingleNotSupportedToday = """
+		The group of indirect technique field is neither locked candidates nor subset, which is not supported today. 
+		In future, the field might be expanded to wider, and this value might be available.
+		""".RemoveLineEndings();
+
+	/// <summary>
 	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
 	/// </summary>
 	private static readonly Type TypeOfTechnique = typeof(Technique);
@@ -79,6 +87,44 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetIntroductionHyperlinks(this Technique @this)
 		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
+
+	/// <summary>
+	/// Combine the technique with indirect technique, to produce a new <see cref="Technique"/> field, describing the complex single usage.
+	/// For example, <see cref="Technique.CrosshatchingBlock"/> combining with <see cref="Technique.HiddenPair"/>
+	/// will produce <see cref="Technique.HiddenPairCrosshatchingBlock"/>.
+	/// </summary>
+	/// <param name="this">
+	/// The direct technique used. The value can be:
+	/// <list type="bullet">
+	/// <item><see cref="Technique.FullHouse"/></item>
+	/// <item><see cref="Technique.CrosshatchingBlock"/></item>
+	/// <item><see cref="Technique.CrosshatchingRow"/></item>
+	/// <item><see cref="Technique.CrosshatchingColumn"/></item>
+	/// <item><see cref="Technique.NakedSingle"/></item>
+	/// </list>
+	/// </param>
+	/// <param name="indirect">
+	/// The indirect technique used. The value can be ones of group <see cref="TechniqueGroup.LockedCandidates"/>
+	/// and <see cref="TechniqueGroup.Subset"/>.
+	/// </param>
+	/// <returns>The combined result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not a direct technique.</exception>
+	/// <exception cref="NotSupportedException">
+	/// Throws when the argument <paramref name="indirect"/> is neither locked candidates nor subset.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Technique ComplexSingleUsing(this Technique @this, Technique indirect)
+		=> @this switch
+		{
+			Technique.FullHouse or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn or Technique.NakedSingle
+				=> indirect.GetGroup() switch
+				{
+					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset => Enum.Parse<Technique>($"{indirect}{@this}"),
+					_ when Enum.IsDefined(indirect) => throw new NotSupportedException(Error_ComplexSingleNotSupportedToday),
+					_ => throw new ArgumentOutOfRangeException(nameof(indirect))
+				},
+			_ => throw new ArgumentOutOfRangeException(nameof(@this))
+		};
 
 	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to. If a technique doesn't contain a corresponding group,
