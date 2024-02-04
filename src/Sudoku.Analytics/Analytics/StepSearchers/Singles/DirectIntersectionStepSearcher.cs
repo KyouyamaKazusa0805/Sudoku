@@ -129,11 +129,11 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
-						new HouseViewNode(ColorIdentifier.Auxiliary3, house),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+						new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 					]
 				],
 				context.PredefinedOptions,
@@ -198,6 +198,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 					[
 						.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
 						..
 						from cell in HousesMap[house] & elimMap
 						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
@@ -205,8 +206,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
-						new HouseViewNode(ColorIdentifier.Auxiliary3, house),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+						new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 					]
 				],
 				context.PredefinedOptions,
@@ -270,11 +270,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+						.. SingleModule.GetNakedSingleExcluders(in grid, lastCell, lastDigit, out _),
+						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
 						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
-						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection)
+						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet)
 					]
 				],
 				context.PredefinedOptions,

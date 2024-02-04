@@ -38,7 +38,6 @@ internal static class SingleModule
 		return [];
 	}
 
-
 	/// <summary>
 	/// Get subtype of the hidden single.
 	/// </summary>
@@ -76,5 +75,34 @@ internal static class SingleModule
 				>= 18 and < 27 => $"{HouseType.Column}HiddenSingle{b}{r}0"
 			}
 		);
+	}
+
+	/// <summary>
+	/// Get all <see cref="CellViewNode"/>s that represents as excluders.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="digit">The digit.</param>
+	/// <param name="excluderHouses">The excluder houses.</param>
+	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
+	public static ReadOnlySpan<CellViewNode> GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	{
+		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
+		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
+		{
+			foreach (var otherCell in Peers[cell])
+			{
+				if (grid.GetDigit(otherCell) == otherDigit)
+				{
+					result[i] = new(ColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
+					(CellsMap[cell] + otherCell).InOneHouse(out excluderHouses[i]);
+
+					i++;
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 }

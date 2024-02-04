@@ -286,7 +286,18 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				{
 					return fullHouse;
 				}
-
+				if (CheckNakedSubsetHiddenSingle(
+					ref context, in grid, in conclusions, in cells, digitsMask, house,
+					searchingForLocked, isLocked, candidateOffsets) is { } hiddenSingle)
+				{
+					return hiddenSingle;
+				}
+				if (CheckNakedSubsetNakedSingle(
+					ref context, in grid, in conclusions, in cells, digitsMask, house,
+					searchingForLocked, isLocked, candidateOffsets) is { } nakedSingle)
+				{
+					return nakedSingle;
+				}
 			}
 		}
 
@@ -500,6 +511,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						.. candidateOffsets,
 						.. cellOffsets,
+						.. SingleModule.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
 					]
@@ -615,6 +627,142 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				context.Accumulator.Add(step);
 			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check for hidden single produced on naked subsets.
+	/// </summary>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode})"/>
+	private static DirectSubsetStep? CheckNakedSubsetHiddenSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CandidateMap conclusions,
+		scoped ref readonly CellMap subsetCells,
+		Mask subsetDigitsMask,
+		House subsetHouse,
+		bool searchingForLocked,
+		bool? isLocked,
+		List<CandidateViewNode> candidateOffsets
+	)
+	{
+		foreach (var candidate in conclusions)
+		{
+			var cell = candidate / 9;
+			var digit = candidate % 9;
+			foreach (var houseType in HouseTypes)
+			{
+				var house = cell.ToHouseIndex(houseType);
+				var eliminatedCells = (CellMap)from c in conclusions where c % 9 == digit select c / 9;
+				var availableCells = (HousesMap[house] & CandidatesMap[digit]) - eliminatedCells;
+				if (availableCells is not [var lastCell])
+				{
+					continue;
+				}
+
+				var step = new DirectSubsetStep(
+					[new(Assignment, lastCell, digit)],
+					[
+						[
+							.. candidateOffsets,
+							.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							..
+							from c in HousesMap[house] & eliminatedCells
+							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
+							new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
+							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+						]
+					],
+					context.PredefinedOptions,
+					lastCell,
+					digit,
+					in subsetCells,
+					subsetDigitsMask,
+					house,
+					in eliminatedCells,
+					(Mask)(1 << digit),
+					SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
+					houseType switch
+					{
+						HouseType.Block => Technique.CrosshatchingBlock,
+						HouseType.Row => Technique.CrosshatchingRow,
+						_ => Technique.CrosshatchingColumn
+					},
+					GetSubsetTechnique_Naked(in subsetCells, isLocked)
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Check for naked single produced on naked subsets.
+	/// </summary>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode})"/>
+	private static DirectSubsetStep? CheckNakedSubsetNakedSingle(
+		scoped ref AnalysisContext context,
+		scoped ref readonly Grid grid,
+		scoped ref readonly CandidateMap conclusions,
+		scoped ref readonly CellMap subsetCells,
+		Mask subsetDigitsMask,
+		House subsetHouse,
+		bool searchingForLocked,
+		bool? isLocked,
+		List<CandidateViewNode> candidateOffsets
+	)
+	{
+		foreach (var candidate in conclusions)
+		{
+			var cell = candidate / 9;
+			var digit = candidate % 9;
+			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
+			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
+			if (!IsPow2(availableDigitsMask))
+			{
+				continue;
+			}
+
+			var lastDigit = Log2((uint)availableDigitsMask);
+			var step = new DirectSubsetStep(
+				[new(Assignment, cell, lastDigit)],
+				[
+					[
+						.. candidateOffsets,
+						.. SingleModule.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
+						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
+						new CellViewNode(ColorIdentifier.Auxiliary3, cell) { RenderingMode = DirectModeOnly },
+						new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit)
+					]
+				],
+				context.PredefinedOptions,
+				cell,
+				lastDigit,
+				in subsetCells,
+				subsetDigitsMask,
+				subsetHouse,
+				[cell],
+				eliminatedDigitsMask,
+				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - EmptyCells).Count,
+				Technique.NakedSingle,
+				GetSubsetTechnique_Naked(in subsetCells, isLocked)
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
 		}
 
 		return null;
