@@ -10,12 +10,12 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	IEnumerable<Step>
 {
 	/// <summary>
-	/// Indicates the maximum rating value.
+	/// Indicates the maximum rating value in theory.
 	/// </summary>
 	public const decimal MaximumRatingValueTheory = 20.0M;
 
 	/// <summary>
-	/// Indicates the maximum rating value in theory.
+	/// Indicates the maximum rating value in fact.
 	/// </summary>
 	public const decimal MaximumRatingValueFact = 12.0M;
 
@@ -449,7 +449,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		if (!solution.IsUndefined && options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleSolution", culture));
-			sb.Append(solution.ToString("!"));
+			sb.Append($"{solution:!}");
 			sb.AppendLine();
 		}
 
@@ -464,7 +464,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
 		{
 			sb.Append(ResourceDictionary.Get("AnalysisResultTimeElapsed", culture));
-			sb.Append(elapsed.ToString("""hh\:mm\:ss\.fff"""));
+			sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
 			sb.AppendLine();
 		}
 

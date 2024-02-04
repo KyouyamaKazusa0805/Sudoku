@@ -53,9 +53,5 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc cref="ICoordinateObject{TSelf}.ToString(CoordinateConverter)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter)
-	{
-		var digit = Digit;
-		return converter.CandidateConverter([.. from cell in Cells select cell * 9 + digit]);
-	}
+	public string ToString(CoordinateConverter converter) => converter.CandidateConverter(Cells * Digit);
 }
