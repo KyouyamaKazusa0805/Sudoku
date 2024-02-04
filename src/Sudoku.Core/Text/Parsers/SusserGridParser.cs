@@ -4,14 +4,43 @@ namespace Sudoku.Text.Parsers;
 /// Represents a Susser format parser.
 /// </summary>
 /// <param name="ShortenSusserFormat">
+/// <para>
 /// Indicates whether the parser will use shorten mode to parse a susser format grid.
 /// If the value is <see langword="true"/>, the parser will omit the continuous empty notation
 /// <c>.</c>s or <c>0</c>s to a <c>*</c>.
+/// </para>
+/// <para>
+/// This option will omit the continuous empty cells to a <c>*</c> in a single line. For example, the code
+/// <code><![CDATA[
+/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
+/// ]]></code>
+/// will be displayed as
+/// <code><![CDATA[
+/// 08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+/// ]]></code>
+/// via this option.
+/// We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
+/// </para>
 /// </param>
 /// <param name="NegateEliminationsTripletRule">
 /// Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
 /// The default value is <see langword="false"/>.
 /// </param>
+/// <example>
+/// For example:
+/// <list type="number">
+/// <item>
+/// <code><![CDATA[
+/// 080630040200085009090000081000300800000020000006001000970000030400850007010094050
+/// ]]></code>
+/// </item>
+/// <item>
+/// <code><![CDATA[
+/// 4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
+/// ]]></code>
+/// </item>
+/// </list>
+/// </example>
 public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, bool NegateEliminationsTripletRule = false) : IConceptParser<Grid>
 {
 	/// <inheritdoc/>

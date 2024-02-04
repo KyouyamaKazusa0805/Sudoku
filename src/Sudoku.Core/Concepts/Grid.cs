@@ -1551,38 +1551,15 @@ public partial struct Grid :
 	/// <summary>
 	/// <para>Parses a string value and converts to this type.</para>
 	/// <para>
-	/// If you want to parse a PM grid, we recommend you use the method
-	/// <see cref="ParseExact(string, GridParsingOption)"/> instead of this method.
+	/// If you want to parse a PM grid, we recommend you
+	/// use the method <see cref="ParseExact{T}(string, T)"/> instead of this method.
 	/// </para>
 	/// </summary>
 	/// <param name="str">The string.</param>
 	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="ParseExact(string, GridParsingOption)"/>
+	/// <seealso cref="ParseExact{T}(string, T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(scoped ReadOnlySpan<char> str) => Parse(str.ToString());
-
-	/// <summary>
-	/// Parses a string value and converts to this type, using a specified grid parsing type.
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <param name="gridParsingOption">The grid parsing type.</param>
-	/// <returns>The result instance had converted.</returns>
-	/// <exception cref="FormatException">Throws when the string text cannot be parsed.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid ParseExact(string str, GridParsingOption gridParsingOption)
-		=> gridParsingOption switch
-		{
-			GridParsingOption.Susser => ParseExact(str, new SusserGridParser()),
-			GridParsingOption.ShortenSusser => ParseExact(str, new SusserGridParser(true)),
-			GridParsingOption.Table => ParseExact(str, new MultipleLineGridParser()),
-			GridParsingOption.PencilMarked => ParseExact(str, new PencilmarkingGridParser()),
-			GridParsingOption.SimpleTable => ParseExact(str, new SimpleMultipleLineGridParser()),
-			GridParsingOption.Sukaku => ParseExact(str, new SukakuGridParser()),
-			GridParsingOption.SukakuSingleLine => ParseExact(str, new SukakuGridParser(true)),
-			GridParsingOption.Excel => ParseExact(str, new ExcelGridParser()),
-			GridParsingOption.OpenSudoku => ParseExact(str, new OpenSudokuGridParser()),
-			_ => throw new ArgumentOutOfRangeException(nameof(gridParsingOption))
-		} is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
 
 	/// <summary>
 	/// Parses the specified <see cref="string"/> text and convert into a grid parser instance,
@@ -1612,31 +1589,6 @@ public partial struct Grid :
 		}
 	}
 
-	/// <summary>
-	/// Try to parse a string and converts to this type, and returns a
-	/// <see cref="bool"/> value indicating the result of the conversion.
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <param name="option">The grid parsing type.</param>
-	/// <param name="result">
-	/// The result parsed. If the conversion is failed, this argument will be <see cref="Undefined"/>.
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="Undefined"/>
-	public static bool TryParse(string str, GridParsingOption option, out Grid result)
-	{
-		try
-		{
-			result = ParseExact(str, option);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = Undefined;
-			return false;
-		}
-	}
-
 	/// <inheritdoc cref="TryParse(string, out Grid)"/>
 	public static bool TryParse(Utf8String str, out Grid result)
 	{
@@ -1644,21 +1596,6 @@ public partial struct Grid :
 		{
 			result = Parse(str);
 			return !result.IsUndefined;
-		}
-		catch (FormatException)
-		{
-			result = Undefined;
-			return false;
-		}
-	}
-
-	/// <inheritdoc cref="TryParse(string, GridParsingOption, out Grid)"/>
-	public static bool TryParse(Utf8String str, GridParsingOption option, out Grid result)
-	{
-		try
-		{
-			result = ParseExact(str, option);
-			return true;
 		}
 		catch (FormatException)
 		{

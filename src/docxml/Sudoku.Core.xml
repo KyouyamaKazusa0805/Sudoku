@@ -3845,22 +3845,13 @@ if (student is (name: var name, age: >= 18))
             <summary>
             <para>Parses a string value and converts to this type.</para>
             <para>
-            If you want to parse a PM grid, we recommend you use the method
-            <see cref="M:Sudoku.Concepts.Grid.ParseExact(System.String,Sudoku.Concepts.GridParsingOption)"/> instead of this method.
+            If you want to parse a PM grid, we recommend you
+            use the method <see cref="M:Sudoku.Concepts.Grid.ParseExact``1(System.String,``0)"/> instead of this method.
             </para>
             </summary>
             <param name="str">The string.</param>
             <returns>The result instance had converted.</returns>
-            <seealso cref="M:Sudoku.Concepts.Grid.ParseExact(System.String,Sudoku.Concepts.GridParsingOption)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ParseExact(System.String,Sudoku.Concepts.GridParsingOption)">
-            <summary>
-            Parses a string value and converts to this type, using a specified grid parsing type.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="gridParsingOption">The grid parsing type.</param>
-            <returns>The result instance had converted.</returns>
-            <exception cref="T:System.FormatException">Throws when the string text cannot be parsed.</exception>
+            <seealso cref="M:Sudoku.Concepts.Grid.ParseExact``1(System.String,``0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ParseExact``1(System.String,``0)">
             <summary>
@@ -3876,24 +3867,8 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to parse a string and converts to this type, and returns a
-            <see cref="T:System.Boolean"/> value indicating the result of the conversion.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="option">The grid parsing type.</param>
-            <param name="result">
-            The result parsed. If the conversion is failed, this argument will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.GridParsingOption,Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.TryParseExact``1(System.String,``0,Sudoku.Concepts.Grid@)">
             <summary>
@@ -4097,208 +4072,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.GridMaskMergingMethod.Or">
             <summary>
             Indicates the merging operation is <see langword="operator"/> <c><![CDATA[|]]></c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.GridParsingOption">
-            <summary>
-            Represents a grid parsing type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.Susser">
-            <summary>
-            <para>
-            Indicates the susser format, which means all grid values will be displayed in one line with empty cell character <c>'0'</c>
-            or <c>'.'</c>.
-            </para>
-            <para>
-            For example:
-            <list type="number">
-            <item>
-            <code><![CDATA[
-            080630040200085009090000081000300800000020000006001000970000030400850007010094050
-            ]]></code>
-            </item>
-            <item>
-            <code><![CDATA[
-            4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
-            ]]></code>
-            </item>
-            </list>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.ShortenSusser">
-            <summary>
-            <para>
-            Indicates the shorten susser format, which means all grid values will be displayed in one line
-            with empty cell character <c>'0'</c> or <c>'.'</c>.
-            Different with the option <see cref="F:Sudoku.Concepts.GridParsingOption.Susser"/>, this option will continue shortening the code.
-            The option will omit the continuous empty cells to a <c>*</c> in a single line.
-            For example, the code
-            <code><![CDATA[
-            080630040200085009090000081000300800000020000006001000970000030400850007010094050
-            ]]></code>
-            will be displayed as
-            <code><![CDATA[
-            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
-            ]]></code>
-            via this option.
-            We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.PencilMarked">
-            <summary>
-            <para>
-            Indicates the pencil marked grid (PM grid), which means all grid candidates will be displayed using a table.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            +-------------------+-----------------+--------------------+
-            | <8>   12459  249  | *6*  <7>   259  | 1245    245   *3*  |
-            | 1457  1245   <6>  | 58   125   <3>  | 124578  2458  <9>  |
-            | 1579  <3>    279  | <4>  1259  2589 | 12578   *6*   78   |
-            +-------------------+-----------------+--------------------+
-            | *2*   <7>    *3*  | <1>  <8>   45   | 456     <9>   46   |
-            | <6>   458    48   | <2>  59    459  | <3>     *7*   *1*  |
-            | 1459  1459   49   | *3*  *6*   <7>  | 458     458   <2>  |
-            +-------------------+-----------------+--------------------+
-            | <3>   2489   <1>  | 578  25    <6>  | 24789   248   478  |
-            | 79    <6>    2789 | 78   <4>   *1*  | 289     *3*   <5>  |
-            | 47    248    <5>  | <9>  *3*   28   | 2678    <1>   4678 |
-            +-------------------+-----------------+--------------------+
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.Table">
-            <summary>
-            <para>
-            Indicates the table format, which means all grid values will be displayed using a table with empty cell character
-            <c>'0'</c> or <c>'.'</c>.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            .----------.----------.----------.
-            |  .  4  6 |  . +1  . |  3 +7 +5 |
-            | +3 +8  1 | +5  4  7 | +2 +9 +6 |
-            |  .  .  5 |  .  3  . | +1 +4  8 |
-            :----------+----------+----------:
-            |  8  .  4 |  . +5  . | +7  6  . |
-            |  .  9  . |  .  2  . | +8  5 +4 |
-            |  .  5  . |  .  .  . |  9  .  3 |
-            :----------+----------+----------:
-            |  5  .  . |  .  8  . |  6  . +9 |
-            | +4  .  8 |  1  9  . |  5  .  . |
-            |  .  .  9 |  .  . +5 |  4  8  . |
-            '----------'----------'----------'
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.SimpleTable">
-            <summary>
-            <para>
-            Sudoku explainer format (9 characters in a row, and 9 rows).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            080630040
-            200085009
-            090000081
-            000300800
-            000020000
-            006001000
-            970000030
-            400850007
-            010094050
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.Sukaku">
-            <summary>
-            <para>
-            Sukaku sudoku format (only contains the digits and the whitespace).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
-             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
-            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
-             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
-            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.SukakuSingleLine">
-            <summary>
-            <para>Sukaku single line format, which uses '0' to be a placeholder.</para>
-            <para>
-            For example:
-            <code><![CDATA[
-            023406789123456700003050780120050789003006009123456009100056089023456080123000789
-            003456789023006700023006700120056780100006789120400780000406789103000080020450000
-            003406089020056709120050080100000700120056780120000709123056000123050080000450089
-            123050709100456089003400780100450009003400009120400009123056709003000700023406000
-            000406009123006000000056709003406700120050009103056089103456709003056009120456009
-            123456780023400000103406709003056789020406700100050009020400000100006789020006789
-            020456780123056080120400700000406789120400080023456789003006080020456789103450709
-            123400009123400080023406700123406709103400080123456009120456789023406709023450080
-            100406080103056009100400009123000789100400709100406780123050700000050080023406009
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.Excel">
-            <summary>
-            <para>
-            Excel sudoku format (only contains the digits and the tab character).
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            1			7	8	9	4	5	6
-            4	5	6	1	2	3	7	8	9
-            7	8	9	4	5	6	1	2	
-            9	1	2	6		8	3	4	
-            3	4	5				6	7	8
-            	7	8	3		5	9	1	2
-            	9	1	5	6	7	2	3	4
-            2	3	4	8	9	1	5	6	7
-            5	6	7	2	3	4			1
-            ]]></code>
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridParsingOption.OpenSudoku">
-            <summary>
-            <para>
-            Open sudoku format.
-            </para>
-            <para>
-            For example:
-            <code><![CDATA[
-            0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|
-            8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|
-            0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|
-            0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|
-            0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|
-            5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|
-            0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|
-            0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|
-            6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0
-            ]]></code>
-            </para>
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.GridTransformations">
@@ -9353,6 +9126,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an Excel grid parser.
             </summary>
+            <example>
+            For example:
+            <code><![CDATA[
+            1			7	8	9	4	5	6
+            4	5	6	1	2	3	7	8	9
+            7	8	9	4	5	6	1	2	
+            9	1	2	6		8	3	4	
+            3	4	5				6	7	8
+            	7	8	3		5	9	1	2
+            	9	1	5	6	7	2	3	4
+            2	3	4	8	9	1	5	6	7
+            5	6	7	2	3	4			1
+            ]]></code>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.ExcelGridParser.Parser">
             <inheritdoc/>
@@ -9574,6 +9361,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents an Open-Sudoku format parser.
             </summary>
+            <example>
+            For example:
+            <code><![CDATA[
+            0|0|1|1|0|0|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|9|0|0|
+            8|0|0|0|0|1|0|0|1|0|0|1|0|0|1|7|0|0|2|0|0|0|0|1|0|0|1|
+            0|0|1|0|0|1|7|0|0|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|0|0|1|
+            0|0|1|0|0|1|9|0|0|2|0|0|6|0|0|0|0|1|0|0|1|8|0|0|0|0|1|
+            0|0|1|7|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|0|0|1|4|0|0|
+            5|0|0|0|0|1|6|0|0|0|0|1|0|0|1|0|0|1|3|0|0|0|0|1|1|0|0|
+            0|0|1|0|0|1|1|0|0|7|0|0|0|0|1|8|0|0|0|0|1|0|0|1|0|0|1|
+            0|0|1|0|0|1|0|0|1|0|0|1|4|0|0|0|0|1|0|0|1|0|0|1|0|0|1|
+            6|0|0|0|0|1|0|0|1|3|0|0|0|0|1|9|0|0|0|0|1|0|0|1|7|0|0
+            ]]></code>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.OpenSudokuGridParser.Parser">
             <inheritdoc/>
@@ -9598,6 +9399,24 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents for a pencilmarking grid parser.
             </summary>
+            <example>
+            For example:
+            <code><![CDATA[
+            +-------------------+-----------------+--------------------+
+            | <8>   12459  249  | *6*  <7>   259  | 1245    245   *3*  |
+            | 1457  1245   <6>  | 58   125   <3>  | 124578  2458  <9>  |
+            | 1579  <3>    279  | <4>  1259  2589 | 12578   *6*   78   |
+            +-------------------+-----------------+--------------------+
+            | *2*   <7>    *3*  | <1>  <8>   45   | 456     <9>   46   |
+            | <6>   458    48   | <2>  59    459  | <3>     *7*   *1*  |
+            | 1459  1459   49   | *3*  *6*   <7>  | 458     458   <2>  |
+            +-------------------+-----------------+--------------------+
+            | <3>   2489   <1>  | 578  25    <6>  | 24789   248   478  |
+            | 79    <6>    2789 | 78   <4>   *1*  | 289     *3*   <5>  |
+            | 47    248    <5>  | <9>  *3*   28   | 2678    <1>   4678 |
+            +-------------------+-----------------+--------------------+
+            ]]></code>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.PencilmarkingGridParser.Parser">
             <inheritdoc/>
@@ -9801,6 +9620,41 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a simple multiple-line grid parser.
             </summary>
+            <example>
+            For example:
+            <list type="bullet">
+            <item>
+            <code><![CDATA[
+            .----------.----------.----------.
+            |  .  4  6 |  . +1  . |  3 +7 +5 |
+            | +3 +8  1 | +5  4  7 | +2 +9 +6 |
+            |  .  .  5 |  .  3  . | +1 +4  8 |
+            :----------+----------+----------:
+            |  8  .  4 |  . +5  . | +7  6  . |
+            |  .  9  . |  .  2  . | +8  5 +4 |
+            |  .  5  . |  .  .  . |  9  .  3 |
+            :----------+----------+----------:
+            |  5  .  . |  .  8  . |  6  . +9 |
+            | +4  .  8 |  1  9  . |  5  .  . |
+            |  .  .  9 |  .  . +5 |  4  8  . |
+            '----------'----------'----------'
+            ]]></code>
+            </item>
+            <item>
+            <code><![CDATA[
+            080630040
+            200085009
+            090000081
+            000300800
+            000020000
+            006001000
+            970000030
+            400850007
+            010094050
+            ]]></code>
+            </item>
+            </list>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.SimpleMultipleLineGridParser.Parser">
             <inheritdoc/>
@@ -9832,6 +9686,37 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
             </param>
+            <example>
+            For example:
+            <list type="number">
+            <item>
+            <code><![CDATA[
+            023406789123456700003050780120050789003006009123456009100056089023456080123000789
+            003456789023006700023006700120056780100006789120400780000406789103000080020450000
+            003406089020056709120050080100000700120056780120000709123056000123050080000450089
+            123050709100456089003400780100450009003400009120400009123056709003000700023406000
+            000406009123006000000056709003406700120050009103056089103456709003056009120456009
+            123456780023400000103406709003056789020406700100050009020400000100006789020006789
+            020456780123056080120400700000406789120400080023456789003006080020456789103450709
+            123400009123400080023406700123406709103400080123456009120456789023406709023450080
+            100406080103056009100400009123000789100400709100406780123050700000050080023406009
+            ]]></code>
+            </item>
+            <item>
+            <code><![CDATA[
+             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
+             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
+            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
+            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            ]]></code>
+            </item>
+            </list>
+            </example>
         </member>
         <member name="M:Sudoku.Text.Parsers.SukakuGridParser.#ctor(System.Boolean)">
             <summary>
@@ -9841,6 +9726,37 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the parser use single-line logic to parse the string text.
             The single-line text uses 729 characters to describe all possible existences for all 9 digits in all 81 cells.
             </param>
+            <example>
+            For example:
+            <list type="number">
+            <item>
+            <code><![CDATA[
+            023406789123456700003050780120050789003006009123456009100056089023456080123000789
+            003456789023006700023006700120056780100006789120400780000406789103000080020450000
+            003406089020056709120050080100000700120056780120000709123056000123050080000450089
+            123050709100456089003400780100450009003400009120400009123056709003000700023406000
+            000406009123006000000056709003406700120050009103056089103456709003056009120456009
+            123456780023400000103406709003056789020406700100050009020400000100006789020006789
+            020456780123056080120400700000406789120400080023456789003006080020456789103450709
+            123400009123400080023406700123406709103400080123456009120456789023406709023450080
+            100406080103056009100400009123000789100400709100406780123050700000050080023406009
+            ]]></code>
+            </item>
+            <item>
+            <code><![CDATA[
+             23456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789  23456789
+             23456789 123456789 123456789  23456789  23456789  23456789  23456789  23456789  23456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789 123456789
+            123456789  23456789  23456789 123456789 123456789  23456789  23456789  23456789 123456789
+             23456789  23456789  23456789  23456789 123456789  23456789 123456789  23456789  23456789
+            123456789  23456789  23456789 123456789 123456789  23456789 123456789  23456789 123456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+             23456789 123456789 123456789  23456789  23456789 123456789  23456789 123456789  23456789
+            ]]></code>
+            </item>
+            </list>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.SukakuGridParser.SingleLine">
             <summary>
@@ -9870,34 +9786,106 @@ if (student is (name: var name, age: >= 18))
             Represents a Susser format parser.
             </summary>
             <param name="ShortenSusserFormat">
+            <para>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </para>
+            <para>
+            This option will omit the continuous empty cells to a <c>*</c> in a single line. For example, the code
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            will be displayed as
+            <code><![CDATA[
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            ]]></code>
+            via this option.
+            We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
+            </para>
             </param>
             <param name="NegateEliminationsTripletRule">
             Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
             The default value is <see langword="false"/>.
             </param>
+            <example>
+            For example:
+            <list type="number">
+            <item>
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            </item>
+            <item>
+            <code><![CDATA[
+            4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
+            ]]></code>
+            </item>
+            </list>
+            </example>
         </member>
         <member name="M:Sudoku.Text.Parsers.SusserGridParser.#ctor(System.Boolean,System.Boolean)">
             <summary>
             Represents a Susser format parser.
             </summary>
             <param name="ShortenSusserFormat">
+            <para>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </para>
+            <para>
+            This option will omit the continuous empty cells to a <c>*</c> in a single line. For example, the code
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            will be displayed as
+            <code><![CDATA[
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            ]]></code>
+            via this option.
+            We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
+            </para>
             </param>
             <param name="NegateEliminationsTripletRule">
             Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid instead of removed ones.
             The default value is <see langword="false"/>.
             </param>
+            <example>
+            For example:
+            <list type="number">
+            <item>
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            </item>
+            <item>
+            <code><![CDATA[
+            4+80002+306+31000+9004000+4030109+38+24+675+1+75+1+39+8+46+2+2640708+3902090000010000002080+36+20007:713 723 533 633 537 575 176 576 577 579 583 784 586 587 496 997
+            ]]></code>
+            </item>
+            </list>
+            </example>
         </member>
         <member name="P:Sudoku.Text.Parsers.SusserGridParser.ShortenSusserFormat">
             <summary>
+            <para>
             Indicates whether the parser will use shorten mode to parse a susser format grid.
             If the value is <see langword="true"/>, the parser will omit the continuous empty notation
             <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </para>
+            <para>
+            This option will omit the continuous empty cells to a <c>*</c> in a single line. For example, the code
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            will be displayed as
+            <code><![CDATA[
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            ]]></code>
+            via this option.
+            We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
+            </para>
             </summary>
         </member>
         <member name="P:Sudoku.Text.Parsers.SusserGridParser.NegateEliminationsTripletRule">

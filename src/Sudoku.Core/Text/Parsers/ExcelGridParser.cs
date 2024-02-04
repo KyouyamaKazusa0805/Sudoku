@@ -3,7 +3,21 @@ namespace Sudoku.Text.Parsers;
 /// <summary>
 /// Represents an Excel grid parser.
 /// </summary>
-public sealed partial record ExcelGridParser : IConceptParser<Grid>
+/// <example>
+/// For example:
+/// <code><![CDATA[
+/// 1			7	8	9	4	5	6
+/// 4	5	6	1	2	3	7	8	9
+/// 7	8	9	4	5	6	1	2	
+/// 9	1	2	6		8	3	4	
+/// 3	4	5				6	7	8
+/// 	7	8	3		5	9	1	2
+/// 	9	1	5	6	7	2	3	4
+/// 2	3	4	8	9	1	5	6	7
+/// 5	6	7	2	3	4			1
+/// ]]></code>
+/// </example>
+public sealed record ExcelGridParser : IConceptParser<Grid>
 {
 	/// <inheritdoc/>
 	public Func<string, Grid> Parser
