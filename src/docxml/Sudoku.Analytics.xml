@@ -4937,6 +4937,12 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.EnableLastDigit">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/>
         </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AnalyzerUseIttoryuMode">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+        </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -4955,11 +4961,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectLockedSubset">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DirectNakedSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DirectHiddenSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
@@ -10573,6 +10579,17 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset">
             <summary>
             Indicates whether the step searcher allows searching for direct locked subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize">
+            <summary>
+            Indicates the size of the naked subsets you want to search for (including locked subsets and naked subsets (+)).
+            The maximum value is 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize">
+            <summary>
+            Indicates the size of the hidden subsets you want to search for (including locked hidden subsets). The maximum value is 4.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

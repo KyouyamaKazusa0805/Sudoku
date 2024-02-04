@@ -1473,6 +1473,18 @@
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>该设置项控制的是步骤收集操作的行为。如果允许收集的技巧越多，那么程序运行的速度也会越慢。</value>
   </data>
+  <data name="SettingsPage_DirectHiddenSubsetMaxSize" xml:space="preserve">
+    <value>允许搜索的直观隐性数组的最大规格（含隐性死锁数组）</value>
+  </data>
+  <data name="SettingsPage_DirectHiddenSubsetMaxSizeDescription" xml:space="preserve">
+    <value>使用方式同上一个设置项。建议设置为 2，最大值为 4。</value>
+  </data>
+  <data name="SettingsPage_DirectNakedSubsetMaxSize" xml:space="preserve">
+    <value>允许搜索的直观显性数组的最大规格（含死锁数组和显性数组带区块）</value>
+  </data>
+  <data name="SettingsPage_DirectNakedSubsetMaxSizeDescription" xml:space="preserve">
+    <value>有些时候，显性数组规格大于 2 的时候不是那么“直观”，因此需要一个选项来控制规格。该选项控制的就是搜索的直观数组的规格。注意，这个设置项只跟直观技巧里的数组（上面那个设置项）有关，跟普通数组的搜索无关。建议设置为 2，最大值为 4。</value>
+  </data>
   <data name="SettingsPage_DirectTechniquesGroup" xml:space="preserve">
     <value>直观技巧</value>
   </data>
@@ -1884,7 +1896,7 @@
     <value>技巧搜索器的执行顺序</value>
   </data>
   <data name="SettingsPage_StepSearcherOrderingDescription" xml:space="preserve">
-    <value>该设置项列举的是程序使用到的技巧步骤的搜索顺序。比如说，如果你将“数组”的这一个项拖到“区块”之前，那么数组技巧就会先搜索，然后才是区块。如果你取消勾选它，那么程序在搜搜技巧步骤的时候，就不会搜索对应技巧类型的步骤。另外，我们强烈不建议你将一些非常重要的技巧禁用掉或者重新调整顺序，例如“排除和唯余”。</value>
+    <value>该设置项列举的是程序使用到的技巧步骤的搜索顺序。比如说，如果你将“数组”的这一个项拖到“区块”之前，那么数组技巧就会先搜索，然后才是区块。如果你取消勾选它，那么程序在搜搜技巧步骤的时候，就不会搜索对应技巧类型的步骤。另外，我们强烈不建议你将一些非常重要的技巧禁用掉或者重新调整顺序。</value>
   </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>强链的虚线周期</value>

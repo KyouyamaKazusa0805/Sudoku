@@ -1470,6 +1470,18 @@
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed.</value>
   </data>
+  <data name="SettingsPage_DirectHiddenSubsetMaxSize" xml:space="preserve">
+    <value>Max size of Direct Hidden Subsets (including Locked Hidden Subsets)</value>
+  </data>
+  <data name="SettingsPage_DirectHiddenSubsetMaxSizeDescription" xml:space="preserve">
+    <value>Same as above, but this option controls with Direct Hidden Subsets. The suggested value is 2, and the maximum value is 4.</value>
+  </data>
+  <data name="SettingsPage_DirectNakedSubsetMaxSize" xml:space="preserve">
+    <value>Max size of Direct Naked Subsets (including Locked Subsets and Naked Subsets (+))</value>
+  </data>
+  <data name="SettingsPage_DirectNakedSubsetMaxSizeDescription" xml:space="preserve">
+    <value>Sometimes subsets whose size greater than 2 are not "direct". This option can control with this in searching for Direct Naked Subsets. This option only works with direct techniques (mentioned above this option). The suggested value is 2, and the maximum value is 4.</value>
+  </data>
   <data name="SettingsPage_DirectTechniquesGroup" xml:space="preserve">
     <value>Single, Direct Intersection &amp; Direct Subset</value>
   </data>
@@ -1881,7 +1893,7 @@ In additional, some sudoku panels in some pages may not be related to this optio
     <value>Ordering of step searchers</value>
   </data>
   <data name="SettingsPage_StepSearcherOrderingDescription" xml:space="preserve">
-    <value>This option controls the ordering of step-searching. For example, if you put "Subsets" before "Locked Candidates", subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers such as "Singles".</value>
+    <value>This option controls the ordering of step-searching. For example, if you put "Subsets" before "Locked Candidates", subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers.</value>
   </data>
   <data name="SettingsPage_StrongLinkDashStyle" xml:space="preserve">
     <value>Strong link dash style</value>

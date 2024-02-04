@@ -16,6 +16,12 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="SingleStepSearcher.EnableLastDigit"/>
 	public const string EnableLastDigit = nameof(EnableLastDigit);
 
+	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
+	public const string HiddenSinglesInBlockFirst = nameof(HiddenSinglesInBlockFirst);
+
+	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
+	public const string AnalyzerUseIttoryuMode = nameof(AnalyzerUseIttoryuMode);
+
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	public const string AllowDirectPointing = nameof(AllowDirectPointing);
 
@@ -34,11 +40,11 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
 	public const string AllowDirectLockedSubset = nameof(AllowDirectLockedSubset);
 
-	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
-	public const string HiddenSinglesInBlockFirst = nameof(HiddenSinglesInBlockFirst);
+	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
+	public const string DirectNakedSubsetMaxSize = nameof(DirectNakedSubsetMaxSize);
 
-	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
-	public const string AnalyzerUseIttoryuMode = nameof(AnalyzerUseIttoryuMode);
+	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
+	public const string DirectHiddenSubsetMaxSize = nameof(DirectHiddenSubsetMaxSize);
 
 	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
 	public const string DisableFinnedOrSashimiXWing = nameof(DisableFinnedOrSashimiXWing);

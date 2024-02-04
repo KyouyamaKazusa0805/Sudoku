@@ -4381,6 +4381,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max size of Direct Hidden Subsets (including Locked Hidden Subsets).
+        /// </summary>
+        internal static string SettingsPage_DirectHiddenSubsetMaxSize {
+            get {
+                return ResourceManager.GetString("SettingsPage_DirectHiddenSubsetMaxSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same as above, but this option controls with Direct Hidden Subsets. The suggested value is 2, and the maximum value is 4..
+        /// </summary>
+        internal static string SettingsPage_DirectHiddenSubsetMaxSizeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DirectHiddenSubsetMaxSizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max size of Direct Naked Subsets (including Locked Subsets and Naked Subsets (+)).
+        /// </summary>
+        internal static string SettingsPage_DirectNakedSubsetMaxSize {
+            get {
+                return ResourceManager.GetString("SettingsPage_DirectNakedSubsetMaxSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sometimes subsets whose size greater than 2 are not &quot;direct&quot;. This option can control with this in searching for Direct Naked Subsets. This option only works with direct techniques (mentioned above this option). The suggested value is 2, and the maximum value is 4..
+        /// </summary>
+        internal static string SettingsPage_DirectNakedSubsetMaxSizeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DirectNakedSubsetMaxSizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Single, Direct Intersection &amp; Direct Subset.
         /// </summary>
         internal static string SettingsPage_DirectTechniquesGroup {
@@ -5607,7 +5643,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers such as &quot;Singles&quot;..
+        ///   Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers..
         /// </summary>
         internal static string SettingsPage_StepSearcherOrderingDescription {
             get {

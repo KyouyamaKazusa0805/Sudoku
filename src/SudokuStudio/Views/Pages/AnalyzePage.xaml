@@ -209,6 +209,8 @@
 							a:AnalyzerProperties.AllowDirectNakedSubset="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectNakedSubset,Mode=OneWay}"
 							a:AnalyzerProperties.AllowDirectLockedHiddenSubset="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedHiddenSubset,Mode=OneWay}"
 							a:AnalyzerProperties.AllowDirectHiddenSubset="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectHiddenSubset,Mode=OneWay}"
+							a:AnalyzerProperties.DirectNakedSubsetMaxSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectNakedSubsetMaxSize,Mode=OneWay}"
+							a:AnalyzerProperties.DirectHiddenSubsetMaxSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectHiddenSubsetMaxSize,Mode=OneWay}"
 							a:AnalyzerProperties.AllowIncompleteUniqueRectangles="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowIncompleteUniqueRectangles,Mode=OneWay}"
 							a:AnalyzerProperties.SearchForExtendedUniqueRectangles="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForExtendedUniqueRectangles,Mode=OneWay}"
 							a:AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedBivalueUniversalGraveTypes,Mode=OneWay}"

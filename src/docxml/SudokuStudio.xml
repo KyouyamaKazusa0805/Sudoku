@@ -1039,6 +1039,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing"/>.
@@ -1074,12 +1080,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectanglesProperty">
             <summary>
@@ -1237,6 +1237,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWing"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSizeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSize"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSize"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSizeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSize"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSize"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -1288,6 +1300,9 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -1305,9 +1320,6 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
@@ -1394,6 +1406,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -8148,6 +8166,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectHiddenSubsetMaxSize">
+            <summary>
+              Looks up a localized string similar to Max size of Direct Hidden Subsets (including Locked Hidden Subsets).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectHiddenSubsetMaxSizeDescription">
+            <summary>
+              Looks up a localized string similar to Same as above, but this option controls with Direct Hidden Subsets. The suggested value is 2, and the maximum value is 4..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectNakedSubsetMaxSize">
+            <summary>
+              Looks up a localized string similar to Max size of Direct Naked Subsets (including Locked Subsets and Naked Subsets (+)).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectNakedSubsetMaxSizeDescription">
+            <summary>
+              Looks up a localized string similar to Sometimes subsets whose size greater than 2 are not &quot;direct&quot;. This option can control with this in searching for Direct Naked Subsets. This option only works with direct techniques (mentioned above this option). The suggested value is 2, and the maximum value is 4..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectTechniquesGroup">
             <summary>
               Looks up a localized string similar to Single, Direct Intersection &amp; Direct Subset.
@@ -8832,7 +8870,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_StepSearcherOrderingDescription">
             <summary>
-              Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers such as &quot;Singles&quot;..
+              Looks up a localized string similar to This option controls the ordering of step-searching. For example, if you put &quot;Subsets&quot; before &quot;Locked Candidates&quot;, subset-related steps will have a higher priority to be searched. If you disable it, it will be really disabled in step-searching. In addition, we recommend you NOT disable or re-order some important step searchers..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_StrongLinkDashStyle">
@@ -9727,6 +9765,11 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>HiddenSinglesInBlockFirst</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AnalyzerUseIttoryuMode</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>AllowDirectPointing</c>.
@@ -9757,9 +9800,14 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>AllowDirectHiddenSubset</c>.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty">
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSizeProperty">
             <summary>
-            Defines a attached property that binds with setter and getter methods <c>AnalyzerUseIttoryuMode</c>.
+            Defines a attached property that binds with setter and getter methods <c>DirectNakedSubsetMaxSize</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>DirectHiddenSubsetMaxSize</c>.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty">
@@ -9943,6 +9991,18 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty" />
         </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAnalyzerUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAnalyzerUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty" />
+        </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectPointing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty"/> to get or set value.
@@ -10015,17 +10075,29 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAnalyzerUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetDirectNakedSubsetMaxSize(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSizeProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSizeProperty" />
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAnalyzerUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject)">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetDirectNakedSubsetMaxSize(Microsoft.UI.Xaml.DependencyObject)">
             <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty"/> to get or set value.
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSizeProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty" />
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSizeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetDirectHiddenSubsetMaxSize(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetDirectHiddenSubsetMaxSize(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

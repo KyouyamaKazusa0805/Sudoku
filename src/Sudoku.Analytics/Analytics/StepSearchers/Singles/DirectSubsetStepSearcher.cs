@@ -65,6 +65,19 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectLockedSubset)]
 	public bool AllowDirectLockedSubset { get; set; }
 
+	/// <summary>
+	/// Indicates the size of the naked subsets you want to search for (including locked subsets and naked subsets (+)).
+	/// The maximum value is 4.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.DirectNakedSubsetMaxSize)]
+	public int DirectNakedSubsetMaxSize { get; set; } = 2;
+
+	/// <summary>
+	/// Indicates the size of the hidden subsets you want to search for (including locked hidden subsets). The maximum value is 4.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.DirectHiddenSubsetMaxSize)]
+	public int DirectHiddenSubsetMaxSize { get; set; } = 2;
+
 
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
@@ -77,9 +90,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 			{
-				for (var i = 0; i < 2; i++)
+				foreach (var searcher in searchers)
 				{
-					if (searchers[i](ref context, in grid, size, searchingForLocked) is { } step)
+					if (searcher(ref context, in grid, size, searchingForLocked) is { } step)
 					{
 						return step;
 					}
@@ -101,6 +114,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		bool searchingForLocked
 	)
 	{
+		if (size > DirectHiddenSubsetMaxSize)
+		{
+			return null;
+		}
+
 		for (var house = 0; house < 27; house++)
 		{
 			scoped ref readonly var currentHouseCells = ref HousesMap[house];
@@ -211,6 +229,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		bool searchingForLocked
 	)
 	{
+		if (size > DirectNakedSubsetMaxSize)
+		{
+			return null;
+		}
+
 		for (var house = 0; house < 27; house++)
 		{
 			if ((HousesMap[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
