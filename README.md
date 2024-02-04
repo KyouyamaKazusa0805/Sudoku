@@ -64,6 +64,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Hidden Single, Last Digit
 * Complex Singles
   * Direct Intersection
+  * Direct Subset
 * Candidate-Related Techniques
   * Locked Candidates Family
     * LC (Locked Candidates)
