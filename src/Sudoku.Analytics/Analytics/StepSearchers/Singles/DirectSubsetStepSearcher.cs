@@ -80,7 +80,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		var a = HiddenSubset;
 		var b = NakedSubset;
