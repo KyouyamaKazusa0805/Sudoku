@@ -133,7 +133,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
 	[ExplicitInterfaceImpl(typeof(ICollection<>))]
-	public new sealed unsafe void CopyTo(TElement[] array, int arrayIndex) => CopyTo(ref array[arrayIndex], Count - arrayIndex);
+	public new sealed void CopyTo(TElement[] array, int arrayIndex) => CopyTo(ref array[arrayIndex], Count - arrayIndex);
 
 	/// <summary>
 	/// Iterates on each element in this collection.

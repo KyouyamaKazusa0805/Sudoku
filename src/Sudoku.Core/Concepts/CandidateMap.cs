@@ -368,7 +368,8 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public readonly string ToString(CultureInfo? culture = null)
+		=> ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -377,6 +378,13 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly ReadOnlySpan<Candidate>.Enumerator GetEnumerator() => ((ReadOnlySpan<Candidate>)Offsets).GetEnumerator();
+
+	/// <summary>
+	/// Try to enumerate cell and digit value on each candidates.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CellDigitEnumerator EnumerateCellDigit() => new(Offsets);
 
 	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)

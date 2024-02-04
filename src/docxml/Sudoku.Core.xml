@@ -1930,6 +1930,42 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Concepts.CandidateMap.CellDigitEnumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each candidate of the collection,
+            with its cell and digit value in the target tuple.
+            </summary>
+            <param name="candidates">Indicates the candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.#ctor(System.Int32[])">
+            <summary>
+            Represents an enumerator type that can iterate on each candidate of the collection,
+            with its cell and digit value in the target tuple.
+            </summary>
+            <param name="candidates">Indicates the candidate offsets.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.CellDigitEnumerator._candidates">
+            <summary>
+            Indictaes the internal array.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.CellDigitEnumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.GetEnumerator">
+            <summary>
+            Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator itself.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`2.Empty"/>
         </member>
@@ -2050,6 +2086,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.EnumerateCellDigit">
+            <summary>
+            Try to enumerate cell and digit value on each candidates.
+            </summary>
+            <returns>The enumerator instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>

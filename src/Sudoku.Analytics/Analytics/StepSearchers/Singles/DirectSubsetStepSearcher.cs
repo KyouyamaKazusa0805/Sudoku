@@ -331,10 +331,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			foreach (var houseType in HouseTypes)
 			{
 				var house = cell.ToHouseIndex(houseType);
@@ -417,10 +415,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			foreach (var houseType in HouseTypes)
 			{
 				var house = cell.ToHouseIndex(houseType);
@@ -493,10 +489,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
 			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
@@ -564,10 +558,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			foreach (var houseType in HouseTypes)
 			{
 				var house = cell.ToHouseIndex(houseType);
@@ -648,10 +640,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			foreach (var houseType in HouseTypes)
 			{
 				var house = cell.ToHouseIndex(houseType);
@@ -722,10 +712,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
-		foreach (var candidate in conclusions)
+		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
-			var cell = candidate / 9;
-			var digit = candidate % 9;
 			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
 			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
