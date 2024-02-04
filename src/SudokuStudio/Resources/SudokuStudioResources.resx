@@ -1263,6 +1263,30 @@
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>Allow collision on ALS-XZ</value>
   </data>
+  <data name="SettingsPage_AllowDirectClaiming" xml:space="preserve">
+    <value>Direct Claiming</value>
+  </data>
+  <data name="SettingsPage_AllowDirectHiddenSubset" xml:space="preserve">
+    <value>Direct Hidden Subset</value>
+  </data>
+  <data name="SettingsPage_AllowDirectLockedHiddenSubset" xml:space="preserve">
+    <value>Direct Locked Hidden Subset</value>
+  </data>
+  <data name="SettingsPage_AllowDirectLockedSubset" xml:space="preserve">
+    <value>Direct Locked Subset</value>
+  </data>
+  <data name="SettingsPage_AllowDirectNakedSubset" xml:space="preserve">
+    <value>Direct Naked Subset</value>
+  </data>
+  <data name="SettingsPage_AllowDirectPointing" xml:space="preserve">
+    <value>Direct Pointing</value>
+  </data>
+  <data name="SettingsPage_AllowedDirectTechniques" xml:space="preserve">
+    <value>Allowed direct techinques</value>
+  </data>
+  <data name="SettingsPage_AllowedDirectTechniquesDescription" xml:space="preserve">
+    <value>"Direct Techniques" are techniques that are based on singles, but they will rely on some easy techniques only producing eliminations like Intersection and Subset. This option can make such direct techniques available in direct view mode. Disabled techniques here won't be appeared in the analysis operation.</value>
+  </data>
   <data name="SettingsPage_AllowIncompleteUniqueRectangles" xml:space="preserve">
     <value>Allow searching for Incomplete Unique Rectangle</value>
   </data>
@@ -1445,6 +1469,9 @@
   </data>
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed.</value>
+  </data>
+  <data name="SettingsPage_DirectTechniquesGroup" xml:space="preserve">
+    <value>Single, Direct Intersection &amp; Direct Subset</value>
   </data>
   <data name="SettingsPage_DisableFinnedOrSashimiXWing" xml:space="preserve">
     <value>Disable for Finned X-Wings &amp; Sashimi X-Wings</value>
@@ -1807,9 +1834,6 @@ In additional, some sudoku panels in some pages may not be related to this optio
   </data>
   <data name="SettingsPage_SeparatorIsEmpty" xml:space="preserve">
     <value>Empty (No separator)</value>
-  </data>
-  <data name="SettingsPage_SinglesGroup" xml:space="preserve">
-    <value>Singles</value>
   </data>
   <data name="SettingsPage_Slash" xml:space="preserve">
     <value>Slash (/)</value>

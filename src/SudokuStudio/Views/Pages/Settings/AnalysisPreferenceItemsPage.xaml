@@ -30,9 +30,9 @@
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 			<!--
-			SettingsPage_SinglesGroup
+			SettingsPage_DirectTechniquesGroup
 			-->
-			<TextBlock Text="{m:R Key=SettingsPage_SinglesGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<TextBlock Text="{m:R Key=SettingsPage_DirectTechniquesGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
 			</w:SettingsCard>
@@ -42,6 +42,42 @@
 			<w:SettingsCard Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsExpander
+				Header="{m:R Key=SettingsPage_AllowedDirectTechniques}"
+				Description="{m:R Key=SettingsPage_AllowedDirectTechniquesDescription}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectPointing}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectPointing,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectClaiming}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectClaiming,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectLockedSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectNakedSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectNakedSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectLockedHiddenSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedHiddenSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectHiddenSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectHiddenSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
 
 			<!--
 			SettingsPage_FishesGroup

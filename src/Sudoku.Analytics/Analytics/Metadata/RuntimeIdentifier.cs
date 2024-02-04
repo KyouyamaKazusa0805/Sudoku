@@ -16,6 +16,24 @@ public static class RuntimeIdentifier
 	/// <inheritdoc cref="SingleStepSearcher.EnableLastDigit"/>
 	public const string EnableLastDigit = nameof(EnableLastDigit);
 
+	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
+	public const string AllowDirectPointing = nameof(AllowDirectPointing);
+
+	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectClaiming"/>
+	public const string AllowDirectClaiming = nameof(AllowDirectClaiming);
+
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
+	public const string AllowDirectHiddenSubset = nameof(AllowDirectHiddenSubset);
+
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
+	public const string AllowDirectLockedHiddenSubset = nameof(AllowDirectLockedHiddenSubset);
+
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
+	public const string AllowDirectNakedSubset = nameof(AllowDirectNakedSubset);
+
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
+	public const string AllowDirectLockedSubset = nameof(AllowDirectLockedSubset);
+
 	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
 	public const string HiddenSinglesInBlockFirst = nameof(HiddenSinglesInBlockFirst);
 

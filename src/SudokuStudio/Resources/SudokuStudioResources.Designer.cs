@@ -3760,6 +3760,78 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Claiming.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectClaiming {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectClaiming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Hidden Subset.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectHiddenSubset {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectHiddenSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Locked Hidden Subset.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectLockedHiddenSubset {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectLockedHiddenSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Locked Subset.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectLockedSubset {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectLockedSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Naked Subset.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectNakedSubset {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectNakedSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Pointing.
+        /// </summary>
+        internal static string SettingsPage_AllowDirectPointing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowDirectPointing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowed direct techinques.
+        /// </summary>
+        internal static string SettingsPage_AllowedDirectTechniques {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowedDirectTechniques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Direct Techniques&quot; are techniques that are based on singles, but they will rely on some easy techniques only producing eliminations like Intersection and Subset. This option can make such direct techniques available in direct view mode. Disabled techniques here won&apos;t be appeared in the analysis operation..
+        /// </summary>
+        internal static string SettingsPage_AllowedDirectTechniquesDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowedDirectTechniquesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow searching for Incomplete Unique Rectangle.
         /// </summary>
         internal static string SettingsPage_AllowIncompleteUniqueRectangles {
@@ -4305,6 +4377,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_DifficultyLevelModeDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_DifficultyLevelModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single, Direct Intersection &amp; Direct Subset.
+        /// </summary>
+        internal static string SettingsPage_DirectTechniquesGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_DirectTechniquesGroup", resourceCulture);
             }
         }
         
@@ -5387,15 +5468,6 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_SeparatorIsEmpty {
             get {
                 return ResourceManager.GetString("SettingsPage_SeparatorIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Singles.
-        /// </summary>
-        internal static string SettingsPage_SinglesGroup {
-            get {
-                return ResourceManager.GetString("SettingsPage_SinglesGroup", resourceCulture);
             }
         }
         

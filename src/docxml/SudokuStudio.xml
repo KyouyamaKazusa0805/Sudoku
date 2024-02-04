@@ -1039,6 +1039,42 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectClaimingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectClaiming"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectClaiming"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedSubsetProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedSubset"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedSubset"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectNakedSubsetProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectNakedSubset"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectNakedSubset"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedHiddenSubsetProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedHiddenSubset"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedHiddenSubset"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubsetProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode"/>.
@@ -1251,6 +1287,24 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectClaiming">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectClaiming"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectNakedSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectLockedHiddenSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectHiddenSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
@@ -7749,6 +7803,46 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Allow collision on ALS-XZ.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectClaiming">
+            <summary>
+              Looks up a localized string similar to Direct Claiming.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectHiddenSubset">
+            <summary>
+              Looks up a localized string similar to Direct Hidden Subset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectLockedHiddenSubset">
+            <summary>
+              Looks up a localized string similar to Direct Locked Hidden Subset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectLockedSubset">
+            <summary>
+              Looks up a localized string similar to Direct Locked Subset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectNakedSubset">
+            <summary>
+              Looks up a localized string similar to Direct Naked Subset.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectPointing">
+            <summary>
+              Looks up a localized string similar to Direct Pointing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedDirectTechniques">
+            <summary>
+              Looks up a localized string similar to Allowed direct techinques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedDirectTechniquesDescription">
+            <summary>
+              Looks up a localized string similar to &quot;Direct Techniques&quot; are techniques that are based on singles, but they will rely on some easy techniques only producing eliminations like Intersection and Subset. This option can make such direct techniques available in direct view mode. Disabled techniques here won&apos;t be appeared in the analysis operation..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowIncompleteUniqueRectangles">
             <summary>
               Looks up a localized string similar to Allow searching for Incomplete Unique Rectangle.
@@ -8052,6 +8146,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DifficultyLevelModeDescription">
             <summary>
               Looks up a localized string similar to This option controls the behavior which level of steps that a step collector can collect. The more number of steps can be collected, the slower the program will be executed..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DirectTechniquesGroup">
+            <summary>
+              Looks up a localized string similar to Single, Direct Intersection &amp; Direct Subset.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DisableFinnedOrSashimiXWing">
@@ -8654,11 +8753,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SeparatorIsEmpty">
             <summary>
               Looks up a localized string similar to Empty (No separator).
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SinglesGroup">
-            <summary>
-              Looks up a localized string similar to Singles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Slash">
@@ -9633,6 +9727,36 @@ if (student is (name: var name, age: >= 18))
             Defines a attached property that binds with setter and getter methods <c>HiddenSinglesInBlockFirst</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectPointing</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaimingProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectClaiming</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubsetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectLockedSubset</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubsetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectNakedSubset</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubsetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectLockedHiddenSubset</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>AllowDirectHiddenSubset</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuModeProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>AnalyzerUseIttoryuMode</c>.
@@ -9818,6 +9942,78 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirstProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectPointing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectPointing(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectClaiming(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaimingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaimingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectClaiming(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaimingProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaimingProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectLockedSubset(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectLockedSubset(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectNakedSubset(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectNakedSubset(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectLockedHiddenSubset(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectLockedHiddenSubset(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectHiddenSubset(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowDirectHiddenSubset(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubsetProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAnalyzerUseIttoryuMode(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

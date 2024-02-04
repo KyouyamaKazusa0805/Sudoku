@@ -1266,6 +1266,30 @@
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
     <value>允许 ALS-XZ 技巧里的 ALS 结构重叠</value>
   </data>
+  <data name="SettingsPage_AllowDirectClaiming" xml:space="preserve">
+    <value>直观行列区块</value>
+  </data>
+  <data name="SettingsPage_AllowDirectHiddenSubset" xml:space="preserve">
+    <value>直观隐性数组</value>
+  </data>
+  <data name="SettingsPage_AllowDirectLockedHiddenSubset" xml:space="preserve">
+    <value>直观隐性死锁数组</value>
+  </data>
+  <data name="SettingsPage_AllowDirectLockedSubset" xml:space="preserve">
+    <value>直观死锁数组</value>
+  </data>
+  <data name="SettingsPage_AllowDirectNakedSubset" xml:space="preserve">
+    <value>直观显性数组</value>
+  </data>
+  <data name="SettingsPage_AllowDirectPointing" xml:space="preserve">
+    <value>直观宫区块</value>
+  </data>
+  <data name="SettingsPage_AllowedDirectTechniques" xml:space="preserve">
+    <value>允许的直观技巧</value>
+  </data>
+  <data name="SettingsPage_AllowedDirectTechniquesDescription" xml:space="preserve">
+    <value>这里的“直观技巧”指的是出数类型技巧和一些产生删数结论，但仍旧比较简单的技巧类型，如区块和数组。这个选项可以允许你将这些技巧纳入到计算之中，和出数结论一起整理为一个技巧。尚未勾选的技巧将不会纳入到直观的分析之中。</value>
+  </data>
   <data name="SettingsPage_AllowIncompleteUniqueRectangles" xml:space="preserve">
     <value>允许搜索残缺唯一矩形</value>
   </data>
@@ -1448,6 +1472,9 @@
   </data>
   <data name="SettingsPage_DifficultyLevelModeDescription" xml:space="preserve">
     <value>该设置项控制的是步骤收集操作的行为。如果允许收集的技巧越多，那么程序运行的速度也会越慢。</value>
+  </data>
+  <data name="SettingsPage_DirectTechniquesGroup" xml:space="preserve">
+    <value>直观技巧</value>
   </data>
   <data name="SettingsPage_DisableFinnedOrSashimiXWing" xml:space="preserve">
     <value>禁用鳍二阶鱼和退化二阶鱼</value>
@@ -1810,9 +1837,6 @@
   </data>
   <data name="SettingsPage_SeparatorIsEmpty" xml:space="preserve">
     <value>无分隔符</value>
-  </data>
-  <data name="SettingsPage_SinglesGroup" xml:space="preserve">
-    <value>出数类技巧</value>
   </data>
   <data name="SettingsPage_Slash" xml:space="preserve">
     <value>斜杠（/）</value>

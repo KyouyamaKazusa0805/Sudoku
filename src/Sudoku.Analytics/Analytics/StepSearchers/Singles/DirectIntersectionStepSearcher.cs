@@ -36,6 +36,19 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether the step searcher allows for searching for direct pointing.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectPointing)]
+	public bool AllowDirectPointing { get; set; }
+
+	/// <summary>
+	/// Indicates whether the step searcher allows for searching for direct claiming.
+	/// </summary>
+	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectClaiming)]
+	public bool AllowDirectClaiming { get; set; }
+
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -65,10 +78,15 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 					continue;
 				}
 
+				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
+				if (!AllowDirectPointing && realBaseSet < 9 || !AllowDirectClaiming && realBaseSet >= 9)
+				{
+					continue;
+				}
+
 				// Different with normal locked candidates searcher, this searcher is used as direct views.
 				// We should check any possible assignments after such eliminations applied -
 				// such assignments are the real conclusions of this technique.
-				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
 				if (CheckFullHouse(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } fullHouse)
 				{
 					return fullHouse;
