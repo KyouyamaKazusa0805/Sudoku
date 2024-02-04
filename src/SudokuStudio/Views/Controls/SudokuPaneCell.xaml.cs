@@ -80,7 +80,6 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		_internalDigitDisplayers.ForEach(static e => e.OpacityTransition = new());
-
 		ValueSurrounder.BackgroundTransition = new() { Duration = TimeSpan.FromMilliseconds(HouseCompletedFeedbackDuration) };
 	}
 
