@@ -436,12 +436,7 @@ internal static class RenderableFactory
 					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
-					result.Margin = result switch
-					{
-						Star or Triangle or Diamond => new(3, 0, 0, 0),
-						_ => new(6)
-					};
-
+					result.Margin = result switch { Star or Triangle or Diamond => new(3, 0, 0, 0), _ => new(6) };
 					return result;
 				}
 			}
