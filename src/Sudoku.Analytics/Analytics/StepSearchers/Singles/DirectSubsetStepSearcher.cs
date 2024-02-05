@@ -643,6 +643,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
+							new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
 							new CellViewNode(ColorIdentifier.Auxiliary3, cell),
 							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
