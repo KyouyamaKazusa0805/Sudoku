@@ -139,7 +139,7 @@ public static class CellMapEnumerable
 		foreach (var cell in @this)
 		{
 			var key = keySelector(cell);
-			if (!dictionary.TryAdd(key, CellsMap[cell]))
+			if (!dictionary.TryAdd(key, [cell]))
 			{
 				var originalElement = dictionary[key];
 				originalElement.Add(cell);

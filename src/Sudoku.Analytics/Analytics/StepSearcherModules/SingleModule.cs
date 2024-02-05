@@ -22,7 +22,7 @@ internal static class SingleModule
 		out CellMap chosenCells
 	)
 	{
-		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in CellsMap[cell]) is { } info)
+		if (Crosshatching.GetCrosshatchingInfo(in grid, digit, house, [cell]) is { } info)
 		{
 			(chosenCells, var covered, var excluded) = info;
 			return (CellViewNode[])[

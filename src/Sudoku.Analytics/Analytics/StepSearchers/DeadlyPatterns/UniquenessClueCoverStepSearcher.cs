@@ -82,7 +82,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 					]
 				],
 				context.PredefinedOptions,
-				CellsMap[c1] + c2,
+				[c1, c2],
 				(Mask)(1 << c1Digit | 1 << c2Digit),
 				chuteIndex
 			);

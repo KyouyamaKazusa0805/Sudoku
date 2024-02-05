@@ -158,7 +158,7 @@ public sealed partial class AlmostLockedSet(
 				eliminationMap[digit] = PeersMap[cell] & candidatesMap[digit];
 			}
 
-			result.Add(new(grid.GetCandidates(cell), in CellsMap[cell], PeersMap[cell] & emptyMap, eliminationMap));
+			result.Add(new(grid.GetCandidates(cell), [cell], PeersMap[cell] & emptyMap, eliminationMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.

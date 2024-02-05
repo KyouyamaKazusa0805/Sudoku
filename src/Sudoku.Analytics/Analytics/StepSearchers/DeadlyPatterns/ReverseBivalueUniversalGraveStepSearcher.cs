@@ -488,9 +488,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				cellOffsets.Add(new(cellsChosen.Contains(cell) ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell));
 			}
 
-			var lockedTargetInner = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellInnerPattern]);
-			var lockedTargetOuter = new LockedTarget(selectedDigit, CellsMap[conjugatePairCellOuterPattern]);
-			var anotherLockedTarget = new LockedTarget(selectedDigit, CellsMap[anotherCell]);
+			var lockedTargetInner = new LockedTarget(selectedDigit, [conjugatePairCellInnerPattern]);
+			var lockedTargetOuter = new LockedTarget(selectedDigit, [conjugatePairCellOuterPattern]);
+			var anotherLockedTarget = new LockedTarget(selectedDigit, [anotherCell]);
 			var step = new ReverseBivalueUniversalGraveType4Step(
 				[new(Elimination, anotherCell, selectedDigit)],
 				[

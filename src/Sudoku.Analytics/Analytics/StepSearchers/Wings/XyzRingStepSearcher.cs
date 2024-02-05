@@ -150,7 +150,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						for (var conflictedHouse = 0; conflictedHouse < 27; conflictedHouse++)
 						{
 							var cellsShouldBeCovered = HousesMap[conflictedHouse] & CandidatesMap[intersectedDigit];
-							if (!cellsShouldBeCovered || !!(cellsShouldBeCovered & (CellsMap[pivot] + leafCell1 + leafCell2)))
+							if (!cellsShouldBeCovered || !!(cellsShouldBeCovered & [pivot, leafCell1, leafCell2]))
 							{
 								continue;
 							}

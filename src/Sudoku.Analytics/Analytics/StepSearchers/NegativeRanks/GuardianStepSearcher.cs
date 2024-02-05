@@ -115,7 +115,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		var result = new List<Pattern>();
 		foreach (var cell in CandidatesMap[digit])
 		{
-			dfs(cell, cell, 0, in CellsMap[cell], in CellMap.Empty, digit, &predicate, result);
+			dfs(cell, cell, 0, [cell], [], digit, &predicate, result);
 		}
 
 		return [.. result.Distinct()];

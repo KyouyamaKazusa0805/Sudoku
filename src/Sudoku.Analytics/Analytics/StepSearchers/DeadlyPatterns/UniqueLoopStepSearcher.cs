@@ -699,8 +699,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			result.Add(
 				new(
 					ColorIdentifier.Normal,
-					new(digit, CellsMap[path[i]]),
-					new(digit, CellsMap[path[i + 1 == path.Length ? 0 : i + 1]]),
+					new(digit, [path[i]]),
+					new(digit, [path[i + 1 == path.Length ? 0 : i + 1]]),
 					Inference.ConjugatePair
 				)
 			);
