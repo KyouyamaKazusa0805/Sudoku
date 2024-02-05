@@ -35,9 +35,9 @@ public partial struct CandidateMap :
 	ICoordinateObject<CandidateMap>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
-	IBitStatusMap<CandidateMap, Candidate>
+	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
-	/// <inheritdoc cref="IBitStatusMap{T, TElement}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{T, TElement, TEnumerator}.Empty"/>
 	public static readonly CandidateMap Empty;
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
@@ -247,16 +247,16 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CandidateMap, Candidate>.Shifting => sizeof(long) << 3;
+	readonly int IBitStatusMap<CandidateMap, Candidate, Enumerator>.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
-	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate>.Offsets => Offsets;
+	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate, Enumerator>.Offsets => Offsets;
 
 	/// <inheritdoc/>
-	static Candidate IBitStatusMap<CandidateMap, Candidate>.MaxCount => 9 * 9 * 9;
+	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
 
 	/// <inheritdoc/>
-	static CandidateMap IBitStatusMap<CandidateMap, Candidate>.Empty => Empty;
+	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CandidateMap IMinMaxValue<CandidateMap>.MaxValue => MaxValue;
@@ -377,7 +377,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<Candidate>.Enumerator GetEnumerator() => ((ReadOnlySpan<Candidate>)Offsets).GetEnumerator();
+	public readonly Enumerator GetEnumerator() => new(Offsets);
 
 	/// <summary>
 	/// Try to enumerate cell and digit value on each candidates.
@@ -450,7 +450,7 @@ public partial struct CandidateMap :
 		{
 			if (n > 30 && subsetSize > 30)
 			{
-				throw new NotSupportedException(IBitStatusMap<CandidateMap, Candidate>.ErrorInfo_SubsetsExceeded);
+				throw new NotSupportedException(IBitStatusMap<CandidateMap, Candidate, Enumerator>.ErrorInfo_SubsetsExceeded);
 			}
 			var result = new List<CandidateMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
@@ -555,7 +555,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap, Candidate>.ExceptWith(IEnumerable<Candidate> other)
+	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.ExceptWith(IEnumerable<Candidate> other)
 	{
 		foreach (var element in other)
 		{
@@ -565,10 +565,10 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate>.IntersectWith(IEnumerable<Candidate> other) => this &= [.. other];
+	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.IntersectWith(IEnumerable<Candidate> other) => this &= [.. other];
 
 	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap, Candidate>.SymmetricExceptWith(IEnumerable<Candidate> other)
+	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.SymmetricExceptWith(IEnumerable<Candidate> other)
 	{
 		var left = this;
 		foreach (var element in other)
@@ -582,7 +582,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate>.UnionWith(IEnumerable<Candidate> other) => this |= [.. other];
+	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.UnionWith(IEnumerable<Candidate> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>

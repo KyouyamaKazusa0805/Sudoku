@@ -296,7 +296,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	)
 	{
 		// Check whether all true candidates lie in a same house.
-		var map = BitStatusMapGroup<CandidateMap, Candidate, Cell>.CreateMapByKeys(from c in trueCandidates group c by c / 9);
+		var map = TargetCandidatesGroup.CreateMapByKeys(from c in trueCandidates group c by c / 9);
 		if (!map.InOneHouse(out _))
 		{
 			return null;
@@ -403,7 +403,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// Check two cell has same house.
-		var cells = BitStatusMapGroup<CandidateMap, Candidate, Cell>.CreateMapByKeys(candsGroupByCell);
+		var cells = TargetCandidatesGroup.CreateMapByKeys(candsGroupByCell);
 		var houses = cells.CoveredHouses;
 		if (houses != 0)
 		{

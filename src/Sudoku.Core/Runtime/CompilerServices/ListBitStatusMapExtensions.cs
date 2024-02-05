@@ -1,10 +1,11 @@
 namespace Sudoku.Runtime.CompilerServices;
 
 /// <summary>
-/// Represents a list of extension methods operating with <see cref="List{T}"/> of <see cref="IBitStatusMap{TSelf, TElement}"/>.
+/// Represents a list of extension methods operating with <see cref="List{T}"/>
+/// of <see cref="IBitStatusMap{TSelf, TElement, TEnumerator}"/>.
 /// </summary>
 /// <seealso cref="List{T}"/>
-/// <seealso cref="IBitStatusMap{TSelf, TElement}"/>
+/// <seealso cref="IBitStatusMap{TSelf, TElement, TEnumerator}"/>
 public static class ListBitStatusMapExtensions
 {
 	/// <summary>

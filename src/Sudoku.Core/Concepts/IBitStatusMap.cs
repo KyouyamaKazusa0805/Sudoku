@@ -5,9 +5,10 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
+/// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
 [LargeStructure]
 [EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
-public partial interface IBitStatusMap<TSelf, TElement> :
+public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICultureFormattable,
@@ -20,8 +21,9 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	ISet<TElement>,
 	ISimpleParsable<TSelf>,
 	ISubtractionOperators<TSelf, TSelf, TSelf>
-	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement>
+	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TEnumerator : struct, IEnumerator<TElement>
 {
 	/// <summary>
 	/// Indicates the error information describing the case that the number of subsets calculated by methods
@@ -297,7 +299,7 @@ public partial interface IBitStatusMap<TSelf, TElement> :
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public new abstract ReadOnlySpan<TElement>.Enumerator GetEnumerator();
+	public new abstract TEnumerator GetEnumerator();
 
 	/// <inheritdoc cref="RandomSelect(int, Random)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

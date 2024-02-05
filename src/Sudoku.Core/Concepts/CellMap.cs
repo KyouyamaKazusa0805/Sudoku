@@ -31,7 +31,7 @@ namespace Sudoku.Concepts;
 [ComparisonOperators]
 public partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
-	IBitStatusMap<CellMap, Cell>,
+	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
 	ICoordinateObject<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
@@ -39,11 +39,11 @@ public partial struct CellMap :
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
 	ISubtractionOperators<CellMap, Cell, CellMap>
 {
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Shifting"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.Empty"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CellMap Empty;
 
 
@@ -406,16 +406,16 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CellMap, Cell>.Shifting => Shifting;
+	readonly int IBitStatusMap<CellMap, Cell, Enumerator>.Shifting => Shifting;
 
 	/// <inheritdoc/>
-	readonly Cell[] IBitStatusMap<CellMap, Cell>.Offsets => Offsets;
+	readonly Cell[] IBitStatusMap<CellMap, Cell, Enumerator>.Offsets => Offsets;
 
 	/// <inheritdoc/>
-	static Cell IBitStatusMap<CellMap, Cell>.MaxCount => 9 * 9;
+	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>
-	static CellMap IBitStatusMap<CellMap, Cell>.Empty => Empty;
+	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CellMap IMinMaxValue<CellMap>.MaxValue => ~Empty;
@@ -634,7 +634,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<Cell>.Enumerator GetEnumerator() => ((ReadOnlySpan<Cell>)Offsets).GetEnumerator();
+	public readonly Enumerator GetEnumerator() => new(Offsets);
 
 	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)
@@ -708,7 +708,7 @@ public partial struct CellMap :
 		{
 			if (n > 30 && subsetSize > 30)
 			{
-				throw new NotSupportedException(IBitStatusMap<CellMap, Cell>.ErrorInfo_SubsetsExceeded);
+				throw new NotSupportedException(IBitStatusMap<CellMap, Cell, Enumerator>.ErrorInfo_SubsetsExceeded);
 			}
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
@@ -804,7 +804,7 @@ public partial struct CellMap :
 	public void Clear() => this = default;
 
 	/// <inheritdoc/>
-	void IBitStatusMap<CellMap, Cell>.ExceptWith(IEnumerable<Cell> other)
+	void IBitStatusMap<CellMap, Cell, Enumerator>.ExceptWith(IEnumerable<Cell> other)
 	{
 		foreach (var element in other)
 		{
@@ -814,10 +814,10 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.IntersectWith(IEnumerable<Cell> other) => this &= [.. other];
+	void IBitStatusMap<CellMap, Cell, Enumerator>.IntersectWith(IEnumerable<Cell> other) => this &= [.. other];
 
 	/// <inheritdoc/>
-	void IBitStatusMap<CellMap, Cell>.SymmetricExceptWith(IEnumerable<Cell> other)
+	void IBitStatusMap<CellMap, Cell, Enumerator>.SymmetricExceptWith(IEnumerable<Cell> other)
 	{
 		var left = this;
 		foreach (var element in other)
@@ -831,7 +831,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell>.UnionWith(IEnumerable<Cell> other) => this |= [.. other];
+	void IBitStatusMap<CellMap, Cell, Enumerator>.UnionWith(IEnumerable<Cell> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>

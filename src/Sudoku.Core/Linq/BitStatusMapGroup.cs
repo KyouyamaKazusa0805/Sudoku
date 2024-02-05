@@ -5,6 +5,7 @@ namespace Sudoku.Linq;
 /// </summary>
 /// <typeparam name="TMap">The type of the map that stores the <see cref="Values"/>.</typeparam>
 /// <typeparam name="TElement">The type of elements stored in <see cref="Values"/>.</typeparam>
+/// <typeparam name="TEnumerator">The type of enumerator.</typeparam>
 /// <typeparam name="TKey">The type of the key in the group.</typeparam>
 /// <param name="key">Indicates the key used.</param>
 /// <param name="values">Indicates the candidates.</param>
@@ -14,13 +15,17 @@ namespace Sudoku.Linq;
 [GetHashCode]
 [EqualityOperators]
 [LargeStructure]
-public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([PrimaryConstructorParameter] TKey key, [PrimaryConstructorParameter, HashCodeMember] scoped ref readonly TMap values) :
+public readonly partial struct BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>(
+	[PrimaryConstructorParameter] TKey key,
+	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly TMap values
+) :
 	IEnumerable<TElement>,
-	IEquatable<BitStatusMapGroup<TMap, TElement, TKey>>,
-	IEqualityOperators<BitStatusMapGroup<TMap, TElement, TKey>, BitStatusMapGroup<TMap, TElement, TKey>, bool>,
+	IEquatable<BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>>,
+	IEqualityOperators<BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>, BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>, bool>,
 	IGrouping<TKey, TElement>
-	where TMap : unmanaged, IBitStatusMap<TMap, TElement>
+	where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
+	where TEnumerator : struct, IEnumerator<TElement>
 	where TKey : notnull
 {
 	/// <summary>
@@ -30,7 +35,7 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([PrimaryC
 	public int Count => Values.Count;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement}.this[int]"/>
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.this[int]"/>
 	public TElement this[int index] => Values[index];
 
 
@@ -41,22 +46,22 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TKey>([PrimaryC
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public bool Equals(scoped ref readonly BitStatusMapGroup<TMap, TElement, TKey> other) => Values == other.Values;
+	public bool Equals(scoped ref readonly BitStatusMapGroup<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
 	/// </summary>
 	/// <returns>An enumerator object that can be used to iterate through the collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<TElement>.Enumerator GetEnumerator() => Values.GetEnumerator();
+	public TEnumerator GetEnumerator() => Values.GetEnumerator();
 
 	/// <summary>
 	/// Makes a <see cref="CellMap"/> instance that is concatenated by a list of groups
-	/// of type <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/>, adding their keys.
+	/// of type <see cref="BitStatusMapGroup{TMap, TElement, TEnumerator, TKey}"/>, adding their keys.
 	/// </summary>
 	/// <param name="groups">The groups.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGroup<TMap, TElement, Cell>> groups)
+	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGroup<TMap, TElement, TEnumerator, Cell>> groups)
 	{
 		var result = CellMap.Empty;
 		foreach (ref readonly var group in groups)

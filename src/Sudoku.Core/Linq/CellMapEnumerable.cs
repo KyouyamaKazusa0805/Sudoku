@@ -29,7 +29,7 @@ public static class CellMapEnumerable
 	public static Cell First(
 		this scoped ref readonly CellMap @this,
 		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CellMap, Cell> match
+		BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator> match
 	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException("No possible elements found.");
 
 	/// <summary>
@@ -61,7 +61,7 @@ public static class CellMapEnumerable
 	public static Cell? FirstOrNull(
 		this scoped ref readonly CellMap @this,
 		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CellMap, Cell> match
+		BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator> match
 	)
 	{
 		foreach (var cell in @this.Offsets)
@@ -127,10 +127,10 @@ public static class CellMapEnumerable
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
 	/// </param>
 	/// <returns>
-	/// A list of <see cref="BitStatusMapGroup{TMap, TElement, TKey}"/> instances where each value object contains a sequence of objects and a key.
+	/// A list of <see cref="BitStatusMapGroup{TMap, TElement, TEnumerator, TKey}"/> instances where each value object contains a sequence of objects and a key.
 	/// </returns>
-	/// <seealso cref="BitStatusMapGroup{TMap, TElement, TKey}"/>
-	public static ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, TKey>> GroupBy<TKey>(
+	/// <seealso cref="BitStatusMapGroup{TMap, TElement, TEnumerator, TKey}"/>
+	public static ReadOnlySpan<BitStatusMapGroup<CellMap, Cell, CellMap.Enumerator, TKey>> GroupBy<TKey>(
 		this scoped ref readonly CellMap @this,
 		Func<Cell, TKey> keySelector
 	) where TKey : notnull
@@ -147,7 +147,7 @@ public static class CellMapEnumerable
 			}
 		}
 
-		var result = new BitStatusMapGroup<CellMap, Cell, TKey>[dictionary.Count];
+		var result = new BitStatusMapGroup<CellMap, Cell, CellMap.Enumerator, TKey>[dictionary.Count];
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{
