@@ -437,9 +437,19 @@ internal static class RenderableFactory
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
 
-					if (result is not (Star or Triangle or Diamond))
+					switch (result)
 					{
-						result.Margin = new(6);
+						case Star or Triangle or Diamond:
+						{
+							// Rescue: Align is not correct for controls using a ViewBox.
+							result.Margin = new(3, 0, 0, 0);
+							break;
+						}
+						default:
+						{
+							result.Margin = new(6);
+							break;
+						}
 					}
 
 					return result;
