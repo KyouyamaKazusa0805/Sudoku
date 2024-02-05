@@ -436,21 +436,11 @@ internal static class RenderableFactory
 					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
-
-					switch (result)
+					result.Margin = result switch
 					{
-						case Star or Triangle or Diamond:
-						{
-							// Rescue: Align is not correct for controls using a ViewBox.
-							result.Margin = new(3, 0, 0, 0);
-							break;
-						}
-						default:
-						{
-							result.Margin = new(6);
-							break;
-						}
-					}
+						Star or Triangle or Diamond => new(3, 0, 0, 0),
+						_ => new(6)
+					};
 
 					return result;
 				}
