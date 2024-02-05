@@ -784,6 +784,21 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	public int AddRange(scoped ReadOnlySpan<Cell> offsets)
+	{
+		var result = 0;
+		foreach (var offset in offsets)
+		{
+			if (Add(offset))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Cell offset)
 	{
@@ -797,6 +812,21 @@ public partial struct CellMap :
 		}
 
 		return false;
+	}
+
+	/// <inheritdoc/>
+	public int RemoveRange(scoped ReadOnlySpan<Cell> offsets)
+	{
+		var result = 0;
+		foreach (var offset in offsets)
+		{
+			if (Remove(offset))
+			{
+				result++;
+			}
+		}
+
+		return result;
 	}
 
 	/// <inheritdoc/>

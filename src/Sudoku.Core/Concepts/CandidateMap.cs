@@ -535,8 +535,19 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => this = default;
+	public int AddRange(scoped ReadOnlySpan<Candidate> offsets)
+	{
+		var result = 0;
+		foreach (var offset in offsets)
+		{
+			if (Add(offset))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -553,6 +564,25 @@ public partial struct CandidateMap :
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	public int RemoveRange(scoped ReadOnlySpan<Candidate> offsets)
+	{
+		var result = 0;
+		foreach (var offset in offsets)
+		{
+			if (Remove(offset))
+			{
+				result++;
+			}
+		}
+
+		return result;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Clear() => this = default;
 
 	/// <inheritdoc/>
 	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.ExceptWith(IEnumerable<Candidate> other)

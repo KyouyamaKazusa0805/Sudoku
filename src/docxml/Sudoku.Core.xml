@@ -2128,10 +2128,16 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Clear">
+        <member name="M:Sudoku.Concepts.CandidateMap.AddRange(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Remove(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.RemoveRange(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Clear">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
@@ -2606,7 +2612,13 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.AddRange(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Remove(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.RemoveRange(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
@@ -4469,13 +4481,27 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Adds a new offset into the current collection.
             </summary>
-            <param name="offset">The offset.</param>
+            <param name="offset">An offset to be added.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.AddRange(System.ReadOnlySpan{`1})">
+            <summary>
+            Adds a list of offsets into the current collection.
+            </summary>
+            <param name="offsets">Offsets to be added.</param>
+            <returns>The number of offsets succeeded to be added.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Remove(`1)">
             <summary>
-            Set the specified offset as <see langword="false"/> value.
+            Removes the specified offset from the current collection.
             </summary>
-            <param name="offset">The offset.</param>
+            <param name="offset">An offset to be removed.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.RemoveRange(System.ReadOnlySpan{`1})">
+            <summary>
+            Removes a list of offsets from the current collection.
+            </summary>
+            <param name="offsets">Offsets to be removed.</param>
+            <returns>The number of offsets succeeded to be removed.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Clear">
             <summary>
