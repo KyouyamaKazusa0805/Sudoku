@@ -2519,9 +2519,6 @@ fixed (short* ptr = instance)
         <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.CountLargeStruct``1(System.Collections.Generic.List{``0},System.FuncRefReadOnly{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
-        </member>
         <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>

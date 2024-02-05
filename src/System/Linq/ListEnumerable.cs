@@ -21,21 +21,6 @@ public static class ListEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
-	public static int CountLargeStruct<T>(this List<T> @this, FuncRefReadOnly<T, bool> predicate) where T : struct
-	{
-		var result = 0;
-		foreach (ref readonly var element in @this.AsSpan())
-		{
-			if (predicate(in element))
-			{
-				result++;
-			}
-		}
-
-		return result;
-	}
-
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static ReadOnlySpan<TSource> Where<TSource>(this List<TSource> source, Func<TSource, bool> condition)
 	{
