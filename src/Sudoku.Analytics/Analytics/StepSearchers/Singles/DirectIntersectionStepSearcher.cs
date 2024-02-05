@@ -31,7 +31,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.PointingCrosshatchingColumn, Technique.PointingNakedSingle,
 	Technique.ClaimingFullHouse, Technique.ClaimingCrosshatchingBlock, Technique.ClaimingCrosshatchingRow,
 	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
-	IsFixed = true, IsReadOnly = true)]
+	IsPure = true, IsFixed = true, IsReadOnly = true)]
 [StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
 [StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
@@ -58,27 +58,27 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+		var emptyCells = grid.EmptyCells;
+		var candidatesMap = grid.CandidatesMap;
+		foreach (var ((bs, cs), (a, b, c, _)) in IntersectionMaps)
 		{
-			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, out var m))
+			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, in emptyCells, out var m))
 			{
 				continue;
 			}
 
 			foreach (var digit in m)
 			{
-				scoped ref readonly var candidatesMap = ref CandidatesMap[digit];
+				scoped ref readonly var map = ref candidatesMap[digit];
 
 				// Check whether the digit contains any eliminations.
-				var (housesMask, elimMap) = a & candidatesMap
-					? ((Mask)(coverSet << 8 | baseSet), a & candidatesMap)
-					: ((Mask)(baseSet << 8 | coverSet), b & candidatesMap);
+				var (housesMask, elimMap) = a & map ? ((Mask)(cs << 8 | bs), a & map) : ((Mask)(bs << 8 | cs), b & map);
 				if (!elimMap)
 				{
 					continue;
 				}
 
-				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
+				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & map);
 				if (!AllowDirectPointing && realBaseSet < 9 || !AllowDirectClaiming && realBaseSet >= 9)
 				{
 					continue;
@@ -87,15 +87,21 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				// Different with normal locked candidates searcher, this searcher is used as direct views.
 				// We should check any possible assignments after such eliminations applied -
 				// such assignments are the real conclusions of this technique.
-				if (CheckFullHouse(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } fullHouse)
+				if (CheckFullHouse(
+					ref context, in grid, realBaseSet, realCoverSet, in intersection,
+					in emptyCells, in elimMap, digit) is { } fullHouse)
 				{
 					return fullHouse;
 				}
-				if (CheckHiddenSingle(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } hiddenSingle)
+				if (CheckHiddenSingle(
+					ref context, in grid, realBaseSet, realCoverSet, in intersection,
+					in elimMap, candidatesMap, in emptyCells, digit) is { } hiddenSingle)
 				{
 					return hiddenSingle;
 				}
-				if (CheckNakedSingle(ref context, in grid, realBaseSet, realCoverSet, in intersection, in elimMap, digit) is { } nakedSingle)
+				if (CheckNakedSingle(
+					ref context, in grid, realBaseSet, realCoverSet, in intersection,
+					in elimMap, in emptyCells, digit) is { } nakedSingle)
 				{
 					return nakedSingle;
 				}
@@ -113,6 +119,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="baseSet">The base set.</param>
 	/// <param name="coverSet">The cover set.</param>
 	/// <param name="intersection">The intersection cells.</param>
+	/// <param name="emptyCells">Indicates the empty cells of grid.</param>
 	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
@@ -122,26 +129,27 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		House baseSet,
 		House coverSet,
 		scoped ref readonly CellMap intersection,
+		scoped ref readonly CellMap emptyCells,
 		scoped ref readonly CellMap elimMap,
 		Digit digit
 	)
 	{
 		foreach (var house in elimMap.Houses)
 		{
-			var emptyCells = HousesMap[house] & EmptyCells;
-			if (emptyCells.Count != 2)
+			var emptyCellsInHouse = HousesMap[house] & emptyCells;
+			if (emptyCellsInHouse.Count != 2)
 			{
 				continue;
 			}
 
-			var lastDigitMask = (Mask)(grid[in emptyCells] & (Mask)~(1 << digit));
+			var lastDigitMask = (Mask)(grid[in emptyCellsInHouse] & (Mask)~(1 << digit));
 			if (!IsPow2(lastDigitMask))
 			{
 				continue;
 			}
 
 			var lastDigit = Log2((uint)lastDigitMask);
-			var lastCell = (emptyCells & elimMap)[0];
+			var lastCell = (emptyCellsInHouse & elimMap)[0];
 			var step = new DirectIntersectionStep(
 				[new(Assignment, lastCell, lastDigit)],
 				[
@@ -157,7 +165,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				lastDigit,
-				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
 				[lastCell],
 				digit,
@@ -190,6 +198,8 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="coverSet">The cover set.</param>
 	/// <param name="intersection">The intersection cells.</param>
 	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+	/// <param name="candidatesMap">Indicates the candidates map.</param>
+	/// <param name="emptyCells">Indicates the empty cells.</param>
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckHiddenSingle(
@@ -199,13 +209,15 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		House coverSet,
 		scoped ref readonly CellMap intersection,
 		scoped ref readonly CellMap elimMap,
+		scoped ReadOnlySpan<CellMap> candidatesMap,
+		scoped ref readonly CellMap emptyCells,
 		Digit digit
 	)
 	{
 		foreach (var house in elimMap.Houses)
 		{
-			var emptyCells = (HousesMap[house] & CandidatesMap[digit]) - elimMap;
-			if (emptyCells is not [var lastCell])
+			var emptyCellsInHouse = (HousesMap[house] & candidatesMap[digit]) - elimMap;
+			if (emptyCellsInHouse is not [var lastCell])
 			{
 				continue;
 			}
@@ -230,9 +242,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				digit,
-				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
-				(HousesMap[house] & CandidatesMap[digit]) - lastCell,
+				(HousesMap[house] & candidatesMap[digit]) - lastCell,
 				digit,
 				SingleModule.GetHiddenSingleSubtype(in grid, lastCell, house, in chosenCells),
 				house switch
@@ -264,6 +276,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="intersection">The intersection cells.</param>
 	/// <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
+	/// <param name="emptyCells">Indicates the empty cells.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckNakedSingle(
 		scoped ref AnalysisContext context,
@@ -272,6 +285,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		House coverSet,
 		scoped ref readonly CellMap intersection,
 		scoped ref readonly CellMap elimMap,
+		scoped ref readonly CellMap emptyCells,
 		Digit digit
 	)
 	{
@@ -299,11 +313,11 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				lastCell,
 				lastDigit,
-				HousesMap[baseSet] & HousesMap[coverSet] & EmptyCells,
+				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
 				[lastCell],
 				digit,
-				SingleSubtype.NakedSingle0 + (HousesMap[lastCell.ToHouseIndex(HouseType.Block)] - EmptyCells).Count,
+				SingleSubtype.NakedSingle0 + (HousesMap[lastCell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
 				Technique.NakedSingle,
 				baseSet < 9
 			);

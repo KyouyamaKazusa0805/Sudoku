@@ -12,19 +12,20 @@ internal static class IntersectionModule
 	/// <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
 	/// <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
 	/// <param name="c">Indicates the intersection 3 cells.</param>
+	/// <param name="emptyCells">The empty cells in the pattern.</param>
 	/// <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsLockedCandidates(
+	internal static bool IsLockedCandidates(
 		scoped ref readonly Grid grid,
 		scoped ref readonly CellMap a,
 		scoped ref readonly CellMap b,
 		scoped ref readonly CellMap c,
+		scoped ref readonly CellMap emptyCells,
 		out Mask digitsMask
 	)
-		=> (digitsMask = 0, EmptyCells & c, grid[in a], grid[in b], grid[in c]) is (_, not [], var maskA, var maskB, var maskC)
+		=> (digitsMask = 0, emptyCells & c, grid[in a], grid[in b], grid[in c]) is (_, not [], var maskA, var maskB, var maskC)
 		&& (digitsMask = (Mask)(maskC & (maskA ^ maskB))) != 0;
-
 
 	/// <summary>
 	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.

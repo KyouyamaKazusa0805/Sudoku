@@ -6312,7 +6312,7 @@ if (student is (name: var name, age: >= 18))
             Represents an intersection module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
             Indicates whether the pattern is a locked candidates.
             </summary>
@@ -6320,6 +6320,7 @@ if (student is (name: var name, age: >= 18))
             <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
             <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
             <param name="c">Indicates the intersection 3 cells.</param>
+            <param name="emptyCells">The empty cells in the pattern.</param>
             <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
@@ -10510,7 +10511,7 @@ if (student is (name: var name, age: >= 18))
             to learn more information about this technique.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckFullHouse(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check full house.
             </summary>
@@ -10519,11 +10520,12 @@ if (student is (name: var name, age: >= 18))
             <param name="baseSet">The base set.</param>
             <param name="coverSet">The cover set.</param>
             <param name="intersection">The intersection cells.</param>
+            <param name="emptyCells">Indicates the empty cells of grid.</param>
             <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
             <param name="digit">The digit that can be eliminated in locked candidates.</param>
             <returns>The result step found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckHiddenSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check hidden single.
             </summary>
@@ -10533,10 +10535,12 @@ if (student is (name: var name, age: >= 18))
             <param name="coverSet">The cover set.</param>
             <param name="intersection">The intersection cells.</param>
             <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
+            <param name="candidatesMap">Indicates the candidates map.</param>
+            <param name="emptyCells">Indicates the empty cells.</param>
             <param name="digit">The digit that can be eliminated in locked candidates.</param>
             <returns>The result step found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.CheckNakedSingle(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check naked single.
             </summary>
@@ -10547,6 +10551,7 @@ if (student is (name: var name, age: >= 18))
             <param name="intersection">The intersection cells.</param>
             <param name="elimMap">The eliminated cells of digit <paramref name="digit"/>.</param>
             <param name="digit">The digit that can be eliminated in locked candidates.</param>
+            <param name="emptyCells">Indicates the empty cells.</param>
             <returns>The result step found.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher">
