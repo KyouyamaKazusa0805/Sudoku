@@ -10,24 +10,63 @@ public static class CellMapEnumerable
 	/// Finds the first cell that satisfies the specified condition.
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="predicate">The condition to be used.</param>
+	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(this scoped ref readonly CellMap @this, Func<Cell, bool> predicate)
-		=> @this.FirstOrNull(predicate) ?? throw new InvalidOperationException("No possible elements found.");
+	public static Cell First(this scoped ref readonly CellMap @this, Func<Cell, bool> match)
+		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException("No possible elements found.");
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="predicate">The condition to be used.</param>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell.</returns>
-	public static Cell? FirstOrNull(this scoped ref readonly CellMap @this, Func<Cell, bool> predicate)
+	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Cell First(
+		this scoped ref readonly CellMap @this,
+		scoped ref readonly Grid grid,
+		BitStatusMapPredicate<CellMap, Cell> match
+	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException("No possible elements found.");
+
+	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found cell.</returns>
+	public static Cell? FirstOrNull(this scoped ref readonly CellMap @this, Func<Cell, bool> match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
-			if (predicate(cell))
+			if (match(cell))
+			{
+				return cell;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found cell.</returns>
+	public static Cell? FirstOrNull(
+		this scoped ref readonly CellMap @this,
+		scoped ref readonly Grid grid,
+		BitStatusMapPredicate<CellMap, Cell> match
+	)
+	{
+		foreach (var cell in @this.Offsets)
+		{
+			if (match(cell, in grid))
 			{
 				return cell;
 			}

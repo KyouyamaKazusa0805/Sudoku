@@ -193,8 +193,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var gridCopied = grid;
-		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, scoped ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -326,8 +325,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var gridCopied = grid;
-		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, scoped ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -429,8 +427,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var gridCopied = grid;
-		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, scoped ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -532,8 +529,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var gridCopied = grid;
-		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, scoped ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
@@ -651,8 +647,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var gridCopied = grid;
-		var elimCell = cellsNotSymmetrical.First(cell => gridCopied.GetState(cell) == CellState.Empty);
+		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, scoped ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{

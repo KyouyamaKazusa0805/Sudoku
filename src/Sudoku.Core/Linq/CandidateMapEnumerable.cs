@@ -10,24 +10,63 @@ public static class CandidateMapEnumerable
 	/// Finds the first candidate that satisfies the specified condition.
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="predicate">The condition to be used.</param>
+	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(this scoped ref readonly CandidateMap @this, Func<Cell, bool> predicate)
-		=> @this.FirstOrNull(predicate) ?? throw new InvalidOperationException("No possible elements found.");
+	public static Candidate First(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException("No possible elements found.");
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="predicate">The condition to be used.</param>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate.</returns>
-	public static Cell? FirstOrNull(this scoped ref readonly CandidateMap @this, Func<Cell, bool> predicate)
+	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Candidate First(
+		this scoped ref readonly CandidateMap @this,
+		scoped ref readonly Grid grid,
+		BitStatusMapPredicate<CandidateMap, Candidate> match
+	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException("No possible elements found.");
+
+	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found candidate.</returns>
+	public static Candidate? FirstOrNull(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
-			if (predicate(candidate))
+			if (match(candidate))
+			{
+				return candidate;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="this">Indicates the current instance.</param>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found candidate.</returns>
+	public static Candidate? FirstOrNull(
+		this scoped ref readonly CandidateMap @this,
+		scoped ref readonly Grid grid,
+		BitStatusMapPredicate<CandidateMap, Candidate> match
+	)
+	{
+		foreach (var candidate in @this.Offsets)
+		{
+			if (match(candidate, in grid))
 			{
 				return candidate;
 			}

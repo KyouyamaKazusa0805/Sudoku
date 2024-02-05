@@ -1898,6 +1898,22 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>grid</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.BitStatusMapPredicate`2">
+            <summary>
+            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
+            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
+            determining whether the offset satisfies the specified condition.
+            </summary>
+            <typeparam name="TSelf">
+            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </typeparam>
+            <typeparam name="TElement">
+            The type of each element in the collection of type <typeparamref name="TSelf"/>.
+            </typeparam>
+            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
+            <param name="grid">The grid as candidate reference.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
@@ -5472,7 +5488,17 @@ if (student is (name: var name, age: >= 18))
             Finds the first candidate that satisfies the specified condition.
             </summary>
             <param name="this">Indicates the current instance.</param>
-            <param name="predicate">The condition to be used.</param>
+            <param name="match">The condition to be used.</param>
+            <returns>The first found candidate.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32})">
+            <summary>
+            Finds the first candidate that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="grid">The grid to be used.</param>
+            <param name="match">The condition to be used.</param>
             <returns>The first found candidate.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
@@ -5481,7 +5507,16 @@ if (student is (name: var name, age: >= 18))
             Finds the first candidate that satisfies the specified condition.
             </summary>
             <param name="this">Indicates the current instance.</param>
-            <param name="predicate">The condition to be used.</param>
+            <param name="match">The condition to be used.</param>
+            <returns>The first found candidate.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32})">
+            <summary>
+            Finds the first candidate that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="grid">The grid to be used.</param>
+            <param name="match">The condition to be used.</param>
             <returns>The first found candidate.</returns>
         </member>
         <member name="M:Sudoku.Linq.CandidateMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
@@ -5542,7 +5577,17 @@ if (student is (name: var name, age: >= 18))
             Finds the first cell that satisfies the specified condition.
             </summary>
             <param name="this">Indicates the current instance.</param>
-            <param name="predicate">The condition to be used.</param>
+            <param name="match">The condition to be used.</param>
+            <returns>The first found cell.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="grid">The grid to be used.</param>
+            <param name="match">The condition to be used.</param>
             <returns>The first found cell.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
@@ -5551,7 +5596,16 @@ if (student is (name: var name, age: >= 18))
             Finds the first cell that satisfies the specified condition.
             </summary>
             <param name="this">Indicates the current instance.</param>
-            <param name="predicate">The condition to be used.</param>
+            <param name="match">The condition to be used.</param>
+            <returns>The first found cell.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32})">
+            <summary>
+            Finds the first cell that satisfies the specified condition.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="grid">The grid to be used.</param>
+            <param name="match">The condition to be used.</param>
             <returns>The first found cell.</returns>
         </member>
         <member name="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">

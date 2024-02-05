@@ -277,11 +277,11 @@ public static class ReadOnlySpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static ReadOnlySpan<T> OrderBy<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector) where TKey : IComparable<TKey>
+	public static ReadOnlySpan<T> OrderBy<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector)
 	{
 		var copied = new T[@this.Length];
 		@this.CopyTo(copied);
-		Array.Sort(copied, (a, b) => keySelector(a).CompareTo(keySelector(b)));
+		Array.Sort(copied, (a, b) => Comparer<TKey>.Default.Compare(keySelector(a), keySelector(b)));
 
 		return copied;
 	}
