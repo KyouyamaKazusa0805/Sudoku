@@ -898,7 +898,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claimed Crosshatching in Block.
+        ///   Looks up a localized string similar to Claiming Crosshatching in Block.
         /// </summary>
         public static string ClaimingCrosshatchingBlock {
             get {
@@ -907,7 +907,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claimed Crosshatching in Column.
+        ///   Looks up a localized string similar to Claiming Crosshatching in Column.
         /// </summary>
         public static string ClaimingCrosshatchingColumn {
             get {
@@ -916,7 +916,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claimed Crosshatching in Row.
+        ///   Looks up a localized string similar to Claiming Crosshatching in Row.
         /// </summary>
         public static string ClaimingCrosshatchingRow {
             get {
@@ -925,7 +925,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claimed Full House.
+        ///   Looks up a localized string similar to Claiming Full House.
         /// </summary>
         public static string ClaimingFullHouse {
             get {
@@ -934,7 +934,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Claimed Naked Single.
+        ///   Looks up a localized string similar to Claiming Naked Single.
         /// </summary>
         public static string ClaimingNakedSingle {
             get {
@@ -3445,7 +3445,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointed Crosshatching in Block.
+        ///   Looks up a localized string similar to Pointing Crosshatching in Block.
         /// </summary>
         public static string PointingCrosshatchingBlock {
             get {
@@ -3454,7 +3454,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointed Crosshatching in Column.
+        ///   Looks up a localized string similar to Pointing Crosshatching in Column.
         /// </summary>
         public static string PointingCrosshatchingColumn {
             get {
@@ -3463,7 +3463,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointed Crosshatching in Row.
+        ///   Looks up a localized string similar to Pointing Crosshatching in Row.
         /// </summary>
         public static string PointingCrosshatchingRow {
             get {
@@ -3472,7 +3472,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointed Full House.
+        ///   Looks up a localized string similar to Pointing Full House.
         /// </summary>
         public static string PointingFullHouse {
             get {
@@ -3481,7 +3481,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pointed Naked Single.
+        ///   Looks up a localized string similar to Pointing Naked Single.
         /// </summary>
         public static string PointingNakedSingle {
             get {

@@ -2518,34 +2518,34 @@
     <value>Direct Intersection</value>
   </data>
   <data name="PointingCrosshatchingBlock" xml:space="preserve">
-    <value>Pointed Crosshatching in Block</value>
+    <value>Pointing Crosshatching in Block</value>
   </data>
   <data name="PointingCrosshatchingColumn" xml:space="preserve">
-    <value>Pointed Crosshatching in Column</value>
+    <value>Pointing Crosshatching in Column</value>
   </data>
   <data name="PointingCrosshatchingRow" xml:space="preserve">
-    <value>Pointed Crosshatching in Row</value>
+    <value>Pointing Crosshatching in Row</value>
   </data>
   <data name="PointingFullHouse" xml:space="preserve">
-    <value>Pointed Full House</value>
+    <value>Pointing Full House</value>
   </data>
   <data name="PointingNakedSingle" xml:space="preserve">
-    <value>Pointed Naked Single</value>
+    <value>Pointing Naked Single</value>
   </data>
   <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
-    <value>Claimed Crosshatching in Block</value>
+    <value>Claiming Crosshatching in Block</value>
   </data>
   <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
-    <value>Claimed Crosshatching in Column</value>
+    <value>Claiming Crosshatching in Column</value>
   </data>
   <data name="ClaimingCrosshatchingRow" xml:space="preserve">
-    <value>Claimed Crosshatching in Row</value>
+    <value>Claiming Crosshatching in Row</value>
   </data>
   <data name="ClaimingFullHouse" xml:space="preserve">
-    <value>Claimed Full House</value>
+    <value>Claiming Full House</value>
   </data>
   <data name="ClaimingNakedSingle" xml:space="preserve">
-    <value>Claimed Naked Single</value>
+    <value>Claiming Naked Single</value>
   </data>
   <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
     <value>Complex Single</value>
