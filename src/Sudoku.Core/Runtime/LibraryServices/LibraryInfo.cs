@@ -86,6 +86,33 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 		=> await AppendPuzzleAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
+	/// Removes all puzzles that exactly same as the specified one from the file.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+	public async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
+	{
+		var tempFile = Path.GetTempFileName();
+		var linesToKeep = new List<string>();
+		await foreach (var line in File.ReadLinesAsync(FilePath, cancellationToken))
+		{
+			if (line != grid)
+			{
+				linesToKeep.Add(line);
+			}
+		}
+
+		await File.WriteAllLinesAsync(tempFile, linesToKeep, cancellationToken);
+		File.Delete(FilePath);
+		File.Move(tempFile, FilePath);
+	}
+
+	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
+	public async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
+		=> await RemovePuzzleAsync(grid.ToString("#"), cancellationToken);
+
+	/// <summary>
 	/// Write a puzzle into a file just created. If the file exists, it will return <see langword="false"/>.
 	/// </summary>
 	/// <param name="grid">The grid to be written.</param>
