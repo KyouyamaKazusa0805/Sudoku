@@ -1522,6 +1522,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.ConclusionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
+            </summary>
+            <param name="this">The conclusion array.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.ConclusionSet">
             <summary>
             Represents a list of conclusions. The collection only allows adding conclusions.
@@ -3001,19 +3014,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
-            <summary>
-            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
-            </summary>
-            <param name="this">The conclusion array.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
