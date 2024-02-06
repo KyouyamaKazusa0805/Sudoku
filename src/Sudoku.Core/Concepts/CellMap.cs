@@ -344,7 +344,7 @@ public partial struct CellMap :
 			foreach (var offset in Offsets)
 			{
 				var (low, high) = (0L, 0L);
-				foreach (var peer in Peers[offset])
+				foreach (var peer in PeersMap[offset])
 				{
 					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 				}

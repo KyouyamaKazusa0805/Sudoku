@@ -169,7 +169,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 	private static bool CheckDuplicate(char* ptrGrid, Cell cell)
 	{
 		var value = ptrGrid[cell];
-		foreach (var c in Peers[cell])
+		foreach (var c in PeersMap[cell])
 		{
 			if (value != '0' && ptrGrid[c] == value)
 			{

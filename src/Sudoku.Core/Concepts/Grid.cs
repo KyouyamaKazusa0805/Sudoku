@@ -273,7 +273,7 @@ public partial struct Grid :
 					case CellState.Given or CellState.Modifiable:
 					{
 						var curDigit = GetDigit(i);
-						foreach (var cell in Peers[i])
+						foreach (var cell in PeersMap[i])
 						{
 							if (curDigit == GetDigit(cell))
 							{
@@ -804,7 +804,7 @@ public partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public readonly bool DuplicateWith(Cell cell, Digit digit)
 	{
-		foreach (var tempCell in Peers[cell])
+		foreach (var tempCell in PeersMap[cell])
 		{
 			if (GetDigit(tempCell) == digit)
 			{
@@ -1888,7 +1888,7 @@ public partial struct Grid :
 	{
 		if (setValue != -1)
 		{
-			foreach (var peerCell in Peers[cell])
+			foreach (var peerCell in PeersMap[cell])
 			{
 				if (@this.GetState(peerCell) == CellState.Empty)
 				{
@@ -1914,7 +1914,7 @@ public partial struct Grid :
 			{
 				// Remove all appeared digits.
 				var mask = MaxCandidatesMask;
-				foreach (var cell in Peers[i])
+				foreach (var cell in PeersMap[i])
 				{
 					if (@this.GetDigit(cell) is var digit and not -1)
 					{

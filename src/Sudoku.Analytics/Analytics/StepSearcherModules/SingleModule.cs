@@ -90,7 +90,7 @@ internal static class SingleModule
 		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
 		{
-			foreach (var otherCell in Peers[cell])
+			foreach (var otherCell in PeersMap[cell])
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{

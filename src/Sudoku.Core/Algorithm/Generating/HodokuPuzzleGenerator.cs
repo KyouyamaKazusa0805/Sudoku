@@ -305,7 +305,7 @@ public ref partial struct HodokuPuzzleGenerator
 
 		static bool checkValidityOnDuplicate(scoped ref readonly Grid grid, Cell cell)
 		{
-			foreach (var peer in Peers[cell])
+			foreach (var peer in PeersMap[cell])
 			{
 				var digit = grid.GetDigit(peer);
 				if (digit == grid.GetDigit(cell) && digit != -1)

@@ -7816,6 +7816,11 @@ if (student is (name: var name, age: >= 18))
             Provides with solution-wide read-only fields used.
             </summary>
         </member>
+        <member name="F:Sudoku.SolutionFields.NumberOfPeersForEachCell">
+            <summary>
+            Indicates the number of each cell's peer cells. The value is a constant.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.TrailingZeroCountFallback">
             <summary>
             Indicates the invalid fallback value
@@ -7861,14 +7866,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the first cell offset for each house.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.Peers">
-            <summary>
-            <para>Indicates a table for each cell's peers.</para>
-            </summary>
-            <example>
-            '<c>Peers[0]</c>': the array of peers for the cell 0 (row 1 column 1).
-            </example>
-        </member>
         <member name="F:Sudoku.SolutionFields.HouseCells">
             <summary>
             <para>
@@ -7896,26 +7893,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.SolutionFields.HousesMap">
             <summary>
-            Indicates all grid maps that a grid contains.
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
             </summary>
-            <example>
-            '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
-            </example>
         </member>
         <member name="F:Sudoku.SolutionFields.PeersMap">
             <summary>
-            Indicates the peer maps using <see cref="F:Sudoku.SolutionFields.Peers"/> table.
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
             </summary>
-            <seealso cref="F:Sudoku.SolutionFields.Peers"/>
         </member>
         <member name="F:Sudoku.SolutionFields.Chutes">
             <summary>
-            Indicates the chute maps.
+            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.HouseTypes">
             <summary>
-            Indicates the possible house types to iterate.
+            Indicates the possible house types to be iterated.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.BlockTable">

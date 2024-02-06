@@ -49,7 +49,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			candidatesCount += PopCount((uint)grid.GetCandidates(cell));
 		}
 
-		if (candidatesCount > (emptyCellsCount << 1) + 28) // 20 peer cells + 8 digits in the same cell
+		if (candidatesCount > (emptyCellsCount << 1) + NumberOfPeersForEachCell + 8)
 		{
 			// No possible eliminations can be found, regardless of types.
 			return null;

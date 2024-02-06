@@ -225,7 +225,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	private static bool IsValidGrid(scoped ref readonly Grid grid, Cell cell)
 	{
 		var result = true;
-		foreach (var peerCell in Peers[cell])
+		foreach (var peerCell in PeersMap[cell])
 		{
 			var state = grid.GetState(peerCell);
 			if ((state != CellState.Empty && grid.GetDigit(peerCell) != grid.GetDigit(cell) || state == CellState.Empty)

@@ -51,7 +51,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 				// Look for potentially excluding cells (whose number of candidates is less than size).
 				var excludingCells = CellMap.Empty;
-				foreach (var excludingCell in Peers[cell])
+				foreach (var excludingCell in PeersMap[cell])
 				{
 					var count = PopCount((uint)grid.GetCandidates(excludingCell));
 					if (count >= 2 && count <= size)
