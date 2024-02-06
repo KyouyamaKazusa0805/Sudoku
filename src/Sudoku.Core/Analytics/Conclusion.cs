@@ -197,5 +197,5 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="self">The current conclusion instance to be negated.</param>
 	/// <returns>The negation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion operator ~(Conclusion self) => new(self.ConclusionType == Assignment ? Elimination : Assignment, self.Candidate);
+	public static Conclusion operator ~(Conclusion self) => new((ConclusionType)(1 & (byte)~self.ConclusionType), self.Candidate);
 }
