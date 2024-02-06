@@ -20,8 +20,9 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
+[DebuggerStepThrough]
 [LargeStructure]
-[method: DebuggerStepThrough]
+[method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] List<Step>? accumulator,
