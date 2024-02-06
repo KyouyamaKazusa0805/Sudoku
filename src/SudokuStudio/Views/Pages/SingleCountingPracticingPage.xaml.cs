@@ -269,7 +269,7 @@ file static class Generator
 			case GeneratingMode.NakedSingle:
 			{
 				var cell = Rng.Next(0, 81);
-				scoped var peers = new Span<Cell>(Peers[cell]);
+				scoped var peers = new Span<Cell>(Peers[cell][..]);
 
 				for (var currentShuffleRound = 0; currentShuffleRound < 15; currentShuffleRound++)
 				{
