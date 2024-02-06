@@ -131,12 +131,6 @@
 		<Page Update="Views\Pages\Settings\LibraryPreferenceItemsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\ContentDialogs\AddToLibraryContent.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\LibraryPuzzleDetailsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\ContentDialogs\LibraryInfoDisplayerContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -237,9 +231,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\LibraryPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

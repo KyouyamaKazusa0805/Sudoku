@@ -44,11 +44,6 @@ public sealed partial class AnalyzePage : Page
 	internal ViewUnitBindableSource? _userColoringView = new();
 
 	/// <summary>
-	/// The internal puzzle libraries.
-	/// </summary>
-	internal ObservableCollection<PuzzleLibraryBindableSource>? _puzzleLibraries;
-
-	/// <summary>
 	/// Indicates the tab routing data.
 	/// </summary>
 	private List<AnalyzeTabPageBindableSource> _tabsRoutingData;
@@ -456,7 +451,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
 	/// <seealso cref="_navigatingData"/>
-	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData), nameof(_puzzleLibraries))]
+	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData))]
 	private void InitializeFields()
 	{
 		var thickness = new Thickness(10);
@@ -506,8 +501,6 @@ public sealed partial class AnalyzePage : Page
 			(container => container == ShuffleOperationBar, typeof(ShuffleOperation)),
 			(container => container == GeneratingOperationBar, typeof(GeneratingOperation))
 		];
-
-		_puzzleLibraries = PuzzleLibraryBindableSource.LocalPuzzleLibraries(false);
 	}
 
 	/// <summary>
@@ -1316,47 +1309,6 @@ public sealed partial class AnalyzePage : Page
 		{
 			_isFirstLaunched = false;
 		}
-	}
-
-	private async void SavePuzzleToLibraryAppBarButton_ClickAsync(object sender, RoutedEventArgs e)
-	{
-		Debug.Assert(_puzzleLibraries is not null);
-
-		var contentDialog = new ContentDialog
-		{
-			XamlRoot = XamlRoot,
-			IsPrimaryButtonEnabled = true,
-			Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-			CloseButtonText = ResourceDictionary.Get("LibraryPage_Close", App.CurrentCulture),
-			Content = new AddToLibraryContent { PuzzleLibraries = _puzzleLibraries },
-			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_LoadOrAddingButtonText", App.CurrentCulture)
-		};
-
-		if (await contentDialog.ShowAsync() != ContentDialogResult.Primary)
-		{
-			return;
-		}
-
-		if (contentDialog.Content is not AddToLibraryContent { SelectedLibrary.FileId: var selectedFileId } content)
-		{
-			ErrorDialog_MustSelectAtLeastOneLibrary.IsOpen = true;
-			return;
-		}
-
-		var index = _puzzleLibraries.FindIndex(lib => lib.FileId == selectedFileId);
-		if (index == -1)
-		{
-			return;
-		}
-
-		var instance = _puzzleLibraries[index];
-		var newInstance = new PuzzleLibraryBindableSource(instance, [.. instance.Puzzles, SudokuPane.Puzzle]);
-
-		_puzzleLibraries[index] = newInstance;
-
-		var json = JsonSerializer.Serialize(newInstance, LibraryPage.SerializerOptions);
-		await File.WriteAllTextAsync(newInstance.FilePath, json);
 	}
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)

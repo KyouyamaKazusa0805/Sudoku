@@ -206,104 +206,6 @@
         <member name="P:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider.Items">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource">
-            <summary>
-            Describes for a puzzle library.
-            </summary>
-            <param name="isAddingOperationPlaceholder">A <see cref="T:System.Boolean"/> value indicating whether the value is for a placeholder.</param>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor(System.Boolean)">
-            <summary>
-            Describes for a puzzle library.
-            </summary>
-            <param name="isAddingOperationPlaceholder">A <see cref="T:System.Boolean"/> value indicating whether the value is for a placeholder.</param>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.#ctor(SudokuStudio.BindableSource.PuzzleLibraryBindableSource,Sudoku.Concepts.Grid[])">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instance via another instance. <see cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Puzzles"/> won't copy.
-            </summary>
-            <param name="other">Another instance.</param>
-            <param name="puzzles">The puzzles.</param>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.PuzzlesCount">
-            <summary>
-            Indicates the number of puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Name">
-            <summary>
-            Indicates the name of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Description">
-            <summary>
-            Indicates the description of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Author">
-            <summary>
-            Indicates the name of the user.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId">
-            <summary>
-            Idnicates the file ID used as storage file name. <b>Note: The ID should be unique in all puzzle libraries.</b>
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FilePath">
-            <summary>
-            Indicates the path of the library storage file.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.DisplayName">
-            <summary>
-            Indicates the path of display name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Tags">
-            <summary>
-            Indicates the tags of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.Puzzles">
-            <summary>
-            The puzzles loaded.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.LocalPuzzleLibraries(System.Boolean)">
-            <summary>
-            Try to fetch all puzzle libraries stored in the local path.
-            </summary>
-            <param name="autoAdding">
-            Indicates whether the returned result contains a page that supports adding operation.
-            This parameter should only be used in puzzle library page; otherwise, passing with <see langword="false"/>.
-            </param>
-            <returns>
-            All puzzle libraies, having been converted into <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> instances to be used and replaced.
-            </returns>
-            <remarks>
-            This property always returns a list that contain at least one element. If the directory doesn't contain any valid puzzle libraries,
-            this property will return a collection with one <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> element indicating the adding operation
-            as a placeholder; otherwise, a list of valid <see cref="T:SudokuStudio.BindableSource.PuzzleLibraryBindableSource"/> elements
-            and a placeholder mentioned in the previous case.
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.IsAddingOperationPlaceholder">
-            <summary>
-            The generated property declaration for parameter <c>isAddingOperationPlaceholder</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.PuzzleLibraryBindableSource._fileId">
-            <summary>
-            Indicates the backing field of property <see cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.PuzzleLibraryBindableSource.FileId"/>
-        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information
@@ -3291,24 +3193,6 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about visibility.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector">
-            <summary>
-            Represents a template selector for puzzle library displaying or adding operation.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.DisplayTemplate">
-            <summary>
-            The basic display template.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.AddingOperationTemplate">
-            <summary>
-            The adding operation template.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.PuzzleLibraryOrAddingTemplateSelector.SelectTemplateCore(System.Object)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
             <summary>
             Defines a template selector that is applied to a solving path element.
@@ -4369,24 +4253,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the aliases.
             </summary>
-        </member>
-        <member name="T:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector">
-            <summary>
-            Represents a style selector for puzzle library operation.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.NormalStyle">
-            <summary>
-            Indicates the normal style.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.AddingStyle">
-            <summary>
-            Indicates the adding style.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.StyleSelectors.PuzzleLibraryOperationStyleSelector.SelectStyleCore(System.Object,Microsoft.UI.Xaml.DependencyObject)">
-            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuFormatFlags">
             <summary>
@@ -12534,11 +12400,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
             <seealso cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._puzzleLibraries">
-            <summary>
-            The internal puzzle libraries.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._tabsRoutingData">
             <summary>
             Indicates the tab routing data.
@@ -13042,102 +12903,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the analysis result.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent">
-            <summary>
-            Represents with a dialog content "add a puzzle to the library" from analyze page.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.#ctor">
-            <summary>
-            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.PuzzleLibraries">
-            <summary>
-            The property that can assign the internal field with the initialized value.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileIdProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescriptionProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibraryProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTagsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryName">
-            <summary>
-            Indicates the library name configured.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.FileId">
-            <summary>
-            Indicates the file ID configured.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryAuthor">
-            <summary>
-            Indicates the library author configured.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryDescription">
-            <summary>
-            Indicates the library description configured.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.SelectedLibrary">
-            <summary>
-            Indicates the currently-selected library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddToLibraryContent.LibraryTags">
-            <summary>
-            Indicates the library description configured.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent">
             <summary>
             Defines a content dialog content that describes for an error step.
@@ -13411,102 +13176,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered">
             <summary>
             Indicates whether the edit button is hovered.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.LibraryPage">
-            <summary>
-            Represents for a library page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.LibraryPage.SerializerOptions">
-            <summary>
-            The internal serialization options.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.LibraryPage.FlyoutShowOptions">
-            <summary>
-            The internal flyout showing options.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.LibraryPage._puzzleLibraries">
-            <summary>
-            Indicates the puzzle library.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.LoadFileAsync">
-            <summary>
-            Loads a file from local.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the operation is success.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage">
-            <summary>
-            Represents with a library puzzle details page.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndexProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.SourceProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.CurrentPuzzleIndex">
-            <summary>
-            Indicates the current page to be shown.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.LibraryPuzzleDetailsPage.Source">
-            <summary>
-            Indicates the source of the file.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.MainNavigationPage">

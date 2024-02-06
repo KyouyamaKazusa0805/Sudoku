@@ -40,9 +40,6 @@
 					</MenuFlyout>
 				</AppBarButton.Flyout>
 			</AppBarButton>
-			<AppBarButton
-				Icon="Library" ToolTipService.ToolTip="{m:R Key=AnalyzePage_SavePuzzleToLibrary}"
-				Click="SavePuzzleToLibraryAppBarButton_ClickAsync" />
 
 			<CommandBarFlyout.SecondaryCommands>
 				<AppBarButton Tag="{m:Int32 Value=1}" Label="{m:R Key=SudokuPane_Set1}" Click="SetOrDeleteButton_Click" />

@@ -27,13 +27,6 @@
 				<TextBlock Margin="10" x:Name="GeneratorStrategyTooltip" TextWrapping="WrapWholeWords" />
 			</ToolTipService.ToolTip>
 		</AppBarButton>
-		<AppBarElementContainer>
-			<ComboBox x:Name="PuzzleLibraryChoser" DisplayMemberPath="DisplayName" SelectionChanged="PuzzleLibraryChoser_SelectionChanged" />
-		</AppBarElementContainer>
-		<AppBarButton
-			x:Name="FetchInPuzzleLibraryButton" Icon="NewWindow" Label="{m:R Key=AnalyzePage_FetchPuzzleFromLibrary}"
-			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="FetchInPuzzleLibraryButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"
