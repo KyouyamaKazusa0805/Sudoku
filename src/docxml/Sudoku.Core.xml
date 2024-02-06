@@ -1522,19 +1522,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.ConclusionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
-            <summary>
-            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
-            </summary>
-            <param name="this">The conclusion array.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.ConclusionSet">
             <summary>
             Represents a list of conclusions. The collection only allows adding conclusions.
@@ -1777,22 +1764,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.ConclusionTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Analytics.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type kind.</param>
-            <returns>The string representation of the conclusion kind.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
-            </exception>
-        </member>
         <member name="T:Sudoku.Analytics.IAnalyzer`2">
             <summary>
             Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -1910,6 +1881,35 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>grid</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.ConclusionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
+            <summary>
+            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
+            </summary>
+            <param name="this">The conclusion array.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.ConclusionTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Analytics.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type kind.</param>
+            <returns>The string representation of the conclusion kind.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.BitStatusMapPredicate`3">
             <summary>
@@ -3176,39 +3176,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation is based on <b>Excel</b> notation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.CoordinateType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CoordinateType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.CoordinateType,System.Object[])">
-            <summary>
-            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.CoordinateType,System.Object[])">
-            <summary>
-            Gets the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
-            </summary>
-            <param name="this">The type of the coordinate type.</param>
-            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -4388,27 +4355,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the house type is a column.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.HouseType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetLabel(Sudoku.Concepts.HouseType)">
-            <summary>
-            Try to get the label of the specified house type.
-            </summary>
-            <param name="this">The house type.</param>
-            <returns>A character that represents a house type.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetProgramOrder(Sudoku.Concepts.HouseType)">
-            <summary>
-            Gets the ordering of the house type. The result value will be 0, 1 and 2.
-            </summary>
-            <param name="this">The house type.</param>
-            <returns>The program order.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.IBitStatusMap`3">
             <summary>
             Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
@@ -4954,22 +4900,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the inference is the default case that doesn't belong to above.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.InferenceExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Inference"/>
-        </member>
-        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
-            <summary>
-            Gets connecting notation of the inference.
-            </summary>
-            <param name="this">The inference instance.</param>
-            <returns>The connecting notation of the inference.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
-            </exception>
-        </member>
         <member name="T:Sudoku.Concepts.Intersection">
             <summary>
             Represents a pair of intersection information.
@@ -5060,50 +4990,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.IntersectionBase.Block">
             <summary>The index of the block.</summary>
-        </member>
-        <member name="T:Sudoku.Concepts.IntersectionCollection">
-            <summary>
-            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
-            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.#ctor(Sudoku.Concepts.Intersection[])">
-            <summary>
-            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
-            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.GetEnumerator">
-            <summary>
-            Try to get the enumerator that iterates on the elements of the current collection.
-            </summary>
-            <returns>An enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.ToArray">
-            <summary>
-            Copies the internal array into a new instance, and return it.
-            </summary>
-            <returns>An array of <see cref="T:Sudoku.Concepts.Intersection"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Intersection}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IntersectionCollection.Create(System.ReadOnlySpan{Sudoku.Concepts.Intersection})">
-            <summary>
-            Creates an <see cref="T:Sudoku.Concepts.IntersectionCollection"/> instance via the specified values using collection expression.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>An <see cref="T:Sudoku.Concepts.IntersectionCollection"/> result.</returns>
-        </member>
-        <member name="F:Sudoku.Concepts.IntersectionCollection._values">
-            <summary>
-            The generated field declaration for parameter <c>values</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.IntersectionResult">
             <summary>
@@ -5320,6 +5206,120 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.SymmetricType.All">
             <summary>
             Indicates all symmetry types should be satisfied.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.CoordinateType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CoordinateType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.CoordinateType,System.Object[])">
+            <summary>
+            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.CoordinateType,System.Object[])">
+            <summary>
+            Gets the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
+            </summary>
+            <param name="this">The type of the coordinate type.</param>
+            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.HouseType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetLabel(Sudoku.Concepts.HouseType)">
+            <summary>
+            Try to get the label of the specified house type.
+            </summary>
+            <param name="this">The house type.</param>
+            <returns>A character that represents a house type.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetProgramOrder(Sudoku.Concepts.HouseType)">
+            <summary>
+            Gets the ordering of the house type. The result value will be 0, 1 and 2.
+            </summary>
+            <param name="this">The house type.</param>
+            <returns>The program order.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.InferenceExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Inference"/>
+        </member>
+        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
+            <summary>
+            Gets connecting notation of the inference.
+            </summary>
+            <param name="this">The inference instance.</param>
+            <returns>The connecting notation of the inference.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Concepts.IntersectionCollection">
+            <summary>
+            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
+            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.#ctor(Sudoku.Concepts.Intersection[])">
+            <summary>
+            Represents a collection that stores for a list of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
+            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.GetEnumerator">
+            <summary>
+            Try to get the enumerator that iterates on the elements of the current collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.ToArray">
+            <summary>
+            Copies the internal array into a new instance, and return it.
+            </summary>
+            <returns>An array of <see cref="T:Sudoku.Concepts.Intersection"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Intersection}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IntersectionCollection.Create(System.ReadOnlySpan{Sudoku.Concepts.Intersection})">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.IntersectionCollection"/> instance via the specified values using collection expression.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.IntersectionCollection"/> result.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.IntersectionCollection._values">
+            <summary>
+            The generated field declaration for parameter <c>values</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
