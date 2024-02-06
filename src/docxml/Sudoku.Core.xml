@@ -7926,11 +7926,6 @@ if (student is (name: var name, age: >= 18))
             Indicates a column list that each cell belongs to.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.ChuteHouses">
-            <summary>
-            Indicates the chute houses.
-            </summary>
-        </member>
         <member name="M:Sudoku.SolutionFields.#cctor">
             <static-constructor>
 		<summary>
