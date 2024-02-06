@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.Categorization;
 
-partial class TechniqueSet
+public partial class TechniqueSet
 {
 	/// <summary>
 	/// The enumerator that can iterate with <see cref="Technique"/> fields for a <see cref="TechniqueSet"/> instance.

@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <inheritdoc cref="SetAt(byte, int)"/>
 	public static partial int SetAt(this sbyte @this, int order)

@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics;
 
-partial record AnalyzerResult
+public partial record AnalyzerResult
 {
 	/// <summary>
 	/// Indicates the formatting options of <see cref="AnalyzerResult"/> instance.

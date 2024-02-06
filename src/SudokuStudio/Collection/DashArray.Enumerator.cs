@@ -1,6 +1,6 @@
 namespace SudokuStudio.Collection;
 
-partial struct DashArray
+public partial struct DashArray
 {
 	/// <summary>
 	/// Defines an enumerator of this type.

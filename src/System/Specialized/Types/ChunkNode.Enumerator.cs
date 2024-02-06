@@ -1,6 +1,6 @@
 namespace System;
 
-partial struct ChunkNode<T>
+public partial struct ChunkNode<T>
 {
 	/// <summary>
 	/// Indicates the enumerator of current type.

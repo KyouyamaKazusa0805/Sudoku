@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <summary>
 	/// <para>Reverse all bits in a specified value.</para>

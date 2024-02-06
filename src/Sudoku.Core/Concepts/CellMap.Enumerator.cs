@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-partial struct CellMap
+public partial struct CellMap
 {
 	/// <summary>
 	/// Represents an enumerator type that iterates on each cell offsets.

@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <summary>
 	/// Skip the specified number of set bits and iterate on the integer with other set bits.

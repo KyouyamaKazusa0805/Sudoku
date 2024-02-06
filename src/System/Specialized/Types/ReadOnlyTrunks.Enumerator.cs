@@ -1,6 +1,6 @@
 namespace System;
 
-partial struct ReadOnlyChunk<T>
+public partial struct ReadOnlyChunk<T>
 {
 	/// <summary>
 	/// Represents an enumerator type that can iterate on each element of type <typeparamref name="T"/> stored in this collection.

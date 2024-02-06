@@ -1,6 +1,6 @@
 namespace Sudoku.Gdip;
 
-partial class GridImageGenerator
+public partial class GridImageGenerator
 {
 	/// <summary>
 	/// Draw figures.

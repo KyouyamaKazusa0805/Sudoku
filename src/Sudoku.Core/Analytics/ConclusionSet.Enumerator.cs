@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics;
 
-partial class ConclusionSet
+public partial class ConclusionSet
 {
 	/// <summary>
 	/// The internal enumerator instance.

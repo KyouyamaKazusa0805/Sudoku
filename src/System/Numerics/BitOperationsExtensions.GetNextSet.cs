@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <summary>
 	/// Find an index of the binary representation of a value after the specified index whose bit is set <see langword="true"/>.

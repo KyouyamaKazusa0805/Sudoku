@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-partial class MultipleForcingChains
+public partial class MultipleForcingChains
 {
 	/// <summary>
 	/// Defines an enumerator that iterates the current collection.

@@ -1,6 +1,6 @@
 namespace Sudoku.Gdip;
 
-partial class GridImageGenerator
+public partial class GridImageGenerator
 {
 	/// <summary>
 	/// Draw custom view if <see cref="View"/> is not <see langword="null"/>.

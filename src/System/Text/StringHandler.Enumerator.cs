@@ -4,7 +4,7 @@
 
 namespace System.Text;
 
-partial struct StringHandler
+public partial struct StringHandler
 {
 	/// <summary>
 	/// Encapsulates the enumerator of this collection.

@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <summary>
 	/// Find all offsets of set bits of the binary representation of a specified value.

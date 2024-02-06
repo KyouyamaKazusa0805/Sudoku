@@ -1,6 +1,6 @@
 namespace System.Numerics;
 
-partial class BitOperationsExtensions
+public partial class BitOperationsExtensions
 {
 	/// <summary>
 	/// <para>Get an enumerator to iterate on each bits of the specified integer value.</para>

@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-partial struct CandidateMap
+public partial struct CandidateMap
 {
 	/// <summary>
 	/// Represents an enumerator type that iterates on each candidate offsets.
