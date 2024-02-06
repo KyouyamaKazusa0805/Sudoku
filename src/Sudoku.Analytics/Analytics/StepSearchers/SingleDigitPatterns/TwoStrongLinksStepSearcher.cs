@@ -60,7 +60,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 						for (var j = 0; j < 2; j++)
 						{
 							var cell2 = cellsList2[j];
-							if ((CellsMap[cell1] + cell2).InOneHouse(out sameHouse))
+							if (((CellMap)cell1 + cell2).InOneHouse(out sameHouse))
 							{
 								(c1Index, c2Index) = (i, j);
 								(headIndex, tailIndex) = (i == 0 ? 1 : 0, j == 0 ? 1 : 0);
@@ -76,7 +76,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					// Two strong link found.
 					// Record all eliminations.
 					var (head, tail) = (cellsList1[headIndex], cellsList2[tailIndex]);
-					if ((CellsMap[head] + tail).InOneHouse(out _))
+					if (((CellMap)head + tail).InOneHouse(out _))
 					{
 						// A standard X-Wing pattern.
 						continue;

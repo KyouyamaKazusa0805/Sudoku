@@ -2218,6 +2218,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Subtraction(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32)~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
@@ -2771,6 +2774,9 @@ if (student is (name: var name, age: >= 18))
             Implicit cast from a <see cref="T:System.Int128"/> value into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <param name="value">A <see cref="T:System.Int128"/> value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32)~Sudoku.Concepts.CellMap">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <inheritdoc/>
@@ -4807,17 +4813,24 @@ if (student is (name: var name, age: >= 18))
             <param name="right">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1)~`0">
+            <summary>
+            Converts an element of type <typeparamref name="TElement"/> into a <typeparamref name="TSelf"/> instance,
+            with only one element - itself.
+            </summary>
+            <param name="offset">The offset to be used.</param>
+        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1[])~`0">
             <summary>
             Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
             </summary>
-            <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.ReadOnlySpan{`1})~`0">
             <summary>
             Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
             </summary>
-            <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Clear">
             <inheritdoc/>
@@ -7888,11 +7901,6 @@ if (student is (name: var name, age: >= 18))
             <example>
             '<c>HouseMaps[0]</c>': The map containing all cells in the block 1.
             </example>
-        </member>
-        <member name="F:Sudoku.SolutionFields.CellsMap">
-            <summary>
-            Indicates the map of length 81, indicating the <see cref="T:Sudoku.Concepts.CellMap"/> instances that only contain one cell.
-            </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.PeersMap">
             <summary>

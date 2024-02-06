@@ -32,7 +32,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				}
 
 				// Check the two cells are not in same house index.
-				if ((CellsMap[c1] + c2).InOneHouse(out _))
+				if (((CellMap)c1 + c2).InOneHouse(out _))
 				{
 					continue;
 				}
@@ -45,7 +45,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				}
 
 				// Check the block that two cells both see.
-				var interMap = (CellsMap[c1] + c2).PeerIntersection;
+				var interMap = ((CellMap)c1 + c2).PeerIntersection;
 				var unionMap = (PeersMap[c1] | PeersMap[c2]) + c1 + c2;
 				foreach (var interCell in interMap)
 				{
@@ -70,8 +70,8 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					var z = (interMap & houseMap)[0];
-					var c1Map = HousesMap[(CellsMap[z] + c1).CoveredLine];
-					var c2Map = HousesMap[(CellsMap[z] + c2).CoveredLine];
+					var c1Map = HousesMap[((CellMap)z + c1).CoveredLine];
+					var c2Map = HousesMap[((CellMap)z + c2).CoveredLine];
 					foreach (var elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (CandidatesMap[d1].Contains(elimCell))

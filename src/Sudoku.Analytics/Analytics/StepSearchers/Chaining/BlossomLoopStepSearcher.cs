@@ -363,7 +363,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 				}
 				else if (d1 == d2)
 				{
-					foreach (var house in (CellsMap[c1] + c2).CoveredHouses)
+					foreach (var house in ((CellMap)c1 + c2).CoveredHouses)
 					{
 						foreach (var cell in (HousesMap[house] & CandidatesMap[d1]) - c1 - c2)
 						{

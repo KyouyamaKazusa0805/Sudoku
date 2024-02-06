@@ -738,7 +738,7 @@ public sealed partial class AnalyzePage : Page
 
 				var cell1 = candidate1 / 9;
 				var cell2 = candidate2 / 9;
-				if ((CellsMap[cell1] + cell2).CoveredHouses is not (var coveredHouses and not 0))
+				if (((CellMap)cell1 + cell2).CoveredHouses is not (var coveredHouses and not 0))
 				{
 					_previousSelectedCandidate = null;
 					return true;

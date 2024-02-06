@@ -564,16 +564,24 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <summary>
+	/// Converts an element of type <typeparamref name="TElement"/> into a <typeparamref name="TSelf"/> instance,
+	/// with only one element - itself.
+	/// </summary>
+	/// <param name="offset">The offset to be used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static virtual explicit operator TSelf(TElement offset) => [offset];
+
+	/// <summary>
 	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
 	/// </summary>
-	/// <param name="array">An array of element type <typeparamref name="TElement"/>.</param>
+	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(TElement[] array) => [.. array];
+	public static virtual explicit operator TSelf(TElement[] offsets) => [.. offsets];
 
 	/// <summary>
 	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
 	/// </summary>
-	/// <param name="values">An array of element type <typeparamref name="TElement"/>.</param>
+	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> values) => [.. values];
+	public static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> offsets) => [.. offsets];
 }

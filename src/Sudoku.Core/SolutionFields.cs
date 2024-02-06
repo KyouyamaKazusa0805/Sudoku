@@ -184,11 +184,6 @@ public static class SolutionFields
 	public static readonly CellMap[] HousesMap;
 
 	/// <summary>
-	/// Indicates the map of length 81, indicating the <see cref="CellMap"/> instances that only contain one cell.
-	/// </summary>
-	public static readonly CellMap[] CellsMap;
-
-	/// <summary>
 	/// Indicates the peer maps using <see cref="Peers"/> table.
 	/// </summary>
 	/// <seealso cref="Peers"/>
@@ -262,12 +257,6 @@ public static class SolutionFields
 		for (var i = 0; i < 81; i++)
 		{
 			PeersMap[i] = (CellMap)Peers[i];
-		}
-
-		CellsMap = new CellMap[81];
-		for (var i = 0; i < 81; i++)
-		{
-			CellsMap[i] = [i];
 		}
 
 		HousesMap = new CellMap[27];

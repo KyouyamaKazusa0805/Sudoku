@@ -757,7 +757,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				if (IsPow2((CellsMap[targetCell] + endoTargetCell).BlockMask))
+				if (IsPow2(((CellMap)targetCell + endoTargetCell).BlockMask))
 				{
 					// The target selected endo-target cell cannot share a same block with target cell.
 					continue;
@@ -3017,7 +3017,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
-					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
+					.. from cell in (CellMap)targetCell + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					.. from cell in crosslineIncludingTarget select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 					.. cellOffsets,
 					.. candidateOffsets,
@@ -3794,7 +3794,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
-					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
+					.. from cell in (CellMap)targetCell + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 					.. cellOffsets,
 					..
@@ -3802,7 +3802,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from d in grid.GetCandidates(cell)
 					select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + d),
 					..
-					from cell in CellsMap[targetCell] + endoTargetCell
+					from cell in (CellMap)targetCell + endoTargetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(ColorIdentifier.Auxiliary3, cell * 9 + d),
 					..
@@ -4090,7 +4090,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var conclusions = new List<Conclusion>();
-		foreach (var cell in CellsMap[targetCell] + endoTargetCell)
+		foreach (var cell in (CellMap)targetCell + endoTargetCell)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
 			{
@@ -4107,14 +4107,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
-					.. from cell in CellsMap[targetCell] + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
+					.. from cell in (CellMap)targetCell + endoTargetCell select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
 					select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + d),
 					..
-					from cell in CellsMap[targetCell] + endoTargetCell
+					from cell in (CellMap)targetCell + endoTargetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(ColorIdentifier.Auxiliary3, cell * 9 + d),
 					..

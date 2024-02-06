@@ -55,19 +55,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var c in HousesMap[triple[2]])
 						{
-							if ((CellsMap[a] + b).InOneHouse(out _) && (CellsMap[a] + c).InOneHouse(out _))
+							if (((CellMap)a + b).InOneHouse(out _) && ((CellMap)a + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], a);
 								continue;
 							}
 
-							if ((CellsMap[a] + b).InOneHouse(out _) && (CellsMap[b] + c).InOneHouse(out _))
+							if (((CellMap)a + b).InOneHouse(out _) && ((CellMap)b + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], b);
 								continue;
 							}
 
-							if ((CellsMap[a] + c).InOneHouse(out _) && (CellsMap[b] + c).InOneHouse(out _))
+							if (((CellMap)a + c).InOneHouse(out _) && ((CellMap)b + c).InOneHouse(out _))
 							{
 								Patterns[i++] = new([a, b, c], c);
 							}
@@ -85,8 +85,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var d in HousesMap[houseQuad[3]])
 						{
-							if (!(CellsMap[a] + b).InOneHouse(out _) || !(CellsMap[a] + c).InOneHouse(out _)
-								|| !(CellsMap[b] + d).InOneHouse(out _) || !(CellsMap[c] + d).InOneHouse(out _))
+							if (!((CellMap)a + b).InOneHouse(out _) || !((CellMap)a + c).InOneHouse(out _)
+								|| !((CellMap)b + d).InOneHouse(out _) || !((CellMap)c + d).InOneHouse(out _))
 							{
 								continue;
 							}
@@ -232,10 +232,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						from house2CellExcluded in house2CellsExcluded
 						select new CellViewNode(ColorIdentifier.Elimination, house2CellExcluded),
 						..
-						from cell in (HousesMap[(CellsMap[cell1] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
+						from cell in (HousesMap[((CellMap)cell1 + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
 						select new BabaGroupViewNode(cell, (Utf8Char)'y', currentDigitsMask),
 						..
-						from cell in (HousesMap[(CellsMap[cell2] + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
+						from cell in (HousesMap[((CellMap)cell2 + pivot).CoveredLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
 						select new BabaGroupViewNode(cell, (Utf8Char)'x', currentDigitsMask),
 						new BabaGroupViewNode(pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
 						new BabaGroupViewNode(cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
@@ -456,8 +456,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	)
 	{
 		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
-		var excluded1 = HousesMap[(CellsMap[c1] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
-		var excluded2 = HousesMap[(CellsMap[c2] + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
+		var excluded1 = HousesMap[((CellMap)c1 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c1;
+		var excluded2 = HousesMap[((CellMap)c2 + pivot).CoveredLine] - HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;
 		foreach (var digit in grid[[c1, c2, pivot]])
 		{

@@ -192,8 +192,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						{
 #pragma warning disable format
 							[var a, var b]
-								when (CellsMap[c1] + a).InOneHouse(out _) && (CellsMap[c2] + b).InOneHouse(out _)
-								|| (CellsMap[c1] + b).InOneHouse(out _) && (CellsMap[c2] + a).InOneHouse(out _)
+								when ((CellMap)c1 + a).InOneHouse(out _) && ((CellMap)c2 + b).InOneHouse(out _)
+								|| ((CellMap)c1 + b).InOneHouse(out _) && ((CellMap)c2 + a).InOneHouse(out _)
 								=> true,
 #pragma warning restore format
 							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
@@ -225,7 +225,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 						// Check for eliminations.
 						var anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
-						var elimMap = CandidatesMap[anotherDigit] & (CellsMap[c1] + c2).PeerIntersection;
+						var elimMap = CandidatesMap[anotherDigit] & ((CellMap)c1 + c2).PeerIntersection;
 						if (!elimMap)
 						{
 							// No possible eliminations found.
