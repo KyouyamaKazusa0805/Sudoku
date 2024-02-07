@@ -7921,7 +7921,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
-            <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
+            <param name="transformTypes">
+            Indicates the available transform type that the chosen grid can be transformed.
+            Use <see cref="T:Sudoku.Concepts.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Concepts.TransformType"/>, <see cref="T:Sudoku.Concepts.TransformType"/>)
+            to combine multiple flags.
+            </param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
         </member>

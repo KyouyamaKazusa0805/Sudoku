@@ -195,7 +195,11 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 	/// <summary>
 	/// Randomly read one puzzle in the specified file, and return it.
 	/// </summary>
-	/// <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
+	/// <param name="transformTypes">
+	/// Indicates the available transform type that the chosen grid can be transformed.
+	/// Use <see cref="TransformType"/>.<see langword="operator"/> |(<see cref="TransformType"/>, <see cref="TransformType"/>)
+	/// to combine multiple flags.
+	/// </param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
 	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
