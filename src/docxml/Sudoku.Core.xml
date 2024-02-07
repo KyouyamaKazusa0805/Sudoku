@@ -7790,7 +7790,7 @@ if (student is (name: var name, age: >= 18))
             but this doesn't mean you can use its reference and re-assign it.
             </i></b></remarks>
         </member>
-        <member name="T:Sudoku.Runtime.LibraryServices.LibraryInfo">
+        <member name="T:Sudoku.Runtime.LibraryServices.Library">
             <summary>
             Represents an entry that can fetch a puzzle library file, to check for details of the file.
             </summary>
@@ -7804,14 +7804,14 @@ if (student is (name: var name, age: >= 18))
             
             // Iterate on each grid.
             string libraryFile = $@"{desktop}\library.txt";
-            await foreach (var grid in new LibraryInfo(libraryFile))
+            await foreach (var grid in new Library(libraryFile))
             {
                 // Do whatever you want to do here.
             }
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String)">
             <summary>
             Represents an entry that can fetch a puzzle library file, to check for details of the file.
             </summary>
@@ -7825,50 +7825,50 @@ if (student is (name: var name, age: >= 18))
             
             // Iterate on each grid.
             string libraryFile = $@"{desktop}\library.txt";
-            await foreach (var grid in new LibraryInfo(libraryFile))
+            await foreach (var grid in new Library(libraryFile))
             {
                 // Do whatever you want to do here.
             }
             ]]></code>
             </remarks>
         </member>
-        <member name="F:Sudoku.Runtime.LibraryServices.LibraryInfo.Error_NotExist">
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_NotExist">
             <summary>
             Indicates the "Not Exist" message.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInfo.Count">
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.Count">
             <summary>
             Indicates the number of puzzles stored in this file.
             </summary>
             <remarks>
-            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetCountAsync"/>.
+            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync"/>.
             <b>Always measure performance if you want to use this property.</b>
             </remarks>
-            <seealso cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetCountAsync"/>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync"/>
         </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInfo.Item(System.Int32)">
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.Item(System.Int32)">
             <summary>
             Try to get the element at the specified index.
             </summary>
             <param name="index">The desired index.</param>
             <returns>The target <see cref="T:Sudoku.Concepts.Grid"/> instance at the specified index.</returns>
             <remarks>
-            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAtAsync(System.Int32)"/>.
+            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>.
             <b>Always measure performance if you want to use this property.</b>
             </remarks>
-            <seealso cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAtAsync(System.Int32)"/>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Equals(Sudoku.Runtime.LibraryServices.LibraryInfo)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.CreateIfNotExist">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.CreateIfNotExist">
             <summary>
             Creates the library file in local if not exist.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the creation is succeeded.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Append a puzzle, represented as a <see cref="T:System.String"/> value,
             into the specified file path represented as a puzzle library.
@@ -7877,10 +7877,10 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.AppendPuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Removes all puzzles that exactly same as the specified one from the file.
             </summary>
@@ -7888,10 +7888,10 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.RemovePuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.TryWriteAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Write a puzzle into a file just created. If the file exists, it will return <see langword="false"/>.
             </summary>
@@ -7899,16 +7899,16 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.TryWriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.TryWriteAsync(System.String,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetCountAsync">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync">
             <summary>
             Calculates how many puzzles in this file.
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> value indicating the result.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAtAsync(System.Int32)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)">
             <summary>
             Gets the <see cref="T:Sudoku.Concepts.Grid"/> at the specified index.
             </summary>
@@ -7917,7 +7917,7 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't exist.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.RandomReadOneAsync(Sudoku.Concepts.TransformType)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Concepts.TransformType)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
@@ -7929,27 +7929,27 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAsyncEnumerator(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInfo.FilePath">
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.FilePath">
             <summary>
             The generated property declaration for parameter <c>filePath</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Equals(System.Object)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetHashCode">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.ToString">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.op_Equality(Sudoku.Runtime.LibraryServices.LibraryInfo,Sudoku.Runtime.LibraryServices.LibraryInfo)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.op_Equality(Sudoku.Runtime.LibraryServices.Library,Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.op_Inequality(Sudoku.Runtime.LibraryServices.LibraryInfo,Sudoku.Runtime.LibraryServices.LibraryInfo)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.op_Inequality(Sudoku.Runtime.LibraryServices.Library,Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.HouseMaskOperations">

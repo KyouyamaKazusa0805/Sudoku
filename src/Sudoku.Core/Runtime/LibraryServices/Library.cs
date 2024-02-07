@@ -13,7 +13,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// 
 /// // Iterate on each grid.
 /// string libraryFile = $@"{desktop}\library.txt";
-/// await foreach (var grid in new LibraryInfo(libraryFile))
+/// await foreach (var grid in new Library(libraryFile))
 /// {
 ///     // Do whatever you want to do here.
 /// }
@@ -25,10 +25,10 @@ namespace Sudoku.Runtime.LibraryServices;
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
+public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
 	IAsyncEnumerable<Grid>,
-	IEqualityOperators<LibraryInfo, LibraryInfo, bool>,
-	IEquatable<LibraryInfo>
+	IEqualityOperators<Library, Library, bool>,
+	IEquatable<Library>
 {
 	/// <summary>
 	/// Indicates the "Not Exist" message.
@@ -62,7 +62,7 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(LibraryInfo other) => FilePath == other.FilePath;
+	public bool Equals(Library other) => FilePath == other.FilePath;
 
 	/// <summary>
 	/// Creates the library file in local if not exist.
@@ -207,7 +207,7 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 		var rng = new Random();
 		var numberSeen = 0U;
 		Unsafe.SkipInit(out Grid chosen);
-		await foreach (var grid in new LibraryInfo(FilePath))
+		await foreach (var grid in new Library(FilePath))
 		{
 			if ((uint)rng.Next() % ++numberSeen == 0)
 			{
