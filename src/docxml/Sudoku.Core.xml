@@ -7804,7 +7804,7 @@ if (student is (name: var name, age: >= 18))
             
             // Iterate on each grid.
             string libraryFile = $@"{desktop}\library.txt";
-            await foreach (var grid in new LibraryInfo(libraryFile, cancellationToken))
+            await foreach (var grid in new LibraryInfo(libraryFile))
             {
                 // Do whatever you want to do here.
             }
@@ -7825,7 +7825,7 @@ if (student is (name: var name, age: >= 18))
             
             // Iterate on each grid.
             string libraryFile = $@"{desktop}\library.txt";
-            await foreach (var grid in new LibraryInfo(libraryFile, cancellationToken))
+            await foreach (var grid in new LibraryInfo(libraryFile))
             {
                 // Do whatever you want to do here.
             }
@@ -7846,6 +7846,18 @@ if (student is (name: var name, age: >= 18))
             <b>Always measure performance if you want to use this property.</b>
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetCountAsync"/>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInfo.Item(System.Int32)">
+            <summary>
+            Try to get the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The target <see cref="T:Sudoku.Concepts.Grid"/> instance at the specified index.</returns>
+            <remarks>
+            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAtAsync(System.Int32)"/>.
+            <b>Always measure performance if you want to use this property.</b>
+            </remarks>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.GetAtAsync(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Equals(Sudoku.Runtime.LibraryServices.LibraryInfo)">
             <inheritdoc/>
@@ -7902,7 +7914,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="index">The desired index.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the file doesn't exist.</exception>
+            <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't exist.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.RandomReadOneAsync(Sudoku.Concepts.TransformType)">

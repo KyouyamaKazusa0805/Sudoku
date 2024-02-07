@@ -13,7 +13,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// 
 /// // Iterate on each grid.
 /// string libraryFile = $@"{desktop}\library.txt";
-/// await foreach (var grid in new LibraryInfo(libraryFile, cancellationToken))
+/// await foreach (var grid in new LibraryInfo(libraryFile))
 /// {
 ///     // Do whatever you want to do here.
 /// }
@@ -45,6 +45,19 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 	/// </remarks>
 	/// <seealso cref="GetCountAsync"/>
 	public int Count => GetCountAsync().Result;
+
+
+	/// <summary>
+	/// Try to get the element at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The target <see cref="Grid"/> instance at the specified index.</returns>
+	/// <remarks>
+	/// This property is run synchronously, calling <see cref="GetAtAsync(int)"/>.
+	/// <b>Always measure performance if you want to use this property.</b>
+	/// </remarks>
+	/// <seealso cref="GetAtAsync(int)"/>
+	public Grid this[int index] => GetAtAsync(index).Result;
 
 
 	/// <inheritdoc/>
@@ -158,13 +171,13 @@ public readonly partial struct LibraryInfo([PrimaryConstructorParameter, HashCod
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the file doesn't exist.</exception>
+	/// <exception cref="FileNotFoundException">Throws when the file doesn't exist.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	public async Task<Grid> GetAtAsync(int index)
 	{
 		if (!File.Exists(FilePath))
 		{
-			throw new InvalidOperationException(Error_NotExist);
+			throw new FileNotFoundException(Error_NotExist);
 		}
 
 		var i = -1;
