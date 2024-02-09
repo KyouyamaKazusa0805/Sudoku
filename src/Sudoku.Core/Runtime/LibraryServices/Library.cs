@@ -19,13 +19,14 @@ namespace Sudoku.Runtime.LibraryServices;
 /// }
 /// ]]></code>
 /// </remarks>
+[StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
 [ToString]
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
+public partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
 	IAsyncEnumerable<Grid>,
 	IEqualityOperators<Library, Library, bool>,
 	IEquatable<Library>
@@ -44,7 +45,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <b>Always measure performance if you want to use this property.</b>
 	/// </remarks>
 	/// <seealso cref="GetCountAsync"/>
-	public int Count => GetCountAsync().Result;
+	public readonly int Count => GetCountAsync().Result;
 
 
 	/// <summary>
@@ -57,19 +58,19 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <b>Always measure performance if you want to use this indexer.</b>
 	/// </remarks>
 	/// <seealso cref="GetAtAsync(int)"/>
-	public Grid this[int index] => GetAtAsync(index).Result;
+	public readonly Grid this[int index] => GetAtAsync(index).Result;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Library other) => FilePath == other.FilePath;
+	public readonly bool Equals(Library other) => FilePath == other.FilePath;
 
 	/// <summary>
 	/// Creates the library file in local if not exist.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating whether the creation is succeeded.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CreateIfNotExist()
+	public readonly bool CreateIfNotExist()
 	{
 		if (!File.Exists(FilePath))
 		{
@@ -87,7 +88,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
+	public readonly async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
 		=> await (
 			Grid.TryParse(grid, out _)
 				? File.AppendAllTextAsync(FilePath, grid, cancellationToken)
@@ -95,7 +96,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 		);
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
-	public async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
+	public readonly async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await AppendPuzzleAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
@@ -104,7 +105,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
+	public readonly async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
 	{
 		var tempFile = Path.GetTempFileName();
 		var linesToKeep = new List<string>();
@@ -122,7 +123,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	}
 
 	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
-	public async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
+	public readonly async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await RemovePuzzleAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
@@ -131,7 +132,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid to be written.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
+	public readonly async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
 	{
 		if (Grid.TryParse(grid, out _))
 		{
@@ -148,14 +149,14 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	}
 
 	/// <inheritdoc cref="TryWriteAsync(string, CancellationToken)"/>
-	public async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
+	public readonly async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await TryWriteAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
 	/// Calculates how many puzzles in this file.
 	/// </summary>
 	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
-	public async Task<int> GetCountAsync()
+	public readonly async Task<int> GetCountAsync()
 	{
 		var result = 0;
 		await foreach (var _ in this)
@@ -173,7 +174,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="FileNotFoundException">Throws when the file doesn't exist.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public async Task<Grid> GetAtAsync(int index)
+	public readonly async Task<Grid> GetAtAsync(int index)
 	{
 		if (!File.Exists(FilePath))
 		{
@@ -202,7 +203,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// </param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
-	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
+	public readonly async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
 	{
 		var rng = new Random();
 		var numberSeen = 0U;
@@ -349,7 +350,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	}
 
 	/// <inheritdoc/>
-	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+	public readonly async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
 		if (!File.Exists(FilePath))
 		{
