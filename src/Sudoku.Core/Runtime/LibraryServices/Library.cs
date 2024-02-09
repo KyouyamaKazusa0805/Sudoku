@@ -351,6 +351,11 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
+		if (!File.Exists(FilePath))
+		{
+			yield break;
+		}
+
 		await foreach (var str in File.ReadLinesAsync(FilePath, cancellationToken))
 		{
 			yield return Grid.Parse(str);
