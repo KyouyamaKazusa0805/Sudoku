@@ -1,24 +1,9 @@
 namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
-/// Represents an entry that can fetch a puzzle library file, to check for details of the file.
+/// Represents an entry that plays with a puzzle library file.
 /// </summary>
 /// <param name="filePath">Indicates the file path used.</param>
-/// <remarks>
-/// This type uses async enumeration. You should use <see langword="await foreach"/> statement
-/// to iterate on each puzzle in this library:
-/// <code><![CDATA[
-/// // Suppose the puzzle library file we iterate on is stored in desktop.
-/// string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-/// 
-/// // Iterate on each grid.
-/// string libraryFile = $@"{desktop}\library.txt";
-/// await foreach (var grid in new Library(libraryFile))
-/// {
-///     // Do whatever you want to do here.
-/// }
-/// ]]></code>
-/// </remarks>
 [StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
@@ -26,7 +11,7 @@ namespace Sudoku.Runtime.LibraryServices;
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
+public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
 	IAsyncEnumerable<Grid>,
 	IEqualityOperators<Library, Library, bool>,
 	IEquatable<Library>
@@ -35,6 +20,11 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// Indicates the "Not Exist" message.
 	/// </summary>
 	private const string Error_NotExist = "The file does not exist.";
+
+	/// <summary>
+	/// Indicates the "Multiple Same Properties Found" message.
+	/// </summary>
+	private const string Error_MultipleSamePropertiesFound = "Multiple same properties are found.";
 
 
 	/// <summary>
@@ -45,7 +35,67 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <b>Always measure performance if you want to use this property.</b>
 	/// </remarks>
 	/// <seealso cref="GetCountAsync"/>
-	public readonly int Count => GetCountAsync().Result;
+	public int Count => GetCountAsync().Result;
+
+	/// <summary>
+	/// Indicates the path of configuration file. The file contains the information of the library.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// Due to the design of the library APIs, a puzzle library contains two parts, separated with 2 files.
+	/// One is the configuration file, and the other is the library details, only containing puzzles.
+	/// </para>
+	/// <para><i>
+	/// Call this property will implicitly create config file if file is not found. No exception will be thrown here.
+	/// </i></para>
+	/// </remarks>
+	public string ConfigFilePath
+	{
+		get
+		{
+			var fileName = Path.GetFileNameWithoutExtension(FilePath);
+			var parentFolder = Path.GetDirectoryName(FilePath);
+			var result = $@"{parentFolder}\{fileName}";
+			if (!File.Exists(result))
+			{
+				// Implicitly create the config file if not found.
+				File.Create(result);
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the author of the library. Return <see langword="null"/> if no author configured.
+	/// </summary>
+	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
+	[DisallowNull]
+	public string? Author
+	{
+		get
+		{
+			var pattern = AuthorPattern();
+			return File.Exists(ConfigFilePath)
+				? (
+					from line in File.ReadLines(ConfigFilePath)
+					let groups = pattern.Match(line).Groups
+					where groups.Count == 1
+					select groups[0].Value
+				).FirstOrDefault()
+				: throw new FileNotFoundException(Error_NotExist);
+		}
+
+		set
+		{
+			if (!File.Exists(ConfigFilePath))
+			{
+				throw new FileNotFoundException(Error_NotExist);
+			}
+
+			ConfigFileReplaceOrAppend(AuthorPattern().IsMatch, nameof(Author), value);
+		}
+	}
 
 
 	/// <summary>
@@ -58,28 +108,12 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <b>Always measure performance if you want to use this indexer.</b>
 	/// </remarks>
 	/// <seealso cref="GetAtAsync(int)"/>
-	public readonly Grid this[int index] => GetAtAsync(index).Result;
+	public Grid this[int index] => GetAtAsync(index).Result;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(Library other) => FilePath == other.FilePath;
-
-	/// <summary>
-	/// Creates the library file in local if not exist.
-	/// </summary>
-	/// <returns>A <see cref="bool"/> value indicating whether the creation is succeeded.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool CreateIfNotExist()
-	{
-		if (!File.Exists(FilePath))
-		{
-			File.Create(FilePath);
-			return true;
-		}
-
-		return false;
-	}
+	public bool Equals(Library other) => FilePath == other.FilePath;
 
 	/// <summary>
 	/// Append a puzzle, represented as a <see cref="string"/> value,
@@ -88,7 +122,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <param name="grid">The grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public readonly async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
+	public async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
 		=> await (
 			Grid.TryParse(grid, out _)
 				? File.AppendAllTextAsync(FilePath, grid, cancellationToken)
@@ -96,7 +130,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 		);
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
-	public readonly async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
+	public async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await AppendPuzzleAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
@@ -105,7 +139,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public readonly async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
+	public async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
 	{
 		var tempFile = Path.GetTempFileName();
 		var linesToKeep = new List<string>();
@@ -123,7 +157,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	}
 
 	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
-	public readonly async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
+	public async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await RemovePuzzleAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
@@ -132,7 +166,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <param name="grid">The grid to be written.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	public readonly async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
+	public async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
 	{
 		if (Grid.TryParse(grid, out _))
 		{
@@ -149,14 +183,14 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	}
 
 	/// <inheritdoc cref="TryWriteAsync(string, CancellationToken)"/>
-	public readonly async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
+	public async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
 		=> await TryWriteAsync(grid.ToString("#"), cancellationToken);
 
 	/// <summary>
 	/// Calculates how many puzzles in this file.
 	/// </summary>
 	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
-	public readonly async Task<int> GetCountAsync()
+	public async Task<int> GetCountAsync()
 	{
 		var result = 0;
 		await foreach (var _ in this)
@@ -174,7 +208,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="FileNotFoundException">Throws when the file doesn't exist.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public readonly async Task<Grid> GetAtAsync(int index)
+	public async Task<Grid> GetAtAsync(int index)
 	{
 		if (!File.Exists(FilePath))
 		{
@@ -203,7 +237,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	/// </param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
-	public readonly async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
+	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
 	{
 		var rng = new Random();
 		var numberSeen = 0U;
@@ -350,7 +384,7 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 	}
 
 	/// <inheritdoc/>
-	public readonly async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
 		if (!File.Exists(FilePath))
 		{
@@ -362,4 +396,44 @@ public partial struct Library([PrimaryConstructorParameter, HashCodeMember, Stri
 			yield return Grid.Parse(str);
 		}
 	}
+
+	/// <summary>
+	/// Replace or append the value into the file, using the specified match method.
+	/// </summary>
+	/// <param name="match">The matcher method.</param>
+	/// <param name="prefix">Indicates the prefix.</param>
+	/// <param name="replaceOrAppendValue">The value to replace with original value, or appened.</param>
+	/// <exception cref="InvalidOperationException">Throws when multiple same properties found.</exception>
+	private void ConfigFileReplaceOrAppend(Func<string, bool> match, string prefix, string replaceOrAppendValue)
+	{
+		var list = new List<string>();
+		var isFound = false;
+		foreach (var line in File.ReadLines(ConfigFilePath))
+		{
+			if (!match(line))
+			{
+				list.Add(line);
+			}
+
+			if (isFound)
+			{
+				throw new InvalidOperationException(Error_MultipleSamePropertiesFound);
+			}
+
+			a(list, prefix, replaceOrAppendValue);
+			isFound = true;
+		}
+		if (!isFound)
+		{
+			a(list, prefix, replaceOrAppendValue);
+		}
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void a(List<string> list, string prefix, string replaceOrAppendValue) => list.Add($"{prefix}: {replaceOrAppendValue}");
+	}
+
+
+	[GeneratedRegex("""author:\s*([\s\S]+)$""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex AuthorPattern();
 }
