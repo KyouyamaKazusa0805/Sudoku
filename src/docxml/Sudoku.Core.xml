@@ -7855,7 +7855,7 @@ if (student is (name: var name, age: >= 18))
             <returns>The target <see cref="T:Sudoku.Concepts.Grid"/> instance at the specified index.</returns>
             <remarks>
             This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>.
-            <b>Always measure performance if you want to use this property.</b>
+            <b>Always measure performance if you want to use this indexer.</b>
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>
         </member>

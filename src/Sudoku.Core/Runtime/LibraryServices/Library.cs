@@ -54,7 +54,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <returns>The target <see cref="Grid"/> instance at the specified index.</returns>
 	/// <remarks>
 	/// This property is run synchronously, calling <see cref="GetAtAsync(int)"/>.
-	/// <b>Always measure performance if you want to use this property.</b>
+	/// <b>Always measure performance if you want to use this indexer.</b>
 	/// </remarks>
 	/// <seealso cref="GetAtAsync(int)"/>
 	public Grid this[int index] => GetAtAsync(index).Result;
