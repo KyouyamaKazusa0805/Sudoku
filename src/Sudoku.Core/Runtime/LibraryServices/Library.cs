@@ -26,6 +26,32 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// </summary>
 	private const string Error_MultipleSamePropertiesFound = "Multiple same properties are found.";
 
+	/// <summary>
+	/// Indicates the "Difference Existence of Library File and Config File" message.
+	/// </summary>
+	private const string Error_DifferentExistenceOfConfigAndLibraryFile = "Different existence of config file and library file.";
+
+	/// <summary>
+	/// Indicates the "Related Files Should Be Initialized First" message.
+	/// </summary>
+	private const string Error_FileShouldBeInitializedFirst = "Related files should be initialized first.";
+
+	/// <summary>
+	/// Indicates the "Unrecognized Grid Format" message.
+	/// </summary>
+	private const string Error_UnrecognizedGridFormat = "You cannot append text that cannot be recognized as a valid sudoku grid.";
+
+
+	/// <summary>
+	/// Indicates whether the library-related files are initialized.
+	/// </summary>
+	public bool IsInitialized
+		=> (File.Exists(ConfigFilePath), File.Exists(FilePath)) switch
+		{
+			(true, true) => true,
+			(false, false) => false,
+			_ => throw new InvalidOperationException(Error_DifferentExistenceOfConfigAndLibraryFile)
+		};
 
 	/// <summary>
 	/// Indicates the number of puzzles stored in this file.
@@ -56,11 +82,8 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 			var fileName = Path.GetFileNameWithoutExtension(FilePath);
 			var parentFolder = Path.GetDirectoryName(FilePath);
 			var result = $@"{parentFolder}\{fileName}";
-			if (!File.Exists(result))
-			{
-				// Implicitly create the config file if not found.
-				File.Create(result);
-			}
+
+			Initialize();
 
 			return result;
 		}
@@ -69,6 +92,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <summary>
 	/// Indicates the author of the library. Return <see langword="null"/> if no author configured.
 	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
 	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
 	[DisallowNull]
 	public string? Author
@@ -76,14 +100,14 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 		get
 		{
 			var pattern = AuthorPattern();
-			return File.Exists(ConfigFilePath)
+			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
 					let groups = pattern.Match(line).Groups
 					where groups.Count == 1
 					select groups[0].Value
 				).FirstOrDefault()
-				: throw new FileNotFoundException(Error_NotExist);
+				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
 		}
 
 		set
@@ -111,6 +135,19 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	public Grid this[int index] => GetAtAsync(index).Result;
 
 
+	/// <summary>
+	/// Initializes the library-related files if not found. If initialized, nothing will be happened.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Initialize()
+	{
+		if (!IsInitialized)
+		{
+			File.Create(ConfigFilePath);
+			File.Create(FilePath);
+		}
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Library other) => FilePath == other.FilePath;
@@ -122,16 +159,21 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the library is not initialized, or grid cannot be recognized.
+	/// </exception>
 	public async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
 		=> await (
-			Grid.TryParse(grid, out _)
-				? File.AppendAllTextAsync(FilePath, grid, cancellationToken)
-				: Task.FromException(new InvalidOperationException("You cannot append text that cannot be recognized as a valid sudoku grid."))
+			IsInitialized
+				? Grid.TryParse(grid, out _)
+					? File.AppendAllTextAsync(FilePath, grid, cancellationToken)
+					: throw new InvalidOperationException(Error_UnrecognizedGridFormat)
+				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst)
 		);
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
 	public async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await AppendPuzzleAsync(grid.ToString("#"), cancellationToken);
+		=> await AppendPuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
 	/// Removes all puzzles that exactly same as the specified one from the file.
@@ -139,9 +181,14 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	public async Task RemovePuzzleAsync(string grid, CancellationToken cancellationToken = default)
 	{
-		var tempFile = Path.GetTempFileName();
+		if (!IsInitialized)
+		{
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
 		var linesToKeep = new List<string>();
 		await foreach (var line in File.ReadLinesAsync(FilePath, cancellationToken))
 		{
@@ -151,6 +198,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 			}
 		}
 
+		var tempFile = Path.GetTempFileName();
 		await File.WriteAllLinesAsync(tempFile, linesToKeep, cancellationToken);
 		File.Delete(FilePath);
 		File.Move(tempFile, FilePath);
@@ -158,7 +206,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 
 	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
 	public async Task RemovePuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await RemovePuzzleAsync(grid.ToString("#"), cancellationToken);
+		=> await RemovePuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
 	/// Write a puzzle into a file just created. If the file exists, it will return <see langword="false"/>.
@@ -166,15 +214,16 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <param name="grid">The grid to be written.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	public async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
 	{
+		if (!IsInitialized)
+		{
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
 		if (Grid.TryParse(grid, out _))
 		{
-			if (File.Exists(FilePath))
-			{
-				return false;
-			}
-
 			await File.WriteAllTextAsync(FilePath, grid, cancellationToken);
 			return true;
 		}
@@ -184,14 +233,20 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 
 	/// <inheritdoc cref="TryWriteAsync(string, CancellationToken)"/>
 	public async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await TryWriteAsync(grid.ToString("#"), cancellationToken);
+		=> await TryWriteAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
 	/// Calculates how many puzzles in this file.
 	/// </summary>
 	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	public async Task<int> GetCountAsync()
 	{
+		if (!IsInitialized)
+		{
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
 		var result = 0;
 		await foreach (var _ in this)
 		{
@@ -206,13 +261,13 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
-	/// <exception cref="FileNotFoundException">Throws when the file doesn't exist.</exception>
+	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	public async Task<Grid> GetAtAsync(int index)
 	{
-		if (!File.Exists(FilePath))
+		if (!IsInitialized)
 		{
-			throw new FileNotFoundException(Error_NotExist);
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
 		}
 
 		var i = -1;
@@ -236,9 +291,15 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// to combine multiple flags.
 	/// </param>
 	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
-	/// <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
+	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
+	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
 	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
 	{
+		if (!IsInitialized)
+		{
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
 		var rng = new Random();
 		var numberSeen = 0U;
 		Unsafe.SkipInit(out Grid chosen);
@@ -406,13 +467,13 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// <exception cref="InvalidOperationException">Throws when multiple same properties found.</exception>
 	private void ConfigFileReplaceOrAppend(Func<string, bool> match, string prefix, string replaceOrAppendValue)
 	{
-		var list = new List<string>();
+		var linesToKeep = new List<string>();
 		var isFound = false;
 		foreach (var line in File.ReadLines(ConfigFilePath))
 		{
 			if (!match(line))
 			{
-				list.Add(line);
+				linesToKeep.Add(line);
 			}
 
 			if (isFound)
@@ -420,13 +481,18 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 				throw new InvalidOperationException(Error_MultipleSamePropertiesFound);
 			}
 
-			a(list, prefix, replaceOrAppendValue);
+			a(linesToKeep, prefix, replaceOrAppendValue);
 			isFound = true;
 		}
 		if (!isFound)
 		{
-			a(list, prefix, replaceOrAppendValue);
+			a(linesToKeep, prefix, replaceOrAppendValue);
 		}
+
+		var tempFile = Path.GetTempFileName();
+		File.WriteAllLines(tempFile, linesToKeep);
+		File.Delete(FilePath);
+		File.Move(tempFile, FilePath);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -434,6 +500,12 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	}
 
 
-	[GeneratedRegex("""author:\s*([\s\S]+)$""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	/// <summary>
+	/// Returns <c>grid.ToString("#")</c>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string GetSingleLineGridString(scoped ref readonly Grid grid) => grid.ToString("#");
+
+	[GeneratedRegex($"""{nameof(Author)}:\s*([\s\S]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex AuthorPattern();
 }

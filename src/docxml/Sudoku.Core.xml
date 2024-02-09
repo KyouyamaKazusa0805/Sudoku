@@ -7812,6 +7812,26 @@ if (student is (name: var name, age: >= 18))
             Indicates the "Multiple Same Properties Found" message.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_DifferentExistenceOfConfigAndLibraryFile">
+            <summary>
+            Indicates the "Difference Existence of Library File and Config File" message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_FileShouldBeInitializedFirst">
+            <summary>
+            Indicates the "Related Files Should Be Initialized First" message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_UnrecognizedGridFormat">
+            <summary>
+            Indicates the "Unrecognized Grid Format" message.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.IsInitialized">
+            <summary>
+            Indicates whether the library-related files are initialized.
+            </summary>
+        </member>
         <member name="P:Sudoku.Runtime.LibraryServices.Library.Count">
             <summary>
             Indicates the number of puzzles stored in this file.
@@ -7840,6 +7860,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the author of the library. Return <see langword="null"/> if no author configured.
             </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the library is not initialized.</exception>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the config file is missing.</exception>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.Library.Item(System.Int32)">
@@ -7854,6 +7875,11 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Initialize">
+            <summary>
+            Initializes the library-related files if not found. If initialized, nothing will be happened.
+            </summary>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc/>
         </member>
@@ -7865,6 +7891,9 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid text code to be appended.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the library is not initialized, or grid cannot be recognized.
+            </exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)"/>
@@ -7876,6 +7905,7 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)"/>
@@ -7887,6 +7917,7 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid to be written.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(System.String,System.Threading.CancellationToken)"/>
@@ -7896,6 +7927,7 @@ if (student is (name: var name, age: >= 18))
             Calculates how many puzzles in this file.
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> value indicating the result.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)">
             <summary>
@@ -7903,7 +7935,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="index">The desired index.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
-            <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't exist.</exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Concepts.TransformType)">
@@ -7916,7 +7948,8 @@ if (student is (name: var name, age: >= 18))
             to combine multiple flags.
             </param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
-            <see href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</see>
+            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
+            <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -7930,10 +7963,15 @@ if (student is (name: var name, age: >= 18))
             <param name="replaceOrAppendValue">The value to replace with original value, or appened.</param>
             <exception cref="T:System.InvalidOperationException">Throws when multiple same properties found.</exception>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetSingleLineGridString(Sudoku.Concepts.Grid@)">
+            <summary>
+            Returns <c>grid.ToString("#")</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AuthorPattern">
             <remarks>
             Pattern:<br/>
-            <code>author:\\s*([\\s\\S]+)$</code><br/>
+            <code>Author:\\s*([\\s\\S]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -7947,8 +7985,7 @@ if (student is (name: var name, age: >= 18))
             ○ Match ':'.<br/>
             ○ Match a whitespace character greedily any number of times.<br/>
             ○ 1st capture group.<br/>
-                ○ Match any character greedily at least once.<br/>
-            ○ Match if at the end of the string or if before an ending newline.<br/>
+                ○ Match any character atomically at least once.<br/>
             </code>
             </remarks>
         </member>
