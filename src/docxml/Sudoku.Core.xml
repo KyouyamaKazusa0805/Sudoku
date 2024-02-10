@@ -7847,7 +7847,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync"/>
         </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.Library.FilePath">
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.LibraryFilePath">
             <summary>
             Indicates the path of the library file. The file only contains the puzzles.
             If you want to check for details of the configuration, use <see cref="P:Sudoku.Runtime.LibraryServices.Library.ConfigFilePath"/> instead.
@@ -7906,7 +7906,7 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.Initialize">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.InitializeIfWorth">
             <summary>
             Initializes the library-related files if not found. If initialized, nothing will be happened.
             </summary>

@@ -51,7 +51,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// Indicates whether the library-related files are initialized.
 	/// </summary>
 	public bool IsInitialized
-		=> (File.Exists(ConfigFilePath), File.Exists(FilePath)) switch
+		=> (File.Exists(ConfigFilePath), File.Exists(LibraryFilePath)) switch
 		{
 			(true, true) => true,
 			(false, false) => false,
@@ -73,7 +73,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// If you want to check for details of the configuration, use <see cref="ConfigFilePath"/> instead.
 	/// </summary>
 	/// <seealso cref="ConfigFilePath"/>
-	public string FilePath => $@"{_directory}\{Name}";
+	public string LibraryFilePath => $@"{_directory}\{Name}";
 
 	/// <summary>
 	/// Indicates the path of configuration file. The file contains the information of the library.
@@ -91,13 +91,8 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	{
 		get
 		{
-			var fileName = Path.GetFileNameWithoutExtension(FilePath);
-			var parentFolder = Path.GetDirectoryName(FilePath);
-			var result = $@"{parentFolder}\{fileName}";
-
-			Initialize();
-
-			return result;
+			InitializeIfWorth();
+			return $@"{_directory}\{Name}.txt";
 		}
 	}
 
@@ -201,7 +196,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// <summary>
 	/// Indicates the last modified time of the library file.
 	/// </summary>
-	public DateTime LastModifiedTime => File.GetLastWriteTime(FilePath);
+	public DateTime LastModifiedTime => File.GetLastWriteTime(LibraryFilePath);
 
 
 	/// <summary>
@@ -221,18 +216,18 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// Initializes the library-related files if not found. If initialized, nothing will be happened.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Initialize()
+	public void InitializeIfWorth()
 	{
 		if (!IsInitialized)
 		{
 			File.Create(ConfigFilePath);
-			File.Create(FilePath);
+			File.Create(LibraryFilePath);
 		}
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Library other) => FilePath == other.FilePath;
+	public bool Equals(Library other) => LibraryFilePath == other.LibraryFilePath;
 
 	/// <summary>
 	/// Append a puzzle, represented as a <see cref="string"/> value,
@@ -248,7 +243,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 		=> await (
 			IsInitialized
 				? Grid.TryParse(grid, out _)
-					? File.AppendAllTextAsync(FilePath, grid, cancellationToken)
+					? File.AppendAllTextAsync(LibraryFilePath, grid, cancellationToken)
 					: throw new InvalidOperationException(Error_UnrecognizedGridFormat)
 				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst)
 		);
@@ -272,7 +267,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 		}
 
 		var linesToKeep = new List<string>();
-		await foreach (var line in File.ReadLinesAsync(FilePath, cancellationToken))
+		await foreach (var line in File.ReadLinesAsync(LibraryFilePath, cancellationToken))
 		{
 			if (line != grid)
 			{
@@ -282,8 +277,8 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 
 		var tempFile = Path.GetTempFileName();
 		await File.WriteAllLinesAsync(tempFile, linesToKeep, cancellationToken);
-		File.Delete(FilePath);
-		File.Move(tempFile, FilePath);
+		File.Delete(LibraryFilePath);
+		File.Move(tempFile, LibraryFilePath);
 	}
 
 	/// <inheritdoc cref="RemovePuzzleAsync(string, CancellationToken)"/>
@@ -306,7 +301,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 
 		if (Grid.TryParse(grid, out _))
 		{
-			await File.WriteAllTextAsync(FilePath, grid, cancellationToken);
+			await File.WriteAllTextAsync(LibraryFilePath, grid, cancellationToken);
 			return true;
 		}
 
@@ -529,12 +524,12 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
-		if (!File.Exists(FilePath))
+		if (!File.Exists(LibraryFilePath))
 		{
 			yield break;
 		}
 
-		await foreach (var str in File.ReadLinesAsync(FilePath, cancellationToken))
+		await foreach (var str in File.ReadLinesAsync(LibraryFilePath, cancellationToken))
 		{
 			yield return Grid.Parse(str);
 		}
@@ -579,8 +574,8 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 
 		var tempFile = Path.GetTempFileName();
 		File.WriteAllLines(tempFile, linesToKeep);
-		File.Delete(FilePath);
-		File.Move(tempFile, FilePath);
+		File.Delete(LibraryFilePath);
+		File.Move(tempFile, LibraryFilePath);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
