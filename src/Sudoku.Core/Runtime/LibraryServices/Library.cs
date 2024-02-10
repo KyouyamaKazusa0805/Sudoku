@@ -3,7 +3,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// <summary>
 /// Represents an entry that plays with a puzzle library file.
 /// </summary>
-/// <param name="filePath">Indicates the file path used.</param>
+/// <param name="directory">Indicates the parent directory that stores the library.</param>
 [StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
@@ -11,7 +11,7 @@ namespace Sudoku.Runtime.LibraryServices;
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMember, StringMember] string filePath) :
+public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] string directory) :
 	IAsyncEnumerable<Grid>,
 	IEqualityOperators<Library, Library, bool>,
 	IEquatable<Library>
@@ -41,6 +41,11 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// </summary>
 	private const string Error_UnrecognizedGridFormat = "You cannot append text that cannot be recognized as a valid sudoku grid.";
 
+	/// <summary>
+	/// Indicates the separator character.
+	/// </summary>
+	private const char SeparatorChar = ',';
+
 
 	/// <summary>
 	/// Indicates whether the library-related files are initialized.
@@ -62,6 +67,13 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// </remarks>
 	/// <seealso cref="GetCountAsync"/>
 	public int Count => GetCountAsync().Result;
+
+	/// <summary>
+	/// Indicates the path of the library file. The file only contains the puzzles.
+	/// If you want to check for details of the configuration, use <see cref="ConfigFilePath"/> instead.
+	/// </summary>
+	/// <seealso cref="ConfigFilePath"/>
+	public string FilePath => $@"{_directory}\{Name}";
 
 	/// <summary>
 	/// Indicates the path of configuration file. The file contains the information of the library.
@@ -117,9 +129,79 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 				throw new FileNotFoundException(Error_NotExist);
 			}
 
-			ConfigFileReplaceOrAppend(AuthorPattern().IsMatch, nameof(Author), value);
+			ConfigFileReplaceOrAppend(AuthorPattern().IsMatch, value);
 		}
 	}
+
+	/// <summary>
+	/// Indicates the name of the library.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
+	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
+	[DisallowNull]
+	public string? Name
+	{
+		get
+		{
+			var pattern = NamePattern();
+			return IsInitialized
+				? (
+					from line in File.ReadLines(ConfigFilePath)
+					let groups = pattern.Match(line).Groups
+					where groups.Count == 1
+					select groups[0].Value
+				).FirstOrDefault()
+				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
+		set
+		{
+			if (!File.Exists(ConfigFilePath))
+			{
+				throw new FileNotFoundException(Error_NotExist);
+			}
+
+			ConfigFileReplaceOrAppend(NamePattern().IsMatch, value);
+		}
+	}
+
+	/// <summary>
+	/// Indicates the tags of the library.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
+	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
+	[DisallowNull]
+	public string[]? Tags
+	{
+		get
+		{
+			var pattern = TagsPattern();
+			return IsInitialized
+				? (
+					from line in File.ReadLines(ConfigFilePath)
+					let groups = pattern.Match(line).Groups
+					where groups.Count == 1
+					select groups[0].Value into line
+					select line.Split(SeparatorChar)
+				).FirstOrDefault()
+				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
+		set
+		{
+			if (!File.Exists(ConfigFilePath))
+			{
+				throw new FileNotFoundException(Error_NotExist);
+			}
+
+			ConfigFileReplaceOrAppend(NamePattern().IsMatch, string.Join(SeparatorChar, value));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the last modified time of the library file.
+	/// </summary>
+	public DateTime LastModifiedTime => File.GetLastWriteTime(FilePath);
 
 
 	/// <summary>
@@ -303,7 +385,7 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 		var rng = new Random();
 		var numberSeen = 0U;
 		Unsafe.SkipInit(out Grid chosen);
-		await foreach (var grid in new Library(FilePath))
+		await foreach (var grid in new Library(_directory))
 		{
 			if ((uint)rng.Next() % ++numberSeen == 0)
 			{
@@ -462,10 +544,16 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 	/// Replace or append the value into the file, using the specified match method.
 	/// </summary>
 	/// <param name="match">The matcher method.</param>
-	/// <param name="prefix">Indicates the prefix.</param>
 	/// <param name="replaceOrAppendValue">The value to replace with original value, or appened.</param>
+	/// <param name="callerPropertyName">
+	/// Indicates the property name as caller. This parameter shouldn't be assigned. It will be assigned by compiler.
+	/// </param>
 	/// <exception cref="InvalidOperationException">Throws when multiple same properties found.</exception>
-	private void ConfigFileReplaceOrAppend(Func<string, bool> match, string prefix, string replaceOrAppendValue)
+	private void ConfigFileReplaceOrAppend(
+		Func<string, bool> match,
+		string replaceOrAppendValue,
+		[CallerMemberName] string callerPropertyName = null!
+	)
 	{
 		var linesToKeep = new List<string>();
 		var isFound = false;
@@ -481,12 +569,12 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 				throw new InvalidOperationException(Error_MultipleSamePropertiesFound);
 			}
 
-			a(linesToKeep, prefix, replaceOrAppendValue);
+			a(linesToKeep, callerPropertyName, replaceOrAppendValue);
 			isFound = true;
 		}
 		if (!isFound)
 		{
-			a(linesToKeep, prefix, replaceOrAppendValue);
+			a(linesToKeep, callerPropertyName, replaceOrAppendValue);
 		}
 
 		var tempFile = Path.GetTempFileName();
@@ -508,4 +596,10 @@ public readonly partial struct Library([PrimaryConstructorParameter, HashCodeMem
 
 	[GeneratedRegex($"""{nameof(Author)}:\s*([\s\S]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex AuthorPattern();
+
+	[GeneratedRegex($"""{nameof(Name)}:\s*([\S\s]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex NamePattern();
+
+	[GeneratedRegex($"""{nameof(Tags)}:\s*([\S\s]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex TagsPattern();
 }
