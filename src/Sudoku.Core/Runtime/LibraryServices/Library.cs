@@ -115,7 +115,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
-					let groups = pattern.Match(line).Groups
+					select pattern.Match(line).Groups into groups
 					where groups.Count == 1
 					select groups[0].Value
 				).FirstOrDefault()
@@ -147,7 +147,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
-					let groups = pattern.Match(line).Groups
+					select pattern.Match(line).Groups into groups
 					where groups.Count == 1
 					select groups[0].Value
 				).FirstOrDefault()
@@ -179,7 +179,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
-					let groups = pattern.Match(line).Groups
+					select pattern.Match(line).Groups into groups
 					where groups.Count == 1
 					select groups[0].Value into line
 					select line.Split(SeparatorChar)
