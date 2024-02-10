@@ -69,6 +69,11 @@
             Improved APIs for Picker/Dialog classes that implement <see cref="T:WinRT.Interop.InitializeWithWindow"/>
             </seealso>
         </member>
+        <member name="P:SudokuStudio.App.Libraries">
+            <summary>
+            Indicates the internal libraries.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -116,6 +121,11 @@
         <member name="M:SudokuStudio.App.LoadConfigurationFileFromLocal">
             <summary>
             Loads configuration file from local path.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.App.CheckPuzzleLibraries">
+            <summary>
+            Check for puzzle libraries.
             </summary>
         </member>
         <member name="M:SudokuStudio.App.ShouldSystemUseDarkMode">
@@ -4897,6 +4907,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
+        <member name="F:SudokuStudio.ProjectWideConstants.LibraryConfigFileHeader">
+            <summary>
+            Indicates the file header.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.ProjectWideConstants.CurrentAssembly">
             <summary>
             Indicates the current assembly, of type <see cref="T:System.Reflection.Assembly"/>.
@@ -9310,7 +9325,7 @@ if (student is (name: var name, age: >= 18))
             Indicates puzzle-generating history path.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.CommonPaths.PuzzleLibrariesFolder">
+        <member name="F:SudokuStudio.Storage.CommonPaths.Library">
             <summary>
             Indicates puzzle-library folder path.
             </summary>

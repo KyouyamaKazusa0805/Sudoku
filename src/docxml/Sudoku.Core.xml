@@ -7795,12 +7795,14 @@ if (student is (name: var name, age: >= 18))
             Represents an entry that plays with a puzzle library file.
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
+            <param name="fileId">Indicates the file ID.</param>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)">
             <summary>
             Represents an entry that plays with a puzzle library file.
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
+            <param name="fileId">Indicates the file ID.</param>
         </member>
         <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_NotExist">
             <summary>
@@ -8063,6 +8065,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Runtime.LibraryServices.Library._directory">
             <summary>
             The generated field declaration for parameter <c>directory</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.FileId">
+            <summary>
+            The generated property declaration for parameter <c>fileId</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(System.Object)">

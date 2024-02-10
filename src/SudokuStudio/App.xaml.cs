@@ -66,6 +66,11 @@ public partial class App : Application
 	/// </seealso>
 	internal WindowManager WindowManager { get; } = new();
 
+	/// <summary>
+	/// Indicates the internal libraries.
+	/// </summary>
+	internal List<Library> Libraries { get; } = [];
+
 
 	/// <summary>
 	/// Indicates the assembly version.
@@ -183,6 +188,7 @@ public partial class App : Application
 	{
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
+		CheckPuzzleLibraries();
 		ActivateMainWindow();
 	}
 
@@ -245,6 +251,24 @@ public partial class App : Application
 		}
 	}
 
+	/// <summary>
+	/// Check for puzzle libraries.
+	/// </summary>
+	private void CheckPuzzleLibraries()
+	{
+		if (CommonPaths.Library is var libFolder && Directory.Exists(libFolder))
+		{
+			foreach (var filePath in Directory.EnumerateFiles(libFolder))
+			{
+				if (io::Path.GetExtension(filePath) == FileExtensions.PuzzleLibrary
+					&& File.ReadLines(filePath).First() == LibraryConfigFileHeader)
+				{
+					Libraries.Add(new(libFolder, io::Path.GetFileNameWithoutExtension(filePath)));
+				}
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Get system theme mode.
@@ -259,18 +283,21 @@ public partial class App : Application
 	{
 		try
 		{
-			var process = new Process();
-			process.StartInfo.FileName = "cmd.exe";
-			process.StartInfo.Arguments = @"/C reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize\";
-			process.StartInfo.UseShellExecute = false;
-			process.StartInfo.RedirectStandardOutput = true;
-			process.StartInfo.CreateNoWindow = true;
-
+			using var process = new Process
+			{
+				StartInfo =
+				{
+					FileName = "cmd.exe",
+					Arguments = @"/C reg query HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize\",
+					UseShellExecute = false,
+					RedirectStandardOutput = true,
+					CreateNoWindow = true
+				}
+			};
 			process.Start();
 
 			var output = process.StandardOutput.ReadToEnd();
-			var keys = output.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
-			foreach (var key in keys)
+			foreach (var key in output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
 			{
 				if (key.Contains("AppsUseLightTheme"))
 				{

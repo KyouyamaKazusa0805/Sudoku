@@ -4,6 +4,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// Represents an entry that plays with a puzzle library file.
 /// </summary>
 /// <param name="directory">Indicates the parent directory that stores the library.</param>
+/// <param name="fileId">Indicates the file ID.</param>
 [StructLayout(LayoutKind.Auto)]
 [Equals]
 [GetHashCode]
@@ -11,7 +12,10 @@ namespace Sudoku.Runtime.LibraryServices;
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] string directory) :
+public readonly partial struct Library(
+	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] string directory,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] string fileId
+) :
 	IAsyncEnumerable<Grid>,
 	IEqualityOperators<Library, Library, bool>,
 	IEquatable<Library>
@@ -73,7 +77,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 	/// If you want to check for details of the configuration, use <see cref="ConfigFilePath"/> instead.
 	/// </summary>
 	/// <seealso cref="ConfigFilePath"/>
-	public string LibraryFilePath => $@"{_directory}\{Name}";
+	public string LibraryFilePath => $@"{_directory}\{FileId}";
 
 	/// <summary>
 	/// Indicates the path of configuration file. The file contains the information of the library.
@@ -92,7 +96,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 		get
 		{
 			InitializeIfWorth();
-			return $@"{_directory}\{Name}.txt";
+			return $@"{_directory}\{FileId}.txt";
 		}
 	}
 
@@ -380,7 +384,7 @@ public readonly partial struct Library([PrimaryConstructorParameter(MemberKinds.
 		var rng = new Random();
 		var numberSeen = 0U;
 		Unsafe.SkipInit(out Grid chosen);
-		await foreach (var grid in new Library(_directory))
+		await foreach (var grid in this)
 		{
 			if ((uint)rng.Next() % ++numberSeen == 0)
 			{
