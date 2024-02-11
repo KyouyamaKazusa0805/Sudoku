@@ -7967,7 +7967,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
-            If you want to check whether the puzzle has at least one puzzle, please use method <see cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/> instead.
+            <b><i>If you want to check whether the puzzle has at least one puzzle, please use method <see cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/> instead.</i></b>
             </remarks>
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/>

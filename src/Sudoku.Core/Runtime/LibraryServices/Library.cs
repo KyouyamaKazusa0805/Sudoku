@@ -328,7 +328,7 @@ public readonly partial struct Library(
 	/// </summary>
 	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
 	/// <remarks>
-	/// If you want to check whether the puzzle has at least one puzzle, please use method <see cref="Any"/> instead.
+	/// <b><i>If you want to check whether the puzzle has at least one puzzle, please use method <see cref="Any"/> instead.</i></b>
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	/// <seealso cref="Any"/>
