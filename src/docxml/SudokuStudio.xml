@@ -216,6 +216,28 @@
         <member name="P:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider.Items">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource">
+            <summary>
+            Represents the bindable source for libraries.
+            </summary>
+            <param name="lib">Indicates the library.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.Runtime.LibraryServices.Library)">
+            <summary>
+            Represents the bindable source for libraries.
+            </summary>
+            <param name="lib">Indicates the library.</param>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.DisplayName">
+            <summary>
+            Indicates the display name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
+            <summary>
+            The generated property declaration for parameter <c>lib</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information

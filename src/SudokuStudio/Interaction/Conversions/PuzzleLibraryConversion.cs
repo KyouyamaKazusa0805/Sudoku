@@ -33,5 +33,8 @@ internal static class PuzzleLibraryConversion
 	public static string GetPuzzlesCountText(int count)
 		=> string.Format(ResourceDictionary.Get(count == 1 ? "LibraryPage_PuzzlesCountIsSingular" : "LibraryPage_PuzzlesCountIsPlural", App.CurrentCulture), count);
 
-	public static string GetLibraryName(string libName, string libFileId) => $"{libName} ({libFileId}{FileExtensions.PuzzleLibrary})";
+	public static string GetLibraryDisplayName(string? libName, string libFileId)
+		=> libName is not null
+			? $"{libName} ({libFileId}{FileExtensions.PuzzleLibrary})"
+			: $"{libFileId}{FileExtensions.PuzzleLibrary}";
 }

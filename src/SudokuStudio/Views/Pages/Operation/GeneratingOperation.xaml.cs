@@ -37,9 +37,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void SetConfiguredOptions(AnalyzePage basePage)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var comma = ResourceDictionary.Get("_Token_Comma", App.CurrentCulture);
-		var openBrace = ResourceDictionary.Get("_Token_OpenBrace", App.CurrentCulture);
-		var closedBrace = ResourceDictionary.Get("_Token_ClosedBrace", App.CurrentCulture);
 		TextBlockBindable.SetInlines(
 			GeneratorStrategyTooltip,
 			[
@@ -61,7 +58,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				new Run().WithText($"{uiPref.GeneratorSelectedTechniques switch
 				{
 					[var f] => string.Format(ResourceDictionary.Get("AnalyzePage_SingleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture)),
-					[var f, ..] t and { Count: var fc } => string.Format(ResourceDictionary.Get("AnalyzePage_MultipleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture), fc),
+					[var f, ..] and { Count: var fc } => string.Format(ResourceDictionary.Get("AnalyzePage_MultipleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture), fc),
 					_ => ResourceDictionary.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture),
 				}:AnalyzePage_SelectedTechniqueIs}"),
 				new LineBreak(),
@@ -85,6 +82,18 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}:AnalyzePage_SelectedIttoryuIs}")
 			]
 		);
+
+		var libs = ((App)Application.Current).Libraries;
+		(PuzzleLibraryChoser.Visibility, LibraryPuzzleFetchButton.Visibility, LibSeparator.Visibility) = libs.Count != 0
+			? (Visibility.Visible, Visibility.Visible, Visibility.Visible)
+			: (Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
+		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource(lib)).ToArray();
+		var lastFileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
+		PuzzleLibraryChoser.SelectedIndex = libs.FindIndex(lib => lib is { FileId: var f } && f == lastFileId) switch
+		{
+			var index and not -1 => index,
+			_ => 0
+		};
 	}
 
 	/// <summary>
@@ -271,6 +280,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				BasePage.SudokuPane.Puzzle = grid;
 			}
 		);
+
+	private void LibraryPuzzleFetchButton_Click(object sender, RoutedEventArgs e)
+	{
+	}
+
+	private void PuzzleLibraryChoser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+
+	}
 
 	private async void BatchGeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
