@@ -11,7 +11,7 @@ public sealed partial class LibraryPage : Page
 	public LibraryPage() => InitializeComponent();
 
 
-	private void Visit_Click(object sender, RoutedEventArgs e)
+	private void VisitButton_Click(object sender, RoutedEventArgs e)
 	{
 	}
 }
