@@ -7185,6 +7185,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Shown if cannot be finished by easy &amp; moderate techniques.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibrary">
+            <summary>
+              Looks up a localized string similar to Add Library....
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Description">
             <summary>
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..

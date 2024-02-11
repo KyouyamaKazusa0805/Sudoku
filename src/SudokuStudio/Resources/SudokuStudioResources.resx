@@ -945,6 +945,9 @@
   <data name="LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate" xml:space="preserve">
     <value>Shown if cannot be finished by easy &amp; moderate techniques</value>
   </data>
+  <data name="LibraryPage_AddLibrary" xml:space="preserve">
+    <value>Add Library...</value>
+  </data>
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>

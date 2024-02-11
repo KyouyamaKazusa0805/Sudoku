@@ -2761,6 +2761,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Library....
+        /// </summary>
+        internal static string LibraryPage_AddLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
         /// </summary>
         internal static string LibraryPage_Description {

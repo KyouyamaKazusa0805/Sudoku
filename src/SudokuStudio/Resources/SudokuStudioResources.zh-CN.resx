@@ -948,6 +948,9 @@
   <data name="LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate" xml:space="preserve">
     <value>当题目至少需要困难级技巧才能解的时候，显示候选数</value>
   </data>
+  <data name="LibraryPage_AddLibrary" xml:space="preserve">
+    <value>添加题库……</value>
+  </data>
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>这个页面列举的是你配置的一些题库。你可以点击它们查看里面配置的题目。</value>
   </data>
