@@ -110,6 +110,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\LibraryPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\MainNavigationPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -129,9 +132,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Settings\LibraryPreferenceItemsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\ContentDialogs\LibraryInfoDisplayerContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\TechniqueGalleryPage.xaml">

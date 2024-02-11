@@ -16,9 +16,6 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:AnalyzePage}"
 	Loaded="Page_Loaded">
 	<Page.Resources>
-		<TeachingTip
-			x:Name="ErrorDialog_MustSelectAtLeastOneLibrary"
-			Title="{m:R Key=LibraryPage_MustSelectOneLibraryTitle}" Subtitle="{m:R Key=LibraryPage_MustSelectOneLibrary}" />
 		<CommandBarFlyout x:Name="MainMenuFlyout" Placement="TopEdgeAlignedLeft" Closed="MainMenuFlyout_Closed">
 			<AppBarButton
 				Label="{m:R Key=SudokuPane_Copy}" Icon="Copy" ToolTipService.ToolTip="{m:R Key=SudokuPane_Copy}"

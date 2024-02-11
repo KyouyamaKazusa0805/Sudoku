@@ -13,7 +13,7 @@ namespace Sudoku.Runtime.LibraryServices;
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Library(
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] string directory,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "internal"), HashCodeMember, StringMember] string directory,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] string fileId
 ) :
 	IAsyncEnumerable<Grid>,
@@ -95,7 +95,7 @@ public readonly partial struct Library(
 	{
 		get
 		{
-			InitializeIfWorth();
+			Initialize();
 			return $@"{_directory}\{FileId}.txt";
 		}
 	}
@@ -165,6 +165,38 @@ public readonly partial struct Library(
 	}
 
 	/// <summary>
+	/// Indicates the description to the library.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
+	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
+	[DisallowNull]
+	public string? Description
+	{
+		get
+		{
+			var pattern = DescriptionPattern();
+			return IsInitialized
+				? (
+					from line in File.ReadLines(ConfigFilePath)
+					select pattern.Match(line).Groups into groups
+					where groups.Count == 1
+					select groups[0].Value
+				).FirstOrDefault()
+				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
+		set
+		{
+			if (!File.Exists(ConfigFilePath))
+			{
+				throw new FileNotFoundException(Error_NotExist);
+			}
+
+			ConfigFileReplaceOrAppend(DescriptionPattern().IsMatch, value);
+		}
+	}
+
+	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
@@ -217,16 +249,20 @@ public readonly partial struct Library(
 
 
 	/// <summary>
-	/// Initializes the library-related files if not found. If initialized, nothing will be happened.
+	/// Initializes the library-related files if not found. If initialized, throw <see cref="LibraryInitializedException"/>.
 	/// </summary>
+	/// <exception cref="LibraryInitializedException">Throws when the library has already been initialized.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void InitializeIfWorth()
+	public void Initialize()
 	{
 		if (!IsInitialized)
 		{
 			File.Create(ConfigFilePath);
 			File.Create(LibraryFilePath);
+			return;
 		}
+
+		throw new LibraryInitializedException(this);
 	}
 
 	/// <inheritdoc/>
@@ -609,6 +645,9 @@ public readonly partial struct Library(
 
 	[GeneratedRegex(@"name:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex NamePattern();
+
+	[GeneratedRegex(@"description:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex DescriptionPattern();
 
 	[GeneratedRegex(@"tags:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex TagsPattern();

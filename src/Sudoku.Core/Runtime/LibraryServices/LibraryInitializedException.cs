@@ -1,0 +1,26 @@
+namespace Sudoku.Runtime.LibraryServices;
+
+/// <summary>
+/// Represents an exception type that will be thrown if a library instance has already been initialized, but a user still calls
+/// method <see cref="Library.Initialize"/>.
+/// </summary>
+/// <param name="directory"><inheritdoc cref="Library(string, string)" path="/param[@name='directory']"/></param>
+/// <param name="fileId"><inheritdoc cref="Library(string, string)" path="/param[@name='fileId']"/></param>
+/// <seealso cref="Library.Initialize"/>
+public sealed partial class LibraryInitializedException(
+	[PrimaryConstructorParameter] string directory,
+	[PrimaryConstructorParameter] string fileId
+) : Exception
+{
+	/// <summary>
+	/// Initializes a <see cref="LibraryInitializedException"/> instance via the specified directory and file ID.
+	/// </summary>
+	/// <param name="library">The library instance.</param>
+	public LibraryInitializedException(Library library) : this(library._directory, library.FileId)
+	{
+	}
+
+
+	/// <inheritdoc/>
+	public override string Message => $@"The library (local path: '{Directory}\{FileId}') has already been initialized.";
+}

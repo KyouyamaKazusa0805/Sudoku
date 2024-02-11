@@ -216,6 +216,74 @@
         <member name="P:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider.Items">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.BindableSource.LibraryBindableSource">
+            <summary>
+            Represents a library bindable source. This type is different with <see cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
+            - this type contains more properties that can be bound with UI.
+            </summary>
+            <seealso cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.LibraryBindableSource.ToLibrary">
+            <summary>
+            Creates a <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance, and initialize the files from local.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance initialized.</returns>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.NameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.AuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.TagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Name">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId">
+            <summary>
+            Indicates the unique file name of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Author">
+            <summary>
+            Indicates the author of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Description">
+            <summary>
+            Indicates the description to the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags">
+            <summary>
+            Indicates the tags of the library.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource">
             <summary>
             Represents the bindable source for libraries.
@@ -3161,11 +3229,6 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Interaction.Conversions.PencilmarkTextConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about pencilmark text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.Conversions.PuzzleLibraryConversion.Analyzer">
-            <summary>
-            The internal analyzer.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.SelectedCellConversion">
@@ -7097,256 +7160,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate">
             <summary>
               Looks up a localized string similar to Shown if cannot be finished by easy &amp; moderate techniques.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibrary">
-            <summary>
-              Looks up a localized string similar to Create a library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibraryTitle">
-            <summary>
-              Looks up a localized string similar to Create a new library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOneLibraryTitle">
-            <summary>
-              Looks up a localized string similar to Add One Puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AppendANewPuzzle">
-            <summary>
-              Looks up a localized string similar to Append one puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AppendPuzzlesToThisLibrary">
-            <summary>
-              Looks up a localized string similar to Append puzzles from files.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_ClearLibrary">
-            <summary>
-              Looks up a localized string similar to Delete all puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Close">
-            <summary>
-              Looks up a localized string similar to Cancel.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_DescriptionDefaultValue">
-            <summary>
-              Looks up a localized string similar to The puzzle library &apos;{0}&apos;..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Descrption">
-            <summary>
-              Looks up a localized string similar to This page lists some puzzle libraries you defined. You can add, remove or update a puzzle library using this page..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileAlreadyExists">
-            <summary>
-              Looks up a localized string similar to Library local file conflicts with its name. Please rename the file ID and try again..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileAlreadyExistsTitle">
-            <summary>
-              Looks up a localized string similar to File ID Conflicts.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileIdCannotEmpty">
-            <summary>
-              Looks up a localized string similar to File ID cannot be empty string.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileIdCannotEmptyTitle">
-            <summary>
-              Looks up a localized string similar to File ID Error.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileIsInvalid">
-            <summary>
-              Looks up a localized string similar to The file contains invalid characters that cannot be parsed into a valid puzzle library..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileIsInvalidTitle">
-            <summary>
-              Looks up a localized string similar to File Content Error.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryAuthor">
-            <summary>
-              Looks up a localized string similar to Author name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryAuthorPlaceholder">
-            <summary>
-              Looks up a localized string similar to Input an author name here.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryDescription">
-            <summary>
-              Looks up a localized string similar to Description.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryDescriptionPlaceholder">
-            <summary>
-              Looks up a localized string similar to Input description for the library here.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryFileId">
-            <summary>
-              Looks up a localized string similar to File ID.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryFileIdPlaceholder">
-            <summary>
-              Looks up a localized string similar to File ID is a unique identifier that is the real file name of this puzzle library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryName">
-            <summary>
-              Looks up a localized string similar to Library name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputLibraryNamePlaceholder">
-            <summary>
-              Looks up a localized string similar to Input a name here.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputPuzzleTextCode">
-            <summary>
-              Looks up a localized string similar to Puzzle text code.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputPuzzleTextCodePlaceholder">
-            <summary>
-              Looks up a localized string similar to A text string describing the puzzle, compatible with other sudoku analysis program.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputTags">
-            <summary>
-              Looks up a localized string similar to Tags.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_InputTagsPlaceholder">
-            <summary>
-              Looks up a localized string similar to Input tags here.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LoadLibraryTitle">
-            <summary>
-              Looks up a localized string similar to Load a library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LoadLibraryViaCsvFile">
-            <summary>
-              Looks up a localized string similar to Load a library via csv file....
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LoadLibraryViaTextFile">
-            <summary>
-              Looks up a localized string similar to Load a library via text file....
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LoadOrAddingButtonText">
-            <summary>
-              Looks up a localized string similar to Apply.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_MustSelectOneLibrary">
-            <summary>
-              Looks up a localized string similar to You must select one library to store this puzzle..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_MustSelectOneLibraryTitle">
-            <summary>
-              Looks up a localized string similar to Operation Error.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_OpenLibFolder">
-            <summary>
-              Looks up a localized string similar to Open local folder.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_PuzzlesCountIsPlural">
-            <summary>
-              Looks up a localized string similar to {0} puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_PuzzlesCountIsSingular">
-            <summary>
-              Looks up a localized string similar to {0} puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_RemoveInvalidPuzzles">
-            <summary>
-              Looks up a localized string similar to Delte all invalid puzzles in this library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_RemoveLibrary">
-            <summary>
-              Looks up a localized string similar to Remove this library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_TagsAre">
-            <summary>
-              Looks up a localized string similar to Tags: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_TextCodeIsInvalid">
-            <summary>
-              Looks up a localized string similar to Text Code Error.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_TextCodeIsInvalidTitle">
-            <summary>
-              Looks up a localized string similar to The specified text code is invalid and cannot be parsed as a valid sudoku grid puzzle to be stored. Please check for the validity and try again..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_UndefinedDescription">
-            <summary>
-              Looks up a localized string similar to &lt;To be added&gt;.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_UndefinedName">
-            <summary>
-              Looks up a localized string similar to &lt;Undefined&gt;.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_UndefinedUserName">
-            <summary>
-              Looks up a localized string similar to &lt;Unknown&gt;.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_UpdateLibraryInfo">
-            <summary>
-              Looks up a localized string similar to Update library information.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_UpdateLibraryTitle">
-            <summary>
-              Looks up a localized string similar to Update Library Data.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleDetailsPage_Apply">
-            <summary>
-              Looks up a localized string similar to Apply.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleDetailsPage_Description">
-            <summary>
-              Looks up a localized string similar to Hey! Welcome to puzzle library detail page! You can see all puzzles in a library you selected!.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleDetailsPage_RemoveThisPuzzle">
-            <summary>
-              Looks up a localized string similar to Remove this puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleDetailsPage_RemoveThisPuzzleWarningDescription">
-            <summary>
-              Looks up a localized string similar to If you execute this operation, this puzzle will be deleted from the library and no longer to be seen. You cannot review it anyway. Are you sure to remove it?.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleTransformKinds_BandSwap">
@@ -12964,119 +12777,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent">
-            <summary>
-            Defines a dialog content for adding or loading a puzzle library.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePathProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileIdProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescriptionProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCodeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.ModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTagsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FilePath">
-            <summary>
-            Indicates the target file path.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.FileId">
-            <summary>
-            Indicates the file ID.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryName">
-            <summary>
-            Indicates the library name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryAuthor">
-            <summary>
-            Indicates the author of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryDescription">
-            <summary>
-            Indicates the description of the library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.AppendingPuzzleTextCode">
-            <summary>
-            Indicates the text code of the new appending puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.Mode">
-            <summary>
-            Indicates whether the puzzle library is adding a new one, instead of loading.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryInfoDisplayerContent.LibraryTags">
-            <summary>
-            Indicates the tags to the library.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
             <summary>
             The generating strategy page.
@@ -13148,6 +12848,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered">
             <summary>
             Indicates whether the edit button is hovered.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.LibraryPage">
+            <summary>
+            Represents library page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.LibraryPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.LibraryPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.MainNavigationPage">

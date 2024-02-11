@@ -13,5 +13,5 @@ public sealed partial class LibrarySimpleBindableSource(
 	/// <summary>
 	/// Indicates the display name.
 	/// </summary>
-	public string DisplayName => PuzzleLibraryConversion.GetLibraryDisplayName(Library.Name, Library.FileId);
+	public string DisplayName => LibraryConversion.GetDisplayName(Library.Name, Library.FileId);
 }
