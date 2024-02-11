@@ -1944,6 +1944,15 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to &lt;Anonymous&gt;.
         /// </summary>
+        internal static string Anonymous {
+            get {
+                return ResourceManager.GetString("Anonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Anonymous&gt;.
+        /// </summary>
         internal static string AnonymousAuthor {
             get {
                 return ResourceManager.GetString("AnonymousAuthor", resourceCulture);
@@ -2752,6 +2761,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
+        /// </summary>
+        internal static string LibraryPage_Description {
+            get {
+                return ResourceManager.GetString("LibraryPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visit.
+        /// </summary>
+        internal static string LibraryPage_Visit {
+            get {
+                return ResourceManager.GetString("LibraryPage_Visit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Band swap (Randomly swap two bands).
         /// </summary>
         internal static string LibraryPuzzleTransformKinds_BandSwap {
@@ -3144,6 +3171,33 @@ namespace SudokuStudio.Resources {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;No Description&gt;.
+        /// </summary>
+        internal static string NoDescription {
+            get {
+                return ResourceManager.GetString("NoDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;No Name&gt;.
+        /// </summary>
+        internal static string NoName {
+            get {
+                return ResourceManager.GetString("NoName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;No Tags&gt;.
+        /// </summary>
+        internal static string NoTags {
+            get {
+                return ResourceManager.GetString("NoTags", resourceCulture);
             }
         }
         

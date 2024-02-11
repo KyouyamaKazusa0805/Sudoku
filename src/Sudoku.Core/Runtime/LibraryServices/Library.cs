@@ -283,17 +283,20 @@ public readonly partial struct Library(
 	/// <param name="grid">The grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the library is not initialized, or grid cannot be recognized.
-	/// </exception>
+	/// <exception cref="InvalidOperationException">Throws when the grid cannot be recognized.</exception>
 	public async Task AppendPuzzleAsync(string grid, CancellationToken cancellationToken = default)
-		=> await (
-			IsInitialized
-				? Grid.TryParse(grid, out _)
-					? File.AppendAllTextAsync(LibraryFilePath, grid, cancellationToken)
-					: throw new InvalidOperationException(Error_UnrecognizedGridFormat)
-				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst)
+	{
+		if (!IsInitialized)
+		{
+			Initialize();
+		}
+
+		await (
+			Grid.TryParse(grid, out _)
+				? File.AppendAllTextAsync(LibraryFilePath, grid, cancellationToken)
+				: throw new InvalidOperationException(Error_UnrecognizedGridFormat)
 		);
+	}
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
 	public async Task AppendPuzzleAsync(Grid grid, CancellationToken cancellationToken = default)
@@ -333,31 +336,28 @@ public readonly partial struct Library(
 		=> await RemovePuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
-	/// Write a puzzle into a file just created. If the file exists, it will return <see langword="false"/>.
+	/// Write a puzzle into a file just created.
 	/// </summary>
 	/// <param name="grid">The grid to be written.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
-	public async Task<bool> TryWriteAsync(string grid, CancellationToken cancellationToken = default)
+	/// <exception cref="InvalidOperationException">Throws when the grid cannot be recognized.</exception>
+	public async Task WriteAsync(string grid, CancellationToken cancellationToken = default)
 	{
 		if (!IsInitialized)
 		{
-			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+			Initialize();
 		}
 
 		if (Grid.TryParse(grid, out _))
 		{
 			await File.WriteAllTextAsync(LibraryFilePath, grid, cancellationToken);
-			return true;
 		}
-
-		return false;
 	}
 
-	/// <inheritdoc cref="TryWriteAsync(string, CancellationToken)"/>
-	public async Task<bool> TryWriteAsync(Grid grid, CancellationToken cancellationToken = default)
-		=> await TryWriteAsync(GetSingleLineGridString(in grid), cancellationToken);
+	/// <inheritdoc cref="WriteAsync(string, CancellationToken)"/>
+	public async Task WriteAsync(Grid grid, CancellationToken cancellationToken = default)
+		=> await WriteAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
 	/// Calculates how many puzzles in this file.

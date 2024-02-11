@@ -4,7 +4,51 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:bs="using:SudokuStudio.BindableSource"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPage}">
-	
+	<Page.Resources>
+		<vcvt:LibraryOtherInfoConverter x:Key="LibraryConverter" />
+	</Page.Resources>
+
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="12">
+			<TextBlock Text="{m:R Key=LibraryPage_Description}" />
+			<GridView x:Name="LibraiesDisplayer" ItemsSource="{x:Bind bs:LibraryBindableSource.GetLibrariesFromLocal()}">
+				<GridView.ItemTemplate>
+					<DataTemplate x:DataType="bs:LibraryBindableSource">
+						<Grid RowDefinitions="120,*" ColumnDefinitions="120,*">
+							<Border Grid.Row="0" Grid.Column="0" CornerRadius="6" BorderBrush="LightGray" Margin="20">
+								<FontIcon Glyph="&#xE8F1;" FontSize="48" />
+							</Border>
+							<Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,*">
+								<TextBlock
+									Grid.Row="0" Text="{x:Bind Name}" FontWeight="Bold"
+									HorizontalAlignment="Left" />
+								<TextBlock
+									Grid.Row="1" Text="{x:Bind Author}" Foreground="DimGray"
+									HorizontalAlignment="Left" Margin="0,6" />
+								<TextBlock
+									Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="DimGray"
+									Text="{Binding .,Converter={StaticResource LibraryOtherInfoConverter}}" />
+							</Grid>
+							<Button
+								x:Name="Visit" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top"
+								Tag="{x:Bind FileId}" Content="{m:R Key=LibraryPage_Visit}" Click="Visit_Click" />
+							<TextBlock
+								Grid.Row="1" Grid.ColumnSpan="2" Foreground="DimGray"
+								Text="{x:Bind Description}" TextWrapping="WrapWholeWords" />
+						</Grid>
+					</DataTemplate>
+				</GridView.ItemTemplate>
+				<GridView.ItemsPanel>
+					<ItemsPanelTemplate>
+						<ItemsWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</GridView.ItemsPanel>
+			</GridView>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

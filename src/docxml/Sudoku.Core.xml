@@ -7938,9 +7938,7 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid text code to be appended.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the library is not initialized, or grid cannot be recognized.
-            </exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the grid cannot be recognized.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)"/>
@@ -7957,17 +7955,17 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(System.String,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(System.String,System.Threading.CancellationToken)">
             <summary>
-            Write a puzzle into a file just created. If the file exists, it will return <see langword="false"/>.
+            Write a puzzle into a file just created.
             </summary>
             <param name="grid">The grid to be written.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
-            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the grid cannot be recognized.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.TryWriteAsync(System.String,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync">
             <summary>

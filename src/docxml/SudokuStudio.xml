@@ -223,11 +223,23 @@
             </summary>
             <seealso cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
         </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.LibraryInfo">
+            <summary>
+            Indicates the corresponding <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.BindableSource.LibraryBindableSource.ToLibrary">
             <summary>
             Creates a <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance, and initialize the files from local.
             </summary>
             <returns>A <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance initialized.</returns>
+            <exception cref="T:Sudoku.Runtime.LibraryServices.LibraryInitializedException">Throws when the library has already been initialized.</exception>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.LibraryBindableSource.GetLibrariesFromLocal">
+            <summary>
+            Try to create <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/> instances from local path.
+            </summary>
+            <returns>A list of <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/> instances.</returns>
         </member>
         <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.NameProperty">
             <summary>
@@ -4674,6 +4686,19 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.LibraryOtherInfoConverter">
+            <summary>
+            Represents a value converter type that can convert multiple values in <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/>
+            into a <see cref="T:System.String"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryOtherInfoConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryOtherInfoConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter">
             <summary>
             Represents a value converter that can convert the value from <see cref="T:Microsoft.UI.Xaml.Controls.SelectionMode"/> to <see cref="T:System.Boolean"/>
@@ -6712,6 +6737,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Solution Uniqueness: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.Anonymous">
+            <summary>
+              Looks up a localized string similar to &lt;Anonymous&gt;.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnonymousAuthor">
             <summary>
               Looks up a localized string similar to &lt;Anonymous&gt;.
@@ -7162,6 +7192,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Shown if cannot be finished by easy &amp; moderate techniques.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Description">
+            <summary>
+              Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Visit">
+            <summary>
+              Looks up a localized string similar to Visit.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPuzzleTransformKinds_BandSwap">
             <summary>
               Looks up a localized string similar to Band swap (Randomly swap two bands).
@@ -7380,6 +7420,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.No">
             <summary>
               Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.NoDescription">
+            <summary>
+              Looks up a localized string similar to &lt;No Description&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.NoName">
+            <summary>
+              Looks up a localized string similar to &lt;No Name&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.NoTags">
+            <summary>
+              Looks up a localized string similar to &lt;No Tags&gt;.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_DescriptionPart1">

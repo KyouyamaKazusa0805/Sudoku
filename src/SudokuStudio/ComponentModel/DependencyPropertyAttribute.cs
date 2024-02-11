@@ -6,7 +6,7 @@ namespace SudokuStudio.ComponentModel;
 /// <param name="propertyName"><inheritdoc/></param>
 /// <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed class DependencyPropertyAttribute<T>(string propertyName) : XamlBindingAttribute<T>(propertyName)
+public sealed class DependencyPropertyAttribute<T>([StringSyntax(StringSyntax.Regex)] string propertyName) : XamlBindingAttribute<T>(propertyName)
 {
 	/// <summary>
 	/// Indicates whether the dependency property returns <see langword="true"/>,

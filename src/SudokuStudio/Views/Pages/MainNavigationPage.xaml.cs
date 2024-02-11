@@ -47,8 +47,9 @@ internal sealed partial class MainNavigationPage : Page
 			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
 			(container => container == AboutPageItem, typeof(AboutPage)),
 			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
-			(container => container == HotkeyCheatTablePage, typeof(HotkeyCheatTablePage)),
-			(container => container == TechniqueGalleryPage, typeof(TechniqueGalleryPage))
+			(container => container == LibraryPageItem, typeof(LibraryPage)),
+			(container => container == HotkeyCheatTablePageItem, typeof(HotkeyCheatTablePage)),
+			(container => container == TechniqueGalleryPageItem, typeof(TechniqueGalleryPage))
 		];
 
 		MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;

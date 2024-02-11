@@ -672,6 +672,9 @@
   <data name="AnalyzePage_Uniqueness" xml:space="preserve">
     <value>Solution Uniqueness: </value>
   </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>&lt;Anonymous&gt;</value>
+  </data>
   <data name="AnonymousAuthor" xml:space="preserve">
     <value>&lt;Anonymous&gt;</value>
   </data>
@@ -942,6 +945,12 @@
   <data name="LibraryCandidatesVisibility_ShownWhenPuzzleIsGreaterThanModerate" xml:space="preserve">
     <value>Shown if cannot be finished by easy &amp; moderate techniques</value>
   </data>
+  <data name="LibraryPage_Description" xml:space="preserve">
+    <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
+  </data>
+  <data name="LibraryPage_Visit" xml:space="preserve">
+    <value>Visit</value>
+  </data>
   <data name="LibraryPuzzleTransformKinds_BandSwap" xml:space="preserve">
     <value>Band swap (Randomly swap two bands)</value>
   </data>
@@ -1073,6 +1082,15 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="NoDescription" xml:space="preserve">
+    <value>&lt;No Description&gt;</value>
+  </data>
+  <data name="NoName" xml:space="preserve">
+    <value>&lt;No Name&gt;</value>
+  </data>
+  <data name="NoTags" xml:space="preserve">
+    <value>&lt;No Tags&gt;</value>
   </data>
   <data name="OcrPage_DescriptionPart1" xml:space="preserve">
     <value>This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program.</value>

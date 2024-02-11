@@ -9,4 +9,9 @@ public sealed partial class LibraryPage : Page
 	/// Initializes a <see cref="LibraryPage"/> instance.
 	/// </summary>
 	public LibraryPage() => InitializeComponent();
+
+
+	private void Visit_Click(object sender, RoutedEventArgs e)
+	{
+	}
 }
