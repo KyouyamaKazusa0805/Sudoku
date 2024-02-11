@@ -193,7 +193,7 @@ public readonly partial struct Library(
 				throw new FileNotFoundException(Error_NotExist);
 			}
 
-			ConfigFileReplaceOrAppend(NamePattern().IsMatch, string.Join(SeparatorChar, value));
+			ConfigFileReplaceOrAppend(TagsPattern().IsMatch, string.Join(SeparatorChar, value));
 		}
 	}
 
@@ -604,12 +604,12 @@ public readonly partial struct Library(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string GetSingleLineGridString(scoped ref readonly Grid grid) => grid.ToString("#");
 
-	[GeneratedRegex($"""{nameof(Author)}:\s*([\s\S]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex(@"author:\s*([\s\S]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex AuthorPattern();
 
-	[GeneratedRegex($"""{nameof(Name)}:\s*([\S\s]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex(@"name:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex NamePattern();
 
-	[GeneratedRegex($"""{nameof(Tags)}:\s*([\S\s]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	[GeneratedRegex(@"tags:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex TagsPattern();
 }

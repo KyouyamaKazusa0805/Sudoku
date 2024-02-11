@@ -8016,7 +8016,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AuthorPattern">
             <remarks>
             Pattern:<br/>
-            <code>Author:\\s*([\\s\\S]+)</code><br/>
+            <code>author:\\s*([\\s\\S]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -8037,7 +8037,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.NamePattern">
             <remarks>
             Pattern:<br/>
-            <code>Name:\\s*([\\S\\s]+)</code><br/>
+            <code>name:\\s*([\\S\\s]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -8056,7 +8056,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.TagsPattern">
             <remarks>
             Pattern:<br/>
-            <code>Tags:\\s*([\\S\\s]+)</code><br/>
+            <code>tags:\\s*([\\S\\s]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
