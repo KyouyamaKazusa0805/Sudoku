@@ -49,6 +49,8 @@ public sealed partial class LibraryBindableSource : DependencyObject
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
 			let library = new Library(CommonPaths.Library, fileId)
 			where library.IsInitialized
+			let firstContentLine = File.ReadLines(library.LibraryFilePath).FirstOrDefault()
+			where firstContentLine == LibraryConfigFileHeader
 			select new LibraryBindableSource
 			{
 				Name = library.Name ?? NameDefaultValue,
