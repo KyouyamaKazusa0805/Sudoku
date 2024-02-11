@@ -29,19 +29,6 @@ public sealed partial class LibraryBindableSource : DependencyObject
 
 
 	/// <summary>
-	/// Creates a <see cref="Library"/> instance, and initialize the files from local.
-	/// </summary>
-	/// <returns>A <see cref="Library"/> instance initialized.</returns>
-	/// <exception cref="LibraryInitializedException">Throws when the library has already been initialized.</exception>
-	public Library ToLibrary()
-	{
-		var result = LibraryInfo;
-		result.Initialize();
-		return result;
-	}
-
-
-	/// <summary>
 	/// Try to create <see cref="LibraryBindableSource"/> instances from local path.
 	/// </summary>
 	/// <returns>A list of <see cref="LibraryBindableSource"/> instances.</returns>
@@ -57,6 +44,8 @@ public sealed partial class LibraryBindableSource : DependencyObject
 		return [
 			..
 			from file in Directory.EnumerateFiles(CommonPaths.Library)
+			let extension = io::Path.GetExtension(file)
+			where extension == FileExtensions.PuzzleLibrary
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
 			let library = new Library(CommonPaths.Library, fileId)
 			where library.IsInitialized
@@ -66,7 +55,7 @@ public sealed partial class LibraryBindableSource : DependencyObject
 				Author = library.Author ?? AuthorDefaultValue,
 				Description = library.Description ?? DescriptionDefaultValue,
 				Tags = library.Tags ?? [],
-				FileId = library.FileId
+				FileId = fileId
 			}
 		];
 	}

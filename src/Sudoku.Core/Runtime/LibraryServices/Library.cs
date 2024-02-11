@@ -46,6 +46,11 @@ public readonly partial struct Library(
 	private const string Error_UnrecognizedGridFormat = "You cannot append text that cannot be recognized as a valid sudoku grid.";
 
 	/// <summary>
+	/// Indicates the "Argument 'extension' Should Be Valid" message.
+	/// </summary>
+	private const string Error_ArgExtensionShouldBeValid = "The argument should contains the prefix period token.";
+
+	/// <summary>
 	/// Indicates the separator character.
 	/// </summary>
 	private const char SeparatorChar = ',';
@@ -91,14 +96,7 @@ public readonly partial struct Library(
 	/// Call this property will implicitly create config file if file is not found. No exception will be thrown here.
 	/// </i></para>
 	/// </remarks>
-	public string ConfigFilePath
-	{
-		get
-		{
-			Initialize();
-			return $@"{_directory}\{FileId}.txt";
-		}
-	}
+	public string ConfigFilePath => $@"{_directory}\{FileId}{ConfigFileExtension}";
 
 	/// <summary>
 	/// Indicates the author of the library. Return <see langword="null"/> if no author configured.
@@ -115,8 +113,8 @@ public readonly partial struct Library(
 				? (
 					from line in File.ReadLines(ConfigFilePath)
 					select pattern.Match(line).Groups into groups
-					where groups.Count == 1
-					select groups[0].Value
+					where groups.Count == 2
+					select groups[1].Value
 				).FirstOrDefault()
 				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
 		}
@@ -147,8 +145,8 @@ public readonly partial struct Library(
 				? (
 					from line in File.ReadLines(ConfigFilePath)
 					select pattern.Match(line).Groups into groups
-					where groups.Count == 1
-					select groups[0].Value
+					where groups.Count == 2
+					select groups[1].Value
 				).FirstOrDefault()
 				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
 		}
@@ -179,8 +177,8 @@ public readonly partial struct Library(
 				? (
 					from line in File.ReadLines(ConfigFilePath)
 					select pattern.Match(line).Groups into groups
-					where groups.Count == 1
-					select groups[0].Value
+					where groups.Count == 2
+					select groups[1].Value
 				).FirstOrDefault()
 				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
 		}
@@ -211,8 +209,8 @@ public readonly partial struct Library(
 				? (
 					from line in File.ReadLines(ConfigFilePath)
 					select pattern.Match(line).Groups into groups
-					where groups.Count == 1
-					select groups[0].Value into line
+					where groups.Count == 2
+					select groups[1].Value into line
 					select line.Split(SeparatorChar)
 				).FirstOrDefault()
 				: throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
@@ -233,6 +231,12 @@ public readonly partial struct Library(
 	/// Indicates the last modified time of the library file.
 	/// </summary>
 	public DateTime LastModifiedTime => File.GetLastWriteTime(LibraryFilePath);
+
+
+	/// <summary>
+	/// Indicates the supported extension of config file. The extension will be used by API in runtime, recognizing config files.
+	/// </summary>
+	public static string ConfigFileExtension { get; set; } = ".txt";
 
 
 	/// <summary>
@@ -633,6 +637,17 @@ public readonly partial struct Library(
 		static void a(List<string> list, string prefix, string replaceOrAppendValue) => list.Add($"{prefix}: {replaceOrAppendValue}");
 	}
 
+
+	/// <summary>
+	/// Registers the config file extension. Argument should contain prefix period token '<c>.</c>'.
+	/// </summary>
+	/// <param name="extension">The extension of the config file. Period '<c>.</c>' required.</param>
+	/// <exception cref="ArgumentException">Throws when the argument <paramref name="extension"/> is not valid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void RegisterConfigFileExtension(string extension)
+		=> ConfigFileExtension = extension.Any(Path.GetInvalidPathChars().Contains)
+			? throw new ArgumentException(Error_ArgExtensionShouldBeValid, nameof(extension))
+			: extension;
 
 	/// <summary>
 	/// Returns <c>grid.ToString("#")</c>.

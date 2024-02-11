@@ -19,20 +19,20 @@
 			<GridView x:Name="LibraiesDisplayer" ItemsSource="{x:Bind bs:LibraryBindableSource.GetLibrariesFromLocal()}">
 				<GridView.ItemTemplate>
 					<DataTemplate x:DataType="bs:LibraryBindableSource">
-						<Grid RowDefinitions="120,*" ColumnDefinitions="120,*">
-							<Border Grid.Row="0" Grid.Column="0" CornerRadius="6" BorderBrush="LightGray" Margin="20">
+						<Grid RowDefinitions="120,*" ColumnDefinitions="120,*" Margin="20">
+							<Border Grid.Row="0" Grid.Column="0" CornerRadius="6" BorderBrush="Gray">
 								<FontIcon Glyph="&#xE8F1;" FontSize="48" />
 							</Border>
 							<Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,*">
 								<TextBlock
-									Grid.Row="0" Text="{x:Bind Name}" FontWeight="Bold"
+									Grid.Row="0" Text="{x:Bind Name}" FontSize="16" FontWeight="Bold"
 									HorizontalAlignment="Left" />
 								<TextBlock
 									Grid.Row="1" Text="{x:Bind Author}" Foreground="DimGray"
 									HorizontalAlignment="Left" Margin="0,6" />
 								<TextBlock
 									Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="DimGray"
-									Text="{Binding .,Converter={StaticResource LibraryOtherInfoConverter}}" />
+									Text="{x:Bind LibraryInfo,Converter={StaticResource LibraryConverter}}" />
 							</Grid>
 							<Button
 								x:Name="Visit" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top"

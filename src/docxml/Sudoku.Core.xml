@@ -7829,6 +7829,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the "Unrecognized Grid Format" message.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_ArgExtensionShouldBeValid">
+            <summary>
+            Indicates the "Argument 'extension' Should Be Valid" message.
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.LibraryServices.Library.SeparatorChar">
             <summary>
             Indicates the separator character.
@@ -7901,6 +7906,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Runtime.LibraryServices.Library.LastModifiedTime">
             <summary>
             Indicates the last modified time of the library file.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.Library.ConfigFileExtension">
+            <summary>
+            Indicates the supported extension of config file. The extension will be used by API in runtime, recognizing config files.
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.Library.Item(System.Int32)">
@@ -8013,6 +8023,13 @@ if (student is (name: var name, age: >= 18))
             Indicates the property name as caller. This parameter shouldn't be assigned. It will be assigned by compiler.
             </param>
             <exception cref="T:System.InvalidOperationException">Throws when multiple same properties found.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RegisterConfigFileExtension(System.String)">
+            <summary>
+            Registers the config file extension. Argument should contain prefix period token '<c>.</c>'.
+            </summary>
+            <param name="extension">The extension of the config file. Period '<c>.</c>' required.</param>
+            <exception cref="T:System.ArgumentException">Throws when the argument <paramref name="extension"/> is not valid.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetSingleLineGridString(Sudoku.Concepts.Grid@)">
             <summary>

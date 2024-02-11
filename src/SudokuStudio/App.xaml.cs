@@ -256,6 +256,8 @@ public partial class App : Application
 	/// </summary>
 	private void CheckPuzzleLibraries()
 	{
+		Library.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
+
 		if (CommonPaths.Library is var libFolder && Directory.Exists(libFolder))
 		{
 			foreach (var filePath in Directory.EnumerateFiles(libFolder))
