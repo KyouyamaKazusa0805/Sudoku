@@ -3652,71 +3652,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is adding one puzzle.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interaction.LibraryPuzzleTransformKinds">
-            <summary>
-            Represents a list of adjustable kinds that describes which way the puzzle can be transformed.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.None">
-            <summary>
-            Indicates no transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.Digit">
-            <summary>
-            Indicates digit transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RowSwap">
-            <summary>
-            Indicates row-swap transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.ColumnSwap">
-            <summary>
-            Indicates column-swap transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.BandSwap">
-            <summary>
-            Indicates band-swap transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.TowerSwap">
-            <summary>
-            Indicates tower-swap transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrowLeftRight">
-            <summary>
-            Indicates mirror left-right transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorTopBottom">
-            <summary>
-            Indicates mirror top-bottom transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorDiagonal">
-            <summary>
-            Indicates mirror diagonal transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.MirrorAntidigaonal">
-            <summary>
-            Indicates mirror anti-diagonal transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RotateClockwise">
-            <summary>
-            Indicates rotate clockwise transform.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.LibraryPuzzleTransformKinds.RotateCounterclockwise">
-            <summary>
-            Indicates rotate counterclockwise transform.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Interaction.MouseButton">
             <summary>
             Defines a mouse button.
@@ -4676,18 +4611,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.ValueConverters.LengthMultipliedByRootOf2Converter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter">
-            <summary>
-            Represents a value converter that can convert a <see cref="T:SudokuStudio.Interaction.LibraryPuzzleTransformKinds"/> to a <see cref="T:System.Boolean"/> value.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Interaction.ValueConverters.LibraryPuzzleTransformKindsToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
-            <inheritdoc/>
-            <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
-        </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.SelectionModeToIsItemClickEnabledConverter">
             <summary>
             Represents a value converter that can convert the value from <see cref="T:Microsoft.UI.Xaml.Controls.SelectionMode"/> to <see cref="T:System.Boolean"/>
@@ -4745,6 +4668,18 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.StringToPredicateConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter">
+            <summary>
+            Represents a value converter that can convert a <see cref="T:Sudoku.Concepts.TransformType"/> to a <see cref="T:System.Boolean"/> value.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.String)">
+            <inheritdoc/>
+            <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
         </member>
         <member name="T:SudokuStudio.Markup.BooleanExtension">
             <summary>

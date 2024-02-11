@@ -234,6 +234,13 @@ public readonly partial struct Library(
 	public bool Equals(Library other) => LibraryFilePath == other.LibraryFilePath;
 
 	/// <summary>
+	/// Determines whether the library contains at least one puzzle.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Any() => File.ReadLines(LibraryFilePath).Any();
+
+	/// <summary>
 	/// Append a puzzle, represented as a <see cref="string"/> value,
 	/// into the specified file path represented as a puzzle library.
 	/// </summary>
@@ -320,7 +327,11 @@ public readonly partial struct Library(
 	/// Calculates how many puzzles in this file.
 	/// </summary>
 	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
+	/// <remarks>
+	/// If you want to check whether the puzzle has at least one puzzle, please use method <see cref="Any"/> instead.
+	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
+	/// <seealso cref="Any"/>
 	public async Task<int> GetCountAsync()
 	{
 		if (!IsInitialized)

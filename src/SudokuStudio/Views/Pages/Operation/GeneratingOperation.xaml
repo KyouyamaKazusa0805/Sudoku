@@ -36,7 +36,7 @@
 		<AppBarButton
 			x:Name="LibraryPuzzleFetchButton" Icon="NewWindow" Label="{m:R Key=AnalyzePage_FetchPuzzleFromLibrary}"
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="LibraryPuzzleFetchButton_Click" />
+			Click="LibraryPuzzleFetchButton_ClickAsync" />
 		<AppBarSeparator x:Name="LibSeparator" />
 		<AppBarButton
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"

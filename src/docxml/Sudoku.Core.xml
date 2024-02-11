@@ -7916,6 +7916,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Any">
+            <summary>
+            Determines whether the library contains at least one puzzle.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Append a puzzle, represented as a <see cref="T:System.String"/> value,
@@ -7960,7 +7966,11 @@ if (student is (name: var name, age: >= 18))
             Calculates how many puzzles in this file.
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> value indicating the result.</returns>
+            <remarks>
+            If you want to check whether the puzzle has at least one puzzle, please use method <see cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/> instead.
+            </remarks>
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)">
             <summary>

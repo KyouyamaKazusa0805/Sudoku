@@ -1,14 +1,14 @@
 namespace SudokuStudio.Interaction.ValueConverters;
 
 /// <summary>
-/// Represents a value converter that can convert a <see cref="LibraryPuzzleTransformKinds"/> to a <see cref="bool"/> value.
+/// Represents a value converter that can convert a <see cref="TransformType"/> to a <see cref="bool"/> value.
 /// </summary>
-internal sealed class LibraryPuzzleTransformKindsToBooleanConverter : IValueConverter
+internal sealed class TransformTypeToBooleanConverter : IValueConverter
 {
 	/// <inheritdoc/>
 	public object Convert(object value, Type targetType, object parameter, string language)
-		=> (value, parameter) is (LibraryPuzzleTransformKinds items, string rawFlag)
-		&& Enum.TryParse(rawFlag, out LibraryPuzzleTransformKinds flag) && items.HasFlag(flag);
+		=> (value, parameter) is (TransformType items, string rawFlag)
+		&& Enum.TryParse(rawFlag, out TransformType flag) && items.HasFlag(flag);
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
@@ -19,7 +19,7 @@ internal sealed class LibraryPuzzleTransformKindsToBooleanConverter : IValueConv
 
 		return (((App)Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations, parameter) switch
 		{
-			(var items, string rawFlag) when Enum.TryParse(rawFlag, out LibraryPuzzleTransformKinds flag) => value switch
+			(var items, string rawFlag) when Enum.TryParse(rawFlag, out TransformType flag) => value switch
 			{
 				true => items | flag,
 				false => items & ~flag,

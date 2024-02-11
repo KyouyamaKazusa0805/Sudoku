@@ -281,13 +281,24 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			}
 		);
 
-	private void LibraryPuzzleFetchButton_Click(object sender, RoutedEventArgs e)
+	private async void LibraryPuzzleFetchButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
+		var library = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
+		if (!library.Any())
+		{
+			// There is no puzzle can be selected.
+			return;
+		}
+
+		var types = ((App)Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations;
+		BasePage.SudokuPane.Puzzle = await library.RandomReadOneAsync(types);
+		BasePage.ClearAnalyzeTabsData();
 	}
 
 	private void PuzzleLibraryChoser_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
-
+		var source = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
+		((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
 	}
 
 	private async void BatchGeneratingButton_ClickAsync(object sender, RoutedEventArgs e)

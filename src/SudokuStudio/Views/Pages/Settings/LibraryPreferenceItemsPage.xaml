@@ -12,7 +12,7 @@
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:LibraryPreferenceItemsPage}">
 	<Page.Resources>
-		<vcvt:LibraryPuzzleTransformKindsToBooleanConverter x:Key="LibraryPuzzleTransformConverter" />
+		<vcvt:TransformTypeToBooleanConverter x:Key="TransformConverter" />
 	</Page.Resources>
 
 	<ScrollViewer>
@@ -35,57 +35,57 @@
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_Digit}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='Digit'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='DigitSwap'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_RowSwap}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RowSwap'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='RowSwap'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_ColumnSwap}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='ColumnSwap'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='ColumnSwap'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_BandSwap}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='BandSwap'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='BandSwap'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_TowerSwap}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='TowerSwap'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='TowerSwap'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrowLeftRight}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrowLeftRight'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='MirrorLeftRight'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrowTopBottom}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrowTopBottom'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='MirrorTopBottom'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrorDiagonal}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrorDiagonal'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='MirrorDiagonal'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_MirrorAntidiagonal}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='MirrorAntidiagonal'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='MirrorAntidiagonal'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_RotateClockwise}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RotateClockwise'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='RotateClockwise'}" />
 					</wc:SettingsCard>
 					<wc:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=LibraryPuzzleTransformKinds_RotateCounterclockwise}"
-							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource LibraryPuzzleTransformConverter},ConverterParameter='RotateCounterclockwise'}" />
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations,Mode=TwoWay,Converter={StaticResource TransformConverter},ConverterParameter='RotateCounterclockwise'}" />
 					</wc:SettingsCard>
 				</wc:SettingsExpander.Items>
 			</wc:SettingsExpander>
