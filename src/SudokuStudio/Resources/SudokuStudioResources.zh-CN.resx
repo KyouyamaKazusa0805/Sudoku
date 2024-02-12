@@ -951,6 +951,21 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>添加题库……</value>
   </data>
+  <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
+    <value>添加一题</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogInputTextCode" xml:space="preserve">
+    <value>请输入题目文本串：</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogSure" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogTitle" xml:space="preserve">
+    <value>添加一个题目……</value>
+  </data>
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>这个页面列举的是你配置的一些题库。你可以点击它们查看里面配置的题目。</value>
   </data>

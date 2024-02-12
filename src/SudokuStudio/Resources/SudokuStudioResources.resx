@@ -948,6 +948,21 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>Add Library...</value>
   </data>
+  <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
+    <value>Add a puzzle</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogInputTextCode" xml:space="preserve">
+    <value>Input text code:</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogSure" xml:space="preserve">
+    <value>Sure!</value>
+  </data>
+  <data name="LibraryPage_AddOnePuzzleDialogTitle" xml:space="preserve">
+    <value>Add One Puzzle...</value>
+  </data>
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>

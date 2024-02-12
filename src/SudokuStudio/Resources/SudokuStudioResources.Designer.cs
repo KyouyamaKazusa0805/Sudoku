@@ -2770,6 +2770,51 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a puzzle.
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzleDialogCancel {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzleDialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input text code:.
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzleDialogInputTextCode {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzleDialogInputTextCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure!.
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzleDialogSure {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzleDialogSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add One Puzzle....
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzleDialogTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzleDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
         /// </summary>
         internal static string LibraryPage_Description {

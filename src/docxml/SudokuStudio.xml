@@ -7190,6 +7190,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Add Library....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzle">
+            <summary>
+              Looks up a localized string similar to Add a puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogCancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogInputTextCode">
+            <summary>
+              Looks up a localized string similar to Input text code:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogSure">
+            <summary>
+              Looks up a localized string similar to Sure!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogTitle">
+            <summary>
+              Looks up a localized string similar to Add One Puzzle....
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Description">
             <summary>
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
@@ -12739,6 +12764,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult">
             <summary>
             Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent">
+            <summary>
+            Represents "add one puzzle" dialog content.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent">

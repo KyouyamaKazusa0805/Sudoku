@@ -39,6 +39,19 @@
 						</Grid>
 					</DataTemplate>
 				</GridView.ItemTemplate>
+				<GridView.ItemContainerStyle>
+					<Style TargetType="GridViewItem">
+						<Setter Property="ContextFlyout">
+							<Setter.Value>
+								<MenuFlyout x:Name="ParentFlyout">
+									<MenuFlyoutItem
+										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
+										Click="AddOnePuzzleItem_ClickAsync" />
+								</MenuFlyout>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</GridView.ItemContainerStyle>
 			</GridView>
 		</ScrollViewer>
 		<Button
