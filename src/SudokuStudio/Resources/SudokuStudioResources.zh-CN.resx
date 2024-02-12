@@ -1008,6 +1008,12 @@
   <data name="LibraryPage_Properties" xml:space="preserve">
     <value>属性</value>
   </data>
+  <data name="LibraryPage_PuzzlesCount" xml:space="preserve">
+    <value>题目数量</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsNowProcessing" xml:space="preserve">
+    <value>正在计算……</value>
+  </data>
   <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
     <value>删除重复题目</value>
   </data>

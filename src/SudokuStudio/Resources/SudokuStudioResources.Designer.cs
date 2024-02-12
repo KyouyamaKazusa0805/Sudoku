@@ -2941,6 +2941,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of puzzles.
+        /// </summary>
+        internal static string LibraryPage_PuzzlesCount {
+            get {
+                return ResourceManager.GetString("LibraryPage_PuzzlesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing....
+        /// </summary>
+        internal static string LibraryPage_PuzzlesCountIsNowProcessing {
+            get {
+                return ResourceManager.GetString("LibraryPage_PuzzlesCountIsNowProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove duplicates.
         /// </summary>
         internal static string LibraryPage_RemoveDuplicatePuzzles {

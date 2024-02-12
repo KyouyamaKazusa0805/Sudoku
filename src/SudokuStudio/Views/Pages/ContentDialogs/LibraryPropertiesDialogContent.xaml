@@ -9,7 +9,8 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ui="using:WinUICommunity"
 	xmlns:pd="using:SudokuStudio.Views.Pages.ContentDialogs"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:LibraryPropertiesDialogContent}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:LibraryPropertiesDialogContent}"
+	Loaded="Page_Loaded">
 	<Page.Resources>
 		<dts:LibraryTagsDataTemplateSelector x:Key="TagsTemplateSelector">
 			<dts:LibraryTagsDataTemplateSelector.DefaultTemplate>
@@ -38,19 +39,26 @@
 		<TextBlock Text="{x:Bind LibraryDescription}" IsTextSelectionEnabled="True" />
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" TextWrapping="WrapWholeWords" Style="{StaticResource PropertyNameStyle}" />
 		<c:TokenView
-			ItemsSource="{x:Bind LibraryTags}" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
+			ItemsSource="{x:Bind LibraryInfo.Tags}" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
 			ItemTemplateSelector="{StaticResource TagsTemplateSelector}" />
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryFilePath}" Style="{StaticResource PropertyNameStyle}" />
 		<StackPanel Orientation="Horizontal" Spacing="8">
-			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryPath}" IsTextScaleFactorEnabled="True" />
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryInfo.LibraryFilePath}" IsTextScaleFactorEnabled="True" />
 			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton_ClickAsync" />
 		</StackPanel>
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryConfigFilePath}" Style="{StaticResource PropertyNameStyle}" />
 		<StackPanel Orientation="Horizontal" Spacing="8">
-			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryConfigPath}" IsTextScaleFactorEnabled="True" />
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryInfo.ConfigFilePath}" IsTextScaleFactorEnabled="True" />
 			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton2_ClickAsync" />
 		</StackPanel>
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryLastModified}" Style="{StaticResource PropertyNameStyle}" />
 		<TextBlock Text="{x:Bind LibraryLastModifiedTime}" IsTextSelectionEnabled="True" />
+		<TextBlock Text="{m:R Key=LibraryPage_PuzzlesCount}" Style="{StaticResource PropertyNameStyle}" />
+		<StackPanel Orientation="Horizontal" Spacing="8">
+			<TextBlock
+				x:Name="LibraryPuzzlesCountDisplayer" Text="{m:R Key=LibraryPage_PuzzlesCountIsNowProcessing}"
+				IsTextSelectionEnabled="True" />
+			<ProgressRing Width="32" Height="32" IsActive="{x:Bind _isLoadingPuzzlesCount,Mode=OneWay}" />
+		</StackPanel>
 	</StackPanel>
 </Page>

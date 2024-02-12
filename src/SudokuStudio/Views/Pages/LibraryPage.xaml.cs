@@ -128,11 +128,9 @@ public sealed partial class LibraryPage : Page
 			{
 				LibraryName = lib.Name ?? LibraryBindableSource.NameDefaultValue,
 				LibraryAuthor = lib.Author ?? LibraryBindableSource.AuthorDefaultValue,
-				LibraryPath = lib.LibraryFilePath,
-				LibraryConfigPath = lib.ConfigFilePath,
 				LibraryDescription = lib.Description ?? LibraryBindableSource.DescriptionDefaultValue,
-				LibraryTags = lib.Tags,
-				LibraryLastModifiedTime = lib.LastModifiedTime
+				LibraryLastModifiedTime = lib.LastModifiedTime,
+				LibraryInfo = lib
 			}
 		};
 		await dialog.ShowAsync();

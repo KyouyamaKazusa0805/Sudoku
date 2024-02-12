@@ -1005,6 +1005,12 @@
   <data name="LibraryPage_Properties" xml:space="preserve">
     <value>Properties</value>
   </data>
+  <data name="LibraryPage_PuzzlesCount" xml:space="preserve">
+    <value>Number of puzzles</value>
+  </data>
+  <data name="LibraryPage_PuzzlesCountIsNowProcessing" xml:space="preserve">
+    <value>Processing...</value>
+  </data>
   <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
     <value>Remove duplicates</value>
   </data>
