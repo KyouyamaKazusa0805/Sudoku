@@ -11,7 +11,12 @@ public static class StreamReaderExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="StreamReader"/> instance.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks><i>
+	/// This method only supports for Windows now. For other OS platforms, this method cannot determine the end line characters
+	/// because I have already forgotten them...
+	/// </i></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SupportedOSPlatform("windows")]
 	public static bool EndsWithNewLine(this StreamReader @this)
 		=> @this.BaseStream.Length >= 2
 		&& @this.BaseStream.Seek(-2, SeekOrigin.End) is var _

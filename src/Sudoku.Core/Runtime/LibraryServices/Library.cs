@@ -5,7 +5,12 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </summary>
 /// <param name="directory">Indicates the parent directory that stores the library.</param>
 /// <param name="fileId">Indicates the file ID.</param>
+/// <remarks><i>
+/// This type only supports for Windows now. For other OS platforms,
+/// I will allow them in the future because I'm not familiar with file systems on other OS platforms.
+/// </i></remarks>
 [StructLayout(LayoutKind.Auto)]
+[SupportedOSPlatform("windows")]
 [Equals]
 [GetHashCode]
 [ToString]
@@ -324,10 +329,12 @@ public readonly partial struct Library(
 
 		var sb = new StringBuilder();
 		await using var sw = new StreamWriter(LibraryFilePath, true);
-		using var sr = new StreamReader(LibraryFilePath);
-		if (!sr.EndsWithNewLine())
+		using (var sr = new StreamReader(LibraryFilePath))
 		{
-			await sw.WriteLineAsync();
+			if (!sr.EndsWithNewLine())
+			{
+				await sw.WriteLineAsync();
+			}
 		}
 
 		var result = 0;
@@ -354,10 +361,12 @@ public readonly partial struct Library(
 
 		var sb = new StringBuilder();
 		await using var sw = new StreamWriter(LibraryFilePath, true);
-		using var sr = new StreamReader(LibraryFilePath);
-		if (!sr.EndsWithNewLine())
+		using (var sr = new StreamReader(LibraryFilePath))
 		{
-			sb.AppendLine();
+			if (!sr.EndsWithNewLine())
+			{
+				sb.AppendLine();
+			}
 		}
 
 		foreach (var grid in grids)

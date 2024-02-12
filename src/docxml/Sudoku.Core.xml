@@ -7796,6 +7796,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
             <param name="fileId">Indicates the file ID.</param>
+            <remarks><i>
+            This type only supports for Windows now. For other OS platforms,
+            I will allow them in the future because I'm not familiar with file systems on other OS platforms.
+            </i></remarks>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)">
             <summary>
@@ -7803,6 +7807,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
             <param name="fileId">Indicates the file ID.</param>
+            <remarks><i>
+            This type only supports for Windows now. For other OS platforms,
+            I will allow them in the future because I'm not familiar with file systems on other OS platforms.
+            </i></remarks>
         </member>
         <member name="F:Sudoku.Runtime.LibraryServices.Library.Error_NotExist">
             <summary>
