@@ -13,27 +13,14 @@ public sealed partial class AddOnePuzzleDialogContent : Page
 
 	private void TextCodeInput_TextChanged(object sender, TextChangedEventArgs e)
 	{
-		if (sender is not TextBox { Text: var input })
+		if (sender is TextBox { Text: var input })
 		{
-			return;
-		}
-
-		switch (input)
-		{
-			case "":
+			WarningTextDisplayer.Visibility = input switch
 			{
-				return;
-			}
-			case var _ when Grid.TryParse(input, out _):
-			{
-				WarningTextDisplayer.Visibility = Visibility.Collapsed;
-				break;
-			}
-			default:
-			{
-				WarningTextDisplayer.Visibility = Visibility.Visible;
-				break;
-			}
+				"" => Visibility.Collapsed,
+				_ when Grid.TryParse(input, out _) => Visibility.Collapsed,
+				_ => Visibility.Visible
+			};
 		}
 	}
 }

@@ -963,6 +963,9 @@
   <data name="LibraryPage_AddOnePuzzleDialogSure" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid" xml:space="preserve">
+    <value>文本不能解析成盘面。请检查后重试。</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzleDialogTitle" xml:space="preserve">
     <value>添加一个题目……</value>
   </data>

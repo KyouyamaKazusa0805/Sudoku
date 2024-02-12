@@ -7210,6 +7210,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Sure!.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid">
+            <summary>
+              Looks up a localized string similar to Text is invalid to be parsed as a grid. Please check and try again..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzleDialogTitle">
             <summary>
               Looks up a localized string similar to Add One Puzzle....

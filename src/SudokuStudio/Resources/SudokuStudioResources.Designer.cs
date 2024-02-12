@@ -2806,6 +2806,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text is invalid to be parsed as a grid. Please check and try again..
+        /// </summary>
+        internal static string LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add One Puzzle....
         /// </summary>
         internal static string LibraryPage_AddOnePuzzleDialogTitle {

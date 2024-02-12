@@ -960,6 +960,9 @@
   <data name="LibraryPage_AddOnePuzzleDialogSure" xml:space="preserve">
     <value>Sure!</value>
   </data>
+  <data name="LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid" xml:space="preserve">
+    <value>Text is invalid to be parsed as a grid. Please check and try again.</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzleDialogTitle" xml:space="preserve">
     <value>Add One Puzzle...</value>
   </data>

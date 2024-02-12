@@ -10,6 +10,8 @@
 	<StackPanel Spacing="4">
 		<TextBlock Text="{m:R Key=LibraryPage_AddOnePuzzleDialogInputTextCode}" />
 		<TextBox x:Name="TextCodeInput" x:FieldModifier="internal" TextChanged="TextCodeInput_TextChanged" />
-		<TextBlock x:Name="WarningTextDisplayer" Foreground="Red" Text="" Visibility="Collapsed" />
+		<TextBlock
+			x:Name="WarningTextDisplayer" Foreground="Red"
+			Text="{m:R Key=LibraryPage_AddOnePuzzleDialogTextCodeIsInvalid}" Visibility="Collapsed" />
 	</StackPanel>
 </Page>
