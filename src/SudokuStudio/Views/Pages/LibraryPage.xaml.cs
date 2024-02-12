@@ -23,6 +23,7 @@ public sealed partial class LibraryPage : Page
 			XamlRoot = XamlRoot,
 			Title = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogTitle"),
 			DefaultButton = ContentDialogButton.Primary,
+			IsPrimaryButtonEnabled = true,
 			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogSure"),
 			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogCancel"),
 			Content = new AddOnePuzzleDialogContent()
@@ -134,5 +135,72 @@ public sealed partial class LibraryPage : Page
 			}
 		};
 		await dialog.ShowAsync();
+	}
+
+	private async void ModifyPropertiesItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		var dialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			Title = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogTitle"),
+			DefaultButton = ContentDialogButton.Primary,
+			IsPrimaryButtonEnabled = true,
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogSure"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogCancel"),
+			Content = new LibraryModifyPropertiesDialogContent
+			{
+				LibraryName = lib.Name,
+				LibraryAuthor = lib.Author,
+				LibraryDescription = lib.Description,
+				LibraryTags = [.. lib.Tags]
+			}
+		};
+		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
+		{
+			return;
+		}
+
+		// Replace with the original dictionary set to refresh UI.
+		var content = (LibraryModifyPropertiesDialogContent)dialog.Content;
+		var newInstance = new LibraryBindableSource
+		{
+			FileId = lib.FileId,
+			Name = (lib.Name = content.LibraryName is var name and not (null or "") ? name : null) switch
+			{
+				{ } finalName => finalName,
+				_ => LibraryBindableSource.NameDefaultValue
+			},
+			Author = (lib.Author = content.LibraryAuthor is var author and not (null or "") ? author : null) switch
+			{
+				{ } finalAuthor => finalAuthor,
+				_ => LibraryBindableSource.AuthorDefaultValue
+			},
+			Description = (lib.Description = content.LibraryDescription is var description and not (null or "") ? description : null) switch
+			{
+				{ } finalDescription => finalDescription,
+				_ => LibraryBindableSource.DescriptionDefaultValue
+			},
+			Tags = (lib.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null) switch
+			{
+				{ } finalTags => finalTags,
+				_ => []
+			}
+		};
+
+		var p = (ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource;
+		for (var i = 0; i < p.Count; i++)
+		{
+			var libraryBindableSource = p[i];
+			if (libraryBindableSource.LibraryInfo == lib)
+			{
+				((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource)[i] = newInstance;
+				return;
+			}
+		}
 	}
 }

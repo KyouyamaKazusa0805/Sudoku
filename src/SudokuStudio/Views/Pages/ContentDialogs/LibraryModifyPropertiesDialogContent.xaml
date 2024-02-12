@@ -1,0 +1,33 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:pd="using:SudokuStudio.Views.Pages.ContentDialogs"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:LibraryModifyPropertiesDialogContent}">
+	<Page.Resources>
+		<Style x:Key="PropertyNameStyle" TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,12,0,0" />
+			<Setter Property="FontWeight" Value="Bold" />
+		</Style>
+	</Page.Resources>
+
+	<StackPanel Spacing="4">
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryName}" Style="{StaticResource PropertyNameStyle}" Margin="0" />
+		<TextBox Text="{x:Bind LibraryName,Mode=TwoWay}" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryAuthor}" Style="{StaticResource PropertyNameStyle}" />
+		<TextBox Text="{x:Bind LibraryAuthor,Mode=TwoWay}" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryDescription}" Style="{StaticResource PropertyNameStyle}" />
+
+		<!--
+		Do not apply property 'TextWrapping="WrapWholeWords' onto TextBox.
+		See https://github.com/microsoft/microsoft-ui-xaml/issues/7099
+		-->
+		<TextBox Text="{x:Bind LibraryDescription,Mode=TwoWay}" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" Style="{StaticResource PropertyNameStyle}" />
+		<wc:TokenizingTextBox ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" MaximumTokens="5" />
+	</StackPanel>
+</Page>

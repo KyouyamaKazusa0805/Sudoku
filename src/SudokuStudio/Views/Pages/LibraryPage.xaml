@@ -55,9 +55,12 @@
 										x:Name="PropertiesItem" Text="{m:R Key=LibraryPage_Properties}" Tag="{x:Bind ParentFlyout}"
 										Icon="{ui:FontIcon Glyph=&#xE90F;}" Click="PropertiesItem_ClickAsync" />
 									<MenuFlyoutItem
+										x:Name="ModifyPropertiesItem" Text="{m:R Key=LibraryPage_ModifyProperties}"
+										Tag="{x:Bind ParentFlyout}" Icon="{ui:FontIcon Glyph=&#xE713;}"
+										Click="ModifyPropertiesItem_ClickAsync" />
+									<MenuFlyoutItem
 										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
-										Icon="{ui:FontIcon Glyph=&#xE710;}"
-										Click="AddOnePuzzleItem_ClickAsync" />
+										Icon="{ui:FontIcon Glyph=&#xE710;}" Click="AddOnePuzzleItem_ClickAsync" />
 									<MenuFlyoutSeparator />
 									<MenuFlyoutItem
 										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"

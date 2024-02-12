@@ -108,7 +108,6 @@ public readonly partial struct Library(
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
 	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
-	[DisallowNull]
 	public string? Author
 	{
 		get
@@ -140,7 +139,6 @@ public readonly partial struct Library(
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
 	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
-	[DisallowNull]
 	public string? Name
 	{
 		get
@@ -172,7 +170,6 @@ public readonly partial struct Library(
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
 	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
-	[DisallowNull]
 	public string? Description
 	{
 		get
@@ -204,7 +201,6 @@ public readonly partial struct Library(
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the library is not initialized.</exception>
 	/// <exception cref="FileNotFoundException">Throws when the config file is missing.</exception>
-	[DisallowNull]
 	public string[]? Tags
 	{
 		get
@@ -228,7 +224,7 @@ public readonly partial struct Library(
 				throw new FileNotFoundException(Error_NotExist);
 			}
 
-			ConfigFileReplaceOrAppend(TagsPattern().IsMatch, string.Join(SeparatorChar, value));
+			ConfigFileReplaceOrAppend(TagsPattern().IsMatch, value is not null ? string.Join(SeparatorChar, value) : null);
 		}
 	}
 
@@ -752,7 +748,7 @@ public readonly partial struct Library(
 	/// <exception cref="InvalidOperationException">Throws when multiple same properties found.</exception>
 	private void ConfigFileReplaceOrAppend(
 		Func<string, bool> match,
-		string replaceOrAppendValue,
+		string? replaceOrAppendValue,
 		[CallerMemberName] string callerPropertyName = null!
 	)
 	{
@@ -763,6 +759,7 @@ public readonly partial struct Library(
 			if (!match(line))
 			{
 				linesToKeep.Add(line);
+				continue;
 			}
 
 			if (isFound)
@@ -780,12 +777,18 @@ public readonly partial struct Library(
 
 		var tempFile = Path.GetTempFileName();
 		File.WriteAllLines(tempFile, linesToKeep);
-		File.Delete(LibraryFilePath);
-		File.Move(tempFile, LibraryFilePath);
+		File.Delete(ConfigFilePath);
+		File.Move(tempFile, ConfigFilePath);
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void a(List<string> list, string prefix, string replaceOrAppendValue) => list.Add($"{prefix}: {replaceOrAppendValue}");
+		static void a(List<string> list, string prefix, string? replaceOrAppendValue)
+		{
+			if (replaceOrAppendValue is not null)
+			{
+				list.Add($"{prefix}: {replaceOrAppendValue}");
+			}
+		}
 	}
 
 

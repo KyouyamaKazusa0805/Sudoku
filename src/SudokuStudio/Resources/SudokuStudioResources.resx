@@ -1002,6 +1002,18 @@
   <data name="LibraryPage_LibraryTags" xml:space="preserve">
     <value>Tags</value>
   </data>
+  <data name="LibraryPage_ModifyProperties" xml:space="preserve">
+    <value>Modify configuration...</value>
+  </data>
+  <data name="LibraryPage_ModifyPropertiesDialogCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LibraryPage_ModifyPropertiesDialogSure" xml:space="preserve">
+    <value>Sure!</value>
+  </data>
+  <data name="LibraryPage_ModifyPropertiesDialogTitle" xml:space="preserve">
+    <value>Modify Configuration...</value>
+  </data>
   <data name="LibraryPage_Properties" xml:space="preserve">
     <value>Properties</value>
   </data>

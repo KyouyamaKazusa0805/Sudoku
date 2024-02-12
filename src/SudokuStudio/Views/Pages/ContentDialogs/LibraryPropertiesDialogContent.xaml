@@ -37,7 +37,7 @@
 		<TextBlock Text="{x:Bind LibraryAuthor}" IsTextSelectionEnabled="True" />
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryDescription}" Style="{StaticResource PropertyNameStyle}" />
 		<TextBlock Text="{x:Bind LibraryDescription}" IsTextSelectionEnabled="True" />
-		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" TextWrapping="WrapWholeWords" Style="{StaticResource PropertyNameStyle}" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" Style="{StaticResource PropertyNameStyle}" />
 		<c:TokenView
 			ItemsSource="{x:Bind LibraryInfo.Tags}" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
 			ItemTemplateSelector="{StaticResource TagsTemplateSelector}" />

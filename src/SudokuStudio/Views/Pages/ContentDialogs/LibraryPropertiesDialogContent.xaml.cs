@@ -10,10 +10,12 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<Library>("LibraryInfo", Accessibility = Accessibility.Internal)]
 public sealed partial class LibraryPropertiesDialogContent : Page
 {
+#pragma warning disable CS0414
 	/// <summary>
 	/// Indicates whether currently is loading for puzzles count.
 	/// </summary>
 	private volatile bool _isLoadingPuzzlesCount = true;
+#pragma warning restore CS0414
 
 
 	/// <summary>

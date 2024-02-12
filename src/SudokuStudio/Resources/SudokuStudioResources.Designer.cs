@@ -2932,6 +2932,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify configuration....
+        /// </summary>
+        internal static string LibraryPage_ModifyProperties {
+            get {
+                return ResourceManager.GetString("LibraryPage_ModifyProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LibraryPage_ModifyPropertiesDialogCancel {
+            get {
+                return ResourceManager.GetString("LibraryPage_ModifyPropertiesDialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure!.
+        /// </summary>
+        internal static string LibraryPage_ModifyPropertiesDialogSure {
+            get {
+                return ResourceManager.GetString("LibraryPage_ModifyPropertiesDialogSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify Configuration....
+        /// </summary>
+        internal static string LibraryPage_ModifyPropertiesDialogTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_ModifyPropertiesDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
         internal static string LibraryPage_Properties {
