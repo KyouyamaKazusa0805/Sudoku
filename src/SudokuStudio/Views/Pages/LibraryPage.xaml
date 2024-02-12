@@ -28,7 +28,7 @@
 							<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
 								<FontIcon Glyph="&#xE8F1;" Width="64" Height="64" FontSize="48" />
 								<StackPanel Spacing="4">
-									<TextBlock Text="{x:Bind Name}" FontSize="16" FontWeight="Bold" />
+									<TextBlock Text="{x:Bind Name}" FontSize="18" FontWeight="Bold" />
 									<TextBlock Text="{x:Bind Author}" />
 									<TextBlock Foreground="DimGray" Text="{x:Bind LibraryInfo,Converter={StaticResource LibraryConverter}}" />
 								</StackPanel>

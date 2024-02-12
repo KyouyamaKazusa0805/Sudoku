@@ -57,7 +57,7 @@ public sealed partial class LibraryPage : Page
 
 	private void LibrariesDisplayer_ItemClick(object sender, ItemClickEventArgs e)
 	{
-		if (sender is not GridView { ItemsPanelRoot.Children: var children } gridView)
+		if (sender is not GridView { ItemsPanelRoot.Children: var children })
 		{
 			return;
 		}
@@ -74,7 +74,7 @@ public sealed partial class LibraryPage : Page
 				continue;
 			}
 
-			flyout.ShowAt(gridView, new() { Placement = FlyoutPlacementMode.Auto });
+			flyout.ShowAt(child, new() { Placement = FlyoutPlacementMode.Auto });
 			break;
 		}
 	}
