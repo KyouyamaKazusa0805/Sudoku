@@ -47,6 +47,11 @@
 									<MenuFlyoutItem
 										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
 										Click="AddOnePuzzleItem_ClickAsync" />
+									<MenuFlyoutSeparator />
+									<MenuFlyoutItem
+										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red"
+										Text="{m:R Key=LibraryPage_RemoveDuplicatePuzzles}" Tag="{x:Bind ParentFlyout}"
+										Click="RemoveDuplicatePuzzlesItem_ClickAsync" />
 								</MenuFlyout>
 							</Setter.Value>
 						</Setter>

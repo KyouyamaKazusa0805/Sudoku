@@ -250,10 +250,10 @@ public readonly partial struct Library(
 	/// <param name="index">The desired index.</param>
 	/// <returns>The target <see cref="Grid"/> instance at the specified index.</returns>
 	/// <remarks>
-	/// This property is run synchronously, calling <see cref="GetAtAsync(int)"/>.
+	/// This property is run synchronously, calling <see cref="GetAtAsync(int, CancellationToken)"/>.
 	/// <b>Always measure performance if you want to use this indexer.</b>
 	/// </remarks>
-	/// <seealso cref="GetAtAsync(int)"/>
+	/// <seealso cref="GetAtAsync(int, CancellationToken)"/>
 	public Grid this[int index] => GetAtAsync(index).Result;
 
 
@@ -411,6 +411,35 @@ public readonly partial struct Library(
 		=> await RemovePuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
+	/// Removes a list of duplicate puzzles stored in the current library.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+	/// <returns>A <see cref="Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle should be initialized first.</exception>
+	public async Task RemoveDuplicatePuzzlesAsync(CancellationToken cancellationToken = default)
+	{
+		if (!IsInitialized)
+		{
+			throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+		}
+
+		var textSet = new HashSet<string>();
+		await foreach (var grid in EnumerateTextAsync(cancellationToken))
+		{
+			textSet.Add(grid);
+		}
+
+		await using var sw = new StreamWriter(LibraryFilePath, false);
+		var sb = new StringBuilder();
+		foreach (var text in textSet)
+		{
+			sb.AppendLine(text);
+		}
+
+		await sw.WriteAsync(sb, cancellationToken);
+	}
+
+	/// <summary>
 	/// Write a puzzle into a file just created.
 	/// </summary>
 	/// <param name="grid">The grid to be written.</param>
@@ -437,13 +466,14 @@ public readonly partial struct Library(
 	/// <summary>
 	/// Calculates how many puzzles in this file.
 	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task{TResult}"/> of an <see cref="int"/> value indicating the result.</returns>
 	/// <remarks>
 	/// <b><i>If you want to check whether the puzzle has at least one puzzle, please use method <see cref="Any"/> instead.</i></b>
 	/// </remarks>
 	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	/// <seealso cref="Any"/>
-	public async Task<int> GetCountAsync()
+	public async Task<int> GetCountAsync(CancellationToken cancellationToken = default)
 	{
 		if (!IsInitialized)
 		{
@@ -451,7 +481,7 @@ public readonly partial struct Library(
 		}
 
 		var result = 0;
-		await foreach (var _ in this)
+		await foreach (var _ in EnumerateTextAsync(cancellationToken))
 		{
 			result++;
 		}
@@ -463,10 +493,11 @@ public readonly partial struct Library(
 	/// Gets the <see cref="Grid"/> at the specified index.
 	/// </summary>
 	/// <param name="index">The desired index.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public async Task<Grid> GetAtAsync(int index)
+	public async Task<Grid> GetAtAsync(int index, CancellationToken cancellationToken = default)
 	{
 		if (!IsInitialized)
 		{
@@ -474,11 +505,11 @@ public readonly partial struct Library(
 		}
 
 		var i = -1;
-		await foreach (var grid in this)
+		await foreach (var text in EnumerateTextAsync(cancellationToken))
 		{
 			if (++i == index)
 			{
-				return grid;
+				return Grid.Parse(text);
 			}
 		}
 
@@ -493,10 +524,14 @@ public readonly partial struct Library(
 	/// Use <see cref="TransformType"/>.<see langword="operator"/> |(<see cref="TransformType"/>, <see cref="TransformType"/>)
 	/// to combine multiple flags.
 	/// </param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
-	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)
+	public async Task<Grid> RandomReadOneAsync(
+		TransformType transformTypes = TransformType.None,
+		CancellationToken cancellationToken = default
+	)
 	{
 		if (!IsInitialized)
 		{
@@ -506,11 +541,11 @@ public readonly partial struct Library(
 		var rng = new Random();
 		var numberSeen = 0U;
 		Unsafe.SkipInit(out Grid chosen);
-		await foreach (var grid in this)
+		await foreach (var text in EnumerateTextAsync(cancellationToken))
 		{
 			if ((uint)rng.Next() % ++numberSeen == 0)
 			{
-				chosen = grid;
+				chosen = Grid.Parse(text);
 			}
 		}
 
@@ -650,14 +685,27 @@ public readonly partial struct Library(
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
+		await foreach (var text in EnumerateTextAsync(cancellationToken))
+		{
+			yield return Grid.Parse(text);
+		}
+	}
+
+	/// <summary>
+	/// Enumerates raw text codes stored in the library.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+	/// <returns>An async-iterable collection of <see cref="string"/> values as raw text codes.</returns>
+	public async IAsyncEnumerable<string> EnumerateTextAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+	{
 		if (!File.Exists(LibraryFilePath))
 		{
 			yield break;
 		}
 
-		await foreach (var str in File.ReadLinesAsync(LibraryFilePath, cancellationToken))
+		await foreach (var text in File.ReadLinesAsync(LibraryFilePath, cancellationToken))
 		{
-			yield return Grid.Parse(str);
+			yield return text;
 		}
 	}
 

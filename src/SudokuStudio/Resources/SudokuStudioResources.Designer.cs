@@ -2833,6 +2833,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove duplicates.
+        /// </summary>
+        internal static string LibraryPage_RemoveDuplicatePuzzles {
+            get {
+                return ResourceManager.GetString("LibraryPage_RemoveDuplicatePuzzles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visit.
         /// </summary>
         internal static string LibraryPage_Visit {

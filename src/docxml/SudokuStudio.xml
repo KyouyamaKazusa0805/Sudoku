@@ -7225,6 +7225,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_RemoveDuplicatePuzzles">
+            <summary>
+              Looks up a localized string similar to Remove duplicates.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Visit">
             <summary>
               Looks up a localized string similar to Visit.

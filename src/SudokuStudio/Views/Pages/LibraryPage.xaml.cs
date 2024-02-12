@@ -44,4 +44,14 @@ public sealed partial class LibraryPage : Page
 
 		await lib.AppendPuzzleAsync(text);
 	}
+
+	private async void RemoveDuplicatePuzzlesItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		await lib.RemoveDuplicatePuzzlesAsync();
+	}
 }

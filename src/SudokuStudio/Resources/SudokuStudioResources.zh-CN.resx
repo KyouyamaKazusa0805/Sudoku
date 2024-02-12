@@ -972,6 +972,9 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>这个页面列举的是你配置的一些题库。你可以点击它们查看里面配置的题目。</value>
   </data>
+  <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
+    <value>删除重复题目</value>
+  </data>
   <data name="LibraryPage_Visit" xml:space="preserve">
     <value>查看</value>
   </data>

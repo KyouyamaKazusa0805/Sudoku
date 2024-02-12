@@ -969,6 +969,9 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>
+  <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
+    <value>Remove duplicates</value>
+  </data>
   <data name="LibraryPage_Visit" xml:space="preserve">
     <value>Visit</value>
   </data>

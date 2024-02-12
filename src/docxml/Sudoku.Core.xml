@@ -7857,10 +7857,10 @@ if (student is (name: var name, age: >= 18))
             Indicates the number of puzzles stored in this file.
             </summary>
             <remarks>
-            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync"/>.
+            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync(System.Threading.CancellationToken)"/>.
             <b>Always measure performance if you want to use this property.</b>
             </remarks>
-            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync"/>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync(System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.Library.LibraryFilePath">
             <summary>
@@ -7928,10 +7928,10 @@ if (student is (name: var name, age: >= 18))
             <param name="index">The desired index.</param>
             <returns>The target <see cref="T:Sudoku.Concepts.Grid"/> instance at the specified index.</returns>
             <remarks>
-            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>.
+            This property is run synchronously, calling <see cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32,System.Threading.CancellationToken)"/>.
             <b>Always measure performance if you want to use this indexer.</b>
             </remarks>
-            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)"/>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Initialize">
             <summary>
@@ -7987,6 +7987,14 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RemoveDuplicatePuzzlesAsync(System.Threading.CancellationToken)">
+            <summary>
+            Removes a list of duplicate puzzles stored in the current library.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that can be used in <see langword="await"/> expression.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle should be initialized first.</exception>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Write a puzzle into a file just created.
@@ -7999,10 +8007,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync(System.Threading.CancellationToken)">
             <summary>
             Calculates how many puzzles in this file.
             </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
             <b><i>If you want to check whether the puzzle has at least one puzzle, please use method <see cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/> instead.</i></b>
@@ -8010,16 +8019,17 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.Any"/>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32,System.Threading.CancellationToken)">
             <summary>
             Gets the <see cref="T:Sudoku.Concepts.Grid"/> at the specified index.
             </summary>
             <param name="index">The desired index.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Concepts.TransformType)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Concepts.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
@@ -8028,12 +8038,20 @@ if (student is (name: var name, age: >= 18))
             Use <see cref="T:Sudoku.Concepts.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Concepts.TransformType"/>, <see cref="T:Sudoku.Concepts.TransformType"/>)
             to combine multiple flags.
             </param>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
             <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.EnumerateTextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Enumerates raw text codes stored in the library.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+            <returns>An async-iterable collection of <see cref="T:System.String"/> values as raw text codes.</returns>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.ConfigFileReplaceOrAppend(System.Func{System.String,System.Boolean},System.String,System.String)">
             <summary>
