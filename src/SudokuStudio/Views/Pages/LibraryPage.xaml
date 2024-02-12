@@ -20,7 +20,7 @@
 				<GridView.ItemTemplate>
 					<DataTemplate x:DataType="bs:LibraryBindableSource">
 						<Grid
-							Width="400" Height="134" Padding="10"
+							Width="400" Height="134" Padding="10" Margin="20"
 							RowDefinitions="Auto,*" Background="LightGray" CornerRadius="6">
 							<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
 								<FontIcon Glyph="&#xE8F1;" Width="64" Height="64" FontSize="48" />

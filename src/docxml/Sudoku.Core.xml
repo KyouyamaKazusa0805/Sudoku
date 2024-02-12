@@ -8178,6 +8178,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
             <param name="fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
+            <remarks><i>
+            This type is only used by Windows platform because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.Library"/>
+            is marked <see cref="T:System.Runtime.Versioning.SupportedOSPlatformAttribute"/>, limited in Windows.
+            </i></remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.Initialize"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInitializedException.#ctor(System.String,System.String)">
@@ -8187,6 +8191,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
             <param name="fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
+            <remarks><i>
+            This type is only used by Windows platform because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.Library"/>
+            is marked <see cref="T:System.Runtime.Versioning.SupportedOSPlatformAttribute"/>, limited in Windows.
+            </i></remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.Initialize"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInitializedException.#ctor(Sudoku.Runtime.LibraryServices.Library)">
