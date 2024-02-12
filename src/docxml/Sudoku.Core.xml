@@ -7953,6 +7953,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Append a list of puzzles, represented as a list of <see cref="T:System.String"/> values,
+            into the specified file path represented as a puzzle library.
+            </summary>
+            <param name="grids">A list of grid text code to be appended.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> instance indicating how many text code are appended into the file.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Grid},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)"/>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.RemovePuzzleAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Removes all puzzles that exactly same as the specified one from the file.

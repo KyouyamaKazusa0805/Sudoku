@@ -307,6 +307,68 @@ public readonly partial struct Library(
 		=> await AppendPuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
+	/// Append a list of puzzles, represented as a list of <see cref="string"/> values,
+	/// into the specified file path represented as a puzzle library.
+	/// </summary>
+	/// <param name="grids">A list of grid text code to be appended.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+	/// <returns>
+	/// A <see cref="Task{TResult}"/> of an <see cref="int"/> instance indicating how many text code are appended into the file.
+	/// </returns>
+	public async Task<int> AppendPuzzlesAsync(IEnumerable<string> grids, CancellationToken cancellationToken = default)
+	{
+		if (!IsInitialized)
+		{
+			Initialize();
+		}
+
+		var sb = new StringBuilder();
+		await using var sw = new StreamWriter(LibraryFilePath, true);
+		using var sr = new StreamReader(LibraryFilePath);
+		if (!sr.EndsWithNewLine())
+		{
+			await sw.WriteLineAsync();
+		}
+
+		var result = 0;
+		foreach (var grid in grids)
+		{
+			if (Grid.TryParse(grid, out _))
+			{
+				sb.AppendLine(grid);
+				result++;
+			}
+		}
+
+		await sw.WriteAsync(sb, cancellationToken);
+		return result;
+	}
+
+	/// <inheritdoc cref="AppendPuzzlesAsync(IEnumerable{string}, CancellationToken)"/>
+	public async Task AppendPuzzlesAsync(IEnumerable<Grid> grids, CancellationToken cancellationToken = default)
+	{
+		if (!IsInitialized)
+		{
+			Initialize();
+		}
+
+		var sb = new StringBuilder();
+		await using var sw = new StreamWriter(LibraryFilePath, true);
+		using var sr = new StreamReader(LibraryFilePath);
+		if (!sr.EndsWithNewLine())
+		{
+			sb.AppendLine();
+		}
+
+		foreach (var grid in grids)
+		{
+			sb.AppendLine(GetSingleLineGridString(in grid));
+		}
+
+		await sw.WriteAsync(sb, cancellationToken);
+	}
+
+	/// <summary>
 	/// Removes all puzzles that exactly same as the specified one from the file.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
@@ -366,7 +428,7 @@ public readonly partial struct Library(
 	/// <summary>
 	/// Calculates how many puzzles in this file.
 	/// </summary>
-	/// <returns>A <see cref="Task{T}"/> of an <see cref="int"/> value indicating the result.</returns>
+	/// <returns>A <see cref="Task{TResult}"/> of an <see cref="int"/> value indicating the result.</returns>
 	/// <remarks>
 	/// <b><i>If you want to check whether the puzzle has at least one puzzle, please use method <see cref="Any"/> instead.</i></b>
 	/// </remarks>
@@ -392,7 +454,7 @@ public readonly partial struct Library(
 	/// Gets the <see cref="Grid"/> at the specified index.
 	/// </summary>
 	/// <param name="index">The desired index.</param>
-	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
+	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the library file is not initialized.</exception>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	public async Task<Grid> GetAtAsync(int index)
@@ -422,7 +484,7 @@ public readonly partial struct Library(
 	/// Use <see cref="TransformType"/>.<see langword="operator"/> |(<see cref="TransformType"/>, <see cref="TransformType"/>)
 	/// to combine multiple flags.
 	/// </param>
-	/// <returns>A <see cref="Task{T}"/> of <see cref="Grid"/> instance as the result.</returns>
+	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
 	public async Task<Grid> RandomReadOneAsync(TransformType transformTypes = TransformType.None)

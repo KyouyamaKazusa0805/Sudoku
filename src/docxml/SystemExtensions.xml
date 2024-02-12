@@ -1749,6 +1749,19 @@ fixed (short* ptr = instance)
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:System.IO.StreamReaderExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.IO.StreamReader"/>.
+            </summary>
+            <seealso cref="T:System.IO.StreamReader"/>
+        </member>
+        <member name="M:System.IO.StreamReaderExtensions.EndsWithNewLine(System.IO.StreamReader)">
+            <summary>
+            Determines whether a file ends with new line character.
+            </summary>
+            <param name="this">The <see cref="T:System.IO.StreamReader"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:System.StringExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.
