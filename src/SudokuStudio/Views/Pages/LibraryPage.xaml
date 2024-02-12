@@ -50,8 +50,10 @@
 
 									<MenuFlyoutItem
 										x:Name="VisitItem" Text="{m:R Key=LibraryPage_Visit}" Tag="{x:Bind ParentFlyout}"
-										Icon="{ui:FontIcon Glyph=&#xE890;}"
-										Click="VisitItem_Click" />
+										Icon="{ui:FontIcon Glyph=&#xE890;}" Click="VisitItem_Click" />
+									<MenuFlyoutItem
+										x:Name="PropertiesItem" Text="{m:R Key=LibraryPage_Properties}" Tag="{x:Bind ParentFlyout}"
+										Icon="{ui:FontIcon Glyph=&#xE90F;}" Click="PropertiesItem_ClickAsync" />
 									<MenuFlyoutItem
 										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
 										Icon="{ui:FontIcon Glyph=&#xE710;}"

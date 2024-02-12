@@ -110,6 +110,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\ContentDialogs\LibraryPropertiesDialogContent.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\ContentDialogs\AddOnePuzzleDialogContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

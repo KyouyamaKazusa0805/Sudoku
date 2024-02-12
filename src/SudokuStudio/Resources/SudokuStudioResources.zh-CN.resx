@@ -978,6 +978,36 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>这个页面列举的是你配置的一些题库。你可以点击它们查看里面配置的题目。</value>
   </data>
+  <data name="LibraryPage_LibraryAuthor" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="LibraryPage_LibraryConfigFilePath" xml:space="preserve">
+    <value>配置文件路径</value>
+  </data>
+  <data name="LibraryPage_LibraryDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="LibraryPage_LibraryFilePath" xml:space="preserve">
+    <value>文件路径</value>
+  </data>
+  <data name="LibraryPage_LibraryLastModified" xml:space="preserve">
+    <value>上次修改</value>
+  </data>
+  <data name="LibraryPage_LibraryName" xml:space="preserve">
+    <value>题库名</value>
+  </data>
+  <data name="LibraryPage_LibraryPropertiesDialogClose" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="LibraryPage_LibraryPropertiesDialogTitle" xml:space="preserve">
+    <value>题库属性</value>
+  </data>
+  <data name="LibraryPage_LibraryTags" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="LibraryPage_Properties" xml:space="preserve">
+    <value>属性</value>
+  </data>
   <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
     <value>删除重复题目</value>
   </data>

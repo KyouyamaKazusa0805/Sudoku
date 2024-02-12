@@ -3293,6 +3293,24 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about visibility.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.LibraryTagsDataTemplateSelector">
+            <summary>
+            Represents a data template selector for library tags.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.LibraryTagsDataTemplateSelector.ValuesTemplate">
+            <summary>
+            Indicates the template used when values are available.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.LibraryTagsDataTemplateSelector.DefaultTemplate">
+            <summary>
+            Indicates the template used when no values are available.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.LibraryTagsDataTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector">
             <summary>
             Defines a template selector that is applied to a solving path element.
@@ -7233,6 +7251,56 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Description">
             <summary>
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryAuthor">
+            <summary>
+              Looks up a localized string similar to Author.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryConfigFilePath">
+            <summary>
+              Looks up a localized string similar to Config file path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryFilePath">
+            <summary>
+              Looks up a localized string similar to File path.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryLastModified">
+            <summary>
+              Looks up a localized string similar to Last modified.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryName">
+            <summary>
+              Looks up a localized string similar to Library name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryPropertiesDialogClose">
+            <summary>
+              Looks up a localized string similar to Close.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryPropertiesDialogTitle">
+            <summary>
+              Looks up a localized string similar to Library properties.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryTags">
+            <summary>
+              Looks up a localized string similar to Tags.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Properties">
+            <summary>
+              Looks up a localized string similar to Properties.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_RemoveDuplicatePuzzles">
@@ -12899,6 +12967,115 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent">
+            <summary>
+            Represents "Properties" dialog content for libraries.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPath"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPath"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescription"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescription"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTags"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTimeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTime"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTime"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryAuthorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPath">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPathProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryPathProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPath">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPathProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryConfigPathProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescription">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescriptionProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryDescriptionProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTags">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTagsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryTagsProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTime">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTimeProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryLastModifiedTimeProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
             <summary>

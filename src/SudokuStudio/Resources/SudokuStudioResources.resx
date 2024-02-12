@@ -975,6 +975,36 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>
+  <data name="LibraryPage_LibraryAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="LibraryPage_LibraryConfigFilePath" xml:space="preserve">
+    <value>Config file path</value>
+  </data>
+  <data name="LibraryPage_LibraryDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="LibraryPage_LibraryFilePath" xml:space="preserve">
+    <value>File path</value>
+  </data>
+  <data name="LibraryPage_LibraryLastModified" xml:space="preserve">
+    <value>Last modified</value>
+  </data>
+  <data name="LibraryPage_LibraryName" xml:space="preserve">
+    <value>Library name</value>
+  </data>
+  <data name="LibraryPage_LibraryPropertiesDialogClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="LibraryPage_LibraryPropertiesDialogTitle" xml:space="preserve">
+    <value>Library properties</value>
+  </data>
+  <data name="LibraryPage_LibraryTags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="LibraryPage_Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
   <data name="LibraryPage_RemoveDuplicatePuzzles" xml:space="preserve">
     <value>Remove duplicates</value>
   </data>

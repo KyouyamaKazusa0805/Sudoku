@@ -109,4 +109,32 @@ public sealed partial class LibraryPage : Page
 			}
 		}
 	}
+
+	private async void PropertiesItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		var dialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			Title = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogTitle"),
+			DefaultButton = ContentDialogButton.Close,
+			IsPrimaryButtonEnabled = false,
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogClose"),
+			Content = new LibraryPropertiesDialogContent
+			{
+				LibraryName = lib.Name ?? LibraryBindableSource.NameDefaultValue,
+				LibraryAuthor = lib.Author ?? LibraryBindableSource.AuthorDefaultValue,
+				LibraryPath = lib.LibraryFilePath,
+				LibraryConfigPath = lib.ConfigFilePath,
+				LibraryDescription = lib.Description ?? LibraryBindableSource.DescriptionDefaultValue,
+				LibraryTags = lib.Tags,
+				LibraryLastModifiedTime = lib.LastModifiedTime
+			}
+		};
+		await dialog.ShowAsync();
+	}
 }

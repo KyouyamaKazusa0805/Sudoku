@@ -2851,6 +2851,96 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        internal static string LibraryPage_LibraryAuthor {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Config file path.
+        /// </summary>
+        internal static string LibraryPage_LibraryConfigFilePath {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryConfigFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string LibraryPage_LibraryDescription {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File path.
+        /// </summary>
+        internal static string LibraryPage_LibraryFilePath {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified.
+        /// </summary>
+        internal static string LibraryPage_LibraryLastModified {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryLastModified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library name.
+        /// </summary>
+        internal static string LibraryPage_LibraryName {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string LibraryPage_LibraryPropertiesDialogClose {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryPropertiesDialogClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library properties.
+        /// </summary>
+        internal static string LibraryPage_LibraryPropertiesDialogTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryPropertiesDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        internal static string LibraryPage_LibraryTags {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Properties.
+        /// </summary>
+        internal static string LibraryPage_Properties {
+            get {
+                return ResourceManager.GetString("LibraryPage_Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove duplicates.
         /// </summary>
         internal static string LibraryPage_RemoveDuplicatePuzzles {

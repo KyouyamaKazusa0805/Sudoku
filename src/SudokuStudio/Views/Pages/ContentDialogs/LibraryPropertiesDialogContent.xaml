@@ -1,0 +1,56 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:dts="using:SudokuStudio.Interaction.DataTemplateSelectors"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:ui="using:WinUICommunity"
+	xmlns:pd="using:SudokuStudio.Views.Pages.ContentDialogs"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:LibraryPropertiesDialogContent}">
+	<Page.Resources>
+		<dts:LibraryTagsDataTemplateSelector x:Key="TagsTemplateSelector">
+			<dts:LibraryTagsDataTemplateSelector.DefaultTemplate>
+				<DataTemplate>
+					<TextBlock Text="{m:R Key=NoTags}" />
+				</DataTemplate>
+			</dts:LibraryTagsDataTemplateSelector.DefaultTemplate>
+			<dts:LibraryTagsDataTemplateSelector.ValuesTemplate>
+				<DataTemplate x:DataType="x:String">
+					<c:TokenItem Content="{x:Bind}" FontSize="10" />
+				</DataTemplate>
+			</dts:LibraryTagsDataTemplateSelector.ValuesTemplate>
+		</dts:LibraryTagsDataTemplateSelector>
+		<Style x:Key="PropertyNameStyle" TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,12,0,0" />
+			<Setter Property="FontWeight" Value="Bold" />
+		</Style>
+	</Page.Resources>
+
+	<StackPanel Spacing="4">
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryName}" Style="{StaticResource PropertyNameStyle}" Margin="0" />
+		<TextBlock Text="{x:Bind LibraryName}" IsTextSelectionEnabled="True" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryAuthor}" Style="{StaticResource PropertyNameStyle}" />
+		<TextBlock Text="{x:Bind LibraryAuthor}" IsTextSelectionEnabled="True" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryDescription}" Style="{StaticResource PropertyNameStyle}" />
+		<TextBlock Text="{x:Bind LibraryDescription}" IsTextSelectionEnabled="True" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" TextWrapping="WrapWholeWords" Style="{StaticResource PropertyNameStyle}" />
+		<c:TokenView
+			ItemsSource="{x:Bind LibraryTags}" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
+			ItemTemplateSelector="{StaticResource TagsTemplateSelector}" />
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryFilePath}" Style="{StaticResource PropertyNameStyle}" />
+		<StackPanel Orientation="Horizontal" Spacing="8">
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryPath}" IsTextScaleFactorEnabled="True" />
+			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton_ClickAsync" />
+		</StackPanel>
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryConfigFilePath}" Style="{StaticResource PropertyNameStyle}" />
+		<StackPanel Orientation="Horizontal" Spacing="8">
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryConfigPath}" IsTextScaleFactorEnabled="True" />
+			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton2_ClickAsync" />
+		</StackPanel>
+		<TextBlock Text="{m:R Key=LibraryPage_LibraryLastModified}" Style="{StaticResource PropertyNameStyle}" />
+		<TextBlock Text="{x:Bind LibraryLastModifiedTime}" IsTextSelectionEnabled="True" />
+	</StackPanel>
+</Page>
