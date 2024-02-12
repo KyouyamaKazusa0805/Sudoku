@@ -7,6 +7,7 @@
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:ui="using:WinUICommunity"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LibraryPage}">
 	<Page.Resources>
@@ -16,7 +17,9 @@
 	<Grid Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" RowDefinitions="Auto,*,Auto">
 		<TextBlock Grid.Row="0" Text="{m:R Key=LibraryPage_Description}" Margin="0,0,0,12" />
 		<ScrollViewer Grid.Row="1">
-			<GridView x:Name="LibrariesDisplayer" ItemsSource="{x:Bind bs:LibraryBindableSource.GetLibrariesFromLocal()}">
+			<GridView
+				x:Name="LibrariesDisplayer" ItemsSource="{x:Bind bs:LibraryBindableSource.GetLibrariesFromLocal()}"
+				IsItemClickEnabled="True" ItemClick="LibrariesDisplayer_ItemClick">
 				<GridView.ItemTemplate>
 					<DataTemplate x:DataType="bs:LibraryBindableSource">
 						<Grid
@@ -30,9 +33,6 @@
 									<TextBlock Foreground="DimGray" Text="{x:Bind LibraryInfo,Converter={StaticResource LibraryConverter}}" />
 								</StackPanel>
 							</StackPanel>
-							<Button
-								Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top"
-								Content="{m:R Key=LibraryPage_Visit}" Click="VisitButton_Click" />
 							<TextBlock
 								Grid.Row="1" Margin="0,15,0,0" Foreground="DimGray" FontSize="11"
 								Text="{x:Bind Description}" TextWrapping="WrapWholeWords" />
@@ -44,13 +44,22 @@
 						<Setter Property="ContextFlyout">
 							<Setter.Value>
 								<MenuFlyout x:Name="ParentFlyout">
+									<MenuFlyout.SystemBackdrop>
+										<DesktopAcrylicBackdrop />
+									</MenuFlyout.SystemBackdrop>
+
+									<MenuFlyoutItem
+										x:Name="VisitItem" Text="{m:R Key=LibraryPage_Visit}" Tag="{x:Bind ParentFlyout}"
+										Icon="{ui:FontIcon Glyph=&#xE890;}"
+										Click="VisitItem_Click" />
 									<MenuFlyoutItem
 										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
+										Icon="{ui:FontIcon Glyph=&#xE710;}"
 										Click="AddOnePuzzleItem_ClickAsync" />
 									<MenuFlyoutSeparator />
 									<MenuFlyoutItem
-										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red"
-										Text="{m:R Key=LibraryPage_RemoveDuplicatePuzzles}" Tag="{x:Bind ParentFlyout}"
+										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"
+										Text="{m:R Key=LibraryPage_RemoveDuplicatePuzzles}" Icon="{ui:FontIcon Glyph=&#xE71C;}"
 										Click="RemoveDuplicatePuzzlesItem_ClickAsync" />
 								</MenuFlyout>
 							</Setter.Value>

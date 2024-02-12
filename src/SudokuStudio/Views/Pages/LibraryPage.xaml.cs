@@ -11,10 +11,6 @@ public sealed partial class LibraryPage : Page
 	public LibraryPage() => InitializeComponent();
 
 
-	private void VisitButton_Click(object sender, RoutedEventArgs e)
-	{
-	}
-
 	private async void AddOnePuzzleItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
@@ -53,5 +49,33 @@ public sealed partial class LibraryPage : Page
 		}
 
 		await lib.RemoveDuplicatePuzzlesAsync();
+	}
+
+	private void VisitItem_Click(object sender, RoutedEventArgs e)
+	{
+	}
+
+	private void LibrariesDisplayer_ItemClick(object sender, ItemClickEventArgs e)
+	{
+		if (sender is not GridView { ItemsPanelRoot.Children: var children } gridView)
+		{
+			return;
+		}
+
+		foreach (var child in children)
+		{
+			if (child is not GridViewItem { Content: LibraryBindableSource source, ContextFlyout: var flyout })
+			{
+				continue;
+			}
+
+			if (!ReferenceEquals(source, (LibraryBindableSource)e.ClickedItem))
+			{
+				continue;
+			}
+
+			flyout.ShowAt(gridView, new() { Placement = FlyoutPlacementMode.Auto });
+			break;
+		}
 	}
 }
