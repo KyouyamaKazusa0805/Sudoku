@@ -642,6 +642,9 @@ public readonly partial struct Library(
 	/// Registers the config file extension. Argument should contain prefix period token '<c>.</c>'.
 	/// </summary>
 	/// <param name="extension">The extension of the config file. Period '<c>.</c>' required.</param>
+	/// <remarks>
+	/// <b>Please note that only one extension can work. If you call this method multiple times, only the last one will work.</b>
+	/// </remarks>
 	/// <exception cref="ArgumentException">Throws when the argument <paramref name="extension"/> is not valid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RegisterConfigFileExtension(string extension)
