@@ -78,4 +78,35 @@ public sealed partial class LibraryPage : Page
 			break;
 		}
 	}
+
+	private void ClearPuzzlesItem_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		lib.ClearPuzzles();
+	}
+
+	private void DeleteLibraryItem_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		lib.Delete();
+
+		var p = (ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource;
+		for (var i = 0; i < p.Count; i++)
+		{
+			var libraryBindableSource = p[i];
+			if (libraryBindableSource.LibraryInfo == lib)
+			{
+				((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).RemoveAt(i);
+				return;
+			}
+		}
+	}
 }

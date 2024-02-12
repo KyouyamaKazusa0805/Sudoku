@@ -966,6 +966,12 @@
   <data name="LibraryPage_AddOnePuzzleDialogTitle" xml:space="preserve">
     <value>Add One Puzzle...</value>
   </data>
+  <data name="LibraryPage_ClearPuzzles" xml:space="preserve">
+    <value>Clear all puzzles</value>
+  </data>
+  <data name="LibraryPage_DeleteThisLibrary" xml:space="preserve">
+    <value>Delete this library</value>
+  </data>
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>

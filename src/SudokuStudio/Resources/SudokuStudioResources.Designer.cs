@@ -2824,6 +2824,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear all puzzles.
+        /// </summary>
+        internal static string LibraryPage_ClearPuzzles {
+            get {
+                return ResourceManager.GetString("LibraryPage_ClearPuzzles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete this library.
+        /// </summary>
+        internal static string LibraryPage_DeleteThisLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_DeleteThisLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
         /// </summary>
         internal static string LibraryPage_Description {

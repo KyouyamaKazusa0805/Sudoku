@@ -7220,6 +7220,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Add One Puzzle....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_ClearPuzzles">
+            <summary>
+              Looks up a localized string similar to Clear all puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_DeleteThisLibrary">
+            <summary>
+              Looks up a localized string similar to Delete this library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_Description">
             <summary>
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..

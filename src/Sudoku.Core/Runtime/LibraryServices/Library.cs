@@ -274,6 +274,38 @@ public readonly partial struct Library(
 		throw new LibraryInitializedException(this);
 	}
 
+	/// <summary>
+	/// Delete the current library, removing files from local path.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Delete()
+	{
+		if (!IsInitialized)
+		{
+			return;
+		}
+
+		File.Delete(ConfigFilePath);
+		File.Delete(LibraryFilePath);
+	}
+
+	/// <summary>
+	/// Clears the current library, removing all puzzles stored in this library, making the file empty,
+	/// but reserving the files not deleted.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the library isn't initialized.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void ClearPuzzles()
+	{
+		if (IsInitialized)
+		{
+			File.Create(LibraryFilePath).Close();
+			return;
+		}
+
+		throw new InvalidOperationException(Error_FileShouldBeInitializedFirst);
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Library other) => LibraryFilePath == other.LibraryFilePath;

@@ -61,6 +61,14 @@
 										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"
 										Text="{m:R Key=LibraryPage_RemoveDuplicatePuzzles}" Icon="{ui:FontIcon Glyph=&#xE71C;}"
 										Click="RemoveDuplicatePuzzlesItem_ClickAsync" />
+									<MenuFlyoutItem
+										x:Name="ClearPuzzlesItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"
+										Text="{m:R Key=LibraryPage_ClearPuzzles}" Icon="{ui:FontIcon Glyph=&#xE894;}"
+										Click="ClearPuzzlesItem_Click" />
+									<MenuFlyoutItem
+										x:Name="DeleteLibraryItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"
+										Text="{m:R Key=LibraryPage_DeleteThisLibrary}" Icon="{ui:FontIcon Glyph=&#xE894;}"
+										Click="DeleteLibraryItem_Click" />
 								</MenuFlyout>
 							</Setter.Value>
 						</Setter>

@@ -7939,6 +7939,18 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <exception cref="T:Sudoku.Runtime.LibraryServices.LibraryInitializedException">Throws when the library has already been initialized.</exception>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Delete">
+            <summary>
+            Delete the current library, removing files from local path.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.ClearPuzzles">
+            <summary>
+            Clears the current library, removing all puzzles stored in this library, making the file empty,
+            but reserving the files not deleted.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the library isn't initialized.</exception>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Equals(Sudoku.Runtime.LibraryServices.Library)">
             <inheritdoc/>
         </member>
