@@ -50,7 +50,7 @@ public sealed partial class LibraryBindableSource : DependencyObject
 			let library = new Library(CommonPaths.Library, fileId)
 			where library.IsInitialized
 			let firstContentLine = File.ReadLines(library.ConfigFilePath).FirstOrDefault()
-			where firstContentLine == LibraryConfigFileHeader
+			where firstContentLine == Library.ConfigFileHeader
 			select new LibraryBindableSource
 			{
 				Name = library.Name ?? NameDefaultValue,

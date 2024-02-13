@@ -13,11 +13,6 @@ internal static class ProjectWideConstants
 	public static readonly object AnalyzingRelatedSyncRoot = new();
 
 	/// <summary>
-	/// Indicates the file header.
-	/// </summary>
-	public static readonly string LibraryConfigFileHeader = "$ Header of the File $";
-
-	/// <summary>
 	/// Indicates the current assembly, of type <see cref="Assembly"/>.
 	/// </summary>
 	/// <seealso cref="Assembly"/>

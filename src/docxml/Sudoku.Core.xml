@@ -7847,6 +7847,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the separator character.
             </summary>
         </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.Library.ConfigFileHeader">
+            <summary>
+            Indicates the file header of config files after created or initialized.
+            </summary>
+        </member>
         <member name="P:Sudoku.Runtime.LibraryServices.Library.IsInitialized">
             <summary>
             Indicates whether the library-related files are initialized.

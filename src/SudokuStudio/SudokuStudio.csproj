@@ -28,6 +28,9 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Views\Pages\ContentDialogs\AddLibraryDialogContent.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -110,6 +113,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Page Update="Views\Pages\ContentDialogs\AddLibraryDialogContent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Views\Pages\ContentDialogs\SaveToLibraryDialogContent.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\ContentDialogs\LibraryModifyPropertiesDialogContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

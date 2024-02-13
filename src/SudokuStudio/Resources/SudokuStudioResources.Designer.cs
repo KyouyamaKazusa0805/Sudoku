@@ -2770,6 +2770,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string LibraryPage_AddLibraryDialogCancel {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibraryDialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure!.
+        /// </summary>
+        internal static string LibraryPage_AddLibraryDialogSure {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibraryDialogSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Library....
+        /// </summary>
+        internal static string LibraryPage_AddLibraryDialogTitle {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddLibraryDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a puzzle.
         /// </summary>
         internal static string LibraryPage_AddOnePuzzle {
@@ -2901,6 +2928,15 @@ namespace SudokuStudio.Resources {
         internal static string LibraryPage_LibraryName {
             get {
                 return ResourceManager.GetString("LibraryPage_LibraryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library file path: .
+        /// </summary>
+        internal static string LibraryPage_LibraryPath {
+            get {
+                return ResourceManager.GetString("LibraryPage_LibraryPath", resourceCulture);
             }
         }
         

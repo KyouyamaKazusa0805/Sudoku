@@ -948,6 +948,15 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>Add Library...</value>
   </data>
+  <data name="LibraryPage_AddLibraryDialogCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LibraryPage_AddLibraryDialogSure" xml:space="preserve">
+    <value>Sure!</value>
+  </data>
+  <data name="LibraryPage_AddLibraryDialogTitle" xml:space="preserve">
+    <value>Create a Library...</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
     <value>Add a puzzle</value>
   </data>
@@ -992,6 +1001,9 @@
   </data>
   <data name="LibraryPage_LibraryName" xml:space="preserve">
     <value>Library name</value>
+  </data>
+  <data name="LibraryPage_LibraryPath" xml:space="preserve">
+    <value>Library file path: </value>
   </data>
   <data name="LibraryPage_LibraryPropertiesDialogClose" xml:space="preserve">
     <value>Close</value>

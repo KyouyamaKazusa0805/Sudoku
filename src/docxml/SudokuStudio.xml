@@ -4963,11 +4963,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="F:SudokuStudio.ProjectWideConstants.LibraryConfigFileHeader">
-            <summary>
-            Indicates the file header.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.ProjectWideConstants.CurrentAssembly">
             <summary>
             Indicates the current assembly, of type <see cref="T:System.Reflection.Assembly"/>.
@@ -7208,6 +7203,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Add Library....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibraryDialogCancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibraryDialogSure">
+            <summary>
+              Looks up a localized string similar to Sure!.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddLibraryDialogTitle">
+            <summary>
+              Looks up a localized string similar to Create a Library....
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzle">
             <summary>
               Looks up a localized string similar to Add a puzzle.
@@ -7281,6 +7291,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryName">
             <summary>
               Looks up a localized string similar to Library name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryPath">
+            <summary>
+              Looks up a localized string similar to Library file path: .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryPropertiesDialogClose">
@@ -12884,6 +12899,114 @@ if (student is (name: var name, age: >= 18))
             Indicates the analysis result.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent">
+            <summary>
+            Represents an "add library" page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetAvailbleFileId(System.String)">
+            <summary>
+            <para>Determines whether the specified file ID is available and stored in local, as the real file name.</para>
+            <para>
+            If the local path doesn't contain the same-name file, the file ID will be returned; otherwise,
+            add a suffix to prevent same name.
+            </para>
+            </summary>
+            <param name="fileId">The file ID.</param>
+            <returns>An expected available file ID.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePath"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescription"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescription"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileId">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileIdProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileIdProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePath">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePathProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FilePathProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryName">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryNameProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryNameProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthor">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthorProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryAuthorProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescription">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescriptionProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryDescriptionProperty" />
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTagsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTagsProperty" />
+        </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent">
             <summary>
             Represents "add one puzzle" dialog content.
@@ -13160,6 +13283,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryInfoProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent.LibraryInfoProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent">
+            <summary>
+            Represents "save to library" page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
             <summary>

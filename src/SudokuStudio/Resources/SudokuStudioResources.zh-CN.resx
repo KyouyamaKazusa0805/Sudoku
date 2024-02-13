@@ -951,6 +951,15 @@
   <data name="LibraryPage_AddLibrary" xml:space="preserve">
     <value>添加题库……</value>
   </data>
+  <data name="LibraryPage_AddLibraryDialogCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="LibraryPage_AddLibraryDialogSure" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="LibraryPage_AddLibraryDialogTitle" xml:space="preserve">
+    <value>创建新题库……</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
     <value>添加一题</value>
   </data>
@@ -995,6 +1004,9 @@
   </data>
   <data name="LibraryPage_LibraryName" xml:space="preserve">
     <value>题库名</value>
+  </data>
+  <data name="LibraryPage_LibraryPath" xml:space="preserve">
+    <value>题库的文件保存路径：</value>
   </data>
   <data name="LibraryPage_LibraryPropertiesDialogClose" xml:space="preserve">
     <value>确认</value>

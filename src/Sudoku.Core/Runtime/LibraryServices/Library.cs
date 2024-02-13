@@ -62,6 +62,12 @@ public readonly partial struct Library(
 
 
 	/// <summary>
+	/// Indicates the file header of config files after created or initialized.
+	/// </summary>
+	public static readonly string ConfigFileHeader = "$ Header of the File $";
+
+
+	/// <summary>
 	/// Indicates whether the library-related files are initialized.
 	/// </summary>
 	public bool IsInitialized
@@ -262,8 +268,11 @@ public readonly partial struct Library(
 	{
 		if (!IsInitialized)
 		{
-			File.Create(ConfigFilePath);
-			File.Create(LibraryFilePath);
+			using var fs = File.Create(ConfigFilePath);
+			using var sw = new StreamWriter(fs);
+			sw.WriteLine(ConfigFileHeader);
+
+			File.Create(LibraryFilePath).Close();
 			return;
 		}
 

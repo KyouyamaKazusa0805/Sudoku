@@ -83,6 +83,6 @@
 		</ScrollViewer>
 		<Button
 			x:Name="AddLibraryButton" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-			Content="{m:R Key=LibraryPage_AddLibrary}" Margin="0,0,0,20" />
+			Content="{m:R Key=LibraryPage_AddLibrary}" Margin="0,0,0,20" Click="AddLibraryButton_ClickAsync" />
 	</Grid>
 </Page>

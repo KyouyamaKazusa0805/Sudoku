@@ -263,7 +263,7 @@ public partial class App : Application
 			foreach (var filePath in Directory.EnumerateFiles(libFolder))
 			{
 				if (io::Path.GetExtension(filePath) == FileExtensions.PuzzleLibrary
-					&& File.ReadLines(filePath).FirstOrDefault() == LibraryConfigFileHeader)
+					&& File.ReadLines(filePath).FirstOrDefault() == Library.ConfigFileHeader)
 				{
 					Libraries.Add(new(libFolder, io::Path.GetFileNameWithoutExtension(filePath)));
 				}

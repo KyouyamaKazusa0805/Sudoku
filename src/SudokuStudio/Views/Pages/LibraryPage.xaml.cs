@@ -203,4 +203,54 @@ public sealed partial class LibraryPage : Page
 			}
 		}
 	}
+
+	private async void AddLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var dialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			Title = ResourceDictionary.Get("LibraryPage_AddLibraryDialogTitle"),
+			DefaultButton = ContentDialogButton.Primary,
+			IsPrimaryButtonEnabled = true,
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogSure"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogCancel"),
+			Content = new AddLibraryDialogContent()
+		};
+		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
+		{
+			return;
+		}
+
+		// Update UI.
+		var content = (AddLibraryDialogContent)dialog.Content;
+		var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+		libraryCreated.Initialize();
+
+		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(
+			new()
+			{
+				FileId = libraryCreated.FileId,
+				Name = (libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null) switch
+				{
+					{ } finalName => finalName,
+					_ => LibraryBindableSource.NameDefaultValue
+				},
+				Author = (libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null) switch
+				{
+					{ } finalAuthor => finalAuthor,
+					_ => LibraryBindableSource.AuthorDefaultValue
+				},
+				Description = (libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null) switch
+				{
+					{ } finalDescription => finalDescription,
+					_ => LibraryBindableSource.DescriptionDefaultValue
+				},
+				Tags = (libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null) switch
+				{
+					{ } finalTags => finalTags,
+					_ => []
+				}
+			}
+		);
+	}
 }
