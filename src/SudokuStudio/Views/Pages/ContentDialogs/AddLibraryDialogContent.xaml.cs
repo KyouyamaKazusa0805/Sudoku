@@ -3,6 +3,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents an "add library" page.
 /// </summary>
+[DependencyProperty<bool>("IsNameValidAsFileId", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("FileId", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("FilePath", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("LibraryName?", Accessibility = Accessibility.Internal)]
@@ -62,12 +63,38 @@ public sealed partial class AddLibraryDialogContent : Page
 
 
 	[Callback]
+	private static void IsNameValidAsFileIdPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is (AddLibraryDialogContent instance, { NewValue: bool value }))
+		{
+			if (value)
+			{
+				instance.ErrorInfoDisplayer.Visibility = Visibility.Collapsed;
+				instance.PathDisplayer.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				instance.ErrorInfoDisplayer.Visibility = Visibility.Visible;
+				instance.PathDisplayer.Visibility = Visibility.Collapsed;
+			}
+		}
+	}
+
+	[Callback]
 	private static void LibraryNamePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is (AddLibraryDialogContent instance, { NewValue: string fileId }))
 		{
-			instance.FileId = GetAvailbleFileId(fileId);
-			instance.FilePath = $@"{CommonPaths.Library}\{instance.FileId}{FileExtensions.PuzzleLibrary}";
+			if (!File2.IsValidFileName(fileId))
+			{
+				instance.IsNameValidAsFileId = false;
+			}
+			else
+			{
+				instance.FileId = GetAvailbleFileId(fileId);
+				instance.FilePath = $@"{CommonPaths.Library}\{instance.FileId}{FileExtensions.PuzzleLibrary}";
+				instance.IsNameValidAsFileId = true;
+			}
 		}
 	}
 }

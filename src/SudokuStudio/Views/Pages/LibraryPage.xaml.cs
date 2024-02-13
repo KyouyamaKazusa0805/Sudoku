@@ -223,6 +223,11 @@ public sealed partial class LibraryPage : Page
 
 		// Update UI.
 		var content = (AddLibraryDialogContent)dialog.Content;
+		if (!content.IsNameValidAsFileId)
+		{
+			return;
+		}
+
 		var libraryCreated = new Library(CommonPaths.Library, content.FileId);
 		libraryCreated.Initialize();
 

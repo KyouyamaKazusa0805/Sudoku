@@ -18,7 +18,10 @@
 	<StackPanel Spacing="4">
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryName}" Style="{StaticResource PropertyNameStyle}" Margin="0" />
 		<TextBox Text="{x:Bind LibraryName,Mode=TwoWay}" />
-		<TextBlock TextWrapping="WrapWholeWords">
+		<TextBlock
+			x:Name="ErrorInfoDisplayer" Visibility="Collapsed" Foreground="Red"
+			Text="{m:R Key=LibraryPage_FileNameIsValidAsFileId}" />
+		<TextBlock x:Name="PathDisplayer" Visibility="Collapsed" TextWrapping="WrapWholeWords">
 			<Run Text="{m:R Key=LibraryPage_LibraryPath}" />
 			<Run Text="{x:Bind FilePath,Mode=OneWay}" />
 		</TextBlock>

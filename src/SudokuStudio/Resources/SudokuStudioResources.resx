@@ -984,6 +984,9 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>This page lists your libaries configured. You can click them to check puzzles for such libraries.</value>
   </data>
+  <data name="LibraryPage_FileNameIsValidAsFileId" xml:space="preserve">
+    <value>File name is invalid to be the file name. Please remove invalid characters and try again.</value>
+  </data>
   <data name="LibraryPage_LibraryAuthor" xml:space="preserve">
     <value>Author</value>
   </data>

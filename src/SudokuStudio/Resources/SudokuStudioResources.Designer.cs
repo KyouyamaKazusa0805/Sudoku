@@ -2878,6 +2878,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File name is invalid to be the file name. Please remove invalid characters and try again..
+        /// </summary>
+        internal static string LibraryPage_FileNameIsValidAsFileId {
+            get {
+                return ResourceManager.GetString("LibraryPage_FileNameIsValidAsFileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         internal static string LibraryPage_LibraryAuthor {

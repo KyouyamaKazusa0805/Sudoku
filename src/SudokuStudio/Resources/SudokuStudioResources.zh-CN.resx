@@ -987,6 +987,9 @@
   <data name="LibraryPage_Description" xml:space="preserve">
     <value>这个页面列举的是你配置的一些题库。你可以点击它们查看里面配置的题目。</value>
   </data>
+  <data name="LibraryPage_FileNameIsValidAsFileId" xml:space="preserve">
+    <value>题库名作为文件名的时候包含特殊字符。请删除它们并重试。</value>
+  </data>
   <data name="LibraryPage_LibraryAuthor" xml:space="preserve">
     <value>作者</value>
   </data>

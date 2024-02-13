@@ -589,6 +589,41 @@
             Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
+        <member name="T:System.IO.File2">
+            <summary>
+            Extends <see cref="T:System.IO.File"/>.
+            </summary>
+            <seealso cref="T:System.IO.File"/>
+        </member>
+        <member name="F:System.IO.File2.InvalidCharacters">
+            <summary>
+            The field for invalid path characters as a file name.
+            </summary>
+        </member>
+        <member name="M:System.IO.File2.IsValidFileName(System.String)">
+            <summary>
+            Determines whether the specified file name is valid.
+            </summary>
+            <param name="fileName">The file name to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.IO.StreamReaderExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.IO.StreamReader"/>.
+            </summary>
+            <seealso cref="T:System.IO.StreamReader"/>
+        </member>
+        <member name="M:System.IO.StreamReaderExtensions.EndsWithNewLine(System.IO.StreamReader)">
+            <summary>
+            Determines whether a file ends with new line character.
+            </summary>
+            <param name="this">The <see cref="T:System.IO.StreamReader"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks><i>
+            This method only supports for Windows now. For other OS platforms, this method cannot determine the end line characters
+            because I have already forgotten them...
+            </i></remarks>
+        </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.
@@ -1748,23 +1783,6 @@ fixed (short* ptr = instance)
             <param name="other">The other value to compare.</param>
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.IO.StreamReaderExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.IO.StreamReader"/>.
-            </summary>
-            <seealso cref="T:System.IO.StreamReader"/>
-        </member>
-        <member name="M:System.IO.StreamReaderExtensions.EndsWithNewLine(System.IO.StreamReader)">
-            <summary>
-            Determines whether a file ends with new line character.
-            </summary>
-            <param name="this">The <see cref="T:System.IO.StreamReader"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks><i>
-            This method only supports for Windows now. For other OS platforms, this method cannot determine the end line characters
-            because I have already forgotten them...
-            </i></remarks>
         </member>
         <member name="T:System.StringExtensions">
             <summary>

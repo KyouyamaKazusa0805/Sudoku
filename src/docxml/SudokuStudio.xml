@@ -7263,6 +7263,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page lists your libaries configured. You can click them to check puzzles for such libraries..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_FileNameIsValidAsFileId">
+            <summary>
+              Looks up a localized string similar to File name is invalid to be the file name. Please remove invalid characters and try again..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryAuthor">
             <summary>
               Looks up a localized string similar to Author.
@@ -12935,6 +12940,12 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileId"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileIdProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileId"/>.
@@ -12970,6 +12981,12 @@ if (student is (name: var name, age: >= 18))
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileId">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileIdProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileIdProperty" />
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.FileId">
             <summary>

@@ -3,6 +3,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents "save to library" page.
 /// </summary>
+
 public sealed partial class SaveToLibraryDialogContent : Page
 {
 	/// <summary>
