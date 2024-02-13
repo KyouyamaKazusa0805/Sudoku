@@ -52,9 +52,11 @@ public sealed partial class LibraryPage : Page
 		await lib.RemoveDuplicatePuzzlesAsync();
 	}
 
+#if false
 	private void VisitItem_Click(object sender, RoutedEventArgs e)
 	{
 	}
+#endif
 
 	private void LibrariesDisplayer_ItemClick(object sender, ItemClickEventArgs e)
 	{
