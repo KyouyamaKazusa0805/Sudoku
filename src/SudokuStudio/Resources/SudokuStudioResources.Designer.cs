@@ -511,6 +511,51 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AnalyzePage_AddPuzzleToLibraryDialogCancel {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AddPuzzleToLibraryDialogCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a library.
+        /// </summary>
+        internal static string AnalyzePage_AddPuzzleToLibraryDialogModeCreate {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AddPuzzleToLibraryDialogModeCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a library.
+        /// </summary>
+        internal static string AnalyzePage_AddPuzzleToLibraryDialogModeSelect {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AddPuzzleToLibraryDialogModeSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure!.
+        /// </summary>
+        internal static string AnalyzePage_AddPuzzleToLibraryDialogSure {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AddPuzzleToLibraryDialogSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add puzzle to library....
+        /// </summary>
+        internal static string AnalyzePage_AddPuzzleToLibraryDialogTitle {
+            get {
+                return ResourceManager.GetString("AnalyzePage_AddPuzzleToLibraryDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rearrange to ittoryu.
         /// </summary>
         internal static string AnalyzePage_AdjustToMakeIttoryuButton {

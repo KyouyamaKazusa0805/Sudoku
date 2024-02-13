@@ -39,7 +39,7 @@
 			</AppBarButton>
 			<AppBarButton
 				Label="{m:R Key=AnalyzePage_SavePuzzleToLibrary}" ToolTipService.ToolTip="{m:R Key=AnalyzePage_SavePuzzleToLibrary}"
-				Icon="{ui:FontIcon Glyph=&#xE8F1;}" Click="SaveToLibraryButton_Click" />
+				Icon="{ui:FontIcon Glyph=&#xE8F1;}" Click="SaveToLibraryButton_ClickAsync" />
 
 			<CommandBarFlyout.SecondaryCommands>
 				<AppBarButton Tag="{m:Int32 Value=1}" Label="{m:R Key=SudokuPane_Set1}" Click="SetOrDeleteButton_Click" />

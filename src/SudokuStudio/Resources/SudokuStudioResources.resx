@@ -195,6 +195,21 @@
   <data name="AnalyzePage_Abbreviation" xml:space="preserve">
     <value>Abbreviation:</value>
   </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogModeCreate" xml:space="preserve">
+    <value>Create a library</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogModeSelect" xml:space="preserve">
+    <value>Select a library</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogSure" xml:space="preserve">
+    <value>Sure!</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogTitle" xml:space="preserve">
+    <value>Add puzzle to library...</value>
+  </data>
   <data name="AnalyzePage_AdjustToMakeIttoryuButton" xml:space="preserve">
     <value>Rearrange to ittoryu</value>
   </data>

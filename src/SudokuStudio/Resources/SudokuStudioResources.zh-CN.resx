@@ -195,6 +195,21 @@
   <data name="AnalyzePage_Abbreviation" xml:space="preserve">
     <value>缩写：</value>
   </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogModeCreate" xml:space="preserve">
+    <value>创建新题库</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogModeSelect" xml:space="preserve">
+    <value>选取已有题库</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogSure" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="AnalyzePage_AddPuzzleToLibraryDialogTitle" xml:space="preserve">
+    <value>将题目添加到题库……</value>
+  </data>
   <data name="AnalyzePage_AdjustToMakeIttoryuButton" xml:space="preserve">
     <value>重排序至一刀流</value>
   </data>

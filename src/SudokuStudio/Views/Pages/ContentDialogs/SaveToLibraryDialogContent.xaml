@@ -4,7 +4,65 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:bs="using:SudokuStudio.BindableSource"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pd="using:SudokuStudio.Views.Pages.ContentDialogs"
+	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pd:SaveToLibraryDialogContent}">
-	
+	<Page.Resources>
+		<Style x:Key="PropertyNameStyle" TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,12,0,0" />
+			<Setter Property="FontWeight" Value="Bold" />
+		</Style>
+	</Page.Resources>
+
+	<StackPanel Spacing="12">
+		<wc:Segmented x:Name="ModeSelector" SelectedIndex="0" HorizontalAlignment="Left" SelectionChanged="ModeSelector_SelectionChanged">
+			<wc:SegmentedItem Content="{m:R Key=AnalyzePage_AddPuzzleToLibraryDialogModeSelect}" Tag="{m:Int32 Value=0}" />
+			<wc:SegmentedItem Content="{m:R Key=AnalyzePage_AddPuzzleToLibraryDialogModeCreate}" Tag="{m:Int32 Value=1}" />
+		</wc:Segmented>
+		<wc:SwitchPresenter Value="{x:Bind SelectedMode,Mode=OneWay}">
+			<wc:Case Value="{m:Int32 Value=0}">
+				<StackPanel Spacing="4">
+					<ListView ItemsSource="{x:Bind AvailableLibraries}" SelectedItem="{x:Bind SelectedLibrary,Mode=TwoWay}" SelectionMode="Single">
+						<ListView.ItemTemplate>
+							<DataTemplate x:DataType="bs:LibraryBindableSource">
+								<Grid ColumnDefinitions="Auto,*" HorizontalAlignment="Left">
+									<FontIcon Grid.Column="0" Glyph="&#xE8F1;" HorizontalAlignment="Center" VerticalAlignment="Center" />
+									<TextBlock
+										Grid.Column="1" Margin="6,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+										Text="{x:Bind cvt:LibraryConversion.GetDisplayName(Name,FileId)}" />
+								</Grid>
+							</DataTemplate>
+						</ListView.ItemTemplate>
+					</ListView>
+				</StackPanel>
+			</wc:Case>
+			<wc:Case Value="{m:Int32 Value=1}">
+				<StackPanel Spacing="4">
+					<TextBlock Text="{m:R Key=LibraryPage_LibraryName}" Style="{StaticResource PropertyNameStyle}" Margin="0" />
+					<TextBox Text="{x:Bind LibraryName,Mode=TwoWay}" />
+					<TextBlock
+						x:Name="ErrorInfoDisplayer" Visibility="Collapsed" Foreground="Red"
+						Text="{m:R Key=LibraryPage_FileNameIsValidAsFileId}" />
+					<TextBlock x:Name="PathDisplayer" Visibility="Collapsed" TextWrapping="WrapWholeWords">
+						<Run Text="{m:R Key=LibraryPage_LibraryPath}" />
+						<Run Text="{x:Bind FilePath,Mode=OneWay}" />
+					</TextBlock>
+					<TextBlock Text="{m:R Key=LibraryPage_LibraryAuthor}" Style="{StaticResource PropertyNameStyle}" />
+					<TextBox Text="{x:Bind LibraryAuthor,Mode=TwoWay}" />
+					<TextBlock Text="{m:R Key=LibraryPage_LibraryDescription}" Style="{StaticResource PropertyNameStyle}" />
+
+					<!--
+					Do not apply property 'TextWrapping="WrapWholeWords' onto TextBox.
+					See https://github.com/microsoft/microsoft-ui-xaml/issues/7099
+					-->
+					<TextBox Text="{x:Bind LibraryDescription,Mode=TwoWay}" />
+					<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" Style="{StaticResource PropertyNameStyle}" />
+					<wc:TokenizingTextBox ItemsSource="{x:Bind LibraryTags,Mode=TwoWay}" MaximumTokens="5" />
+				</StackPanel>
+			</wc:Case>
+		</wc:SwitchPresenter>
+	</StackPanel>
 </Page>

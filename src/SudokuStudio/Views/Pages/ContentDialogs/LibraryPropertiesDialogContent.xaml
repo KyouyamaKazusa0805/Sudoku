@@ -58,7 +58,7 @@
 			<TextBlock
 				x:Name="LibraryPuzzlesCountDisplayer" Text="{m:R Key=LibraryPage_PuzzlesCountIsNowProcessing}"
 				IsTextSelectionEnabled="True" />
-			<ProgressRing Width="32" Height="32" IsActive="{x:Bind _isLoadingPuzzlesCount,Mode=OneWay}" />
+			<ProgressRing Width="32" Height="32" IsActive="{x:Bind IsLoadingPuzzlesCount,Mode=OneWay}" />
 		</StackPanel>
 	</StackPanel>
 </Page>

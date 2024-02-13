@@ -3,6 +3,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents "Properties" dialog content for libraries.
 /// </summary>
+[DependencyProperty<bool>("IsLoadingPuzzlesCount", DefaultValue = true, Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("LibraryName", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("LibraryAuthor", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("LibraryDescription", Accessibility = Accessibility.Internal)]
@@ -10,14 +11,6 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<Library>("LibraryInfo", Accessibility = Accessibility.Internal)]
 public sealed partial class LibraryPropertiesDialogContent : Page
 {
-#pragma warning disable CS0414
-	/// <summary>
-	/// Indicates whether currently is loading for puzzles count.
-	/// </summary>
-	private volatile bool _isLoadingPuzzlesCount = true;
-#pragma warning restore CS0414
-
-
 	/// <summary>
 	/// Initializes a <see cref="LibraryPropertiesDialogContent"/> instance.
 	/// </summary>
@@ -27,7 +20,7 @@ public sealed partial class LibraryPropertiesDialogContent : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 		DispatcherQueue.TryEnqueue(async () => LibraryPuzzlesCountDisplayer.Text = (await LibraryInfo.GetCountAsync()).ToString());
-		_isLoadingPuzzlesCount = false;
+		IsLoadingPuzzlesCount = false;
 	}
 
 	private async void NavigateToLibraryFileButton_ClickAsync(object sender, RoutedEventArgs e)

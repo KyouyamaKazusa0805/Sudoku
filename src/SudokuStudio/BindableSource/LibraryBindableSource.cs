@@ -32,7 +32,7 @@ public sealed partial class LibraryBindableSource : DependencyObject
 	/// Try to create <see cref="LibraryBindableSource"/> instances from local path.
 	/// </summary>
 	/// <returns>A list of <see cref="LibraryBindableSource"/> instances.</returns>
-	public static ObservableCollection<LibraryBindableSource> GetLibrariesFromLocal()
+	internal static ObservableCollection<LibraryBindableSource> GetLibrariesFromLocal()
 	{
 		if (!Directory.Exists(CommonPaths.Library))
 		{

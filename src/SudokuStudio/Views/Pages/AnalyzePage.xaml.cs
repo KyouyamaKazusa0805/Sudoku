@@ -384,12 +384,12 @@ public sealed partial class AnalyzePage : Page
 						switch (SudokuFileHandler.Read(filePath))
 						{
 							case [
-							{
-								BaseGrid: var g,
-								GridString: var gridStr,
-								ShowCandidates: var showCandidates,
-								RenderableData: var nullableRenderableData
-							}
+								{
+									BaseGrid: var g,
+									GridString: var gridStr,
+									ShowCandidates: var showCandidates,
+									RenderableData: var nullableRenderableData
+								}
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
@@ -1317,8 +1317,48 @@ public sealed partial class AnalyzePage : Page
 	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
 		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 
-	private void SaveToLibraryButton_Click(object sender, RoutedEventArgs e)
+	private async void SaveToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
+		var puzzle = SudokuPane.Puzzle;
+		if (!puzzle.IsValid)
+		{
+			return;
+		}
 
+		var dialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle"),
+			IsPrimaryButtonEnabled = true,
+			DefaultButton = ContentDialogButton.Primary,
+			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure"),
+			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel"),
+			Content = new SaveToLibraryDialogContent { AvailableLibraries = LibraryBindableSource.GetLibrariesFromLocal() }
+		};
+		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
+		{
+			return;
+		}
+
+		var content = (SaveToLibraryDialogContent)dialog.Content;
+		switch (content)
+		{
+			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
+			{
+				await lib.AppendPuzzleAsync(puzzle);
+				break;
+			}
+			case { SelectedMode: 1, IsNameValidAsFileId: true }:
+			{
+				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				libraryCreated.Initialize();
+				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
+				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;
+				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
+				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
+				await libraryCreated.AppendPuzzleAsync(puzzle);
+				break;
+			}
+		}
 	}
 }
