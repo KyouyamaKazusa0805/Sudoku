@@ -14,8 +14,8 @@ public sealed class LibraryOtherInfoConverter : IValueConverter
 			Library { Tags: var tags, LastModifiedTime: var time }
 				=> $"{tags switch
 				{
-					{ Length: not 0 } => string.Join(ResourceDictionary.Get("_Token_Comma"), tags),
-					_ => ResourceDictionary.Get("NoTags")
+					{ Length: not 0 } => string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), tags),
+					_ => ResourceDictionary.Get("NoTags", App.CurrentCulture)
 				}} | {time.ToString(App.CurrentCulture)}",
 			_ => throw new InvalidOperationException("Converter error - invalid library bindable source.")
 		};

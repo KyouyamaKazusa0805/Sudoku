@@ -78,8 +78,9 @@ public partial class App : Application
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
 	/// <summary>
-	/// The current culture information.
+	/// Indicates the current culture, used by <see cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>.
 	/// </summary>
+	/// <seealso cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>
 	internal static CultureInfo CurrentCulture
 		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0 ? new(cultureInfoId) : CultureInfo.CurrentUICulture;
 

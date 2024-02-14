@@ -21,11 +21,11 @@ public sealed partial class LibraryPage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogTitle"),
+			Title = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogTitle", App.CurrentCulture),
 			DefaultButton = ContentDialogButton.Primary,
 			IsPrimaryButtonEnabled = true,
-			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogSure"),
-			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogCancel"),
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogSure", App.CurrentCulture),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddOnePuzzleDialogCancel", App.CurrentCulture),
 			Content = new AddOnePuzzleDialogContent()
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
@@ -123,10 +123,10 @@ public sealed partial class LibraryPage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogTitle"),
+			Title = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogTitle", App.CurrentCulture),
 			DefaultButton = ContentDialogButton.Close,
 			IsPrimaryButtonEnabled = false,
-			CloseButtonText = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogClose"),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_LibraryPropertiesDialogClose", App.CurrentCulture),
 			Content = new LibraryPropertiesDialogContent
 			{
 				LibraryName = lib.Name ?? LibraryBindableSource.NameDefaultValue,
@@ -149,11 +149,11 @@ public sealed partial class LibraryPage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogTitle"),
+			Title = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogTitle", App.CurrentCulture),
 			DefaultButton = ContentDialogButton.Primary,
 			IsPrimaryButtonEnabled = true,
-			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogSure"),
-			CloseButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogCancel"),
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogSure", App.CurrentCulture),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_ModifyPropertiesDialogCancel", App.CurrentCulture),
 			Content = new LibraryModifyPropertiesDialogContent
 			{
 				LibraryName = lib.Name,
@@ -211,11 +211,11 @@ public sealed partial class LibraryPage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("LibraryPage_AddLibraryDialogTitle"),
+			Title = ResourceDictionary.Get("LibraryPage_AddLibraryDialogTitle", App.CurrentCulture),
 			DefaultButton = ContentDialogButton.Primary,
 			IsPrimaryButtonEnabled = true,
-			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogSure"),
-			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogCancel"),
+			PrimaryButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogSure", App.CurrentCulture),
+			CloseButtonText = ResourceDictionary.Get("LibraryPage_AddLibraryDialogCancel", App.CurrentCulture),
 			Content = new AddLibraryDialogContent()
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)

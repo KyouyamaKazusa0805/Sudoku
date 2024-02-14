@@ -1328,11 +1328,11 @@ public sealed partial class AnalyzePage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle"),
+			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
 			IsPrimaryButtonEnabled = true,
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure"),
-			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel"),
+			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
+			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
 			Content = new SaveToLibraryDialogContent { AvailableLibraries = LibraryBindableSource.GetLibrariesFromLocal() }
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
