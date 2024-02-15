@@ -4,7 +4,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// Represents an entry that plays with a puzzle library file.
 /// </summary>
 /// <param name="directory">Indicates the parent directory that stores the library.</param>
-/// <param name="fileId">Indicates the file ID.</param>
+/// <param name="fileId">Indicates the file name used. The value should be valid as a file name, without file extension.</param>
 /// <remarks><i>
 /// This type only supports for Windows now. For other OS platforms,
 /// I will allow them in the future because I'm not familiar with file systems on other OS platforms.
@@ -323,8 +323,13 @@ public readonly partial struct Library(
 	public bool Any() => File.ReadLines(LibraryFilePath).Any();
 
 	/// <summary>
+	/// <para>
 	/// Append a puzzle, represented as a <see cref="string"/> value,
 	/// into the specified file path represented as a puzzle library.
+	/// </para>
+	/// <para>
+	/// If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+	/// </para>
 	/// </summary>
 	/// <param name="grid">The grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
@@ -337,11 +342,24 @@ public readonly partial struct Library(
 			Initialize();
 		}
 
-		await (
-			Grid.TryParse(grid, out _)
-				? File.AppendAllTextAsync(LibraryFilePath, grid, cancellationToken)
-				: throw new InvalidOperationException(Error_UnrecognizedGridFormat)
-		);
+		var sb = new StringBuilder();
+		using (var sr = new StreamReader(LibraryFilePath))
+		{
+			if (!sr.EndsWithNewLine())
+			{
+				sb.AppendLine();
+			}
+		}
+
+		if (!Grid.TryParse(grid, out _))
+		{
+			throw new InvalidOperationException(Error_UnrecognizedGridFormat);
+		}
+
+		sb.AppendLine(grid);
+
+		await using var sw = new StreamWriter(LibraryFilePath, true);
+		await sw.WriteAsync(sb, cancellationToken);
 	}
 
 	/// <inheritdoc cref="AppendPuzzleAsync(string, CancellationToken)"/>
@@ -349,8 +367,13 @@ public readonly partial struct Library(
 		=> await AppendPuzzleAsync(GetSingleLineGridString(in grid), cancellationToken);
 
 	/// <summary>
+	/// <para>
 	/// Append a list of puzzles, represented as a list of <see cref="string"/> values,
 	/// into the specified file path represented as a puzzle library.
+	/// </para>
+	/// <para>
+	/// If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+	/// </para>
 	/// </summary>
 	/// <param name="grids">A list of grid text code to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
@@ -365,12 +388,11 @@ public readonly partial struct Library(
 		}
 
 		var sb = new StringBuilder();
-		await using var sw = new StreamWriter(LibraryFilePath, true);
 		using (var sr = new StreamReader(LibraryFilePath))
 		{
 			if (!sr.EndsWithNewLine())
 			{
-				await sw.WriteLineAsync();
+				sb.AppendLine();
 			}
 		}
 
@@ -384,6 +406,39 @@ public readonly partial struct Library(
 			}
 		}
 
+		await using var sw = new StreamWriter(LibraryFilePath, true);
+		await sw.WriteAsync(sb, cancellationToken);
+		return result;
+	}
+
+	/// <inheritdoc cref="AppendPuzzlesAsync(IEnumerable{string}, CancellationToken)"/>
+	public async Task<int> AppendPuzzlesAsync(IAsyncEnumerable<string> grids, CancellationToken cancellationToken = default)
+	{
+		if (!IsInitialized)
+		{
+			Initialize();
+		}
+
+		var sb = new StringBuilder();
+		using (var sr = new StreamReader(LibraryFilePath))
+		{
+			if (!sr.EndsWithNewLine())
+			{
+				sb.AppendLine();
+			}
+		}
+
+		var result = 0;
+		await foreach (var line in grids)
+		{
+			if (Grid.TryParse(line, out _))
+			{
+				sb.AppendLine(line);
+				result++;
+			}
+		}
+
+		await using var sw = new StreamWriter(LibraryFilePath, true);
 		await sw.WriteAsync(sb, cancellationToken);
 		return result;
 	}
@@ -397,7 +452,6 @@ public readonly partial struct Library(
 		}
 
 		var sb = new StringBuilder();
-		await using var sw = new StreamWriter(LibraryFilePath, true);
 		using (var sr = new StreamReader(LibraryFilePath))
 		{
 			if (!sr.EndsWithNewLine())
@@ -411,6 +465,7 @@ public readonly partial struct Library(
 			sb.AppendLine(GetSingleLineGridString(in grid));
 		}
 
+		await using var sw = new StreamWriter(LibraryFilePath, true);
 		await sw.WriteAsync(sb, cancellationToken);
 	}
 
@@ -477,7 +532,10 @@ public readonly partial struct Library(
 	}
 
 	/// <summary>
-	/// Write a puzzle into a file just created.
+	/// <para>Write a puzzle into a file just created.</para>
+	/// <para>
+	/// If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+	/// </para>
 	/// </summary>
 	/// <param name="grid">The grid to be written.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>

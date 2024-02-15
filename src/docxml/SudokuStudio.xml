@@ -7294,6 +7294,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Clear all puzzles.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_CreateNewLibrary">
+            <summary>
+              Looks up a localized string similar to Create an empty library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_DeleteThisLibrary">
             <summary>
               Looks up a localized string similar to Delete this library.
@@ -7357,6 +7362,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LibraryTags">
             <summary>
               Looks up a localized string similar to Tags.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_LoadLibrary">
+            <summary>
+              Looks up a localized string similar to Load a puzzle list file.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_ModifyProperties">

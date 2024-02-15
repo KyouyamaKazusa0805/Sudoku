@@ -2932,6 +2932,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create an empty library.
+        /// </summary>
+        internal static string LibraryPage_CreateNewLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_CreateNewLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete this library.
         /// </summary>
         internal static string LibraryPage_DeleteThisLibrary {
@@ -3045,6 +3054,15 @@ namespace SudokuStudio.Resources {
         internal static string LibraryPage_LibraryTags {
             get {
                 return ResourceManager.GetString("LibraryPage_LibraryTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load a puzzle list file.
+        /// </summary>
+        internal static string LibraryPage_LoadLibrary {
+            get {
+                return ResourceManager.GetString("LibraryPage_LoadLibrary", resourceCulture);
             }
         }
         

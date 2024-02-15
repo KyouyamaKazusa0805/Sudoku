@@ -7795,7 +7795,7 @@ if (student is (name: var name, age: >= 18))
             Represents an entry that plays with a puzzle library file.
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
-            <param name="fileId">Indicates the file ID.</param>
+            <param name="fileId">Indicates the file name used. The value should be valid as a file name, without file extension.</param>
             <remarks><i>
             This type only supports for Windows now. For other OS platforms,
             I will allow them in the future because I'm not familiar with file systems on other OS platforms.
@@ -7806,7 +7806,7 @@ if (student is (name: var name, age: >= 18))
             Represents an entry that plays with a puzzle library file.
             </summary>
             <param name="directory">Indicates the parent directory that stores the library.</param>
-            <param name="fileId">Indicates the file ID.</param>
+            <param name="fileId">Indicates the file name used. The value should be valid as a file name, without file extension.</param>
             <remarks><i>
             This type only supports for Windows now. For other OS platforms,
             I will allow them in the future because I'm not familiar with file systems on other OS platforms.
@@ -7967,8 +7967,13 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzleAsync(System.String,System.Threading.CancellationToken)">
             <summary>
+            <para>
             Append a puzzle, represented as a <see cref="T:System.String"/> value,
             into the specified file path represented as a puzzle library.
+            </para>
+            <para>
+            If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+            </para>
             </summary>
             <param name="grid">The grid text code to be appended.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
@@ -7980,14 +7985,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
             <summary>
+            <para>
             Append a list of puzzles, represented as a list of <see cref="T:System.String"/> values,
             into the specified file path represented as a puzzle library.
+            </para>
+            <para>
+            If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+            </para>
             </summary>
             <param name="grids">A list of grid text code to be appended.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>
             A <see cref="T:System.Threading.Tasks.Task`1"/> of an <see cref="T:System.Int32"/> instance indicating how many text code are appended into the file.
             </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IAsyncEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Grid},System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.LibraryServices.Library.AppendPuzzlesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)"/>
@@ -8014,7 +8027,10 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.WriteAsync(System.String,System.Threading.CancellationToken)">
             <summary>
-            Write a puzzle into a file just created.
+            <para>Write a puzzle into a file just created.</para>
+            <para>
+            If the library is not initialized, it will be automatically initialized. No exceptions will be thrown on this case.
+            </para>
             </summary>
             <param name="grid">The grid to be written.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>

@@ -159,7 +159,7 @@ public sealed partial class LibraryPage : Page
 				LibraryName = lib.Name,
 				LibraryAuthor = lib.Author,
 				LibraryDescription = lib.Description,
-				LibraryTags = [.. lib.Tags]
+				LibraryTags = [.. lib.Tags ?? []]
 			}
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
@@ -259,5 +259,30 @@ public sealed partial class LibraryPage : Page
 				}
 			}
 		);
+	}
+
+	private async void LoadLibraryFileButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var fop = new FileOpenPicker();
+		fop.Initialize(this);
+		fop.ViewMode = PickerViewMode.Thumbnail;
+		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.AddFileFormat(FileFormats.Text);
+		fop.AddFileFormat(FileFormats.PlainText);
+
+		if (await fop.PickSingleFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		var fileName = io::Path.GetFileNameWithoutExtension(filePath);
+		var lib = new Library(CommonPaths.Library, fileName);
+		lib.Initialize();
+		lib.Name = fileName;
+
+		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
+
+		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(new() { FileId = lib.FileId });
+		((App)Application.Current).Libraries.Add(lib);
 	}
 }

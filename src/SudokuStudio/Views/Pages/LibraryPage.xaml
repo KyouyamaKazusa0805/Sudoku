@@ -85,6 +85,14 @@
 		</ScrollViewer>
 		<Button
 			x:Name="AddLibraryButton" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-			Content="{m:R Key=LibraryPage_AddLibrary}" Margin="0,0,0,20" Click="AddLibraryButton_ClickAsync" />
+			Content="{m:R Key=LibraryPage_AddLibrary}" Margin="0,0,0,20">
+			<Button.Flyout>
+				<MenuFlyout>
+					<MenuFlyoutItem Text="{m:R Key=LibraryPage_CreateNewLibrary}" Click="AddLibraryButton_ClickAsync" />
+					<MenuFlyoutSeparator />
+					<MenuFlyoutItem Text="{m:R Key=LibraryPage_LoadLibrary}" Click="LoadLibraryFileButton_ClickAsync" />
+				</MenuFlyout>
+			</Button.Flyout>
+		</Button>
 	</Grid>
 </Page>
