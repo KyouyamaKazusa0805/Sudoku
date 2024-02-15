@@ -320,20 +320,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 		var appendToLibraryTask = static (string _, CancellationToken _ = default) => default(Task)!;
-		var content = (SaveToLibraryDialogContent)dialog.Content;
-		if (!content.IsNameValidAsFileId)
-		{
-			return;
-		}
-
-		switch (content)
+		switch ((SaveToLibraryDialogContent)dialog.Content)
 		{
 			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
 			{
 				appendToLibraryTask = lib.AppendPuzzleAsync;
 				break;
 			}
-			case { SelectedMode: 1, IsNameValidAsFileId: true }:
+			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
 			{
 				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
 				libraryCreated.Initialize();
