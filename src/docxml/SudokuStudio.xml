@@ -6044,6 +6044,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Base difficulty: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_BatchGeneratingToLibrary">
+            <summary>
+              Looks up a localized string similar to Batch to library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
@@ -6306,7 +6311,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratingPuzzlesAndSaveThem">
             <summary>
-              Looks up a localized string similar to Batch generating....
+              Looks up a localized string similar to Batch to file.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratingStrategySelected">
@@ -13846,7 +13851,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="basePage">The base page.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.TechniqueSet}},System.ActionRefReadOnly{Sudoku.Concepts.Grid})">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.TechniqueSet}},System.Action{System.String})">
             <summary>
             Handle generating operation.
             </summary>
@@ -13856,7 +13861,7 @@ if (student is (name: var name, age: >= 18))
             The method that can change the state of the target grid. This callback method will be used for specify the grid state
             when a user has set the techniques that must be appeared.
             </param>
-            <param name="gridHandler">The grid handler.</param>
+            <param name="gridTextConsumer">An action that consumes the generated <see cref="T:System.String"/> grid text code.</param>
             <returns>The task that holds the asynchronous operation.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.InitializeComponent">

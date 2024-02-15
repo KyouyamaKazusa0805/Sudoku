@@ -1340,14 +1340,20 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		switch ((SaveToLibraryDialogContent)dialog.Content)
+		var content = (SaveToLibraryDialogContent)dialog.Content;
+		if (!content.IsNameValidAsFileId)
+		{
+			return;
+		}
+
+		switch (content)
 		{
 			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
 			{
 				await lib.AppendPuzzleAsync(puzzle);
 				break;
 			}
-			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
+			case { SelectedMode: 1, IsNameValidAsFileId: true }:
 			{
 				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
 				libraryCreated.Initialize();

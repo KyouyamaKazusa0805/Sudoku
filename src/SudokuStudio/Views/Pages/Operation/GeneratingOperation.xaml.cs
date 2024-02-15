@@ -105,12 +105,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// The method that can change the state of the target grid. This callback method will be used for specify the grid state
 	/// when a user has set the techniques that must be appeared.
 	/// </param>
-	/// <param name="gridHandler">The grid handler.</param>
+	/// <param name="gridTextConsumer">An action that consumes the generated <see cref="string"/> grid text code.</param>
 	/// <returns>The task that holds the asynchronous operation.</returns>
 	private async Task HandleGeneratingAsync<T>(
 		bool onlyGenerateOne,
 		GridStateChanger<(Analyzer Analyzer, TechniqueSet Techniques)>? gridStateChanger = null,
-		ActionRefReadOnly<Grid>? gridHandler = null
+		Action<string>? gridTextConsumer = null
 	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 	{
 		BasePage.IsGeneratorLaunched = true;
@@ -144,7 +144,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				if (await Task.Run(task) is { IsUndefined: false } grid)
 				{
 					gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
-					gridHandler?.Invoke(ref grid);
+					gridTextConsumer?.Invoke(grid.ToString("#"));
 				}
 			}
 			else
@@ -154,7 +154,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					if (await Task.Run(task) is { IsUndefined: false } grid)
 					{
 						gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
-						gridHandler?.Invoke(ref grid);
+						gridTextConsumer?.Invoke(grid.ToString("#"));
 
 						_generatingFilteredCount++;
 						continue;
@@ -270,8 +270,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private async void NewPuzzleButton_ClickAsync(object sender, RoutedEventArgs e)
 		=> await HandleGeneratingAsync<GeneratorProgress>(
 			true,
-			gridHandler: (scoped ref readonly Grid grid) =>
+			gridTextConsumer: gridText =>
 			{
+				var grid = Grid.Parse(gridText);
 				if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
 					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
@@ -299,6 +300,83 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	{
 		var source = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
 		((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
+	}
+
+	private async void BatchGeneratingToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var dialog = new ContentDialog
+		{
+			XamlRoot = XamlRoot,
+			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
+			IsPrimaryButtonEnabled = true,
+			DefaultButton = ContentDialogButton.Primary,
+			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
+			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
+			Content = new SaveToLibraryDialogContent { AvailableLibraries = LibraryBindableSource.GetLibrariesFromLocal() }
+		};
+		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
+		{
+			return;
+		}
+
+		var appendToLibraryTask = static (string _, CancellationToken _ = default) => default(Task)!;
+		var content = (SaveToLibraryDialogContent)dialog.Content;
+		if (!content.IsNameValidAsFileId)
+		{
+			return;
+		}
+
+		switch (content)
+		{
+			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
+			{
+				appendToLibraryTask = lib.AppendPuzzleAsync;
+				break;
+			}
+			case { SelectedMode: 1, IsNameValidAsFileId: true }:
+			{
+				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				libraryCreated.Initialize();
+				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
+				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;
+				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
+				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
+				appendToLibraryTask = libraryCreated.AppendPuzzleAsync;
+				break;
+			}
+		}
+
+		await HandleGeneratingAsync<FilteredGeneratorProgress>(
+			false,
+			static (scoped ref Grid grid, (Analyzer Analyzer, TechniqueSet Techniques) pair) =>
+			{
+				var (analyzer, techniques) = pair;
+				var analyzerResult = analyzer.Analyze(in grid);
+				if (!analyzerResult.IsSolved)
+				{
+					return;
+				}
+
+				foreach (var (g, s) in analyzerResult.SolvingPath)
+				{
+					if (techniques.Contains(s.Code))
+					{
+						grid = g;
+						break;
+					}
+				}
+			},
+			async gridText =>
+			{
+				await appendToLibraryTask($"{gridText}{Environment.NewLine}");
+
+				if (((App)Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
+					&& ((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				{
+					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
+				}
+			}
+		);
 	}
 
 	private async void BatchGeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -339,14 +417,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 			},
-			(scoped ref readonly Grid grid) =>
+			gridText =>
 			{
-				File.AppendAllText(filePath, $"{grid:#}{Environment.NewLine}");
+				File.AppendAllText(filePath, $"{gridText}{Environment.NewLine}");
 
 				if (((App)Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
 					&& ((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
-					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
+					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
 				}
 			}
 		);

@@ -682,6 +682,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Batch to library.
+        /// </summary>
+        internal static string AnalyzePage_BatchGeneratingToLibrary {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BatchGeneratingToLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string AnalyzePage_Cancel {
@@ -1150,7 +1159,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch generating....
+        ///   Looks up a localized string similar to Batch to file.
         /// </summary>
         internal static string AnalyzePage_GeneratingPuzzlesAndSaveThem {
             get {

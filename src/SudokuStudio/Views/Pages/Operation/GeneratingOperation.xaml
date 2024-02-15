@@ -42,5 +42,9 @@
 			Icon="NewWindow" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="BatchGeneratingButton_ClickAsync" />
+		<AppBarButton
+			Icon="NewWindow" Label="{m:R Key=AnalyzePage_BatchGeneratingToLibrary}"
+			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
+			Click="BatchGeneratingToLibraryButton_ClickAsync" />
 	</CommandBar>
 </Page>
