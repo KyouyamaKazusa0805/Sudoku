@@ -38,13 +38,16 @@
 			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
 			Click="LibraryPuzzleFetchButton_ClickAsync" />
 		<AppBarSeparator x:Name="LibSeparator" />
-		<AppBarButton
-			Icon="NewWindow" Label="{m:R Key=AnalyzePage_GeneratingPuzzlesAndSaveThem}"
-			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="BatchGeneratingButton_ClickAsync" />
-		<AppBarButton
-			Icon="NewWindow" Label="{m:R Key=AnalyzePage_BatchGeneratingToLibrary}"
-			IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
-			Click="BatchGeneratingToLibraryButton_ClickAsync" />
-	</CommandBar>
+        <AppBarButton
+            Icon="NewWindow" Label="{m:R Key=AnalyzePage_BatchGenerating}"
+            IsEnabled="{x:Bind cvt:AnalyzeConversion.GetAnalyzerButtonIsEnabled(BasePage.IsGeneratorLaunched),Mode=OneWay}"
+            ToolTipService.ToolTip="{m:R Key=AnalyzePage_BatchGeneratingTipDescription}">
+            <AppBarButton.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="{m:R Key=AnalyzePage_BatchGeneratingToFile}" Click="BatchGeneratingButton_ClickAsync" />
+                    <MenuFlyoutItem Text="{m:R Key=AnalyzePage_BatchGeneratingToLibrary}" Click="BatchGeneratingToLibraryButton_ClickAsync" />
+                </MenuFlyout>
+            </AppBarButton.Flyout>
+        </AppBarButton>
+    </CommandBar>
 </Page>

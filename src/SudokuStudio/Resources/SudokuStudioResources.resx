@@ -252,8 +252,17 @@
   <data name="AnalyzePage_BaseDifficulty" xml:space="preserve">
     <value>Base difficulty: </value>
   </data>
+  <data name="AnalyzePage_BatchGenerating" xml:space="preserve">
+    <value>Batch generating to...</value>
+  </data>
+  <data name="AnalyzePage_BatchGeneratingTipDescription" xml:space="preserve">
+    <value>Using the predefined strategy to batch generating puzzles, saving them to the specified target place</value>
+  </data>
+  <data name="AnalyzePage_BatchGeneratingToFile" xml:space="preserve">
+    <value>To file</value>
+  </data>
   <data name="AnalyzePage_BatchGeneratingToLibrary" xml:space="preserve">
-    <value>Batch to library</value>
+    <value>To library</value>
   </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -410,9 +419,6 @@
   </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>If any one given in a puzzle cannot be removed, the puzzle will be minimal.</value>
-  </data>
-  <data name="AnalyzePage_GeneratingPuzzlesAndSaveThem" xml:space="preserve">
-    <value>Batch to file</value>
   </data>
   <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
     <value>Active strategy: Main</value>

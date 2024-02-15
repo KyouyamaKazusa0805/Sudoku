@@ -6044,9 +6044,24 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Base difficulty: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_BatchGenerating">
+            <summary>
+              Looks up a localized string similar to Batch generating to....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_BatchGeneratingTipDescription">
+            <summary>
+              Looks up a localized string similar to Using the predefined strategy to batch generating puzzles, saving them to the specified target place.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_BatchGeneratingToFile">
+            <summary>
+              Looks up a localized string similar to To file.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_BatchGeneratingToLibrary">
             <summary>
-              Looks up a localized string similar to Batch to library.
+              Looks up a localized string similar to To library.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_Cancel">
@@ -6307,11 +6322,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GenerateForMinimalPuzzleTooltip">
             <summary>
               Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratingPuzzlesAndSaveThem">
-            <summary>
-              Looks up a localized string similar to Batch to file.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratingStrategySelected">

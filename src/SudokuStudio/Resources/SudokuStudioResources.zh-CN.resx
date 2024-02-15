@@ -252,8 +252,17 @@
   <data name="AnalyzePage_BaseDifficulty" xml:space="preserve">
     <value>基础难度系数：</value>
   </data>
+  <data name="AnalyzePage_BatchGenerating" xml:space="preserve">
+    <value>批量出题到……</value>
+  </data>
+  <data name="AnalyzePage_BatchGeneratingTipDescription" xml:space="preserve">
+    <value>使用策略批量出题，将出好的题目存储到指定的目标位置</value>
+  </data>
+  <data name="AnalyzePage_BatchGeneratingToFile" xml:space="preserve">
+    <value>到文件</value>
+  </data>
   <data name="AnalyzePage_BatchGeneratingToLibrary" xml:space="preserve">
-    <value>批量出题到题库</value>
+    <value>到题库</value>
   </data>
   <data name="AnalyzePage_Cancel" xml:space="preserve">
     <value>取消</value>
@@ -413,9 +422,6 @@
   </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>精简题是说，某个唯一解的题目的任何一个提示数被去掉，都会变为多解题的题目类型。</value>
-  </data>
-  <data name="AnalyzePage_GeneratingPuzzlesAndSaveThem" xml:space="preserve">
-    <value>批量出题到文件</value>
   </data>
   <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
     <value>启用的策略：主策略</value>

@@ -682,7 +682,34 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Batch to library.
+        ///   Looks up a localized string similar to Batch generating to....
+        /// </summary>
+        internal static string AnalyzePage_BatchGenerating {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BatchGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using the predefined strategy to batch generating puzzles, saving them to the specified target place.
+        /// </summary>
+        internal static string AnalyzePage_BatchGeneratingTipDescription {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BatchGeneratingTipDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To file.
+        /// </summary>
+        internal static string AnalyzePage_BatchGeneratingToFile {
+            get {
+                return ResourceManager.GetString("AnalyzePage_BatchGeneratingToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To library.
         /// </summary>
         internal static string AnalyzePage_BatchGeneratingToLibrary {
             get {
@@ -1155,15 +1182,6 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_GenerateForMinimalPuzzleTooltip {
             get {
                 return ResourceManager.GetString("AnalyzePage_GenerateForMinimalPuzzleTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Batch to file.
-        /// </summary>
-        internal static string AnalyzePage_GeneratingPuzzlesAndSaveThem {
-            get {
-                return ResourceManager.GetString("AnalyzePage_GeneratingPuzzlesAndSaveThem", resourceCulture);
             }
         }
         
