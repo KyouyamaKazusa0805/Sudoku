@@ -14,9 +14,6 @@
 				<Setter Property="VerticalAlignment" Value="Center" />
 				<Setter Property="Margin" Value="12,0,0,0" />
 			</Style>
-			<Style TargetType="StackPanel">
-				<Setter Property="Orientation" Value="Horizontal" />
-			</Style>
 		</CommandBar.Resources>
 
 		<AppBarButton

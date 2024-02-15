@@ -1356,6 +1356,7 @@ public sealed partial class AnalyzePage : Page
 				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
 				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
 				await libraryCreated.AppendPuzzleAsync(puzzle);
+				((App)Application.Current).Libraries.Add(libraryCreated);
 				break;
 			}
 		}

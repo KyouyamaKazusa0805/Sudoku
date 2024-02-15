@@ -26,15 +26,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	{
 		if (e.Parameter is AnalyzePage p)
 		{
-			SetConfiguredOptions(p);
+			SetGeneratingStrategyTooltip(p);
+			RefreshPuzzleLibraryComboBox();
 		}
 	}
 
 	/// <summary>
-	/// Update control selection via user's configuration.
+	/// Set generating strategy tooltip.
 	/// </summary>
 	/// <param name="basePage">The base page.</param>
-	private void SetConfiguredOptions(AnalyzePage basePage)
+	private void SetGeneratingStrategyTooltip(AnalyzePage basePage)
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		TextBlockBindable.SetInlines(
@@ -82,18 +83,24 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}:AnalyzePage_SelectedIttoryuIs}")
 			]
 		);
+	}
 
+	/// <summary>
+	/// Refreshes puzzle library for combo box.
+	/// </summary>
+	private void RefreshPuzzleLibraryComboBox()
+	{
 		var libs = ((App)Application.Current).Libraries;
 		(PuzzleLibraryChoser.Visibility, LibraryPuzzleFetchButton.Visibility, LibSeparator.Visibility) = libs.Count != 0
 			? (Visibility.Visible, Visibility.Visible, Visibility.Visible)
 			: (Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
 		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource(lib)).ToArray();
+
 		var lastFileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
-		PuzzleLibraryChoser.SelectedIndex = libs.FindIndex(lib => lib is { FileId: var f } && f == lastFileId) switch
-		{
-			var index and not -1 => index,
-			_ => 0
-		};
+		PuzzleLibraryChoser.SelectedIndex = libs.FindIndex(match) is var index and not -1 ? index : 0;
+
+
+		bool match(Library lib) => lib is { FileId: var f } && f == lastFileId;
 	}
 
 	/// <summary>
@@ -336,6 +343,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
 				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
 				appendToLibraryTask = libraryCreated.AppendPuzzleAsync;
+				((App)Application.Current).Libraries.Add(libraryCreated);
 				break;
 			}
 		}
