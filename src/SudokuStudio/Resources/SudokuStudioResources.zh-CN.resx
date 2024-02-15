@@ -984,6 +984,9 @@
   <data name="LibraryPage_AddLibraryDialogTitle" xml:space="preserve">
     <value>创建新题库……</value>
   </data>
+  <data name="LibraryPage_AddListItem" xml:space="preserve">
+    <value>从文件追加一组题目</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
     <value>添加一题</value>
   </data>

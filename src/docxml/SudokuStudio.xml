@@ -7259,6 +7259,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Create a Library....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddListItem">
+            <summary>
+              Looks up a localized string similar to Add puzzles from file.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.LibraryPage_AddOnePuzzle">
             <summary>
               Looks up a localized string similar to Add a puzzle.

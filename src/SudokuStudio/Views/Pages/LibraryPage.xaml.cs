@@ -42,6 +42,28 @@ public sealed partial class LibraryPage : Page
 		await lib.AppendPuzzleAsync(text);
 	}
 
+	private async void AddListItem_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		{
+			return;
+		}
+
+		var fop = new FileOpenPicker();
+		fop.Initialize(this);
+		fop.ViewMode = PickerViewMode.Thumbnail;
+		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.AddFileFormat(FileFormats.Text);
+		fop.AddFileFormat(FileFormats.PlainText);
+
+		if (await fop.PickSingleFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
+	}
+
 	private async void RemoveDuplicatePuzzlesItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })

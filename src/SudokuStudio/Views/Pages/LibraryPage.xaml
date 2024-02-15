@@ -63,9 +63,12 @@
 									<MenuFlyoutItem
 										x:Name="AddOnePuzzleItem" Text="{m:R Key=LibraryPage_AddOnePuzzle}" Tag="{x:Bind ParentFlyout}"
 										Icon="{ui:FontIcon Glyph=&#xE710;}" Click="AddOnePuzzleItem_ClickAsync" />
+									<MenuFlyoutItem
+										x:Name="AddListItem" Text="{m:R Key=LibraryPage_AddListItem}" Tag="{x:Bind ParentFlyout}"
+										Icon="{ui:FontIcon Glyph=&#xE710;}" Click="AddListItem_ClickAsync" />
 									<MenuFlyoutSeparator />
 									<MenuFlyoutItem
-										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Red" Tag="{x:Bind ParentFlyout}"
+										x:Name="RemoveDuplicatePuzzlesItem" Foreground="Orange" Tag="{x:Bind ParentFlyout}"
 										Text="{m:R Key=LibraryPage_RemoveDuplicatePuzzles}" Icon="{ui:FontIcon Glyph=&#xE71C;}"
 										Click="RemoveDuplicatePuzzlesItem_ClickAsync" />
 									<MenuFlyoutItem

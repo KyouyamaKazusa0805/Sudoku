@@ -981,6 +981,9 @@
   <data name="LibraryPage_AddLibraryDialogTitle" xml:space="preserve">
     <value>Create a Library...</value>
   </data>
+  <data name="LibraryPage_AddListItem" xml:space="preserve">
+    <value>Add puzzles from file</value>
+  </data>
   <data name="LibraryPage_AddOnePuzzle" xml:space="preserve">
     <value>Add a puzzle</value>
   </data>

@@ -2869,6 +2869,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add puzzles from file.
+        /// </summary>
+        internal static string LibraryPage_AddListItem {
+            get {
+                return ResourceManager.GetString("LibraryPage_AddListItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a puzzle.
         /// </summary>
         internal static string LibraryPage_AddOnePuzzle {
