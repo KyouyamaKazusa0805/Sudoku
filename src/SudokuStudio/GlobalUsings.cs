@@ -133,4 +133,3 @@ global using SpecialFolder = System.Environment.SpecialFolder;
 global using @io = System.IO;
 global using Size = Windows.Foundation.Size;
 global using unsafe StringChecker = delegate*<string, bool>;
-global using unsafe GridRandomizedSuffler = delegate*<System.Random, ref Sudoku.Concepts.Grid, void>;
