@@ -14,14 +14,18 @@ public sealed partial class LibraryPropertiesDialogContent : Page
 	/// <summary>
 	/// Initializes a <see cref="LibraryPropertiesDialogContent"/> instance.
 	/// </summary>
-	public LibraryPropertiesDialogContent() => InitializeComponent();
+	public LibraryPropertiesDialogContent()
+	{
+		InitializeComponent();
+
+		IsLoadingPuzzlesCount = true;
+	}
 
 
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 		=> DispatcherQueue.TryEnqueue(
 			async () =>
 			{
-				IsLoadingPuzzlesCount = true;
 				LibraryPuzzlesCountDisplayer.Text = (await LibraryInfo.GetCountAsync()).ToString();
 				IsLoadingPuzzlesCount = false;
 			}

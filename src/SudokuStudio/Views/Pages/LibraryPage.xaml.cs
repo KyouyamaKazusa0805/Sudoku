@@ -44,7 +44,19 @@ public sealed partial class LibraryPage : Page
 
 	private async void AddListItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem
+			{
+				Tag: MenuFlyout
+				{
+					Target: GridViewItem
+					{
+						Content: LibraryBindableSource
+						{
+							LibraryInfo: var lib
+						} instance
+					}
+				}
+			})
 		{
 			return;
 		}
@@ -61,17 +73,37 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
+		instance.IsActive = true;
+
 		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
+
+		instance.IsActive = false;
 	}
 
 	private async void RemoveDuplicatePuzzlesItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem
+			{
+				Tag: MenuFlyout
+				{
+					Target: GridViewItem
+					{
+						Content: LibraryBindableSource
+						{
+							LibraryInfo: var lib
+						} instance
+					}
+				}
+			})
 		{
 			return;
 		}
 
+		instance.IsActive = true;
+
 		await lib.RemoveDuplicatePuzzlesAsync();
+
+		instance.IsActive = false;
 	}
 
 #if false
@@ -302,9 +334,12 @@ public sealed partial class LibraryPage : Page
 		lib.Initialize();
 		lib.Name = fileName;
 
+		var source = new LibraryBindableSource { IsActive = true, FileId = lib.FileId };
+		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(source);
+		((App)Application.Current).Libraries.Add(lib);
+
 		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
 
-		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(new() { FileId = lib.FileId });
-		((App)Application.Current).Libraries.Add(lib);
+		source.IsActive = false;
 	}
 }

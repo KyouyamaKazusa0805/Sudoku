@@ -5,6 +5,7 @@ namespace SudokuStudio.BindableSource;
 /// - this type contains more properties that can be bound with UI.
 /// </summary>
 /// <seealso cref="LibrarySimpleBindableSource"/>
+[DependencyProperty<bool>("IsActive", DocSummary = "Indicates whether the current library is loading, updating, etc..")]
 [DependencyProperty<string>("Name", DocSummary = "Indicates the name of the library.")]
 [DependencyProperty<string>("FileId", DocSummary = "Indicates the unique file name of the library.")]
 [DependencyProperty<string>("Author", DocSummary = "Indicates the author of the library.")]
@@ -57,7 +58,8 @@ public sealed partial class LibraryBindableSource : DependencyObject
 				Author = library.Author ?? AuthorDefaultValue,
 				Description = library.Description ?? DescriptionDefaultValue,
 				Tags = library.Tags ?? [],
-				FileId = fileId
+				FileId = fileId,
+				IsActive = false
 			}
 		];
 	}

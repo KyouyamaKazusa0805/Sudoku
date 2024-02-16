@@ -235,6 +235,12 @@
             </summary>
             <returns>A list of <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/> instances.</returns>
         </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.IsActiveProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>
+        </member>
         <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.NameProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>.
@@ -264,6 +270,11 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>.
             </summary>
             <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive">
+            <summary>
+            Indicates whether the current library is loading, updating, etc..
+            </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Name">
             <summary>
