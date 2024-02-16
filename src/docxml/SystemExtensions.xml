@@ -213,7 +213,7 @@
             <param name="right">The second instance to be merged.</param>
             <returns>A merged result.</returns>
         </member>
-        <member name="M:System.CommonMethods.ReturnSelf``1(``0)">
+        <member name="M:System.CommonMethods.Self``1(``0)">
             <summary>
             Returns the argument <paramref name="value"/>.
             </summary>
