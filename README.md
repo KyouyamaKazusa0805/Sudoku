@@ -29,7 +29,7 @@ Here I give you [a sample](https://sunnieshine.github.io/Sudoku/usages/en/solve-
 
 ### Extra description
 
-In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
+In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10/11 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
 
 Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
 
@@ -39,7 +39,7 @@ In addition, the framework and IDE version may update in the future; in other wo
 
 ### Repository Positioning
 
-This repository is created for the following kinds of users:
+This repository is created for the following users:
 
 * **who likes sudoku algorithms**: If you like to study for sudoku techniques and its backing implementation and running mechanism, you can find answer in this repository.
 * **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as Windows UI, which can help you learn more about it as practicing.
