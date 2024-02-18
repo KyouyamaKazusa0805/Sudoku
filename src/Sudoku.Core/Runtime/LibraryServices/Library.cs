@@ -259,6 +259,11 @@ public readonly partial struct Library(
 	public Grid this[int index] => GetAtAsync(index).Result;
 
 
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out string libraryPath, out string configPath)
+		=> (libraryPath, configPath) = (LibraryFilePath, ConfigFilePath);
+
 	/// <summary>
 	/// Initializes the library-related files if not found. If initialized, throw <see cref="LibraryInitializedException"/>.
 	/// </summary>
@@ -285,13 +290,11 @@ public readonly partial struct Library(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Delete()
 	{
-		if (!IsInitialized)
+		if (this is (var libPath, var configPath) { IsInitialized: false })
 		{
-			return;
+			File.Delete(configPath);
+			File.Delete(libPath);
 		}
-
-		File.Delete(ConfigFilePath);
-		File.Delete(LibraryFilePath);
 	}
 
 	/// <summary>

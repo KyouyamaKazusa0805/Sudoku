@@ -8032,6 +8032,44 @@ if (student is (name: var name, age: >= 18))
             </remarks>
             <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetAtAsync(System.Int32,System.Threading.CancellationToken)"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.Deconstruct(System.String@,System.String@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+    => (name, age) = (Name, Age);
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.Initialize">
             <summary>
             Initializes the library-related files if not found. If initialized, throw <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInitializedException"/>.
@@ -8373,11 +8411,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_LibraryShouldBeInitialized">
             <summary>
             Indicates the "Library should be initialized" message.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_LibraryFilePathNotExist">
-            <summary>
-            Indicates the "Library file not found" message.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._stream">

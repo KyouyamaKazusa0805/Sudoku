@@ -15,11 +15,6 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// </summary>
 	private const string Error_LibraryShouldBeInitialized = "The library is not initialized. It must be initialized file, ensuring the file in local exists.";
 
-	/// <summary>
-	/// Indicates the "Library file not found" message.
-	/// </summary>
-	private const string Error_LibraryFilePathNotExist = "Library file is not found.";
-
 
 	/// <summary>
 	/// Indicates the internal stream.
@@ -38,19 +33,13 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <param name="library">Indicates the libary object.</param>
 	/// <exception cref="ArgumentException">Throws when the library is not initialized.</exception>
 	public TextPointer(Library library)
-	{
-		_stream = library switch
-		{
-			{ IsInitialized: true, LibraryFilePath: var filePath } => File.OpenRead(filePath),
-			_ => throw new ArgumentException(
-				Error_LibraryShouldBeInitialized,
-				nameof(library),
-				new FileNotFoundException(Error_LibraryFilePathNotExist, library.LibraryFilePath)
-			)
-		};
-		_reader = new(_stream);
-		Library = library;
-	}
+		=> _reader = new(
+			_stream = (Library = library) switch
+			{
+				(var p, _) { IsInitialized: true } => File.OpenRead(p),
+				(var p, _) => throw new FileNotFoundException(Error_LibraryShouldBeInitialized, p)
+			}
+		);
 
 
 	/// <summary>
