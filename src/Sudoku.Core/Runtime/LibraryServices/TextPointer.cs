@@ -64,55 +64,69 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <returns>A <see cref="bool"/> result indicating whether the file exists the next grid.</returns>
 	public bool TryReadNextPuzzle([NotNullWhen(true)] out string? result)
 	{
-		if (_stream.Position == _stream.Length || _stream.Length <= 2)
+		while (f(out result))
 		{
-			result = null;
-			return false;
-		}
-
-		var originalStartPosition = _stream.Position;
-		switch (g(originalStartPosition))
-		{
-			case var position and not -1:
+			if (Grid.TryParse(result, out _))
 			{
-				if (position - originalStartPosition is var delta and >= 0 and <= int.MaxValue)
-				{
-					_stream.Position = originalStartPosition;
-
-					scoped var span = (stackalloc char[(int)delta]);
-					for (var i = 0; i < delta; i++)
-					{
-						span[i] = (char)_stream.ReadByte();
-					}
-
-					result = span.ToString();
-					_stream.Position += 2;
-					return true;
-				}
-
-				goto default;
+				return true;
 			}
-			default:
+		}
+		result = null;
+		return false;
+
+
+		bool f([NotNullWhen(true)] out string? result)
+		{
+			if (_stream.Position == _stream.Length || _stream.Length <= 2)
 			{
 				result = null;
 				return false;
 			}
-		}
 
-
-		long g(long start)
-		{
-			_stream.Position = start;
-			scoped var playground = (stackalloc char[2]);
-			for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
+			var originalStartPosition = _stream.Position;
+			switch (g(originalStartPosition))
 			{
-				(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
-				if (playground is "\r\n")
+				case var position and not -1:
 				{
-					return i;
+					if (position - originalStartPosition is var delta and >= 0 and <= int.MaxValue)
+					{
+						_stream.Position = originalStartPosition;
+
+						scoped var span = (stackalloc char[(int)delta]);
+						for (var i = 0; i < delta; i++)
+						{
+							span[i] = (char)_stream.ReadByte();
+						}
+
+						result = span.ToString();
+						_stream.Position += 2;
+						return true;
+					}
+
+					goto default;
+				}
+				default:
+				{
+					result = null;
+					return false;
 				}
 			}
-			return -1;
+
+
+			long g(long start)
+			{
+				_stream.Position = start;
+				scoped var playground = (stackalloc char[2]);
+				for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
+				{
+					(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
+					if (playground is "\r\n")
+					{
+						return i;
+					}
+				}
+				return -1;
+			}
 		}
 	}
 
@@ -123,56 +137,70 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <returns>A <see cref="bool"/> result indicating whether the file exists the previous grid.</returns>
 	public bool TryReadPreviousPuzzle([NotNullWhen(true)] out string? result)
 	{
-		if (_stream.Position == 0 || _stream.Length <= 3)
+		while (f(out result))
 		{
-			result = null;
-			return false;
-		}
-
-		var originalStartPosition = _stream.Position;
-		switch (g(originalStartPosition))
-		{
-			case var position and not -1:
+			if (Grid.TryParse(result, out _))
 			{
-				if (originalStartPosition - 2 - position is var delta and >= 0 and <= int.MaxValue)
-				{
-					_stream.Position = position;
-
-					scoped var span = (stackalloc char[(int)delta]);
-					for (var i = 0; i < delta; i++)
-					{
-						span[i] = (char)_stream.ReadByte();
-					}
-
-					result = span.ToString();
-					_stream.Position = position;
-					return true;
-				}
-
-				goto default;
+				return true;
 			}
-			default:
+		}
+		result = null;
+		return false;
+
+
+		bool f([NotNullWhen(true)] out string? result)
+		{
+			if (_stream.Position == 0 || _stream.Length <= 3)
 			{
 				result = null;
 				return false;
 			}
-		}
 
-
-		long g(long start)
-		{
-			_stream.Position = start - 3;
-			scoped var playground = (stackalloc char[2]);
-			var i = start - 3;
-			for (; _stream.Position >= 3 && i >= 3; i--, _stream.Position -= 3)
+			var originalStartPosition = _stream.Position;
+			switch (g(originalStartPosition))
 			{
-				(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
-				if (playground is "\r\n")
+				case var position and not -1:
 				{
-					return i + 2;
+					if (originalStartPosition - 2 - position is var delta and >= 0 and <= int.MaxValue)
+					{
+						_stream.Position = position;
+
+						scoped var span = (stackalloc char[(int)delta]);
+						for (var i = 0; i < delta; i++)
+						{
+							span[i] = (char)_stream.ReadByte();
+						}
+
+						result = span.ToString();
+						_stream.Position = position;
+						return true;
+					}
+
+					goto default;
+				}
+				default:
+				{
+					result = null;
+					return false;
 				}
 			}
-			return i > 0 ? 0 : -1;
+
+
+			long g(long start)
+			{
+				_stream.Position = start - 3;
+				scoped var playground = (stackalloc char[2]);
+				var i = start - 3;
+				for (; _stream.Position >= 3 && i >= 3; i--, _stream.Position -= 3)
+				{
+					(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
+					if (playground is "\r\n")
+					{
+						return i + 2;
+					}
+				}
+				return i > 0 ? 0 : -1;
+			}
 		}
 	}
 
