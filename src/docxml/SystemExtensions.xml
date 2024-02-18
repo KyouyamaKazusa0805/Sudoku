@@ -624,16 +624,6 @@
             because I have already forgotten them...
             </i></remarks>
         </member>
-        <member name="M:System.IO.StreamReaderExtensions.ReadPreviousLine(System.IO.StreamReader)">
-            <summary>
-            Reads the previous line of the stream.
-            </summary>
-            <param name="this">The <see cref="T:System.IO.StreamReader"/> instance.</param>
-            <returns>The previous line.</returns>
-            <seealso href="https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/IO/StreamReader.cs,f5c6f6ec6c1c6eb9">
-            Source for method <see cref="M:System.IO.StreamReader.ReadLine"/>
-            </seealso>
-        </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.JsonSerializerOptions"/>.

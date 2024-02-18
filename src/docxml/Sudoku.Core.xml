@@ -8418,11 +8418,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the internal stream.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._reader">
-            <summary>
-            Indicates the reader that easily reads the file stream.
-            </summary>
-        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.#ctor(Sudoku.Runtime.LibraryServices.Library)">
             <summary>
             Initializes a <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance via the specified library.
@@ -8437,6 +8432,16 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.SetStart">
+            <summary>
+            Sets the pointer to the start position, 0.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.SetEnd">
+            <summary>
+            Sets the pointer to the end position, the length of the stream.
+            </summary>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryReadNextPuzzle(System.String@)">
             <summary>

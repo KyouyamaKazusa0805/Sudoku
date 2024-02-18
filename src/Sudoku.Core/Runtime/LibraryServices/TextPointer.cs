@@ -21,11 +21,6 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// </summary>
 	private readonly FileStream _stream;
 
-	/// <summary>
-	/// Indicates the reader that easily reads the file stream.
-	/// </summary>
-	private readonly StreamReader _reader;
-
 
 	/// <summary>
 	/// Initializes a <see cref="TextPointer"/> instance via the specified library.
@@ -33,13 +28,11 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <param name="library">Indicates the libary object.</param>
 	/// <exception cref="ArgumentException">Throws when the library is not initialized.</exception>
 	public TextPointer(Library library)
-		=> _reader = new(
-			_stream = (Library = library) switch
-			{
-				(var p, _) { IsInitialized: true } => File.OpenRead(p),
-				(var p, _) => throw new FileNotFoundException(Error_LibraryShouldBeInitialized, p)
-			}
-		);
+		=> _stream = (Library = library) switch
+		{
+			(var p, _) { IsInitialized: true } => File.OpenRead(p),
+			(var p, _) => throw new FileNotFoundException(Error_LibraryShouldBeInitialized, p)
+		};
 
 
 	/// <summary>
@@ -49,11 +42,20 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 
 
 	/// <inheritdoc/>
-	public void Dispose()
-	{
-		_stream.Dispose();
-		_reader.Dispose();
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Dispose() => _stream.Dispose();
+
+	/// <summary>
+	/// Sets the pointer to the start position, 0.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetStart() => _stream.Position = 0;
+
+	/// <summary>
+	/// Sets the pointer to the end position, the length of the stream.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetEnd() => _stream.Position = _stream.Length;
 
 	/// <summary>
 	/// Try to read the next puzzle beginning with the current text pointer position.
@@ -62,14 +64,56 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <returns>A <see cref="bool"/> result indicating whether the file exists the next grid.</returns>
 	public bool TryReadNextPuzzle([NotNullWhen(true)] out string? result)
 	{
-		if (_reader.ReadLine() is { } r && Grid.TryParse(r, out _))
+		if (_stream.Position == _stream.Length || _stream.Length <= 2)
 		{
-			result = r;
-			return true;
+			result = null;
+			return false;
 		}
 
-		result = null;
-		return false;
+		var originalStartPosition = _stream.Position;
+		switch (g(originalStartPosition))
+		{
+			case var position and not -1:
+			{
+				if (position - originalStartPosition is var delta and >= 0 and <= int.MaxValue)
+				{
+					_stream.Position = originalStartPosition;
+
+					scoped var span = (stackalloc char[(int)delta]);
+					for (var i = 0; i < delta; i++)
+					{
+						span[i] = (char)_stream.ReadByte();
+					}
+
+					result = span.ToString();
+					_stream.Position += 2;
+					return true;
+				}
+
+				goto default;
+			}
+			default:
+			{
+				result = null;
+				return false;
+			}
+		}
+
+
+		long g(long start)
+		{
+			_stream.Position = start;
+			scoped var playground = (stackalloc char[2]);
+			for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
+			{
+				(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
+				if (playground is "\r\n")
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
 	}
 
 	/// <summary>
@@ -79,20 +123,59 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// <returns>A <see cref="bool"/> result indicating whether the file exists the previous grid.</returns>
 	public bool TryReadPreviousPuzzle([NotNullWhen(true)] out string? result)
 	{
-		if (_reader.ReadPreviousLine() is { } r && Grid.TryParse(r, out _))
+		if (_stream.Position == 0 || _stream.Length <= 3)
 		{
-			result = r;
-			return true;
+			result = null;
+			return false;
 		}
 
-		result = null;
-		return false;
+		var originalStartPosition = _stream.Position;
+		switch (g(originalStartPosition))
+		{
+			case var position and not -1:
+			{
+				if (originalStartPosition - 2 - position is var delta and >= 0 and <= int.MaxValue)
+				{
+					_stream.Position = position;
+
+					scoped var span = (stackalloc char[(int)delta]);
+					for (var i = 0; i < delta; i++)
+					{
+						span[i] = (char)_stream.ReadByte();
+					}
+
+					result = span.ToString();
+					_stream.Position = position;
+					return true;
+				}
+
+				goto default;
+			}
+			default:
+			{
+				result = null;
+				return false;
+			}
+		}
+
+
+		long g(long start)
+		{
+			_stream.Position = start - 3;
+			scoped var playground = (stackalloc char[2]);
+			var i = start - 3;
+			for (; _stream.Position >= 3 && i >= 3; i--, _stream.Position -= 3)
+			{
+				(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
+				if (playground is "\r\n")
+				{
+					return i + 2;
+				}
+			}
+			return i > 0 ? 0 : -1;
+		}
 	}
 
 	/// <inheritdoc/>
-	public async ValueTask DisposeAsync()
-	{
-		await _stream.DisposeAsync();
-		_reader.Dispose();
-	}
+	public async ValueTask DisposeAsync() => await _stream.DisposeAsync();
 }
