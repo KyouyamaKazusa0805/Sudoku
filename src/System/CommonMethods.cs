@@ -97,7 +97,7 @@ public static class CommonMethods
 	/// <param name="value">The value.</param>
 	/// <returns>The value itself.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T ReturnSelf<T>(T value) => value;
+	public static T Self<T>(T value) => value;
 
 
 	private static string ErrorInfo_UnderlyingTypeNotSupported<T>()
