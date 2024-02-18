@@ -8361,6 +8361,67 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>fileId</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.LibraryServices.TextPointer">
+            <summary>
+            Represents a text pointer object that reads the detail of a library.
+            </summary>
+            <remarks><i>
+            This type only supports for Windows now because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> is limited in Windows.
+            </i></remarks>
+            <seealso cref="T:Sudoku.Runtime.LibraryServices.Library"/>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_LibraryShouldBeInitialized">
+            <summary>
+            Indicates the "Library should be initialized" message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_LibraryFilePathNotExist">
+            <summary>
+            Indicates the "Library file not found" message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._stream">
+            <summary>
+            Indicates the internal stream.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._reader">
+            <summary>
+            Indicates the reader that easily reads the file stream.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.#ctor(Sudoku.Runtime.LibraryServices.Library)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance via the specified library.
+            </summary>
+            <param name="library">Indicates the libary object.</param>
+            <exception cref="T:System.ArgumentException">Throws when the library is not initialized.</exception>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.Library">
+            <summary>
+            Indicates the library object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryReadNextPuzzle(System.String@)">
+            <summary>
+            Try to read the next puzzle beginning with the current text pointer position.
+            </summary>
+            <param name="result">The result of the grid, represented as a <see cref="T:System.String"/> result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the file exists the next grid.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryReadPreviousPuzzle(System.String@)">
+            <summary>
+            Try to read the previous puzzle beginning with the current text pointer position.
+            </summary>
+            <param name="result">The result of the grid, represented as a <see cref="T:System.String"/> result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the file exists the previous grid.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.MaskServices.HouseMaskOperations">
             <summary>
             Represents a list of methods handling with <see cref="T:System.Int32"/> instances.
