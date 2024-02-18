@@ -2380,6 +2380,16 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Concepts.CellMap.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
+        <member name="F:Sudoku.Concepts.CellMap.CellMapParser">
+            <summary>
+            The internal cell map parser.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.CellMapConverter">
+            <summary>
+            The internal cell map converter.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -2431,6 +2441,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.Token">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.StringChunks">
@@ -2653,6 +2666,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Create(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Create(System.ReadOnlySpan{System.Int32})">
@@ -3382,6 +3398,28 @@ if (student is (name: var name, age: >= 18))
             Indicates the total number of empty cells.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Token">
+            <summary>
+            Indicates the token of the grid at the initial state.
+            </summary>
+            <remarks>
+            A raw string example is:
+            <code><![CDATA[
+            35i4ra00rlr4btf9a8s573tsk1ldni00ccfg094v02pk54ff1hc6e7
+            ]]></code>
+            We should cut them by 6 characters as a group:
+            <code><![CDATA[
+            35i4ra 00rlr4 btf9a8 s573ts k1ldni 00ccfg 094v02 pk54ff 1hc6e7
+            ]]></code>
+            9 groups in total.
+            Then we should convert it into a valid 9-digit number by treating them as 32-based integers.
+            Finally, combinate all groups, then we are done.
+            The final text is
+            <code><![CDATA[
+            106500970000907108400008520945000380672839410000406000009600002860000751051780039
+            ]]></code>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyHouses">
             <summary>
             <para>Indicates which houses are empty houses.</para>
@@ -3513,6 +3551,11 @@ if (student is (name: var name, age: >= 18))
             This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>.
             </remarks>
             <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Base32CharSpan">
+            <summary>
+            The character span that indicates all possible characters appeared in a number with base 32.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -3864,6 +3907,14 @@ if (student is (name: var name, age: >= 18))
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Create(System.String)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using the specified token of length 54.
+            </summary>
+            <param name="token">Indicates the token.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
+            <exception cref="T:System.FormatException">Throws when the length of the argument mismatched.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.Int32[],Sudoku.Concepts.GridCreatingOption)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using grid values.
@@ -3957,6 +4008,13 @@ if (student is (name: var name, age: >= 18))
             <param name="parser">The parser instance to be used.</param>
             <param name="result">A parsed value of type <see cref="T:Sudoku.Concepts.Grid"/>.</param>
             <returns>Indicates whether the parsing operation is successful.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.GetDigitViaToken(System.String)">
+            <summary>
+            Get digit via token.
+            </summary>
+            <param name="s">The string.</param>
+            <returns>The result digit.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>
@@ -5028,6 +5086,42 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ITokenizable`1">
+            <summary>
+            Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.ITokenizable`1.Token">
+            <summary>
+            Indicates the token of the object.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ITokenizable`1.TokenHashCode">
+            <summary>
+            Indicates the hash code that is calculated with token.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ITokenizable`1.System#Collections#Generic#IEqualityComparer{TSelf}#Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ITokenizable`1.System#Collections#Generic#IEqualityComparer{TSelf}#GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ITokenizable`1.Equals(`0,`0)">
+            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ITokenizable`1.GetHashCode(`0)">
+            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ITokenizable`1.Create(System.String)">
+            <summary>
+            Create an instance of type <typeparamref name="TSelf"/> that is used a token.
+            </summary>
+            <param name="token">The token to be used.</param>
+            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
+            <exception cref="T:System.FormatException">Throws when the token is invalid.</exception>
         </member>
         <member name="T:Sudoku.Concepts.LockedTarget">
             <summary>

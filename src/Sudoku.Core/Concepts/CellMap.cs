@@ -37,7 +37,8 @@ public partial struct CellMap :
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
-	ISubtractionOperators<CellMap, Cell, CellMap>
+	ISubtractionOperators<CellMap, Cell, CellMap>,
+	ITokenizable<CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
 	private const int Shifting = 41;
@@ -45,6 +46,16 @@ public partial struct CellMap :
 
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CellMap Empty;
+
+	/// <summary>
+	/// The internal cell map parser.
+	/// </summary>
+	private static readonly BitStatusCellMapParser CellMapParser = new();
+
+	/// <summary>
+	/// The internal cell map converter.
+	/// </summary>
+	private static readonly BitStatusCellMapConverter CellMapConverter = new();
 
 
 	/// <summary>
@@ -123,6 +134,44 @@ public partial struct CellMap :
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _count;
+	}
+
+	/// <inheritdoc/>
+	public readonly string Token
+	{
+		get
+		{
+			var convertedString = CellMapConverter.Converter(in this);
+			var bits = convertedString.CutOfLength(27);
+			scoped var sb = new StringHandler(18);
+			foreach (var z in (sextuple(getInteger(bits[2])), sextuple(getInteger(bits[1])), sextuple(getInteger(bits[0]))))
+			{
+				foreach (var element in z)
+				{
+					sb.Append(Grid.Base32CharSpan[element]);
+				}
+			}
+			return sb.ToStringAndClear();
+
+
+			static int getInteger(string bits)
+			{
+				var result = 0;
+				for (var i = 0; i < 27; i++)
+				{
+					if (bits[i] == '1')
+					{
+						result |= 1 << i;
+					}
+				}
+
+				return result;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static int[] sextuple(int value)
+				=> [value >> 25 & 3, value >> 20 & 31, value >> 15 & 31, value >> 10 & 31, value >> 5 & 31, value & 31];
+		}
 	}
 
 	/// <inheritdoc/>
@@ -879,6 +928,22 @@ public partial struct CellMap :
 		}
 	}
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap Create(string token)
+		=> token.Length switch
+		{
+			18 => CellMapParser.Parser(
+				string.Concat(
+					from i in Digits[..3]
+					let segment = Grid.GetDigitViaToken(token[(i * 6)..((i + 1) * 6)]).ToString()
+					let binary = Convert.ToString(int.Parse(segment), 2)
+					select binary.PadLeft(27, '0')
+				)
+			),
+			_ => throw new FormatException("The length of the string must be 18.")
+		};
+
 	/// <summary>
 	/// Creates a <see cref="CellMap"/> instance via the specified cells.
 	/// </summary>
@@ -901,6 +966,7 @@ public partial struct CellMap :
 	/// <param name="high">Higher 40 bits.</param>
 	/// <param name="low">Lower 41 bits.</param>
 	/// <returns>The result instance created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap CreateByBits(long high, long low)
 	{
 		CellMap result;
