@@ -16,7 +16,7 @@ public static class StreamReaderExtensions
 	/// because I have already forgotten them...
 	/// </i></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SupportedOSPlatform("windows")]
+	[SupportedOSPlatform(PlatformNames.Windows)]
 	public static bool EndsWithNewLine(this StreamReader @this)
 		=> @this.BaseStream.Length >= 2
 		&& @this.BaseStream.Seek(-2, SeekOrigin.End) is var _

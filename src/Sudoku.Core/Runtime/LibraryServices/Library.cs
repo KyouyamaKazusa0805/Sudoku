@@ -10,7 +10,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// I will allow them in the future because I'm not familiar with file systems on other OS platforms.
 /// </i></remarks>
 [StructLayout(LayoutKind.Auto)]
-[SupportedOSPlatform("windows")]
+[SupportedOSPlatform(PlatformNames.Windows)]
 [Equals]
 [GetHashCode]
 [ToString]

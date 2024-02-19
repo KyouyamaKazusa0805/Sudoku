@@ -2134,6 +2134,16 @@ fixed (short* ptr = instance)
         <member name="M:System.Runtime.CompilerServices.TupleEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:System.Runtime.Versioning.PlatformNames">
+            <summary>
+            Represents platform names.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Versioning.PlatformNames.Windows">
+            <summary>
+            Indicates the Windows system.
+            </summary>
+        </member>
         <member name="T:System.Utf8StringExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Utf8String"/>.

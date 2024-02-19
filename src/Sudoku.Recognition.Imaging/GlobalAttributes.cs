@@ -1,1 +1,1 @@
-[assembly: SupportedOSPlatform("windows")]
+[assembly: SupportedOSPlatform(PlatformNames.Windows)]

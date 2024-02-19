@@ -1,13 +1,13 @@
 namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
-/// Represents a text pointer object that reads the detail of a library.
+/// Represents a text pointer object that reads the detail of a <see cref="LibraryServices.Library"/>.
 /// </summary>
 /// <remarks><i>
 /// This type only supports for Windows now because the relied type <see cref="LibraryServices.Library"/> is limited in Windows.
 /// </i></remarks>
 /// <seealso cref="LibraryServices.Library"/>
-[SupportedOSPlatform("windows")]
+[SupportedOSPlatform(PlatformNames.Windows)]
 [Equals]
 [GetHashCode]
 [ToString]

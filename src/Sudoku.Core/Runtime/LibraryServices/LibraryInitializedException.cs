@@ -11,7 +11,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// is marked <see cref="SupportedOSPlatformAttribute"/>, limited in Windows.
 /// </i></remarks>
 /// <seealso cref="Library.Initialize"/>
-[SupportedOSPlatform("windows")]
+[SupportedOSPlatform(PlatformNames.Windows)]
 public sealed partial class LibraryInitializedException(
 	[PrimaryConstructorParameter] string directory,
 	[PrimaryConstructorParameter] string fileId

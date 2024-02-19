@@ -8401,7 +8401,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Runtime.LibraryServices.TextPointer">
             <summary>
-            Represents a text pointer object that reads the detail of a library.
+            Represents a text pointer object that reads the detail of a <see cref="T:Sudoku.Runtime.LibraryServices.Library"/>.
             </summary>
             <remarks><i>
             This type only supports for Windows now because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> is limited in Windows.
