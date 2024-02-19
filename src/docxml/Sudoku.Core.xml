@@ -8501,19 +8501,35 @@ if (student is (name: var name, age: >= 18))
             <param name="result">The result of the grid, represented as a <see cref="T:System.String"/> result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the file exists the previous grid.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipForward(System.Int32)">
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipNext(System.Int32)">
             <summary>
             Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.
             </summary>
             <param name="count">The desired number of puzzles to be skipped.</param>
             <returns>The number of puzzles skipped in fact.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipBack(System.Int32)">
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipPrevious(System.Int32)">
             <summary>
             Try to skip the number of puzzles back, making the pointer point to the next grid before the skipped grids.
             </summary>
             <param name="count">The desired number of puzzles to be skipped.</param>
             <returns>The number of puzzles skipped in fact.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryFetchNext(System.Int32,System.ReadOnlySpan{System.String}@)">
+            <summary>
+            Fetch the number of puzzles beginning with the current pointer position.
+            </summary>
+            <param name="count">The desired number of puzzles.</param>
+            <param name="result">Indicates the puzzles fetched.</param>
+            <returns>The number of puzzles fetched.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryFetchPrevious(System.Int32,System.ReadOnlySpan{System.String}@)">
+            <summary>
+            Fetch the number of puzzles in previous beginning with the current pointer position.
+            </summary>
+            <param name="count">The desired number of puzzles.</param>
+            <param name="result">Indicates the puzzles fetched.</param>
+            <returns>The number of puzzles fetched.</returns>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
             <inheritdoc/>

@@ -19,6 +19,7 @@ public sealed partial class TextPointer :
 	IDisposable,
 	IEnumerable<string?>,
 	IEnumerator<string?>,
+	IEqualityOperators<TextPointer, TextPointer, bool>,
 	IEquatable<TextPointer>,
 	IIncrementOperators<TextPointer>,
 	IReadOnlyCollection<string?>,
@@ -347,7 +348,7 @@ public sealed partial class TextPointer :
 	/// </summary>
 	/// <param name="count">The desired number of puzzles to be skipped.</param>
 	/// <returns>The number of puzzles skipped in fact.</returns>
-	public int TrySkipForward(int count)
+	public int TrySkipNext(int count)
 	{
 		for (var i = 0; i < count; i++)
 		{
@@ -364,7 +365,7 @@ public sealed partial class TextPointer :
 	/// </summary>
 	/// <param name="count">The desired number of puzzles to be skipped.</param>
 	/// <returns>The number of puzzles skipped in fact.</returns>
-	public int TrySkipBack(int count)
+	public int TrySkipPrevious(int count)
 	{
 		for (var i = 0; i < count; i++)
 		{
@@ -373,6 +374,60 @@ public sealed partial class TextPointer :
 				return i;
 			}
 		}
+		return count;
+	}
+
+	/// <summary>
+	/// Fetch the number of puzzles beginning with the current pointer position.
+	/// </summary>
+	/// <param name="count">The desired number of puzzles.</param>
+	/// <param name="result">Indicates the puzzles fetched.</param>
+	/// <returns>The number of puzzles fetched.</returns>
+	public int TryFetchNext(int count, out ReadOnlySpan<string> result)
+	{
+		var r = new string[count];
+		var p = 0;
+		for (var i = 0; i < count; i++)
+		{
+			if (TryReadNextPuzzle(out var grid))
+			{
+				r[p++] = grid;
+				continue;
+			}
+
+			result = r.AsSpan()[..p];
+			return p;
+		}
+
+		result = r;
+		return count;
+	}
+
+	/// <summary>
+	/// Fetch the number of puzzles in previous beginning with the current pointer position.
+	/// </summary>
+	/// <param name="count">The desired number of puzzles.</param>
+	/// <param name="result">Indicates the puzzles fetched.</param>
+	/// <returns>The number of puzzles fetched.</returns>
+	public int TryFetchPrevious(int count, out ReadOnlySpan<string> result)
+	{
+		var r = new string[count];
+		var p = 0;
+		for (var i = 0; i < count; i++)
+		{
+			if (TryReadPreviousPuzzle(out var grid))
+			{
+				r[p++] = grid;
+				continue;
+			}
+
+			var final = r.AsSpan()[..p];
+			final.Reverse();
+			result = final;
+			return p;
+		}
+
+		result = r;
 		return count;
 	}
 
@@ -472,7 +527,7 @@ public sealed partial class TextPointer :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TextPointer operator +(TextPointer value, int count)
 	{
-		_ = count > 0 ? value.TrySkipForward(count) : value.TrySkipBack(-count);
+		_ = count > 0 ? value.TrySkipNext(count) : value.TrySkipPrevious(-count);
 		return value;
 	}
 
@@ -486,7 +541,7 @@ public sealed partial class TextPointer :
 	/// <exception cref="InvalidOperationException">Throws when no elements can be skipped.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TextPointer operator checked +(TextPointer value, int count)
-		=> (count > 0 ? value.TrySkipForward(count) : value.TrySkipBack(count)) == count
+		=> (count > 0 ? value.TrySkipNext(count) : value.TrySkipPrevious(count)) == count
 			? value
 			: throw new InvalidOperationException(Error_PointerCannotMove);
 
@@ -499,7 +554,7 @@ public sealed partial class TextPointer :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TextPointer operator -(TextPointer value, int count)
 	{
-		_ = count > 0 ? value.TrySkipBack(count) : value.TrySkipForward(-count);
+		_ = count > 0 ? value.TrySkipPrevious(count) : value.TrySkipNext(-count);
 		return value;
 	}
 
@@ -513,7 +568,7 @@ public sealed partial class TextPointer :
 	/// <exception cref="InvalidOperationException">Throws when no elements can be skipped.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TextPointer operator checked -(TextPointer value, int count)
-		=> (count > 0 ? value.TrySkipBack(count) : value.TrySkipForward(count)) == count
+		=> (count > 0 ? value.TrySkipPrevious(count) : value.TrySkipNext(count)) == count
 			? value
 			: throw new InvalidOperationException(Error_PointerCannotMove);
 }
