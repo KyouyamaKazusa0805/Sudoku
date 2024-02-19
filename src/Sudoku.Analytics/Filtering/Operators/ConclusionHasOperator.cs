@@ -4,6 +4,7 @@ namespace Sudoku.Filtering.Operators;
 /// Indicates the conclusion matching operator <c>has</c>.
 /// The expected usage is like <c>conclusion has 'r3c4'</c>.
 /// </summary>
+[Obsolete("This type will be removed in the future.", false)]
 public sealed class ConclusionHasOperator : OperatorBase
 {
 	/// <summary>

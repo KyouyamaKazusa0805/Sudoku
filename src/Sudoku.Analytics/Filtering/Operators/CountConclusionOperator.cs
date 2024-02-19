@@ -4,6 +4,7 @@ namespace Sudoku.Filtering.Operators;
 /// Indicates the counter operator <c>count</c> to total up the number of conclusions in a single technique step.
 /// The expected usage is like <c>count conclusion</c>.
 /// </summary>
+[Obsolete("This type will be removed in the future.", false)]
 public sealed class CountConclusionOperator : OperatorBase
 {
 	/// <summary>

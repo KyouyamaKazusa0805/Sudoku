@@ -3,6 +3,7 @@ namespace Sudoku.Filtering.Expressions;
 /// <summary>
 /// Defines the backing implementation of <c><see langword="has"/></c> operator.
 /// </summary>
+[Obsolete("This type will be removed in the future.", false)]
 public sealed class ConclusionHasExpression : BinaryExpressionBase
 {
 	/// <summary>

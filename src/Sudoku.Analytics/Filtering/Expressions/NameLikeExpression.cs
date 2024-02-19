@@ -3,6 +3,7 @@ namespace Sudoku.Filtering.Expressions;
 /// <summary>
 /// Defines the backing implementation of <c><see langword="like"/></c> operator.
 /// </summary>
+[Obsolete("This type will be removed in the future.", false)]
 public sealed class NameLikeExpression : BinaryExpressionBase
 {
 	/// <summary>

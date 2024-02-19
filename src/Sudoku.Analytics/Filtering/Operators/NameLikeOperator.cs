@@ -4,6 +4,7 @@ namespace Sudoku.Filtering.Operators;
 /// Indicates the name matching operator <c>like</c>.
 /// The expected usage is like <c>name like 'Unique\s+Rectangle.*'</c>.
 /// </summary>
+[Obsolete("This type will be removed in the future.", false)]
 public sealed class NameLikeOperator : OperatorBase
 {
 	/// <summary>

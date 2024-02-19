@@ -14,6 +14,7 @@ namespace Sudoku.Filtering;
 /// <item><c><see langword="count"/> <see langword="conclusion"/> (<![CDATA[>]]>,<![CDATA[>=]]>,<![CDATA[<]]>,<![CDATA[<=]]>,<![CDATA[==]]>,<![CDATA[!=]]>) (count)</c></item>
 /// </list>
 /// </remarks>
+[Obsolete("This type will be removed in the future.", false)]
 public static partial class TechniqueFiltering
 {
 	/// <summary>

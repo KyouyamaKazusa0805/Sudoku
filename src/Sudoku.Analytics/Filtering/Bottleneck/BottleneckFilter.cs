@@ -6,4 +6,5 @@ namespace Sudoku.Filtering.Bottleneck;
 /// <param name="grid">The grid that the step will be applied to.</param>
 /// <param name="step">The step to be determined.</param>
 /// <returns>A <see cref="bool"/> result.</returns>
+[Obsolete("This type will be removed in the future.", false)]
 public delegate bool BottleneckFilter(scoped ref readonly Grid grid, Step step);
