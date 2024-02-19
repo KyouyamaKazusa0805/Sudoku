@@ -153,6 +153,8 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Indicates the number of puzzles stored in the file, regardless of the position of the pointer.
 	/// </summary>
+	/// <remarks><inheritdoc cref="Library.Count" path="/remarks"/></remarks>
+	/// <seealso cref="Library.GetCountAsync(CancellationToken)"/>
 	public int Length => Library.Count;
 
 	/// <summary>
@@ -346,10 +348,13 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.
 	/// </summary>
-	/// <param name="count">The desired number of puzzles to be skipped.</param>
+	/// <param name="count">The desired number of puzzles to be skipped. The default value is 1.</param>
 	/// <returns>The number of puzzles skipped in fact.</returns>
-	public int TrySkipNext(int count)
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="count"/> is negative.</exception>
+	public int TrySkipNext(int count = 1)
 	{
+		ArgumentOutOfRangeException.ThrowIfNegative(count);
+
 		for (var i = 0; i < count; i++)
 		{
 			if (!TryReadNextPuzzle(out _))
@@ -363,10 +368,13 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Try to skip the number of puzzles back, making the pointer point to the next grid before the skipped grids.
 	/// </summary>
-	/// <param name="count">The desired number of puzzles to be skipped.</param>
+	/// <param name="count">The desired number of puzzles to be skipped. The default value is 1.</param>
 	/// <returns>The number of puzzles skipped in fact.</returns>
-	public int TrySkipPrevious(int count)
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="count"/> is negative.</exception>
+	public int TrySkipPrevious(int count = 1)
 	{
+		ArgumentOutOfRangeException.ThrowIfNegative(count);
+
 		for (var i = 0; i < count; i++)
 		{
 			if (!TryReadPreviousPuzzle(out _))
@@ -385,6 +393,8 @@ public sealed partial class TextPointer :
 	/// <returns>The number of puzzles fetched.</returns>
 	public int TryFetchNext(int count, out ReadOnlySpan<string> result)
 	{
+		TrySkipNext();
+
 		var r = new string[count];
 		var p = 0;
 		for (var i = 0; i < count; i++)
@@ -411,6 +421,8 @@ public sealed partial class TextPointer :
 	/// <returns>The number of puzzles fetched.</returns>
 	public int TryFetchPrevious(int count, out ReadOnlySpan<string> result)
 	{
+		TrySkipPrevious();
+
 		var r = new string[count];
 		var p = 0;
 		for (var i = 0; i < count; i++)

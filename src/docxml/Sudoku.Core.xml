@@ -8454,6 +8454,8 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the number of puzzles stored in the file, regardless of the position of the pointer.
             </summary>
+            <remarks><inheritdoc cref="P:Sudoku.Runtime.LibraryServices.Library.Count" path="/remarks"/></remarks>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.Library.GetCountAsync(System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.Library">
             <summary>
@@ -8505,15 +8507,17 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.
             </summary>
-            <param name="count">The desired number of puzzles to be skipped.</param>
+            <param name="count">The desired number of puzzles to be skipped. The default value is 1.</param>
             <returns>The number of puzzles skipped in fact.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="count"/> is negative.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipPrevious(System.Int32)">
             <summary>
             Try to skip the number of puzzles back, making the pointer point to the next grid before the skipped grids.
             </summary>
-            <param name="count">The desired number of puzzles to be skipped.</param>
+            <param name="count">The desired number of puzzles to be skipped. The default value is 1.</param>
             <returns>The number of puzzles skipped in fact.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="count"/> is negative.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryFetchNext(System.Int32,System.ReadOnlySpan{System.String}@)">
             <summary>
