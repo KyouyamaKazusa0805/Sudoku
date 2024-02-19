@@ -1477,8 +1477,7 @@ public partial struct Grid :
 	/// <returns>A <see cref="Grid"/> result.</returns>
 	/// <exception cref="FormatException">Throws when the length of the argument mismatched.</exception>
 	public static Grid Create(string token)
-	{
-		return token.Length switch
+		=> token.Length switch
 		{
 			54 => Parse(
 				string.Concat(
@@ -1489,7 +1488,6 @@ public partial struct Grid :
 			),
 			_ => throw new FormatException("The length of the string must be 54.")
 		};
-	}
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using grid values.
