@@ -8408,9 +8408,19 @@ if (student is (name: var name, age: >= 18))
             </i></remarks>
             <seealso cref="T:Sudoku.Runtime.LibraryServices.Library"/>
         </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.MaxLimitOfPuzzleLength">
+            <summary>
+            Indicates the max limit of a puzzle length.
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_LibraryShouldBeInitialized">
             <summary>
             Indicates the "Library should be initialized" message.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.Error_PointerCannotMove">
+            <summary>
+            Indicates the "Pointer cannot move" message.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._stream">
@@ -8425,10 +8435,36 @@ if (student is (name: var name, age: >= 18))
             <param name="library">Indicates the libary object.</param>
             <exception cref="T:System.ArgumentException">Throws when the library is not initialized.</exception>
         </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.ForwardPuzzlesCount">
+            <summary>
+            Indicates the number of puzzles left to be iterated from the current position. The current puzzle will be included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.BackPuzzlesCount">
+            <summary>
+            Indicates the number of puzzles left to be iterated back from the current position. The current puzzle will be included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.Current">
+            <summary>
+            Indicates the currently-pointed puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.Length">
+            <summary>
+            Indicates the number of puzzles stored in the file, regardless of the position of the pointer.
+            </summary>
+        </member>
         <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.Library">
             <summary>
             Indicates the library object.
             </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#Generic#IReadOnlyCollection{System#String}#Count">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
             <inheritdoc/>
@@ -8442,6 +8478,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Sets the pointer to the end position, the length of the stream.
             </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryReadNextPuzzle(System.String@)">
             <summary>
@@ -8457,8 +8496,122 @@ if (student is (name: var name, age: >= 18))
             <param name="result">The result of the grid, represented as a <see cref="T:System.String"/> result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the file exists the previous grid.</returns>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipForward(System.Int32)">
+            <summary>
+            Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.
+            </summary>
+            <param name="count">The desired number of puzzles to be skipped.</param>
+            <returns>The number of puzzles skipped in fact.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipBack(System.Int32)">
+            <summary>
+            Try to skip the number of puzzles back, making the pointer point to the next grid before the skipped grids.
+            </summary>
+            <param name="count">The desired number of puzzles to be skipped.</param>
+            <returns>The number of puzzles skipped in fact.</returns>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.GetEnumerator">
+            <summary>
+            Returns itself. The method is consumed by <see langword="foreach"/> loops.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance that can iterate on each puzzle stored in library file.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#IEnumerator#MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#Generic#IEnumerable{System#String}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Increment(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <summary>
+            Moves the pointer to the next puzzle. If the pointer is at the end of the sequence, moves to the first element.
+            </summary>
+            <param name="value">The instance to be moved.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_CheckedIncrement(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <summary>
+            Moves the pointer to the next puzzle. If the pointer is at the end of the sequence,
+            throw <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="value">The instance to be moved.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the pointer cannot be moved.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Decrement(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <summary>
+            Moves the pointer to the previous puzzle. If the pointer is at the start of the sequence, moves to the last element.
+            </summary>
+            <param name="value">The instance to be moved.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_CheckedDecrement(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <summary>
+            Moves the pointer to the previous puzzle. If the pointer is at the start of the sequence, throw <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="value">The instance to be moved.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the pointer cannot be moved.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Addition(Sudoku.Runtime.LibraryServices.TextPointer,System.Int32)">
+            <summary>
+            Skips the specified number of puzzles forward.
+            </summary>
+            <param name="value">The value to be used.</param>
+            <param name="count">The number of puzzles to be skipped.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_CheckedAddition(Sudoku.Runtime.LibraryServices.TextPointer,System.Int32)">
+            <summary>
+            Skips the specified number of puzzles forward. If the pointer has already moved to the last element,
+            throw <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="value">The value to be used.</param>
+            <param name="count">The number of puzzles to be skipped.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements can be skipped.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Subtraction(Sudoku.Runtime.LibraryServices.TextPointer,System.Int32)">
+            <summary>
+            Skips the specified number of puzzles back.
+            </summary>
+            <param name="value">The value to be used.</param>
+            <param name="count">The number of puzzles to be skipped.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_CheckedSubtraction(Sudoku.Runtime.LibraryServices.TextPointer,System.Int32)">
+            <summary>
+            Skips the specified number of puzzles back. If the pointer has already moved to the first element,
+            throw <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+            <param name="value">The value to be used.</param>
+            <param name="count">The number of puzzles to be skipped.</param>
+            <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when no elements can be skipped.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Equality(Sudoku.Runtime.LibraryServices.TextPointer,Sudoku.Runtime.LibraryServices.TextPointer)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Inequality(Sudoku.Runtime.LibraryServices.TextPointer,Sudoku.Runtime.LibraryServices.TextPointer)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Runtime.MaskServices.HouseMaskOperations">
             <summary>

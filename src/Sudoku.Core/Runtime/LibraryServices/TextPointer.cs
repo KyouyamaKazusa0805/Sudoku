@@ -8,12 +8,35 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 /// <seealso cref="LibraryServices.Library"/>
 [SupportedOSPlatform("windows")]
-public sealed class TextPointer : IDisposable, IAsyncDisposable
+[Equals]
+[ToString]
+[EqualityOperators]
+public sealed partial class TextPointer :
+	IAdditionOperators<TextPointer, int, TextPointer>,
+	IAsyncDisposable,
+	IDecrementOperators<TextPointer>,
+	IDisposable,
+	IEnumerable<string?>,
+	IEnumerator<string?>,
+	IEquatable<TextPointer>,
+	IIncrementOperators<TextPointer>,
+	IReadOnlyCollection<string?>,
+	ISubtractionOperators<TextPointer, int, TextPointer>
 {
+	/// <summary>
+	/// Indicates the max limit of a puzzle length.
+	/// </summary>
+	private const int MaxLimitOfPuzzleLength = 4096;
+
 	/// <summary>
 	/// Indicates the "Library should be initialized" message.
 	/// </summary>
 	private const string Error_LibraryShouldBeInitialized = "The library is not initialized. It must be initialized file, ensuring the file in local exists.";
+
+	/// <summary>
+	/// Indicates the "Pointer cannot move" message.
+	/// </summary>
+	private const string Error_PointerCannotMove = "The pointer cannot move.";
 
 
 	/// <summary>
@@ -36,9 +59,111 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 
 
 	/// <summary>
+	/// Indicates the number of puzzles left to be iterated from the current position. The current puzzle will be included.
+	/// </summary>
+	[StringMember]
+	public int ForwardPuzzlesCount
+	{
+		get
+		{
+			var result = 0;
+			while (TryReadNextPuzzle(out _))
+			{
+				result++;
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the number of puzzles left to be iterated back from the current position. The current puzzle will be included.
+	/// </summary>
+	[StringMember]
+	public int BackPuzzlesCount
+	{
+		get
+		{
+			var result = 0;
+			while (TryReadPreviousPuzzle(out _))
+			{
+				result++;
+			}
+
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the currently-pointed puzzle.
+	/// </summary>
+	[StringMember]
+	public string? Current
+	{
+		get
+		{
+			var originalStartPosition = _stream.Position;
+			try
+			{
+				if (_stream.Position == _stream.Length || _stream.Length <= 2)
+				{
+					return null;
+				}
+
+				if (g(originalStartPosition) is var position and not -1
+					&& position - originalStartPosition is var delta and >= 0 and <= MaxLimitOfPuzzleLength)
+				{
+					_stream.Position = originalStartPosition;
+					scoped var span = (stackalloc char[(int)delta]);
+					for (var i = 0; i < delta; i++)
+					{
+						span[i] = (char)_stream.ReadByte();
+					}
+
+					return span.ToString();
+				}
+
+				return null;
+
+
+				long g(long start)
+				{
+					_stream.Position = start;
+					scoped var playground = (stackalloc char[2]);
+					for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
+					{
+						(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
+						if (playground is "\r\n")
+						{
+							return i;
+						}
+					}
+					return -1;
+				}
+			}
+			finally
+			{
+				_stream.Position = originalStartPosition;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the number of puzzles stored in the file, regardless of the position of the pointer.
+	/// </summary>
+	public int Length => Library.Count;
+
+	/// <summary>
 	/// Indicates the library object.
 	/// </summary>
+	[StringMember]
 	public Library Library { get; }
+
+	/// <inheritdoc/>
+	object? IEnumerator.Current => Current;
+
+	/// <inheritdoc/>
+	int IReadOnlyCollection<string?>.Count => Length;
 
 
 	/// <inheritdoc/>
@@ -56,6 +181,11 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetEnd() => _stream.Position = _stream.Length;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] TextPointer? other)
+		=> other is not null && Library == other.Library && _stream.Position == other._stream.Position;
 
 	/// <summary>
 	/// Try to read the next puzzle beginning with the current text pointer position.
@@ -88,7 +218,7 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 			{
 				case var position and not -1:
 				{
-					if (position - originalStartPosition is var delta and >= 0 and <= int.MaxValue)
+					if (position - originalStartPosition is var delta and >= 0 and <= MaxLimitOfPuzzleLength)
 					{
 						_stream.Position = originalStartPosition;
 
@@ -161,7 +291,7 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 			{
 				case var position and not -1:
 				{
-					if (originalStartPosition - 2 - position is var delta and >= 0 and <= int.MaxValue)
+					if (originalStartPosition - 2 - position is var delta and >= 0 and <= MaxLimitOfPuzzleLength)
 					{
 						_stream.Position = position;
 
@@ -205,5 +335,181 @@ public sealed class TextPointer : IDisposable, IAsyncDisposable
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override int GetHashCode() => HashCode.Combine(Library, _stream.Position);
+
+	/// <summary>
+	/// Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.
+	/// </summary>
+	/// <param name="count">The desired number of puzzles to be skipped.</param>
+	/// <returns>The number of puzzles skipped in fact.</returns>
+	public int TrySkipForward(int count)
+	{
+		for (var i = 0; i < count; i++)
+		{
+			if (!TryReadNextPuzzle(out _))
+			{
+				return i;
+			}
+		}
+		return count;
+	}
+
+	/// <summary>
+	/// Try to skip the number of puzzles back, making the pointer point to the next grid before the skipped grids.
+	/// </summary>
+	/// <param name="count">The desired number of puzzles to be skipped.</param>
+	/// <returns>The number of puzzles skipped in fact.</returns>
+	public int TrySkipBack(int count)
+	{
+		for (var i = 0; i < count; i++)
+		{
+			if (!TryReadPreviousPuzzle(out _))
+			{
+				return i;
+			}
+		}
+		return count;
+	}
+
+	/// <inheritdoc/>
 	public async ValueTask DisposeAsync() => await _stream.DisposeAsync();
+
+	/// <summary>
+	/// Returns itself. The method is consumed by <see langword="foreach"/> loops.
+	/// </summary>
+	/// <returns>A <see cref="TextPointer"/> instance that can iterate on each puzzle stored in library file.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public TextPointer GetEnumerator() => this;
+
+	/// <inheritdoc/>
+	void IEnumerator.Reset() => SetStart();
+
+	/// <inheritdoc/>
+	bool IEnumerator.MoveNext() => TryReadNextPuzzle(out _);
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => this;
+
+	/// <inheritdoc/>
+	IEnumerator<string?> IEnumerable<string?>.GetEnumerator() => this;
+
+
+	/// <summary>
+	/// Moves the pointer to the next puzzle. If the pointer is at the end of the sequence, moves to the first element.
+	/// </summary>
+	/// <param name="value">The instance to be moved.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator ++(TextPointer value)
+	{
+		if (value.TryReadNextPuzzle(out _))
+		{
+			goto Return;
+		}
+
+		value.SetStart();
+
+	Return:
+		return value;
+	}
+
+	/// <summary>
+	/// Moves the pointer to the next puzzle. If the pointer is at the end of the sequence,
+	/// throw <see cref="InvalidOperationException"/>.
+	/// </summary>
+	/// <param name="value">The instance to be moved.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the pointer cannot be moved.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator checked ++(TextPointer value)
+		=> value.TryReadNextPuzzle(out _)
+			? value
+			: throw new InvalidOperationException(Error_PointerCannotMove);
+
+	/// <summary>
+	/// Moves the pointer to the previous puzzle. If the pointer is at the start of the sequence, moves to the last element.
+	/// </summary>
+	/// <param name="value">The instance to be moved.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator --(TextPointer value)
+	{
+		if (value.TryReadPreviousPuzzle(out _))
+		{
+			goto Return;
+		}
+
+		value.SetEnd();
+
+	Return:
+		return value;
+	}
+
+	/// <summary>
+	/// Moves the pointer to the previous puzzle. If the pointer is at the start of the sequence, throw <see cref="InvalidOperationException"/>.
+	/// </summary>
+	/// <param name="value">The instance to be moved.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the pointer cannot be moved.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator checked --(TextPointer value)
+		=> value.TryReadPreviousPuzzle(out _)
+			? value
+			: throw new InvalidOperationException(Error_PointerCannotMove);
+
+	/// <summary>
+	/// Skips the specified number of puzzles forward.
+	/// </summary>
+	/// <param name="value">The value to be used.</param>
+	/// <param name="count">The number of puzzles to be skipped.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator +(TextPointer value, int count)
+	{
+		_ = count > 0 ? value.TrySkipForward(count) : value.TrySkipBack(-count);
+		return value;
+	}
+
+	/// <summary>
+	/// Skips the specified number of puzzles forward. If the pointer has already moved to the last element,
+	/// throw <see cref="InvalidOperationException"/>.
+	/// </summary>
+	/// <param name="value">The value to be used.</param>
+	/// <param name="count">The number of puzzles to be skipped.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	/// <exception cref="InvalidOperationException">Throws when no elements can be skipped.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator checked +(TextPointer value, int count)
+		=> (count > 0 ? value.TrySkipForward(count) : value.TrySkipBack(count)) == count
+			? value
+			: throw new InvalidOperationException(Error_PointerCannotMove);
+
+	/// <summary>
+	/// Skips the specified number of puzzles back.
+	/// </summary>
+	/// <param name="value">The value to be used.</param>
+	/// <param name="count">The number of puzzles to be skipped.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator -(TextPointer value, int count)
+	{
+		_ = count > 0 ? value.TrySkipBack(count) : value.TrySkipForward(-count);
+		return value;
+	}
+
+	/// <summary>
+	/// Skips the specified number of puzzles back. If the pointer has already moved to the first element,
+	/// throw <see cref="InvalidOperationException"/>.
+	/// </summary>
+	/// <param name="value">The value to be used.</param>
+	/// <param name="count">The number of puzzles to be skipped.</param>
+	/// <returns>A reference that is same as argument <paramref name="value"/>.</returns>
+	/// <exception cref="InvalidOperationException">Throws when no elements can be skipped.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TextPointer operator checked -(TextPointer value, int count)
+		=> (count > 0 ? value.TrySkipBack(count) : value.TrySkipForward(count)) == count
+			? value
+			: throw new InvalidOperationException(Error_PointerCannotMove);
 }
