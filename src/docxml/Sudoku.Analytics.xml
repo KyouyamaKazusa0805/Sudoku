@@ -17850,7 +17850,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)"/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn">
             <summary>

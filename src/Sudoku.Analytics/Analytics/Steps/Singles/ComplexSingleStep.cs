@@ -59,7 +59,7 @@ public abstract partial class ComplexSingleStep(
 	protected abstract string PrefixName { get; }
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="Step.GetName(CultureInfo?)"/>
 	public new string GetName(CultureInfo? culture)
 		=> $"{PrefixName}{base.GetName(culture ?? ResultCurrentCulture)[PrefixNameLength..]}";
 }
