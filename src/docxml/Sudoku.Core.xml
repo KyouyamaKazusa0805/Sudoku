@@ -8208,6 +8208,21 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
             <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.CreateTextPointer">
+            <summary>
+            Creates a <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance that uses <see cref="T:System.IO.FileStream"/> to read puzzles line by line.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance that reads for the current library.</returns>
+            <remarks><b>
+            This method returns an instance that implements <see cref="T:System.IAsyncDisposable"/> and <see cref="T:System.IDisposable"/>,
+            meaning you must call <see cref="M:System.IAsyncDisposable.DisposeAsync"/> or <see cref="M:System.IDisposable.Dispose"/>
+            after you finishing using the return value:
+            <code><![CDATA[await using var pointer = library.CreateTextPointer();]]></code>
+            </b></remarks>
+            <seealso cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/>
+            <seealso cref="T:System.IDisposable"/>
+            <seealso cref="T:System.IAsyncDisposable"/>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.Library.GetAsyncEnumerator(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>

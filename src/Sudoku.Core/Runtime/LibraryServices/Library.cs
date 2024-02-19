@@ -780,6 +780,22 @@ public readonly partial struct Library(
 		}
 	}
 
+	/// <summary>
+	/// Creates a <see cref="TextPointer"/> instance that uses <see cref="FileStream"/> to read puzzles line by line.
+	/// </summary>
+	/// <returns>A <see cref="TextPointer"/> instance that reads for the current library.</returns>
+	/// <remarks><b>
+	/// This method returns an instance that implements <see cref="IAsyncDisposable"/> and <see cref="IDisposable"/>,
+	/// meaning you must call <see cref="IAsyncDisposable.DisposeAsync"/> or <see cref="IDisposable.Dispose"/>
+	/// after you finishing using the return value:
+	/// <code><![CDATA[await using var pointer = library.CreateTextPointer();]]></code>
+	/// </b></remarks>
+	/// <seealso cref="TextPointer"/>
+	/// <seealso cref="IDisposable"/>
+	/// <seealso cref="IAsyncDisposable"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public TextPointer CreateTextPointer() => new(this);
+
 	/// <inheritdoc/>
 	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
