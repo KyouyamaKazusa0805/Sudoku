@@ -9,6 +9,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// <seealso cref="LibraryServices.Library"/>
 [SupportedOSPlatform("windows")]
 [Equals]
+[GetHashCode]
 [ToString]
 [EqualityOperators]
 public sealed partial class TextPointer :
@@ -156,6 +157,7 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Indicates the library object.
 	/// </summary>
+	[HashCodeMember]
 	[StringMember]
 	public Library Library { get; }
 
@@ -164,6 +166,12 @@ public sealed partial class TextPointer :
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<string?>.Count => Length;
+
+	/// <summary>
+	/// Indicates the position of the pointer.
+	/// </summary>
+	[HashCodeMember]
+	private long PositionOfPointer => _stream.Position;
 
 
 	/// <inheritdoc/>
@@ -333,10 +341,6 @@ public sealed partial class TextPointer :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => HashCode.Combine(Library, _stream.Position);
 
 	/// <summary>
 	/// Try to skip the number of puzzles forward, making the pointer point to the next grid after the skipped grids.

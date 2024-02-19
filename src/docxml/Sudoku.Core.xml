@@ -8466,6 +8466,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.System#Collections#Generic#IReadOnlyCollection{System#String}#Count">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.PositionOfPointer">
+            <summary>
+            Indicates the position of the pointer.
+            </summary>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
             <inheritdoc/>
         </member>
@@ -8495,9 +8500,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="result">The result of the grid, represented as a <see cref="T:System.String"/> result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the file exists the previous grid.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.GetHashCode">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TrySkipForward(System.Int32)">
             <summary>
@@ -8603,6 +8605,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
