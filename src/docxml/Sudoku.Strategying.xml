@@ -1,0 +1,426 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Strategying</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Strategying.ComparisonOperator">
+            <summary>
+            Represent an operator to be used in comparison.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.Equality">
+            <summary>
+            Indicates the comparison rule is to compare equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.Inequality">
+            <summary>
+            Indicates the comparison rule is to compare inequality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThan">
+            <summary>
+            Indicates the comparison rule is to compare greater-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare greater-than or equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThan">
+            <summary>
+            Indicates the comparison rule is to compare less-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare less-than or equality.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ComparisonOperatorExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Strategying.ComparisonOperator"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Strategying.ComparisonOperator"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Strategying.ComparisonOperator)">
+            <summary>
+            Creates a delegate method that executes the specified rule of comparison.
+            </summary>
+            <typeparam name="T">The type of the target.</typeparam>
+            <param name="this">The comparison.</param>
+            <returns>A delegate function.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.Constraint">
+            <summary>
+            Represents a rule that checks whether a <see cref="T:Sudoku.Concepts.Grid"/> is passed the constraint.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.Constraint.ConstraintCheckingProperties">
+            <summary>
+            Indicates the properties that will be used in constraint checking.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.Constraint.ValidationResult">
+            <summary>
+            Indicates the validation result.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
+            <remarks><i>
+            This method only handles for the core rule of the type, which means we should suppose the values are valid.
+            </i></remarks>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Equality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Inequality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="collectorResult">Indicates the collector result.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult,Sudoku.Analytics.Step[][],System.Threading.CancellationToken)">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="collectorResult">Indicates the collector result.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresAnalyzer">
+            <summary>
+            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresCollector">
+            <summary>
+            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult">
+            <summary>
+            The generated property declaration for parameter <c>analyzerResult</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult">
+            <summary>
+            The generated property declaration for parameter <c>collectorResult</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CancellationToken">
+            <summary>
+            The generated property declaration for parameter <c>cancellationToken</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingProperty">
+            <summary>
+            Represents a property that will be checked in a constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.None">
+            <summary>
+            Indicates no elements will be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.Grid">
+            <summary>
+            Indicates the constraint checks for grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.AnalyzerResult">
+            <summary>
+            Indicates the constraint checks for analyzer result.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.CollectorResult">
+            <summary>
+            Indicates the constraint checks for collector result.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CountConstraint">
+            <summary>
+            Represents a rule that checks for the number of cells appeared in cell, using the specified cell state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.LimitCount">
+            <summary>
+            Indicates the limit number of cells to be checked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.CellState">
+            <summary>
+            Indicates the cell state to be checked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.Operator">
+            <summary>
+            Indicates the comparison operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.DiamondConstraint">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.PearlConstraint">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.#ctor(System.Boolean)">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdocs/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">
+            <summary>
+            The generated property declaration for parameter <c>checkPearl</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.FailedValidationResult">
+            <summary>
+            Represents a result why causes the failure.
+            </summary>
+            <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
+            <param name="Reason"><inheritdoc/></param>
+            <param name="Severity"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.FailedValidationResult.#ctor(System.String,Sudoku.Strategying.Validation.ValidationFailedReason,Sudoku.Strategying.Validation.ValidationFailedSeverity)">
+            <summary>
+            Represents a result why causes the failure.
+            </summary>
+            <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
+            <param name="Reason"><inheritdoc/></param>
+            <param name="Severity"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.FailPropertyName">
+            <summary>Indicates the property name that makes the validation failed.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.Reason">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.Severity">
+            <summary><inheritdoc/></summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.SuccessValidationResult">
+            <summary>
+            Represents a result that is succeeded after executed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.SuccessValidationResult.#ctor">
+            <summary>
+            Represents a result that is succeeded after executed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ValidationFailedReason">
+            <summary>
+            Represents a field that describes why the validation failed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.None">
+            <summary>
+            The placeholder of this enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.EnumerationFieldNotDefined">
+            <summary>
+            Indicates the enumeration field is not defined.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.OutOfRange">
+            <summary>
+            Indicates the value is out of range.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.AlwaysTrue">
+            <summary>
+            Indicates the value will make the condition always true.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.AlwaysFalse">
+            <summary>
+            Indicates the value will make the condition always false.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.TooStrict">
+            <summary>
+            Indicates the conditition is too strict, causing little puzzles can be checked.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ValidationFailedSeverity">
+            <summary>
+            Represents a field that describes the severity of the failure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.None">
+            <summary>
+            The placeholder of the severity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Info">
+            <summary>
+            Indicates the severity is to report information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Warning">
+            <summary>
+            Indicates the severity is to report warning.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Error">
+            <summary>
+            Indicates the severity is to report error.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ValidationResult">
+            <summary>
+            Represents a result data that describes why the validation failed.
+            </summary>
+            <param name="Success">Indicates whether the validation is passed and no error produced.</param>
+            <param name="FailPropertyNames">Indicates the failed property names to be set.</param>
+            <param name="FailedReason">Indicates the failed reason.</param>
+            <param name="FailedSeverity">Indicates the severity of the failure.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.ValidationResult.#ctor(System.Boolean,System.String,Sudoku.Strategying.Validation.ValidationFailedReason,Sudoku.Strategying.Validation.ValidationFailedSeverity)">
+            <summary>
+            Represents a result data that describes why the validation failed.
+            </summary>
+            <param name="Success">Indicates whether the validation is passed and no error produced.</param>
+            <param name="FailPropertyNames">Indicates the failed property names to be set.</param>
+            <param name="FailedReason">Indicates the failed reason.</param>
+            <param name="FailedSeverity">Indicates the severity of the failure.</param>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.Success">
+            <summary>Indicates whether the validation is passed and no error produced.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailPropertyNames">
+            <summary>Indicates the failed property names to be set.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedReason">
+            <summary>Indicates the failed reason.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedSeverity">
+            <summary>Indicates the severity of the failure.</summary>
+        </member>
+    </members>
+</doc>
