@@ -336,7 +336,6 @@ public sealed partial class LibraryPage : Page
 
 		var source = new LibraryBindableSource { IsActive = true, FileId = lib.FileId };
 		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(source);
-		((App)Application.Current).Libraries.Add(lib);
 
 		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
 

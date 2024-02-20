@@ -66,11 +66,6 @@ public partial class App : Application
 	/// </seealso>
 	internal WindowManager WindowManager { get; } = new();
 
-	/// <summary>
-	/// Indicates the internal libraries.
-	/// </summary>
-	internal List<Library> Libraries { get; } = [];
-
 
 	/// <summary>
 	/// Indicates the assembly version.
@@ -189,7 +184,7 @@ public partial class App : Application
 	{
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
-		CheckPuzzleLibraries();
+		Library.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
 		ActivateMainWindow();
 	}
 
@@ -249,26 +244,6 @@ public partial class App : Application
 		if (File.Exists(targetPath) && ProgramPreferenceFileHandler.Read(targetPath) is { } loadedConfig)
 		{
 			Preference.CoverBy(loadedConfig);
-		}
-	}
-
-	/// <summary>
-	/// Check for puzzle libraries.
-	/// </summary>
-	private void CheckPuzzleLibraries()
-	{
-		Library.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
-
-		if (CommonPaths.Library is var libFolder && Directory.Exists(libFolder))
-		{
-			foreach (var filePath in Directory.EnumerateFiles(libFolder))
-			{
-				if (io::Path.GetExtension(filePath) == FileExtensions.PuzzleLibrary
-					&& File.ReadLines(filePath).FirstOrDefault() == Library.ConfigFileHeader)
-				{
-					Libraries.Add(new(libFolder, io::Path.GetFileNameWithoutExtension(filePath)));
-				}
-			}
 		}
 	}
 

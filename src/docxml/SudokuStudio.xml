@@ -69,11 +69,6 @@
             Improved APIs for Picker/Dialog classes that implement <see cref="T:WinRT.Interop.InitializeWithWindow"/>
             </seealso>
         </member>
-        <member name="P:SudokuStudio.App.Libraries">
-            <summary>
-            Indicates the internal libraries.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -122,11 +117,6 @@
         <member name="M:SudokuStudio.App.LoadConfigurationFileFromLocal">
             <summary>
             Loads configuration file from local path.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.App.CheckPuzzleLibraries">
-            <summary>
-            Check for puzzle libraries.
             </summary>
         </member>
         <member name="M:SudokuStudio.App.ShouldSystemUseDarkMode">
@@ -317,6 +307,12 @@
             <summary>
             Indicates the display name.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.GetLibraries">
+            <summary>
+            Try to fetch all <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instances stored in the local path.
+            </summary>
+            <returns>All possible <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instances.</returns>
         </member>
         <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
             <summary>

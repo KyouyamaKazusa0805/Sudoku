@@ -90,14 +90,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// </summary>
 	private void RefreshPuzzleLibraryComboBox()
 	{
-		var libs = ((App)Application.Current).Libraries;
-		(PuzzleLibraryChoser.Visibility, LibraryPuzzleFetchButton.Visibility, LibSeparator.Visibility) = libs.Count != 0
+		var libs = LibrarySimpleBindableSource.GetLibraries();
+		(PuzzleLibraryChoser.Visibility, LibraryPuzzleFetchButton.Visibility, LibSeparator.Visibility) = libs.Length != 0
 			? (Visibility.Visible, Visibility.Visible, Visibility.Visible)
 			: (Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
 		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource(lib)).ToArray();
 
 		var lastFileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
-		PuzzleLibraryChoser.SelectedIndex = libs.FindIndex(match) is var index and not -1 ? index : 0;
+		PuzzleLibraryChoser.SelectedIndex = Array.FindIndex(libs, match) is var index and not -1 ? index : 0;
 
 
 		bool match(Library lib) => lib is { FileId: var f } && f == lastFileId;
@@ -343,7 +343,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
 				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
 				appendToLibraryTask = libraryCreated.AppendPuzzleAsync;
-				((App)Application.Current).Libraries.Add(libraryCreated);
 				break;
 			}
 		}
