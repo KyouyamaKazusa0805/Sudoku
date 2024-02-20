@@ -54,6 +54,39 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
+            <summary>
+            Represents a conclusion constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.UniversalQuantifier">
+            <summary>
+            Indicates the universal quantifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusions">
+            <summary>
+            Indicates the conclusions to be checked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.Constraint">
             <summary>
             Represents a rule that checks whether a <see cref="T:Sudoku.Concepts.Grid"/> is passed the constraint.
@@ -296,6 +329,21 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.UniversalQuantifier">
+            <summary>
+            Represents the universal quantifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.UniversalQuantifier.Any">
+            <summary>
+            Indicates the quantifier is "any".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.UniversalQuantifier.All">
+            <summary>
+            Indicates the quantifier is "all".
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.Validation.FailedValidationResult">
             <summary>
