@@ -57,5 +57,5 @@ public sealed partial class BottleneckConstraint : Constraint
 	protected internal override ValidationResult ValidateCore()
 		=> Type is BottleneckType.PuzzleBottleneck or BottleneckType.DirectBottleneck
 			? ValidationResult.Successful
-			: ValidationResult.Failed(nameof(Type), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
+			: ValidationResult.Failed(nameof(Type), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 }

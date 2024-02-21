@@ -78,22 +78,14 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 	{
 		if (UniversalQuantifier is not (UniversalQuantifier.Any or UniversalQuantifier.All))
 		{
-			return ValidationResult.Failed(
-				nameof(UniversalQuantifier),
-				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
-			);
+			return ValidationResult.Failed(nameof(UniversalQuantifier), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 		}
 
 		foreach (var element in TechniqueAppearing.Values)
 		{
 			if (element < 0)
 			{
-				return ValidationResult.Failed(
-					nameof(TechniqueAppearing),
-					ValidationReason.OutOfRange,
-					ValidationSeverity.Error
-				);
+				return ValidationResult.Failed(nameof(TechniqueAppearing), ValidationReason.OutOfRange, Severity.Error);
 			}
 		}
 

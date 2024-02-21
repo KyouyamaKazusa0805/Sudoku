@@ -80,7 +80,7 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 				return ValidationResult.Failed(
 					nameof(TechniqueAppearing),
 					ValidationReason.OutOfRange,
-					ValidationSeverity.Error
+					Severity.Error
 				);
 			}
 		}

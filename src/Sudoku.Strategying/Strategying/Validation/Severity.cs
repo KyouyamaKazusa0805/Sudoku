@@ -3,7 +3,7 @@ namespace Sudoku.Strategying.Validation;
 /// <summary>
 /// Represents a field that describes the severity of the failure.
 /// </summary>
-public enum ValidationSeverity
+public enum Severity
 {
 	/// <summary>
 	/// The placeholder of the severity.

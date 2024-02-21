@@ -67,6 +67,6 @@ public sealed partial class IttoryuConstraint : Constraint
 		=> Enum.IsDefined(Operator)
 			? Rounds is >= 0 and <= 10
 				? ValidationResult.Successful
-				: ValidationResult.Failed(nameof(Rounds), ValidationReason.OutOfRange, ValidationSeverity.Warning)
-			: ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
+				: ValidationResult.Failed(nameof(Rounds), ValidationReason.OutOfRange, Severity.Warning)
+			: ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 }

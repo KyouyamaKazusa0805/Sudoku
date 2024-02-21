@@ -12,7 +12,7 @@ public abstract record ValidationResult(
 	[property: MemberNotNullWhen(false, "FailedPropertyName")] bool IsSuccess,
 	string? FailedPropertyName,
 	ValidationReason Reason,
-	ValidationSeverity Severity
+	Severity Severity
 )
 {
 	/// <summary>
@@ -28,7 +28,7 @@ public abstract record ValidationResult(
 	/// <param name="reason">Indicates the reason why raises the failure.</param>
 	/// <param name="severity">Indicates the severity of the failure.</param>
 	/// <returns>The <see cref="ValidationResult"/> instance.</returns>
-	public static ValidationResult Failed(string failedPropertyName, ValidationReason reason, ValidationSeverity severity)
+	public static ValidationResult Failed(string failedPropertyName, ValidationReason reason, Severity severity)
 		=> new FailedValidationResult(failedPropertyName, reason, severity);
 }
 
@@ -43,5 +43,5 @@ file sealed record SuccessValidationResult() : ValidationResult(true, null, defa
 /// <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
 /// <param name="Reason"><inheritdoc cref="ValidationResult" path="/param[@name='Reason']"/></param>
 /// <param name="Severity"><inheritdoc cref="ValidationResult" path="/param[@name='Severity']"/></param>
-file sealed record FailedValidationResult(string FailPropertyName, ValidationReason Reason, ValidationSeverity Severity) :
+file sealed record FailedValidationResult(string FailPropertyName, ValidationReason Reason, Severity Severity) :
 	ValidationResult(false, FailPropertyName, Reason, Severity);

@@ -53,6 +53,6 @@ public sealed partial class CollectorTechniqueGroupConstraint : Constraint
 			: ValidationResult.Failed(
 				nameof(TechniqueGroup),
 				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
+				Severity.Error
 			);
 }

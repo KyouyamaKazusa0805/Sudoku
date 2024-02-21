@@ -56,11 +56,11 @@ public sealed partial class CountConstraint : Constraint
 		=> (CellState, Operator, LimitCount) switch
 		{
 			(_, not (>= ComparisonOperator.Equality and <= ComparisonOperator.LessThanOrEqual), _)
-				=> ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error),
+				=> ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, Severity.Error),
 			(CellState.Undefined, _, _)
-				=> ValidationResult.Failed(nameof(CellState), ValidationReason.OutOfRange, ValidationSeverity.Error),
+				=> ValidationResult.Failed(nameof(CellState), ValidationReason.OutOfRange, Severity.Error),
 			(not (CellState.Given or CellState.Modifiable or CellState.Empty), _, _)
-				=> ValidationResult.Failed(nameof(CellState), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error),
+				=> ValidationResult.Failed(nameof(CellState), ValidationReason.EnumerationFieldNotDefined, Severity.Error),
 			(not CellState.Given, _, _)
 				=> ValidationResult.Successful,
 			(_, ComparisonOperator.Equality or ComparisonOperator.Inequality, < 17 or > 81) or
@@ -68,15 +68,15 @@ public sealed partial class CountConstraint : Constraint
 			(_, ComparisonOperator.GreaterThanOrEqual, > 81) or
 			(_, ComparisonOperator.LessThan, <= 17) or
 			(_, ComparisonOperator.LessThanOrEqual, < 17)
-				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.AlwaysFalse, ValidationSeverity.Error),
+				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.AlwaysFalse, Severity.Error),
 			(_, ComparisonOperator.Equality, >= 17 and <= 22) or
 			(_, ComparisonOperator.LessThan, > 17 and <= 23) or
 			(_, ComparisonOperator.LessThanOrEqual, >= 17 and <= 22)
-				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.TooStrict, ValidationSeverity.Warning),
+				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.TooStrict, Severity.Warning),
 			(_, ComparisonOperator.GreaterThan, < 17) or
 			(_, ComparisonOperator.GreaterThanOrEqual, <= 17) or
 			(_, ComparisonOperator.LessThan, > 81) or
 			(_, ComparisonOperator.LessThanOrEqual, >= 81)
-				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.AlwaysTrue, ValidationSeverity.Warning)
+				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.AlwaysTrue, Severity.Warning)
 		};
 }

@@ -50,6 +50,6 @@ public sealed partial class AnalyzerTechniqueGroupConstraint : Constraint
 			: ValidationResult.Failed(
 				nameof(TechniqueGroup),
 				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
+				Severity.Error
 			);
 }

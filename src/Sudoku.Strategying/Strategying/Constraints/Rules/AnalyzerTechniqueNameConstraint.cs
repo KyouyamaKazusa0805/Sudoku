@@ -56,5 +56,5 @@ public sealed partial class AnalyzerTechniqueNameConstraint : Constraint
 	protected internal override ValidationResult ValidateCore()
 		=> Pattern.IsRegexPattern()
 			? ValidationResult.Successful
-			: ValidationResult.Failed(nameof(Pattern), ValidationReason.MalformedPattern, ValidationSeverity.Error);
+			: ValidationResult.Failed(nameof(Pattern), ValidationReason.MalformedPattern, Severity.Error);
 }

@@ -8,5 +8,15 @@ public enum ConflictionType
 	/// <summary>
 	/// Indicates no confliction raised.
 	/// </summary>
-	None
+	None,
+
+	/// <summary>
+	/// Indicates the value is fully covered by the other <see cref="Constraint"/>.
+	/// </summary>
+	ValueFullyCovered,
+
+	/// <summary>
+	/// Indicates the value differs.
+	/// </summary>
+	ValueDiffers
 }

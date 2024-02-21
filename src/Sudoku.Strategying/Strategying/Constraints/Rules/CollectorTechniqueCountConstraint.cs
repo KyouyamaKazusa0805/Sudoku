@@ -90,7 +90,7 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 			return ValidationResult.Failed(
 				nameof(UniversalQuantifier),
 				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
+				Severity.Error
 			);
 		}
 
@@ -101,7 +101,7 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 				return ValidationResult.Failed(
 					nameof(TechniqueAppearing),
 					ValidationReason.OutOfRange,
-					ValidationSeverity.Error
+					Severity.Error
 				);
 			}
 		}

@@ -64,6 +64,6 @@ public sealed partial class ConclusionConstraint : Constraint
 			: ValidationResult.Failed(
 				nameof(UniversalQuantifier),
 				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
+				Severity.Error
 			);
 }
