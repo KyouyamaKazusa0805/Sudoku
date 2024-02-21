@@ -38,7 +38,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// </summary>
 	/// <param name="context">Indicates the context used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Check(scoped ConstraintCheckingContext context) => ValidationResult.Success && CheckCore(context);
+	public bool Check(scoped ConstraintCheckingContext context) => ValidationResult.IsSuccess && CheckCore(context);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);

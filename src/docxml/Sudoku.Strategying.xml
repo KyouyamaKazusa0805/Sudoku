@@ -78,12 +78,6 @@
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
             <remarks><i>
@@ -92,6 +86,12 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Equality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -311,6 +311,34 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.BottleneckConstraint">
+            <summary>
+            Represents a constraint that checks whether a puzzle contains any bottleneck.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.Type">
+            <summary>
+            Indicates the type of the bottleneck will be checked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint">
@@ -547,6 +575,39 @@
             Represents a constraint that checks for diamond property.
             </summary>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
+            <summary>
+            Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
+            <summary>
+            Indicates the rounds used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">
+            <summary>
+            Indicates the operator to compare values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.PearlConstraint">
             <summary>
             Represents a constraint that checks for pearl property.
@@ -651,7 +712,7 @@
             <summary>
             Represents a result data that describes why the validation failed.
             </summary>
-            <param name="Success">Indicates whether the validation is passed and no error produced.</param>
+            <param name="IsSuccess">Indicates whether the validation is passed and no error produced.</param>
             <param name="FailedPropertyName">Indicates the failed property name to be set.</param>
             <param name="Reason">Indicates the failed reason.</param>
             <param name="Severity">Indicates the severity of the failure.</param>
@@ -661,13 +722,13 @@
             <summary>
             Represents a result data that describes why the validation failed.
             </summary>
-            <param name="Success">Indicates whether the validation is passed and no error produced.</param>
+            <param name="IsSuccess">Indicates whether the validation is passed and no error produced.</param>
             <param name="FailedPropertyName">Indicates the failed property name to be set.</param>
             <param name="Reason">Indicates the failed reason.</param>
             <param name="Severity">Indicates the severity of the failure.</param>
             <completionlist cref="T:Sudoku.Strategying.Validation.ValidationResult"/>
         </member>
-        <member name="P:Sudoku.Strategying.Validation.ValidationResult.Success">
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.IsSuccess">
             <summary>Indicates whether the validation is passed and no error produced.</summary>
         </member>
         <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedPropertyName">

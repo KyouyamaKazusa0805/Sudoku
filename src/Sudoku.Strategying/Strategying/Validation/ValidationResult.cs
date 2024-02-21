@@ -3,13 +3,13 @@ namespace Sudoku.Strategying.Validation;
 /// <summary>
 /// Represents a result data that describes why the validation failed.
 /// </summary>
-/// <param name="Success">Indicates whether the validation is passed and no error produced.</param>
+/// <param name="IsSuccess">Indicates whether the validation is passed and no error produced.</param>
 /// <param name="FailedPropertyName">Indicates the failed property name to be set.</param>
 /// <param name="Reason">Indicates the failed reason.</param>
 /// <param name="Severity">Indicates the severity of the failure.</param>
 /// <completionlist cref="ValidationResult"/>
 public abstract record ValidationResult(
-	[property: MemberNotNullWhen(false, "FailedPropertyName")] bool Success,
+	[property: MemberNotNullWhen(false, "FailedPropertyName")] bool IsSuccess,
 	string? FailedPropertyName,
 	ValidationReason Reason,
 	ValidationSeverity Severity
