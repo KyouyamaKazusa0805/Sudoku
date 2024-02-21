@@ -1,9 +1,9 @@
-﻿namespace Sudoku.Strategying.Validation;
+namespace Sudoku.Strategying.Validation;
 
 /// <summary>
 /// Represents a field that describes the severity of the failure.
 /// </summary>
-public enum ValidationFailedSeverity
+public enum ValidationSeverity
 {
 	/// <summary>
 	/// The placeholder of the severity.

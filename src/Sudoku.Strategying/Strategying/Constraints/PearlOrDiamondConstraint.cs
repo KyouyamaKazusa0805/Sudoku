@@ -6,15 +6,14 @@ namespace Sudoku.Strategying.Constraints;
 /// <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
 [GetHashCode]
 [ToString]
-public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember] bool checkPearl) :
-	Constraint
+public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember] bool checkPearl) : Constraint
 {
 	[StringMember]
 	private string CheckPearlPropertyValue => CheckPearl.ToString();
 
 
 	/// <inheritdoc/>
-	public sealed override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
+	public sealed override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
 	/// <inheritdoc/>
 	protected internal sealed override ValidationResult ValidationResult => new SuccessValidationResult();

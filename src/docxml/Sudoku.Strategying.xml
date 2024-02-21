@@ -65,7 +65,7 @@
             Indicates the techniques used.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ValidationResult">
@@ -88,7 +88,7 @@
             Represents a constraint that checks for techniques, and their appeared counts.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.UniversalQuantifier">
@@ -132,12 +132,40 @@
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint">
+            <summary>
+            Represents a constraint that checks for a technique group.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.TechniqueGroup">
+            <summary>
+            Indicates the desired technique group.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint">
             <summary>
             Represents a constraint that checks for techniques, and their appeared counts.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.TechniqueAppearing">
@@ -180,7 +208,7 @@
             Represents a constraint that checks for techniques, and their appeared counts.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.UniversalQuantifier">
@@ -224,6 +252,34 @@
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint">
+            <summary>
+            Represents a constraint that checks for a technique group.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.TechniqueGroup">
+            <summary>
+            Indicates the desired technique group.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
             Represents a conclusion constraint.
@@ -234,7 +290,7 @@
             Indicates the universal quantifier.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusions">
@@ -259,11 +315,10 @@
         </member>
         <member name="T:Sudoku.Strategying.Constraints.Constraint">
             <summary>
-            Represents a rule that checks whether a <see cref="T:Sudoku.Concepts.Grid"/> is passed the constraint.
+            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.Constraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.Constraint.CheckingProperties">
             <summary>
             Indicates the properties that will be used in constraint checking.
             </summary>
@@ -398,7 +453,7 @@
             Indicates the comparison operator.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountConstraint.ValidationResult">
@@ -448,7 +503,7 @@
             </summary>
             <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ConstraintCheckingProperties">
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ValidationResult">
@@ -491,25 +546,19 @@
             Represents a result why causes the failure.
             </summary>
             <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
-            <param name="Reason"><inheritdoc/></param>
-            <param name="Severity"><inheritdoc/></param>
+            <param name="Reason"><inheritdoc cref="T:Sudoku.Strategying.Validation.ValidationResult" path="/param[@name='Reason']"/></param>
+            <param name="Severity"><inheritdoc cref="T:Sudoku.Strategying.Validation.ValidationResult" path="/param[@name='Severity']"/></param>
         </member>
-        <member name="M:Sudoku.Strategying.Validation.FailedValidationResult.#ctor(System.String,Sudoku.Strategying.Validation.ValidationFailedReason,Sudoku.Strategying.Validation.ValidationFailedSeverity)">
+        <member name="M:Sudoku.Strategying.Validation.FailedValidationResult.#ctor(System.String,Sudoku.Strategying.Validation.ValidationReason,Sudoku.Strategying.Validation.ValidationSeverity)">
             <summary>
             Represents a result why causes the failure.
             </summary>
             <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
-            <param name="Reason"><inheritdoc/></param>
-            <param name="Severity"><inheritdoc/></param>
+            <param name="Reason"><inheritdoc cref="T:Sudoku.Strategying.Validation.ValidationResult" path="/param[@name='Reason']"/></param>
+            <param name="Severity"><inheritdoc cref="T:Sudoku.Strategying.Validation.ValidationResult" path="/param[@name='Severity']"/></param>
         </member>
         <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.FailPropertyName">
             <summary>Indicates the property name that makes the validation failed.</summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.Reason">
-            <summary><inheritdoc/></summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Validation.FailedValidationResult.Severity">
-            <summary><inheritdoc/></summary>
         </member>
         <member name="T:Sudoku.Strategying.Validation.SuccessValidationResult">
             <summary>
@@ -521,64 +570,39 @@
             Represents a result that is succeeded after executed.
             </summary>
         </member>
-        <member name="T:Sudoku.Strategying.Validation.ValidationFailedReason">
+        <member name="T:Sudoku.Strategying.Validation.ValidationReason">
             <summary>
             Represents a field that describes why the validation failed.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.None">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.None">
             <summary>
             The placeholder of this enumeration type.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.EnumerationFieldNotDefined">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.EnumerationFieldNotDefined">
             <summary>
             Indicates the enumeration field is not defined.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.OutOfRange">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.OutOfRange">
             <summary>
             Indicates the value is out of range.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.AlwaysTrue">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.AlwaysTrue">
             <summary>
             Indicates the value will make the condition always true.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.AlwaysFalse">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.AlwaysFalse">
             <summary>
             Indicates the value will make the condition always false.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedReason.TooStrict">
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.TooStrict">
             <summary>
             Indicates the conditition is too strict, causing little puzzles can be checked.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Validation.ValidationFailedSeverity">
-            <summary>
-            Represents a field that describes the severity of the failure.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.None">
-            <summary>
-            The placeholder of the severity.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Info">
-            <summary>
-            Indicates the severity is to report information.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Warning">
-            <summary>
-            Indicates the severity is to report warning.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Validation.ValidationFailedSeverity.Error">
-            <summary>
-            Indicates the severity is to report error.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.Validation.ValidationResult">
@@ -586,30 +610,55 @@
             Represents a result data that describes why the validation failed.
             </summary>
             <param name="Success">Indicates whether the validation is passed and no error produced.</param>
-            <param name="FailPropertyNames">Indicates the failed property names to be set.</param>
-            <param name="FailedReason">Indicates the failed reason.</param>
-            <param name="FailedSeverity">Indicates the severity of the failure.</param>
+            <param name="FailedPropertyNames">Indicates the failed property names to be set.</param>
+            <param name="Reason">Indicates the failed reason.</param>
+            <param name="Severity">Indicates the severity of the failure.</param>
         </member>
-        <member name="M:Sudoku.Strategying.Validation.ValidationResult.#ctor(System.Boolean,System.String,Sudoku.Strategying.Validation.ValidationFailedReason,Sudoku.Strategying.Validation.ValidationFailedSeverity)">
+        <member name="M:Sudoku.Strategying.Validation.ValidationResult.#ctor(System.Boolean,System.String,Sudoku.Strategying.Validation.ValidationReason,Sudoku.Strategying.Validation.ValidationSeverity)">
             <summary>
             Represents a result data that describes why the validation failed.
             </summary>
             <param name="Success">Indicates whether the validation is passed and no error produced.</param>
-            <param name="FailPropertyNames">Indicates the failed property names to be set.</param>
-            <param name="FailedReason">Indicates the failed reason.</param>
-            <param name="FailedSeverity">Indicates the severity of the failure.</param>
+            <param name="FailedPropertyNames">Indicates the failed property names to be set.</param>
+            <param name="Reason">Indicates the failed reason.</param>
+            <param name="Severity">Indicates the severity of the failure.</param>
         </member>
         <member name="P:Sudoku.Strategying.Validation.ValidationResult.Success">
             <summary>Indicates whether the validation is passed and no error produced.</summary>
         </member>
-        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailPropertyNames">
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedPropertyNames">
             <summary>Indicates the failed property names to be set.</summary>
         </member>
-        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedReason">
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.Reason">
             <summary>Indicates the failed reason.</summary>
         </member>
-        <member name="P:Sudoku.Strategying.Validation.ValidationResult.FailedSeverity">
+        <member name="P:Sudoku.Strategying.Validation.ValidationResult.Severity">
             <summary>Indicates the severity of the failure.</summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ValidationSeverity">
+            <summary>
+            Represents a field that describes the severity of the failure.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationSeverity.None">
+            <summary>
+            The placeholder of the severity.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationSeverity.Info">
+            <summary>
+            Indicates the severity is to report information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationSeverity.Warning">
+            <summary>
+            Indicates the severity is to report warning.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationSeverity.Error">
+            <summary>
+            Indicates the severity is to report error.
+            </summary>
         </member>
     </members>
 </doc>

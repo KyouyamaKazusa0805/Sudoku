@@ -15,7 +15,7 @@ public sealed partial class ConclusionConstraint : Constraint
 	public required UniversalQuantifier UniversalQuantifier { get; set; }
 
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
+	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
 	/// <summary>
 	/// Indicates the conclusions to be checked.
@@ -30,8 +30,8 @@ public sealed partial class ConclusionConstraint : Constraint
 			? new SuccessValidationResult()
 			: new FailedValidationResult(
 				nameof(UniversalQuantifier),
-				ValidationFailedReason.EnumerationFieldNotDefined,
-				ValidationFailedSeverity.Error
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Error
 			);
 
 

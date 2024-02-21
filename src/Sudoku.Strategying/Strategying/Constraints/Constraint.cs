@@ -1,12 +1,19 @@
 namespace Sudoku.Strategying.Constraints;
 
 /// <summary>
-/// Represents a rule that checks whether a <see cref="Grid"/> is passed the constraint.
+/// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
 /// </summary>
-/// <seealso cref="Grid"/>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$typeid", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
-[JsonDerivedType(typeof(CountConstraint), nameof(CountConstraint))]
 [JsonDerivedType(typeof(AnalyzerTechniqueConstraint), nameof(AnalyzerTechniqueConstraint))]
+[JsonDerivedType(typeof(AnalyzerTechniqueCountConstraint), nameof(AnalyzerTechniqueCountConstraint))]
+[JsonDerivedType(typeof(AnalyzerTechniqueGroupConstraint), nameof(AnalyzerTechniqueGroupConstraint))]
+[JsonDerivedType(typeof(CollectorTechniqueConstraint), nameof(CollectorTechniqueConstraint))]
+[JsonDerivedType(typeof(CollectorTechniqueCountConstraint), nameof(CollectorTechniqueCountConstraint))]
+[JsonDerivedType(typeof(CollectorTechniqueGroupConstraint), nameof(CollectorTechniqueGroupConstraint))]
+[JsonDerivedType(typeof(ConclusionConstraint), nameof(ConclusionConstraint))]
+[JsonDerivedType(typeof(CountConstraint), nameof(CountConstraint))]
+[JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))]
+[JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
 [Equals(OtherModifiers = "sealed")]
 [EqualityOperators]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
@@ -14,7 +21,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// <summary>
 	/// Indicates the properties that will be used in constraint checking.
 	/// </summary>
-	public abstract ConstraintCheckingProperty ConstraintCheckingProperties { get; }
+	public abstract ConstraintCheckingProperty CheckingProperties { get; }
 
 	/// <summary>
 	/// Indicates the validation result.

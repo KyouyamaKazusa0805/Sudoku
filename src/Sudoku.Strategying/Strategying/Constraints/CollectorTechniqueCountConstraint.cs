@@ -7,7 +7,7 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class CollectorTechniqueCountConstraint : Constraint
 {
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.CollectorResult;
+	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.CollectorResult;
 
 	/// <summary>
 	/// Indicates the universal quantifier.
@@ -33,8 +33,8 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 			{
 				return new FailedValidationResult(
 					nameof(UniversalQuantifier),
-					ValidationFailedReason.EnumerationFieldNotDefined,
-					ValidationFailedSeverity.Error
+					ValidationReason.EnumerationFieldNotDefined,
+					ValidationSeverity.Error
 				);
 			}
 
@@ -44,8 +44,8 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 				{
 					return new FailedValidationResult(
 						nameof(TechniqueAppearing),
-						ValidationFailedReason.OutOfRange,
-						ValidationFailedSeverity.Error
+						ValidationReason.OutOfRange,
+						ValidationSeverity.Error
 					);
 				}
 			}
@@ -86,21 +86,30 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 	/// <inheritdoc/>
 	protected internal override bool CheckCore(ConstraintCheckingContext context)
 	{
-		if (!context.RequiresAnalyzer)
+		if (!context.RequiresCollector)
 		{
 			return false;
 		}
 
 		var dic = new Dictionary<Technique, int>();
-		foreach (var step in context.AnalyzerResult)
+		foreach (var stepArray in context.CollectorResult)
 		{
-			if (!dic.TryAdd(step.Code, 1))
+			dic.Clear();
+			foreach (var step in stepArray)
 			{
-				dic[step.Code]++;
+				if (!dic.TryAdd(step.Code, 1))
+				{
+					dic[step.Code]++;
+				}
+			}
+
+			if (DictionaryEquals(dic, TechniqueAppearing, UniversalQuantifier))
+			{
+				return true;
 			}
 		}
 
-		return DictionaryEquals(dic, TechniqueAppearing, UniversalQuantifier);
+		return false;
 	}
 
 

@@ -7,7 +7,7 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 {
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
+	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
 	/// <summary>
 	/// Indicates the universal quantifier.
@@ -33,8 +33,8 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 			{
 				return new FailedValidationResult(
 					nameof(UniversalQuantifier),
-					ValidationFailedReason.EnumerationFieldNotDefined,
-					ValidationFailedSeverity.Error
+					ValidationReason.EnumerationFieldNotDefined,
+					ValidationSeverity.Error
 				);
 			}
 
@@ -44,8 +44,8 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 				{
 					return new FailedValidationResult(
 						nameof(TechniqueAppearing),
-						ValidationFailedReason.OutOfRange,
-						ValidationFailedSeverity.Error
+						ValidationReason.OutOfRange,
+						ValidationSeverity.Error
 					);
 				}
 			}

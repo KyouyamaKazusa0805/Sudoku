@@ -7,7 +7,7 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class CollectorTechniqueConstraint : Constraint
 {
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.CollectorResult;
+	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.CollectorResult;
 
 	/// <summary>
 	/// Indicates the dictionary that stores the appearing cases on each technique.
@@ -30,8 +30,8 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 				{
 					return new FailedValidationResult(
 						nameof(TechniqueAppearing),
-						ValidationFailedReason.OutOfRange,
-						ValidationFailedSeverity.Error
+						ValidationReason.OutOfRange,
+						ValidationSeverity.Error
 					);
 				}
 			}

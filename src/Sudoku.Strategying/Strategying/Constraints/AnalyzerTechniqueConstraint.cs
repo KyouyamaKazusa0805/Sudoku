@@ -14,7 +14,7 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 	public required Technique[] Techniques { get; set; }
 
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
+	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
 	/// <inheritdoc/>
 	protected internal override ValidationResult ValidationResult
@@ -22,8 +22,8 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 			? new SuccessValidationResult()
 			: new FailedValidationResult(
 				nameof(Techniques),
-				ValidationFailedReason.EnumerationFieldNotDefined,
-				ValidationFailedSeverity.Warning
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Warning
 			);
 
 	[HashCodeMember]

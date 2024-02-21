@@ -3,7 +3,7 @@ namespace Sudoku.Strategying.Validation;
 /// <summary>
 /// Represents a field that describes why the validation failed.
 /// </summary>
-public enum ValidationFailedReason
+public enum ValidationReason
 {
 	/// <summary>
 	/// The placeholder of this enumeration type.
