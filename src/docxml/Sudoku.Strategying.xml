@@ -64,11 +64,6 @@
             Indicates the properties that will be used in constraint checking.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.Constraint.ValidationResult">
-            <summary>
-            Indicates the validation result.
-            </summary>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <summary>
             Determine whether the specified grid is passed the constraint.
@@ -90,6 +85,12 @@
             <remarks><i>
             This method only handles for the core rule of the type, which means we should suppose the values are valid.
             </i></remarks>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ValidateCore">
+            <summary>
+            Verifies the validity of properties set.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Strategying.Validation.ValidationResult"/> instance describing the final result on validation.</returns>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.ConflictWithCore(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.ConflictWith(Sudoku.Strategying.Constraints.Constraint)"/>
@@ -199,13 +200,13 @@
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.GetHashCode">
@@ -237,9 +238,6 @@
             </remarks>
             <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -247,6 +245,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
@@ -276,13 +277,13 @@
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.GetHashCode">
@@ -309,13 +310,13 @@
             Indicates the current culture.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.GetHashCode">
@@ -337,13 +338,13 @@
         <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.GetHashCode">
@@ -370,9 +371,6 @@
             </remarks>
             <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -380,6 +378,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.DictionaryEquals``2(``0,``1)">
@@ -418,9 +419,6 @@
             </remarks>
             <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -428,6 +426,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
@@ -457,13 +458,13 @@
         <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.GetHashCode">
@@ -490,13 +491,13 @@
             Indicates the current culture.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.GetHashCode">
@@ -523,13 +524,13 @@
             Indicates the conclusions to be checked.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
@@ -561,13 +562,13 @@
         <member name="P:Sudoku.Strategying.Constraints.CountConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountConstraint.GetHashCode">
@@ -604,13 +605,13 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
@@ -644,13 +645,13 @@
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdocs/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ValidateCore">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">

@@ -31,8 +31,28 @@ public sealed partial class CountConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.Grid;
 
+	
 	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
+	public override bool Equals([NotNullWhen(true)] Constraint? other)
+		=> other is CountConstraint comparer
+		&& (CellState, LimitCount, Operator) == (comparer.CellState, comparer.LimitCount, comparer.Operator);
+
+	/// <inheritdoc/>
+	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+	{
+		scoped ref readonly var grid = ref context.Grid;
+		var @operator = Operator.GetOperator<int>();
+		var factCount = CellState switch
+		{
+			CellState.Empty => grid.EmptiesCount,
+			CellState.Modifiable => grid.ModifiablesCount,
+			_ => grid.GivensCount
+		};
+		return @operator(factCount, LimitCount);
+	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
 		=> (CellState, Operator, LimitCount) switch
 		{
 			(_, not (>= ComparisonOperator.Equality and <= ComparisonOperator.LessThanOrEqual), _)
@@ -59,24 +79,4 @@ public sealed partial class CountConstraint : Constraint
 			(_, ComparisonOperator.LessThanOrEqual, >= 81)
 				=> ValidationResult.Failed(nameof(LimitCount), ValidationReason.AlwaysTrue, ValidationSeverity.Warning)
 		};
-
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is CountConstraint comparer
-		&& (CellState, LimitCount, Operator) == (comparer.CellState, comparer.LimitCount, comparer.Operator);
-
-	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
-	{
-		scoped ref readonly var grid = ref context.Grid;
-		var @operator = Operator.GetOperator<int>();
-		var factCount = CellState switch
-		{
-			CellState.Empty => grid.EmptiesCount,
-			CellState.Modifiable => grid.ModifiablesCount,
-			_ => grid.GivensCount
-		};
-		return @operator(factCount, LimitCount);
-	}
 }

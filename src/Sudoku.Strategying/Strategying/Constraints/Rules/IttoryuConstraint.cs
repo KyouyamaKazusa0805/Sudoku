@@ -23,14 +23,6 @@ public sealed partial class IttoryuConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Enum.IsDefined(Operator)
-			? Rounds is >= 0 and <= 10
-				? ValidationResult.Successful
-				: ValidationResult.Failed(nameof(Rounds), ValidationReason.OutOfRange, ValidationSeverity.Warning)
-			: ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
-
 	[StringMember]
 	private string RoundsString => Rounds.ToString();
 
@@ -69,4 +61,12 @@ public sealed partial class IttoryuConstraint : Constraint
 
 		return Operator.GetOperator<int>()(roundsCount, Rounds);
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Enum.IsDefined(Operator)
+			? Rounds is >= 0 and <= 10
+				? ValidationResult.Successful
+				: ValidationResult.Failed(nameof(Rounds), ValidationReason.OutOfRange, ValidationSeverity.Warning)
+			: ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
 }

@@ -27,18 +27,13 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// </summary>
 	public abstract ConstraintCheckingProperty CheckingProperties { get; }
 
-	/// <summary>
-	/// Indicates the validation result.
-	/// </summary>
-	protected internal abstract ValidationResult ValidationResult { get; }
-
 
 	/// <summary>
 	/// Determine whether the specified grid is passed the constraint.
 	/// </summary>
 	/// <param name="context">Indicates the context used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Check(scoped ConstraintCheckingContext context) => ValidationResult.IsSuccess && CheckCore(context);
+	public bool Check(scoped ConstraintCheckingContext context) => ValidateCore().IsSuccess && CheckCore(context);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
@@ -56,6 +51,12 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// This method only handles for the core rule of the type, which means we should suppose the values are valid.
 	/// </i></remarks>
 	protected internal abstract bool CheckCore(scoped ConstraintCheckingContext context);
+
+	/// <summary>
+	/// Verifies the validity of properties set.
+	/// </summary>
+	/// <returns>A <see cref="ValidationResult"/> instance describing the final result on validation.</returns>
+	protected internal abstract ValidationResult ValidateCore();
 
 	/// <inheritdoc cref="ConflictWith(Constraint)"/>
 	/// <remarks><inheritdoc cref="CheckCore(ConstraintCheckingContext)" path="/remarks"/></remarks>

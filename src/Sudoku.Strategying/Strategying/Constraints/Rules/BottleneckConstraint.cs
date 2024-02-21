@@ -16,12 +16,6 @@ public sealed partial class BottleneckConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Type is BottleneckType.PuzzleBottleneck or BottleneckType.DirectBottleneck
-			? ValidationResult.Successful
-			: ValidationResult.Failed(nameof(Type), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
-
 	[StringMember]
 	private string TypeString => Type.ToString();
 
@@ -58,4 +52,10 @@ public sealed partial class BottleneckConstraint : Constraint
 
 		static bool directViewBottleneckMatcher(Step step) => step is HiddenSingleStep { House: >= 9 } or NakedSingleStep;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Type is BottleneckType.PuzzleBottleneck or BottleneckType.DirectBottleneck
+			? ValidationResult.Successful
+			: ValidationResult.Failed(nameof(Type), ValidationReason.EnumerationFieldNotDefined, ValidationSeverity.Error);
 }

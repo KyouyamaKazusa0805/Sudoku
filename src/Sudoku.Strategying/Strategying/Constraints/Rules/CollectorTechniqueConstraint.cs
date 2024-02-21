@@ -19,27 +19,6 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 	/// <seealso cref="FrozenDictionary"/>
 	public required FrozenDictionary<Technique, int> TechniqueAppearing { get; set; }
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-	{
-		get
-		{
-			foreach (var element in TechniqueAppearing.Values)
-			{
-				if (element < 0)
-				{
-					return ValidationResult.Failed(
-						nameof(TechniqueAppearing),
-						ValidationReason.OutOfRange,
-						ValidationSeverity.Error
-					);
-				}
-			}
-
-			return ValidationResult.Successful;
-		}
-	}
-
 	[StringMember]
 	private string TechniqueAppearingString
 		=> string.Join(
@@ -89,6 +68,24 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 		}
 
 		return DictionaryEquals(dic, TechniqueAppearing);
+	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+	{
+		foreach (var element in TechniqueAppearing.Values)
+		{
+			if (element < 0)
+			{
+				return ValidationResult.Failed(
+					nameof(TechniqueAppearing),
+					ValidationReason.OutOfRange,
+					ValidationSeverity.Error
+				);
+			}
+		}
+
+		return ValidationResult.Successful;
 	}
 
 

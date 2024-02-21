@@ -16,16 +16,6 @@ public sealed partial class AnalyzerTechniqueGroupConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.CollectorResult;
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Enum.IsDefined(TechniqueGroup)
-			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(TechniqueGroup),
-				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
-			);
-
 	[StringMember]
 	private string TechniqueGroupString => TechniqueGroup.GetName();
 
@@ -52,4 +42,14 @@ public sealed partial class AnalyzerTechniqueGroupConstraint : Constraint
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Enum.IsDefined(TechniqueGroup)
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
+				nameof(TechniqueGroup),
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Error
+			);
 }

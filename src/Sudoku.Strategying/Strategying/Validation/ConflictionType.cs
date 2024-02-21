@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Strategying.Validation;
+namespace Sudoku.Strategying.Validation;
 
 /// <summary>
 /// Indicates the confliction type.

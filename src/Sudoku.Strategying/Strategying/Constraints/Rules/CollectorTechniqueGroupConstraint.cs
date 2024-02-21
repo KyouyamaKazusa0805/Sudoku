@@ -16,16 +16,6 @@ public sealed partial class CollectorTechniqueGroupConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Enum.IsDefined(TechniqueGroup)
-			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(TechniqueGroup),
-				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
-			);
-
 	[StringMember]
 	private string TechniqueGroupString => TechniqueGroup.GetName();
 
@@ -55,4 +45,14 @@ public sealed partial class CollectorTechniqueGroupConstraint : Constraint
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Enum.IsDefined(TechniqueGroup)
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
+				nameof(TechniqueGroup),
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Error
+			);
 }

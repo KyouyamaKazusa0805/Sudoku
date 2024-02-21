@@ -16,16 +16,6 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Array.TrueForAll(Techniques, Enum.IsDefined)
-			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(Techniques),
-				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Warning
-			);
-
 	[HashCodeMember]
 	private int TechniquesHashCode
 	{
@@ -68,4 +58,14 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Array.TrueForAll(Techniques, Enum.IsDefined)
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
+				nameof(Techniques),
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Warning
+			);
 }

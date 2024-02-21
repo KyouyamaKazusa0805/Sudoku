@@ -24,36 +24,6 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 	/// <seealso cref="FrozenDictionary"/>
 	public required FrozenDictionary<Technique, int> TechniqueAppearing { get; set; }
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-	{
-		get
-		{
-			if (UniversalQuantifier is not (UniversalQuantifier.Any or UniversalQuantifier.All))
-			{
-				return ValidationResult.Failed(
-					nameof(UniversalQuantifier),
-					ValidationReason.EnumerationFieldNotDefined,
-					ValidationSeverity.Error
-				);
-			}
-
-			foreach (var element in TechniqueAppearing.Values)
-			{
-				if (element < 0)
-				{
-					return ValidationResult.Failed(
-						nameof(TechniqueAppearing),
-						ValidationReason.OutOfRange,
-						ValidationSeverity.Error
-					);
-				}
-			}
-
-			return ValidationResult.Successful;
-		}
-	}
-
 	[StringMember]
 	private string TechniqueAppearingString
 		=> string.Join(
@@ -101,6 +71,33 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 		}
 
 		return DictionaryEquals(dic, TechniqueAppearing, UniversalQuantifier);
+	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+	{
+		if (UniversalQuantifier is not (UniversalQuantifier.Any or UniversalQuantifier.All))
+		{
+			return ValidationResult.Failed(
+				nameof(UniversalQuantifier),
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Error
+			);
+		}
+
+		foreach (var element in TechniqueAppearing.Values)
+		{
+			if (element < 0)
+			{
+				return ValidationResult.Failed(
+					nameof(TechniqueAppearing),
+					ValidationReason.OutOfRange,
+					ValidationSeverity.Error
+				);
+			}
+		}
+
+		return ValidationResult.Successful;
 	}
 
 

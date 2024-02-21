@@ -24,12 +24,6 @@ public sealed partial class AnalyzerTechniqueNameConstraint : Constraint
 	[HashCodeMember]
 	public required CultureInfo CurrentCulture { get; set; }
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> Pattern.IsRegexPattern()
-			? ValidationResult.Successful
-			: ValidationResult.Failed(nameof(Pattern), ValidationReason.MalformedPattern, ValidationSeverity.Error);
-
 	[StringMember]
 	private string CurrentCultureString => CurrentCulture.ToString();
 
@@ -57,4 +51,10 @@ public sealed partial class AnalyzerTechniqueNameConstraint : Constraint
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> Pattern.IsRegexPattern()
+			? ValidationResult.Successful
+			: ValidationResult.Failed(nameof(Pattern), ValidationReason.MalformedPattern, ValidationSeverity.Error);
 }

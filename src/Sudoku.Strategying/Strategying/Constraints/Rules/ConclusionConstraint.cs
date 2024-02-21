@@ -24,16 +24,6 @@ public sealed partial class ConclusionConstraint : Constraint
 	[StringMember]
 	public required Conclusion[] Conclusions { get; set; }
 
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidationResult
-		=> UniversalQuantifier is UniversalQuantifier.Any or UniversalQuantifier.All
-			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(UniversalQuantifier),
-				ValidationReason.EnumerationFieldNotDefined,
-				ValidationSeverity.Error
-			);
-
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
@@ -66,4 +56,14 @@ public sealed partial class ConclusionConstraint : Constraint
 
 		return UniversalQuantifier == UniversalQuantifier.All;
 	}
+
+	/// <inheritdoc/>
+	protected internal override ValidationResult ValidateCore()
+		=> UniversalQuantifier is UniversalQuantifier.Any or UniversalQuantifier.All
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
+				nameof(UniversalQuantifier),
+				ValidationReason.EnumerationFieldNotDefined,
+				ValidationSeverity.Error
+			);
 }

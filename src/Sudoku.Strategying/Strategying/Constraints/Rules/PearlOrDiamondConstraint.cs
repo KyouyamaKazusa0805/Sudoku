@@ -8,15 +8,11 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember] bool checkPearl) : Constraint
 {
-	[StringMember]
-	private string CheckPearlPropertyValue => CheckPearl.ToString();
-
-
 	/// <inheritdoc/>
 	public sealed override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
-	/// <inheritdoc/>
-	protected internal sealed override ValidationResult ValidationResult => ValidationResult.Successful;
+	[StringMember]
+	private string CheckPearlPropertyValue => CheckPearl.ToString();
 
 
 	/// <inheritdocs/>
@@ -35,4 +31,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		var isDiamond = context.AnalyzerResult.IsDiamond;
 		return (CheckPearl ? isPearl : isDiamond) ?? false;
 	}
+
+	/// <inheritdoc/>
+	protected internal sealed override ValidationResult ValidateCore() => ValidationResult.Successful;
 }
