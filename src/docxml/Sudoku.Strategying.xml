@@ -93,6 +93,28 @@
             </summary>
             <returns>A <see cref="T:Sudoku.Strategying.Validation.ValidationResult"/> instance describing the final result on validation.</returns>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">The universal quantifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryGreaterThanOrEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">The universal quantifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -250,17 +272,6 @@
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ValidateCore">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <param name="universalQuantifier">The universal quantifier.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -361,6 +372,11 @@
         <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckingProperties">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.UniversalQuantifier">
+            <summary>
+            Indicates the universal quantifier.
+            </summary>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.TechniqueAppearing">
             <summary>
             Indicates the dictionary that stores the appearing cases on each technique.
@@ -382,16 +398,6 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ValidateCore">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.DictionaryEquals``2(``0,``1)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -430,17 +436,6 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ValidateCore">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <param name="universalQuantifier">Indicates the universal quanitifier.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

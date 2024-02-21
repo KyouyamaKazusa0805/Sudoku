@@ -66,8 +66,7 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 			return false;
 		}
 
-		var result = context.AnalyzerResult;
-		foreach (var step in result)
+		foreach (var step in context.AnalyzerResult)
 		{
 			if (Array.IndexOf(Techniques, step.Code) != -1)
 			{

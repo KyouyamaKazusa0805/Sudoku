@@ -61,9 +61,5 @@ public sealed partial class ConclusionConstraint : Constraint
 	protected internal override ValidationResult ValidateCore()
 		=> UniversalQuantifier is UniversalQuantifier.Any or UniversalQuantifier.All
 			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(UniversalQuantifier),
-				ValidationReason.EnumerationFieldNotDefined,
-				Severity.Error
-			);
+			: ValidationResult.Failed(nameof(UniversalQuantifier), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 }

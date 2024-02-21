@@ -73,7 +73,7 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 				}
 			}
 
-			if (DictionaryEquals(dic, TechniqueAppearing, UniversalQuantifier))
+			if (DictionaryGreaterThanOrEquals(dic, TechniqueAppearing, UniversalQuantifier))
 			{
 				return true;
 			}
@@ -107,45 +107,5 @@ public sealed partial class CollectorTechniqueCountConstraint : Constraint
 		}
 
 		return ValidationResult.Successful;
-	}
-
-
-	/// <summary>
-	/// Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-	/// </summary>
-	/// <typeparam name="T1">The type of the first dictionary.</typeparam>
-	/// <typeparam name="T2">The type of the second dictionary.</typeparam>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <param name="universalQuantifier">Indicates the universal quanitifier.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool DictionaryEquals<T1, T2>(T1 left, T2 right, UniversalQuantifier universalQuantifier)
-		where T1 : IDictionary<Technique, int>
-		where T2 : IDictionary<Technique, int>
-	{
-		if (left.Count != right.Count)
-		{
-			return false;
-		}
-
-		foreach (var key in left.Keys)
-		{
-			if (universalQuantifier == UniversalQuantifier.All)
-			{
-				if (!right.TryGetValue(key, out var v) || v != left[key])
-				{
-					return false;
-				}
-			}
-			else
-			{
-				if (right.TryGetValue(key, out var v) && v == left[key])
-				{
-					return true;
-				}
-			}
-		}
-
-		return universalQuantifier == UniversalQuantifier.All;
 	}
 }

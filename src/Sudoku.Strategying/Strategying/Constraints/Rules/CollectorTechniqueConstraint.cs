@@ -10,6 +10,12 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.CollectorResult;
 
 	/// <summary>
+	/// Indicates the universal quantifier.
+	/// </summary>
+	[StringMember]
+	public required UniversalQuantifier UniversalQuantifier { get; set; }
+
+	/// <summary>
 	/// Indicates the dictionary that stores the appearing cases on each technique.
 	/// </summary>
 	/// <remarks>
@@ -32,12 +38,15 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is CollectorTechniqueConstraint comparer && DictionaryEquals(TechniqueAppearing, comparer.TechniqueAppearing);
+		=> other is CollectorTechniqueConstraint comparer
+		&& DictionaryEquals(TechniqueAppearing, comparer.TechniqueAppearing, UniversalQuantifier.All);
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
 		var hashCode = new HashCode();
+		hashCode.Add(UniversalQuantifier);
+
 		foreach (var (technique, count) in TechniqueAppearing)
 		{
 			hashCode.Add(technique);
@@ -67,7 +76,7 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 			}
 		}
 
-		return DictionaryEquals(dic, TechniqueAppearing);
+		return DictionaryGreaterThanOrEquals(dic, TechniqueAppearing, UniversalQuantifier);
 	}
 
 	/// <inheritdoc/>
@@ -86,34 +95,5 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 		}
 
 		return ValidationResult.Successful;
-	}
-
-
-	/// <summary>
-	/// Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-	/// </summary>
-	/// <typeparam name="T1">The type of the first dictionary.</typeparam>
-	/// <typeparam name="T2">The type of the second dictionary.</typeparam>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool DictionaryEquals<T1, T2>(T1 left, T2 right)
-		where T1 : IDictionary<Technique, int>
-		where T2 : IDictionary<Technique, int>
-	{
-		if (left.Count != right.Count)
-		{
-			return false;
-		}
-
-		foreach (var key in left.Keys)
-		{
-			if (!right.TryGetValue(key, out var v) || v != left[key])
-			{
-				return false;
-			}
-		}
-
-		return true;
 	}
 }

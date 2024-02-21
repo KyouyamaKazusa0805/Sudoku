@@ -50,9 +50,5 @@ public sealed partial class CollectorTechniqueGroupConstraint : Constraint
 	protected internal override ValidationResult ValidateCore()
 		=> Enum.IsDefined(TechniqueGroup)
 			? ValidationResult.Successful
-			: ValidationResult.Failed(
-				nameof(TechniqueGroup),
-				ValidationReason.EnumerationFieldNotDefined,
-				Severity.Error
-			);
+			: ValidationResult.Failed(nameof(TechniqueGroup), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 }
