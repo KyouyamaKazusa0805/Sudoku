@@ -73,13 +73,15 @@
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConflictionCore(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
             <summary>
             Determine whether the current constraint will raise a confliction with the specified constraint.
+            By default, the method always return <see cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>.
             </summary>
             <param name="other">The constraint to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating whether the current constraint will conflict with the specified one.</returns>
             <remarks><inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)" path="/remarks"/></remarks>
+            <seealso cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
@@ -222,7 +224,7 @@
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.VerifyConflictionCore(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">

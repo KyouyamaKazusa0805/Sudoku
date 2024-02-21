@@ -40,7 +40,7 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 		=> other is AnalyzerTechniqueConstraint comparer && Techniques.AsTechniqueSet() == comparer.Techniques.AsTechniqueSet();
 
 	/// <inheritdoc/>
-	public override ConflictionResult VerifyConflictionCore(Constraint other)
+	public override ConflictionResult VerifyConfliction(Constraint other)
 	{
 		if (other is not AnalyzerTechniqueCountConstraint { UniversalQuantifier: UniversalQuantifier.All, TechniqueAppearing.Keys: var techniques })
 		{

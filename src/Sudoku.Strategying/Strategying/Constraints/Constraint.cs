@@ -42,11 +42,13 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <summary>
 	/// Determine whether the current constraint will raise a confliction with the specified constraint.
+	/// By default, the method always return <see cref="ConflictionResult.Successful"/>.
 	/// </summary>
 	/// <param name="other">The constraint to be checked.</param>
 	/// <returns>A <see cref="bool"/> indicating whether the current constraint will conflict with the specified one.</returns>
 	/// <remarks><inheritdoc cref="CheckCore(ConstraintCheckingContext)" path="/remarks"/></remarks>
-	public virtual ConflictionResult VerifyConflictionCore(Constraint other) => ConflictionResult.Successful;
+	/// <seealso cref="ConflictionResult.Successful"/>
+	public virtual ConflictionResult VerifyConfliction(Constraint other) => ConflictionResult.Successful;
 
 	/// <inheritdoc cref="Check"/>
 	/// <remarks><i>
