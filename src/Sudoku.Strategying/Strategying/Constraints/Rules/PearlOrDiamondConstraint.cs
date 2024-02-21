@@ -16,7 +16,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	public sealed override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
 
 	/// <inheritdoc/>
-	protected internal sealed override ValidationResult ValidationResult => new SuccessValidationResult();
+	protected internal sealed override ValidationResult ValidationResult => ValidationResult.Successful;
 
 
 	/// <inheritdocs/>

@@ -31,7 +31,7 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 		{
 			if (UniversalQuantifier is not (UniversalQuantifier.Any or UniversalQuantifier.All))
 			{
-				return new FailedValidationResult(
+				return ValidationResult.Failed(
 					nameof(UniversalQuantifier),
 					ValidationReason.EnumerationFieldNotDefined,
 					ValidationSeverity.Error
@@ -42,7 +42,7 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 			{
 				if (element < 0)
 				{
-					return new FailedValidationResult(
+					return ValidationResult.Failed(
 						nameof(TechniqueAppearing),
 						ValidationReason.OutOfRange,
 						ValidationSeverity.Error
@@ -50,7 +50,7 @@ public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 				}
 			}
 
-			return new SuccessValidationResult();
+			return ValidationResult.Successful;
 		}
 	}
 

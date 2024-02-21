@@ -27,8 +27,8 @@ public sealed partial class ConclusionConstraint : Constraint
 	/// <inheritdoc/>
 	protected internal override ValidationResult ValidationResult
 		=> UniversalQuantifier is UniversalQuantifier.Any or UniversalQuantifier.All
-			? new SuccessValidationResult()
-			: new FailedValidationResult(
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
 				nameof(UniversalQuantifier),
 				ValidationReason.EnumerationFieldNotDefined,
 				ValidationSeverity.Error

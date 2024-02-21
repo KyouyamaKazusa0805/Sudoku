@@ -28,7 +28,7 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 			{
 				if (element < 0)
 				{
-					return new FailedValidationResult(
+					return ValidationResult.Failed(
 						nameof(TechniqueAppearing),
 						ValidationReason.OutOfRange,
 						ValidationSeverity.Error
@@ -36,7 +36,7 @@ public sealed partial class CollectorTechniqueConstraint : Constraint
 				}
 			}
 
-			return new SuccessValidationResult();
+			return ValidationResult.Successful;
 		}
 	}
 

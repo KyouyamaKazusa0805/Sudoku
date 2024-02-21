@@ -7,6 +7,7 @@ namespace Sudoku.Strategying.Validation;
 /// <param name="FailedPropertyName">Indicates the failed property name to be set.</param>
 /// <param name="Reason">Indicates the failed reason.</param>
 /// <param name="Severity">Indicates the severity of the failure.</param>
+/// <completionlist cref="ValidationResult"/>
 public abstract record ValidationResult(
 	[property: MemberNotNullWhen(false, "FailedPropertyName")] bool Success,
 	string? FailedPropertyName,
@@ -30,3 +31,17 @@ public abstract record ValidationResult(
 	public static ValidationResult Failed(string failedPropertyName, ValidationReason reason, ValidationSeverity severity)
 		=> new FailedValidationResult(failedPropertyName, reason, severity);
 }
+
+/// <summary>
+/// Represents a result that is succeeded after executed.
+/// </summary>
+file sealed record SuccessValidationResult() : ValidationResult(true, null, default, default);
+
+/// <summary>
+/// Represents a result why causes the failure.
+/// </summary>
+/// <param name="FailPropertyName">Indicates the property name that makes the validation failed.</param>
+/// <param name="Reason"><inheritdoc cref="ValidationResult" path="/param[@name='Reason']"/></param>
+/// <param name="Severity"><inheritdoc cref="ValidationResult" path="/param[@name='Severity']"/></param>
+file sealed record FailedValidationResult(string FailPropertyName, ValidationReason Reason, ValidationSeverity Severity) :
+	ValidationResult(false, FailPropertyName, Reason, Severity);

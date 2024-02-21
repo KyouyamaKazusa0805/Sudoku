@@ -19,8 +19,8 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 	/// <inheritdoc/>
 	protected internal override ValidationResult ValidationResult
 		=> Array.TrueForAll(Techniques, Enum.IsDefined)
-			? new SuccessValidationResult()
-			: new FailedValidationResult(
+			? ValidationResult.Successful
+			: ValidationResult.Failed(
 				nameof(Techniques),
 				ValidationReason.EnumerationFieldNotDefined,
 				ValidationSeverity.Warning
