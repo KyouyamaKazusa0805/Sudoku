@@ -51,12 +51,19 @@ public sealed partial class ConclusionConstraint : Constraint
 		var thisSet = Conclusions.AsConclusionSet();
 		foreach (var step in context.AnalyzerResult)
 		{
-			if (([.. step.Conclusions] & thisSet) == thisSet)
+			if (UniversalQuantifier == UniversalQuantifier.Any)
 			{
-				return true;
+				if ((step.Conclusions.AsConclusionSet() & thisSet) == thisSet)
+				{
+					return true;
+				}
+			}
+			else if ((step.Conclusions.AsConclusionSet() & thisSet) != thisSet)
+			{
+				return false;
 			}
 		}
 
-		return false;
+		return UniversalQuantifier == UniversalQuantifier.All;
 	}
 }
