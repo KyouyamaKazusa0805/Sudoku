@@ -72,51 +72,18 @@ internal static class GetHashCodeHandler
 			{
 				0 => referencedMembers switch
 				{
-					[] => Behavior.ReturnNegativeOne,
-					[(_, true)] => Behavior.Direct,
-					[(_, false)] => Behavior.EnumExplicitCast,
+				[] => Behavior.ReturnNegativeOne,
+				[(_, true)] => Behavior.Direct,
+				[(_, false)] => Behavior.EnumExplicitCast,
 					{ Length: > 8 } => Behavior.HashCodeAdd,
 					_ => Behavior.Specified
 				},
 				1 => Behavior.Throw,
+				2 => Behavior.MakeAbstract,
 				_ => throw new InvalidOperationException("Invalid state.")
 			},
 			_ => throw new InvalidOperationException("Invalid state.")
 		};
-
-		var codeBlock = behavior switch
-		{
-			Behavior.ReturnNegativeOne
-				=> """
-					=> -1;
-				""",
-			Behavior.Direct
-				=> $"""
-					=> {referencedMembers[0].Name};
-				""",
-			Behavior.EnumExplicitCast
-				=> $"""
-					=> (int){referencedMembers[0].Name};
-				""",
-			Behavior.Specified
-				=> $"""
-					=> global::System.HashCode.Combine({string.Join(", ", from pair in referencedMembers select pair.Name)});
-				""",
-			Behavior.Throw
-				=> """
-					=> throw new global::System.NotSupportedException("This method is not supported or disallowed by author.");
-				""",
-			Behavior.HashCodeAdd
-				=> $$"""
-					{
-						var hashCode = new global::System.HashCode();
-						{{string.Join("\r\n\r\n", from member in referencedMembers select $"hashCode.Add({member.Name});")}}
-						return hashCode.ToHashCode();
-					}
-				""",
-			_ => throw new InvalidOperationException("Invalid state.")
-		};
-
 		var kindString = (isRecord, kind) switch
 		{
 			(true, TypeKind.Class) => "record",
@@ -125,50 +92,85 @@ internal static class GetHashCodeHandler
 			(_, TypeKind.Struct) => "struct",
 			_ => throw new InvalidOperationException("Invalid state.")
 		};
-		var attributesMarked = (isRefStruct, behavior) switch
-		{
-			(true, not Behavior.ReturnNegativeOne) or (_, Behavior.Throw)
-				=> """
-				[global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
-						[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
-				""",
-			(true, _)
-				=> """
-				[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
-				""",
-			_
-				=> """
-				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
-				"""
-		};
-		var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
-		var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
-		var suppress0809 = isDeprecated
-			? "#pragma warning disable CS0809\r\n\t"
-			: "\t";
-		var enable0809 = isDeprecated
-			? "#pragma warning restore CS0809\r\n\t"
-			: "\t";
 		var otherModifiers = attribute.GetNamedArgument<string>("OtherModifiers") switch
 		{
-			{ } str => str.Split((char[])[' '], StringSplitOptions.RemoveEmptyEntries),
+			{ } str => str.Split([' '], StringSplitOptions.RemoveEmptyEntries),
 			_ => []
 		};
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
-		return $$"""
-			namespace {{namespaceString}}
-			{
-			{{suppress0809}}partial {{kindString}} {{typeNameString}}
+		if (behavior == Behavior.MakeAbstract)
+		{
+			return $$"""
+				namespace {{namespaceString}}
 				{
-					/// <inheritdoc cref="object.GetHashCode"/>
-					{{attributesMarked}}
-					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
-					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					public {{otherModifiersString}}override {{readOnlyModifier}}int GetHashCode()
-					{{codeBlock}}
-			{{enable0809}}}
-			}
-			""";
+					partial {{kindString}} {{typeNameString}}
+					{
+						/// <inheritdoc cref="object.GetHashCode"/>
+						public {{otherModifiersString}}abstract override int GetHashCode();
+					}
+				}
+				""";
+		}
+		else
+		{
+			var codeBlock = behavior switch
+			{
+				Behavior.ReturnNegativeOne => @"	=> -1;",
+				Behavior.Direct => $@"	=> {referencedMembers[0].Name};",
+				Behavior.EnumExplicitCast => $@"	=> (int){referencedMembers[0].Name};",
+				Behavior.Specified
+					=> $@"	=> global::System.HashCode.Combine({string.Join(", ", from pair in referencedMembers select pair.Name)});",
+				Behavior.Throw
+					=> @"	=> throw new global::System.NotSupportedException(""This method is not supported or disallowed by author."");",
+				Behavior.HashCodeAdd
+					=> $$"""
+						{
+							var hashCode = new global::System.HashCode();
+							{{string.Join("\r\n\r\n", from member in referencedMembers select $"hashCode.Add({member.Name});")}}
+							return hashCode.ToHashCode();
+						}
+					""",
+				_ => throw new InvalidOperationException("Invalid state.")
+			};
+			var attributesMarked = (isRefStruct, behavior) switch
+			{
+				(true, not Behavior.ReturnNegativeOne) or (_, Behavior.Throw)
+					=> """
+					[global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+							[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+					""",
+				(true, _)
+					=> """
+					[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+					""",
+				_
+					=> """
+					[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					"""
+			};
+			var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
+			var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
+			var suppress0809 = isDeprecated
+				? "#pragma warning disable CS0809\r\n\t"
+				: "\t";
+			var enable0809 = isDeprecated
+				? "#pragma warning restore CS0809\r\n\t"
+				: "\t";
+			return $$"""
+				namespace {{namespaceString}}
+				{
+				{{suppress0809}}partial {{kindString}} {{typeNameString}}
+					{
+						/// <inheritdoc cref="object.GetHashCode"/>
+						{{attributesMarked}}
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						public {{otherModifiersString}}override {{readOnlyModifier}}int GetHashCode()
+						{{codeBlock}}
+				{{enable0809}}}
+				}
+				""";
+		}
 	}
 
 	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
@@ -191,5 +193,6 @@ file enum Behavior
 	EnumExplicitCast,
 	Specified,
 	Throw,
-	HashCodeAdd
+	HashCodeAdd,
+	MakeAbstract
 }

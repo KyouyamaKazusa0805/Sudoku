@@ -6392,12 +6392,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.ColorIdentifier.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Rendering.ColorIdentifier.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.op_Implicit(System.Int32)~Sudoku.Rendering.ColorIdentifier">
             <summary>
             Implicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Rendering.ColorIdentifier"/>.
@@ -6412,6 +6406,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ColorIdentifier.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ColorIdentifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Rendering.ColorIdentifier.op_Equality(Sudoku.Rendering.ColorIdentifier,Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -7356,12 +7356,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Rendering.ViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Rendering.ViewNode.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Rendering.ViewNode.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Rendering.ViewNode.Clone">
             <summary>
             Creates a new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance, with independency.
@@ -7370,6 +7364,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.op_Equality(Sudoku.Rendering.ViewNode,Sudoku.Rendering.ViewNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

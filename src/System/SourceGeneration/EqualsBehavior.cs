@@ -1,4 +1,4 @@
-﻿namespace System.SourceGeneration;
+namespace System.SourceGeneration;
 
 /// <summary>
 /// Defines a behavior by source generator on generating <see cref="object.Equals(object?)"/> overridden methods.
@@ -19,5 +19,10 @@ public enum EqualsBehavior
 	/// <summary>
 	/// Indicates the method always throws <see cref="NotSupportedException"/>.
 	/// </summary>
-	ThrowNotSupportedException
+	ThrowNotSupportedException,
+
+	/// <summary>
+	/// Indicates the method will be made <see langword="abstract"/>.
+	/// </summary>
+	MakeAbstract
 }

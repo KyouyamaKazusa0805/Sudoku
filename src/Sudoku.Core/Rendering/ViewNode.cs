@@ -17,6 +17,8 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(DiamondViewNode), 13)]
 [JsonDerivedType(typeof(StarViewNode), 14)]
 [Equals]
+[GetHashCode(GetHashCodeBehavior.MakeAbstract)]
+[ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
 public abstract partial class ViewNode(ColorIdentifier identifier) : IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
 {
@@ -42,12 +44,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) : IEquatable<
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ViewNode? other);
-
-	/// <inheritdoc/>
-	public abstract override int GetHashCode();
-
-	/// <inheritdoc/>
-	public abstract override string ToString();
 
 	/// <summary>
 	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.

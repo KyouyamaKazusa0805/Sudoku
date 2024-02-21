@@ -3391,6 +3391,11 @@ fixed (short* ptr = instance)
             Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
             </summary>
         </member>
+        <member name="F:System.SourceGeneration.EqualsBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.ExplicitInterfaceImplAttribute">
             <summary>
             Represents an attribute type that tells source generator that the current method marked this attribute type should implement an interface
@@ -3464,6 +3469,11 @@ fixed (short* ptr = instance)
         <member name="F:System.SourceGeneration.GetHashCodeBehavior.ThrowNotSupportedException">
             <summary>
             Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.GetHashCodeBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
             </summary>
         </member>
         <member name="T:System.SourceGeneration.HashCodeMemberAttribute">
@@ -3892,6 +3902,11 @@ fixed (short* ptr = instance)
         <member name="F:System.SourceGeneration.ToStringBehavior.ThrowNotSupportedException">
             <summary>
             Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.ToStringBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
             </summary>
         </member>
         <member name="T:System.ArrayInitializer`1">

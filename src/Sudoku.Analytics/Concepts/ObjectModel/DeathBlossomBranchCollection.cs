@@ -6,13 +6,11 @@ namespace Sudoku.Concepts.ObjectModel;
 /// <typeparam name="TSelf">The type of itself.</typeparam>
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
 [Equals]
+[GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> : Dictionary<TKey, AlmostLockedSet>, IEquatable<TSelf>
 	where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
 	where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 {
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);
-
-	/// <inheritdoc/>
-	public abstract override int GetHashCode();
 }

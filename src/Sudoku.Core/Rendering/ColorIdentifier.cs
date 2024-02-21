@@ -9,6 +9,8 @@ namespace Sudoku.Rendering;
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
 [Equals]
+[GetHashCode(GetHashCodeBehavior.MakeAbstract)]
+[ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
 public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
 {
@@ -63,12 +65,6 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ColorIdentifier? other);
-
-	/// <inheritdoc/>
-	public abstract override int GetHashCode();
-
-	/// <inheritdoc/>
-	public abstract override string ToString();
 
 
 	/// <summary>

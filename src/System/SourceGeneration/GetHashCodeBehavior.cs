@@ -17,5 +17,10 @@ public enum GetHashCodeBehavior
 	/// <summary>
 	/// Indicates throws <see cref="NotSupportedException"/>.
 	/// </summary>
-	ThrowNotSupportedException
+	ThrowNotSupportedException,
+
+	/// <summary>
+	/// Indicates the method will be made <see langword="abstract"/>.
+	/// </summary>
+	MakeAbstract
 }

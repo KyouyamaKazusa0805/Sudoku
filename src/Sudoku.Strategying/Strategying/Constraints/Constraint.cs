@@ -17,6 +17,8 @@ namespace Sudoku.Strategying.Constraints;
 [JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))]
 [JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
 [Equals(OtherModifiers = "sealed")]
+[GetHashCode(GetHashCodeBehavior.MakeAbstract)]
+[ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
 {
@@ -40,12 +42,6 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
-
-	/// <inheritdoc/>
-	public abstract override int GetHashCode();
-
-	/// <inheritdoc/>
-	public abstract override string ToString();
 
 	/// <inheritdoc cref="Check"/>
 	/// <remarks><i>
