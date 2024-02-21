@@ -44,7 +44,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// <param name="other">The constraint to be checked.</param>
 	/// <returns>A <see cref="bool"/> indicating whether the current constraint will conflict with the specified one.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConflictionResult ConflictWith(Constraint other) => ConflictWithCore(other);
+	public ConflictionResult VerifyConfliction(Constraint other) => VerifyConflictionCore(other);
 
 	/// <inheritdoc cref="Check"/>
 	/// <remarks><i>
@@ -58,7 +58,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// <returns>A <see cref="ValidationResult"/> instance describing the final result on validation.</returns>
 	protected internal abstract ValidationResult ValidateCore();
 
-	/// <inheritdoc cref="ConflictWith(Constraint)"/>
+	/// <inheritdoc cref="VerifyConfliction(Constraint)"/>
 	/// <remarks><inheritdoc cref="CheckCore(ConstraintCheckingContext)" path="/remarks"/></remarks>
-	protected internal virtual ConflictionResult ConflictWithCore(Constraint other) => ConflictionResult.Successful;
+	protected internal virtual ConflictionResult VerifyConflictionCore(Constraint other) => ConflictionResult.Successful;
 }

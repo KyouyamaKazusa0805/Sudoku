@@ -73,7 +73,7 @@
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ConflictWith(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
             <summary>
             Determine whether the current constraint will raise a confliction with the specified constraint.
             </summary>
@@ -92,8 +92,8 @@
             </summary>
             <returns>A <see cref="T:Sudoku.Strategying.Validation.ValidationResult"/> instance describing the final result on validation.</returns>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ConflictWithCore(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.ConflictWith(Sudoku.Strategying.Constraints.Constraint)"/>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConflictionCore(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)"/>
             <remarks><inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)" path="/remarks"/></remarks>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
