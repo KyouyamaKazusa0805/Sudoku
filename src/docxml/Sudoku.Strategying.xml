@@ -54,6 +54,176 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint">
+            <summary>
+            Represents a constraint that checks for techniques, and their appeared counts.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.UniversalQuantifier">
+            <summary>
+            Indicates the universal quantifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.TechniqueAppearing">
+            <summary>
+            Indicates the dictionary that stores the appearing cases on each technique.
+            </summary>
+            <remarks>
+            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
+            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
+            </remarks>
+            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">The universal quantifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint">
+            <summary>
+            Represents a constraint that checks for techniques, and their appeared counts.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.TechniqueAppearing">
+            <summary>
+            Indicates the dictionary that stores the appearing cases on each technique.
+            </summary>
+            <remarks>
+            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
+            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
+            </remarks>
+            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.DictionaryEquals``2(``0,``1)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint">
+            <summary>
+            Represents a constraint that checks for techniques, and their appeared counts.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ConstraintCheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.UniversalQuantifier">
+            <summary>
+            Indicates the universal quantifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.TechniqueAppearing">
+            <summary>
+            Indicates the dictionary that stores the appearing cases on each technique.
+            </summary>
+            <remarks>
+            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
+            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
+            </remarks>
+            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">Indicates the universal quanitifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
             Represents a conclusion constraint.
@@ -299,78 +469,6 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
-            <summary>
-            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
-            contains the specified techniques.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
-            <summary>
-            Indicates the techniques used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.ConstraintCheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint">
-            <summary>
-            Represents a constraint that checks for techniques, and their appeared counts.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ConstraintCheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.TechniqueAppearing">
-            <summary>
-            Indicates the dictionary that stores the appearing cases on each technique.
-            </summary>
-            <remarks>
-            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
-            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
-            </remarks>
-            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ValidationResult">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.DictionaryEquals``2(``0,``1)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.UniversalQuantifier">

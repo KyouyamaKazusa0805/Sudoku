@@ -6,7 +6,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class TechniqueConstraint : Constraint
+public sealed partial class AnalyzerTechniqueConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the techniques used.
@@ -47,7 +47,7 @@ public sealed partial class TechniqueConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is TechniqueConstraint comparer && Techniques.AsTechniqueSet() == comparer.Techniques.AsTechniqueSet();
+		=> other is AnalyzerTechniqueConstraint comparer && Techniques.AsTechniqueSet() == comparer.Techniques.AsTechniqueSet();
 
 	/// <inheritdoc/>
 	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)

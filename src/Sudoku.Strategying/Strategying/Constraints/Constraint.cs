@@ -6,7 +6,7 @@ namespace Sudoku.Strategying.Constraints;
 /// <seealso cref="Grid"/>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$typeid", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
 [JsonDerivedType(typeof(CountConstraint), nameof(CountConstraint))]
-[JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
+[JsonDerivedType(typeof(AnalyzerTechniqueConstraint), nameof(AnalyzerTechniqueConstraint))]
 [Equals(OtherModifiers = "sealed")]
 [EqualityOperators]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>

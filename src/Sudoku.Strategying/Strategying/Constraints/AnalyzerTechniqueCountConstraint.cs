@@ -4,10 +4,15 @@ namespace Sudoku.Strategying.Constraints;
 /// Represents a constraint that checks for techniques, and their appeared counts.
 /// </summary>
 [ToString]
-public sealed partial class TechniqueCountConstraint : Constraint
+public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 {
 	/// <inheritdoc/>
 	public override ConstraintCheckingProperty ConstraintCheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
+
+	/// <summary>
+	/// Indicates the universal quantifier.
+	/// </summary>
+	public required UniversalQuantifier UniversalQuantifier { get; set; }
 
 	/// <summary>
 	/// Indicates the dictionary that stores the appearing cases on each technique.
@@ -24,6 +29,15 @@ public sealed partial class TechniqueCountConstraint : Constraint
 	{
 		get
 		{
+			if (UniversalQuantifier is not (UniversalQuantifier.Any or UniversalQuantifier.All))
+			{
+				return new FailedValidationResult(
+					nameof(UniversalQuantifier),
+					ValidationFailedReason.EnumerationFieldNotDefined,
+					ValidationFailedSeverity.Error
+				);
+			}
+
 			foreach (var element in TechniqueAppearing.Values)
 			{
 				if (element < 0)
@@ -53,7 +67,8 @@ public sealed partial class TechniqueCountConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is TechniqueCountConstraint comparer && DictionaryEquals(TechniqueAppearing, comparer.TechniqueAppearing);
+		=> other is AnalyzerTechniqueCountConstraint comparer
+		&& DictionaryEquals(TechniqueAppearing, comparer.TechniqueAppearing, UniversalQuantifier.All);
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
@@ -85,7 +100,7 @@ public sealed partial class TechniqueCountConstraint : Constraint
 			}
 		}
 
-		return DictionaryEquals(dic, TechniqueAppearing);
+		return DictionaryEquals(dic, TechniqueAppearing, UniversalQuantifier);
 	}
 
 
@@ -96,8 +111,9 @@ public sealed partial class TechniqueCountConstraint : Constraint
 	/// <typeparam name="T2">The type of the second dictionary.</typeparam>
 	/// <param name="left">The first element to be compared.</param>
 	/// <param name="right">The second element to be compared.</param>
+	/// <param name="universalQuantifier">The universal quantifier.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool DictionaryEquals<T1, T2>(T1 left, T2 right)
+	private static bool DictionaryEquals<T1, T2>(T1 left, T2 right, UniversalQuantifier universalQuantifier)
 		where T1 : IDictionary<Technique, int>
 		where T2 : IDictionary<Technique, int>
 	{
@@ -108,12 +124,22 @@ public sealed partial class TechniqueCountConstraint : Constraint
 
 		foreach (var key in left.Keys)
 		{
-			if (!right.TryGetValue(key, out var v) || v != left[key])
+			if (universalQuantifier == UniversalQuantifier.All)
 			{
-				return false;
+				if (!right.TryGetValue(key, out var v) || v != left[key])
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if (right.TryGetValue(key, out var v) && v == left[key])
+				{
+					return true;
+				}
 			}
 		}
 
-		return true;
+		return universalQuantifier == UniversalQuantifier.All;
 	}
 }
