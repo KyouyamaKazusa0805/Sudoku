@@ -46,7 +46,6 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// </summary>
 	/// <param name="other">The constraint to be checked.</param>
 	/// <returns>A <see cref="bool"/> indicating whether the current constraint will conflict with the specified one.</returns>
-	/// <remarks><inheritdoc cref="CheckCore(ConstraintCheckingContext)" path="/remarks"/></remarks>
 	/// <seealso cref="ConflictionResult.Successful"/>
 	public virtual ConflictionResult VerifyConfliction(Constraint other) => ConflictionResult.Successful;
 
