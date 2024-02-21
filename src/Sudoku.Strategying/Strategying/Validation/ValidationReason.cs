@@ -33,5 +33,10 @@ public enum ValidationReason
 	/// <summary>
 	/// Indicates the conditition is too strict, causing little puzzles can be checked.
 	/// </summary>
-	TooStrict
+	TooStrict,
+
+	/// <summary>
+	/// Indicates the pattern is malformed.
+	/// </summary>
+	MalformedPattern
 }

@@ -280,6 +280,39 @@
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint">
+            <summary>
+            Represents a constraint that checks for the name of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.Pattern">
+            <summary>
+            Indicates the desired name pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CurrentCulture">
+            <summary>
+            Indicates the current culture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint">
             <summary>
             Represents a constraint that checks for techniques, and their appeared counts.
@@ -398,6 +431,39 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint">
+            <summary>
+            Represents a constraint that checks for the name of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.Pattern">
+            <summary>
+            Indicates the desired name pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CurrentCulture">
+            <summary>
+            Indicates the current culture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ValidationResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
@@ -574,6 +640,11 @@
         <member name="F:Sudoku.Strategying.Validation.ValidationReason.TooStrict">
             <summary>
             Indicates the conditition is too strict, causing little puzzles can be checked.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ValidationReason.MalformedPattern">
+            <summary>
+            Indicates the pattern is malformed.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.Validation.ValidationResult">
