@@ -78,11 +78,22 @@
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ConflictWith(Sudoku.Strategying.Constraints.Constraint)">
+            <summary>
+            Determine whether the current constraint will raise a confliction with the specified constraint.
+            </summary>
+            <param name="other">The constraint to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating whether the current constraint will conflict with the specified one.</returns>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
             <remarks><i>
             This method only handles for the core rule of the type, which means we should suppose the values are valid.
             </i></remarks>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ConflictWithCore(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.ConflictWith(Sudoku.Strategying.Constraints.Constraint)"/>
+            <remarks><inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)" path="/remarks"/></remarks>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -666,6 +677,83 @@
         <member name="F:Sudoku.Strategying.UniversalQuantifier.All">
             <summary>
             Indicates the quantifier is "all".
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ConflictionResult">
+            <summary>
+            Represents a result information that describes the confliction.
+            </summary>
+            <param name="IsSuccess">Indicates the confliction result descibes for "success" status, without any confliction.</param>
+            <param name="FailedConstraint">Indicates the failed constraint.</param>
+            <param name="Type">Indicates the confliction type appeared.</param>
+            <completionlist cref="T:Sudoku.Strategying.Validation.ConflictionResult"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.ConflictionResult.#ctor(System.Boolean,Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Validation.ConflictionType)">
+            <summary>
+            Represents a result information that describes the confliction.
+            </summary>
+            <param name="IsSuccess">Indicates the confliction result descibes for "success" status, without any confliction.</param>
+            <param name="FailedConstraint">Indicates the failed constraint.</param>
+            <param name="Type">Indicates the confliction type appeared.</param>
+            <completionlist cref="T:Sudoku.Strategying.Validation.ConflictionResult"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ConflictionResult.IsSuccess">
+            <summary>Indicates the confliction result descibes for "success" status, without any confliction.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ConflictionResult.FailedConstraint">
+            <summary>Indicates the failed constraint.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ConflictionResult.Type">
+            <summary>Indicates the confliction type appeared.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ConflictionResult.Successful">
+            <summary>
+            Indictes the successful message.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.ConflictionResult.Failed(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Validation.ConflictionType)">
+            <summary>
+            Indicates the failed message.
+            </summary>
+            <param name="constraint">The constraint.</param>
+            <param name="type">The type.</param>
+            <returns>A <see cref="T:Sudoku.Strategying.Validation.ConflictionResult"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.NoConflictionResult">
+            <summary>
+            Indicates there is no confliction.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.NoConflictionResult.#ctor">
+            <summary>
+            Indicates there is no confliction.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ContainsConflictionResult">
+            <summary>
+            Indicates there is any confliction appears.
+            </summary>
+            <param name="Constraint">The constraint that creates this error.</param>
+            <param name="Type">The type of the confliction.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Validation.ContainsConflictionResult.#ctor(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Validation.ConflictionType)">
+            <summary>
+            Indicates there is any confliction appears.
+            </summary>
+            <param name="Constraint">The constraint that creates this error.</param>
+            <param name="Type">The type of the confliction.</param>
+        </member>
+        <member name="P:Sudoku.Strategying.Validation.ContainsConflictionResult.Constraint">
+            <summary>The constraint that creates this error.</summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Validation.ConflictionType">
+            <summary>
+            Indicates the confliction type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Validation.ConflictionType.None">
+            <summary>
+            Indicates no confliction raised.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.Validation.ValidationReason">

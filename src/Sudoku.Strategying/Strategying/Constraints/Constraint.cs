@@ -43,9 +43,21 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
 
+	/// <summary>
+	/// Determine whether the current constraint will raise a confliction with the specified constraint.
+	/// </summary>
+	/// <param name="other">The constraint to be checked.</param>
+	/// <returns>A <see cref="bool"/> indicating whether the current constraint will conflict with the specified one.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConflictionResult ConflictWith(Constraint other) => ConflictWithCore(other);
+
 	/// <inheritdoc cref="Check"/>
 	/// <remarks><i>
 	/// This method only handles for the core rule of the type, which means we should suppose the values are valid.
 	/// </i></remarks>
 	protected internal abstract bool CheckCore(scoped ConstraintCheckingContext context);
+
+	/// <inheritdoc cref="ConflictWith(Constraint)"/>
+	/// <remarks><inheritdoc cref="CheckCore(ConstraintCheckingContext)" path="/remarks"/></remarks>
+	protected internal virtual ConflictionResult ConflictWithCore(Constraint other) => ConflictionResult.Successful;
 }
