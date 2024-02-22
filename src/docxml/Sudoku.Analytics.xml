@@ -5976,9 +5976,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)">
             <summary>
             Try to fetch the name of this technique step, with the specified culture.
@@ -6019,6 +6016,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Step.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Step.op_Equality(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

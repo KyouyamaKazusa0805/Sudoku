@@ -10,6 +10,7 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [Equals(OtherModifiers = "sealed")]
+[GetHashCode]
 [EqualityOperators]
 public abstract partial class Step(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
@@ -112,6 +113,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
+	[HashCodeMember]
 	public abstract Technique Code { get; }
 
 	/// <summary>
@@ -206,6 +208,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
+	[HashCodeMember]
 	private protected string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
@@ -218,16 +221,6 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual bool Equals([NotNullWhen(true)] Step? other)
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode()
-	{
-		var hashCode = new HashCode();
-		hashCode.Add(Code);
-		hashCode.Add(ConclusionText);
-		return hashCode.ToHashCode();
-	}
 
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
