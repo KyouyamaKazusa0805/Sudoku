@@ -20,6 +20,9 @@ public sealed partial class FireworkTripleStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
+	public override int Size => 3;
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.FireworkTriple;
 
 	/// <inheritdoc/>

@@ -16,7 +16,7 @@ public abstract partial class SubsetStep(
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : Step(conclusions, views, options)
+) : Step(conclusions, views, options), ISize
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.0M;

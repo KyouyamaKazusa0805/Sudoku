@@ -18,7 +18,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCells,
 	[PrimaryConstructorParameter] bool hasValueCell
-) : IntersectionStep(conclusions, views, options)
+) : IntersectionStep(conclusions, views, options), ISize
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;

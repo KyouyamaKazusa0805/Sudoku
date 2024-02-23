@@ -18,7 +18,7 @@ public sealed partial class RegularWingStep(
 	[PrimaryConstructorParameter] int pivotCandidatesCount,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap petals
-) : WingStep(conclusions, views, options)
+) : WingStep(conclusions, views, options), ISize
 {
 	/// <summary>
 	/// Indicates whether the pattern is incomplete.

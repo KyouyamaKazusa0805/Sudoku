@@ -1,10 +1,10 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Traits;
 
 /// <summary>
 /// Represents an interface type that makes a type support for Siamese concept.
 /// </summary>
 /// <typeparam name="TSelf">The type of the step.</typeparam>
-public interface ISiameseSupporter<TSelf> where TSelf : Step, ISiameseSupporter<TSelf>
+public interface ISiamese<TSelf> where TSelf : Step, ISiamese<TSelf>
 {
 	/// <summary>
 	/// Get all possible Siamese patterns of type <typeparamref name="TSelf"/> for the specified accumulator.

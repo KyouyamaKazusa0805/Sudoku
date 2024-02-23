@@ -32,10 +32,13 @@ public sealed partial class SueDeCoqStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap blockCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap lineCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap intersectionCells
-) : LockedSetStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options), ISizeMatrix
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.0M;
+
+	/// <inheritdoc/>
+	public int[] SizeMatrix => [PopCount((uint)BlockMask) - 1, PopCount((uint)LineMask) - 1];
 
 	/// <inheritdoc/>
 	public override Technique Code

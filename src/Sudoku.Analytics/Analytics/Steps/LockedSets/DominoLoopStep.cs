@@ -12,10 +12,13 @@ public sealed partial class DominoLoopStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells
-) : LockedSetStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options), ISizeMatrix
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.6M;
+
+	/// <inheritdoc/>
+	public int[] SizeMatrix => [4, 2, 2];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DominoLoop;

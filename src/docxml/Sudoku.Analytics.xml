@@ -12074,6 +12074,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the result node.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Sudoku#Analytics#Traits#ILength#Length">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.LengthDifficulty">
             <summary>
             Indicates the difficulty rating of the current step, which binds with length factor.
@@ -16544,20 +16547,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_LessThanOrEqual(`0,`0)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.IDualSupporter`1">
-            <summary>
-            Represents an interface type that makes a type support for Dual concept.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IDualSupporter`1.GetDual(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Dual patterns of type <typeparamref name="T"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Dual steps of type <typeparamref name="T"/>.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
             <summary>
             Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
@@ -16665,6 +16654,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.Size">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkQuadrupleStep.Code">
             <inheritdoc/>
         </member>
@@ -16700,6 +16692,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FireworkStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkStep.Size">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.FireworkTripleStep">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
@@ -16721,6 +16716,9 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.Size">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FireworkTripleStep.Code">
@@ -16853,20 +16851,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>coverSet</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ISiameseSupporter`1">
-            <summary>
-            Represents an interface type that makes a type support for Siamese concept.
-            </summary>
-            <typeparam name="TSelf">The type of the step.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ISiameseSupporter`1.GetSiamese(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <typeparamref name="TSelf"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <typeparamref name="TSelf"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BowmanBingoStep">
             <summary>
@@ -17030,6 +17014,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.SizeMatrix">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
             <inheritdoc/>
         </member>
@@ -17065,8 +17052,10 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="rowsCount">Indicates the number of rows used.</param>
+            <param name="columnsCount">Indicates the number of columns used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -17074,8 +17063,13 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used in this pattern.</param>
+            <param name="rowsCount">Indicates the number of rows used.</param>
+            <param name="columnsCount">Indicates the number of columns used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
@@ -17090,6 +17084,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.RowsCount">
+            <summary>
+            The generated property declaration for parameter <c>rowsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ColumnsCount">
+            <summary>
+            The generated property declaration for parameter <c>columnsCount</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
@@ -17121,6 +17125,9 @@ if (student is (name: var name, age: >= 18))
             <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
@@ -17200,6 +17207,9 @@ if (student is (name: var name, age: >= 18))
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
@@ -18613,6 +18623,9 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pattern is grouped.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.Length">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
@@ -19224,6 +19237,64 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Steps.FishShapeKind.Mutant">
             <summary>
             Indicates the mutant fish.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IDual`1">
+            <summary>
+            Represents an interface type that makes a type support for Dual concept.
+            </summary>
+            <typeparam name="TSelf">The type of the step.</typeparam>
+        </member>
+        <member name="M:Sudoku.Analytics.Traits.IDual`1.GetDual(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Dual patterns of type <typeparamref name="TSelf"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Dual steps of type <typeparamref name="TSelf"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ILength">
+            <summary>
+            Represents length trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ILength.Length">
+            <summary>
+            Indicates the length of the pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISiamese`1">
+            <summary>
+            Represents an interface type that makes a type support for Siamese concept.
+            </summary>
+            <typeparam name="TSelf">The type of the step.</typeparam>
+        </member>
+        <member name="M:Sudoku.Analytics.Traits.ISiamese`1.GetSiamese(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <typeparamref name="TSelf"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <typeparamref name="TSelf"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISize">
+            <summary>
+            Represents the size trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ISize.Size">
+            <summary>
+            Indicates the size of the pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISizeMatrix">
+            <summary>
+            Represents size trait, describing a pattern contains "size" concept in multiple dimensions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ISizeMatrix.SizeMatrix">
+            <summary>
+            Indicates the size values from separate dimensions.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">

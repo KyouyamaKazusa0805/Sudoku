@@ -7,15 +7,22 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells used in this pattern.</param>
+/// <param name="rowsCount">Indicates the number of rows used.</param>
+/// <param name="columnsCount">Indicates the number of columns used.</param>
 public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells
-) : LockedSetStep(conclusions, views, options)
+	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] int rowsCount,
+	[PrimaryConstructorParameter] int columnsCount
+) : LockedSetStep(conclusions, views, options), ISizeMatrix
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
+
+	/// <inheritdoc/>
+	public int[] SizeMatrix => [RowsCount, ColumnsCount];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultisectorLockedSets;

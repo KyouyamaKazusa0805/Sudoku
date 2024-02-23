@@ -14,7 +14,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.
 	/// </summary>
-	private static readonly CellMap[] Patterns;
+	private static readonly Pattern[] Patterns;
 
 	/// <summary>
 	/// Indicates the possible size (the number of rows and columns) in an MSLS.
@@ -29,7 +29,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	static MultisectorLockedSetsStepSearcher()
 	{
 		const HouseMask a = ~7, b = ~56, c = ~448;
-		var result = new CellMap[74601];
+		var result = new Pattern[74601];
 		var i = 0;
 		for (var sizeLength = 0; sizeLength < PossibleSizes.Length; sizeLength++)
 		{
@@ -62,7 +62,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 						continue;
 					}
 
-					result[i++] = rowMap & columnMap;
+					result[i++] = new(rowMap & columnMap, rowList.Length, columnList.Length);
 				}
 			}
 		}
@@ -72,7 +72,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped var linkForEachHouse = (stackalloc Mask[27]);
 		linkForEachHouse.Clear();
@@ -80,7 +80,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 		scoped var linkForEachDigit = (stackalloc CellMap[9]);
 		scoped var canL = (stackalloc CellMap[9]);
 		scoped ref readonly var grid = ref context.Grid;
-		foreach (var pattern in Patterns)
+		foreach (var (pattern, rows, columns) in Patterns)
 		{
 			var map = EmptyCells & pattern;
 			if (pattern.Count < 12 && pattern.Count - map.Count > 1 || pattern.Count - map.Count > 2)
@@ -201,7 +201,14 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new MultisectorLockedSetsStep([.. conclusions], [[.. candidateOffsets]], context.PredefinedOptions, in map);
+				var step = new MultisectorLockedSetsStep(
+					[.. conclusions],
+					[[.. candidateOffsets]],
+					context.PredefinedOptions,
+					in map,
+					rows,
+					columns
+				);
 				if (context.OnlyFindOne)
 				{
 					return step;
@@ -213,4 +220,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 		return null;
 	}
+
+
+	private readonly record struct Pattern(scoped ref readonly CellMap Map, int RowCount, int ColumnCount);
 }

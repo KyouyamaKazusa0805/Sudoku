@@ -22,10 +22,14 @@ public sealed partial class SueDeCoq3DimensionStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap rowCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap columnCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap blockCells
-) : LockedSetStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options), ISizeMatrix
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;
+
+	/// <inheritdoc/>
+	public int[] SizeMatrix
+		=> [PopCount((uint)RowDigitsMask - 1), PopCount((uint)RowDigitsMask) - 1, PopCount((uint)ColumnDigitsMask) - 1];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.SueDeCoq3Dimension;

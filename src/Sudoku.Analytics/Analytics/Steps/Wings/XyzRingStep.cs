@@ -26,7 +26,7 @@ public sealed partial class XyzRingStep(
 	[PrimaryConstructorParameter] bool isNice,
 	[PrimaryConstructorParameter] bool isGrouped,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : WingStep(conclusions, views, options), ISiameseSupporter<XyzRingStep>
+) : WingStep(conclusions, views, options), ISiamese<XyzRingStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => IsNice ? 5.0M : 5.2M;
