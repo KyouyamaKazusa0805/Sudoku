@@ -3952,21 +3952,7 @@ if (student is (name: var name, age: >= 18))
             <param name="creatingOption">The grid creating option.</param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String)">
-            <summary>
-            <inheritdoc cref="M:System.ISimpleParsable`1.Parse(System.String)" path="/summary"/>
-            </summary>
-            <param name="str"><inheritdoc cref="M:System.ISimpleParsable`1.Parse(System.String)" path="/param[@name='str']"/></param>
-            <returns>The <see cref="T:Sudoku.Concepts.Grid"/> instance.</returns>
-            <remarks>
-            We suggest you use <see cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/> to achieve same goal if the passing argument is a constant.
-            For example:
-            <code><![CDATA[
-            var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
-            var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
-            var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
-            ]]></code>
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid"/>
+            <inheritdoc cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char})">
             <summary>

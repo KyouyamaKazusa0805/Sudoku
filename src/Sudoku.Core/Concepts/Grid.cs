@@ -1562,21 +1562,7 @@ public partial struct Grid :
 	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
 		=> new(in gridValues[0], creatingOption);
 
-	/// <summary>
-	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)" path="/summary"/>
-	/// </summary>
-	/// <param name="str"><inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)" path="/param[@name='str']"/></param>
-	/// <returns>The <see cref="Grid"/> instance.</returns>
-	/// <remarks>
-	/// We suggest you use <see cref="op_Explicit(string)"/> to achieve same goal if the passing argument is a constant.
-	/// For example:
-	/// <code><![CDATA[
-	/// var grid1 = (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
-	/// var grid2 = (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
-	/// var grid3 = Grid.Parse(stringCode); // 'stringCode' is a string, not null.
-	/// ]]></code>
-	/// </remarks>
-	/// <seealso cref="op_Explicit(string)"/>
+	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)"/>
 	public static Grid Parse(string str)
 	{
 		var containsMultilineLimits = str.Contains("-+-");
