@@ -20,6 +20,9 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap emptyCells
 ) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<ReverseBivalueUniversalGraveStep>
 {
+	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => false;
+
 	/// <summary>
 	/// Indicates whether the pattern is a reverse UR.
 	/// </summary>

@@ -21,6 +21,9 @@ public abstract partial class UniqueLoopStep(
 ) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<UniqueLoopStep>
 {
 	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => true;
+
+	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
 
 	/// <summary>

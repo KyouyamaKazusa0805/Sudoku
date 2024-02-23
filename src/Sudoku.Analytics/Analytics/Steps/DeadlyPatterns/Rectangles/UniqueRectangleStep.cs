@@ -35,6 +35,9 @@ public abstract partial class UniqueRectangleStep(
 ) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
 {
 	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => true;
+
+	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
 
 	private protected string D1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));

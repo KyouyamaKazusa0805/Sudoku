@@ -19,6 +19,9 @@ public sealed partial class UniquenessClueCoverStep(
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => false;
+
+	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 6.5M;
 
 	/// <inheritdoc/>

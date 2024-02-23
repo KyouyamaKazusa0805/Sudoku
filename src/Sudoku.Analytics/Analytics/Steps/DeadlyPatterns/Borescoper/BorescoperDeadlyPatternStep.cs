@@ -17,6 +17,9 @@ public abstract partial class BorescoperDeadlyPatternStep(
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => false;
+
+	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.3M;
 
 	/// <summary>

@@ -41,7 +41,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISiamese<FishStep>, ISize
+) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISiamese<FishStep>, ISingleDigit, ISize
 {
 	/// <summary>
 	/// The backing field that will be used for formatting notations, especially for conclusions,

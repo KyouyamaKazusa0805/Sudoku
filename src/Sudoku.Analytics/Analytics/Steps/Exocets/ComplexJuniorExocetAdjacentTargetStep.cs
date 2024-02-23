@@ -26,7 +26,7 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap singleMirrors
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
-	IComplexSeniorExocetStepBaseOverrides
+	IComplexSeniorExocet
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty

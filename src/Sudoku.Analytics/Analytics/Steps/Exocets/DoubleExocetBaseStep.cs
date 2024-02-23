@@ -22,7 +22,7 @@ public sealed partial class DoubleExocetBaseStep(
 	scoped ref readonly CellMap crosslineCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCellsTheOther,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCellsTheOther
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocetStepBaseOverrides
+) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocet
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DoubleExocet;

@@ -26,7 +26,7 @@ public sealed partial class ComplexJuniorExocetMirrorConjugatePairStep(
 	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
-	IComplexSeniorExocetStepBaseOverrides
+	IComplexSeniorExocet
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty

@@ -23,7 +23,7 @@ public partial class HiddenSingleStep(
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
 	SingleSubtype subtype
-) : SingleStep(conclusions, views, options, cell, digit, subtype)
+) : SingleStep(conclusions, views, options, cell, digit, subtype), ISingleDigit
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty

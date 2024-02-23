@@ -11,7 +11,7 @@ internal static class ExocetShapeKindExtensions
 	/// <param name="this">The houses provider.</param>
 	/// <returns>A <see cref="ExocetShapeKind"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ExocetShapeKind GetShapeKind(this IComplexSeniorExocetStepBaseOverrides @this)
+	public static ExocetShapeKind GetShapeKind(this IComplexSeniorExocet @this)
 	{
 		var finalMask = @this.CrosslineHousesMask | @this.ExtraHousesMask;
 		return (

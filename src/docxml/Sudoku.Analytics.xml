@@ -12519,6 +12519,9 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -12758,6 +12761,9 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">The map that contains the cells used for this technique.</param>
             <param name="digitsMask">Indicates the mask of used digits.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -12952,6 +12958,9 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigits">Indicates the extra digits.</param>
             <param name="chuteIndex">Indicates the chute index.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -12995,6 +13004,11 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.OnlyUseBivalueCells">
+            <summary>
+            Indicates whether the deadly pattern only uses bi-value cells.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
@@ -13014,6 +13028,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.OnlyUseBivalueCells">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.BaseDifficulty">
             <inheritdoc/>
@@ -13210,6 +13227,9 @@ if (student is (name: var name, age: >= 18))
             <param name="digit2">Indicates the second digit used.</param>
             <param name="loop">Indicates the whole loop of cells used.</param>
             <param name="loopPath">Indicates the loop path.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.OnlyUseBivalueCells">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.BaseDifficulty">
             <inheritdoc/>
@@ -13424,6 +13444,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.OnlyUseBivalueCells">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.BaseDifficulty">
             <inheritdoc/>
@@ -13798,6 +13821,9 @@ if (student is (name: var name, age: >= 18))
             <param name="corner2">
             Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
             </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.OnlyUseBivalueCells">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
@@ -14579,6 +14605,9 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -15027,6 +15056,9 @@ if (student is (name: var name, age: >= 18))
             <param name="digit2">Indicates the second digit used.</param>
             <param name="pattern">Indicates the pattern, all possible cells included.</param>
             <param name="emptyCells">Indicates the empty cells used. This cells have already included in <paramref name="pattern"/>.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.OnlyUseBivalueCells">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.IsRectangle">
             <summary>
@@ -19185,7 +19217,7 @@ if (student is (name: var name, age: >= 18))
             Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.Traits.IComplexSeniorExocet)">
             <summary>
             Try to get shape kind via the houses.
             </summary>
@@ -19239,6 +19271,46 @@ if (student is (name: var name, age: >= 18))
             Indicates the mutant fish.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Traits.IComplexSeniorExocet">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IComplexSeniorExocet.CrosslineHousesMask">
+            <summary>
+            The mask that holds a list of cross-line houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IComplexSeniorExocet.ExtraHousesMask">
+            <summary>
+            The mask that holds a list of extra houses used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IDoubleExocet">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IDoubleExocet.BaseCells">
+            <summary>
+            A list of cells as the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IDoubleExocet.TargetCells">
+            <summary>
+            A list of cells as the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IDoubleExocet.BaseCellsTheOther">
+            <summary>
+            A list of cells as the other pair of base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IDoubleExocet.TargetCellsTheOther">
+            <summary>
+            A list of cells as the other pair of target cells.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Traits.IDual`1">
             <summary>
             Represents an interface type that makes a type support for Dual concept.
@@ -19277,6 +19349,21 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <returns>All Siamese steps of type <typeparamref name="TSelf"/>.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Traits.ISimpleChain">
+            <summary>
+            Represents a trait that describes a step is a simple chain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISingleDigit">
+            <summary>
+            Represents single-digit trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ISingleDigit.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Traits.ISize">
             <summary>
             Represents the size trait.
@@ -19295,6 +19382,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Traits.ISizeMatrix.SizeMatrix">
             <summary>
             Indicates the size values from separate dimensions.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IYWingStyle">
+            <summary>
+            Represents Y-Wing style trait.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
@@ -20477,46 +20569,6 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house.</param>
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides">
-            <summary>
-            The base overrides for complex senior exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides.CrosslineHousesMask">
-            <summary>
-            The mask that holds a list of cross-line houses used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IComplexSeniorExocetStepBaseOverrides.ExtraHousesMask">
-            <summary>
-            The mask that holds a list of extra houses used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.IDoubleExocetStepBaseOverrides">
-            <summary>
-            The base overrides for double exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.BaseCells">
-            <summary>
-            A list of cells as the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.TargetCells">
-            <summary>
-            A list of cells as the target cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.BaseCellsTheOther">
-            <summary>
-            A list of cells as the other pair of base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IDoubleExocetStepBaseOverrides.TargetCellsTheOther">
-            <summary>
-            A list of cells as the other pair of target cells.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>

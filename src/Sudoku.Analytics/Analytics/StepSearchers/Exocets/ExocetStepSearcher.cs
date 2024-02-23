@@ -1427,7 +1427,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var alreadyContain = false;
 				foreach (var s in context.Accumulator)
 				{
-					if (s is IDoubleExocetStepBaseOverrides d
+					if (s is IDoubleExocet d
 						&& (d.BaseCells | d.BaseCellsTheOther | d.TargetCells | d.TargetCellsTheOther) is var a
 						&& (baseCells | theOtherBaseCells | targetCells | theOtherTargetCells) is var b
 						&& a == b)

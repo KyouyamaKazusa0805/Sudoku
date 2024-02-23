@@ -27,6 +27,9 @@ public abstract partial class QiuDeadlyPatternStep(
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
+	public override bool OnlyUseBivalueCells => false;
+
+	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.8M;
 
 	/// <summary>

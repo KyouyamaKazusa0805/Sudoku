@@ -26,7 +26,7 @@ public sealed partial class ComplexExocetLockedMemberStep(
 	[PrimaryConstructorParameter] HouseMask extraHousesMask
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
-	IComplexSeniorExocetStepBaseOverrides
+	IComplexSeniorExocet
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
