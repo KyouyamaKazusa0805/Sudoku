@@ -23,7 +23,7 @@ public sealed partial class FullHouseStep(
 	cell,
 	digit,
 	house switch { < 9 => SingleSubtype.FullHouseBlock, >= 9 and < 18 => SingleSubtype.FullHouseRow, _ => SingleSubtype.FullHouseColumn }
-), ISingleDigit
+)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 1.0M;

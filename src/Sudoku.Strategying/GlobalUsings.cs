@@ -12,6 +12,7 @@ global using System.Threading;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Steps;
+global using Sudoku.Analytics.Traits;
 global using Sudoku.Concepts;
 global using Sudoku.Strategying.Constraints;
 global using Sudoku.Strategying.Validation;

@@ -12,4 +12,4 @@ public abstract partial class SingleDigitPatternStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Digit digit
-) : Step(conclusions, views, options), ISingleDigit;
+) : Step(conclusions, views, options);

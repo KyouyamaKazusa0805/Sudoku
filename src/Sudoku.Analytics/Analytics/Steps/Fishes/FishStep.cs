@@ -41,7 +41,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISiamese<FishStep>, ISingleDigit, ISize
+) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISiamese<FishStep>
 {
 	/// <summary>
 	/// The backing field that will be used for formatting notations, especially for conclusions,
@@ -64,6 +64,9 @@ public abstract partial class FishStep(
 	/// Other fishes of sizes not appearing in above don't have well-known names.
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
+
+	/// <inheritdoc/>
+	public int Rank => 0;
 
 	/// <summary>
 	/// The internal notation.

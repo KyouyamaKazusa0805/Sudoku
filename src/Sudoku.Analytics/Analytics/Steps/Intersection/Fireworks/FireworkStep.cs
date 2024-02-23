@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 public abstract class FireworkStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) :
-	IntersectionStep(conclusions, views, options), ISize
+	IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.9M;

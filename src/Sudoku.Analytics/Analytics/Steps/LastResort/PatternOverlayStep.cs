@@ -5,7 +5,8 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOptions options) : LastResortStep(conclusions, null, options)
+public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOptions options) :
+	LastResortStep(conclusions, null, options)
 {
 	/// <summary>
 	/// Indicates the digit.

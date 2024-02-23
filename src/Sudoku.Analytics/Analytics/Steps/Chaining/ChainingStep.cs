@@ -22,7 +22,7 @@ public abstract partial class ChainingStep(
 	[PrimaryConstructorParameter] bool isDynamic = false,
 	[PrimaryConstructorParameter] bool isNishio = false,
 	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
-) : Step(conclusions, views, options), IComparableStep<ChainingStep>, ILength
+) : Step(conclusions, views, options), IComparableStep<ChainingStep>
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
@@ -169,9 +169,6 @@ public abstract partial class ChainingStep(
 			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
 		};
-
-	/// <inheritdoc/>
-	int ILength.Length => Complexity;
 
 	/// <summary>
 	/// Indicates the difficulty rating of the current step, which binds with length factor.

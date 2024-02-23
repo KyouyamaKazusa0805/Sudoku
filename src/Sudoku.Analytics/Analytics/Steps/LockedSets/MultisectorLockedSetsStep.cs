@@ -16,13 +16,10 @@ public sealed partial class MultisectorLockedSetsStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] int rowsCount,
 	[PrimaryConstructorParameter] int columnsCount
-) : LockedSetStep(conclusions, views, options), ISizeMatrix
+) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 9.4M;
-
-	/// <inheritdoc/>
-	public int[] SizeMatrix => [RowsCount, ColumnsCount];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultisectorLockedSets;

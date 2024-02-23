@@ -16,7 +16,7 @@ public sealed partial class NakedSingleStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype
-) : SingleStep(conclusions, views, options, cell, digit, subtype), ISingleDigit
+) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;

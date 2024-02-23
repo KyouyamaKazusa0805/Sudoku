@@ -12074,9 +12074,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the result node.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Sudoku#Analytics#Traits#ILength#Length">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.LengthDifficulty">
             <summary>
             Indicates the difficulty rating of the current step, which binds with length factor.
@@ -16459,6 +16456,9 @@ if (student is (name: var name, age: >= 18))
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Rank">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.InternalNotation">
             <summary>
             The internal notation.
@@ -17046,9 +17046,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.SizeMatrix">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
             <inheritdoc/>
         </member>
@@ -17099,9 +17096,6 @@ if (student is (name: var name, age: >= 18))
             <param name="columnsCount">Indicates the number of columns used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
@@ -17157,9 +17151,6 @@ if (student is (name: var name, age: >= 18))
             <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Code">
@@ -17239,9 +17230,6 @@ if (student is (name: var name, age: >= 18))
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.SizeMatrix">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
@@ -18655,9 +18643,6 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pattern is grouped.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.Length">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
@@ -19325,16 +19310,6 @@ if (student is (name: var name, age: >= 18))
             <param name="grid">The grid.</param>
             <returns>All Dual steps of type <typeparamref name="TSelf"/>.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Traits.ILength">
-            <summary>
-            Represents length trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ILength.Length">
-            <summary>
-            Indicates the length of the pattern.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Traits.ISiamese`1">
             <summary>
             Represents an interface type that makes a type support for Siamese concept.
@@ -19348,46 +19323,6 @@ if (student is (name: var name, age: >= 18))
             <param name="accumulator">The accumulator.</param>
             <param name="grid">The grid.</param>
             <returns>All Siamese steps of type <typeparamref name="TSelf"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISimpleChain">
-            <summary>
-            Represents a trait that describes a step is a simple chain.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISingleDigit">
-            <summary>
-            Represents single-digit trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ISingleDigit.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISize">
-            <summary>
-            Represents the size trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ISize.Size">
-            <summary>
-            Indicates the size of the pattern.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISizeMatrix">
-            <summary>
-            Represents size trait, describing a pattern contains "size" concept in multiple dimensions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ISizeMatrix.SizeMatrix">
-            <summary>
-            Indicates the size values from separate dimensions.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.IYWingStyle">
-            <summary>
-            Represents Y-Wing style trait.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>

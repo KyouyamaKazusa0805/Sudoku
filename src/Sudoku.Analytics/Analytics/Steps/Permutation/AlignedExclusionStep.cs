@@ -14,7 +14,7 @@ public sealed partial class AlignedExclusionStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
-) : PermutationStep(conclusions, views, options), IEquatableStep<AlignedExclusionStep>, ISize
+) : PermutationStep(conclusions, views, options), IEquatableStep<AlignedExclusionStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
