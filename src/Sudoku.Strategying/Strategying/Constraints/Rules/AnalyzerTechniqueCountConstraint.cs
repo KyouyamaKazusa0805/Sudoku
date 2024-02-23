@@ -6,9 +6,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class AnalyzerTechniqueCountConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	/// <summary>
 	/// Indicates the universal quantifier.
 	/// </summary>

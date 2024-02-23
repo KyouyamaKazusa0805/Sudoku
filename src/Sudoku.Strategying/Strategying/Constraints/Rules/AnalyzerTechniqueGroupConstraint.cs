@@ -13,9 +13,6 @@ public sealed partial class AnalyzerTechniqueGroupConstraint : Constraint
 	[HashCodeMember]
 	public required TechniqueGroup TechniqueGroup { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.CollectorResult;
-
 	[StringMember]
 	private string TechniqueGroupString => TechniqueGroup.GetName();
 

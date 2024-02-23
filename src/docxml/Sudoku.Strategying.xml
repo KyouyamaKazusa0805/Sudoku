@@ -59,11 +59,6 @@
             Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.Constraint.CheckingProperties">
-            <summary>
-            Indicates the properties that will be used in constraint checking.
-            </summary>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <summary>
             Determine whether the specified grid is passed the constraint.
@@ -181,31 +176,6 @@
             The generated property declaration for parameter <c>cancellationToken</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingProperty">
-            <summary>
-            Represents a property that will be checked in a constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.None">
-            <summary>
-            Indicates no elements will be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.Grid">
-            <summary>
-            Indicates the constraint checks for grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.AnalyzerResult">
-            <summary>
-            Indicates the constraint checks for analyzer result.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingProperty.CollectorResult">
-            <summary>
-            Indicates the constraint checks for collector result.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint">
             <summary>
             Represents a rule that checks whether the specified analyzer result after analyzed by a grid
@@ -216,9 +186,6 @@
             <summary>
             Indicates the techniques used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
@@ -242,9 +209,6 @@
             <summary>
             Represents a constraint that checks for techniques, and their appeared counts.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.UniversalQuantifier">
             <summary>
@@ -286,9 +250,6 @@
             Indicates the desired technique group.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -313,9 +274,6 @@
             <summary>
             Indicates the desired name pattern.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CurrentCulture">
             <summary>
@@ -347,9 +305,6 @@
             Indicates the type of the bottleneck will be checked.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -365,143 +320,6 @@
         <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint">
-            <summary>
-            Represents a constraint that checks for techniques, and their appeared counts.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.UniversalQuantifier">
-            <summary>
-            Indicates the universal quantifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.TechniqueAppearing">
-            <summary>
-            Indicates the dictionary that stores the appearing cases on each technique.
-            </summary>
-            <remarks>
-            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
-            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
-            </remarks>
-            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint">
-            <summary>
-            Represents a constraint that checks for techniques, and their appeared counts.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.UniversalQuantifier">
-            <summary>
-            Indicates the universal quantifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.TechniqueAppearing">
-            <summary>
-            Indicates the dictionary that stores the appearing cases on each technique.
-            </summary>
-            <remarks>
-            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
-            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
-            </remarks>
-            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueCountConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint">
-            <summary>
-            Represents a constraint that checks for a technique group.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.TechniqueGroup">
-            <summary>
-            Indicates the desired technique group.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueGroupConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint">
-            <summary>
-            Represents a constraint that checks for the name of the technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.Pattern">
-            <summary>
-            Indicates the desired name pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CurrentCulture">
-            <summary>
-            Indicates the current culture.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CollectorTechniqueNameConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
             Represents a conclusion constraint.
@@ -511,9 +329,6 @@
             <summary>
             Indicates the universal quantifier.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusions">
             <summary>
@@ -555,9 +370,6 @@
             Indicates the comparison operator.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.CountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -598,9 +410,6 @@
             Indicates the operator.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -631,9 +440,6 @@
             Indicates the operator to compare values.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckingProperties">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
@@ -653,9 +459,6 @@
             <summary>
             Represents minimal constraint.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
@@ -693,9 +496,6 @@
             Represents a constraint that checks for pearl or diamond property.
             </summary>
             <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckingProperties">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdocs/>

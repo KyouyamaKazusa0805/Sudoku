@@ -14,9 +14,6 @@ public sealed partial class ConclusionConstraint : Constraint
 	[StringMember]
 	public required UniversalQuantifier UniversalQuantifier { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	/// <summary>
 	/// Indicates the conclusions to be checked.
 	/// </summary>

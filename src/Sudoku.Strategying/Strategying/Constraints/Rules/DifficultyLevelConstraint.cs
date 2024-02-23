@@ -21,9 +21,6 @@ public sealed partial class DifficultyLevelConstraint : Constraint
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)

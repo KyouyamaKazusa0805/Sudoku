@@ -8,10 +8,6 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class MinimalConstraint : Constraint
 {
 	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.Grid;
-
-
-	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other) => other is MinimalConstraint;
 
 	/// <inheritdoc/>

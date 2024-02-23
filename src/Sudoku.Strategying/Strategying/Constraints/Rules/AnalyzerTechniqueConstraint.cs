@@ -13,9 +13,6 @@ public sealed partial class AnalyzerTechniqueConstraint : Constraint
 	/// </summary>
 	public required Technique[] Techniques { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	[HashCodeMember]
 	private int TechniquesHashCode
 	{

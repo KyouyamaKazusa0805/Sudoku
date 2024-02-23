@@ -28,9 +28,6 @@ public sealed partial class CountConstraint : Constraint
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.Grid;
-
 	
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)

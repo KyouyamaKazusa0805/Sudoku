@@ -15,9 +15,6 @@ public sealed partial class AnalyzerTechniqueNameConstraint : Constraint
 	[StringSyntax(StringSyntax.Regex)]
 	public required string Pattern { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	/// <summary>
 	/// Indicates the current culture.
 	/// </summary>

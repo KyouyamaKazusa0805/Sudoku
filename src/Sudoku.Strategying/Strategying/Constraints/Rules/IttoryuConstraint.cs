@@ -20,9 +20,6 @@ public sealed partial class IttoryuConstraint : Constraint
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	[StringMember]
 	private string RoundsString => Rounds.ToString();
 

@@ -9,10 +9,6 @@ namespace Sudoku.Strategying.Constraints;
 [JsonDerivedType(typeof(AnalyzerTechniqueGroupConstraint), nameof(AnalyzerTechniqueGroupConstraint))]
 [JsonDerivedType(typeof(AnalyzerTechniqueNameConstraint), nameof(AnalyzerTechniqueNameConstraint))]
 [JsonDerivedType(typeof(BottleneckConstraint), nameof(BottleneckConstraint))]
-[JsonDerivedType(typeof(CollectorTechniqueConstraint), nameof(CollectorTechniqueConstraint))]
-[JsonDerivedType(typeof(CollectorTechniqueCountConstraint), nameof(CollectorTechniqueCountConstraint))]
-[JsonDerivedType(typeof(CollectorTechniqueGroupConstraint), nameof(CollectorTechniqueGroupConstraint))]
-[JsonDerivedType(typeof(CollectorTechniqueNameConstraint), nameof(CollectorTechniqueNameConstraint))]
 [JsonDerivedType(typeof(ConclusionConstraint), nameof(ConclusionConstraint))]
 [JsonDerivedType(typeof(CountConstraint), nameof(CountConstraint))]
 [JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))]
@@ -26,12 +22,6 @@ namespace Sudoku.Strategying.Constraints;
 [EqualityOperators]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
 {
-	/// <summary>
-	/// Indicates the properties that will be used in constraint checking.
-	/// </summary>
-	public abstract ConstraintCheckingProperty CheckingProperties { get; }
-
-
 	/// <summary>
 	/// Determine whether the specified grid is passed the constraint.
 	/// </summary>

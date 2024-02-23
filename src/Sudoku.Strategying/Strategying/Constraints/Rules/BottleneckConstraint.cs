@@ -13,9 +13,6 @@ public sealed partial class BottleneckConstraint : Constraint
 	[HashCodeMember]
 	public required BottleneckType Type { get; set; }
 
-	/// <inheritdoc/>
-	public override ConstraintCheckingProperty CheckingProperties => ConstraintCheckingProperty.AnalyzerResult;
-
 	[StringMember]
 	private string TypeString => Type.ToString();
 
