@@ -583,6 +583,39 @@
             Represents a constraint that checks for diamond property.
             </summary>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.DifficultyLevelConstraint">
+            <summary>
+            Represents difficulty level constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Operator">
+            <summary>
+            Indicates the operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
             <summary>
             Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
@@ -614,6 +647,29 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.MinimalConstraint">
+            <summary>
+            Represents minimal constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.CheckingProperties">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.PearlConstraint">
