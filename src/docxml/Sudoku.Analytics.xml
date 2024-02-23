@@ -6286,6 +6286,12 @@ if (student is (name: var name, age: >= 18))
             Represents a fish module.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearcherModules.FishModule.NotationConverter">
+            <summary>
+            The backing field that will be used for formatting notations, especially for conclusions,
+            in order to check equality of two set of conclusions.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
@@ -6306,6 +6312,14 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pattern">The fish pattern.</param>
             <returns>The shape kind.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.IntersectionModule">
             <summary>
@@ -6412,6 +6426,19 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The table of all possible pattern cells.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.XyzRingModule">
+            <summary>
+            Represents XYZ-Ring module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.XyzRingModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
@@ -16435,12 +16462,6 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.FishStep.NotationConverter">
-            <summary>
-            The backing field that will be used for formatting notations, especially for conclusions,
-            in order to check equality of two set of conclusions.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
             <inheritdoc/>
             <remarks>
@@ -16468,9 +16489,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(Sudoku.Text.Converters.CoordinateConverter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FishStep.Sudoku#Text#ICoordinateObject{Sudoku#Analytics#Steps#FishStep}#ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
@@ -19134,9 +19152,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IntersectedDigit">
             <summary>
             The generated property declaration for parameter <c>intersectedDigit</c>.
@@ -19295,34 +19310,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A list of cells as the other pair of target cells.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.IDual`1">
-            <summary>
-            Represents an interface type that makes a type support for Dual concept.
-            </summary>
-            <typeparam name="TSelf">The type of the step.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Traits.IDual`1.GetDual(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Dual patterns of type <typeparamref name="TSelf"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Dual steps of type <typeparamref name="TSelf"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISiamese`1">
-            <summary>
-            Represents an interface type that makes a type support for Siamese concept.
-            </summary>
-            <typeparam name="TSelf">The type of the step.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Traits.ISiamese`1.GetSiamese(System.Collections.Generic.List{`0},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <typeparamref name="TSelf"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <typeparamref name="TSelf"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>
