@@ -478,6 +478,9 @@
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>

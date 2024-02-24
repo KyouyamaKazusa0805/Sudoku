@@ -33,6 +33,33 @@ public sealed partial class IttoryuLengthConstraint : Constraint
 		=> other is IttoryuLengthConstraint comparer && (Length, Operator) == (comparer.Length, comparer.Operator);
 
 	/// <inheritdoc/>
+	public override ConflictionResult VerifyConfliction(Constraint other)
+	{
+		if (other is not IttoryuConstraint casted)
+		{
+			return ConflictionResult.Successful;
+		}
+
+		switch (casted)
+		{
+			case { Operator: ComparisonOperator.GreaterThan, Rounds: >= 1 }:
+			case { Operator: ComparisonOperator.GreaterThanOrEqual, Rounds: > 1 }:
+			case { Operator: ComparisonOperator.Equality, Rounds: not 1 }:
+			case { Operator: ComparisonOperator.Inequality, Rounds: 1 }:
+			{
+				if (this is { Operator: ComparisonOperator.Equality, Length: not 0 })
+				{
+					return ConflictionResult.Failed(other, ConflictionType.ValueDiffers, Severity.Error);
+				}
+
+				break;
+			}
+		}
+
+		return ConflictionResult.Successful;
+	}
+
+	/// <inheritdoc/>
 	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
 	{
 		var factLength = Finder.FindPath(in context.Grid).Digits.Length;
