@@ -54,128 +54,6 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.Constraint">
-            <summary>
-            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <summary>
-            Determine whether the specified grid is passed the constraint.
-            </summary>
-            <param name="context">Indicates the context used.</param>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
-            <summary>
-            Determine whether the current constraint will raise a confliction with the specified constraint.
-            By default, the method always return <see cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>.
-            </summary>
-            <param name="other">The constraint to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating whether the current constraint will conflict with the specified one.</returns>
-            <seealso cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
-            <remarks><i>
-            This method only handles for the core rule of the type, which means we should suppose the values are valid.
-            </i></remarks>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ValidateCore">
-            <summary>
-            Verifies the validity of properties set.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Strategying.Validation.ValidationResult"/> instance describing the final result on validation.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <param name="universalQuantifier">The universal quantifier.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryGreaterThanOrEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
-            <summary>
-            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-            </summary>
-            <typeparam name="T1">The type of the first dictionary.</typeparam>
-            <typeparam name="T2">The type of the second dictionary.</typeparam>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <param name="universalQuantifier">The universal quantifier.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Equality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Inequality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext">
-            <summary>
-            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <param name="collectorResult">Indicates the collector result.</param>
-            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
-            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult,Sudoku.Analytics.Step[][],System.Threading.CancellationToken)">
-            <summary>
-            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <param name="collectorResult">Indicates the collector result.</param>
-            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
-            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresAnalyzer">
-            <summary>
-            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresCollector">
-            <summary>
-            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult">
-            <summary>
-            The generated property declaration for parameter <c>analyzerResult</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult">
-            <summary>
-            The generated property declaration for parameter <c>collectorResult</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CancellationToken">
-            <summary>
-            The generated property declaration for parameter <c>cancellationToken</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint">
             <summary>
             Represents a rule that checks whether the specified analyzer result after analyzed by a grid
@@ -349,6 +227,128 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.Constraint">
+            <summary>
+            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
+            <summary>
+            Determine whether the current constraint will raise a confliction with the specified constraint.
+            By default, the method always return <see cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>.
+            </summary>
+            <param name="other">The constraint to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating whether the current constraint will conflict with the specified one.</returns>
+            <seealso cref="P:Sudoku.Strategying.Validation.ConflictionResult.Successful"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)"/>
+            <remarks><i>
+            This method only handles for the core rule of the type, which means we should suppose the values are valid.
+            </i></remarks>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ValidateCore">
+            <summary>
+            Verifies the validity of properties set.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Strategying.Validation.ValidationResult"/> instance describing the final result on validation.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">The universal quantifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.DictionaryGreaterThanOrEquals``2(``0,``1,Sudoku.Strategying.UniversalQuantifier)">
+            <summary>
+            Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
+            </summary>
+            <typeparam name="T1">The type of the first dictionary.</typeparam>
+            <typeparam name="T2">The type of the second dictionary.</typeparam>
+            <param name="left">The first element to be compared.</param>
+            <param name="right">The second element to be compared.</param>
+            <param name="universalQuantifier">The universal quantifier.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Equality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Inequality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="collectorResult">Indicates the collector result.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult,Sudoku.Analytics.Step[][],System.Threading.CancellationToken)">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <param name="collectorResult">Indicates the collector result.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresAnalyzer">
+            <summary>
+            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresCollector">
+            <summary>
+            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult">
+            <summary>
+            The generated property declaration for parameter <c>analyzerResult</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult">
+            <summary>
+            The generated property declaration for parameter <c>collectorResult</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CancellationToken">
+            <summary>
+            The generated property declaration for parameter <c>cancellationToken</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CountConstraint">
             <summary>
