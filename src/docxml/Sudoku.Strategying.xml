@@ -455,6 +455,41 @@
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.IttoryuLengthConstraint">
+            <summary>
+            Represents ittoryu length constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Finder">
+            <summary>
+            Indicates the disordered ittoryu finder.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
+            <summary>
+            Indicates the length.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Operator">
+            <summary>
+            Indicates the comparison operator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.MinimalConstraint">
             <summary>
             Represents minimal constraint.
@@ -515,6 +550,32 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
+            <summary>
+            Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/> can controls this.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.SymmetricTypes">
+            <summary>
+            Indicates the supported symmetry types to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.UniversalQuantifier">
