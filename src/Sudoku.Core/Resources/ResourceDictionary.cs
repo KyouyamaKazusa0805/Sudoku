@@ -49,21 +49,29 @@ public static class ResourceDictionary
 	/// <summary>
 	/// Try to get resource via the key, or throw a <see cref="ResourceNotFoundException"/> if resource is not found.
 	/// </summary>
-	/// <inheritdoc cref="GetOrNull(string, CultureInfo?, Assembly?)"/>
+	/// <inheritdoc cref="TryGet(string, out string?, CultureInfo?, Assembly?)"/>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified resource is not found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string Get(string resourceKey, CultureInfo? culture = null, Assembly? assembly = null)
-		=> GetOrNull(resourceKey, culture, assembly) ?? throw new ResourceNotFoundException(assembly, resourceKey, culture);
+		=> TryGet(resourceKey, out var resource, culture, assembly)
+			? resource
+			: throw new ResourceNotFoundException(assembly, resourceKey, culture);
 
 	/// <summary>
 	/// Try to get resource via the key, or return <see langword="null"/> if failed.
 	/// </summary>
 	/// <param name="resourceKey">The resource key.</param>
+	/// <param name="resource">Indicates the target resource.</param>
 	/// <param name="culture">The culture.</param>
 	/// <param name="assembly">The assembly storing the resource dictionaries.</param>
 	/// <returns>The result string result.</returns>
 	/// <exception cref="MissingResourceManagerException">Throws when the resource manager object is missing.</exception>
-	public static string? GetOrNull(string resourceKey, CultureInfo? culture = null, Assembly? assembly = null)
+	public static bool TryGet(
+		string resourceKey,
+		[NotNullWhen(true)] out string? resource,
+		CultureInfo? culture = null,
+		Assembly? assembly = null
+	)
 	{
 		if (assembly is not null)
 		{
@@ -71,7 +79,10 @@ public static class ResourceDictionary
 			{
 				if (a == assembly)
 				{
-					return (culture is null ? m.GetString(resourceKey) : m.GetString(resourceKey, culture)) ?? m.GetString(resourceKey, DefaultCulture);
+					return (
+						resource = (culture is null ? m.GetString(resourceKey) : m.GetString(resourceKey, culture))
+							?? m.GetString(resourceKey, DefaultCulture)
+					) is not null;
 				}
 			}
 
@@ -82,10 +93,12 @@ public static class ResourceDictionary
 		{
 			if (((culture is null ? m.GetString(resourceKey) : m.GetString(resourceKey, culture)) ?? m.GetString(resourceKey, DefaultCulture)) is { } result)
 			{
-				return result;
+				resource = result;
+				return true;
 			}
 		}
 
-		return null;
+		resource = null;
+		return false;
 	}
 }

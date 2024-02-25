@@ -7645,14 +7645,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Try to get resource via the key, or throw a <see cref="T:Sudoku.Resources.ResourceNotFoundException"/> if resource is not found.
             </summary>
-            <inheritdoc cref="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <inheritdoc cref="M:Sudoku.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
             <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
         </member>
-        <member name="M:Sudoku.Resources.ResourceDictionary.GetOrNull(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+        <member name="M:Sudoku.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>
             Try to get resource via the key, or return <see langword="null"/> if failed.
             </summary>
             <param name="resourceKey">The resource key.</param>
+            <param name="resource">Indicates the target resource.</param>
             <param name="culture">The culture.</param>
             <param name="assembly">The assembly storing the resource dictionaries.</param>
             <returns>The result string result.</returns>

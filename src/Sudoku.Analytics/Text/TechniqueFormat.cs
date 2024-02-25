@@ -31,7 +31,9 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	/// </summary>
 	/// <param name="culture">The culture information.</param>
 	public readonly string? GetTargetFormat(CultureInfo? culture)
-		=> _formatName is null ? null : ResourceDictionary.GetOrNull(_formatFullName, culture ?? CultureInfo.CurrentUICulture);
+		=> _formatName is not null && ResourceDictionary.TryGet(_formatFullName, out var resource, culture ?? CultureInfo.CurrentUICulture)
+			? resource
+			: null;
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

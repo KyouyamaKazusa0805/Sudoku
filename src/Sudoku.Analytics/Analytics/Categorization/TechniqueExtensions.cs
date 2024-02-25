@@ -29,8 +29,9 @@ public static class TechniqueExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? culture = null)
-		=> ResourceDictionary.GetOrNull(@this.ToString(), culture ?? CultureInfo.CurrentUICulture)
-		?? ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
+		=> ResourceDictionary.TryGet(@this.ToString(), out var resource, culture ?? CultureInfo.CurrentUICulture)
+			? resource
+			: ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -63,8 +64,11 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? ResourceDictionary.GetOrNull($"TechniqueAbbr_{@this}", ResourceDictionary.DefaultCulture)
-		?? @this.GetGroup().GetAbbreviation();
+		?? (
+			ResourceDictionary.TryGet($"TechniqueAbbr_{@this}", out var resource, ResourceDictionary.DefaultCulture)
+				? resource
+				: @this.GetGroup().GetAbbreviation()
+		);
 
 	/// <summary>
 	/// Try to get all aliases of the current <see cref="Technique"/>.
@@ -77,7 +81,9 @@ public static class TechniqueExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliases(this Technique @this, CultureInfo? cultureInfo = null)
-		=> ResourceDictionary.GetOrNull($"TechniqueAlias_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)?.SplitBy([';']);
+		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, cultureInfo ?? CultureInfo.CurrentUICulture)
+			? resource.SplitBy([';'])
+			: null;
 
 	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.

@@ -34,7 +34,10 @@ internal sealed partial class MainNavigationPage : Page
 	/// </summary>
 	/// <param name="pageType">The page type.</param>
 	internal void SetFrameDisplayTitle(Type pageType)
-		=> MainNavigationView.Header = ResourceDictionary.GetOrNull($"{nameof(MainWindow)}_{pageType.Name}Title") ?? string.Empty;
+	{
+		var titleKey = $"{nameof(MainWindow)}_{pageType.Name}Title";
+		MainNavigationView.Header = ResourceDictionary.TryGet(titleKey, out var resource, App.CurrentCulture) ? resource : string.Empty;
+	}
 
 	/// <summary>
 	/// Initializes fields.
