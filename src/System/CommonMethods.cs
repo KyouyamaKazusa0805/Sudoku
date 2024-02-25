@@ -87,7 +87,7 @@ public static class CommonMethods
 		{
 			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
 			8 when (Unsafe.As<T, long>(ref left) | Unsafe.As<T, long>(ref right)) is var f => Unsafe.As<long, T>(ref f),
-			_ => throw new NotSupportedException(ErrorInfo_UnderlyingTypeNotSupported<T>())
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("UnderlyingTypeNotSupported"))
 		};
 
 	/// <summary>
@@ -98,11 +98,4 @@ public static class CommonMethods
 	/// <returns>The value itself.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static T Self<T>(T value) => value;
-
-
-	private static string ErrorInfo_UnderlyingTypeNotSupported<T>()
-		=> $"""
-		The target enumeration type '{typeof(T).Name}' has a wrong underlying numeric type. 
-		All possible underlying types for an enumeration type must be of size 1, 2, 4 or 8 bits.
-		""".RemoveLineEndings();
 }

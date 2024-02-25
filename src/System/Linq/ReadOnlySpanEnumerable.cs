@@ -297,7 +297,7 @@ public static class ReadOnlySpanEnumerable
 			}
 		}
 
-		throw new InvalidOperationException("The collection does not contain any possible element satisfying the specified condition.");
+		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>

@@ -1071,7 +1071,7 @@ file static class Extensions
 			}
 			default:
 			{
-				throw new InvalidOperationException("The value is invalid.");
+				throw new();
 			}
 		}
 	}

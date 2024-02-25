@@ -8,4 +8,19 @@
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<Compile Update="Resources\SystemExtensionsResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SystemExtensionsResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\SystemExtensionsResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>SystemExtensionsResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

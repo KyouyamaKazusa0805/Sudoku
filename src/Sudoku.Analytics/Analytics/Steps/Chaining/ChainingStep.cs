@@ -36,7 +36,7 @@ public abstract partial class ChainingStep(
 			(BidirectionalCycleStep or ForcingChainStep) and { IsX: true, IsY: true } => 5.0M,
 			ForcingChainStep => 4.6M,
 			BidirectionalCycleStep => 4.5M,
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <inheritdoc/>
@@ -103,7 +103,7 @@ public abstract partial class ChainingStep(
 			(BinaryForcingChainsStep, _, _, _, true) => Technique.NishioForcingChains,
 			(BinaryForcingChainsStep { IsAbsurd: true }, _, _, _, false) => Technique.DynamicContradictionForcingChains,
 			(BinaryForcingChainsStep, _, _, _, _) => Technique.DynamicDoubleForcingChains,
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <inheritdoc/>
@@ -133,7 +133,7 @@ public abstract partial class ChainingStep(
 			CellForcingChainsStep { Chains.Potentials: var targets } => [.. targets],
 			RegionForcingChainsStep { Chains.Potentials: var targets } => [.. targets],
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => [on, off],
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <summary>
@@ -146,7 +146,7 @@ public abstract partial class ChainingStep(
 			BinaryForcingChainsStep => 2,
 			CellForcingChainsStep { Chains.Count: var count } => count,
 			RegionForcingChainsStep { Chains.Count: var count } => count,
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <summary>
@@ -167,7 +167,7 @@ public abstract partial class ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on } => on,
 			CellForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <summary>
@@ -186,7 +186,7 @@ public abstract partial class ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => AncestorsCountOf(on) + AncestorsCountOf(off),
 			CellForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
 			RegionForcingChainsStep { Chains.Potentials: var branchedStarts } => branchedStarts.Sum(AncestorsCountOf),
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <summary>
@@ -447,7 +447,7 @@ public abstract partial class ChainingStep(
 			BinaryForcingChainsStep { FromOnPotential: var on, FromOffPotential: var off } => viewIndex switch { 0 => on, 1 => off },
 			CellForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
 			RegionForcingChainsStep { Chains.Potentials: var targets } => targets[viewIndex],
-			_ => throw new NotSupportedException("The target type of the chain is not supported. You should override this property for that type.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
 	/// <summary>

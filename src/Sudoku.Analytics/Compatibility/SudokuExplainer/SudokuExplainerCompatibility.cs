@@ -72,6 +72,6 @@ public static class SudokuExplainerCompatibility
 				[(var min, var max, true)] => new(null, new(min, max ?? min)),
 				[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
 				[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
-				_ => throw new InvalidOperationException("The field has marked too much attributes.")
+				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TooMuchAttributes"))
 			};
 }

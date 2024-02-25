@@ -34,7 +34,7 @@ public sealed class ProgramPreference
 				=> propertyInfo.GetValue(p) switch
 				{
 					PreferenceGroup t => t,
-					_ => throw new NotSupportedException("One of two possible property values cannot be found in target property group type.")
+					_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("PropertyValueCannotBeFoundInPropertyGroupType"))
 				};
 		}
 	}

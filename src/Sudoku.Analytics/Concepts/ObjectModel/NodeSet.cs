@@ -53,7 +53,7 @@ public sealed class NodeSet : HashSet<ChainNode>
 				}
 			}
 
-			throw new InvalidOperationException("The specified node with suitable data is not found.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ChainNodeDataInvalid"));
 		}
 	}
 

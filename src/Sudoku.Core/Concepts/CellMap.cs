@@ -757,7 +757,7 @@ public partial struct CellMap :
 		{
 			if (n > 30 && subsetSize > 30)
 			{
-				throw new NotSupportedException(IBitStatusMap<CellMap, Cell, Enumerator>.ErrorInfo_SubsetsExceeded);
+				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CellMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
@@ -941,7 +941,7 @@ public partial struct CellMap :
 					select binary.PadLeft(27, '0')
 				)
 			),
-			_ => throw new FormatException("The length of the string must be 18.")
+			_ => throw new FormatException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 18))
 		};
 
 	/// <summary>
@@ -1010,7 +1010,7 @@ public partial struct CellMap :
 			}
 		}
 
-		throw new FormatException("The string is invalid to be parsed.");
+		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
 	/// <inheritdoc/>

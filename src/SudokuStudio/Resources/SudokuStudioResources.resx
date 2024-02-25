@@ -2270,4 +2270,43 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="_Token_OpenBrace" xml:space="preserve">
     <value> (</value>
   </data>
+  <data name="ErrorInfo_EnsureFileIsUnsnapped" xml:space="preserve">
+    <value>Ensure the file should be unsnapped.</value>
+  </data>
+  <data name="ErrorInfo_MainWindowNotFound" xml:space="preserve">
+    <value>Main window cannot be found.</value>
+  </data>
+  <data name="ErrorInfo_GridMustBeSolvedOrUnique" xml:space="preserve">
+    <value>The puzzle must be solved, and have a unique solution.</value>
+  </data>
+  <data name="ErrorInfo_PropertyValueCannotBeFoundInPropertyGroupType" xml:space="preserve">
+    <value>One of two possible property values cannot be found in target property group type.</value>
+  </data>
+  <data name="ErrorInfo_SuchColorCannotBeFound" xml:space="preserve">
+    <value>Such color cannot be found.</value>
+  </data>
+  <data name="ErrorInfo_SuchInstanceIsInvalid" xml:space="preserve">
+    <value>Such instance contains invalid data.</value>
+  </data>
+  <data name="ErrorInfo_InvalidBaseType" xml:space="preserve">
+    <value>The base value type is invalid.</value>
+  </data>
+  <data name="ErrorInfo_InvalidLibraryBindableSource" xml:space="preserve">
+    <value>Invalid library bindable source.</value>
+  </data>
+  <data name="ErrorInfo_FileFormatContainsMultipleSubformats" xml:space="preserve">
+    <value>The specified format is invalid: it contain multiple sub-formats or no format.</value>
+  </data>
+  <data name="ErrorInfo_FormatCannotBeNull" xml:space="preserve">
+    <value>The format cannot be null.</value>
+  </data>
+  <data name="ErrorInfo_ModeInvalidOrUndefined" xml:space="preserve">
+    <value>The mode is invalid, it may not be defined in the enumeration type.</value>
+  </data>
+  <data name="ErrorInfo_UnableGetDpi" xml:space="preserve">
+    <value>Could not get DPI for monitor.</value>
+  </data>
+  <data name="ErrorInfo_NoAvailableNameCanBeUsed" xml:space="preserve">
+    <value>No available name can be used.</value>
+  </data>
 </root>

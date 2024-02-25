@@ -122,7 +122,7 @@ public readonly partial struct Utf8Char :
 	int IComparable.CompareTo(object? obj)
 		=> obj is Utf8Char comparer
 			? CompareTo(comparer)
-			: throw new ArgumentException("Cannot operate because the argument is not a UTF-8 formatted character.", nameof(obj));
+			: throw new ArgumentException(ResourceDictionary.ExceptionMessage("CharacterNotUtf8"), nameof(obj));
 
 
 	/// <inheritdoc/>

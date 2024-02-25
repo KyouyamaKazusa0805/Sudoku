@@ -22,7 +22,8 @@ public static class BackdoorSearcher
 	{
 		return (grid, SstsChecker.Analyze(in grid)) switch
 		{
-			({ IsValid: false } or { IsSolved: true }, _) => throw new ArgumentException("The value is invalid or solved.", nameof(grid)),
+			({ IsValid: false } or { IsSolved: true }, _)
+				=> throw new ArgumentException(ResourceDictionary.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
 			({ SolutionGrid: var solution }, { IsSolved: true })
 				=>
 				from candidate in grid

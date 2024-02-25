@@ -47,6 +47,18 @@ public static class ResourceDictionary
 	}
 
 	/// <summary>
+	/// Try to get error information (used by exception message, <see cref="Exception.Message"/> property) values,
+	/// or throw a <see cref="ResourceNotFoundException"/> if resource is not found.
+	/// </summary>
+	/// <inheritdoc cref="TryGet(string, out string?, CultureInfo?, Assembly?)"/>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified resource is not found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ExceptionMessage(string resourceKey, CultureInfo? culture = null, Assembly? assembly = null)
+		=> TryGet(resourceKey.StartsWith("ErrorInfo_") ? resourceKey : $"ErrorInfo_{resourceKey}", out var resource, culture, assembly)
+			? resource
+			: throw new ResourceNotFoundException(assembly, resourceKey, culture);
+
+	/// <summary>
 	/// Try to get resource via the key, or throw a <see cref="ResourceNotFoundException"/> if resource is not found.
 	/// </summary>
 	/// <inheritdoc cref="TryGet(string, out string?, CultureInfo?, Assembly?)"/>

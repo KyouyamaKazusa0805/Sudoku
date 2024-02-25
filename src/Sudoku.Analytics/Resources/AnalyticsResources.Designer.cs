@@ -1168,6 +1168,168 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing cells or target house..
+        /// </summary>
+        public static string ErrorInfo_AlsMissingCellsInTargetHouse {
+            get {
+                return ResourceManager.GetString("ErrorInfo_AlsMissingCellsInTargetHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ALS notation must contain only 1 slash character..
+        /// </summary>
+        public static string ErrorInfo_AlsMissingSlash {
+            get {
+                return ResourceManager.GetString("ErrorInfo_AlsMissingSlash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target type of the chain is not supported. You should override this property for that type..
+        /// </summary>
+        public static string ErrorInfo_ChainMemberNotOverridden {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ChainMemberNotOverridden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified node with suitable data is not found..
+        /// </summary>
+        public static string ErrorInfo_ChainNodeDataInvalid {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ChainNodeDataInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A complex fish cannot hold a normal shape kind..
+        /// </summary>
+        public static string ErrorInfo_ComplexFishCannotBeNormal {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ComplexFishCannotBeNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The group of indirect technique field is neither locked candidates nor subset, which is not supported today. In future, the field might be expanded to wider, and this value might be available..
+        /// </summary>
+        public static string ErrorInfo_ComplexSingleNotSupportedToday {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ComplexSingleNotSupportedToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified match is not supported to be replaced..
+        /// </summary>
+        public static string ErrorInfo_FilteringExpressionNotSupported {
+            get {
+                return ResourceManager.GetString("ErrorInfo_FilteringExpressionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This puzzle has already been solved..
+        /// </summary>
+        public static string ErrorInfo_GridAlreadySolved {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridAlreadySolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value is invalid or solved..
+        /// </summary>
+        public static string ErrorInfo_GridIsInvalidOrSolved {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridIsInvalidOrSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The puzzle must have been solved before you consume this member..
+        /// </summary>
+        public static string ErrorInfo_GridMustBeSolved {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridMustBeSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The property value &apos;Collector.DifficultyLevelMode&apos; is undefined..
+        /// </summary>
+        public static string ErrorInfo_ModeIsUndefined {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ModeIsUndefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The view in the second fish is invalid..
+        /// </summary>
+        public static string ErrorInfo_NormalFishViewInvalid {
+            get {
+                return ResourceManager.GetString("ErrorInfo_NormalFishViewInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent not found..
+        /// </summary>
+        public static string ErrorInfo_ParentNotFoundInChain {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ParentNotFoundInChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi property is invalid..
+        /// </summary>
+        public static string ErrorInfo_SashimiPropertyInvalid {
+            get {
+                return ResourceManager.GetString("ErrorInfo_SashimiPropertyInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The step doesn&apos;t contain any conclusions, which is disallowed in API. Please report the message to the author..
+        /// </summary>
+        public static string ErrorInfo_StepContainsNoConclusions {
+            get {
+                return ResourceManager.GetString("ErrorInfo_StepContainsNoConclusions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The subset is too complex to be calculated..
+        /// </summary>
+        public static string ErrorInfo_SubsetSizeExceeds {
+            get {
+                return ResourceManager.GetString("ErrorInfo_SubsetSizeExceeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The target level is unknown. If you see this exception thrown, please append &apos;Sudoku.Analytics.Categorization.DifficultyLevelAttribute&apos; to the target technique code field defined in type &apos;Sudoku.Analytics.Categorization.Technique&apos;..
+        /// </summary>
+        public static string ErrorInfo_TechniqueLevelCannotBeDetermined {
+            get {
+                return ResourceManager.GetString("ErrorInfo_TechniqueLevelCannotBeDetermined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field has marked too much attributes..
+        /// </summary>
+        public static string ErrorInfo_TooMuchAttributes {
+            get {
+                return ResourceManager.GetString("ErrorInfo_TooMuchAttributes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Target.
         /// </summary>
         public static string ExocetBasicEliminationName {

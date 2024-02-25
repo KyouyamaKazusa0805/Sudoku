@@ -295,7 +295,7 @@ file static class Generator
 			}
 			default:
 			{
-				throw new ArgumentException("The mode is invalid, it may not be defined in the enumeration type.", nameof(mode));
+				throw new ArgumentException(ResourceDictionary.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
 			}
 		}
 

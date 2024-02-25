@@ -26,18 +26,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	where TEnumerator : struct, IEnumerator<TElement>
 {
 	/// <summary>
-	/// Indicates the error information describing the case that the number of subsets calculated by methods
-	/// <see cref="GetSubsets(int)"/> and <see cref="GetSubsetsAllBelow(int)"/> is too large.
-	/// </summary>
-	/// <seealso cref="GetSubsets(int)"/>
-	/// <seealso cref="GetSubsetsAllBelow(int)"/>
-	private protected static readonly string ErrorInfo_SubsetsExceeded = """
-		Both cells count and subset size is too large, which may cause potential out of memory exception. 
-		This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.
-		""".RemoveLineEndings();
-
-
-	/// <summary>
 	/// Indicates the number of the values stored in this collection.
 	/// </summary>
 	public new abstract int Count { get; }

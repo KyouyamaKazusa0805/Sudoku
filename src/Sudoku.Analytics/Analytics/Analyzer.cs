@@ -93,7 +93,7 @@ public sealed partial class Analyzer :
 	{
 		if (puzzle.IsSolved)
 		{
-			throw new InvalidOperationException("This puzzle has already been solved.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridAlreadySolved"));
 		}
 
 		var result = new AnalyzerResult(in puzzle) { IsSolved = false };

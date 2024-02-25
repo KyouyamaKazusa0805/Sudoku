@@ -96,5 +96,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conjugate ParseExact(string str, CoordinateParser parser)
-		=> parser.ConjuagteParser(str) is [var result] ? result : throw new FormatException("Multiple conjuagte pair values found.");
+		=> parser.ConjuagteParser(str) is [var result]
+			? result
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleConjugatePairValuesFound"));
 }

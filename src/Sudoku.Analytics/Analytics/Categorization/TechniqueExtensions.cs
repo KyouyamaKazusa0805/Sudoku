@@ -7,14 +7,6 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
-	/// Represents an error message that complex single field is not supported.
-	/// </summary>
-	private static readonly string Error_ComplexSingleNotSupportedToday = """
-		The group of indirect technique field is neither locked candidates nor subset, which is not supported today. 
-		In future, the field might be expanded to wider, and this value might be available.
-		""".RemoveLineEndings();
-
-	/// <summary>
 	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
 	/// </summary>
 	private static readonly Type TypeOfTechnique = typeof(Technique);
@@ -125,9 +117,12 @@ public static class TechniqueExtensions
 			Technique.FullHouse or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn or Technique.NakedSingle
 				=> indirect.GetGroup() switch
 				{
-					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset => Enum.Parse<Technique>($"{indirect}{@this}"),
-					_ when Enum.IsDefined(indirect) => throw new NotSupportedException(Error_ComplexSingleNotSupportedToday),
-					_ => throw new ArgumentOutOfRangeException(nameof(indirect))
+					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset
+						=> Enum.Parse<Technique>($"{indirect}{@this}"),
+					_ when Enum.IsDefined(indirect)
+						=> throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ComplexSingleNotSupportedToday")),
+					_
+						=> throw new ArgumentOutOfRangeException(nameof(indirect))
 				},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};

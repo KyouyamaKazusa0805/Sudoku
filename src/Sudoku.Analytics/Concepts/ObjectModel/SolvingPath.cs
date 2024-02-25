@@ -89,7 +89,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 				}
 			}
 
-			throw new InvalidOperationException("The puzzle keeps a wrong state.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridInvalid"));
 		}
 	}
 
@@ -179,7 +179,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 		{
 			if (!IsSolved)
 			{
-				throw new InvalidOperationException("The puzzle must have been solved before you use this indexer.");
+				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolved"));
 			}
 
 			foreach (var (g, s) in this)
@@ -190,7 +190,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 				}
 			}
 
-			throw new ArgumentOutOfRangeException("The specified step is not found.");
+			throw new ArgumentOutOfRangeException(ResourceDictionary.ExceptionMessage("GridInvalid"));
 		}
 	}
 
@@ -283,7 +283,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	{
 		if (!IsSolved)
 		{
-			throw new InvalidOperationException("The puzzle must be solved before call this method.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolved"));
 		}
 
 		foreach (var step in Steps)

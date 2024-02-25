@@ -17,7 +17,7 @@ public sealed class LibraryOtherInfoConverter : IValueConverter
 					{ Length: not 0 } => string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), tags),
 					_ => ResourceDictionary.Get("NoTags", App.CurrentCulture)
 				}} | {time.ToString(App.CurrentCulture)}",
-			_ => throw new InvalidOperationException("Converter error - invalid library bindable source.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidLibraryBindableSource"))
 		};
 
 	/// <inheritdoc/>

@@ -65,5 +65,9 @@ public static class ReadOnlySpanExtensions
 	/// <returns>An enumerable collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static PairEnumerator<T> EnumeratePairly<T>(this ReadOnlySpan<T> @this) where T : notnull
-		=> new((@this.Length & 1) != 0 ? throw new ArgumentException("The argument must be of an even length.", nameof(@this)) : @this);
+		=> new(
+			(@this.Length & 1) == 0
+				? @this
+				: throw new ArgumentException(ResourceDictionary.ExceptionMessage("SpecifiedValueMustBeEven"), nameof(@this))
+		);
 }

@@ -16,4 +16,19 @@
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="Resources\GdipResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>GdipResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\GdipResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>GdipResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

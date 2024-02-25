@@ -129,7 +129,7 @@ internal class ChainingModule
 					// Add a hidden parent.
 					if (offPotentials.GetNullable(new(cell, digit, false)) is not { } parent)
 					{
-						throw new InvalidOperationException("Parent not found.");
+						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ParentNotFoundInChain"));
 					}
 
 					p.Parents.Add(parent);
@@ -154,7 +154,7 @@ internal class ChainingModule
 				// Add a hidden parent.
 				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
 				{
-					throw new InvalidOperationException("Parent not found.");
+					throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ParentNotFoundInChain"));
 				}
 
 				p.Parents.Add(parent);

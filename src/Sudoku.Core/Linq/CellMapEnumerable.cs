@@ -15,7 +15,7 @@ public static class CellMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cell First(this scoped ref readonly CellMap @this, Func<Cell, bool> match)
-		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException("No possible elements found.");
+		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.
@@ -30,7 +30,7 @@ public static class CellMapEnumerable
 		this scoped ref readonly CellMap @this,
 		scoped ref readonly Grid grid,
 		BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator> match
-	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException("No possible elements found.");
+	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.

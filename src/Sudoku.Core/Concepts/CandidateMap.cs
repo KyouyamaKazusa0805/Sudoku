@@ -450,7 +450,7 @@ public partial struct CandidateMap :
 		{
 			if (n > 30 && subsetSize > 30)
 			{
-				throw new NotSupportedException(IBitStatusMap<CandidateMap, Candidate, Enumerator>.ErrorInfo_SubsetsExceeded);
+				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CandidateMap>();
 			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
@@ -661,7 +661,7 @@ public partial struct CandidateMap :
 			}
 		}
 
-		throw new FormatException("The string is invalid to be parsed.");
+		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
 	/// <inheritdoc/>

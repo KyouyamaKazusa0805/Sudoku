@@ -124,5 +124,5 @@ public abstract partial class FishStep(
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	static FishStep ICoordinateObject<FishStep>.ParseExact(string str, CoordinateParser parser)
-		=> throw new NotSupportedException("This method does not supported.");
+		=> throw new NotSupportedException(ResourceDictionary.ExceptionMessage("MemberNotSupported"));
 }

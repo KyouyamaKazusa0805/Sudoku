@@ -120,7 +120,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 					}
 					default:
 					{
-						throw new InvalidOperationException("The specified state is invalid.");
+						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidStateOnParsing"));
 					}
 				}
 			}

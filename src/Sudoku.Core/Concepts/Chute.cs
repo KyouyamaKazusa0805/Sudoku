@@ -20,5 +20,7 @@ public readonly record struct Chute(int Index, scoped ref readonly CellMap Cells
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Chute ParseExact(string str, CoordinateParser parser)
-		=> parser.ChuteParser(str) is [var result] ? result : throw new FormatException("Multiple chute values found.");
+		=> parser.ChuteParser(str) is [var result]
+			? result
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleChuteValuesFound"));
 }

@@ -117,103 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BlockLabel" xml:space="preserve">
-    <value>Block {0}</value>
+  <data name="ErrorInfo_FileFormatNotSupported" xml:space="preserve">
+    <value>The specified file format is not supported.</value>
   </data>
-  <data name="CandidateLabel" xml:space="preserve">
-    <value>{0}, digit {1}</value>
+  <data name="ErrorInfo_NoSuchDisplayingColor" xml:space="preserve">
+    <value>Such displaying color kind is invalid.</value>
   </data>
-  <data name="CellLabel" xml:space="preserve">
-    <value>row {0} column {1}</value>
+  <data name="ErrorInfo_NoSuchIdentifier" xml:space="preserve">
+    <value>Such identifier instance contains invalid value.</value>
   </data>
-  <data name="CellsLabel" xml:space="preserve">
-    <value>cells: {0}</value>
+  <data name="ErrorInfo_CannotGetMapMoreThan1Candidate" xml:space="preserve">
+    <value>Cannot get at least 1 candidate in the map.</value>
   </data>
-  <data name="ColumnLabel" xml:space="preserve">
-    <value>Column {0}</value>
-  </data>
-  <data name="ConjugatePairWith" xml:space="preserve">
-    <value>{0} conjugates with {1}, for digit {2}</value>
-  </data>
-  <data name="HousesLabel" xml:space="preserve">
-    <value>houses: {0}</value>
-  </data>
-  <data name="LockedCandidatesLabel" xml:space="preserve">
-    <value>{0} {1}</value>
-  </data>
-  <data name="MegaColumnLabel" xml:space="preserve">
-    <value>Mega column {0}</value>
-  </data>
-  <data name="MegaLinesLabel" xml:space="preserve">
-    <value>Mega lines: {0}</value>
-  </data>
-  <data name="MegaRowLabel" xml:space="preserve">
-    <value>Mega row {0}</value>
-  </data>
-  <data name="RowLabel" xml:space="preserve">
-    <value>Row {0}</value>
-  </data>
-  <data name="ErrorInfo_SubsetsExceeded" xml:space="preserve">
-    <value>Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown.</value>
-  </data>
-  <data name="ErrorInfo_NotExist" xml:space="preserve">
-    <value>The file does not exist.</value>
-  </data>
-  <data name="ErrorInfo_MultipleSamePropertiesFound" xml:space="preserve">
-    <value>Multiple same properties are found.</value>
-  </data>
-  <data name="ErrorInfo_DifferentExistenceOfConfigAndLibraryFile" xml:space="preserve">
-    <value>Different existence of config file and library file.</value>
-  </data>
-  <data name="ErrorInfo_FileShouldBeInitializedFirst" xml:space="preserve">
-    <value>Related files should be initialized first.</value>
-  </data>
-  <data name="Error_UnrecognizedGridFormat" xml:space="preserve">
-    <value>You cannot append text that cannot be recognized as a valid sudoku grid.</value>
-  </data>
-  <data name="Error_ArgExtensionShouldBeValid" xml:space="preserve">
-    <value>The argument should contains the prefix period token.</value>
-  </data>
-  <data name="ErrorInfo_LibraryShouldBeInitialized" xml:space="preserve">
-    <value>The library is not initialized. It must be initialized file, ensuring the file in local exists.</value>
-  </data>
-  <data name="ErrorInfo_PointerCannotMove" xml:space="preserve">
-    <value>The pointer cannot move.</value>
-  </data>
-  <data name="ErrorInfo_GridInvalid" xml:space="preserve">
-    <value>The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method.</value>
-  </data>
-  <data name="ErrorInfo_GridMultipleSolutions" xml:space="preserve">
-    <value>The grid contains multiple solutions.</value>
-  </data>
-  <data name="ErrorInfo_GridNoSolution" xml:space="preserve">
-    <value>The grid has no possible solution.</value>
-  </data>
-  <data name="ErrorInfo_StringValueInvalidToBeParsed" xml:space="preserve">
-    <value>The string value is invalid to be parsed.</value>
-  </data>
-  <data name="ErrorInfo_LengthMustBeMatched" xml:space="preserve">
-    <value>The length of the string must be {0}.</value>
-  </data>
-  <data name="ErrorInfo_MultipleChuteValuesFound" xml:space="preserve">
-    <value>Multiple chute values found.</value>
-  </data>
-  <data name="ErrorInfo_MultipleConjugatePairValuesFound" xml:space="preserve">
-    <value>Multiple conjuagte pair values found.</value>
-  </data>
-  <data name="ErrorInfo_GridInvalidCellState" xml:space="preserve">
-    <value>The grid cannot keep invalid cell state value.</value>
-  </data>
-  <data name="ErrorInfo_NoElementsInSequence" xml:space="preserve">
-    <value>No possible elements can be found in the current sequence.</value>
-  </data>
-  <data name="ErrorInfo_InvalidStateOnParsing" xml:space="preserve">
-    <value>Invalid state on parsing values.</value>
-  </data>
-  <data name="ErrorInfo_ContainsEmptySegmentOnParsing" xml:space="preserve">
-    <value>The string contains empty segment.</value>
-  </data>
-  <data name="ErrorInfo_DuplicatedValuesMayExistOrInvalid" xml:space="preserve">
-    <value>Duplicated or invalid values found.</value>
+  <data name="ErrorInfo_CannotGetMapMoreThan1Cell" xml:space="preserve">
+    <value>Cannot get at least 1 cell in the map.</value>
   </data>
 </root>

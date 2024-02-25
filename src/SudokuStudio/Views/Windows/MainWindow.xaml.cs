@@ -322,7 +322,7 @@ public sealed partial class MainWindow : Window
 		var result = Interoperability.GetDpiForMonitor(hMonitor, MonitorDpiType.MDT_Default, out var dpiX, out _);
 		if (result != 0)
 		{
-			throw new InvalidOperationException("Could not get DPI for monitor.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("UnableGetDpi"));
 		}
 
 		var scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);

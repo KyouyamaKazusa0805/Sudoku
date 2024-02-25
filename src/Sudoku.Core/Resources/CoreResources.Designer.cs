@@ -115,6 +115,195 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The argument should contains the prefix period token..
+        /// </summary>
+        internal static string Error_ArgExtensionShouldBeValid {
+            get {
+                return ResourceManager.GetString("Error_ArgExtensionShouldBeValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
+        /// </summary>
+        internal static string Error_UnrecognizedGridFormat {
+            get {
+                return ResourceManager.GetString("Error_UnrecognizedGridFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string contains empty segment..
+        /// </summary>
+        internal static string ErrorInfo_ContainsEmptySegmentOnParsing {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ContainsEmptySegmentOnParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different existence of config file and library file..
+        /// </summary>
+        internal static string ErrorInfo_DifferentExistenceOfConfigAndLibraryFile {
+            get {
+                return ResourceManager.GetString("ErrorInfo_DifferentExistenceOfConfigAndLibraryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicated or invalid values found..
+        /// </summary>
+        internal static string ErrorInfo_DuplicatedValuesMayExistOrInvalid {
+            get {
+                return ResourceManager.GetString("ErrorInfo_DuplicatedValuesMayExistOrInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Related files should be initialized first..
+        /// </summary>
+        internal static string ErrorInfo_FileShouldBeInitializedFirst {
+            get {
+                return ResourceManager.GetString("ErrorInfo_FileShouldBeInitializedFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method..
+        /// </summary>
+        internal static string ErrorInfo_GridInvalid {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The grid cannot keep invalid cell state value..
+        /// </summary>
+        internal static string ErrorInfo_GridInvalidCellState {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridInvalidCellState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The grid contains multiple solutions..
+        /// </summary>
+        internal static string ErrorInfo_GridMultipleSolutions {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridMultipleSolutions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The grid has no possible solution..
+        /// </summary>
+        internal static string ErrorInfo_GridNoSolution {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridNoSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid state on parsing values..
+        /// </summary>
+        internal static string ErrorInfo_InvalidStateOnParsing {
+            get {
+                return ResourceManager.GetString("ErrorInfo_InvalidStateOnParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length of the string must be {0}..
+        /// </summary>
+        internal static string ErrorInfo_LengthMustBeMatched {
+            get {
+                return ResourceManager.GetString("ErrorInfo_LengthMustBeMatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
+        /// </summary>
+        internal static string ErrorInfo_LibraryShouldBeInitialized {
+            get {
+                return ResourceManager.GetString("ErrorInfo_LibraryShouldBeInitialized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple chute values found..
+        /// </summary>
+        internal static string ErrorInfo_MultipleChuteValuesFound {
+            get {
+                return ResourceManager.GetString("ErrorInfo_MultipleChuteValuesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple conjuagte pair values found..
+        /// </summary>
+        internal static string ErrorInfo_MultipleConjugatePairValuesFound {
+            get {
+                return ResourceManager.GetString("ErrorInfo_MultipleConjugatePairValuesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple same properties are found..
+        /// </summary>
+        internal static string ErrorInfo_MultipleSamePropertiesFound {
+            get {
+                return ResourceManager.GetString("ErrorInfo_MultipleSamePropertiesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No possible elements can be found in the current sequence..
+        /// </summary>
+        internal static string ErrorInfo_NoElementsInSequence {
+            get {
+                return ResourceManager.GetString("ErrorInfo_NoElementsInSequence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file does not exist..
+        /// </summary>
+        internal static string ErrorInfo_NotExist {
+            get {
+                return ResourceManager.GetString("ErrorInfo_NotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The pointer cannot move..
+        /// </summary>
+        internal static string ErrorInfo_PointerCannotMove {
+            get {
+                return ResourceManager.GetString("ErrorInfo_PointerCannotMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string value is invalid to be parsed..
+        /// </summary>
+        internal static string ErrorInfo_StringValueInvalidToBeParsed {
+            get {
+                return ResourceManager.GetString("ErrorInfo_StringValueInvalidToBeParsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown..
+        /// </summary>
+        internal static string ErrorInfo_SubsetsExceeded {
+            get {
+                return ResourceManager.GetString("ErrorInfo_SubsetsExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to houses: {0}.
         /// </summary>
         internal static string HousesLabel {

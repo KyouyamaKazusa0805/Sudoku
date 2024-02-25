@@ -147,7 +147,7 @@ internal static class FishModule
 				(true, not null) or (not null, true) => true,
 				(false, false) => false,
 				(null, null) => default(bool?),
-				_ => throw new InvalidOperationException("The Sashimi property is invalid.")
+				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("SashimiPropertyInvalid"))
 			};
 
 			// Check for cannibalism.
@@ -175,42 +175,40 @@ internal static class FishModule
 				select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 			]);
 
-			siameseStep = (FishStep)(
-				fish1 switch
-				{
-					NormalFishStep => new NormalFishStep(
-						conclusions,
-						[view, fish1ViewNodes, fish2ViewNodes],
-						fish1.Options,
-						fish1.Digit,
-						fish1.BaseSetsMask,
-						coveredSetsMask,
-						in mergedFins,
-						isSashimi,
-						true
-					),
-					ComplexFishStep p => new ComplexFishStep(
-						conclusions,
-						[view, fish1ViewNodes, fish2ViewNodes],
-						fish1.Options,
-						fish1.Digit,
-						fish1.BaseSetsMask,
-						coveredSetsMask,
-						mergedFins & (p.Exofins | ((ComplexFishStep)fish2).Exofins),
-						mergedFins & (p.Endofins | ((ComplexFishStep)fish2).Endofins),
-						GetShapeKind(p) switch
-						{
-							FishShapeKind.Franken => true,
-							FishShapeKind.Mutant => false,
-							_ => throw new InvalidOperationException("A complex fish cannot hold a normal shape kind.")
-						},
-						isSashimi,
-						isCannibalism,
-						true
-					),
-					_ => throw new NotSupportedException("The target type is not supported.")
-				}
-			);
+			siameseStep = fish1 switch
+			{
+				NormalFishStep => new NormalFishStep(
+					conclusions,
+					[view, fish1ViewNodes, fish2ViewNodes],
+					fish1.Options,
+					fish1.Digit,
+					fish1.BaseSetsMask,
+					coveredSetsMask,
+					in mergedFins,
+					isSashimi,
+					true
+				),
+				ComplexFishStep p => new ComplexFishStep(
+					conclusions,
+					[view, fish1ViewNodes, fish2ViewNodes],
+					fish1.Options,
+					fish1.Digit,
+					fish1.BaseSetsMask,
+					coveredSetsMask,
+					mergedFins & (p.Exofins | ((ComplexFishStep)fish2).Exofins),
+					mergedFins & (p.Endofins | ((ComplexFishStep)fish2).Endofins),
+					GetShapeKind(p) switch
+					{
+						FishShapeKind.Franken => true,
+						FishShapeKind.Mutant => false,
+						_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComplexFishCannotBeNormal"))
+					},
+					isSashimi,
+					isCannibalism,
+					true
+				),
+				_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("MemberNotSupported"))
+			};
 			return true;
 
 		ReturnFalse:
@@ -231,7 +229,7 @@ internal static class FishModule
 					var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode(_, var candidate2) && candidate1 == candidate2);
 					if (n?.Identifier is not WellKnownColorIdentifier id2)
 					{
-						throw new InvalidOperationException("The view in the second fish is invalid.");
+						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NormalFishViewInvalid"));
 					}
 
 					result.Add(

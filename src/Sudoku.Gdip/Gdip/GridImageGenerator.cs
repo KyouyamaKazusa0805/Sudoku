@@ -205,9 +205,9 @@ public sealed partial class GridImageGenerator
 				WellKnownColorIdentifierKind.AlmostLockedSet3 => Preferences.ColorPalette[^3],
 				WellKnownColorIdentifierKind.AlmostLockedSet4 => Preferences.ColorPalette[^2],
 				WellKnownColorIdentifierKind.AlmostLockedSet5 => Preferences.ColorPalette[^1],
-				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
+				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchDisplayingColor"))
 			},
-			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchIdentifier"))
 		};
 
 

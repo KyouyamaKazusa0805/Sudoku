@@ -136,8 +136,8 @@ public sealed partial class AlmostLockedSet(
 		=> str.SplitBy(['/']) is [var digitsStr, var cellsStrAndHouseStr]
 			? cellsStrAndHouseStr.SplitBy([' ']) is [var cellsStr, _, _]
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
-				: throw new FormatException("Missing cells or target house.")
-			: throw new FormatException("The ALS notation must contain only 1 slash character.");
+				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
 
 	/// <summary>
 	/// Collects all possible <see cref="AlmostLockedSet"/>s in the specified grid.

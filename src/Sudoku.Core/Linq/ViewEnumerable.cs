@@ -72,7 +72,7 @@ public static class ViewEnumerable
 	/// <inheritdoc cref="FirstOrDefault(View, Func{ViewNode, bool})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ViewNode First(this View @this, Func<ViewNode, bool> match)
-		=> @this.FirstOrDefault(match) ?? throw new InvalidOperationException("Sequence has no elements.");
+		=> @this.FirstOrDefault(match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
 
 	/// <summary>
 	/// Searches for an element that matches the conditions defined by the specified predicate,

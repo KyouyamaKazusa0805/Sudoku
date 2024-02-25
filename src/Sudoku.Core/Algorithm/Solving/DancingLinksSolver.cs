@@ -61,7 +61,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		if (_solutionCount > 1)
 		{
-			throw new InvalidOperationException("The puzzle has multiple solutions.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
 		}
 
 		Debug.Assert(_root is not null);
@@ -148,7 +148,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		var idList = (from k in answer orderby k.Id select k.Id).ToList();
 		var grid = Grid.Create(from id in idList select id % 9 + 1, GridCreatingOption.MinusOne);
-		result = grid.IsValid ? grid : throw new InvalidOperationException("The puzzle has no possible solutions.");
+		result = grid.IsValid ? grid : throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridNoSolution"));
 	}
 
 	/// <summary>

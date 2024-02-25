@@ -2776,6 +2776,36 @@ fixed (short* ptr = instance)
         <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="T:System.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:System.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
@@ -3314,6 +3344,14 @@ fixed (short* ptr = instance)
             </typeparam>
             <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
         </member>
+        <member name="M:System.Resources.ResourceDictionary.ExceptionMessage(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get error information (used by exception message, <see cref="P:System.Exception.Message"/> property) values,
+            or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
+            </summary>
+            <inheritdoc cref="M:System.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
+        </member>
         <member name="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>
             Try to get resource via the key, or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
@@ -3390,6 +3428,62 @@ fixed (short* ptr = instance)
         <member name="F:System.Resources.ResourceNotFoundException._culture">
             <summary>
             The generated field declaration for parameter <c>culture</c>.
+            </summary>
+        </member>
+        <member name="T:System.Resources.SystemExtensionsResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_ArgCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The argument cannot return null..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_CharacterNotUtf8">
+            <summary>
+              Looks up a localized string similar to Cannot operate because the argument is not a UTF-8 formatted character..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_FormatInvalid">
+            <summary>
+              Looks up a localized string similar to The specified format is invalid..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_MemberNotSupported">
+            <summary>
+              Looks up a localized string similar to This member does not supported..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_NoSuchElementSatisfyingCondition">
+            <summary>
+              Looks up a localized string similar to The collection does not contain any possible element satisfying the specified condition..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_SpecifiedValueMustBeEven">
+            <summary>
+              Looks up a localized string similar to The argument must be of an even length..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_UnderlyingTypeNotSupported">
+            <summary>
+              Looks up a localized string similar to The target enumeration type has a wrong underlying numeric type. All possible underlying types for an enumeration type must be of size 1, 2, 4 or 8 bits..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_ValueStopwatchTypeIsUninitialized">
+            <summary>
+              Looks up a localized string similar to An uninitialized, or &apos;default(ValueStopwatch)&apos;, ValueStopwatch cannot be used for getting elapsed time..
             </summary>
         </member>
         <member name="T:System.SourceGeneration.Accessibility">
@@ -5280,11 +5374,6 @@ fixed (short* ptr = instance)
             Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
             </summary>
             <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
-        </member>
-        <member name="F:System.Timers.ValueStopwatch.ErrorInfo_TypeIsUninitialized">
-            <summary>
-            The error information describing the type is uninitialized.
-            </summary>
         </member>
         <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
             <summary>
