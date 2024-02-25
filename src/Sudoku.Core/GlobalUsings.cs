@@ -43,7 +43,7 @@ global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.SolutionFields;
 global using unsafe CellMapPredicateFunc = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, int /*Digit*/, bool>;
 global using unsafe CellPredicateFunc = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, bool>;
+global using unsafe GridRandomizedSuffler = delegate*<System.Random, ref Sudoku.Concepts.Grid, void>;
 global using unsafe MaskMergingFunc = delegate*<ref short /*Mask*/, ref readonly Sudoku.Concepts.Grid, int /*Cell*/, void>;
 global using unsafe RefreshingCandidatesHandler = delegate*<ref Sudoku.Concepts.Grid, void>;
 global using unsafe ValueChangedHandler = delegate*<ref Sudoku.Concepts.Grid, int /*Cell*/, short /*Mask*/, short /*Mask*/, int /*Digit*/, void>;
-global using unsafe GridRandomizedSuffler = delegate*<System.Random, ref Sudoku.Concepts.Grid, void>;

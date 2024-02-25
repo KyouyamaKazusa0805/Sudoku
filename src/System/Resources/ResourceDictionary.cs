@@ -1,4 +1,4 @@
-namespace Sudoku.Resources;
+namespace System.Resources;
 
 /// <summary>
 /// Represents a easy way to fetch resource values using the specified key and culture information.

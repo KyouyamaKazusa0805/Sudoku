@@ -1,4 +1,4 @@
-namespace Sudoku.Resources;
+namespace System.Resources;
 
 /// <summary>
 /// Represents an exception type that relates to resource dictionary.

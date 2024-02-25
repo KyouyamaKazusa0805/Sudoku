@@ -3613,7 +3613,7 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <param name="culture">The culture information.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -3621,7 +3621,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The name of the current technique.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -4075,7 +4075,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The name.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
             <summary>
@@ -4084,7 +4084,7 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <param name="culture">The culture information instance.</param>
             <returns>The name.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
@@ -5839,7 +5839,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             The technique name are all stored in the resource dictionary,
-            you can find them in the <c>Strings</c> folder (Type <see cref="T:Sudoku.Resources.ResourceDictionary"/>).
+            you can find them in the <c>Strings</c> folder (Type <see cref="T:System.Resources.ResourceDictionary"/>).
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Step.EnglishName">
@@ -5945,7 +5945,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
-            <seealso cref="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <seealso cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
             <seealso cref="T:Sudoku.Text.TechniqueFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/>
         </member>
@@ -19212,18 +19212,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the mutant exocet.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKindExtensions">
-            <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.Traits.IComplexSeniorExocet)">
-            <summary>
-            Try to get shape kind via the houses.
-            </summary>
-            <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.FishFinKind">
             <summary>
             Indicates a fin modifier that is used for a complex fish pattern.
@@ -19270,6 +19258,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the mutant fish.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ExocetShapeKindExtensions">
+            <summary>
+            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Traits.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.Traits.IComplexSeniorExocet)">
+            <summary>
+            Try to get shape kind via the houses.
+            </summary>
+            <param name="this">The houses provider.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Traits.IComplexSeniorExocet">
             <summary>
@@ -25990,7 +25990,7 @@ if (student is (name: var name, age: >= 18))
             <param name="culture">The culture information.</param>
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
-            <exception cref="T:Sudoku.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
         </member>
         <member name="M:Sudoku.Text.TechniqueFormat.op_Implicit(System.String)~Sudoku.Text.TechniqueFormat">
             <summary>
