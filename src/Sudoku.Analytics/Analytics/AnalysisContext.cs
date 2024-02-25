@@ -40,7 +40,7 @@ public ref partial struct AnalysisContext(
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	[DisallowNull]
-	public SymmetricType? InferredGurthSymmetricalPlacementPattern { get; internal set; }
+	public SymmetricType? GspPatternInferred { get; internal set; }
 
 	/// <summary>
 	/// Indicates the previously set digit.
@@ -62,10 +62,10 @@ public ref partial struct AnalysisContext(
 	/// Due to being uninitialized, we should use this property very carefully.
 	/// </para>
 	/// <para>
-	/// Please firstly check for property <see cref="InferredGurthSymmetricalPlacementPattern"/>.
+	/// Please firstly check for property <see cref="GspPatternInferred"/>.
 	/// If that property returns an array not empty, you can use this property with safety.
 	/// </para>
 	/// </b></remarks>
-	/// <seealso cref="InferredGurthSymmetricalPlacementPattern"/>
+	/// <seealso cref="GspPatternInferred"/>
 	public ReadOnlySpan<Digit?> MappingRelations { get; internal set; }
 }

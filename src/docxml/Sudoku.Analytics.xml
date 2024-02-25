@@ -306,7 +306,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.InferredGurthSymmetricalPlacementPattern">
+        <member name="P:Sudoku.Analytics.AnalysisContext.GspPatternInferred">
             <summary>
             Indicates whether a puzzle satisfies a Gurth's Symmetrical Placement (GSP) pattern.
             If satisfying, what kind of symmetry the pattern will be.
@@ -337,11 +337,11 @@ if (student is (name: var name, age: >= 18))
             Due to being uninitialized, we should use this property very carefully.
             </para>
             <para>
-            Please firstly check for property <see cref="P:Sudoku.Analytics.AnalysisContext.InferredGurthSymmetricalPlacementPattern"/>.
+            Please firstly check for property <see cref="P:Sudoku.Analytics.AnalysisContext.GspPatternInferred"/>.
             If that property returns an array not empty, you can use this property with safety.
             </para>
             </b></remarks>
-            <seealso cref="P:Sudoku.Analytics.AnalysisContext.InferredGurthSymmetricalPlacementPattern"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisContext.GspPatternInferred"/>
         </member>
         <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>

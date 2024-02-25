@@ -157,7 +157,7 @@ public sealed partial class Analyzer :
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
 			{
-				context.InferredGurthSymmetricalPlacementPattern = symmetricType;
+				context.GspPatternInferred = symmetricType;
 				context.MappingRelations = mappingDigits;
 
 				if (SymmetricalPlacementInferrer.GetStep(in playground, Options) is { } step)
@@ -399,7 +399,7 @@ public sealed partial class Analyzer :
 			)
 			{
 				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.
-				if (context is { InferredGurthSymmetricalPlacementPattern: { } symmetricType } && step is not GurthSymmetricalPlacementStep)
+				if (context is { GspPatternInferred: { } symmetricType } && step is not GurthSymmetricalPlacementStep)
 				{
 					scoped var mappingRelations = context.MappingRelations;
 					var originalConclusions = step.Conclusions;
