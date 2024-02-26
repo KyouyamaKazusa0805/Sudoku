@@ -2203,123 +2203,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ensure the file should be unsnapped..
-        /// </summary>
-        internal static string ErrorInfo_EnsureFileIsUnsnapped {
-            get {
-                return ResourceManager.GetString("ErrorInfo_EnsureFileIsUnsnapped", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The specified format is invalid: it contain multiple sub-formats or no format..
-        /// </summary>
-        internal static string ErrorInfo_FileFormatContainsMultipleSubformats {
-            get {
-                return ResourceManager.GetString("ErrorInfo_FileFormatContainsMultipleSubformats", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The format cannot be null..
-        /// </summary>
-        internal static string ErrorInfo_FormatCannotBeNull {
-            get {
-                return ResourceManager.GetString("ErrorInfo_FormatCannotBeNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The puzzle must be solved, and have a unique solution..
-        /// </summary>
-        internal static string ErrorInfo_GridMustBeSolvedOrUnique {
-            get {
-                return ResourceManager.GetString("ErrorInfo_GridMustBeSolvedOrUnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The base value type is invalid..
-        /// </summary>
-        internal static string ErrorInfo_InvalidBaseType {
-            get {
-                return ResourceManager.GetString("ErrorInfo_InvalidBaseType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid library bindable source..
-        /// </summary>
-        internal static string ErrorInfo_InvalidLibraryBindableSource {
-            get {
-                return ResourceManager.GetString("ErrorInfo_InvalidLibraryBindableSource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Main window cannot be found..
-        /// </summary>
-        internal static string ErrorInfo_MainWindowNotFound {
-            get {
-                return ResourceManager.GetString("ErrorInfo_MainWindowNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The mode is invalid, it may not be defined in the enumeration type..
-        /// </summary>
-        internal static string ErrorInfo_ModeInvalidOrUndefined {
-            get {
-                return ResourceManager.GetString("ErrorInfo_ModeInvalidOrUndefined", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No available name can be used..
-        /// </summary>
-        internal static string ErrorInfo_NoAvailableNameCanBeUsed {
-            get {
-                return ResourceManager.GetString("ErrorInfo_NoAvailableNameCanBeUsed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One of two possible property values cannot be found in target property group type..
-        /// </summary>
-        internal static string ErrorInfo_PropertyValueCannotBeFoundInPropertyGroupType {
-            get {
-                return ResourceManager.GetString("ErrorInfo_PropertyValueCannotBeFoundInPropertyGroupType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Such color cannot be found..
-        /// </summary>
-        internal static string ErrorInfo_SuchColorCannotBeFound {
-            get {
-                return ResourceManager.GetString("ErrorInfo_SuchColorCannotBeFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Such instance contains invalid data..
-        /// </summary>
-        internal static string ErrorInfo_SuchInstanceIsInvalid {
-            get {
-                return ResourceManager.GetString("ErrorInfo_SuchInstanceIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Could not get DPI for monitor..
-        /// </summary>
-        internal static string ErrorInfo_UnableGetDpi {
-            get {
-                return ResourceManager.GetString("ErrorInfo_UnableGetDpi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Comma-separated values format.
         /// </summary>
         internal static string FileExtension_CommaSeparated {
@@ -2460,6 +2343,15 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_Intro {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetric types.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Symmetry {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Symmetry", resourceCulture);
             }
         }
         

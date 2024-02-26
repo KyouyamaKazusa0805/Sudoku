@@ -28,13 +28,23 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	{
 		foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
 		{
-			switch (constraint)
-			{
-				case DifficultyLevelConstraint instance when Create_DifficultyLevel(instance) is { } control:
+			(
+				constraint switch
 				{
-					_controls.Add(control);
-					break;
+					DifficultyLevelConstraint instance => () => callbackSimpleEncapsulator(Create_DifficultyLevel, instance),
+					SymmetryConstraint instance => () => callbackSimpleEncapsulator(Create_Symmetry, instance),
+					_ => default(Action)
 				}
+			)?.Invoke();
+		}
+
+
+		void callbackSimpleEncapsulator<TConstraint>(Func<TConstraint, SettingsCard?> method, TConstraint instance)
+			where TConstraint : Constraint
+		{
+			if (method(instance) is { } control)
+			{
+				_controls.Add(control);
 			}
 		}
 	}
@@ -170,5 +180,62 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			};
 		}
+	}
+
+	private SettingsCard? Create_Symmetry(SymmetryConstraint constraint)
+	{
+		if (constraint is not { SymmetricTypes: var symmetricTypes })
+		{
+			return null;
+		}
+
+		//
+		// symmetry selection
+		//
+		var symmetryControl = new Segmented
+		{
+			SelectionMode = ListViewSelectionMode.Multiple,
+			Items =
+			{
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Central"), Tag = SymmetricType.Central },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Diagonal"), Tag = SymmetricType.Diagonal },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Diagonal"), Tag = SymmetricType.AntiDiagonal },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_YAxis"), Tag = SymmetricType.YAxis },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_XAxis"), Tag = SymmetricType.XAxis },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_AxisBoth"), Tag = SymmetricType.AxisBoth },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_DiagonalBoth"), Tag = SymmetricType.DiagonalBoth },
+				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_All"), Tag = SymmetricType.All }
+			}
+		};
+		symmetryControl.SelectionChanged += (_, _) =>
+		{
+			foreach (SegmentedItem element in symmetryControl.Items)
+			{
+				var type = (SymmetricType)element.Tag!;
+				var possibleItemInChosenItemsList = symmetryControl.SelectedItems.FirstOrDefault(e => ReferenceEquals(e, element));
+				if (possibleItemInChosenItemsList is not null)
+				{
+					constraint.SymmetricTypes |= type;
+				}
+				else
+				{
+					constraint.SymmetricTypes &= ~type;
+				}
+			}
+		};
+		foreach (SegmentedItem element in symmetryControl.Items)
+		{
+			if (symmetricTypes.HasFlag((SymmetricType)element.Tag!))
+			{
+				symmetryControl.SelectedItems.Add(element);
+			}
+		}
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Symmetry"),
+			Content = symmetryControl,
+			Tag = constraint
+		};
 	}
 }

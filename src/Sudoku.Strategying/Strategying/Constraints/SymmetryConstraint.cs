@@ -29,9 +29,9 @@ public sealed partial class SymmetryConstraint : Constraint
 	/// <inheritdoc/>
 	protected internal override ValidationResult ValidateCore()
 	{
-		foreach (var flag in (int)SymmetricTypes)
+		foreach (var flag in SymmetricTypes)
 		{
-			if (!Enum.IsDefined((SymmetricType)(1 << flag)))
+			if (!Enum.IsDefined(flag))
 			{
 				return ValidationResult.Failed(
 					nameof(SymmetricTypes),

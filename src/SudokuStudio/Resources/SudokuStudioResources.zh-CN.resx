@@ -2306,4 +2306,7 @@
   <data name="MainWindow_GeneratedPuzzleConstraintPage" xml:space="preserve">
     <value>出题自动化</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Symmetry" xml:space="preserve">
+    <value>对称类型</value>
+  </data>
 </root>
