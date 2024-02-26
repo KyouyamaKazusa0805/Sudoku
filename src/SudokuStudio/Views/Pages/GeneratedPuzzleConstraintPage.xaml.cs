@@ -6,6 +6,12 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class GeneratedPuzzleConstraintPage : Page
 {
 	/// <summary>
+	/// Indicates the default margin.
+	/// </summary>
+	private static readonly Thickness DefaultMargin = new(0, 6, 0, 6);
+
+
+	/// <summary>
 	/// Indicates the internal controls.
 	/// </summary>
 	private readonly ObservableCollection<UIElement> _controls = [];
@@ -37,6 +43,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					MinimalConstraint instance => () => callback(Create_Minimal, instance),
 					PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 					DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+					IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
 					_ => default(Action)
 				}
 			)?.Invoke();
@@ -63,44 +70,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// operator selection
 		//
-		var operatorControl = new ComboBox
-		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseComparisonOperator"),
-			Items =
-			{
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Equality"),
-					Tag = ComparisonOperator.Equality
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality"),
-					Tag = ComparisonOperator.Inequality
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThan"),
-					Tag = ComparisonOperator.GreaterThan
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThanOrEqual"),
-					Tag = ComparisonOperator.GreaterThanOrEqual
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_LessThan"),
-					Tag = ComparisonOperator.LessThan
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_LessThanOrEqual"),
-					Tag = ComparisonOperator.LessThanOrEqual
-				}
-			}
-		};
-		ComboBoxBindingHandler(operatorControl, @operator, value => constraint.Operator = value);
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
 
 		//
 		// difficulty level selection
@@ -142,6 +112,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_DifficultyLevel"),
+			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
@@ -204,6 +175,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Symmetry"),
+			Margin = DefaultMargin,
 			Content = symmetryControl,
 			Tag = constraint
 		};
@@ -225,6 +197,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Minimal"),
+			Margin = DefaultMargin,
 			Content = minimalControl,
 			Tag = constraint
 		};
@@ -246,6 +219,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		return new()
 		{
 			Header = ResourceDictionary.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}"),
+			Margin = DefaultMargin,
 			Content = control,
 			Tag = constraint
 		};
@@ -353,6 +327,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_CountBetween"),
+			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
@@ -370,6 +345,90 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
+	private SettingsCard? Create_Ittoryu(IttoryuConstraint constraint)
+	{
+		if (constraint is not { Operator: var @operator, Rounds: var rounds })
+		{
+			return null;
+		}
+
+		//
+		// operator selector
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		//
+		// rounds box
+		//
+		var roundsControl = new IntegerBox { Width = 150, Minimum = 1, Maximum = 10, Value = rounds };
+		roundsControl.ValueChanged += (_, _) => constraint.Rounds = roundsControl.Value;
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Ittoryu"),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { operatorControl, roundsControl }
+			},
+			Tag = constraint
+		};
+	}
+
+
+	/// <summary>
+	/// Creates a <see cref="ComboBox"/> object for comparison operator displaying.
+	/// </summary>
+	/// <typeparam name="T">The type of the constraint.</typeparam>
+	/// <param name="operator">The operator value.</param>
+	/// <param name="constraint">The constraint.</param>
+	/// <returns>A <see cref="ComboBox"/> instance.</returns>
+	private static ComboBox ComparisonOperatorControl<T>(ComparisonOperator @operator, T constraint)
+		where T : Constraint, IComparisonOperatorConstraint
+	{
+		var operatorControl = new ComboBox
+		{
+			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseComparisonOperator"),
+			Items =
+			{
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_Equality"),
+					Tag = ComparisonOperator.Equality
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality"),
+					Tag = ComparisonOperator.Inequality
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThan"),
+					Tag = ComparisonOperator.GreaterThan
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThanOrEqual"),
+					Tag = ComparisonOperator.GreaterThanOrEqual
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_LessThan"),
+					Tag = ComparisonOperator.LessThan
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_LessThanOrEqual"),
+					Tag = ComparisonOperator.LessThanOrEqual
+				}
+			}
+		};
+		ComboBoxBindingHandler(operatorControl, @operator, value => constraint.Operator = value);
+
+		return operatorControl;
+	}
 
 	/// <summary>
 	/// The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="ComboBox"/> instance.

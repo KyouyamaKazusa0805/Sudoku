@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class IttoryuConstraint : Constraint
+public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint
 {
 	/// <summary>
 	/// Indicates the rounds used.
@@ -14,9 +14,7 @@ public sealed partial class IttoryuConstraint : Constraint
 	[StringMember]
 	public required int Rounds { get; set; }
 
-	/// <summary>
-	/// Indicates the operator to compare values.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }

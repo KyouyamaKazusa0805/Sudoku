@@ -2351,4 +2351,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_Diamond" xml:space="preserve">
     <value>Should be diamond</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Ittoryu" xml:space="preserve">
+    <value>Ittoryu rounds</value>
+  </data>
 </root>

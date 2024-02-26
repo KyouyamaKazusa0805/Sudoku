@@ -13,6 +13,7 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 		new CountBetweenConstraint { Range = 24..28, CellState = CellState.Given, BetweenRule = BetweenRule.BothClosed },
 		new MinimalConstraint { ShouldBeMinimal = false },
 		new PearlConstraint { ShouldBePearlOrDiamond = false },
-		new DiamondConstraint { ShouldBePearlOrDiamond = false }
+		new DiamondConstraint { ShouldBePearlOrDiamond = false },
+		new IttoryuConstraint { Operator = ComparisonOperator.Equality, Rounds = 1 }
 	];
 }

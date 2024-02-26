@@ -2351,4 +2351,7 @@
   <data name="GeneratedPuzzleConstraintPage_Diamond" xml:space="preserve">
     <value>是否为钻石题</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Ittoryu" xml:space="preserve">
+    <value>一刀流轮数</value>
+  </data>
 </root>

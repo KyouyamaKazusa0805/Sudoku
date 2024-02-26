@@ -7067,6 +7067,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page stores the constraints that will be used in analyze page, filtering generated puzzles automatically. You can control the following rules to filter puzzles..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Ittoryu">
+            <summary>
+              Looks up a localized string similar to Ittoryu rounds.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Minimal">
             <summary>
               Looks up a localized string similar to Should be minimal.
@@ -13713,6 +13718,11 @@ if (student is (name: var name, age: >= 18))
             Represents generated puzzle constraint page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultMargin">
+            <summary>
+            Indicates the default margin.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage._controls">
             <summary>
             Indicates the internal controls.
@@ -13727,6 +13737,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Create controls via properties.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComparisonOperatorControl``1(Sudoku.Strategying.ComparisonOperator,``0)">
+            <summary>
+            Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> object for comparison operator displaying.
+            </summary>
+            <typeparam name="T">The type of the constraint.</typeparam>
+            <param name="operator">The operator value.</param>
+            <param name="constraint">The constraint.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComboBoxBindingHandler``1(Microsoft.UI.Xaml.Controls.ComboBox,``0,System.Action{``0})">
             <summary>

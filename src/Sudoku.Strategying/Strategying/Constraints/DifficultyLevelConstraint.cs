@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class DifficultyLevelConstraint : Constraint
+public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
 {
 	/// <summary>
 	/// Indicates the difficulty level.
@@ -14,9 +14,7 @@ public sealed partial class DifficultyLevelConstraint : Constraint
 	[StringMember]
 	public required DifficultyLevel DifficultyLevel { get; set; }
 
-	/// <summary>
-	/// Indicates the operator.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }
